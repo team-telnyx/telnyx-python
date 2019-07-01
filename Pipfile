@@ -4,7 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-telnyx = {path = ".", editable = true}
+telnyx = {path = ".",editable = true}
 pycryptodome = "*"
 
 [dev-packages]
@@ -16,6 +16,7 @@ tox = "*"
 "flake8" = "*"
 coveralls = "*"
 black = "==19.3b0"
+twine = "*"
 
 [requires]
 python_version = "3.7"
