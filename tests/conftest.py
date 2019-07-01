@@ -19,7 +19,7 @@ from tests.telnyx_mock import TelnyxMock
 MOCK_MINIMUM_VERSION = "0.1.0"
 
 # Starts telnyx-mock if an OpenAPI spec override is found in `openapi/`, and
-# otherwise fall back to `telnyx_MOCK_PORT` or 12111.
+# otherwise fall back to `TELNYX_MOCK_PORT` or 12111.
 if TelnyxMock.start():
     MOCK_PORT = TelnyxMock.port()
 else:

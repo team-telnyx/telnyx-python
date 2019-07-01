@@ -36,6 +36,11 @@ setup(
     author="Telnyx",
     author_email="support@telnyx.com",
     url="https://github.com/telnyx/telnyx-python",
+    project_urls={
+        "Documentation": "https://developers.telnyx.com/docs/overview",
+        "Source Code": "https://github.com/telnyx/telnyx-python",
+        "Bug Tracker": "https://github.com/telnyx/telnyx-python/issues",
+    },
     license="MIT",
     keywords="telnyx telephony sip networking callcontrol messaging sms mms",
     packages=find_packages(exclude=["tests", "tests.*"]),
@@ -45,7 +50,7 @@ setup(
         'requests[security] >= 2.20; python_version < "3.0"',
         "pycryptodome",
     ],
-    python_requires=">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*",
+    python_requires=">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*",
     tests_require=[
         "pytest >= 3.4",
         "pytest-mock >= 1.7",
@@ -53,11 +58,6 @@ setup(
         "pytest-cov >= 2.5",
     ],
     cmdclass={"test": PyTest},
-    project_urls={
-        "Documentation": "https://developers.telnyx.com/docs/overview",
-        "Source Code": "https://github.com/telnyx/telnyx-python",
-        "Bug Tracker": "https://github.com/telnyx/telnyx-python/issues",
-    },
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "Intended Audience :: Developers",
@@ -67,11 +67,11 @@ setup(
         "Programming Language :: Python :: 2",
         "Programming Language :: Python :: 2.7",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.4",
         "Programming Language :: Python :: 3.5",
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: Implementation :: PyPy",
+        "Topic :: Communications :: Telephony",
         "Topic :: Software Development :: Libraries :: Python Modules",
     ],
 )

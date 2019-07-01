@@ -26,7 +26,7 @@ Install from source with:
 
 ### Requirements
 
-- Python 2.7+ or Python 3.4+ (PyPy supported)
+- Python 2.7+ or Python 3.5+ (PyPy supported)
 
 ## Usage
 
@@ -160,7 +160,7 @@ The test suite depends on [telnyx-mock], so make sure to fetch and run it from a
 background terminal ([telnyx-mock's README][telnyx-mock] also contains
 instructions for installing via Homebrew and other methods):
 
-    go get -u github.com/telnyx/telnyx-mock
+    go get -u github.com/team-telnyx/telnyx-mock
     telnyx-mock
 
 Install [pipenv][pipenv], then install all dependencies for the project:

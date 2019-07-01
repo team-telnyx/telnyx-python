@@ -5,12 +5,10 @@ language: python
 matrix:
   include:
     - python: "2.7"
-    - python: "3.4"
     - python: "3.5"
     - python: "3.6"
     - python: "3.7"
-      dist: xenial
-      sudo: true # workaround for https://github.com/travis-ci/travis-ci/issues/9815
+    - python: "3.8-dev"
     - python: "pypy"
     - python: "pypy3"
 
@@ -23,6 +21,7 @@ matrix:
   # release. When that happens, we can remove this `allow_failures` section.
   allow_failures:
     - python: "pypy3"
+    - python: "3.8-dev"
 
 cache:
   directories:
@@ -32,20 +31,20 @@ cache:
 env:
   global:
     # If changing this number, please also change it in `tests/conftest.py`.
-    - telnyx_MOCK_VERSION=0.42.0
+    - TELNYX_MOCK_VERSION=0.1.0
 
 before_install:
   # Unpack and start telnyx-mock so that the test suite can talk to it
   - |
-    if [ ! -d "telnyx-mock/telnyx-mock_${telnyx_MOCK_VERSION}" ]; then
-      mkdir -p telnyx-mock/telnyx-mock_${telnyx_MOCK_VERSION}/
-      curl -L "https://github.com/telnyx/telnyx-mock/releases/download/v${telnyx_MOCK_VERSION}/telnyx-mock_${telnyx_MOCK_VERSION}_linux_amd64.tar.gz" -o "telnyx-mock/telnyx-mock_${telnyx_MOCK_VERSION}_linux_amd64.tar.gz"
-      tar -zxf "telnyx-mock/telnyx-mock_${telnyx_MOCK_VERSION}_linux_amd64.tar.gz" -C "telnyx-mock/telnyx-mock_${telnyx_MOCK_VERSION}/"
+    if [ ! -d "telnyx-mock/telnyx-mock_${TELNYX_MOCK_VERSION}" ]; then
+      mkdir -p telnyx-mock/telnyx-mock_${TELNYX_MOCK_VERSION}/
+      curl -L "https://github.com/team-telnyx/telnyx-mock/releases/download/v${TELNYX_MOCK_VERSION}/telnyx-mock_${TELNYX_MOCK_VERSION}_linux_amd64.tar.gz" -o "telnyx-mock/telnyx-mock_${TELNYX_MOCK_VERSION}_linux_amd64.tar.gz"
+      tar -zxf "telnyx-mock/telnyx-mock_${TELNYX_MOCK_VERSION}_linux_amd64.tar.gz" -C "telnyx-mock/telnyx-mock_${TELNYX_MOCK_VERSION}/"
     fi
   - |
-    telnyx-mock/telnyx-mock_${telnyx_MOCK_VERSION}/telnyx-mock > /dev/null &
-    telnyx_MOCK_PID=$!
-  - export PATH="${PATH}:${PWD}/telnyx-mock/telnyx-mock_${telnyx_MOCK_VERSION}"
+    telnyx-mock/telnyx-mock_${TELNYX_MOCK_VERSION}/telnyx-mock > /dev/null &
+    TELNYX_MOCK_PID=$!
+  - export PATH="${PATH}:${PWD}/telnyx-mock/telnyx-mock_${TELNYX_MOCK_VERSION}"
 
 install:
   - make init
