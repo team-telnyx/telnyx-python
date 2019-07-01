@@ -1,0 +1,21 @@
+[[source]]
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+telnyx = {path = ".", editable = true}
+pycryptodome = "*"
+
+[dev-packages]
+pytest = ">=3.4"
+pytest-mock = ">=1.7"
+pytest-xdist = ">=1.22"
+pytest-cov = ">=2.5"
+tox = "*"
+"flake8" = "*"
+coveralls = "*"
+black = "==19.3b0"
+
+[requires]
+python_version = "3.7"
