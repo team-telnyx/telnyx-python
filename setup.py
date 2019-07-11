@@ -37,7 +37,7 @@ setup(
     author_email="support@telnyx.com",
     url="https://github.com/telnyx/telnyx-python",
     project_urls={
-        "Documentation": "https://developers.telnyx.com/docs/overview",
+        "Documentation": "https://developers.telnyx.com/docs/v2/overview",
         "Source Code": "https://github.com/telnyx/telnyx-python",
         "Bug Tracker": "https://github.com/telnyx/telnyx-python/issues",
     },

@@ -23,5 +23,5 @@ Using the Telnyx API
 
 Documentation for the python bindings can be found alongside Telnyx's other bindings here:
 
-- https://developers.telnyx.com
-- https://developers.telnyx.com/clients/python
+- https://developers.telnyx.com/docs/v2/overview
+- https://developers.telnyx.com/guides/v2/messaging

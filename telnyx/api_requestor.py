@@ -220,7 +220,7 @@ class APIRequestor(object):
             raise error.AuthenticationError(
                 "No API key provided. (HINT: set your API key using "
                 '"telnyx.api_key = <API-KEY>"). You can generate API keys '
-                "from the Telnyx web interface.  See https://telnyx.com/api "
+                "from the Telnyx web interface.  See https://developers.telnyx.com/guides/v2/development/api-keys "
                 "for details, or email support@telnyx.com if you have any "
                 "questions."
             )
