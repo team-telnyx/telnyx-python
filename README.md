@@ -11,7 +11,7 @@ API.
 
 ## Documentation
 
-See the [API Reference](https://developers.telnyx.com/docs/overview).
+See the [API Reference](https://developers.telnyx.com/docs/v2/overview) and the [Setup Guides](https://developers.telnyx.com/guides/v2/development/sdks/python).
 
 ## Installation
 
@@ -30,13 +30,13 @@ Install from source with:
 
 ## Usage
 
-The library needs to be configured with your account's secret key which is
+The library needs to be configured with your account's API Key which is
 available in your [Telnyx Dashboard][api-keys]. Set `telnyx.api_key` to its
 value:
 
 ```python
 import telnyx
-telnyx.api_key = "KEY..."
+telnyx.api_key = "YOUR_API_KEY"
 
 # list messaging profies
 telnyx.MessagingProfile.list()
@@ -44,6 +44,8 @@ telnyx.MessagingProfile.list()
 # retrieve single messaging profile
 telnyx.MessagingProfile.retrieve("123")
 ```
+
+You can read more about our API Keys [here](https://developers.telnyx.com/guides/v2/development/api-keys).
 
 ### Per-request Configuration
 
@@ -113,6 +115,15 @@ telnyx.Messages.create(
 ```
 
 The argument will be automatically rewritten to `from` in the kwargs dict.
+
+> Pro Tip: You can alternatively unpack a dictionary like so:
+>```
+>telnyx.Messages.create(**{
+>  "from": "+18445550001", # Your Telnyx number
+>  "to": "+18665550001", # Your phone number
+>  "text": "Foo"
+>})
+>```
 
 ### Logging
 
@@ -213,7 +224,7 @@ Inherit from the classes that define the behavior available on the endpoint,one 
 4. Add tests for your new class under `tests/api_resources/`.
 
 
-[api-keys]: https://portal.telnyx.com/#/app/auth/services-auth
+[api-keys]: https://portal.telnyx.com/#/app/auth/v2
 [black]: https://github.com/ambv/black
 [pipenv]: https://github.com/pypa/pipenv
 [telnyx-mock]: https://github.com/team-telnyx/telnyx-mock
