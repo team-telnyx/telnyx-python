@@ -4,7 +4,9 @@ from telnyx import api_requestor, util
 from telnyx.six.moves.urllib.parse import quote_plus
 
 
-def nested_resource_class_methods(resource, path=None, operations=None):
+def nested_resource_class_methods(
+    resource, path=None, operations=None, quote_params=True
+):
     if path is None:
         path = "%ss" % resource
     if operations is None:
@@ -12,9 +14,17 @@ def nested_resource_class_methods(resource, path=None, operations=None):
 
     def wrapper(cls):
         def nested_resource_url(cls, id, nested_id=None):
-            url = "%s/%s/%s" % (cls.class_url(), quote_plus(id), quote_plus(path))
+            _path = path
+            if quote_params:
+                _path = quote_plus(_path)
+                id = quote_plus(id)
+                if nested_id is not None:
+                    nested_id = quote_plus(nested_id)
+
+            url = "%s/%s/%s" % (cls.class_url(), id, _path)
+
             if nested_id is not None:
-                url += "/%s" % quote_plus(nested_id)
+                url += "/%s" % nested_id
             return url
 
         resource_url_method = "%ss_url" % resource

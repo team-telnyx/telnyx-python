@@ -139,6 +139,7 @@ def load_object_classes():
         api_resources.NumberOrder.OBJECT_NAME: api_resources.NumberOrder,
         api_resources.NumberOrderPhoneNumber.OBJECT_NAME: api_resources.NumberOrderPhoneNumber,
         api_resources.NumberReservation.OBJECT_NAME: api_resources.NumberReservation,
+        api_resources.CallControl.OBJECT_NAME: api_resources.CallControl,
     }
 
 

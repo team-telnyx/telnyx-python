@@ -16,6 +16,7 @@ from telnyx.api_resources.available_phone_number import AvailablePhoneNumber
 from telnyx.api_resources.number_order import NumberOrder
 from telnyx.api_resources.number_order_phone_number import NumberOrderPhoneNumber
 from telnyx.api_resources.number_reservation import NumberReservation
+from telnyx.api_resources.call_control import CallControl
 
 
 __all__ = [
@@ -32,4 +33,5 @@ __all__ = [
     "NumberOrder",
     "NumberOrderPhoneNumber",
     "NumberReservation",
+    "CallControl",
 ]
