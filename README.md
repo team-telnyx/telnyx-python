@@ -11,7 +11,7 @@ API.
 
 ## Documentation
 
-See the [API Reference](https://developers.telnyx.com/docs/v2/overview) and the [Setup Guides](https://developers.telnyx.com/guides/v2/development/sdks/python).
+See the [API Reference](https://developers.telnyx.com/docs/api/v2/overview) and the [Setup Guides](https://developers.telnyx.com/docs/v2/development/dev-env-setup).
 
 ## Installation
 
@@ -45,7 +45,7 @@ telnyx.MessagingProfile.list()
 telnyx.MessagingProfile.retrieve("123")
 ```
 
-You can read more about our API Keys [here](https://developers.telnyx.com/guides/v2/development/api-keys).
+You can read more about our API Keys [here](https://developers.telnyx.com/docs/v2/development/authentication).
 
 ### Per-request Configuration
 
