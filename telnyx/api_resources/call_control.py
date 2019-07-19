@@ -4,65 +4,40 @@ from telnyx.api_resources.abstract import CreateableAPIResource
 from telnyx.api_resources.abstract import nested_resource_class_methods
 
 
+@nested_resource_class_methods("reject", path="actions/reject", operations=["create"])
+@nested_resource_class_methods("answer", path="actions/answer", operations=["create"])
+@nested_resource_class_methods("hangup", path="actions/hangup", operations=["create"])
+@nested_resource_class_methods("bridge", path="actions/bridge", operations=["create"])
+@nested_resource_class_methods("speak", path="actions/speak", operations=["create"])
 @nested_resource_class_methods(
-    "reject", path="actions/reject", operations=["create"], quote_params=False
+    "fork_start", path="actions/fork_start", operations=["create"]
 )
 @nested_resource_class_methods(
-    "answer", path="actions/answer", operations=["create"], quote_params=False
+    "fork_stop", path="actions/fork_stop", operations=["create"]
 )
 @nested_resource_class_methods(
-    "hangup", path="actions/hangup", operations=["create"], quote_params=False
+    "gather_using_audio", path="actions/gather_using_audio", operations=["create"]
 )
 @nested_resource_class_methods(
-    "bridge", path="actions/bridge", operations=["create"], quote_params=False
+    "gather_using_speak", path="actions/gather_using_speak", operations=["create"]
 )
 @nested_resource_class_methods(
-    "fork_start", path="actions/fork_start", operations=["create"], quote_params=False
+    "playback_start", path="actions/playback_start", operations=["create"]
 )
 @nested_resource_class_methods(
-    "fork_stop", path="actions/fork_stop", operations=["create"], quote_params=False
+    "playback_stop", path="actions/playback_stop", operations=["create"]
 )
 @nested_resource_class_methods(
-    "gather_using_audio",
-    path="actions/gather_using_audio",
-    operations=["create"],
-    quote_params=False,
+    "record_start", path="actions/record_start", operations=["create"]
 )
 @nested_resource_class_methods(
-    "gather_using_speak",
-    path="actions/gather_using_speak",
-    operations=["create"],
-    quote_params=False,
+    "record_stop", path="actions/record_stop", operations=["create"]
 )
 @nested_resource_class_methods(
-    "playback_start",
-    path="actions/playback_start",
-    operations=["create"],
-    quote_params=False,
+    "send_dtmf", path="actions/send_dtmf", operations=["create"]
 )
 @nested_resource_class_methods(
-    "playback_stop",
-    path="actions/playback_stop",
-    operations=["create"],
-    quote_params=False,
-)
-@nested_resource_class_methods(
-    "record_start",
-    path="actions/record_start",
-    operations=["create"],
-    quote_params=False,
-)
-@nested_resource_class_methods(
-    "record_stop", path="actions/record_stop", operations=["create"], quote_params=False
-)
-@nested_resource_class_methods(
-    "send_dtmf", path="actions/send_dtmf", operations=["create"], quote_params=False
-)
-@nested_resource_class_methods(
-    "speak", path="actions/speak", operations=["create"], quote_params=False
-)
-@nested_resource_class_methods(
-    "transfer", path="actions/transfer", operations=["create"], quote_params=False
+    "transfer", path="actions/transfer", operations=["create"]
 )
 class CallControl(CreateableAPIResource):
     OBJECT_NAME = "call"

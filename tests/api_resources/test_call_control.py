@@ -2,7 +2,7 @@ from __future__ import absolute_import, division, print_function
 
 import telnyx
 
-CALL_CONTROL_ID = "123"
+CALL_CONTROL_ID = "AgDIxmoRX6QMuaIj_uXRXnPAXP0QlNfXczRrZvZakpWxBlpw48KyZQ=="
 
 
 def create_dial():
