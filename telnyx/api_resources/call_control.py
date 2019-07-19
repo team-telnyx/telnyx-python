@@ -1,7 +1,9 @@
 from __future__ import absolute_import, division, print_function
 
-from telnyx.api_resources.abstract import CreateableAPIResource
-from telnyx.api_resources.abstract import nested_resource_class_methods
+from telnyx.api_resources.abstract import (
+    CreateableAPIResource,
+    nested_resource_class_methods,
+)
 
 
 @nested_resource_class_methods("reject", path="actions/reject", operations=["create"])
