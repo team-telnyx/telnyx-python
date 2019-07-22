@@ -41,50 +41,50 @@ from telnyx.api_resources.abstract import (
 @nested_resource_class_methods(
     "transfer", path="actions/transfer", operations=["create"]
 )
-class CallControl(CreateableAPIResource):
+class Call(CreateableAPIResource):
     OBJECT_NAME = "call"
 
     def reject(self, **params):
-        return CallControl.create_reject(self.call_control_id, **params)
+        return Call.create_reject(self.call_control_id, **params)
 
     def answer(self, **params):
-        return CallControl.create_answer(self.call_control_id, **params)
+        return Call.create_answer(self.call_control_id, **params)
 
     def hangup(self, **params):
-        return CallControl.create_hangup(self.call_control_id, **params)
+        return Call.create_hangup(self.call_control_id, **params)
 
     def bridge(self, **params):
-        return CallControl.create_bridge(self.call_control_id, **params)
+        return Call.create_bridge(self.call_control_id, **params)
 
     def fork_start(self, **params):
-        return CallControl.create_fork_start(self.call_control_id, **params)
+        return Call.create_fork_start(self.call_control_id, **params)
 
     def fork_stop(self, **params):
-        return CallControl.create_fork_stop(self.call_control_id, **params)
+        return Call.create_fork_stop(self.call_control_id, **params)
 
     def gather_using_audio(self, **params):
-        return CallControl.create_gather_using_audio(self.call_control_id, **params)
+        return Call.create_gather_using_audio(self.call_control_id, **params)
 
     def gather_using_speak(self, **params):
-        return CallControl.create_gather_using_speak(self.call_control_id, **params)
+        return Call.create_gather_using_speak(self.call_control_id, **params)
 
     def playback_start(self, **params):
-        return CallControl.create_playback_start(self.call_control_id, **params)
+        return Call.create_playback_start(self.call_control_id, **params)
 
     def playback_stop(self, **params):
-        return CallControl.create_playback_stop(self.call_control_id, **params)
+        return Call.create_playback_stop(self.call_control_id, **params)
 
     def record_start(self, **params):
-        return CallControl.create_record_start(self.call_control_id, **params)
+        return Call.create_record_start(self.call_control_id, **params)
 
     def record_stop(self, **params):
-        return CallControl.create_record_stop(self.call_control_id, **params)
+        return Call.create_record_stop(self.call_control_id, **params)
 
     def send_dtmf(self, **params):
-        return CallControl.create_send_dtmf(self.call_control_id, **params)
+        return Call.create_send_dtmf(self.call_control_id, **params)
 
     def speak(self, **params):
-        return CallControl.create_speak(self.call_control_id, **params)
+        return Call.create_speak(self.call_control_id, **params)
 
     def transfer(self, **params):
-        return CallControl.create_transfer(self.call_control_id, **params)
+        return Call.create_transfer(self.call_control_id, **params)
