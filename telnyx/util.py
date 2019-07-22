@@ -18,6 +18,9 @@ logger = logging.getLogger("telnyx")
 
 __all__ = ["io", "parse_qsl", "utf8", "log_info", "log_debug", "logfmt"]
 
+# Special valid characters in telnyx id's objects. Format: `=/$#`
+telnyx_valid_id_parts = "=-"
+
 
 def utf8(value):
     if six.PY2 and isinstance(value, six.text_type):
@@ -139,6 +142,7 @@ def load_object_classes():
         api_resources.NumberOrder.OBJECT_NAME: api_resources.NumberOrder,
         api_resources.NumberOrderPhoneNumber.OBJECT_NAME: api_resources.NumberOrderPhoneNumber,
         api_resources.NumberReservation.OBJECT_NAME: api_resources.NumberReservation,
+        api_resources.Call.OBJECT_NAME: api_resources.Call,
     }
 
 
