@@ -4,10 +4,13 @@ from telnyx.api_resources.abstract import (
     CreateableAPIResource,
     ListableAPIResource,
     UpdateableAPIResource,
+    nested_resource_class_methods,
 )
 
 
-class NumberReservation(
-    CreateableAPIResource, ListableAPIResource, UpdateableAPIResource
-):
+@nested_resource_class_methods("extend", path="actions/extend", operations=["create"])
+class NumberReservation(CreateableAPIResource, ListableAPIResource):
     OBJECT_NAME = "number_reservation"
+
+    def extend(self, **params):
+        return NumberReservation.create_extend(self.id, **params)
