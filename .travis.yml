@@ -7,13 +7,14 @@ language: python
 matrix:
   include:
     - python: "2.7"
+    - python: "3.4"
     - python: "3.5"
     - python: "3.6"
     - python: "3.7"
     - python: "3.8-dev"
     - python: "nightly"
-    - python: "pypy"
-    - python: "pypy3"
+    - python: "pypy2.7-6.0"
+    - python: "pypy3.5-6.0"
 
   # There's a Pipenv issue that currently prevents telnyx-python from building
   # properly on Pypy3:
@@ -24,9 +25,10 @@ matrix:
   # project for a new release (>2018.11.26). When that happens, we can remove
   # pypy3 from this section.
   allow_failures:
-    - python: "pypy3"
-    - python: "3.8-dev"
-    - python: "nightly"
+    - python: "pypy3.5-6.0"
+    - python: "3.4"      # not officially supported, but may as well check
+    - python: "3.8-dev"  # not supported until released
+    - python: "nightly"  # "may or may not, there is a try"
 
 cache:
   directories:
