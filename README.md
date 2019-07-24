@@ -26,7 +26,7 @@ Install from source with:
 
 ### Requirements
 
-- Python 2.7+ or Python 3.5+ (PyPy supported)
+- Python 2.7 or 3.5+ (PyPy supported)
 
 ## Usage
 
@@ -36,7 +36,7 @@ value:
 
 ```python
 import telnyx
-telnyx.api_key = "YOUR_API_KEY"
+telnyx.api_key = "KEY01234_yoursecretkey"
 
 # list messaging profies
 telnyx.MessagingProfile.list()
@@ -47,7 +47,7 @@ telnyx.MessagingProfile.retrieve("123")
 
 You can read more about our API Keys [here](https://developers.telnyx.com/docs/v2/development/authentication).
 
-### Per-request Configuration
+### Per-Request Configuration
 
 For apps that need to use multiple keys during the lifetime of a process,
 it's also possible to set a per-request key and/or account:
@@ -67,7 +67,7 @@ telnyx.MessagingProfile.retrieve(
 )
 ```
 
-### Configuring a Client
+### Configuring an HTTP Client
 
 The library can be configured to use `urlfetch`, `requests`, `pycurl`, or
 `urllib2` with `telnyx.default_http_client`:
@@ -114,16 +114,17 @@ telnyx.Messages.create(
 )
 ```
 
-The argument will be automatically rewritten to `from` in the kwargs dict.
+The argument will be automatically rewritten to `from` in the keyword arguments dict.
 
 > Pro Tip: You can alternatively unpack a dictionary like so:
->```
->telnyx.Messages.create(**{
->  "from": "+18445550001", # Your Telnyx number
->  "to": "+18665550001", # Your phone number
->  "text": "Foo"
->})
->```
+> ```python
+> message = {
+>     "from": "+18445550001",
+>     "to": "+18665550001",
+>     "text": "Foo",
+> }
+> telnyx.Messages.create(**message)
+> ```
 
 ### Logging
 
