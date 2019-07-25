@@ -1,7 +1,14 @@
 # Telnyx Python Library
 
-[![Build Status](https://travis-ci.org/team-telnyx/telnyx-python.svg?branch=master)](https://travis-ci.org/team-telnyx/telnyx-python)
-[![Coverage Status](https://coveralls.io/repos/github/team-telnyx/telnyx-python/badge.svg?branch=master)](https://coveralls.io/github/team-telnyx/telnyx-python?branch=master)
+[![image](https://img.shields.io/pypi/v/telnyx.svg)][pypi]
+[![image](https://img.shields.io/pypi/l/telnyx.svg)][pypi]
+[![image](https://img.shields.io/pypi/pyversions/telnyx.svg)][pypi]
+[![Build Status](https://travis-ci.org/team-telnyx/telnyx-python.svg?branch=master)][travis]
+[![Coverage Status](https://coveralls.io/repos/github/team-telnyx/telnyx-python/badge.svg?branch=master)][coveralls]
+
+[pypi]: https://pypi.org/project/telnyx/
+[travis]: https://travis-ci.org/team-telnyx/telnyx-python
+[coveralls]: https://coveralls.io/github/team-telnyx/telnyx-python?branch=master
 
 The Telnyx Python library provides convenient access to the Telnyx API from
 applications written in the Python language. It includes a pre-defined set of
