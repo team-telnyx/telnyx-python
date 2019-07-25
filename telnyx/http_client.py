@@ -446,8 +446,7 @@ class PycurlClient(HTTPClient):
                 "Could not connect to Telnyx.  Please check your "
                 "internet connection and try again.  If this problem "
                 "persists, you should check Telnyx's service status at "
-                "https://twitter.com/telnyxstatus, or let us know at "
-                "support@telnyx.com."
+                "status.telnyx.com, or let us know at support@telnyx.com."
             )
         elif e.args[0] in [pycurl.E_SSL_CACERT, pycurl.E_SSL_PEER_CERTIFICATE]:
             msg = (
