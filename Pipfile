@@ -4,7 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-telnyx = {path = ".",editable = true}
+telnyx = {path = ".", editable = true}
 pycryptodome = "*"
 
 [dev-packages]
@@ -15,7 +15,7 @@ pytest-cov = ">=2.5"
 tox = "*"
 "flake8" = "*"
 coveralls = "*"
-black = "==19.3b0"
+black = {version = "==19.3b0", markers = "python_version >= '3.6'"}
 twine = "*"
 
 [requires]
