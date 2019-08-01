@@ -50,7 +50,7 @@ def verify_key_base64(signing_key):
 def signer(signing_key):
     def _signer(payload, timestamp=None):
         if timestamp is None:
-            timestamp = str(int(time.time())).encode('UTF-8')
+            timestamp = str(int(time.time())).encode("UTF-8")
 
         if hasattr(payload, "encode"):
             payload = payload.encode("utf-8")
@@ -58,7 +58,7 @@ def signer(signing_key):
         if hasattr(timestamp, "encode"):
             timestamp = timestamp.encode("utf-8")
 
-        signed_payload = timestamp + b'|' + payload
+        signed_payload = timestamp + b"|" + payload
         signed_message = signing_key.sign(signed_payload)
         signature = signed_message.signature
 
@@ -70,12 +70,10 @@ def signer(signing_key):
 def test_construct_event(verify_key_base64, signer):
     telnyx.public_key = verify_key_base64
 
-    timestamp = str(int(time.time())).encode('UTF-8')
+    timestamp = str(int(time.time())).encode("UTF-8")
     signature = signer(DUMMY_WEBHOOK_PAYLOAD, timestamp=timestamp)
 
-    event = telnyx.Webhook.construct_event(
-        DUMMY_WEBHOOK_PAYLOAD, signature, timestamp
-    )
+    event = telnyx.Webhook.construct_event(DUMMY_WEBHOOK_PAYLOAD, signature, timestamp)
     assert isinstance(event, telnyx.Event)
 
 
@@ -83,7 +81,7 @@ def test_raise_on_json_error(verify_key_base64, signer):
     payload = b"this is not valid JSON"
     telnyx.public_key = verify_key_base64
 
-    timestamp = str(int(time.time())).encode('UTF-8')
+    timestamp = str(int(time.time())).encode("UTF-8")
     signature = signer(payload, timestamp=timestamp)
     with pytest.raises(ValueError):
         telnyx.Webhook.construct_event(payload, signature, timestamp)
@@ -100,8 +98,10 @@ def test_raise_on_json_error(verify_key_base64, signer):
 def test_construct_event_from_strings(verify_key_base64, signer):
     telnyx.public_key = verify_key_base64
     timestamp = str(int(time.time()))
-    signature = signer(DUMMY_WEBHOOK_PAYLOAD.decode('UTF-8'), timestamp=timestamp)
-    event = telnyx.Webhook.construct_event(DUMMY_WEBHOOK_PAYLOAD.decode('UTF-8'), signature, timestamp)
+    signature = signer(DUMMY_WEBHOOK_PAYLOAD.decode("UTF-8"), timestamp=timestamp)
+    event = telnyx.Webhook.construct_event(
+        DUMMY_WEBHOOK_PAYLOAD.decode("UTF-8"), signature, timestamp
+    )
     assert isinstance(event, telnyx.Event)
 
 
@@ -122,7 +122,7 @@ class TestWebhookSignature(object):
 
     def test_raise_on_timestamp_outside_tolerance(self, verify_key_base64, signer):
         telnyx.public_key = verify_key_base64
-        timestamp = str(int(time.time()) - 15).encode('UTF-8')
+        timestamp = str(int(time.time()) - 15).encode("UTF-8")
         signature = signer(DUMMY_WEBHOOK_PAYLOAD, timestamp)
         with pytest.raises(
             telnyx.error.SignatureVerificationError,
@@ -134,7 +134,7 @@ class TestWebhookSignature(object):
 
     def test_valid_header_and_signature(self, verify_key_base64, signer):
         telnyx.public_key = verify_key_base64
-        timestamp = str(int(time.time())).encode('UTF-8')
+        timestamp = str(int(time.time())).encode("UTF-8")
         signature = signer(DUMMY_WEBHOOK_PAYLOAD, timestamp)
         assert telnyx.WebhookSignature.verify(
             DUMMY_WEBHOOK_PAYLOAD, signature, timestamp, tolerance=10
@@ -143,4 +143,6 @@ class TestWebhookSignature(object):
     def test_timestamp_off_but_no_tolerance(self, verify_key_base64, signer):
         telnyx.public_key = verify_key_base64
         signature = signer(DUMMY_WEBHOOK_PAYLOAD, b"12345")
-        assert telnyx.WebhookSignature.verify(DUMMY_WEBHOOK_PAYLOAD, signature, b"12345")
+        assert telnyx.WebhookSignature.verify(
+            DUMMY_WEBHOOK_PAYLOAD, signature, b"12345"
+        )
