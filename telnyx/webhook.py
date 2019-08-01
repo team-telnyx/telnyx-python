@@ -42,7 +42,7 @@ class WebhookSignature(object):
         if hasattr(payload, "encode"):
             payload = payload.encode("utf-8")
 
-        signed_payload = timestamp + b'|' + payload
+        signed_payload = timestamp + b"|" + payload
         public_key = telnyx.public_key
 
         # verify the data
