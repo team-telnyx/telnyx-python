@@ -17,12 +17,14 @@ from telnyx.api_resources.number_order import NumberOrder
 from telnyx.api_resources.number_order_phone_number import NumberOrderPhoneNumber
 from telnyx.api_resources.number_reservation import NumberReservation
 from telnyx.api_resources.call import Call
+from telnyx.api_resources.conference import Conference
 
 
 __all__ = [
     "APIKey",
     "AvailablePhoneNumber",
     "Call",
+    "Conference",
     "Event",
     "ListObject",
     "Message",
