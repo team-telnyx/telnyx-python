@@ -219,10 +219,6 @@ class TelnyxObject(dict):
                 d[k] = v.to_dict_recursive()
         return d
 
-    @property
-    def telnyx_id(self):
-        return self.id
-
     def serialize(self, previous):
         params = {}
         unsaved_keys = self._unsaved_values or set()
