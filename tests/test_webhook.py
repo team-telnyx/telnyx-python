@@ -7,12 +7,6 @@ from nacl.signing import SigningKey
 from nacl.encoding import Base64Encoder
 import pytest
 
-try:
-    from unittest import mock
-except ImportError:
-    # Python 2.7
-    import mock
-
 import telnyx
 
 
