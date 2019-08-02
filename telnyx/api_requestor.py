@@ -38,8 +38,6 @@ def _api_encode(data):
         key = util.utf8(key)
         if value is None:
             continue
-        elif hasattr(value, "telnyx_id"):
-            yield (key, value.telnyx_id)
         elif isinstance(value, list) or isinstance(value, tuple):
             for sv in value:
                 if isinstance(sv, dict):
