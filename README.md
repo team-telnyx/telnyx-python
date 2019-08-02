@@ -237,6 +237,24 @@ Inherit from the classes that define the behavior available on the endpoint,one 
 [pipenv]: https://github.com/pypa/pipenv
 [telnyx-mock]: https://github.com/team-telnyx/telnyx-mock
 
+## Releasing
+
+1. Update version in
+    * `setup.py`
+    * `telnyx/__init__.py`
+2. Commit the changes and push
+3. Ensure commit passes tests in [Travis][travis-telnyx-python]
+4. Tag that commit with `git tag -a v{VERSION} -m "Release v{VERSION}"`
+5. Ensure checked out copy is entirely clean (best to create a new environment...)
+6. `make dists`
+7. *If you haven't done it before*, download the upload API keys from LastPass (search for "pypi") and put the contents between "PYPIRC FILE" tags into `~/.pypirc-telnyx`.
+8. `make testupload`, check that it looks OK on PyPI and that it's installable via `pip`.
+9. `make liveupload`, repeat checks for live version.
+10. Ta-da.
+
+[travis-telnyx-python]: https://travis-ci.org/team-telnyx/telnyx-python
+
+
 ## Acknowledgments
 
 The contributors and maintainers of Telnyx Python would like to extend their
