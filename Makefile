@@ -33,8 +33,8 @@ testupload:
 		--config-file ~/.pypirc-telnyx \
 		--repository test \
 		dist/*
-	echo "Check for publishing: https://test.pypi.org/project/telnyx/"
-	echo "Check installable   : pip install -U -i https://test.pypi.org/simple/ telnyx"
+	@echo "Check for publishing: https://test.pypi.org/project/telnyx/"
+	@echo "Check installable   : pip install -U -i https://test.pypi.org/simple/ telnyx"
 
 liveupload:
 	test -f ~/.pypirc-telnyx
@@ -42,5 +42,5 @@ liveupload:
 		--config-file ~/.pypirc-telnyx \
 		--repository live \
 		dist/*
-	echo "Check for publishing: https://pypi.org/project/telnyx/"
-	echo "Check installable   : pip install -U telnyx"
+	@echo "Check for publishing: https://pypi.org/project/telnyx/"
+	@echo "Check installable   : pip install -U telnyx"

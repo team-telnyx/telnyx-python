@@ -240,11 +240,11 @@ Inherit from the classes that define the behavior available on the endpoint,one 
 ## Releasing
 
 1. Update version in
-    * `setup.py`
-    * `telnyx/__init__.py`
-2. Commit the changes and push
+    * `setup.py`  (in the `setup()` call, the `version` kwarg)
+    * `telnyx/__init__.py`  (the `__version__` string)
+2. Add changes, commit, and push
 3. Ensure commit passes tests in [Travis][travis-telnyx-python]
-4. Tag that commit with `git tag -a v{VERSION} -m "Release v{VERSION}"`
+4. Tag that commit with `git tag -a v{VERSION} -m "Release v{VERSION}"`, and push the tag `git push --follow-tags`
 5. Ensure checked out copy is entirely clean (best to create a new environment...)
 6. `make dists`
 7. *If you haven't done it before*, download the upload API keys from LastPass (search for "pypi") and put the contents between "PYPIRC FILE" tags into `~/.pypirc-telnyx`.
