@@ -272,7 +272,12 @@ class TestUpdateableAPIResource(object):
             {
                 "baz": "updated",
                 "other": "newval",
-                "nested_object": {"size": "m", "info": "a2", "height": old_nested_object.get('height'), "score": 4},
+                "nested_object": {
+                    "size": "m",
+                    "info": "a2",
+                    "height": old_nested_object.get("height"),
+                    "score": 4,
+                },
             },
             None,
         )
