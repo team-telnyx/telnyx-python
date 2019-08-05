@@ -23,7 +23,7 @@ class TestUpdateableAPIResource(object):
                 "id": "myid",
                 "foo": "bar",
                 "baz": "boz",
-                "metadata": {"size": "l", "score": 4, "height": 10},
+                "nested_object": {"size": "l", "score": 4, "height": 10},
             },
             "mykey",
         )
@@ -40,9 +40,9 @@ class TestUpdateableAPIResource(object):
     def test_save(self, request_mock, obj):
         obj.baz = "updated"
         obj.other = "newval"
-        obj.metadata.size = "m"
-        obj.metadata.info = "a2"
-        obj.metadata.height = None
+        obj.nested_object.size = "m"
+        obj.nested_object.info = "a2"
+        obj.nested_object.height = None
 
         self.checkSave(obj)
 
@@ -52,7 +52,7 @@ class TestUpdateableAPIResource(object):
             {
                 "baz": "updated",
                 "other": "newval",
-                "metadata": {"size": "m", "info": "a2", "height": ""},
+                "nested_object": {"size": "m", "info": "a2", "height": ""},
             },
             None,
         )
@@ -109,14 +109,14 @@ class TestUpdateableAPIResource(object):
 
     def test_save_nothing(self, request_mock, obj):
         acct = self.MyUpdateable.construct_from(
-            {"id": "myid", "metadata": {"key": "value"}}, "mykey"
+            {"id": "myid", "nested_object": {"key": "value"}}, "mykey"
         )
 
         assert acct is acct.save()
 
         request_mock.assert_no_request()
 
-    def test_replace_nested_object(self, request_mock, obj):
+    def test_do_not_replace_nested_object(self, request_mock, obj):
         acct = self.MyUpdateable.construct_from(
             {"id": "myid", "legal_entity": {"last_name": "smith"}}, "mykey"
         )
@@ -128,7 +128,7 @@ class TestUpdateableAPIResource(object):
         request_mock.assert_requested(
             "patch",
             "/v2/myupdateables/myid",
-            {"legal_entity": {"first_name": "bob", "last_name": ""}},
+            {"legal_entity": {"first_name": "bob", "last_name": "smith"}},
             None,
         )
 
@@ -232,35 +232,37 @@ class TestUpdateableAPIResource(object):
 
         request_mock.assert_no_request()
 
-    def test_save_replace_metadata_with_number(self, request_mock, obj):
+    def test_save_replace_nested_object_with_number(self, request_mock, obj):
         obj.baz = "updated"
         obj.other = "newval"
-        obj.metadata = 3
+        obj.nested_object = 3
 
         self.checkSave(obj)
 
         request_mock.assert_requested(
             "patch",
             "/v2/myupdateables/myid",
-            {"baz": "updated", "other": "newval", "metadata": 3},
+            {"baz": "updated", "other": "newval", "nested_object": 3},
             None,
         )
 
-    def test_save_overwrite_metadata(self, request_mock, obj):
-        obj.metadata = {}
+    def test_save_do_not_overwrite_nested_object(self, request_mock, obj):
+        old_nested_object = obj._previous.get("nested_object")
+        obj.nested_object = {}
         self.checkSave(obj)
 
         request_mock.assert_requested(
             "patch",
             "/v2/myupdateables/myid",
-            {"metadata": {"size": "", "score": "", "height": ""}},
+            {"nested_object": old_nested_object},
             None,
         )
 
-    def test_save_replace_metadata(self, request_mock, obj):
+    def test_save_do_not_replace_nested_object(self, request_mock, obj):
+        old_nested_object = obj._previous.get("nested_object")
         obj.baz = "updated"
         obj.other = "newval"
-        obj.metadata = {"size": "m", "info": "a2", "score": 4}
+        obj.nested_object = {"size": "m", "info": "a2", "score": 4}
 
         self.checkSave(obj)
 
@@ -270,15 +272,15 @@ class TestUpdateableAPIResource(object):
             {
                 "baz": "updated",
                 "other": "newval",
-                "metadata": {"size": "m", "info": "a2", "height": "", "score": 4},
+                "nested_object": {"size": "m", "info": "a2", "height": old_nested_object.get('height'), "score": 4},
             },
             None,
         )
 
-    def test_save_update_metadata(self, request_mock, obj):
+    def test_save_update_nested_object(self, request_mock, obj):
         obj.baz = "updated"
         obj.other = "newval"
-        obj.metadata.update({"size": "m", "info": "a2", "score": 4})
+        obj.nested_object.update({"size": "m", "info": "a2", "score": 4})
 
         self.checkSave(obj)
 
@@ -288,7 +290,7 @@ class TestUpdateableAPIResource(object):
             {
                 "baz": "updated",
                 "other": "newval",
-                "metadata": {"size": "m", "info": "a2", "score": 4},
+                "nested_object": {"size": "m", "info": "a2", "score": 4},
             },
             None,
         )
