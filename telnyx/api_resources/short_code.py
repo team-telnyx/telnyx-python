@@ -4,5 +4,5 @@ from telnyx.api_resources.abstract import UpdateableAPIResource
 from telnyx.api_resources.abstract import ListableAPIResource
 
 
-class MessagingShortCode(ListableAPIResource, UpdateableAPIResource):
-    OBJECT_NAME = "messaging_short_code"
+class ShortCode(ListableAPIResource, UpdateableAPIResource):
+    OBJECT_NAME = "short_code"

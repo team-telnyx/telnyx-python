@@ -12,14 +12,13 @@ def nested_resource_class_methods(resource, path=None, operations=None):
 
     def wrapper(cls):
         def nested_resource_url(cls, id, nested_id=None):
-            url = "%s/%s/%s" % (
-                cls.class_url(),
-                quote_plus(id, safe=util.telnyx_valid_id_parts),
-                quote_plus(path, safe="/"),
-            )
+            parts = [cls.class_url()]
+            if id is not None:
+                parts.append(quote_plus(id, safe=util.telnyx_valid_id_parts))
+            parts.append(quote_plus(path, safe="/"))
             if nested_id is not None:
-                url += "/%s" % quote_plus(nested_id, safe=util.telnyx_valid_id_parts)
-            return url
+                parts.append(quote_plus(nested_id, safe=util.telnyx_valid_id_parts))
+            return "/".join(parts)
 
         resource_url_method = "%ss_url" % resource
         setattr(cls, resource_url_method, classmethod(nested_resource_url))

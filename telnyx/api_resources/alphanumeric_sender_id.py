@@ -6,10 +6,10 @@ from telnyx.api_resources.abstract import UpdateableAPIResource
 from telnyx.api_resources.abstract import ListableAPIResource
 
 
-class MessagingSenderId(
+class AlphanumericSenderId(
     CreateableAPIResource,
     DeletableAPIResource,
     ListableAPIResource,
     UpdateableAPIResource,
 ):
-    OBJECT_NAME = "messaging_sender_id"
+    OBJECT_NAME = "alphanumeric_sender_id"
