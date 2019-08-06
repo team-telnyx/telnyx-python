@@ -27,7 +27,7 @@ from telnyx.api_resources import *  # noqa
 from telnyx.webhook import Webhook, WebhookSignature  # noqa
 
 
-__version__ = "1.0.0b1"
+__version__ = "1.0.0b2"
 
 
 # Sets some basic information about the running application that's sent along
