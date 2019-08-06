@@ -13,7 +13,7 @@ def _compute_diff(current, previous):
         previous = previous or {}
         diff = current.copy()
         for key in set(previous.keys()) - set(diff.keys()):
-            diff[key] = ""
+            diff[key] = previous[key]
         return diff
     return current if current is not None else ""
 

@@ -5,7 +5,7 @@ name = "pypi"
 
 [packages]
 telnyx = {path = ".", editable = true}
-pycryptodome = "*"
+PyNaCl = "*"
 
 [dev-packages]
 pytest = ">=3.4"
