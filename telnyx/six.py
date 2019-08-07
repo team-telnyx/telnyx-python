@@ -18,6 +18,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+#pylint: disable=E,C,W,R
+
 """Utilities for writing code that runs on Python 2 and 3"""
 
 from __future__ import absolute_import
@@ -122,8 +124,7 @@ class MovedModule(_LazyDescr):
 
 
 class _LazyModule(types.ModuleType):
-
-    def __init__(self, name):
+    def __init__(self, name): #pylint: disable=bad-option-value
         super(_LazyModule, self).__init__(name)
         self.__doc__ = self.__class__.__doc__
 
@@ -739,7 +740,7 @@ else:
 
 print_ = getattr(moves.builtins, "print", None)
 if print_ is None:
-    def print_(*args, **kwargs):
+    def print_(*args, **kwargs): #pylint: disable=function-redefined
         """The new-style print function for Python 2.4 and 2.5."""
         fp = kwargs.pop("file", sys.stdout)
         if fp is None:
@@ -795,7 +796,7 @@ if print_ is None:
 if sys.version_info[:2] < (3, 3):
     _print = print_
 
-    def print_(*args, **kwargs):
+    def print_(*args, **kwargs): #pylint: disable=function-redefined
         fp = kwargs.get("file", sys.stdout)
         flush = kwargs.pop("flush", False)
         _print(*args, **kwargs)
@@ -872,6 +873,7 @@ def python_2_unicode_compatible(klass):
 __path__ = []  # required for PEP 302 and PEP 451
 __package__ = __name__  # see PEP 366 @ReservedAssignment
 if globals().get("__spec__") is not None:
+    #pylint: disable=undefined-variable
     __spec__.submodule_search_locations = []  # PEP 451 @UndefinedVariable
 # Remove other six meta path importers, since they cause problems. This can
 # happen if six is removed from sys.modules and then reloaded. (Setuptools does

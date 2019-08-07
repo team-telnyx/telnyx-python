@@ -6,6 +6,8 @@ name = "pypi"
 [packages]
 telnyx = {path = ".", editable = true}
 PyNaCl = "*"
+isort = "*"
+pylint = "*"
 
 [dev-packages]
 pytest = ">=3.4"
@@ -15,7 +17,7 @@ pytest-cov = ">=2.5"
 tox = "*"
 "flake8" = "*"
 coveralls = "*"
-black = {version = "==19.3b0", markers = "python_version >= '3.6'"}
+black = {version = "==19.3b0",markers = "python_version >= '3.6'"}
 twine = "*"
 
 [requires]

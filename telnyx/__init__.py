@@ -20,10 +20,8 @@ public_key = os.environ.get("TELNYX_PUBLIC_KEY")
 # Set to either 'debug' or 'info', controls console logging
 log = None
 
-# API resources
 from telnyx.api_resources import *  # noqa
 
-# Webhooks
 from telnyx.webhook import Webhook, WebhookSignature  # noqa
 
 
