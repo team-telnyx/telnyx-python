@@ -10,7 +10,6 @@ import pytest
 import telnyx
 from telnyx import six
 
-
 SAMPLE_FOO = json.loads(
     """
 {

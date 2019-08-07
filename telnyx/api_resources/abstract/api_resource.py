@@ -1,8 +1,8 @@
 from __future__ import absolute_import, division, print_function
 
-from telnyx import error, util, six
-from telnyx.telnyx_object import TelnyxObject
+from telnyx import error, six, util
 from telnyx.six.moves.urllib.parse import quote_plus
+from telnyx.telnyx_object import TelnyxObject
 
 
 class APIResource(TelnyxObject):

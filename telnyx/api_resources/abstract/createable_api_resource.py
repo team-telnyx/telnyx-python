@@ -1,7 +1,7 @@
 from __future__ import absolute_import, division, print_function
 
-from telnyx.api_resources.abstract.api_resource import APIResource
 from telnyx import api_requestor, util
+from telnyx.api_resources.abstract.api_resource import APIResource
 
 
 class CreateableAPIResource(APIResource):

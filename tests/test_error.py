@@ -2,7 +2,7 @@
 
 from __future__ import absolute_import, division, print_function
 
-from telnyx import six, error
+from telnyx import error, six
 
 
 class TestTelnyxError(object):

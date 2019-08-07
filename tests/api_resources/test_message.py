@@ -2,7 +2,6 @@ from __future__ import absolute_import, division, print_function
 
 import telnyx
 
-
 TEST_MESSAGING_PROFILE_ID = "d120432d-2e77-4583-87f8-1db837cee559"
 TEST_SRC_LONG_CODE = "+13125550100"
 TEST_SRC_ALPHANUMERIC = "Testing 123"

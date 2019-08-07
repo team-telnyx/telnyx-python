@@ -3,14 +3,13 @@ from __future__ import absolute_import, division, print_function
 import hmac
 import io
 import logging
-import sys
 import os
 import re
+import sys
 
 import telnyx
 from telnyx import six
 from telnyx.six.moves.urllib.parse import parse_qsl
-
 
 telnyx_LOG = os.environ.get("telnyx_LOG")
 

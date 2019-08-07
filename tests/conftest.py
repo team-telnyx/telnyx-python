@@ -6,14 +6,12 @@ import sys
 from distutils.version import StrictVersion
 
 import pytest
-
-import telnyx
-from telnyx.six.moves.urllib.request import urlopen
-from telnyx.six.moves.urllib.error import HTTPError
-
 from tests.request_mock import RequestMock
 from tests.telnyx_mock import TelnyxMock
 
+import telnyx
+from telnyx.six.moves.urllib.error import HTTPError
+from telnyx.six.moves.urllib.request import urlopen
 
 # When changing this number, don't forget to change it in `.travis.yml` too.
 MOCK_MINIMUM_VERSION = "0.4.0"
