@@ -24,7 +24,7 @@ dummy-variables-rgx=_
 # Disable warnings on the six.moves because pylint doesn't
 # support importing from six.moves yet, see:
 # https://bitbucket.org/logilab/pylint/issue/550/
-ignored-modules=telnyx.six, telnyx.six.moves, _MovedItems
+ignored-modules=telnyx.six, telnyx.six.moves, _MovedItems, nacl
 
 [REPORTS]
 output-format=colorized
