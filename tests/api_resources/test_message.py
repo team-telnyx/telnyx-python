@@ -26,3 +26,12 @@ class TestMessage(object):
         )
         request_mock.assert_requested("post", "/v2/messages/alphanumeric_sender_id")
         assert isinstance(resource, telnyx.Message)
+
+    def test_can_create_number_pool_message(self, request_mock):
+        resource = telnyx.Message.send_using_number_pool(
+            messaging_profile_id=TEST_MESSAGING_PROFILE_ID,
+            to=TEST_DST,
+            text=TEST_MESSAGE_BODY,
+        )
+        request_mock.assert_requested("post", "/v2/messages/number_pool")
+        assert isinstance(resource, telnyx.Message)
