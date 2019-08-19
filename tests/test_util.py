@@ -21,7 +21,7 @@ class TestUtil(object):
                 logger_mock = mocker.patch(logger_name)
                 print_mock = mocker.patch(PRINT_FUNC_STRING)
                 mocker.patch("telnyx.log", case.flag)
-                mocker.patch("telnyx.util.telnyx_LOG", case.env)
+                mocker.patch("telnyx.util.TELNYX_LOG", case.env)
 
                 logging_func("foo \nbar", y=3)  # function under test
 
@@ -36,7 +36,7 @@ class TestUtil(object):
                 mocker.stopall()
 
     def test_log_debug(self, mocker):
-        # (telnyx_LOG, telnyx.log): should_output?
+        # (TELNYX_LOG, telnyx.log): should_output?
         test_cases = [
             LogTestCase(env=None, flag=None, should_output=False),
             LogTestCase(env=None, flag="debug", should_output=True),
@@ -56,7 +56,7 @@ class TestUtil(object):
         )
 
     def test_log_info(self, mocker):
-        # (telnyx_LOG, telnyx.log): should_output?
+        # (TELNYX_LOG, telnyx.log): should_output?
         test_cases = [
             LogTestCase(env=None, flag=None, should_output=False),
             LogTestCase(env=None, flag="debug", should_output=True),

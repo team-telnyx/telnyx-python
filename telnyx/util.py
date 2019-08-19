@@ -1,6 +1,5 @@
 from __future__ import absolute_import, division, print_function
 
-import hmac
 import io
 import logging
 import sys
@@ -12,7 +11,7 @@ from telnyx import six
 from telnyx.six.moves.urllib.parse import parse_qsl
 
 
-telnyx_LOG = os.environ.get("telnyx_LOG")
+TELNYX_LOG = os.environ.get("TELNYX_LOG")
 
 logger = logging.getLogger("telnyx")
 
@@ -38,8 +37,8 @@ def is_appengine_dev():
 def _console_log_level():
     if telnyx.log in ["debug", "info"]:
         return telnyx.log
-    elif telnyx_LOG in ["debug", "info"]:
-        return telnyx_LOG
+    elif TELNYX_LOG in ["debug", "info"]:
+        return TELNYX_LOG
     else:
         return None
 
@@ -88,36 +87,6 @@ def logfmt(props):
         return u"{key}={val}".format(key=key, val=val)
 
     return u" ".join([fmt(key, val) for key, val in sorted(props.items())])
-
-
-# Borrowed from Django's source code
-if hasattr(hmac, "compare_digest"):
-    # Prefer the stdlib implementation, when available.
-    def secure_compare(val1, val2):
-        return hmac.compare_digest(utf8(val1), utf8(val2))
-
-
-else:
-
-    def secure_compare(val1, val2):
-        """
-        Returns True if the two strings are equal, False otherwise.
-        The time taken is independent of the number of characters that match.
-        For the sake of simplicity, this function executes in constant time
-        only when the two strings have the same length. It short-circuits when
-        they have different lengths.
-        """
-        val1, val2 = utf8(val1), utf8(val2)
-        if len(val1) != len(val2):
-            return False
-        result = 0
-        if six.PY3 and isinstance(val1, bytes) and isinstance(val2, bytes):
-            for x, y in zip(val1, val2):
-                result |= x ^ y
-        else:
-            for x, y in zip(val1, val2):
-                result |= ord(x) ^ ord(y)
-        return result == 0
 
 
 OBJECT_CLASSES = {}
