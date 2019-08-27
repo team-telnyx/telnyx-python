@@ -7,7 +7,7 @@ import platform
 import time
 
 import telnyx
-from telnyx import error, http_client, util, six
+from telnyx import error, http_client, six, util
 from telnyx.multipart_data_generator import MultipartDataGenerator
 from telnyx.six.moves.urllib.parse import urlencode, urlsplit, urlunsplit
 from telnyx.telnyx_response import TelnyxResponse
@@ -27,10 +27,6 @@ def _encode_nested_dict(key, data, fmt="%s[%s]"):
     for subkey, subvalue in six.iteritems(data):
         d[fmt % (key, subkey)] = subvalue
     return d
-
-
-def _now_ms():
-    return int(round(time.time() * 1000))
 
 
 def _api_encode(data):

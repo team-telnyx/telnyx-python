@@ -1,5 +1,7 @@
 from __future__ import absolute_import, division, print_function
 
+import pytest
+
 import telnyx
 
 
@@ -9,6 +11,12 @@ class TestNestedResourceClassMethods(object):
     )
     class MainResource(telnyx.api_resources.abstract.APIResource):
         OBJECT_NAME = "mainresource"
+
+    def test_nested_resource_class_methods_no_operator(self):
+        with pytest.raises(ValueError):
+            telnyx.api_resources.abstract.nested_resource_class_methods(
+                "a", operations=None
+            )
 
     def test_create_nested(self, request_mock):
         request_mock.stub_request(

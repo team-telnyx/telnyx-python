@@ -4,7 +4,6 @@ import os
 
 import telnyx
 
-
 telnyx.api_key = os.environ.get("TELNYX_SECRET_KEY")
 
 print("Attempting to create messaging profile...")

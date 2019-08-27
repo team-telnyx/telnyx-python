@@ -2,6 +2,9 @@ from __future__ import absolute_import, division, print_function
 
 import os
 
+from telnyx.api_resources import *  # noqa
+from telnyx.webhook import Webhook, WebhookSignature  # noqa
+
 # Telnyx Python bindings
 # API docs at http://developers.telnyx.com
 
@@ -19,12 +22,6 @@ public_key = os.environ.get("TELNYX_PUBLIC_KEY")
 
 # Set to either 'debug' or 'info', controls console logging
 log = None
-
-# API resources
-from telnyx.api_resources import *  # noqa
-
-# Webhooks
-from telnyx.webhook import Webhook, WebhookSignature  # noqa
 
 
 __version__ = "1.0.0b2"

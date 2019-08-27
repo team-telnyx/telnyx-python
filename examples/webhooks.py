@@ -2,9 +2,9 @@ from __future__ import absolute_import, division, print_function
 
 import os
 
-import telnyx
 from flask import Flask, request
 
+import telnyx
 
 telnyx.api_key = os.environ.get("TELNYX_API_KEY")
 public_key = os.environ.get("TELNYX_PUBLIC_KEY")

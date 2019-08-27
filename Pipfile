@@ -6,6 +6,8 @@ name = "pypi"
 [packages]
 telnyx = {path = ".", editable = true}
 PyNaCl = "*"
+isort = "*"
+pylint = "*"
 
 [dev-packages]
 pytest = ">=4"

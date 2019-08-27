@@ -22,6 +22,9 @@ fmtcheck:
 lint:
 	pipenv run tox -e lint
 
+pylintcheck:
+	pipenv run tox -e pylint
+
 dists:
 	rm -rf dist
 	pipenv run python setup.py sdist bdist_wheel
