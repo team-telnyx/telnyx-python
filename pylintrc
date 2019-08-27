@@ -1,0 +1,39 @@
+[Messages Control]
+disable=invalid-name,
+    missing-docstring,
+    bad-continuation,  # disagrees with black
+    fixme,
+    star-args,
+    redefined-builtin,
+    no-name-in-module,
+    wrong-import-order, # disagrees with isort
+    ungrouped-imports,  # disagrees with isort
+
+[Basic]
+# Variable names can be 1 to 31 characters long, with lowercase and underscores
+variable-rgx=[a-z_][a-z0-9_]{0,30}$
+# Argument names can be 2 to 31 characters long, with lowercase and underscores
+argument-rgx=[a-z_][a-z0-9_]{1,30}$
+# Method names should be at least 3 characters long
+# and be lowercased with underscores
+method-rgx=([a-z_][a-z0-9_]{2,50}|setUp|tearDown)$
+# Don't require docstrings on tests.
+no-docstring-rgx=((__.*__)|([tT]est.*)|setUp|tearDown)$
+
+[Design]
+max-public-methods=100
+min-public-methods=0
+max-args=6
+
+[Variables]
+dummy-variables-rgx=_
+
+[Typecheck]
+# Disable warnings on the six.moves because pylint doesn't
+# support importing from six.moves yet, see:
+# https://bitbucket.org/logilab/pylint/issue/550/
+ignored-modules=telnyx.six, telnyx.six.moves, _MovedItems, nacl
+
+[REPORTS]
+output-format=colorized
+msg-template='[{msg_id} {symbol}] {msg} File: {path}, line {line}, in {obj}'

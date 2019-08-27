@@ -1,13 +1,14 @@
 from __future__ import absolute_import, division, print_function
 
+import email
+import random
 import sys
 import textwrap
-import warnings
-import email
 import time
-import random
+import warnings
 
-from telnyx import error, util, six
+from telnyx import error, six, util
+from telnyx.six.moves.urllib.parse import urlparse
 
 # - Requests is the preferred HTTP library
 # - Google App Engine has urlfetch
@@ -54,9 +55,6 @@ try:
     from google.appengine.api import urlfetch
 except ImportError:
     urlfetch = None
-
-# proxy support for the pycurl client
-from telnyx.six.moves.urllib.parse import urlparse
 
 
 def new_default_http_client(*args, **kwargs):
@@ -132,7 +130,7 @@ class HTTPClient(object):
                 if response is not None:
                     return response
                 else:
-                    raise connection_error
+                    raise connection_error  # pylint: disable=raising-bad-type
 
     def request(self, method, url, headers, post_data=None):
         raise NotImplementedError("HTTPClient subclasses must implement `request`")

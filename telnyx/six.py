@@ -1,3 +1,4 @@
+# pylint: skip-file
 # Copyright (c) 2010-2017 Benjamin Peterson
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy

@@ -3,12 +3,12 @@ from __future__ import absolute_import, division, print_function
 import base64
 import time
 
-from nacl.signing import SigningKey
 from nacl.encoding import Base64Encoder
+from nacl.signing import SigningKey
+
 import pytest
 
 import telnyx
-
 
 DUMMY_WEBHOOK_PAYLOAD = b"""{
     "record_type": "event",

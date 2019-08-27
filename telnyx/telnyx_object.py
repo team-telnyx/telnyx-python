@@ -5,7 +5,7 @@ import json
 from copy import deepcopy
 
 import telnyx
-from telnyx import api_requestor, util, six
+from telnyx import api_requestor, six, util
 
 
 def _compute_diff(current, previous):
@@ -35,7 +35,7 @@ def _serialize_list(array, previous):
 
 class TelnyxObject(dict):
     class ReprJSONEncoder(json.JSONEncoder):
-        def default(self, obj):
+        def default(self, obj):  # pylint: disable=method-hidden
             if isinstance(obj, datetime.datetime):
                 return api_requestor._encode_datetime(obj)
             return super(TelnyxObject.ReprJSONEncoder, self).default(obj)

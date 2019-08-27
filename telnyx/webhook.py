@@ -1,8 +1,8 @@
 from __future__ import absolute_import, division, print_function
 
+import base64
 import json
 import time
-import base64
 
 from nacl.encoding import Base64Encoder
 from nacl.signing import VerifyKey

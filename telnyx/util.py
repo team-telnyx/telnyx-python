@@ -2,14 +2,13 @@ from __future__ import absolute_import, division, print_function
 
 import io
 import logging
-import sys
 import os
 import re
+import sys
 
 import telnyx
 from telnyx import six
 from telnyx.six.moves.urllib.parse import parse_qsl
-
 
 TELNYX_LOG = os.environ.get("TELNYX_LOG")
 
