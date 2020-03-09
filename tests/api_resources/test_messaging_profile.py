@@ -20,7 +20,7 @@ class TestMessagingProfile(object):
         assert isinstance(resource, telnyx.MessagingProfile)
 
     def test_is_creatable(self, request_mock):
-        resource = telnyx.MessagingProfile.create(country="US", type="custom")
+        resource = telnyx.MessagingProfile.create(name="my-profile")
         request_mock.assert_requested("post", "/v2/messaging_profiles")
         assert isinstance(resource, telnyx.MessagingProfile)
 
@@ -81,24 +81,3 @@ class TestMessagingProfile(object):
         )
         assert isinstance(resources.data, list)
         assert isinstance(resources.data[0], telnyx.ShortCode)
-
-    def test_can_call_messaging_alphanumeric_sender_ids(self, request_mock):
-        resources = telnyx.MessagingProfile.list_alphanumeric_sender_ids(
-            TEST_RESOURCE_ID
-        )
-        request_mock.assert_requested(
-            "get",
-            "/v2/messaging_profiles/%s/alphanumeric_sender_ids" % TEST_RESOURCE_ID,
-        )
-        assert isinstance(resources.data, list)
-        assert isinstance(resources.data[0], telnyx.AlphanumericSenderId)
-
-    def test_can_call_alphanumeric_sender_ids(self, request_mock):
-        messaging_profile = telnyx.MessagingProfile.retrieve(TEST_RESOURCE_ID)
-        resources = messaging_profile.alphanumeric_sender_ids()
-        request_mock.assert_requested(
-            "get",
-            "/v2/messaging_profiles/%s/alphanumeric_sender_ids" % TEST_RESOURCE_ID,
-        )
-        assert isinstance(resources.data, list)
-        assert isinstance(resources.data[0], telnyx.AlphanumericSenderId)
