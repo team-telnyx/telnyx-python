@@ -65,6 +65,17 @@ class TestMessagingProfile(object):
         assert isinstance(resources.data, list)
         assert isinstance(resources.data[0], telnyx.MessagingPhoneNumber)
 
+    def test_can_call_phone_numbers_forward_params(self, request_mock):
+        messaging_profile = telnyx.MessagingProfile.retrieve(TEST_RESOURCE_ID)
+        resources = messaging_profile.phone_numbers(page={"size": 10})
+        request_mock.assert_requested(
+            "get",
+            "/v2/messaging_profiles/%s/phone_numbers" % TEST_RESOURCE_ID,
+            {"page": {"size": 10}},
+        )
+        assert isinstance(resources.data, list)
+        assert isinstance(resources.data[0], telnyx.MessagingPhoneNumber)
+
     def test_can_call_messaging_short_codes(self, request_mock):
         resources = telnyx.MessagingProfile.list_short_codes(TEST_RESOURCE_ID)
         request_mock.assert_requested(
@@ -78,6 +89,17 @@ class TestMessagingProfile(object):
         resources = messaging_profile.short_codes()
         request_mock.assert_requested(
             "get", "/v2/messaging_profiles/%s/short_codes" % TEST_RESOURCE_ID
+        )
+        assert isinstance(resources.data, list)
+        assert isinstance(resources.data[0], telnyx.ShortCode)
+
+    def test_can_call_short_codes_forward_params(self, request_mock):
+        messaging_profile = telnyx.MessagingProfile.retrieve(TEST_RESOURCE_ID)
+        resources = messaging_profile.short_codes(page={"size": 20})
+        request_mock.assert_requested(
+            "get",
+            "/v2/messaging_profiles/%s/short_codes" % TEST_RESOURCE_ID,
+            {"page": {"size": 20}},
         )
         assert isinstance(resources.data, list)
         assert isinstance(resources.data[0], telnyx.ShortCode)
