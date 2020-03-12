@@ -45,6 +45,11 @@ class WebhookSignature(object):
         signed_payload = timestamp + b"|" + payload
         public_key = telnyx.public_key
 
+        if not public_key:
+            raise error.SignatureVerificationError(
+                "Public key not set", signature, payload
+            )
+
         # verify the data
         key = VerifyKey(public_key, encoder=Base64Encoder)
 
