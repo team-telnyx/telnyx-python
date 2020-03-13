@@ -9,8 +9,24 @@ class APIResource(TelnyxObject):
     @classmethod
     def retrieve(cls, id, api_key=None, **params):
         instance = cls(id, api_key, **params)
-        instance.refresh()
-        return instance
+        response = instance.request("get", instance.instance_url())
+
+        # It's not always the case that `cls.retrieve()` should return an
+        # object of type `cls`, as the response's `record_type` might indicate
+        # another `telnyx.api_resources.*` type.
+        #
+        # If this is the case, we simply return the already initialised
+        # `response` instance.
+        #
+        # Otherwise, we will have an object of type `TelnyxObject`, the
+        # default type returned by `util.convert_to_telnyx_object`, and we
+        # promote the object back to an `APIResource`.
+        if type(response) == TelnyxObject:
+            instance.refresh_from(response)
+
+            return instance
+        else:
+            return response
 
     def refresh(self):
         self.refresh_from(self.request("get", self.instance_url()))
