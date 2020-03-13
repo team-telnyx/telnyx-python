@@ -100,17 +100,23 @@ def load_object_classes():
     OBJECT_CLASSES = {
         # business objects
         api_resources.APIKey.OBJECT_NAME: api_resources.APIKey,
-        api_resources.Message.OBJECT_NAME: api_resources.Message,
-        api_resources.MessagingProfile.OBJECT_NAME: api_resources.MessagingProfile,
-        api_resources.MessagingPhoneNumber.OBJECT_NAME: api_resources.MessagingPhoneNumber,
-        api_resources.ShortCode.OBJECT_NAME: api_resources.ShortCode,
-        api_resources.PublicKey.OBJECT_NAME: api_resources.PublicKey,
         api_resources.AvailablePhoneNumber.OBJECT_NAME: api_resources.AvailablePhoneNumber,
+        api_resources.Call.OBJECT_NAME: api_resources.Call,
+        api_resources.Conference.OBJECT_NAME: api_resources.Conference,
+        api_resources.Connection.OBJECT_NAME: api_resources.Connection,
+        api_resources.CredentialConnection.OBJECT_NAME: api_resources.CredentialConnection,
+        api_resources.FQDN.OBJECT_NAME: api_resources.FQDN,
+        api_resources.FQDNConnection.OBJECT_NAME: api_resources.FQDNConnection,
+        api_resources.IP.OBJECT_NAME: api_resources.IP,
+        api_resources.IPConnection.OBJECT_NAME: api_resources.IPConnection,
+        api_resources.Message.OBJECT_NAME: api_resources.Message,
+        api_resources.MessagingPhoneNumber.OBJECT_NAME: api_resources.MessagingPhoneNumber,
+        api_resources.MessagingProfile.OBJECT_NAME: api_resources.MessagingProfile,
         api_resources.NumberOrder.OBJECT_NAME: api_resources.NumberOrder,
         api_resources.NumberOrderPhoneNumber.OBJECT_NAME: api_resources.NumberOrderPhoneNumber,
         api_resources.NumberReservation.OBJECT_NAME: api_resources.NumberReservation,
-        api_resources.Call.OBJECT_NAME: api_resources.Call,
-        api_resources.Conference.OBJECT_NAME: api_resources.Conference,
+        api_resources.PublicKey.OBJECT_NAME: api_resources.PublicKey,
+        api_resources.ShortCode.OBJECT_NAME: api_resources.ShortCode,
     }
 
 
