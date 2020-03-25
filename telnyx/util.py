@@ -112,13 +112,16 @@ def load_object_classes():
         api_resources.Message.OBJECT_NAME: api_resources.Message,
         api_resources.MessagingPhoneNumber.OBJECT_NAME: api_resources.MessagingPhoneNumber,
         api_resources.MessagingProfile.OBJECT_NAME: api_resources.MessagingProfile,
+        api_resources.MessagingSettings.OBJECT_NAME: api_resources.MessagingSettings,
         api_resources.NumberOrder.OBJECT_NAME: api_resources.NumberOrder,
         api_resources.NumberOrderPhoneNumber.OBJECT_NAME: api_resources.NumberOrderPhoneNumber,
         api_resources.NumberReservation.OBJECT_NAME: api_resources.NumberReservation,
+        api_resources.PhoneNumber.OBJECT_NAME: api_resources.PhoneNumber,
         api_resources.PhoneNumberRegulatoryRequirement.OBJECT_NAME: api_resources.PhoneNumberRegulatoryRequirement,
         api_resources.PublicKey.OBJECT_NAME: api_resources.PublicKey,
         api_resources.RegulatoryRequirement.OBJECT_NAME: api_resources.RegulatoryRequirement,
         api_resources.ShortCode.OBJECT_NAME: api_resources.ShortCode,
+        api_resources.VoiceSettings.OBJECT_NAME: api_resources.VoiceSettings,
     }
 
 

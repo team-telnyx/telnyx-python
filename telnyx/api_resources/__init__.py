@@ -18,6 +18,11 @@ from telnyx.api_resources.messaging_profile import MessagingProfile
 from telnyx.api_resources.number_order import NumberOrder
 from telnyx.api_resources.number_order_phone_number import NumberOrderPhoneNumber
 from telnyx.api_resources.number_reservation import NumberReservation
+from telnyx.api_resources.phone_number import (
+    MessagingSettings,
+    PhoneNumber,
+    VoiceSettings,
+)
 from telnyx.api_resources.phone_number_regulatory_requirement import (
     PhoneNumberRegulatoryRequirement,
 )
@@ -44,11 +49,14 @@ __all__ = [
     "Message",
     "MessagingPhoneNumber",
     "MessagingProfile",
+    "MessagingSettings",
     "NumberOrder",
     "NumberOrderPhoneNumber",
     "NumberReservation",
+    "PhoneNumber",
     "PhoneNumberRegulatoryRequirement",
     "PublicKey",
     "RegulatoryRequirement",
     "ShortCode",
+    "VoiceSettings",
 ]
