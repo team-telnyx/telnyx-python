@@ -146,3 +146,14 @@ class TestWebhookSignature(object):
         assert telnyx.WebhookSignature.verify(
             DUMMY_WEBHOOK_PAYLOAD, signature, b"12345"
         )
+
+    def test_verify_without_public_key(self, signer):
+        telnyx.public_key = None
+        timestamp = str(int(time.time())).encode("UTF-8")
+        signature = signer(DUMMY_WEBHOOK_PAYLOAD, b"12345")
+        with pytest.raises(
+            telnyx.error.SignatureVerificationError, match="Public key not set"
+        ):
+            telnyx.WebhookSignature.verify(
+                DUMMY_WEBHOOK_PAYLOAD, signature, timestamp, tolerance=10
+            )
