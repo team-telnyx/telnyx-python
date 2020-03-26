@@ -11,7 +11,6 @@ from telnyx.api_resources.abstract import (
 
 @nested_resource_class_methods("phone_number", operations=["list"])
 @nested_resource_class_methods("short_code", operations=["list"])
-@nested_resource_class_methods("alphanumeric_sender_id", operations=["list"])
 class MessagingProfile(
     CreateableAPIResource,
     DeletableAPIResource,
@@ -25,6 +24,3 @@ class MessagingProfile(
 
     def short_codes(self):
         return MessagingProfile.list_short_codes(self.id)
-
-    def alphanumeric_sender_ids(self):
-        return MessagingProfile.list_alphanumeric_sender_ids(self.id)

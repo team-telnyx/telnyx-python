@@ -1,5 +1,7 @@
 from __future__ import absolute_import, division, print_function
 
+import pytest
+
 import telnyx
 
 
@@ -22,3 +24,9 @@ class TestSingletonAPIResource(object):
 
         assert res.last_response is not None
         assert res.last_response.request_id == "req_id"
+
+    def test_class_url_on_base_class(self):
+        v = telnyx.api_resources.abstract.SingletonAPIResource
+
+        with pytest.raises(NotImplementedError):
+            v.class_url()

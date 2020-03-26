@@ -101,10 +101,13 @@ class TestListObject(object):
 
 class TestAutoPaging:
     @staticmethod
-    def pageable_model_response(ids, has_more, url):
+    def pageable_model_response(ids, has_more, has_less, url):
         if has_more:
             total_pages = 2
             page_number = 1
+        elif has_less:
+            total_pages = 2
+            page_number = 2
         else:
             total_pages = 1
             page_number = 1
@@ -126,7 +129,8 @@ class TestAutoPaging:
     def test_iter_one_page(self, request_mock):
         url = "/v2/pageablemodels"
         lo = telnyx.ListObject.construct_from(
-            self.pageable_model_response(["pm_123", "pm_124"], False, url), "mykey"
+            self.pageable_model_response(["pm_123", "pm_124"], False, False, url),
+            "mykey",
         )
 
         request_mock.assert_no_request()
@@ -150,14 +154,15 @@ class TestAutoPaging:
     def test_iter_two_pages(self, request_mock):
         url = "/v2/pageablemodels"
         lo = telnyx.ListObject.construct_from(
-            self.pageable_model_response(["pm_123", "pm_124"], True, url), "mykey"
+            self.pageable_model_response(["pm_123", "pm_124"], True, False, url),
+            "mykey",
         )
         lo._retrieve_params = {"foo": "bar"}
 
         request_mock.stub_request(
             "get",
             "/v2/pageablemodels",
-            self.pageable_model_response(["pm_125", "pm_126"], False, url),
+            self.pageable_model_response(["pm_125", "pm_126"], False, False, url),
         )
 
         seen = [item["id"] for item in lo.auto_paging_iter()]
@@ -218,3 +223,26 @@ class TestAutoPaging:
 
         request_mock.assert_requested("get", "/v2/messaging_profiles", {})
         assert seen == ["123"]
+
+    def test_previous_page(self, request_mock):
+        url = "/v2/pageablemodels"
+        lo = telnyx.ListObject.construct_from(
+            self.pageable_model_response(["pm_125", "pm_126"], False, True, url),
+            "mykey",
+        )
+
+        assert lo.page_number() == 2
+
+        request_mock.stub_request(
+            "get",
+            "/v2/pageablemodels",
+            self.pageable_model_response(["pm_123", "pm_124"], False, False, url),
+        )
+
+        lo = lo.previous_page()
+
+        request_mock.assert_requested(
+            "get", "/v2/pageablemodels", {"page": {"size": 20, "number": 1}}, None
+        )
+
+        assert lo.page_number() == 1

@@ -103,7 +103,6 @@ def load_object_classes():
         api_resources.Message.OBJECT_NAME: api_resources.Message,
         api_resources.MessagingProfile.OBJECT_NAME: api_resources.MessagingProfile,
         api_resources.MessagingPhoneNumber.OBJECT_NAME: api_resources.MessagingPhoneNumber,
-        api_resources.AlphanumericSenderId.OBJECT_NAME: api_resources.AlphanumericSenderId,
         api_resources.ShortCode.OBJECT_NAME: api_resources.ShortCode,
         api_resources.PublicKey.OBJECT_NAME: api_resources.PublicKey,
         api_resources.AvailablePhoneNumber.OBJECT_NAME: api_resources.AvailablePhoneNumber,

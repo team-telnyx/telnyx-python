@@ -2,7 +2,7 @@ from __future__ import absolute_import, division, print_function
 
 import telnyx
 
-NUMBER_RESERVATION_ID = "f7964e2b-a9f9-4eb6-ab16-e570ffc4bc83"
+NUMBER_RESERVATION_ID = "12ade33a-21c0-473b-b055-b3c836e1c292"
 
 
 def create_number_reservation():

@@ -19,13 +19,13 @@ class TestShortCode(object):
 
     def test_is_saveable(self, request_mock):
         short_code = telnyx.ShortCode.retrieve(TEST_RESOURCE_ID)
-        short_code.name = "value"
+        short_code.messaging_profile_id = "2"
         resource = short_code.save()
         request_mock.assert_requested("patch", "/v2/short_codes/%s" % TEST_RESOURCE_ID)
         assert isinstance(resource, telnyx.ShortCode)
         assert resource is short_code
 
     def test_is_modifiable(self, request_mock):
-        resource = telnyx.ShortCode.modify(TEST_RESOURCE_ID, name="Test")
+        resource = telnyx.ShortCode.modify(TEST_RESOURCE_ID, messaging_profile_id="2")
         request_mock.assert_requested("patch", "/v2/short_codes/%s" % TEST_RESOURCE_ID)
         assert isinstance(resource, telnyx.ShortCode)
