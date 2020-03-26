@@ -18,7 +18,11 @@ from telnyx.api_resources.messaging_profile import MessagingProfile
 from telnyx.api_resources.number_order import NumberOrder
 from telnyx.api_resources.number_order_phone_number import NumberOrderPhoneNumber
 from telnyx.api_resources.number_reservation import NumberReservation
+from telnyx.api_resources.phone_number_regulatory_requirement import (
+    PhoneNumberRegulatoryRequirement,
+)
 from telnyx.api_resources.public_key import PublicKey
+from telnyx.api_resources.regulatory_requirement import RegulatoryRequirement
 from telnyx.api_resources.short_code import ShortCode
 
 # flake8: noqa
@@ -43,6 +47,8 @@ __all__ = [
     "NumberOrder",
     "NumberOrderPhoneNumber",
     "NumberReservation",
+    "PhoneNumberRegulatoryRequirement",
     "PublicKey",
+    "RegulatoryRequirement",
     "ShortCode",
 ]

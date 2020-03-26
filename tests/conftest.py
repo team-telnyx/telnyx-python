@@ -14,7 +14,7 @@ from telnyx.six.moves.urllib.error import HTTPError
 from telnyx.six.moves.urllib.request import urlopen
 
 # When changing this number, don't forget to change it in `.travis.yml` too.
-MOCK_MINIMUM_VERSION = "0.8.5"
+MOCK_MINIMUM_VERSION = "0.8.6"
 
 # Starts telnyx-mock if an OpenAPI spec override is found in `openapi/`, and
 # otherwise fall back to `TELNYX_MOCK_PORT` or 12111.
