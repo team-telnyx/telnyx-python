@@ -4,7 +4,13 @@ from telnyx.api_resources.api_key import APIKey
 from telnyx.api_resources.available_phone_number import AvailablePhoneNumber
 from telnyx.api_resources.call import Call
 from telnyx.api_resources.conference import Conference
+from telnyx.api_resources.connection import Connection
+from telnyx.api_resources.credential_connection import CredentialConnection
 from telnyx.api_resources.event import Event
+from telnyx.api_resources.fqdn import FQDN
+from telnyx.api_resources.fqdn_connection import FQDNConnection
+from telnyx.api_resources.ip import IP
+from telnyx.api_resources.ip_connection import IPConnection
 from telnyx.api_resources.list_object import ListObject
 from telnyx.api_resources.message import Message
 from telnyx.api_resources.messaging_phone_number import MessagingPhoneNumber
@@ -23,7 +29,13 @@ __all__ = [
     "AvailablePhoneNumber",
     "Call",
     "Conference",
+    "Connection",
+    "CredentialConnection",
     "Event",
+    "FQDN",
+    "FQDNConnection",
+    "IP",
+    "IPConnection",
     "ListObject",
     "Message",
     "MessagingPhoneNumber",
