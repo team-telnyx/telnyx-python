@@ -19,8 +19,8 @@ class MessagingProfile(
 ):
     OBJECT_NAME = "messaging_profile"
 
-    def phone_numbers(self):
-        return MessagingProfile.list_phone_numbers(self.id)
+    def phone_numbers(self, **params):
+        return MessagingProfile.list_phone_numbers(self.id, **params)
 
-    def short_codes(self):
-        return MessagingProfile.list_short_codes(self.id)
+    def short_codes(self, **params):
+        return MessagingProfile.list_short_codes(self.id, **params)
