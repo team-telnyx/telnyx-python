@@ -10,6 +10,10 @@ class TestTelnyxResponse(object):
         response, headers, body, code = self.mock_telnyx_response()
         assert response.request_id == headers["request-id"]
 
+        del headers["request-id"]
+
+        assert response.request_id is None
+
     def test_code(self):
         response, headers, body, code = self.mock_telnyx_response()
         assert response.code == code

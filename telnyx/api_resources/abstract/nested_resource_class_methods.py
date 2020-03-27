@@ -4,9 +4,17 @@ from telnyx import api_requestor, util
 from telnyx.six.moves.urllib.parse import quote_plus
 
 
-def nested_resource_class_methods(resource, path=None, operations=None):
+def nested_resource_class_methods(
+    resource, path=None, operations=None, pluralize_path=True
+):
+    def make_path(v):
+        if pluralize_path:
+            return "%ss" % v
+        else:
+            return v
+
     if path is None:
-        path = "%ss" % resource
+        path = make_path(resource)
     if operations is None:
         raise ValueError("operations list required")
 
@@ -20,7 +28,7 @@ def nested_resource_class_methods(resource, path=None, operations=None):
                 parts.append(quote_plus(nested_id, safe=util.telnyx_valid_id_parts))
             return "/".join(parts)
 
-        resource_url_method = "%ss_url" % resource
+        resource_url_method = "%s_url" % make_path(resource)
         setattr(cls, resource_url_method, classmethod(nested_resource_url))
 
         def nested_resource_request(cls, method, url, api_key=None, **params):
@@ -28,7 +36,7 @@ def nested_resource_class_methods(resource, path=None, operations=None):
             response, api_key = requestor.request(method, url, params)
             return util.convert_to_telnyx_object(response, api_key)
 
-        resource_request_method = "%ss_request" % resource
+        resource_request_method = "%s_request" % make_path(resource)
         setattr(cls, resource_request_method, classmethod(nested_resource_request))
 
         for operation in operations:
@@ -76,7 +84,7 @@ def nested_resource_class_methods(resource, path=None, operations=None):
                     url = getattr(cls, resource_url_method)(id)
                     return getattr(cls, resource_request_method)("get", url, **params)
 
-                list_method = "list_%ss" % resource
+                list_method = "list_%s" % make_path(resource)
                 setattr(cls, list_method, classmethod(list_nested_resources))
 
             else:
