@@ -30,7 +30,7 @@ with open(os.path.join(here, "LONG_DESCRIPTION.rst"), encoding="utf-8") as f:
 
 setup(
     name="telnyx",
-    version="1.0.0b2",
+    version="1.0.0b3",
     description="Python bindings for the Telnyx API",
     long_description=long_description,
     long_description_content_type="text/x-rst",
