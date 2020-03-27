@@ -73,3 +73,14 @@ class TestNestedResourceClassMethods(object):
         nested_resource = self.MainResource.list_nesteds("id")
         request_mock.assert_requested("get", "/v2/mainresources/id/nesteds", {}, None)
         assert isinstance(nested_resource.data, list)
+
+    def test_invalid_operation(self):
+        class Foo:
+            pass
+
+        decorator = telnyx.api_resources.abstract.nested_resource_class_methods(
+            "nested", operations=["foo"]
+        )
+
+        with pytest.raises(ValueError):
+            decorator(Foo)

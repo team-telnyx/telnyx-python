@@ -299,3 +299,12 @@ class TestUpdateableAPIResource(object):
             },
             None,
         )
+
+    def test_save_method(self):
+        v = self.MyUpdateable.construct_from({"id": None, "foo": "bar"}, "mykey")
+
+        assert self.MyUpdateable.save_method(v) == "post"
+
+        v = self.MyUpdateable.construct_from({"id": "123", "foo": "bar"}, "mykey")
+
+        assert self.MyUpdateable.save_method(v) == "patch"
