@@ -105,6 +105,7 @@ def load_object_classes():
 
     OBJECT_CLASSES = {
         # business objects
+        api_resources.Address.OBJECT_NAME: api_resources.Address,
         api_resources.APIKey.OBJECT_NAME: api_resources.APIKey,
         api_resources.AvailablePhoneNumber.OBJECT_NAME: api_resources.AvailablePhoneNumber,
         api_resources.Call.OBJECT_NAME: api_resources.Call,
