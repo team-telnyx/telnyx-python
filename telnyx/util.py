@@ -114,6 +114,7 @@ def load_object_classes():
         api_resources.CredentialConnection.OBJECT_NAME: api_resources.CredentialConnection,
         api_resources.FQDN.OBJECT_NAME: api_resources.FQDN,
         api_resources.FQDNConnection.OBJECT_NAME: api_resources.FQDNConnection,
+        api_resources.InboundChannel.OBJECT_NAME: api_resources.InboundChannel,
         api_resources.IP.OBJECT_NAME: api_resources.IP,
         api_resources.IPConnection.OBJECT_NAME: api_resources.IPConnection,
         api_resources.Message.OBJECT_NAME: api_resources.Message,
