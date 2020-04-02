@@ -31,9 +31,29 @@ Install from source with:
 
     python setup.py install
 
+### Non x86/x86_64 Processors
+
+The `telnyx` package is distributed as a wheel (pre-compiled package) for easy
+installation. The wheel is built only for x86/x86_64 processors. When
+installing the package on a different architecture, like ARM, the `pip`
+installer will fall back to installing from source. As a result, you will
+need to ensure you have the additional dependencies installed. This will
+affect you if you're using a Raspberry Pi, for example.
+
+For ARM specifically, as an alternative to a source install, you could look
+into using https://www.piwheels.org/ for ARM compiled wheels.
+
 ### Requirements
 
 - Python 2.7 or 3.5+ (PyPy supported)
+
+#### Additional Requirements for Source Install
+
+- build-essentials (gcc, make)
+- python-dev
+- libffi-dev
+
+_These packages are listed as they are named on Ubuntu._
 
 ## Usage
 

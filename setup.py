@@ -25,7 +25,7 @@ here = os.path.abspath(os.path.dirname(__file__))
 
 os.chdir(here)
 
-with open(os.path.join(here, "LONG_DESCRIPTION.rst"), encoding="utf-8") as f:
+with open(os.path.join(here, "README.md"), encoding="utf-8") as f:
     long_description = f.read()
 
 setup(
@@ -33,7 +33,7 @@ setup(
     version="1.0.0b4",
     description="Python bindings for the Telnyx API",
     long_description=long_description,
-    long_description_content_type="text/x-rst",
+    long_description_content_type="text/markdown",
     author="Telnyx",
     author_email="support@telnyx.com",
     url="https://github.com/team-telnyx/telnyx-python",
