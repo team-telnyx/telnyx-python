@@ -84,3 +84,15 @@ class TestNestedResourceClassMethods(object):
 
         with pytest.raises(ValueError):
             decorator(Foo)
+
+    def test_rewrite_reserved_words(self, request_mock):
+        request_mock.stub_request(
+            "post",
+            "/v2/mainresources/id/nesteds",
+            {"id": "nested_id", "object": "nested", "from": "foo"},
+        )
+        nested_resource = self.MainResource.create_nested("id", from_="foo")
+        request_mock.assert_requested(
+            "post", "/v2/mainresources/id/nesteds", {"from": "foo"}, None
+        )
+        assert nested_resource.from_ == "foo"

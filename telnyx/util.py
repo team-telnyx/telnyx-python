@@ -44,9 +44,15 @@ def _console_log_level():
 
 # Rewrites reserved word keyword arguments
 # This makes Message.create(to="", from_="", text="") possible
-def rewrite_reserved_words(kwargs):
+def rewrite_reserved_words(kwargs, reverse=False):
     reserved = [("from_", "from")]
-    for original, replacement in reserved:
+
+    for i in reserved:
+        if not reverse:
+            original, replacement = i
+        else:
+            replacement, original = i
+
         if kwargs.get(original, None) is not None:
             kwargs[replacement] = kwargs.pop(original)
 
@@ -147,6 +153,7 @@ def convert_to_telnyx_object(resp, api_key=None):
         resp, telnyx.telnyx_object.TelnyxObject
     ):
         resp = resp.copy()
+        resp = rewrite_reserved_words(resp, reverse=True)
         data = resp.get("data", None)
         if data:
             if isinstance(data, list):

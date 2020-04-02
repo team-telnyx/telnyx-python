@@ -33,6 +33,7 @@ def nested_resource_class_methods(
 
         def nested_resource_request(cls, method, url, api_key=None, **params):
             requestor = api_requestor.APIRequestor(api_key)
+            params = util.rewrite_reserved_words(params)
             response, api_key = requestor.request(method, url, params)
             return util.convert_to_telnyx_object(response, api_key)
 

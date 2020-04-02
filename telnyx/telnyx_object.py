@@ -238,6 +238,8 @@ class TelnyxObject(dict):
             elif k == "additional_owners" and v is not None:
                 params[k] = _serialize_list(v, previous.get(k, None))
 
+        params = util.rewrite_reserved_words(params)
+
         return params
 
     # This class overrides __setitem__ to throw exceptions on inputs that it

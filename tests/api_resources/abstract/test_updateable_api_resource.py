@@ -14,7 +14,7 @@ class TestUpdateableAPIResource(object):
         request_mock.stub_request(
             "patch",
             "/v2/myupdateables/myid",
-            {"id": "myid", "thats": "it"},
+            {"id": "myid", "thats": "it", "from": "outside"},
             rheaders={"request-id": "req_id"},
         )
 
@@ -23,6 +23,7 @@ class TestUpdateableAPIResource(object):
                 "id": "myid",
                 "foo": "bar",
                 "baz": "boz",
+                "from": "inside",
                 "nested_object": {"size": "l", "score": 4, "height": 10},
             },
             "mykey",
@@ -308,3 +309,14 @@ class TestUpdateableAPIResource(object):
         v = self.MyUpdateable.construct_from({"id": "123", "foo": "bar"}, "mykey")
 
         assert self.MyUpdateable.save_method(v) == "patch"
+
+    def test_save_reserved_word(self, request_mock, obj):
+        obj.from_ = "outside"
+
+        self.checkSave(obj)
+
+        request_mock.assert_requested(
+            "patch", "/v2/myupdateables/myid", {"from": "outside"}, None
+        )
+
+        assert obj.from_ == "outside"
