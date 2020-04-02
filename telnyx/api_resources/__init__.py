@@ -3,6 +3,7 @@ from __future__ import absolute_import, division, print_function
 from telnyx.api_resources.address import Address
 from telnyx.api_resources.api_key import APIKey
 from telnyx.api_resources.available_phone_number import AvailablePhoneNumber
+from telnyx.api_resources.billing_group import BillingGroup
 from telnyx.api_resources.call import Call
 from telnyx.api_resources.conference import Conference
 from telnyx.api_resources.connection import Connection
@@ -40,6 +41,7 @@ __all__ = [
     "Address",
     "APIKey",
     "AvailablePhoneNumber",
+    "BillingGroup",
     "Call",
     "Conference",
     "Connection",

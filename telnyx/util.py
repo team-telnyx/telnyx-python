@@ -108,6 +108,7 @@ def load_object_classes():
         api_resources.Address.OBJECT_NAME: api_resources.Address,
         api_resources.APIKey.OBJECT_NAME: api_resources.APIKey,
         api_resources.AvailablePhoneNumber.OBJECT_NAME: api_resources.AvailablePhoneNumber,
+        api_resources.BillingGroup.OBJECT_NAME: api_resources.BillingGroup,
         api_resources.Call.OBJECT_NAME: api_resources.Call,
         api_resources.Conference.OBJECT_NAME: api_resources.Conference,
         api_resources.Connection.OBJECT_NAME: api_resources.Connection,
