@@ -123,6 +123,7 @@ def load_object_classes():
         api_resources.NumberOrder.OBJECT_NAME: api_resources.NumberOrder,
         api_resources.NumberOrderPhoneNumber.OBJECT_NAME: api_resources.NumberOrderPhoneNumber,
         api_resources.NumberReservation.OBJECT_NAME: api_resources.NumberReservation,
+        api_resources.OutboundVoiceProfile.OBJECT_NAME: api_resources.OutboundVoiceProfile,
         api_resources.PhoneNumber.OBJECT_NAME: api_resources.PhoneNumber,
         api_resources.PhoneNumberRegulatoryRequirement.OBJECT_NAME: api_resources.PhoneNumberRegulatoryRequirement,
         api_resources.PublicKey.OBJECT_NAME: api_resources.PublicKey,
