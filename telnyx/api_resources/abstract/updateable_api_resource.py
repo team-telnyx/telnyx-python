@@ -23,19 +23,14 @@ class UpdateableAPIResource(APIResource):
 
         if updated_params:
             self.refresh_from(
-                self.request(
-                    UpdateableAPIResource.save_method(self),
-                    self.instance_url(),
-                    updated_params,
-                )
+                self.request(self.save_method(), self.instance_url(), updated_params)
             )
         else:
             util.logger.debug("Trying to save already saved object %r", self)
         return self
 
-    @classmethod
-    def save_method(cls, instance):
-        if instance.id is None:
+    def save_method(self):
+        if self.id is None:
             return "post"
         else:
             return "patch"

@@ -10,6 +10,7 @@ from telnyx.api_resources.credential_connection import CredentialConnection
 from telnyx.api_resources.event import Event
 from telnyx.api_resources.fqdn import FQDN
 from telnyx.api_resources.fqdn_connection import FQDNConnection
+from telnyx.api_resources.inbound_channel import InboundChannel
 from telnyx.api_resources.ip import IP
 from telnyx.api_resources.ip_connection import IPConnection
 from telnyx.api_resources.list_object import ListObject
@@ -46,6 +47,7 @@ __all__ = [
     "Event",
     "FQDN",
     "FQDNConnection",
+    "InboundChannel",
     "IP",
     "IPConnection",
     "ListObject",
