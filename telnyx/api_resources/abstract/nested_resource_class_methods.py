@@ -20,7 +20,9 @@ def nested_resource_class_methods(
 
     def wrapper(cls):
         def nested_resource_url(cls, id, nested_id=None):
-            parts = [cls.class_url()]
+            parts = []
+            if not path.startswith("/"):
+                parts.append(cls.class_url())
             if id is not None:
                 parts.append(quote_plus(id, safe=util.telnyx_valid_id_parts))
             parts.append(quote_plus(path, safe="/"))

@@ -131,6 +131,7 @@ def load_object_classes():
         api_resources.PhoneNumberRegulatoryRequirement.OBJECT_NAME: api_resources.PhoneNumberRegulatoryRequirement,
         api_resources.PublicKey.OBJECT_NAME: api_resources.PublicKey,
         api_resources.RegulatoryRequirement.OBJECT_NAME: api_resources.RegulatoryRequirement,
+        api_resources.SIMCard.OBJECT_NAME: api_resources.SIMCard,
         api_resources.ShortCode.OBJECT_NAME: api_resources.ShortCode,
         api_resources.VoiceSettings.OBJECT_NAME: api_resources.VoiceSettings,
     }
