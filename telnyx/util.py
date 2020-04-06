@@ -114,6 +114,7 @@ def load_object_classes():
         api_resources.Conference.OBJECT_NAME: api_resources.Conference,
         api_resources.Connection.OBJECT_NAME: api_resources.Connection,
         api_resources.CredentialConnection.OBJECT_NAME: api_resources.CredentialConnection,
+        api_resources.DetailRecordsReport.OBJECT_NAME: api_resources.DetailRecordsReport,
         api_resources.FQDN.OBJECT_NAME: api_resources.FQDN,
         api_resources.FQDNConnection.OBJECT_NAME: api_resources.FQDNConnection,
         api_resources.InboundChannel.OBJECT_NAME: api_resources.InboundChannel,
