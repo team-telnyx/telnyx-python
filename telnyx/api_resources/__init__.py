@@ -34,6 +34,7 @@ from telnyx.api_resources.phone_number_regulatory_requirement import (
 from telnyx.api_resources.public_key import PublicKey
 from telnyx.api_resources.regulatory_requirement import RegulatoryRequirement
 from telnyx.api_resources.short_code import ShortCode
+from telnyx.api_resources.sim_card import SIMCard
 
 # flake8: noqa
 
@@ -67,6 +68,7 @@ __all__ = [
     "PhoneNumberRegulatoryRequirement",
     "PublicKey",
     "RegulatoryRequirement",
+    "SIMCard",
     "ShortCode",
     "VoiceSettings",
 ]
