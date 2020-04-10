@@ -9,6 +9,7 @@ from telnyx.api_resources.call_control_application import CallControlApplication
 from telnyx.api_resources.conference import Conference
 from telnyx.api_resources.connection import Connection
 from telnyx.api_resources.credential_connection import CredentialConnection
+from telnyx.api_resources.detail_records_report import DetailRecordsReport
 from telnyx.api_resources.event import Event
 from telnyx.api_resources.fqdn import FQDN
 from telnyx.api_resources.fqdn_connection import FQDNConnection
@@ -49,6 +50,7 @@ __all__ = [
     "Conference",
     "Connection",
     "CredentialConnection",
+    "DetailRecordsReport",
     "Event",
     "FQDN",
     "FQDNConnection",
