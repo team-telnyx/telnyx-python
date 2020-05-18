@@ -21,7 +21,9 @@ class TestCallControlApplication(object):
 
     def test_is_creatable(self, request_mock):
         resource = telnyx.CallControlApplication.create(
-            connection_name="foo", webhook_event_url="http://foo.com"
+            connection_name="foo",
+            webhook_event_url="http://foo.com",
+            application_name="foo",
         )
         request_mock.assert_requested("post", "/v2/call_control_applications")
         assert isinstance(resource, telnyx.CallControlApplication)
@@ -32,6 +34,7 @@ class TestCallControlApplication(object):
         )
         call_control_application.connection_name = "foo"
         call_control_application.webhook_event_url = "http://foo.com"
+        call_control_application.application_name = "foo"
         resource = call_control_application.save()
         request_mock.assert_requested(
             "patch", "/v2/call_control_applications/%s" % TEST_RESOURCE_ID
@@ -41,7 +44,10 @@ class TestCallControlApplication(object):
 
     def test_is_modifiable(self, request_mock):
         resource = telnyx.CallControlApplication.modify(
-            TEST_RESOURCE_ID, connection_name="foo", webhook_event_url="http://foo.com"
+            TEST_RESOURCE_ID,
+            connection_name="foo",
+            webhook_event_url="http://foo.com",
+            application_name="foo",
         )
         request_mock.assert_requested(
             "patch", "/v2/call_control_applications/%s" % TEST_RESOURCE_ID
