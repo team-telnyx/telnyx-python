@@ -15,7 +15,7 @@ app = Flask(__name__)
 @app.route("/webhooks", methods=["POST"])
 def webhooks():
     body = request.data.decode("utf-8")
-    signature = request.headers.get("Telnyx-Signature-PKCS1-15", None)
+    signature = request.headers.get("Telnyx-Signature-ed25519", None)
     timestamp = request.headers.get("Telnyx-Timestamp", None)
 
     try:
