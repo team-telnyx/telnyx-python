@@ -21,6 +21,7 @@ from telnyx.api_resources.list_object import ListObject
 from telnyx.api_resources.message import Message
 from telnyx.api_resources.messaging_phone_number import MessagingPhoneNumber
 from telnyx.api_resources.messaging_profile import MessagingProfile
+from telnyx.api_resources.number_lookup import NumberLookup
 from telnyx.api_resources.number_order import NumberOrder
 from telnyx.api_resources.number_order_phone_number import NumberOrderPhoneNumber
 from telnyx.api_resources.number_reservation import NumberReservation
@@ -64,6 +65,7 @@ __all__ = [
     "MessagingPhoneNumber",
     "MessagingProfile",
     "MessagingSettings",
+    "NumberLookup",
     "NumberOrder",
     "NumberOrderPhoneNumber",
     "NumberReservation",
