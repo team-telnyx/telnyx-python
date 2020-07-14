@@ -7,7 +7,10 @@ from telnyx.telnyx_object import TelnyxObject
 
 class ListObject(TelnyxObject):
     def list(self, **params):
-        return self.request("get", self["url"], params)
+        r = self.request("get", self["url"], params)
+        r["url"] = self["url"]
+
+        return r
 
     @classmethod
     def empty_list(cls, params, url):
@@ -72,18 +75,18 @@ class ListObject(TelnyxObject):
         return self.list(**params)
 
     def has_more(self):
-        return self.data != [] and self.get("metadata", {}).get(
+        return self.data != [] and self.get("meta", {}).get(
             "total_pages", 0
-        ) > self.get("metadata", {}).get("page_number", 0)
+        ) > self.get("meta", {}).get("page_number", 0)
 
     def token(self):
-        return self.get("metadata", {}).get("next_page_token", None)
+        return self.get("meta", {}).get("next_page_token", None)
 
     def page_number(self):
-        return self.get("metadata", {}).get("page_number", 1)
+        return self.get("meta", {}).get("page_number", 1)
 
     def page_size(self):
-        return self.get("metadata", {}).get("page_size", 20)
+        return self.get("meta", {}).get("page_size", 20)
 
     def create(self, **params):
         return self.request("post", self["url"], params)
