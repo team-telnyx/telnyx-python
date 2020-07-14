@@ -15,6 +15,7 @@ class PyTest(TestCommand):
 
     def run_tests(self):
         import shlex
+
         import pytest
 
         errno = pytest.main(shlex.split(self.pytest_args))

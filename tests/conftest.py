@@ -6,6 +6,7 @@ import sys
 from distutils.version import StrictVersion  # pylint: disable=import-error
 
 import pytest
+
 from tests.request_mock import RequestMock
 from tests.telnyx_mock import TelnyxMock
 
