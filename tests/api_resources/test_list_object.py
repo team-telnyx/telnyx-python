@@ -13,7 +13,7 @@ class TestListObject(object):
         return telnyx.ListObject.construct_from(
             {
                 "data": ["foo"],
-                "metadata": {"page": {"size": 1, "number": 1}},
+                "meta": {"page": {"size": 1, "number": 1}},
                 "url": "/my/path",
             },
             "mykey",
@@ -114,7 +114,7 @@ class TestAutoPaging:
 
         return {
             "data": [{"id": id, "record_type": "pageablemodel"} for id in ids],
-            "metadata": {"page_number": page_number, "total_pages": total_pages},
+            "meta": {"page_number": page_number, "total_pages": total_pages},
             "url": url,
         }
 
@@ -122,7 +122,7 @@ class TestAutoPaging:
     def pageable_token_model_response(ids, token, url):
         return {
             "data": [{"id": id, "record_type": "pageablemodel"} for id in ids],
-            "metadata": {"next_page_token": token},
+            "meta": {"next_page_token": token},
             "url": url,
         }
 

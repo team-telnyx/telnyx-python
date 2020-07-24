@@ -66,11 +66,18 @@ value:
 import telnyx
 telnyx.api_key = "KEY01234_yoursecretkey"
 
-# list messaging profies
-telnyx.MessagingProfile.list()
-
-# retrieve single messaging profile
+# Retrieve single Messaging Profile
 telnyx.MessagingProfile.retrieve("123")
+
+# List Messaging Profiles
+profiles = telnyx.MessagingProfile.list()
+
+# Retrieve next page of list results
+profiles.next_page()
+
+# Loop over all page results
+for page in profiles.auto_paging_iter():
+    print(page)
 ```
 
 You can read more about our API Keys [here](https://developers.telnyx.com/docs/v2/development/authentication).

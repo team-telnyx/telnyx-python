@@ -66,8 +66,7 @@ class APIRequestor(object):
         self.api_base = api_base or telnyx.api_base
         self.api_key = key
 
-        from telnyx import verify_ssl_certs as verify
-        from telnyx import proxy
+        from telnyx import proxy, verify_ssl_certs as verify
 
         self._client = (
             client
