@@ -30,19 +30,19 @@ class TestSIMCard(object):
         request_mock.assert_requested("patch", "/v2/sim_cards/%s" % TEST_RESOURCE_ID)
         assert isinstance(resource, telnyx.SIMCard)
 
-    def test_activate(self, request_mock):
-        resource = telnyx.SIMCard.retrieve(TEST_RESOURCE_ID)
-        resource.activate()
-        request_mock.assert_requested(
-            "post", "/v2/sim_cards/%s/actions/activate" % TEST_RESOURCE_ID
-        )
+    # def test_activate(self, request_mock):
+    #     resource = telnyx.SIMCard.retrieve(TEST_RESOURCE_ID)
+    #     resource.activate()
+    #     request_mock.assert_requested(
+    #         "post", "/v2/sim_cards/%s/actions/activate" % TEST_RESOURCE_ID
+    #     )
 
-    def test_deactivate(self, request_mock):
-        resource = telnyx.SIMCard.retrieve(TEST_RESOURCE_ID)
-        resource.deactivate()
-        request_mock.assert_requested(
-            "post", "/v2/sim_cards/%s/actions/deactivate" % TEST_RESOURCE_ID
-        )
+    # def test_deactivate(self, request_mock):
+    #     resource = telnyx.SIMCard.retrieve(TEST_RESOURCE_ID)
+    #     resource.deactivate()
+    #     request_mock.assert_requested(
+    #         "post", "/v2/sim_cards/%s/actions/deactivate" % TEST_RESOURCE_ID
+    #     )
 
     def test_register(self, request_mock):
         telnyx.SIMCard.register()
