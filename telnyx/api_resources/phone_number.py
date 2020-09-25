@@ -24,7 +24,7 @@ class PhoneNumber(DeletableAPIResource, ListableAPIResource, UpdateableAPIResour
 
     @classmethod
     def all_voice(cls, **params):
-        """ Returns the voice settings for /all/ numbers owned by the user.
+        """Returns the voice settings for /all/ numbers owned by the user.
 
         This method breaks the naming convention of helper methods by adding
         an `all_` prefix, which might be confusing at first. The reason for
@@ -51,7 +51,7 @@ class PhoneNumber(DeletableAPIResource, ListableAPIResource, UpdateableAPIResour
 
     @classmethod
     def all_messaging(cls, **params):
-        """ Returns the messaging settings for /all/ numbers owned by the
+        """Returns the messaging settings for /all/ numbers owned by the
         user.
 
         See the documentation for `all_voice()` for an explanation on the
@@ -61,7 +61,7 @@ class PhoneNumber(DeletableAPIResource, ListableAPIResource, UpdateableAPIResour
         return PhoneNumber.list_messaging(None, **params)
 
     def messaging(self, **params):
-        """ Returns the messaging settings for the instantiated phone
+        """Returns the messaging settings for the instantiated phone
         number.
         """
 
