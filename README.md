@@ -142,7 +142,7 @@ The Telnyx API includes `from` as an attribute that can be set on messages.
 arguments where an argument is a reserved word you can add the suffix `_` e.g.
 
 ```
-telnyx.Messages.create(
+telnyx.Message.create(
     to="+18665550001",
     from_="+18445550001",
     text="Foo"
@@ -158,7 +158,7 @@ The argument will be automatically rewritten to `from` in the keyword arguments 
 >     "to": "+18665550001",
 >     "text": "Foo",
 > }
-> telnyx.Messages.create(**message)
+> telnyx.Message.create(**message)
 > ```
 
 ### Logging
