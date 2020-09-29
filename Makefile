@@ -2,7 +2,7 @@
 
 init:
 	pip install pipenv --upgrade
-	pipenv install --dev --skip-lock
+	pipenv install --dev --skip-lock --sequential
 
 test:
 	pipenv run tox -p auto
