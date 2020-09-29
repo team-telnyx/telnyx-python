@@ -7,23 +7,19 @@ from telnyx.api_resources.abstract import (
 )
 
 
-@nested_resource_class_methods(
-    "activate", path="actions/activate", operations=["create"]
-)
-@nested_resource_class_methods(
-    "deactivate", path="actions/deactivate", operations=["create"]
-)
+@nested_resource_class_methods("enable", path="actions/enable", operations=["create"])
+@nested_resource_class_methods("disable", path="actions/disable", operations=["create"])
 @nested_resource_class_methods(
     "register", path="/v2/actions/register/sim_cards", operations=["create"]
 )
 class SIMCard(ListableAPIResource, UpdateableAPIResource):
     OBJECT_NAME = "sim_card"
 
-    def activate(self, **params):
-        return SIMCard.create_activate(self.id, **params)
+    def enable(self, **params):
+        return SIMCard.create_enable(self.id, **params)
 
-    def deactivate(self, **params):
-        return SIMCard.create_deactivate(self.id, **params)
+    def disable(self, **params):
+        return SIMCard.create_disable(self.id, **params)
 
     @classmethod
     def register(cls, **params):
