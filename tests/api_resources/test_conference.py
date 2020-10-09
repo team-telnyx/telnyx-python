@@ -120,3 +120,63 @@ class TestConference(object):
             "post", "/v2/conferences/%s/actions/unhold" % CONFERENCE_ID
         )
         assert isinstance(resource, telnyx.Conference)
+
+    def test_can_call_speak(self, request_mock):
+        resource = create_conference()
+        resource.speak(
+            call_control_ids=[_call_control_id],
+            voice="female",
+            payload="I hope this unit tests passes",
+            language="en-AU",
+        )
+        request_mock.assert_requested(
+            "post", "/v2/conferences/%s/actions/speak" % CONFERENCE_ID
+        )
+        assert isinstance(resource, telnyx.Conference)
+
+    def test_can_call_create_speak(self, request_mock):
+        resource = create_conference()
+        resource.create_speak(
+            CONFERENCE_ID,
+            voice="female",
+            payload="I hope this unit tests passes",
+            language="en-AU",
+        )
+        request_mock.assert_requested(
+            "post", "/v2/conferences/%s/actions/speak" % CONFERENCE_ID
+        )
+        assert isinstance(resource, telnyx.Conference)
+
+    def test_can_call_record_start(self, request_mock):
+        resource = create_conference()
+        resource.record_start(
+            call_control_ids=[_call_control_id], format="wav", channels="single"
+        )
+        request_mock.assert_requested(
+            "post", "/v2/conferences/%s/actions/record_start" % CONFERENCE_ID
+        )
+        assert isinstance(resource, telnyx.Conference)
+
+    def test_can_call_create_record_start(self, request_mock):
+        resource = create_conference()
+        resource.create_record_start(CONFERENCE_ID, format="wav", channels="single")
+        request_mock.assert_requested(
+            "post", "/v2/conferences/%s/actions/record_start" % CONFERENCE_ID
+        )
+        assert isinstance(resource, telnyx.Conference)
+
+    def test_can_call_record_stop(self, request_mock):
+        resource = create_conference()
+        resource.record_stop(call_control_ids=[_call_control_id])
+        request_mock.assert_requested(
+            "post", "/v2/conferences/%s/actions/record_stop" % CONFERENCE_ID
+        )
+        assert isinstance(resource, telnyx.Conference)
+
+    def test_can_call_create_record_stop(self, request_mock):
+        resource = create_conference()
+        resource.create_record_stop(CONFERENCE_ID)
+        request_mock.assert_requested(
+            "post", "/v2/conferences/%s/actions/record_stop" % CONFERENCE_ID
+        )
+        assert isinstance(resource, telnyx.Conference)
