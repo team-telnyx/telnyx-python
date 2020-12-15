@@ -39,6 +39,9 @@ from telnyx.api_resources.regulatory_requirement import RegulatoryRequirement
 from telnyx.api_resources.short_code import ShortCode
 from telnyx.api_resources.sim_card import SIMCard
 
+from telnyx.api_resources.verify_profile import VerifyProfile
+from telnyx.api_resources.verification import Verification
+
 # flake8: noqa
 
 
@@ -76,5 +79,7 @@ __all__ = [
     "RegulatoryRequirement",
     "SIMCard",
     "ShortCode",
+    "Verification",
+    "VerifyProfile",
     "VoiceSettings",
 ]
