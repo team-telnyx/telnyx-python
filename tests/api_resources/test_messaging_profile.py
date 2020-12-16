@@ -1,5 +1,7 @@
 from __future__ import absolute_import, division, print_function
 
+import pytest
+
 import telnyx
 
 TEST_RESOURCE_ID = "123"
@@ -48,6 +50,7 @@ class TestMessagingProfile(object):
             "delete", "/v2/messaging_profiles/%s" % TEST_RESOURCE_ID
         )
 
+    @pytest.mark.skip(reason="Might be deprecated")
     def test_can_call_messaging_phone_numbers(self, request_mock):
         resources = telnyx.MessagingProfile.list_phone_numbers(TEST_RESOURCE_ID)
         request_mock.assert_requested(
@@ -56,6 +59,7 @@ class TestMessagingProfile(object):
         assert isinstance(resources.data, list)
         assert isinstance(resources.data[0], telnyx.MessagingPhoneNumber)
 
+    @pytest.mark.skip(reason="Might be deprecated")
     def test_can_call_phone_numbers(self, request_mock):
         messaging_profile = telnyx.MessagingProfile.retrieve(TEST_RESOURCE_ID)
         resources = messaging_profile.phone_numbers()
@@ -65,6 +69,7 @@ class TestMessagingProfile(object):
         assert isinstance(resources.data, list)
         assert isinstance(resources.data[0], telnyx.MessagingPhoneNumber)
 
+    @pytest.mark.skip(reason="Might be deprecated")
     def test_can_call_phone_numbers_forward_params(self, request_mock):
         messaging_profile = telnyx.MessagingProfile.retrieve(TEST_RESOURCE_ID)
         resources = messaging_profile.phone_numbers(page={"size": 10})

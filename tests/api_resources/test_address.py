@@ -18,7 +18,15 @@ class TestAddress(object):
         assert isinstance(resource, telnyx.Address)
 
     def test_is_creatable(self, request_mock):
-        resource = telnyx.Address.create(name="my-profile")
+        resource = telnyx.Address.create(
+            name="my-profile",
+            business_name="Acme Inc",
+            country_code="US",
+            street_address="311 W Superior St",
+            first_name="John",
+            last_name="Doe",
+            locality="Chicago",
+        )
         request_mock.assert_requested("post", "/v2/addresses")
         assert isinstance(resource, telnyx.Address)
 
