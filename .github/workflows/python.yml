@@ -5,6 +5,7 @@ jobs:
   test:
     env:
       TELNYX_MOCK_VERSION: 0.8.10
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
