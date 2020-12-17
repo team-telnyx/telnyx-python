@@ -1,5 +1,7 @@
 from __future__ import absolute_import, division, print_function
 
+import pytest
+
 import telnyx
 
 CALL_CONTROL_ID = "AgDIxmoRX6QMuaIj_uXRXnPAXP0QlNfXczRrZvZakpWxBlpw48KyZQ=="
@@ -17,6 +19,7 @@ class TestCall(object):
         request_mock.assert_requested("post", "/v2/calls")
         assert isinstance(resource, telnyx.Call)
 
+    @pytest.mark.skip(reason="OpenAPI specs needs review")
     def test_can_call_reject(self, request_mock):
         resource = create_dial()
         resource.call_control_id = CALL_CONTROL_ID
@@ -26,6 +29,7 @@ class TestCall(object):
         )
         assert isinstance(resource, telnyx.Call)
 
+    @pytest.mark.skip(reason="OpenAPI specs needs review")
     def test_can_call_calls_reject(self, request_mock):
         resource = create_dial()
         resource.create_reject(CALL_CONTROL_ID)

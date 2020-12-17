@@ -20,7 +20,12 @@ class TestCredentialConnection(object):
         assert isinstance(resource, telnyx.CredentialConnection)
 
     def test_is_creatable(self, request_mock):
-        resource = telnyx.CredentialConnection.create(active=True)
+        resource = telnyx.CredentialConnection.create(
+            active=True,
+            user_name="some-user-name",
+            connection_name="some-connection",
+            password="secret password",
+        )
         request_mock.assert_requested("post", "/v2/credential_connections")
         assert isinstance(resource, telnyx.CredentialConnection)
 
