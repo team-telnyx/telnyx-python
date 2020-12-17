@@ -4,8 +4,8 @@ import telnyx
 
 if __name__ == "__main__":
     telnyx.api_key = os.environ.get("TELNYX_SECRET_KEY")
-    phone_number = 'fill-me'
-    type = 'sms'
+    phone_number = "fill-me"
+    type = "sms"
 
     verify_profiles = telnyx.VerifyProfile.list()
     print(verify_profiles)
