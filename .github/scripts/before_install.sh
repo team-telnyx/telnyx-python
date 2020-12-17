@@ -6,5 +6,3 @@ fi
 telnyx-mock/${TELNYX_MOCK_VERSION}/telnyx-mock >/dev/null &
 TELNYX_MOCK_PID=$!
 export PATH="${PATH}:${PWD}/telnyx-mock/${TELNYX_MOCK_VERSION}"
-
-pip install -U pyenv

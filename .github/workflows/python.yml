@@ -18,6 +18,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: setup-telnyx-mock
         run: source ./.github/scripts/before_install.sh
+      - uses: dschep/install-pipenv-action@v1
       - name: init
         run: make init
       - name: lint
