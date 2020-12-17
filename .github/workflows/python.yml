@@ -19,6 +19,7 @@ jobs:
          - python-version: pypy2.7-6.0
          - python-version: pypy3.5-6.0
     steps:
+      - uses: actions/checkout@v2
       - name: setup-telnyx-mock
         run: source ./.github/scripts/before_install.sh
       - name: init
