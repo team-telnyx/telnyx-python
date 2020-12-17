@@ -16,6 +16,7 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python-version }}
+      - uses: gabrielfalcao/pyenv-action@v7
       - uses: dschep/install-pipenv-action@v1
       - name: setup-telnyx-mock
         run: source ./.github/scripts/before_install.sh
