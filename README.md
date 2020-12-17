@@ -3,7 +3,7 @@
 [![image](https://img.shields.io/pypi/v/telnyx.svg)][pypi]
 [![image](https://img.shields.io/pypi/l/telnyx.svg)][pypi]
 [![image](https://img.shields.io/pypi/pyversions/telnyx.svg)][pypi]
-[!Build Status](https://github.com/team-telnyx/telnyx-python/workflows/Python/badge.svg)
+![Build Status](https://github.com/team-telnyx/telnyx-python/workflows/Python/badge.svg)
 [![Coverage Status](https://coveralls.io/repos/github/team-telnyx/telnyx-python/badge.svg?branch=master)][coveralls]
 [![Join Slack](https://img.shields.io/badge/join-slack-infomational)](https://joinslack.telnyx.com/)
 
