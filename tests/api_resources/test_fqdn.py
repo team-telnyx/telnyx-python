@@ -18,9 +18,9 @@ class TestFQDN(object):
         assert isinstance(resource, telnyx.FQDN)
 
     def test_is_creatable(self, request_mock):
-        resource = telnyx.FQDN.create(fqdn="example.com",
-                                      dns_record_type="a",
-                                      connection_id="1123")
+        resource = telnyx.FQDN.create(
+            fqdn="example.com", dns_record_type="a", connection_id="1123"
+        )
         request_mock.assert_requested("post", "/v2/fqdns")
         assert isinstance(resource, telnyx.FQDN)
 
