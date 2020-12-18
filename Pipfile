@@ -19,6 +19,3 @@ tox = "*"
 coveralls = "*"
 black = {version = "==19.3b0", markers = "python_version >= '3.6'"}
 twine = "*"
-
-[requires]
-python_version = "3.7"

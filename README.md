@@ -3,12 +3,12 @@
 [![image](https://img.shields.io/pypi/v/telnyx.svg)][pypi]
 [![image](https://img.shields.io/pypi/l/telnyx.svg)][pypi]
 [![image](https://img.shields.io/pypi/pyversions/telnyx.svg)][pypi]
-![Build Status](https://github.com/team-telnyx/telnyx-python/workflows/Python/badge.svg)
+[![Build Status](https://github.com/team-telnyx/telnyx-python/workflows/Python/badge.svg)][Actions]
 [![Coverage Status](https://coveralls.io/repos/github/team-telnyx/telnyx-python/badge.svg?branch=master)][coveralls]
 [![Join Slack](https://img.shields.io/badge/join-slack-infomational)](https://joinslack.telnyx.com/)
 
 [pypi]: https://pypi.org/project/telnyx/
-[travis]: https://travis-ci.org/team-telnyx/telnyx-python
+[Actions]: https://github.com/team-telnyx/telnyx-python/actions
 [coveralls]: https://coveralls.io/github/team-telnyx/telnyx-python?branch=master
 
 The Telnyx Python library provides convenient access to the Telnyx API from
