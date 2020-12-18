@@ -30,3 +30,5 @@ htmlcov/
 # SonarQube
 sonar-project.*
 .pypirc-telnyx
+
+Pipfile.lock

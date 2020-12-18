@@ -20,7 +20,9 @@ class TestFQDNConnection(object):
         assert isinstance(resource, telnyx.FQDNConnection)
 
     def test_is_creatable(self, request_mock):
-        resource = telnyx.FQDNConnection.create(active=True)
+        resource = telnyx.FQDNConnection.create(
+            active=True, connection_name="Test Name"
+        )
         request_mock.assert_requested("post", "/v2/fqdn_connections")
         assert isinstance(resource, telnyx.FQDNConnection)
 
