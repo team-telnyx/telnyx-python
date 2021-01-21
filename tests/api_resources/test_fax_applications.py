@@ -8,7 +8,7 @@ TEST_RESOURCE_ID = "6a09cdc3-8948-47f0-aa62-74ac943d6c58"
 class TestFaxApplication(object):
     def test_is_listable(self, request_mock):
         resources = telnyx.FaxApplication.list()
-        request_mock.assert_requested("get", "/v2/fax_connections")
+        request_mock.assert_requested("get", "/v2/fax_applications")
         assert isinstance(resources.data, list)
         assert isinstance(resources.data[0], telnyx.FaxApplication)
 
@@ -21,7 +21,9 @@ class TestFaxApplication(object):
 
     def test_is_creatable(self, request_mock):
         resource = telnyx.FaxApplication.create(
-            active=True, connection_name="Test Name"
+            active=True,
+            application_name="Test Name",
+            webhook_event_url="https://test.com",
         )
         request_mock.assert_requested("post", "/v2/fax_applications")
         assert isinstance(resource, telnyx.FaxApplication)
@@ -29,6 +31,8 @@ class TestFaxApplication(object):
     def test_is_saveable(self, request_mock):
         fax_application = telnyx.FaxApplication.retrieve(TEST_RESOURCE_ID)
         fax_application.active = False
+        fax_application.webhook_event_url = "https://update.com"
+        fax_application.application_name = "updated name"
         resource = fax_application.save()
         request_mock.assert_requested(
             "patch", "/v2/fax_applications/%s" % TEST_RESOURCE_ID
@@ -37,7 +41,12 @@ class TestFaxApplication(object):
         assert resource is fax_application
 
     def test_is_modifiable(self, request_mock):
-        resource = telnyx.FaxApplication.modify(TEST_RESOURCE_ID, active=False)
+        resource = telnyx.FaxApplication.modify(
+            TEST_RESOURCE_ID,
+            active=False,
+            webhook_event_url="https://update.com",
+            application_name="updated name",
+        )
         request_mock.assert_requested(
             "patch", "/v2/fax_applications/%s" % TEST_RESOURCE_ID
         )

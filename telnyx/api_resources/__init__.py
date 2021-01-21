@@ -12,8 +12,8 @@ from telnyx.api_resources.connection import Connection
 from telnyx.api_resources.credential_connection import CredentialConnection
 from telnyx.api_resources.detail_records_report import DetailRecordsReport
 from telnyx.api_resources.event import Event
-from telnyx.api_resources.faxes import Faxes
 from telnyx.api_resources.fax_application import FaxApplication
+from telnyx.api_resources.faxes import Faxes
 from telnyx.api_resources.fqdn import FQDN
 from telnyx.api_resources.fqdn_connection import FQDNConnection
 from telnyx.api_resources.inbound_channel import InboundChannel
