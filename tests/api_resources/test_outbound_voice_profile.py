@@ -27,6 +27,7 @@ class TestOutboundVoiceProfile(object):
     def test_is_saveable(self, request_mock):
         outbound_voice_profile = telnyx.OutboundVoiceProfile.retrieve(TEST_RESOURCE_ID)
         outbound_voice_profile.concurrent_call_limit = 10
+        outbound_voice_profile.name = "Dan"
         resource = outbound_voice_profile.save()
         request_mock.assert_requested(
             "patch", "/v2/outbound_voice_profiles/%s" % TEST_RESOURCE_ID
@@ -36,7 +37,7 @@ class TestOutboundVoiceProfile(object):
 
     def test_is_modifiable(self, request_mock):
         resource = telnyx.OutboundVoiceProfile.modify(
-            TEST_RESOURCE_ID, concurrent_call_limit=10
+            TEST_RESOURCE_ID, concurrent_call_limit=10, name="Dan"
         )
         request_mock.assert_requested(
             "patch", "/v2/outbound_voice_profiles/%s" % TEST_RESOURCE_ID
