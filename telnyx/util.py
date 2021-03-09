@@ -116,7 +116,7 @@ def load_object_classes():
         api_resources.Connection.OBJECT_NAME: api_resources.Connection,
         api_resources.CredentialConnection.OBJECT_NAME: api_resources.CredentialConnection,
         api_resources.DetailRecordsReport.OBJECT_NAME: api_resources.DetailRecordsReport,
-        api_resources.Faxes.OBJECT_NAME: api_resources.Faxes,
+        api_resources.Fax.OBJECT_NAME: api_resources.Fax,
         api_resources.FaxApplication.OBJECT_NAME: api_resources.FaxApplication,
         api_resources.FQDN.OBJECT_NAME: api_resources.FQDN,
         api_resources.FQDNConnection.OBJECT_NAME: api_resources.FQDNConnection,

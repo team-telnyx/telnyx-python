@@ -41,8 +41,12 @@ class APIResource(TelnyxObject):
             )
         # Namespaces are separated in object names with periods (.) and in URLs
         # with forward slashes (/), so replace the former with the latter.
-        base = cls.OBJECT_NAME.replace(".", "/")
-        return "/v2/%ss" % (base,)
+        if cls.OBJECT_NAME == "fax":
+            base = cls.OBJECT_NAME.replace(".", "/")
+            return "/v2/%ses" % (base,)
+        else:
+            base = cls.OBJECT_NAME.replace(".", "/")
+            return "/v2/%ss" % (base,)
 
     def instance_url(self):
         id = self.get("id")
