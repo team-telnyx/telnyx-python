@@ -21,10 +21,3 @@ class TestMessagingHostedNumberOrder(object):
         resource = telnyx.MessagingHostedNumberOrder.create()
         request_mock.assert_requested("post", "/v2/messaging_hosted_number_orders")
         assert isinstance(resource, telnyx.MessagingHostedNumberOrder)
-
-    def test_is_deletable(self, request_mock):
-        resource = telnyx.MessagingHostedNumberOrder.retrieve(TEST_RESOURCE_ID)
-        resource.delete()
-        request_mock.assert_requested(
-            "delete", "/v2/messaging_hosted_numbers/%s" % TEST_RESOURCE_ID
-        )

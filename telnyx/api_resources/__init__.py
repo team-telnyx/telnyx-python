@@ -21,6 +21,7 @@ from telnyx.api_resources.ip import IP
 from telnyx.api_resources.ip_connection import IPConnection
 from telnyx.api_resources.list_object import ListObject
 from telnyx.api_resources.message import Message
+from telnyx.api_resources.messaging_hosted_number import MessagingHostedNumber
 from telnyx.api_resources.messaging_hosted_number_order import MessagingHostedNumberOrder
 from telnyx.api_resources.messaging_phone_number import MessagingPhoneNumber
 from telnyx.api_resources.messaging_profile import MessagingProfile
@@ -69,6 +70,7 @@ __all__ = [
     "IPConnection",
     "ListObject",
     "Message",
+    "MessagingHostedNumber",
     "MessagingHostedNumberOrder",
     "MessagingPhoneNumber",
     "MessagingProfile",
