@@ -26,5 +26,5 @@ class TestMessagingHostedNumberOrder(object):
         resource = telnyx.MessagingHostedNumberOrder.retrieve(TEST_RESOURCE_ID)
         resource.delete()
         request_mock.assert_requested(
-            "delete", "/v2/messaging_hosted_number_orders/%s" % TEST_RESOURCE_ID
+            "delete", "/v2/messaging_hosted_numbers/%s" % TEST_RESOURCE_ID
         )
