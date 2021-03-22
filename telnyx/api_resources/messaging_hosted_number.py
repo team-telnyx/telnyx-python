@@ -1,8 +1,6 @@
 from __future__ import absolute_import, division, print_function
 
-from telnyx.api_resources.abstract import (
-    DeletableAPIResource,
-)
+from telnyx.api_resources.abstract import DeletableAPIResource
 
 
 class MessagingHostedNumber(

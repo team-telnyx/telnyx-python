@@ -14,7 +14,9 @@ class TestMessagingHostedNumberOrder(object):
 
     def test_is_retrievable(self, request_mock):
         resource = telnyx.MessagingHostedNumberOrder.retrieve(TEST_RESOURCE_ID)
-        request_mock.assert_requested("get", "/v2/messaging_hosted_number_orders/%s" % TEST_RESOURCE_ID)
+        request_mock.assert_requested(
+            "get", "/v2/messaging_hosted_number_orders/%s" % TEST_RESOURCE_ID
+        )
         assert isinstance(resource, telnyx.MessagingHostedNumberOrder)
 
     def test_is_creatable(self, request_mock):
