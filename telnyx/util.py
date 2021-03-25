@@ -6,9 +6,10 @@ import os
 import re
 import sys
 
+from six.moves.urllib.parse import parse_qsl
+
 import telnyx
 from telnyx import six
-from telnyx.six.moves.urllib.parse import parse_qsl
 
 TELNYX_LOG = os.environ.get("TELNYX_LOG")
 
@@ -124,6 +125,8 @@ def load_object_classes():
         api_resources.IP.OBJECT_NAME: api_resources.IP,
         api_resources.IPConnection.OBJECT_NAME: api_resources.IPConnection,
         api_resources.Message.OBJECT_NAME: api_resources.Message,
+        api_resources.MessagingHostedNumber.OBJECT_NAME: api_resources.MessagingHostedNumber,
+        api_resources.MessagingHostedNumberOrder.OBJECT_NAME: api_resources.MessagingHostedNumberOrder,
         api_resources.MessagingPhoneNumber.OBJECT_NAME: api_resources.MessagingPhoneNumber,
         api_resources.MessagingProfile.OBJECT_NAME: api_resources.MessagingProfile,
         api_resources.MessagingSettings.OBJECT_NAME: api_resources.MessagingSettings,
