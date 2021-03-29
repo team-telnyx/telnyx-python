@@ -10,7 +10,9 @@ TEST_RESOURCE_ID = "123"
 class TestPhoneNumberRegulatoryRequirement(object):
     def test_is_listable(self, request_mock):
         resources = telnyx.PhoneNumberRegulatoryRequirement.list()
-        request_mock.assert_requested("get", "/v2/phone_number_regulatory_requirements")
+        request_mock.assert_requested(
+            "get", "/v2/phone_numbers_regulatory_requirements"
+        )
         assert isinstance(resources.data, list)
         assert isinstance(resources.data[0], telnyx.PhoneNumberRegulatoryRequirement)
 

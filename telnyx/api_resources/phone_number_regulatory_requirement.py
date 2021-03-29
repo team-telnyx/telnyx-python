@@ -12,3 +12,7 @@ class PhoneNumberRegulatoryRequirement(ListableAPIResource):
         raise error.InvalidRequestError(
             "%s does not support retrieve()" % cls.class_url()
         )
+
+    @classmethod
+    def class_url(cls):
+        return "/v2/phone_numbers_regulatory_requirements"
