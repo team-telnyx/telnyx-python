@@ -15,3 +15,7 @@ class Fax(
     UpdateableAPIResource,
 ):
     OBJECT_NAME = "fax"
+
+    @classmethod
+    def class_url(cls):
+        return "/v2/faxes"
