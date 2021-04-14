@@ -4,7 +4,7 @@ on:
 jobs:
   test:
     env:
-      TELNYX_MOCK_VERSION: 0.8.10
+      TELNYX_MOCK_VERSION: 0.8.12
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_TOKEN }}
     runs-on: ${{ matrix.os }}
