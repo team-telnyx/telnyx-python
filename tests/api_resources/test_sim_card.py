@@ -45,5 +45,5 @@ class TestSIMCard(object):
         )
 
     def test_register(self, request_mock):
-        telnyx.SIMCard.register()
+        telnyx.SIMCard.register(registration_codes=["foo", "bar"])
         request_mock.assert_requested("post", "/v2/actions/register/sim_cards")
