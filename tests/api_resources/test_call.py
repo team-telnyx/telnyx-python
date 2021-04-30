@@ -1,7 +1,5 @@
 from __future__ import absolute_import, division, print_function
 
-import pytest
-
 import telnyx
 
 CALL_CONTROL_ID = "AgDIxmoRX6QMuaIj_uXRXnPAXP0QlNfXczRrZvZakpWxBlpw48KyZQ=="
@@ -19,20 +17,18 @@ class TestCall(object):
         request_mock.assert_requested("post", "/v2/calls")
         assert isinstance(resource, telnyx.Call)
 
-    @pytest.mark.skip(reason="OpenAPI specs needs review")
     def test_can_call_reject(self, request_mock):
         resource = create_dial()
         resource.call_control_id = CALL_CONTROL_ID
-        resource.reject()
+        resource.reject(cause="USER_BUSY")
         request_mock.assert_requested(
             "post", "/v2/calls/%s/actions/reject" % CALL_CONTROL_ID
         )
         assert isinstance(resource, telnyx.Call)
 
-    @pytest.mark.skip(reason="OpenAPI specs needs review")
     def test_can_call_calls_reject(self, request_mock):
         resource = create_dial()
-        resource.create_reject(CALL_CONTROL_ID)
+        resource.create_reject(CALL_CONTROL_ID, cause="USER_BUSY")
         request_mock.assert_requested(
             "post", "/v2/calls/%s/actions/reject" % CALL_CONTROL_ID
         )
@@ -276,6 +272,40 @@ class TestCall(object):
             "post", "/v2/calls/%s/actions/speak" % CALL_CONTROL_ID
         )
         assert isinstance(resource, telnyx.Call)
+
+    def test_can_call_transcription_start(self, request_mock):
+        resource = telnyx.Call()
+        resource.call_control_id = CALL_CONTROL_ID
+        resource.transcription_start(language="en")
+        request_mock.assert_requested(
+            "post", "/v2/calls/%s/actions/transcription_start" % CALL_CONTROL_ID
+        )
+        assert isinstance(resource, telnyx.Call)
+
+    def test_can_call_calls_transcription_start(self, request_mock):
+        resource = telnyx.Call.create_transcription_start(
+            CALL_CONTROL_ID, language="en"
+        )
+        request_mock.assert_requested(
+            "post", "/v2/calls/%s/actions/transcription_start" % CALL_CONTROL_ID
+        )
+        assert isinstance(resource, telnyx.telnyx_object.TelnyxObject)
+
+    def test_can_call_transcription_stop(self, request_mock):
+        resource = telnyx.Call()
+        resource.call_control_id = CALL_CONTROL_ID
+        resource.transcription_stop()
+        request_mock.assert_requested(
+            "post", "/v2/calls/%s/actions/transcription_stop" % CALL_CONTROL_ID
+        )
+        assert isinstance(resource, telnyx.Call)
+
+    def test_can_call_calls_transcription_stop(self, request_mock):
+        resource = telnyx.Call.create_transcription_stop(CALL_CONTROL_ID)
+        request_mock.assert_requested(
+            "post", "/v2/calls/%s/actions/transcription_stop" % CALL_CONTROL_ID
+        )
+        assert isinstance(resource, telnyx.telnyx_object.TelnyxObject)
 
     def test_can_call_transfer(self, request_mock):
         resource = create_dial()

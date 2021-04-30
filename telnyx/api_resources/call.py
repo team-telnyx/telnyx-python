@@ -39,6 +39,12 @@ from telnyx.api_resources.abstract import (
     "send_dtmf", path="actions/send_dtmf", operations=["create"]
 )
 @nested_resource_class_methods(
+    "transcription_start", path="actions/transcription_start", operations=["create"]
+)
+@nested_resource_class_methods(
+    "transcription_stop", path="actions/transcription_stop", operations=["create"]
+)
+@nested_resource_class_methods(
     "transfer", path="actions/transfer", operations=["create"]
 )
 class Call(CreateableAPIResource):
@@ -85,6 +91,12 @@ class Call(CreateableAPIResource):
 
     def speak(self, **params):
         return Call.create_speak(self.call_control_id, **params)
+
+    def transcription_start(self, **params):
+        return Call.create_transcription_start(self.call_control_id, **params)
+
+    def transcription_stop(self, **params):
+        return Call.create_transcription_stop(self.call_control_id, **params)
 
     def transfer(self, **params):
         return Call.create_transfer(self.call_control_id, **params)

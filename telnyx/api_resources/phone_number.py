@@ -42,7 +42,7 @@ class PhoneNumber(DeletableAPIResource, ListableAPIResource, UpdateableAPIResour
         return PhoneNumber.list_voice(None, **params)
 
     def voice(self, **params):
-        """ Returns the voice settings for the instantiated phone number. """
+        """Returns the voice settings for the instantiated phone number."""
 
         return PhoneNumber.list_voice(self.id, **params)
 
