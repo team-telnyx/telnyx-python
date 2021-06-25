@@ -141,6 +141,7 @@ def load_object_classes():
         api_resources.RegulatoryRequirement.OBJECT_NAME: api_resources.RegulatoryRequirement,
         api_resources.SIMCard.OBJECT_NAME: api_resources.SIMCard,
         api_resources.ShortCode.OBJECT_NAME: api_resources.ShortCode,
+        api_resources.TelephonyCredential.OBJECT_NAME: api_resources.TelephonyCredential,
         api_resources.VoiceSettings.OBJECT_NAME: api_resources.VoiceSettings,
         api_resources.Verification.OBJECT_NAME: api_resources.Verification,
         api_resources.VerifyProfile.OBJECT_NAME: api_resources.VerifyProfile,
