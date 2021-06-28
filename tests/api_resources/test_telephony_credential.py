@@ -23,7 +23,7 @@ class TestTelephonyCredential(object):
         resource = telnyx.TelephonyCredential.create(
             connection_id="some-connection-id",
         )
-        request_mock.assert_requested("post", "/v2/credential_connections")
+        request_mock.assert_requested("post", "/v2/telephony_credentials")
         assert isinstance(resource, telnyx.TelephonyCredential)
 
     def test_is_saveable(self, request_mock):
