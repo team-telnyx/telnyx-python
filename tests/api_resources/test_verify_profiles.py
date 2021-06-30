@@ -1,4 +1,5 @@
 import pytest
+
 import telnyx
 
 TEST_RESOURCE_ID = "123"
