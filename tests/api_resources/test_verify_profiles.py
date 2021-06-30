@@ -1,8 +1,11 @@
+import pytest
+
 import telnyx
 
 TEST_RESOURCE_ID = "123"
 
 
+@pytest.mark.skip(reason="Updated-Endpoint")
 class TestVerifyProfile(object):
     def test_is_listable(self, request_mock):
         resources = telnyx.VerifyProfile.list()
