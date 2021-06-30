@@ -14,5 +14,5 @@ class TelephonyCredential(
     ListableAPIResource,
     UpdateableAPIResource,
 ):
-    OBJECT_NAME          = "telephony_credential"
+    OBJECT_NAME = "telephony_credential"
     API_RECORD_TYPE_NAME = "credential"
