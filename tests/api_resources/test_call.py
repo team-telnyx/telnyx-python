@@ -352,7 +352,7 @@ class TestCall(object):
 
     def test_can_call_calls_leave_queue(self, request_mock):
         resource = create_dial()
-        resource.create_leave_queue()
+        resource.create_leave_queue(CALL_CONTROL_ID)
         request_mock.assert_requested(
             "post", "/v2/calls/%s/actions/leave_queue" % CALL_CONTROL_ID
         )
