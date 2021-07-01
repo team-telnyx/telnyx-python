@@ -109,4 +109,4 @@ class Call(CreateableAPIResource):
         return Call.create_enqueue(self.call_control_id, **params)
 
     def leave_queue(self, **params):
-        return Call.create_leave_enqueue(self.call_control_id, **params)
+        return Call.create_leave_queue(self.call_control_id, **params)
