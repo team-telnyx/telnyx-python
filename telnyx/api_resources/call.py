@@ -47,9 +47,7 @@ from telnyx.api_resources.abstract import (
 @nested_resource_class_methods(
     "transfer", path="actions/transfer", operations=["create"]
 )
-@nested_resource_class_methods(
-    "enqueue", path="actions/enqueue", operations=["create"]
-)
+@nested_resource_class_methods("enqueue", path="actions/enqueue", operations=["create"])
 @nested_resource_class_methods(
     "leave_queue", path="actions/leave_queue", operations=["create"]
 )
