@@ -23,7 +23,5 @@ class TestQueue(object):
     def test_can_call_list_calls(self, request_mock):
         resource = telnyx.Queue.retrieve(TEST_RESOURCE_ID)
         queue_calls = resource.list_calls()
-        request_mock.assert_requested(
-            "get", "/v2/queues/%s/calls" % resource.name
-        )
+        request_mock.assert_requested("get", "/v2/queues/%s/calls" % resource.name)
         assert isinstance(queue_calls.data[0], telnyx.QueueCall)
