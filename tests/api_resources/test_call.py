@@ -327,7 +327,7 @@ class TestCall(object):
     def test_can_call_enqueue(self, request_mock):
         resource = create_dial()
         resource.call_control_id = CALL_CONTROL_ID
-        resource.enqueue(queue_name="a_queue")
+        resource.enqueue("a_queue")
         request_mock.assert_requested(
             "post", "/v2/calls/%s/actions/enqueue" % CALL_CONTROL_ID
         )

@@ -105,7 +105,8 @@ class Call(CreateableAPIResource):
     def transfer(self, **params):
         return Call.create_transfer(self.call_control_id, **params)
 
-    def enqueue(self, **params):
+    def enqueue(self, queue_name, **params):
+        params["queue_name"] = queue_name
         return Call.create_enqueue(self.call_control_id, **params)
 
     def leave_queue(self, **params):
