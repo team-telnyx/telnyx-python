@@ -323,3 +323,37 @@ class TestCall(object):
             "post", "/v2/calls/%s/actions/transfer" % CALL_CONTROL_ID
         )
         assert isinstance(resource, telnyx.Call)
+
+    def test_can_call_enqueue(self, request_mock):
+        resource = create_dial()
+        resource.call_control_id = CALL_CONTROL_ID
+        resource.enqueue("a_queue")
+        request_mock.assert_requested(
+            "post", "/v2/calls/%s/actions/enqueue" % CALL_CONTROL_ID
+        )
+        assert isinstance(resource, telnyx.Call)
+
+    def test_can_call_calls_enqueue(self, request_mock):
+        resource = create_dial()
+        resource.create_enqueue(CALL_CONTROL_ID, queue_name="a_queue")
+        request_mock.assert_requested(
+            "post", "/v2/calls/%s/actions/enqueue" % CALL_CONTROL_ID
+        )
+        assert isinstance(resource, telnyx.Call)
+
+    def test_can_call_leave_queue(self, request_mock):
+        resource = create_dial()
+        resource.call_control_id = CALL_CONTROL_ID
+        resource.leave_queue()
+        request_mock.assert_requested(
+            "post", "/v2/calls/%s/actions/leave_queue" % CALL_CONTROL_ID
+        )
+        assert isinstance(resource, telnyx.Call)
+
+    def test_can_call_calls_leave_queue(self, request_mock):
+        resource = create_dial()
+        resource.create_leave_queue(CALL_CONTROL_ID)
+        request_mock.assert_requested(
+            "post", "/v2/calls/%s/actions/leave_queue" % CALL_CONTROL_ID
+        )
+        assert isinstance(resource, telnyx.Call)

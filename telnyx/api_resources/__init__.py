@@ -41,6 +41,7 @@ from telnyx.api_resources.phone_number_regulatory_requirement import (
     PhoneNumberRegulatoryRequirement,
 )
 from telnyx.api_resources.public_key import PublicKey
+from telnyx.api_resources.queue import Queue, QueueCall
 from telnyx.api_resources.regulatory_requirement import RegulatoryRequirement
 from telnyx.api_resources.short_code import ShortCode
 from telnyx.api_resources.sim_card import SIMCard
@@ -86,6 +87,8 @@ __all__ = [
     "PhoneNumber",
     "PhoneNumberRegulatoryRequirement",
     "PublicKey",
+    "Queue",
+    "QueueCall",
     "RegulatoryRequirement",
     "SIMCard",
     "ShortCode",

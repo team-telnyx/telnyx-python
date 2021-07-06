@@ -47,6 +47,10 @@ from telnyx.api_resources.abstract import (
 @nested_resource_class_methods(
     "transfer", path="actions/transfer", operations=["create"]
 )
+@nested_resource_class_methods("enqueue", path="actions/enqueue", operations=["create"])
+@nested_resource_class_methods(
+    "leave_queue", path="actions/leave_queue", operations=["create"]
+)
 class Call(CreateableAPIResource):
     OBJECT_NAME = "call"
 
@@ -100,3 +104,10 @@ class Call(CreateableAPIResource):
 
     def transfer(self, **params):
         return Call.create_transfer(self.call_control_id, **params)
+
+    def enqueue(self, queue_name, **params):
+        params["queue_name"] = queue_name
+        return Call.create_enqueue(self.call_control_id, **params)
+
+    def leave_queue(self, **params):
+        return Call.create_leave_queue(self.call_control_id, **params)
