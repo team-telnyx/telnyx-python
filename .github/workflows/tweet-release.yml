@@ -1,0 +1,17 @@
+on:
+  release:
+    types: [released]
+
+jobs:
+  tweet:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ethomson/send-tweet-action@v1
+        with:
+          status: |
+            We have a ${{github.event.release.tag_name}} release of our ${{github.event.repository.full_name}} SDK: ${{ github.event.release.name }}
+            ${{ github.event.release.html_url }}
+          consumer-key: ${{ secrets.TWITTER_HANDLE_TELNYX_DEV_CONSUMER_API_KEY }}
+          consumer-secret: ${{ secrets.TWITTER_HANDLE_TELNYX_DEV_CONSUMER_API_SECRET }}
+          access-token: ${{ secrets.TWITTER_HANDLE_TELNYX_DEV_ACCESS_TOKEN }}
+          access-token-secret: ${{ secrets.TWITTER_HANDLE_TELNYX_DEV_ACCESS_TOKEN_SECRET }}
