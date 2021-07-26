@@ -9,18 +9,10 @@ from telnyx.api_resources.abstract import (
 )
 
 
-@nested_resource_class_methods("confirm", path="actions/confirm", operations=["create"])
-class PortingOrder(
+class PortOut(
     CreateableAPIResource,
     DeletableAPIResource,
     ListableAPIResource,
     UpdateableAPIResource,
 ):
-    OBJECT_NAME = "porting_order"
-
-    def confirm(self, **params):
-        return PortingOrder.create_confirm(self.id, **params)
-
-
-class PortingPhoneNumber(ListableAPIResource):
-    OBJECT_NAME = "porting_phone_number"
+    OBJECT_NAME = "portout"
