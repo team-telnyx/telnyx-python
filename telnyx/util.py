@@ -137,6 +137,7 @@ def load_object_classes():
         api_resources.OutboundVoiceProfile.OBJECT_NAME: api_resources.OutboundVoiceProfile,
         api_resources.PhoneNumber.OBJECT_NAME: api_resources.PhoneNumber,
         api_resources.PhoneNumberRegulatoryRequirement.OBJECT_NAME: api_resources.PhoneNumberRegulatoryRequirement,
+        api_resources.PortingOrder.OBJECT_NAME: api_resources.PortingOrder,
         api_resources.PublicKey.OBJECT_NAME: api_resources.PublicKey,
         api_resources.Queue.OBJECT_NAME: api_resources.Queue,
         api_resources.QueueCall.OBJECT_NAME: api_resources.QueueCall,

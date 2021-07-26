@@ -40,6 +40,7 @@ from telnyx.api_resources.phone_number import (
 from telnyx.api_resources.phone_number_regulatory_requirement import (
     PhoneNumberRegulatoryRequirement,
 )
+from telnyx.api_resources.porting_order import PortingOrder
 from telnyx.api_resources.public_key import PublicKey
 from telnyx.api_resources.queue import Queue, QueueCall
 from telnyx.api_resources.regulatory_requirement import RegulatoryRequirement
@@ -86,6 +87,7 @@ __all__ = [
     "OutboundVoiceProfile",
     "PhoneNumber",
     "PhoneNumberRegulatoryRequirement",
+    "PortingOrder",
     "PublicKey",
     "Queue",
     "QueueCall",
