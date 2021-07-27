@@ -64,14 +64,14 @@ class TestPortingOrder(object):
         )
         assert isinstance(resource, telnyx.PortingOrder)
 
-    @pytest.mark.skip(reason="Endpoint not supported by mock currently")
+    @pytest.mark.skip(reason="PDF endpoint not supported by mock currently")
     def test_can_get_loa_template(self, request_mock):
         resource = telnyx.PortingOrder.retrieve(TEST_RESOURCE_ID)
         resource.loaTemplate()
         request_mock.assert_requested(
             "get", "/v2/porting_orders/%s/loa_template" % TEST_RESOURCE_ID
         )
-        assert isinstance(loa_template, telnyx.PortingOrder)
+        assert isinstance(resource, telnyx.PortingOrder)
 
     def test_can_list_porting_phone_numbers(self, request_mock):
         resource = telnyx.PortingPhoneNumber.list()
