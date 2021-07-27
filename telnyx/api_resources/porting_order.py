@@ -10,6 +10,9 @@ from telnyx.api_resources.abstract import (
 
 
 @nested_resource_class_methods("confirm", path="actions/confirm", operations=["create"])
+@nested_resource_class_methods(
+    "loa_template", path="loa_template", operations=["retrieve"]
+)
 class PortingOrder(
     CreateableAPIResource,
     DeletableAPIResource,
@@ -20,6 +23,9 @@ class PortingOrder(
 
     def confirm(self, **params):
         return PortingOrder.create_confirm(self.id, **params)
+
+    def loaTemplate(self, **params):
+        return PortingOrder.retrieve_loa_template(self.id, **params)
 
 
 class PortingPhoneNumber(ListableAPIResource):

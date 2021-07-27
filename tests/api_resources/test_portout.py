@@ -16,3 +16,19 @@ class TestPortOut(object):
         resource = telnyx.PortOut.retrieve(TEST_RESOURCE_ID)
         request_mock.assert_requested("get", "/v2/portouts/%s" % TEST_RESOURCE_ID)
         assert isinstance(resource, telnyx.PortOut)
+
+    def test_portout_comments_is_listable(self, request_mock):
+        resource = telnyx.PortOut()
+        resource.list_comments(id=TEST_RESOURCE_ID)
+        request_mock.assert_requested(
+            "get", "/v2/portouts/%s/comments" % TEST_RESOURCE_ID
+        )
+        assert isinstance(resource, telnyx.PortOut)
+
+    def test_portout_comments_is_createable(self, request_mock):
+        resource = telnyx.PortOut.retrieve(TEST_RESOURCE_ID)
+        resource.create_comments(id=TEST_RESOURCE_ID, body="This is a body")
+        request_mock.assert_requested(
+            "post", "/v2/portouts/%s/comments" % TEST_RESOURCE_ID
+        )
+        assert isinstance(resource, telnyx.PortOut)
