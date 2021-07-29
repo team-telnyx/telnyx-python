@@ -24,10 +24,19 @@ from telnyx.api_resources.abstract import (
     "gather_using_speak", path="actions/gather_using_speak", operations=["create"]
 )
 @nested_resource_class_methods(
+    "gather_stop", path="actions/gather_stop", operations=["create"]
+)
+@nested_resource_class_methods(
     "playback_start", path="actions/playback_start", operations=["create"]
 )
 @nested_resource_class_methods(
     "playback_stop", path="actions/playback_stop", operations=["create"]
+)
+@nested_resource_class_methods(
+    "record_pause", path="actions/record_pause", operations=["create"]
+)
+@nested_resource_class_methods(
+    "record_resume", path="actions/record_resume", operations=["create"]
 )
 @nested_resource_class_methods(
     "record_start", path="actions/record_start", operations=["create"]
@@ -35,6 +44,7 @@ from telnyx.api_resources.abstract import (
 @nested_resource_class_methods(
     "record_stop", path="actions/record_stop", operations=["create"]
 )
+@nested_resource_class_methods("refer", path="actions/refer", operations=["create"])
 @nested_resource_class_methods(
     "send_dtmf", path="actions/send_dtmf", operations=["create"]
 )
@@ -78,17 +88,29 @@ class Call(CreateableAPIResource):
     def gather_using_speak(self, **params):
         return Call.create_gather_using_speak(self.call_control_id, **params)
 
+    def gather_stop(self, **params):
+        return Call.create_gather_stop(self.call_control_id, **params)
+
     def playback_start(self, **params):
         return Call.create_playback_start(self.call_control_id, **params)
 
     def playback_stop(self, **params):
         return Call.create_playback_stop(self.call_control_id, **params)
 
+    def record_pause(self, **params):
+        return Call.create_record_pause(self.call_control_id, **params)
+
+    def record_resume(self, **params):
+        return Call.create_record_resume(self.call_control_id, **params)
+
     def record_start(self, **params):
         return Call.create_record_start(self.call_control_id, **params)
 
     def record_stop(self, **params):
         return Call.create_record_stop(self.call_control_id, **params)
+
+    def refer(self, **params):
+        return Call.create_refer(self.call_control_id, **params)
 
     def send_dtmf(self, **params):
         return Call.create_send_dtmf(self.call_control_id, **params)

@@ -1,5 +1,7 @@
 from __future__ import absolute_import, division, print_function
 
+import pytest
+
 import telnyx
 
 CONFERENCE_ID = "3fa85f64-5717-4562-b3fc-2c963f66afa6"
@@ -21,6 +23,11 @@ class TestConference(object):
         request_mock.assert_requested("get", "/v2/conferences")
         assert isinstance(resources.data, list)
         assert isinstance(resources.data[0], telnyx.Conference)
+
+    def test_is_retrievable(self, request_mock):
+        resources = telnyx.Conference.retrieve(CONFERENCE_ID)
+        request_mock.assert_requested("get", "/v2/conferences/%s" % CONFERENCE_ID)
+        assert isinstance(resources, telnyx.Conference)
 
     def test_is_creatable(self, request_mock):
         resource = create_conference()
@@ -147,6 +154,42 @@ class TestConference(object):
         )
         assert isinstance(resource, telnyx.Conference)
 
+    def test_can_call_play(self, request_mock):
+        resource = create_conference()
+        resource.call_control_id = CONFERENCE_ID
+        resource.play(audio_url="http://www.example.com/sounds/greeting.wav")
+        request_mock.assert_requested(
+            "post", "/v2/conferences/%s/actions/play" % CONFERENCE_ID
+        )
+        assert isinstance(resource, telnyx.Conference)
+
+    def test_can_call_create_play(self, request_mock):
+        resource = create_conference()
+        resource.create_play(
+            CONFERENCE_ID, audio_url="http://www.example.com/sounds/greeting.wav"
+        )
+        request_mock.assert_requested(
+            "post", "/v2/conferences/%s/actions/play" % CONFERENCE_ID
+        )
+        assert isinstance(resource, telnyx.Conference)
+
+    def test_can_call_stop(self, request_mock):
+        resource = create_conference()
+        resource.call_control_id = CONFERENCE_ID
+        resource.stop()
+        request_mock.assert_requested(
+            "post", "/v2/conferences/%s/actions/stop" % CONFERENCE_ID
+        )
+        assert isinstance(resource, telnyx.Conference)
+
+    def test_can_call_create_stop(self, request_mock):
+        resource = create_conference()
+        resource.create_stop(CONFERENCE_ID)
+        request_mock.assert_requested(
+            "post", "/v2/conferences/%s/actions/stop" % CONFERENCE_ID
+        )
+        assert isinstance(resource, telnyx.Conference)
+
     def test_can_call_record_start(self, request_mock):
         resource = create_conference()
         resource.record_start(
@@ -178,5 +221,19 @@ class TestConference(object):
         resource.create_record_stop(CONFERENCE_ID)
         request_mock.assert_requested(
             "post", "/v2/conferences/%s/actions/record_stop" % CONFERENCE_ID
+        )
+        assert isinstance(resource, telnyx.Conference)
+
+    @pytest.mark.skip(reason="Fix mock for multi args")
+    def test_can_call_update(self, request_mock):
+        resource = create_conference()
+        resource.create_update(
+            CONFERENCE_ID,
+            call_control_id=_call_control_id,
+            supervisor_role="whisper",
+            command_id="891510ac-f3e4-11e8-af5b-de00688a4901",
+        )
+        request_mock.assert_requested(
+            "post", "/v2/conference/%s/actions/update" % CONFERENCE_ID
         )
         assert isinstance(resource, telnyx.Conference)

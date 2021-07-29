@@ -162,6 +162,23 @@ class TestCall(object):
         )
         assert isinstance(resource, telnyx.Call)
 
+    def test_can_call_gather_stop(self, request_mock):
+        resource = create_dial()
+        resource.call_control_id = CALL_CONTROL_ID
+        resource.gather_stop()
+        request_mock.assert_requested(
+            "post", "/v2/calls/%s/actions/gather_stop" % CALL_CONTROL_ID
+        )
+        assert isinstance(resource, telnyx.Call)
+
+    def test_can_call_calls_gather_stop(self, request_mock):
+        resource = create_dial()
+        resource.create_gather_stop(CALL_CONTROL_ID)
+        request_mock.assert_requested(
+            "post", "/v2/calls/%s/actions/gather_stop" % CALL_CONTROL_ID
+        )
+        assert isinstance(resource, telnyx.Call)
+
     def test_can_call_playback_start(self, request_mock):
         resource = create_dial()
         resource.call_control_id = CALL_CONTROL_ID
@@ -198,6 +215,40 @@ class TestCall(object):
         )
         assert isinstance(resource, telnyx.Call)
 
+    def test_can_call_record_pause(self, request_mock):
+        resource = create_dial()
+        resource.call_control_id = CALL_CONTROL_ID
+        resource.record_pause()
+        request_mock.assert_requested(
+            "post", "/v2/calls/%s/actions/record_pause" % CALL_CONTROL_ID
+        )
+        assert isinstance(resource, telnyx.Call)
+
+    def test_can_call_calls_record_pause(self, request_mock):
+        resource = create_dial()
+        resource.create_record_pause(CALL_CONTROL_ID)
+        request_mock.assert_requested(
+            "post", "/v2/calls/%s/actions/record_pause" % CALL_CONTROL_ID
+        )
+        assert isinstance(resource, telnyx.Call)
+
+    def test_can_call_record_resume(self, request_mock):
+        resource = create_dial()
+        resource.call_control_id = CALL_CONTROL_ID
+        resource.record_resume()
+        request_mock.assert_requested(
+            "post", "/v2/calls/%s/actions/record_resume" % CALL_CONTROL_ID
+        )
+        assert isinstance(resource, telnyx.Call)
+
+    def test_can_call_calls_record_resume(self, request_mock):
+        resource = create_dial()
+        resource.create_record_resume(CALL_CONTROL_ID)
+        request_mock.assert_requested(
+            "post", "/v2/calls/%s/actions/record_resume" % CALL_CONTROL_ID
+        )
+        assert isinstance(resource, telnyx.Call)
+
     def test_can_call_record_start(self, request_mock):
         resource = create_dial()
         resource.call_control_id = CALL_CONTROL_ID
@@ -229,6 +280,25 @@ class TestCall(object):
         resource.create_record_stop(CALL_CONTROL_ID)
         request_mock.assert_requested(
             "post", "/v2/calls/%s/actions/record_stop" % CALL_CONTROL_ID
+        )
+        assert isinstance(resource, telnyx.Call)
+
+    def test_can_call_refer(self, request_mock):
+        resource = create_dial()
+        resource.call_control_id = CALL_CONTROL_ID
+        resource.refer(sip_address="sip:username@sip.non-telnyx-address.com")
+        request_mock.assert_requested(
+            "post", "/v2/calls/%s/actions/refer" % CALL_CONTROL_ID
+        )
+        assert isinstance(resource, telnyx.Call)
+
+    def test_can_call_calls_refer(self, request_mock):
+        resource = create_dial()
+        resource.create_refer(
+            CALL_CONTROL_ID, sip_address="sip:username@sip.non-telnyx-address.com"
+        )
+        request_mock.assert_requested(
+            "post", "/v2/calls/%s/actions/refer" % CALL_CONTROL_ID
         )
         assert isinstance(resource, telnyx.Call)
 
