@@ -51,6 +51,11 @@ from telnyx.api_resources.sim_card import SIMCard
 from telnyx.api_resources.telephony_credential import TelephonyCredential
 from telnyx.api_resources.verification import Verification
 from telnyx.api_resources.verify_profile import VerifyProfile
+from telnyx.api_resources.whatsapp_business_account import WhatsappBusinessAccount
+from telnyx.api_resources.whatsapp_contact import WhatsappContact
+from telnyx.api_resources.whatsapp_message import WhatsappMessage
+from telnyx.api_resources.whatsapp_phone_number import WhatsappPhoneNumber
+from telnyx.api_resources.whatsapp_user import WhatsappUser
 
 # flake8: noqa
 
@@ -103,4 +108,9 @@ __all__ = [
     "Verification",
     "VerifyProfile",
     "VoiceSettings",
+    "WhatsappBusinessAccount",
+    "WhatsappContact",
+    "WhatsappMessage",
+    "WhatsappPhoneNumber",
+    "WhatsappUser"
 ]
