@@ -1,5 +1,6 @@
 from __future__ import absolute_import, division, print_function
 
+from telnyx.api_resources.access_control_ips import AccessControlIp
 from telnyx.api_resources.address import Address
 from telnyx.api_resources.api_key import APIKey
 from telnyx.api_resources.available_phone_number import AvailablePhoneNumber
@@ -56,6 +57,7 @@ from telnyx.api_resources.verify_profile import VerifyProfile
 
 
 __all__ = [
+    "AccessControlIp",
     "Address",
     "APIKey",
     "AvailablePhoneNumber",
