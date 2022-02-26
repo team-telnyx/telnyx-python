@@ -1,7 +1,8 @@
 from __future__ import absolute_import, division, print_function
 
-import telnyx
 import pytest
+
+import telnyx
 
 TEST_RESOURCE_ID = "1293384261075731499"
 
@@ -21,14 +22,11 @@ class TestManagedAccount(object):
         assert isinstance(resource, telnyx.ManagedAccount)
 
     def test_is_creatable(self, request_mock):
-        resource = telnyx.ManagedAccount.create(
-            business_name="Larry's Cat Food Inc"
-        )
+        telnyx.ManagedAccount.create(business_name="Larry's Cat Food Inc")
         request_mock.assert_requested("post", "/v2/managed_accounts")
 
     def test_is_modifiable(self, request_mock):
-        resource = telnyx.ManagedAccount.modify(
-            TEST_RESOURCE_ID)
+        resource = telnyx.ManagedAccount.modify(TEST_RESOURCE_ID)
         request_mock.assert_requested(
             "patch", "/v2/managed_accounts/%s" % TEST_RESOURCE_ID
         )

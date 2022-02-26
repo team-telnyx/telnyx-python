@@ -12,13 +12,13 @@ class TestWirelessDetailRecords(object):
         assert isinstance(resources.data, list)
 
     def test_is_retrievable(self, request_mock):
-        resource = telnyx.WirelessDetailRecordsReports.retrieve(TEST_RESOURCE_ID)
+        telnyx.WirelessDetailRecordsReports.retrieve(TEST_RESOURCE_ID)
         request_mock.assert_requested(
             "get", "/v2/wireless/detail_records_reports/%s" % TEST_RESOURCE_ID
         )
 
     def test_is_creatable(self, request_mock):
-        resource = telnyx.WirelessDetailRecordsReports.create()
+        telnyx.WirelessDetailRecordsReports.create()
         request_mock.assert_requested("post", "/v2/wireless/detail_records_reports")
 
     def test_is_deletable(self, request_mock):

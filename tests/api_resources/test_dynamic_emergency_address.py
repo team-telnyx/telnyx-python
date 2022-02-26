@@ -20,13 +20,13 @@ class TestDynamicEmergencyAddress(object):
         assert isinstance(resource, telnyx.DynamicEmergencyAddress)
 
     def test_is_creatable(self, request_mock):
-        resource = telnyx.DynamicEmergencyAddress.create(
+        telnyx.DynamicEmergencyAddress.create(
             administrative_area="IL",
             house_number="311",
             locality="Chicago",
             postal_code="60654",
             street_name="Superior",
-            country_coude="US"
+            country_coude="US",
         )
 
     def test_is_deletable(self, request_mock):

@@ -1,7 +1,8 @@
 from __future__ import absolute_import, division, print_function
 
-import telnyx
 import pytest
+
+import telnyx
 
 TEST_RESOURCE_ID = "6a09cdc3-8948-47f0-aa62-74ac943d6c58"
 
@@ -27,10 +28,7 @@ class TestNotificationProfile(object):
 
     @pytest.mark.skip(reason="Create mismatch")
     def test_is_modifiable(self, request_mock):
-        resource = telnyx.NotificationProfile.modify(
-            TEST_RESOURCE_ID,
-            name="Test"
-        )
+        resource = telnyx.NotificationProfile.modify(TEST_RESOURCE_ID, name="Test")
         request_mock.assert_requested(
             "patch", "/v2/notification_profiles/%s" % TEST_RESOURCE_ID
         )

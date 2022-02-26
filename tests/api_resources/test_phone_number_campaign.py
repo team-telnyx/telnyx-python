@@ -1,7 +1,8 @@
 from __future__ import absolute_import, division, print_function
 
-import telnyx
 import pytest
+
+import telnyx
 
 TEST_RESOURCE_ID = "1293384261075731499"
 
@@ -23,15 +24,13 @@ class TestPhoneNumberCampaign(object):
 
     def test_is_creatable(self, request_mock):
         resource = telnyx.PhoneNumberCampaign.create(
-            phoneNumber="1920324562",
-            campaignID=TEST_RESOURCE_ID,
+            phoneNumber="1920324562", campaignID=TEST_RESOURCE_ID
         )
         request_mock.assert_requested("post", "/10dlc/phoneNumberCampaign")
         assert isinstance(resource, telnyx.PhoneNumberCampaign)
 
     def test_is_modifiable(self, request_mock):
-        resource = telnyx.PhoneNumberCampaign.modify(
-            TEST_RESOURCE_ID,)
+        resource = telnyx.PhoneNumberCampaign.modify(TEST_RESOURCE_ID)
         request_mock.assert_requested(
             "patch", "/10dlc/phoneNumberCampaign/%s" % TEST_RESOURCE_ID
         )

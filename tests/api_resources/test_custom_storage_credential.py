@@ -1,7 +1,8 @@
 from __future__ import absolute_import, division, print_function
 
-import telnyx
 import pytest
+
+import telnyx
 
 TEST_RESOURCE_ID = "1293384261075731499"
 
@@ -17,8 +18,7 @@ class TestCustomStorageCredential(object):
 
     def test_is_creatable(self, request_mock):
         resource = telnyx.CustomStorageCredential.create(
-            backend="gcs",
-            configuration=[]
+            backend="gcs", configuration=[]
         )
         request_mock.assert_requested("post", "/v2/custom_storage_credentials")
         assert isinstance(resource, telnyx.CustomStorageCredential)

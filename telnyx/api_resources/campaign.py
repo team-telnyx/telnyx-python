@@ -5,12 +5,14 @@ from telnyx.api_resources.abstract import (
     DeletableAPIResource,
     ListableAPIResource,
     UpdateableAPIResource,
-    nested_resource_class_methods
+    nested_resource_class_methods,
 )
 
 
 @nested_resource_class_methods("mno_metadata", path="mnoMetadata", operations=["list"])
-@nested_resource_class_methods("operation_status", path="operationStatus", operations=["list"])
+@nested_resource_class_methods(
+    "operation_status", path="operationStatus", operations=["list"]
+)
 class Campaign(
     CreateableAPIResource,
     DeletableAPIResource,
@@ -30,16 +32,12 @@ class Campaign(
         return Campaign.list_mno_metadata(self.name, **params)
 
 
-class CampaignBuilder(
-    CreateableAPIResource
-):
+class CampaignBuilder(CreateableAPIResource):
     OBJECT_NAME = "campaign_builder"
 
 
 @nested_resource_class_methods("usecase", path="usecase", operations=["retrieve"])
-class CampaignBuilderBrand(
-    ListableAPIResource
-):
+class CampaignBuilderBrand(ListableAPIResource):
     OBJECT_NAME = "campaign_builder_brand"
 
     def download(self, **params):

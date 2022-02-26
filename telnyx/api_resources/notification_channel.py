@@ -1,10 +1,10 @@
 from __future__ import absolute_import, division, print_function
 
 from telnyx.api_resources.abstract import (
-    ListableAPIResource,
     CreateableAPIResource,
+    DeletableAPIResource,
+    ListableAPIResource,
     UpdateableAPIResource,
-    DeletableAPIResource
 )
 
 
@@ -12,6 +12,6 @@ class NotificationChannel(
     ListableAPIResource,
     CreateableAPIResource,
     UpdateableAPIResource,
-    DeletableAPIResource
+    DeletableAPIResource,
 ):
     OBJECT_NAME = "notification_channel"

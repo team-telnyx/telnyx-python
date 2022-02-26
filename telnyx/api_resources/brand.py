@@ -5,12 +5,16 @@ from telnyx.api_resources.abstract import (
     DeletableAPIResource,
     ListableAPIResource,
     UpdateableAPIResource,
-    nested_resource_class_methods
+    nested_resource_class_methods,
 )
 
 
-@nested_resource_class_methods("list_external_vetting", path="externalVetting", operations=["list"])
-@nested_resource_class_methods("order_external_vetting", path="externalVetting", operations=["create"])
+@nested_resource_class_methods(
+    "list_external_vetting", path="externalVetting", operations=["list"]
+)
+@nested_resource_class_methods(
+    "order_external_vetting", path="externalVetting", operations=["create"]
+)
 class Brand(
     CreateableAPIResource,
     DeletableAPIResource,

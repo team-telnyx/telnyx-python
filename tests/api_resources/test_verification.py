@@ -17,7 +17,7 @@ class TestVerification(object):
         resource.verify_by_phone_number(
             code=VERIFY_CODE,
             phone_number=TEST_PHONE_NUMBER,
-            verify_profile_id=VERIFY_PROFILE
+            verify_profile_id=VERIFY_PROFILE,
         )
         request_mock.assert_requested(
             "post",

@@ -4,7 +4,6 @@ import pytest
 
 import telnyx
 
-
 TEST_RESOURCE_ID = "12ade33a-21c0-473b-b055-b3c836e1c292"
 TEST_RESOURCE_ID_2 = "92ade33a-21c0-473b-b055-b3c836e1c292"
 
@@ -15,7 +14,7 @@ class TestWhatsappMedia(object):
         resource = telnyx.WhatsappMedia.create(
             media_content_type=["19201234567"],
             upload_file="This is a test",
-            whatsapp_user_id="123144121"
+            whatsapp_user_id="123144121",
         )
         request_mock.assert_requested("post", "/v2/whatsapp_media")
         assert isinstance(resource, telnyx.WhatsappMedia)

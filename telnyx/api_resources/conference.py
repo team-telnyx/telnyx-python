@@ -24,7 +24,8 @@ from telnyx.api_resources.abstract import (
 @nested_resource_class_methods("update", path="actions/update", operations=["create"])
 @nested_resource_class_methods("leave", path="actions/leave", operations=["create"])
 @nested_resource_class_methods(
-    "dial_participant", path="actions/dial_participant", operations=["create"])
+    "dial_participant", path="actions/dial_participant", operations=["create"]
+)
 @nested_resource_class_methods("participants", path="participants", operations=["list"])
 class Conference(CreateableAPIResource, ListableAPIResource):
     OBJECT_NAME = "conference"

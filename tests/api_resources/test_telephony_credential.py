@@ -1,7 +1,8 @@
 from __future__ import absolute_import, division, print_function
 
-import telnyx
 import pytest
+
+import telnyx
 
 TEST_RESOURCE_ID = "c215ade3-0d39-418e-94be-c5f780760199"
 
@@ -21,9 +22,7 @@ class TestTelephonyCredential(object):
         assert isinstance(resource, telnyx.TelephonyCredential)
 
     def test_is_creatable(self, request_mock):
-        resource = telnyx.TelephonyCredential.create(
-            connection_id="some-connection-id",
-        )
+        resource = telnyx.TelephonyCredential.create(connection_id="some-connection-id")
         request_mock.assert_requested("post", "/v2/telephony_credentials")
         assert isinstance(resource, telnyx.TelephonyCredential)
 
@@ -55,4 +54,3 @@ class TestTelephonyCredential(object):
     def test_is_token_createable(self, request_mock):
         resource = telnyx.TelephonyCredential.retrieve(TEST_RESOURCE_ID)
         resource.token()
-

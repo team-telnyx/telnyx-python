@@ -1,5 +1,6 @@
-import telnyx
 import pytest
+
+import telnyx
 
 TEST_RESOURCE_ID = "3fa85f64-5717-4562-b3fc-2c963f66afa6"
 
@@ -20,22 +21,16 @@ class TestRoom(object):
         request_mock.assert_requested("post", "/v2/rooms")
 
     def test_is_modifiable(self, request_mock):
-        resource = telnyx.Room.modify(
-            TEST_RESOURCE_ID,
-            enable_recording=False,
-            max_participants=20,
+        telnyx.Room.modify(
+            TEST_RESOURCE_ID, enable_recording=False, max_participants=20
         )
-        request_mock.assert_requested(
-            "patch", "/v2/rooms/%s" % TEST_RESOURCE_ID
-        )
+        request_mock.assert_requested("patch", "/v2/rooms/%s" % TEST_RESOURCE_ID)
 
     @pytest.mark.skip(reason="204 Response (silent)")
     def test_is_deletable(self, request_mock):
         resource = telnyx.Room.retrieve(TEST_RESOURCE_ID)
         resource.delete()
-        request_mock.assert_requested(
-            "delete", "/v2/rooms/%s" % TEST_RESOURCE_ID
-        )
+        request_mock.assert_requested("delete", "/v2/rooms/%s" % TEST_RESOURCE_ID)
 
     @pytest.mark.skip(reason="Nest List")
     def test_can_list_sessions(self, request_mock):

@@ -5,11 +5,13 @@ from telnyx.api_resources.abstract import (
     DeletableAPIResource,
     ListableAPIResource,
     UpdateableAPIResource,
-    nested_resource_class_methods
+    nested_resource_class_methods,
 )
 
 
-@nested_resource_class_methods("detailed_status", path="detailedStatus", operations=["list"])
+@nested_resource_class_methods(
+    "detailed_status", path="detailedStatus", operations=["list"]
+)
 class BulkCreation(
     CreateableAPIResource,
     DeletableAPIResource,

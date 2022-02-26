@@ -5,7 +5,7 @@ from telnyx.api_resources.abstract import (
     DeletableAPIResource,
     ListableAPIResource,
     UpdateableAPIResource,
-    nested_resource_class_methods
+    nested_resource_class_methods,
 )
 
 

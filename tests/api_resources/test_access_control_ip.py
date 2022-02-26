@@ -14,17 +14,19 @@ class TestAddress(object):
 
     def test_is_retrievable(self, request_mock):
         resource = telnyx.AccessControlIP.retrieve(TEST_RESOURCE_ID)
-        request_mock.assert_requested("get", "/v2/access_control_ips/%s" % TEST_RESOURCE_ID)
+        request_mock.assert_requested(
+            "get", "/v2/access_control_ips/%s" % TEST_RESOURCE_ID
+        )
         assert isinstance(resource, telnyx.AccessControlIP)
 
     def test_is_creatable(self, request_mock):
-        resource = telnyx.AccessControlIP.create(
-            ip_address="100.101.102.103",
-        )
+        resource = telnyx.AccessControlIP.create(ip_address="100.101.102.103")
         request_mock.assert_requested("post", "/v2/access_control_ips")
         assert isinstance(resource, telnyx.AccessControlIP)
 
     def test_is_deletable(self, request_mock):
         resource = telnyx.AccessControlIP.retrieve(TEST_RESOURCE_ID)
         resource.delete()
-        request_mock.assert_requested("delete", "/v2/access_control_ips/%s" % TEST_RESOURCE_ID)
+        request_mock.assert_requested(
+            "delete", "/v2/access_control_ips/%s" % TEST_RESOURCE_ID
+        )

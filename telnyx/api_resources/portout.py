@@ -13,7 +13,10 @@ from telnyx.api_resources.abstract import (
     "comments", path="comments", operations=["create", "list"], pluralize_path=False
 )
 @nested_resource_class_methods(
-    "supporting_documents", path="supporting_documents", operations=["create", "list"], pluralize_path=False
+    "supporting_documents",
+    path="supporting_documents",
+    operations=["create", "list"],
+    pluralize_path=False,
 )
 class PortOut(
     CreateableAPIResource,

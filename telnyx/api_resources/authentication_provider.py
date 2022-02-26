@@ -12,6 +12,6 @@ class AuthenticationProvider(
     CreateableAPIResource,
     DeletableAPIResource,
     ListableAPIResource,
-    UpdateableAPIResource
+    UpdateableAPIResource,
 ):
     OBJECT_NAME = "authentication_provider"

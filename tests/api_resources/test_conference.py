@@ -1,7 +1,5 @@
 from __future__ import absolute_import, division, print_function
 
-import pytest
-
 import telnyx
 
 CONFERENCE_ID = "3fa85f64-5717-4562-b3fc-2c963f66afa6"
@@ -249,4 +247,3 @@ class TestConference(object):
             "post", "/v2/conferences/%s/actions/leave" % CONFERENCE_ID
         )
         assert isinstance(resource, telnyx.Conference)
-

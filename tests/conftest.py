@@ -3,7 +3,6 @@ from __future__ import absolute_import, division, print_function
 import atexit
 import os
 import sys
-from distutils.version import StrictVersion  # pylint: disable=import-error
 
 import pytest
 
@@ -50,6 +49,7 @@ if version != "master" and StrictVersion(version) < StrictVersion(MOCK_MINIMUM_V
         "see its repository for upgrade instructions." % (version, MOCK_MINIMUM_VERSION)
     )
 """
+
 
 @pytest.fixture(autouse=True)
 def setup_telnyx():

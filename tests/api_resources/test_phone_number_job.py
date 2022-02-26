@@ -22,18 +22,20 @@ class TestPhoneNumberJob(object):
         telnyx.PhoneNumberJob.update_emergency_settings(
             emergency_address_id="53829456729313",
             emergency_enabled=True,
-            phone_numbers=[]
+            phone_numbers=[],
         )
-        request_mock.assert_requested("post", "/v2/phone_numbers/jobs/update_emergency_settings")
+        request_mock.assert_requested(
+            "post", "/v2/phone_numbers/jobs/update_emergency_settings"
+        )
 
     def test_update_phone_numbers(self, request_mock):
-        telnyx.PhoneNumberJob.update_phone_numbers(
-            phone_numbers=[]
+        telnyx.PhoneNumberJob.update_phone_numbers(phone_numbers=[])
+        request_mock.assert_requested(
+            "post", "/v2/phone_numbers/jobs/update_phone_numbers"
         )
-        request_mock.assert_requested("post", "/v2/phone_numbers/jobs/update_phone_numbers")
 
     def test_delete_phone_numbers(self, request_mock):
-        telnyx.PhoneNumberJob.delete_phone_numbers(
-            phone_numbers=[]
+        telnyx.PhoneNumberJob.delete_phone_numbers(phone_numbers=[])
+        request_mock.assert_requested(
+            "post", "/v2/phone_numbers/jobs/delete_phone_numbers"
         )
-        request_mock.assert_requested("post", "/v2/phone_numbers/jobs/delete_phone_numbers")

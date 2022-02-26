@@ -2,18 +2,28 @@ from __future__ import absolute_import, division, print_function
 
 from telnyx.api_resources.abstract import (
     CreateableAPIResource,
+    DeletableAPIResource,
+    ListableAPIResource,
+    UpdateableAPIResource,
+    nested_resource_class_methods,
+)
+
+
+@nested_resource_class_methods(
+    "sessions", path="sessions", operations=["list", "retrieve"]
+)
+@nested_resource_class_methods(
+    "generate_token", path="actions/generate_join_client_token", operations=["create"]
+)
+@nested_resource_class_methods(
+    "refresh_token", path="actions/refresh_client_token", operations=["create"]
+)
+class Room(
+    CreateableAPIResource,
     ListableAPIResource,
     DeletableAPIResource,
     UpdateableAPIResource,
-    nested_resource_class_methods)
-
-
-@nested_resource_class_methods("sessions", path="sessions", operations=["list", "retrieve"])
-@nested_resource_class_methods(
-    "generate_token", path="actions/generate_join_client_token", operations=["create"])
-@nested_resource_class_methods(
-    "refresh_token", path="actions/refresh_client_token", operations=["create"])
-class Room(CreateableAPIResource, ListableAPIResource, DeletableAPIResource, UpdateableAPIResource):
+):
     OBJECT_NAME = "room"
 
     def list_sessions(self, **params):

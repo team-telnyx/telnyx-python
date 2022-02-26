@@ -10,7 +10,9 @@ from telnyx.api_resources.abstract import (
 @nested_resource_class_methods("mute", path="actions/mute", operations=["create"])
 @nested_resource_class_methods("unmute", path="actions/unmute", operations=["create"])
 @nested_resource_class_methods("kick", path="actions/kick", operations=["create"])
-@nested_resource_class_methods("participants", path="participants", operations=["list", "retrieve"])
+@nested_resource_class_methods(
+    "participants", path="participants", operations=["list", "retrieve"]
+)
 class RoomSession(ListableAPIResource):
     OBJECT_NAME = "room_session"
 

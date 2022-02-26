@@ -114,8 +114,7 @@ class TestMessagingProfile(object):
         messaging_profile = telnyx.MessagingProfile.retrieve(TEST_RESOURCE_ID)
         resources = messaging_profile.metrics()
         request_mock.assert_requested(
-            "get",
-            "/v2/messaging_profiles/%s/metrics" % TEST_RESOURCE_ID,
+            "get", "/v2/messaging_profiles/%s/metrics" % TEST_RESOURCE_ID
         )
         assert isinstance(resources.data, list)
         assert isinstance(resources.data[0], telnyx.MessagingProfile)

@@ -24,15 +24,15 @@ class TestAuthenticationProvider(object):
     @pytest.mark.skip(reason="Formatting for setting param is off")
     def test_is_creatable(self, request_mock):
         resource = telnyx.AuthenticationProvider.create(
-            name="Okta",
-            setting=[],
-            short_name="myorg",
+            name="Okta", setting=[], short_name="myorg"
         )
         request_mock.assert_requested("post", "/v2/authentication_providers")
         assert isinstance(resource, telnyx.AuthenticationProvider)
 
     def test_is_saveable(self, request_mock):
-        authentication_provider = telnyx.AuthenticationProvider.retrieve(TEST_RESOURCE_ID)
+        authentication_provider = telnyx.AuthenticationProvider.retrieve(
+            TEST_RESOURCE_ID
+        )
         authentication_provider.name = "value"
         resource = authentication_provider.save()
         request_mock.assert_requested(

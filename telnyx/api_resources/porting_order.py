@@ -15,11 +15,14 @@ from telnyx.api_resources.abstract import (
     "loa_template", path="loa_template", operations=["retrieve"]
 )
 @nested_resource_class_methods(
-    "allowed_foc_windows", path="allowed_foc_windows", operations=["list"])
+    "allowed_foc_windows", path="allowed_foc_windows", operations=["list"]
+)
 @nested_resource_class_methods(
-    "activation_jobs", path="activation_jobs", operations=["list"])
+    "activation_jobs", path="activation_jobs", operations=["list"]
+)
 @nested_resource_class_methods(
-    "exception_types", path="/v2/porting_orders/exception_types", operations=["list"])
+    "exception_types", path="/v2/porting_orders/exception_types", operations=["list"]
+)
 class PortingOrder(
     CreateableAPIResource,
     DeletableAPIResource,

@@ -20,9 +20,7 @@ class TestSIMCardGroups(object):
         assert isinstance(resource, telnyx.SIMCardGroup)
 
     def test_is_creatable(self, request_mock):
-        resource = telnyx.SIMCardGroup.create(
-            name="My Test Group",
-        )
+        resource = telnyx.SIMCardGroup.create(name="My Test Group")
         request_mock.assert_requested("post", "/v2/sim_card_groups")
         assert isinstance(resource, telnyx.SIMCardGroup)
 
@@ -37,10 +35,7 @@ class TestSIMCardGroups(object):
         assert resource is sim_card_group
 
     def test_is_modifiable(self, request_mock):
-        resource = telnyx.SIMCardGroup.modify(
-            TEST_RESOURCE_ID,
-            name="Updated Name",
-        )
+        resource = telnyx.SIMCardGroup.modify(TEST_RESOURCE_ID, name="Updated Name")
         request_mock.assert_requested(
             "patch", "/v2/sim_card_groups/%s" % TEST_RESOURCE_ID
         )

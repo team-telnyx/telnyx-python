@@ -1,7 +1,8 @@
 from __future__ import absolute_import, division, print_function
 
-import telnyx
 import pytest
+
+import telnyx
 
 TEST_RESOURCE_ID = "6a09cdc3-8948-47f0-aa62-74ac943d6c58"
 
@@ -34,9 +35,7 @@ class TestSIMCard(object):
     def test_is_deletabale(self, request_mock):
         sim_card = telnyx.SIMCard.retrieve(TEST_RESOURCE_ID)
         sim_card.delete()
-        request_mock.assert_requested(
-            "delete", "/v2/sim_cards/%s" % TEST_RESOURCE_ID
-        )
+        request_mock.assert_requested("delete", "/v2/sim_cards/%s" % TEST_RESOURCE_ID)
         assert isinstance(sim_card, telnyx.SIMCard)
 
     @pytest.mark.skip(reason="Async, need to wait for promise")

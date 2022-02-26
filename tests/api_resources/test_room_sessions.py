@@ -1,5 +1,6 @@
-import telnyx
 import pytest
+
+import telnyx
 
 TEST_RESOURCE_ID = "3fa85f64-5717-4562-b3fc-2c963f66afa6"
 
@@ -45,5 +46,7 @@ class TestRoomSessions(object):
         resource = telnyx.RoomSession.retrieve(TEST_RESOURCE_ID)
         resource.active = True
         participants = resource.list_participants()
-        request_mock.assert_requested("get", "/v2/room_sessions/%s/participants" % resource.name)
+        request_mock.assert_requested(
+            "get", "/v2/room_sessions/%s/participants" % resource.name
+        )
         assert isinstance(participants.data[0], telnyx.RoomSession)

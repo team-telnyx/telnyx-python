@@ -12,10 +12,14 @@ class TestSubNumberOrder(object):
 
     def test_is_retrievable(self, request_mock):
         resource = telnyx.SubNumberOrder.retrieve(TEST_RESOURCE_ID)
-        request_mock.assert_requested("get", "/v2/sub_number_orders/%s" % TEST_RESOURCE_ID)
+        request_mock.assert_requested(
+            "get", "/v2/sub_number_orders/%s" % TEST_RESOURCE_ID
+        )
         assert isinstance(resource, telnyx.SubNumberOrder)
 
     def test_is_modifiable(self, request_mock):
         resource = telnyx.SubNumberOrder.modify(TEST_RESOURCE_ID)
-        request_mock.assert_requested("patch", "/v2/sub_number_orders/%s" % TEST_RESOURCE_ID)
+        request_mock.assert_requested(
+            "patch", "/v2/sub_number_orders/%s" % TEST_RESOURCE_ID
+        )
         assert isinstance(resource, telnyx.SubNumberOrder)

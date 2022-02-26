@@ -1,7 +1,8 @@
 from __future__ import absolute_import, division, print_function
 
-import telnyx
 import pytest
+
+import telnyx
 
 TEST_RESOURCE_ID = "6a09cdc3-8948-47f0-aa62-74ac943d6c58"
 
@@ -15,9 +16,7 @@ class TestDocument(object):
 
     def test_is_retrievable(self, request_mock):
         resource = telnyx.Document.retrieve(TEST_RESOURCE_ID)
-        request_mock.assert_requested(
-            "get", "/v2/documents/%s" % TEST_RESOURCE_ID
-        )
+        request_mock.assert_requested("get", "/v2/documents/%s" % TEST_RESOURCE_ID)
         assert isinstance(resource, telnyx.Document)
 
     def test_is_creatable(self, request_mock):
@@ -36,17 +35,13 @@ class TestDocument(object):
             webhook_event_url="https://update.com",
             application_name="updated name",
         )
-        request_mock.assert_requested(
-            "patch", "/v2/documents/%s" % TEST_RESOURCE_ID
-        )
+        request_mock.assert_requested("patch", "/v2/documents/%s" % TEST_RESOURCE_ID)
         assert isinstance(resource, telnyx.Document)
 
     def test_is_deletable(self, request_mock):
         resource = telnyx.Document.retrieve(TEST_RESOURCE_ID)
         resource.delete()
-        request_mock.assert_requested(
-            "delete", "/v2/documents/%s" % TEST_RESOURCE_ID
-        )
+        request_mock.assert_requested("delete", "/v2/documents/%s" % TEST_RESOURCE_ID)
 
     def test_document_links(self, request_mock):
         resources = telnyx.DocumentLink.list()

@@ -5,10 +5,11 @@ import logging
 import os
 import re
 import sys
-import telnyx
-from telnyx import six
+
 from six.moves.urllib.parse import parse_qsl
 
+import telnyx
+from telnyx import six
 
 TELNYX_LOG = os.environ.get("TELNYX_LOG")
 
@@ -135,7 +136,7 @@ def load_object_classes():
         api_resources.InventoryCoverage.OBJECT_NAME: api_resources.InventoryCoverage,
         api_resources.IP.OBJECT_NAME: api_resources.IP,
         api_resources.IPConnection.OBJECT_NAME: api_resources.IPConnection,
-        api_resources.ManagedAccount.OBJECT_NAME:api_resources.ManagedAccount,
+        api_resources.ManagedAccount.OBJECT_NAME: api_resources.ManagedAccount,
         api_resources.Media.OBJECT_NAME: api_resources.Media,
         api_resources.Message.OBJECT_NAME: api_resources.Message,
         api_resources.MessagingHostedNumber.OBJECT_NAME: api_resources.MessagingHostedNumber,
@@ -186,7 +187,7 @@ def load_object_classes():
         api_resources.WhatsappMedia.OBJECT_NAME: api_resources.WhatsappMedia,
         api_resources.WhatsappMessage.OBJECT_NAME: api_resources.WhatsappMessage,
         api_resources.WhatsappPhoneNumber.OBJECT_NAME: api_resources.WhatsappPhoneNumber,
-        api_resources.WirelessDetailRecordsReports.OBJECT_NAME: api_resources.WirelessDetailRecordsReports
+        api_resources.WirelessDetailRecordsReports.OBJECT_NAME: api_resources.WirelessDetailRecordsReports,
     }
 
 

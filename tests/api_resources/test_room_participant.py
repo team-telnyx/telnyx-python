@@ -12,5 +12,7 @@ class TestRoomParticipant(object):
 
     def test_is_retrievable(self, request_mock):
         resource = telnyx.RoomParticipant.retrieve(TEST_RESOURCE_ID)
-        request_mock.assert_requested("get", "/v2/room_participants/%s" % TEST_RESOURCE_ID)
+        request_mock.assert_requested(
+            "get", "/v2/room_participants/%s" % TEST_RESOURCE_ID
+        )
         assert isinstance(resource, telnyx.RoomParticipant)

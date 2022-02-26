@@ -2,9 +2,9 @@ from __future__ import absolute_import, division, print_function
 
 from telnyx.api_resources.access_control_ip import AccessControlIP
 from telnyx.api_resources.access_ip_address import AccessIPAddress
-from telnyx.api_resources.authentication_provider import AuthenticationProvider
 from telnyx.api_resources.address import Address
 from telnyx.api_resources.api_key import APIKey
+from telnyx.api_resources.authentication_provider import AuthenticationProvider
 from telnyx.api_resources.available_phone_number import AvailablePhoneNumber
 from telnyx.api_resources.balance import Balance
 from telnyx.api_resources.billing_group import BillingGroup
@@ -50,12 +50,12 @@ from telnyx.api_resources.number_order import NumberOrder
 from telnyx.api_resources.number_order_phone_number import NumberOrderPhoneNumber
 from telnyx.api_resources.number_reservation import NumberReservation
 from telnyx.api_resources.outbound_voice_profile import OutboundVoiceProfile
+from telnyx.api_resources.phone_assignment_profile import PhoneNumberByProfile
 from telnyx.api_resources.phone_number import (
     MessagingSettings,
     PhoneNumber,
     VoiceSettings,
 )
-from telnyx.api_resources.phone_assignment_profile import PhoneNumberByProfile
 from telnyx.api_resources.phone_number_campaign import PhoneNumberCampaign
 from telnyx.api_resources.phone_number_jobs import PhoneNumberJob
 from telnyx.api_resources.phone_number_regulatory_requirement import (
@@ -84,7 +84,9 @@ from telnyx.api_resources.whatsapp_contact import WhatsappContact
 from telnyx.api_resources.whatsapp_media import WhatsappMedia
 from telnyx.api_resources.whatsapp_message import WhatsappMessage
 from telnyx.api_resources.whatsapp_phone_number import WhatsappPhoneNumber
-from telnyx.api_resources.wireless_detail_record_report import WirelessDetailRecordsReports
+from telnyx.api_resources.wireless_detail_record_report import (
+    WirelessDetailRecordsReports,
+)
 
 # flake8: noqa
 

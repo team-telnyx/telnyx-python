@@ -1,10 +1,10 @@
 from __future__ import absolute_import, division, print_function
 
 from telnyx.api_resources.abstract import (
-    ListableAPIResource,
-    UpdateableAPIResource,
     CreateableAPIResource,
     DeletableAPIResource,
+    ListableAPIResource,
+    UpdateableAPIResource,
     nested_resource_class_methods,
 )
 
@@ -14,14 +14,24 @@ from telnyx.api_resources.abstract import (
 @nested_resource_class_methods(
     "register", path="/v2/actions/register/sim_cards", operations=["create"]
 )
-@nested_resource_class_methods("set_standby", path="actions/set_standby", operations=["create"])
-@nested_resource_class_methods("remove_public_ip", path="actions/remove_public_ip", operations=["create"])
-@nested_resource_class_methods("set_public_ip", path="actions/set_public_ip", operations=["create"])
-@nested_resource_class_methods("wireless_logs", path="wireless_connectivity_logs", operations=["list"])
-class SIMCard(ListableAPIResource,
-              UpdateableAPIResource,
-              CreateableAPIResource,
-              DeletableAPIResource):
+@nested_resource_class_methods(
+    "set_standby", path="actions/set_standby", operations=["create"]
+)
+@nested_resource_class_methods(
+    "remove_public_ip", path="actions/remove_public_ip", operations=["create"]
+)
+@nested_resource_class_methods(
+    "set_public_ip", path="actions/set_public_ip", operations=["create"]
+)
+@nested_resource_class_methods(
+    "wireless_logs", path="wireless_connectivity_logs", operations=["list"]
+)
+class SIMCard(
+    ListableAPIResource,
+    UpdateableAPIResource,
+    CreateableAPIResource,
+    DeletableAPIResource,
+):
     OBJECT_NAME = "sim_card"
 
     def enable(self, **params):
@@ -43,6 +53,7 @@ class SIMCard(ListableAPIResource,
     def wireless_logs(self, **params):
         return SIMCard.list_wireless_logs(self.id, **params)
     """
+
     @classmethod
     def register(cls, **params):
         return SIMCard.create_register(None, **params)

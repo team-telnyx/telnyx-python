@@ -14,5 +14,7 @@ class TestSIMCardActions(object):
 
     def test_is_retrievable(self, request_mock):
         resource = telnyx.SIMCardAction.retrieve(TEST_RESOURCE_ID)
-        request_mock.assert_requested("get", "/v2/sim_card_actions/%s" % TEST_RESOURCE_ID)
+        request_mock.assert_requested(
+            "get", "/v2/sim_card_actions/%s" % TEST_RESOURCE_ID
+        )
         assert isinstance(resource, telnyx.SIMCardAction)

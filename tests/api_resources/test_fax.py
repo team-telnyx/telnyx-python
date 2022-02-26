@@ -1,7 +1,8 @@
 from __future__ import absolute_import, division, print_function
 
-import telnyx
 import pytest
+
+import telnyx
 
 TEST_FAX_CONNECTION_ID = "0239852093"
 TEST_SRC_LONG_CODE = "+13125550100"
@@ -28,4 +29,5 @@ class TestFax(object):
         resource = telnyx.Fax.retrieve(TEST_RESOURCE_ID)
         resource.create_refresh(id=TEST_RESOURCE_ID)
         request_mock.assert_requested(
-            "post", "/v2/faxes/%s/actions/refresh" % TEST_RESOURCE_ID)
+            "post", "/v2/faxes/%s/actions/refresh" % TEST_RESOURCE_ID
+        )
