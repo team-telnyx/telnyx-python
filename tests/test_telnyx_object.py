@@ -138,7 +138,7 @@ class TestTelnyxObject(object):
     def test_repr(self):
         obj = telnyx.telnyx_object.TelnyxObject("foo", "bar", myparam=5)
 
-        obj["record_type"] = u"\u4e00boo\u1f00"
+        obj["record_type"] = "\u4e00boo\u1f00"
         obj.date = datetime.datetime.fromtimestamp(1511136000)
 
         res = repr(obj)
@@ -146,9 +146,9 @@ class TestTelnyxObject(object):
         if six.PY2:
             res = six.text_type(repr(obj), "utf-8")
 
-        assert u"<TelnyxObject \u4e00boo\u1f00" in res
-        assert u"id=foo" in res
-        assert u'"date": 1511136000' in res
+        assert "<TelnyxObject \u4e00boo\u1f00" in res
+        assert "id=foo" in res
+        assert '"date": 1511136000' in res
 
     def test_pickling(self):
         obj = telnyx.telnyx_object.TelnyxObject("foo", "bar", myparam=5)

@@ -25,6 +25,4 @@ class TestSIMCardOrder(object):
         assert isinstance(resource, telnyx.SIMCardOrder)
 
     def test_can_sim_preview(self, request_mock):
-        telnyx.SIMCardOrderPreview.create(
-            address_id=TEST_RESOURCE_ID, quantity=23
-        )
+        telnyx.SIMCardOrderPreview.create(address_id=TEST_RESOURCE_ID, quantity=23)

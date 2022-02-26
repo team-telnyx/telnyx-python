@@ -10,7 +10,7 @@ from telnyx.multipart_data_generator import MultipartDataGenerator
 
 class TestMultipartDataGenerator(object):
     def run_test_multipart_data_with_file(self, test_file):
-        params = {"key1": b"ASCII value", "key2": u"Üñìçôdé value", "key3": test_file}
+        params = {"key1": b"ASCII value", "key2": "Üñìçôdé value", "key3": test_file}
         generator = MultipartDataGenerator()
         generator.add_params(params)
         http_body = generator.get_post_data()

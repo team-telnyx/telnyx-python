@@ -35,7 +35,7 @@ class TelnyxError(Exception):
         self.http_body = http_body
 
     def build_message(self):
-        return u"{message}{other_errors_message}{full_details}".format(
+        return "{message}{other_errors_message}{full_details}".format(
             message=self.extract_message(),
             other_errors_message=self.other_errors_message(),
             full_details=self.full_details(),
@@ -76,7 +76,7 @@ class TelnyxError(Exception):
     def __str__(self):
         msg = self._message or "<empty message>"
         if self.request_id is not None:
-            return u"Request {0}: {1}".format(self.request_id, msg)
+            return "Request {0}: {1}".format(self.request_id, msg)
         else:
             return msg
 
