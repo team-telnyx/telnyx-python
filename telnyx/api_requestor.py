@@ -225,7 +225,7 @@ class APIRequestor(object):
             if params:
                 abs_url = _build_api_url(abs_url, encoded_params)
             post_data = None
-        elif method == "post" or method == "patch":
+        elif method == "post" or method == "patch" or method == "put":
             if (
                 supplied_headers.get("Content-Type", "application/json")
                 == "application/json"

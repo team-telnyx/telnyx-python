@@ -31,6 +31,6 @@ class TestAddress(object):
         assert isinstance(resource, telnyx.Address)
 
     def test_is_deletable(self, request_mock):
-        resource = telnyx.Address.retrieve(TEST_RESOURCE_ID)
+        resource = telnyx.Address(TEST_RESOURCE_ID)
         resource.delete()
         request_mock.assert_requested("delete", "/v2/addresses/%s" % TEST_RESOURCE_ID)

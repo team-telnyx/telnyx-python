@@ -224,7 +224,6 @@ class TestConference(object):
         )
         assert isinstance(resource, telnyx.Conference)
 
-    @pytest.mark.skip(reason="Fix mock for multi args")
     def test_can_call_update(self, request_mock):
         resource = create_conference()
         resource.create_update(
@@ -234,6 +233,20 @@ class TestConference(object):
             command_id="891510ac-f3e4-11e8-af5b-de00688a4901",
         )
         request_mock.assert_requested(
-            "post", "/v2/conference/%s/actions/update" % CONFERENCE_ID
+            "post", "/v2/conferences/%s/actions/update" % CONFERENCE_ID
         )
         assert isinstance(resource, telnyx.Conference)
+
+    def test_can_call_leave(self, request_mock):
+        resource = create_conference()
+        resource.create_leave(
+            CONFERENCE_ID,
+            call_control_id=_call_control_id,
+            supervisor_role="whisper",
+            command_id="891510ac-f3e4-11e8-af5b-de00688a4901",
+        )
+        request_mock.assert_requested(
+            "post", "/v2/conferences/%s/actions/leave" % CONFERENCE_ID
+        )
+        assert isinstance(resource, telnyx.Conference)
+

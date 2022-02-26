@@ -6,9 +6,7 @@ from telnyx.api_resources.abstract import APIResource, nested_resource_class_met
 @nested_resource_class_methods(
     "queue_call", path="calls", operations=["list", "retrieve"]
 )
-class Queue(
-    APIResource,
-):
+class Queue(APIResource):
     OBJECT_NAME = "queue"
 
     def list_calls(self, **params):

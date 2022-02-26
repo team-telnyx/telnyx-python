@@ -13,3 +13,4 @@ class Address(CreateableAPIResource, DeletableAPIResource, ListableAPIResource):
     @classmethod
     def class_url(cls):
         return "/v2/addresses"
+

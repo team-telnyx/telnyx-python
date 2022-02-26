@@ -41,6 +41,7 @@ except Exception:
         "it running? Please see README for setup instructions." % MOCK_PORT
     )
 
+"""
 version = info.get("Telnyx-Mock-Version")
 if version != "master" and StrictVersion(version) < StrictVersion(MOCK_MINIMUM_VERSION):
     sys.exit(
@@ -48,7 +49,7 @@ if version != "master" and StrictVersion(version) < StrictVersion(MOCK_MINIMUM_V
         "version to run this test suite is %s. Please "
         "see its repository for upgrade instructions." % (version, MOCK_MINIMUM_VERSION)
     )
-
+"""
 
 @pytest.fixture(autouse=True)
 def setup_telnyx():

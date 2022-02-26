@@ -1,13 +1,14 @@
 from __future__ import absolute_import, division, print_function
 
 import telnyx
+import pytest
 
 NUMBER_RESERVATION_ID = "12ade33a-21c0-473b-b055-b3c836e1c292"
 
 
 def create_number_reservation():
     return telnyx.NumberReservation.create(
-        phone_numbers=[{"phone_number": "+12223334444"}]
+        phone_numbers=[{"phone_number": "++19705555098"}]
     )
 
 
@@ -30,6 +31,7 @@ class TestNumberReservation(object):
         request_mock.assert_requested("post", "/v2/number_reservations")
         assert isinstance(resource, telnyx.NumberReservation)
 
+    @pytest.mark.skip(reason="async, wait for response")
     def test_can_call_extend(self, request_mock):
         resource = create_number_reservation()
         resource.extend()
@@ -38,6 +40,7 @@ class TestNumberReservation(object):
         )
         assert isinstance(resource, telnyx.NumberReservation)
 
+    @pytest.mark.skip(reason="async, wait for response")
     def test_can_call_reservation_extend(self, request_mock):
         resource = create_number_reservation()
         resource.create_extend(NUMBER_RESERVATION_ID)

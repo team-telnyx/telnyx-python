@@ -22,11 +22,18 @@ from telnyx.api_resources.abstract import (
     "record_stop", path="actions/record_stop", operations=["create"]
 )
 @nested_resource_class_methods("update", path="actions/update", operations=["create"])
+@nested_resource_class_methods("leave", path="actions/leave", operations=["create"])
+@nested_resource_class_methods(
+    "dial_participant", path="actions/dial_participant", operations=["create"])
+@nested_resource_class_methods("participants", path="participants", operations=["list"])
 class Conference(CreateableAPIResource, ListableAPIResource):
     OBJECT_NAME = "conference"
 
     def join(self, **params):
         return Conference.create_join(self.id, **params)
+
+    def dial_participant(self, **params):
+        return Conference.create_dial_participant(self.id, **params)
 
     def mute(self, **params):
         return Conference.create_mute(self.id, **params)
@@ -57,3 +64,9 @@ class Conference(CreateableAPIResource, ListableAPIResource):
 
     def update(self, **params):
         return Conference.create_update(self.id, **params)
+
+    def leave(self, **params):
+        return Conference.create_leave(self.id, **params)
+
+    def participants(self, **params):
+        return Conference.create_participants(self.name, **params)
