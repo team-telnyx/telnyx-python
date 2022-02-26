@@ -161,7 +161,7 @@ class TestAPIRequestor(object):
         },
         "list": [1, "foo", "baz"],
         "string": "boo",
-        "unicode": u"\u1234",
+        "unicode": "\u1234",
         "datetime": datetime.datetime(2013, 1, 1, second=1, tzinfo=GMT1()),
         "none": None,
     }
@@ -180,7 +180,7 @@ class TestAPIRequestor(object):
         ],
         "list": [("%s[]", 1), ("%s[]", "foo"), ("%s[]", "baz")],
         "string": [("%s", "boo")],
-        "unicode": [("%s", telnyx.util.utf8(u"\u1234"))],
+        "unicode": [("%s", telnyx.util.utf8("\u1234"))],
         "datetime": [("%s", 1356994801)],
         "none": [],
     }

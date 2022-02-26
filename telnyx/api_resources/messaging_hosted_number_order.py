@@ -8,8 +8,6 @@ from telnyx.api_resources.abstract import (
 
 
 class MessagingHostedNumberOrder(
-    CreateableAPIResource,
-    ListableAPIResource,
-    UpdateableAPIResource,
+    CreateableAPIResource, ListableAPIResource, UpdateableAPIResource
 ):
     OBJECT_NAME = "messaging_hosted_number_order"

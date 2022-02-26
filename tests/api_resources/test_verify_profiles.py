@@ -2,10 +2,10 @@ import pytest
 
 import telnyx
 
-TEST_RESOURCE_ID = "123"
+TEST_RESOURCE_ID = "12ade33a-21c0-473b-b055-b3c836e1c292"
 
 
-@pytest.mark.skip(reason="Updated-Endpoint")
+@pytest.mark.skip(reason="Updated_Endpoint")
 class TestVerifyProfile(object):
     def test_is_listable(self, request_mock):
         resources = telnyx.VerifyProfile.list()
@@ -21,7 +21,7 @@ class TestVerifyProfile(object):
         assert isinstance(resource, telnyx.VerifyProfile)
 
     def test_is_saveable(self, request_mock):
-        resource = telnyx.VerifyProfile.create(name="Hi there")
+        resource = telnyx.VerifyProfile.create(name="hi there")
         request_mock.assert_requested("post", "/v2/verify_profiles")
         assert isinstance(resource, telnyx.VerifyProfile)
         assert resource is resource

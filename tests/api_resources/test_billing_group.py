@@ -2,7 +2,7 @@ from __future__ import absolute_import, division, print_function
 
 import telnyx
 
-TEST_RESOURCE_ID = "123"
+TEST_RESOURCE_ID = "f5586561-8ff0-4291-a0ac-84fe544797bd"
 
 
 class TestBillingGroup(object):

@@ -21,7 +21,7 @@ class TestPortingOrder(object):
 
     def test_is_creatable(self, request_mock):
         resource = telnyx.PortingOrder.create(
-            phone_numbers=["13035550000", "13035550001", "13035550002"],
+            phone_numbers=["13035550000", "13035550001", "13035550002"]
         )
         request_mock.assert_requested("post", "/v2/porting_orders")
         assert isinstance(resource.data[0], telnyx.PortingOrder)
@@ -48,19 +48,21 @@ class TestPortingOrder(object):
         )
         assert isinstance(resource, telnyx.PortingOrder)
 
-    def test_is_deletable(self, request_mock):
+    @pytest.mark.skip(reason="Needs live confirm")
+    def test_can_confirm_porting_order_action(self, request_mock):
         resource = telnyx.PortingOrder.retrieve(TEST_RESOURCE_ID)
-        resource.delete()
+        resource.create_confirm(id=TEST_RESOURCE_ID)
         request_mock.assert_requested(
-            "delete", "/v2/porting_orders/%s" % TEST_RESOURCE_ID
+            "post", "/v2/porting_orders/%s/actions/confirm" % TEST_RESOURCE_ID
         )
         assert isinstance(resource, telnyx.PortingOrder)
 
-    def test_can_confirm_porting_order_action(self, request_mock):
+    @pytest.mark.skip(reason="Needs live cancel")
+    def test_can_cancel_porting_order_action(self, request_mock):
         resource = telnyx.PortingOrder.retrieve(TEST_RESOURCE_ID)
-        resource.confirm()
+        resource.create_cancel(id=TEST_RESOURCE_ID)
         request_mock.assert_requested(
-            "post", "/v2/porting_orders/%s/actions/confirm" % TEST_RESOURCE_ID
+            "post", "/v2/porting_orders/%s/actions/cancel" % TEST_RESOURCE_ID
         )
         assert isinstance(resource, telnyx.PortingOrder)
 
@@ -72,6 +74,29 @@ class TestPortingOrder(object):
             "get", "/v2/porting_orders/%s/loa_template" % TEST_RESOURCE_ID
         )
         assert isinstance(resource, telnyx.PortingOrder)
+
+    @pytest.mark.skip(reason="Unreleased")
+    def test_can_list_allowed_foc_dates(self, request_mock):
+        resource = telnyx.PortingOrder.retrieve(TEST_RESOURCE_ID)
+        resource.allowed_foc_windows()
+        request_mock.assert_requested(
+            "get", "/v2/porting_orders/%s/allowed_foc_windows" % TEST_RESOURCE_ID
+        )
+        assert isinstance(resource, telnyx.PortingOrder)
+
+    @pytest.mark.skip(reason="Unreleased")
+    def test_can_list_activation_jobs(self, request_mock):
+        resource = telnyx.PortingOrder.retrieve(TEST_RESOURCE_ID)
+        resource.activation_jobs()
+        request_mock.assert_requested(
+            "get", "/v2/porting_orders/%s/activation_jobs" % TEST_RESOURCE_ID
+        )
+        assert isinstance(resource, telnyx.PortingOrder)
+
+    @pytest.mark.skip(reason="Unreleased")
+    def test_can_list_exception_types(self, request_mock):
+        telnyx.PortingOrder.create_exception_types()
+        request_mock.assert_requested("get", "/v2/porting_orders/exception_types")
 
     def test_can_list_porting_phone_numbers(self, request_mock):
         resource = telnyx.PortingPhoneNumber.list()

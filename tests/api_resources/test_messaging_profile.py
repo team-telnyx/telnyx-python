@@ -4,7 +4,7 @@ import pytest
 
 import telnyx
 
-TEST_RESOURCE_ID = "123"
+TEST_RESOURCE_ID = "3fa85f64-5717-4562-b3fc-2c963f66afa6"
 
 
 class TestMessagingProfile(object):
@@ -108,3 +108,13 @@ class TestMessagingProfile(object):
         )
         assert isinstance(resources.data, list)
         assert isinstance(resources.data[0], telnyx.ShortCode)
+
+    @pytest.mark.skip(reason="Might be deprecated")
+    def test_can_call_metrics(self, request_mock):
+        messaging_profile = telnyx.MessagingProfile.retrieve(TEST_RESOURCE_ID)
+        resources = messaging_profile.metrics()
+        request_mock.assert_requested(
+            "get", "/v2/messaging_profiles/%s/metrics" % TEST_RESOURCE_ID
+        )
+        assert isinstance(resources.data, list)
+        assert isinstance(resources.data[0], telnyx.MessagingProfile)

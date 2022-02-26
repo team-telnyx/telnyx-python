@@ -4,9 +4,9 @@ on:
 jobs:
   test:
     env:
-      TELNYX_MOCK_VERSION: 0.8.13
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_TOKEN }}
+      TELNYX_MOCK_OPEN_API_URI: https://raw.githubusercontent.com/team-telnyx/openapi/master/openapi/spec3.json
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -20,7 +20,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - uses: gabrielfalcao/pyenv-action@v7
       - uses: dschep/install-pipenv-action@v1
-      - name: setup-telnyx-mock
+      - name: setup-telnyx-prism-mock
         run: source ./.github/scripts/before_install.sh
       - name: init
         run: make init

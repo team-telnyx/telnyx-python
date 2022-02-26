@@ -32,3 +32,4 @@ sonar-project.*
 .pypirc-telnyx
 
 Pipfile.lock
+requirements.txt

@@ -23,13 +23,13 @@ from telnyx.api_resources.abstract import (
 class Verification(CreateableAPIResource, ListableAPIResource):
     OBJECT_NAME = "verification"
 
-    def verify_by_phone_number(self, code, phone_number):
+    def verify_by_phone_number(self, code, phone_number, verify_profile_id):
         return self.request(
             method="post",
             url="/v2/verifications/by_phone_number/{}/actions/verify".format(
                 phone_number
             ),
-            params={"code": code},
+            params={"code": code, "verify_profile_id": verify_profile_id},
         )
 
     @classmethod

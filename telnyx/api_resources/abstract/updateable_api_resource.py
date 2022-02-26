@@ -18,6 +18,18 @@ class UpdateableAPIResource(APIResource):
         url = "%s/%s" % (cls.class_url(), quote_plus(util.utf8(sid)))
         return cls._modify(url, **params)
 
+    @classmethod
+    def _putify(cls, url, api_key=None, **params):
+        requestor = api_requestor.APIRequestor(api_key)
+        params = util.rewrite_reserved_words(params)
+        response, api_key = requestor.request("put", url, params)
+        return util.convert_to_telnyx_object(response, api_key)
+
+    @classmethod
+    def putify(cls, sid, **params):
+        url = "%s/%s" % (cls.class_url(), quote_plus(util.utf8(sid)))
+        return cls._putify(url, **params)
+
     def save(self):
         updated_params = self.serialize(None)
 
