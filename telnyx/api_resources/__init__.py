@@ -8,6 +8,7 @@ from telnyx.api_resources.authentication_provider import AuthenticationProvider
 from telnyx.api_resources.available_phone_number import AvailablePhoneNumber
 from telnyx.api_resources.balance import Balance
 from telnyx.api_resources.billing_group import BillingGroup
+from telnyx.api_resources.network import Network
 from telnyx.api_resources.brand import Brand
 from telnyx.api_resources.bulk_creation import BulkCreation
 from telnyx.api_resources.call import Call

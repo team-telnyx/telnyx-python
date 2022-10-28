@@ -114,6 +114,7 @@ def load_object_classes():
         api_resources.AvailablePhoneNumber.OBJECT_NAME: api_resources.AvailablePhoneNumber,
         api_resources.Balance.OBJECT_NAME: api_resources.Balance,
         api_resources.BillingGroup.OBJECT_NAME: api_resources.BillingGroup,
+        api_resources.Network.OBJECT_NAME: api_resources.Network,
         api_resources.Brand.OBJECT_NAME: api_resources.Brand,
         api_resources.BulkCreation.OBJECT_NAME: api_resources.BulkCreation,
         api_resources.Call.OBJECT_NAME: api_resources.Call,
