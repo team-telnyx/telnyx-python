@@ -7,15 +7,17 @@ import textwrap
 import time
 import warnings
 
-from telnyx import error, six, util
-from telnyx.six.moves.urllib.parse import urlparse
+import six
+from six.moves.urllib.parse import urlparse
+
+from telnyx import error, util
 
 # - Requests is the preferred HTTP library
 # - Google App Engine has urlfetch
 # - Use Pycurl if it's there (at least it verifies SSL certs)
 # - Fall back to urllib2 with a warning if needed
 try:
-    from telnyx.six.moves import urllib
+    from six.moves import urllib
 except ImportError:
     # Try to load in urllib2, but don't sweat it if it's not available.
     pass
@@ -227,7 +229,6 @@ class RequestsClient(HTTPClient):
         return content, status_code, result.headers
 
     def _handle_request_error(self, e):
-
         # Catch SSL error first as it belongs to ConnectionError,
         # but we don't want to retry
         if isinstance(e, requests.exceptions.SSLError):
@@ -366,7 +367,7 @@ class PycurlClient(HTTPClient):
         if self._proxy:
             # now that we have the parser, get the proxy url pieces
             proxy = self._proxy
-            for scheme in proxy:
+            for scheme in proxy:  # pylint: disable=not-an-iterable
                 proxy[scheme] = urlparse(proxy[scheme])
 
     def parse_headers(self, data):
@@ -467,11 +468,11 @@ class PycurlClient(HTTPClient):
             proxy = self._proxy
             scheme = url.split(":")[0] if url else None
             if scheme:
-                if scheme in proxy:
-                    return proxy[scheme]
+                if scheme in proxy:  # pylint: disable=unsupported-membership-test
+                    return proxy[scheme]  # pylint: disable=unsubscriptable-object
                 scheme = scheme[0:-1]
-                if scheme in proxy:
-                    return proxy[scheme]
+                if scheme in proxy:  # pylint: disable=unsupported-membership-test
+                    return proxy[scheme]  # pylint: disable=unsubscriptable-object
         return None
 
     def close(self):

@@ -6,10 +6,10 @@ import tempfile
 import uuid
 
 import pytest
+import six
+from six.moves.urllib.parse import urlsplit
 
 import telnyx
-from telnyx import six
-from telnyx.six.moves.urllib.parse import urlsplit
 from telnyx.telnyx_response import TelnyxResponse
 
 VALID_API_METHODS = ("get", "post", "delete")

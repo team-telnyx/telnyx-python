@@ -1,9 +1,7 @@
 [Messages Control]
 disable=invalid-name,
     missing-docstring,
-    bad-continuation,  # disagrees with black
     fixme,
-    star-args,
     redefined-builtin,
     no-name-in-module,
     wrong-import-order, # disagrees with isort
@@ -32,7 +30,7 @@ dummy-variables-rgx=_
 # Disable warnings on the six.moves because pylint doesn't
 # support importing from six.moves yet, see:
 # https://bitbucket.org/logilab/pylint/issue/550/
-ignored-modules=telnyx.six, telnyx.six.moves, _MovedItems, nacl
+ignored-modules=_MovedItems, nacl
 
 [REPORTS]
 output-format=colorized

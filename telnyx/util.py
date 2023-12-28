@@ -6,10 +6,10 @@ import os
 import re
 import sys
 
+import six
 from six.moves.urllib.parse import parse_qsl
 
 import telnyx
-from telnyx import six
 
 TELNYX_LOG = os.environ.get("TELNYX_LOG")
 

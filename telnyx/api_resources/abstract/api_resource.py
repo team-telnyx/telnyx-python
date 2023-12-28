@@ -1,7 +1,9 @@
 from __future__ import absolute_import, division, print_function
 
-from telnyx import error, six, util
-from telnyx.six.moves.urllib.parse import quote_plus
+import six
+from six.moves.urllib.parse import quote_plus
+
+from telnyx import error, util
 from telnyx.telnyx_object import TelnyxObject
 
 
@@ -21,7 +23,7 @@ class APIResource(TelnyxObject):
         # Otherwise, we will have an object of type `TelnyxObject`, the
         # default type returned by `util.convert_to_telnyx_object`, and we
         # promote the object back to an `APIResource`.
-        if type(response) == TelnyxObject:
+        if type(response) is TelnyxObject:
             instance.refresh_from(response)
 
             return instance

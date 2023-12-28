@@ -1,6 +1,6 @@
 from __future__ import absolute_import, division, print_function
 
-from telnyx.six import python_2_unicode_compatible
+from six import python_2_unicode_compatible
 
 
 @python_2_unicode_compatible
@@ -13,7 +13,6 @@ class TelnyxError(Exception):
         json_body=None,
         http_headers=None,
     ):
-
         self.errors = errors
         self.http_status = http_status
         self.json_body = json_body

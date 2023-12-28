@@ -1,4 +1,2 @@
 [run]
 source = telnyx
-omit =
-    telnyx/six.py
