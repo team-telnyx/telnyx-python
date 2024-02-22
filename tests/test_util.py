@@ -4,7 +4,7 @@ import sys
 from collections import namedtuple
 
 from telnyx import util
-from telnyx.six.moves import builtins
+from six.moves import builtins
 
 PRINT_FUNC_STRING = builtins.__name__ + ".print"
 

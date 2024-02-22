@@ -4,7 +4,7 @@ from __future__ import absolute_import, division, print_function
 
 import re
 
-from telnyx import six
+import six
 from telnyx.multipart_data_generator import MultipartDataGenerator
 
 

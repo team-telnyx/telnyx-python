@@ -15,7 +15,7 @@ from telnyx import error, six, util
 # - Use Pycurl if it's there (at least it verifies SSL certs)
 # - Fall back to urllib2 with a warning if needed
 try:
-    from telnyx.six.moves import urllib
+    from six.moves import urllib
 except ImportError:
     # Try to load in urllib2, but don't sweat it if it's not available.
     pass

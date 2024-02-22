@@ -8,7 +8,7 @@ from copy import copy, deepcopy
 import pytest
 
 import telnyx
-from telnyx import six
+import six
 
 SAMPLE_FOO = json.loads(
     """
