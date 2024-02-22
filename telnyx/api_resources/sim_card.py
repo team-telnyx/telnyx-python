@@ -43,6 +43,9 @@ from telnyx.api_resources.abstract import (
 @nested_resource_class_methods(
     "bulk_set_public_ips", path="actions/bulk_set_public_ips", operations=["create"]
 )
+@nested_resource_class_methods(
+    "register", path="/v2/actions/register/sim_cards", operations=["create"]
+)
 class SIMCard(
     CreateableAPIResource,
     DeletableAPIResource,
@@ -80,3 +83,7 @@ class SIMCard(
 
     def bulk_set_public_ips(self, **params):
         return self.create_bulk_set_public_ips(**params)
+
+    @classmethod
+    def register(cls, **params):
+        return SIMCard.create_register(None, **params)

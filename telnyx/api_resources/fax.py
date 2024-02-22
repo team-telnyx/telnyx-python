@@ -10,10 +10,12 @@ from telnyx.api_resources.abstract import (
 
 @nested_resource_class_methods("refresh", path="actions/refresh", operations=["create"])
 @nested_resource_class_methods("cancel", path="actions/cancel", operations=["create"])
-class ProgrammableFaxCommand(
-    CreateableAPIResource, DeletableAPIResource, ListableAPIResource
-):
-    OBJECT_NAME = "programmable_fax_command"
+class Fax(CreateableAPIResource, DeletableAPIResource, ListableAPIResource):
+    OBJECT_NAME = "fax"
+
+    @classmethod
+    def class_url(cls):
+        return "/v2/faxes"
 
     def refresh(self, **params):
         return self.create_refresh(**params)

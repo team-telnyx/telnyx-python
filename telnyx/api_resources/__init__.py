@@ -41,14 +41,14 @@ from telnyx.api_resources.debugging import Debugging
 from telnyx.api_resources.detail_record import DetailRecord
 from telnyx.api_resources.detail_records_report import DetailRecordsReport
 from telnyx.api_resources.dialogflow_integration import DialogflowIntegration
-from telnyx.api_resources.document import Document
+from telnyx.api_resources.document import Document, DocumentLink
 from telnyx.api_resources.dynamic_emergency_address import DynamicEmergencyAddress
 from telnyx.api_resources.dynamic_emergency_endpoint import DynamicEmergencyEndpoint
 from telnyx.api_resources.enum import Enum
 from telnyx.api_resources.event import Event
 from telnyx.api_resources.external_connection import ExternalConnection
-from telnyx.api_resources.fax import ProgrammableFaxCommand
-from telnyx.api_resources.fax_application import ProgrammableFaxApplication
+from telnyx.api_resources.fax import Fax
+from telnyx.api_resources.fax_application import FaxApplication
 from telnyx.api_resources.fqdn import FQDN
 from telnyx.api_resources.fqdn_connection import FQDNConnection
 from telnyx.api_resources.inbound_channel import InboundChannel
@@ -93,7 +93,11 @@ from telnyx.api_resources.numbers_feature import NumbersFeature
 from telnyx.api_resources.ota_update import OtaUpdate
 from telnyx.api_resources.outbound_voice_profile import OutboundVoiceProfile
 from telnyx.api_resources.phone_assignment_profile import PhoneNumberByProfile
-from telnyx.api_resources.phone_number import PhoneNumber
+from telnyx.api_resources.phone_number import (
+    MessagingSettings,
+    PhoneNumber,
+    VoiceSettings,
+)
 from telnyx.api_resources.phone_number_block_order import PhoneNumberBlockOrder
 from telnyx.api_resources.phone_number_blocks_background_job import (
     PhoneNumberBlocksBackgroundJob,
@@ -110,13 +114,13 @@ from telnyx.api_resources.phone_number_regulatory_requirement import (
 from telnyx.api_resources.phone_number_reservation import PhoneNumberReservation
 from telnyx.api_resources.phone_number_search import PhoneNumberSearch
 from telnyx.api_resources.portability_check import PortabilityCheck
-from telnyx.api_resources.porting_order import PortingOrder
+from telnyx.api_resources.porting_order import PortingOrder, PortingPhoneNumber
 from telnyx.api_resources.portout import PortOut
 from telnyx.api_resources.presigned_object_url import PresignedObjectUrl
 from telnyx.api_resources.private_wireless_gateway import PrivateWirelessGateway
 from telnyx.api_resources.public_internet_gateway import PublicInternetGateway
 from telnyx.api_resources.push_credential import PushCredential
-from telnyx.api_resources.queue import Queue
+from telnyx.api_resources.queue import Queue, QueueCall
 from telnyx.api_resources.queue_command import QueueCommand
 from telnyx.api_resources.recordings_command import RecordingsCommand
 from telnyx.api_resources.region import Region
@@ -136,7 +140,7 @@ from telnyx.api_resources.short_code import ShortCode
 from telnyx.api_resources.sim_card import SIMCard
 from telnyx.api_resources.sim_card_action import SIMCardAction
 from telnyx.api_resources.sim_card_group import SIMCardGroup
-from telnyx.api_resources.sim_card_order import SIMCardOrder
+from telnyx.api_resources.sim_card_order import SIMCardOrder, SIMCardOrderPreview
 from telnyx.api_resources.ssl_certificate import SslCertificate
 from telnyx.api_resources.sub_number_order import SubNumberOrder
 from telnyx.api_resources.telephony_credential import TelephonyCredential
@@ -202,11 +206,14 @@ __all__ = [
     "DetailRecordsReport",
     "DialogflowIntegration",
     "Document",
+    "DocumentLink",
     "DynamicEmergencyAddress",
     "DynamicEmergencyEndpoint",
     "Enum",
     "Event",
     "ExternalConnection",
+    "Fax",
+    "FaxApplication",
     "FQDN",
     "FQDNConnection",
     "IP",
@@ -227,6 +234,7 @@ __all__ = [
     "MessagingHostedNumberOrder",
     "MessagingPhoneNumber",
     "MessagingProfile",
+    "MessagingSettings",
     "MessagingTollfreeVerification",
     "MessagingUrlDomain",
     "MobileNetworkOperator",
@@ -262,13 +270,13 @@ __all__ = [
     "PortOut",
     "PortabilityCheck",
     "PortingOrder",
+    "PortingPhoneNumber",
     "PresignedObjectUrl",
     "PrivateWirelessGateway",
-    "ProgrammableFaxApplication",
-    "ProgrammableFaxCommand",
     "PublicInternetGateway",
     "PushCredential",
     "Queue",
+    "QueueCall",
     "QueueCommand",
     "RecordingsCommand",
     "Region",
@@ -287,6 +295,7 @@ __all__ = [
     "SIMCardAction",
     "SIMCardGroup",
     "SIMCardOrder",
+    "SIMCardOrderPreview",
     "SharedCampaign",
     "ShortCode",
     "SslCertificate",
@@ -300,6 +309,7 @@ __all__ = [
     "Verify",
     "VerifyProfile",
     "VirtualCrossConnect",
+    "VoiceSettings",
     "WdrDetailReport",
     "Webhook",
     "WebhookDeliveries",

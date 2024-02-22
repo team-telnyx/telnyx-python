@@ -15,3 +15,7 @@ class Document(
     UpdateableAPIResource,
 ):
     OBJECT_NAME = "document"
+
+
+class DocumentLink(ListableAPIResource):
+    OBJECT_NAME = "document_link"
