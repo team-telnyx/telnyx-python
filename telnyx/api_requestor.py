@@ -6,10 +6,12 @@ import json
 import platform
 import time
 
-import telnyx
-from telnyx import error, http_client, six, util
-from telnyx.multipart_data_generator import MultipartDataGenerator
+import six
 from six.moves.urllib.parse import urlencode, urlsplit, urlunsplit
+
+import telnyx
+from telnyx import error, http_client, util
+from telnyx.multipart_data_generator import MultipartDataGenerator
 from telnyx.telnyx_response import TelnyxResponse
 
 

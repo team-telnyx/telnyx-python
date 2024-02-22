@@ -3,8 +3,9 @@ from __future__ import absolute_import, division, print_function
 import sys
 from collections import namedtuple
 
-from telnyx import util
 from six.moves import builtins
+
+from telnyx import util
 
 PRINT_FUNC_STRING = builtins.__name__ + ".print"
 

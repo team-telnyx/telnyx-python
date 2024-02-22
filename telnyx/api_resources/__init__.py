@@ -5,6 +5,7 @@ from telnyx.api_resources.access_ip_address import AccessIPAddress
 from telnyx.api_resources.access_token import AccessToken
 from telnyx.api_resources.address import Address
 from telnyx.api_resources.advanced_optinoptout import AdvancedOptinoptout
+from telnyx.api_resources.ai import AI
 from telnyx.api_resources.api_key import APIKey
 from telnyx.api_resources.authentication_provider import AuthenticationProvider
 from telnyx.api_resources.autorechargepreference import Autorechargepreference
@@ -113,9 +114,7 @@ from telnyx.api_resources.porting_order import PortingOrder
 from telnyx.api_resources.portout import PortOut
 from telnyx.api_resources.presigned_object_url import PresignedObjectUrl
 from telnyx.api_resources.private_wireless_gateway import PrivateWirelessGateway
-from telnyx.api_resources.public_endpoint import PublicEndpoint
 from telnyx.api_resources.public_internet_gateway import PublicInternetGateway
-from telnyx.api_resources.public_key import PublicKey
 from telnyx.api_resources.push_credential import PushCredential
 from telnyx.api_resources.queue import Queue
 from telnyx.api_resources.queue_command import QueueCommand
@@ -154,11 +153,6 @@ from telnyx.api_resources.virtual_cross_connect import VirtualCrossConnect
 from telnyx.api_resources.wdr_detail_report import WdrDetailReport
 from telnyx.api_resources.webhook import Webhook
 from telnyx.api_resources.webhook_deliveries import WebhookDeliveries
-from telnyx.api_resources.whatsapp_business_account import WhatsappBusinessAccount
-from telnyx.api_resources.whatsapp_contact import WhatsappContact
-from telnyx.api_resources.whatsapp_media import WhatsappMedia
-from telnyx.api_resources.whatsapp_message import WhatsappMessage
-from telnyx.api_resources.whatsapp_phone_number import WhatsappPhoneNumber
 from telnyx.api_resources.wireguard_interface import WireguardInterface
 from telnyx.api_resources.wireless_detail_record_report import (
     WirelessDetailRecordsReports,
@@ -174,6 +168,7 @@ __all__ = [
     "AccessToken",
     "Address",
     "AdvancedOptinoptout",
+    "AI",
     "AuthenticationProvider",
     "Autorechargepreference",
     "AvailablePhoneNumber",
@@ -271,9 +266,7 @@ __all__ = [
     "PrivateWirelessGateway",
     "ProgrammableFaxApplication",
     "ProgrammableFaxCommand",
-    "PublicEndpoint",
     "PublicInternetGateway",
-    "PublicKey",
     "PushCredential",
     "Queue",
     "QueueCommand",
@@ -310,11 +303,6 @@ __all__ = [
     "WdrDetailReport",
     "Webhook",
     "WebhookDeliveries",
-    "WhatsappBusinessAccount",
-    "WhatsappContact",
-    "WhatsappMedia",
-    "WhatsappMessage",
-    "WhatsappPhoneNumber",
     "WireguardInterface",
     "WirelessDetailRecordsReports",
 ]

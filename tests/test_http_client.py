@@ -1,9 +1,9 @@
 from __future__ import absolute_import, division, print_function
 
 import pytest
+import six
 
 import telnyx
-import six
 
 VALID_API_METHODS = ("get", "post", "patch", "delete")
 

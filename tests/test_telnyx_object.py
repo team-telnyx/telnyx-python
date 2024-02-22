@@ -6,9 +6,9 @@ import pickle
 from copy import copy, deepcopy
 
 import pytest
+import six
 
 import telnyx
-import six
 
 SAMPLE_FOO = json.loads(
     """

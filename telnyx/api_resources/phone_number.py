@@ -1,8 +1,9 @@
 from __future__ import absolute_import, division, print_function
 
+import six
 from six.moves.urllib.parse import quote_plus
 
-from telnyx import error, six, util
+from telnyx import error, util
 from telnyx.api_resources.abstract import (
     DeletableAPIResource,
     ListableAPIResource,

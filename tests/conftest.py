@@ -5,13 +5,13 @@ import os
 import sys
 
 import pytest
+from six.moves.urllib.error import HTTPError
+from six.moves.urllib.request import urlopen
 
 from tests.request_mock import RequestMock
 from tests.telnyx_mock import TelnyxMock
 
 import telnyx
-from six.moves.urllib.error import HTTPError
-from six.moves.urllib.request import urlopen
 
 # When changing this number, don't forget to change it in `.travis.yml` too.
 MOCK_MINIMUM_VERSION = "0.8.10"

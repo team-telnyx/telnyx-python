@@ -6,9 +6,11 @@ import sys
 import textwrap
 import time
 import warnings
-from urllib.parse import urlparse
 
-from telnyx import error, six, util
+import six
+from six.moves.urllib.parse import urlparse
+
+from telnyx import error, util
 
 # - Requests is the preferred HTTP library
 # - Google App Engine has urlfetch
@@ -357,13 +359,16 @@ class PycurlClient(HTTPClient):
             verify_ssl_certs=verify_ssl_certs, proxy=proxy
         )
 
+        # Initialize this within the object so that we can reuse connections.
         self._curl = pycurl.Curl()
 
+        # need to urlparse the proxy, since PyCurl
+        # consumes the proxy url in small pieces
         if self._proxy:
-            parsed_proxy = {}
-            for scheme, proxy_url in self._proxy.items():
-                parsed_proxy[scheme] = urlparse(proxy_url)
-            self._proxy = parsed_proxy
+            # now that we have the parser, get the proxy url pieces
+            proxy = self._proxy
+            for scheme in proxy:  # pylint: disable=not-an-iterable
+                proxy[scheme] = urlparse(proxy[scheme])
 
     def parse_headers(self, data):
         if "\r\n" not in data:
@@ -459,9 +464,15 @@ class PycurlClient(HTTPClient):
         raise error.APIConnectionError(msg)
 
     def _get_proxy(self, url):
-        scheme = url.split(":")[0].lower()
-        if self._proxy and scheme in self._proxy:
-            return self._proxy[scheme]
+        if self._proxy:
+            proxy = self._proxy
+            scheme = url.split(":")[0] if url else None
+            if scheme:
+                if scheme in proxy:  # pylint: disable=unsupported-membership-test
+                    return proxy[scheme]  # pylint: disable=unsubscriptable-object
+                scheme = scheme[0:-1]
+                if scheme in proxy:  # pylint: disable=unsupported-membership-test
+                    return proxy[scheme]  # pylint: disable=unsubscriptable-object
         return None
 
     def close(self):

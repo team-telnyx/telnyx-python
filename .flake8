@@ -1,6 +1,4 @@
 [flake8]
-exclude =
-    telnyx/six.py
 
 # E501 is the "Line too long" error. We disable it because we use Black for
 # code formatting. Black makes a best effort to keep lines under the max

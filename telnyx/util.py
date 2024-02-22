@@ -6,10 +6,10 @@ import os
 import re
 import sys
 
+import six
 from six.moves.urllib.parse import parse_qsl
 
 import telnyx
-import six
 
 TELNYX_LOG = os.environ.get("TELNYX_LOG")
 
@@ -112,6 +112,7 @@ def load_object_classes():
         api_resources.AccessToken.OBJECT_NAME: api_resources.AccessToken,
         api_resources.Address.OBJECT_NAME: api_resources.Address,
         api_resources.AdvancedOptinoptout.OBJECT_NAME: api_resources.AdvancedOptinoptout,
+        api_resources.AI.OBJECT_NAME: api_resources.AI,
         api_resources.AuthenticationProvider.OBJECT_NAME: api_resources.AuthenticationProvider,
         api_resources.Autorechargepreference.OBJECT_NAME: api_resources.Autorechargepreference,
         api_resources.AvailablePhoneNumber.OBJECT_NAME: api_resources.AvailablePhoneNumber,
@@ -209,9 +210,7 @@ def load_object_classes():
         api_resources.PrivateWirelessGateway.OBJECT_NAME: api_resources.PrivateWirelessGateway,
         api_resources.ProgrammableFaxApplication.OBJECT_NAME: api_resources.ProgrammableFaxApplication,
         api_resources.ProgrammableFaxCommand.OBJECT_NAME: api_resources.ProgrammableFaxCommand,
-        api_resources.PublicEndpoint.OBJECT_NAME: api_resources.PublicEndpoint,
         api_resources.PublicInternetGateway.OBJECT_NAME: api_resources.PublicInternetGateway,
-        api_resources.PublicKey.OBJECT_NAME: api_resources.PublicKey,
         api_resources.PushCredential.OBJECT_NAME: api_resources.PushCredential,
         api_resources.Queue.OBJECT_NAME: api_resources.Queue,
         api_resources.QueueCommand.OBJECT_NAME: api_resources.QueueCommand,
@@ -248,11 +247,6 @@ def load_object_classes():
         api_resources.WdrDetailReport.OBJECT_NAME: api_resources.WdrDetailReport,
         api_resources.Webhook.OBJECT_NAME: api_resources.Webhook,
         api_resources.WebhookDeliveries.OBJECT_NAME: api_resources.WebhookDeliveries,
-        api_resources.WhatsappBusinessAccount.OBJECT_NAME: api_resources.WhatsappBusinessAccount,
-        api_resources.WhatsappContact.OBJECT_NAME: api_resources.WhatsappContact,
-        api_resources.WhatsappMedia.OBJECT_NAME: api_resources.WhatsappMedia,
-        api_resources.WhatsappMessage.OBJECT_NAME: api_resources.WhatsappMessage,
-        api_resources.WhatsappPhoneNumber.OBJECT_NAME: api_resources.WhatsappPhoneNumber,
         api_resources.WireguardInterface.OBJECT_NAME: api_resources.WireguardInterface,
         api_resources.WirelessDetailRecordsReports.OBJECT_NAME: api_resources.WirelessDetailRecordsReports,
     }
