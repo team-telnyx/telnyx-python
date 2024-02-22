@@ -1,5 +1,7 @@
 from __future__ import absolute_import, division, print_function
 
+from six.moves.urllib.parse import quote_plus
+
 from telnyx import error, six, util
 from telnyx.api_resources.abstract import (
     DeletableAPIResource,
@@ -7,7 +9,6 @@ from telnyx.api_resources.abstract import (
     UpdateableAPIResource,
     nested_resource_class_methods,
 )
-from telnyx.six.moves.urllib.parse import quote_plus
 
 
 @nested_resource_class_methods(
