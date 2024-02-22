@@ -14,7 +14,7 @@ class ManagedAccount(CreateableAPIResource, ListableAPIResource, UpdateableAPIRe
     OBJECT_NAME = "managed_account"
 
     def enable(self, **params):
-        return ManagedAccount.create_enable(self.id, **params)
+        return self.create_enable(**params)
 
     def disable(self, **params):
-        return ManagedAccount.create_disable(self.id, **params)
+        return self.create_disable(**params)

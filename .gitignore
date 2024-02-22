@@ -33,3 +33,4 @@ sonar-project.*
 
 Pipfile.lock
 requirements.txt
+script*.py

@@ -15,7 +15,3 @@ class PhoneNumberCampaign(
     UpdateableAPIResource,
 ):
     OBJECT_NAME = "phone_number_campaign"
-
-    @classmethod
-    def class_url(cls):
-        return "/10dlc/phoneNumberCampaign"

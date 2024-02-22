@@ -18,9 +18,7 @@ class Webhook(object):
     def construct_event(
         payload, signature_header, timestamp, tolerance=DEFAULT_TOLERANCE, api_key=None
     ):
-
         if WebhookSignature.verify(payload, signature_header, timestamp, tolerance):
-
             if api_key is None:
                 api_key = telnyx.api_key
 

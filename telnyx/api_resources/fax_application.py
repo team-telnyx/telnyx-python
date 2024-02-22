@@ -8,10 +8,10 @@ from telnyx.api_resources.abstract import (
 )
 
 
-class FaxApplication(
+class ProgrammableFaxApplication(
     CreateableAPIResource,
     DeletableAPIResource,
     ListableAPIResource,
     UpdateableAPIResource,
 ):
-    OBJECT_NAME = "fax_application"
+    OBJECT_NAME = "programmable_fax_application"

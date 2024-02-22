@@ -13,7 +13,6 @@ class TelnyxError(Exception):
         json_body=None,
         http_headers=None,
     ):
-
         self.errors = errors
         self.http_status = http_status
         self.json_body = json_body

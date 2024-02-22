@@ -5,11 +5,9 @@ from telnyx.api_resources.abstract import (
     DeletableAPIResource,
     ListableAPIResource,
     UpdateableAPIResource,
-    nested_resource_class_methods,
 )
 
 
-@nested_resource_class_methods("download", path="download", operations=["list"])
 class Document(
     CreateableAPIResource,
     DeletableAPIResource,
@@ -17,10 +15,3 @@ class Document(
     UpdateableAPIResource,
 ):
     OBJECT_NAME = "document"
-
-    def download(self, **params):
-        return Document.list_download(self.name, **params)
-
-
-class DocumentLink(ListableAPIResource):
-    OBJECT_NAME = "document_link"

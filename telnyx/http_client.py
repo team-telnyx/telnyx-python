@@ -6,9 +6,9 @@ import sys
 import textwrap
 import time
 import warnings
+from urllib.parse import urlparse
 
 from telnyx import error, six, util
-from telnyx.six.moves.urllib.parse import urlparse
 
 # - Requests is the preferred HTTP library
 # - Google App Engine has urlfetch
@@ -227,7 +227,6 @@ class RequestsClient(HTTPClient):
         return content, status_code, result.headers
 
     def _handle_request_error(self, e):
-
         # Catch SSL error first as it belongs to ConnectionError,
         # but we don't want to retry
         if isinstance(e, requests.exceptions.SSLError):
@@ -358,16 +357,13 @@ class PycurlClient(HTTPClient):
             verify_ssl_certs=verify_ssl_certs, proxy=proxy
         )
 
-        # Initialize this within the object so that we can reuse connections.
         self._curl = pycurl.Curl()
 
-        # need to urlparse the proxy, since PyCurl
-        # consumes the proxy url in small pieces
         if self._proxy:
-            # now that we have the parser, get the proxy url pieces
-            proxy = self._proxy
-            for scheme in proxy:
-                proxy[scheme] = urlparse(proxy[scheme])
+            parsed_proxy = {}
+            for scheme, proxy_url in self._proxy.items():
+                parsed_proxy[scheme] = urlparse(proxy_url)
+            self._proxy = parsed_proxy
 
     def parse_headers(self, data):
         if "\r\n" not in data:
@@ -463,15 +459,9 @@ class PycurlClient(HTTPClient):
         raise error.APIConnectionError(msg)
 
     def _get_proxy(self, url):
-        if self._proxy:
-            proxy = self._proxy
-            scheme = url.split(":")[0] if url else None
-            if scheme:
-                if scheme in proxy:
-                    return proxy[scheme]
-                scheme = scheme[0:-1]
-                if scheme in proxy:
-                    return proxy[scheme]
+        scheme = url.split(":")[0].lower()
+        if self._proxy and scheme in self._proxy:
+            return self._proxy[scheme]
         return None
 
     def close(self):
