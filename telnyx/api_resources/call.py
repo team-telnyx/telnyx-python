@@ -81,89 +81,89 @@ class Call(CreateableAPIResource):
     OBJECT_NAME = "call"
 
     def transcription_stop(self, **params):
-        return Call.create_transcription_stop(**params)
+        return Call.create_transcription_stop(self.call_control_id, **params)
 
     def fork_start(self, **params):
-        return Call.create_fork_start(**params)
+        return Call.create_fork_start(self.call_control_id, **params)
 
     def suppression_start(self, **params):
-        return Call.create_suppression_start(**params)
+        return Call.create_suppression_start(self.call_control_id, **params)
 
     def transfer(self, **params):
-        return Call.create_transfer(**params)
+        return Call.create_transfer(self.call_control_id, **params)
 
     def answer(self, **params):
-        return Call.create_answer(**params)
+        return Call.create_answer(self.call_control_id, **params)
 
     def playback_stop(self, **params):
-        return Call.create_playback_stop(**params)
+        return Call.create_playback_stop(self.call_control_id, **params)
 
     def suppression_stop(self, **params):
-        return Call.create_suppression_stop(**params)
+        return Call.create_suppression_stop(self.call_control_id, **params)
 
     def gather_stop(self, **params):
-        return Call.create_gather_stop(**params)
+        return Call.create_gather_stop(self.call_control_id, **params)
 
     def hangup(self, **params):
-        return Call.create_hangup(**params)
+        return Call.create_hangup(self.call_control_id, **params)
 
     def refer(self, **params):
-        return Call.create_refer(**params)
+        return Call.create_refer(self.call_control_id, **params)
 
     def record_resume(self, **params):
-        return Call.create_record_resume(**params)
+        return Call.create_record_resume(self.call_control_id, **params)
 
     def gather_using_audio(self, **params):
-        return Call.create_gather_using_audio(**params)
+        return Call.create_gather_using_audio(self.call_control_id, **params)
 
     def send_dtmf(self, **params):
-        return Call.create_send_dtmf(**params)
+        return Call.create_send_dtmf(self.call_control_id, **params)
 
     def gather(self, **params):
-        return Call.create_gather(**params)
+        return Call.create_gather(self.call_control_id, **params)
 
     def leave_queue(self, **params):
-        return Call.create_leave_queue(**params)
+        return Call.create_leave_queue(self.call_control_id, **params)
 
     def record_stop(self, **params):
-        return Call.create_record_stop(**params)
+        return Call.create_record_stop(self.call_control_id, **params)
 
     def record_pause(self, **params):
-        return Call.create_record_pause(**params)
+        return Call.create_record_pause(self.call_control_id, **params)
 
     def playback_start(self, **params):
-        return Call.create_playback_start(**params)
+        return Call.create_playback_start(self.call_control_id, **params)
 
     def record_start(self, **params):
-        return Call.create_record_start(**params)
+        return Call.create_record_start(self.call_control_id, **params)
 
     def bridge(self, **params):
-        return Call.create_bridge(**params)
+        return Call.create_bridge(self.call_control_id, **params)
 
     def streaming_start(self, **params):
-        return Call.create_streaming_start(**params)
+        return Call.create_streaming_start(self.call_control_id, **params)
 
     def enqueue(self, queue_name, **params):
         params["queue_name"] = queue_name
         return Call.create_enqueue(self.call_control_id, **params)
 
     def speak(self, **params):
-        return Call.create_speak(**params)
+        return Call.create_speak(self.call_control_id, **params)
 
     def fork_stop(self, **params):
-        return Call.create_fork_stop(**params)
+        return Call.create_fork_stop(self.call_control_id, **params)
 
     def reject(self, **params):
-        return Call.create_reject(**params)
+        return Call.create_reject(self.call_control_id, **params)
 
     def transcription_start(self, **params):
-        return Call.create_transcription_start(**params)
+        return Call.create_transcription_start(self.call_control_id, **params)
 
     def client_state_update(self, **params):
-        return Call.put_client_state_update(**params)
+        return Call.put_client_state_update(self.call_control_id, **params)
 
     def gather_using_speak(self, **params):
-        return Call.create_gather_using_speak(**params)
+        return Call.create_gather_using_speak(self.call_control_id, **params)
 
     def streaming_stop(self, **params):
-        return Call.create_streaming_stop(**params)
+        return Call.create_streaming_stop(self.call_control_id, **params)
