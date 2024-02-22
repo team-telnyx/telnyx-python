@@ -160,7 +160,6 @@ def load_object_classes():
         api_resources.InboundChannel.OBJECT_NAME: api_resources.InboundChannel,
         api_resources.InventoryCoverage.OBJECT_NAME: api_resources.InventoryCoverage,
         api_resources.InventoryLevel.OBJECT_NAME: api_resources.InventoryLevel,
-        api_resources.ListObject.OBJECT_NAME: api_resources.ListObject,
         api_resources.ManagedAccount.OBJECT_NAME: api_resources.ManagedAccount,
         api_resources.MdrDetailReport.OBJECT_NAME: api_resources.MdrDetailReport,
         api_resources.MdrUsageReport.OBJECT_NAME: api_resources.MdrUsageReport,
