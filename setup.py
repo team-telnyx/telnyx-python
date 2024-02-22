@@ -52,7 +52,7 @@ setup(
         'requests[security] >= 2.20; python_version < "3.0"',
         "PyNaCl",
     ],
-    python_requires="!=3.7.*, !=3.8.*, !=3.9.*, !=3.10.*, !=3.11.*",
+    python_requires=">=3.7",
     tests_require=[
         'pytest >= 4, < 5; python_version < "3.0"',
         "pytest-mock >= 1.7",
