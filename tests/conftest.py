@@ -21,7 +21,7 @@ MOCK_MINIMUM_VERSION = "0.8.10"
 if TelnyxMock.start():
     MOCK_PORT = TelnyxMock.port()
 else:
-    MOCK_PORT = os.environ.get("TELNYX_MOCK_PORT", 3000)
+    MOCK_PORT = os.environ.get("TELNYX_MOCK_PORT", 12111)
 
 
 @atexit.register
