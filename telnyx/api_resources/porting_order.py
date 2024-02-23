@@ -20,9 +20,6 @@ from telnyx.api_resources.abstract import (
 @nested_resource_class_methods(
     "activation_jobs", path="activation_jobs", operations=["list"]
 )
-@nested_resource_class_methods(
-    "exception_types", path="/v2/porting_orders/exception_types", operations=["list"]
-)
 class PortingOrder(
     CreateableAPIResource,
     DeletableAPIResource,
@@ -41,14 +38,10 @@ class PortingOrder(
         return PortingOrder.create_cancel(self.id, **params)
 
     def allowed_foc_windows(self, **params):
-        return PortingOrder.list_loa_template(self.id, **params)
+        return PortingOrder.list_allowed_foc_windows(self.id, **params)
 
     def activation_jobs(self, **params):
         return PortingOrder.list_activation_jobs(self.id, **params)
-
-    @classmethod
-    def exception_types(cls, **params):
-        return PortingOrder.create_exception_types(None, **params)
 
 
 class PortingPhoneNumber(ListableAPIResource):
