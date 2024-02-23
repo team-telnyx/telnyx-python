@@ -7,9 +7,9 @@ from telnyx.api_resources.abstract import (
 )
 
 
-class WhatsappMedia(ListableAPIResource, CreateableAPIResource, DeletableAPIResource):
-    OBJECT_NAME = "whatsapp_media"
+class IPAddress(CreateableAPIResource, DeletableAPIResource, ListableAPIResource):
+    OBJECT_NAME = "ip_address"
 
     @classmethod
     def class_url(cls):
-        return "/v2/whatsapp_media"
+        return "/v2/ip_addresses"

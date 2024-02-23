@@ -46,7 +46,7 @@ into using https://www.piwheels.org/ for ARM compiled wheels.
 
 ### Requirements
 
-- Python 2.7 or 3.5+ (PyPy supported)
+- Python 3.8+ (PyPy supported)
 
 #### Additional Requirements for Source Install
 
@@ -137,6 +137,7 @@ telnyx.max_network_retries = 2
 ```
 
 ### Reserved word keyword arguments
+
 The Telnyx API includes `from` as an attribute that can be set on messages.
 `from` is also a reserved word in Python. If you would like to use keyword
 arguments where an argument is a reserved word you can add the suffix `_` e.g.
@@ -152,6 +153,7 @@ telnyx.Message.create(
 The argument will be automatically rewritten to `from` in the keyword arguments dict.
 
 > Pro Tip: You can alternatively unpack a dictionary like so:
+>
 > ```python
 > message = {
 >     "from": "+18445550001",
@@ -220,19 +222,19 @@ Run all tests on all supported Python versions:
 
 Run all tests for a specific Python version (modify `-e` according to your Python target):
 
-    pipenv run tox -e py27
+    pipenv run tox -e py38
 
 Run all tests in a single file:
 
-    pipenv run tox -e py27 -- tests/api_resources/abstract/test_updateable_api_resource.py
+    pipenv run tox -e py38 -- tests/api_resources/abstract/test_updateable_api_resource.py
 
 Run a single test suite:
 
-    pipenv run tox -e py27 -- tests/api_resources/abstract/test_updateable_api_resource.py::TestUpdateableAPIResource
+    pipenv run tox -e py38 -- tests/api_resources/abstract/test_updateable_api_resource.py::TestUpdateableAPIResource
 
 Run a single test:
 
-    pipenv run tox -e py27 -- tests/api_resources/abstract/test_updateable_api_resource.py::TestUpdateableAPIResource::test_save
+    pipenv run tox -e py38 -- tests/api_resources/abstract/test_updateable_api_resource.py::TestUpdateableAPIResource::test_save
 
 Run the linter with:
 
@@ -247,18 +249,17 @@ with:
 ### Adding a new endpoint
 
 1. Define a class for the object that the endpoint interacts with under
-`telnyx/api_resources/`. The path name singularized should typically match
-the record type of the object returned e.g. `/v2/available_phone_numbers`
-returns a list of objects with the record_type `available_phone_number`.
-Inherit from the classes that define the behavior available on the endpoint,one or more of `CreateableAPIResource`, `DeletableAPIResource`,
-`ListableAPIResource`, `UpdateableAPIResource`.
+   `telnyx/api_resources/`. The path name singularized should typically match
+   the record type of the object returned e.g. `/v2/available_phone_numbers`
+   returns a list of objects with the record_type `available_phone_number`.
+   Inherit from the classes that define the behavior available on the endpoint,one or more of `CreateableAPIResource`, `DeletableAPIResource`,
+   `ListableAPIResource`, `UpdateableAPIResource`.
 
 2. Import your class in `telnyx/api_resources/__init__.py`.
 
 3. Add your new class to the `OBJECT_CLASSES` block in `telnyx/util.py`.
 
 4. Add tests for your new class under `tests/api_resources/`.
-
 
 [api-keys]: https://portal.telnyx.com/#/app/auth/v2
 [black]: https://github.com/ambv/black
@@ -268,20 +269,19 @@ Inherit from the classes that define the behavior available on the endpoint,one 
 ## Releasing
 
 1. Update version in
-    * `setup.py`  (in the `setup()` call, the `version` kwarg)
-    * `telnyx/__init__.py`  (the `__version__` string)
+   - `setup.py` (in the `setup()` call, the `version` kwarg)
+   - `telnyx/__init__.py` (the `__version__` string)
 2. Create new branch, add changes, commit, and push
 3. Ensure commit passes tests in [Travis][travis-telnyx-python]
 4. Tag that commit with `git tag -a v{VERSION} -m "Release v{VERSION}"`, and push the tag `git push --follow-tags`
 5. Ensure checked out copy is entirely clean (best to create a new environment...)
 6. `make dists`
-7. *If you haven't done it before*, download the upload API keys from LastPass (search for "pypi") and put the contents between "PYPIRC FILE" tags into `~/.pypirc-telnyx`.
+7. _If you haven't done it before_, download the upload API keys from LastPass (search for "pypi") and put the contents between "PYPIRC FILE" tags into `~/.pypirc-telnyx`.
 8. `make testupload`, check that it looks OK on PyPI and that it's installable via `pip`.
 9. `make liveupload`, repeat checks for live version.
 10. Ta-da.
 
 [travis-telnyx-python]: https://travis-ci.org/team-telnyx/telnyx-python
-
 
 ## Acknowledgments
 
