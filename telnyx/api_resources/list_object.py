@@ -1,7 +1,8 @@
 from __future__ import absolute_import, division, print_function
 
+from six.moves.urllib.parse import quote_plus
+
 from telnyx import util
-from telnyx.six.moves.urllib.parse import quote_plus
 from telnyx.telnyx_object import TelnyxObject
 
 

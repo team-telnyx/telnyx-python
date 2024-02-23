@@ -105,7 +105,6 @@ def test_construct_event_from_strings(verify_key_base64, signer):
 
 
 class TestWebhookSignature(object):
-
     # def test_raise_on_invalid_signature_for_payload(self, verify_key_base64, signer):
     #     telnyx.public_key = verify_key_base64
     #     timestamp = str(int(time.time())).encode('UTF-8')

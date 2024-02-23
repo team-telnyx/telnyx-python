@@ -1,7 +1,8 @@
 from __future__ import absolute_import, division, print_function
 
+from six.moves.urllib.parse import quote_plus
+
 from telnyx import api_requestor, util
-from telnyx.six.moves.urllib.parse import quote_plus
 
 
 def nested_resource_class_methods(
@@ -89,6 +90,15 @@ def nested_resource_class_methods(
 
                 list_method = "list_%s" % make_path(resource)
                 setattr(cls, list_method, classmethod(list_nested_resources))
+
+            elif operation == "put":
+
+                def update_nested_resource(cls, id, nested_id, **params):
+                    url = getattr(cls, resource_url_method)(id, nested_id)
+                    return getattr(cls, resource_request_method)("put", url, **params)
+
+                update_method = "update_%s" % resource
+                setattr(cls, update_method, classmethod(update_nested_resource))
 
             else:
                 raise ValueError("Unknown operation: %s" % operation)

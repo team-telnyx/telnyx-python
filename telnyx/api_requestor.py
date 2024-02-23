@@ -6,10 +6,12 @@ import json
 import platform
 import time
 
+import six
+from six.moves.urllib.parse import urlencode, urlsplit, urlunsplit
+
 import telnyx
-from telnyx import error, http_client, six, util
+from telnyx import error, http_client, util
 from telnyx.multipart_data_generator import MultipartDataGenerator
-from telnyx.six.moves.urllib.parse import urlencode, urlsplit, urlunsplit
 from telnyx.telnyx_response import TelnyxResponse
 
 
@@ -237,9 +239,9 @@ class APIRequestor(object):
                 generator.add_params(params or {})
                 post_data = generator.get_post_data()
                 encoded_params = params
-                supplied_headers[
-                    "Content-Type"
-                ] = "multipart/form-data; boundary=%s" % (generator.boundary,)
+                supplied_headers["Content-Type"] = (
+                    "multipart/form-data; boundary=%s" % (generator.boundary,)
+                )
         else:
             raise error.APIConnectionError(
                 "Unrecognized HTTP method %r.  This may indicate a bug in the "
