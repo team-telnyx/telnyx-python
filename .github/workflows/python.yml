@@ -1,6 +1,5 @@
 name: Python
-on:
-  [push]
+on: [push]
 jobs:
   test:
     env:
@@ -11,7 +10,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        python-version: [2.7, 3.6, 3.7, 3.8, 3.9, pypy-2.7]
+        python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python
@@ -32,4 +31,3 @@ jobs:
         run: make ci
       - name: coveralls
         run: make coveralls
-
