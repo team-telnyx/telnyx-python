@@ -17,5 +17,5 @@ pytest-cov = ">=2.5"
 tox = "*"
 "flake8" = "*"
 coveralls = "*"
-black = {version = "==19.3b0", markers = "python_version >= '3.6'"}
+black = {version = "==24.3.0", markers = "python_version >= '3.6'"}
 twine = "*"
