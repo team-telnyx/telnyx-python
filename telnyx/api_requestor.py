@@ -11,6 +11,7 @@ from six.moves.urllib.parse import urlencode, urlsplit, urlunsplit
 
 import telnyx
 from telnyx import error, http_client, util
+from telnyx.error import TelnyxError
 from telnyx.multipart_data_generator import MultipartDataGenerator
 from telnyx.telnyx_response import TelnyxResponse
 
@@ -96,23 +97,21 @@ class APIRequestor(object):
 
     def handle_error_response(self, rbody, rcode, resp, rheaders):
         try:
-            error_list = resp["errors"]
-        except (KeyError, TypeError):
-            raise error.APIError(
-                [
-                    {
-                        "title": "Invalid response object from API: %r (HTTP response code "
-                        "was %d)" % (rbody, rcode)
-                    }
-                ],
-                rbody,
-                rcode,
-                resp,
+            errors = resp.get("errors", [])
+            http_status = rcode
+            http_body = rbody
+            json_body = resp
+            http_headers = rheaders
+
+            raise TelnyxError(
+                errors=errors,
+                http_status=http_status,
+                http_body=http_body,
+                json_body=json_body,
+                http_headers=http_headers,
             )
-
-        err = self.specific_api_error(rbody, rcode, resp, rheaders, error_list)
-
-        raise err
+        except ValueError:
+            raise TelnyxError(http_status=rcode, http_body=rbody, http_headers=rheaders)
 
     def specific_api_error(self, rbody, rcode, resp, rheaders, error_list):
         for err in error_list:
