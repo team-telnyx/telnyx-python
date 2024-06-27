@@ -24,7 +24,7 @@ class TestMessagingProfile(object):
     def test_is_creatable(self, request_mock):
         resource = telnyx.MessagingProfile.create(name="my-profile")
         request_mock.assert_requested("post", "/v2/messaging_profiles")
-        assert isinstance(resource, telnyx.MessagingProfile)
+        assert isinstance(resource.data[0], telnyx.MessagingProfile)
 
     def test_is_saveable(self, request_mock):
         messaging_profile = telnyx.MessagingProfile.retrieve(TEST_RESOURCE_ID)
