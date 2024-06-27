@@ -24,7 +24,7 @@ public_key = os.environ.get("TELNYX_PUBLIC_KEY")
 log = None
 
 
-__version__ = "2.1.1"
+__version__ = "2.1.2"
 
 
 # Sets some basic information about the running application that's sent along
