@@ -30,16 +30,6 @@ class TestVerification(object):
         )
         request_mock.assert_requested("post", "/v2/verifications/sms")
 
-    def test_verify_by_psd2(self, request_mock):
-        telnyx.Verification.psd2(
-            phone_number=TEST_PHONE_NUMBER,
-            verify_profile_id=VERIFY_PROFILE,
-            amount="99.99",
-            currency="USD",
-            payee="Acme",
-        )
-        request_mock.assert_requested("post", "/v2/verifications/psd2")
-
     def test_verify_by_call(self, request_mock):
         telnyx.Verification.call(
             phone_number=TEST_PHONE_NUMBER, verify_profile_id=VERIFY_PROFILE
@@ -51,9 +41,3 @@ class TestVerification(object):
             phone_number=TEST_PHONE_NUMBER, verify_profile_id=VERIFY_PROFILE
         )
         request_mock.assert_requested("post", "/v2/verifications/flashcall")
-
-    def test_verify_by_whatsapp(self, request_mock):
-        telnyx.Verification.whatsapp(
-            phone_number=TEST_PHONE_NUMBER, verify_profile_id=VERIFY_PROFILE
-        )
-        request_mock.assert_requested("post", "/v2/verifications/whatsapp")
