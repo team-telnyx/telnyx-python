@@ -125,37 +125,37 @@ class APIRequestor(object):
             )
 
         if rcode == 400:
-            return error.InvalidRequestError(error_list, rbody, rcode, resp, rheaders)
+            return error.InvalidRequestError(error_list, rcode, rbody, resp, rheaders)
         elif rcode == 401:
-            return error.AuthenticationError(error_list, rbody, rcode, resp, rheaders)
+            return error.AuthenticationError(error_list, rcode, rbody, resp, rheaders)
         elif rcode == 403:
-            return error.PermissionError(error_list, rbody, rcode, resp, rheaders)
+            return error.PermissionError(error_list, rcode, rbody, resp, rheaders)
         elif rcode == 404:
-            return error.ResourceNotFoundError(error_list, rbody, rcode, resp, rheaders)
+            return error.ResourceNotFoundError(error_list, rcode, rbody, resp, rheaders)
         elif rcode == 405:
             return error.MethodNotSupportedError(
-                error_list, rbody, rcode, resp, rheaders
+                error_list, rcode, rbody, resp, rheaders
             )
         elif rcode == 408:
-            return error.TimeoutError(error_list, rbody, rcode, resp, rheaders)
+            return error.TimeoutError(error_list, rcode, rbody, resp, rheaders)
         elif rcode == 415:
             return error.UnsupportedMediaTypeError(
-                error_list, rbody, rcode, resp, rheaders
+                error_list, rcode, rbody, resp, rheaders
             )
         elif rcode == 422:
             return error.InvalidParametersError(
-                error_list, rbody, rcode, resp, rheaders
+                error_list, rcode, rbody, resp, rheaders
             )
         elif rcode == 429:
-            return error.RateLimitError(error_list, rbody, rcode, resp, rheaders)
+            return error.RateLimitError(error_list, rcode, rbody, resp, rheaders)
         elif rcode == 500:
-            return error.APIError(error_list, rbody, rcode, resp, rheaders)
+            return error.APIError(error_list, rcode, rbody, resp, rheaders)
         elif rcode == 503:
             return error.ServiceUnavailableError(
-                error_list, rbody, rcode, resp, rheaders
+                error_list, rcode, rbody, resp, rheaders
             )
         else:
-            return error.APIError(error_list, rbody, rcode, resp, rheaders)
+            return error.APIError(error_list, rcode, rbody, resp, rheaders)
 
     def request_headers(self, api_key, method):
         user_agent = "Telnyx/v2 PythonBindings/%s" % (telnyx.__version__,)
