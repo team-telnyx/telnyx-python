@@ -22,7 +22,6 @@ class TestMessagingProfile(object):
         assert isinstance(resource, telnyx.MessagingProfile)
 
     @pytest.mark.skip(reason="Prism Mock bug in spec file (request)")
-
     def test_is_creatable(self, request_mock):
         resource = telnyx.MessagingProfile.create(name="my-profile")
         request_mock.assert_requested("post", "/v2/messaging_profiles")
