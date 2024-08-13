@@ -1,4 +1,5 @@
 import telnyx
+from unittest.mock import patch
 
 TEST_RESOURCE_ID = "12ade33a-21c0-473b-b055-b3c836e1c292"
 TEST_PHONE_NUMBER = "+13125000000"
