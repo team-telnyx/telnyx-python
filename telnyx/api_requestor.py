@@ -154,6 +154,8 @@ class APIRequestor(object):
             return error.ServiceUnavailableError(
                 error_list, rcode, rbody, resp, rheaders
             )
+        elif rcode == 409:
+            return error.ConflictError(error_list, rcode, rbody, resp, rheaders)
         else:
             return error.APIError(error_list, rcode, rbody, resp, rheaders)
 

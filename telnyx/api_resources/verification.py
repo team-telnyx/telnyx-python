@@ -55,3 +55,15 @@ class Verification(CreateableAPIResource, ListableAPIResource):
     @classmethod
     def whatsapp(cls, **params):
         return Verification.create_whatsapp(None, **params)
+
+    @classmethod
+    def email(cls, **params):
+        return Verification.create_email(None, **params)
+
+    @classmethod
+    def push(cls, **params):
+        return Verification.create_push(None, **params)
+
+    @classmethod
+    def smart(cls, **params):
+        return Verification.create_smart(None, **params)

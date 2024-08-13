@@ -15,7 +15,7 @@ TELNYX_LOG = os.environ.get("TELNYX_LOG")
 
 logger = logging.getLogger("telnyx")
 
-__all__ = ["io", "parse_qsl", "utf8", "log_info", "log_debug", "logfmt"]
+__all__ = ["io", "parse_qsl", "utf8", "log_info", "log_debug", "logfmt", "convert_to_telnyx_object"]
 
 # Special valid characters in telnyx id's objects. Format: `=/$#`
 telnyx_valid_id_parts = "=-"
