@@ -33,10 +33,10 @@ class Verification(CreateableAPIResource, ListableAPIResource):
         )
 
     def verify_verification_code_by_id(self, verification_id, code):
-        return self.request(
+        response, api_key = self.request(
             method="post",
             url="/v2/verifications/{}/actions/verify".format(verification_id),
-            params={"code": code},
+            params={"code": code}
         )
         return response, api_key
 

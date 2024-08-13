@@ -91,7 +91,7 @@ class APIRequestor(object):
         rbody, rcode, rheaders, my_api_key = self.request_raw(
             method.lower(), url, params, headers
         )
-        resp = self.interpret_response(rbody, rcode, rheaders)
+        resp, my_api_key = self.interpret_response(rbody, rcode, rheaders)
         return resp, my_api_key
 
     def handle_error_response(self, rbody, rcode, resp, rheaders):
