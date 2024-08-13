@@ -38,7 +38,7 @@ class Verification(CreateableAPIResource, ListableAPIResource):
             url="/v2/verifications/{}/actions/verify".format(verification_id),
             params={"code": code},
         )
-        
+
     @classmethod
     def sms(cls, **params):
         return Verification.create_sms(None, **params)

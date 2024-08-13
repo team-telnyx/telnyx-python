@@ -1,0 +1,6 @@
+
+# 2024-08-13 07:19:35.138652
++https://github.com/team-telnyx/openapi-internal/blob/master/prod/external/verify/verify.json based off of this openapi spec, can you tell me how to add the new verify by id endpoint to my python SDK for Telnyx?
+
+# 2024-08-13 07:32:11.673330
++bumb black version
