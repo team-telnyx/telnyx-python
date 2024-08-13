@@ -278,20 +278,10 @@ class APIRequestor(object):
         return encoded_params
 
     def interpret_response(self, rbody, rcode, rheaders):
-        try:
-            if hasattr(rbody, "decode"):
-                rbody = rbody.decode("utf-8")
-            resp = TelnyxResponse(rbody, rcode, rheaders)
-        except Exception:
-            raise error.APIError(
-                "Invalid response body from API: %s "
-                "(HTTP response code was %d)" % (rbody, rcode),
-                rbody,
-                rcode,
-                rheaders,
-            )
+        if hasattr(rbody, "decode"):
+            rbody = rbody.decode("utf-8")
+        resp = TelnyxResponse(rbody, rcode, rheaders)
         if not (200 <= rcode < 300):
             self.handle_error_response(rbody, rcode, resp.data, rheaders)
 
-        my_api_key = self.api_key  # Ensure my_api_key is defined
-        return resp, my_api_key
+        return resp, self.api_key
