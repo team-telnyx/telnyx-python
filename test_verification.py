@@ -13,7 +13,7 @@ class TestVerification(unittest.TestCase):
         verification = Verification()
         response, api_key = verification.verify_verification_code_by_id(verification_id, code)
 
-        self.assertEqual(response["data"], "success")
+        self.assertEqual(response["data"]["success"], True)
         self.assertEqual(api_key, "api_key")
         mock_request.assert_called_with(
             "post",

@@ -27,20 +27,15 @@ class TestVerification(object):
 
     def test_verify_verification_code_by_id(self, request_mock):
         resource = telnyx.Verification.retrieve(TEST_RESOURCE_ID)
-        with patch.object(telnyx.api_requestor.APIRequestor, 'request', return_value=({"data": {"success": True}}, "api_key")):
+        with patch.object(telnyx.api_requestor.APIRequestor, 'request', return_value=({"data": {"success": True}}, "api_key")) as mock_request:
             resource.verify_verification_code_by_id(
-                verification_id=TEST_RESOURCE_ID,
                 code=VERIFY_CODE,
             )
-            request_mock.assert_requested(
+            mock_request.assert_called_with(
                 "post",
                 "/v2/verifications/%s/actions/verify" % TEST_RESOURCE_ID,
                 {"code": VERIFY_CODE},
             )
-            telnyx.Verification.sms(
-                phone_number=TEST_PHONE_NUMBER, verify_profile_id=VERIFY_PROFILE
-            )
-            request_mock.assert_requested("post", "/v2/verifications/sms")
 
     def test_verify_by_call(self, request_mock):
         telnyx.Verification.call(

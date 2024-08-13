@@ -24,7 +24,7 @@ class Verification(CreateableAPIResource, ListableAPIResource):
     OBJECT_NAME = "verification"
 
     def verify_by_phone_number(self, code, phone_number, verify_profile_id):
-        return self.request(
+        response, api_key = self.request(
             method="post",
             url="/v2/verifications/by_phone_number/{}/actions/verify".format(
                 phone_number
@@ -38,6 +38,7 @@ class Verification(CreateableAPIResource, ListableAPIResource):
             url="/v2/verifications/{}/actions/verify".format(verification_id),
             params={"code": code},
         )
+        return response, api_key
 
     @classmethod
     def psd2(cls, **params):

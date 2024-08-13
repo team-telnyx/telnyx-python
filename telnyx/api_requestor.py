@@ -291,4 +291,4 @@ class APIRequestor(object):
         if not (200 <= rcode < 300):
             self.handle_error_response(rbody, rcode, resp.data, rheaders)
 
-        return resp
+        return resp, my_api_key
