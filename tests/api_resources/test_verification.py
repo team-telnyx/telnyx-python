@@ -29,7 +29,8 @@ class TestVerification(object):
         resource = telnyx.Verification.retrieve(TEST_RESOURCE_ID)
         with patch.object(telnyx.api_requestor.APIRequestor, 'request', return_value=({"data": {"success": True}}, "api_key")) as mock_request:
             resource.verify_verification_code_by_id(
-                code=VERIFY_CODE,
+                TEST_RESOURCE_ID,
+                VERIFY_CODE,
             )
             mock_request.assert_called_with(
                 "post",

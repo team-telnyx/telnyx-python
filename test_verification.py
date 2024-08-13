@@ -18,7 +18,7 @@ class TestVerification(unittest.TestCase):
         mock_request.assert_called_with(
             "post",
             "/v2/verifications/{}/actions/verify".format(verification_id),
-            params={"code": code},
+            {"code": code},
         )
 
 if __name__ == "__main__":
