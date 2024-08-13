@@ -38,7 +38,6 @@ class Verification(CreateableAPIResource, ListableAPIResource):
             url="/v2/verifications/{}/actions/verify".format(verification_id),
             params={"code": code}
         )
-        return response, api_key
 
     @classmethod
     def psd2(cls, **params):
