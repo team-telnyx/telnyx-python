@@ -24,7 +24,17 @@ class TestVerification(object):
             "/v2/verifications/by_phone_number/%s/actions/verify" % TEST_PHONE_NUMBER,
         )
 
-    def test_verify_by_sms(self, request_mock):
+    def test_verify_verification_code_by_id(self, request_mock):
+        resource = telnyx.Verification.retrieve(TEST_RESOURCE_ID)
+        resource.verify_verification_code_by_id(
+            verification_id=TEST_RESOURCE_ID,
+            code=VERIFY_CODE,
+        )
+        request_mock.assert_requested(
+            "post",
+            "/v2/verifications/%s/actions/verify" % TEST_RESOURCE_ID,
+            {"code": VERIFY_CODE},
+        )
         telnyx.Verification.sms(
             phone_number=TEST_PHONE_NUMBER, verify_profile_id=VERIFY_PROFILE
         )
