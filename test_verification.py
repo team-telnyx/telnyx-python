@@ -8,7 +8,7 @@ class TestVerification(unittest.TestCase):
     def test_verify_verification_code_by_id(self, mock_request):
         verification_id = "12345"
         code = "67890"
-        mock_request.return_value = ({"data": "success"}, "api_key")
+        mock_request.return_value = ({"data": {"success": True}}, "api_key")
 
         verification = Verification()
         response, api_key = verification.verify_verification_code_by_id(verification_id, code)
