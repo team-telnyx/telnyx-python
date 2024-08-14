@@ -14,10 +14,9 @@ class TestVerification(object):
         assert isinstance(resource, telnyx.Verification)
 
     def test_can_verify_by_phone_number(self, request_mock):
-        resource = telnyx.Verification.retrieve(TEST_RESOURCE_ID)
-        resource.verify_by_phone_number(
+        resource = telnyx.Verification.retrieve(TEST_PHONE_NUMBER)
+        resource.by_phone_number(
             code=VERIFY_CODE,
-            phone_number=TEST_PHONE_NUMBER,
             verify_profile_id=VERIFY_PROFILE,
         )
         request_mock.assert_requested(
@@ -32,7 +31,7 @@ class TestVerification(object):
             "verify_profile_id": VERIFY_PROFILE
         }
 
-        telnyx.Verification.verification_by_id(id=verification_id, **params)
+        telnyx.Verification.by_id(id=verification_id, **params)
         request_mock.assert_requested(
             "post",
             "/v2/verifications/%s/actions/verify" %TEST_RESOURCE_ID,
