@@ -35,6 +35,12 @@ class TestVerification(object):
             "/v2/verifications/%s/actions/verify" % TEST_RESOURCE_ID,
         )
 
+    def test_can_list_verifications(self, request_mock):
+        resources = telnyx.Verification.list_verifications()
+        request_mock.assert_requested("get", "/v2/verifications")
+        assert isinstance(resources.data, list)
+        assert isinstance(resources.data[0], telnyx.Verification)
+
     @pytest.mark.skip(reason="Prism mock 500 invalid response")
     def test_verify_by_sms(self, request_mock):
         telnyx.Verification.sms(
