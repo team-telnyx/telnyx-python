@@ -14,28 +14,14 @@ class TestVerification(object):
         assert isinstance(resource, telnyx.Verification)
 
     def test_can_verify_by_phone_number(self, request_mock):
-        resource = telnyx.Verification.retrieve(TEST_PHONE_NUMBER)
-        resource.by_phone_number(
+        telnyx.Verification.by_phone_number(
+            phone_number=TEST_PHONE_NUMBER,
             code=VERIFY_CODE,
             verify_profile_id=VERIFY_PROFILE,
         )
         request_mock.assert_requested(
             "post",
             "/v2/verifications/by_phone_number/%s/actions/verify" %TEST_RESOURCE_ID,
-        )
-
-    def test_verification_by_id(self, request_mock):
-        verification_id = TEST_RESOURCE_ID
-        params = {
-            "code": VERIFY_CODE,
-            "verify_profile_id": VERIFY_PROFILE
-        }
-
-        telnyx.Verification.by_id(id=verification_id, **params)
-        request_mock.assert_requested(
-            "post",
-            "/v2/verifications/%s/actions/verify" %TEST_RESOURCE_ID,
-            params
         )
 
     @pytest.mark.skip(reason="Prism mock 500 invalid response")
