@@ -24,7 +24,7 @@ from telnyx.api_resources.abstract import (
     "by_phone_number", path="by_phone_number/{phone_number}/actions/verify", operations=["create"]
 )
 @nested_resource_class_methods(
-    "by_id", path="{verification_id}/actions/verify", operations=["create"]
+    "by_id", path="actions/verify", operations=["create"]
 )
 class Verification(CreateableAPIResource, ListableAPIResource):
     OBJECT_NAME = "verification"
