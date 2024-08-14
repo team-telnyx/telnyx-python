@@ -1,5 +1,6 @@
 from __future__ import absolute_import, division, print_function
 
+import pytest
 import telnyx
 
 TEST_RESOURCE_ID = "6a09cdc3-8948-47f0-aa62-74ac943d6c58"
