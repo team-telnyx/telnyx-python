@@ -27,7 +27,7 @@ from telnyx.api_resources.abstract import (
     "verify_by_id", path="actions/verify", operations=["create"]
 )
 @nested_resource_class_methods(
-    "list_by_phone_number", path="/v2/verifications/by_phone_number", operations=["list"]
+    "list_by_phone_number", path="by_phone_number/{phone_number}", operations=["list"]
 )
 class Verification(CreateableAPIResource, ListableAPIResource):
     OBJECT_NAME = "verification"
@@ -62,4 +62,5 @@ class Verification(CreateableAPIResource, ListableAPIResource):
 
     @classmethod
     def list_by_phone_number(cls, phone_number, **params):
-        return Verification.create_list_by_phone_number(phone_number, **params)
+        url = cls.list_by_phone_number_url(phone_number)
+        return cls.list_request("get", url, **params)
