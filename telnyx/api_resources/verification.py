@@ -20,6 +20,9 @@ from telnyx.api_resources.abstract import (
 @nested_resource_class_methods(
     "whatsapp", path="/v2/verifications/whatsapp", operations=["create"]
 )
+@nested_resource_class_methods(
+    "verification_by_id", path="/v2/verifications/:verification_id/actions/verify", operations=["create"]
+)
 class Verification(CreateableAPIResource, ListableAPIResource):
     OBJECT_NAME = "verification"
 
@@ -32,12 +35,7 @@ class Verification(CreateableAPIResource, ListableAPIResource):
             params={"code": code, "verify_profile_id": verify_profile_id},
         )
 
-    def verify_by_id(self, verification_id, code):
-        return self.request(
-            method="post",
-            url="/v2/verifications/{}/actions/verify".format(verification_id),
-            params={"code": code},
-        )
+    @classmethod
     def sms(cls, **params):
         return Verification.create_sms(None, **params)
 
@@ -56,3 +54,7 @@ class Verification(CreateableAPIResource, ListableAPIResource):
     @classmethod
     def whatsapp(cls, **params):
         return Verification.create_whatsapp(None, **params)
+
+    @classmethod
+    def verification_by_id(clas, **params):
+        return Verification.create_verification_by_id(None, **params)
