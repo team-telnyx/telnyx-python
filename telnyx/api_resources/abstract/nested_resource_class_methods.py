@@ -27,7 +27,12 @@ def nested_resource_class_methods(
             if id is not None and "phone_number" not in path:
                 parts.append(quote_plus(id, safe=util.telnyx_valid_id_parts))
             if id is not None:
-                parts.append(path.format(phone_number=quote_plus(id, safe=util.telnyx_valid_id_parts + '+')))
+                if "phone_number" in path:
+                    parts.append(path.format(phone_number=quote_plus(id, safe=util.telnyx_valid_id_parts + '+')))
+                elif "verification_id" in path:
+                    parts.append(path.format(verification_id=quote_plus(id, safe=util.telnyx_valid_id_parts)))
+                else:
+                    parts.append(path)
             else:
                 parts.append(path)
             if nested_id is not None:
