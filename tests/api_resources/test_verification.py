@@ -35,7 +35,7 @@ class TestVerification(object):
         telnyx.Verification.verification_by_id(id=verification_id, **params)
         request_mock.assert_requested(
             "post",
-            "/v2/verifications/%s/actions/verify".format(verification_id),
+            "/v2/verifications/{}/actions/verify".format(verification_id),
             params
         )
 
