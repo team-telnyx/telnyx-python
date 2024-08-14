@@ -1,7 +1,11 @@
 import unittest
 from unittest.mock import patch
 from telnyx.api_resources.verification import Verification
+from telnyx.api_resources.abstract.nested_resource_class_methods import nested_resource_class_methods
 
+@nested_resource_class_methods(
+    "verification_by_id", path="/v2/verifications/:verification_id/actions/verify", operations=["create"]
+)
 class TestVerification(unittest.TestCase):
     @patch('telnyx.api_requestor.APIRequestor.request')
     def test_verification_by_id(self, mock_request):
