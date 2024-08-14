@@ -21,10 +21,13 @@ from telnyx.api_resources.abstract import (
     "whatsapp", path="/v2/verifications/whatsapp", operations=["create"]
 )
 @nested_resource_class_methods(
-    "by_phone_number", path="by_phone_number/{phone_number}/actions/verify", operations=["create"]
+    "verify_by_phone_number", path="by_phone_number/{phone_number}/actions/verify", operations=["create"]
 )
 @nested_resource_class_methods(
-    "by_id", path="actions/verify", operations=["create"]
+    "verify_by_id", path="actions/verify", operations=["create"]
+)
+@nested_resource_class_methods(
+    "list_by_phone_number", path="", operations=["create"]
 )
 class Verification(CreateableAPIResource, ListableAPIResource):
     OBJECT_NAME = "verification"
@@ -39,7 +42,7 @@ class Verification(CreateableAPIResource, ListableAPIResource):
 
     @classmethod
     def call(cls, **params):
-        return Verification.create_call(None, **params)
+        return Verification.create_call(None, **params) 
 
     @classmethod
     def flashcall(cls, **params):
@@ -50,9 +53,13 @@ class Verification(CreateableAPIResource, ListableAPIResource):
         return Verification.create_whatsapp(None, **params)
 
     @classmethod
-    def by_phone_number(cls, phone_number, **params):
-        return Verification.create_by_phone_number(phone_number, **params)
+    def verify_by_phone_number(cls, phone_number, **params):
+        return Verification.create_verify_by_phone_number(phone_number, **params)
 
     @classmethod
-    def by_id(cls, verification_id, **params):
-        return Verification.create_by_id(verification_id, **params)
+    def verify_by_id(cls, verification_id, **params):
+        return Verification.create_verify_by_id(verification_id, **params)
+
+    @classmethod
+    def list_by_phone_number(cls, phone_number, **params):
+        return Verification.retrieve_list_by_phone_number(phone_number, **params)
