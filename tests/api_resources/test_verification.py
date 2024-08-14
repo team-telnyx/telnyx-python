@@ -21,7 +21,7 @@ class TestVerification(object):
         )
         request_mock.assert_requested(
             "post",
-            "/v2/verifications/by_phone_number/%s/actions/verify" %TEST_RESOURCE_ID,
+            "/v2/verifications/by_phone_number/%s/actions/verify" % TEST_PHONE_NUMBER,
         )
 
     @pytest.mark.skip(reason="Prism mock 500 invalid response")
