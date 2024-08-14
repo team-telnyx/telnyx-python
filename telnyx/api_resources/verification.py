@@ -56,5 +56,5 @@ class Verification(CreateableAPIResource, ListableAPIResource):
         return Verification.create_whatsapp(None, **params)
 
     @classmethod
-    def verification_by_id(clas, **params):
-        return Verification.create_verification_by_id(None, **params)
+    def verification_by_id(cls, id, **params):
+        return Verification.create_verification_by_id(id, **params)
