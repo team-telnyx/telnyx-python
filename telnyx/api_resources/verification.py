@@ -51,4 +51,4 @@ class Verification(CreateableAPIResource, ListableAPIResource):
 
     @classmethod
     def by_phone_number(cls, phone_number, **params):
-        return cls.create_by_phone_number(phone_number, **params)
+        return Verification.create_by_phone_number(phone_number, **params)
