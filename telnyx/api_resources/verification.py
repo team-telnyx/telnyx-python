@@ -32,7 +32,12 @@ class Verification(CreateableAPIResource, ListableAPIResource):
             params={"code": code, "verify_profile_id": verify_profile_id},
         )
 
-    @classmethod
+    def verify_by_id(self, verification_id, code):
+        return self.request(
+            method="post",
+            url="/v2/verifications/{}/actions/verify".format(verification_id),
+            params={"code": code},
+        )
     def sms(cls, **params):
         return Verification.create_sms(None, **params)
 
