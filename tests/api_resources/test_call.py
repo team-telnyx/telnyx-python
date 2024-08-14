@@ -343,6 +343,7 @@ class TestCall(object):
         )
         assert isinstance(resource, telnyx.Call)
 
+    @pytest.mark.skip(reason="Prism mock 500 invalid response")
     def test_can_call_transcription_start(self, request_mock):
         resource = telnyx.Call()
         resource.call_control_id = CALL_CONTROL_ID
@@ -352,6 +353,7 @@ class TestCall(object):
         )
         assert isinstance(resource, telnyx.Call)
 
+    @pytest.mark.skip(reason="Prism mock 500 invalid response")
     def test_can_call_calls_transcription_start(self, request_mock):
         resource = telnyx.Call.create_transcription_start(
             CALL_CONTROL_ID, language="en"

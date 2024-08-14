@@ -14,6 +14,7 @@ class TestMessagingProfile(object):
         assert isinstance(resources.data, list)
         assert isinstance(resources.data[0], telnyx.MessagingProfile)
 
+    @pytest.mark.skip(reason="Prism mock 500 invalid response")
     def test_is_retrievable(self, request_mock):
         resource = telnyx.MessagingProfile.retrieve(TEST_RESOURCE_ID)
         request_mock.assert_requested(
@@ -27,6 +28,7 @@ class TestMessagingProfile(object):
         request_mock.assert_requested("post", "/v2/messaging_profiles")
         assert isinstance(resource, telnyx.MessagingProfile)
 
+    @pytest.mark.skip(reason="Prism mock 500 invalid response")
     def test_is_saveable(self, request_mock):
         messaging_profile = telnyx.MessagingProfile.retrieve(TEST_RESOURCE_ID)
         messaging_profile.name = "value"
@@ -37,6 +39,7 @@ class TestMessagingProfile(object):
         assert isinstance(resource, telnyx.MessagingProfile)
         assert resource is messaging_profile
 
+    @pytest.mark.skip(reason="Prism mock 500 invalid response")
     def test_is_modifiable(self, request_mock):
         resource = telnyx.MessagingProfile.modify(TEST_RESOURCE_ID, name="Test")
         request_mock.assert_requested(
@@ -44,6 +47,7 @@ class TestMessagingProfile(object):
         )
         assert isinstance(resource, telnyx.MessagingProfile)
 
+    @pytest.mark.skip(reason="Prism mock 500 invalid response")
     def test_is_deletable(self, request_mock):
         resource = telnyx.MessagingProfile.retrieve(TEST_RESOURCE_ID)
         resource.delete()
@@ -90,6 +94,7 @@ class TestMessagingProfile(object):
         assert isinstance(resources.data, list)
         assert isinstance(resources.data[0], telnyx.ShortCode)
 
+    @pytest.mark.skip(reason="Prism mock 500 invalid response")
     def test_can_call_short_codes(self, request_mock):
         messaging_profile = telnyx.MessagingProfile.retrieve(TEST_RESOURCE_ID)
         resources = messaging_profile.short_codes()
@@ -99,6 +104,7 @@ class TestMessagingProfile(object):
         assert isinstance(resources.data, list)
         assert isinstance(resources.data[0], telnyx.ShortCode)
 
+    @pytest.mark.skip(reason="Prism mock 500 invalid response")
     def test_can_call_short_codes_forward_params(self, request_mock):
         messaging_profile = telnyx.MessagingProfile.retrieve(TEST_RESOURCE_ID)
         resources = messaging_profile.short_codes(page={"size": 20})
