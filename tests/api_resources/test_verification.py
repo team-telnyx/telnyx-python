@@ -22,7 +22,7 @@ class TestVerification(object):
         )
         request_mock.assert_requested(
             "post",
-            "/v2/verifications/by_phone_number/{}/actions/verify".format(TEST_PHONE_NUMBER),
+            "/v2/verifications/by_phone_number/%s/actions/verify" %TEST_RESOURCE_ID,
         )
 
     def test_verification_by_id(self, request_mock):
