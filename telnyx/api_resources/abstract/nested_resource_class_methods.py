@@ -63,8 +63,8 @@ def nested_resource_class_methods(
 
             elif operation == "retrieve":
 
-                def retrieve_nested_resource(cls, id, nested_id, **params):
-                    url = getattr(cls, resource_url_method)(id, nested_id)
+                def retrieve_nested_resource(cls, id, nested_id=None, **params):
+                    url = getattr(cls, resource_url_method)(id, nested_id=nested_id)
                     return getattr(cls, resource_request_method)("get", url, **params)
 
                 retrieve_method = "retrieve_%s" % resource
