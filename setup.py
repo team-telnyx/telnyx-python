@@ -51,7 +51,7 @@ setup(
         "requests >= 2.20",
         "six",
         "PyNaCl",
-        "black",
+        "black >= 23.0",
     ],
     python_requires=">=3.8",
     tests_require=[
