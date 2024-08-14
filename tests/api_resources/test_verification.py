@@ -25,7 +25,19 @@ class TestVerification(object):
             "/v2/verifications/by_phone_number/%s/actions/verify" % TEST_PHONE_NUMBER,
         )
 
-    @pytest.mark.skip(reason="Prism mock 500 invalid response")
+    def test_verification_by_id(self, request_mock):
+        verification_id = TEST_RESOURCE_ID
+        params = {
+            "code": VERIFY_CODE,
+            "verify_profile_id": VERIFY_PROFILE
+        }
+
+        telnyx.Verification.verification_by_id(id=verification_id, **params)
+        request_mock.assert_requested(
+            "post",
+            "/v2/verifications/{}/actions/verify".format(verification_id),
+            params
+        )
     def test_verify_by_sms(self, request_mock):
         telnyx.Verification.sms(
             phone_number=TEST_PHONE_NUMBER, verify_profile_id=VERIFY_PROFILE
