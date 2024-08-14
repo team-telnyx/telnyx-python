@@ -24,9 +24,9 @@ def nested_resource_class_methods(
             parts = []
             if not path.startswith("/"):
                 parts.append(cls.class_url())
-            if id is not None:
+            if id is not None and "phone_number" not in path:
                 parts.append(quote_plus(id, safe=util.telnyx_valid_id_parts))
-            parts.append(path.format(phone_number=id))
+            parts.append(path.format(phone_number=quote_plus(id, safe=util.telnyx_valid_id_parts)))
             if nested_id is not None:
                 parts.append(quote_plus(nested_id, safe=util.telnyx_valid_id_parts))
             return "/".join(parts)
