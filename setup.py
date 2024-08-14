@@ -52,6 +52,11 @@ setup(
         "six",
         "PyNaCl",
     ],
+    extras_require={
+        "dev": [
+            "black",
+        ],
+    },
     python_requires=">=3.8",
     tests_require=[
         "pytest >= 4",
