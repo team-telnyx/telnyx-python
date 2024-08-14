@@ -12,6 +12,7 @@ from telnyx.api_resources.abstract import (
 @nested_resource_class_methods("sms", path="verifications/sms", operations=["create"])
 @nested_resource_class_methods("call", path="verifications/call", operations=["create"])
 @nested_resource_class_methods("flashcall", path="verifications/flashcall", operations=["create"])
+@nested_resource_class_methods("verify", path="verifications/{verification_id}/actions/verify", operations=["create"])
 class Verify(
     CreateableAPIResource,
     DeletableAPIResource,
@@ -26,5 +27,5 @@ class Verify(
     def create_verification_call(self, **params):
         return self.create_call(**params)
 
-    def create_verification_flashcall(self, **params):
-        return self.create_flashcall(**params)
+    def verify_verification_code_by_id(self, verification_id, **params):
+        return self.create_verify(verification_id=verification_id, **params)
