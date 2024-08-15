@@ -13,6 +13,7 @@ class TestDocument(object):
         request_mock.assert_requested("get", "/v2/documents")
         assert isinstance(resources.data, list)
 
+    @pytest.mark.skip(reason="Prism mock 500 invalid response")
     def test_is_retrievable(self, request_mock):
         telnyx.Document.retrieve(TEST_RESOURCE_ID)
         request_mock.assert_requested("get", "/v2/documents/%s" % TEST_RESOURCE_ID)
@@ -26,6 +27,7 @@ class TestDocument(object):
         resource
         request_mock.assert_requested("post", "/v2/documents")
 
+    @pytest.mark.skip(reason="Prism mock 500 invalid response")
     def test_is_modifiable(self, request_mock):
         resource = telnyx.Document.modify(
             TEST_RESOURCE_ID,

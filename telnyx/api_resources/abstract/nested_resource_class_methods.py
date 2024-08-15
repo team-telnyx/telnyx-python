@@ -24,9 +24,17 @@ def nested_resource_class_methods(
             parts = []
             if not path.startswith("/"):
                 parts.append(cls.class_url())
-            if id is not None:
+            if id is not None and "phone_number" not in path:
                 parts.append(quote_plus(id, safe=util.telnyx_valid_id_parts))
-            parts.append(quote_plus(path, safe="/"))
+            if id is not None:
+                if "phone_number" in path:
+                    parts.append(path.format(phone_number=quote_plus(id, safe=util.telnyx_valid_id_parts + '+')))
+                elif "verification_id" in path:
+                    parts.append(path.format(verification_id=quote_plus(id, safe=util.telnyx_valid_id_parts)))
+                else:
+                    parts.append(path)
+            else:
+                parts.append(path)
             if nested_id is not None:
                 parts.append(quote_plus(nested_id, safe=util.telnyx_valid_id_parts))
             return "/".join(parts)
@@ -55,8 +63,8 @@ def nested_resource_class_methods(
 
             elif operation == "retrieve":
 
-                def retrieve_nested_resource(cls, id, nested_id, **params):
-                    url = getattr(cls, resource_url_method)(id, nested_id)
+                def retrieve_nested_resource(cls, id, nested_id=None, **params):
+                    url = getattr(cls, resource_url_method)(id, nested_id=nested_id)
                     return getattr(cls, resource_request_method)("get", url, **params)
 
                 retrieve_method = "retrieve_%s" % resource

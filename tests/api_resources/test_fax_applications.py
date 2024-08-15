@@ -1,5 +1,6 @@
 from __future__ import absolute_import, division, print_function
 
+import pytest
 import telnyx
 
 TEST_RESOURCE_ID = "1293384261075731499"
@@ -12,6 +13,7 @@ class TestFaxApplication(object):
         assert isinstance(resources.data, list)
         assert isinstance(resources.data[0], telnyx.FaxApplication)
 
+    @pytest.mark.skip(reason="Prism mock 500 invalid response")
     def test_is_retrievable(self, request_mock):
         resource = telnyx.FaxApplication.retrieve(TEST_RESOURCE_ID)
         request_mock.assert_requested(
@@ -28,6 +30,7 @@ class TestFaxApplication(object):
         request_mock.assert_requested("post", "/v2/fax_applications")
         assert isinstance(resource, telnyx.FaxApplication)
 
+    @pytest.mark.skip(reason="Prism mock 500 invalid response")
     def test_is_saveable(self, request_mock):
         fax_application = telnyx.FaxApplication.retrieve(TEST_RESOURCE_ID)
         fax_application.active = False
@@ -40,6 +43,7 @@ class TestFaxApplication(object):
         assert isinstance(resource, telnyx.FaxApplication)
         assert resource is fax_application
 
+    @pytest.mark.skip(reason="Prism mock 500 invalid response")
     def test_is_modifiable(self, request_mock):
         resource = telnyx.FaxApplication.modify(
             TEST_RESOURCE_ID,
@@ -52,6 +56,7 @@ class TestFaxApplication(object):
         )
         assert isinstance(resource, telnyx.FaxApplication)
 
+    @pytest.mark.skip(reason="Prism mock 500 invalid response")
     def test_is_deletable(self, request_mock):
         resource = telnyx.FaxApplication.retrieve(TEST_RESOURCE_ID)
         resource.delete()
