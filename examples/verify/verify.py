@@ -10,8 +10,8 @@ if __name__ == "__main__":
 
     verification = telnyx.Verification.retrieve(verification_id)
     print("Verification status: {}".format(verification))
-    verify_resp = verification.verify_by_phone_number(
-        code=code, phone_number=phone_number
+    verify_resp = telnyx.Verify.verify_verification_code_by_id(
+        verification_id=verification_id, code=code
     )
     if verify_resp.data.response_code == "accepted":
         print("Verify successful!")

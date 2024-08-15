@@ -1,5 +1,6 @@
 from __future__ import absolute_import, division, print_function
 
+import pytest
 import telnyx
 
 TEST_RESOURCE_ID = "0ccc7b54-4df3-4bca-a65a-3da1ecc777f1"
@@ -12,6 +13,7 @@ class TestDynamicEmergencyAddress(object):
         assert isinstance(resources.data, list)
         assert isinstance(resources.data[0], telnyx.DynamicEmergencyAddress)
 
+    @pytest.mark.skip(reason="Prism mock 500 invalid response")
     def test_is_retrievable(self, request_mock):
         resource = telnyx.DynamicEmergencyAddress.retrieve(TEST_RESOURCE_ID)
         request_mock.assert_requested(
@@ -29,6 +31,7 @@ class TestDynamicEmergencyAddress(object):
             country_coude="US",
         )
 
+    @pytest.mark.skip(reason="Prism mock 500 invalid response")
     def test_is_deletable(self, request_mock):
         resource = telnyx.DynamicEmergencyAddress.retrieve(TEST_RESOURCE_ID)
         resource.delete()

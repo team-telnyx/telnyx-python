@@ -1,5 +1,6 @@
 from __future__ import absolute_import, division, print_function
 
+import pytest
 import telnyx
 
 TEST_RESOURCE_ID = "6a09cdc3-8948-47f0-aa62-74ac943d6c58"
@@ -24,6 +25,7 @@ class TestSIMCardGroups(object):
         request_mock.assert_requested("post", "/v2/sim_card_groups")
         assert isinstance(resource, telnyx.SIMCardGroup)
 
+    @pytest.mark.skip(reason="Prism mock 500 invalid response")
     def test_is_saveable(self, request_mock):
         sim_card_group = telnyx.SIMCardGroup.retrieve(TEST_RESOURCE_ID)
         sim_card_group.name = "My Test Group"
@@ -34,6 +36,7 @@ class TestSIMCardGroups(object):
         assert isinstance(resource, telnyx.SIMCardGroup)
         assert resource is sim_card_group
 
+    @pytest.mark.skip(reason="Prism mock 500 invalid response")
     def test_is_modifiable(self, request_mock):
         resource = telnyx.SIMCardGroup.modify(TEST_RESOURCE_ID, name="Updated Name")
         request_mock.assert_requested(
