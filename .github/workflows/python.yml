@@ -18,6 +18,8 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - uses: gabrielfalcao/pyenv-action@v7
+        with:
+          command: install
       - uses: dschep/install-pipenv-action@v1
       - name: setup-telnyx-prism-mock
         run: source ./.github/scripts/before_install.sh

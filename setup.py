@@ -50,8 +50,7 @@ setup(
     install_requires=[
         "requests >= 2.20",
         "six >= 1.16.0",
-        "PyNaCl",
-        "black >= 23.0",
+        "PyNaCl"
     ],
     python_requires=">=3.8",
     tests_require=[
