@@ -101,11 +101,11 @@ def nested_resource_class_methods(
 
             elif operation == "put":
 
-                def update_nested_resource(cls, id, nested_id, **params):
+                def update_nested_resource(cls, id, nested_id=None, **params):
                     url = getattr(cls, resource_url_method)(id, nested_id)
                     return getattr(cls, resource_request_method)("put", url, **params)
 
-                update_method = "update_%s" % resource
+                update_method = "put_%s" % resource
                 setattr(cls, update_method, classmethod(update_nested_resource))
 
             else:
