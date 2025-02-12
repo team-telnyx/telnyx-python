@@ -1,4 +1,5 @@
 import pytest
+
 import telnyx
 
 TEST_RESOURCE_ID = "12ade33a-21c0-473b-b055-b3c836e1c292"
@@ -37,7 +38,9 @@ class TestVerification(object):
 
     def test_can_list_verifications(self, request_mock):
         resources = telnyx.Verification.by_phone_number(TEST_PHONE_NUMBER)
-        request_mock.assert_requested("get", "/v2/verifications/by_phone_number/%s" %TEST_PHONE_NUMBER)
+        request_mock.assert_requested(
+            "get", "/v2/verifications/by_phone_number/%s" % TEST_PHONE_NUMBER
+        )
         assert isinstance(resources.data, list)
         assert isinstance(resources.data[0], telnyx.Verification)
 

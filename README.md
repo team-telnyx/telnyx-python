@@ -46,7 +46,7 @@ into using https://www.piwheels.org/ for ARM compiled wheels.
 
 ### Requirements
 
-- Python 3.8+ (PyPy supported)
+- Python 3.9+ (PyPy supported)
 
 #### Additional Requirements for Source Install
 
