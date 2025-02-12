@@ -31,7 +31,7 @@ with open(os.path.join(here, "README.md"), encoding="utf-8") as f:
 
 setup(
     name="telnyx",
-    version="2.1.3",
+    version="2.1.5",
     description="Python bindings for the Telnyx API",
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -47,12 +47,8 @@ setup(
     keywords="telnyx telephony sip networking callcontrol messaging sms mms",
     packages=find_packages(exclude=["tests", "tests.*"]),
     zip_safe=False,
-    install_requires=[
-        "requests >= 2.20",
-        "six >= 1.16.0",
-        "PyNaCl"
-    ],
-    python_requires=">=3.8",
+    install_requires=["requests >= 2.20", "six >= 1.16.0", "PyNaCl"],
+    python_requires=">=3.9",
     tests_require=[
         "pytest >= 4",
         "pytest-mock >= 1.7",
@@ -67,7 +63,6 @@ setup(
         "Operating System :: OS Independent",
         "Programming Language :: Python",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",

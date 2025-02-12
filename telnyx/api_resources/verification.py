@@ -22,7 +22,9 @@ from telnyx.api_resources.abstract import (
     "whatsapp", path="/v2/verifications/whatsapp", operations=["create"]
 )
 @nested_resource_class_methods(
-    "verify_by_phone_number", path="by_phone_number/{phone_number}/actions/verify", operations=["create"]
+    "verify_by_phone_number",
+    path="by_phone_number/{phone_number}/actions/verify",
+    operations=["create"],
 )
 @nested_resource_class_methods(
     "verify_by_id", path="actions/verify", operations=["create"]

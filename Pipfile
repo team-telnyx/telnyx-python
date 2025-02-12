@@ -6,10 +6,10 @@ name = "pypi"
 [packages]
 telnyx = {path = ".", editable = true}
 PyNaCl = "*"
-isort = "*"
 pylint = "*"
 six = "*"
 setuptools = "*"
+isort = "*"
 
 [dev-packages]
 pytest = ">=4"

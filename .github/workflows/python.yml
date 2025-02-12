@@ -1,4 +1,4 @@
-name: Python
+name: Python CI
 on: [push]
 jobs:
   test:
@@ -10,26 +10,30 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
+        python-version: ["3.9", "3.10", "3.11", "3.12"]
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
-      - uses: gabrielfalcao/pyenv-action@v7
-        with:
-          command: install
-      - uses: dschep/install-pipenv-action@v1
-      - name: setup-telnyx-prism-mock
-        run: source ./.github/scripts/before_install.sh
-      - name: init
+
+      - name: Install Pipenv
+        run: pip install pipenv
+
+      - name: Setup Telnyx Prism Mock
+        run: bash ./.github/scripts/before_install.sh
+
+      - name: Initialize Project
         run: make init
-      - name: lint
-        run: source ./.github/scripts/lint.sh
-        env:
-          PYTHON_VERSION: ${{ matrix.python-version }}
-      - name: ci
+
+      - name: Lint Code
+        run: bash ./.github/scripts/lint.sh
+
+      - name: Run CI Tests
         run: make ci
-      - name: coveralls
+
+      - name: Upload to Coveralls
         run: make coveralls

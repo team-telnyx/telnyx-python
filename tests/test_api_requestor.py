@@ -467,7 +467,7 @@ class TestAPIRequestor(object):
 
     def test_raw_request_with_file_param(self, requestor, mock_response):
         test_file = tempfile.NamedTemporaryFile()
-        test_file.write("\u263A".encode("utf-16"))
+        test_file.write("\u263a".encode("utf-16"))
         test_file.seek(0)
         params = {"file": test_file, "purpose": "dispute_evidence"}
         supplied_headers = {"Content-Type": "multipart/form-data"}
