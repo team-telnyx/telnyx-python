@@ -24,3 +24,16 @@ class TestConnection(object):
         resource = telnyx.Connection.retrieve(TEST_RESOURCE_ID)
         request_mock.assert_requested("get", "/v2/connections/%s" % TEST_RESOURCE_ID)
         assert isinstance(resource, self.connection_types)
+        
+    def test_active_calls_instance_method(self, request_mock):
+        connection = telnyx.Connection.retrieve(TEST_RESOURCE_ID)
+        connection.active_calls()
+        request_mock.assert_requested(
+            "get", "/v2/connections/%s/active_calls" % TEST_RESOURCE_ID
+        )
+        
+    def test_active_calls_class_method(self, request_mock):
+        telnyx.Connection.list_active_calls(TEST_RESOURCE_ID)
+        request_mock.assert_requested(
+            "get", "/v2/connections/%s/active_calls" % TEST_RESOURCE_ID
+        )
