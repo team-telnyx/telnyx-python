@@ -5,10 +5,9 @@ from telnyx.api_resources.abstract import (
     nested_resource_class_methods,
 )
 
-
 @nested_resource_class_methods("active_calls", path="active_calls", operations=["list"])
 class Connection(ListableAPIResource):
     OBJECT_NAME = "connection"
-    
+
     def active_calls(self, **params):
-        return self.list_active_calls(self.id, **params)
+        return self.__class__.list_active_calls(self.id, **params)

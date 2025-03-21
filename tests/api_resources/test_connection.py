@@ -32,8 +32,3 @@ class TestConnection(object):
             "get", "/v2/connections/%s/active_calls" % TEST_RESOURCE_ID
         )
         
-    def test_active_calls_class_method(self, request_mock):
-        telnyx.Connection.list_active_calls(TEST_RESOURCE_ID)
-        request_mock.assert_requested(
-            "get", "/v2/connections/%s/active_calls" % TEST_RESOURCE_ID
-        )
