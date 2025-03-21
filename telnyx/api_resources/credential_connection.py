@@ -14,6 +14,7 @@ from telnyx.api_resources.abstract import (
     path="actions/check_registration_status",
     operations=["create"],
 )
+@nested_resource_class_methods("active_calls", path="active_calls", operations=["list"])
 class CredentialConnection(
     CreateableAPIResource,
     DeletableAPIResource,
@@ -24,3 +25,6 @@ class CredentialConnection(
 
     def check_registration_status(self, **params):
         return self.create_check_registration_status(**params)
+    
+    def active_calls(self, **params):
+        return self.__class__.list_active_calls(self.id, **params)

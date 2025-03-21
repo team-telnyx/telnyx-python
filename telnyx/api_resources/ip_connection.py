@@ -5,9 +5,11 @@ from telnyx.api_resources.abstract import (
     DeletableAPIResource,
     ListableAPIResource,
     UpdateableAPIResource,
+    nested_resource_class_methods,
 )
 
 
+@nested_resource_class_methods("active_calls", path="active_calls", operations=["list"])
 class IPConnection(
     CreateableAPIResource,
     DeletableAPIResource,
@@ -15,3 +17,6 @@ class IPConnection(
     UpdateableAPIResource,
 ):
     OBJECT_NAME = "ip_connection"
+
+    def active_calls(self, **params):
+        return self.__class__.list_active_calls(self.id, **params)

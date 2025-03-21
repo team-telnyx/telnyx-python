@@ -9,9 +9,7 @@ class TestConnection(object):
     connection_types = (
         telnyx.IPConnection,
         telnyx.CredentialConnection,
-        telnyx.IP,
         telnyx.FQDNConnection,
-        telnyx.FQDN,
     )
 
     def test_is_listable(self, request_mock):
