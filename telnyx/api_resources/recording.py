@@ -15,4 +15,4 @@ class Recording(
     OBJECT_NAME = "recording"
 
     def delete(self, **params):
-        return self.delete_delete(**params)
+        return self.delete_delete(self.id, nested_id=None, **params)
