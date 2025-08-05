@@ -27,7 +27,7 @@ from telnyx.api_resources.business_identity import BusinessIdentity
 from telnyx.api_resources.call import Call
 from telnyx.api_resources.call_control_application import CallControlApplication
 from telnyx.api_resources.call_information import CallInformation
-from telnyx.api_resources.call_recording import CallRecording
+from telnyx.api_resources.recording import Recording
 from telnyx.api_resources.campaign import Campaign
 from telnyx.api_resources.cdr_usage_report import CdrUsageReport
 from telnyx.api_resources.comment import Comment
@@ -162,6 +162,7 @@ from telnyx.api_resources.wireless_detail_record_report import (
     WirelessDetailRecordsReports,
 )
 
+
 # flake8: noqa
 
 
@@ -191,7 +192,6 @@ __all__ = [
     "Call",
     "CallControlApplication",
     "CallInformation",
-    "CallRecording",
     "Campaign",
     "CdrUsageReport",
     "Comment",
@@ -278,6 +278,7 @@ __all__ = [
     "Queue",
     "QueueCall",
     "QueueCommand",
+    "Recording",
     "RecordingsCommand",
     "Region",
     "RegisterCall",

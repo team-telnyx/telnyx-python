@@ -131,7 +131,7 @@ def load_object_classes():
         api_resources.Call.OBJECT_NAME: api_resources.Call,
         api_resources.CallControlApplication.OBJECT_NAME: api_resources.CallControlApplication,
         api_resources.CallInformation.OBJECT_NAME: api_resources.CallInformation,
-        api_resources.CallRecording.OBJECT_NAME: api_resources.CallRecording,
+        api_resources.Recording.OBJECT_NAME: api_resources.Recording,
         api_resources.Campaign.OBJECT_NAME: api_resources.Campaign,
         api_resources.CdrUsageReport.OBJECT_NAME: api_resources.CdrUsageReport,
         api_resources.Comment.OBJECT_NAME: api_resources.Comment,
