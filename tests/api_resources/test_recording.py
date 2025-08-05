@@ -142,66 +142,24 @@ class TestRecording(object):
             }
         )
 
-        result = telnyx.Recording.delete_delete(TEST_RECORDING_ID)
+        # The nested_resource_class_methods decorator requires both id and nested_id
+        result = telnyx.Recording.delete_delete(TEST_RECORDING_ID, nested_id=None)
         request_mock.assert_requested(
             "delete", "/v2/recordings/%s/actions/delete" % TEST_RECORDING_ID
         )
         assert isinstance(result, telnyx.Recording)
 
-    def test_is_creatable(self, request_mock):
-        """Test that recordings can be created (start recording)"""
-        request_mock.stub_request(
-            "post",
-            "/v2/recordings",
-            {
-                "data": {
-                    "record_type": "recording",
-                    "id": TEST_RECORDING_ID,
-                    "call_control_id": "v3:MjM0ODE4OC01YzUxLTQ4N2YtOGM3MC0yNzQ2OWFhNzg2YjU",
-                    "status": "recording",
-                    "channels": "single",
-                    "source": "call",
-                    "created_at": "2018-02-02T22:25:27.521992Z"
-                }
-            }
-        )
+    def test_does_not_have_create_method(self):
+        """Test that create method is not available (not supported by API)"""
+        assert not hasattr(telnyx.Recording, 'create'), "Recording should not have create method"
 
-        recording = telnyx.Recording.create(
-            call_control_id="v3:MjM0ODE4OC01YzUxLTQ4N2YtOGM3MC0yNzQ2OWFhNzg2YjU",
-            channels="single",
-            format="mp3"
-        )
-        
-        request_mock.assert_requested("post", "/v2/recordings")
-        assert isinstance(recording, telnyx.Recording)
-        assert recording.id == TEST_RECORDING_ID
-        assert recording.status == "recording"
-
-    def test_is_updateable(self, request_mock):
-        """Test that recordings can be updated"""
+    def test_does_not_have_save_method(self):
+        """Test that save method is not available (not supported by API)"""
         recording = telnyx.Recording.construct_from(
-            {
-                "id": TEST_RECORDING_ID,
-                "record_type": "recording",
-                "status": "paused"
-            },
+            {"id": TEST_RECORDING_ID, "record_type": "recording"},
             None
         )
-
-        request_mock.stub_request(
-            "patch",
-            "/v2/recordings/%s" % TEST_RECORDING_ID,
-            {
-                "data": {
-                    "record_type": "recording",
-                    "id": TEST_RECORDING_ID,
-                    "status": "recording"
-                }
-            }
-        )
-
-        recording.save()
-        request_mock.assert_requested("patch", "/v2/recordings/%s" % TEST_RECORDING_ID)
+        assert not hasattr(recording, 'save'), "Recording should not have save method"
 
     def test_class_url(self):
         """Test that the class generates the correct URL"""
