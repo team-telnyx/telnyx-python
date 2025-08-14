@@ -1,297 +1,399 @@
-# Telnyx Python Library
+# Telnyx Python API library
 
-[![image](https://img.shields.io/pypi/v/telnyx.svg)][pypi]
-[![image](https://img.shields.io/pypi/l/telnyx.svg)][pypi]
-[![image](https://img.shields.io/pypi/pyversions/telnyx.svg)][pypi]
-[![Build Status](https://github.com/team-telnyx/telnyx-python/workflows/Python/badge.svg)][Actions]
-[![Coverage Status](https://coveralls.io/repos/github/team-telnyx/telnyx-python/badge.svg?branch=master)][coveralls]
-[![Join Slack](https://img.shields.io/badge/join-slack-infomational)](https://joinslack.telnyx.com/)
+<!-- prettier-ignore -->
+[![PyPI version](https://img.shields.io/pypi/v/telnyx.svg?label=pypi%20(stable))](https://pypi.org/project/telnyx/)
 
-[pypi]: https://pypi.org/project/telnyx/
-[Actions]: https://github.com/team-telnyx/telnyx-python/actions
-[coveralls]: https://coveralls.io/github/team-telnyx/telnyx-python?branch=master
+The Telnyx Python library provides convenient access to the Telnyx REST API from any Python 3.8+
+application. The library includes type definitions for all request params and response fields,
+and offers both synchronous and asynchronous clients powered by [httpx](https://github.com/encode/httpx).
 
-The Telnyx Python library provides convenient access to the Telnyx API from
-applications written in the Python language. It includes a pre-defined set of
-classes for API resources that initialize themselves dynamically from API
-responses which makes it compatible with a wide range of versions of the Telnyx
-API.
+It is generated with [Stainless](https://www.stainless.com/).
 
 ## Documentation
 
-See the [API Reference](https://developers.telnyx.com/docs/api/v2/overview) and the [Setup Guides](https://developers.telnyx.com/docs/v2/development/dev-env-setup).
+The full API of this library can be found in [api.md](api.md).
 
 ## Installation
 
-You don't need this source code unless you want to modify the package. If you just
-want to use the package, just run:
+```sh
+# install from this staging repo
+pip install git+ssh://git@github.com/stainless-sdks/telnyx-python.git
+```
 
-    pip install --upgrade telnyx
-
-Install from source with:
-
-    python setup.py install
-
-### Non x86/x86_64 Processors
-
-The `telnyx` package is distributed as a wheel (pre-compiled package) for easy
-installation. The wheel is built only for x86/x86_64 processors. When
-installing the package on a different architecture, like ARM, the `pip`
-installer will fall back to installing from source. As a result, you will
-need to ensure you have the additional dependencies installed. This will
-affect you if you're using a Raspberry Pi, for example.
-
-For ARM specifically, as an alternative to a source install, you could look
-into using https://www.piwheels.org/ for ARM compiled wheels.
-
-### Requirements
-
-- Python 3.9+ (PyPy supported)
-
-#### Additional Requirements for Source Install
-
-- build-essentials (gcc, make)
-- python-dev
-- libffi-dev
-
-_These packages are listed as they are named on Ubuntu._
+> [!NOTE]
+> Once this package is [published to PyPI](https://www.stainless.com/docs/guides/publish), this will become: `pip install telnyx`
 
 ## Usage
 
-The library needs to be configured with your account's API Key which is
-available in your [Telnyx Dashboard][api-keys]. Set `telnyx.api_key` to its
-value:
+The full API of this library can be found in [api.md](api.md).
+
+```python
+import os
+from telnyx import Telnyx
+
+client = Telnyx(
+    api_key=os.environ.get("TELNYX_API_KEY"),  # This is the default and can be omitted
+)
+
+response = client.list_buckets()
+print(response.buckets)
+```
+
+While you can provide an `api_key` keyword argument,
+we recommend using [python-dotenv](https://pypi.org/project/python-dotenv/)
+to add `TELNYX_API_KEY="My API Key"` to your `.env` file
+so that your API Key is not stored in source control.
+
+## Async usage
+
+Simply import `AsyncTelnyx` instead of `Telnyx` and use `await` with each API call:
+
+```python
+import os
+import asyncio
+from telnyx import AsyncTelnyx
+
+client = AsyncTelnyx(
+    api_key=os.environ.get("TELNYX_API_KEY"),  # This is the default and can be omitted
+)
+
+
+async def main() -> None:
+    response = await client.list_buckets()
+    print(response.buckets)
+
+
+asyncio.run(main())
+```
+
+Functionality between the synchronous and asynchronous clients is otherwise identical.
+
+### With aiohttp
+
+By default, the async client uses `httpx` for HTTP requests. However, for improved concurrency performance you may also use `aiohttp` as the HTTP backend.
+
+You can enable this by installing `aiohttp`:
+
+```sh
+# install from this staging repo
+pip install 'telnyx[aiohttp] @ git+ssh://git@github.com/stainless-sdks/telnyx-python.git'
+```
+
+Then you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:
+
+```python
+import asyncio
+from telnyx import DefaultAioHttpClient
+from telnyx import AsyncTelnyx
+
+
+async def main() -> None:
+    async with AsyncTelnyx(
+        api_key="My API Key",
+        http_client=DefaultAioHttpClient(),
+    ) as client:
+        response = await client.list_buckets()
+        print(response.buckets)
+
+
+asyncio.run(main())
+```
+
+## Using types
+
+Nested request parameters are [TypedDicts](https://docs.python.org/3/library/typing.html#typing.TypedDict). Responses are [Pydantic models](https://docs.pydantic.dev) which also provide helper methods for things like:
+
+- Serializing back into JSON, `model.to_json()`
+- Converting to a dictionary, `model.to_dict()`
+
+Typed requests and responses provide autocomplete and documentation within your editor. If you would like to see type errors in VS Code to help catch bugs earlier, set `python.analysis.typeCheckingMode` to `basic`.
+
+## Nested params
+
+Nested parameters are dictionaries, typed using `TypedDict`, for example:
+
+```python
+from telnyx import Telnyx
+
+client = Telnyx()
+
+access_ip_addresses = client.access_ip_address.list(
+    filter={},
+)
+print(access_ip_addresses.filter)
+```
+
+## File uploads
+
+Request parameters that correspond to file uploads can be passed as `bytes`, or a [`PathLike`](https://docs.python.org/3/library/os.html#os.PathLike) instance or a tuple of `(filename, contents, media type)`.
+
+```python
+from pathlib import Path
+from telnyx import Telnyx
+
+client = Telnyx()
+
+client.ai.audio.transcribe(
+    model="distil-whisper/distil-large-v2",
+    file=Path("/path/to/file"),
+)
+```
+
+The async client uses the exact same interface. If you pass a [`PathLike`](https://docs.python.org/3/library/os.html#os.PathLike) instance, the file contents will be read asynchronously automatically.
+
+## Handling errors
+
+When the library is unable to connect to the API (for example, due to network connection problems or a timeout), a subclass of `telnyx.APIConnectionError` is raised.
+
+When the API returns a non-success status code (that is, 4xx or 5xx
+response), a subclass of `telnyx.APIStatusError` is raised, containing `status_code` and `response` properties.
+
+All errors inherit from `telnyx.APIError`.
 
 ```python
 import telnyx
-telnyx.api_key = "KEY01234_yoursecretkey"
+from telnyx import Telnyx
 
-# Retrieve single Messaging Profile
-telnyx.MessagingProfile.retrieve("123")
+client = Telnyx()
 
-# List Messaging Profiles
-profiles = telnyx.MessagingProfile.list()
-
-# Retrieve next page of list results
-profiles.next_page()
-
-# Loop over all page results
-for page in profiles.auto_paging_iter():
-    print(page)
+try:
+    client.list_buckets()
+except telnyx.APIConnectionError as e:
+    print("The server could not be reached")
+    print(e.__cause__)  # an underlying Exception, likely raised within httpx.
+except telnyx.RateLimitError as e:
+    print("A 429 status code was received; we should back off a bit.")
+except telnyx.APIStatusError as e:
+    print("Another non-200-range status code was received")
+    print(e.status_code)
+    print(e.response)
 ```
 
-You can read more about our API Keys [here](https://developers.telnyx.com/docs/v2/development/authentication).
+Error codes are as follows:
 
-### Per-Request Configuration
+| Status Code | Error Type                 |
+| ----------- | -------------------------- |
+| 400         | `BadRequestError`          |
+| 401         | `AuthenticationError`      |
+| 403         | `PermissionDeniedError`    |
+| 404         | `NotFoundError`            |
+| 422         | `UnprocessableEntityError` |
+| 429         | `RateLimitError`           |
+| >=500       | `InternalServerError`      |
+| N/A         | `APIConnectionError`       |
 
-For apps that need to use multiple keys during the lifetime of a process,
-it's also possible to set a per-request key and/or account:
+### Retries
+
+Certain errors are automatically retried 2 times by default, with a short exponential backoff.
+Connection errors (for example, due to a network connectivity problem), 408 Request Timeout, 409 Conflict,
+429 Rate Limit, and >=500 Internal errors are all retried by default.
+
+You can use the `max_retries` option to configure or disable retry settings:
 
 ```python
-import telnyx
+from telnyx import Telnyx
 
-# list messaging profiles
-telnyx.MessagingProfile.list(
-    api_key="super-secret...",
+# Configure the default for all requests:
+client = Telnyx(
+    # default is 2
+    max_retries=0,
 )
 
-# retrieve single messaging profile
-telnyx.MessagingProfile.retrieve(
-    "123",
-    api_key="other-secret...",
+# Or, configure per-request:
+client.with_options(max_retries=5).list_buckets()
+```
+
+### Timeouts
+
+By default requests time out after 1 minute. You can configure this with a `timeout` option,
+which accepts a float or an [`httpx.Timeout`](https://www.python-httpx.org/advanced/timeouts/#fine-tuning-the-configuration) object:
+
+```python
+from telnyx import Telnyx
+
+# Configure the default for all requests:
+client = Telnyx(
+    # 20 seconds (default is 1 minute)
+    timeout=20.0,
 )
-```
 
-### Configuring an HTTP Client
-
-The library can be configured to use `urlfetch`, `requests`, `pycurl`, or
-`urllib2` with `telnyx.default_http_client`:
-
-```python
-client = telnyx.http_client.UrlFetchClient()
-client = telnyx.http_client.RequestsClient()
-client = telnyx.http_client.PycurlClient()
-client = telnyx.http_client.Urllib2Client()
-telnyx.default_http_client = client
-```
-
-Without a configured client, by default the library will attempt to load
-libraries in the order above (i.e. `urlfetch` is preferred with `urllib2` used
-as a last resort). We usually recommend that people use `requests`.
-
-### Configuring a Proxy
-
-A proxy can be configured with `telnyx.proxy`:
-
-```python
-telnyx.proxy = "https://user:pass@example.com:1234"
-```
-
-### Configuring Automatic Retries
-
-Number of automatic retries on requests that fail due to an intermittent
-network problem can be configured:
-
-```python
-telnyx.max_network_retries = 2
-```
-
-### Reserved word keyword arguments
-
-The Telnyx API includes `from` as an attribute that can be set on messages.
-`from` is also a reserved word in Python. If you would like to use keyword
-arguments where an argument is a reserved word you can add the suffix `_` e.g.
-
-```
-telnyx.Message.create(
-    to="+18665550001",
-    from_="+18445550001",
-    text="Foo"
+# More granular control:
+client = Telnyx(
+    timeout=httpx.Timeout(60.0, read=5.0, write=10.0, connect=2.0),
 )
+
+# Override per-request:
+client.with_options(timeout=5.0).list_buckets()
 ```
 
-The argument will be automatically rewritten to `from` in the keyword arguments dict.
+On timeout, an `APITimeoutError` is thrown.
 
-> Pro Tip: You can alternatively unpack a dictionary like so:
->
-> ```python
-> message = {
->     "from": "+18445550001",
->     "to": "+18665550001",
->     "text": "Foo",
-> }
-> telnyx.Message.create(**message)
-> ```
+Note that requests that time out are [retried twice by default](#retries).
+
+## Advanced
 
 ### Logging
 
-The library can be configured to emit logging that will give you better insight
-into what it's doing. The `info` logging level is usually most appropriate for
-production use, but `debug` is also available for more verbosity.
+We use the standard library [`logging`](https://docs.python.org/3/library/logging.html) module.
 
-There are a few options for enabling it:
+You can enable logging by setting the environment variable `TELNYX_LOG` to `info`.
 
-1. Set the environment variable `TELNYX_LOG` to the value `debug` or `info`
-
-   ```
-   $ export TELNYX_LOG=debug
-   ```
-
-2. Set `telnyx.log`:
-
-   ```py
-   import telnyx
-   telnyx.log = 'debug'
-   ```
-
-3. Enable it through Python's logging module:
-   ```py
-   import logging
-   logging.basicConfig()
-   logging.getLogger('telnyx').setLevel(logging.DEBUG)
-   ```
-
-### Writing a Plugin
-
-If you're writing a plugin that uses the library, we'd appreciate it if you
-identified using `telnyx.set_app_info()`:
-
-```py
-telnyx.set_app_info("MyAwesomePlugin", version="1.2.34", url="https://myawesomeplugin.info")
+```shell
+$ export TELNYX_LOG=info
 ```
 
-This information is passed along when the library makes calls to the Telnyx
-API.
+Or to `debug` for more verbose logging.
 
-## Development
+### How to tell whether `None` means `null` or missing
 
-The test suite depends on [telnyx-mock], so make sure to fetch and run it from a
-background terminal ([telnyx-mock's README][telnyx-mock] also contains
-instructions for installing via Homebrew and other methods):
+In an API response, a field may be explicitly `null`, or missing entirely; in either case, its value is `None` in this library. You can differentiate the two cases with `.model_fields_set`:
 
-    go get -u github.com/team-telnyx/telnyx-mock
-    telnyx-mock
+```py
+if response.my_field is None:
+  if 'my_field' not in response.model_fields_set:
+    print('Got json like {}, without a "my_field" key present at all.')
+  else:
+    print('Got json like {"my_field": null}.')
+```
 
-Install [pipenv][pipenv], then install all dependencies for the project:
+### Accessing raw response data (e.g. headers)
 
-    pipenv install --dev
+The "raw" Response object can be accessed by prefixing `.with_raw_response.` to any HTTP method call, e.g.,
 
-Run all tests on all supported Python versions:
+```py
+from telnyx import Telnyx
 
-    make test
+client = Telnyx()
+response = client.with_raw_response.list_buckets()
+print(response.headers.get('X-My-Header'))
 
-Run all tests for a specific Python version (modify `-e` according to your Python target):
+client = response.parse()  # get the object that `list_buckets()` would have returned
+print(client.buckets)
+```
 
-    pipenv run tox -e py38
+These methods return an [`APIResponse`](https://github.com/stainless-sdks/telnyx-python/tree/main/src/telnyx/_response.py) object.
 
-Run all tests in a single file:
+The async client returns an [`AsyncAPIResponse`](https://github.com/stainless-sdks/telnyx-python/tree/main/src/telnyx/_response.py) with the same structure, the only difference being `await`able methods for reading the response content.
 
-    pipenv run tox -e py38 -- tests/api_resources/abstract/test_updateable_api_resource.py
+#### `.with_streaming_response`
 
-Run a single test suite:
+The above interface eagerly reads the full response body when you make the request, which may not always be what you want.
 
-    pipenv run tox -e py38 -- tests/api_resources/abstract/test_updateable_api_resource.py::TestUpdateableAPIResource
+To stream the response body, use `.with_streaming_response` instead, which requires a context manager and only reads the response body once you call `.read()`, `.text()`, `.json()`, `.iter_bytes()`, `.iter_text()`, `.iter_lines()` or `.parse()`. In the async client, these are async methods.
 
-Run a single test:
+```python
+with client.with_streaming_response.list_buckets() as response:
+    print(response.headers.get("X-My-Header"))
 
-    pipenv run tox -e py38 -- tests/api_resources/abstract/test_updateable_api_resource.py::TestUpdateableAPIResource::test_save
+    for line in response.iter_lines():
+        print(line)
+```
 
-Run the linter with:
+The context manager is required so that the response will reliably be closed.
 
-    make lint
+### Making custom/undocumented requests
 
-The library uses [Black][black] for code formatting. Code must be formatted
-with Black before PRs are submitted, otherwise CI will fail. Run the formatter
-with:
+This library is typed for convenient access to the documented API.
 
-    make fmt
+If you need to access undocumented endpoints, params, or response properties, the library can still be used.
 
-### Adding a new endpoint
+#### Undocumented endpoints
 
-1. Define a class for the object that the endpoint interacts with under
-   `telnyx/api_resources/`. The path name singularized should typically match
-   the record type of the object returned e.g. `/v2/available_phone_numbers`
-   returns a list of objects with the record_type `available_phone_number`.
-   Inherit from the classes that define the behavior available on the endpoint,one or more of `CreateableAPIResource`, `DeletableAPIResource`,
-   `ListableAPIResource`, `UpdateableAPIResource`.
+To make requests to undocumented endpoints, you can make requests using `client.get`, `client.post`, and other
+http verbs. Options on the client will be respected (such as retries) when making this request.
 
-2. Import your class in `telnyx/api_resources/__init__.py`.
+```py
+import httpx
 
-3. Add your new class to the `OBJECT_CLASSES` block in `telnyx/util.py`.
+response = client.post(
+    "/foo",
+    cast_to=httpx.Response,
+    body={"my_param": True},
+)
 
-4. Add tests for your new class under `tests/api_resources/`.
+print(response.headers.get("x-foo"))
+```
 
-[api-keys]: https://portal.telnyx.com/#/app/auth/v2
-[black]: https://github.com/ambv/black
-[pipenv]: https://github.com/pypa/pipenv
-[telnyx-mock]: https://github.com/team-telnyx/telnyx-mock
+#### Undocumented request params
 
-## Releasing
+If you want to explicitly send an extra param, you can do so with the `extra_query`, `extra_body`, and `extra_headers` request
+options.
 
-1. Update version in
-   - `setup.py` (in the `setup()` call, the `version` kwarg)
-   - `telnyx/__init__.py` (the `__version__` string)
-2. Create new branch, add changes, commit, and push
-3. Ensure commit passes tests in [Travis][travis-telnyx-python]
-4. Tag that commit with `git tag -a v{VERSION} -m "Release v{VERSION}"`, and push the tag `git push --follow-tags`
-5. Ensure checked out copy is entirely clean (best to create a new environment...)
-6. `make dists`
-7. _If you haven't done it before_, download the upload API keys from LastPass (search for "pypi") and put the contents between "PYPIRC FILE" tags into `~/.pypirc-telnyx`.
-8. `make testupload`, check that it looks OK on PyPI and that it's installable via `pip`.
-9. `make liveupload`, repeat checks for live version.
-10. Ta-da.
+#### Undocumented response properties
 
-[travis-telnyx-python]: https://travis-ci.org/team-telnyx/telnyx-python
+To access undocumented response properties, you can access the extra fields like `response.unknown_prop`. You
+can also get all the extra fields on the Pydantic model as a dict with
+[`response.model_extra`](https://docs.pydantic.dev/latest/api/base_model/#pydantic.BaseModel.model_extra).
 
-## Acknowledgments
+### Configuring the HTTP client
 
-The contributors and maintainers of Telnyx Python would like to extend their
-deep gratitude to the authors of [Stripe Python][stripe-python], upon which
-this project is based. Thank you for developing such elegant, usable, and
-extensible code and for sharing it with the community.
+You can directly override the [httpx client](https://www.python-httpx.org/api/#client) to customize it for your use case, including:
 
-[stripe-python]: https://github.com/stripe/stripe-python
+- Support for [proxies](https://www.python-httpx.org/advanced/proxies/)
+- Custom [transports](https://www.python-httpx.org/advanced/transports/)
+- Additional [advanced](https://www.python-httpx.org/advanced/clients/) functionality
 
-<!--
-# vim: set tw=79:
--->
+```python
+import httpx
+from telnyx import Telnyx, DefaultHttpxClient
+
+client = Telnyx(
+    # Or use the `TELNYX_BASE_URL` env var
+    base_url="http://my.test.server.example.com:8083",
+    http_client=DefaultHttpxClient(
+        proxy="http://my.test.proxy.example.com",
+        transport=httpx.HTTPTransport(local_address="0.0.0.0"),
+    ),
+)
+```
+
+You can also customize the client on a per-request basis by using `with_options()`:
+
+```python
+client.with_options(http_client=DefaultHttpxClient(...))
+```
+
+### Managing HTTP resources
+
+By default the library closes underlying HTTP connections whenever the client is [garbage collected](https://docs.python.org/3/reference/datamodel.html#object.__del__). You can manually close the client using the `.close()` method if desired, or with a context manager that closes when exiting.
+
+```py
+from telnyx import Telnyx
+
+with Telnyx() as client:
+  # make requests here
+  ...
+
+# HTTP client is now closed
+```
+
+## Versioning
+
+This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions, though certain backwards-incompatible changes may be released as minor versions:
+
+1. Changes that only affect static types, without breaking runtime behavior.
+2. Changes to library internals which are technically public but not intended or documented for external use. _(Please open a GitHub issue to let us know if you are relying on such internals.)_
+3. Changes that we do not expect to impact the vast majority of users in practice.
+
+We take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.
+
+We are keen for your feedback; please open an [issue](https://www.github.com/stainless-sdks/telnyx-python/issues) with questions, bugs, or suggestions.
+
+### Determining the installed version
+
+If you've upgraded to the latest version but aren't seeing any new features you were expecting then your python environment is likely still using an older version.
+
+You can determine the version that is being used at runtime with:
+
+```py
+import telnyx
+print(telnyx.__version__)
+```
+
+## Requirements
+
+Python 3.8 or higher.
+
+## Contributing
+
+See [the contributing documentation](./CONTRIBUTING.md).

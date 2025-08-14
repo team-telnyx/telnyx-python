@@ -1,0 +1,12 @@
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+from __future__ import annotations
+
+from typing_extensions import Required, TypedDict
+
+__all__ = ["SubNumberOrderUpdateRequirementGroupParams"]
+
+
+class SubNumberOrderUpdateRequirementGroupParams(TypedDict, total=False):
+    requirement_group_id: Required[str]
+    """The ID of the requirement group to associate"""

@@ -1,2 +1,0 @@
-include .coveragerc .flake8 CHANGELOG.md LICENSE README.md VERSION pytest.ini tox.ini
-recursive-include tests *.py
