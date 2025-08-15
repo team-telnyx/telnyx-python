@@ -3,26 +3,10 @@
 from typing import Optional
 
 from .._models import BaseModel
+from .media_resource import MediaResource
 
-__all__ = ["MediaRetrieveResponse", "Data"]
-
-
-class Data(BaseModel):
-    content_type: Optional[str] = None
-    """Content type of the file"""
-
-    created_at: Optional[str] = None
-    """ISO 8601 formatted date of when the media resource was created"""
-
-    expires_at: Optional[str] = None
-    """ISO 8601 formatted date of when the media resource will expire and be deleted."""
-
-    media_name: Optional[str] = None
-    """Uniquely identifies a media resource."""
-
-    updated_at: Optional[str] = None
-    """ISO 8601 formatted date of when the media resource was last updated"""
+__all__ = ["MediaRetrieveResponse"]
 
 
 class MediaRetrieveResponse(BaseModel):
-    data: Optional[Data] = None
+    data: Optional[MediaResource] = None

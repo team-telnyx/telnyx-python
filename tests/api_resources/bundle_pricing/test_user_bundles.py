@@ -9,7 +9,6 @@ import pytest
 
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
-from telnyx._utils import parse_datetime
 from telnyx.types.bundle_pricing import (
     UserBundleListResponse,
     UserBundleCreateResponse,
@@ -130,18 +129,8 @@ class TestUserBundles:
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         user_bundle = client.bundle_pricing.user_bundles.list(
             filter={
-                "created_at": {
-                    "gt": parse_datetime("2020-01-01T00:00:00Z"),
-                    "lt": parse_datetime("2020-01-01T00:00:00Z"),
-                },
-                "phone_number": {
-                    "eq": "+12441239999",
-                    "in": ["+12441239999"],
-                },
-                "status": {
-                    "eq": "pending",
-                    "in": ["pending"],
-                },
+                "country_iso": ["US"],
+                "resource": ["+15617819942"],
             },
             page={
                 "number": 1,
@@ -286,18 +275,8 @@ class TestUserBundles:
     def test_method_list_unused_with_all_params(self, client: Telnyx) -> None:
         user_bundle = client.bundle_pricing.user_bundles.list_unused(
             filter={
-                "created_at": {
-                    "gt": parse_datetime("2020-01-01T00:00:00Z"),
-                    "lt": parse_datetime("2020-01-01T00:00:00Z"),
-                },
-                "phone_number": {
-                    "eq": "+12441239999",
-                    "in": ["+12441239999"],
-                },
-                "status": {
-                    "eq": "pending",
-                    "in": ["pending"],
-                },
+                "country_iso": ["US"],
+                "resource": ["+15617819942"],
             },
             authorization_bearer="authorization_bearer",
         )
@@ -436,18 +415,8 @@ class TestAsyncUserBundles:
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         user_bundle = await async_client.bundle_pricing.user_bundles.list(
             filter={
-                "created_at": {
-                    "gt": parse_datetime("2020-01-01T00:00:00Z"),
-                    "lt": parse_datetime("2020-01-01T00:00:00Z"),
-                },
-                "phone_number": {
-                    "eq": "+12441239999",
-                    "in": ["+12441239999"],
-                },
-                "status": {
-                    "eq": "pending",
-                    "in": ["pending"],
-                },
+                "country_iso": ["US"],
+                "resource": ["+15617819942"],
             },
             page={
                 "number": 1,
@@ -592,18 +561,8 @@ class TestAsyncUserBundles:
     async def test_method_list_unused_with_all_params(self, async_client: AsyncTelnyx) -> None:
         user_bundle = await async_client.bundle_pricing.user_bundles.list_unused(
             filter={
-                "created_at": {
-                    "gt": parse_datetime("2020-01-01T00:00:00Z"),
-                    "lt": parse_datetime("2020-01-01T00:00:00Z"),
-                },
-                "phone_number": {
-                    "eq": "+12441239999",
-                    "in": ["+12441239999"],
-                },
-                "status": {
-                    "eq": "pending",
-                    "in": ["pending"],
-                },
+                "country_iso": ["US"],
+                "resource": ["+15617819942"],
             },
             authorization_bearer="authorization_bearer",
         )

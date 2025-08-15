@@ -5,60 +5,9 @@ from typing_extensions import Literal
 
 from .._models import BaseModel
 from .pagination_meta import PaginationMeta
+from .shared.doc_reqs_requirement_type import DocReqsRequirementType
 
-__all__ = ["RequirementListResponse", "Data", "DataRequirementsType", "DataRequirementsTypeAcceptanceCriteria"]
-
-
-class DataRequirementsTypeAcceptanceCriteria(BaseModel):
-    acceptable_characters: Optional[str] = None
-    """Specifies the allowed characters as a string"""
-
-    acceptable_values: Optional[List[str]] = None
-    """Specifies the list of strictly possible values for the requirement.
-
-    Ignored when empty
-    """
-
-    locality_limit: Optional[str] = None
-    """Specifies geography-based acceptance criteria"""
-
-    max_length: Optional[int] = None
-    """Maximum length allowed for the value"""
-
-    min_length: Optional[int] = None
-    """Minimum length allowed for the value"""
-
-    time_limit: Optional[str] = None
-    """Specifies time-based acceptance criteria"""
-
-
-class DataRequirementsType(BaseModel):
-    id: Optional[str] = None
-    """Identifies the associated document"""
-
-    acceptance_criteria: Optional[DataRequirementsTypeAcceptanceCriteria] = None
-    """Specifies objective criteria for acceptance"""
-
-    created_at: Optional[str] = None
-    """ISO 8601 formatted date-time indicating when the resource was created."""
-
-    description: Optional[str] = None
-    """Describes the requirement type"""
-
-    example: Optional[str] = None
-    """Provides one or more examples of acceptable documents"""
-
-    name: Optional[str] = None
-    """A short descriptive name for this requirement_type"""
-
-    record_type: Optional[str] = None
-    """Identifies the type of the resource"""
-
-    type: Optional[Literal["document", "address", "textual"]] = None
-    """Defines the type of this requirement type"""
-
-    updated_at: Optional[str] = None
-    """ISO 8601 formatted date-time indicating when the resource was last updated."""
+__all__ = ["RequirementListResponse", "Data"]
 
 
 class Data(BaseModel):
@@ -91,7 +40,7 @@ class Data(BaseModel):
     record_type: Optional[str] = None
     """Identifies the type of the resource."""
 
-    requirements_types: Optional[List[DataRequirementsType]] = None
+    requirements_types: Optional[List[DocReqsRequirementType]] = None
     """Lists the requirement types necessary to fulfill this requirement"""
 
     updated_at: Optional[str] = None

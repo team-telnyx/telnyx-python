@@ -32,7 +32,7 @@ class UserAddressesResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#accessing-raw-response-data-eg-headers
         """
         return UserAddressesResourceWithRawResponse(self)
 
@@ -41,7 +41,7 @@ class UserAddressesResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#with_streaming_response
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
         return UserAddressesResourceWithStreamingResponse(self)
 
@@ -73,39 +73,36 @@ class UserAddressesResource(SyncAPIResource):
         Creates a user address.
 
         Args:
-          business_name: The business name associated with the address. An address must have either a
-              first last name or a business name.
+          business_name: The business name associated with the user address.
 
-          country_code: The two-character (ISO 3166-1 alpha-2) country code of the address.
+          country_code: The two-character (ISO 3166-1 alpha-2) country code of the user address.
 
-          first_name: The first name associated with the address. An address must have either a first
-              last name or a business name.
+          first_name: The first name associated with the user address.
 
-          last_name: The last name associated with the address. An address must have either a first
-              last name or a business name.
+          last_name: The last name associated with the user address.
 
-          locality: The locality of the address. For US addresses, this corresponds to the city of
-              the address.
+          locality: The locality of the user address. For US addresses, this corresponds to the city
+              of the address.
 
-          street_address: The primary street address information about the address.
+          street_address: The primary street address information about the user address.
 
-          administrative_area: The locality of the address. For US addresses, this corresponds to the state of
-              the address.
+          administrative_area: The locality of the user address. For US addresses, this corresponds to the
+              state of the address.
 
-          borough: The borough of the address. This field is not used for addresses in the US but
-              is used for some international addresses.
+          borough: The borough of the user address. This field is not used for addresses in the US
+              but is used for some international addresses.
 
           customer_reference: A customer reference string for customer look ups.
 
-          extended_address: Additional street address information about the address such as, but not limited
-              to, unit number or apartment number.
+          extended_address: Additional street address information about the user address such as, but not
+              limited to, unit number or apartment number.
 
-          neighborhood: The neighborhood of the address. This field is not used for addresses in the US
-              but is used for some international addresses.
+          neighborhood: The neighborhood of the user address. This field is not used for addresses in
+              the US but is used for some international addresses.
 
-          phone_number: The phone number associated with the address.
+          phone_number: The phone number associated with the user address.
 
-          postal_code: The postal code of the address.
+          postal_code: The postal code of the user address.
 
           skip_address_verification: An optional boolean value specifying if verification of the address should be
               skipped or not. UserAddresses are generally used for shipping addresses, and
@@ -207,8 +204,8 @@ class UserAddressesResource(SyncAPIResource):
         Args:
           filter:
               Consolidated filter parameter (deepObject style). Originally:
-              filter[phone_number][eq], filter[phone_number][in][], filter[status][eq],
-              filter[status][in][], filter[created_at][lt], filter[created_at][gt]
+              filter[customer_reference][eq], filter[customer_reference][contains],
+              filter[street_address][contains]
 
           page: Consolidated page parameter (deepObject style). Originally: page[size],
               page[number]
@@ -263,7 +260,7 @@ class AsyncUserAddressesResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#accessing-raw-response-data-eg-headers
         """
         return AsyncUserAddressesResourceWithRawResponse(self)
 
@@ -272,7 +269,7 @@ class AsyncUserAddressesResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#with_streaming_response
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
         return AsyncUserAddressesResourceWithStreamingResponse(self)
 
@@ -304,39 +301,36 @@ class AsyncUserAddressesResource(AsyncAPIResource):
         Creates a user address.
 
         Args:
-          business_name: The business name associated with the address. An address must have either a
-              first last name or a business name.
+          business_name: The business name associated with the user address.
 
-          country_code: The two-character (ISO 3166-1 alpha-2) country code of the address.
+          country_code: The two-character (ISO 3166-1 alpha-2) country code of the user address.
 
-          first_name: The first name associated with the address. An address must have either a first
-              last name or a business name.
+          first_name: The first name associated with the user address.
 
-          last_name: The last name associated with the address. An address must have either a first
-              last name or a business name.
+          last_name: The last name associated with the user address.
 
-          locality: The locality of the address. For US addresses, this corresponds to the city of
-              the address.
+          locality: The locality of the user address. For US addresses, this corresponds to the city
+              of the address.
 
-          street_address: The primary street address information about the address.
+          street_address: The primary street address information about the user address.
 
-          administrative_area: The locality of the address. For US addresses, this corresponds to the state of
-              the address.
+          administrative_area: The locality of the user address. For US addresses, this corresponds to the
+              state of the address.
 
-          borough: The borough of the address. This field is not used for addresses in the US but
-              is used for some international addresses.
+          borough: The borough of the user address. This field is not used for addresses in the US
+              but is used for some international addresses.
 
           customer_reference: A customer reference string for customer look ups.
 
-          extended_address: Additional street address information about the address such as, but not limited
-              to, unit number or apartment number.
+          extended_address: Additional street address information about the user address such as, but not
+              limited to, unit number or apartment number.
 
-          neighborhood: The neighborhood of the address. This field is not used for addresses in the US
-              but is used for some international addresses.
+          neighborhood: The neighborhood of the user address. This field is not used for addresses in
+              the US but is used for some international addresses.
 
-          phone_number: The phone number associated with the address.
+          phone_number: The phone number associated with the user address.
 
-          postal_code: The postal code of the address.
+          postal_code: The postal code of the user address.
 
           skip_address_verification: An optional boolean value specifying if verification of the address should be
               skipped or not. UserAddresses are generally used for shipping addresses, and
@@ -438,8 +432,8 @@ class AsyncUserAddressesResource(AsyncAPIResource):
         Args:
           filter:
               Consolidated filter parameter (deepObject style). Originally:
-              filter[phone_number][eq], filter[phone_number][in][], filter[status][eq],
-              filter[status][in][], filter[created_at][lt], filter[created_at][gt]
+              filter[customer_reference][eq], filter[customer_reference][contains],
+              filter[street_address][contains]
 
           page: Consolidated page parameter (deepObject style). Originally: page[size],
               page[number]

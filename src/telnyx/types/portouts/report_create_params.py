@@ -2,46 +2,16 @@
 
 from __future__ import annotations
 
-from typing import List, Union
-from datetime import datetime
-from typing_extensions import Literal, Required, Annotated, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
-from ..._utils import PropertyInfo
+from .export_portouts_csv_report_param import ExportPortoutsCsvReportParam
 
-__all__ = ["ReportCreateParams", "Params", "ParamsFilters"]
+__all__ = ["ReportCreateParams"]
 
 
 class ReportCreateParams(TypedDict, total=False):
-    params: Required[Params]
+    params: Required[ExportPortoutsCsvReportParam]
     """The parameters for generating a port-outs CSV report."""
 
     report_type: Required[Literal["export_portouts_csv"]]
     """Identifies the type of report"""
-
-
-class ParamsFilters(TypedDict, total=False):
-    created_at_gt: Annotated[Union[str, datetime], PropertyInfo(alias="created_at__gt", format="iso8601")]
-    """The date and time the port-out was created after."""
-
-    created_at_lt: Annotated[Union[str, datetime], PropertyInfo(alias="created_at__lt", format="iso8601")]
-    """The date and time the port-out was created before."""
-
-    customer_reference_in: Annotated[List[str], PropertyInfo(alias="customer_reference__in")]
-    """The customer reference of the port-outs to include in the report."""
-
-    end_user_name: str
-    """The end user name of the port-outs to include in the report."""
-
-    phone_numbers_overlaps: Annotated[List[str], PropertyInfo(alias="phone_numbers__overlaps")]
-    """A list of phone numbers that the port-outs phone numbers must overlap with."""
-
-    status_in: Annotated[
-        List[Literal["pending", "authorized", "ported", "rejected", "rejected-pending", "canceled"]],
-        PropertyInfo(alias="status__in"),
-    ]
-    """The status of the port-outs to include in the report."""
-
-
-class Params(TypedDict, total=False):
-    filters: Required[ParamsFilters]
-    """The filters to apply to the export port-out CSV report."""

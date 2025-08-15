@@ -4,7 +4,7 @@ from typing import List, Optional
 from typing_extensions import Literal
 
 from ..._models import BaseModel
-from ..pagination_meta import PaginationMeta
+from ..external_voice_integrations_pagination_meta import ExternalVoiceIntegrationsPaginationMeta
 
 __all__ = ["ReleaseListResponse", "Data", "DataTelephoneNumber"]
 
@@ -40,4 +40,4 @@ class Data(BaseModel):
 class ReleaseListResponse(BaseModel):
     data: Optional[List[Data]] = None
 
-    meta: Optional[PaginationMeta] = None
+    meta: Optional[ExternalVoiceIntegrationsPaginationMeta] = None

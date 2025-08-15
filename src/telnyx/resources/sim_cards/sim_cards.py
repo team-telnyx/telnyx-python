@@ -37,6 +37,7 @@ from ...types.sim_card_list_response import SimCardListResponse
 from ...types.sim_card_delete_response import SimCardDeleteResponse
 from ...types.sim_card_update_response import SimCardUpdateResponse
 from ...types.sim_card_retrieve_response import SimCardRetrieveResponse
+from ...types.shared_params.sim_card_status import SimCardStatus
 from ...types.sim_card_get_public_ip_response import SimCardGetPublicIPResponse
 from ...types.sim_card_get_device_details_response import SimCardGetDeviceDetailsResponse
 from ...types.sim_card_get_activation_code_response import SimCardGetActivationCodeResponse
@@ -56,7 +57,7 @@ class SimCardsResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#accessing-raw-response-data-eg-headers
         """
         return SimCardsResourceWithRawResponse(self)
 
@@ -65,7 +66,7 @@ class SimCardsResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#with_streaming_response
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
         return SimCardsResourceWithStreamingResponse(self)
 
@@ -127,7 +128,7 @@ class SimCardsResource(SyncAPIResource):
         authorized_imeis: List[str] | NotGiven = NOT_GIVEN,
         data_limit: sim_card_update_params.DataLimit | NotGiven = NOT_GIVEN,
         sim_card_group_id: str | NotGiven = NOT_GIVEN,
-        status: sim_card_update_params.Status | NotGiven = NOT_GIVEN,
+        status: SimCardStatus | NotGiven = NOT_GIVEN,
         tags: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -204,8 +205,8 @@ class SimCardsResource(SyncAPIResource):
 
           include_sim_card_group: It includes the associated SIM card group object in the response when present.
 
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
+          page: Consolidated pagination parameter (deepObject style). Originally: page[number],
+              page[size]
 
           sort: Sorts SIM cards by the given field. Defaults to ascending order unless field is
               prefixed with a minus sign.
@@ -449,7 +450,7 @@ class AsyncSimCardsResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#accessing-raw-response-data-eg-headers
         """
         return AsyncSimCardsResourceWithRawResponse(self)
 
@@ -458,7 +459,7 @@ class AsyncSimCardsResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#with_streaming_response
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
         return AsyncSimCardsResourceWithStreamingResponse(self)
 
@@ -520,7 +521,7 @@ class AsyncSimCardsResource(AsyncAPIResource):
         authorized_imeis: List[str] | NotGiven = NOT_GIVEN,
         data_limit: sim_card_update_params.DataLimit | NotGiven = NOT_GIVEN,
         sim_card_group_id: str | NotGiven = NOT_GIVEN,
-        status: sim_card_update_params.Status | NotGiven = NOT_GIVEN,
+        status: SimCardStatus | NotGiven = NOT_GIVEN,
         tags: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -597,8 +598,8 @@ class AsyncSimCardsResource(AsyncAPIResource):
 
           include_sim_card_group: It includes the associated SIM card group object in the response when present.
 
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
+          page: Consolidated pagination parameter (deepObject style). Originally: page[number],
+              page[size]
 
           sort: Sorts SIM cards by the given field. Defaults to ascending order unless field is
               prefixed with a minus sign.

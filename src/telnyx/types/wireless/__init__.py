@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from .wdr_report import WdrReport as WdrReport
 from .detail_records_report_list_params import DetailRecordsReportListParams as DetailRecordsReportListParams
 from .detail_records_report_create_params import DetailRecordsReportCreateParams as DetailRecordsReportCreateParams
 from .detail_records_report_list_response import DetailRecordsReportListResponse as DetailRecordsReportListResponse

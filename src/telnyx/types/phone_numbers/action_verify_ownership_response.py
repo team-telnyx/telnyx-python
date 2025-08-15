@@ -9,7 +9,7 @@ __all__ = ["ActionVerifyOwnershipResponse", "Data", "DataFound"]
 
 class DataFound(BaseModel):
     id: Optional[str] = None
-    """Uniquely identifies the resource."""
+    """Identifies the resource."""
 
     number_val_e164: Optional[str] = None
     """The phone number in E.164 format"""

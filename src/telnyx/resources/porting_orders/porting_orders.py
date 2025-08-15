@@ -113,12 +113,17 @@ from .phone_number_configurations import (
     PhoneNumberConfigurationsResourceWithStreamingResponse,
     AsyncPhoneNumberConfigurationsResourceWithStreamingResponse,
 )
+from ...types.porting_order_misc_param import PortingOrderMiscParam
 from ...types.porting_order_list_response import PortingOrderListResponse
+from ...types.porting_order_end_user_param import PortingOrderEndUserParam
 from ...types.porting_order_create_response import PortingOrderCreateResponse
+from ...types.porting_order_documents_param import PortingOrderDocumentsParam
 from ...types.porting_order_update_response import PortingOrderUpdateResponse
 from ...types.porting_order_retrieve_response import PortingOrderRetrieveResponse
+from ...types.porting_order_user_feedback_param import PortingOrderUserFeedbackParam
 from ...types.porting_order_retrieve_sub_request_response import PortingOrderRetrieveSubRequestResponse
 from ...types.porting_order_retrieve_requirements_response import PortingOrderRetrieveRequirementsResponse
+from ...types.porting_order_phone_number_configuration_param import PortingOrderPhoneNumberConfigurationParam
 from ...types.porting_order_retrieve_exception_types_response import PortingOrderRetrieveExceptionTypesResponse
 from ...types.porting_order_retrieve_allowed_foc_windows_response import PortingOrderRetrieveAllowedFocWindowsResponse
 
@@ -172,7 +177,7 @@ class PortingOrdersResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#accessing-raw-response-data-eg-headers
         """
         return PortingOrdersResourceWithRawResponse(self)
 
@@ -181,7 +186,7 @@ class PortingOrdersResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#with_streaming_response
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
         return PortingOrdersResourceWithStreamingResponse(self)
 
@@ -277,14 +282,14 @@ class PortingOrdersResource(SyncAPIResource):
         *,
         activation_settings: porting_order_update_params.ActivationSettings | NotGiven = NOT_GIVEN,
         customer_reference: str | NotGiven = NOT_GIVEN,
-        documents: porting_order_update_params.Documents | NotGiven = NOT_GIVEN,
-        end_user: porting_order_update_params.EndUser | NotGiven = NOT_GIVEN,
+        documents: PortingOrderDocumentsParam | NotGiven = NOT_GIVEN,
+        end_user: PortingOrderEndUserParam | NotGiven = NOT_GIVEN,
         messaging: porting_order_update_params.Messaging | NotGiven = NOT_GIVEN,
-        misc: porting_order_update_params.Misc | NotGiven = NOT_GIVEN,
-        phone_number_configuration: porting_order_update_params.PhoneNumberConfiguration | NotGiven = NOT_GIVEN,
+        misc: PortingOrderMiscParam | NotGiven = NOT_GIVEN,
+        phone_number_configuration: PortingOrderPhoneNumberConfigurationParam | NotGiven = NOT_GIVEN,
         requirement_group_id: str | NotGiven = NOT_GIVEN,
         requirements: Iterable[porting_order_update_params.Requirement] | NotGiven = NOT_GIVEN,
-        user_feedback: porting_order_update_params.UserFeedback | NotGiven = NOT_GIVEN,
+        user_feedback: PortingOrderUserFeedbackParam | NotGiven = NOT_GIVEN,
         webhook_url: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -671,7 +676,7 @@ class AsyncPortingOrdersResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#accessing-raw-response-data-eg-headers
         """
         return AsyncPortingOrdersResourceWithRawResponse(self)
 
@@ -680,7 +685,7 @@ class AsyncPortingOrdersResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#with_streaming_response
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
         return AsyncPortingOrdersResourceWithStreamingResponse(self)
 
@@ -776,14 +781,14 @@ class AsyncPortingOrdersResource(AsyncAPIResource):
         *,
         activation_settings: porting_order_update_params.ActivationSettings | NotGiven = NOT_GIVEN,
         customer_reference: str | NotGiven = NOT_GIVEN,
-        documents: porting_order_update_params.Documents | NotGiven = NOT_GIVEN,
-        end_user: porting_order_update_params.EndUser | NotGiven = NOT_GIVEN,
+        documents: PortingOrderDocumentsParam | NotGiven = NOT_GIVEN,
+        end_user: PortingOrderEndUserParam | NotGiven = NOT_GIVEN,
         messaging: porting_order_update_params.Messaging | NotGiven = NOT_GIVEN,
-        misc: porting_order_update_params.Misc | NotGiven = NOT_GIVEN,
-        phone_number_configuration: porting_order_update_params.PhoneNumberConfiguration | NotGiven = NOT_GIVEN,
+        misc: PortingOrderMiscParam | NotGiven = NOT_GIVEN,
+        phone_number_configuration: PortingOrderPhoneNumberConfigurationParam | NotGiven = NOT_GIVEN,
         requirement_group_id: str | NotGiven = NOT_GIVEN,
         requirements: Iterable[porting_order_update_params.Requirement] | NotGiven = NOT_GIVEN,
-        user_feedback: porting_order_update_params.UserFeedback | NotGiven = NOT_GIVEN,
+        user_feedback: PortingOrderUserFeedbackParam | NotGiven = NOT_GIVEN,
         webhook_url: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

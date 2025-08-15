@@ -4,6 +4,10 @@ from __future__ import annotations
 
 from .call_update_params import CallUpdateParams as CallUpdateParams
 from .call_update_response import CallUpdateResponse as CallUpdateResponse
+from .texml_recording_subresources_uris import TexmlRecordingSubresourcesUris as TexmlRecordingSubresourcesUris
+from .texml_get_call_recording_response_body import (
+    TexmlGetCallRecordingResponseBody as TexmlGetCallRecordingResponseBody,
+)
 from .account_retrieve_recordings_json_params import (
     AccountRetrieveRecordingsJsonParams as AccountRetrieveRecordingsJsonParams,
 )

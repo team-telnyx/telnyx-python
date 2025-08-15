@@ -87,7 +87,7 @@ class TestAccounts:
     def test_method_retrieve_transcriptions_json_with_all_params(self, client: Telnyx) -> None:
         account = client.texml.accounts.retrieve_transcriptions_json(
             account_sid="account_sid",
-            page_size=1,
+            page_size=0,
             page_token="PageToken",
         )
         assert_matches_type(AccountRetrieveTranscriptionsJsonResponse, account, path=["response"])
@@ -198,7 +198,7 @@ class TestAsyncAccounts:
     async def test_method_retrieve_transcriptions_json_with_all_params(self, async_client: AsyncTelnyx) -> None:
         account = await async_client.texml.accounts.retrieve_transcriptions_json(
             account_sid="account_sid",
-            page_size=1,
+            page_size=0,
             page_token="PageToken",
         )
         assert_matches_type(AccountRetrieveTranscriptionsJsonResponse, account, path=["response"])

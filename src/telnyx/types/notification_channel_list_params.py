@@ -2,71 +2,86 @@
 
 from __future__ import annotations
 
-from typing import List, Union
-from datetime import datetime
-from typing_extensions import Literal, Annotated, TypedDict
+from typing_extensions import Literal, TypedDict
 
-from .._utils import PropertyInfo
-
-__all__ = ["NotificationChannelListParams", "Filter", "FilterCreatedAt", "FilterPhoneNumber", "FilterStatus", "Page"]
+__all__ = [
+    "NotificationChannelListParams",
+    "Filter",
+    "FilterAssociatedRecordType",
+    "FilterChannelTypeID",
+    "FilterNotificationChannel",
+    "FilterNotificationEventConditionID",
+    "FilterNotificationProfileID",
+    "FilterStatus",
+    "Page",
+]
 
 
 class NotificationChannelListParams(TypedDict, total=False):
     filter: Filter
     """Consolidated filter parameter (deepObject style).
 
-    Originally: filter[phone_number][eq], filter[phone_number][in][],
-    filter[status][eq], filter[status][in][], filter[created_at][lt],
-    filter[created_at][gt]
+    Originally: filter[associated_record_type][eq], filter[channel_type_id][eq],
+    filter[notification_profile_id][eq], filter[notification_channel][eq],
+    filter[notification_event_condition_id][eq], filter[status][eq]
     """
 
     page: Page
     """Consolidated page parameter (deepObject style).
 
-    Originally: page[size], page[number]
+    Originally: page[number], page[size]
     """
 
 
-class FilterCreatedAt(TypedDict, total=False):
-    gt: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
-    """Filters records to those created after a specific date."""
-
-    lt: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
-    """Filters records to those created before a specific date."""
+class FilterAssociatedRecordType(TypedDict, total=False):
+    eq: Literal["account", "phone_number"]
+    """Filter by the associated record type"""
 
 
-_FilterPhoneNumberReservedKeywords = TypedDict(
-    "_FilterPhoneNumberReservedKeywords",
-    {
-        "in": List[str],
-    },
-    total=False,
-)
+class FilterChannelTypeID(TypedDict, total=False):
+    eq: Literal["webhook", "sms", "email", "voice"]
+    """Filter by the id of a channel type"""
 
 
-class FilterPhoneNumber(_FilterPhoneNumberReservedKeywords, total=False):
+class FilterNotificationChannel(TypedDict, total=False):
     eq: str
-    """Filters records to those with a specified number."""
+    """Filter by the id of a notification channel"""
 
 
-_FilterStatusReservedKeywords = TypedDict(
-    "_FilterStatusReservedKeywords",
-    {
-        "in": List[Literal["pending", "completed", "failed"]],
-    },
-    total=False,
-)
+class FilterNotificationEventConditionID(TypedDict, total=False):
+    eq: str
+    """Filter by the id of a notification channel"""
 
 
-class FilterStatus(_FilterStatusReservedKeywords, total=False):
-    eq: Literal["pending", "completed", "failed"]
-    """Filters records to those with a specific status."""
+class FilterNotificationProfileID(TypedDict, total=False):
+    eq: str
+    """Filter by the id of a notification profile"""
+
+
+class FilterStatus(TypedDict, total=False):
+    eq: Literal[
+        "enabled",
+        "enable-received",
+        "enable-pending",
+        "enable-submtited",
+        "delete-received",
+        "delete-pending",
+        "delete-submitted",
+        "deleted",
+    ]
+    """The status of a notification setting"""
 
 
 class Filter(TypedDict, total=False):
-    created_at: FilterCreatedAt
+    associated_record_type: FilterAssociatedRecordType
 
-    phone_number: FilterPhoneNumber
+    channel_type_id: FilterChannelTypeID
+
+    notification_channel: FilterNotificationChannel
+
+    notification_event_condition_id: FilterNotificationEventConditionID
+
+    notification_profile_id: FilterNotificationProfileID
 
     status: FilterStatus
 

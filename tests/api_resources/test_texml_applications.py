@@ -16,7 +16,6 @@ from telnyx.types import (
     TexmlApplicationUpdateResponse,
     TexmlApplicationRetrieveResponse,
 )
-from telnyx._utils import parse_datetime
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -223,24 +222,14 @@ class TestTexmlApplications:
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         texml_application = client.texml_applications.list(
             filter={
-                "created_at": {
-                    "gt": parse_datetime("2020-01-01T00:00:00Z"),
-                    "lt": parse_datetime("2020-01-01T00:00:00Z"),
-                },
-                "phone_number": {
-                    "eq": "+12441239999",
-                    "in": ["+12441239999"],
-                },
-                "status": {
-                    "eq": "pending",
-                    "in": ["pending"],
-                },
+                "friendly_name": "friendly_name",
+                "outbound_voice_profile_id": "1293384261075731499",
             },
             page={
                 "number": 1,
                 "size": 1,
             },
-            sort="application_name",
+            sort="friendly_name",
         )
         assert_matches_type(TexmlApplicationListResponse, texml_application, path=["response"])
 
@@ -513,24 +502,14 @@ class TestAsyncTexmlApplications:
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         texml_application = await async_client.texml_applications.list(
             filter={
-                "created_at": {
-                    "gt": parse_datetime("2020-01-01T00:00:00Z"),
-                    "lt": parse_datetime("2020-01-01T00:00:00Z"),
-                },
-                "phone_number": {
-                    "eq": "+12441239999",
-                    "in": ["+12441239999"],
-                },
-                "status": {
-                    "eq": "pending",
-                    "in": ["pending"],
-                },
+                "friendly_name": "friendly_name",
+                "outbound_voice_profile_id": "1293384261075731499",
             },
             page={
                 "number": 1,
                 "size": 1,
             },
-            sort="application_name",
+            sort="friendly_name",
         )
         assert_matches_type(TexmlApplicationListResponse, texml_application, path=["response"])
 

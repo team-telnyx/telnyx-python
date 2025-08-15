@@ -23,6 +23,7 @@ from .action_unhold_response import ActionUnholdResponse as ActionUnholdResponse
 from .action_unmute_response import ActionUnmuteResponse as ActionUnmuteResponse
 from .action_update_response import ActionUpdateResponse as ActionUpdateResponse
 from .action_record_stop_params import ActionRecordStopParams as ActionRecordStopParams
+from .conference_command_result import ConferenceCommandResult as ConferenceCommandResult
 from .action_record_pause_params import ActionRecordPauseParams as ActionRecordPauseParams
 from .action_record_start_params import ActionRecordStartParams as ActionRecordStartParams
 from .action_record_resume_params import ActionRecordResumeParams as ActionRecordResumeParams

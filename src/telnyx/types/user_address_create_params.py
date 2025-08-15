@@ -9,43 +9,34 @@ __all__ = ["UserAddressCreateParams"]
 
 class UserAddressCreateParams(TypedDict, total=False):
     business_name: Required[str]
-    """The business name associated with the address.
-
-    An address must have either a first last name or a business name.
-    """
+    """The business name associated with the user address."""
 
     country_code: Required[str]
-    """The two-character (ISO 3166-1 alpha-2) country code of the address."""
+    """The two-character (ISO 3166-1 alpha-2) country code of the user address."""
 
     first_name: Required[str]
-    """The first name associated with the address.
-
-    An address must have either a first last name or a business name.
-    """
+    """The first name associated with the user address."""
 
     last_name: Required[str]
-    """The last name associated with the address.
-
-    An address must have either a first last name or a business name.
-    """
+    """The last name associated with the user address."""
 
     locality: Required[str]
-    """The locality of the address.
+    """The locality of the user address.
 
     For US addresses, this corresponds to the city of the address.
     """
 
     street_address: Required[str]
-    """The primary street address information about the address."""
+    """The primary street address information about the user address."""
 
     administrative_area: str
-    """The locality of the address.
+    """The locality of the user address.
 
     For US addresses, this corresponds to the state of the address.
     """
 
     borough: str
-    """The borough of the address.
+    """The borough of the user address.
 
     This field is not used for addresses in the US but is used for some
     international addresses.
@@ -56,22 +47,22 @@ class UserAddressCreateParams(TypedDict, total=False):
 
     extended_address: str
     """
-    Additional street address information about the address such as, but not limited
-    to, unit number or apartment number.
+    Additional street address information about the user address such as, but not
+    limited to, unit number or apartment number.
     """
 
     neighborhood: str
-    """The neighborhood of the address.
+    """The neighborhood of the user address.
 
     This field is not used for addresses in the US but is used for some
     international addresses.
     """
 
     phone_number: str
-    """The phone number associated with the address."""
+    """The phone number associated with the user address."""
 
     postal_code: str
-    """The postal code of the address."""
+    """The postal code of the user address."""
 
     skip_address_verification: str
     """

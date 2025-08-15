@@ -3,8 +3,9 @@
 from typing import List, Optional
 
 from ..._models import BaseModel
+from ..shared.metadata import Metadata
 
-__all__ = ["CommentListResponse", "Data", "Meta"]
+__all__ = ["CommentListResponse", "Data"]
 
 
 class Data(BaseModel):
@@ -29,24 +30,7 @@ class Data(BaseModel):
     """Identifies the type of the resource."""
 
 
-class Meta(BaseModel):
-    page_number: Optional[float] = None
-    """Current Page based on pagination settings (included when defaults are used.)"""
-
-    page_size: Optional[float] = None
-    """
-    Number of results to return per page based on pagination settings (included when
-    defaults are used.)
-    """
-
-    total_pages: Optional[float] = None
-    """Total number of pages based on pagination settings"""
-
-    total_results: Optional[float] = None
-    """Total number of results"""
-
-
 class CommentListResponse(BaseModel):
     data: Optional[List[Data]] = None
 
-    meta: Optional[Meta] = None
+    meta: Optional[Metadata] = None

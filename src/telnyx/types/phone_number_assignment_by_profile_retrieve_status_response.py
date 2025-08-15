@@ -2,17 +2,17 @@
 
 from typing import Optional
 from datetime import datetime
+from typing_extensions import Literal
 
 from pydantic import Field as FieldInfo
 
 from .._models import BaseModel
-from .task_status import TaskStatus
 
 __all__ = ["PhoneNumberAssignmentByProfileRetrieveStatusResponse"]
 
 
 class PhoneNumberAssignmentByProfileRetrieveStatusResponse(BaseModel):
-    status: TaskStatus
+    status: Literal["pending", "processing", "completed", "failed"]
     """An enumeration."""
 
     task_id: str = FieldInfo(alias="taskId")

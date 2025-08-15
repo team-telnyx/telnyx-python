@@ -5,9 +5,8 @@ from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
-from .pagination_meta import PaginationMeta
 
-__all__ = ["ReportListWdrsResponse", "Data", "DataCost", "DataDownlinkData", "DataRate", "DataUplinkData"]
+__all__ = ["ReportListWdrsResponse", "Data", "DataCost", "DataDownlinkData", "DataRate", "DataUplinkData", "Meta"]
 
 
 class DataCost(BaseModel):
@@ -84,7 +83,17 @@ class Data(BaseModel):
     uplink_data: Optional[DataUplinkData] = None
 
 
+class Meta(BaseModel):
+    page_number: Optional[int] = None
+
+    page_size: Optional[int] = None
+
+    total_pages: Optional[int] = None
+
+    total_results: Optional[int] = None
+
+
 class ReportListWdrsResponse(BaseModel):
     data: Optional[List[Data]] = None
 
-    meta: Optional[PaginationMeta] = None
+    meta: Optional[Meta] = None

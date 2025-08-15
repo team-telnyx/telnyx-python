@@ -2,22 +2,17 @@
 
 from __future__ import annotations
 
-from typing import List, Union
-from datetime import datetime
-from typing_extensions import Literal, Annotated, TypedDict
+from typing_extensions import Literal, TypedDict
 
-from .._utils import PropertyInfo
-
-__all__ = ["UserAddressListParams", "Filter", "FilterCreatedAt", "FilterPhoneNumber", "FilterStatus", "Page"]
+__all__ = ["UserAddressListParams", "Filter", "FilterCustomerReference", "FilterStreetAddress", "Page"]
 
 
 class UserAddressListParams(TypedDict, total=False):
     filter: Filter
     """Consolidated filter parameter (deepObject style).
 
-    Originally: filter[phone_number][eq], filter[phone_number][in][],
-    filter[status][eq], filter[status][in][], filter[created_at][lt],
-    filter[created_at][gt]
+    Originally: filter[customer_reference][eq],
+    filter[customer_reference][contains], filter[street_address][contains]
     """
 
     page: Page
@@ -45,48 +40,42 @@ class UserAddressListParams(TypedDict, total=False):
     """
 
 
-class FilterCreatedAt(TypedDict, total=False):
-    gt: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
-    """Filters records to those created after a specific date."""
+class FilterCustomerReference(TypedDict, total=False):
+    contains: str
+    """
+    If present, user addresses with <code>customer_reference</code> containing the
+    given value will be returned. Matching is not case-sensitive.
+    """
 
-    lt: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
-    """Filters records to those created before a specific date."""
-
-
-_FilterPhoneNumberReservedKeywords = TypedDict(
-    "_FilterPhoneNumberReservedKeywords",
-    {
-        "in": List[str],
-    },
-    total=False,
-)
-
-
-class FilterPhoneNumber(_FilterPhoneNumberReservedKeywords, total=False):
     eq: str
-    """Filters records to those with a specified number."""
+    """Filter user addresses via exact customer reference match.
+
+    Matching is not case-sensitive.
+    """
 
 
-_FilterStatusReservedKeywords = TypedDict(
-    "_FilterStatusReservedKeywords",
-    {
-        "in": List[Literal["pending", "completed", "failed"]],
-    },
-    total=False,
-)
-
-
-class FilterStatus(_FilterStatusReservedKeywords, total=False):
-    eq: Literal["pending", "completed", "failed"]
-    """Filters records to those with a specific status."""
+class FilterStreetAddress(TypedDict, total=False):
+    contains: str
+    """
+    If present, user addresses with <code>street_address</code> containing the given
+    value will be returned. Matching is not case-sensitive. Requires at least three
+    characters.
+    """
 
 
 class Filter(TypedDict, total=False):
-    created_at: FilterCreatedAt
+    customer_reference: FilterCustomerReference
+    """Filter user addresses via the customer reference.
 
-    phone_number: FilterPhoneNumber
+    Supports both exact matching (eq) and partial matching (contains). Matching is
+    not case-sensitive.
+    """
 
-    status: FilterStatus
+    street_address: FilterStreetAddress
+    """Filter user addresses via street address.
+
+    Supports partial matching (contains). Matching is not case-sensitive.
+    """
 
 
 class Page(TypedDict, total=False):

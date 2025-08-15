@@ -16,7 +16,6 @@ from telnyx.types import (
     IPConnectionUpdateResponse,
     IPConnectionRetrieveResponse,
 )
-from telnyx._utils import parse_datetime
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -71,7 +70,7 @@ class TestIPConnections:
                 "ip_authentication_method": "token",
                 "ip_authentication_token": "string",
                 "localization": "string",
-                "outbound_voice_profile_id": "1293384261075731499",
+                "outbound_voice_profile_id": "outbound_voice_profile_id",
                 "t38_reinvite_source": "customer",
                 "tech_prefix": "string",
             },
@@ -206,7 +205,7 @@ class TestIPConnections:
                 "ip_authentication_method": "token",
                 "ip_authentication_token": "string",
                 "localization": "string",
-                "outbound_voice_profile_id": "1293384261075731499",
+                "outbound_voice_profile_id": "outbound_voice_profile_id",
                 "t38_reinvite_source": "customer",
                 "tech_prefix": "string",
             },
@@ -269,18 +268,9 @@ class TestIPConnections:
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         ip_connection = client.ip_connections.list(
             filter={
-                "created_at": {
-                    "gt": parse_datetime("2020-01-01T00:00:00Z"),
-                    "lt": parse_datetime("2020-01-01T00:00:00Z"),
-                },
-                "phone_number": {
-                    "eq": "+12441239999",
-                    "in": ["+12441239999"],
-                },
-                "status": {
-                    "eq": "pending",
-                    "in": ["pending"],
-                },
+                "connection_name": {"contains": "contains"},
+                "fqdn": "fqdn",
+                "outbound_voice_profile_id": "outbound_voice_profile_id",
             },
             page={
                 "number": 1,
@@ -407,7 +397,7 @@ class TestAsyncIPConnections:
                 "ip_authentication_method": "token",
                 "ip_authentication_token": "string",
                 "localization": "string",
-                "outbound_voice_profile_id": "1293384261075731499",
+                "outbound_voice_profile_id": "outbound_voice_profile_id",
                 "t38_reinvite_source": "customer",
                 "tech_prefix": "string",
             },
@@ -542,7 +532,7 @@ class TestAsyncIPConnections:
                 "ip_authentication_method": "token",
                 "ip_authentication_token": "string",
                 "localization": "string",
-                "outbound_voice_profile_id": "1293384261075731499",
+                "outbound_voice_profile_id": "outbound_voice_profile_id",
                 "t38_reinvite_source": "customer",
                 "tech_prefix": "string",
             },
@@ -605,18 +595,9 @@ class TestAsyncIPConnections:
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         ip_connection = await async_client.ip_connections.list(
             filter={
-                "created_at": {
-                    "gt": parse_datetime("2020-01-01T00:00:00Z"),
-                    "lt": parse_datetime("2020-01-01T00:00:00Z"),
-                },
-                "phone_number": {
-                    "eq": "+12441239999",
-                    "in": ["+12441239999"],
-                },
-                "status": {
-                    "eq": "pending",
-                    "in": ["pending"],
-                },
+                "connection_name": {"contains": "contains"},
+                "fqdn": "fqdn",
+                "outbound_voice_profile_id": "outbound_voice_profile_id",
             },
             page={
                 "number": 1,

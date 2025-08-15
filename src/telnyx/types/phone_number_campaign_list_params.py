@@ -2,22 +2,19 @@
 
 from __future__ import annotations
 
-from typing import List, Union
-from datetime import datetime
 from typing_extensions import Literal, Annotated, TypedDict
 
 from .._utils import PropertyInfo
 
-__all__ = ["PhoneNumberCampaignListParams", "Filter", "FilterCreatedAt", "FilterPhoneNumber", "FilterStatus"]
+__all__ = ["PhoneNumberCampaignListParams", "Filter"]
 
 
 class PhoneNumberCampaignListParams(TypedDict, total=False):
     filter: Filter
     """Consolidated filter parameter (deepObject style).
 
-    Originally: filter[phone_number][eq], filter[phone_number][in][],
-    filter[status][eq], filter[status][in][], filter[created_at][lt],
-    filter[created_at][gt]
+    Originally: filter[telnyx_campaign_id], filter[telnyx_brand_id],
+    filter[tcr_campaign_id], filter[tcr_brand_id]
     """
 
     page: int
@@ -31,45 +28,15 @@ class PhoneNumberCampaignListParams(TypedDict, total=False):
     """
 
 
-class FilterCreatedAt(TypedDict, total=False):
-    gt: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
-    """Filters records to those created after a specific date."""
-
-    lt: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
-    """Filters records to those created before a specific date."""
-
-
-_FilterPhoneNumberReservedKeywords = TypedDict(
-    "_FilterPhoneNumberReservedKeywords",
-    {
-        "in": List[str],
-    },
-    total=False,
-)
-
-
-class FilterPhoneNumber(_FilterPhoneNumberReservedKeywords, total=False):
-    eq: str
-    """Filters records to those with a specified number."""
-
-
-_FilterStatusReservedKeywords = TypedDict(
-    "_FilterStatusReservedKeywords",
-    {
-        "in": List[Literal["pending", "completed", "failed"]],
-    },
-    total=False,
-)
-
-
-class FilterStatus(_FilterStatusReservedKeywords, total=False):
-    eq: Literal["pending", "completed", "failed"]
-    """Filters records to those with a specific status."""
-
-
 class Filter(TypedDict, total=False):
-    created_at: FilterCreatedAt
+    tcr_brand_id: str
+    """Filter results by the TCR Brand id"""
 
-    phone_number: FilterPhoneNumber
+    tcr_campaign_id: str
+    """Filter results by the TCR Campaign id"""
 
-    status: FilterStatus
+    telnyx_brand_id: str
+    """Filter results by the Telnyx Brand id"""
+
+    telnyx_campaign_id: str
+    """Filter results by the Telnyx Campaign id"""

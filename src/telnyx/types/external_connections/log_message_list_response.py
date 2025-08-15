@@ -3,7 +3,7 @@
 from typing import List, Optional
 
 from ..._models import BaseModel
-from ..pagination_meta import PaginationMeta
+from ..external_voice_integrations_pagination_meta import ExternalVoiceIntegrationsPaginationMeta
 
 __all__ = ["LogMessageListResponse", "LogMessage", "LogMessageMeta", "LogMessageSource"]
 
@@ -39,4 +39,4 @@ class LogMessage(BaseModel):
 class LogMessageListResponse(BaseModel):
     log_messages: Optional[List[LogMessage]] = None
 
-    meta: Optional[PaginationMeta] = None
+    meta: Optional[ExternalVoiceIntegrationsPaginationMeta] = None

@@ -27,7 +27,7 @@ class MessagingOptoutListParams(TypedDict, total=False):
     page: Page
     """Consolidated page parameter (deepObject style).
 
-    Originally: page[size], page[number]
+    Originally: page[number], page[size]
     """
 
     redaction_enabled: str

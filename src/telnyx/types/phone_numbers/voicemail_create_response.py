@@ -3,17 +3,10 @@
 from typing import Optional
 
 from ..._models import BaseModel
+from .voicemail_pref_response import VoicemailPrefResponse
 
-__all__ = ["VoicemailCreateResponse", "Data"]
-
-
-class Data(BaseModel):
-    enabled: Optional[bool] = None
-    """Whether voicemail is enabled."""
-
-    pin: Optional[str] = None
-    """The pin used for the voicemail."""
+__all__ = ["VoicemailCreateResponse"]
 
 
 class VoicemailCreateResponse(BaseModel):
-    data: Optional[Data] = None
+    data: Optional[VoicemailPrefResponse] = None

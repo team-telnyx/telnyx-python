@@ -7,6 +7,7 @@ from typing_extensions import Literal, TypeAlias
 from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
+from ..shared.porting_order_status import PortingOrderStatus
 
 __all__ = [
     "EventRetrieveResponse",
@@ -16,8 +17,6 @@ __all__ = [
     "DataPayloadWebhookPortingOrderMessagingChangedPayload",
     "DataPayloadWebhookPortingOrderMessagingChangedPayloadMessaging",
     "DataPayloadWebhookPortingOrderStatusChangedPayload",
-    "DataPayloadWebhookPortingOrderStatusChangedPayloadStatus",
-    "DataPayloadWebhookPortingOrderStatusChangedPayloadStatusDetail",
     "DataPayloadWebhookPortingOrderNewCommentPayload",
     "DataPayloadWebhookPortingOrderNewCommentPayloadComment",
     "DataPayloadWebhookPortingOrderSplitPayload",
@@ -72,57 +71,6 @@ class DataPayloadWebhookPortingOrderMessagingChangedPayload(BaseModel):
     """Identifies the support key associated with the porting order."""
 
 
-class DataPayloadWebhookPortingOrderStatusChangedPayloadStatusDetail(BaseModel):
-    code: Optional[
-        Literal[
-            "ACCOUNT_NUMBER_MISMATCH",
-            "AUTH_PERSON_MISMATCH",
-            "BTN_ATN_MISMATCH",
-            "ENTITY_NAME_MISMATCH",
-            "FOC_EXPIRED",
-            "FOC_REJECTED",
-            "LOCATION_MISMATCH",
-            "LSR_PENDING",
-            "MAIN_BTN_PORTING",
-            "OSP_IRRESPONSIVE",
-            "OTHER",
-            "PASSCODE_PIN_INVALID",
-            "PHONE_NUMBER_HAS_SPECIAL_FEATURE",
-            "PHONE_NUMBER_MISMATCH",
-            "PHONE_NUMBER_NOT_PORTABLE",
-            "PORT_TYPE_INCORRECT",
-            "PORTING_ORDER_SPLIT_REQUIRED",
-            "POSTAL_CODE_MISMATCH",
-            "RATE_CENTER_NOT_PORTABLE",
-            "SV_CONFLICT",
-            "SV_UNKNOWN_FAILURE",
-        ]
-    ] = None
-    """Identifier of an exception type"""
-
-    description: Optional[str] = None
-    """Description of an exception type"""
-
-
-class DataPayloadWebhookPortingOrderStatusChangedPayloadStatus(BaseModel):
-    details: Optional[List[DataPayloadWebhookPortingOrderStatusChangedPayloadStatusDetail]] = None
-    """A list of 0 or more details about this porting order's status"""
-
-    value: Optional[
-        Literal[
-            "draft",
-            "in-process",
-            "submitted",
-            "exception",
-            "foc-date-confirmed",
-            "ported",
-            "cancelled",
-            "cancel-pending",
-        ]
-    ] = None
-    """The current status of the porting order"""
-
-
 class DataPayloadWebhookPortingOrderStatusChangedPayload(BaseModel):
     id: Optional[str] = None
     """Identifies the porting order that was moved."""
@@ -130,7 +78,7 @@ class DataPayloadWebhookPortingOrderStatusChangedPayload(BaseModel):
     customer_reference: Optional[str] = None
     """Identifies the customer reference associated with the porting order."""
 
-    status: Optional[DataPayloadWebhookPortingOrderStatusChangedPayloadStatus] = None
+    status: Optional[PortingOrderStatus] = None
     """Porting order status"""
 
     support_key: Optional[str] = None

@@ -1,11 +1,21 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Optional
-from typing_extensions import Literal
 
 from .._models import BaseModel
 
-__all__ = ["UsageReportGetOptionsResponse", "Data"]
+__all__ = ["UsageReportGetOptionsResponse", "Data", "DataRecordType"]
+
+
+class DataRecordType(BaseModel):
+    product_dimensions: Optional[List[str]] = None
+    """Telnyx Product Dimensions"""
+
+    product_metrics: Optional[List[str]] = None
+    """Telnyx Product Metrics"""
+
+    record_type: Optional[str] = None
+    """Telnyx Product type"""
 
 
 class Data(BaseModel):
@@ -18,7 +28,7 @@ class Data(BaseModel):
     product_metrics: Optional[List[str]] = None
     """Telnyx Product Metrics"""
 
-    record_types: Optional[List[Literal["custom_storage_credentials"]]] = None
+    record_types: Optional[List[DataRecordType]] = None
     """Subproducts if applicable"""
 
 

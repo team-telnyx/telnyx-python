@@ -9,7 +9,6 @@ import pytest
 
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
-from telnyx._utils import parse_datetime
 from telnyx.types.calls import (
     ActionReferResponse,
     ActionSpeakResponse,
@@ -406,75 +405,20 @@ class TestActions:
                 "type": "object",
             },
             assistant={
-                "id": "id",
-                "created_at": parse_datetime("2019-12-27T18:11:19.117Z"),
-                "instructions": "instructions",
-                "model": "model",
-                "name": "name",
-                "description": "description",
-                "dynamic_variables": {"foo": "bar"},
-                "dynamic_variables_webhook_url": "dynamic_variables_webhook_url",
-                "enabled_features": ["telephony"],
-                "greeting": "greeting",
-                "import_metadata": {
-                    "import_id": "import_id",
-                    "import_provider": "elevenlabs",
-                },
-                "insight_settings": {"insight_group_id": "insight_group_id"},
-                "llm_api_key_ref": "llm_api_key_ref",
-                "messaging_settings": {
-                    "default_messaging_profile_id": "default_messaging_profile_id",
-                    "delivery_status_webhook_url": "delivery_status_webhook_url",
-                },
-                "privacy_settings": {"data_retention": True},
-                "telephony_settings": {
-                    "default_texml_app_id": "default_texml_app_id",
-                    "supports_unauthenticated_web_calls": True,
-                },
+                "instructions": "You are a friendly voice assistant.",
+                "model": "meta-llama/Meta-Llama-3.1-70B-Instruct",
+                "openai_api_key_ref": "my_openai_api_key",
                 "tools": [
                     {
-                        "type": "webhook",
-                        "webhook": {
-                            "description": "description",
-                            "name": "name",
-                            "url": "https://example.com/api/v1/function",
-                            "body_parameters": {
-                                "properties": {
-                                    "age": "bar",
-                                    "location": "bar",
-                                },
-                                "required": ["age", "location"],
-                                "type": "object",
-                            },
-                            "headers": [
-                                {
-                                    "name": "name",
-                                    "value": "value",
-                                }
-                            ],
-                            "method": "GET",
-                            "path_parameters": {
-                                "properties": {"id": "bar"},
-                                "required": ["id"],
-                                "type": "object",
-                            },
-                            "query_parameters": {
-                                "properties": {"page": "bar"},
-                                "required": ["page"],
-                                "type": "object",
-                            },
+                        "book_appointment": {
+                            "api_key_ref": "my_calcom_api_key",
+                            "event_type_id": 0,
+                            "attendee_name": "attendee_name",
+                            "attendee_timezone": "attendee_timezone",
                         },
+                        "type": "book_appointment",
                     }
                 ],
-                "transcription": {
-                    "language": "language",
-                    "model": "model",
-                },
-                "voice_settings": {
-                    "voice": "voice",
-                    "api_key_ref": "api_key_ref",
-                    "voice_speed": 0,
-                },
             },
             client_state="aGF2ZSBhIG5pY2UgZGF5ID1d",
             command_id="891510ac-f3e4-11e8-af5b-de00688a4901",
@@ -2771,75 +2715,20 @@ class TestAsyncActions:
                 "type": "object",
             },
             assistant={
-                "id": "id",
-                "created_at": parse_datetime("2019-12-27T18:11:19.117Z"),
-                "instructions": "instructions",
-                "model": "model",
-                "name": "name",
-                "description": "description",
-                "dynamic_variables": {"foo": "bar"},
-                "dynamic_variables_webhook_url": "dynamic_variables_webhook_url",
-                "enabled_features": ["telephony"],
-                "greeting": "greeting",
-                "import_metadata": {
-                    "import_id": "import_id",
-                    "import_provider": "elevenlabs",
-                },
-                "insight_settings": {"insight_group_id": "insight_group_id"},
-                "llm_api_key_ref": "llm_api_key_ref",
-                "messaging_settings": {
-                    "default_messaging_profile_id": "default_messaging_profile_id",
-                    "delivery_status_webhook_url": "delivery_status_webhook_url",
-                },
-                "privacy_settings": {"data_retention": True},
-                "telephony_settings": {
-                    "default_texml_app_id": "default_texml_app_id",
-                    "supports_unauthenticated_web_calls": True,
-                },
+                "instructions": "You are a friendly voice assistant.",
+                "model": "meta-llama/Meta-Llama-3.1-70B-Instruct",
+                "openai_api_key_ref": "my_openai_api_key",
                 "tools": [
                     {
-                        "type": "webhook",
-                        "webhook": {
-                            "description": "description",
-                            "name": "name",
-                            "url": "https://example.com/api/v1/function",
-                            "body_parameters": {
-                                "properties": {
-                                    "age": "bar",
-                                    "location": "bar",
-                                },
-                                "required": ["age", "location"],
-                                "type": "object",
-                            },
-                            "headers": [
-                                {
-                                    "name": "name",
-                                    "value": "value",
-                                }
-                            ],
-                            "method": "GET",
-                            "path_parameters": {
-                                "properties": {"id": "bar"},
-                                "required": ["id"],
-                                "type": "object",
-                            },
-                            "query_parameters": {
-                                "properties": {"page": "bar"},
-                                "required": ["page"],
-                                "type": "object",
-                            },
+                        "book_appointment": {
+                            "api_key_ref": "my_calcom_api_key",
+                            "event_type_id": 0,
+                            "attendee_name": "attendee_name",
+                            "attendee_timezone": "attendee_timezone",
                         },
+                        "type": "book_appointment",
                     }
                 ],
-                "transcription": {
-                    "language": "language",
-                    "model": "model",
-                },
-                "voice_settings": {
-                    "voice": "voice",
-                    "api_key_ref": "api_key_ref",
-                    "voice_speed": 0,
-                },
             },
             client_state="aGF2ZSBhIG5pY2UgZGF5ID1d",
             command_id="891510ac-f3e4-11e8-af5b-de00688a4901",

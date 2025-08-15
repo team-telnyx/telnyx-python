@@ -5,14 +5,6 @@ from __future__ import annotations
 import httpx
 
 from ...types import recording_list_params
-from .actions import (
-    ActionsResource,
-    AsyncActionsResource,
-    ActionsResourceWithRawResponse,
-    AsyncActionsResourceWithRawResponse,
-    ActionsResourceWithStreamingResponse,
-    AsyncActionsResourceWithStreamingResponse,
-)
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
@@ -33,16 +25,12 @@ __all__ = ["RecordingsResource", "AsyncRecordingsResource"]
 
 class RecordingsResource(SyncAPIResource):
     @cached_property
-    def actions(self) -> ActionsResource:
-        return ActionsResource(self._client)
-
-    @cached_property
     def with_raw_response(self) -> RecordingsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#accessing-raw-response-data-eg-headers
         """
         return RecordingsResourceWithRawResponse(self)
 
@@ -51,7 +39,7 @@ class RecordingsResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#with_streaming_response
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
         return RecordingsResourceWithStreamingResponse(self)
 
@@ -175,16 +163,12 @@ class RecordingsResource(SyncAPIResource):
 
 class AsyncRecordingsResource(AsyncAPIResource):
     @cached_property
-    def actions(self) -> AsyncActionsResource:
-        return AsyncActionsResource(self._client)
-
-    @cached_property
     def with_raw_response(self) -> AsyncRecordingsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#accessing-raw-response-data-eg-headers
         """
         return AsyncRecordingsResourceWithRawResponse(self)
 
@@ -193,7 +177,7 @@ class AsyncRecordingsResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#with_streaming_response
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
         return AsyncRecordingsResourceWithStreamingResponse(self)
 
@@ -329,10 +313,6 @@ class RecordingsResourceWithRawResponse:
             recordings.delete,
         )
 
-    @cached_property
-    def actions(self) -> ActionsResourceWithRawResponse:
-        return ActionsResourceWithRawResponse(self._recordings.actions)
-
 
 class AsyncRecordingsResourceWithRawResponse:
     def __init__(self, recordings: AsyncRecordingsResource) -> None:
@@ -347,10 +327,6 @@ class AsyncRecordingsResourceWithRawResponse:
         self.delete = async_to_raw_response_wrapper(
             recordings.delete,
         )
-
-    @cached_property
-    def actions(self) -> AsyncActionsResourceWithRawResponse:
-        return AsyncActionsResourceWithRawResponse(self._recordings.actions)
 
 
 class RecordingsResourceWithStreamingResponse:
@@ -367,10 +343,6 @@ class RecordingsResourceWithStreamingResponse:
             recordings.delete,
         )
 
-    @cached_property
-    def actions(self) -> ActionsResourceWithStreamingResponse:
-        return ActionsResourceWithStreamingResponse(self._recordings.actions)
-
 
 class AsyncRecordingsResourceWithStreamingResponse:
     def __init__(self, recordings: AsyncRecordingsResource) -> None:
@@ -385,7 +357,3 @@ class AsyncRecordingsResourceWithStreamingResponse:
         self.delete = async_to_streamed_response_wrapper(
             recordings.delete,
         )
-
-    @cached_property
-    def actions(self) -> AsyncActionsResourceWithStreamingResponse:
-        return AsyncActionsResourceWithStreamingResponse(self._recordings.actions)

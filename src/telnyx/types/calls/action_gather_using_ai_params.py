@@ -26,6 +26,9 @@ class ActionGatherUsingAIParams(TypedDict, total=False):
     """
 
     assistant: AssistantParam
+    """
+    Assistant configuration including choice of LLM, custom instructions, and tools.
+    """
 
     client_state: str
     """Use this field to add state to every subsequent webhook.

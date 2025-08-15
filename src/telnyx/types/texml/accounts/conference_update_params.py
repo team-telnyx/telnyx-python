@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Literal, Required, Annotated, TypedDict
+
+from ...._utils import PropertyInfo
 
 __all__ = ["ConferenceUpdateParams"]
 
@@ -11,29 +12,18 @@ __all__ = ["ConferenceUpdateParams"]
 class ConferenceUpdateParams(TypedDict, total=False):
     account_sid: Required[str]
 
-    call_control_id: Required[str]
-    """Unique identifier and token for controlling the call"""
+    announce_method: Annotated[Literal["GET", "POST"], PropertyInfo(alias="AnnounceMethod")]
+    """The HTTP method used to call the `AnnounceUrl`. Defaults to `POST`."""
 
-    supervisor_role: Required[Literal["barge", "monitor", "none", "whisper"]]
-    """Sets the participant as a supervisor for the conference.
+    announce_url: Annotated[str, PropertyInfo(alias="AnnounceUrl")]
+    """The URL we should call to announce something into the conference.
 
-    A conference can have multiple supervisors. "barge" means the supervisor enters
-    the conference as a normal participant. This is the same as "none". "monitor"
-    means the supervisor is muted but can hear all participants. "whisper" means
-    that only the specified "whisper_call_control_ids" can hear the supervisor.
-    Defaults to "none".
+    The URL may return an MP3 file, a WAV file, or a TwiML document that contains
+    `<Play>`, `<Say>`, `<Pause>`, or `<Redirect>` verbs.
     """
 
-    command_id: str
-    """Use this field to avoid execution of duplicate commands.
+    status: Annotated[str, PropertyInfo(alias="Status")]
+    """The new status of the resource.
 
-    Telnyx will ignore subsequent commands with the same `command_id` as one that
-    has already been executed.
-    """
-
-    whisper_call_control_ids: List[str]
-    """Array of unique call_control_ids the supervisor can whisper to.
-
-    If none provided, the supervisor will join the conference as a monitoring
-    participant only.
+    Specifying `completed` will end the conference and hang up all participants.
     """

@@ -57,7 +57,7 @@ class MessagingProfilesResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#accessing-raw-response-data-eg-headers
         """
         return MessagingProfilesResourceWithRawResponse(self)
 
@@ -66,7 +66,7 @@ class MessagingProfilesResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#with_streaming_response
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
         return MessagingProfilesResourceWithStreamingResponse(self)
 
@@ -336,8 +336,8 @@ class MessagingProfilesResource(SyncAPIResource):
         Args:
           filter: Consolidated filter parameter (deepObject style). Originally: filter[name]
 
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
+          page: Consolidated page parameter (deepObject style). Originally: page[number],
+              page[size]
 
           extra_headers: Send extra headers
 
@@ -414,8 +414,8 @@ class MessagingProfilesResource(SyncAPIResource):
         List phone numbers associated with a messaging profile
 
         Args:
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
+          page: Consolidated page parameter (deepObject style). Originally: page[number],
+              page[size]
 
           extra_headers: Send extra headers
 
@@ -457,8 +457,8 @@ class MessagingProfilesResource(SyncAPIResource):
         List short codes associated with a messaging profile
 
         Args:
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
+          page: Consolidated page parameter (deepObject style). Originally: page[number],
+              page[size]
 
           extra_headers: Send extra headers
 
@@ -496,7 +496,7 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#accessing-raw-response-data-eg-headers
         """
         return AsyncMessagingProfilesResourceWithRawResponse(self)
 
@@ -505,7 +505,7 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#with_streaming_response
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
         return AsyncMessagingProfilesResourceWithStreamingResponse(self)
 
@@ -775,8 +775,8 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
         Args:
           filter: Consolidated filter parameter (deepObject style). Originally: filter[name]
 
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
+          page: Consolidated page parameter (deepObject style). Originally: page[number],
+              page[size]
 
           extra_headers: Send extra headers
 
@@ -853,8 +853,8 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
         List phone numbers associated with a messaging profile
 
         Args:
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
+          page: Consolidated page parameter (deepObject style). Originally: page[number],
+              page[size]
 
           extra_headers: Send extra headers
 
@@ -896,8 +896,8 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
         List short codes associated with a messaging profile
 
         Args:
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
+          page: Consolidated page parameter (deepObject style). Originally: page[number],
+              page[size]
 
           extra_headers: Send extra headers
 

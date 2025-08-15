@@ -10,8 +10,8 @@ __all__ = ["AccountRetrieveTranscriptionsJsonParams"]
 
 
 class AccountRetrieveTranscriptionsJsonParams(TypedDict, total=False):
-    page_size: Annotated[int, PropertyInfo(alias="page[size]")]
-    """The size of the page."""
+    page_size: Annotated[int, PropertyInfo(alias="PageSize")]
+    """The number of records to be displayed on a page"""
 
     page_token: Annotated[str, PropertyInfo(alias="PageToken")]
     """Used to request the next page of results."""

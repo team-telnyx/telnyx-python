@@ -1,3 +1,25 @@
+# Shared Types
+
+```python
+from telnyx.types import (
+    ConnectionsPaginationMeta,
+    DocReqsRequirementType,
+    HostedNumber,
+    MessagingFeatureSet,
+    MessagingHostedNumberOrder,
+    Metadata,
+    NumberHealthMetrics,
+    PhoneNumberWithMessagingSettings,
+    PortingOrderStatus,
+    PortingOrdersExceptionType,
+    RoomParticipant,
+    ShortCode,
+    SimCardStatus,
+    SimpleSimCard,
+    SubNumberOrderRegulatoryRequirementWithValue,
+)
+```
+
 # Telnyx
 
 Types:
@@ -78,6 +100,7 @@ Types:
 
 ```python
 from telnyx.types import (
+    Address,
     AddressCreateResponse,
     AddressRetrieveResponse,
     AddressListResponse,
@@ -136,27 +159,39 @@ from telnyx.types.ai import (
     AssistantTool,
     AssistantsList,
     EnabledFeatures,
+    HangupTool,
+    HangupToolParams,
+    ImportMetadata,
+    InferenceEmbeddingBucketIDs,
+    InferenceEmbeddingTransferToolParams,
+    InferenceEmbeddingWebhookToolParams,
     InsightSettings,
     MessagingSettings,
     PrivacySettings,
+    RetrievalTool,
     TelephonySettings,
     TranscriptionSettings,
+    TransferTool,
     VoiceSettings,
+    WebhookTool,
+    AssistantCreateResponse,
+    AssistantRetrieveResponse,
     AssistantDeleteResponse,
     AssistantChatResponse,
+    AssistantCloneResponse,
     AssistantGetTexmlResponse,
 )
 ```
 
 Methods:
 
-- <code title="post /ai/assistants">client.ai.assistants.<a href="./src/telnyx/resources/ai/assistants/assistants.py">create</a>(\*\*<a href="src/telnyx/types/ai/assistant_create_params.py">params</a>) -> <a href="./src/telnyx/types/ai/assistant.py">Assistant</a></code>
-- <code title="get /ai/assistants/{assistant_id}">client.ai.assistants.<a href="./src/telnyx/resources/ai/assistants/assistants.py">retrieve</a>(assistant_id, \*\*<a href="src/telnyx/types/ai/assistant_retrieve_params.py">params</a>) -> <a href="./src/telnyx/types/ai/assistant.py">Assistant</a></code>
+- <code title="post /ai/assistants">client.ai.assistants.<a href="./src/telnyx/resources/ai/assistants/assistants.py">create</a>(\*\*<a href="src/telnyx/types/ai/assistant_create_params.py">params</a>) -> <a href="./src/telnyx/types/ai/assistant_create_response.py">AssistantCreateResponse</a></code>
+- <code title="get /ai/assistants/{assistant_id}">client.ai.assistants.<a href="./src/telnyx/resources/ai/assistants/assistants.py">retrieve</a>(assistant_id, \*\*<a href="src/telnyx/types/ai/assistant_retrieve_params.py">params</a>) -> <a href="./src/telnyx/types/ai/assistant_retrieve_response.py">AssistantRetrieveResponse</a></code>
 - <code title="post /ai/assistants/{assistant_id}">client.ai.assistants.<a href="./src/telnyx/resources/ai/assistants/assistants.py">update</a>(assistant_id, \*\*<a href="src/telnyx/types/ai/assistant_update_params.py">params</a>) -> object</code>
 - <code title="get /ai/assistants">client.ai.assistants.<a href="./src/telnyx/resources/ai/assistants/assistants.py">list</a>() -> <a href="./src/telnyx/types/ai/assistants_list.py">AssistantsList</a></code>
 - <code title="delete /ai/assistants/{assistant_id}">client.ai.assistants.<a href="./src/telnyx/resources/ai/assistants/assistants.py">delete</a>(assistant_id) -> <a href="./src/telnyx/types/ai/assistant_delete_response.py">AssistantDeleteResponse</a></code>
 - <code title="post /ai/assistants/{assistant_id}/chat">client.ai.assistants.<a href="./src/telnyx/resources/ai/assistants/assistants.py">chat</a>(assistant_id, \*\*<a href="src/telnyx/types/ai/assistant_chat_params.py">params</a>) -> <a href="./src/telnyx/types/ai/assistant_chat_response.py">AssistantChatResponse</a></code>
-- <code title="post /ai/assistants/{assistant_id}/clone">client.ai.assistants.<a href="./src/telnyx/resources/ai/assistants/assistants.py">clone</a>(assistant_id) -> <a href="./src/telnyx/types/ai/assistant.py">Assistant</a></code>
+- <code title="post /ai/assistants/{assistant_id}/clone">client.ai.assistants.<a href="./src/telnyx/resources/ai/assistants/assistants.py">clone</a>(assistant_id) -> <a href="./src/telnyx/types/ai/assistant_clone_response.py">AssistantCloneResponse</a></code>
 - <code title="get /ai/assistants/{assistant_id}/texml">client.ai.assistants.<a href="./src/telnyx/resources/ai/assistants/assistants.py">get_texml</a>(assistant_id) -> str</code>
 - <code title="post /ai/assistants/import">client.ai.assistants.<a href="./src/telnyx/resources/ai/assistants/assistants.py">import\_</a>(\*\*<a href="src/telnyx/types/ai/assistant_import_params.py">params</a>) -> <a href="./src/telnyx/types/ai/assistants_list.py">AssistantsList</a></code>
 
@@ -273,16 +308,21 @@ Methods:
 Types:
 
 ```python
-from telnyx.types.ai.assistants import UpdateAssistant
+from telnyx.types.ai.assistants import (
+    UpdateAssistant,
+    VersionRetrieveResponse,
+    VersionUpdateResponse,
+    VersionPromoteResponse,
+)
 ```
 
 Methods:
 
-- <code title="get /ai/assistants/{assistant_id}/versions/{version_id}">client.ai.assistants.versions.<a href="./src/telnyx/resources/ai/assistants/versions.py">retrieve</a>(version_id, \*, assistant_id, \*\*<a href="src/telnyx/types/ai/assistants/version_retrieve_params.py">params</a>) -> <a href="./src/telnyx/types/ai/assistant.py">Assistant</a></code>
-- <code title="post /ai/assistants/{assistant_id}/versions/{version_id}">client.ai.assistants.versions.<a href="./src/telnyx/resources/ai/assistants/versions.py">update</a>(version_id, \*, assistant_id, \*\*<a href="src/telnyx/types/ai/assistants/version_update_params.py">params</a>) -> <a href="./src/telnyx/types/ai/assistant.py">Assistant</a></code>
+- <code title="get /ai/assistants/{assistant_id}/versions/{version_id}">client.ai.assistants.versions.<a href="./src/telnyx/resources/ai/assistants/versions.py">retrieve</a>(version_id, \*, assistant_id, \*\*<a href="src/telnyx/types/ai/assistants/version_retrieve_params.py">params</a>) -> <a href="./src/telnyx/types/ai/assistants/version_retrieve_response.py">VersionRetrieveResponse</a></code>
+- <code title="post /ai/assistants/{assistant_id}/versions/{version_id}">client.ai.assistants.versions.<a href="./src/telnyx/resources/ai/assistants/versions.py">update</a>(version_id, \*, assistant_id, \*\*<a href="src/telnyx/types/ai/assistants/version_update_params.py">params</a>) -> <a href="./src/telnyx/types/ai/assistants/version_update_response.py">VersionUpdateResponse</a></code>
 - <code title="get /ai/assistants/{assistant_id}/versions">client.ai.assistants.versions.<a href="./src/telnyx/resources/ai/assistants/versions.py">list</a>(assistant_id) -> <a href="./src/telnyx/types/ai/assistants_list.py">AssistantsList</a></code>
 - <code title="delete /ai/assistants/{assistant_id}/versions/{version_id}">client.ai.assistants.versions.<a href="./src/telnyx/resources/ai/assistants/versions.py">delete</a>(version_id, \*, assistant_id) -> None</code>
-- <code title="post /ai/assistants/{assistant_id}/versions/{version_id}/promote">client.ai.assistants.versions.<a href="./src/telnyx/resources/ai/assistants/versions.py">promote</a>(version_id, \*, assistant_id) -> <a href="./src/telnyx/types/ai/assistant.py">Assistant</a></code>
+- <code title="post /ai/assistants/{assistant_id}/versions/{version_id}/promote">client.ai.assistants.versions.<a href="./src/telnyx/resources/ai/assistants/versions.py">promote</a>(version_id, \*, assistant_id) -> <a href="./src/telnyx/types/ai/assistants/version_promote_response.py">VersionPromoteResponse</a></code>
 
 ## Audio
 
@@ -669,6 +709,7 @@ Types:
 
 ```python
 from telnyx.types import (
+    CallControlApplication,
     CallControlApplicationInbound,
     CallControlApplicationOutbound,
     CallControlApplicationCreateResponse,
@@ -730,6 +771,7 @@ Types:
 ```python
 from telnyx.types.calls import (
     AwsVoiceSettings,
+    CallControlCommandResult,
     ElevenLabsVoiceSettings,
     GoogleTranscriptionLanguage,
     InterruptionSettings,
@@ -737,6 +779,8 @@ from telnyx.types.calls import (
     StopRecordingRequest,
     TelnyxVoiceSettings,
     TranscriptionConfig,
+    TranscriptionEngineAConfig,
+    TranscriptionEngineBConfig,
     TranscriptionStartRequest,
     ActionAnswerResponse,
     ActionBridgeResponse,
@@ -949,6 +993,7 @@ Types:
 
 ```python
 from telnyx.types import (
+    Conference,
     ConferenceCreateResponse,
     ConferenceRetrieveResponse,
     ConferenceListResponse,
@@ -969,6 +1014,7 @@ Types:
 
 ```python
 from telnyx.types.conferences import (
+    ConferenceCommandResult,
     UpdateConference,
     ActionUpdateResponse,
     ActionHoldResponse,
@@ -1043,6 +1089,7 @@ Types:
 from telnyx.types import (
     AnchorsiteOverride,
     ConnectionRtcpSettings,
+    CredentialConnection,
     CredentialInbound,
     CredentialOutbound,
     DtmfType,
@@ -1081,6 +1128,10 @@ Types:
 
 ```python
 from telnyx.types import (
+    AzureConfigurationData,
+    CustomStorageConfiguration,
+    GcsConfigurationData,
+    S3ConfigurationData,
     CustomStorageCredentialCreateResponse,
     CustomStorageCredentialRetrieveResponse,
     CustomStorageCredentialUpdateResponse,
@@ -1100,6 +1151,7 @@ Types:
 
 ```python
 from telnyx.types import (
+    CustomerServiceRecord,
     CustomerServiceRecordCreateResponse,
     CustomerServiceRecordRetrieveResponse,
     CustomerServiceRecordListResponse,
@@ -1163,6 +1215,7 @@ Types:
 
 ```python
 from telnyx.types import (
+    DocServiceDocument,
     DocumentRetrieveResponse,
     DocumentUpdateResponse,
     DocumentListResponse,
@@ -1186,6 +1239,7 @@ Types:
 
 ```python
 from telnyx.types import (
+    DynamicEmergencyAddress,
     DynamicEmergencyAddressCreateResponse,
     DynamicEmergencyAddressRetrieveResponse,
     DynamicEmergencyAddressListResponse,
@@ -1206,6 +1260,7 @@ Types:
 
 ```python
 from telnyx.types import (
+    DynamicEmergencyEndpoint,
     DynamicEmergencyEndpointCreateResponse,
     DynamicEmergencyEndpointRetrieveResponse,
     DynamicEmergencyEndpointListResponse,
@@ -1238,6 +1293,8 @@ Types:
 
 ```python
 from telnyx.types import (
+    ExternalConnection,
+    ExternalVoiceIntegrationsPaginationMeta,
     ExternalConnectionCreateResponse,
     ExternalConnectionRetrieveResponse,
     ExternalConnectionUpdateResponse,
@@ -1293,6 +1350,7 @@ Types:
 
 ```python
 from telnyx.types.external_connections import (
+    ExternalConnectionPhoneNumber,
     PhoneNumberRetrieveResponse,
     PhoneNumberUpdateResponse,
     PhoneNumberListResponse,
@@ -1324,6 +1382,8 @@ Types:
 
 ```python
 from telnyx.types.external_connections import (
+    TnUploadEntry,
+    Upload,
     UploadCreateResponse,
     UploadRetrieveResponse,
     UploadListResponse,
@@ -1348,6 +1408,7 @@ Types:
 
 ```python
 from telnyx.types import (
+    FaxApplication,
     FaxApplicationCreateResponse,
     FaxApplicationRetrieveResponse,
     FaxApplicationUpdateResponse,
@@ -1369,7 +1430,7 @@ Methods:
 Types:
 
 ```python
-from telnyx.types import FaxCreateResponse, FaxRetrieveResponse, FaxListResponse
+from telnyx.types import Fax, FaxCreateResponse, FaxRetrieveResponse, FaxListResponse
 ```
 
 Methods:
@@ -1398,6 +1459,7 @@ Types:
 
 ```python
 from telnyx.types import (
+    FqdnConnection,
     InboundFqdn,
     OutboundFqdn,
     TransportProtocol,
@@ -1424,6 +1486,7 @@ Types:
 
 ```python
 from telnyx.types import (
+    Fqdn,
     FqdnCreateResponse,
     FqdnRetrieveResponse,
     FqdnUpdateResponse,
@@ -1650,6 +1713,8 @@ Types:
 
 ```python
 from telnyx.types import (
+    InboundIP,
+    IPConnection,
     OutboundIP,
     IPConnectionCreateResponse,
     IPConnectionRetrieveResponse,
@@ -1673,6 +1738,7 @@ Types:
 
 ```python
 from telnyx.types import (
+    IP,
     IPCreateResponse,
     IPRetrieveResponse,
     IPUpdateResponse,
@@ -1725,6 +1791,8 @@ Types:
 
 ```python
 from telnyx.types import (
+    ManagedAccount,
+    ManagedAccountBalance,
     ManagedAccountCreateResponse,
     ManagedAccountRetrieveResponse,
     ManagedAccountUpdateResponse,
@@ -1762,6 +1830,7 @@ Types:
 
 ```python
 from telnyx.types import (
+    MediaResource,
     MediaRetrieveResponse,
     MediaUpdateResponse,
     MediaListResponse,
@@ -1785,6 +1854,8 @@ Types:
 ```python
 from telnyx.types import (
     Error,
+    MessagingError,
+    OutboundMessagePayload,
     MessageRetrieveResponse,
     MessageCancelScheduledResponse,
     MessageScheduleResponse,
@@ -1924,6 +1995,7 @@ Types:
 
 ```python
 from telnyx.types import (
+    MessagingProfile,
     NumberPoolSettings,
     URLShortenerSettings,
     MessagingProfileCreateResponse,
@@ -2207,6 +2279,7 @@ Types:
 
 ```python
 from telnyx.types import (
+    NumberBlockOrder,
     NumberBlockOrderCreateResponse,
     NumberBlockOrderRetrieveResponse,
     NumberBlockOrderListResponse,
@@ -2237,6 +2310,7 @@ Types:
 
 ```python
 from telnyx.types import (
+    NumberOrderPhoneNumber,
     UpdateRegulatoryRequirement,
     NumberOrderPhoneNumberRetrieveResponse,
     NumberOrderPhoneNumberListResponse,
@@ -2258,6 +2332,8 @@ Types:
 
 ```python
 from telnyx.types import (
+    NumberOrderWithPhoneNumbers,
+    PhoneNumber,
     NumberOrderCreateResponse,
     NumberOrderRetrieveResponse,
     NumberOrderUpdateResponse,
@@ -2278,6 +2354,8 @@ Types:
 
 ```python
 from telnyx.types import (
+    NumberReservation,
+    ReservedPhoneNumber,
     NumberReservationCreateResponse,
     NumberReservationRetrieveResponse,
     NumberReservationListResponse,
@@ -2348,6 +2426,7 @@ Types:
 ```python
 from telnyx.types import (
     OutboundCallRecording,
+    OutboundVoiceProfile,
     ServicePlan,
     TrafficType,
     UsagePaymentMethod,
@@ -2448,6 +2527,7 @@ Types:
 
 ```python
 from telnyx.types import (
+    PhoneNumberDetailed,
     PhoneNumberRetrieveResponse,
     PhoneNumberUpdateResponse,
     PhoneNumberListResponse,
@@ -2489,6 +2569,7 @@ Types:
 
 ```python
 from telnyx.types.phone_numbers import (
+    CsvDownload,
     CsvDownloadCreateResponse,
     CsvDownloadRetrieveResponse,
     CsvDownloadListResponse,
@@ -2571,6 +2652,7 @@ Types:
 
 ```python
 from telnyx.types.phone_numbers import (
+    VoicemailPrefResponse,
     VoicemailRequest,
     VoicemailCreateResponse,
     VoicemailRetrieveResponse,
@@ -2639,7 +2721,13 @@ Methods:
 Types:
 
 ```python
-from telnyx.types.porting import ReportCreateResponse, ReportRetrieveResponse, ReportListResponse
+from telnyx.types.porting import (
+    ExportPortingOrdersCsvReport,
+    PortingReport,
+    ReportCreateResponse,
+    ReportRetrieveResponse,
+    ReportListResponse,
+)
 ```
 
 Methods:
@@ -2654,6 +2742,7 @@ Types:
 
 ```python
 from telnyx.types.porting import (
+    PortingLoaConfiguration,
     LoaConfigurationCreateResponse,
     LoaConfigurationRetrieveResponse,
     LoaConfigurationUpdateResponse,
@@ -2677,7 +2766,19 @@ Types:
 
 ```python
 from telnyx.types import (
+    PortingOrder,
+    PortingOrderActivationSettings,
+    PortingOrderDocuments,
+    PortingOrderEndUser,
+    PortingOrderEndUserAdmin,
+    PortingOrderEndUserLocation,
+    PortingOrderMessaging,
+    PortingOrderMisc,
+    PortingOrderPhoneNumberConfiguration,
+    PortingOrderRequirement,
     PortingOrderType,
+    PortingOrderUserFeedback,
+    PortingOrdersActivationJob,
     PortingOrderCreateResponse,
     PortingOrderRetrieveResponse,
     PortingOrderUpdateResponse,
@@ -2822,6 +2923,7 @@ Types:
 
 ```python
 from telnyx.types.porting_orders import (
+    PortingAssociatedPhoneNumber,
     AssociatedPhoneNumberCreateResponse,
     AssociatedPhoneNumberListResponse,
     AssociatedPhoneNumberDeleteResponse,
@@ -2840,6 +2942,7 @@ Types:
 
 ```python
 from telnyx.types.porting_orders import (
+    PortingPhoneNumberBlock,
     PhoneNumberBlockCreateResponse,
     PhoneNumberBlockListResponse,
     PhoneNumberBlockDeleteResponse,
@@ -2858,6 +2961,7 @@ Types:
 
 ```python
 from telnyx.types.porting_orders import (
+    PortingPhoneNumberExtension,
     PhoneNumberExtensionCreateResponse,
     PhoneNumberExtensionListResponse,
     PhoneNumberExtensionDeleteResponse,
@@ -2888,6 +2992,7 @@ Types:
 
 ```python
 from telnyx.types import (
+    PortoutDetails,
     PortoutRetrieveResponse,
     PortoutListResponse,
     PortoutListRejectionCodesResponse,
@@ -2921,7 +3026,13 @@ Methods:
 Types:
 
 ```python
-from telnyx.types.portouts import ReportCreateResponse, ReportRetrieveResponse, ReportListResponse
+from telnyx.types.portouts import (
+    ExportPortoutsCsvReport,
+    PortoutReport,
+    ReportCreateResponse,
+    ReportRetrieveResponse,
+    ReportListResponse,
+)
 ```
 
 Methods:
@@ -2962,6 +3073,9 @@ Types:
 
 ```python
 from telnyx.types import (
+    PrivateWirelessGateway,
+    PrivateWirelessGatewayStatus,
+    PwgAssignedResourcesSummary,
     PrivateWirelessGatewayCreateResponse,
     PrivateWirelessGatewayRetrieveResponse,
     PrivateWirelessGatewayListResponse,
@@ -3043,6 +3157,7 @@ Types:
 
 ```python
 from telnyx.types import (
+    RecordingTranscription,
     RecordingTranscriptionRetrieveResponse,
     RecordingTranscriptionListResponse,
     RecordingTranscriptionDeleteResponse,
@@ -3060,7 +3175,12 @@ Methods:
 Types:
 
 ```python
-from telnyx.types import RecordingRetrieveResponse, RecordingListResponse, RecordingDeleteResponse
+from telnyx.types import (
+    RecordingResponseData,
+    RecordingRetrieveResponse,
+    RecordingListResponse,
+    RecordingDeleteResponse,
+)
 ```
 
 Methods:
@@ -3068,12 +3188,6 @@ Methods:
 - <code title="get /recordings/{recording_id}">client.recordings.<a href="./src/telnyx/resources/recordings/recordings.py">retrieve</a>(recording_id) -> <a href="./src/telnyx/types/recording_retrieve_response.py">RecordingRetrieveResponse</a></code>
 - <code title="get /recordings">client.recordings.<a href="./src/telnyx/resources/recordings/recordings.py">list</a>(\*\*<a href="src/telnyx/types/recording_list_params.py">params</a>) -> <a href="./src/telnyx/types/recording_list_response.py">RecordingListResponse</a></code>
 - <code title="delete /recordings/{recording_id}">client.recordings.<a href="./src/telnyx/resources/recordings/recordings.py">delete</a>(recording_id) -> <a href="./src/telnyx/types/recording_delete_response.py">RecordingDeleteResponse</a></code>
-
-## Actions
-
-Methods:
-
-- <code title="delete /recordings/actions/delete">client.recordings.actions.<a href="./src/telnyx/resources/recordings/actions.py">delete_list</a>(\*\*<a href="src/telnyx/types/recordings/action_delete_list_params.py">params</a>) -> None</code>
 
 # Regions
 
@@ -3196,6 +3310,8 @@ Types:
 
 ```python
 from telnyx.types import (
+    RoomComposition,
+    VideoRegion,
     RoomCompositionCreateResponse,
     RoomCompositionRetrieveResponse,
     RoomCompositionListResponse,
@@ -3247,6 +3363,8 @@ Types:
 
 ```python
 from telnyx.types import (
+    Room,
+    RoomSession,
     RoomCreateResponse,
     RoomRetrieveResponse,
     RoomUpdateResponse,
@@ -3351,6 +3469,7 @@ Types:
 
 ```python
 from telnyx.types import (
+    SimCardDataUsageNotification,
     SimCardDataUsageNotificationCreateResponse,
     SimCardDataUsageNotificationRetrieveResponse,
     SimCardDataUsageNotificationUpdateResponse,
@@ -3373,6 +3492,8 @@ Types:
 
 ```python
 from telnyx.types import (
+    ConsumedData,
+    SimCardGroup,
     SimCardGroupCreateResponse,
     SimCardGroupRetrieveResponse,
     SimCardGroupUpdateResponse,
@@ -3395,6 +3516,7 @@ Types:
 
 ```python
 from telnyx.types.sim_card_groups import (
+    SimCardGroupAction,
     ActionRetrieveResponse,
     ActionListResponse,
     ActionRemovePrivateWirelessGatewayResponse,
@@ -3431,6 +3553,7 @@ Types:
 
 ```python
 from telnyx.types import (
+    SimCardOrder,
     SimCardOrderCreateResponse,
     SimCardOrderRetrieveResponse,
     SimCardOrderListResponse,
@@ -3449,6 +3572,7 @@ Types:
 
 ```python
 from telnyx.types import (
+    SimCard,
     SimCardRetrieveResponse,
     SimCardUpdateResponse,
     SimCardListResponse,
@@ -3477,6 +3601,7 @@ Types:
 
 ```python
 from telnyx.types.sim_cards import (
+    SimCardAction,
     ActionRetrieveResponse,
     ActionListResponse,
     ActionBulkSetPublicIPsResponse,
@@ -3638,6 +3763,8 @@ Types:
 
 ```python
 from telnyx.types import (
+    SubNumberOrder,
+    SubNumberOrderRegulatoryRequirement,
     SubNumberOrderRetrieveResponse,
     SubNumberOrderUpdateResponse,
     SubNumberOrderListResponse,
@@ -3678,6 +3805,7 @@ Types:
 
 ```python
 from telnyx.types import (
+    TelephonyCredential,
     TelephonyCredentialCreateResponse,
     TelephonyCredentialRetrieveResponse,
     TelephonyCredentialUpdateResponse,
@@ -3714,6 +3842,8 @@ Types:
 
 ```python
 from telnyx.types.texml import (
+    TexmlGetCallRecordingResponseBody,
+    TexmlRecordingSubresourcesUris,
     AccountRetrieveRecordingsJsonResponse,
     AccountRetrieveTranscriptionsJsonResponse,
 )
@@ -3848,16 +3978,10 @@ Methods:
 
 #### Json
 
-Types:
-
-```python
-from telnyx.types.texml.accounts.recordings import JsonRetrieveRecordingSidJsonResponse
-```
-
 Methods:
 
 - <code title="delete /texml/Accounts/{account_sid}/Recordings/{recording_sid}.json">client.texml.accounts.recordings.json.<a href="./src/telnyx/resources/texml/accounts/recordings/json.py">delete_recording_sid_json</a>(recording_sid, \*, account_sid) -> None</code>
-- <code title="get /texml/Accounts/{account_sid}/Recordings/{recording_sid}.json">client.texml.accounts.recordings.json.<a href="./src/telnyx/resources/texml/accounts/recordings/json.py">retrieve_recording_sid_json</a>(recording_sid, \*, account_sid) -> <a href="./src/telnyx/types/texml/accounts/recordings/json_retrieve_recording_sid_json_response.py">JsonRetrieveRecordingSidJsonResponse</a></code>
+- <code title="get /texml/Accounts/{account_sid}/Recordings/{recording_sid}.json">client.texml.accounts.recordings.json.<a href="./src/telnyx/resources/texml/accounts/recordings/json.py">retrieve_recording_sid_json</a>(recording_sid, \*, account_sid) -> <a href="./src/telnyx/types/texml/texml_get_call_recording_response_body.py">TexmlGetCallRecordingResponseBody</a></code>
 
 ### Transcriptions
 
@@ -3894,6 +4018,7 @@ Types:
 
 ```python
 from telnyx.types import (
+    TexmlApplication,
     TexmlApplicationCreateResponse,
     TexmlApplicationRetrieveResponse,
     TexmlApplicationUpdateResponse,
@@ -3942,6 +4067,7 @@ Types:
 
 ```python
 from telnyx.types import (
+    UserAddress,
     UserAddressCreateResponse,
     UserAddressRetrieveResponse,
     UserAddressListResponse,
@@ -4169,6 +4295,7 @@ Types:
 
 ```python
 from telnyx.types.wireless import (
+    WdrReport,
     DetailRecordsReportCreateResponse,
     DetailRecordsReportRetrieveResponse,
     DetailRecordsReportListResponse,
@@ -4201,6 +4328,7 @@ Types:
 
 ```python
 from telnyx.types import (
+    WirelessBlocklist,
     WirelessBlocklistCreateResponse,
     WirelessBlocklistRetrieveResponse,
     WirelessBlocklistUpdateResponse,

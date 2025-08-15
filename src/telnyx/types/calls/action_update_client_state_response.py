@@ -3,13 +3,10 @@
 from typing import Optional
 
 from ..._models import BaseModel
+from .call_control_command_result import CallControlCommandResult
 
-__all__ = ["ActionUpdateClientStateResponse", "Data"]
-
-
-class Data(BaseModel):
-    result: Optional[str] = None
+__all__ = ["ActionUpdateClientStateResponse"]
 
 
 class ActionUpdateClientStateResponse(BaseModel):
-    data: Optional[Data] = None
+    data: Optional[CallControlCommandResult] = None

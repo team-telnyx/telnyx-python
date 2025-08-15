@@ -10,15 +10,20 @@ __all__ = ["VirtualCrossConnectsCoverageListResponse", "Data", "DataLocation"]
 
 
 class DataLocation(BaseModel):
-    id: Optional[str] = None
-    """Uniquely identifies the resource."""
+    code: Optional[str] = None
+    """Location code."""
 
-    additional_info: Optional[str] = None
+    name: Optional[str] = None
+    """Human readable name of location."""
 
-    description: Optional[str] = None
+    pop: Optional[str] = None
+    """Point of presence of location."""
 
-    is_default: Optional[bool] = None
-    """Represents whether the location is the default or not."""
+    region: Optional[str] = None
+    """Identifies the geographical region of location."""
+
+    site: Optional[str] = None
+    """Site of location."""
 
 
 class Data(BaseModel):

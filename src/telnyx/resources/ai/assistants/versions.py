@@ -17,7 +17,6 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
-from ....types.ai.assistant import Assistant
 from ....types.ai.assistants import version_update_params, version_retrieve_params
 from ....types.ai.assistants_list import AssistantsList
 from ....types.ai.enabled_features import EnabledFeatures
@@ -28,6 +27,9 @@ from ....types.ai.privacy_settings_param import PrivacySettingsParam
 from ....types.ai.messaging_settings_param import MessagingSettingsParam
 from ....types.ai.telephony_settings_param import TelephonySettingsParam
 from ....types.ai.transcription_settings_param import TranscriptionSettingsParam
+from ....types.ai.assistants.version_update_response import VersionUpdateResponse
+from ....types.ai.assistants.version_promote_response import VersionPromoteResponse
+from ....types.ai.assistants.version_retrieve_response import VersionRetrieveResponse
 
 __all__ = ["VersionsResource", "AsyncVersionsResource"]
 
@@ -39,7 +41,7 @@ class VersionsResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#accessing-raw-response-data-eg-headers
         """
         return VersionsResourceWithRawResponse(self)
 
@@ -48,7 +50,7 @@ class VersionsResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#with_streaming_response
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
         return VersionsResourceWithStreamingResponse(self)
 
@@ -64,7 +66,7 @@ class VersionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Assistant:
+    ) -> VersionRetrieveResponse:
         """
         Retrieves a specific version of an assistant by assistant_id and version_id
 
@@ -92,7 +94,7 @@ class VersionsResource(SyncAPIResource):
                     {"include_mcp_servers": include_mcp_servers}, version_retrieve_params.VersionRetrieveParams
                 ),
             ),
-            cast_to=Assistant,
+            cast_to=VersionRetrieveResponse,
         )
 
     def update(
@@ -122,7 +124,7 @@ class VersionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Assistant:
+    ) -> VersionUpdateResponse:
         """Updates the configuration of a specific assistant version.
 
         Can not update main
@@ -194,7 +196,7 @@ class VersionsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Assistant,
+            cast_to=VersionUpdateResponse,
         )
 
     def list(
@@ -281,7 +283,7 @@ class VersionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Assistant:
+    ) -> VersionPromoteResponse:
         """
         Promotes a specific version to be the main/current version of the assistant.
         This will delete any existing canary deploy configuration and send all live
@@ -305,7 +307,7 @@ class VersionsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Assistant,
+            cast_to=VersionPromoteResponse,
         )
 
 
@@ -316,7 +318,7 @@ class AsyncVersionsResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#accessing-raw-response-data-eg-headers
         """
         return AsyncVersionsResourceWithRawResponse(self)
 
@@ -325,7 +327,7 @@ class AsyncVersionsResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#with_streaming_response
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
         return AsyncVersionsResourceWithStreamingResponse(self)
 
@@ -341,7 +343,7 @@ class AsyncVersionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Assistant:
+    ) -> VersionRetrieveResponse:
         """
         Retrieves a specific version of an assistant by assistant_id and version_id
 
@@ -369,7 +371,7 @@ class AsyncVersionsResource(AsyncAPIResource):
                     {"include_mcp_servers": include_mcp_servers}, version_retrieve_params.VersionRetrieveParams
                 ),
             ),
-            cast_to=Assistant,
+            cast_to=VersionRetrieveResponse,
         )
 
     async def update(
@@ -399,7 +401,7 @@ class AsyncVersionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Assistant:
+    ) -> VersionUpdateResponse:
         """Updates the configuration of a specific assistant version.
 
         Can not update main
@@ -471,7 +473,7 @@ class AsyncVersionsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Assistant,
+            cast_to=VersionUpdateResponse,
         )
 
     async def list(
@@ -558,7 +560,7 @@ class AsyncVersionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Assistant:
+    ) -> VersionPromoteResponse:
         """
         Promotes a specific version to be the main/current version of the assistant.
         This will delete any existing canary deploy configuration and send all live
@@ -582,7 +584,7 @@ class AsyncVersionsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Assistant,
+            cast_to=VersionPromoteResponse,
         )
 
 

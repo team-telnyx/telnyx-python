@@ -26,6 +26,7 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._base_client import make_request_options
+from ...types.reserved_phone_number_param import ReservedPhoneNumberParam
 from ...types.number_reservation_list_response import NumberReservationListResponse
 from ...types.number_reservation_create_response import NumberReservationCreateResponse
 from ...types.number_reservation_retrieve_response import NumberReservationRetrieveResponse
@@ -44,7 +45,7 @@ class NumberReservationsResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#accessing-raw-response-data-eg-headers
         """
         return NumberReservationsResourceWithRawResponse(self)
 
@@ -53,7 +54,7 @@ class NumberReservationsResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#with_streaming_response
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
         return NumberReservationsResourceWithStreamingResponse(self)
 
@@ -61,7 +62,7 @@ class NumberReservationsResource(SyncAPIResource):
         self,
         *,
         customer_reference: str | NotGiven = NOT_GIVEN,
-        phone_numbers: Iterable[number_reservation_create_params.PhoneNumber] | NotGiven = NOT_GIVEN,
+        phone_numbers: Iterable[ReservedPhoneNumberParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -194,7 +195,7 @@ class AsyncNumberReservationsResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#accessing-raw-response-data-eg-headers
         """
         return AsyncNumberReservationsResourceWithRawResponse(self)
 
@@ -203,7 +204,7 @@ class AsyncNumberReservationsResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#with_streaming_response
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
         return AsyncNumberReservationsResourceWithStreamingResponse(self)
 
@@ -211,7 +212,7 @@ class AsyncNumberReservationsResource(AsyncAPIResource):
         self,
         *,
         customer_reference: str | NotGiven = NOT_GIVEN,
-        phone_numbers: Iterable[number_reservation_create_params.PhoneNumber] | NotGiven = NOT_GIVEN,
+        phone_numbers: Iterable[ReservedPhoneNumberParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

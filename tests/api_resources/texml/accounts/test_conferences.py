@@ -81,8 +81,6 @@ class TestConferences:
         conference = client.texml.accounts.conferences.update(
             conference_sid="conference_sid",
             account_sid="account_sid",
-            call_control_id="v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg",
-            supervisor_role="whisper",
         )
         assert_matches_type(ConferenceUpdateResponse, conference, path=["response"])
 
@@ -92,13 +90,9 @@ class TestConferences:
         conference = client.texml.accounts.conferences.update(
             conference_sid="conference_sid",
             account_sid="account_sid",
-            call_control_id="v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg",
-            supervisor_role="whisper",
-            command_id="891510ac-f3e4-11e8-af5b-de00688a4901",
-            whisper_call_control_ids=[
-                "v2:Sg1xxxQ_U3ixxxyXT_VDNI3xxxazZdg6Vxxxs4-GNYxxxVaJPOhFMRQ",
-                "v2:qqpb0mmvd-ovhhBr0BUQQn0fld5jIboaaX3-De0DkqXHzbf8d75xkw",
-            ],
+            announce_method="GET",
+            announce_url="https://www.example.com/announce.xml",
+            status="completed",
         )
         assert_matches_type(ConferenceUpdateResponse, conference, path=["response"])
 
@@ -108,8 +102,6 @@ class TestConferences:
         response = client.texml.accounts.conferences.with_raw_response.update(
             conference_sid="conference_sid",
             account_sid="account_sid",
-            call_control_id="v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg",
-            supervisor_role="whisper",
         )
 
         assert response.is_closed is True
@@ -123,8 +115,6 @@ class TestConferences:
         with client.texml.accounts.conferences.with_streaming_response.update(
             conference_sid="conference_sid",
             account_sid="account_sid",
-            call_control_id="v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg",
-            supervisor_role="whisper",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -141,16 +131,12 @@ class TestConferences:
             client.texml.accounts.conferences.with_raw_response.update(
                 conference_sid="conference_sid",
                 account_sid="",
-                call_control_id="v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg",
-                supervisor_role="whisper",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `conference_sid` but received ''"):
             client.texml.accounts.conferences.with_raw_response.update(
                 conference_sid="",
                 account_sid="account_sid",
-                call_control_id="v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg",
-                supervisor_role="whisper",
             )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -170,7 +156,7 @@ class TestConferences:
             date_updated="DateUpdated",
             friendly_name="FriendlyName",
             page=0,
-            page_size=1,
+            page_size=0,
             page_token="PageToken",
             status="init",
         )
@@ -378,8 +364,6 @@ class TestAsyncConferences:
         conference = await async_client.texml.accounts.conferences.update(
             conference_sid="conference_sid",
             account_sid="account_sid",
-            call_control_id="v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg",
-            supervisor_role="whisper",
         )
         assert_matches_type(ConferenceUpdateResponse, conference, path=["response"])
 
@@ -389,13 +373,9 @@ class TestAsyncConferences:
         conference = await async_client.texml.accounts.conferences.update(
             conference_sid="conference_sid",
             account_sid="account_sid",
-            call_control_id="v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg",
-            supervisor_role="whisper",
-            command_id="891510ac-f3e4-11e8-af5b-de00688a4901",
-            whisper_call_control_ids=[
-                "v2:Sg1xxxQ_U3ixxxyXT_VDNI3xxxazZdg6Vxxxs4-GNYxxxVaJPOhFMRQ",
-                "v2:qqpb0mmvd-ovhhBr0BUQQn0fld5jIboaaX3-De0DkqXHzbf8d75xkw",
-            ],
+            announce_method="GET",
+            announce_url="https://www.example.com/announce.xml",
+            status="completed",
         )
         assert_matches_type(ConferenceUpdateResponse, conference, path=["response"])
 
@@ -405,8 +385,6 @@ class TestAsyncConferences:
         response = await async_client.texml.accounts.conferences.with_raw_response.update(
             conference_sid="conference_sid",
             account_sid="account_sid",
-            call_control_id="v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg",
-            supervisor_role="whisper",
         )
 
         assert response.is_closed is True
@@ -420,8 +398,6 @@ class TestAsyncConferences:
         async with async_client.texml.accounts.conferences.with_streaming_response.update(
             conference_sid="conference_sid",
             account_sid="account_sid",
-            call_control_id="v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg",
-            supervisor_role="whisper",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -438,16 +414,12 @@ class TestAsyncConferences:
             await async_client.texml.accounts.conferences.with_raw_response.update(
                 conference_sid="conference_sid",
                 account_sid="",
-                call_control_id="v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg",
-                supervisor_role="whisper",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `conference_sid` but received ''"):
             await async_client.texml.accounts.conferences.with_raw_response.update(
                 conference_sid="",
                 account_sid="account_sid",
-                call_control_id="v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg",
-                supervisor_role="whisper",
             )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -467,7 +439,7 @@ class TestAsyncConferences:
             date_updated="DateUpdated",
             friendly_name="FriendlyName",
             page=0,
-            page_size=1,
+            page_size=0,
             page_token="PageToken",
             status="init",
         )

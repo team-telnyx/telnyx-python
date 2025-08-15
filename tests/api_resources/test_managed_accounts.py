@@ -17,7 +17,6 @@ from telnyx.types import (
     ManagedAccountUpdateGlobalChannelLimitResponse,
     ManagedAccountGetAllocatableGlobalOutboundChannelsResponse,
 )
-from telnyx._utils import parse_datetime
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -175,17 +174,13 @@ class TestManagedAccounts:
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         managed_account = client.managed_accounts.list(
             filter={
-                "created_at": {
-                    "gt": parse_datetime("2020-01-01T00:00:00Z"),
-                    "lt": parse_datetime("2020-01-01T00:00:00Z"),
+                "email": {
+                    "contains": "john",
+                    "eq": "eq",
                 },
-                "phone_number": {
-                    "eq": "+12441239999",
-                    "in": ["+12441239999"],
-                },
-                "status": {
-                    "eq": "pending",
-                    "in": ["pending"],
+                "organization_name": {
+                    "contains": "contains",
+                    "eq": "Example Company LLC",
                 },
             },
             include_cancelled_accounts=True,
@@ -460,17 +455,13 @@ class TestAsyncManagedAccounts:
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         managed_account = await async_client.managed_accounts.list(
             filter={
-                "created_at": {
-                    "gt": parse_datetime("2020-01-01T00:00:00Z"),
-                    "lt": parse_datetime("2020-01-01T00:00:00Z"),
+                "email": {
+                    "contains": "john",
+                    "eq": "eq",
                 },
-                "phone_number": {
-                    "eq": "+12441239999",
-                    "in": ["+12441239999"],
-                },
-                "status": {
-                    "eq": "pending",
-                    "in": ["pending"],
+                "organization_name": {
+                    "contains": "contains",
+                    "eq": "Example Company LLC",
                 },
             },
             include_cancelled_accounts=True,

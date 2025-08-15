@@ -45,7 +45,7 @@ class ConferencesResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#accessing-raw-response-data-eg-headers
         """
         return ConferencesResourceWithRawResponse(self)
 
@@ -54,7 +54,7 @@ class ConferencesResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#with_streaming_response
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
         return ConferencesResourceWithStreamingResponse(self)
 
@@ -222,11 +222,13 @@ class ConferencesResource(SyncAPIResource):
         Args:
           filter:
               Consolidated filter parameter (deepObject style). Originally:
-              filter[phone_number][eq], filter[phone_number][in][], filter[status][eq],
-              filter[status][in][], filter[created_at][lt], filter[created_at][gt]
+              filter[application_name][contains], filter[outbound.outbound_voice_profile_id],
+              filter[leg_id], filter[application_session_id], filter[connection_id],
+              filter[product], filter[failed], filter[from], filter[to], filter[name],
+              filter[type], filter[occurred_at][eq/gt/gte/lt/lte], filter[status]
 
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
+          page: Consolidated page parameter (deepObject style). Originally: page[after],
+              page[before], page[limit], page[size], page[number]
 
           extra_headers: Send extra headers
 
@@ -274,8 +276,8 @@ class ConferencesResource(SyncAPIResource):
           filter: Consolidated filter parameter (deepObject style). Originally: filter[muted],
               filter[on_hold], filter[whispering]
 
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
+          page: Consolidated page parameter (deepObject style). Originally: page[after],
+              page[before], page[limit], page[size], page[number]
 
           extra_headers: Send extra headers
 
@@ -317,7 +319,7 @@ class AsyncConferencesResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#accessing-raw-response-data-eg-headers
         """
         return AsyncConferencesResourceWithRawResponse(self)
 
@@ -326,7 +328,7 @@ class AsyncConferencesResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#with_streaming_response
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
         return AsyncConferencesResourceWithStreamingResponse(self)
 
@@ -494,11 +496,13 @@ class AsyncConferencesResource(AsyncAPIResource):
         Args:
           filter:
               Consolidated filter parameter (deepObject style). Originally:
-              filter[phone_number][eq], filter[phone_number][in][], filter[status][eq],
-              filter[status][in][], filter[created_at][lt], filter[created_at][gt]
+              filter[application_name][contains], filter[outbound.outbound_voice_profile_id],
+              filter[leg_id], filter[application_session_id], filter[connection_id],
+              filter[product], filter[failed], filter[from], filter[to], filter[name],
+              filter[type], filter[occurred_at][eq/gt/gte/lt/lte], filter[status]
 
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
+          page: Consolidated page parameter (deepObject style). Originally: page[after],
+              page[before], page[limit], page[size], page[number]
 
           extra_headers: Send extra headers
 
@@ -546,8 +550,8 @@ class AsyncConferencesResource(AsyncAPIResource):
           filter: Consolidated filter parameter (deepObject style). Originally: filter[muted],
               filter[on_hold], filter[whispering]
 
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
+          page: Consolidated page parameter (deepObject style). Originally: page[after],
+              page[before], page[limit], page[size], page[number]
 
           extra_headers: Send extra headers
 

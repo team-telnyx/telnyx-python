@@ -28,6 +28,7 @@ from .._response import (
 from .._base_client import make_request_options
 from ..types.dtmf_type import DtmfType
 from ..types.encrypted_media import EncryptedMedia
+from ..types.inbound_ip_param import InboundIPParam
 from ..types.outbound_ip_param import OutboundIPParam
 from ..types.anchorsite_override import AnchorsiteOverride
 from ..types.ip_connection_list_response import IPConnectionListResponse
@@ -47,7 +48,7 @@ class IPConnectionsResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#accessing-raw-response-data-eg-headers
         """
         return IPConnectionsResourceWithRawResponse(self)
 
@@ -56,7 +57,7 @@ class IPConnectionsResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#with_streaming_response
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
         return IPConnectionsResourceWithStreamingResponse(self)
 
@@ -220,7 +221,7 @@ class IPConnectionsResource(SyncAPIResource):
         dtmf_type: DtmfType | NotGiven = NOT_GIVEN,
         encode_contact_header_enabled: bool | NotGiven = NOT_GIVEN,
         encrypted_media: Optional[EncryptedMedia] | NotGiven = NOT_GIVEN,
-        inbound: ip_connection_update_params.Inbound | NotGiven = NOT_GIVEN,
+        inbound: InboundIPParam | NotGiven = NOT_GIVEN,
         ios_push_credential_id: Optional[str] | NotGiven = NOT_GIVEN,
         onnet_t38_passthrough_enabled: bool | NotGiven = NOT_GIVEN,
         outbound: OutboundIPParam | NotGiven = NOT_GIVEN,
@@ -345,8 +346,8 @@ class IPConnectionsResource(SyncAPIResource):
         Args:
           filter:
               Consolidated filter parameter (deepObject style). Originally:
-              filter[phone_number][eq], filter[phone_number][in][], filter[status][eq],
-              filter[status][in][], filter[created_at][lt], filter[created_at][gt]
+              filter[connection_name], filter[fqdn], filter[outbound_voice_profile_id],
+              filter[outbound.outbound_voice_profile_id]
 
           page: Consolidated page parameter (deepObject style). Originally: page[size],
               page[number]
@@ -434,7 +435,7 @@ class AsyncIPConnectionsResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#accessing-raw-response-data-eg-headers
         """
         return AsyncIPConnectionsResourceWithRawResponse(self)
 
@@ -443,7 +444,7 @@ class AsyncIPConnectionsResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#with_streaming_response
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
         return AsyncIPConnectionsResourceWithStreamingResponse(self)
 
@@ -607,7 +608,7 @@ class AsyncIPConnectionsResource(AsyncAPIResource):
         dtmf_type: DtmfType | NotGiven = NOT_GIVEN,
         encode_contact_header_enabled: bool | NotGiven = NOT_GIVEN,
         encrypted_media: Optional[EncryptedMedia] | NotGiven = NOT_GIVEN,
-        inbound: ip_connection_update_params.Inbound | NotGiven = NOT_GIVEN,
+        inbound: InboundIPParam | NotGiven = NOT_GIVEN,
         ios_push_credential_id: Optional[str] | NotGiven = NOT_GIVEN,
         onnet_t38_passthrough_enabled: bool | NotGiven = NOT_GIVEN,
         outbound: OutboundIPParam | NotGiven = NOT_GIVEN,
@@ -732,8 +733,8 @@ class AsyncIPConnectionsResource(AsyncAPIResource):
         Args:
           filter:
               Consolidated filter parameter (deepObject style). Originally:
-              filter[phone_number][eq], filter[phone_number][in][], filter[status][eq],
-              filter[status][in][], filter[created_at][lt], filter[created_at][gt]
+              filter[connection_name], filter[fqdn], filter[outbound_voice_profile_id],
+              filter[outbound.outbound_voice_profile_id]
 
           page: Consolidated page parameter (deepObject style). Originally: page[size],
               page[number]

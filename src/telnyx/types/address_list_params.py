@@ -2,28 +2,33 @@
 
 from __future__ import annotations
 
-from typing import List, Union
-from datetime import datetime
-from typing_extensions import Literal, Annotated, TypedDict
+from typing import Union
+from typing_extensions import Literal, TypeAlias, TypedDict
 
-from .._utils import PropertyInfo
-
-__all__ = ["AddressListParams", "Filter", "FilterCreatedAt", "FilterPhoneNumber", "FilterStatus", "Page"]
+__all__ = [
+    "AddressListParams",
+    "Filter",
+    "FilterAddressBook",
+    "FilterCustomerReference",
+    "FilterCustomerReferenceUnionMember1",
+    "FilterStreetAddress",
+    "Page",
+]
 
 
 class AddressListParams(TypedDict, total=False):
     filter: Filter
     """Consolidated filter parameter (deepObject style).
 
-    Originally: filter[phone_number][eq], filter[phone_number][in][],
-    filter[status][eq], filter[status][in][], filter[created_at][lt],
-    filter[created_at][gt]
+    Originally: filter[customer_reference][eq],
+    filter[customer_reference][contains], filter[used_as_emergency],
+    filter[street_address][contains], filter[address_book][eq]
     """
 
     page: Page
     """Consolidated page parameter (deepObject style).
 
-    Originally: page[size], page[number]
+    Originally: page[number], page[size]
     """
 
     sort: Literal["created_at", "first_name", "last_name", "business_name", "street_address"]
@@ -45,48 +50,52 @@ class AddressListParams(TypedDict, total=False):
     """
 
 
-class FilterCreatedAt(TypedDict, total=False):
-    gt: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
-    """Filters records to those created after a specific date."""
-
-    lt: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
-    """Filters records to those created before a specific date."""
-
-
-_FilterPhoneNumberReservedKeywords = TypedDict(
-    "_FilterPhoneNumberReservedKeywords",
-    {
-        "in": List[str],
-    },
-    total=False,
-)
-
-
-class FilterPhoneNumber(_FilterPhoneNumberReservedKeywords, total=False):
+class FilterAddressBook(TypedDict, total=False):
     eq: str
-    """Filters records to those with a specified number."""
+    """
+    If present, only returns results with the <code>address_book</code> flag equal
+    to the given value.
+    """
 
 
-_FilterStatusReservedKeywords = TypedDict(
-    "_FilterStatusReservedKeywords",
-    {
-        "in": List[Literal["pending", "completed", "failed"]],
-    },
-    total=False,
-)
+class FilterCustomerReferenceUnionMember1(TypedDict, total=False):
+    contains: str
+    """Partial match for customer_reference. Matching is not case-sensitive."""
+
+    eq: str
+    """Exact match for customer_reference."""
 
 
-class FilterStatus(_FilterStatusReservedKeywords, total=False):
-    eq: Literal["pending", "completed", "failed"]
-    """Filters records to those with a specific status."""
+FilterCustomerReference: TypeAlias = Union[str, FilterCustomerReferenceUnionMember1]
+
+
+class FilterStreetAddress(TypedDict, total=False):
+    contains: str
+    """
+    If present, addresses with <code>street_address</code> containing the given
+    value will be returned. Matching is not case-sensitive. Requires at least three
+    characters.
+    """
 
 
 class Filter(TypedDict, total=False):
-    created_at: FilterCreatedAt
+    address_book: FilterAddressBook
 
-    phone_number: FilterPhoneNumber
+    customer_reference: FilterCustomerReference
+    """
+    If present, addresses with <code>customer_reference</code> containing the given
+    value will be returned. Matching is not case-sensitive.
+    """
 
-    status: FilterStatus
+    street_address: FilterStreetAddress
+
+    used_as_emergency: str
+    """
+    If set as 'true', only addresses used as the emergency address for at least one
+    active phone-number will be returned. When set to 'false', the opposite happens:
+    only addresses not used as the emergency address from phone-numbers will be
+    returned.
+    """
 
 
 class Page(TypedDict, total=False):

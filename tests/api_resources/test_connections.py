@@ -14,7 +14,6 @@ from telnyx.types import (
     ConnectionRetrieveResponse,
     ConnectionListActiveCallsResponse,
 )
-from telnyx._utils import parse_datetime
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -75,18 +74,9 @@ class TestConnections:
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         connection = client.connections.list(
             filter={
-                "created_at": {
-                    "gt": parse_datetime("2020-01-01T00:00:00Z"),
-                    "lt": parse_datetime("2020-01-01T00:00:00Z"),
-                },
-                "phone_number": {
-                    "eq": "+12441239999",
-                    "in": ["+12441239999"],
-                },
-                "status": {
-                    "eq": "pending",
-                    "in": ["pending"],
-                },
+                "connection_name": {"contains": "contains"},
+                "fqdn": "fqdn",
+                "outbound_voice_profile_id": "outbound_voice_profile_id",
             },
             page={
                 "number": 1,
@@ -122,7 +112,7 @@ class TestConnections:
     @parametrize
     def test_method_list_active_calls(self, client: Telnyx) -> None:
         connection = client.connections.list_active_calls(
-            connection_id="connection_id",
+            connection_id="1293384261075731461",
         )
         assert_matches_type(ConnectionListActiveCallsResponse, connection, path=["response"])
 
@@ -130,8 +120,11 @@ class TestConnections:
     @parametrize
     def test_method_list_active_calls_with_all_params(self, client: Telnyx) -> None:
         connection = client.connections.list_active_calls(
-            connection_id="connection_id",
+            connection_id="1293384261075731461",
             page={
+                "after": "after",
+                "before": "before",
+                "limit": 1,
                 "number": 1,
                 "size": 1,
             },
@@ -142,7 +135,7 @@ class TestConnections:
     @parametrize
     def test_raw_response_list_active_calls(self, client: Telnyx) -> None:
         response = client.connections.with_raw_response.list_active_calls(
-            connection_id="connection_id",
+            connection_id="1293384261075731461",
         )
 
         assert response.is_closed is True
@@ -154,7 +147,7 @@ class TestConnections:
     @parametrize
     def test_streaming_response_list_active_calls(self, client: Telnyx) -> None:
         with client.connections.with_streaming_response.list_active_calls(
-            connection_id="connection_id",
+            connection_id="1293384261075731461",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -231,18 +224,9 @@ class TestAsyncConnections:
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         connection = await async_client.connections.list(
             filter={
-                "created_at": {
-                    "gt": parse_datetime("2020-01-01T00:00:00Z"),
-                    "lt": parse_datetime("2020-01-01T00:00:00Z"),
-                },
-                "phone_number": {
-                    "eq": "+12441239999",
-                    "in": ["+12441239999"],
-                },
-                "status": {
-                    "eq": "pending",
-                    "in": ["pending"],
-                },
+                "connection_name": {"contains": "contains"},
+                "fqdn": "fqdn",
+                "outbound_voice_profile_id": "outbound_voice_profile_id",
             },
             page={
                 "number": 1,
@@ -278,7 +262,7 @@ class TestAsyncConnections:
     @parametrize
     async def test_method_list_active_calls(self, async_client: AsyncTelnyx) -> None:
         connection = await async_client.connections.list_active_calls(
-            connection_id="connection_id",
+            connection_id="1293384261075731461",
         )
         assert_matches_type(ConnectionListActiveCallsResponse, connection, path=["response"])
 
@@ -286,8 +270,11 @@ class TestAsyncConnections:
     @parametrize
     async def test_method_list_active_calls_with_all_params(self, async_client: AsyncTelnyx) -> None:
         connection = await async_client.connections.list_active_calls(
-            connection_id="connection_id",
+            connection_id="1293384261075731461",
             page={
+                "after": "after",
+                "before": "before",
+                "limit": 1,
                 "number": 1,
                 "size": 1,
             },
@@ -298,7 +285,7 @@ class TestAsyncConnections:
     @parametrize
     async def test_raw_response_list_active_calls(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.connections.with_raw_response.list_active_calls(
-            connection_id="connection_id",
+            connection_id="1293384261075731461",
         )
 
         assert response.is_closed is True
@@ -310,7 +297,7 @@ class TestAsyncConnections:
     @parametrize
     async def test_streaming_response_list_active_calls(self, async_client: AsyncTelnyx) -> None:
         async with async_client.connections.with_streaming_response.list_active_calls(
-            connection_id="connection_id",
+            connection_id="1293384261075731461",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

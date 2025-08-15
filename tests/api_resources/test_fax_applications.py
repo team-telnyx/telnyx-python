@@ -16,7 +16,6 @@ from telnyx.types import (
     FaxApplicationUpdateResponse,
     FaxApplicationRetrieveResponse,
 )
-from telnyx._utils import parse_datetime
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -212,18 +211,8 @@ class TestFaxApplications:
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         fax_application = client.fax_applications.list(
             filter={
-                "created_at": {
-                    "gt": parse_datetime("2020-01-01T00:00:00Z"),
-                    "lt": parse_datetime("2020-01-01T00:00:00Z"),
-                },
-                "phone_number": {
-                    "eq": "+12441239999",
-                    "in": ["+12441239999"],
-                },
-                "status": {
-                    "eq": "pending",
-                    "in": ["pending"],
-                },
+                "application_name": {"contains": "fax-app"},
+                "outbound_voice_profile_id": "1293384261075731499",
             },
             page={
                 "number": 1,
@@ -491,18 +480,8 @@ class TestAsyncFaxApplications:
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         fax_application = await async_client.fax_applications.list(
             filter={
-                "created_at": {
-                    "gt": parse_datetime("2020-01-01T00:00:00Z"),
-                    "lt": parse_datetime("2020-01-01T00:00:00Z"),
-                },
-                "phone_number": {
-                    "eq": "+12441239999",
-                    "in": ["+12441239999"],
-                },
-                "status": {
-                    "eq": "pending",
-                    "in": ["pending"],
-                },
+                "application_name": {"contains": "fax-app"},
+                "outbound_voice_profile_id": "1293384261075731499",
             },
             page={
                 "number": 1,

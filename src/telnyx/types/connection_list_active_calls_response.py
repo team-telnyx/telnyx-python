@@ -48,6 +48,8 @@ class Meta(BaseModel):
     previous: Optional[str] = None
     """Path to previous page."""
 
+    total_items: Optional[int] = None
+
 
 class ConnectionListActiveCallsResponse(BaseModel):
     data: Optional[List[Data]] = None

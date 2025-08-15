@@ -3,15 +3,10 @@
 from typing import List, Optional
 
 from .._models import BaseModel
+from .consumed_data import ConsumedData
 from .pagination_meta import PaginationMeta
 
-__all__ = ["SimCardGroupListResponse", "Data", "DataConsumedData", "DataDataLimit"]
-
-
-class DataConsumedData(BaseModel):
-    amount: Optional[str] = None
-
-    unit: Optional[str] = None
+__all__ = ["SimCardGroupListResponse", "Data", "DataDataLimit"]
 
 
 class DataDataLimit(BaseModel):
@@ -24,7 +19,7 @@ class Data(BaseModel):
     id: Optional[str] = None
     """Identifies the resource."""
 
-    consumed_data: Optional[DataConsumedData] = None
+    consumed_data: Optional[ConsumedData] = None
     """Represents the amount of data consumed."""
 
     created_at: Optional[str] = None

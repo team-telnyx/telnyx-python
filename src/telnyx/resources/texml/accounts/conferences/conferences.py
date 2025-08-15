@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Literal
 
 import httpx
@@ -49,7 +48,7 @@ class ConferencesResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#accessing-raw-response-data-eg-headers
         """
         return ConferencesResourceWithRawResponse(self)
 
@@ -58,7 +57,7 @@ class ConferencesResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#with_streaming_response
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
         return ConferencesResourceWithStreamingResponse(self)
 
@@ -103,10 +102,9 @@ class ConferencesResource(SyncAPIResource):
         conference_sid: str,
         *,
         account_sid: str,
-        call_control_id: str,
-        supervisor_role: Literal["barge", "monitor", "none", "whisper"],
-        command_id: str | NotGiven = NOT_GIVEN,
-        whisper_call_control_ids: List[str] | NotGiven = NOT_GIVEN,
+        announce_method: Literal["GET", "POST"] | NotGiven = NOT_GIVEN,
+        announce_url: str | NotGiven = NOT_GIVEN,
+        status: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -118,21 +116,14 @@ class ConferencesResource(SyncAPIResource):
         Updates a conference resource.
 
         Args:
-          call_control_id: Unique identifier and token for controlling the call
+          announce_method: The HTTP method used to call the `AnnounceUrl`. Defaults to `POST`.
 
-          supervisor_role: Sets the participant as a supervisor for the conference. A conference can have
-              multiple supervisors. "barge" means the supervisor enters the conference as a
-              normal participant. This is the same as "none". "monitor" means the supervisor
-              is muted but can hear all participants. "whisper" means that only the specified
-              "whisper_call_control_ids" can hear the supervisor. Defaults to "none".
+          announce_url: The URL we should call to announce something into the conference. The URL may
+              return an MP3 file, a WAV file, or a TwiML document that contains `<Play>`,
+              `<Say>`, `<Pause>`, or `<Redirect>` verbs.
 
-          command_id: Use this field to avoid execution of duplicate commands. Telnyx will ignore
-              subsequent commands with the same `command_id` as one that has already been
-              executed.
-
-          whisper_call_control_ids: Array of unique call_control_ids the supervisor can whisper to. If none
-              provided, the supervisor will join the conference as a monitoring participant
-              only.
+          status: The new status of the resource. Specifying `completed` will end the conference
+              and hang up all participants.
 
           extra_headers: Send extra headers
 
@@ -150,10 +141,9 @@ class ConferencesResource(SyncAPIResource):
             f"/texml/Accounts/{account_sid}/Conferences/{conference_sid}",
             body=maybe_transform(
                 {
-                    "call_control_id": call_control_id,
-                    "supervisor_role": supervisor_role,
-                    "command_id": command_id,
-                    "whisper_call_control_ids": whisper_call_control_ids,
+                    "announce_method": announce_method,
+                    "announce_url": announce_url,
+                    "status": status,
                 },
                 conference_update_params.ConferenceUpdateParams,
             ),
@@ -196,7 +186,7 @@ class ConferencesResource(SyncAPIResource):
           page: The number of the page to be displayed, zero-indexed, should be used in
               conjuction with PageToken.
 
-          page_size: The size of the page.
+          page_size: The number of records to be displayed on a page
 
           page_token: Used to request the next page of results.
 
@@ -319,7 +309,7 @@ class AsyncConferencesResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#accessing-raw-response-data-eg-headers
         """
         return AsyncConferencesResourceWithRawResponse(self)
 
@@ -328,7 +318,7 @@ class AsyncConferencesResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#with_streaming_response
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
         return AsyncConferencesResourceWithStreamingResponse(self)
 
@@ -373,10 +363,9 @@ class AsyncConferencesResource(AsyncAPIResource):
         conference_sid: str,
         *,
         account_sid: str,
-        call_control_id: str,
-        supervisor_role: Literal["barge", "monitor", "none", "whisper"],
-        command_id: str | NotGiven = NOT_GIVEN,
-        whisper_call_control_ids: List[str] | NotGiven = NOT_GIVEN,
+        announce_method: Literal["GET", "POST"] | NotGiven = NOT_GIVEN,
+        announce_url: str | NotGiven = NOT_GIVEN,
+        status: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -388,21 +377,14 @@ class AsyncConferencesResource(AsyncAPIResource):
         Updates a conference resource.
 
         Args:
-          call_control_id: Unique identifier and token for controlling the call
+          announce_method: The HTTP method used to call the `AnnounceUrl`. Defaults to `POST`.
 
-          supervisor_role: Sets the participant as a supervisor for the conference. A conference can have
-              multiple supervisors. "barge" means the supervisor enters the conference as a
-              normal participant. This is the same as "none". "monitor" means the supervisor
-              is muted but can hear all participants. "whisper" means that only the specified
-              "whisper_call_control_ids" can hear the supervisor. Defaults to "none".
+          announce_url: The URL we should call to announce something into the conference. The URL may
+              return an MP3 file, a WAV file, or a TwiML document that contains `<Play>`,
+              `<Say>`, `<Pause>`, or `<Redirect>` verbs.
 
-          command_id: Use this field to avoid execution of duplicate commands. Telnyx will ignore
-              subsequent commands with the same `command_id` as one that has already been
-              executed.
-
-          whisper_call_control_ids: Array of unique call_control_ids the supervisor can whisper to. If none
-              provided, the supervisor will join the conference as a monitoring participant
-              only.
+          status: The new status of the resource. Specifying `completed` will end the conference
+              and hang up all participants.
 
           extra_headers: Send extra headers
 
@@ -420,10 +402,9 @@ class AsyncConferencesResource(AsyncAPIResource):
             f"/texml/Accounts/{account_sid}/Conferences/{conference_sid}",
             body=await async_maybe_transform(
                 {
-                    "call_control_id": call_control_id,
-                    "supervisor_role": supervisor_role,
-                    "command_id": command_id,
-                    "whisper_call_control_ids": whisper_call_control_ids,
+                    "announce_method": announce_method,
+                    "announce_url": announce_url,
+                    "status": status,
                 },
                 conference_update_params.ConferenceUpdateParams,
             ),
@@ -466,7 +447,7 @@ class AsyncConferencesResource(AsyncAPIResource):
           page: The number of the page to be displayed, zero-indexed, should be used in
               conjuction with PageToken.
 
-          page_size: The size of the page.
+          page_size: The number of records to be displayed on a page
 
           page_token: Used to request the next page of results.
 

@@ -3,13 +3,10 @@
 from typing import Optional
 
 from ..._models import BaseModel
+from .conference_command_result import ConferenceCommandResult
 
-__all__ = ["ActionPlayResponse", "Data"]
-
-
-class Data(BaseModel):
-    result: str
+__all__ = ["ActionPlayResponse"]
 
 
 class ActionPlayResponse(BaseModel):
-    data: Optional[Data] = None
+    data: Optional[ConferenceCommandResult] = None

@@ -22,7 +22,6 @@ class Data(BaseModel):
     min_subcluster_size: int
 
     status: TaskStatus
-    """An enumeration."""
 
     task_id: str
 

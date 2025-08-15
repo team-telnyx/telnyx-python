@@ -14,9 +14,7 @@ from ....._response import (
     async_to_streamed_response_wrapper,
 )
 from ....._base_client import make_request_options
-from .....types.texml.accounts.recordings.json_retrieve_recording_sid_json_response import (
-    JsonRetrieveRecordingSidJsonResponse,
-)
+from .....types.texml.texml_get_call_recording_response_body import TexmlGetCallRecordingResponseBody
 
 __all__ = ["JsonResource", "AsyncJsonResource"]
 
@@ -28,7 +26,7 @@ class JsonResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#accessing-raw-response-data-eg-headers
         """
         return JsonResourceWithRawResponse(self)
 
@@ -37,7 +35,7 @@ class JsonResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#with_streaming_response
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
         return JsonResourceWithStreamingResponse(self)
 
@@ -89,7 +87,7 @@ class JsonResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> JsonRetrieveRecordingSidJsonResponse:
+    ) -> TexmlGetCallRecordingResponseBody:
         """
         Returns recording resource identified by recording id.
 
@@ -111,7 +109,7 @@ class JsonResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=JsonRetrieveRecordingSidJsonResponse,
+            cast_to=TexmlGetCallRecordingResponseBody,
         )
 
 
@@ -122,7 +120,7 @@ class AsyncJsonResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#accessing-raw-response-data-eg-headers
         """
         return AsyncJsonResourceWithRawResponse(self)
 
@@ -131,7 +129,7 @@ class AsyncJsonResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#with_streaming_response
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
         return AsyncJsonResourceWithStreamingResponse(self)
 
@@ -183,7 +181,7 @@ class AsyncJsonResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> JsonRetrieveRecordingSidJsonResponse:
+    ) -> TexmlGetCallRecordingResponseBody:
         """
         Returns recording resource identified by recording id.
 
@@ -205,7 +203,7 @@ class AsyncJsonResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=JsonRetrieveRecordingSidJsonResponse,
+            cast_to=TexmlGetCallRecordingResponseBody,
         )
 
 

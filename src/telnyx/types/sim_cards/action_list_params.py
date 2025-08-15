@@ -16,9 +16,9 @@ class ActionListParams(TypedDict, total=False):
     """
 
     page: Page
-    """Consolidated page parameter (deepObject style).
+    """Consolidated pagination parameter (deepObject style).
 
-    Originally: page[size], page[number]
+    Originally: page[number], page[size]
     """
 
 
@@ -40,7 +40,7 @@ class Filter(TypedDict, total=False):
 
 class Page(TypedDict, total=False):
     number: int
-    """The page number to load"""
+    """The page number to load."""
 
     size: int
-    """The size of the page"""
+    """The size of the page."""
