@@ -16,7 +16,6 @@ from telnyx.types import (
     CredentialConnectionUpdateResponse,
     CredentialConnectionRetrieveResponse,
 )
-from telnyx._utils import parse_datetime
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -71,7 +70,7 @@ class TestCredentialConnections:
                 "generate_ringback_tone": True,
                 "instant_ringback_enabled": True,
                 "localization": "US",
-                "outbound_voice_profile_id": "1293384261075731499",
+                "outbound_voice_profile_id": "outbound_voice_profile_id",
                 "t38_reinvite_source": "customer",
             },
             rtcp_settings={
@@ -204,7 +203,7 @@ class TestCredentialConnections:
                 "generate_ringback_tone": True,
                 "instant_ringback_enabled": True,
                 "localization": "US",
-                "outbound_voice_profile_id": "1293384261075731499",
+                "outbound_voice_profile_id": "outbound_voice_profile_id",
                 "t38_reinvite_source": "customer",
             },
             password="my123secure456password789",
@@ -268,18 +267,9 @@ class TestCredentialConnections:
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         credential_connection = client.credential_connections.list(
             filter={
-                "created_at": {
-                    "gt": parse_datetime("2020-01-01T00:00:00Z"),
-                    "lt": parse_datetime("2020-01-01T00:00:00Z"),
-                },
-                "phone_number": {
-                    "eq": "+12441239999",
-                    "in": ["+12441239999"],
-                },
-                "status": {
-                    "eq": "pending",
-                    "in": ["pending"],
-                },
+                "connection_name": {"contains": "contains"},
+                "fqdn": "fqdn",
+                "outbound_voice_profile_id": "outbound_voice_profile_id",
             },
             page={
                 "number": 1,
@@ -406,7 +396,7 @@ class TestAsyncCredentialConnections:
                 "generate_ringback_tone": True,
                 "instant_ringback_enabled": True,
                 "localization": "US",
-                "outbound_voice_profile_id": "1293384261075731499",
+                "outbound_voice_profile_id": "outbound_voice_profile_id",
                 "t38_reinvite_source": "customer",
             },
             rtcp_settings={
@@ -539,7 +529,7 @@ class TestAsyncCredentialConnections:
                 "generate_ringback_tone": True,
                 "instant_ringback_enabled": True,
                 "localization": "US",
-                "outbound_voice_profile_id": "1293384261075731499",
+                "outbound_voice_profile_id": "outbound_voice_profile_id",
                 "t38_reinvite_source": "customer",
             },
             password="my123secure456password789",
@@ -603,18 +593,9 @@ class TestAsyncCredentialConnections:
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         credential_connection = await async_client.credential_connections.list(
             filter={
-                "created_at": {
-                    "gt": parse_datetime("2020-01-01T00:00:00Z"),
-                    "lt": parse_datetime("2020-01-01T00:00:00Z"),
-                },
-                "phone_number": {
-                    "eq": "+12441239999",
-                    "in": ["+12441239999"],
-                },
-                "status": {
-                    "eq": "pending",
-                    "in": ["pending"],
-                },
+                "connection_name": {"contains": "contains"},
+                "fqdn": "fqdn",
+                "outbound_voice_profile_id": "outbound_voice_profile_id",
             },
             page={
                 "number": 1,

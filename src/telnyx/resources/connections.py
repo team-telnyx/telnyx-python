@@ -32,7 +32,7 @@ class ConnectionsResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#accessing-raw-response-data-eg-headers
         """
         return ConnectionsResourceWithRawResponse(self)
 
@@ -41,7 +41,7 @@ class ConnectionsResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#with_streaming_response
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
         return ConnectionsResourceWithStreamingResponse(self)
 
@@ -99,8 +99,8 @@ class ConnectionsResource(SyncAPIResource):
         Args:
           filter:
               Consolidated filter parameter (deepObject style). Originally:
-              filter[phone_number][eq], filter[phone_number][in][], filter[status][eq],
-              filter[status][in][], filter[created_at][lt], filter[created_at][gt]
+              filter[connection_name], filter[fqdn], filter[outbound_voice_profile_id],
+              filter[outbound.outbound_voice_profile_id]
 
           page: Consolidated page parameter (deepObject style). Originally: page[size],
               page[number]
@@ -166,8 +166,8 @@ class ConnectionsResource(SyncAPIResource):
         Returned results are cursor paginated.
 
         Args:
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
+          page: Consolidated page parameter (deepObject style). Originally: page[after],
+              page[before], page[limit], page[size], page[number]
 
           extra_headers: Send extra headers
 
@@ -201,7 +201,7 @@ class AsyncConnectionsResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#accessing-raw-response-data-eg-headers
         """
         return AsyncConnectionsResourceWithRawResponse(self)
 
@@ -210,7 +210,7 @@ class AsyncConnectionsResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#with_streaming_response
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
         return AsyncConnectionsResourceWithStreamingResponse(self)
 
@@ -268,8 +268,8 @@ class AsyncConnectionsResource(AsyncAPIResource):
         Args:
           filter:
               Consolidated filter parameter (deepObject style). Originally:
-              filter[phone_number][eq], filter[phone_number][in][], filter[status][eq],
-              filter[status][in][], filter[created_at][lt], filter[created_at][gt]
+              filter[connection_name], filter[fqdn], filter[outbound_voice_profile_id],
+              filter[outbound.outbound_voice_profile_id]
 
           page: Consolidated page parameter (deepObject style). Originally: page[size],
               page[number]
@@ -335,8 +335,8 @@ class AsyncConnectionsResource(AsyncAPIResource):
         Returned results are cursor paginated.
 
         Args:
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
+          page: Consolidated page parameter (deepObject style). Originally: page[after],
+              page[before], page[limit], page[size], page[number]
 
           extra_headers: Send extra headers
 

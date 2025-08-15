@@ -61,7 +61,7 @@ class MessagingHostedNumberOrdersResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#accessing-raw-response-data-eg-headers
         """
         return MessagingHostedNumberOrdersResourceWithRawResponse(self)
 
@@ -70,7 +70,7 @@ class MessagingHostedNumberOrdersResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#with_streaming_response
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
         return MessagingHostedNumberOrdersResourceWithStreamingResponse(self)
 
@@ -166,8 +166,8 @@ class MessagingHostedNumberOrdersResource(SyncAPIResource):
         List messaging hosted number orders
 
         Args:
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
+          page: Consolidated page parameter (deepObject style). Originally: page[number],
+              page[size]
 
           extra_headers: Send extra headers
 
@@ -357,7 +357,7 @@ class AsyncMessagingHostedNumberOrdersResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#accessing-raw-response-data-eg-headers
         """
         return AsyncMessagingHostedNumberOrdersResourceWithRawResponse(self)
 
@@ -366,7 +366,7 @@ class AsyncMessagingHostedNumberOrdersResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#with_streaming_response
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
         return AsyncMessagingHostedNumberOrdersResourceWithStreamingResponse(self)
 
@@ -462,8 +462,8 @@ class AsyncMessagingHostedNumberOrdersResource(AsyncAPIResource):
         List messaging hosted number orders
 
         Args:
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
+          page: Consolidated page parameter (deepObject style). Originally: page[number],
+              page[size]
 
           extra_headers: Send extra headers
 

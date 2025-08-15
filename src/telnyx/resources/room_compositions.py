@@ -18,6 +18,7 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._base_client import make_request_options
+from ..types.video_region_param import VideoRegionParam
 from ..types.room_composition_list_response import RoomCompositionListResponse
 from ..types.room_composition_create_response import RoomCompositionCreateResponse
 from ..types.room_composition_retrieve_response import RoomCompositionRetrieveResponse
@@ -32,7 +33,7 @@ class RoomCompositionsResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#accessing-raw-response-data-eg-headers
         """
         return RoomCompositionsResourceWithRawResponse(self)
 
@@ -41,7 +42,7 @@ class RoomCompositionsResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#with_streaming_response
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
         return RoomCompositionsResourceWithStreamingResponse(self)
 
@@ -51,7 +52,7 @@ class RoomCompositionsResource(SyncAPIResource):
         format: Optional[str] | NotGiven = NOT_GIVEN,
         resolution: Optional[str] | NotGiven = NOT_GIVEN,
         session_id: Optional[str] | NotGiven = NOT_GIVEN,
-        video_layout: Dict[str, room_composition_create_params.VideoLayout] | NotGiven = NOT_GIVEN,
+        video_layout: Dict[str, VideoRegionParam] | NotGiven = NOT_GIVEN,
         webhook_event_failover_url: Optional[str] | NotGiven = NOT_GIVEN,
         webhook_event_url: str | NotGiven = NOT_GIVEN,
         webhook_timeout_secs: Optional[int] | NotGiven = NOT_GIVEN,
@@ -241,7 +242,7 @@ class AsyncRoomCompositionsResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#accessing-raw-response-data-eg-headers
         """
         return AsyncRoomCompositionsResourceWithRawResponse(self)
 
@@ -250,7 +251,7 @@ class AsyncRoomCompositionsResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#with_streaming_response
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
         return AsyncRoomCompositionsResourceWithStreamingResponse(self)
 
@@ -260,7 +261,7 @@ class AsyncRoomCompositionsResource(AsyncAPIResource):
         format: Optional[str] | NotGiven = NOT_GIVEN,
         resolution: Optional[str] | NotGiven = NOT_GIVEN,
         session_id: Optional[str] | NotGiven = NOT_GIVEN,
-        video_layout: Dict[str, room_composition_create_params.VideoLayout] | NotGiven = NOT_GIVEN,
+        video_layout: Dict[str, VideoRegionParam] | NotGiven = NOT_GIVEN,
         webhook_event_failover_url: Optional[str] | NotGiven = NOT_GIVEN,
         webhook_event_url: str | NotGiven = NOT_GIVEN,
         webhook_timeout_secs: Optional[int] | NotGiven = NOT_GIVEN,

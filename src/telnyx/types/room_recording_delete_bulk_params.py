@@ -77,7 +77,7 @@ class Filter(TypedDict, total=False):
 
 class Page(TypedDict, total=False):
     number: int
-    """The page number to load"""
+    """The page number to load."""
 
     size: int
-    """The size of the page"""
+    """The size of the page."""

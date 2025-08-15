@@ -29,7 +29,7 @@ class BillingBundlesResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#accessing-raw-response-data-eg-headers
         """
         return BillingBundlesResourceWithRawResponse(self)
 
@@ -38,7 +38,7 @@ class BillingBundlesResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#with_streaming_response
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
         return BillingBundlesResourceWithStreamingResponse(self)
 
@@ -98,10 +98,9 @@ class BillingBundlesResource(SyncAPIResource):
         Get all allowed bundles.
 
         Args:
-          filter:
-              Consolidated filter parameter (deepObject style). Originally:
-              filter[phone_number][eq], filter[phone_number][in][], filter[status][eq],
-              filter[status][in][], filter[created_at][lt], filter[created_at][gt]
+          filter: Consolidated filter parameter (deepObject style). Supports filtering by
+              country_iso and resource. Examples: filter[country_iso]=US or
+              filter[resource]=+15617819942
 
           page: Consolidated page parameter (deepObject style). Originally: page[size],
               page[number]
@@ -143,7 +142,7 @@ class AsyncBillingBundlesResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#accessing-raw-response-data-eg-headers
         """
         return AsyncBillingBundlesResourceWithRawResponse(self)
 
@@ -152,7 +151,7 @@ class AsyncBillingBundlesResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#with_streaming_response
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
         return AsyncBillingBundlesResourceWithStreamingResponse(self)
 
@@ -212,10 +211,9 @@ class AsyncBillingBundlesResource(AsyncAPIResource):
         Get all allowed bundles.
 
         Args:
-          filter:
-              Consolidated filter parameter (deepObject style). Originally:
-              filter[phone_number][eq], filter[phone_number][in][], filter[status][eq],
-              filter[status][in][], filter[created_at][lt], filter[created_at][gt]
+          filter: Consolidated filter parameter (deepObject style). Supports filtering by
+              country_iso and resource. Examples: filter[country_iso]=US or
+              filter[resource]=+15617819942
 
           page: Consolidated page parameter (deepObject style). Originally: page[size],
               page[number]

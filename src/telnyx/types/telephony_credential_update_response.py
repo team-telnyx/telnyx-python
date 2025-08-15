@@ -3,40 +3,10 @@
 from typing import Optional
 
 from .._models import BaseModel
+from .telephony_credential import TelephonyCredential
 
-__all__ = ["TelephonyCredentialUpdateResponse", "Data"]
-
-
-class Data(BaseModel):
-    id: Optional[str] = None
-    """Identifies the resource."""
-
-    created_at: Optional[str] = None
-    """ISO-8601 formatted date indicating when the resource was created."""
-
-    expired: Optional[bool] = None
-    """Defaults to false"""
-
-    expires_at: Optional[str] = None
-    """ISO-8601 formatted date indicating when the resource will expire."""
-
-    name: Optional[str] = None
-
-    record_type: Optional[str] = None
-    """Identifies the type of the resource."""
-
-    resource_id: Optional[str] = None
-    """Identifies the resource this credential is associated with."""
-
-    sip_password: Optional[str] = None
-    """The randomly generated SIP password for the credential."""
-
-    sip_username: Optional[str] = None
-    """The randomly generated SIP username for the credential."""
-
-    updated_at: Optional[str] = None
-    """ISO-8601 formatted date indicating when the resource was updated."""
+__all__ = ["TelephonyCredentialUpdateResponse"]
 
 
 class TelephonyCredentialUpdateResponse(BaseModel):
-    data: Optional[Data] = None
+    data: Optional[TelephonyCredential] = None

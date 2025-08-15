@@ -60,7 +60,7 @@ class CredentialConnectionsResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#accessing-raw-response-data-eg-headers
         """
         return CredentialConnectionsResourceWithRawResponse(self)
 
@@ -69,7 +69,7 @@ class CredentialConnectionsResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#with_streaming_response
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
         return CredentialConnectionsResourceWithStreamingResponse(self)
 
@@ -390,8 +390,8 @@ class CredentialConnectionsResource(SyncAPIResource):
         Args:
           filter:
               Consolidated filter parameter (deepObject style). Originally:
-              filter[phone_number][eq], filter[phone_number][in][], filter[status][eq],
-              filter[status][in][], filter[created_at][lt], filter[created_at][gt]
+              filter[connection_name], filter[fqdn], filter[outbound_voice_profile_id],
+              filter[outbound.outbound_voice_profile_id]
 
           page: Consolidated page parameter (deepObject style). Originally: page[size],
               page[number]
@@ -483,7 +483,7 @@ class AsyncCredentialConnectionsResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#accessing-raw-response-data-eg-headers
         """
         return AsyncCredentialConnectionsResourceWithRawResponse(self)
 
@@ -492,7 +492,7 @@ class AsyncCredentialConnectionsResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#with_streaming_response
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
         return AsyncCredentialConnectionsResourceWithStreamingResponse(self)
 
@@ -813,8 +813,8 @@ class AsyncCredentialConnectionsResource(AsyncAPIResource):
         Args:
           filter:
               Consolidated filter parameter (deepObject style). Originally:
-              filter[phone_number][eq], filter[phone_number][in][], filter[status][eq],
-              filter[status][in][], filter[created_at][lt], filter[created_at][gt]
+              filter[connection_name], filter[fqdn], filter[outbound_voice_profile_id],
+              filter[outbound.outbound_voice_profile_id]
 
           page: Consolidated page parameter (deepObject style). Originally: page[size],
               page[number]

@@ -16,7 +16,6 @@ from telnyx.types import (
     OutboundVoiceProfileUpdateResponse,
     OutboundVoiceProfileRetrieveResponse,
 )
-from telnyx._utils import parse_datetime
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -207,20 +206,7 @@ class TestOutboundVoiceProfiles:
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         outbound_voice_profile = client.outbound_voice_profiles.list(
-            filter={
-                "created_at": {
-                    "gt": parse_datetime("2020-01-01T00:00:00Z"),
-                    "lt": parse_datetime("2020-01-01T00:00:00Z"),
-                },
-                "phone_number": {
-                    "eq": "+12441239999",
-                    "in": ["+12441239999"],
-                },
-                "status": {
-                    "eq": "pending",
-                    "in": ["pending"],
-                },
-            },
+            filter={"name": {"contains": "office-profile"}},
             page={
                 "number": 1,
                 "size": 1,
@@ -482,20 +468,7 @@ class TestAsyncOutboundVoiceProfiles:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         outbound_voice_profile = await async_client.outbound_voice_profiles.list(
-            filter={
-                "created_at": {
-                    "gt": parse_datetime("2020-01-01T00:00:00Z"),
-                    "lt": parse_datetime("2020-01-01T00:00:00Z"),
-                },
-                "phone_number": {
-                    "eq": "+12441239999",
-                    "in": ["+12441239999"],
-                },
-                "status": {
-                    "eq": "pending",
-                    "in": ["pending"],
-                },
-            },
+            filter={"name": {"contains": "office-profile"}},
             page={
                 "number": 1,
                 "size": 1,

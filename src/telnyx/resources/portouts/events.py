@@ -29,7 +29,7 @@ class EventsResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#accessing-raw-response-data-eg-headers
         """
         return EventsResourceWithRawResponse(self)
 
@@ -38,7 +38,7 @@ class EventsResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#with_streaming_response
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
         return EventsResourceWithStreamingResponse(self)
 
@@ -95,8 +95,8 @@ class EventsResource(SyncAPIResource):
               Consolidated filter parameter (deepObject style). Originally:
               filter[event_type], filter[portout_id], filter[created_at]
 
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
+          page: Consolidated page parameter (deepObject style). Originally: page[number],
+              page[size]
 
           extra_headers: Send extra headers
 
@@ -166,7 +166,7 @@ class AsyncEventsResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#accessing-raw-response-data-eg-headers
         """
         return AsyncEventsResourceWithRawResponse(self)
 
@@ -175,7 +175,7 @@ class AsyncEventsResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#with_streaming_response
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
         return AsyncEventsResourceWithStreamingResponse(self)
 
@@ -232,8 +232,8 @@ class AsyncEventsResource(AsyncAPIResource):
               Consolidated filter parameter (deepObject style). Originally:
               filter[event_type], filter[portout_id], filter[created_at]
 
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
+          page: Consolidated page parameter (deepObject style). Originally: page[number],
+              page[size]
 
           extra_headers: Send extra headers
 

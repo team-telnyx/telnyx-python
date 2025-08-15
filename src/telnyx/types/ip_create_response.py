@@ -2,33 +2,11 @@
 
 from typing import Optional
 
+from .ip import IP
 from .._models import BaseModel
 
-__all__ = ["IPCreateResponse", "Data"]
-
-
-class Data(BaseModel):
-    id: Optional[str] = None
-    """Identifies the type of resource."""
-
-    connection_id: Optional[str] = None
-    """ID of the IP Connection to which this IP should be attached."""
-
-    created_at: Optional[str] = None
-    """ISO 8601 formatted date indicating when the resource was created."""
-
-    ip_address: Optional[str] = None
-    """IP adddress represented by this resource."""
-
-    port: Optional[int] = None
-    """Port to use when connecting to this IP."""
-
-    record_type: Optional[str] = None
-    """Identifies the type of the resource."""
-
-    updated_at: Optional[str] = None
-    """ISO 8601 formatted date indicating when the resource was updated."""
+__all__ = ["IPCreateResponse"]
 
 
 class IPCreateResponse(BaseModel):
-    data: Optional[Data] = None
+    data: Optional[IP] = None

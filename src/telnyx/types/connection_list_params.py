@@ -2,22 +2,17 @@
 
 from __future__ import annotations
 
-from typing import List, Union
-from datetime import datetime
-from typing_extensions import Literal, Annotated, TypedDict
+from typing_extensions import Literal, TypedDict
 
-from .._utils import PropertyInfo
-
-__all__ = ["ConnectionListParams", "Filter", "FilterCreatedAt", "FilterPhoneNumber", "FilterStatus", "Page"]
+__all__ = ["ConnectionListParams", "Filter", "FilterConnectionName", "Page"]
 
 
 class ConnectionListParams(TypedDict, total=False):
     filter: Filter
     """Consolidated filter parameter (deepObject style).
 
-    Originally: filter[phone_number][eq], filter[phone_number][in][],
-    filter[status][eq], filter[status][in][], filter[created_at][lt],
-    filter[created_at][gt]
+    Originally: filter[connection_name], filter[fqdn],
+    filter[outbound_voice_profile_id], filter[outbound.outbound_voice_profile_id]
     """
 
     page: Page
@@ -45,48 +40,27 @@ class ConnectionListParams(TypedDict, total=False):
     """
 
 
-class FilterCreatedAt(TypedDict, total=False):
-    gt: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
-    """Filters records to those created after a specific date."""
-
-    lt: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
-    """Filters records to those created before a specific date."""
-
-
-_FilterPhoneNumberReservedKeywords = TypedDict(
-    "_FilterPhoneNumberReservedKeywords",
-    {
-        "in": List[str],
-    },
-    total=False,
-)
-
-
-class FilterPhoneNumber(_FilterPhoneNumberReservedKeywords, total=False):
-    eq: str
-    """Filters records to those with a specified number."""
-
-
-_FilterStatusReservedKeywords = TypedDict(
-    "_FilterStatusReservedKeywords",
-    {
-        "in": List[Literal["pending", "completed", "failed"]],
-    },
-    total=False,
-)
-
-
-class FilterStatus(_FilterStatusReservedKeywords, total=False):
-    eq: Literal["pending", "completed", "failed"]
-    """Filters records to those with a specific status."""
+class FilterConnectionName(TypedDict, total=False):
+    contains: str
+    """
+    If present, connections with <code>connection_name</code> containing the given
+    value will be returned. Matching is not case-sensitive. Requires at least three
+    characters.
+    """
 
 
 class Filter(TypedDict, total=False):
-    created_at: FilterCreatedAt
+    connection_name: FilterConnectionName
+    """Filter by connection_name using nested operations"""
 
-    phone_number: FilterPhoneNumber
+    fqdn: str
+    """
+    If present, connections with an `fqdn` that equals the given value will be
+    returned. Matching is case-sensitive, and the full string must match.
+    """
 
-    status: FilterStatus
+    outbound_voice_profile_id: str
+    """Identifies the associated outbound voice profile."""
 
 
 class Page(TypedDict, total=False):

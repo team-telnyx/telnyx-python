@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from .portout_report import PortoutReport as PortoutReport
 from .event_list_params import EventListParams as EventListParams
 from .report_list_params import ReportListParams as ReportListParams
 from .event_list_response import EventListResponse as EventListResponse
@@ -13,6 +14,8 @@ from .report_create_response import ReportCreateResponse as ReportCreateResponse
 from .comment_create_response import CommentCreateResponse as CommentCreateResponse
 from .event_retrieve_response import EventRetrieveResponse as EventRetrieveResponse
 from .report_retrieve_response import ReportRetrieveResponse as ReportRetrieveResponse
+from .export_portouts_csv_report import ExportPortoutsCsvReport as ExportPortoutsCsvReport
+from .export_portouts_csv_report_param import ExportPortoutsCsvReportParam as ExportPortoutsCsvReportParam
 from .supporting_document_create_params import SupportingDocumentCreateParams as SupportingDocumentCreateParams
 from .supporting_document_list_response import SupportingDocumentListResponse as SupportingDocumentListResponse
 from .supporting_document_create_response import SupportingDocumentCreateResponse as SupportingDocumentCreateResponse

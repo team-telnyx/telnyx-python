@@ -1,12 +1,21 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List
+from typing import List, Optional
 
 from ..._models import BaseModel
 from ..verification import Verification
-from ..ai.assistants.tests.test_suites.meta import Meta
 
-__all__ = ["ByPhoneNumberListResponse"]
+__all__ = ["ByPhoneNumberListResponse", "Meta"]
+
+
+class Meta(BaseModel):
+    page_number: Optional[int] = None
+
+    page_size: Optional[int] = None
+
+    total_pages: Optional[int] = None
+
+    total_results: Optional[int] = None
 
 
 class ByPhoneNumberListResponse(BaseModel):

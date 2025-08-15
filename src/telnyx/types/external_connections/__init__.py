@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from .upload import Upload as Upload
+from .tn_upload_entry import TnUploadEntry as TnUploadEntry
 from .upload_list_params import UploadListParams as UploadListParams
 from .release_list_params import ReleaseListParams as ReleaseListParams
 from .upload_create_params import UploadCreateParams as UploadCreateParams
@@ -25,3 +27,4 @@ from .upload_pending_count_response import UploadPendingCountResponse as UploadP
 from .phone_number_retrieve_response import PhoneNumberRetrieveResponse as PhoneNumberRetrieveResponse
 from .upload_refresh_status_response import UploadRefreshStatusResponse as UploadRefreshStatusResponse
 from .civic_address_retrieve_response import CivicAddressRetrieveResponse as CivicAddressRetrieveResponse
+from .external_connection_phone_number import ExternalConnectionPhoneNumber as ExternalConnectionPhoneNumber

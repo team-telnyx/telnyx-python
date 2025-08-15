@@ -11,7 +11,7 @@ __all__ = ["PhoneNumberSlimListResponse", "Data"]
 
 class Data(BaseModel):
     id: Optional[str] = None
-    """Uniquely identifies the resource."""
+    """Identifies the resource."""
 
     billing_group_id: Optional[str] = None
     """Identifies the billing group associated with the phone number."""

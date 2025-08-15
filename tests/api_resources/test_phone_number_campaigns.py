@@ -13,7 +13,6 @@ from telnyx.types import (
     PhoneNumberCampaign,
     PhoneNumberCampaignListResponse,
 )
-from telnyx._utils import parse_datetime
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -161,18 +160,10 @@ class TestPhoneNumberCampaigns:
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         phone_number_campaign = client.phone_number_campaigns.list(
             filter={
-                "created_at": {
-                    "gt": parse_datetime("2020-01-01T00:00:00Z"),
-                    "lt": parse_datetime("2020-01-01T00:00:00Z"),
-                },
-                "phone_number": {
-                    "eq": "+12441239999",
-                    "in": ["+12441239999"],
-                },
-                "status": {
-                    "eq": "pending",
-                    "in": ["pending"],
-                },
+                "tcr_brand_id": "BRANDID",
+                "tcr_campaign_id": "CAMPID3",
+                "telnyx_brand_id": "f3575e15-32ce-400e-a4c0-dd78800c20b0",
+                "telnyx_campaign_id": "f3575e15-32ce-400e-a4c0-dd78800c20b0",
             },
             page=0,
             records_per_page=0,
@@ -390,18 +381,10 @@ class TestAsyncPhoneNumberCampaigns:
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         phone_number_campaign = await async_client.phone_number_campaigns.list(
             filter={
-                "created_at": {
-                    "gt": parse_datetime("2020-01-01T00:00:00Z"),
-                    "lt": parse_datetime("2020-01-01T00:00:00Z"),
-                },
-                "phone_number": {
-                    "eq": "+12441239999",
-                    "in": ["+12441239999"],
-                },
-                "status": {
-                    "eq": "pending",
-                    "in": ["pending"],
-                },
+                "tcr_brand_id": "BRANDID",
+                "tcr_campaign_id": "CAMPID3",
+                "telnyx_brand_id": "f3575e15-32ce-400e-a4c0-dd78800c20b0",
+                "telnyx_campaign_id": "f3575e15-32ce-400e-a4c0-dd78800c20b0",
             },
             page=0,
             records_per_page=0,

@@ -9,7 +9,6 @@ import pytest
 
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
-from telnyx._utils import parse_datetime
 from telnyx.types.porting_orders import (
     PhoneNumberBlockListResponse,
     PhoneNumberBlockCreateResponse,
@@ -118,18 +117,12 @@ class TestPhoneNumberBlocks:
         phone_number_block = client.porting_orders.phone_number_blocks.list(
             porting_order_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             filter={
-                "created_at": {
-                    "gt": parse_datetime("2020-01-01T00:00:00Z"),
-                    "lt": parse_datetime("2020-01-01T00:00:00Z"),
-                },
-                "phone_number": {
-                    "eq": "+12441239999",
-                    "in": ["+12441239999"],
-                },
-                "status": {
-                    "eq": "pending",
-                    "in": ["pending"],
-                },
+                "activation_status": "Active",
+                "phone_number": ["+12003151212"],
+                "portability_status": "confirmed",
+                "porting_order_id": ["f3575e15-32ce-400e-a4c0-dd78800c20b0"],
+                "status": "in-process",
+                "support_key": "sr_a12345",
             },
             page={
                 "number": 1,
@@ -327,18 +320,12 @@ class TestAsyncPhoneNumberBlocks:
         phone_number_block = await async_client.porting_orders.phone_number_blocks.list(
             porting_order_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             filter={
-                "created_at": {
-                    "gt": parse_datetime("2020-01-01T00:00:00Z"),
-                    "lt": parse_datetime("2020-01-01T00:00:00Z"),
-                },
-                "phone_number": {
-                    "eq": "+12441239999",
-                    "in": ["+12441239999"],
-                },
-                "status": {
-                    "eq": "pending",
-                    "in": ["pending"],
-                },
+                "activation_status": "Active",
+                "phone_number": ["+12003151212"],
+                "portability_status": "confirmed",
+                "porting_order_id": ["f3575e15-32ce-400e-a4c0-dd78800c20b0"],
+                "status": "in-process",
+                "support_key": "sr_a12345",
             },
             page={
                 "number": 1,

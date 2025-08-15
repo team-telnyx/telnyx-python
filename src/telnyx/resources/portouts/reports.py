@@ -21,6 +21,7 @@ from ...types.portouts import report_list_params, report_create_params
 from ...types.portouts.report_list_response import ReportListResponse
 from ...types.portouts.report_create_response import ReportCreateResponse
 from ...types.portouts.report_retrieve_response import ReportRetrieveResponse
+from ...types.portouts.export_portouts_csv_report_param import ExportPortoutsCsvReportParam
 
 __all__ = ["ReportsResource", "AsyncReportsResource"]
 
@@ -32,7 +33,7 @@ class ReportsResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#accessing-raw-response-data-eg-headers
         """
         return ReportsResourceWithRawResponse(self)
 
@@ -41,14 +42,14 @@ class ReportsResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#with_streaming_response
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
         return ReportsResourceWithStreamingResponse(self)
 
     def create(
         self,
         *,
-        params: report_create_params.Params,
+        params: ExportPortoutsCsvReportParam,
         report_type: Literal["export_portouts_csv"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -141,8 +142,8 @@ class ReportsResource(SyncAPIResource):
               Consolidated filter parameter (deepObject style). Originally:
               filter[report_type], filter[status]
 
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
+          page: Consolidated page parameter (deepObject style). Originally: page[number],
+              page[size]
 
           extra_headers: Send extra headers
 
@@ -178,7 +179,7 @@ class AsyncReportsResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#accessing-raw-response-data-eg-headers
         """
         return AsyncReportsResourceWithRawResponse(self)
 
@@ -187,14 +188,14 @@ class AsyncReportsResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#with_streaming_response
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
         return AsyncReportsResourceWithStreamingResponse(self)
 
     async def create(
         self,
         *,
-        params: report_create_params.Params,
+        params: ExportPortoutsCsvReportParam,
         report_type: Literal["export_portouts_csv"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -287,8 +288,8 @@ class AsyncReportsResource(AsyncAPIResource):
               Consolidated filter parameter (deepObject style). Originally:
               filter[report_type], filter[status]
 
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
+          page: Consolidated page parameter (deepObject style). Originally: page[number],
+              page[size]
 
           extra_headers: Send extra headers
 

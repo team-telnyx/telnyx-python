@@ -4,17 +4,48 @@ from typing import List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
-from ..error import Error
 from ..._models import BaseModel
 
-__all__ = ["Job", "FailedOperation", "SuccessfulOperation"]
+__all__ = [
+    "Job",
+    "FailedOperation",
+    "FailedOperationError",
+    "FailedOperationErrorMeta",
+    "FailedOperationErrorSource",
+    "SuccessfulOperation",
+]
+
+
+class FailedOperationErrorMeta(BaseModel):
+    url: Optional[str] = None
+    """URL with additional information on the error."""
+
+
+class FailedOperationErrorSource(BaseModel):
+    parameter: Optional[str] = None
+    """Indicates which query parameter caused the error."""
+
+    pointer: Optional[str] = None
+    """JSON pointer (RFC6901) to the offending entity."""
+
+
+class FailedOperationError(BaseModel):
+    code: str
+
+    title: str
+
+    detail: Optional[str] = None
+
+    meta: Optional[FailedOperationErrorMeta] = None
+
+    source: Optional[FailedOperationErrorSource] = None
 
 
 class FailedOperation(BaseModel):
     id: Optional[str] = None
     """The phone number's ID"""
 
-    errors: Optional[List[Error]] = None
+    errors: Optional[List[FailedOperationError]] = None
 
     phone_number: Optional[str] = None
     """The phone number in e164 format."""

@@ -7,9 +7,8 @@ from typing_extensions import Literal
 from pydantic import Field as FieldInfo
 
 from .._models import BaseModel
-from .pagination_meta import PaginationMeta
 
-__all__ = ["AuditEventListResponse", "Data", "DataChange"]
+__all__ = ["AuditEventListResponse", "Data", "DataChange", "Meta"]
 
 
 class DataChange(BaseModel):
@@ -67,7 +66,17 @@ class Data(BaseModel):
     """Unique identifier for the user who made the change."""
 
 
+class Meta(BaseModel):
+    page_number: Optional[int] = None
+
+    page_size: Optional[int] = None
+
+    total_pages: Optional[int] = None
+
+    total_results: Optional[int] = None
+
+
 class AuditEventListResponse(BaseModel):
     data: Optional[List[Data]] = None
 
-    meta: Optional[PaginationMeta] = None
+    meta: Optional[Meta] = None

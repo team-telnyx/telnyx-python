@@ -6,7 +6,6 @@ from typing_extensions import Literal, Annotated, TypeAlias
 
 from .._utils import PropertyInfo
 from .._models import BaseModel
-from .pagination_meta import PaginationMeta
 
 __all__ = [
     "DetailRecordListResponse",
@@ -18,6 +17,7 @@ __all__ = [
     "DataVerifyDetailRecord",
     "DataSimCardUsageDetailRecord",
     "DataMediaStorageDetailRecord",
+    "Meta",
 ]
 
 
@@ -477,7 +477,17 @@ Data: TypeAlias = Annotated[
 ]
 
 
+class Meta(BaseModel):
+    page_number: Optional[int] = None
+
+    page_size: Optional[int] = None
+
+    total_pages: Optional[int] = None
+
+    total_results: Optional[int] = None
+
+
 class DetailRecordListResponse(BaseModel):
     data: Optional[List[Data]] = None
 
-    meta: Optional[PaginationMeta] = None
+    meta: Optional[Meta] = None

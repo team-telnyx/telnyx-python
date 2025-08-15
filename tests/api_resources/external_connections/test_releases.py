@@ -22,7 +22,7 @@ class TestReleases:
     def test_method_retrieve(self, client: Telnyx) -> None:
         release = client.external_connections.releases.retrieve(
             release_id="7b6a6449-b055-45a6-81f6-f6f0dffa4cc6",
-            id="1293384261075731499",
+            id="id",
         )
         assert_matches_type(ReleaseRetrieveResponse, release, path=["response"])
 
@@ -31,7 +31,7 @@ class TestReleases:
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
         response = client.external_connections.releases.with_raw_response.retrieve(
             release_id="7b6a6449-b055-45a6-81f6-f6f0dffa4cc6",
-            id="1293384261075731499",
+            id="id",
         )
 
         assert response.is_closed is True
@@ -44,7 +44,7 @@ class TestReleases:
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
         with client.external_connections.releases.with_streaming_response.retrieve(
             release_id="7b6a6449-b055-45a6-81f6-f6f0dffa4cc6",
-            id="1293384261075731499",
+            id="id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -66,14 +66,14 @@ class TestReleases:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `release_id` but received ''"):
             client.external_connections.releases.with_raw_response.retrieve(
                 release_id="",
-                id="1293384261075731499",
+                id="id",
             )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         release = client.external_connections.releases.list(
-            id="1293384261075731499",
+            id="id",
         )
         assert_matches_type(ReleaseListResponse, release, path=["response"])
 
@@ -81,7 +81,7 @@ class TestReleases:
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         release = client.external_connections.releases.list(
-            id="1293384261075731499",
+            id="id",
             filter={
                 "civic_address_id": {"eq": "19990261512338516954"},
                 "location_id": {"eq": "19995665508264022121"},
@@ -102,7 +102,7 @@ class TestReleases:
     @parametrize
     def test_raw_response_list(self, client: Telnyx) -> None:
         response = client.external_connections.releases.with_raw_response.list(
-            id="1293384261075731499",
+            id="id",
         )
 
         assert response.is_closed is True
@@ -114,7 +114,7 @@ class TestReleases:
     @parametrize
     def test_streaming_response_list(self, client: Telnyx) -> None:
         with client.external_connections.releases.with_streaming_response.list(
-            id="1293384261075731499",
+            id="id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -143,7 +143,7 @@ class TestAsyncReleases:
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
         release = await async_client.external_connections.releases.retrieve(
             release_id="7b6a6449-b055-45a6-81f6-f6f0dffa4cc6",
-            id="1293384261075731499",
+            id="id",
         )
         assert_matches_type(ReleaseRetrieveResponse, release, path=["response"])
 
@@ -152,7 +152,7 @@ class TestAsyncReleases:
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.external_connections.releases.with_raw_response.retrieve(
             release_id="7b6a6449-b055-45a6-81f6-f6f0dffa4cc6",
-            id="1293384261075731499",
+            id="id",
         )
 
         assert response.is_closed is True
@@ -165,7 +165,7 @@ class TestAsyncReleases:
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         async with async_client.external_connections.releases.with_streaming_response.retrieve(
             release_id="7b6a6449-b055-45a6-81f6-f6f0dffa4cc6",
-            id="1293384261075731499",
+            id="id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -187,14 +187,14 @@ class TestAsyncReleases:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `release_id` but received ''"):
             await async_client.external_connections.releases.with_raw_response.retrieve(
                 release_id="",
-                id="1293384261075731499",
+                id="id",
             )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         release = await async_client.external_connections.releases.list(
-            id="1293384261075731499",
+            id="id",
         )
         assert_matches_type(ReleaseListResponse, release, path=["response"])
 
@@ -202,7 +202,7 @@ class TestAsyncReleases:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         release = await async_client.external_connections.releases.list(
-            id="1293384261075731499",
+            id="id",
             filter={
                 "civic_address_id": {"eq": "19990261512338516954"},
                 "location_id": {"eq": "19995665508264022121"},
@@ -223,7 +223,7 @@ class TestAsyncReleases:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.external_connections.releases.with_raw_response.list(
-            id="1293384261075731499",
+            id="id",
         )
 
         assert response.is_closed is True
@@ -235,7 +235,7 @@ class TestAsyncReleases:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncTelnyx) -> None:
         async with async_client.external_connections.releases.with_streaming_response.list(
-            id="1293384261075731499",
+            id="id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

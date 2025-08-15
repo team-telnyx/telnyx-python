@@ -2,22 +2,16 @@
 
 from __future__ import annotations
 
-from typing import List, Union
-from datetime import datetime
-from typing_extensions import Literal, Annotated, TypedDict
+from typing_extensions import Literal, TypedDict
 
-from .._utils import PropertyInfo
-
-__all__ = ["TexmlApplicationListParams", "Filter", "FilterCreatedAt", "FilterPhoneNumber", "FilterStatus", "Page"]
+__all__ = ["TexmlApplicationListParams", "Filter", "Page"]
 
 
 class TexmlApplicationListParams(TypedDict, total=False):
     filter: Filter
     """Consolidated filter parameter (deepObject style).
 
-    Originally: filter[phone_number][eq], filter[phone_number][in][],
-    filter[status][eq], filter[status][in][], filter[created_at][lt],
-    filter[created_at][gt]
+    Originally: filter[outbound_voice_profile_id], filter[friendly_name]
     """
 
     page: Page
@@ -26,67 +20,35 @@ class TexmlApplicationListParams(TypedDict, total=False):
     Originally: page[size], page[number]
     """
 
-    sort: Literal["created_at", "application_name", "active"]
+    sort: Literal["created_at", "friendly_name", "active"]
     """Specifies the sort order for results.
 
     By default sorting direction is ascending. To have the results sorted in
     descending order add the <code> -</code> prefix.<br/><br/> That is: <ul>
 
       <li>
-        <code>application_name</code>: sorts the result by the
-        <code>application_name</code> field in ascending order.
+        <code>friendly_name</code>: sorts the result by the
+        <code>friendly_name</code> field in ascending order.
       </li>
 
       <li>
-        <code>-application_name</code>: sorts the result by the
-        <code>application_name</code> field in descending order.
+        <code>-friendly_name</code>: sorts the result by the
+        <code>friendly_name</code> field in descending order.
       </li>
     </ul> <br/> If not given, results are sorted by <code>created_at</code> in descending order.
     """
 
 
-class FilterCreatedAt(TypedDict, total=False):
-    gt: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
-    """Filters records to those created after a specific date."""
-
-    lt: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
-    """Filters records to those created before a specific date."""
-
-
-_FilterPhoneNumberReservedKeywords = TypedDict(
-    "_FilterPhoneNumberReservedKeywords",
-    {
-        "in": List[str],
-    },
-    total=False,
-)
-
-
-class FilterPhoneNumber(_FilterPhoneNumberReservedKeywords, total=False):
-    eq: str
-    """Filters records to those with a specified number."""
-
-
-_FilterStatusReservedKeywords = TypedDict(
-    "_FilterStatusReservedKeywords",
-    {
-        "in": List[Literal["pending", "completed", "failed"]],
-    },
-    total=False,
-)
-
-
-class FilterStatus(_FilterStatusReservedKeywords, total=False):
-    eq: Literal["pending", "completed", "failed"]
-    """Filters records to those with a specific status."""
-
-
 class Filter(TypedDict, total=False):
-    created_at: FilterCreatedAt
+    friendly_name: str
+    """
+    If present, applications with <code>friendly_name</code> containing the given
+    value will be returned. Matching is not case-sensitive. Requires at least three
+    characters.
+    """
 
-    phone_number: FilterPhoneNumber
-
-    status: FilterStatus
+    outbound_voice_profile_id: str
+    """Identifies the associated outbound voice profile."""
 
 
 class Page(TypedDict, total=False):

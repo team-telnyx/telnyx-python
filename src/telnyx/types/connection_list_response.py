@@ -4,8 +4,8 @@ from typing import List, Optional
 from typing_extensions import Literal
 
 from .._models import BaseModel
-from .pagination_meta import PaginationMeta
 from .anchorsite_override import AnchorsiteOverride
+from .shared.connections_pagination_meta import ConnectionsPaginationMeta
 
 __all__ = ["ConnectionListResponse", "Data"]
 
@@ -57,4 +57,4 @@ class Data(BaseModel):
 class ConnectionListResponse(BaseModel):
     data: Optional[List[Data]] = None
 
-    meta: Optional[PaginationMeta] = None
+    meta: Optional[ConnectionsPaginationMeta] = None

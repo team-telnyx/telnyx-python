@@ -36,7 +36,7 @@ class TestDocuments:
     @parametrize
     def test_method_retrieve(self, client: Telnyx) -> None:
         document = client.documents.retrieve(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "6a09cdc3-8948-47f0-aa62-74ac943d6c58",
         )
         assert_matches_type(DocumentRetrieveResponse, document, path=["response"])
 
@@ -44,7 +44,7 @@ class TestDocuments:
     @parametrize
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
         response = client.documents.with_raw_response.retrieve(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "6a09cdc3-8948-47f0-aa62-74ac943d6c58",
         )
 
         assert response.is_closed is True
@@ -56,7 +56,7 @@ class TestDocuments:
     @parametrize
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
         with client.documents.with_streaming_response.retrieve(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "6a09cdc3-8948-47f0-aa62-74ac943d6c58",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -78,7 +78,7 @@ class TestDocuments:
     @parametrize
     def test_method_update(self, client: Telnyx) -> None:
         document = client.documents.update(
-            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
         )
         assert_matches_type(DocumentUpdateResponse, document, path=["response"])
 
@@ -86,7 +86,7 @@ class TestDocuments:
     @parametrize
     def test_method_update_with_all_params(self, client: Telnyx) -> None:
         document = client.documents.update(
-            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
             customer_reference="MY REF 001",
             filename="test-document.pdf",
         )
@@ -96,7 +96,7 @@ class TestDocuments:
     @parametrize
     def test_raw_response_update(self, client: Telnyx) -> None:
         response = client.documents.with_raw_response.update(
-            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
         )
 
         assert response.is_closed is True
@@ -108,7 +108,7 @@ class TestDocuments:
     @parametrize
     def test_streaming_response_update(self, client: Telnyx) -> None:
         with client.documents.with_streaming_response.update(
-            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -181,7 +181,7 @@ class TestDocuments:
     @parametrize
     def test_method_delete(self, client: Telnyx) -> None:
         document = client.documents.delete(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "6a09cdc3-8948-47f0-aa62-74ac943d6c58",
         )
         assert_matches_type(DocumentDeleteResponse, document, path=["response"])
 
@@ -189,7 +189,7 @@ class TestDocuments:
     @parametrize
     def test_raw_response_delete(self, client: Telnyx) -> None:
         response = client.documents.with_raw_response.delete(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "6a09cdc3-8948-47f0-aa62-74ac943d6c58",
         )
 
         assert response.is_closed is True
@@ -201,7 +201,7 @@ class TestDocuments:
     @parametrize
     def test_streaming_response_delete(self, client: Telnyx) -> None:
         with client.documents.with_streaming_response.delete(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "6a09cdc3-8948-47f0-aa62-74ac943d6c58",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -222,11 +222,11 @@ class TestDocuments:
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     def test_method_download(self, client: Telnyx, respx_mock: MockRouter) -> None:
-        respx_mock.get("/documents/182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e/download").mock(
+        respx_mock.get("/documents/6a09cdc3-8948-47f0-aa62-74ac943d6c58/download").mock(
             return_value=httpx.Response(200, json={"foo": "bar"})
         )
         document = client.documents.download(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "6a09cdc3-8948-47f0-aa62-74ac943d6c58",
         )
         assert document.is_closed
         assert document.json() == {"foo": "bar"}
@@ -236,12 +236,12 @@ class TestDocuments:
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     def test_raw_response_download(self, client: Telnyx, respx_mock: MockRouter) -> None:
-        respx_mock.get("/documents/182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e/download").mock(
+        respx_mock.get("/documents/6a09cdc3-8948-47f0-aa62-74ac943d6c58/download").mock(
             return_value=httpx.Response(200, json={"foo": "bar"})
         )
 
         document = client.documents.with_raw_response.download(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "6a09cdc3-8948-47f0-aa62-74ac943d6c58",
         )
 
         assert document.is_closed is True
@@ -252,11 +252,11 @@ class TestDocuments:
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     def test_streaming_response_download(self, client: Telnyx, respx_mock: MockRouter) -> None:
-        respx_mock.get("/documents/182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e/download").mock(
+        respx_mock.get("/documents/6a09cdc3-8948-47f0-aa62-74ac943d6c58/download").mock(
             return_value=httpx.Response(200, json={"foo": "bar"})
         )
         with client.documents.with_streaming_response.download(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "6a09cdc3-8948-47f0-aa62-74ac943d6c58",
         ) as document:
             assert not document.is_closed
             assert document.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -373,7 +373,7 @@ class TestAsyncDocuments:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
         document = await async_client.documents.retrieve(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "6a09cdc3-8948-47f0-aa62-74ac943d6c58",
         )
         assert_matches_type(DocumentRetrieveResponse, document, path=["response"])
 
@@ -381,7 +381,7 @@ class TestAsyncDocuments:
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.documents.with_raw_response.retrieve(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "6a09cdc3-8948-47f0-aa62-74ac943d6c58",
         )
 
         assert response.is_closed is True
@@ -393,7 +393,7 @@ class TestAsyncDocuments:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         async with async_client.documents.with_streaming_response.retrieve(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "6a09cdc3-8948-47f0-aa62-74ac943d6c58",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -415,7 +415,7 @@ class TestAsyncDocuments:
     @parametrize
     async def test_method_update(self, async_client: AsyncTelnyx) -> None:
         document = await async_client.documents.update(
-            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
         )
         assert_matches_type(DocumentUpdateResponse, document, path=["response"])
 
@@ -423,7 +423,7 @@ class TestAsyncDocuments:
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncTelnyx) -> None:
         document = await async_client.documents.update(
-            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
             customer_reference="MY REF 001",
             filename="test-document.pdf",
         )
@@ -433,7 +433,7 @@ class TestAsyncDocuments:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.documents.with_raw_response.update(
-            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
         )
 
         assert response.is_closed is True
@@ -445,7 +445,7 @@ class TestAsyncDocuments:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncTelnyx) -> None:
         async with async_client.documents.with_streaming_response.update(
-            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -518,7 +518,7 @@ class TestAsyncDocuments:
     @parametrize
     async def test_method_delete(self, async_client: AsyncTelnyx) -> None:
         document = await async_client.documents.delete(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "6a09cdc3-8948-47f0-aa62-74ac943d6c58",
         )
         assert_matches_type(DocumentDeleteResponse, document, path=["response"])
 
@@ -526,7 +526,7 @@ class TestAsyncDocuments:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.documents.with_raw_response.delete(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "6a09cdc3-8948-47f0-aa62-74ac943d6c58",
         )
 
         assert response.is_closed is True
@@ -538,7 +538,7 @@ class TestAsyncDocuments:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncTelnyx) -> None:
         async with async_client.documents.with_streaming_response.delete(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "6a09cdc3-8948-47f0-aa62-74ac943d6c58",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -559,11 +559,11 @@ class TestAsyncDocuments:
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     async def test_method_download(self, async_client: AsyncTelnyx, respx_mock: MockRouter) -> None:
-        respx_mock.get("/documents/182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e/download").mock(
+        respx_mock.get("/documents/6a09cdc3-8948-47f0-aa62-74ac943d6c58/download").mock(
             return_value=httpx.Response(200, json={"foo": "bar"})
         )
         document = await async_client.documents.download(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "6a09cdc3-8948-47f0-aa62-74ac943d6c58",
         )
         assert document.is_closed
         assert await document.json() == {"foo": "bar"}
@@ -573,12 +573,12 @@ class TestAsyncDocuments:
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     async def test_raw_response_download(self, async_client: AsyncTelnyx, respx_mock: MockRouter) -> None:
-        respx_mock.get("/documents/182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e/download").mock(
+        respx_mock.get("/documents/6a09cdc3-8948-47f0-aa62-74ac943d6c58/download").mock(
             return_value=httpx.Response(200, json={"foo": "bar"})
         )
 
         document = await async_client.documents.with_raw_response.download(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "6a09cdc3-8948-47f0-aa62-74ac943d6c58",
         )
 
         assert document.is_closed is True
@@ -589,11 +589,11 @@ class TestAsyncDocuments:
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     async def test_streaming_response_download(self, async_client: AsyncTelnyx, respx_mock: MockRouter) -> None:
-        respx_mock.get("/documents/182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e/download").mock(
+        respx_mock.get("/documents/6a09cdc3-8948-47f0-aa62-74ac943d6c58/download").mock(
             return_value=httpx.Response(200, json={"foo": "bar"})
         )
         async with async_client.documents.with_streaming_response.download(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "6a09cdc3-8948-47f0-aa62-74ac943d6c58",
         ) as document:
             assert not document.is_closed
             assert document.http_request.headers.get("X-Stainless-Lang") == "python"

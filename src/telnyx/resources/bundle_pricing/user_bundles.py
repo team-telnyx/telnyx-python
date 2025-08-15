@@ -35,7 +35,7 @@ class UserBundlesResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#accessing-raw-response-data-eg-headers
         """
         return UserBundlesResourceWithRawResponse(self)
 
@@ -44,7 +44,7 @@ class UserBundlesResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#with_streaming_response
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
         return UserBundlesResourceWithStreamingResponse(self)
 
@@ -150,10 +150,9 @@ class UserBundlesResource(SyncAPIResource):
         Get a paginated list of user bundles.
 
         Args:
-          filter:
-              Consolidated filter parameter (deepObject style). Originally:
-              filter[phone_number][eq], filter[phone_number][in][], filter[status][eq],
-              filter[status][in][], filter[created_at][lt], filter[created_at][gt]
+          filter: Consolidated filter parameter (deepObject style). Supports filtering by
+              country_iso and resource. Examples: filter[country_iso]=US or
+              filter[resource]=+15617819942
 
           page: Consolidated page parameter (deepObject style). Originally: page[size],
               page[number]
@@ -281,10 +280,9 @@ class UserBundlesResource(SyncAPIResource):
         Returns all user bundles that aren't in use.
 
         Args:
-          filter:
-              Consolidated filter parameter (deepObject style). Originally:
-              filter[phone_number][eq], filter[phone_number][in][], filter[status][eq],
-              filter[status][in][], filter[created_at][lt], filter[created_at][gt]
+          filter: Consolidated filter parameter (deepObject style). Supports filtering by
+              country_iso and resource. Examples: filter[country_iso]=US or
+              filter[resource]=+15617819942
 
           authorization_bearer: Authenticates the request with your Telnyx API V2 KEY
 
@@ -317,7 +315,7 @@ class AsyncUserBundlesResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#accessing-raw-response-data-eg-headers
         """
         return AsyncUserBundlesResourceWithRawResponse(self)
 
@@ -326,7 +324,7 @@ class AsyncUserBundlesResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#with_streaming_response
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
         return AsyncUserBundlesResourceWithStreamingResponse(self)
 
@@ -432,10 +430,9 @@ class AsyncUserBundlesResource(AsyncAPIResource):
         Get a paginated list of user bundles.
 
         Args:
-          filter:
-              Consolidated filter parameter (deepObject style). Originally:
-              filter[phone_number][eq], filter[phone_number][in][], filter[status][eq],
-              filter[status][in][], filter[created_at][lt], filter[created_at][gt]
+          filter: Consolidated filter parameter (deepObject style). Supports filtering by
+              country_iso and resource. Examples: filter[country_iso]=US or
+              filter[resource]=+15617819942
 
           page: Consolidated page parameter (deepObject style). Originally: page[size],
               page[number]
@@ -563,10 +560,9 @@ class AsyncUserBundlesResource(AsyncAPIResource):
         Returns all user bundles that aren't in use.
 
         Args:
-          filter:
-              Consolidated filter parameter (deepObject style). Originally:
-              filter[phone_number][eq], filter[phone_number][in][], filter[status][eq],
-              filter[status][in][], filter[created_at][lt], filter[created_at][gt]
+          filter: Consolidated filter parameter (deepObject style). Supports filtering by
+              country_iso and resource. Examples: filter[country_iso]=US or
+              filter[resource]=+15617819942
 
           authorization_bearer: Authenticates the request with your Telnyx API V2 KEY
 

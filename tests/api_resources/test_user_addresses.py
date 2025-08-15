@@ -14,7 +14,6 @@ from telnyx.types import (
     UserAddressCreateResponse,
     UserAddressRetrieveResponse,
 )
-from telnyx._utils import parse_datetime
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -145,18 +144,11 @@ class TestUserAddresses:
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         user_address = client.user_addresses.list(
             filter={
-                "created_at": {
-                    "gt": parse_datetime("2020-01-01T00:00:00Z"),
-                    "lt": parse_datetime("2020-01-01T00:00:00Z"),
+                "customer_reference": {
+                    "contains": "contains",
+                    "eq": "eq",
                 },
-                "phone_number": {
-                    "eq": "+12441239999",
-                    "in": ["+12441239999"],
-                },
-                "status": {
-                    "eq": "pending",
-                    "in": ["pending"],
-                },
+                "street_address": {"contains": "contains"},
             },
             page={
                 "number": 1,
@@ -317,18 +309,11 @@ class TestAsyncUserAddresses:
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         user_address = await async_client.user_addresses.list(
             filter={
-                "created_at": {
-                    "gt": parse_datetime("2020-01-01T00:00:00Z"),
-                    "lt": parse_datetime("2020-01-01T00:00:00Z"),
+                "customer_reference": {
+                    "contains": "contains",
+                    "eq": "eq",
                 },
-                "phone_number": {
-                    "eq": "+12441239999",
-                    "in": ["+12441239999"],
-                },
-                "status": {
-                    "eq": "pending",
-                    "in": ["pending"],
-                },
+                "street_address": {"contains": "contains"},
             },
             page={
                 "number": 1,

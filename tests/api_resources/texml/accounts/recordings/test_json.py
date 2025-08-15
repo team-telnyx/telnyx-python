@@ -9,7 +9,7 @@ import pytest
 
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
-from telnyx.types.texml.accounts.recordings import JsonRetrieveRecordingSidJsonResponse
+from telnyx.types.texml import TexmlGetCallRecordingResponseBody
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -76,7 +76,7 @@ class TestJson:
             recording_sid="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
             account_sid="account_sid",
         )
-        assert_matches_type(JsonRetrieveRecordingSidJsonResponse, json, path=["response"])
+        assert_matches_type(TexmlGetCallRecordingResponseBody, json, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -89,7 +89,7 @@ class TestJson:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         json = response.parse()
-        assert_matches_type(JsonRetrieveRecordingSidJsonResponse, json, path=["response"])
+        assert_matches_type(TexmlGetCallRecordingResponseBody, json, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -102,7 +102,7 @@ class TestJson:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             json = response.parse()
-            assert_matches_type(JsonRetrieveRecordingSidJsonResponse, json, path=["response"])
+            assert_matches_type(TexmlGetCallRecordingResponseBody, json, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -186,7 +186,7 @@ class TestAsyncJson:
             recording_sid="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
             account_sid="account_sid",
         )
-        assert_matches_type(JsonRetrieveRecordingSidJsonResponse, json, path=["response"])
+        assert_matches_type(TexmlGetCallRecordingResponseBody, json, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -199,7 +199,7 @@ class TestAsyncJson:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         json = await response.parse()
-        assert_matches_type(JsonRetrieveRecordingSidJsonResponse, json, path=["response"])
+        assert_matches_type(TexmlGetCallRecordingResponseBody, json, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -212,7 +212,7 @@ class TestAsyncJson:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             json = await response.parse()
-            assert_matches_type(JsonRetrieveRecordingSidJsonResponse, json, path=["response"])
+            assert_matches_type(TexmlGetCallRecordingResponseBody, json, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

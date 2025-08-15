@@ -3,13 +3,10 @@
 from typing import Optional
 
 from ..._models import BaseModel
+from .call_control_command_result import CallControlCommandResult
 
-__all__ = ["ActionStopGatherResponse", "Data"]
-
-
-class Data(BaseModel):
-    result: Optional[str] = None
+__all__ = ["ActionStopGatherResponse"]
 
 
 class ActionStopGatherResponse(BaseModel):
-    data: Optional[Data] = None
+    data: Optional[CallControlCommandResult] = None

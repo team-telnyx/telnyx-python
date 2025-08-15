@@ -10,7 +10,6 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types import NotificationEventConditionListResponse
-from telnyx._utils import parse_datetime
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -29,18 +28,12 @@ class TestNotificationEventConditions:
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         notification_event_condition = client.notification_event_conditions.list(
             filter={
-                "created_at": {
-                    "gt": parse_datetime("2020-01-01T00:00:00Z"),
-                    "lt": parse_datetime("2020-01-01T00:00:00Z"),
-                },
-                "phone_number": {
-                    "eq": "+12441239999",
-                    "in": ["+12441239999"],
-                },
-                "status": {
-                    "eq": "pending",
-                    "in": ["pending"],
-                },
+                "associated_record_type": {"eq": "phone_number"},
+                "channel_type_id": {"eq": "webhook"},
+                "notification_channel": {"eq": "12455643-3cf1-4683-ad23-1cd32f7d5e0a"},
+                "notification_event_condition_id": {"eq": "12455643-3cf1-4683-ad23-1cd32f7d5e0a"},
+                "notification_profile_id": {"eq": "12455643-3cf1-4683-ad23-1cd32f7d5e0a"},
+                "status": {"eq": "enable-received"},
             },
             page={
                 "number": 1,
@@ -88,18 +81,12 @@ class TestAsyncNotificationEventConditions:
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         notification_event_condition = await async_client.notification_event_conditions.list(
             filter={
-                "created_at": {
-                    "gt": parse_datetime("2020-01-01T00:00:00Z"),
-                    "lt": parse_datetime("2020-01-01T00:00:00Z"),
-                },
-                "phone_number": {
-                    "eq": "+12441239999",
-                    "in": ["+12441239999"],
-                },
-                "status": {
-                    "eq": "pending",
-                    "in": ["pending"],
-                },
+                "associated_record_type": {"eq": "phone_number"},
+                "channel_type_id": {"eq": "webhook"},
+                "notification_channel": {"eq": "12455643-3cf1-4683-ad23-1cd32f7d5e0a"},
+                "notification_event_condition_id": {"eq": "12455643-3cf1-4683-ad23-1cd32f7d5e0a"},
+                "notification_profile_id": {"eq": "12455643-3cf1-4683-ad23-1cd32f7d5e0a"},
+                "status": {"eq": "enable-received"},
             },
             page={
                 "number": 1,

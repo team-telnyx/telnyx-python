@@ -16,7 +16,6 @@ class Data(BaseModel):
     clusters: List["RecursiveCluster"]
 
     status: TaskStatus
-    """An enumeration."""
 
 
 class ClusterRetrieveResponse(BaseModel):

@@ -15,7 +15,6 @@ from telnyx.types import (
     AddressDeleteResponse,
     AddressRetrieveResponse,
 )
-from telnyx._utils import parse_datetime
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -147,18 +146,10 @@ class TestAddresses:
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         address = client.addresses.list(
             filter={
-                "created_at": {
-                    "gt": parse_datetime("2020-01-01T00:00:00Z"),
-                    "lt": parse_datetime("2020-01-01T00:00:00Z"),
-                },
-                "phone_number": {
-                    "eq": "+12441239999",
-                    "in": ["+12441239999"],
-                },
-                "status": {
-                    "eq": "pending",
-                    "in": ["pending"],
-                },
+                "address_book": {"eq": "eq"},
+                "customer_reference": "string",
+                "street_address": {"contains": "contains"},
+                "used_as_emergency": "used_as_emergency",
             },
             page={
                 "number": 1,
@@ -362,18 +353,10 @@ class TestAsyncAddresses:
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         address = await async_client.addresses.list(
             filter={
-                "created_at": {
-                    "gt": parse_datetime("2020-01-01T00:00:00Z"),
-                    "lt": parse_datetime("2020-01-01T00:00:00Z"),
-                },
-                "phone_number": {
-                    "eq": "+12441239999",
-                    "in": ["+12441239999"],
-                },
-                "status": {
-                    "eq": "pending",
-                    "in": ["pending"],
-                },
+                "address_book": {"eq": "eq"},
+                "customer_reference": "string",
+                "street_address": {"contains": "contains"},
+                "used_as_emergency": "used_as_emergency",
             },
             page={
                 "number": 1,

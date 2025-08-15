@@ -43,7 +43,7 @@ class TexmlApplicationsResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#accessing-raw-response-data-eg-headers
         """
         return TexmlApplicationsResourceWithRawResponse(self)
 
@@ -52,7 +52,7 @@ class TexmlApplicationsResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#with_streaming_response
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
         return TexmlApplicationsResourceWithStreamingResponse(self)
 
@@ -285,7 +285,7 @@ class TexmlApplicationsResource(SyncAPIResource):
         *,
         filter: texml_application_list_params.Filter | NotGiven = NOT_GIVEN,
         page: texml_application_list_params.Page | NotGiven = NOT_GIVEN,
-        sort: Literal["created_at", "application_name", "active"] | NotGiven = NOT_GIVEN,
+        sort: Literal["created_at", "friendly_name", "active"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -299,8 +299,7 @@ class TexmlApplicationsResource(SyncAPIResource):
         Args:
           filter:
               Consolidated filter parameter (deepObject style). Originally:
-              filter[phone_number][eq], filter[phone_number][in][], filter[status][eq],
-              filter[status][in][], filter[created_at][lt], filter[created_at][gt]
+              filter[outbound_voice_profile_id], filter[friendly_name]
 
           page: Consolidated page parameter (deepObject style). Originally: page[size],
               page[number]
@@ -310,13 +309,13 @@ class TexmlApplicationsResource(SyncAPIResource):
               prefix.<br/><br/> That is: <ul>
 
                 <li>
-                  <code>application_name</code>: sorts the result by the
-                  <code>application_name</code> field in ascending order.
+                  <code>friendly_name</code>: sorts the result by the
+                  <code>friendly_name</code> field in ascending order.
                 </li>
 
                 <li>
-                  <code>-application_name</code>: sorts the result by the
-                  <code>application_name</code> field in descending order.
+                  <code>-friendly_name</code>: sorts the result by the
+                  <code>friendly_name</code> field in descending order.
                 </li>
               </ul> <br/> If not given, results are sorted by <code>created_at</code> in descending order.
 
@@ -388,7 +387,7 @@ class AsyncTexmlApplicationsResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#accessing-raw-response-data-eg-headers
         """
         return AsyncTexmlApplicationsResourceWithRawResponse(self)
 
@@ -397,7 +396,7 @@ class AsyncTexmlApplicationsResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#with_streaming_response
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
         return AsyncTexmlApplicationsResourceWithStreamingResponse(self)
 
@@ -630,7 +629,7 @@ class AsyncTexmlApplicationsResource(AsyncAPIResource):
         *,
         filter: texml_application_list_params.Filter | NotGiven = NOT_GIVEN,
         page: texml_application_list_params.Page | NotGiven = NOT_GIVEN,
-        sort: Literal["created_at", "application_name", "active"] | NotGiven = NOT_GIVEN,
+        sort: Literal["created_at", "friendly_name", "active"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -644,8 +643,7 @@ class AsyncTexmlApplicationsResource(AsyncAPIResource):
         Args:
           filter:
               Consolidated filter parameter (deepObject style). Originally:
-              filter[phone_number][eq], filter[phone_number][in][], filter[status][eq],
-              filter[status][in][], filter[created_at][lt], filter[created_at][gt]
+              filter[outbound_voice_profile_id], filter[friendly_name]
 
           page: Consolidated page parameter (deepObject style). Originally: page[size],
               page[number]
@@ -655,13 +653,13 @@ class AsyncTexmlApplicationsResource(AsyncAPIResource):
               prefix.<br/><br/> That is: <ul>
 
                 <li>
-                  <code>application_name</code>: sorts the result by the
-                  <code>application_name</code> field in ascending order.
+                  <code>friendly_name</code>: sorts the result by the
+                  <code>friendly_name</code> field in ascending order.
                 </li>
 
                 <li>
-                  <code>-application_name</code>: sorts the result by the
-                  <code>application_name</code> field in descending order.
+                  <code>-friendly_name</code>: sorts the result by the
+                  <code>friendly_name</code> field in descending order.
                 </li>
               </ul> <br/> If not given, results are sorted by <code>created_at</code> in descending order.
 

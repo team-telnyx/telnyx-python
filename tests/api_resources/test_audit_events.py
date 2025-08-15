@@ -29,24 +29,14 @@ class TestAuditEvents:
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         audit_event = client.audit_events.list(
             filter={
-                "created_at": {
-                    "gt": parse_datetime("2020-01-01T00:00:00Z"),
-                    "lt": parse_datetime("2020-01-01T00:00:00Z"),
-                },
-                "phone_number": {
-                    "eq": "+12441239999",
-                    "in": ["+12441239999"],
-                },
-                "status": {
-                    "eq": "pending",
-                    "in": ["pending"],
-                },
+                "created_after": parse_datetime("2021-01-01T00:00:00Z"),
+                "created_before": parse_datetime("2021-01-01T00:00:00Z"),
             },
             page={
                 "number": 1,
-                "size": 1,
+                "size": 10,
             },
-            sort="email",
+            sort="desc",
         )
         assert_matches_type(AuditEventListResponse, audit_event, path=["response"])
 
@@ -89,24 +79,14 @@ class TestAsyncAuditEvents:
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         audit_event = await async_client.audit_events.list(
             filter={
-                "created_at": {
-                    "gt": parse_datetime("2020-01-01T00:00:00Z"),
-                    "lt": parse_datetime("2020-01-01T00:00:00Z"),
-                },
-                "phone_number": {
-                    "eq": "+12441239999",
-                    "in": ["+12441239999"],
-                },
-                "status": {
-                    "eq": "pending",
-                    "in": ["pending"],
-                },
+                "created_after": parse_datetime("2021-01-01T00:00:00Z"),
+                "created_before": parse_datetime("2021-01-01T00:00:00Z"),
             },
             page={
                 "number": 1,
-                "size": 1,
+                "size": 10,
             },
-            sort="email",
+            sort="desc",
         )
         assert_matches_type(AuditEventListResponse, audit_event, path=["response"])
 

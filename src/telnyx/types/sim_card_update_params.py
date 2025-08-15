@@ -5,7 +5,9 @@ from __future__ import annotations
 from typing import List
 from typing_extensions import Literal, TypedDict
 
-__all__ = ["SimCardUpdateParams", "DataLimit", "Status"]
+from .shared_params.sim_card_status import SimCardStatus
+
+__all__ = ["SimCardUpdateParams", "DataLimit"]
 
 
 class SimCardUpdateParams(TypedDict, total=False):
@@ -22,7 +24,7 @@ class SimCardUpdateParams(TypedDict, total=False):
     resource.
     """
 
-    status: Status
+    status: SimCardStatus
 
     tags: List[str]
     """Searchable tags associated with the SIM card"""
@@ -32,7 +34,3 @@ class DataLimit(TypedDict, total=False):
     amount: str
 
     unit: Literal["MB", "GB"]
-
-
-class Status(TypedDict, total=False):
-    pass

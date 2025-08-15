@@ -65,7 +65,6 @@ from .scheduled_events import (
     ScheduledEventsResourceWithStreamingResponse,
     AsyncScheduledEventsResourceWithStreamingResponse,
 )
-from ....types.ai.assistant import Assistant
 from ....types.ai.assistants_list import AssistantsList
 from ....types.ai.enabled_features import EnabledFeatures
 from ....types.ai.assistant_tool_param import AssistantToolParam
@@ -73,9 +72,12 @@ from ....types.ai.voice_settings_param import VoiceSettingsParam
 from ....types.ai.insight_settings_param import InsightSettingsParam
 from ....types.ai.privacy_settings_param import PrivacySettingsParam
 from ....types.ai.assistant_chat_response import AssistantChatResponse
+from ....types.ai.assistant_clone_response import AssistantCloneResponse
 from ....types.ai.messaging_settings_param import MessagingSettingsParam
 from ....types.ai.telephony_settings_param import TelephonySettingsParam
+from ....types.ai.assistant_create_response import AssistantCreateResponse
 from ....types.ai.assistant_delete_response import AssistantDeleteResponse
+from ....types.ai.assistant_retrieve_response import AssistantRetrieveResponse
 from ....types.ai.transcription_settings_param import TranscriptionSettingsParam
 
 __all__ = ["AssistantsResource", "AsyncAssistantsResource"]
@@ -108,7 +110,7 @@ class AssistantsResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#accessing-raw-response-data-eg-headers
         """
         return AssistantsResourceWithRawResponse(self)
 
@@ -117,7 +119,7 @@ class AssistantsResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#with_streaming_response
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
         return AssistantsResourceWithStreamingResponse(self)
 
@@ -146,7 +148,7 @@ class AssistantsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Assistant:
+    ) -> AssistantCreateResponse:
         """
         Create a new AI Assistant.
 
@@ -212,7 +214,7 @@ class AssistantsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Assistant,
+            cast_to=AssistantCreateResponse,
         )
 
     def retrieve(
@@ -229,7 +231,7 @@ class AssistantsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Assistant:
+    ) -> AssistantRetrieveResponse:
         """
         Retrieve an AI Assistant configuration by `assistant_id`.
 
@@ -261,7 +263,7 @@ class AssistantsResource(SyncAPIResource):
                     assistant_retrieve_params.AssistantRetrieveParams,
                 ),
             ),
-            cast_to=Assistant,
+            cast_to=AssistantRetrieveResponse,
         )
 
     def update(
@@ -485,7 +487,7 @@ class AssistantsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Assistant:
+    ) -> AssistantCloneResponse:
         """
         Clone an existing assistant, excluding telephony and messaging settings.
 
@@ -505,7 +507,7 @@ class AssistantsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Assistant,
+            cast_to=AssistantCloneResponse,
         )
 
     def get_texml(
@@ -617,7 +619,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#accessing-raw-response-data-eg-headers
         """
         return AsyncAssistantsResourceWithRawResponse(self)
 
@@ -626,7 +628,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#with_streaming_response
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
         return AsyncAssistantsResourceWithStreamingResponse(self)
 
@@ -655,7 +657,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Assistant:
+    ) -> AssistantCreateResponse:
         """
         Create a new AI Assistant.
 
@@ -721,7 +723,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Assistant,
+            cast_to=AssistantCreateResponse,
         )
 
     async def retrieve(
@@ -738,7 +740,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Assistant:
+    ) -> AssistantRetrieveResponse:
         """
         Retrieve an AI Assistant configuration by `assistant_id`.
 
@@ -770,7 +772,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
                     assistant_retrieve_params.AssistantRetrieveParams,
                 ),
             ),
-            cast_to=Assistant,
+            cast_to=AssistantRetrieveResponse,
         )
 
     async def update(
@@ -994,7 +996,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Assistant:
+    ) -> AssistantCloneResponse:
         """
         Clone an existing assistant, excluding telephony and messaging settings.
 
@@ -1014,7 +1016,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Assistant,
+            cast_to=AssistantCloneResponse,
         )
 
     async def get_texml(

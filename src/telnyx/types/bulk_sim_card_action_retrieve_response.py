@@ -16,7 +16,7 @@ class DataSimCardActionsSummary(BaseModel):
 
 class Data(BaseModel):
     id: Optional[str] = None
-    """Identifies the type of resource."""
+    """Identifies the resource."""
 
     action_type: Optional[Literal["bulk_set_public_ips"]] = None
     """The operation type. It can be one of the following: <br/>

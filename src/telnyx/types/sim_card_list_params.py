@@ -24,9 +24,9 @@ class SimCardListParams(TypedDict, total=False):
     """It includes the associated SIM card group object in the response when present."""
 
     page: Page
-    """Consolidated page parameter (deepObject style).
+    """Consolidated pagination parameter (deepObject style).
 
-    Originally: page[size], page[number]
+    Originally: page[number], page[size]
     """
 
     sort: Literal["current_billing_period_consumed_data.amount"]
@@ -59,7 +59,7 @@ class Filter(TypedDict, total=False):
 
 class Page(TypedDict, total=False):
     number: int
-    """The page number to load"""
+    """The page number to load."""
 
     size: int
-    """The size of the page"""
+    """The size of the page."""

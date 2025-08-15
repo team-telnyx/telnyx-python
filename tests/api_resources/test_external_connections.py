@@ -40,7 +40,7 @@ class TestExternalConnections:
             external_sip_connection="zoom",
             outbound={
                 "channel_limit": 10,
-                "outbound_voice_profile_id": "1911630617284445511",
+                "outbound_voice_profile_id": "outbound_voice_profile_id",
             },
             active=False,
             inbound={"channel_limit": 10},
@@ -83,7 +83,7 @@ class TestExternalConnections:
     @parametrize
     def test_method_retrieve(self, client: Telnyx) -> None:
         external_connection = client.external_connections.retrieve(
-            "1293384261075731499",
+            "id",
         )
         assert_matches_type(ExternalConnectionRetrieveResponse, external_connection, path=["response"])
 
@@ -91,7 +91,7 @@ class TestExternalConnections:
     @parametrize
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
         response = client.external_connections.with_raw_response.retrieve(
-            "1293384261075731499",
+            "id",
         )
 
         assert response.is_closed is True
@@ -103,7 +103,7 @@ class TestExternalConnections:
     @parametrize
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
         with client.external_connections.with_streaming_response.retrieve(
-            "1293384261075731499",
+            "id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -125,8 +125,8 @@ class TestExternalConnections:
     @parametrize
     def test_method_update(self, client: Telnyx) -> None:
         external_connection = client.external_connections.update(
-            id="1293384261075731499",
-            outbound={"outbound_voice_profile_id": "1911630617284445511"},
+            id="id",
+            outbound={"outbound_voice_profile_id": "outbound_voice_profile_id"},
         )
         assert_matches_type(ExternalConnectionUpdateResponse, external_connection, path=["response"])
 
@@ -134,9 +134,9 @@ class TestExternalConnections:
     @parametrize
     def test_method_update_with_all_params(self, client: Telnyx) -> None:
         external_connection = client.external_connections.update(
-            id="1293384261075731499",
+            id="id",
             outbound={
-                "outbound_voice_profile_id": "1911630617284445511",
+                "outbound_voice_profile_id": "outbound_voice_profile_id",
                 "channel_limit": 10,
             },
             active=False,
@@ -152,8 +152,8 @@ class TestExternalConnections:
     @parametrize
     def test_raw_response_update(self, client: Telnyx) -> None:
         response = client.external_connections.with_raw_response.update(
-            id="1293384261075731499",
-            outbound={"outbound_voice_profile_id": "1911630617284445511"},
+            id="id",
+            outbound={"outbound_voice_profile_id": "outbound_voice_profile_id"},
         )
 
         assert response.is_closed is True
@@ -165,8 +165,8 @@ class TestExternalConnections:
     @parametrize
     def test_streaming_response_update(self, client: Telnyx) -> None:
         with client.external_connections.with_streaming_response.update(
-            id="1293384261075731499",
-            outbound={"outbound_voice_profile_id": "1911630617284445511"},
+            id="id",
+            outbound={"outbound_voice_profile_id": "outbound_voice_profile_id"},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -182,7 +182,7 @@ class TestExternalConnections:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.external_connections.with_raw_response.update(
                 id="",
-                outbound={"outbound_voice_profile_id": "1911630617284445511"},
+                outbound={"outbound_voice_profile_id": "outbound_voice_profile_id"},
             )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -235,7 +235,7 @@ class TestExternalConnections:
     @parametrize
     def test_method_delete(self, client: Telnyx) -> None:
         external_connection = client.external_connections.delete(
-            "1293384261075731499",
+            "id",
         )
         assert_matches_type(ExternalConnectionDeleteResponse, external_connection, path=["response"])
 
@@ -243,7 +243,7 @@ class TestExternalConnections:
     @parametrize
     def test_raw_response_delete(self, client: Telnyx) -> None:
         response = client.external_connections.with_raw_response.delete(
-            "1293384261075731499",
+            "id",
         )
 
         assert response.is_closed is True
@@ -255,7 +255,7 @@ class TestExternalConnections:
     @parametrize
     def test_streaming_response_delete(self, client: Telnyx) -> None:
         with client.external_connections.with_streaming_response.delete(
-            "1293384261075731499",
+            "id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -352,7 +352,7 @@ class TestAsyncExternalConnections:
             external_sip_connection="zoom",
             outbound={
                 "channel_limit": 10,
-                "outbound_voice_profile_id": "1911630617284445511",
+                "outbound_voice_profile_id": "outbound_voice_profile_id",
             },
             active=False,
             inbound={"channel_limit": 10},
@@ -395,7 +395,7 @@ class TestAsyncExternalConnections:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
         external_connection = await async_client.external_connections.retrieve(
-            "1293384261075731499",
+            "id",
         )
         assert_matches_type(ExternalConnectionRetrieveResponse, external_connection, path=["response"])
 
@@ -403,7 +403,7 @@ class TestAsyncExternalConnections:
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.external_connections.with_raw_response.retrieve(
-            "1293384261075731499",
+            "id",
         )
 
         assert response.is_closed is True
@@ -415,7 +415,7 @@ class TestAsyncExternalConnections:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         async with async_client.external_connections.with_streaming_response.retrieve(
-            "1293384261075731499",
+            "id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -437,8 +437,8 @@ class TestAsyncExternalConnections:
     @parametrize
     async def test_method_update(self, async_client: AsyncTelnyx) -> None:
         external_connection = await async_client.external_connections.update(
-            id="1293384261075731499",
-            outbound={"outbound_voice_profile_id": "1911630617284445511"},
+            id="id",
+            outbound={"outbound_voice_profile_id": "outbound_voice_profile_id"},
         )
         assert_matches_type(ExternalConnectionUpdateResponse, external_connection, path=["response"])
 
@@ -446,9 +446,9 @@ class TestAsyncExternalConnections:
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncTelnyx) -> None:
         external_connection = await async_client.external_connections.update(
-            id="1293384261075731499",
+            id="id",
             outbound={
-                "outbound_voice_profile_id": "1911630617284445511",
+                "outbound_voice_profile_id": "outbound_voice_profile_id",
                 "channel_limit": 10,
             },
             active=False,
@@ -464,8 +464,8 @@ class TestAsyncExternalConnections:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.external_connections.with_raw_response.update(
-            id="1293384261075731499",
-            outbound={"outbound_voice_profile_id": "1911630617284445511"},
+            id="id",
+            outbound={"outbound_voice_profile_id": "outbound_voice_profile_id"},
         )
 
         assert response.is_closed is True
@@ -477,8 +477,8 @@ class TestAsyncExternalConnections:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncTelnyx) -> None:
         async with async_client.external_connections.with_streaming_response.update(
-            id="1293384261075731499",
-            outbound={"outbound_voice_profile_id": "1911630617284445511"},
+            id="id",
+            outbound={"outbound_voice_profile_id": "outbound_voice_profile_id"},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -494,7 +494,7 @@ class TestAsyncExternalConnections:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.external_connections.with_raw_response.update(
                 id="",
-                outbound={"outbound_voice_profile_id": "1911630617284445511"},
+                outbound={"outbound_voice_profile_id": "outbound_voice_profile_id"},
             )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -547,7 +547,7 @@ class TestAsyncExternalConnections:
     @parametrize
     async def test_method_delete(self, async_client: AsyncTelnyx) -> None:
         external_connection = await async_client.external_connections.delete(
-            "1293384261075731499",
+            "id",
         )
         assert_matches_type(ExternalConnectionDeleteResponse, external_connection, path=["response"])
 
@@ -555,7 +555,7 @@ class TestAsyncExternalConnections:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.external_connections.with_raw_response.delete(
-            "1293384261075731499",
+            "id",
         )
 
         assert response.is_closed is True
@@ -567,7 +567,7 @@ class TestAsyncExternalConnections:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncTelnyx) -> None:
         async with async_client.external_connections.with_streaming_response.delete(
-            "1293384261075731499",
+            "id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

@@ -16,7 +16,6 @@ from telnyx.types import (
     TelephonyCredentialUpdateResponse,
     TelephonyCredentialRetrieveResponse,
 )
-from telnyx._utils import parse_datetime
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -176,18 +175,11 @@ class TestTelephonyCredentials:
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         telephony_credential = client.telephony_credentials.list(
             filter={
-                "created_at": {
-                    "gt": parse_datetime("2020-01-01T00:00:00Z"),
-                    "lt": parse_datetime("2020-01-01T00:00:00Z"),
-                },
-                "phone_number": {
-                    "eq": "+12441239999",
-                    "in": ["+12441239999"],
-                },
-                "status": {
-                    "eq": "pending",
-                    "in": ["pending"],
-                },
+                "name": "name",
+                "resource_id": "resource_id",
+                "sip_username": "sip_username",
+                "status": "status",
+                "tag": "tag",
             },
             page={
                 "number": 1,
@@ -460,18 +452,11 @@ class TestAsyncTelephonyCredentials:
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         telephony_credential = await async_client.telephony_credentials.list(
             filter={
-                "created_at": {
-                    "gt": parse_datetime("2020-01-01T00:00:00Z"),
-                    "lt": parse_datetime("2020-01-01T00:00:00Z"),
-                },
-                "phone_number": {
-                    "eq": "+12441239999",
-                    "in": ["+12441239999"],
-                },
-                "status": {
-                    "eq": "pending",
-                    "in": ["pending"],
-                },
+                "name": "name",
+                "resource_id": "resource_id",
+                "sip_username": "sip_username",
+                "status": "status",
+                "tag": "tag",
             },
             page={
                 "number": 1,

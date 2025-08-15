@@ -4,55 +4,100 @@ from __future__ import annotations
 
 from . import ai
 from .. import _compat
+from .ip import IP as IP
+from .fax import Fax as Fax
+from .fqdn import Fqdn as Fqdn
+from .room import Room as Room
 from .error import Error as Error
 from .record import Record as Record
+from .shared import (
+    Metadata as Metadata,
+    ShortCode as ShortCode,
+    HostedNumber as HostedNumber,
+    SimCardStatus as SimCardStatus,
+    SimpleSimCard as SimpleSimCard,
+    RoomParticipant as RoomParticipant,
+    PortingOrderStatus as PortingOrderStatus,
+    MessagingFeatureSet as MessagingFeatureSet,
+    NumberHealthMetrics as NumberHealthMetrics,
+    DocReqsRequirementType as DocReqsRequirementType,
+    ConnectionsPaginationMeta as ConnectionsPaginationMeta,
+    MessagingHostedNumberOrder as MessagingHostedNumberOrder,
+    PortingOrdersExceptionType as PortingOrdersExceptionType,
+    PhoneNumberWithMessagingSettings as PhoneNumberWithMessagingSettings,
+    SubNumberOrderRegulatoryRequirementWithValue as SubNumberOrderRegulatoryRequirementWithValue,
+)
+from .address import Address as Address
+from .sim_card import SimCard as SimCard
 from .vertical import Vertical as Vertical
 from .dtmf_type import DtmfType as DtmfType
 from .interface import Interface as Interface
 from .rcs_agent import RcsAgent as RcsAgent
 from .region_in import RegionIn as RegionIn
+from .conference import Conference as Conference
+from .inbound_ip import InboundIP as InboundIP
 from .entity_type import EntityType as EntityType
 from .outbound_ip import OutboundIP as OutboundIP
 from .task_status import TaskStatus as TaskStatus
 from .inbound_fqdn import InboundFqdn as InboundFqdn
 from .month_detail import MonthDetail as MonthDetail
+from .phone_number import PhoneNumber as PhoneNumber
 from .record_param import RecordParam as RecordParam
+from .room_session import RoomSession as RoomSession
 from .service_plan import ServicePlan as ServicePlan
 from .stream_codec import StreamCodec as StreamCodec
 from .telnyx_brand import TelnyxBrand as TelnyxBrand
 from .traffic_type import TrafficType as TrafficType
+from .user_address import UserAddress as UserAddress
 from .verification import Verification as Verification
+from .video_region import VideoRegion as VideoRegion
 from .billing_group import BillingGroup as BillingGroup
+from .consumed_data import ConsumedData as ConsumedData
+from .ip_connection import IPConnection as IPConnection
 from .outbound_fqdn import OutboundFqdn as OutboundFqdn
+from .porting_order import PortingOrder as PortingOrder
 from .ip_list_params import IPListParams as IPListParams
+from .media_resource import MediaResource as MediaResource
 from .rcs_suggestion import RcsSuggestion as RcsSuggestion
 from .settings_param import SettingsParam as SettingsParam
+from .sim_card_group import SimCardGroup as SimCardGroup
+from .sim_card_order import SimCardOrder as SimCardOrder
 from .stock_exchange import StockExchange as StockExchange
 from .verify_profile import VerifyProfile as VerifyProfile
 from .access_ip_range import AccessIPRange as AccessIPRange
 from .encrypted_media import EncryptedMedia as EncryptedMedia
+from .fax_application import FaxApplication as FaxApplication
 from .fax_list_params import FaxListParams as FaxListParams
+from .fqdn_connection import FqdnConnection as FqdnConnection
+from .managed_account import ManagedAccount as ManagedAccount
+from .messaging_error import MessagingError as MessagingError
 from .pagination_meta import PaginationMeta as PaginationMeta
+from .portout_details import PortoutDetails as PortoutDetails
 from .push_credential import PushCredential as PushCredential
 from .verified_number import VerifiedNumber as VerifiedNumber
 from .call_dial_params import CallDialParams as CallDialParams
 from .fqdn_list_params import FqdnListParams as FqdnListParams
+from .inbound_ip_param import InboundIPParam as InboundIPParam
 from .interface_status import InterfaceStatus as InterfaceStatus
 from .ip_create_params import IPCreateParams as IPCreateParams
 from .ip_list_response import IPListResponse as IPListResponse
 from .ip_update_params import IPUpdateParams as IPUpdateParams
 from .rcs_card_content import RcsCardContent as RcsCardContent
 from .rcs_content_info import RcsContentInfo as RcsContentInfo
+from .room_composition import RoomComposition as RoomComposition
 from .room_list_params import RoomListParams as RoomListParams
 from .sip_header_param import SipHeaderParam as SipHeaderParam
+from .sub_number_order import SubNumberOrder as SubNumberOrder
 from .available_service import AvailableService as AvailableService
 from .brand_list_params import BrandListParams as BrandListParams
 from .fax_create_params import FaxCreateParams as FaxCreateParams
 from .fax_list_response import FaxListResponse as FaxListResponse
 from .media_list_params import MediaListParams as MediaListParams
+from .messaging_profile import MessagingProfile as MessagingProfile
 from .outbound_ip_param import OutboundIPParam as OutboundIPParam
 from .rcs_agent_message import RcsAgentMessage as RcsAgentMessage
 from .requirement_group import RequirementGroup as RequirementGroup
+from .texml_application import TexmlApplication as TexmlApplication
 from .call_dial_response import CallDialResponse as CallDialResponse
 from .credential_inbound import CredentialInbound as CredentialInbound
 from .fqdn_create_params import FqdnCreateParams as FqdnCreateParams
@@ -63,12 +108,17 @@ from .integration_secret import IntegrationSecret as IntegrationSecret
 from .ip_create_response import IPCreateResponse as IPCreateResponse
 from .ip_delete_response import IPDeleteResponse as IPDeleteResponse
 from .ip_update_response import IPUpdateResponse as IPUpdateResponse
+from .number_block_order import NumberBlockOrder as NumberBlockOrder
+from .number_reservation import NumberReservation as NumberReservation
+from .porting_order_misc import PortingOrderMisc as PortingOrderMisc
 from .porting_order_type import PortingOrderType as PortingOrderType
 from .rcs_agent_response import RcsAgentResponse as RcsAgentResponse
 from .room_create_params import RoomCreateParams as RoomCreateParams
 from .room_list_response import RoomListResponse as RoomListResponse
 from .room_update_params import RoomUpdateParams as RoomUpdateParams
 from .transport_protocol import TransportProtocol as TransportProtocol
+from .video_region_param import VideoRegionParam as VideoRegionParam
+from .wireless_blocklist import WirelessBlocklist as WirelessBlocklist
 from .address_list_params import AddressListParams as AddressListParams
 from .ai_summarize_params import AISummarizeParams as AISummarizeParams
 from .anchorsite_override import AnchorsiteOverride as AnchorsiteOverride
@@ -77,6 +127,7 @@ from .brand_list_response import BrandListResponse as BrandListResponse
 from .brand_update_params import BrandUpdateParams as BrandUpdateParams
 from .comment_list_params import CommentListParams as CommentListParams
 from .credential_outbound import CredentialOutbound as CredentialOutbound
+from .external_connection import ExternalConnection as ExternalConnection
 from .fax_create_response import FaxCreateResponse as FaxCreateResponse
 from .invoice_list_params import InvoiceListParams as InvoiceListParams
 from .media_list_response import MediaListResponse as MediaListResponse
@@ -92,6 +143,7 @@ from .verify_profile_data import VerifyProfileData as VerifyProfileData
 from .webhook_api_version import WebhookAPIVersion as WebhookAPIVersion
 from .alt_business_id_type import AltBusinessIDType as AltBusinessIDType
 from .campaign_list_params import CampaignListParams as CampaignListParams
+from .doc_service_document import DocServiceDocument as DocServiceDocument
 from .document_list_params import DocumentListParams as DocumentListParams
 from .fqdn_create_response import FqdnCreateResponse as FqdnCreateResponse
 from .fqdn_delete_response import FqdnDeleteResponse as FqdnDeleteResponse
@@ -108,6 +160,7 @@ from .room_create_response import RoomCreateResponse as RoomCreateResponse
 from .room_retrieve_params import RoomRetrieveParams as RoomRetrieveParams
 from .room_update_response import RoomUpdateResponse as RoomUpdateResponse
 from .sim_card_list_params import SimCardListParams as SimCardListParams
+from .telephony_credential import TelephonyCredential as TelephonyCredential
 from .texml_secrets_params import TexmlSecretsParams as TexmlSecretsParams
 from .usage_payment_method import UsagePaymentMethod as UsagePaymentMethod
 from .user_tag_list_params import UserTagListParams as UserTagListParams
@@ -118,6 +171,7 @@ from .ai_summarize_response import AISummarizeResponse as AISummarizeResponse
 from .brand_identity_status import BrandIdentityStatus as BrandIdentityStatus
 from .comment_create_params import CommentCreateParams as CommentCreateParams
 from .comment_list_response import CommentListResponse as CommentListResponse
+from .credential_connection import CredentialConnection as CredentialConnection
 from .fax_retrieve_response import FaxRetrieveResponse as FaxRetrieveResponse
 from .global_ip_list_params import GlobalIPListParams as GlobalIPListParams
 from .invoice_list_response import InvoiceListResponse as InvoiceListResponse
@@ -131,9 +185,12 @@ from .network_create_params import NetworkCreateParams as NetworkCreateParams
 from .network_list_response import NetworkListResponse as NetworkListResponse
 from .network_update_params import NetworkUpdateParams as NetworkUpdateParams
 from .phone_number_campaign import PhoneNumberCampaign as PhoneNumberCampaign
+from .phone_number_detailed import PhoneNumberDetailed as PhoneNumberDetailed
 from .portout_list_response import PortoutListResponse as PortoutListResponse
 from .rcs_agent_list_params import RcsAgentListParams as RcsAgentListParams
 from .recording_list_params import RecordingListParams as RecordingListParams
+from .reserved_phone_number import ReservedPhoneNumber as ReservedPhoneNumber
+from .s3_configuration_data import S3ConfigurationData as S3ConfigurationData
 from .call_event_list_params import CallEventListParams as CallEventListParams
 from .campaign_list_response import CampaignListResponse as CampaignListResponse
 from .campaign_update_params import CampaignUpdateParams as CampaignUpdateParams
@@ -145,7 +202,10 @@ from .document_update_params import DocumentUpdateParams as DocumentUpdateParams
 from .document_upload_params import DocumentUploadParams as DocumentUploadParams
 from .enum_retrieve_response import EnumRetrieveResponse as EnumRetrieveResponse
 from .fqdn_retrieve_response import FqdnRetrieveResponse as FqdnRetrieveResponse
+from .gcs_configuration_data import GcsConfigurationData as GcsConfigurationData
 from .ota_update_list_params import OtaUpdateListParams as OtaUpdateListParams
+from .outbound_voice_profile import OutboundVoiceProfile as OutboundVoiceProfile
+from .porting_order_end_user import PortingOrderEndUser as PortingOrderEndUser
 from .rcs_card_content_param import RcsCardContentParam as RcsCardContentParam
 from .rcs_content_info_param import RcsContentInfoParam as RcsContentInfoParam
 from .room_retrieve_response import RoomRetrieveResponse as RoomRetrieveResponse
@@ -164,24 +224,32 @@ from .brand_retrieve_response import BrandRetrieveResponse as BrandRetrieveRespo
 from .campaign_sharing_status import CampaignSharingStatus as CampaignSharingStatus
 from .comment_create_response import CommentCreateResponse as CommentCreateResponse
 from .custom_sip_header_param import CustomSipHeaderParam as CustomSipHeaderParam
+from .customer_service_record import CustomerServiceRecord as CustomerServiceRecord
 from .dialogflow_config_param import DialogflowConfigParam as DialogflowConfigParam
 from .global_ip_create_params import GlobalIPCreateParams as GlobalIPCreateParams
 from .global_ip_list_response import GlobalIPListResponse as GlobalIPListResponse
 from .invoice_retrieve_params import InvoiceRetrieveParams as InvoiceRetrieveParams
+from .managed_account_balance import ManagedAccountBalance as ManagedAccountBalance
 from .media_retrieve_response import MediaRetrieveResponse as MediaRetrieveResponse
 from .message_schedule_params import MessageScheduleParams as MessageScheduleParams
 from .network_create_response import NetworkCreateResponse as NetworkCreateResponse
 from .network_delete_response import NetworkDeleteResponse as NetworkDeleteResponse
 from .network_update_response import NetworkUpdateResponse as NetworkUpdateResponse
 from .outbound_call_recording import OutboundCallRecording as OutboundCallRecording
+from .porting_order_documents import PortingOrderDocuments as PortingOrderDocuments
+from .porting_order_messaging import PortingOrderMessaging as PortingOrderMessaging
 from .queue_retrieve_response import QueueRetrieveResponse as QueueRetrieveResponse
 from .rcs_agent_list_response import RcsAgentListResponse as RcsAgentListResponse
 from .rcs_agent_message_param import RcsAgentMessageParam as RcsAgentMessageParam
 from .rcs_agent_update_params import RcsAgentUpdateParams as RcsAgentUpdateParams
 from .recording_list_response import RecordingListResponse as RecordingListResponse
+from .recording_response_data import RecordingResponseData as RecordingResponseData
+from .recording_transcription import RecordingTranscription as RecordingTranscription
 from .report_list_mdrs_params import ReportListMdrsParams as ReportListMdrsParams
 from .report_list_wdrs_params import ReportListWdrsParams as ReportListWdrsParams
 from .requirement_list_params import RequirementListParams as RequirementListParams
+from .azure_configuration_data import AzureConfigurationData as AzureConfigurationData
+from .call_control_application import CallControlApplication as CallControlApplication
 from .call_event_list_response import CallEventListResponse as CallEventListResponse
 from .channel_zone_list_params import ChannelZoneListParams as ChannelZoneListParams
 from .client_get_object_params import ClientGetObjectParams as ClientGetObjectParams
@@ -196,7 +264,10 @@ from .document_update_response import DocumentUpdateResponse as DocumentUpdateRe
 from .document_upload_response import DocumentUploadResponse as DocumentUploadResponse
 from .number_order_list_params import NumberOrderListParams as NumberOrderListParams
 from .ota_update_list_response import OtaUpdateListResponse as OtaUpdateListResponse
+from .outbound_message_payload import OutboundMessagePayload as OutboundMessagePayload
 from .phone_number_list_params import PhoneNumberListParams as PhoneNumberListParams
+from .porting_order_misc_param import PortingOrderMiscParam as PortingOrderMiscParam
+from .private_wireless_gateway import PrivateWirelessGateway as PrivateWirelessGateway
 from .push_credential_response import PushCredentialResponse as PushCredentialResponse
 from .short_code_list_response import ShortCodeListResponse as ShortCodeListResponse
 from .short_code_update_params import ShortCodeUpdateParams as ShortCodeUpdateParams
@@ -213,6 +284,7 @@ from .comment_retrieve_response import CommentRetrieveResponse as CommentRetriev
 from .credential_outbound_param import CredentialOutboundParam as CredentialOutboundParam
 from .detail_record_list_params import DetailRecordListParams as DetailRecordListParams
 from .document_link_list_params import DocumentLinkListParams as DocumentLinkListParams
+from .dynamic_emergency_address import DynamicEmergencyAddress as DynamicEmergencyAddress
 from .global_ip_create_response import GlobalIPCreateResponse as GlobalIPCreateResponse
 from .global_ip_delete_response import GlobalIPDeleteResponse as GlobalIPDeleteResponse
 from .invoice_retrieve_response import InvoiceRetrieveResponse as InvoiceRetrieveResponse
@@ -220,7 +292,9 @@ from .ip_connection_list_params import IPConnectionListParams as IPConnectionLis
 from .message_retrieve_response import MessageRetrieveResponse as MessageRetrieveResponse
 from .message_schedule_response import MessageScheduleResponse as MessageScheduleResponse
 from .network_retrieve_response import NetworkRetrieveResponse as NetworkRetrieveResponse
+from .number_order_phone_number import NumberOrderPhoneNumber as NumberOrderPhoneNumber
 from .porting_order_list_params import PortingOrderListParams as PortingOrderListParams
+from .porting_order_requirement import PortingOrderRequirement as PortingOrderRequirement
 from .portout_retrieve_response import PortoutRetrieveResponse as PortoutRetrieveResponse
 from .recording_delete_response import RecordingDeleteResponse as RecordingDeleteResponse
 from .report_list_mdrs_response import ReportListMdrsResponse as ReportListMdrsResponse
@@ -234,6 +308,7 @@ from .channel_zone_update_params import ChannelZoneUpdateParams as ChannelZoneUp
 from .client_list_objects_params import ClientListObjectsParams as ClientListObjectsParams
 from .conference_create_response import ConferenceCreateResponse as ConferenceCreateResponse
 from .document_retrieve_response import DocumentRetrieveResponse as DocumentRetrieveResponse
+from .dynamic_emergency_endpoint import DynamicEmergencyEndpoint as DynamicEmergencyEndpoint
 from .global_ip_assignment_param import GlobalIPAssignmentParam as GlobalIPAssignmentParam
 from .list_retrieve_all_response import ListRetrieveAllResponse as ListRetrieveAllResponse
 from .number_order_create_params import NumberOrderCreateParams as NumberOrderCreateParams
@@ -274,7 +349,10 @@ from .managed_account_list_params import ManagedAccountListParams as ManagedAcco
 from .porting_order_create_params import PortingOrderCreateParams as PortingOrderCreateParams
 from .porting_order_list_response import PortingOrderListResponse as PortingOrderListResponse
 from .porting_order_update_params import PortingOrderUpdateParams as PortingOrderUpdateParams
+from .porting_order_user_feedback import PortingOrderUserFeedback as PortingOrderUserFeedback
 from .recording_retrieve_response import RecordingRetrieveResponse as RecordingRetrieveResponse
+from .reserved_phone_number_param import ReservedPhoneNumberParam as ReservedPhoneNumberParam
+from .s3_configuration_data_param import S3ConfigurationDataParam as S3ConfigurationDataParam
 from .verified_number_list_params import VerifiedNumberListParams as VerifiedNumberListParams
 from .advanced_order_create_params import AdvancedOrderCreateParams as AdvancedOrderCreateParams
 from .campaign_deactivate_response import CampaignDeactivateResponse as CampaignDeactivateResponse
@@ -283,6 +361,8 @@ from .client_delete_objects_params import ClientDeleteObjectsParams as ClientDel
 from .conference_retrieve_response import ConferenceRetrieveResponse as ConferenceRetrieveResponse
 from .connection_retrieve_response import ConnectionRetrieveResponse as ConnectionRetrieveResponse
 from .create_verification_response import CreateVerificationResponse as CreateVerificationResponse
+from .custom_storage_configuration import CustomStorageConfiguration as CustomStorageConfiguration
+from .gcs_configuration_data_param import GcsConfigurationDataParam as GcsConfigurationDataParam
 from .messaging_optout_list_params import MessagingOptoutListParams as MessagingOptoutListParams
 from .network_coverage_list_params import NetworkCoverageListParams as NetworkCoverageListParams
 from .number_order_create_response import NumberOrderCreateResponse as NumberOrderCreateResponse
@@ -292,6 +372,8 @@ from .partner_campaign_list_params import PartnerCampaignListParams as PartnerCa
 from .phone_number_delete_response import PhoneNumberDeleteResponse as PhoneNumberDeleteResponse
 from .phone_number_update_response import PhoneNumberUpdateResponse as PhoneNumberUpdateResponse
 from .portability_check_run_params import PortabilityCheckRunParams as PortabilityCheckRunParams
+from .porting_order_end_user_admin import PortingOrderEndUserAdmin as PortingOrderEndUserAdmin
+from .porting_order_end_user_param import PortingOrderEndUserParam as PortingOrderEndUserParam
 from .portout_update_status_params import PortoutUpdateStatusParams as PortoutUpdateStatusParams
 from .requirement_type_list_params import RequirementTypeListParams as RequirementTypeListParams
 from .room_composition_list_params import RoomCompositionListParams as RoomCompositionListParams
@@ -345,13 +427,16 @@ from .numbers_feature_create_params import NumbersFeatureCreateParams as Numbers
 from .outbound_call_recording_param import OutboundCallRecordingParam as OutboundCallRecordingParam
 from .phone_number_slim_list_params import PhoneNumberSlimListParams as PhoneNumberSlimListParams
 from .porting_order_create_response import PortingOrderCreateResponse as PortingOrderCreateResponse
+from .porting_order_documents_param import PortingOrderDocumentsParam as PortingOrderDocumentsParam
 from .porting_order_retrieve_params import PortingOrderRetrieveParams as PortingOrderRetrieveParams
 from .porting_order_update_response import PortingOrderUpdateResponse as PortingOrderUpdateResponse
+from .porting_orders_activation_job import PortingOrdersActivationJob as PortingOrdersActivationJob
 from .requirement_group_list_params import RequirementGroupListParams as RequirementGroupListParams
 from .requirement_retrieve_response import RequirementRetrieveResponse as RequirementRetrieveResponse
 from .texml_application_list_params import TexmlApplicationListParams as TexmlApplicationListParams
 from .verified_number_create_params import VerifiedNumberCreateParams as VerifiedNumberCreateParams
 from .verified_number_list_response import VerifiedNumberListResponse as VerifiedNumberListResponse
+from .azure_configuration_data_param import AzureConfigurationDataParam as AzureConfigurationDataParam
 from .campaign_builder_create_params import CampaignBuilderCreateParams as CampaignBuilderCreateParams
 from .connection_rtcp_settings_param import ConnectionRtcpSettingsParam as ConnectionRtcpSettingsParam
 from .integration_secret_list_params import IntegrationSecretListParams as IntegrationSecretListParams
@@ -370,6 +455,7 @@ from .partner_campaign_update_params import PartnerCampaignUpdateParams as Partn
 from .phone_number_retrieve_response import PhoneNumberRetrieveResponse as PhoneNumberRetrieveResponse
 from .portability_check_run_response import PortabilityCheckRunResponse as PortabilityCheckRunResponse
 from .portout_update_status_response import PortoutUpdateStatusResponse as PortoutUpdateStatusResponse
+from .pwg_assigned_resources_summary import PwgAssignedResourcesSummary as PwgAssignedResourcesSummary
 from .requirement_type_list_response import RequirementTypeListResponse as RequirementTypeListResponse
 from .room_composition_create_params import RoomCompositionCreateParams as RoomCompositionCreateParams
 from .room_composition_list_response import RoomCompositionListResponse as RoomCompositionListResponse
@@ -414,9 +500,12 @@ from .messaging_profile_create_params import MessagingProfileCreateParams as Mes
 from .messaging_profile_list_response import MessagingProfileListResponse as MessagingProfileListResponse
 from .messaging_profile_update_params import MessagingProfileUpdateParams as MessagingProfileUpdateParams
 from .number_lookup_retrieve_response import NumberLookupRetrieveResponse as NumberLookupRetrieveResponse
+from .number_order_with_phone_numbers import NumberOrderWithPhoneNumbers as NumberOrderWithPhoneNumbers
 from .numbers_feature_create_response import NumbersFeatureCreateResponse as NumbersFeatureCreateResponse
 from .phone_number_slim_list_response import PhoneNumberSlimListResponse as PhoneNumberSlimListResponse
+from .porting_order_end_user_location import PortingOrderEndUserLocation as PortingOrderEndUserLocation
 from .porting_order_retrieve_response import PortingOrderRetrieveResponse as PortingOrderRetrieveResponse
+from .private_wireless_gateway_status import PrivateWirelessGatewayStatus as PrivateWirelessGatewayStatus
 from .requirement_group_create_params import RequirementGroupCreateParams as RequirementGroupCreateParams
 from .requirement_group_list_response import RequirementGroupListResponse as RequirementGroupListResponse
 from .requirement_group_update_params import RequirementGroupUpdateParams as RequirementGroupUpdateParams
@@ -450,6 +539,7 @@ from .number_reservation_list_response import NumberReservationListResponse as N
 from .porting_phone_number_list_params import PortingPhoneNumberListParams as PortingPhoneNumberListParams
 from .room_composition_create_response import RoomCompositionCreateResponse as RoomCompositionCreateResponse
 from .room_recording_retrieve_response import RoomRecordingRetrieveResponse as RoomRecordingRetrieveResponse
+from .sim_card_data_usage_notification import SimCardDataUsageNotification as SimCardDataUsageNotification
 from .sim_card_group_retrieve_response import SimCardGroupRetrieveResponse as SimCardGroupRetrieveResponse
 from .sim_card_order_retrieve_response import SimCardOrderRetrieveResponse as SimCardOrderRetrieveResponse
 from .siprec_connector_create_response import SiprecConnectorCreateResponse as SiprecConnectorCreateResponse
@@ -484,6 +574,8 @@ from .messaging_profile_delete_response import MessagingProfileDeleteResponse as
 from .messaging_profile_update_response import MessagingProfileUpdateResponse as MessagingProfileUpdateResponse
 from .phone_number_campaign_list_params import PhoneNumberCampaignListParams as PhoneNumberCampaignListParams
 from .porting_list_uk_carriers_response import PortingListUkCarriersResponse as PortingListUkCarriersResponse
+from .porting_order_activation_settings import PortingOrderActivationSettings as PortingOrderActivationSettings
+from .porting_order_user_feedback_param import PortingOrderUserFeedbackParam as PortingOrderUserFeedbackParam
 from .room_recording_delete_bulk_params import RoomRecordingDeleteBulkParams as RoomRecordingDeleteBulkParams
 from .texml_application_create_response import TexmlApplicationCreateResponse as TexmlApplicationCreateResponse
 from .texml_application_delete_response import TexmlApplicationDeleteResponse as TexmlApplicationDeleteResponse
@@ -515,6 +607,7 @@ from .notification_setting_list_response import NotificationSettingListResponse 
 from .number_block_order_create_response import NumberBlockOrderCreateResponse as NumberBlockOrderCreateResponse
 from .number_reservation_create_response import NumberReservationCreateResponse as NumberReservationCreateResponse
 from .outbound_voice_profile_list_params import OutboundVoiceProfileListParams as OutboundVoiceProfileListParams
+from .porting_order_end_user_admin_param import PortingOrderEndUserAdminParam as PortingOrderEndUserAdminParam
 from .porting_phone_number_list_response import PortingPhoneNumberListResponse as PortingPhoneNumberListResponse
 from .requirement_type_retrieve_response import RequirementTypeRetrieveResponse as RequirementTypeRetrieveResponse
 from .room_composition_retrieve_response import RoomCompositionRetrieveResponse as RoomCompositionRetrieveResponse
@@ -636,6 +729,7 @@ from .mobile_network_operator_list_response import (
     MobileNetworkOperatorListResponse as MobileNetworkOperatorListResponse,
 )
 from .number_order_phone_number_list_params import NumberOrderPhoneNumberListParams as NumberOrderPhoneNumberListParams
+from .porting_order_end_user_location_param import PortingOrderEndUserLocationParam as PortingOrderEndUserLocationParam
 from .portout_list_rejection_codes_response import (
     PortoutListRejectionCodesResponse as PortoutListRejectionCodesResponse,
 )
@@ -780,6 +874,9 @@ from .recording_transcription_delete_response import (
 from .sim_card_order_preview_preview_response import (
     SimCardOrderPreviewPreviewResponse as SimCardOrderPreviewPreviewResponse,
 )
+from .sub_number_order_regulatory_requirement import (
+    SubNumberOrderRegulatoryRequirement as SubNumberOrderRegulatoryRequirement,
+)
 from .virtual_cross_connect_retrieve_response import (
     VirtualCrossConnectRetrieveResponse as VirtualCrossConnectRetrieveResponse,
 )
@@ -812,6 +909,9 @@ from .notification_event_condition_list_params import (
 )
 from .outbound_voice_profile_retrieve_response import (
     OutboundVoiceProfileRetrieveResponse as OutboundVoiceProfileRetrieveResponse,
+)
+from .porting_order_phone_number_configuration import (
+    PortingOrderPhoneNumberConfiguration as PortingOrderPhoneNumberConfiguration,
 )
 from .private_wireless_gateway_create_response import (
     PrivateWirelessGatewayCreateResponse as PrivateWirelessGatewayCreateResponse,
@@ -912,6 +1012,9 @@ from .custom_storage_credential_retrieve_response import (
 from .dynamic_emergency_address_retrieve_response import (
     DynamicEmergencyAddressRetrieveResponse as DynamicEmergencyAddressRetrieveResponse,
 )
+from .external_voice_integrations_pagination_meta import (
+    ExternalVoiceIntegrationsPaginationMeta as ExternalVoiceIntegrationsPaginationMeta,
+)
 from .global_ip_assignment_health_retrieve_params import (
     GlobalIPAssignmentHealthRetrieveParams as GlobalIPAssignmentHealthRetrieveParams,
 )
@@ -989,6 +1092,9 @@ from .seti_retrieve_black_box_test_results_response import (
 )
 from .virtual_cross_connects_coverage_list_response import (
     VirtualCrossConnectsCoverageListResponse as VirtualCrossConnectsCoverageListResponse,
+)
+from .porting_order_phone_number_configuration_param import (
+    PortingOrderPhoneNumberConfigurationParam as PortingOrderPhoneNumberConfigurationParam,
 )
 from .sim_card_data_usage_notification_create_params import (
     SimCardDataUsageNotificationCreateParams as SimCardDataUsageNotificationCreateParams,

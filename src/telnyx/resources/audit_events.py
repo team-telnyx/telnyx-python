@@ -30,7 +30,7 @@ class AuditEventsResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#accessing-raw-response-data-eg-headers
         """
         return AuditEventsResourceWithRawResponse(self)
 
@@ -39,7 +39,7 @@ class AuditEventsResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#with_streaming_response
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
         return AuditEventsResourceWithStreamingResponse(self)
 
@@ -48,7 +48,7 @@ class AuditEventsResource(SyncAPIResource):
         *,
         filter: audit_event_list_params.Filter | NotGiven = NOT_GIVEN,
         page: audit_event_list_params.Page | NotGiven = NOT_GIVEN,
-        sort: Literal["created_at", "email"] | NotGiven = NOT_GIVEN,
+        sort: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -64,26 +64,12 @@ class AuditEventsResource(SyncAPIResource):
         Args:
           filter:
               Consolidated filter parameter (deepObject style). Originally:
-              filter[phone_number][eq], filter[phone_number][in][], filter[status][eq],
-              filter[status][in][], filter[created_at][lt], filter[created_at][gt]
+              filter[created_before], filter[created_after]
 
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
+          page: Consolidated page parameter (deepObject style). Originally: page[number],
+              page[size]
 
-          sort: Specifies the sort order for results. By default sorting direction is ascending.
-              To have the results sorted in descending order add the <code> -</code>
-              prefix.<br/><br/> That is: <ul>
-
-                <li>
-                  <code>email</code>: sorts the result by the
-                  <code>email</code> field in ascending order.
-                </li>
-
-                <li>
-                  <code>-email</code>: sorts the result by the
-                  <code>email</code> field in descending order.
-                </li>
-              </ul> <br/> If not given, results are sorted by <code>created_at</code> in descending order.
+          sort: Set the order of the results by the creation date.
 
           extra_headers: Send extra headers
 
@@ -120,7 +106,7 @@ class AsyncAuditEventsResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#accessing-raw-response-data-eg-headers
         """
         return AsyncAuditEventsResourceWithRawResponse(self)
 
@@ -129,7 +115,7 @@ class AsyncAuditEventsResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#with_streaming_response
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
         return AsyncAuditEventsResourceWithStreamingResponse(self)
 
@@ -138,7 +124,7 @@ class AsyncAuditEventsResource(AsyncAPIResource):
         *,
         filter: audit_event_list_params.Filter | NotGiven = NOT_GIVEN,
         page: audit_event_list_params.Page | NotGiven = NOT_GIVEN,
-        sort: Literal["created_at", "email"] | NotGiven = NOT_GIVEN,
+        sort: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -154,26 +140,12 @@ class AsyncAuditEventsResource(AsyncAPIResource):
         Args:
           filter:
               Consolidated filter parameter (deepObject style). Originally:
-              filter[phone_number][eq], filter[phone_number][in][], filter[status][eq],
-              filter[status][in][], filter[created_at][lt], filter[created_at][gt]
+              filter[created_before], filter[created_after]
 
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
+          page: Consolidated page parameter (deepObject style). Originally: page[number],
+              page[size]
 
-          sort: Specifies the sort order for results. By default sorting direction is ascending.
-              To have the results sorted in descending order add the <code> -</code>
-              prefix.<br/><br/> That is: <ul>
-
-                <li>
-                  <code>email</code>: sorts the result by the
-                  <code>email</code> field in ascending order.
-                </li>
-
-                <li>
-                  <code>-email</code>: sorts the result by the
-                  <code>email</code> field in descending order.
-                </li>
-              </ul> <br/> If not given, results are sorted by <code>created_at</code> in descending order.
+          sort: Set the order of the results by the creation date.
 
           extra_headers: Send extra headers
 

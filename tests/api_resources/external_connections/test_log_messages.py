@@ -25,7 +25,7 @@ class TestLogMessages:
     @parametrize
     def test_method_retrieve(self, client: Telnyx) -> None:
         log_message = client.external_connections.log_messages.retrieve(
-            "1293384261075731499",
+            "id",
         )
         assert_matches_type(LogMessageRetrieveResponse, log_message, path=["response"])
 
@@ -33,7 +33,7 @@ class TestLogMessages:
     @parametrize
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
         response = client.external_connections.log_messages.with_raw_response.retrieve(
-            "1293384261075731499",
+            "id",
         )
 
         assert response.is_closed is True
@@ -45,7 +45,7 @@ class TestLogMessages:
     @parametrize
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
         with client.external_connections.log_messages.with_streaming_response.retrieve(
-            "1293384261075731499",
+            "id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -113,7 +113,7 @@ class TestLogMessages:
     @parametrize
     def test_method_dismiss(self, client: Telnyx) -> None:
         log_message = client.external_connections.log_messages.dismiss(
-            "1293384261075731499",
+            "id",
         )
         assert_matches_type(LogMessageDismissResponse, log_message, path=["response"])
 
@@ -121,7 +121,7 @@ class TestLogMessages:
     @parametrize
     def test_raw_response_dismiss(self, client: Telnyx) -> None:
         response = client.external_connections.log_messages.with_raw_response.dismiss(
-            "1293384261075731499",
+            "id",
         )
 
         assert response.is_closed is True
@@ -133,7 +133,7 @@ class TestLogMessages:
     @parametrize
     def test_streaming_response_dismiss(self, client: Telnyx) -> None:
         with client.external_connections.log_messages.with_streaming_response.dismiss(
-            "1293384261075731499",
+            "id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -161,7 +161,7 @@ class TestAsyncLogMessages:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
         log_message = await async_client.external_connections.log_messages.retrieve(
-            "1293384261075731499",
+            "id",
         )
         assert_matches_type(LogMessageRetrieveResponse, log_message, path=["response"])
 
@@ -169,7 +169,7 @@ class TestAsyncLogMessages:
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.external_connections.log_messages.with_raw_response.retrieve(
-            "1293384261075731499",
+            "id",
         )
 
         assert response.is_closed is True
@@ -181,7 +181,7 @@ class TestAsyncLogMessages:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         async with async_client.external_connections.log_messages.with_streaming_response.retrieve(
-            "1293384261075731499",
+            "id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -249,7 +249,7 @@ class TestAsyncLogMessages:
     @parametrize
     async def test_method_dismiss(self, async_client: AsyncTelnyx) -> None:
         log_message = await async_client.external_connections.log_messages.dismiss(
-            "1293384261075731499",
+            "id",
         )
         assert_matches_type(LogMessageDismissResponse, log_message, path=["response"])
 
@@ -257,7 +257,7 @@ class TestAsyncLogMessages:
     @parametrize
     async def test_raw_response_dismiss(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.external_connections.log_messages.with_raw_response.dismiss(
-            "1293384261075731499",
+            "id",
         )
 
         assert response.is_closed is True
@@ -269,7 +269,7 @@ class TestAsyncLogMessages:
     @parametrize
     async def test_streaming_response_dismiss(self, async_client: AsyncTelnyx) -> None:
         async with async_client.external_connections.log_messages.with_streaming_response.dismiss(
-            "1293384261075731499",
+            "id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

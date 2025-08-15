@@ -30,7 +30,7 @@ class SimCardOrdersResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#accessing-raw-response-data-eg-headers
         """
         return SimCardOrdersResourceWithRawResponse(self)
 
@@ -39,7 +39,7 @@ class SimCardOrdersResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#with_streaming_response
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
         return SimCardOrdersResourceWithStreamingResponse(self)
 
@@ -142,8 +142,8 @@ class SimCardOrdersResource(SyncAPIResource):
               filter[address.locality], filter[address.administrative_area],
               filter[address.country_code], filter[address.postal_code]
 
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
+          page: Consolidated pagination parameter (deepObject style). Originally: page[number],
+              page[size]
 
           extra_headers: Send extra headers
 
@@ -179,7 +179,7 @@ class AsyncSimCardOrdersResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#accessing-raw-response-data-eg-headers
         """
         return AsyncSimCardOrdersResourceWithRawResponse(self)
 
@@ -188,7 +188,7 @@ class AsyncSimCardOrdersResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#with_streaming_response
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
         return AsyncSimCardOrdersResourceWithStreamingResponse(self)
 
@@ -291,8 +291,8 @@ class AsyncSimCardOrdersResource(AsyncAPIResource):
               filter[address.locality], filter[address.administrative_area],
               filter[address.country_code], filter[address.postal_code]
 
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
+          page: Consolidated pagination parameter (deepObject style). Originally: page[number],
+              page[size]
 
           extra_headers: Send extra headers
 

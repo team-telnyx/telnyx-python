@@ -36,7 +36,7 @@ class NotificationProfilesResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#accessing-raw-response-data-eg-headers
         """
         return NotificationProfilesResourceWithRawResponse(self)
 
@@ -45,7 +45,7 @@ class NotificationProfilesResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#with_streaming_response
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
         return NotificationProfilesResourceWithStreamingResponse(self)
 
@@ -168,8 +168,8 @@ class NotificationProfilesResource(SyncAPIResource):
         Returns a list of your notifications profiles.
 
         Args:
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
+          page: Consolidated page parameter (deepObject style). Originally: page[number],
+              page[size]
 
           extra_headers: Send extra headers
 
@@ -232,7 +232,7 @@ class AsyncNotificationProfilesResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#accessing-raw-response-data-eg-headers
         """
         return AsyncNotificationProfilesResourceWithRawResponse(self)
 
@@ -241,7 +241,7 @@ class AsyncNotificationProfilesResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/telnyx-python#with_streaming_response
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
         return AsyncNotificationProfilesResourceWithStreamingResponse(self)
 
@@ -368,8 +368,8 @@ class AsyncNotificationProfilesResource(AsyncAPIResource):
         Returns a list of your notifications profiles.
 
         Args:
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
+          page: Consolidated page parameter (deepObject style). Originally: page[number],
+              page[size]
 
           extra_headers: Send extra headers
 

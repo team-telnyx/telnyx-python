@@ -2,22 +2,17 @@
 
 from __future__ import annotations
 
-from typing import List, Union
-from datetime import datetime
-from typing_extensions import Literal, Annotated, TypedDict
+from typing_extensions import Literal, TypedDict
 
-from .._utils import PropertyInfo
-
-__all__ = ["ManagedAccountListParams", "Filter", "FilterCreatedAt", "FilterPhoneNumber", "FilterStatus", "Page"]
+__all__ = ["ManagedAccountListParams", "Filter", "FilterEmail", "FilterOrganizationName", "Page"]
 
 
 class ManagedAccountListParams(TypedDict, total=False):
     filter: Filter
     """Consolidated filter parameter (deepObject style).
 
-    Originally: filter[phone_number][eq], filter[phone_number][in][],
-    filter[status][eq], filter[status][in][], filter[created_at][lt],
-    filter[created_at][gt]
+    Originally: filter[email][contains], filter[email][eq],
+    filter[organization_name][contains], filter[organization_name][eq]
     """
 
     include_cancelled_accounts: bool
@@ -26,7 +21,7 @@ class ManagedAccountListParams(TypedDict, total=False):
     page: Page
     """Consolidated page parameter (deepObject style).
 
-    Originally: page[size], page[number]
+    Originally: page[number], page[size]
     """
 
     sort: Literal["created_at", "email"]
@@ -48,48 +43,39 @@ class ManagedAccountListParams(TypedDict, total=False):
     """
 
 
-class FilterCreatedAt(TypedDict, total=False):
-    gt: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
-    """Filters records to those created after a specific date."""
+class FilterEmail(TypedDict, total=False):
+    contains: str
+    """If present, email containing the given value will be returned.
 
-    lt: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
-    """Filters records to those created before a specific date."""
+    Matching is not case-sensitive. Requires at least three characters.
+    """
 
-
-_FilterPhoneNumberReservedKeywords = TypedDict(
-    "_FilterPhoneNumberReservedKeywords",
-    {
-        "in": List[str],
-    },
-    total=False,
-)
-
-
-class FilterPhoneNumber(_FilterPhoneNumberReservedKeywords, total=False):
     eq: str
-    """Filters records to those with a specified number."""
+    """
+    If present, only returns results with the <code>email</code> matching exactly
+    the value given.
+    """
 
 
-_FilterStatusReservedKeywords = TypedDict(
-    "_FilterStatusReservedKeywords",
-    {
-        "in": List[Literal["pending", "completed", "failed"]],
-    },
-    total=False,
-)
+class FilterOrganizationName(TypedDict, total=False):
+    contains: str
+    """
+    If present, only returns results with the <code>organization_name</code>
+    containing the given value. Matching is not case-sensitive. Requires at least
+    three characters.
+    """
 
-
-class FilterStatus(_FilterStatusReservedKeywords, total=False):
-    eq: Literal["pending", "completed", "failed"]
-    """Filters records to those with a specific status."""
+    eq: str
+    """
+    If present, only returns results with the <code>organization_name</code>
+    matching exactly the value given.
+    """
 
 
 class Filter(TypedDict, total=False):
-    created_at: FilterCreatedAt
+    email: FilterEmail
 
-    phone_number: FilterPhoneNumber
-
-    status: FilterStatus
+    organization_name: FilterOrganizationName
 
 
 class Page(TypedDict, total=False):

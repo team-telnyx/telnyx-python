@@ -83,6 +83,9 @@ class TestCalls:
         call = client.queues.calls.list(
             queue_name="queue_name",
             page={
+                "after": "after",
+                "before": "before",
+                "limit": 1,
                 "number": 1,
                 "size": 1,
             },
@@ -195,6 +198,9 @@ class TestAsyncCalls:
         call = await async_client.queues.calls.list(
             queue_name="queue_name",
             page={
+                "after": "after",
+                "before": "before",
+                "limit": 1,
                 "number": 1,
                 "size": 1,
             },

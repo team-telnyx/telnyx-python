@@ -1,39 +1,11 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Optional
-from typing_extensions import Literal
 
 from .._models import BaseModel
+from .recording_transcription import RecordingTranscription
 
-__all__ = ["RecordingTranscriptionListResponse", "Data", "Meta", "MetaCursors"]
-
-
-class Data(BaseModel):
-    id: Optional[str] = None
-    """Uniquely identifies the recording transcription."""
-
-    created_at: Optional[str] = None
-    """ISO 8601 formatted date indicating when the resource was created."""
-
-    duration_millis: Optional[int] = None
-    """The duration of the recording transcription in milliseconds."""
-
-    record_type: Optional[Literal["recording_transcription"]] = None
-
-    recording_id: Optional[str] = None
-    """Uniquely identifies the recording associated with this transcription."""
-
-    status: Optional[Literal["in-progress", "completed"]] = None
-    """The status of the recording transcription.
-
-    Only `completed` has transcription text available.
-    """
-
-    transcription_text: Optional[str] = None
-    """The recording's transcribed text."""
-
-    updated_at: Optional[str] = None
-    """ISO 8601 formatted date indicating when the resource was updated."""
+__all__ = ["RecordingTranscriptionListResponse", "Meta", "MetaCursors"]
 
 
 class MetaCursors(BaseModel):
@@ -55,6 +27,6 @@ class Meta(BaseModel):
 
 
 class RecordingTranscriptionListResponse(BaseModel):
-    data: Optional[List[Data]] = None
+    data: Optional[List[RecordingTranscription]] = None
 
     meta: Optional[Meta] = None

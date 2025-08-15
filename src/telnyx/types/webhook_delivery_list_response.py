@@ -5,7 +5,6 @@ from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
-from .storage.buckets.pagination_meta_simple import PaginationMetaSimple
 
 __all__ = [
     "WebhookDeliveryListResponse",
@@ -15,6 +14,7 @@ __all__ = [
     "DataAttemptHTTPRequest",
     "DataAttemptHTTPResponse",
     "DataWebhook",
+    "Meta",
 ]
 
 
@@ -104,7 +104,17 @@ class Data(BaseModel):
     """Original webhook JSON data. Payload fields vary according to event type."""
 
 
+class Meta(BaseModel):
+    page_number: Optional[int] = None
+
+    page_size: Optional[int] = None
+
+    total_pages: Optional[int] = None
+
+    total_results: Optional[int] = None
+
+
 class WebhookDeliveryListResponse(BaseModel):
     data: Optional[List[Data]] = None
 
-    meta: Optional[PaginationMetaSimple] = None
+    meta: Optional[Meta] = None

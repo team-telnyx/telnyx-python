@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Dict, List, Union, Iterable
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
-from .bucket_ids_param import BucketIDsParam
+from .inference_embedding_bucket_ids_param import InferenceEmbeddingBucketIDsParam
 
 __all__ = [
     "ChatCreateCompletionParams",
@@ -176,7 +176,7 @@ class ToolChatCompletionToolParam(TypedDict, total=False):
 
 
 class ToolRetrieval(TypedDict, total=False):
-    retrieval: Required[BucketIDsParam]
+    retrieval: Required[InferenceEmbeddingBucketIDsParam]
 
     type: Required[Literal["retrieval"]]
 
