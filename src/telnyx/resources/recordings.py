@@ -4,21 +4,21 @@ from __future__ import annotations
 
 import httpx
 
-from ...types import recording_list_params
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import maybe_transform, async_maybe_transform
-from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import (
+from ..types import recording_list_params
+from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._utils import maybe_transform, async_maybe_transform
+from .._compat import cached_property
+from .._resource import SyncAPIResource, AsyncAPIResource
+from .._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._base_client import make_request_options
-from ...types.recording_list_response import RecordingListResponse
-from ...types.recording_delete_response import RecordingDeleteResponse
-from ...types.recording_retrieve_response import RecordingRetrieveResponse
+from .._base_client import make_request_options
+from ..types.recording_list_response import RecordingListResponse
+from ..types.recording_delete_response import RecordingDeleteResponse
+from ..types.recording_retrieve_response import RecordingRetrieveResponse
 
 __all__ = ["RecordingsResource", "AsyncRecordingsResource"]
 

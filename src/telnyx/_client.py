@@ -68,6 +68,7 @@ from .resources import (
     user_tags,
     global_ips,
     rcs_agents,
+    recordings,
     call_events,
     connections,
     ota_updates,
@@ -191,7 +192,6 @@ from .resources.wireless import wireless
 from .resources.addresses import addresses
 from .resources.messaging import messaging
 from .resources.sim_cards import sim_cards
-from .resources.recordings import recordings
 from .resources.conferences import conferences
 from .resources.phone_numbers import phone_numbers
 from .resources.verifications import verifications
