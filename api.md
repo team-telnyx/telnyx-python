@@ -3185,9 +3185,9 @@ from telnyx.types import (
 
 Methods:
 
-- <code title="get /recordings/{recording_id}">client.recordings.<a href="./src/telnyx/resources/recordings/recordings.py">retrieve</a>(recording_id) -> <a href="./src/telnyx/types/recording_retrieve_response.py">RecordingRetrieveResponse</a></code>
-- <code title="get /recordings">client.recordings.<a href="./src/telnyx/resources/recordings/recordings.py">list</a>(\*\*<a href="src/telnyx/types/recording_list_params.py">params</a>) -> <a href="./src/telnyx/types/recording_list_response.py">RecordingListResponse</a></code>
-- <code title="delete /recordings/{recording_id}">client.recordings.<a href="./src/telnyx/resources/recordings/recordings.py">delete</a>(recording_id) -> <a href="./src/telnyx/types/recording_delete_response.py">RecordingDeleteResponse</a></code>
+- <code title="get /recordings/{recording_id}">client.recordings.<a href="./src/telnyx/resources/recordings.py">retrieve</a>(recording_id) -> <a href="./src/telnyx/types/recording_retrieve_response.py">RecordingRetrieveResponse</a></code>
+- <code title="get /recordings">client.recordings.<a href="./src/telnyx/resources/recordings.py">list</a>(\*\*<a href="src/telnyx/types/recording_list_params.py">params</a>) -> <a href="./src/telnyx/types/recording_list_response.py">RecordingListResponse</a></code>
+- <code title="delete /recordings/{recording_id}">client.recordings.<a href="./src/telnyx/resources/recordings.py">delete</a>(recording_id) -> <a href="./src/telnyx/types/recording_delete_response.py">RecordingDeleteResponse</a></code>
 
 # Regions
 
