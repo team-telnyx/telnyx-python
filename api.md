@@ -1907,9 +1907,23 @@ from telnyx.types.messaging import (
 
 Methods:
 
-- <code title="put /messaging/rcs/test_number_invite/{id}/{phone_number}">client.messaging.rcs.<a href="./src/telnyx/resources/messaging/rcs.py">invite_test_number</a>(phone_number, \*, id) -> <a href="./src/telnyx/types/messaging/rc_invite_test_number_response.py">RcInviteTestNumberResponse</a></code>
-- <code title="post /messaging/rcs/bulk_capabilities">client.messaging.rcs.<a href="./src/telnyx/resources/messaging/rcs.py">list_bulk_capabilities</a>(\*\*<a href="src/telnyx/types/messaging/rc_list_bulk_capabilities_params.py">params</a>) -> <a href="./src/telnyx/types/messaging/rc_list_bulk_capabilities_response.py">RcListBulkCapabilitiesResponse</a></code>
-- <code title="get /messaging/rcs/capabilities/{agent_id}/{phone_number}">client.messaging.rcs.<a href="./src/telnyx/resources/messaging/rcs.py">retrieve_capabilities</a>(phone_number, \*, agent_id) -> <a href="./src/telnyx/types/messaging/rc_retrieve_capabilities_response.py">RcRetrieveCapabilitiesResponse</a></code>
+- <code title="put /messaging/rcs/test_number_invite/{id}/{phone_number}">client.messaging.rcs.<a href="./src/telnyx/resources/messaging/rcs/rcs.py">invite_test_number</a>(phone_number, \*, id) -> <a href="./src/telnyx/types/messaging/rc_invite_test_number_response.py">RcInviteTestNumberResponse</a></code>
+- <code title="post /messaging/rcs/bulk_capabilities">client.messaging.rcs.<a href="./src/telnyx/resources/messaging/rcs/rcs.py">list_bulk_capabilities</a>(\*\*<a href="src/telnyx/types/messaging/rc_list_bulk_capabilities_params.py">params</a>) -> <a href="./src/telnyx/types/messaging/rc_list_bulk_capabilities_response.py">RcListBulkCapabilitiesResponse</a></code>
+- <code title="get /messaging/rcs/capabilities/{agent_id}/{phone_number}">client.messaging.rcs.<a href="./src/telnyx/resources/messaging/rcs/rcs.py">retrieve_capabilities</a>(phone_number, \*, agent_id) -> <a href="./src/telnyx/types/messaging/rc_retrieve_capabilities_response.py">RcRetrieveCapabilitiesResponse</a></code>
+
+### Agents
+
+Types:
+
+```python
+from telnyx.types.messaging.rcs import AgentListResponse
+```
+
+Methods:
+
+- <code title="get /messaging/rcs/agents/{id}">client.messaging.rcs.agents.<a href="./src/telnyx/resources/messaging/rcs/agents.py">retrieve</a>(id) -> <a href="./src/telnyx/types/rcs_agent_response.py">RcsAgentResponse</a></code>
+- <code title="patch /messaging/rcs/agents/{id}">client.messaging.rcs.agents.<a href="./src/telnyx/resources/messaging/rcs/agents.py">update</a>(id, \*\*<a href="src/telnyx/types/messaging/rcs/agent_update_params.py">params</a>) -> <a href="./src/telnyx/types/rcs_agent_response.py">RcsAgentResponse</a></code>
+- <code title="get /messaging/rcs/agents">client.messaging.rcs.agents.<a href="./src/telnyx/resources/messaging/rcs/agents.py">list</a>(\*\*<a href="src/telnyx/types/messaging/rcs/agent_list_params.py">params</a>) -> <a href="./src/telnyx/types/messaging/rcs/agent_list_response.py">AgentListResponse</a></code>
 
 # MessagingHostedNumberOrders
 
@@ -3142,14 +3156,8 @@ Methods:
 Types:
 
 ```python
-from telnyx.types import RcsAgent, RcsAgentResponse, RcsAgentListResponse
+from telnyx.types import RcsAgent, RcsAgentResponse
 ```
-
-Methods:
-
-- <code title="get /rcs_agents/{id}">client.rcs_agents.<a href="./src/telnyx/resources/rcs_agents.py">retrieve</a>(id) -> <a href="./src/telnyx/types/rcs_agent_response.py">RcsAgentResponse</a></code>
-- <code title="patch /rcs_agents/{id}">client.rcs_agents.<a href="./src/telnyx/resources/rcs_agents.py">update</a>(id, \*\*<a href="src/telnyx/types/rcs_agent_update_params.py">params</a>) -> <a href="./src/telnyx/types/rcs_agent_response.py">RcsAgentResponse</a></code>
-- <code title="get /rcs_agents">client.rcs_agents.<a href="./src/telnyx/resources/rcs_agents.py">list</a>(\*\*<a href="src/telnyx/types/rcs_agent_list_params.py">params</a>) -> <a href="./src/telnyx/types/rcs_agent_list_response.py">RcsAgentListResponse</a></code>
 
 # RecordingTranscriptions
 

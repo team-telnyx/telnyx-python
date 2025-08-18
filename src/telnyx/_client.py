@@ -67,7 +67,6 @@ from .resources import (
     messsages,
     user_tags,
     global_ips,
-    rcs_agents,
     call_events,
     connections,
     ota_updates,
@@ -322,7 +321,6 @@ class Telnyx(SyncAPIClient):
     private_wireless_gateways: private_wireless_gateways.PrivateWirelessGatewaysResource
     public_internet_gateways: public_internet_gateways.PublicInternetGatewaysResource
     queues: queues.QueuesResource
-    rcs_agents: rcs_agents.RcsAgentsResource
     recording_transcriptions: recording_transcriptions.RecordingTranscriptionsResource
     recordings: recordings.RecordingsResource
     regions: regions.RegionsResource
@@ -530,7 +528,6 @@ class Telnyx(SyncAPIClient):
         self.private_wireless_gateways = private_wireless_gateways.PrivateWirelessGatewaysResource(self)
         self.public_internet_gateways = public_internet_gateways.PublicInternetGatewaysResource(self)
         self.queues = queues.QueuesResource(self)
-        self.rcs_agents = rcs_agents.RcsAgentsResource(self)
         self.recording_transcriptions = recording_transcriptions.RecordingTranscriptionsResource(self)
         self.recordings = recordings.RecordingsResource(self)
         self.regions = regions.RegionsResource(self)
@@ -1095,7 +1092,6 @@ class AsyncTelnyx(AsyncAPIClient):
     private_wireless_gateways: private_wireless_gateways.AsyncPrivateWirelessGatewaysResource
     public_internet_gateways: public_internet_gateways.AsyncPublicInternetGatewaysResource
     queues: queues.AsyncQueuesResource
-    rcs_agents: rcs_agents.AsyncRcsAgentsResource
     recording_transcriptions: recording_transcriptions.AsyncRecordingTranscriptionsResource
     recordings: recordings.AsyncRecordingsResource
     regions: regions.AsyncRegionsResource
@@ -1309,7 +1305,6 @@ class AsyncTelnyx(AsyncAPIClient):
         self.private_wireless_gateways = private_wireless_gateways.AsyncPrivateWirelessGatewaysResource(self)
         self.public_internet_gateways = public_internet_gateways.AsyncPublicInternetGatewaysResource(self)
         self.queues = queues.AsyncQueuesResource(self)
-        self.rcs_agents = rcs_agents.AsyncRcsAgentsResource(self)
         self.recording_transcriptions = recording_transcriptions.AsyncRecordingTranscriptionsResource(self)
         self.recordings = recordings.AsyncRecordingsResource(self)
         self.regions = regions.AsyncRegionsResource(self)
@@ -1981,7 +1976,6 @@ class TelnyxWithRawResponse:
             client.public_internet_gateways
         )
         self.queues = queues.QueuesResourceWithRawResponse(client.queues)
-        self.rcs_agents = rcs_agents.RcsAgentsResourceWithRawResponse(client.rcs_agents)
         self.recording_transcriptions = recording_transcriptions.RecordingTranscriptionsResourceWithRawResponse(
             client.recording_transcriptions
         )
@@ -2310,7 +2304,6 @@ class AsyncTelnyxWithRawResponse:
             client.public_internet_gateways
         )
         self.queues = queues.AsyncQueuesResourceWithRawResponse(client.queues)
-        self.rcs_agents = rcs_agents.AsyncRcsAgentsResourceWithRawResponse(client.rcs_agents)
         self.recording_transcriptions = recording_transcriptions.AsyncRecordingTranscriptionsResourceWithRawResponse(
             client.recording_transcriptions
         )
@@ -2659,7 +2652,6 @@ class TelnyxWithStreamedResponse:
             client.public_internet_gateways
         )
         self.queues = queues.QueuesResourceWithStreamingResponse(client.queues)
-        self.rcs_agents = rcs_agents.RcsAgentsResourceWithStreamingResponse(client.rcs_agents)
         self.recording_transcriptions = recording_transcriptions.RecordingTranscriptionsResourceWithStreamingResponse(
             client.recording_transcriptions
         )
@@ -3044,7 +3036,6 @@ class AsyncTelnyxWithStreamedResponse:
             )
         )
         self.queues = queues.AsyncQueuesResourceWithStreamingResponse(client.queues)
-        self.rcs_agents = rcs_agents.AsyncRcsAgentsResourceWithStreamingResponse(client.rcs_agents)
         self.recording_transcriptions = (
             recording_transcriptions.AsyncRecordingTranscriptionsResourceWithStreamingResponse(
                 client.recording_transcriptions

@@ -272,14 +272,6 @@ from .global_ips import (
     GlobalIPsResourceWithStreamingResponse,
     AsyncGlobalIPsResourceWithStreamingResponse,
 )
-from .rcs_agents import (
-    RcsAgentsResource,
-    AsyncRcsAgentsResource,
-    RcsAgentsResourceWithRawResponse,
-    AsyncRcsAgentsResourceWithRawResponse,
-    RcsAgentsResourceWithStreamingResponse,
-    AsyncRcsAgentsResourceWithStreamingResponse,
-)
 from .recordings import (
     RecordingsResource,
     AsyncRecordingsResource,
@@ -1802,12 +1794,6 @@ __all__ = [
     "AsyncQueuesResourceWithRawResponse",
     "QueuesResourceWithStreamingResponse",
     "AsyncQueuesResourceWithStreamingResponse",
-    "RcsAgentsResource",
-    "AsyncRcsAgentsResource",
-    "RcsAgentsResourceWithRawResponse",
-    "AsyncRcsAgentsResourceWithRawResponse",
-    "RcsAgentsResourceWithStreamingResponse",
-    "AsyncRcsAgentsResourceWithStreamingResponse",
     "RecordingTranscriptionsResource",
     "AsyncRecordingTranscriptionsResource",
     "RecordingTranscriptionsResourceWithRawResponse",

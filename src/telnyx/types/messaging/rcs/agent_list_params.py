@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from typing_extensions import TypedDict
 
-__all__ = ["RcsAgentListParams", "Page"]
+__all__ = ["AgentListParams", "Page"]
 
 
-class RcsAgentListParams(TypedDict, total=False):
+class AgentListParams(TypedDict, total=False):
     page: Page
     """Consolidated page parameter (deepObject style).
 
