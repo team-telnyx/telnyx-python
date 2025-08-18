@@ -94,7 +94,7 @@ profile = client.messaging_profiles.retrieve("123")
 - Per-request configuration through client methods instead of global overrides
 
 #### **3. Resource Access Pattern**
-**Current:** Class-based access (`telnyx.MessagingProfile.list()`)
+**Current:** Class-based access (`telnyx.MessagingProfile.list()`) 
 **3.0.0-alpha:** Client-based access (`client.messaging_profiles.list()`)
 
 #### **4. Reduced API Coverage (Currently)**
