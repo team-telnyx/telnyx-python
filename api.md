@@ -3185,9 +3185,15 @@ from telnyx.types import (
 
 Methods:
 
-- <code title="get /recordings/{recording_id}">client.recordings.<a href="./src/telnyx/resources/recordings.py">retrieve</a>(recording_id) -> <a href="./src/telnyx/types/recording_retrieve_response.py">RecordingRetrieveResponse</a></code>
-- <code title="get /recordings">client.recordings.<a href="./src/telnyx/resources/recordings.py">list</a>(\*\*<a href="src/telnyx/types/recording_list_params.py">params</a>) -> <a href="./src/telnyx/types/recording_list_response.py">RecordingListResponse</a></code>
-- <code title="delete /recordings/{recording_id}">client.recordings.<a href="./src/telnyx/resources/recordings.py">delete</a>(recording_id) -> <a href="./src/telnyx/types/recording_delete_response.py">RecordingDeleteResponse</a></code>
+- <code title="get /recordings/{recording_id}">client.recordings.<a href="./src/telnyx/resources/recordings/recordings.py">retrieve</a>(recording_id) -> <a href="./src/telnyx/types/recording_retrieve_response.py">RecordingRetrieveResponse</a></code>
+- <code title="get /recordings">client.recordings.<a href="./src/telnyx/resources/recordings/recordings.py">list</a>(\*\*<a href="src/telnyx/types/recording_list_params.py">params</a>) -> <a href="./src/telnyx/types/recording_list_response.py">RecordingListResponse</a></code>
+- <code title="delete /recordings/{recording_id}">client.recordings.<a href="./src/telnyx/resources/recordings/recordings.py">delete</a>(recording_id) -> <a href="./src/telnyx/types/recording_delete_response.py">RecordingDeleteResponse</a></code>
+
+## Actions
+
+Methods:
+
+- <code title="post /recordings/actions/delete">client.recordings.actions.<a href="./src/telnyx/resources/recordings/actions.py">delete</a>(\*\*<a href="src/telnyx/types/recordings/action_delete_params.py">params</a>) -> None</code>
 
 # Regions
 
@@ -4005,12 +4011,13 @@ Methods:
 Types:
 
 ```python
-from telnyx.types.texml import CallUpdateResponse
+from telnyx.types.texml import CallUpdateResponse, CallInitiateResponse
 ```
 
 Methods:
 
 - <code title="post /texml/calls/{call_sid}/update">client.texml.calls.<a href="./src/telnyx/resources/texml/calls.py">update</a>(call_sid, \*\*<a href="src/telnyx/types/texml/call_update_params.py">params</a>) -> <a href="./src/telnyx/types/texml/call_update_response.py">CallUpdateResponse</a></code>
+- <code title="post /texml/calls/{application_id}">client.texml.calls.<a href="./src/telnyx/resources/texml/calls.py">initiate</a>(application_id, \*\*<a href="src/telnyx/types/texml/call_initiate_params.py">params</a>) -> <a href="./src/telnyx/types/texml/call_initiate_response.py">CallInitiateResponse</a></code>
 
 # TexmlApplications
 

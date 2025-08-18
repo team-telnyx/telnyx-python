@@ -3,7 +3,9 @@
 from __future__ import annotations
 
 from .call_update_params import CallUpdateParams as CallUpdateParams
+from .call_initiate_params import CallInitiateParams as CallInitiateParams
 from .call_update_response import CallUpdateResponse as CallUpdateResponse
+from .call_initiate_response import CallInitiateResponse as CallInitiateResponse
 from .texml_recording_subresources_uris import TexmlRecordingSubresourcesUris as TexmlRecordingSubresourcesUris
 from .texml_get_call_recording_response_body import (
     TexmlGetCallRecordingResponseBody as TexmlGetCallRecordingResponseBody,

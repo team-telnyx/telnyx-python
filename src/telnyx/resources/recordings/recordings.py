@@ -4,26 +4,38 @@ from __future__ import annotations
 
 import httpx
 
-from ..types import recording_list_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from .._utils import maybe_transform, async_maybe_transform
-from .._compat import cached_property
-from .._resource import SyncAPIResource, AsyncAPIResource
-from .._response import (
+from ...types import recording_list_params
+from .actions import (
+    ActionsResource,
+    AsyncActionsResource,
+    ActionsResourceWithRawResponse,
+    AsyncActionsResourceWithRawResponse,
+    ActionsResourceWithStreamingResponse,
+    AsyncActionsResourceWithStreamingResponse,
+)
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform, async_maybe_transform
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import make_request_options
-from ..types.recording_list_response import RecordingListResponse
-from ..types.recording_delete_response import RecordingDeleteResponse
-from ..types.recording_retrieve_response import RecordingRetrieveResponse
+from ..._base_client import make_request_options
+from ...types.recording_list_response import RecordingListResponse
+from ...types.recording_delete_response import RecordingDeleteResponse
+from ...types.recording_retrieve_response import RecordingRetrieveResponse
 
 __all__ = ["RecordingsResource", "AsyncRecordingsResource"]
 
 
 class RecordingsResource(SyncAPIResource):
+    @cached_property
+    def actions(self) -> ActionsResource:
+        return ActionsResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> RecordingsResourceWithRawResponse:
         """
@@ -162,6 +174,10 @@ class RecordingsResource(SyncAPIResource):
 
 
 class AsyncRecordingsResource(AsyncAPIResource):
+    @cached_property
+    def actions(self) -> AsyncActionsResource:
+        return AsyncActionsResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> AsyncRecordingsResourceWithRawResponse:
         """
@@ -313,6 +329,10 @@ class RecordingsResourceWithRawResponse:
             recordings.delete,
         )
 
+    @cached_property
+    def actions(self) -> ActionsResourceWithRawResponse:
+        return ActionsResourceWithRawResponse(self._recordings.actions)
+
 
 class AsyncRecordingsResourceWithRawResponse:
     def __init__(self, recordings: AsyncRecordingsResource) -> None:
@@ -327,6 +347,10 @@ class AsyncRecordingsResourceWithRawResponse:
         self.delete = async_to_raw_response_wrapper(
             recordings.delete,
         )
+
+    @cached_property
+    def actions(self) -> AsyncActionsResourceWithRawResponse:
+        return AsyncActionsResourceWithRawResponse(self._recordings.actions)
 
 
 class RecordingsResourceWithStreamingResponse:
@@ -343,6 +367,10 @@ class RecordingsResourceWithStreamingResponse:
             recordings.delete,
         )
 
+    @cached_property
+    def actions(self) -> ActionsResourceWithStreamingResponse:
+        return ActionsResourceWithStreamingResponse(self._recordings.actions)
+
 
 class AsyncRecordingsResourceWithStreamingResponse:
     def __init__(self, recordings: AsyncRecordingsResource) -> None:
@@ -357,3 +385,7 @@ class AsyncRecordingsResourceWithStreamingResponse:
         self.delete = async_to_streamed_response_wrapper(
             recordings.delete,
         )
+
+    @cached_property
+    def actions(self) -> AsyncActionsResourceWithStreamingResponse:
+        return AsyncActionsResourceWithStreamingResponse(self._recordings.actions)
