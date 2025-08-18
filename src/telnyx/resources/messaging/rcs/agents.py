@@ -6,43 +6,43 @@ from typing import Optional
 
 import httpx
 
-from ..types import rcs_agent_list_params, rcs_agent_update_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from .._utils import maybe_transform, async_maybe_transform
-from .._compat import cached_property
-from .._resource import SyncAPIResource, AsyncAPIResource
-from .._response import (
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import maybe_transform, async_maybe_transform
+from ...._compat import cached_property
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import make_request_options
-from ..types.rcs_agent_response import RcsAgentResponse
-from ..types.rcs_agent_list_response import RcsAgentListResponse
+from ...._base_client import make_request_options
+from ....types.messaging.rcs import agent_list_params, agent_update_params
+from ....types.rcs_agent_response import RcsAgentResponse
+from ....types.messaging.rcs.agent_list_response import AgentListResponse
 
-__all__ = ["RcsAgentsResource", "AsyncRcsAgentsResource"]
+__all__ = ["AgentsResource", "AsyncAgentsResource"]
 
 
-class RcsAgentsResource(SyncAPIResource):
+class AgentsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> RcsAgentsResourceWithRawResponse:
+    def with_raw_response(self) -> AgentsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/team-telnyx/telnyx-python#accessing-raw-response-data-eg-headers
         """
-        return RcsAgentsResourceWithRawResponse(self)
+        return AgentsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> RcsAgentsResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AgentsResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
-        return RcsAgentsResourceWithStreamingResponse(self)
+        return AgentsResourceWithStreamingResponse(self)
 
     def retrieve(
         self,
@@ -70,7 +70,7 @@ class RcsAgentsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
-            f"/rcs_agents/{id}",
+            f"/messaging/rcs/agents/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -112,14 +112,14 @@ class RcsAgentsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._patch(
-            f"/rcs_agents/{id}",
+            f"/messaging/rcs/agents/{id}",
             body=maybe_transform(
                 {
                     "profile_id": profile_id,
                     "webhook_failover_url": webhook_failover_url,
                     "webhook_url": webhook_url,
                 },
-                rcs_agent_update_params.RcsAgentUpdateParams,
+                agent_update_params.AgentUpdateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -130,14 +130,14 @@ class RcsAgentsResource(SyncAPIResource):
     def list(
         self,
         *,
-        page: rcs_agent_list_params.Page | NotGiven = NOT_GIVEN,
+        page: agent_list_params.Page | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RcsAgentListResponse:
+    ) -> AgentListResponse:
         """
         List all RCS agents
 
@@ -154,37 +154,37 @@ class RcsAgentsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/rcs_agents",
+            "/messaging/rcs/agents",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"page": page}, rcs_agent_list_params.RcsAgentListParams),
+                query=maybe_transform({"page": page}, agent_list_params.AgentListParams),
             ),
-            cast_to=RcsAgentListResponse,
+            cast_to=AgentListResponse,
         )
 
 
-class AsyncRcsAgentsResource(AsyncAPIResource):
+class AsyncAgentsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncRcsAgentsResourceWithRawResponse:
+    def with_raw_response(self) -> AsyncAgentsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/team-telnyx/telnyx-python#accessing-raw-response-data-eg-headers
         """
-        return AsyncRcsAgentsResourceWithRawResponse(self)
+        return AsyncAgentsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncRcsAgentsResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AsyncAgentsResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
-        return AsyncRcsAgentsResourceWithStreamingResponse(self)
+        return AsyncAgentsResourceWithStreamingResponse(self)
 
     async def retrieve(
         self,
@@ -212,7 +212,7 @@ class AsyncRcsAgentsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
-            f"/rcs_agents/{id}",
+            f"/messaging/rcs/agents/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -254,14 +254,14 @@ class AsyncRcsAgentsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._patch(
-            f"/rcs_agents/{id}",
+            f"/messaging/rcs/agents/{id}",
             body=await async_maybe_transform(
                 {
                     "profile_id": profile_id,
                     "webhook_failover_url": webhook_failover_url,
                     "webhook_url": webhook_url,
                 },
-                rcs_agent_update_params.RcsAgentUpdateParams,
+                agent_update_params.AgentUpdateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -272,14 +272,14 @@ class AsyncRcsAgentsResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        page: rcs_agent_list_params.Page | NotGiven = NOT_GIVEN,
+        page: agent_list_params.Page | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RcsAgentListResponse:
+    ) -> AgentListResponse:
         """
         List all RCS agents
 
@@ -296,73 +296,73 @@ class AsyncRcsAgentsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/rcs_agents",
+            "/messaging/rcs/agents",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform({"page": page}, rcs_agent_list_params.RcsAgentListParams),
+                query=await async_maybe_transform({"page": page}, agent_list_params.AgentListParams),
             ),
-            cast_to=RcsAgentListResponse,
+            cast_to=AgentListResponse,
         )
 
 
-class RcsAgentsResourceWithRawResponse:
-    def __init__(self, rcs_agents: RcsAgentsResource) -> None:
-        self._rcs_agents = rcs_agents
+class AgentsResourceWithRawResponse:
+    def __init__(self, agents: AgentsResource) -> None:
+        self._agents = agents
 
         self.retrieve = to_raw_response_wrapper(
-            rcs_agents.retrieve,
+            agents.retrieve,
         )
         self.update = to_raw_response_wrapper(
-            rcs_agents.update,
+            agents.update,
         )
         self.list = to_raw_response_wrapper(
-            rcs_agents.list,
+            agents.list,
         )
 
 
-class AsyncRcsAgentsResourceWithRawResponse:
-    def __init__(self, rcs_agents: AsyncRcsAgentsResource) -> None:
-        self._rcs_agents = rcs_agents
+class AsyncAgentsResourceWithRawResponse:
+    def __init__(self, agents: AsyncAgentsResource) -> None:
+        self._agents = agents
 
         self.retrieve = async_to_raw_response_wrapper(
-            rcs_agents.retrieve,
+            agents.retrieve,
         )
         self.update = async_to_raw_response_wrapper(
-            rcs_agents.update,
+            agents.update,
         )
         self.list = async_to_raw_response_wrapper(
-            rcs_agents.list,
+            agents.list,
         )
 
 
-class RcsAgentsResourceWithStreamingResponse:
-    def __init__(self, rcs_agents: RcsAgentsResource) -> None:
-        self._rcs_agents = rcs_agents
+class AgentsResourceWithStreamingResponse:
+    def __init__(self, agents: AgentsResource) -> None:
+        self._agents = agents
 
         self.retrieve = to_streamed_response_wrapper(
-            rcs_agents.retrieve,
+            agents.retrieve,
         )
         self.update = to_streamed_response_wrapper(
-            rcs_agents.update,
+            agents.update,
         )
         self.list = to_streamed_response_wrapper(
-            rcs_agents.list,
+            agents.list,
         )
 
 
-class AsyncRcsAgentsResourceWithStreamingResponse:
-    def __init__(self, rcs_agents: AsyncRcsAgentsResource) -> None:
-        self._rcs_agents = rcs_agents
+class AsyncAgentsResourceWithStreamingResponse:
+    def __init__(self, agents: AsyncAgentsResource) -> None:
+        self._agents = agents
 
         self.retrieve = async_to_streamed_response_wrapper(
-            rcs_agents.retrieve,
+            agents.retrieve,
         )
         self.update = async_to_streamed_response_wrapper(
-            rcs_agents.update,
+            agents.update,
         )
         self.list = async_to_streamed_response_wrapper(
-            rcs_agents.list,
+            agents.list,
         )

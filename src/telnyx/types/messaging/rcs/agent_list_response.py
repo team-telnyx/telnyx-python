@@ -2,14 +2,14 @@
 
 from typing import List, Optional
 
-from .._models import BaseModel
-from .rcs_agent import RcsAgent
-from .pagination_meta import PaginationMeta
+from ...._models import BaseModel
+from ...rcs_agent import RcsAgent
+from ...pagination_meta import PaginationMeta
 
-__all__ = ["RcsAgentListResponse"]
+__all__ = ["AgentListResponse"]
 
 
-class RcsAgentListResponse(BaseModel):
+class AgentListResponse(BaseModel):
     data: Optional[List[RcsAgent]] = None
 
     meta: Optional[PaginationMeta] = None

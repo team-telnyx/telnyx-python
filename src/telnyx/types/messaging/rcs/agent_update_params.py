@@ -5,10 +5,10 @@ from __future__ import annotations
 from typing import Optional
 from typing_extensions import TypedDict
 
-__all__ = ["RcsAgentUpdateParams"]
+__all__ = ["AgentUpdateParams"]
 
 
-class RcsAgentUpdateParams(TypedDict, total=False):
+class AgentUpdateParams(TypedDict, total=False):
     profile_id: Optional[str]
     """Messaging profile ID associated with the RCS Agent"""
 

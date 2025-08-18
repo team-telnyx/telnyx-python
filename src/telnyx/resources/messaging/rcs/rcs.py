@@ -6,26 +6,38 @@ from typing import List
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import maybe_transform, async_maybe_transform
-from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import (
+from .agents import (
+    AgentsResource,
+    AsyncAgentsResource,
+    AgentsResourceWithRawResponse,
+    AsyncAgentsResourceWithRawResponse,
+    AgentsResourceWithStreamingResponse,
+    AsyncAgentsResourceWithStreamingResponse,
+)
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import maybe_transform, async_maybe_transform
+from ...._compat import cached_property
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._base_client import make_request_options
-from ...types.messaging import rc_list_bulk_capabilities_params
-from ...types.messaging.rc_invite_test_number_response import RcInviteTestNumberResponse
-from ...types.messaging.rc_retrieve_capabilities_response import RcRetrieveCapabilitiesResponse
-from ...types.messaging.rc_list_bulk_capabilities_response import RcListBulkCapabilitiesResponse
+from ...._base_client import make_request_options
+from ....types.messaging import rc_list_bulk_capabilities_params
+from ....types.messaging.rc_invite_test_number_response import RcInviteTestNumberResponse
+from ....types.messaging.rc_retrieve_capabilities_response import RcRetrieveCapabilitiesResponse
+from ....types.messaging.rc_list_bulk_capabilities_response import RcListBulkCapabilitiesResponse
 
 __all__ = ["RcsResource", "AsyncRcsResource"]
 
 
 class RcsResource(SyncAPIResource):
+    @cached_property
+    def agents(self) -> AgentsResource:
+        return AgentsResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> RcsResourceWithRawResponse:
         """
@@ -162,6 +174,10 @@ class RcsResource(SyncAPIResource):
 
 
 class AsyncRcsResource(AsyncAPIResource):
+    @cached_property
+    def agents(self) -> AsyncAgentsResource:
+        return AsyncAgentsResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> AsyncRcsResourceWithRawResponse:
         """
@@ -311,6 +327,10 @@ class RcsResourceWithRawResponse:
             rcs.retrieve_capabilities,
         )
 
+    @cached_property
+    def agents(self) -> AgentsResourceWithRawResponse:
+        return AgentsResourceWithRawResponse(self._rcs.agents)
+
 
 class AsyncRcsResourceWithRawResponse:
     def __init__(self, rcs: AsyncRcsResource) -> None:
@@ -325,6 +345,10 @@ class AsyncRcsResourceWithRawResponse:
         self.retrieve_capabilities = async_to_raw_response_wrapper(
             rcs.retrieve_capabilities,
         )
+
+    @cached_property
+    def agents(self) -> AsyncAgentsResourceWithRawResponse:
+        return AsyncAgentsResourceWithRawResponse(self._rcs.agents)
 
 
 class RcsResourceWithStreamingResponse:
@@ -341,6 +365,10 @@ class RcsResourceWithStreamingResponse:
             rcs.retrieve_capabilities,
         )
 
+    @cached_property
+    def agents(self) -> AgentsResourceWithStreamingResponse:
+        return AgentsResourceWithStreamingResponse(self._rcs.agents)
+
 
 class AsyncRcsResourceWithStreamingResponse:
     def __init__(self, rcs: AsyncRcsResource) -> None:
@@ -355,3 +383,7 @@ class AsyncRcsResourceWithStreamingResponse:
         self.retrieve_capabilities = async_to_streamed_response_wrapper(
             rcs.retrieve_capabilities,
         )
+
+    @cached_property
+    def agents(self) -> AsyncAgentsResourceWithStreamingResponse:
+        return AsyncAgentsResourceWithStreamingResponse(self._rcs.agents)

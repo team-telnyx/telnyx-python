@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from .rcs import (
+from .rcs.rcs import (
     RcsResource,
     AsyncRcsResource,
     RcsResourceWithRawResponse,
