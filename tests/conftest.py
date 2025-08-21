@@ -1,74 +1,84 @@
-from __future__ import absolute_import, division, print_function
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import atexit
+from __future__ import annotations
+
 import os
-import sys
+import logging
+from typing import TYPE_CHECKING, Iterator, AsyncIterator
 
+import httpx
 import pytest
-from six.moves.urllib.error import HTTPError
-from six.moves.urllib.request import urlopen
+from pytest_asyncio import is_async_test
 
-from tests.request_mock import RequestMock
-from tests.telnyx_mock import TelnyxMock
+from telnyx import Telnyx, AsyncTelnyx, DefaultAioHttpClient
+from telnyx._utils import is_dict
 
-import telnyx
+if TYPE_CHECKING:
+    from _pytest.fixtures import FixtureRequest  # pyright: ignore[reportPrivateImportUsage]
 
-# When changing this number, don't forget to change it in `.travis.yml` too.
-MOCK_MINIMUM_VERSION = "0.8.10"
+pytest.register_assert_rewrite("tests.utils")
 
-# Starts telnyx-mock if an OpenAPI spec override is found in `openapi/`, and
-# otherwise fall back to `TELNYX_MOCK_PORT` or 12111.
-if TelnyxMock.start():
-    MOCK_PORT = TelnyxMock.port()
-else:
-    MOCK_PORT = os.environ.get("TELNYX_MOCK_PORT", 12111)
+logging.getLogger("telnyx").setLevel(logging.DEBUG)
 
 
-@atexit.register
-def stop_telnyx_mock():
-    TelnyxMock.stop()
+# automatically add `pytest.mark.asyncio()` to all of our async tests
+# so we don't have to add that boilerplate everywhere
+def pytest_collection_modifyitems(items: list[pytest.Function]) -> None:
+    pytest_asyncio_tests = (item for item in items if is_async_test(item))
+    session_scope_marker = pytest.mark.asyncio(loop_scope="session")
+    for async_test in pytest_asyncio_tests:
+        async_test.add_marker(session_scope_marker, append=False)
+
+    # We skip tests that use both the aiohttp client and respx_mock as respx_mock
+    # doesn't support custom transports.
+    for item in items:
+        if "async_client" not in item.fixturenames or "respx_mock" not in item.fixturenames:
+            continue
+
+        if not hasattr(item, "callspec"):
+            continue
+
+        async_client_param = item.callspec.params.get("async_client")
+        if is_dict(async_client_param) and async_client_param.get("http_client") == "aiohttp":
+            item.add_marker(pytest.mark.skip(reason="aiohttp client is not compatible with respx_mock"))
 
 
-try:
-    resp = urlopen("http://localhost:%s/" % MOCK_PORT)
-    info = resp.info()
-except HTTPError as e:
-    info = e.info()
-except Exception:
-    sys.exit(
-        "Couldn't reach telnyx-mock at `localhost:%s`. Is "
-        "it running? Please see README for setup instructions." % MOCK_PORT
-    )
+base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
-"""
-version = info.get("Telnyx-Mock-Version")
-if version != "master" and StrictVersion(version) < StrictVersion(MOCK_MINIMUM_VERSION):
-    sys.exit(
-        "Your version of telnyx-mock (%s) is too old. The minimum "
-        "version to run this test suite is %s. Please "
-        "see its repository for upgrade instructions." % (version, MOCK_MINIMUM_VERSION)
-    )
-"""
+api_key = "My API Key"
 
 
-@pytest.fixture(autouse=True)
-def setup_telnyx():
-    orig_attrs = {
-        "api_base": telnyx.api_base,
-        "api_key": telnyx.api_key,
-        "default_http_client": telnyx.default_http_client,
-    }
-    http_client = telnyx.http_client.new_default_http_client()
-    telnyx.api_base = "http://localhost:%s" % MOCK_PORT
-    telnyx.api_key = "KEY123"
-    telnyx.default_http_client = http_client
-    yield
-    http_client.close()
-    telnyx.api_base = orig_attrs["api_base"]
-    telnyx.api_key = orig_attrs["api_key"]
-    telnyx.default_http_client = orig_attrs["default_http_client"]
+@pytest.fixture(scope="session")
+def client(request: FixtureRequest) -> Iterator[Telnyx]:
+    strict = getattr(request, "param", True)
+    if not isinstance(strict, bool):
+        raise TypeError(f"Unexpected fixture parameter type {type(strict)}, expected {bool}")
+
+    with Telnyx(base_url=base_url, api_key=api_key, _strict_response_validation=strict) as client:
+        yield client
 
 
-@pytest.fixture
-def request_mock(mocker):
-    return RequestMock(mocker)
+@pytest.fixture(scope="session")
+async def async_client(request: FixtureRequest) -> AsyncIterator[AsyncTelnyx]:
+    param = getattr(request, "param", True)
+
+    # defaults
+    strict = True
+    http_client: None | httpx.AsyncClient = None
+
+    if isinstance(param, bool):
+        strict = param
+    elif is_dict(param):
+        strict = param.get("strict", True)
+        assert isinstance(strict, bool)
+
+        http_client_type = param.get("http_client", "httpx")
+        if http_client_type == "aiohttp":
+            http_client = DefaultAioHttpClient()
+    else:
+        raise TypeError(f"Unexpected fixture parameter type {type(param)}, expected bool or dict")
+
+    async with AsyncTelnyx(
+        base_url=base_url, api_key=api_key, _strict_response_validation=strict, http_client=http_client
+    ) as client:
+        yield client

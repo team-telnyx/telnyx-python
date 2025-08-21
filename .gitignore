@@ -1,36 +1,15 @@
-/.eggs
-/build
-/dist
-/MANIFEST
-/*.egg-info
-/pip-wheel-metadata
-.python-version
-*.py[cod]
-*.egg
-*.class
+.prism.log
+_dev
 
-# Unit test / coverage reports
-.tox/
-.coverage
-.cache
-.pytest_cache
-nosetests.xml
-coverage.xml
-htmlcov/
-
-# Visual Studio Code
-.vscode/
-
-# Pycharm
-.idea/
-
-# MyPy
+__pycache__
 .mypy_cache
 
-# SonarQube
-sonar-project.*
-.pypirc-telnyx
+dist
 
-Pipfile.lock
-requirements.txt
-script*.py
+.venv
+.idea
+
+.env
+.envrc
+codegen.log
+Brewfile.lock.json
