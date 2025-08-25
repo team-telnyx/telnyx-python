@@ -47,6 +47,12 @@ class Filter(TypedDict, total=False):
     carrier_name: str
     """Filter by new carrier name."""
 
+    country_code: str
+    """Filter by 2-letter country code"""
+
+    country_code_in: List[str]
+    """Filter by a list of 2-letter country codes"""
+
     foc_date: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """Filter by foc_date. Matches all portouts with the same date"""
 
