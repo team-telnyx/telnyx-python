@@ -150,7 +150,7 @@ class TestActions:
                 id="",
             )
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_join(self, client: Telnyx) -> None:
         action = client.conferences.actions.join(
@@ -159,7 +159,7 @@ class TestActions:
         )
         assert_matches_type(ActionJoinResponse, action, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_join_with_all_params(self, client: Telnyx) -> None:
         action = client.conferences.actions.join(
@@ -183,7 +183,7 @@ class TestActions:
         )
         assert_matches_type(ActionJoinResponse, action, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_join(self, client: Telnyx) -> None:
         response = client.conferences.actions.with_raw_response.join(
@@ -196,7 +196,7 @@ class TestActions:
         action = response.parse()
         assert_matches_type(ActionJoinResponse, action, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_join(self, client: Telnyx) -> None:
         with client.conferences.actions.with_streaming_response.join(
@@ -211,7 +211,7 @@ class TestActions:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_join(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -220,7 +220,7 @@ class TestActions:
                 call_control_id="v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg",
             )
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_leave(self, client: Telnyx) -> None:
         action = client.conferences.actions.leave(
@@ -229,7 +229,7 @@ class TestActions:
         )
         assert_matches_type(ActionLeaveResponse, action, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_leave_with_all_params(self, client: Telnyx) -> None:
         action = client.conferences.actions.leave(
@@ -240,7 +240,7 @@ class TestActions:
         )
         assert_matches_type(ActionLeaveResponse, action, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_leave(self, client: Telnyx) -> None:
         response = client.conferences.actions.with_raw_response.leave(
@@ -253,7 +253,7 @@ class TestActions:
         action = response.parse()
         assert_matches_type(ActionLeaveResponse, action, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_leave(self, client: Telnyx) -> None:
         with client.conferences.actions.with_streaming_response.leave(
@@ -268,7 +268,7 @@ class TestActions:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_leave(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -328,7 +328,7 @@ class TestActions:
                 id="",
             )
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_play(self, client: Telnyx) -> None:
         action = client.conferences.actions.play(
@@ -336,7 +336,7 @@ class TestActions:
         )
         assert_matches_type(ActionPlayResponse, action, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_play_with_all_params(self, client: Telnyx) -> None:
         action = client.conferences.actions.play(
@@ -348,7 +348,7 @@ class TestActions:
         )
         assert_matches_type(ActionPlayResponse, action, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_play(self, client: Telnyx) -> None:
         response = client.conferences.actions.with_raw_response.play(
@@ -360,7 +360,7 @@ class TestActions:
         action = response.parse()
         assert_matches_type(ActionPlayResponse, action, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_play(self, client: Telnyx) -> None:
         with client.conferences.actions.with_streaming_response.play(
@@ -374,7 +374,7 @@ class TestActions:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_play(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -545,7 +545,7 @@ class TestActions:
                 format="wav",
             )
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_record_stop(self, client: Telnyx) -> None:
         action = client.conferences.actions.record_stop(
@@ -553,7 +553,7 @@ class TestActions:
         )
         assert_matches_type(ActionRecordStopResponse, action, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_record_stop_with_all_params(self, client: Telnyx) -> None:
         action = client.conferences.actions.record_stop(
@@ -564,7 +564,7 @@ class TestActions:
         )
         assert_matches_type(ActionRecordStopResponse, action, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_record_stop(self, client: Telnyx) -> None:
         response = client.conferences.actions.with_raw_response.record_stop(
@@ -576,7 +576,7 @@ class TestActions:
         action = response.parse()
         assert_matches_type(ActionRecordStopResponse, action, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_record_stop(self, client: Telnyx) -> None:
         with client.conferences.actions.with_streaming_response.record_stop(
@@ -590,7 +590,7 @@ class TestActions:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_record_stop(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -598,7 +598,7 @@ class TestActions:
                 id="",
             )
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_speak(self, client: Telnyx) -> None:
         action = client.conferences.actions.speak(
@@ -608,7 +608,7 @@ class TestActions:
         )
         assert_matches_type(ActionSpeakResponse, action, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_speak_with_all_params(self, client: Telnyx) -> None:
         action = client.conferences.actions.speak(
@@ -623,7 +623,7 @@ class TestActions:
         )
         assert_matches_type(ActionSpeakResponse, action, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_speak(self, client: Telnyx) -> None:
         response = client.conferences.actions.with_raw_response.speak(
@@ -637,7 +637,7 @@ class TestActions:
         action = response.parse()
         assert_matches_type(ActionSpeakResponse, action, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_speak(self, client: Telnyx) -> None:
         with client.conferences.actions.with_streaming_response.speak(
@@ -653,7 +653,7 @@ class TestActions:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_speak(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -663,7 +663,7 @@ class TestActions:
                 voice="female",
             )
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_stop(self, client: Telnyx) -> None:
         action = client.conferences.actions.stop(
@@ -671,7 +671,7 @@ class TestActions:
         )
         assert_matches_type(ActionStopResponse, action, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_stop_with_all_params(self, client: Telnyx) -> None:
         action = client.conferences.actions.stop(
@@ -680,7 +680,7 @@ class TestActions:
         )
         assert_matches_type(ActionStopResponse, action, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_stop(self, client: Telnyx) -> None:
         response = client.conferences.actions.with_raw_response.stop(
@@ -692,7 +692,7 @@ class TestActions:
         action = response.parse()
         assert_matches_type(ActionStopResponse, action, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_stop(self, client: Telnyx) -> None:
         with client.conferences.actions.with_streaming_response.stop(
@@ -706,7 +706,7 @@ class TestActions:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_stop(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -935,7 +935,7 @@ class TestAsyncActions:
                 id="",
             )
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_join(self, async_client: AsyncTelnyx) -> None:
         action = await async_client.conferences.actions.join(
@@ -944,7 +944,7 @@ class TestAsyncActions:
         )
         assert_matches_type(ActionJoinResponse, action, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_join_with_all_params(self, async_client: AsyncTelnyx) -> None:
         action = await async_client.conferences.actions.join(
@@ -968,7 +968,7 @@ class TestAsyncActions:
         )
         assert_matches_type(ActionJoinResponse, action, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_join(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.conferences.actions.with_raw_response.join(
@@ -981,7 +981,7 @@ class TestAsyncActions:
         action = await response.parse()
         assert_matches_type(ActionJoinResponse, action, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_join(self, async_client: AsyncTelnyx) -> None:
         async with async_client.conferences.actions.with_streaming_response.join(
@@ -996,7 +996,7 @@ class TestAsyncActions:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_join(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -1005,7 +1005,7 @@ class TestAsyncActions:
                 call_control_id="v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg",
             )
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_leave(self, async_client: AsyncTelnyx) -> None:
         action = await async_client.conferences.actions.leave(
@@ -1014,7 +1014,7 @@ class TestAsyncActions:
         )
         assert_matches_type(ActionLeaveResponse, action, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_leave_with_all_params(self, async_client: AsyncTelnyx) -> None:
         action = await async_client.conferences.actions.leave(
@@ -1025,7 +1025,7 @@ class TestAsyncActions:
         )
         assert_matches_type(ActionLeaveResponse, action, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_leave(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.conferences.actions.with_raw_response.leave(
@@ -1038,7 +1038,7 @@ class TestAsyncActions:
         action = await response.parse()
         assert_matches_type(ActionLeaveResponse, action, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_leave(self, async_client: AsyncTelnyx) -> None:
         async with async_client.conferences.actions.with_streaming_response.leave(
@@ -1053,7 +1053,7 @@ class TestAsyncActions:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_leave(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -1113,7 +1113,7 @@ class TestAsyncActions:
                 id="",
             )
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_play(self, async_client: AsyncTelnyx) -> None:
         action = await async_client.conferences.actions.play(
@@ -1121,7 +1121,7 @@ class TestAsyncActions:
         )
         assert_matches_type(ActionPlayResponse, action, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_play_with_all_params(self, async_client: AsyncTelnyx) -> None:
         action = await async_client.conferences.actions.play(
@@ -1133,7 +1133,7 @@ class TestAsyncActions:
         )
         assert_matches_type(ActionPlayResponse, action, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_play(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.conferences.actions.with_raw_response.play(
@@ -1145,7 +1145,7 @@ class TestAsyncActions:
         action = await response.parse()
         assert_matches_type(ActionPlayResponse, action, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_play(self, async_client: AsyncTelnyx) -> None:
         async with async_client.conferences.actions.with_streaming_response.play(
@@ -1159,7 +1159,7 @@ class TestAsyncActions:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_play(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -1330,7 +1330,7 @@ class TestAsyncActions:
                 format="wav",
             )
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_record_stop(self, async_client: AsyncTelnyx) -> None:
         action = await async_client.conferences.actions.record_stop(
@@ -1338,7 +1338,7 @@ class TestAsyncActions:
         )
         assert_matches_type(ActionRecordStopResponse, action, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_record_stop_with_all_params(self, async_client: AsyncTelnyx) -> None:
         action = await async_client.conferences.actions.record_stop(
@@ -1349,7 +1349,7 @@ class TestAsyncActions:
         )
         assert_matches_type(ActionRecordStopResponse, action, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_record_stop(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.conferences.actions.with_raw_response.record_stop(
@@ -1361,7 +1361,7 @@ class TestAsyncActions:
         action = await response.parse()
         assert_matches_type(ActionRecordStopResponse, action, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_record_stop(self, async_client: AsyncTelnyx) -> None:
         async with async_client.conferences.actions.with_streaming_response.record_stop(
@@ -1375,7 +1375,7 @@ class TestAsyncActions:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_record_stop(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -1383,7 +1383,7 @@ class TestAsyncActions:
                 id="",
             )
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_speak(self, async_client: AsyncTelnyx) -> None:
         action = await async_client.conferences.actions.speak(
@@ -1393,7 +1393,7 @@ class TestAsyncActions:
         )
         assert_matches_type(ActionSpeakResponse, action, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_speak_with_all_params(self, async_client: AsyncTelnyx) -> None:
         action = await async_client.conferences.actions.speak(
@@ -1408,7 +1408,7 @@ class TestAsyncActions:
         )
         assert_matches_type(ActionSpeakResponse, action, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_speak(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.conferences.actions.with_raw_response.speak(
@@ -1422,7 +1422,7 @@ class TestAsyncActions:
         action = await response.parse()
         assert_matches_type(ActionSpeakResponse, action, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_speak(self, async_client: AsyncTelnyx) -> None:
         async with async_client.conferences.actions.with_streaming_response.speak(
@@ -1438,7 +1438,7 @@ class TestAsyncActions:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_speak(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -1448,7 +1448,7 @@ class TestAsyncActions:
                 voice="female",
             )
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_stop(self, async_client: AsyncTelnyx) -> None:
         action = await async_client.conferences.actions.stop(
@@ -1456,7 +1456,7 @@ class TestAsyncActions:
         )
         assert_matches_type(ActionStopResponse, action, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_stop_with_all_params(self, async_client: AsyncTelnyx) -> None:
         action = await async_client.conferences.actions.stop(
@@ -1465,7 +1465,7 @@ class TestAsyncActions:
         )
         assert_matches_type(ActionStopResponse, action, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_stop(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.conferences.actions.with_raw_response.stop(
@@ -1477,7 +1477,7 @@ class TestAsyncActions:
         action = await response.parse()
         assert_matches_type(ActionStopResponse, action, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_stop(self, async_client: AsyncTelnyx) -> None:
         async with async_client.conferences.actions.with_streaming_response.stop(
@@ -1491,7 +1491,7 @@ class TestAsyncActions:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_stop(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
