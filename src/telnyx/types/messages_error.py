@@ -4,7 +4,7 @@ from typing import Dict, Optional
 
 from .._models import BaseModel
 
-__all__ = ["Error", "Source"]
+__all__ = ["MessagesError", "Source"]
 
 
 class Source(BaseModel):
@@ -15,7 +15,7 @@ class Source(BaseModel):
     """JSON pointer (RFC6901) to the offending entity."""
 
 
-class Error(BaseModel):
+class MessagesError(BaseModel):
     code: str
 
     title: str
