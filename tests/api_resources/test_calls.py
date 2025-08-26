@@ -20,7 +20,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestCalls:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_dial(self, client: Telnyx) -> None:
         call = client.calls.dial(
@@ -30,7 +30,7 @@ class TestCalls:
         )
         assert_matches_type(CallDialResponse, call, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_dial_with_all_params(self, client: Telnyx) -> None:
         call = client.calls.dial(
@@ -161,7 +161,7 @@ class TestCalls:
         )
         assert_matches_type(CallDialResponse, call, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_dial(self, client: Telnyx) -> None:
         response = client.calls.with_raw_response.dial(
@@ -175,7 +175,7 @@ class TestCalls:
         call = response.parse()
         assert_matches_type(CallDialResponse, call, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_dial(self, client: Telnyx) -> None:
         with client.calls.with_streaming_response.dial(
@@ -239,7 +239,7 @@ class TestAsyncCalls:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_dial(self, async_client: AsyncTelnyx) -> None:
         call = await async_client.calls.dial(
@@ -249,7 +249,7 @@ class TestAsyncCalls:
         )
         assert_matches_type(CallDialResponse, call, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_dial_with_all_params(self, async_client: AsyncTelnyx) -> None:
         call = await async_client.calls.dial(
@@ -380,7 +380,7 @@ class TestAsyncCalls:
         )
         assert_matches_type(CallDialResponse, call, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_dial(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.calls.with_raw_response.dial(
@@ -394,7 +394,7 @@ class TestAsyncCalls:
         call = await response.parse()
         assert_matches_type(CallDialResponse, call, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_dial(self, async_client: AsyncTelnyx) -> None:
         async with async_client.calls.with_streaming_response.dial(
