@@ -8,6 +8,7 @@ from .ip import IP as IP
 from .fax import Fax as Fax
 from .fqdn import Fqdn as Fqdn
 from .room import Room as Room
+from .error import Error as Error
 from .record import Record as Record
 from .shared import (
     Metadata as Metadata,
@@ -57,7 +58,6 @@ from .outbound_fqdn import OutboundFqdn as OutboundFqdn
 from .porting_order import PortingOrder as PortingOrder
 from .ip_list_params import IPListParams as IPListParams
 from .media_resource import MediaResource as MediaResource
-from .messages_error import MessagesError as MessagesError
 from .rcs_suggestion import RcsSuggestion as RcsSuggestion
 from .settings_param import SettingsParam as SettingsParam
 from .sim_card_group import SimCardGroup as SimCardGroup
