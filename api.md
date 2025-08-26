@@ -1853,7 +1853,7 @@ Types:
 
 ```python
 from telnyx.types import (
-    MessagesError,
+    Error,
     MessagingError,
     OutboundMessagePayload,
     MessageRetrieveResponse,
