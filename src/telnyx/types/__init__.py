@@ -36,6 +36,7 @@ from .rcs_agent import RcsAgent as RcsAgent
 from .region_in import RegionIn as RegionIn
 from .conference import Conference as Conference
 from .inbound_ip import InboundIP as InboundIP
+from .sip_header import SipHeader as SipHeader
 from .entity_type import EntityType as EntityType
 from .outbound_ip import OutboundIP as OutboundIP
 from .task_status import TaskStatus as TaskStatus
@@ -90,6 +91,7 @@ from .sip_header_param import SipHeaderParam as SipHeaderParam
 from .sub_number_order import SubNumberOrder as SubNumberOrder
 from .available_service import AvailableService as AvailableService
 from .brand_list_params import BrandListParams as BrandListParams
+from .custom_sip_header import CustomSipHeader as CustomSipHeader
 from .fax_create_params import FaxCreateParams as FaxCreateParams
 from .fax_list_response import FaxListResponse as FaxListResponse
 from .media_list_params import MediaListParams as MediaListParams
@@ -162,6 +164,7 @@ from .room_update_response import RoomUpdateResponse as RoomUpdateResponse
 from .sim_card_list_params import SimCardListParams as SimCardListParams
 from .telephony_credential import TelephonyCredential as TelephonyCredential
 from .texml_secrets_params import TexmlSecretsParams as TexmlSecretsParams
+from .unwrap_webhook_event import UnwrapWebhookEvent as UnwrapWebhookEvent
 from .usage_payment_method import UsagePaymentMethod as UsagePaymentMethod
 from .user_tag_list_params import UserTagListParams as UserTagListParams
 from .wireguard_peer_patch import WireguardPeerPatch as WireguardPeerPatch
@@ -259,6 +262,8 @@ from .credential_inbound_param import CredentialInboundParam as CredentialInboun
 from .document_delete_response import DocumentDeleteResponse as DocumentDeleteResponse
 from .document_update_response import DocumentUpdateResponse as DocumentUpdateResponse
 from .document_upload_response import DocumentUploadResponse as DocumentUploadResponse
+from .fax_failed_webhook_event import FaxFailedWebhookEvent as FaxFailedWebhookEvent
+from .fax_queued_webhook_event import FaxQueuedWebhookEvent as FaxQueuedWebhookEvent
 from .number_order_list_params import NumberOrderListParams as NumberOrderListParams
 from .ota_update_list_response import OtaUpdateListResponse as OtaUpdateListResponse
 from .outbound_message_payload import OutboundMessagePayload as OutboundMessagePayload
@@ -277,6 +282,7 @@ from .address_retrieve_response import AddressRetrieveResponse as AddressRetriev
 from .audit_event_list_response import AuditEventListResponse as AuditEventListResponse
 from .balance_retrieve_response import BalanceRetrieveResponse as BalanceRetrieveResponse
 from .billing_group_list_params import BillingGroupListParams as BillingGroupListParams
+from .call_hangup_webhook_event import CallHangupWebhookEvent as CallHangupWebhookEvent
 from .comment_retrieve_response import CommentRetrieveResponse as CommentRetrieveResponse
 from .credential_outbound_param import CredentialOutboundParam as CredentialOutboundParam
 from .detail_record_list_params import DetailRecordListParams as DetailRecordListParams
@@ -300,6 +306,7 @@ from .requirement_list_response import RequirementListResponse as RequirementLis
 from .sound_modifications_param import SoundModificationsParam as SoundModificationsParam
 from .stream_bidirectional_mode import StreamBidirectionalMode as StreamBidirectionalMode
 from .access_ip_address_response import AccessIPAddressResponse as AccessIPAddressResponse
+from .call_bridged_webhook_event import CallBridgedWebhookEvent as CallBridgedWebhookEvent
 from .channel_zone_list_response import ChannelZoneListResponse as ChannelZoneListResponse
 from .channel_zone_update_params import ChannelZoneUpdateParams as ChannelZoneUpdateParams
 from .client_list_objects_params import ClientListObjectsParams as ClientListObjectsParams
@@ -332,10 +339,13 @@ from .billing_group_create_params import BillingGroupCreateParams as BillingGrou
 from .billing_group_list_response import BillingGroupListResponse as BillingGroupListResponse
 from .billing_group_update_params import BillingGroupUpdateParams as BillingGroupUpdateParams
 from .brand_get_feedback_response import BrandGetFeedbackResponse as BrandGetFeedbackResponse
+from .call_answered_webhook_event import CallAnsweredWebhookEvent as CallAnsweredWebhookEvent
+from .call_enqueued_webhook_event import CallEnqueuedWebhookEvent as CallEnqueuedWebhookEvent
 from .client_create_bucket_params import ClientCreateBucketParams as ClientCreateBucketParams
 from .detail_record_list_response import DetailRecordListResponse as DetailRecordListResponse
 from .document_link_list_response import DocumentLinkListResponse as DocumentLinkListResponse
 from .fax_application_list_params import FaxApplicationListParams as FaxApplicationListParams
+from .fax_delivered_webhook_event import FaxDeliveredWebhookEvent as FaxDeliveredWebhookEvent
 from .fqdn_connection_list_params import FqdnConnectionListParams as FqdnConnectionListParams
 from .global_ip_retrieve_response import GlobalIPRetrieveResponse as GlobalIPRetrieveResponse
 from .ip_connection_create_params import IPConnectionCreateParams as IPConnectionCreateParams
@@ -350,9 +360,11 @@ from .porting_order_user_feedback import PortingOrderUserFeedback as PortingOrde
 from .recording_retrieve_response import RecordingRetrieveResponse as RecordingRetrieveResponse
 from .reserved_phone_number_param import ReservedPhoneNumberParam as ReservedPhoneNumberParam
 from .s3_configuration_data_param import S3ConfigurationDataParam as S3ConfigurationDataParam
+from .transcription_webhook_event import TranscriptionWebhookEvent as TranscriptionWebhookEvent
 from .verified_number_list_params import VerifiedNumberListParams as VerifiedNumberListParams
 from .advanced_order_create_params import AdvancedOrderCreateParams as AdvancedOrderCreateParams
 from .advanced_order_update_params import AdvancedOrderUpdateParams as AdvancedOrderUpdateParams
+from .call_initiated_webhook_event import CallInitiatedWebhookEvent as CallInitiatedWebhookEvent
 from .campaign_deactivate_response import CampaignDeactivateResponse as CampaignDeactivateResponse
 from .channel_zone_update_response import ChannelZoneUpdateResponse as ChannelZoneUpdateResponse
 from .client_delete_objects_params import ClientDeleteObjectsParams as ClientDeleteObjectsParams
@@ -400,9 +412,11 @@ from .access_ip_range_list_response import AccessIPRangeListResponse as AccessIP
 from .billing_group_create_response import BillingGroupCreateResponse as BillingGroupCreateResponse
 from .billing_group_delete_response import BillingGroupDeleteResponse as BillingGroupDeleteResponse
 from .billing_group_update_response import BillingGroupUpdateResponse as BillingGroupUpdateResponse
+from .call_left_queue_webhook_event import CallLeftQueueWebhookEvent as CallLeftQueueWebhookEvent
 from .call_retrieve_status_response import CallRetrieveStatusResponse as CallRetrieveStatusResponse
 from .campaign_submit_appeal_params import CampaignSubmitAppealParams as CampaignSubmitAppealParams
 from .comment_mark_as_read_response import CommentMarkAsReadResponse as CommentMarkAsReadResponse
+from .delivery_update_webhook_event import DeliveryUpdateWebhookEvent as DeliveryUpdateWebhookEvent
 from .fax_application_create_params import FaxApplicationCreateParams as FaxApplicationCreateParams
 from .fax_application_list_response import FaxApplicationListResponse as FaxApplicationListResponse
 from .fax_application_update_params import FaxApplicationUpdateParams as FaxApplicationUpdateParams
@@ -411,6 +425,7 @@ from .fqdn_connection_list_response import FqdnConnectionListResponse as FqdnCon
 from .fqdn_connection_update_params import FqdnConnectionUpdateParams as FqdnConnectionUpdateParams
 from .inbound_channel_list_response import InboundChannelListResponse as InboundChannelListResponse
 from .inbound_channel_update_params import InboundChannelUpdateParams as InboundChannelUpdateParams
+from .inbound_message_webhook_event import InboundMessageWebhookEvent as InboundMessageWebhookEvent
 from .ip_connection_create_response import IPConnectionCreateResponse as IPConnectionCreateResponse
 from .ip_connection_delete_response import IPConnectionDeleteResponse as IPConnectionDeleteResponse
 from .ip_connection_update_response import IPConnectionUpdateResponse as IPConnectionUpdateResponse
@@ -435,7 +450,9 @@ from .texml_application_list_params import TexmlApplicationListParams as TexmlAp
 from .verified_number_create_params import VerifiedNumberCreateParams as VerifiedNumberCreateParams
 from .verified_number_list_response import VerifiedNumberListResponse as VerifiedNumberListResponse
 from .azure_configuration_data_param import AzureConfigurationDataParam as AzureConfigurationDataParam
+from .call_speak_ended_webhook_event import CallSpeakEndedWebhookEvent as CallSpeakEndedWebhookEvent
 from .campaign_builder_create_params import CampaignBuilderCreateParams as CampaignBuilderCreateParams
+from .conference_ended_webhook_event import ConferenceEndedWebhookEvent as ConferenceEndedWebhookEvent
 from .connection_rtcp_settings_param import ConnectionRtcpSettingsParam as ConnectionRtcpSettingsParam
 from .integration_secret_list_params import IntegrationSecretListParams as IntegrationSecretListParams
 from .inventory_coverage_list_params import InventoryCoverageListParams as InventoryCoverageListParams
@@ -465,6 +482,7 @@ from .sim_card_group_update_response import SimCardGroupUpdateResponse as SimCar
 from .sim_card_order_create_response import SimCardOrderCreateResponse as SimCardOrderCreateResponse
 from .siprec_connector_create_params import SiprecConnectorCreateParams as SiprecConnectorCreateParams
 from .siprec_connector_update_params import SiprecConnectorUpdateParams as SiprecConnectorUpdateParams
+from .streaming_failed_webhook_event import StreamingFailedWebhookEvent as StreamingFailedWebhookEvent
 from .sub_number_order_list_response import SubNumberOrderListResponse as SubNumberOrderListResponse
 from .sub_number_order_update_params import SubNumberOrderUpdateParams as SubNumberOrderUpdateParams
 from .user_address_retrieve_response import UserAddressRetrieveResponse as UserAddressRetrieveResponse
@@ -477,6 +495,10 @@ from .wireless_blocklist_list_params import WirelessBlocklistListParams as Wirel
 from .access_ip_address_create_params import AccessIPAddressCreateParams as AccessIPAddressCreateParams
 from .access_ip_address_list_response import AccessIPAddressListResponse as AccessIPAddressListResponse
 from .billing_group_retrieve_response import BillingGroupRetrieveResponse as BillingGroupRetrieveResponse
+from .call_fork_started_webhook_event import CallForkStartedWebhookEvent as CallForkStartedWebhookEvent
+from .call_fork_stopped_webhook_event import CallForkStoppedWebhookEvent as CallForkStoppedWebhookEvent
+from .call_gather_ended_webhook_event import CallGatherEndedWebhookEvent as CallGatherEndedWebhookEvent
+from .call_refer_failed_webhook_event import CallReferFailedWebhookEvent as CallReferFailedWebhookEvent
 from .campaign_submit_appeal_response import CampaignSubmitAppealResponse as CampaignSubmitAppealResponse
 from .charges_summary_retrieve_params import ChargesSummaryRetrieveParams as ChargesSummaryRetrieveParams
 from .external_connection_list_params import ExternalConnectionListParams as ExternalConnectionListParams
@@ -508,6 +530,8 @@ from .requirement_group_create_params import RequirementGroupCreateParams as Req
 from .requirement_group_list_response import RequirementGroupListResponse as RequirementGroupListResponse
 from .requirement_group_update_params import RequirementGroupUpdateParams as RequirementGroupUpdateParams
 from .sim_card_get_public_ip_response import SimCardGetPublicIPResponse as SimCardGetPublicIPResponse
+from .streaming_started_webhook_event import StreamingStartedWebhookEvent as StreamingStartedWebhookEvent
+from .streaming_stopped_webhook_event import StreamingStoppedWebhookEvent as StreamingStoppedWebhookEvent
 from .texml_application_create_params import TexmlApplicationCreateParams as TexmlApplicationCreateParams
 from .texml_application_list_response import TexmlApplicationListResponse as TexmlApplicationListResponse
 from .texml_application_update_params import TexmlApplicationUpdateParams as TexmlApplicationUpdateParams
@@ -517,7 +541,12 @@ from .verified_number_create_response import VerifiedNumberCreateResponse as Ver
 from .wireguard_interface_list_params import WireguardInterfaceListParams as WireguardInterfaceListParams
 from .bulk_sim_card_action_list_params import BulkSimCardActionListParams as BulkSimCardActionListParams
 from .call_control_application_inbound import CallControlApplicationInbound as CallControlApplicationInbound
+from .call_dtmf_received_webhook_event import CallDtmfReceivedWebhookEvent as CallDtmfReceivedWebhookEvent
+from .call_refer_started_webhook_event import CallReferStartedWebhookEvent as CallReferStartedWebhookEvent
+from .call_siprec_failed_webhook_event import CallSiprecFailedWebhookEvent as CallSiprecFailedWebhookEvent
+from .call_speak_started_webhook_event import CallSpeakStartedWebhookEvent as CallSpeakStartedWebhookEvent
 from .campaign_builder_create_response import CampaignBuilderCreateResponse as CampaignBuilderCreateResponse
+from .conference_created_webhook_event import ConferenceCreatedWebhookEvent as ConferenceCreatedWebhookEvent
 from .global_ip_assignment_list_params import GlobalIPAssignmentListParams as GlobalIPAssignmentListParams
 from .global_ip_protocol_list_response import GlobalIPProtocolListResponse as GlobalIPProtocolListResponse
 from .integration_secret_create_params import IntegrationSecretCreateParams as IntegrationSecretCreateParams
@@ -554,6 +583,9 @@ from .wireless_blocklist_list_response import WirelessBlocklistListResponse as W
 from .wireless_blocklist_update_params import WirelessBlocklistUpdateParams as WirelessBlocklistUpdateParams
 from .wireless_retrieve_regions_params import WirelessRetrieveRegionsParams as WirelessRetrieveRegionsParams
 from .call_control_application_outbound import CallControlApplicationOutbound as CallControlApplicationOutbound
+from .call_playback_ended_webhook_event import CallPlaybackEndedWebhookEvent as CallPlaybackEndedWebhookEvent
+from .call_siprec_started_webhook_event import CallSiprecStartedWebhookEvent as CallSiprecStartedWebhookEvent
+from .call_siprec_stopped_webhook_event import CallSiprecStoppedWebhookEvent as CallSiprecStoppedWebhookEvent
 from .charges_breakdown_retrieve_params import ChargesBreakdownRetrieveParams as ChargesBreakdownRetrieveParams
 from .charges_summary_retrieve_response import ChargesSummaryRetrieveResponse as ChargesSummaryRetrieveResponse
 from .credential_connection_list_params import CredentialConnectionListParams as CredentialConnectionListParams
@@ -561,6 +593,8 @@ from .external_connection_create_params import ExternalConnectionCreateParams as
 from .external_connection_list_response import ExternalConnectionListResponse as ExternalConnectionListResponse
 from .external_connection_update_params import ExternalConnectionUpdateParams as ExternalConnectionUpdateParams
 from .fax_application_retrieve_response import FaxApplicationRetrieveResponse as FaxApplicationRetrieveResponse
+from .fax_media_processed_webhook_event import FaxMediaProcessedWebhookEvent as FaxMediaProcessedWebhookEvent
+from .fax_sending_started_webhook_event import FaxSendingStartedWebhookEvent as FaxSendingStartedWebhookEvent
 from .fqdn_connection_retrieve_response import FqdnConnectionRetrieveResponse as FqdnConnectionRetrieveResponse
 from .global_ip_latency_retrieve_params import GlobalIPLatencyRetrieveParams as GlobalIPLatencyRetrieveParams
 from .global_ip_usage_retrieve_response import GlobalIPUsageRetrieveResponse as GlobalIPUsageRetrieveResponse
@@ -574,6 +608,7 @@ from .phone_number_campaign_list_params import PhoneNumberCampaignListParams as 
 from .porting_list_uk_carriers_response import PortingListUkCarriersResponse as PortingListUkCarriersResponse
 from .porting_order_activation_settings import PortingOrderActivationSettings as PortingOrderActivationSettings
 from .porting_order_user_feedback_param import PortingOrderUserFeedbackParam as PortingOrderUserFeedbackParam
+from .replaced_link_click_webhook_event import ReplacedLinkClickWebhookEvent as ReplacedLinkClickWebhookEvent
 from .room_recording_delete_bulk_params import RoomRecordingDeleteBulkParams as RoomRecordingDeleteBulkParams
 from .texml_application_create_response import TexmlApplicationCreateResponse as TexmlApplicationCreateResponse
 from .texml_application_delete_response import TexmlApplicationDeleteResponse as TexmlApplicationDeleteResponse
@@ -585,6 +620,10 @@ from .wireguard_interface_create_params import WireguardInterfaceCreateParams as
 from .wireguard_interface_list_response import WireguardInterfaceListResponse as WireguardInterfaceListResponse
 from .available_phone_number_list_params import AvailablePhoneNumberListParams as AvailablePhoneNumberListParams
 from .bulk_sim_card_action_list_response import BulkSimCardActionListResponse as BulkSimCardActionListResponse
+from .call_ai_gather_ended_webhook_event import CallAIGatherEndedWebhookEvent as CallAIGatherEndedWebhookEvent
+from .call_recording_error_webhook_event import CallRecordingErrorWebhookEvent as CallRecordingErrorWebhookEvent
+from .call_recording_saved_webhook_event import CallRecordingSavedWebhookEvent as CallRecordingSavedWebhookEvent
+from .call_refer_completed_webhook_event import CallReferCompletedWebhookEvent as CallReferCompletedWebhookEvent
 from .campaign_get_mno_metadata_response import CampaignGetMnoMetadataResponse as CampaignGetMnoMetadataResponse
 from .country_coverage_retrieve_response import CountryCoverageRetrieveResponse as CountryCoverageRetrieveResponse
 from .global_ip_assignment_create_params import GlobalIPAssignmentCreateParams as GlobalIPAssignmentCreateParams
@@ -621,6 +660,8 @@ from .wireless_blocklist_delete_response import WirelessBlocklistDeleteResponse 
 from .wireless_blocklist_update_response import WirelessBlocklistUpdateResponse as WirelessBlocklistUpdateResponse
 from .wireless_retrieve_regions_response import WirelessRetrieveRegionsResponse as WirelessRetrieveRegionsResponse
 from .authentication_provider_list_params import AuthenticationProviderListParams as AuthenticationProviderListParams
+from .call_playback_started_webhook_event import CallPlaybackStartedWebhookEvent as CallPlaybackStartedWebhookEvent
+from .call_streaming_failed_webhook_event import CallStreamingFailedWebhookEvent as CallStreamingFailedWebhookEvent
 from .charges_breakdown_retrieve_response import ChargesBreakdownRetrieveResponse as ChargesBreakdownRetrieveResponse
 from .conference_list_participants_params import ConferenceListParticipantsParams as ConferenceListParticipantsParams
 from .connection_list_active_calls_params import ConnectionListActiveCallsParams as ConnectionListActiveCallsParams
@@ -652,7 +693,11 @@ from .wireguard_interface_create_response import WireguardInterfaceCreateRespons
 from .wireguard_interface_delete_response import WireguardInterfaceDeleteResponse as WireguardInterfaceDeleteResponse
 from .available_phone_number_list_response import AvailablePhoneNumberListResponse as AvailablePhoneNumberListResponse
 from .call_control_application_list_params import CallControlApplicationListParams as CallControlApplicationListParams
+from .call_streaming_started_webhook_event import CallStreamingStartedWebhookEvent as CallStreamingStartedWebhookEvent
+from .call_streaming_stopped_webhook_event import CallStreamingStoppedWebhookEvent as CallStreamingStoppedWebhookEvent
 from .campaign_get_sharing_status_response import CampaignGetSharingStatusResponse as CampaignGetSharingStatusResponse
+from .campaign_status_update_webhook_event import CampaignStatusUpdateWebhookEvent as CampaignStatusUpdateWebhookEvent
+from .conference_speak_ended_webhook_event import ConferenceSpeakEndedWebhookEvent as ConferenceSpeakEndedWebhookEvent
 from .global_ip_allowed_port_list_response import GlobalIPAllowedPortListResponse as GlobalIPAllowedPortListResponse
 from .global_ip_assignment_create_response import GlobalIPAssignmentCreateResponse as GlobalIPAssignmentCreateResponse
 from .global_ip_assignment_delete_response import GlobalIPAssignmentDeleteResponse as GlobalIPAssignmentDeleteResponse
@@ -689,6 +734,9 @@ from .authentication_provider_list_response import (
 )
 from .authentication_provider_update_params import (
     AuthenticationProviderUpdateParams as AuthenticationProviderUpdateParams,
+)
+from .call_conversation_ended_webhook_event import (
+    CallConversationEndedWebhookEvent as CallConversationEndedWebhookEvent,
 )
 from .conference_list_participants_response import (
     ConferenceListParticipantsResponse as ConferenceListParticipantsResponse,
@@ -773,6 +821,12 @@ from .call_control_application_list_response import (
 from .call_control_application_update_params import (
     CallControlApplicationUpdateParams as CallControlApplicationUpdateParams,
 )
+from .conference_floor_changed_webhook_event import (
+    ConferenceFloorChangedWebhookEvent as ConferenceFloorChangedWebhookEvent,
+)
+from .conference_speak_started_webhook_event import (
+    ConferenceSpeakStartedWebhookEvent as ConferenceSpeakStartedWebhookEvent,
+)
 from .dynamic_emergency_endpoint_list_params import (
     DynamicEmergencyEndpointListParams as DynamicEmergencyEndpointListParams,
 )
@@ -832,6 +886,9 @@ from .authentication_provider_update_response import (
 )
 from .call_control_application_outbound_param import (
     CallControlApplicationOutboundParam as CallControlApplicationOutboundParam,
+)
+from .conference_playback_ended_webhook_event import (
+    ConferencePlaybackEndedWebhookEvent as ConferencePlaybackEndedWebhookEvent,
 )
 from .credential_connection_retrieve_response import (
     CredentialConnectionRetrieveResponse as CredentialConnectionRetrieveResponse,
@@ -893,6 +950,9 @@ from .call_control_application_delete_response import (
 from .call_control_application_update_response import (
     CallControlApplicationUpdateResponse as CallControlApplicationUpdateResponse,
 )
+from .conference_recording_saved_webhook_event import (
+    ConferenceRecordingSavedWebhookEvent as ConferenceRecordingSavedWebhookEvent,
+)
 from .document_generate_download_link_response import (
     DocumentGenerateDownloadLinkResponse as DocumentGenerateDownloadLinkResponse,
 )
@@ -907,6 +967,9 @@ from .global_ip_health_check_retrieve_response import (
 )
 from .notification_event_condition_list_params import (
     NotificationEventConditionListParams as NotificationEventConditionListParams,
+)
+from .number_order_status_update_webhook_event import (
+    NumberOrderStatusUpdateWebhookEvent as NumberOrderStatusUpdateWebhookEvent,
 )
 from .outbound_voice_profile_retrieve_response import (
     OutboundVoiceProfileRetrieveResponse as OutboundVoiceProfileRetrieveResponse,
@@ -928,6 +991,15 @@ from .sub_number_orders_report_create_response import (
 )
 from .authentication_provider_retrieve_response import (
     AuthenticationProviderRetrieveResponse as AuthenticationProviderRetrieveResponse,
+)
+from .call_machine_greeting_ended_webhook_event import (
+    CallMachineGreetingEndedWebhookEvent as CallMachineGreetingEndedWebhookEvent,
+)
+from .conference_participant_left_webhook_event import (
+    ConferenceParticipantLeftWebhookEvent as ConferenceParticipantLeftWebhookEvent,
+)
+from .conference_playback_started_webhook_event import (
+    ConferencePlaybackStartedWebhookEvent as ConferencePlaybackStartedWebhookEvent,
 )
 from .custom_storage_credential_create_response import (
     CustomStorageCredentialCreateResponse as CustomStorageCredentialCreateResponse,
@@ -971,6 +1043,9 @@ from .available_phone_number_block_list_response import (
 from .call_control_application_retrieve_response import (
     CallControlApplicationRetrieveResponse as CallControlApplicationRetrieveResponse,
 )
+from .call_machine_detection_ended_webhook_event import (
+    CallMachineDetectionEndedWebhookEvent as CallMachineDetectionEndedWebhookEvent,
+)
 from .country_coverage_retrieve_country_response import (
     CountryCoverageRetrieveCountryResponse as CountryCoverageRetrieveCountryResponse,
 )
@@ -1006,6 +1081,9 @@ from .telephony_credential_create_token_response import (
 )
 from .verify_profile_retrieve_templates_response import (
     VerifyProfileRetrieveTemplatesResponse as VerifyProfileRetrieveTemplatesResponse,
+)
+from .conference_participant_joined_webhook_event import (
+    ConferenceParticipantJoinedWebhookEvent as ConferenceParticipantJoinedWebhookEvent,
 )
 from .custom_storage_credential_retrieve_response import (
     CustomStorageCredentialRetrieveResponse as CustomStorageCredentialRetrieveResponse,
@@ -1054,6 +1132,9 @@ from .seti_retrieve_black_box_test_results_params import (
 )
 from .virtual_cross_connects_coverage_list_params import (
     VirtualCrossConnectsCoverageListParams as VirtualCrossConnectsCoverageListParams,
+)
+from .call_ai_gather_partial_results_webhook_event import (
+    CallAIGatherPartialResultsWebhookEvent as CallAIGatherPartialResultsWebhookEvent,
 )
 from .dynamic_emergency_endpoint_retrieve_response import (
     DynamicEmergencyEndpointRetrieveResponse as DynamicEmergencyEndpointRetrieveResponse,
@@ -1121,6 +1202,12 @@ from .sim_card_list_wireless_connectivity_logs_params import (
 from .storage_list_migration_source_coverage_response import (
     StorageListMigrationSourceCoverageResponse as StorageListMigrationSourceCoverageResponse,
 )
+from .call_recording_transcription_saved_webhook_event import (
+    CallRecordingTranscriptionSavedWebhookEvent as CallRecordingTranscriptionSavedWebhookEvent,
+)
+from .conference_participant_speak_ended_webhook_event import (
+    ConferenceParticipantSpeakEndedWebhookEvent as ConferenceParticipantSpeakEndedWebhookEvent,
+)
 from .phone_number_assignment_by_profile_assign_params import (
     PhoneNumberAssignmentByProfileAssignParams as PhoneNumberAssignmentByProfileAssignParams,
 )
@@ -1136,11 +1223,23 @@ from .sim_card_data_usage_notification_update_response import (
 from .sub_number_order_update_requirement_group_params import (
     SubNumberOrderUpdateRequirementGroupParams as SubNumberOrderUpdateRequirementGroupParams,
 )
+from .call_machine_premium_greeting_ended_webhook_event import (
+    CallMachinePremiumGreetingEndedWebhookEvent as CallMachinePremiumGreetingEndedWebhookEvent,
+)
 from .partner_campaign_retrieve_sharing_status_response import (
     PartnerCampaignRetrieveSharingStatusResponse as PartnerCampaignRetrieveSharingStatusResponse,
 )
 from .sim_card_list_wireless_connectivity_logs_response import (
     SimCardListWirelessConnectivityLogsResponse as SimCardListWirelessConnectivityLogsResponse,
+)
+from .call_conversation_insights_generated_webhook_event import (
+    CallConversationInsightsGeneratedWebhookEvent as CallConversationInsightsGeneratedWebhookEvent,
+)
+from .call_machine_premium_detection_ended_webhook_event import (
+    CallMachinePremiumDetectionEndedWebhookEvent as CallMachinePremiumDetectionEndedWebhookEvent,
+)
+from .conference_participant_speak_started_webhook_event import (
+    ConferenceParticipantSpeakStartedWebhookEvent as ConferenceParticipantSpeakStartedWebhookEvent,
 )
 from .managed_account_update_global_channel_limit_params import (
     ManagedAccountUpdateGlobalChannelLimitParams as ManagedAccountUpdateGlobalChannelLimitParams,
@@ -1154,11 +1253,20 @@ from .sim_card_data_usage_notification_retrieve_response import (
 from .sub_number_order_update_requirement_group_response import (
     SubNumberOrderUpdateRequirementGroupResponse as SubNumberOrderUpdateRequirementGroupResponse,
 )
+from .conference_participant_playback_ended_webhook_event import (
+    ConferenceParticipantPlaybackEndedWebhookEvent as ConferenceParticipantPlaybackEndedWebhookEvent,
+)
 from .messaging_hosted_number_order_validate_codes_params import (
     MessagingHostedNumberOrderValidateCodesParams as MessagingHostedNumberOrderValidateCodesParams,
 )
 from .porting_order_retrieve_allowed_foc_windows_response import (
     PortingOrderRetrieveAllowedFocWindowsResponse as PortingOrderRetrieveAllowedFocWindowsResponse,
+)
+from .call_ai_gather_message_history_updated_webhook_event import (
+    CallAIGatherMessageHistoryUpdatedWebhookEvent as CallAIGatherMessageHistoryUpdatedWebhookEvent,
+)
+from .customer_service_record_status_changed_webhook_event import (
+    CustomerServiceRecordStatusChangedWebhookEvent as CustomerServiceRecordStatusChangedWebhookEvent,
 )
 from .managed_account_update_global_channel_limit_response import (
     ManagedAccountUpdateGlobalChannelLimitResponse as ManagedAccountUpdateGlobalChannelLimitResponse,
@@ -1168,6 +1276,9 @@ from .number_order_phone_number_update_requirements_params import (
 )
 from .phone_numbers_regulatory_requirement_retrieve_params import (
     PhoneNumbersRegulatoryRequirementRetrieveParams as PhoneNumbersRegulatoryRequirementRetrieveParams,
+)
+from .conference_participant_playback_started_webhook_event import (
+    ConferenceParticipantPlaybackStartedWebhookEvent as ConferenceParticipantPlaybackStartedWebhookEvent,
 )
 from .messaging_hosted_number_order_validate_codes_response import (
     MessagingHostedNumberOrderValidateCodesResponse as MessagingHostedNumberOrderValidateCodesResponse,
