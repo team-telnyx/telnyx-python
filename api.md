@@ -1221,6 +1221,7 @@ from telnyx.types import (
     DocumentUpdateResponse,
     DocumentListResponse,
     DocumentDeleteResponse,
+    DocumentGenerateDownloadLinkResponse,
     DocumentUploadResponse,
 )
 ```
@@ -1232,6 +1233,7 @@ Methods:
 - <code title="get /documents">client.documents.<a href="./src/telnyx/resources/documents.py">list</a>(\*\*<a href="src/telnyx/types/document_list_params.py">params</a>) -> <a href="./src/telnyx/types/document_list_response.py">DocumentListResponse</a></code>
 - <code title="delete /documents/{id}">client.documents.<a href="./src/telnyx/resources/documents.py">delete</a>(id) -> <a href="./src/telnyx/types/document_delete_response.py">DocumentDeleteResponse</a></code>
 - <code title="get /documents/{id}/download">client.documents.<a href="./src/telnyx/resources/documents.py">download</a>(id) -> BinaryAPIResponse</code>
+- <code title="get /documents/{id}/download_link">client.documents.<a href="./src/telnyx/resources/documents.py">generate_download_link</a>(id) -> <a href="./src/telnyx/types/document_generate_download_link_response.py">DocumentGenerateDownloadLinkResponse</a></code>
 - <code title="post /documents">client.documents.<a href="./src/telnyx/resources/documents.py">upload</a>(\*\*<a href="src/telnyx/types/document_upload_params.py">params</a>) -> <a href="./src/telnyx/types/document_upload_response.py">DocumentUploadResponse</a></code>
 
 # DynamicEmergencyAddresses

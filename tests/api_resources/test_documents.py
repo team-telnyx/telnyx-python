@@ -17,6 +17,7 @@ from telnyx.types import (
     DocumentUpdateResponse,
     DocumentUploadResponse,
     DocumentRetrieveResponse,
+    DocumentGenerateDownloadLinkResponse,
 )
 from telnyx._utils import parse_datetime
 from telnyx._response import (
@@ -272,6 +273,48 @@ class TestDocuments:
     def test_path_params_download(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.documents.with_raw_response.download(
+                "",
+            )
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_method_generate_download_link(self, client: Telnyx) -> None:
+        document = client.documents.generate_download_link(
+            "550e8400-e29b-41d4-a716-446655440000",
+        )
+        assert_matches_type(DocumentGenerateDownloadLinkResponse, document, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_raw_response_generate_download_link(self, client: Telnyx) -> None:
+        response = client.documents.with_raw_response.generate_download_link(
+            "550e8400-e29b-41d4-a716-446655440000",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        document = response.parse()
+        assert_matches_type(DocumentGenerateDownloadLinkResponse, document, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_streaming_response_generate_download_link(self, client: Telnyx) -> None:
+        with client.documents.with_streaming_response.generate_download_link(
+            "550e8400-e29b-41d4-a716-446655440000",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            document = response.parse()
+            assert_matches_type(DocumentGenerateDownloadLinkResponse, document, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_path_params_generate_download_link(self, client: Telnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.documents.with_raw_response.generate_download_link(
                 "",
             )
 
@@ -609,6 +652,48 @@ class TestAsyncDocuments:
     async def test_path_params_download(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.documents.with_raw_response.download(
+                "",
+            )
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_method_generate_download_link(self, async_client: AsyncTelnyx) -> None:
+        document = await async_client.documents.generate_download_link(
+            "550e8400-e29b-41d4-a716-446655440000",
+        )
+        assert_matches_type(DocumentGenerateDownloadLinkResponse, document, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_raw_response_generate_download_link(self, async_client: AsyncTelnyx) -> None:
+        response = await async_client.documents.with_raw_response.generate_download_link(
+            "550e8400-e29b-41d4-a716-446655440000",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        document = await response.parse()
+        assert_matches_type(DocumentGenerateDownloadLinkResponse, document, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_streaming_response_generate_download_link(self, async_client: AsyncTelnyx) -> None:
+        async with async_client.documents.with_streaming_response.generate_download_link(
+            "550e8400-e29b-41d4-a716-446655440000",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            document = await response.parse()
+            assert_matches_type(DocumentGenerateDownloadLinkResponse, document, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_path_params_generate_download_link(self, async_client: AsyncTelnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.documents.with_raw_response.generate_download_link(
                 "",
             )
 
