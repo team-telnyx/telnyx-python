@@ -32,6 +32,7 @@ from ..types.document_delete_response import DocumentDeleteResponse
 from ..types.document_update_response import DocumentUpdateResponse
 from ..types.document_upload_response import DocumentUploadResponse
 from ..types.document_retrieve_response import DocumentRetrieveResponse
+from ..types.document_generate_download_link_response import DocumentGenerateDownloadLinkResponse
 
 __all__ = ["DocumentsResource", "AsyncDocumentsResource"]
 
@@ -257,6 +258,40 @@ class DocumentsResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=BinaryAPIResponse,
+        )
+
+    def generate_download_link(
+        self,
+        id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> DocumentGenerateDownloadLinkResponse:
+        """
+        Generates a temporary pre-signed URL that can be used to download the document
+        directly from the storage backend without authentication.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return self._get(
+            f"/documents/{id}/download_link",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=DocumentGenerateDownloadLinkResponse,
         )
 
     @overload
@@ -593,6 +628,40 @@ class AsyncDocumentsResource(AsyncAPIResource):
             cast_to=AsyncBinaryAPIResponse,
         )
 
+    async def generate_download_link(
+        self,
+        id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> DocumentGenerateDownloadLinkResponse:
+        """
+        Generates a temporary pre-signed URL that can be used to download the document
+        directly from the storage backend without authentication.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return await self._get(
+            f"/documents/{id}/download_link",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=DocumentGenerateDownloadLinkResponse,
+        )
+
     @overload
     async def upload(
         self,
@@ -724,6 +793,9 @@ class DocumentsResourceWithRawResponse:
             documents.download,
             BinaryAPIResponse,
         )
+        self.generate_download_link = to_raw_response_wrapper(
+            documents.generate_download_link,
+        )
         self.upload = to_raw_response_wrapper(
             documents.upload,
         )
@@ -748,6 +820,9 @@ class AsyncDocumentsResourceWithRawResponse:
         self.download = async_to_custom_raw_response_wrapper(
             documents.download,
             AsyncBinaryAPIResponse,
+        )
+        self.generate_download_link = async_to_raw_response_wrapper(
+            documents.generate_download_link,
         )
         self.upload = async_to_raw_response_wrapper(
             documents.upload,
@@ -774,6 +849,9 @@ class DocumentsResourceWithStreamingResponse:
             documents.download,
             StreamedBinaryAPIResponse,
         )
+        self.generate_download_link = to_streamed_response_wrapper(
+            documents.generate_download_link,
+        )
         self.upload = to_streamed_response_wrapper(
             documents.upload,
         )
@@ -798,6 +876,9 @@ class AsyncDocumentsResourceWithStreamingResponse:
         self.download = async_to_custom_streamed_response_wrapper(
             documents.download,
             AsyncStreamedBinaryAPIResponse,
+        )
+        self.generate_download_link = async_to_streamed_response_wrapper(
+            documents.generate_download_link,
         )
         self.upload = async_to_streamed_response_wrapper(
             documents.upload,
