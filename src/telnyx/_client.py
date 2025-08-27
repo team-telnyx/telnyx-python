@@ -63,6 +63,7 @@ from .resources import (
     regions,
     comments,
     invoices,
+    webhooks,
     documents,
     messsages,
     user_tags,
@@ -215,6 +216,7 @@ __all__ = ["Timeout", "Transport", "ProxiesTypes", "RequestOptions", "Telnyx", "
 
 
 class Telnyx(SyncAPIClient):
+    webhooks: webhooks.WebhooksResource
     access_ip_address: access_ip_address.AccessIPAddressResource
     access_ip_ranges: access_ip_ranges.AccessIPRangesResource
     actions: actions.ActionsResource
@@ -420,6 +422,7 @@ class Telnyx(SyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
+        self.webhooks = webhooks.WebhooksResource(self)
         self.access_ip_address = access_ip_address.AccessIPAddressResource(self)
         self.access_ip_ranges = access_ip_ranges.AccessIPRangesResource(self)
         self.actions = actions.ActionsResource(self)
@@ -986,6 +989,7 @@ class Telnyx(SyncAPIClient):
 
 
 class AsyncTelnyx(AsyncAPIClient):
+    webhooks: webhooks.AsyncWebhooksResource
     access_ip_address: access_ip_address.AsyncAccessIPAddressResource
     access_ip_ranges: access_ip_ranges.AsyncAccessIPRangesResource
     actions: actions.AsyncActionsResource
@@ -1191,6 +1195,7 @@ class AsyncTelnyx(AsyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
+        self.webhooks = webhooks.AsyncWebhooksResource(self)
         self.access_ip_address = access_ip_address.AsyncAccessIPAddressResource(self)
         self.access_ip_ranges = access_ip_ranges.AsyncAccessIPRangesResource(self)
         self.actions = actions.AsyncActionsResource(self)

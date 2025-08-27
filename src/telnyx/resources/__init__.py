@@ -208,6 +208,7 @@ from .portouts import (
     PortoutsResourceWithStreamingResponse,
     AsyncPortoutsResourceWithStreamingResponse,
 )
+from .webhooks import WebhooksResource, AsyncWebhooksResource
 from .wireless import (
     WirelessResource,
     AsyncWirelessResource,
@@ -1170,6 +1171,8 @@ from .phone_numbers_regulatory_requirements import (
 )
 
 __all__ = [
+    "WebhooksResource",
+    "AsyncWebhooksResource",
     "AccessIPAddressResource",
     "AsyncAccessIPAddressResource",
     "AccessIPAddressResourceWithRawResponse",
