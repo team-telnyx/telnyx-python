@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.2.0-alpha (2025-08-27)
+
+Full Changelog: [v3.1.0-alpha...v3.2.0-alpha](https://github.com/team-telnyx/telnyx-python/compare/v3.1.0-alpha...v3.2.0-alpha)
+
+### Features
+
+* port-4304: add public download document link specs ([c99efa8](https://github.com/team-telnyx/telnyx-python/commit/c99efa8fe272848ccdb18b984238b44f065dd0b2))
+
 ## 3.1.0-alpha (2025-08-27)
 
 Full Changelog: [v3.0.0-alpha...v3.1.0-alpha](https://github.com/team-telnyx/telnyx-python/compare/v3.0.0-alpha...v3.1.0-alpha)
