@@ -1,5 +1,34 @@
 # Changelog
 
+## 3.1.0-alpha (2025-08-27)
+
+Full Changelog: [v3.0.0-alpha...v3.1.0-alpha](https://github.com/team-telnyx/telnyx-python/compare/v3.0.0-alpha...v3.1.0-alpha)
+
+### Features
+
+* AISWE-429: Upgrade call-control call-control OpenAPI to 3.1 with Standard Webhooks ([c6498e6](https://github.com/team-telnyx/telnyx-python/commit/c6498e6e628c19175191de0092ba897c69318d0d))
+* AISWE-429: Upgrade messaging 10dlc OpenAPI to 3.1 with Standard Webhooks ([e0cf35f](https://github.com/team-telnyx/telnyx-python/commit/e0cf35f4d12d8f24e26dab02909e238c02d22465))
+* AISWE-429: Upgrade messaging messaging OpenAPI to 3.1 with Standard Webhooks ([c005985](https://github.com/team-telnyx/telnyx-python/commit/c005985aaacf9a41cf889bf15e6eb40d1a773e44))
+* AISWE-429: Upgrade numbers numbers OpenAPI to 3.1 with Standard Webhooks ([9448fc5](https://github.com/team-telnyx/telnyx-python/commit/9448fc586b6de3896cfacc01f4153650c3cd0d2b))
+* AISWE-429: Upgrade porting customer_service_record OpenAPI to 3.1 with Standard Webhooks ([ea07f5c](https://github.com/team-telnyx/telnyx-python/commit/ea07f5c8688b990d4890f28e377ec20074993ace))
+* AISWE-429: Upgrade programmable-fax programmable-fax OpenAPI to 3.1 with Standard Webhooks ([0ce7e38](https://github.com/team-telnyx/telnyx-python/commit/0ce7e38f1a87f45e1a60570322bae101b8646286))
+* **api:** rename Error to MessagesError ([ac58be4](https://github.com/team-telnyx/telnyx-python/commit/ac58be4181157fce47ac0bbc077dc2f0b73985e8))
+* NUM-6108: Update Advanced Order API reference to include requirement_groups ([d0cc66f](https://github.com/team-telnyx/telnyx-python/commit/d0cc66f4a4faa41a557cf3b27d30f465f724dcd4))
+* port-4315: add country_code filter to description ([7f7b678](https://github.com/team-telnyx/telnyx-python/commit/7f7b678b435cab29addaaff865275d9d0f0ffed7))
+* port-4315: add filter by country code ([920c561](https://github.com/team-telnyx/telnyx-python/commit/920c561527177a01119fb4c542227d2cfff02998))
+
+
+### Bug Fixes
+
+* avoid newer type syntax ([1f4d346](https://github.com/team-telnyx/telnyx-python/commit/1f4d346115cbe1f985e9f711716d47c891487440))
+
+
+### Chores
+
+* **internal:** change ci workflow machines ([c87408f](https://github.com/team-telnyx/telnyx-python/commit/c87408f180f76257a61fcbfc173d3ddc1890be8d))
+* **internal:** update pyright exclude list ([4863f67](https://github.com/team-telnyx/telnyx-python/commit/4863f67905e609ceb919323d86802c69bad660f8))
+* update github action ([f445c07](https://github.com/team-telnyx/telnyx-python/commit/f445c07c8a4e60a8c61b24925f0545b0bdd8f074))
+
 ## 3.0.0-alpha (2025-08-18)
 
 Full Changelog: [v0.0.1...v3.0.0-alpha](https://github.com/team-telnyx/telnyx-python/compare/v0.0.1...v3.0.0-alpha)
