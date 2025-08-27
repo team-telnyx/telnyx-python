@@ -21,7 +21,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestNumberBlockOrders:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create(self, client: Telnyx) -> None:
         number_block_order = client.number_block_orders.create(
@@ -30,7 +30,7 @@ class TestNumberBlockOrders:
         )
         assert_matches_type(NumberBlockOrderCreateResponse, number_block_order, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create_with_all_params(self, client: Telnyx) -> None:
         number_block_order = client.number_block_orders.create(
@@ -42,7 +42,7 @@ class TestNumberBlockOrders:
         )
         assert_matches_type(NumberBlockOrderCreateResponse, number_block_order, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: Telnyx) -> None:
         response = client.number_block_orders.with_raw_response.create(
@@ -55,7 +55,7 @@ class TestNumberBlockOrders:
         number_block_order = response.parse()
         assert_matches_type(NumberBlockOrderCreateResponse, number_block_order, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: Telnyx) -> None:
         with client.number_block_orders.with_streaming_response.create(
@@ -165,7 +165,7 @@ class TestAsyncNumberBlockOrders:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncTelnyx) -> None:
         number_block_order = await async_client.number_block_orders.create(
@@ -174,7 +174,7 @@ class TestAsyncNumberBlockOrders:
         )
         assert_matches_type(NumberBlockOrderCreateResponse, number_block_order, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncTelnyx) -> None:
         number_block_order = await async_client.number_block_orders.create(
@@ -186,7 +186,7 @@ class TestAsyncNumberBlockOrders:
         )
         assert_matches_type(NumberBlockOrderCreateResponse, number_block_order, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.number_block_orders.with_raw_response.create(
@@ -199,7 +199,7 @@ class TestAsyncNumberBlockOrders:
         number_block_order = await response.parse()
         assert_matches_type(NumberBlockOrderCreateResponse, number_block_order, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncTelnyx) -> None:
         async with async_client.number_block_orders.with_streaming_response.create(
