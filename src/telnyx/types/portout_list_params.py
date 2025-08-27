@@ -15,9 +15,10 @@ class PortoutListParams(TypedDict, total=False):
     filter: Filter
     """Consolidated filter parameter (deepObject style).
 
-    Originally: filter[carrier_name], filter[pon], filter[spid], filter[status],
-    filter[status_in], filter[ported_out_at], filter[inserted_at], filter[foc_date],
-    filter[phone_number], filter[support_key]
+    Originally: filter[carrier_name], filter[country_code], filter[country_code_in],
+    filter[foc_date], filter[inserted_at], filter[phone_number], filter[pon],
+    filter[ported_out_at], filter[spid], filter[status], filter[status_in],
+    filter[support_key]
     """
 
     page: Page
@@ -46,6 +47,12 @@ class FilterPortedOutAt(TypedDict, total=False):
 class Filter(TypedDict, total=False):
     carrier_name: str
     """Filter by new carrier name."""
+
+    country_code: str
+    """Filter by 2-letter country code"""
+
+    country_code_in: List[str]
+    """Filter by a list of 2-letter country codes"""
 
     foc_date: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """Filter by foc_date. Matches all portouts with the same date"""

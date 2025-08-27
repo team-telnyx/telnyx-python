@@ -77,6 +77,8 @@ class TestPortouts:
         portout = client.portouts.list(
             filter={
                 "carrier_name": "carrier_name",
+                "country_code": "US",
+                "country_code_in": ["CA", "US"],
                 "foc_date": parse_datetime("2024-09-04T00:00:00.000Z"),
                 "inserted_at": {
                     "gte": parse_datetime("2024-09-04T00:00:00.000Z"),
@@ -294,6 +296,8 @@ class TestAsyncPortouts:
         portout = await async_client.portouts.list(
             filter={
                 "carrier_name": "carrier_name",
+                "country_code": "US",
+                "country_code_in": ["CA", "US"],
                 "foc_date": parse_datetime("2024-09-04T00:00:00.000Z"),
                 "inserted_at": {
                     "gte": parse_datetime("2024-09-04T00:00:00.000Z"),

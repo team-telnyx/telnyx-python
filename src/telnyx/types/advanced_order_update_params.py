@@ -5,10 +5,10 @@ from __future__ import annotations
 from typing import List
 from typing_extensions import Literal, TypedDict
 
-__all__ = ["AdvancedOrderCreateParams"]
+__all__ = ["AdvancedOrderUpdateParams"]
 
 
-class AdvancedOrderCreateParams(TypedDict, total=False):
+class AdvancedOrderUpdateParams(TypedDict, total=False):
     area_code: str
 
     comments: str

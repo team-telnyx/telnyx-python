@@ -111,7 +111,7 @@ class TestMessages:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_schedule(self, client: Telnyx) -> None:
         message = client.messages.schedule(
@@ -119,7 +119,7 @@ class TestMessages:
         )
         assert_matches_type(MessageScheduleResponse, message, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_schedule_with_all_params(self, client: Telnyx) -> None:
         message = client.messages.schedule(
@@ -138,7 +138,7 @@ class TestMessages:
         )
         assert_matches_type(MessageScheduleResponse, message, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_schedule(self, client: Telnyx) -> None:
         response = client.messages.with_raw_response.schedule(
@@ -150,7 +150,7 @@ class TestMessages:
         message = response.parse()
         assert_matches_type(MessageScheduleResponse, message, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_schedule(self, client: Telnyx) -> None:
         with client.messages.with_streaming_response.schedule(
@@ -164,7 +164,7 @@ class TestMessages:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_send(self, client: Telnyx) -> None:
         message = client.messages.send(
@@ -172,7 +172,7 @@ class TestMessages:
         )
         assert_matches_type(MessageSendResponse, message, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_send_with_all_params(self, client: Telnyx) -> None:
         message = client.messages.send(
@@ -191,7 +191,7 @@ class TestMessages:
         )
         assert_matches_type(MessageSendResponse, message, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_send(self, client: Telnyx) -> None:
         response = client.messages.with_raw_response.send(
@@ -203,7 +203,7 @@ class TestMessages:
         message = response.parse()
         assert_matches_type(MessageSendResponse, message, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_send(self, client: Telnyx) -> None:
         with client.messages.with_streaming_response.send(
@@ -217,7 +217,7 @@ class TestMessages:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_send_group_mms(self, client: Telnyx) -> None:
         message = client.messages.send_group_mms(
@@ -226,7 +226,7 @@ class TestMessages:
         )
         assert_matches_type(MessageSendGroupMmsResponse, message, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_send_group_mms_with_all_params(self, client: Telnyx) -> None:
         message = client.messages.send_group_mms(
@@ -241,7 +241,7 @@ class TestMessages:
         )
         assert_matches_type(MessageSendGroupMmsResponse, message, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_send_group_mms(self, client: Telnyx) -> None:
         response = client.messages.with_raw_response.send_group_mms(
@@ -254,7 +254,7 @@ class TestMessages:
         message = response.parse()
         assert_matches_type(MessageSendGroupMmsResponse, message, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_send_group_mms(self, client: Telnyx) -> None:
         with client.messages.with_streaming_response.send_group_mms(
@@ -269,7 +269,7 @@ class TestMessages:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_send_long_code(self, client: Telnyx) -> None:
         message = client.messages.send_long_code(
@@ -278,7 +278,7 @@ class TestMessages:
         )
         assert_matches_type(MessageSendLongCodeResponse, message, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_send_long_code_with_all_params(self, client: Telnyx) -> None:
         message = client.messages.send_long_code(
@@ -295,7 +295,7 @@ class TestMessages:
         )
         assert_matches_type(MessageSendLongCodeResponse, message, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_send_long_code(self, client: Telnyx) -> None:
         response = client.messages.with_raw_response.send_long_code(
@@ -308,7 +308,7 @@ class TestMessages:
         message = response.parse()
         assert_matches_type(MessageSendLongCodeResponse, message, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_send_long_code(self, client: Telnyx) -> None:
         with client.messages.with_streaming_response.send_long_code(
@@ -323,7 +323,7 @@ class TestMessages:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_send_number_pool(self, client: Telnyx) -> None:
         message = client.messages.send_number_pool(
@@ -332,7 +332,7 @@ class TestMessages:
         )
         assert_matches_type(MessageSendNumberPoolResponse, message, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_send_number_pool_with_all_params(self, client: Telnyx) -> None:
         message = client.messages.send_number_pool(
@@ -349,7 +349,7 @@ class TestMessages:
         )
         assert_matches_type(MessageSendNumberPoolResponse, message, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_send_number_pool(self, client: Telnyx) -> None:
         response = client.messages.with_raw_response.send_number_pool(
@@ -362,7 +362,7 @@ class TestMessages:
         message = response.parse()
         assert_matches_type(MessageSendNumberPoolResponse, message, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_send_number_pool(self, client: Telnyx) -> None:
         with client.messages.with_streaming_response.send_number_pool(
@@ -377,7 +377,7 @@ class TestMessages:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_send_short_code(self, client: Telnyx) -> None:
         message = client.messages.send_short_code(
@@ -386,7 +386,7 @@ class TestMessages:
         )
         assert_matches_type(MessageSendShortCodeResponse, message, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_send_short_code_with_all_params(self, client: Telnyx) -> None:
         message = client.messages.send_short_code(
@@ -403,7 +403,7 @@ class TestMessages:
         )
         assert_matches_type(MessageSendShortCodeResponse, message, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_send_short_code(self, client: Telnyx) -> None:
         response = client.messages.with_raw_response.send_short_code(
@@ -416,7 +416,7 @@ class TestMessages:
         message = response.parse()
         assert_matches_type(MessageSendShortCodeResponse, message, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_send_short_code(self, client: Telnyx) -> None:
         with client.messages.with_streaming_response.send_short_code(
@@ -521,7 +521,7 @@ class TestAsyncMessages:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_schedule(self, async_client: AsyncTelnyx) -> None:
         message = await async_client.messages.schedule(
@@ -529,7 +529,7 @@ class TestAsyncMessages:
         )
         assert_matches_type(MessageScheduleResponse, message, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_schedule_with_all_params(self, async_client: AsyncTelnyx) -> None:
         message = await async_client.messages.schedule(
@@ -548,7 +548,7 @@ class TestAsyncMessages:
         )
         assert_matches_type(MessageScheduleResponse, message, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_schedule(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.messages.with_raw_response.schedule(
@@ -560,7 +560,7 @@ class TestAsyncMessages:
         message = await response.parse()
         assert_matches_type(MessageScheduleResponse, message, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_schedule(self, async_client: AsyncTelnyx) -> None:
         async with async_client.messages.with_streaming_response.schedule(
@@ -574,7 +574,7 @@ class TestAsyncMessages:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_send(self, async_client: AsyncTelnyx) -> None:
         message = await async_client.messages.send(
@@ -582,7 +582,7 @@ class TestAsyncMessages:
         )
         assert_matches_type(MessageSendResponse, message, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_send_with_all_params(self, async_client: AsyncTelnyx) -> None:
         message = await async_client.messages.send(
@@ -601,7 +601,7 @@ class TestAsyncMessages:
         )
         assert_matches_type(MessageSendResponse, message, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_send(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.messages.with_raw_response.send(
@@ -613,7 +613,7 @@ class TestAsyncMessages:
         message = await response.parse()
         assert_matches_type(MessageSendResponse, message, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_send(self, async_client: AsyncTelnyx) -> None:
         async with async_client.messages.with_streaming_response.send(
@@ -627,7 +627,7 @@ class TestAsyncMessages:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_send_group_mms(self, async_client: AsyncTelnyx) -> None:
         message = await async_client.messages.send_group_mms(
@@ -636,7 +636,7 @@ class TestAsyncMessages:
         )
         assert_matches_type(MessageSendGroupMmsResponse, message, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_send_group_mms_with_all_params(self, async_client: AsyncTelnyx) -> None:
         message = await async_client.messages.send_group_mms(
@@ -651,7 +651,7 @@ class TestAsyncMessages:
         )
         assert_matches_type(MessageSendGroupMmsResponse, message, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_send_group_mms(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.messages.with_raw_response.send_group_mms(
@@ -664,7 +664,7 @@ class TestAsyncMessages:
         message = await response.parse()
         assert_matches_type(MessageSendGroupMmsResponse, message, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_send_group_mms(self, async_client: AsyncTelnyx) -> None:
         async with async_client.messages.with_streaming_response.send_group_mms(
@@ -679,7 +679,7 @@ class TestAsyncMessages:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_send_long_code(self, async_client: AsyncTelnyx) -> None:
         message = await async_client.messages.send_long_code(
@@ -688,7 +688,7 @@ class TestAsyncMessages:
         )
         assert_matches_type(MessageSendLongCodeResponse, message, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_send_long_code_with_all_params(self, async_client: AsyncTelnyx) -> None:
         message = await async_client.messages.send_long_code(
@@ -705,7 +705,7 @@ class TestAsyncMessages:
         )
         assert_matches_type(MessageSendLongCodeResponse, message, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_send_long_code(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.messages.with_raw_response.send_long_code(
@@ -718,7 +718,7 @@ class TestAsyncMessages:
         message = await response.parse()
         assert_matches_type(MessageSendLongCodeResponse, message, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_send_long_code(self, async_client: AsyncTelnyx) -> None:
         async with async_client.messages.with_streaming_response.send_long_code(
@@ -733,7 +733,7 @@ class TestAsyncMessages:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_send_number_pool(self, async_client: AsyncTelnyx) -> None:
         message = await async_client.messages.send_number_pool(
@@ -742,7 +742,7 @@ class TestAsyncMessages:
         )
         assert_matches_type(MessageSendNumberPoolResponse, message, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_send_number_pool_with_all_params(self, async_client: AsyncTelnyx) -> None:
         message = await async_client.messages.send_number_pool(
@@ -759,7 +759,7 @@ class TestAsyncMessages:
         )
         assert_matches_type(MessageSendNumberPoolResponse, message, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_send_number_pool(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.messages.with_raw_response.send_number_pool(
@@ -772,7 +772,7 @@ class TestAsyncMessages:
         message = await response.parse()
         assert_matches_type(MessageSendNumberPoolResponse, message, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_send_number_pool(self, async_client: AsyncTelnyx) -> None:
         async with async_client.messages.with_streaming_response.send_number_pool(
@@ -787,7 +787,7 @@ class TestAsyncMessages:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_send_short_code(self, async_client: AsyncTelnyx) -> None:
         message = await async_client.messages.send_short_code(
@@ -796,7 +796,7 @@ class TestAsyncMessages:
         )
         assert_matches_type(MessageSendShortCodeResponse, message, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_send_short_code_with_all_params(self, async_client: AsyncTelnyx) -> None:
         message = await async_client.messages.send_short_code(
@@ -813,7 +813,7 @@ class TestAsyncMessages:
         )
         assert_matches_type(MessageSendShortCodeResponse, message, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_send_short_code(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.messages.with_raw_response.send_short_code(
@@ -826,7 +826,7 @@ class TestAsyncMessages:
         message = await response.parse()
         assert_matches_type(MessageSendShortCodeResponse, message, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_send_short_code(self, async_client: AsyncTelnyx) -> None:
         async with async_client.messages.with_streaming_response.send_short_code(

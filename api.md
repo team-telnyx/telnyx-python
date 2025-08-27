@@ -134,6 +134,7 @@ Methods:
 
 - <code title="post /advanced_orders">client.advanced_orders.<a href="./src/telnyx/resources/advanced_orders.py">create</a>(\*\*<a href="src/telnyx/types/advanced_order_create_params.py">params</a>) -> object</code>
 - <code title="get /advanced_orders/{order_id}">client.advanced_orders.<a href="./src/telnyx/resources/advanced_orders.py">retrieve</a>(order_id) -> object</code>
+- <code title="patch /advanced_orders/{order_id}">client.advanced_orders.<a href="./src/telnyx/resources/advanced_orders.py">update</a>(order_id, \*\*<a href="src/telnyx/types/advanced_order_update_params.py">params</a>) -> object</code>
 - <code title="get /advanced_orders">client.advanced_orders.<a href="./src/telnyx/resources/advanced_orders.py">list</a>() -> object</code>
 
 # AI
