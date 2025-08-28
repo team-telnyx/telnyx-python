@@ -39,6 +39,80 @@ Methods:
 - <code title="get /{bucketName}">client.<a href="./src/telnyx/_client.py">list_objects</a>(bucket_name, \*\*<a href="src/telnyx/types/client_list_objects_params.py">params</a>) -> <a href="./src/telnyx/types/list_objects_response.py">ListObjectsResponse</a></code>
 - <code title="put /{bucketName}/{objectName}">client.<a href="./src/telnyx/_client.py">put_object</a>(object_name, \*, bucket_name, \*\*<a href="src/telnyx/types/client_put_object_params.py">params</a>) -> None</code>
 
+# Webhooks
+
+Types:
+
+```python
+from telnyx.types import (
+    CallAIGatherEndedWebhookEvent,
+    CallAIGatherMessageHistoryUpdatedWebhookEvent,
+    CallAIGatherPartialResultsWebhookEvent,
+    CustomerServiceRecordStatusChangedWebhookEvent,
+    CallAnsweredWebhookEvent,
+    CallBridgedWebhookEvent,
+    CallConversationEndedWebhookEvent,
+    CallConversationInsightsGeneratedWebhookEvent,
+    CallDtmfReceivedWebhookEvent,
+    CallEnqueuedWebhookEvent,
+    CallForkStartedWebhookEvent,
+    CallForkStoppedWebhookEvent,
+    CallGatherEndedWebhookEvent,
+    CallHangupWebhookEvent,
+    CallInitiatedWebhookEvent,
+    CallLeftQueueWebhookEvent,
+    CallMachineDetectionEndedWebhookEvent,
+    CallMachineGreetingEndedWebhookEvent,
+    CallMachinePremiumDetectionEndedWebhookEvent,
+    CallMachinePremiumGreetingEndedWebhookEvent,
+    CallPlaybackEndedWebhookEvent,
+    CallPlaybackStartedWebhookEvent,
+    CallRecordingErrorWebhookEvent,
+    CallRecordingSavedWebhookEvent,
+    CallRecordingTranscriptionSavedWebhookEvent,
+    CallReferCompletedWebhookEvent,
+    CallReferFailedWebhookEvent,
+    CallReferStartedWebhookEvent,
+    CallSiprecFailedWebhookEvent,
+    CallSiprecStartedWebhookEvent,
+    CallSiprecStoppedWebhookEvent,
+    CallSpeakEndedWebhookEvent,
+    CallSpeakStartedWebhookEvent,
+    CallStreamingFailedWebhookEvent,
+    CallStreamingStartedWebhookEvent,
+    CallStreamingStoppedWebhookEvent,
+    CampaignStatusUpdateWebhookEvent,
+    ConferenceCreatedWebhookEvent,
+    ConferenceEndedWebhookEvent,
+    ConferenceFloorChangedWebhookEvent,
+    ConferenceParticipantJoinedWebhookEvent,
+    ConferenceParticipantLeftWebhookEvent,
+    ConferenceParticipantPlaybackEndedWebhookEvent,
+    ConferenceParticipantPlaybackStartedWebhookEvent,
+    ConferenceParticipantSpeakEndedWebhookEvent,
+    ConferenceParticipantSpeakStartedWebhookEvent,
+    ConferencePlaybackEndedWebhookEvent,
+    ConferencePlaybackStartedWebhookEvent,
+    ConferenceRecordingSavedWebhookEvent,
+    ConferenceSpeakEndedWebhookEvent,
+    ConferenceSpeakStartedWebhookEvent,
+    DeliveryUpdateWebhookEvent,
+    FaxDeliveredWebhookEvent,
+    FaxFailedWebhookEvent,
+    FaxMediaProcessedWebhookEvent,
+    FaxQueuedWebhookEvent,
+    FaxSendingStartedWebhookEvent,
+    InboundMessageWebhookEvent,
+    NumberOrderStatusUpdateWebhookEvent,
+    ReplacedLinkClickWebhookEvent,
+    StreamingFailedWebhookEvent,
+    StreamingStartedWebhookEvent,
+    StreamingStoppedWebhookEvent,
+    TranscriptionWebhookEvent,
+    UnwrapWebhookEvent,
+)
+```
+
 # AccessIPAddress
 
 Types:
