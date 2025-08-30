@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.3.1-alpha (2025-08-30)
+
+Full Changelog: [v3.3.0-alpha...v3.3.1-alpha](https://github.com/team-telnyx/telnyx-python/compare/v3.3.0-alpha...v3.3.1-alpha)
+
+### Chores
+
+* **internal:** add Sequence related utils ([7b67814](https://github.com/team-telnyx/telnyx-python/commit/7b678144f51fa389e0277ce3f9ac3bbc5593636c))
+
 ## 3.3.0-alpha (2025-08-27)
 
 Full Changelog: [v3.2.0-alpha...v3.3.0-alpha](https://github.com/team-telnyx/telnyx-python/compare/v3.2.0-alpha...v3.3.0-alpha)
