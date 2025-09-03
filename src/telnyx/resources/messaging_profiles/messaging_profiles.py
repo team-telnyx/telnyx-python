@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import Optional
 from typing_extensions import Literal
 
 import httpx
@@ -14,7 +14,7 @@ from ...types import (
     messaging_profile_list_short_codes_params,
     messaging_profile_list_phone_numbers_params,
 )
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -74,7 +74,7 @@ class MessagingProfilesResource(SyncAPIResource):
         self,
         *,
         name: str,
-        whitelisted_destinations: List[str],
+        whitelisted_destinations: SequenceNotStr[str],
         alpha_sender: Optional[str] | NotGiven = NOT_GIVEN,
         daily_spend_limit: str | NotGiven = NOT_GIVEN,
         daily_spend_limit_enabled: bool | NotGiven = NOT_GIVEN,
@@ -223,7 +223,7 @@ class MessagingProfilesResource(SyncAPIResource):
         webhook_api_version: Literal["1", "2", "2010-04-01"] | NotGiven = NOT_GIVEN,
         webhook_failover_url: Optional[str] | NotGiven = NOT_GIVEN,
         webhook_url: Optional[str] | NotGiven = NOT_GIVEN,
-        whitelisted_destinations: List[str] | NotGiven = NOT_GIVEN,
+        whitelisted_destinations: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -513,7 +513,7 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
         self,
         *,
         name: str,
-        whitelisted_destinations: List[str],
+        whitelisted_destinations: SequenceNotStr[str],
         alpha_sender: Optional[str] | NotGiven = NOT_GIVEN,
         daily_spend_limit: str | NotGiven = NOT_GIVEN,
         daily_spend_limit_enabled: bool | NotGiven = NOT_GIVEN,
@@ -662,7 +662,7 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
         webhook_api_version: Literal["1", "2", "2010-04-01"] | NotGiven = NOT_GIVEN,
         webhook_failover_url: Optional[str] | NotGiven = NOT_GIVEN,
         webhook_url: Optional[str] | NotGiven = NOT_GIVEN,
-        whitelisted_destinations: List[str] | NotGiven = NOT_GIVEN,
+        whitelisted_destinations: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

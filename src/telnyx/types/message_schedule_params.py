@@ -2,10 +2,11 @@
 
 from __future__ import annotations
 
-from typing import List, Union
+from typing import Union
 from datetime import datetime
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
+from .._types import SequenceNotStr
 from .._utils import PropertyInfo
 
 __all__ = ["MessageScheduleParams"]
@@ -30,7 +31,7 @@ class MessageScheduleParams(TypedDict, total=False):
     ID.**
     """
 
-    media_urls: List[str]
+    media_urls: SequenceNotStr[str]
     """A list of media URLs. The total media size must be less than 1 MB.
 
     **Required for MMS**

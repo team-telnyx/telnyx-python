@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Literal, TypedDict
+
+from .._types import SequenceNotStr
 
 __all__ = ["InboundIPParam"]
 
@@ -21,7 +22,7 @@ class InboundIPParam(TypedDict, total=False):
     associated with this connection.
     """
 
-    codecs: List[str]
+    codecs: SequenceNotStr[str]
     """
     Defines the list of codecs that Telnyx will send for inbound calls to a specific
     number on your portal account, in priority order. This only works when the

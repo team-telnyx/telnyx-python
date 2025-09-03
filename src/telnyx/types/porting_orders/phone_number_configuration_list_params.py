@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import List
 from typing_extensions import Literal, Annotated, TypedDict
 
+from ..._types import SequenceNotStr
 from ..._utils import PropertyInfo
 
 __all__ = ["PhoneNumberConfigurationListParams", "Filter", "Page", "Sort"]
@@ -47,10 +48,10 @@ class Filter(TypedDict, total=False):
     ]
     """Filter results by specific porting order statuses"""
 
-    porting_phone_number: List[str]
+    porting_phone_number: SequenceNotStr[str]
     """Filter results by a list of porting phone number IDs"""
 
-    user_bundle_id: List[str]
+    user_bundle_id: SequenceNotStr[str]
     """Filter results by a list of user bundle IDs"""
 
 

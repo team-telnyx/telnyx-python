@@ -2,12 +2,13 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Required, TypedDict
+
+from ..._types import SequenceNotStr
 
 __all__ = ["ActionVerifyOwnershipParams"]
 
 
 class ActionVerifyOwnershipParams(TypedDict, total=False):
-    phone_numbers: Required[List[str]]
+    phone_numbers: Required[SequenceNotStr[str]]
     """Array of phone numbers to verify ownership for"""

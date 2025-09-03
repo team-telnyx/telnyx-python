@@ -2,13 +2,12 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Literal
 
 import httpx
 
 from ...types import report_list_mdrs_params, report_list_wdrs_params
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -157,7 +156,7 @@ class ReportsResource(SyncAPIResource):
         sim_card_id: str | NotGiven = NOT_GIVEN,
         sim_group_id: str | NotGiven = NOT_GIVEN,
         sim_group_name: str | NotGiven = NOT_GIVEN,
-        sort: List[str] | NotGiven = NOT_GIVEN,
+        sort: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         start_date: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -349,7 +348,7 @@ class AsyncReportsResource(AsyncAPIResource):
         sim_card_id: str | NotGiven = NOT_GIVEN,
         sim_group_id: str | NotGiven = NOT_GIVEN,
         sim_group_name: str | NotGiven = NOT_GIVEN,
-        sort: List[str] | NotGiven = NOT_GIVEN,
+        sort: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         start_date: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

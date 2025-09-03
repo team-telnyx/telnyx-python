@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Union
+from typing import Union
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
+from ..._types import SequenceNotStr
 from ..calls.aws_voice_settings_param import AwsVoiceSettingsParam
 from ..calls.telnyx_voice_settings_param import TelnyxVoiceSettingsParam
 from ..calls.eleven_labs_voice_settings_param import ElevenLabsVoiceSettingsParam
@@ -47,7 +48,7 @@ class ActionSpeakParams(TypedDict, total=False):
     female).
     """
 
-    call_control_ids: List[str]
+    call_control_ids: SequenceNotStr[str]
     """Call Control IDs of participants who will hear the spoken text.
 
     When empty all participants will hear the spoken text.

@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Literal, Required, TypedDict
 
+from .._types import SequenceNotStr
 from .dtmf_type import DtmfType
 from .anchorsite_override import AnchorsiteOverride
 
@@ -56,7 +56,7 @@ class TexmlApplicationUpdateParams(TypedDict, total=False):
     status_callback_method: Literal["get", "post"]
     """HTTP request method Telnyx should use when requesting the status_callback URL."""
 
-    tags: List[str]
+    tags: SequenceNotStr[str]
     """Tags associated with the Texml Application."""
 
     voice_fallback_url: str

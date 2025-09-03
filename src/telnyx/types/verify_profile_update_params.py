@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Optional
+from typing import Dict, Union, Optional
 from typing_extensions import TypeAlias, TypedDict
+
+from .._types import SequenceNotStr
 
 __all__ = ["VerifyProfileUpdateParams", "Call", "Flashcall", "SMS"]
 
@@ -45,7 +47,7 @@ class CallTyped(TypedDict, total=False):
     messaging_template_id: str
     """The message template identifier selected from /verify_profiles/templates"""
 
-    whitelisted_destinations: List[str]
+    whitelisted_destinations: SequenceNotStr[str]
     """Enabled country destinations to send verification codes.
 
     The elements in the list must be valid ISO 3166-1 alpha-2 country codes. If set
@@ -65,7 +67,7 @@ class FlashcallTyped(TypedDict, total=False):
     identity.
     """
 
-    whitelisted_destinations: List[str]
+    whitelisted_destinations: SequenceNotStr[str]
     """Enabled country destinations to send verification codes.
 
     The elements in the list must be valid ISO 3166-1 alpha-2 country codes. If set
@@ -103,7 +105,7 @@ class SMSTyped(TypedDict, total=False):
     messaging_template_id: str
     """The message template identifier selected from /verify_profiles/templates"""
 
-    whitelisted_destinations: List[str]
+    whitelisted_destinations: SequenceNotStr[str]
     """Enabled country destinations to send verification codes.
 
     The elements in the list must be valid ISO 3166-1 alpha-2 country codes. If set

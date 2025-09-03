@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable
+from typing import Union, Iterable
 from typing_extensions import Literal
 
 import httpx
@@ -22,7 +22,7 @@ from .actions import (
     ActionsResourceWithStreamingResponse,
     AsyncActionsResourceWithStreamingResponse,
 )
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -77,7 +77,7 @@ class CallsResource(SyncAPIResource):
         *,
         connection_id: str,
         from_: str,
-        to: Union[str, List[str]],
+        to: Union[str, SequenceNotStr[str]],
         answering_machine_detection: Literal[
             "premium", "detect", "detect_beep", "detect_words", "greeting_end", "disabled"
         ]
@@ -457,7 +457,7 @@ class AsyncCallsResource(AsyncAPIResource):
         *,
         connection_id: str,
         from_: str,
-        to: Union[str, List[str]],
+        to: Union[str, SequenceNotStr[str]],
         answering_machine_detection: Literal[
             "premium", "detect", "detect_beep", "detect_words", "greeting_end", "disabled"
         ]

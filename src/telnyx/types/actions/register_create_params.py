@@ -2,14 +2,15 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Literal, Required, TypedDict
+
+from ..._types import SequenceNotStr
 
 __all__ = ["RegisterCreateParams"]
 
 
 class RegisterCreateParams(TypedDict, total=False):
-    registration_codes: Required[List[str]]
+    registration_codes: Required[SequenceNotStr[str]]
 
     sim_card_group_id: str
     """The group SIMCardGroup identification.
@@ -21,5 +22,5 @@ class RegisterCreateParams(TypedDict, total=False):
     status: Literal["enabled", "disabled", "standby"]
     """Status on which the SIM card will be set after being successful registered."""
 
-    tags: List[str]
+    tags: SequenceNotStr[str]
     """Searchable tags associated with the SIM card"""

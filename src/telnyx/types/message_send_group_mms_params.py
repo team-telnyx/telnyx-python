@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Required, Annotated, TypedDict
 
+from .._types import SequenceNotStr
 from .._utils import PropertyInfo
 
 __all__ = ["MessageSendGroupMmsParams"]
@@ -14,10 +14,10 @@ class MessageSendGroupMmsParams(TypedDict, total=False):
     from_: Required[Annotated[str, PropertyInfo(alias="from")]]
     """Phone number, in +E.164 format, used to send the message."""
 
-    to: Required[List[str]]
+    to: Required[SequenceNotStr[str]]
     """A list of destinations. No more than 8 destinations are allowed."""
 
-    media_urls: List[str]
+    media_urls: SequenceNotStr[str]
     """A list of media URLs. The total media size must be less than 1 MB."""
 
     subject: str

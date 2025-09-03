@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import TypedDict
+
+from ..._types import SequenceNotStr
 
 __all__ = ["UserBundleListParams", "Filter", "Page"]
 
@@ -27,10 +28,10 @@ class UserBundleListParams(TypedDict, total=False):
 
 
 class Filter(TypedDict, total=False):
-    country_iso: List[str]
+    country_iso: SequenceNotStr[str]
     """Filter by country code."""
 
-    resource: List[str]
+    resource: SequenceNotStr[str]
     """Filter by resource."""
 
 

@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Required, TypedDict
+
+from .._types import SequenceNotStr
 
 __all__ = ["MessagingNumbersBulkUpdateCreateParams"]
 
@@ -18,5 +19,5 @@ class MessagingNumbersBulkUpdateCreateParams(TypedDict, total=False):
       to that messaging profile
     """
 
-    numbers: Required[List[str]]
+    numbers: Required[SequenceNotStr[str]]
     """The list of phone numbers to update."""

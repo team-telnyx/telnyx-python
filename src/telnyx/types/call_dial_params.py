@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable
+from typing import Union, Iterable
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
+from .._types import SequenceNotStr
 from .._utils import PropertyInfo
 from .stream_codec import StreamCodec
 from .sip_header_param import SipHeaderParam
@@ -32,7 +33,7 @@ class CallDialParams(TypedDict, total=False):
     number). The number should be in +E164 format.
     """
 
-    to: Required[Union[str, List[str]]]
+    to: Required[Union[str, SequenceNotStr[str]]]
     """The DID or SIP URI to dial out to.
 
     Multiple DID or SIP URIs can be provided using an array of strings
@@ -427,7 +428,7 @@ class ConferenceConfig(TypedDict, total=False):
     Defaults to "none".
     """
 
-    whisper_call_control_ids: List[str]
+    whisper_call_control_ids: SequenceNotStr[str]
     """Array of unique call_control_ids the joining supervisor can whisper to.
 
     If none provided, the supervisor will join the conference as a monitoring

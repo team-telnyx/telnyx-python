@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Literal, Required, TypedDict
+
+from .._types import SequenceNotStr
 
 __all__ = ["WirelessBlocklistCreateParams"]
 
@@ -15,5 +16,5 @@ class WirelessBlocklistCreateParams(TypedDict, total=False):
     type: Required[Literal["country", "mcc", "plmn"]]
     """The type of wireless blocklist."""
 
-    values: Required[List[str]]
+    values: Required[SequenceNotStr[str]]
     """Values to block. The values here depend on the `type` of Wireless Blocklist."""

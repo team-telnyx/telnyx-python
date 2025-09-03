@@ -2,12 +2,12 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import Optional
 from typing_extensions import Literal
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -142,7 +142,7 @@ class JobsResource(SyncAPIResource):
     def delete_batch(
         self,
         *,
-        phone_numbers: List[str],
+        phone_numbers: SequenceNotStr[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -176,14 +176,14 @@ class JobsResource(SyncAPIResource):
     def update_batch(
         self,
         *,
-        phone_numbers: List[str],
+        phone_numbers: SequenceNotStr[str],
         filter: job_update_batch_params.Filter | NotGiven = NOT_GIVEN,
         billing_group_id: str | NotGiven = NOT_GIVEN,
         connection_id: str | NotGiven = NOT_GIVEN,
         customer_reference: str | NotGiven = NOT_GIVEN,
         external_pin: str | NotGiven = NOT_GIVEN,
         hd_voice_enabled: bool | NotGiven = NOT_GIVEN,
-        tags: List[str] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         voice: UpdateVoiceSettingsParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -272,7 +272,7 @@ class JobsResource(SyncAPIResource):
         self,
         *,
         emergency_enabled: bool,
-        phone_numbers: List[str],
+        phone_numbers: SequenceNotStr[str],
         emergency_address_id: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -425,7 +425,7 @@ class AsyncJobsResource(AsyncAPIResource):
     async def delete_batch(
         self,
         *,
-        phone_numbers: List[str],
+        phone_numbers: SequenceNotStr[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -461,14 +461,14 @@ class AsyncJobsResource(AsyncAPIResource):
     async def update_batch(
         self,
         *,
-        phone_numbers: List[str],
+        phone_numbers: SequenceNotStr[str],
         filter: job_update_batch_params.Filter | NotGiven = NOT_GIVEN,
         billing_group_id: str | NotGiven = NOT_GIVEN,
         connection_id: str | NotGiven = NOT_GIVEN,
         customer_reference: str | NotGiven = NOT_GIVEN,
         external_pin: str | NotGiven = NOT_GIVEN,
         hd_voice_enabled: bool | NotGiven = NOT_GIVEN,
-        tags: List[str] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         voice: UpdateVoiceSettingsParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -557,7 +557,7 @@ class AsyncJobsResource(AsyncAPIResource):
         self,
         *,
         emergency_enabled: bool,
-        phone_numbers: List[str],
+        phone_numbers: SequenceNotStr[str],
         emergency_address_id: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

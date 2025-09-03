@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import TypedDict
+
+from .._types import SequenceNotStr
 
 __all__ = ["PortingOrderPhoneNumberConfigurationParam"]
 
@@ -21,4 +22,4 @@ class PortingOrderPhoneNumberConfigurationParam(TypedDict, total=False):
     messaging_profile_id: str
     """identifies the messaging profile to set on the numbers when ported"""
 
-    tags: List[str]
+    tags: SequenceNotStr[str]

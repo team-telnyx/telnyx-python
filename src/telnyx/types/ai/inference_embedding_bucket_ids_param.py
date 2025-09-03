@@ -2,14 +2,15 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Required, TypedDict
+
+from ..._types import SequenceNotStr
 
 __all__ = ["InferenceEmbeddingBucketIDsParam"]
 
 
 class InferenceEmbeddingBucketIDsParam(TypedDict, total=False):
-    bucket_ids: Required[List[str]]
+    bucket_ids: Required[SequenceNotStr[str]]
     """
     List of
     [embedded storage buckets](https://developers.telnyx.com/api/inference/inference-embedding/post-embedding)

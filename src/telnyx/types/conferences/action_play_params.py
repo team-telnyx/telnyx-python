@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import TypedDict
 
+from ..._types import SequenceNotStr
 from ..calls.loopcount_param import LoopcountParam
 
 __all__ = ["ActionPlayParams"]
@@ -17,7 +17,7 @@ class ActionPlayParams(TypedDict, total=False):
     media_name and audio_url cannot be used together in one request.
     """
 
-    call_control_ids: List[str]
+    call_control_ids: SequenceNotStr[str]
     """
     List of call control ids identifying participants the audio file should be
     played to. If not given, the audio file will be played to the entire conference.

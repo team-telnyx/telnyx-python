@@ -2,12 +2,11 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Literal
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -80,7 +79,7 @@ class ActionsResource(SyncAPIResource):
         call_control_id: str,
         supervisor_role: Literal["barge", "monitor", "none", "whisper"],
         command_id: str | NotGiven = NOT_GIVEN,
-        whisper_call_control_ids: List[str] | NotGiven = NOT_GIVEN,
+        whisper_call_control_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -140,7 +139,7 @@ class ActionsResource(SyncAPIResource):
         id: str,
         *,
         audio_url: str | NotGiven = NOT_GIVEN,
-        call_control_ids: List[str] | NotGiven = NOT_GIVEN,
+        call_control_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         media_name: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -206,7 +205,7 @@ class ActionsResource(SyncAPIResource):
         soft_end_conference_on_exit: bool | NotGiven = NOT_GIVEN,
         start_conference_on_enter: bool | NotGiven = NOT_GIVEN,
         supervisor_role: Literal["barge", "monitor", "none", "whisper"] | NotGiven = NOT_GIVEN,
-        whisper_call_control_ids: List[str] | NotGiven = NOT_GIVEN,
+        whisper_call_control_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -381,7 +380,7 @@ class ActionsResource(SyncAPIResource):
         self,
         id: str,
         *,
-        call_control_ids: List[str] | NotGiven = NOT_GIVEN,
+        call_control_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -420,7 +419,7 @@ class ActionsResource(SyncAPIResource):
         id: str,
         *,
         audio_url: str | NotGiven = NOT_GIVEN,
-        call_control_ids: List[str] | NotGiven = NOT_GIVEN,
+        call_control_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         loop: LoopcountParam | NotGiven = NOT_GIVEN,
         media_name: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -703,7 +702,7 @@ class ActionsResource(SyncAPIResource):
         *,
         payload: str,
         voice: str,
-        call_control_ids: List[str] | NotGiven = NOT_GIVEN,
+        call_control_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         command_id: str | NotGiven = NOT_GIVEN,
         language: Literal[
             "arb",
@@ -830,7 +829,7 @@ class ActionsResource(SyncAPIResource):
         self,
         id: str,
         *,
-        call_control_ids: List[str] | NotGiven = NOT_GIVEN,
+        call_control_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -868,7 +867,7 @@ class ActionsResource(SyncAPIResource):
         self,
         id: str,
         *,
-        call_control_ids: List[str],
+        call_control_ids: SequenceNotStr[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -906,7 +905,7 @@ class ActionsResource(SyncAPIResource):
         self,
         id: str,
         *,
-        call_control_ids: List[str] | NotGiven = NOT_GIVEN,
+        call_control_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -968,7 +967,7 @@ class AsyncActionsResource(AsyncAPIResource):
         call_control_id: str,
         supervisor_role: Literal["barge", "monitor", "none", "whisper"],
         command_id: str | NotGiven = NOT_GIVEN,
-        whisper_call_control_ids: List[str] | NotGiven = NOT_GIVEN,
+        whisper_call_control_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1028,7 +1027,7 @@ class AsyncActionsResource(AsyncAPIResource):
         id: str,
         *,
         audio_url: str | NotGiven = NOT_GIVEN,
-        call_control_ids: List[str] | NotGiven = NOT_GIVEN,
+        call_control_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         media_name: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1094,7 +1093,7 @@ class AsyncActionsResource(AsyncAPIResource):
         soft_end_conference_on_exit: bool | NotGiven = NOT_GIVEN,
         start_conference_on_enter: bool | NotGiven = NOT_GIVEN,
         supervisor_role: Literal["barge", "monitor", "none", "whisper"] | NotGiven = NOT_GIVEN,
-        whisper_call_control_ids: List[str] | NotGiven = NOT_GIVEN,
+        whisper_call_control_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1269,7 +1268,7 @@ class AsyncActionsResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        call_control_ids: List[str] | NotGiven = NOT_GIVEN,
+        call_control_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1310,7 +1309,7 @@ class AsyncActionsResource(AsyncAPIResource):
         id: str,
         *,
         audio_url: str | NotGiven = NOT_GIVEN,
-        call_control_ids: List[str] | NotGiven = NOT_GIVEN,
+        call_control_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         loop: LoopcountParam | NotGiven = NOT_GIVEN,
         media_name: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1593,7 +1592,7 @@ class AsyncActionsResource(AsyncAPIResource):
         *,
         payload: str,
         voice: str,
-        call_control_ids: List[str] | NotGiven = NOT_GIVEN,
+        call_control_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         command_id: str | NotGiven = NOT_GIVEN,
         language: Literal[
             "arb",
@@ -1720,7 +1719,7 @@ class AsyncActionsResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        call_control_ids: List[str] | NotGiven = NOT_GIVEN,
+        call_control_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1760,7 +1759,7 @@ class AsyncActionsResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        call_control_ids: List[str],
+        call_control_ids: SequenceNotStr[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1800,7 +1799,7 @@ class AsyncActionsResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        call_control_ids: List[str] | NotGiven = NOT_GIVEN,
+        call_control_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

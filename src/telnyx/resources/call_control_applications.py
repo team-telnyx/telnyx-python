@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import Optional
 from typing_extensions import Literal
 
 import httpx
@@ -12,7 +12,7 @@ from ..types import (
     call_control_application_create_params,
     call_control_application_update_params,
 )
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -194,7 +194,7 @@ class CallControlApplicationsResource(SyncAPIResource):
         inbound: CallControlApplicationInboundParam | NotGiven = NOT_GIVEN,
         outbound: CallControlApplicationOutboundParam | NotGiven = NOT_GIVEN,
         redact_dtmf_debug_logging: bool | NotGiven = NOT_GIVEN,
-        tags: List[str] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         webhook_api_version: Literal["1", "2"] | NotGiven = NOT_GIVEN,
         webhook_event_failover_url: Optional[str] | NotGiven = NOT_GIVEN,
         webhook_timeout_secs: Optional[int] | NotGiven = NOT_GIVEN,
@@ -541,7 +541,7 @@ class AsyncCallControlApplicationsResource(AsyncAPIResource):
         inbound: CallControlApplicationInboundParam | NotGiven = NOT_GIVEN,
         outbound: CallControlApplicationOutboundParam | NotGiven = NOT_GIVEN,
         redact_dtmf_debug_logging: bool | NotGiven = NOT_GIVEN,
-        tags: List[str] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         webhook_api_version: Literal["1", "2"] | NotGiven = NOT_GIVEN,
         webhook_event_failover_url: Optional[str] | NotGiven = NOT_GIVEN,
         webhook_timeout_secs: Optional[int] | NotGiven = NOT_GIVEN,

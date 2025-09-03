@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Literal, TypedDict
+
+from ..._types import SequenceNotStr
 
 __all__ = ["ActionRequirementListParams", "Filter", "Page", "Sort"]
 
@@ -27,7 +28,7 @@ class ActionRequirementListParams(TypedDict, total=False):
 
 
 class Filter(TypedDict, total=False):
-    id: List[str]
+    id: SequenceNotStr[str]
     """Filter action requirements by a list of IDs"""
 
     action_type: Literal["au_id_verification"]

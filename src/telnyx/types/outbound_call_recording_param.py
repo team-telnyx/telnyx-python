@@ -2,14 +2,15 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Literal, TypedDict
+
+from .._types import SequenceNotStr
 
 __all__ = ["OutboundCallRecordingParam"]
 
 
 class OutboundCallRecordingParam(TypedDict, total=False):
-    call_recording_caller_phone_numbers: List[str]
+    call_recording_caller_phone_numbers: SequenceNotStr[str]
     """
     When call_recording_type is 'by_caller_phone_number', only outbound calls using
     one of these numbers will be recorded. Numbers must be specified in E164 format.

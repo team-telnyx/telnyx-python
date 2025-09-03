@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Literal, Required, TypedDict
+
+from ..._types import SequenceNotStr
 
 __all__ = ["ActionUpdateParams"]
 
@@ -29,7 +30,7 @@ class ActionUpdateParams(TypedDict, total=False):
     has already been executed.
     """
 
-    whisper_call_control_ids: List[str]
+    whisper_call_control_ids: SequenceNotStr[str]
     """Array of unique call_control_ids the supervisor can whisper to.
 
     If none provided, the supervisor will join the conference as a monitoring

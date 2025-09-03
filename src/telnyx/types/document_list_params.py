@@ -6,6 +6,7 @@ from typing import List, Union
 from datetime import datetime
 from typing_extensions import Literal, Annotated, TypedDict
 
+from .._types import SequenceNotStr
 from .._utils import PropertyInfo
 
 __all__ = ["DocumentListParams", "Filter", "FilterCreatedAt", "FilterCustomerReference", "FilterFilename", "Page"]
@@ -43,7 +44,7 @@ class FilterCreatedAt(TypedDict, total=False):
 _FilterCustomerReferenceReservedKeywords = TypedDict(
     "_FilterCustomerReferenceReservedKeywords",
     {
-        "in": List[str],
+        "in": SequenceNotStr[str],
     },
     total=False,
 )

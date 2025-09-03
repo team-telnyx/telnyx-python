@@ -2,14 +2,15 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import TypedDict
+
+from ..._types import SequenceNotStr
 
 __all__ = ["ActionMuteParams"]
 
 
 class ActionMuteParams(TypedDict, total=False):
-    call_control_ids: List[str]
+    call_control_ids: SequenceNotStr[str]
     """Array of unique identifiers and tokens for controlling the call.
 
     When empty all participants will be muted.
