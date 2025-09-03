@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import Optional
 from typing_extensions import Literal, TypedDict
 
+from .._types import SequenceNotStr
 from .number_pool_settings_param import NumberPoolSettingsParam
 from .url_shortener_settings_param import URLShortenerSettingsParam
 
@@ -77,7 +78,7 @@ class MessagingProfileUpdateParams(TypedDict, total=False):
     webhook_url: Optional[str]
     """The URL where webhooks related to this messaging profile will be sent."""
 
-    whitelisted_destinations: List[str]
+    whitelisted_destinations: SequenceNotStr[str]
     """Destinations to which the messaging profile is allowed to send.
 
     The elements in the list must be valid ISO 3166-1 alpha-2 country codes. If set

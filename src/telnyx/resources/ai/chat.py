@@ -2,12 +2,12 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Iterable
+from typing import Dict, Iterable
 from typing_extensions import Literal
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ...types.ai import chat_create_completion_params
@@ -51,7 +51,7 @@ class ChatResource(SyncAPIResource):
         best_of: int | NotGiven = NOT_GIVEN,
         early_stopping: bool | NotGiven = NOT_GIVEN,
         frequency_penalty: float | NotGiven = NOT_GIVEN,
-        guided_choice: List[str] | NotGiven = NOT_GIVEN,
+        guided_choice: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         guided_json: Dict[str, object] | NotGiven = NOT_GIVEN,
         guided_regex: str | NotGiven = NOT_GIVEN,
         length_penalty: float | NotGiven = NOT_GIVEN,
@@ -226,7 +226,7 @@ class AsyncChatResource(AsyncAPIResource):
         best_of: int | NotGiven = NOT_GIVEN,
         early_stopping: bool | NotGiven = NOT_GIVEN,
         frequency_penalty: float | NotGiven = NOT_GIVEN,
-        guided_choice: List[str] | NotGiven = NOT_GIVEN,
+        guided_choice: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         guided_json: Dict[str, object] | NotGiven = NOT_GIVEN,
         guided_regex: str | NotGiven = NOT_GIVEN,
         length_penalty: float | NotGiven = NOT_GIVEN,

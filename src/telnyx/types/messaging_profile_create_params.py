@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import Optional
 from typing_extensions import Literal, Required, TypedDict
 
+from .._types import SequenceNotStr
 from .number_pool_settings_param import NumberPoolSettingsParam
 from .url_shortener_settings_param import URLShortenerSettingsParam
 
@@ -15,7 +16,7 @@ class MessagingProfileCreateParams(TypedDict, total=False):
     name: Required[str]
     """A user friendly name for the messaging profile."""
 
-    whitelisted_destinations: Required[List[str]]
+    whitelisted_destinations: Required[SequenceNotStr[str]]
     """Destinations to which the messaging profile is allowed to send.
 
     The elements in the list must be valid ISO 3166-1 alpha-2 country codes. If set

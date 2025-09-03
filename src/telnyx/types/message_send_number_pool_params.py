@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Literal, Required, TypedDict
+
+from .._types import SequenceNotStr
 
 __all__ = ["MessageSendNumberPoolParams"]
 
@@ -21,7 +22,7 @@ class MessageSendNumberPoolParams(TypedDict, total=False):
     recommended limit of message parts.
     """
 
-    media_urls: List[str]
+    media_urls: SequenceNotStr[str]
     """A list of media URLs. The total media size must be less than 1 MB.
 
     **Required for MMS**

@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Iterable
+from typing import Dict, Union, Iterable
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
+from ..._types import SequenceNotStr
 from .inference_embedding_bucket_ids_param import InferenceEmbeddingBucketIDsParam
 
 __all__ = [
@@ -48,7 +49,7 @@ class ChatCreateCompletionParams(TypedDict, total=False):
     frequency_penalty: float
     """Higher values will penalize the model from repeating the same output tokens."""
 
-    guided_choice: List[str]
+    guided_choice: SequenceNotStr[str]
     """If specified, the output will be exactly one of the choices."""
 
     guided_json: Dict[str, object]

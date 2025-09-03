@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Union
+from typing import Union
 from typing_extensions import Literal, Annotated, TypedDict
 
+from .._types import SequenceNotStr
 from .._utils import PropertyInfo
 
 __all__ = ["PhoneNumberSlimListParams", "Filter", "FilterNumberType", "FilterVoiceConnectionName", "Page"]
@@ -79,7 +80,7 @@ class Filter(TypedDict, total=False):
     connection_id: str
     """Filter by connection_id."""
 
-    country_iso_alpha2: Union[str, List[str]]
+    country_iso_alpha2: Union[str, SequenceNotStr[str]]
     """Filter by phone number country ISO alpha-2 code.
 
     Can be a single value or an array of values.

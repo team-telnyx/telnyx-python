@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import TypedDict
+
+from .._types import SequenceNotStr
 
 __all__ = ["ReportListWdrsParams", "Page"]
 
@@ -42,7 +43,7 @@ class ReportListWdrsParams(TypedDict, total=False):
     sim_group_name: str
     """Sim group name"""
 
-    sort: List[str]
+    sort: SequenceNotStr[str]
     """Field used to order the data.
 
     If no field is specified, default value is 'created_at'

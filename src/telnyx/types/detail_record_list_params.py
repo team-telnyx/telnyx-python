@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union
+from typing import Dict, Union
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
+
+from .._types import SequenceNotStr
 
 __all__ = ["DetailRecordListParams", "Filter", "Page"]
 
@@ -22,7 +24,7 @@ class DetailRecordListParams(TypedDict, total=False):
     Originally: page[number], page[size]
     """
 
-    sort: List[str]
+    sort: SequenceNotStr[str]
     """Specifies the sort order for results. <br/>Example: sort=-created_at"""
 
 

@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import TypedDict
+
+from .._types import SequenceNotStr
 
 __all__ = ["MessagingHostedNumberOrderCreateParams"]
 
@@ -15,5 +16,5 @@ class MessagingHostedNumberOrderCreateParams(TypedDict, total=False):
     is complete.
     """
 
-    phone_numbers: List[str]
+    phone_numbers: SequenceNotStr[str]
     """Phone numbers to be used for hosted messaging."""

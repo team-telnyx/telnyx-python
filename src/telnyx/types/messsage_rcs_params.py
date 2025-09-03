@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Literal, Required, TypedDict
 
+from .._types import SequenceNotStr
 from .rcs_agent_message_param import RcsAgentMessageParam
 
 __all__ = ["MesssageRcsParams", "MmsFallback", "SMSFallback"]
@@ -43,7 +43,7 @@ _MmsFallbackReservedKeywords = TypedDict(
 
 
 class MmsFallback(_MmsFallbackReservedKeywords, total=False):
-    media_urls: List[str]
+    media_urls: SequenceNotStr[str]
     """List of media URLs"""
 
     subject: str

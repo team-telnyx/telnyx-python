@@ -2,10 +2,11 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Iterable
+from typing import Dict, Union, Iterable
 from datetime import datetime
 from typing_extensions import Required, Annotated, TypedDict
 
+from ...._types import SequenceNotStr
 from ...._utils import PropertyInfo
 
 __all__ = ["MessageCreateParams"]
@@ -16,7 +17,7 @@ class MessageCreateParams(TypedDict, total=False):
 
     content: str
 
-    metadata: Dict[str, Union[str, int, bool, List[Union[str, int, bool]]]]
+    metadata: Dict[str, Union[str, int, bool, SequenceNotStr[Union[str, int, bool]]]]
 
     name: str
 

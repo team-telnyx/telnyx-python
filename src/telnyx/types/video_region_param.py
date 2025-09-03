@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import Optional
 from typing_extensions import TypedDict
+
+from .._types import SequenceNotStr
 
 __all__ = ["VideoRegionParam"]
 
@@ -26,7 +28,7 @@ class VideoRegionParam(TypedDict, total=False):
     video sources.
     """
 
-    video_sources: List[str]
+    video_sources: SequenceNotStr[str]
     """Array of video recording ids to be composed in the region.
 
     Can be "\\**" to specify all video recordings in the session

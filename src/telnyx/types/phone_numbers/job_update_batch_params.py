@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
+from ..._types import SequenceNotStr
 from ..._utils import PropertyInfo
 from .update_voice_settings_param import UpdateVoiceSettingsParam
 
@@ -12,7 +12,7 @@ __all__ = ["JobUpdateBatchParams", "Filter", "FilterVoiceConnectionName"]
 
 
 class JobUpdateBatchParams(TypedDict, total=False):
-    phone_numbers: Required[List[str]]
+    phone_numbers: Required[SequenceNotStr[str]]
     """Array of phone number ids and/or phone numbers in E164 format to update.
 
     This parameter is required if no filter parameters are provided. If you want to
@@ -54,7 +54,7 @@ class JobUpdateBatchParams(TypedDict, total=False):
     details about it can be found in the Telnyx support documentation.
     """
 
-    tags: List[str]
+    tags: SequenceNotStr[str]
     """A list of user-assigned tags to help organize phone numbers."""
 
     voice: UpdateVoiceSettingsParam

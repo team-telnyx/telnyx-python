@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import List
 from typing_extensions import Literal, Annotated, TypedDict
 
+from .._types import SequenceNotStr
 from .._utils import PropertyInfo
 
 __all__ = ["SimCardListParams", "Filter", "Page"]
@@ -43,7 +44,7 @@ class Filter(TypedDict, total=False):
     status: List[Literal["enabled", "disabled", "standby", "data_limit_exceeded", "unauthorized_imei"]]
     """Filter by a SIM card's status."""
 
-    tags: List[str]
+    tags: SequenceNotStr[str]
     """
     A list of SIM card tags to filter on.<br/><br/> If the SIM card contains
     <b><i>all</i></b> of the given <code>tags</code> they will be found.<br/><br/>

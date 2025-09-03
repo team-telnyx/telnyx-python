@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import TypedDict
+
+from .._types import SequenceNotStr
 
 __all__ = ["PhoneNumberUpdateParams"]
 
@@ -29,5 +30,5 @@ class PhoneNumberUpdateParams(TypedDict, total=False):
     hd_voice_enabled: bool
     """Indicates whether HD voice is enabled for this number."""
 
-    tags: List[str]
+    tags: SequenceNotStr[str]
     """A list of user-assigned tags to help organize phone numbers."""

@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import Optional
 from typing_extensions import Literal, Required, TypedDict
 
+from .._types import SequenceNotStr
 from .call_control_application_inbound_param import CallControlApplicationInboundParam
 from .call_control_application_outbound_param import CallControlApplicationOutboundParam
 
@@ -57,7 +58,7 @@ class CallControlApplicationUpdateParams(TypedDict, total=False):
     protect PII data entered through IVR interactions.
     """
 
-    tags: List[str]
+    tags: SequenceNotStr[str]
     """Tags assigned to the Call Control Application."""
 
     webhook_api_version: Literal["1", "2"]

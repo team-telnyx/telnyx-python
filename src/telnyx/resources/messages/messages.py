@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Union
+from typing import Union
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -24,7 +24,7 @@ from ...types import (
     message_send_short_code_params,
     message_send_number_pool_params,
 )
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -148,7 +148,7 @@ class MessagesResource(SyncAPIResource):
         to: str,
         auto_detect: bool | NotGiven = NOT_GIVEN,
         from_: str | NotGiven = NOT_GIVEN,
-        media_urls: List[str] | NotGiven = NOT_GIVEN,
+        media_urls: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         messaging_profile_id: str | NotGiven = NOT_GIVEN,
         send_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         subject: str | NotGiven = NOT_GIVEN,
@@ -251,7 +251,7 @@ class MessagesResource(SyncAPIResource):
         to: str,
         auto_detect: bool | NotGiven = NOT_GIVEN,
         from_: str | NotGiven = NOT_GIVEN,
-        media_urls: List[str] | NotGiven = NOT_GIVEN,
+        media_urls: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         messaging_profile_id: str | NotGiven = NOT_GIVEN,
         send_at: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
         subject: str | NotGiven = NOT_GIVEN,
@@ -352,8 +352,8 @@ class MessagesResource(SyncAPIResource):
         self,
         *,
         from_: str,
-        to: List[str],
-        media_urls: List[str] | NotGiven = NOT_GIVEN,
+        to: SequenceNotStr[str],
+        media_urls: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         subject: str | NotGiven = NOT_GIVEN,
         text: str | NotGiven = NOT_GIVEN,
         use_profile_webhooks: bool | NotGiven = NOT_GIVEN,
@@ -424,7 +424,7 @@ class MessagesResource(SyncAPIResource):
         from_: str,
         to: str,
         auto_detect: bool | NotGiven = NOT_GIVEN,
-        media_urls: List[str] | NotGiven = NOT_GIVEN,
+        media_urls: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         subject: str | NotGiven = NOT_GIVEN,
         text: str | NotGiven = NOT_GIVEN,
         type: Literal["SMS", "MMS"] | NotGiven = NOT_GIVEN,
@@ -507,7 +507,7 @@ class MessagesResource(SyncAPIResource):
         messaging_profile_id: str,
         to: str,
         auto_detect: bool | NotGiven = NOT_GIVEN,
-        media_urls: List[str] | NotGiven = NOT_GIVEN,
+        media_urls: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         subject: str | NotGiven = NOT_GIVEN,
         text: str | NotGiven = NOT_GIVEN,
         type: Literal["SMS", "MMS"] | NotGiven = NOT_GIVEN,
@@ -590,7 +590,7 @@ class MessagesResource(SyncAPIResource):
         from_: str,
         to: str,
         auto_detect: bool | NotGiven = NOT_GIVEN,
-        media_urls: List[str] | NotGiven = NOT_GIVEN,
+        media_urls: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         subject: str | NotGiven = NOT_GIVEN,
         text: str | NotGiven = NOT_GIVEN,
         type: Literal["SMS", "MMS"] | NotGiven = NOT_GIVEN,
@@ -769,7 +769,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         to: str,
         auto_detect: bool | NotGiven = NOT_GIVEN,
         from_: str | NotGiven = NOT_GIVEN,
-        media_urls: List[str] | NotGiven = NOT_GIVEN,
+        media_urls: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         messaging_profile_id: str | NotGiven = NOT_GIVEN,
         send_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         subject: str | NotGiven = NOT_GIVEN,
@@ -872,7 +872,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         to: str,
         auto_detect: bool | NotGiven = NOT_GIVEN,
         from_: str | NotGiven = NOT_GIVEN,
-        media_urls: List[str] | NotGiven = NOT_GIVEN,
+        media_urls: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         messaging_profile_id: str | NotGiven = NOT_GIVEN,
         send_at: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
         subject: str | NotGiven = NOT_GIVEN,
@@ -973,8 +973,8 @@ class AsyncMessagesResource(AsyncAPIResource):
         self,
         *,
         from_: str,
-        to: List[str],
-        media_urls: List[str] | NotGiven = NOT_GIVEN,
+        to: SequenceNotStr[str],
+        media_urls: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         subject: str | NotGiven = NOT_GIVEN,
         text: str | NotGiven = NOT_GIVEN,
         use_profile_webhooks: bool | NotGiven = NOT_GIVEN,
@@ -1045,7 +1045,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         from_: str,
         to: str,
         auto_detect: bool | NotGiven = NOT_GIVEN,
-        media_urls: List[str] | NotGiven = NOT_GIVEN,
+        media_urls: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         subject: str | NotGiven = NOT_GIVEN,
         text: str | NotGiven = NOT_GIVEN,
         type: Literal["SMS", "MMS"] | NotGiven = NOT_GIVEN,
@@ -1128,7 +1128,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         messaging_profile_id: str,
         to: str,
         auto_detect: bool | NotGiven = NOT_GIVEN,
-        media_urls: List[str] | NotGiven = NOT_GIVEN,
+        media_urls: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         subject: str | NotGiven = NOT_GIVEN,
         text: str | NotGiven = NOT_GIVEN,
         type: Literal["SMS", "MMS"] | NotGiven = NOT_GIVEN,
@@ -1211,7 +1211,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         from_: str,
         to: str,
         auto_detect: bool | NotGiven = NOT_GIVEN,
-        media_urls: List[str] | NotGiven = NOT_GIVEN,
+        media_urls: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         subject: str | NotGiven = NOT_GIVEN,
         text: str | NotGiven = NOT_GIVEN,
         type: Literal["SMS", "MMS"] | NotGiven = NOT_GIVEN,

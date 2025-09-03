@@ -2,12 +2,13 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import TypedDict
+
+from .._types import SequenceNotStr
 
 __all__ = ["PortabilityCheckRunParams"]
 
 
 class PortabilityCheckRunParams(TypedDict, total=False):
-    phone_numbers: List[str]
+    phone_numbers: SequenceNotStr[str]
     """The list of +E.164 formatted phone numbers to check for portability"""

@@ -2,17 +2,18 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Literal, Required, TypedDict
+
+from .._types import SequenceNotStr
 
 __all__ = ["UsageReportListParams", "Page"]
 
 
 class UsageReportListParams(TypedDict, total=False):
-    dimensions: Required[List[str]]
+    dimensions: Required[SequenceNotStr[str]]
     """Breakout by specified product dimensions"""
 
-    metrics: Required[List[str]]
+    metrics: Required[SequenceNotStr[str]]
     """Specified product usage values"""
 
     product: Required[str]
@@ -51,7 +52,7 @@ class UsageReportListParams(TypedDict, total=False):
     Originally: page[number], page[size]
     """
 
-    sort: List[str]
+    sort: SequenceNotStr[str]
     """Specifies the sort order for results"""
 
     start_date: str

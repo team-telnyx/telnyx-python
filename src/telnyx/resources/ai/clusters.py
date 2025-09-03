@@ -2,11 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
-
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven, SequenceNotStr
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ...types.ai import cluster_list_params, cluster_compute_params, cluster_retrieve_params, cluster_fetch_graph_params
@@ -172,7 +170,7 @@ class ClustersResource(SyncAPIResource):
         self,
         *,
         bucket: str,
-        files: List[str] | NotGiven = NOT_GIVEN,
+        files: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         min_cluster_size: int | NotGiven = NOT_GIVEN,
         min_subcluster_size: int | NotGiven = NOT_GIVEN,
         prefix: str | NotGiven = NOT_GIVEN,
@@ -415,7 +413,7 @@ class AsyncClustersResource(AsyncAPIResource):
         self,
         *,
         bucket: str,
-        files: List[str] | NotGiven = NOT_GIVEN,
+        files: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         min_cluster_size: int | NotGiven = NOT_GIVEN,
         min_subcluster_size: int | NotGiven = NOT_GIVEN,
         prefix: str | NotGiven = NOT_GIVEN,

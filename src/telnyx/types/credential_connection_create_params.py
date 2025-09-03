@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import Optional
 from typing_extensions import Literal, Required, TypedDict
 
+from .._types import SequenceNotStr
 from .dtmf_type import DtmfType
 from .encrypted_media import EncryptedMedia
 from .anchorsite_override import AnchorsiteOverride
@@ -96,7 +97,7 @@ class CredentialConnectionCreateParams(TypedDict, total=False):
     account (internal).
     """
 
-    tags: List[str]
+    tags: SequenceNotStr[str]
     """Tags associated with the connection."""
 
     webhook_api_version: Literal["1", "2", "texml"]
