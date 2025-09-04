@@ -1330,9 +1330,9 @@ from .phone_number_assignment_by_profile_retrieve_phone_number_status_response i
 # This ensures that, when building the deferred (due to cyclical references) model schema,
 # Pydantic can resolve the necessary references.
 # See: https://github.com/pydantic/pydantic/issues/11250 for more context.
-if _compat.PYDANTIC_V2:
-    ai.recursive_cluster.RecursiveCluster.model_rebuild(_parent_namespace_depth=0)
-    ai.cluster_retrieve_response.ClusterRetrieveResponse.model_rebuild(_parent_namespace_depth=0)
-else:
+if _compat.PYDANTIC_V1:
     ai.recursive_cluster.RecursiveCluster.update_forward_refs()  # type: ignore
     ai.cluster_retrieve_response.ClusterRetrieveResponse.update_forward_refs()  # type: ignore
+else:
+    ai.recursive_cluster.RecursiveCluster.model_rebuild(_parent_namespace_depth=0)
+    ai.cluster_retrieve_response.ClusterRetrieveResponse.model_rebuild(_parent_namespace_depth=0)
