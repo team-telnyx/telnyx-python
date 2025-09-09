@@ -1,5 +1,21 @@
 # Changelog
 
+## 3.4.0-alpha (2025-09-09)
+
+Full Changelog: [v3.3.0-alpha...v3.4.0-alpha](https://github.com/team-telnyx/telnyx-python/compare/v3.3.0-alpha...v3.4.0-alpha)
+
+### Features
+
+* improve future compat with pydantic v3 ([73c0860](https://github.com/team-telnyx/telnyx-python/commit/73c086030a85645d66a8c743c7fe26e35f25b835))
+* **types:** replace List[str] with SequenceNotStr in params ([e59f69c](https://github.com/team-telnyx/telnyx-python/commit/e59f69c554f2a6e08323d1622bc60cba509c0e29))
+
+
+### Chores
+
+* **internal:** add Sequence related utils ([7b67814](https://github.com/team-telnyx/telnyx-python/commit/7b678144f51fa389e0277ce3f9ac3bbc5593636c))
+* **internal:** codegen related update ([e0b95dc](https://github.com/team-telnyx/telnyx-python/commit/e0b95dcd80a265ca31597a597d344bd97a07be28))
+* **internal:** move mypy configurations to `pyproject.toml` file ([3e006df](https://github.com/team-telnyx/telnyx-python/commit/3e006df10471a1e4730b03eca1c9399e744c659f))
+
 ## 3.3.0-alpha (2025-08-27)
 
 Full Changelog: [v3.2.0-alpha...v3.3.0-alpha](https://github.com/team-telnyx/telnyx-python/compare/v3.2.0-alpha...v3.3.0-alpha)
