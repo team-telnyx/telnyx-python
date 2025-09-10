@@ -22,7 +22,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestMigrationSources:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create(self, client: Telnyx) -> None:
         migration_source = client.storage.migration_sources.create(
@@ -32,7 +31,6 @@ class TestMigrationSources:
         )
         assert_matches_type(MigrationSourceCreateResponse, migration_source, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create_with_all_params(self, client: Telnyx) -> None:
         migration_source = client.storage.migration_sources.create(
@@ -46,7 +44,6 @@ class TestMigrationSources:
         )
         assert_matches_type(MigrationSourceCreateResponse, migration_source, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: Telnyx) -> None:
         response = client.storage.migration_sources.with_raw_response.create(
@@ -60,7 +57,6 @@ class TestMigrationSources:
         migration_source = response.parse()
         assert_matches_type(MigrationSourceCreateResponse, migration_source, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: Telnyx) -> None:
         with client.storage.migration_sources.with_streaming_response.create(
@@ -76,7 +72,6 @@ class TestMigrationSources:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Telnyx) -> None:
         migration_source = client.storage.migration_sources.retrieve(
@@ -84,7 +79,6 @@ class TestMigrationSources:
         )
         assert_matches_type(MigrationSourceRetrieveResponse, migration_source, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
         response = client.storage.migration_sources.with_raw_response.retrieve(
@@ -96,7 +90,6 @@ class TestMigrationSources:
         migration_source = response.parse()
         assert_matches_type(MigrationSourceRetrieveResponse, migration_source, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
         with client.storage.migration_sources.with_streaming_response.retrieve(
@@ -110,7 +103,6 @@ class TestMigrationSources:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_retrieve(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -118,13 +110,11 @@ class TestMigrationSources:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         migration_source = client.storage.migration_sources.list()
         assert_matches_type(MigrationSourceListResponse, migration_source, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Telnyx) -> None:
         response = client.storage.migration_sources.with_raw_response.list()
@@ -134,7 +124,6 @@ class TestMigrationSources:
         migration_source = response.parse()
         assert_matches_type(MigrationSourceListResponse, migration_source, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Telnyx) -> None:
         with client.storage.migration_sources.with_streaming_response.list() as response:
@@ -146,7 +135,6 @@ class TestMigrationSources:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_delete(self, client: Telnyx) -> None:
         migration_source = client.storage.migration_sources.delete(
@@ -154,7 +142,6 @@ class TestMigrationSources:
         )
         assert_matches_type(MigrationSourceDeleteResponse, migration_source, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_delete(self, client: Telnyx) -> None:
         response = client.storage.migration_sources.with_raw_response.delete(
@@ -166,7 +153,6 @@ class TestMigrationSources:
         migration_source = response.parse()
         assert_matches_type(MigrationSourceDeleteResponse, migration_source, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_delete(self, client: Telnyx) -> None:
         with client.storage.migration_sources.with_streaming_response.delete(
@@ -180,7 +166,6 @@ class TestMigrationSources:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_delete(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -194,7 +179,6 @@ class TestAsyncMigrationSources:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncTelnyx) -> None:
         migration_source = await async_client.storage.migration_sources.create(
@@ -204,7 +188,6 @@ class TestAsyncMigrationSources:
         )
         assert_matches_type(MigrationSourceCreateResponse, migration_source, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncTelnyx) -> None:
         migration_source = await async_client.storage.migration_sources.create(
@@ -218,7 +201,6 @@ class TestAsyncMigrationSources:
         )
         assert_matches_type(MigrationSourceCreateResponse, migration_source, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.storage.migration_sources.with_raw_response.create(
@@ -232,7 +214,6 @@ class TestAsyncMigrationSources:
         migration_source = await response.parse()
         assert_matches_type(MigrationSourceCreateResponse, migration_source, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncTelnyx) -> None:
         async with async_client.storage.migration_sources.with_streaming_response.create(
@@ -248,7 +229,6 @@ class TestAsyncMigrationSources:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
         migration_source = await async_client.storage.migration_sources.retrieve(
@@ -256,7 +236,6 @@ class TestAsyncMigrationSources:
         )
         assert_matches_type(MigrationSourceRetrieveResponse, migration_source, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.storage.migration_sources.with_raw_response.retrieve(
@@ -268,7 +247,6 @@ class TestAsyncMigrationSources:
         migration_source = await response.parse()
         assert_matches_type(MigrationSourceRetrieveResponse, migration_source, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         async with async_client.storage.migration_sources.with_streaming_response.retrieve(
@@ -282,7 +260,6 @@ class TestAsyncMigrationSources:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -290,13 +267,11 @@ class TestAsyncMigrationSources:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         migration_source = await async_client.storage.migration_sources.list()
         assert_matches_type(MigrationSourceListResponse, migration_source, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.storage.migration_sources.with_raw_response.list()
@@ -306,7 +281,6 @@ class TestAsyncMigrationSources:
         migration_source = await response.parse()
         assert_matches_type(MigrationSourceListResponse, migration_source, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncTelnyx) -> None:
         async with async_client.storage.migration_sources.with_streaming_response.list() as response:
@@ -318,7 +292,6 @@ class TestAsyncMigrationSources:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_delete(self, async_client: AsyncTelnyx) -> None:
         migration_source = await async_client.storage.migration_sources.delete(
@@ -326,7 +299,6 @@ class TestAsyncMigrationSources:
         )
         assert_matches_type(MigrationSourceDeleteResponse, migration_source, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.storage.migration_sources.with_raw_response.delete(
@@ -338,7 +310,6 @@ class TestAsyncMigrationSources:
         migration_source = await response.parse()
         assert_matches_type(MigrationSourceDeleteResponse, migration_source, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncTelnyx) -> None:
         async with async_client.storage.migration_sources.with_streaming_response.delete(
@@ -352,7 +323,6 @@ class TestAsyncMigrationSources:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):

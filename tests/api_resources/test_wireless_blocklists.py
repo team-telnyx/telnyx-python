@@ -23,7 +23,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestWirelessBlocklists:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create(self, client: Telnyx) -> None:
         wireless_blocklist = client.wireless_blocklists.create(
@@ -33,7 +32,6 @@ class TestWirelessBlocklists:
         )
         assert_matches_type(WirelessBlocklistCreateResponse, wireless_blocklist, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: Telnyx) -> None:
         response = client.wireless_blocklists.with_raw_response.create(
@@ -47,7 +45,6 @@ class TestWirelessBlocklists:
         wireless_blocklist = response.parse()
         assert_matches_type(WirelessBlocklistCreateResponse, wireless_blocklist, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: Telnyx) -> None:
         with client.wireless_blocklists.with_streaming_response.create(
@@ -63,7 +60,6 @@ class TestWirelessBlocklists:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Telnyx) -> None:
         wireless_blocklist = client.wireless_blocklists.retrieve(
@@ -71,7 +67,6 @@ class TestWirelessBlocklists:
         )
         assert_matches_type(WirelessBlocklistRetrieveResponse, wireless_blocklist, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
         response = client.wireless_blocklists.with_raw_response.retrieve(
@@ -83,7 +78,6 @@ class TestWirelessBlocklists:
         wireless_blocklist = response.parse()
         assert_matches_type(WirelessBlocklistRetrieveResponse, wireless_blocklist, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
         with client.wireless_blocklists.with_streaming_response.retrieve(
@@ -97,7 +91,6 @@ class TestWirelessBlocklists:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_retrieve(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -105,13 +98,11 @@ class TestWirelessBlocklists:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_update(self, client: Telnyx) -> None:
         wireless_blocklist = client.wireless_blocklists.update()
         assert_matches_type(WirelessBlocklistUpdateResponse, wireless_blocklist, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_update_with_all_params(self, client: Telnyx) -> None:
         wireless_blocklist = client.wireless_blocklists.update(
@@ -121,7 +112,6 @@ class TestWirelessBlocklists:
         )
         assert_matches_type(WirelessBlocklistUpdateResponse, wireless_blocklist, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_update(self, client: Telnyx) -> None:
         response = client.wireless_blocklists.with_raw_response.update()
@@ -131,7 +121,6 @@ class TestWirelessBlocklists:
         wireless_blocklist = response.parse()
         assert_matches_type(WirelessBlocklistUpdateResponse, wireless_blocklist, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_update(self, client: Telnyx) -> None:
         with client.wireless_blocklists.with_streaming_response.update() as response:
@@ -143,13 +132,11 @@ class TestWirelessBlocklists:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         wireless_blocklist = client.wireless_blocklists.list()
         assert_matches_type(WirelessBlocklistListResponse, wireless_blocklist, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         wireless_blocklist = client.wireless_blocklists.list(
@@ -161,7 +148,6 @@ class TestWirelessBlocklists:
         )
         assert_matches_type(WirelessBlocklistListResponse, wireless_blocklist, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Telnyx) -> None:
         response = client.wireless_blocklists.with_raw_response.list()
@@ -171,7 +157,6 @@ class TestWirelessBlocklists:
         wireless_blocklist = response.parse()
         assert_matches_type(WirelessBlocklistListResponse, wireless_blocklist, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Telnyx) -> None:
         with client.wireless_blocklists.with_streaming_response.list() as response:
@@ -183,7 +168,6 @@ class TestWirelessBlocklists:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_delete(self, client: Telnyx) -> None:
         wireless_blocklist = client.wireless_blocklists.delete(
@@ -191,7 +175,6 @@ class TestWirelessBlocklists:
         )
         assert_matches_type(WirelessBlocklistDeleteResponse, wireless_blocklist, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_delete(self, client: Telnyx) -> None:
         response = client.wireless_blocklists.with_raw_response.delete(
@@ -203,7 +186,6 @@ class TestWirelessBlocklists:
         wireless_blocklist = response.parse()
         assert_matches_type(WirelessBlocklistDeleteResponse, wireless_blocklist, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_delete(self, client: Telnyx) -> None:
         with client.wireless_blocklists.with_streaming_response.delete(
@@ -217,7 +199,6 @@ class TestWirelessBlocklists:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_delete(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -231,7 +212,6 @@ class TestAsyncWirelessBlocklists:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncTelnyx) -> None:
         wireless_blocklist = await async_client.wireless_blocklists.create(
@@ -241,7 +221,6 @@ class TestAsyncWirelessBlocklists:
         )
         assert_matches_type(WirelessBlocklistCreateResponse, wireless_blocklist, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.wireless_blocklists.with_raw_response.create(
@@ -255,7 +234,6 @@ class TestAsyncWirelessBlocklists:
         wireless_blocklist = await response.parse()
         assert_matches_type(WirelessBlocklistCreateResponse, wireless_blocklist, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncTelnyx) -> None:
         async with async_client.wireless_blocklists.with_streaming_response.create(
@@ -271,7 +249,6 @@ class TestAsyncWirelessBlocklists:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
         wireless_blocklist = await async_client.wireless_blocklists.retrieve(
@@ -279,7 +256,6 @@ class TestAsyncWirelessBlocklists:
         )
         assert_matches_type(WirelessBlocklistRetrieveResponse, wireless_blocklist, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.wireless_blocklists.with_raw_response.retrieve(
@@ -291,7 +267,6 @@ class TestAsyncWirelessBlocklists:
         wireless_blocklist = await response.parse()
         assert_matches_type(WirelessBlocklistRetrieveResponse, wireless_blocklist, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         async with async_client.wireless_blocklists.with_streaming_response.retrieve(
@@ -305,7 +280,6 @@ class TestAsyncWirelessBlocklists:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -313,13 +287,11 @@ class TestAsyncWirelessBlocklists:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_update(self, async_client: AsyncTelnyx) -> None:
         wireless_blocklist = await async_client.wireless_blocklists.update()
         assert_matches_type(WirelessBlocklistUpdateResponse, wireless_blocklist, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncTelnyx) -> None:
         wireless_blocklist = await async_client.wireless_blocklists.update(
@@ -329,7 +301,6 @@ class TestAsyncWirelessBlocklists:
         )
         assert_matches_type(WirelessBlocklistUpdateResponse, wireless_blocklist, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.wireless_blocklists.with_raw_response.update()
@@ -339,7 +310,6 @@ class TestAsyncWirelessBlocklists:
         wireless_blocklist = await response.parse()
         assert_matches_type(WirelessBlocklistUpdateResponse, wireless_blocklist, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncTelnyx) -> None:
         async with async_client.wireless_blocklists.with_streaming_response.update() as response:
@@ -351,13 +321,11 @@ class TestAsyncWirelessBlocklists:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         wireless_blocklist = await async_client.wireless_blocklists.list()
         assert_matches_type(WirelessBlocklistListResponse, wireless_blocklist, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         wireless_blocklist = await async_client.wireless_blocklists.list(
@@ -369,7 +337,6 @@ class TestAsyncWirelessBlocklists:
         )
         assert_matches_type(WirelessBlocklistListResponse, wireless_blocklist, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.wireless_blocklists.with_raw_response.list()
@@ -379,7 +346,6 @@ class TestAsyncWirelessBlocklists:
         wireless_blocklist = await response.parse()
         assert_matches_type(WirelessBlocklistListResponse, wireless_blocklist, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncTelnyx) -> None:
         async with async_client.wireless_blocklists.with_streaming_response.list() as response:
@@ -391,7 +357,6 @@ class TestAsyncWirelessBlocklists:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_delete(self, async_client: AsyncTelnyx) -> None:
         wireless_blocklist = await async_client.wireless_blocklists.delete(
@@ -399,7 +364,6 @@ class TestAsyncWirelessBlocklists:
         )
         assert_matches_type(WirelessBlocklistDeleteResponse, wireless_blocklist, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.wireless_blocklists.with_raw_response.delete(
@@ -411,7 +375,6 @@ class TestAsyncWirelessBlocklists:
         wireless_blocklist = await response.parse()
         assert_matches_type(WirelessBlocklistDeleteResponse, wireless_blocklist, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncTelnyx) -> None:
         async with async_client.wireless_blocklists.with_streaming_response.delete(
@@ -425,7 +388,6 @@ class TestAsyncWirelessBlocklists:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):

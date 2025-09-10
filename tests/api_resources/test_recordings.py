@@ -21,7 +21,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestRecordings:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Telnyx) -> None:
         recording = client.recordings.retrieve(
@@ -29,7 +28,6 @@ class TestRecordings:
         )
         assert_matches_type(RecordingRetrieveResponse, recording, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
         response = client.recordings.with_raw_response.retrieve(
@@ -41,7 +39,6 @@ class TestRecordings:
         recording = response.parse()
         assert_matches_type(RecordingRetrieveResponse, recording, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
         with client.recordings.with_streaming_response.retrieve(
@@ -55,7 +52,6 @@ class TestRecordings:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_retrieve(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `recording_id` but received ''"):
@@ -63,13 +59,11 @@ class TestRecordings:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         recording = client.recordings.list()
         assert_matches_type(RecordingListResponse, recording, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         recording = client.recordings.list(
@@ -92,7 +86,6 @@ class TestRecordings:
         )
         assert_matches_type(RecordingListResponse, recording, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Telnyx) -> None:
         response = client.recordings.with_raw_response.list()
@@ -102,7 +95,6 @@ class TestRecordings:
         recording = response.parse()
         assert_matches_type(RecordingListResponse, recording, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Telnyx) -> None:
         with client.recordings.with_streaming_response.list() as response:
@@ -114,7 +106,6 @@ class TestRecordings:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_delete(self, client: Telnyx) -> None:
         recording = client.recordings.delete(
@@ -122,7 +113,6 @@ class TestRecordings:
         )
         assert_matches_type(RecordingDeleteResponse, recording, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_delete(self, client: Telnyx) -> None:
         response = client.recordings.with_raw_response.delete(
@@ -134,7 +124,6 @@ class TestRecordings:
         recording = response.parse()
         assert_matches_type(RecordingDeleteResponse, recording, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_delete(self, client: Telnyx) -> None:
         with client.recordings.with_streaming_response.delete(
@@ -148,7 +137,6 @@ class TestRecordings:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_delete(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `recording_id` but received ''"):
@@ -162,7 +150,6 @@ class TestAsyncRecordings:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
         recording = await async_client.recordings.retrieve(
@@ -170,7 +157,6 @@ class TestAsyncRecordings:
         )
         assert_matches_type(RecordingRetrieveResponse, recording, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.recordings.with_raw_response.retrieve(
@@ -182,7 +168,6 @@ class TestAsyncRecordings:
         recording = await response.parse()
         assert_matches_type(RecordingRetrieveResponse, recording, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         async with async_client.recordings.with_streaming_response.retrieve(
@@ -196,7 +181,6 @@ class TestAsyncRecordings:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `recording_id` but received ''"):
@@ -204,13 +188,11 @@ class TestAsyncRecordings:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         recording = await async_client.recordings.list()
         assert_matches_type(RecordingListResponse, recording, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         recording = await async_client.recordings.list(
@@ -233,7 +215,6 @@ class TestAsyncRecordings:
         )
         assert_matches_type(RecordingListResponse, recording, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.recordings.with_raw_response.list()
@@ -243,7 +224,6 @@ class TestAsyncRecordings:
         recording = await response.parse()
         assert_matches_type(RecordingListResponse, recording, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncTelnyx) -> None:
         async with async_client.recordings.with_streaming_response.list() as response:
@@ -255,7 +235,6 @@ class TestAsyncRecordings:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_delete(self, async_client: AsyncTelnyx) -> None:
         recording = await async_client.recordings.delete(
@@ -263,7 +242,6 @@ class TestAsyncRecordings:
         )
         assert_matches_type(RecordingDeleteResponse, recording, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.recordings.with_raw_response.delete(
@@ -275,7 +253,6 @@ class TestAsyncRecordings:
         recording = await response.parse()
         assert_matches_type(RecordingDeleteResponse, recording, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncTelnyx) -> None:
         async with async_client.recordings.with_streaming_response.delete(
@@ -289,7 +266,6 @@ class TestAsyncRecordings:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `recording_id` but received ''"):

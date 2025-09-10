@@ -21,7 +21,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestSiprecConnectors:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create(self, client: Telnyx) -> None:
         siprec_connector = client.siprec_connectors.create(
@@ -31,7 +30,6 @@ class TestSiprecConnectors:
         )
         assert_matches_type(SiprecConnectorCreateResponse, siprec_connector, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create_with_all_params(self, client: Telnyx) -> None:
         siprec_connector = client.siprec_connectors.create(
@@ -42,7 +40,6 @@ class TestSiprecConnectors:
         )
         assert_matches_type(SiprecConnectorCreateResponse, siprec_connector, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: Telnyx) -> None:
         response = client.siprec_connectors.with_raw_response.create(
@@ -56,7 +53,6 @@ class TestSiprecConnectors:
         siprec_connector = response.parse()
         assert_matches_type(SiprecConnectorCreateResponse, siprec_connector, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: Telnyx) -> None:
         with client.siprec_connectors.with_streaming_response.create(
@@ -72,7 +68,6 @@ class TestSiprecConnectors:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Telnyx) -> None:
         siprec_connector = client.siprec_connectors.retrieve(
@@ -80,7 +75,6 @@ class TestSiprecConnectors:
         )
         assert_matches_type(SiprecConnectorRetrieveResponse, siprec_connector, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
         response = client.siprec_connectors.with_raw_response.retrieve(
@@ -92,7 +86,6 @@ class TestSiprecConnectors:
         siprec_connector = response.parse()
         assert_matches_type(SiprecConnectorRetrieveResponse, siprec_connector, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
         with client.siprec_connectors.with_streaming_response.retrieve(
@@ -106,7 +99,6 @@ class TestSiprecConnectors:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_retrieve(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `connector_name` but received ''"):
@@ -114,7 +106,6 @@ class TestSiprecConnectors:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_update(self, client: Telnyx) -> None:
         siprec_connector = client.siprec_connectors.update(
@@ -125,7 +116,6 @@ class TestSiprecConnectors:
         )
         assert_matches_type(SiprecConnectorUpdateResponse, siprec_connector, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_update_with_all_params(self, client: Telnyx) -> None:
         siprec_connector = client.siprec_connectors.update(
@@ -137,7 +127,6 @@ class TestSiprecConnectors:
         )
         assert_matches_type(SiprecConnectorUpdateResponse, siprec_connector, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_update(self, client: Telnyx) -> None:
         response = client.siprec_connectors.with_raw_response.update(
@@ -152,7 +141,6 @@ class TestSiprecConnectors:
         siprec_connector = response.parse()
         assert_matches_type(SiprecConnectorUpdateResponse, siprec_connector, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_update(self, client: Telnyx) -> None:
         with client.siprec_connectors.with_streaming_response.update(
@@ -169,7 +157,6 @@ class TestSiprecConnectors:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_update(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `connector_name` but received ''"):
@@ -180,7 +167,6 @@ class TestSiprecConnectors:
                 port=5060,
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_delete(self, client: Telnyx) -> None:
         siprec_connector = client.siprec_connectors.delete(
@@ -188,7 +174,6 @@ class TestSiprecConnectors:
         )
         assert siprec_connector is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_delete(self, client: Telnyx) -> None:
         response = client.siprec_connectors.with_raw_response.delete(
@@ -200,7 +185,6 @@ class TestSiprecConnectors:
         siprec_connector = response.parse()
         assert siprec_connector is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_delete(self, client: Telnyx) -> None:
         with client.siprec_connectors.with_streaming_response.delete(
@@ -214,7 +198,6 @@ class TestSiprecConnectors:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_delete(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `connector_name` but received ''"):
@@ -228,7 +211,6 @@ class TestAsyncSiprecConnectors:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncTelnyx) -> None:
         siprec_connector = await async_client.siprec_connectors.create(
@@ -238,7 +220,6 @@ class TestAsyncSiprecConnectors:
         )
         assert_matches_type(SiprecConnectorCreateResponse, siprec_connector, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncTelnyx) -> None:
         siprec_connector = await async_client.siprec_connectors.create(
@@ -249,7 +230,6 @@ class TestAsyncSiprecConnectors:
         )
         assert_matches_type(SiprecConnectorCreateResponse, siprec_connector, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.siprec_connectors.with_raw_response.create(
@@ -263,7 +243,6 @@ class TestAsyncSiprecConnectors:
         siprec_connector = await response.parse()
         assert_matches_type(SiprecConnectorCreateResponse, siprec_connector, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncTelnyx) -> None:
         async with async_client.siprec_connectors.with_streaming_response.create(
@@ -279,7 +258,6 @@ class TestAsyncSiprecConnectors:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
         siprec_connector = await async_client.siprec_connectors.retrieve(
@@ -287,7 +265,6 @@ class TestAsyncSiprecConnectors:
         )
         assert_matches_type(SiprecConnectorRetrieveResponse, siprec_connector, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.siprec_connectors.with_raw_response.retrieve(
@@ -299,7 +276,6 @@ class TestAsyncSiprecConnectors:
         siprec_connector = await response.parse()
         assert_matches_type(SiprecConnectorRetrieveResponse, siprec_connector, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         async with async_client.siprec_connectors.with_streaming_response.retrieve(
@@ -313,7 +289,6 @@ class TestAsyncSiprecConnectors:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `connector_name` but received ''"):
@@ -321,7 +296,6 @@ class TestAsyncSiprecConnectors:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_update(self, async_client: AsyncTelnyx) -> None:
         siprec_connector = await async_client.siprec_connectors.update(
@@ -332,7 +306,6 @@ class TestAsyncSiprecConnectors:
         )
         assert_matches_type(SiprecConnectorUpdateResponse, siprec_connector, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncTelnyx) -> None:
         siprec_connector = await async_client.siprec_connectors.update(
@@ -344,7 +317,6 @@ class TestAsyncSiprecConnectors:
         )
         assert_matches_type(SiprecConnectorUpdateResponse, siprec_connector, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.siprec_connectors.with_raw_response.update(
@@ -359,7 +331,6 @@ class TestAsyncSiprecConnectors:
         siprec_connector = await response.parse()
         assert_matches_type(SiprecConnectorUpdateResponse, siprec_connector, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncTelnyx) -> None:
         async with async_client.siprec_connectors.with_streaming_response.update(
@@ -376,7 +347,6 @@ class TestAsyncSiprecConnectors:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_update(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `connector_name` but received ''"):
@@ -387,7 +357,6 @@ class TestAsyncSiprecConnectors:
                 port=5060,
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_delete(self, async_client: AsyncTelnyx) -> None:
         siprec_connector = await async_client.siprec_connectors.delete(
@@ -395,7 +364,6 @@ class TestAsyncSiprecConnectors:
         )
         assert siprec_connector is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.siprec_connectors.with_raw_response.delete(
@@ -407,7 +375,6 @@ class TestAsyncSiprecConnectors:
         siprec_connector = await response.parse()
         assert siprec_connector is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncTelnyx) -> None:
         async with async_client.siprec_connectors.with_streaming_response.delete(
@@ -421,7 +388,6 @@ class TestAsyncSiprecConnectors:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `connector_name` but received ''"):

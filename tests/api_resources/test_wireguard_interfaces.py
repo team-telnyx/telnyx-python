@@ -22,7 +22,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestWireguardInterfaces:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create(self, client: Telnyx) -> None:
         wireguard_interface = client.wireguard_interfaces.create(
@@ -31,7 +30,6 @@ class TestWireguardInterfaces:
         )
         assert_matches_type(WireguardInterfaceCreateResponse, wireguard_interface, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create_with_all_params(self, client: Telnyx) -> None:
         wireguard_interface = client.wireguard_interfaces.create(
@@ -42,7 +40,6 @@ class TestWireguardInterfaces:
         )
         assert_matches_type(WireguardInterfaceCreateResponse, wireguard_interface, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: Telnyx) -> None:
         response = client.wireguard_interfaces.with_raw_response.create(
@@ -55,7 +52,6 @@ class TestWireguardInterfaces:
         wireguard_interface = response.parse()
         assert_matches_type(WireguardInterfaceCreateResponse, wireguard_interface, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: Telnyx) -> None:
         with client.wireguard_interfaces.with_streaming_response.create(
@@ -70,7 +66,6 @@ class TestWireguardInterfaces:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Telnyx) -> None:
         wireguard_interface = client.wireguard_interfaces.retrieve(
@@ -78,7 +73,6 @@ class TestWireguardInterfaces:
         )
         assert_matches_type(WireguardInterfaceRetrieveResponse, wireguard_interface, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
         response = client.wireguard_interfaces.with_raw_response.retrieve(
@@ -90,7 +84,6 @@ class TestWireguardInterfaces:
         wireguard_interface = response.parse()
         assert_matches_type(WireguardInterfaceRetrieveResponse, wireguard_interface, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
         with client.wireguard_interfaces.with_streaming_response.retrieve(
@@ -104,7 +97,6 @@ class TestWireguardInterfaces:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_retrieve(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -112,13 +104,11 @@ class TestWireguardInterfaces:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         wireguard_interface = client.wireguard_interfaces.list()
         assert_matches_type(WireguardInterfaceListResponse, wireguard_interface, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         wireguard_interface = client.wireguard_interfaces.list(
@@ -130,7 +120,6 @@ class TestWireguardInterfaces:
         )
         assert_matches_type(WireguardInterfaceListResponse, wireguard_interface, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Telnyx) -> None:
         response = client.wireguard_interfaces.with_raw_response.list()
@@ -140,7 +129,6 @@ class TestWireguardInterfaces:
         wireguard_interface = response.parse()
         assert_matches_type(WireguardInterfaceListResponse, wireguard_interface, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Telnyx) -> None:
         with client.wireguard_interfaces.with_streaming_response.list() as response:
@@ -152,7 +140,6 @@ class TestWireguardInterfaces:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_delete(self, client: Telnyx) -> None:
         wireguard_interface = client.wireguard_interfaces.delete(
@@ -160,7 +147,6 @@ class TestWireguardInterfaces:
         )
         assert_matches_type(WireguardInterfaceDeleteResponse, wireguard_interface, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_delete(self, client: Telnyx) -> None:
         response = client.wireguard_interfaces.with_raw_response.delete(
@@ -172,7 +158,6 @@ class TestWireguardInterfaces:
         wireguard_interface = response.parse()
         assert_matches_type(WireguardInterfaceDeleteResponse, wireguard_interface, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_delete(self, client: Telnyx) -> None:
         with client.wireguard_interfaces.with_streaming_response.delete(
@@ -186,7 +171,6 @@ class TestWireguardInterfaces:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_delete(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -200,7 +184,6 @@ class TestAsyncWireguardInterfaces:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncTelnyx) -> None:
         wireguard_interface = await async_client.wireguard_interfaces.create(
@@ -209,7 +192,6 @@ class TestAsyncWireguardInterfaces:
         )
         assert_matches_type(WireguardInterfaceCreateResponse, wireguard_interface, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncTelnyx) -> None:
         wireguard_interface = await async_client.wireguard_interfaces.create(
@@ -220,7 +202,6 @@ class TestAsyncWireguardInterfaces:
         )
         assert_matches_type(WireguardInterfaceCreateResponse, wireguard_interface, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.wireguard_interfaces.with_raw_response.create(
@@ -233,7 +214,6 @@ class TestAsyncWireguardInterfaces:
         wireguard_interface = await response.parse()
         assert_matches_type(WireguardInterfaceCreateResponse, wireguard_interface, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncTelnyx) -> None:
         async with async_client.wireguard_interfaces.with_streaming_response.create(
@@ -248,7 +228,6 @@ class TestAsyncWireguardInterfaces:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
         wireguard_interface = await async_client.wireguard_interfaces.retrieve(
@@ -256,7 +235,6 @@ class TestAsyncWireguardInterfaces:
         )
         assert_matches_type(WireguardInterfaceRetrieveResponse, wireguard_interface, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.wireguard_interfaces.with_raw_response.retrieve(
@@ -268,7 +246,6 @@ class TestAsyncWireguardInterfaces:
         wireguard_interface = await response.parse()
         assert_matches_type(WireguardInterfaceRetrieveResponse, wireguard_interface, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         async with async_client.wireguard_interfaces.with_streaming_response.retrieve(
@@ -282,7 +259,6 @@ class TestAsyncWireguardInterfaces:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -290,13 +266,11 @@ class TestAsyncWireguardInterfaces:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         wireguard_interface = await async_client.wireguard_interfaces.list()
         assert_matches_type(WireguardInterfaceListResponse, wireguard_interface, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         wireguard_interface = await async_client.wireguard_interfaces.list(
@@ -308,7 +282,6 @@ class TestAsyncWireguardInterfaces:
         )
         assert_matches_type(WireguardInterfaceListResponse, wireguard_interface, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.wireguard_interfaces.with_raw_response.list()
@@ -318,7 +291,6 @@ class TestAsyncWireguardInterfaces:
         wireguard_interface = await response.parse()
         assert_matches_type(WireguardInterfaceListResponse, wireguard_interface, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncTelnyx) -> None:
         async with async_client.wireguard_interfaces.with_streaming_response.list() as response:
@@ -330,7 +302,6 @@ class TestAsyncWireguardInterfaces:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_delete(self, async_client: AsyncTelnyx) -> None:
         wireguard_interface = await async_client.wireguard_interfaces.delete(
@@ -338,7 +309,6 @@ class TestAsyncWireguardInterfaces:
         )
         assert_matches_type(WireguardInterfaceDeleteResponse, wireguard_interface, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.wireguard_interfaces.with_raw_response.delete(
@@ -350,7 +320,6 @@ class TestAsyncWireguardInterfaces:
         wireguard_interface = await response.parse()
         assert_matches_type(WireguardInterfaceDeleteResponse, wireguard_interface, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncTelnyx) -> None:
         async with async_client.wireguard_interfaces.with_streaming_response.delete(
@@ -364,7 +333,6 @@ class TestAsyncWireguardInterfaces:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):

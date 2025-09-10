@@ -17,13 +17,11 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestInventoryCoverage:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         inventory_coverage = client.inventory_coverage.list()
         assert_matches_type(InventoryCoverageListResponse, inventory_coverage, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         inventory_coverage = client.inventory_coverage.list(
@@ -40,7 +38,6 @@ class TestInventoryCoverage:
         )
         assert_matches_type(InventoryCoverageListResponse, inventory_coverage, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Telnyx) -> None:
         response = client.inventory_coverage.with_raw_response.list()
@@ -50,7 +47,6 @@ class TestInventoryCoverage:
         inventory_coverage = response.parse()
         assert_matches_type(InventoryCoverageListResponse, inventory_coverage, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Telnyx) -> None:
         with client.inventory_coverage.with_streaming_response.list() as response:
@@ -68,13 +64,11 @@ class TestAsyncInventoryCoverage:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         inventory_coverage = await async_client.inventory_coverage.list()
         assert_matches_type(InventoryCoverageListResponse, inventory_coverage, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         inventory_coverage = await async_client.inventory_coverage.list(
@@ -91,7 +85,6 @@ class TestAsyncInventoryCoverage:
         )
         assert_matches_type(InventoryCoverageListResponse, inventory_coverage, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.inventory_coverage.with_raw_response.list()
@@ -101,7 +94,6 @@ class TestAsyncInventoryCoverage:
         inventory_coverage = await response.parse()
         assert_matches_type(InventoryCoverageListResponse, inventory_coverage, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncTelnyx) -> None:
         async with async_client.inventory_coverage.with_streaming_response.list() as response:

@@ -22,7 +22,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestActivationJobs:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Telnyx) -> None:
         activation_job = client.porting_orders.activation_jobs.retrieve(
@@ -31,7 +30,6 @@ class TestActivationJobs:
         )
         assert_matches_type(ActivationJobRetrieveResponse, activation_job, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
         response = client.porting_orders.activation_jobs.with_raw_response.retrieve(
@@ -44,7 +42,6 @@ class TestActivationJobs:
         activation_job = response.parse()
         assert_matches_type(ActivationJobRetrieveResponse, activation_job, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
         with client.porting_orders.activation_jobs.with_streaming_response.retrieve(
@@ -59,7 +56,6 @@ class TestActivationJobs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_retrieve(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -74,7 +70,6 @@ class TestActivationJobs:
                 id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_update(self, client: Telnyx) -> None:
         activation_job = client.porting_orders.activation_jobs.update(
@@ -83,7 +78,6 @@ class TestActivationJobs:
         )
         assert_matches_type(ActivationJobUpdateResponse, activation_job, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_update_with_all_params(self, client: Telnyx) -> None:
         activation_job = client.porting_orders.activation_jobs.update(
@@ -93,7 +87,6 @@ class TestActivationJobs:
         )
         assert_matches_type(ActivationJobUpdateResponse, activation_job, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_update(self, client: Telnyx) -> None:
         response = client.porting_orders.activation_jobs.with_raw_response.update(
@@ -106,7 +99,6 @@ class TestActivationJobs:
         activation_job = response.parse()
         assert_matches_type(ActivationJobUpdateResponse, activation_job, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_update(self, client: Telnyx) -> None:
         with client.porting_orders.activation_jobs.with_streaming_response.update(
@@ -121,7 +113,6 @@ class TestActivationJobs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_update(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -136,7 +127,6 @@ class TestActivationJobs:
                 id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         activation_job = client.porting_orders.activation_jobs.list(
@@ -144,7 +134,6 @@ class TestActivationJobs:
         )
         assert_matches_type(ActivationJobListResponse, activation_job, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         activation_job = client.porting_orders.activation_jobs.list(
@@ -156,7 +145,6 @@ class TestActivationJobs:
         )
         assert_matches_type(ActivationJobListResponse, activation_job, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Telnyx) -> None:
         response = client.porting_orders.activation_jobs.with_raw_response.list(
@@ -168,7 +156,6 @@ class TestActivationJobs:
         activation_job = response.parse()
         assert_matches_type(ActivationJobListResponse, activation_job, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Telnyx) -> None:
         with client.porting_orders.activation_jobs.with_streaming_response.list(
@@ -182,7 +169,6 @@ class TestActivationJobs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_list(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -196,7 +182,6 @@ class TestAsyncActivationJobs:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
         activation_job = await async_client.porting_orders.activation_jobs.retrieve(
@@ -205,7 +190,6 @@ class TestAsyncActivationJobs:
         )
         assert_matches_type(ActivationJobRetrieveResponse, activation_job, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.porting_orders.activation_jobs.with_raw_response.retrieve(
@@ -218,7 +202,6 @@ class TestAsyncActivationJobs:
         activation_job = await response.parse()
         assert_matches_type(ActivationJobRetrieveResponse, activation_job, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         async with async_client.porting_orders.activation_jobs.with_streaming_response.retrieve(
@@ -233,7 +216,6 @@ class TestAsyncActivationJobs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -248,7 +230,6 @@ class TestAsyncActivationJobs:
                 id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_update(self, async_client: AsyncTelnyx) -> None:
         activation_job = await async_client.porting_orders.activation_jobs.update(
@@ -257,7 +238,6 @@ class TestAsyncActivationJobs:
         )
         assert_matches_type(ActivationJobUpdateResponse, activation_job, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncTelnyx) -> None:
         activation_job = await async_client.porting_orders.activation_jobs.update(
@@ -267,7 +247,6 @@ class TestAsyncActivationJobs:
         )
         assert_matches_type(ActivationJobUpdateResponse, activation_job, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.porting_orders.activation_jobs.with_raw_response.update(
@@ -280,7 +259,6 @@ class TestAsyncActivationJobs:
         activation_job = await response.parse()
         assert_matches_type(ActivationJobUpdateResponse, activation_job, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncTelnyx) -> None:
         async with async_client.porting_orders.activation_jobs.with_streaming_response.update(
@@ -295,7 +273,6 @@ class TestAsyncActivationJobs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_update(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -310,7 +287,6 @@ class TestAsyncActivationJobs:
                 id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         activation_job = await async_client.porting_orders.activation_jobs.list(
@@ -318,7 +294,6 @@ class TestAsyncActivationJobs:
         )
         assert_matches_type(ActivationJobListResponse, activation_job, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         activation_job = await async_client.porting_orders.activation_jobs.list(
@@ -330,7 +305,6 @@ class TestAsyncActivationJobs:
         )
         assert_matches_type(ActivationJobListResponse, activation_job, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.porting_orders.activation_jobs.with_raw_response.list(
@@ -342,7 +316,6 @@ class TestAsyncActivationJobs:
         activation_job = await response.parse()
         assert_matches_type(ActivationJobListResponse, activation_job, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncTelnyx) -> None:
         async with async_client.porting_orders.activation_jobs.with_streaming_response.list(
@@ -356,7 +329,6 @@ class TestAsyncActivationJobs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_list(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
