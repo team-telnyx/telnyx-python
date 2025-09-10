@@ -17,7 +17,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestOtaUpdates:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Telnyx) -> None:
         ota_update = client.ota_updates.retrieve(
@@ -25,7 +24,6 @@ class TestOtaUpdates:
         )
         assert_matches_type(OtaUpdateRetrieveResponse, ota_update, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
         response = client.ota_updates.with_raw_response.retrieve(
@@ -37,7 +35,6 @@ class TestOtaUpdates:
         ota_update = response.parse()
         assert_matches_type(OtaUpdateRetrieveResponse, ota_update, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
         with client.ota_updates.with_streaming_response.retrieve(
@@ -51,7 +48,6 @@ class TestOtaUpdates:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_retrieve(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -59,13 +55,11 @@ class TestOtaUpdates:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         ota_update = client.ota_updates.list()
         assert_matches_type(OtaUpdateListResponse, ota_update, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         ota_update = client.ota_updates.list(
@@ -81,7 +75,6 @@ class TestOtaUpdates:
         )
         assert_matches_type(OtaUpdateListResponse, ota_update, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Telnyx) -> None:
         response = client.ota_updates.with_raw_response.list()
@@ -91,7 +84,6 @@ class TestOtaUpdates:
         ota_update = response.parse()
         assert_matches_type(OtaUpdateListResponse, ota_update, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Telnyx) -> None:
         with client.ota_updates.with_streaming_response.list() as response:
@@ -109,7 +101,6 @@ class TestAsyncOtaUpdates:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
         ota_update = await async_client.ota_updates.retrieve(
@@ -117,7 +108,6 @@ class TestAsyncOtaUpdates:
         )
         assert_matches_type(OtaUpdateRetrieveResponse, ota_update, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.ota_updates.with_raw_response.retrieve(
@@ -129,7 +119,6 @@ class TestAsyncOtaUpdates:
         ota_update = await response.parse()
         assert_matches_type(OtaUpdateRetrieveResponse, ota_update, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         async with async_client.ota_updates.with_streaming_response.retrieve(
@@ -143,7 +132,6 @@ class TestAsyncOtaUpdates:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -151,13 +139,11 @@ class TestAsyncOtaUpdates:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         ota_update = await async_client.ota_updates.list()
         assert_matches_type(OtaUpdateListResponse, ota_update, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         ota_update = await async_client.ota_updates.list(
@@ -173,7 +159,6 @@ class TestAsyncOtaUpdates:
         )
         assert_matches_type(OtaUpdateListResponse, ota_update, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.ota_updates.with_raw_response.list()
@@ -183,7 +168,6 @@ class TestAsyncOtaUpdates:
         ota_update = await response.parse()
         assert_matches_type(OtaUpdateListResponse, ota_update, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncTelnyx) -> None:
         async with async_client.ota_updates.with_streaming_response.list() as response:

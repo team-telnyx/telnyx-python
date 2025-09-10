@@ -21,13 +21,11 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestSubNumberOrdersReport:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create(self, client: Telnyx) -> None:
         sub_number_orders_report = client.sub_number_orders_report.create()
         assert_matches_type(SubNumberOrdersReportCreateResponse, sub_number_orders_report, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create_with_all_params(self, client: Telnyx) -> None:
         sub_number_orders_report = client.sub_number_orders_report.create(
@@ -40,7 +38,6 @@ class TestSubNumberOrdersReport:
         )
         assert_matches_type(SubNumberOrdersReportCreateResponse, sub_number_orders_report, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: Telnyx) -> None:
         response = client.sub_number_orders_report.with_raw_response.create()
@@ -50,7 +47,6 @@ class TestSubNumberOrdersReport:
         sub_number_orders_report = response.parse()
         assert_matches_type(SubNumberOrdersReportCreateResponse, sub_number_orders_report, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: Telnyx) -> None:
         with client.sub_number_orders_report.with_streaming_response.create() as response:
@@ -62,7 +58,6 @@ class TestSubNumberOrdersReport:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Telnyx) -> None:
         sub_number_orders_report = client.sub_number_orders_report.retrieve(
@@ -70,7 +65,6 @@ class TestSubNumberOrdersReport:
         )
         assert_matches_type(SubNumberOrdersReportRetrieveResponse, sub_number_orders_report, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
         response = client.sub_number_orders_report.with_raw_response.retrieve(
@@ -82,7 +76,6 @@ class TestSubNumberOrdersReport:
         sub_number_orders_report = response.parse()
         assert_matches_type(SubNumberOrdersReportRetrieveResponse, sub_number_orders_report, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
         with client.sub_number_orders_report.with_streaming_response.retrieve(
@@ -96,7 +89,6 @@ class TestSubNumberOrdersReport:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_retrieve(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `report_id` but received ''"):
@@ -104,7 +96,6 @@ class TestSubNumberOrdersReport:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_download(self, client: Telnyx) -> None:
         sub_number_orders_report = client.sub_number_orders_report.download(
@@ -112,7 +103,6 @@ class TestSubNumberOrdersReport:
         )
         assert_matches_type(str, sub_number_orders_report, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_download(self, client: Telnyx) -> None:
         response = client.sub_number_orders_report.with_raw_response.download(
@@ -124,7 +114,6 @@ class TestSubNumberOrdersReport:
         sub_number_orders_report = response.parse()
         assert_matches_type(str, sub_number_orders_report, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_download(self, client: Telnyx) -> None:
         with client.sub_number_orders_report.with_streaming_response.download(
@@ -138,7 +127,6 @@ class TestSubNumberOrdersReport:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_download(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `report_id` but received ''"):
@@ -152,13 +140,11 @@ class TestAsyncSubNumberOrdersReport:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncTelnyx) -> None:
         sub_number_orders_report = await async_client.sub_number_orders_report.create()
         assert_matches_type(SubNumberOrdersReportCreateResponse, sub_number_orders_report, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncTelnyx) -> None:
         sub_number_orders_report = await async_client.sub_number_orders_report.create(
@@ -171,7 +157,6 @@ class TestAsyncSubNumberOrdersReport:
         )
         assert_matches_type(SubNumberOrdersReportCreateResponse, sub_number_orders_report, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.sub_number_orders_report.with_raw_response.create()
@@ -181,7 +166,6 @@ class TestAsyncSubNumberOrdersReport:
         sub_number_orders_report = await response.parse()
         assert_matches_type(SubNumberOrdersReportCreateResponse, sub_number_orders_report, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncTelnyx) -> None:
         async with async_client.sub_number_orders_report.with_streaming_response.create() as response:
@@ -193,7 +177,6 @@ class TestAsyncSubNumberOrdersReport:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
         sub_number_orders_report = await async_client.sub_number_orders_report.retrieve(
@@ -201,7 +184,6 @@ class TestAsyncSubNumberOrdersReport:
         )
         assert_matches_type(SubNumberOrdersReportRetrieveResponse, sub_number_orders_report, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.sub_number_orders_report.with_raw_response.retrieve(
@@ -213,7 +195,6 @@ class TestAsyncSubNumberOrdersReport:
         sub_number_orders_report = await response.parse()
         assert_matches_type(SubNumberOrdersReportRetrieveResponse, sub_number_orders_report, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         async with async_client.sub_number_orders_report.with_streaming_response.retrieve(
@@ -227,7 +208,6 @@ class TestAsyncSubNumberOrdersReport:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `report_id` but received ''"):
@@ -235,7 +215,6 @@ class TestAsyncSubNumberOrdersReport:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_download(self, async_client: AsyncTelnyx) -> None:
         sub_number_orders_report = await async_client.sub_number_orders_report.download(
@@ -243,7 +222,6 @@ class TestAsyncSubNumberOrdersReport:
         )
         assert_matches_type(str, sub_number_orders_report, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_download(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.sub_number_orders_report.with_raw_response.download(
@@ -255,7 +233,6 @@ class TestAsyncSubNumberOrdersReport:
         sub_number_orders_report = await response.parse()
         assert_matches_type(str, sub_number_orders_report, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_download(self, async_client: AsyncTelnyx) -> None:
         async with async_client.sub_number_orders_report.with_streaming_response.download(
@@ -269,7 +246,6 @@ class TestAsyncSubNumberOrdersReport:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_download(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `report_id` but received ''"):

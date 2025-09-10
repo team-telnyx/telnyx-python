@@ -24,7 +24,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestNetworks:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create(self, client: Telnyx) -> None:
         network = client.networks.create(
@@ -32,7 +31,6 @@ class TestNetworks:
         )
         assert_matches_type(NetworkCreateResponse, network, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: Telnyx) -> None:
         response = client.networks.with_raw_response.create(
@@ -44,7 +42,6 @@ class TestNetworks:
         network = response.parse()
         assert_matches_type(NetworkCreateResponse, network, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: Telnyx) -> None:
         with client.networks.with_streaming_response.create(
@@ -58,7 +55,6 @@ class TestNetworks:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Telnyx) -> None:
         network = client.networks.retrieve(
@@ -66,7 +62,6 @@ class TestNetworks:
         )
         assert_matches_type(NetworkRetrieveResponse, network, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
         response = client.networks.with_raw_response.retrieve(
@@ -78,7 +73,6 @@ class TestNetworks:
         network = response.parse()
         assert_matches_type(NetworkRetrieveResponse, network, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
         with client.networks.with_streaming_response.retrieve(
@@ -92,7 +86,6 @@ class TestNetworks:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_retrieve(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -100,7 +93,6 @@ class TestNetworks:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_update(self, client: Telnyx) -> None:
         network = client.networks.update(
@@ -109,7 +101,6 @@ class TestNetworks:
         )
         assert_matches_type(NetworkUpdateResponse, network, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_update(self, client: Telnyx) -> None:
         response = client.networks.with_raw_response.update(
@@ -122,7 +113,6 @@ class TestNetworks:
         network = response.parse()
         assert_matches_type(NetworkUpdateResponse, network, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_update(self, client: Telnyx) -> None:
         with client.networks.with_streaming_response.update(
@@ -137,7 +127,6 @@ class TestNetworks:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_update(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -146,13 +135,11 @@ class TestNetworks:
                 name="test network",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         network = client.networks.list()
         assert_matches_type(NetworkListResponse, network, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         network = client.networks.list(
@@ -164,7 +151,6 @@ class TestNetworks:
         )
         assert_matches_type(NetworkListResponse, network, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Telnyx) -> None:
         response = client.networks.with_raw_response.list()
@@ -174,7 +160,6 @@ class TestNetworks:
         network = response.parse()
         assert_matches_type(NetworkListResponse, network, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Telnyx) -> None:
         with client.networks.with_streaming_response.list() as response:
@@ -186,7 +171,6 @@ class TestNetworks:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_delete(self, client: Telnyx) -> None:
         network = client.networks.delete(
@@ -194,7 +178,6 @@ class TestNetworks:
         )
         assert_matches_type(NetworkDeleteResponse, network, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_delete(self, client: Telnyx) -> None:
         response = client.networks.with_raw_response.delete(
@@ -206,7 +189,6 @@ class TestNetworks:
         network = response.parse()
         assert_matches_type(NetworkDeleteResponse, network, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_delete(self, client: Telnyx) -> None:
         with client.networks.with_streaming_response.delete(
@@ -220,7 +202,6 @@ class TestNetworks:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_delete(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -228,7 +209,6 @@ class TestNetworks:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_interfaces(self, client: Telnyx) -> None:
         network = client.networks.list_interfaces(
@@ -236,7 +216,6 @@ class TestNetworks:
         )
         assert_matches_type(NetworkListInterfacesResponse, network, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_interfaces_with_all_params(self, client: Telnyx) -> None:
         network = client.networks.list_interfaces(
@@ -252,7 +231,6 @@ class TestNetworks:
         )
         assert_matches_type(NetworkListInterfacesResponse, network, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list_interfaces(self, client: Telnyx) -> None:
         response = client.networks.with_raw_response.list_interfaces(
@@ -264,7 +242,6 @@ class TestNetworks:
         network = response.parse()
         assert_matches_type(NetworkListInterfacesResponse, network, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list_interfaces(self, client: Telnyx) -> None:
         with client.networks.with_streaming_response.list_interfaces(
@@ -278,7 +255,6 @@ class TestNetworks:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_list_interfaces(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -292,7 +268,6 @@ class TestAsyncNetworks:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncTelnyx) -> None:
         network = await async_client.networks.create(
@@ -300,7 +275,6 @@ class TestAsyncNetworks:
         )
         assert_matches_type(NetworkCreateResponse, network, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.networks.with_raw_response.create(
@@ -312,7 +286,6 @@ class TestAsyncNetworks:
         network = await response.parse()
         assert_matches_type(NetworkCreateResponse, network, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncTelnyx) -> None:
         async with async_client.networks.with_streaming_response.create(
@@ -326,7 +299,6 @@ class TestAsyncNetworks:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
         network = await async_client.networks.retrieve(
@@ -334,7 +306,6 @@ class TestAsyncNetworks:
         )
         assert_matches_type(NetworkRetrieveResponse, network, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.networks.with_raw_response.retrieve(
@@ -346,7 +317,6 @@ class TestAsyncNetworks:
         network = await response.parse()
         assert_matches_type(NetworkRetrieveResponse, network, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         async with async_client.networks.with_streaming_response.retrieve(
@@ -360,7 +330,6 @@ class TestAsyncNetworks:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -368,7 +337,6 @@ class TestAsyncNetworks:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_update(self, async_client: AsyncTelnyx) -> None:
         network = await async_client.networks.update(
@@ -377,7 +345,6 @@ class TestAsyncNetworks:
         )
         assert_matches_type(NetworkUpdateResponse, network, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.networks.with_raw_response.update(
@@ -390,7 +357,6 @@ class TestAsyncNetworks:
         network = await response.parse()
         assert_matches_type(NetworkUpdateResponse, network, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncTelnyx) -> None:
         async with async_client.networks.with_streaming_response.update(
@@ -405,7 +371,6 @@ class TestAsyncNetworks:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_update(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -414,13 +379,11 @@ class TestAsyncNetworks:
                 name="test network",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         network = await async_client.networks.list()
         assert_matches_type(NetworkListResponse, network, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         network = await async_client.networks.list(
@@ -432,7 +395,6 @@ class TestAsyncNetworks:
         )
         assert_matches_type(NetworkListResponse, network, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.networks.with_raw_response.list()
@@ -442,7 +404,6 @@ class TestAsyncNetworks:
         network = await response.parse()
         assert_matches_type(NetworkListResponse, network, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncTelnyx) -> None:
         async with async_client.networks.with_streaming_response.list() as response:
@@ -454,7 +415,6 @@ class TestAsyncNetworks:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_delete(self, async_client: AsyncTelnyx) -> None:
         network = await async_client.networks.delete(
@@ -462,7 +422,6 @@ class TestAsyncNetworks:
         )
         assert_matches_type(NetworkDeleteResponse, network, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.networks.with_raw_response.delete(
@@ -474,7 +433,6 @@ class TestAsyncNetworks:
         network = await response.parse()
         assert_matches_type(NetworkDeleteResponse, network, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncTelnyx) -> None:
         async with async_client.networks.with_streaming_response.delete(
@@ -488,7 +446,6 @@ class TestAsyncNetworks:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -496,7 +453,6 @@ class TestAsyncNetworks:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_interfaces(self, async_client: AsyncTelnyx) -> None:
         network = await async_client.networks.list_interfaces(
@@ -504,7 +460,6 @@ class TestAsyncNetworks:
         )
         assert_matches_type(NetworkListInterfacesResponse, network, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_interfaces_with_all_params(self, async_client: AsyncTelnyx) -> None:
         network = await async_client.networks.list_interfaces(
@@ -520,7 +475,6 @@ class TestAsyncNetworks:
         )
         assert_matches_type(NetworkListInterfacesResponse, network, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list_interfaces(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.networks.with_raw_response.list_interfaces(
@@ -532,7 +486,6 @@ class TestAsyncNetworks:
         network = await response.parse()
         assert_matches_type(NetworkListInterfacesResponse, network, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list_interfaces(self, async_client: AsyncTelnyx) -> None:
         async with async_client.networks.with_streaming_response.list_interfaces(
@@ -546,7 +499,6 @@ class TestAsyncNetworks:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_list_interfaces(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):

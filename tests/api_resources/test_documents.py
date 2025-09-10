@@ -33,7 +33,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestDocuments:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Telnyx) -> None:
         document = client.documents.retrieve(
@@ -41,7 +40,6 @@ class TestDocuments:
         )
         assert_matches_type(DocumentRetrieveResponse, document, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
         response = client.documents.with_raw_response.retrieve(
@@ -53,7 +51,6 @@ class TestDocuments:
         document = response.parse()
         assert_matches_type(DocumentRetrieveResponse, document, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
         with client.documents.with_streaming_response.retrieve(
@@ -67,7 +64,6 @@ class TestDocuments:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_retrieve(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -75,7 +71,6 @@ class TestDocuments:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_update(self, client: Telnyx) -> None:
         document = client.documents.update(
@@ -83,7 +78,6 @@ class TestDocuments:
         )
         assert_matches_type(DocumentUpdateResponse, document, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_update_with_all_params(self, client: Telnyx) -> None:
         document = client.documents.update(
@@ -93,7 +87,6 @@ class TestDocuments:
         )
         assert_matches_type(DocumentUpdateResponse, document, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_update(self, client: Telnyx) -> None:
         response = client.documents.with_raw_response.update(
@@ -105,7 +98,6 @@ class TestDocuments:
         document = response.parse()
         assert_matches_type(DocumentUpdateResponse, document, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_update(self, client: Telnyx) -> None:
         with client.documents.with_streaming_response.update(
@@ -119,7 +111,6 @@ class TestDocuments:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_update(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -127,13 +118,11 @@ class TestDocuments:
                 id="",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         document = client.documents.list()
         assert_matches_type(DocumentListResponse, document, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         document = client.documents.list(
@@ -156,7 +145,6 @@ class TestDocuments:
         )
         assert_matches_type(DocumentListResponse, document, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Telnyx) -> None:
         response = client.documents.with_raw_response.list()
@@ -166,7 +154,6 @@ class TestDocuments:
         document = response.parse()
         assert_matches_type(DocumentListResponse, document, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Telnyx) -> None:
         with client.documents.with_streaming_response.list() as response:
@@ -178,7 +165,6 @@ class TestDocuments:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_delete(self, client: Telnyx) -> None:
         document = client.documents.delete(
@@ -186,7 +172,6 @@ class TestDocuments:
         )
         assert_matches_type(DocumentDeleteResponse, document, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_delete(self, client: Telnyx) -> None:
         response = client.documents.with_raw_response.delete(
@@ -198,7 +183,6 @@ class TestDocuments:
         document = response.parse()
         assert_matches_type(DocumentDeleteResponse, document, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_delete(self, client: Telnyx) -> None:
         with client.documents.with_streaming_response.delete(
@@ -212,7 +196,6 @@ class TestDocuments:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_delete(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -276,7 +259,6 @@ class TestDocuments:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_generate_download_link(self, client: Telnyx) -> None:
         document = client.documents.generate_download_link(
@@ -284,7 +266,6 @@ class TestDocuments:
         )
         assert_matches_type(DocumentGenerateDownloadLinkResponse, document, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_generate_download_link(self, client: Telnyx) -> None:
         response = client.documents.with_raw_response.generate_download_link(
@@ -296,7 +277,6 @@ class TestDocuments:
         document = response.parse()
         assert_matches_type(DocumentGenerateDownloadLinkResponse, document, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_generate_download_link(self, client: Telnyx) -> None:
         with client.documents.with_streaming_response.generate_download_link(
@@ -310,7 +290,6 @@ class TestDocuments:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_generate_download_link(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -318,7 +297,6 @@ class TestDocuments:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_upload_overload_1(self, client: Telnyx) -> None:
         document = client.documents.upload(
@@ -326,7 +304,6 @@ class TestDocuments:
         )
         assert_matches_type(DocumentUploadResponse, document, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_upload_with_all_params_overload_1(self, client: Telnyx) -> None:
         document = client.documents.upload(
@@ -336,7 +313,6 @@ class TestDocuments:
         )
         assert_matches_type(DocumentUploadResponse, document, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_upload_overload_1(self, client: Telnyx) -> None:
         response = client.documents.with_raw_response.upload(
@@ -348,7 +324,6 @@ class TestDocuments:
         document = response.parse()
         assert_matches_type(DocumentUploadResponse, document, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_upload_overload_1(self, client: Telnyx) -> None:
         with client.documents.with_streaming_response.upload(
@@ -362,7 +337,6 @@ class TestDocuments:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_upload_overload_2(self, client: Telnyx) -> None:
         document = client.documents.upload(
@@ -370,7 +344,6 @@ class TestDocuments:
         )
         assert_matches_type(DocumentUploadResponse, document, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_upload_with_all_params_overload_2(self, client: Telnyx) -> None:
         document = client.documents.upload(
@@ -380,7 +353,6 @@ class TestDocuments:
         )
         assert_matches_type(DocumentUploadResponse, document, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_upload_overload_2(self, client: Telnyx) -> None:
         response = client.documents.with_raw_response.upload(
@@ -392,7 +364,6 @@ class TestDocuments:
         document = response.parse()
         assert_matches_type(DocumentUploadResponse, document, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_upload_overload_2(self, client: Telnyx) -> None:
         with client.documents.with_streaming_response.upload(
@@ -412,7 +383,6 @@ class TestAsyncDocuments:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
         document = await async_client.documents.retrieve(
@@ -420,7 +390,6 @@ class TestAsyncDocuments:
         )
         assert_matches_type(DocumentRetrieveResponse, document, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.documents.with_raw_response.retrieve(
@@ -432,7 +401,6 @@ class TestAsyncDocuments:
         document = await response.parse()
         assert_matches_type(DocumentRetrieveResponse, document, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         async with async_client.documents.with_streaming_response.retrieve(
@@ -446,7 +414,6 @@ class TestAsyncDocuments:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -454,7 +421,6 @@ class TestAsyncDocuments:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_update(self, async_client: AsyncTelnyx) -> None:
         document = await async_client.documents.update(
@@ -462,7 +428,6 @@ class TestAsyncDocuments:
         )
         assert_matches_type(DocumentUpdateResponse, document, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncTelnyx) -> None:
         document = await async_client.documents.update(
@@ -472,7 +437,6 @@ class TestAsyncDocuments:
         )
         assert_matches_type(DocumentUpdateResponse, document, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.documents.with_raw_response.update(
@@ -484,7 +448,6 @@ class TestAsyncDocuments:
         document = await response.parse()
         assert_matches_type(DocumentUpdateResponse, document, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncTelnyx) -> None:
         async with async_client.documents.with_streaming_response.update(
@@ -498,7 +461,6 @@ class TestAsyncDocuments:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_update(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -506,13 +468,11 @@ class TestAsyncDocuments:
                 id="",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         document = await async_client.documents.list()
         assert_matches_type(DocumentListResponse, document, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         document = await async_client.documents.list(
@@ -535,7 +495,6 @@ class TestAsyncDocuments:
         )
         assert_matches_type(DocumentListResponse, document, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.documents.with_raw_response.list()
@@ -545,7 +504,6 @@ class TestAsyncDocuments:
         document = await response.parse()
         assert_matches_type(DocumentListResponse, document, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncTelnyx) -> None:
         async with async_client.documents.with_streaming_response.list() as response:
@@ -557,7 +515,6 @@ class TestAsyncDocuments:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_delete(self, async_client: AsyncTelnyx) -> None:
         document = await async_client.documents.delete(
@@ -565,7 +522,6 @@ class TestAsyncDocuments:
         )
         assert_matches_type(DocumentDeleteResponse, document, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.documents.with_raw_response.delete(
@@ -577,7 +533,6 @@ class TestAsyncDocuments:
         document = await response.parse()
         assert_matches_type(DocumentDeleteResponse, document, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncTelnyx) -> None:
         async with async_client.documents.with_streaming_response.delete(
@@ -591,7 +546,6 @@ class TestAsyncDocuments:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -655,7 +609,6 @@ class TestAsyncDocuments:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_generate_download_link(self, async_client: AsyncTelnyx) -> None:
         document = await async_client.documents.generate_download_link(
@@ -663,7 +616,6 @@ class TestAsyncDocuments:
         )
         assert_matches_type(DocumentGenerateDownloadLinkResponse, document, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_generate_download_link(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.documents.with_raw_response.generate_download_link(
@@ -675,7 +627,6 @@ class TestAsyncDocuments:
         document = await response.parse()
         assert_matches_type(DocumentGenerateDownloadLinkResponse, document, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_generate_download_link(self, async_client: AsyncTelnyx) -> None:
         async with async_client.documents.with_streaming_response.generate_download_link(
@@ -689,7 +640,6 @@ class TestAsyncDocuments:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_generate_download_link(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -697,7 +647,6 @@ class TestAsyncDocuments:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_upload_overload_1(self, async_client: AsyncTelnyx) -> None:
         document = await async_client.documents.upload(
@@ -705,7 +654,6 @@ class TestAsyncDocuments:
         )
         assert_matches_type(DocumentUploadResponse, document, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_upload_with_all_params_overload_1(self, async_client: AsyncTelnyx) -> None:
         document = await async_client.documents.upload(
@@ -715,7 +663,6 @@ class TestAsyncDocuments:
         )
         assert_matches_type(DocumentUploadResponse, document, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_upload_overload_1(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.documents.with_raw_response.upload(
@@ -727,7 +674,6 @@ class TestAsyncDocuments:
         document = await response.parse()
         assert_matches_type(DocumentUploadResponse, document, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_upload_overload_1(self, async_client: AsyncTelnyx) -> None:
         async with async_client.documents.with_streaming_response.upload(
@@ -741,7 +687,6 @@ class TestAsyncDocuments:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_upload_overload_2(self, async_client: AsyncTelnyx) -> None:
         document = await async_client.documents.upload(
@@ -749,7 +694,6 @@ class TestAsyncDocuments:
         )
         assert_matches_type(DocumentUploadResponse, document, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_upload_with_all_params_overload_2(self, async_client: AsyncTelnyx) -> None:
         document = await async_client.documents.upload(
@@ -759,7 +703,6 @@ class TestAsyncDocuments:
         )
         assert_matches_type(DocumentUploadResponse, document, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_upload_overload_2(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.documents.with_raw_response.upload(
@@ -771,7 +714,6 @@ class TestAsyncDocuments:
         document = await response.parse()
         assert_matches_type(DocumentUploadResponse, document, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_upload_overload_2(self, async_client: AsyncTelnyx) -> None:
         async with async_client.documents.with_streaming_response.upload(

@@ -17,7 +17,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestAudio:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_transcribe(self, client: Telnyx) -> None:
         audio = client.ai.audio.transcribe(
@@ -25,7 +24,6 @@ class TestAudio:
         )
         assert_matches_type(AudioTranscribeResponse, audio, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_transcribe_with_all_params(self, client: Telnyx) -> None:
         audio = client.ai.audio.transcribe(
@@ -37,7 +35,6 @@ class TestAudio:
         )
         assert_matches_type(AudioTranscribeResponse, audio, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_transcribe(self, client: Telnyx) -> None:
         response = client.ai.audio.with_raw_response.transcribe(
@@ -49,7 +46,6 @@ class TestAudio:
         audio = response.parse()
         assert_matches_type(AudioTranscribeResponse, audio, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_transcribe(self, client: Telnyx) -> None:
         with client.ai.audio.with_streaming_response.transcribe(
@@ -69,7 +65,6 @@ class TestAsyncAudio:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_transcribe(self, async_client: AsyncTelnyx) -> None:
         audio = await async_client.ai.audio.transcribe(
@@ -77,7 +72,6 @@ class TestAsyncAudio:
         )
         assert_matches_type(AudioTranscribeResponse, audio, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_transcribe_with_all_params(self, async_client: AsyncTelnyx) -> None:
         audio = await async_client.ai.audio.transcribe(
@@ -89,7 +83,6 @@ class TestAsyncAudio:
         )
         assert_matches_type(AudioTranscribeResponse, audio, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_transcribe(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.ai.audio.with_raw_response.transcribe(
@@ -101,7 +94,6 @@ class TestAsyncAudio:
         audio = await response.parse()
         assert_matches_type(AudioTranscribeResponse, audio, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_transcribe(self, async_client: AsyncTelnyx) -> None:
         async with async_client.ai.audio.with_streaming_response.transcribe(

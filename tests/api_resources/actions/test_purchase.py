@@ -17,7 +17,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestPurchase:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create(self, client: Telnyx) -> None:
         purchase = client.actions.purchase.create(
@@ -25,7 +24,6 @@ class TestPurchase:
         )
         assert_matches_type(PurchaseCreateResponse, purchase, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create_with_all_params(self, client: Telnyx) -> None:
         purchase = client.actions.purchase.create(
@@ -38,7 +36,6 @@ class TestPurchase:
         )
         assert_matches_type(PurchaseCreateResponse, purchase, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: Telnyx) -> None:
         response = client.actions.purchase.with_raw_response.create(
@@ -50,7 +47,6 @@ class TestPurchase:
         purchase = response.parse()
         assert_matches_type(PurchaseCreateResponse, purchase, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: Telnyx) -> None:
         with client.actions.purchase.with_streaming_response.create(
@@ -70,7 +66,6 @@ class TestAsyncPurchase:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncTelnyx) -> None:
         purchase = await async_client.actions.purchase.create(
@@ -78,7 +73,6 @@ class TestAsyncPurchase:
         )
         assert_matches_type(PurchaseCreateResponse, purchase, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncTelnyx) -> None:
         purchase = await async_client.actions.purchase.create(
@@ -91,7 +85,6 @@ class TestAsyncPurchase:
         )
         assert_matches_type(PurchaseCreateResponse, purchase, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.actions.purchase.with_raw_response.create(
@@ -103,7 +96,6 @@ class TestAsyncPurchase:
         purchase = await response.parse()
         assert_matches_type(PurchaseCreateResponse, purchase, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncTelnyx) -> None:
         async with async_client.actions.purchase.with_streaming_response.create(

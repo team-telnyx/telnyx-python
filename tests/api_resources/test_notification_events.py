@@ -17,13 +17,11 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestNotificationEvents:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         notification_event = client.notification_events.list()
         assert_matches_type(NotificationEventListResponse, notification_event, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         notification_event = client.notification_events.list(
@@ -34,7 +32,6 @@ class TestNotificationEvents:
         )
         assert_matches_type(NotificationEventListResponse, notification_event, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Telnyx) -> None:
         response = client.notification_events.with_raw_response.list()
@@ -44,7 +41,6 @@ class TestNotificationEvents:
         notification_event = response.parse()
         assert_matches_type(NotificationEventListResponse, notification_event, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Telnyx) -> None:
         with client.notification_events.with_streaming_response.list() as response:
@@ -62,13 +58,11 @@ class TestAsyncNotificationEvents:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         notification_event = await async_client.notification_events.list()
         assert_matches_type(NotificationEventListResponse, notification_event, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         notification_event = await async_client.notification_events.list(
@@ -79,7 +73,6 @@ class TestAsyncNotificationEvents:
         )
         assert_matches_type(NotificationEventListResponse, notification_event, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.notification_events.with_raw_response.list()
@@ -89,7 +82,6 @@ class TestAsyncNotificationEvents:
         notification_event = await response.parse()
         assert_matches_type(NotificationEventListResponse, notification_event, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncTelnyx) -> None:
         async with async_client.notification_events.with_streaming_response.list() as response:

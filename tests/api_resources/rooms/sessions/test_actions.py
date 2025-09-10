@@ -22,7 +22,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestActions:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_end(self, client: Telnyx) -> None:
         action = client.rooms.sessions.actions.end(
@@ -30,7 +29,6 @@ class TestActions:
         )
         assert_matches_type(ActionEndResponse, action, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_end(self, client: Telnyx) -> None:
         response = client.rooms.sessions.actions.with_raw_response.end(
@@ -42,7 +40,6 @@ class TestActions:
         action = response.parse()
         assert_matches_type(ActionEndResponse, action, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_end(self, client: Telnyx) -> None:
         with client.rooms.sessions.actions.with_streaming_response.end(
@@ -56,7 +53,6 @@ class TestActions:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_end(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `room_session_id` but received ''"):
@@ -64,7 +60,6 @@ class TestActions:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_kick(self, client: Telnyx) -> None:
         action = client.rooms.sessions.actions.kick(
@@ -72,7 +67,6 @@ class TestActions:
         )
         assert_matches_type(ActionKickResponse, action, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_kick_with_all_params(self, client: Telnyx) -> None:
         action = client.rooms.sessions.actions.kick(
@@ -82,7 +76,6 @@ class TestActions:
         )
         assert_matches_type(ActionKickResponse, action, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_kick(self, client: Telnyx) -> None:
         response = client.rooms.sessions.actions.with_raw_response.kick(
@@ -94,7 +87,6 @@ class TestActions:
         action = response.parse()
         assert_matches_type(ActionKickResponse, action, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_kick(self, client: Telnyx) -> None:
         with client.rooms.sessions.actions.with_streaming_response.kick(
@@ -108,7 +100,6 @@ class TestActions:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_kick(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `room_session_id` but received ''"):
@@ -116,7 +107,6 @@ class TestActions:
                 room_session_id="",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_mute(self, client: Telnyx) -> None:
         action = client.rooms.sessions.actions.mute(
@@ -124,7 +114,6 @@ class TestActions:
         )
         assert_matches_type(ActionMuteResponse, action, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_mute_with_all_params(self, client: Telnyx) -> None:
         action = client.rooms.sessions.actions.mute(
@@ -134,7 +123,6 @@ class TestActions:
         )
         assert_matches_type(ActionMuteResponse, action, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_mute(self, client: Telnyx) -> None:
         response = client.rooms.sessions.actions.with_raw_response.mute(
@@ -146,7 +134,6 @@ class TestActions:
         action = response.parse()
         assert_matches_type(ActionMuteResponse, action, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_mute(self, client: Telnyx) -> None:
         with client.rooms.sessions.actions.with_streaming_response.mute(
@@ -160,7 +147,6 @@ class TestActions:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_mute(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `room_session_id` but received ''"):
@@ -168,7 +154,6 @@ class TestActions:
                 room_session_id="",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_unmute(self, client: Telnyx) -> None:
         action = client.rooms.sessions.actions.unmute(
@@ -176,7 +161,6 @@ class TestActions:
         )
         assert_matches_type(ActionUnmuteResponse, action, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_unmute_with_all_params(self, client: Telnyx) -> None:
         action = client.rooms.sessions.actions.unmute(
@@ -186,7 +170,6 @@ class TestActions:
         )
         assert_matches_type(ActionUnmuteResponse, action, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_unmute(self, client: Telnyx) -> None:
         response = client.rooms.sessions.actions.with_raw_response.unmute(
@@ -198,7 +181,6 @@ class TestActions:
         action = response.parse()
         assert_matches_type(ActionUnmuteResponse, action, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_unmute(self, client: Telnyx) -> None:
         with client.rooms.sessions.actions.with_streaming_response.unmute(
@@ -212,7 +194,6 @@ class TestActions:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_unmute(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `room_session_id` but received ''"):
@@ -226,7 +207,6 @@ class TestAsyncActions:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_end(self, async_client: AsyncTelnyx) -> None:
         action = await async_client.rooms.sessions.actions.end(
@@ -234,7 +214,6 @@ class TestAsyncActions:
         )
         assert_matches_type(ActionEndResponse, action, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_end(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.rooms.sessions.actions.with_raw_response.end(
@@ -246,7 +225,6 @@ class TestAsyncActions:
         action = await response.parse()
         assert_matches_type(ActionEndResponse, action, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_end(self, async_client: AsyncTelnyx) -> None:
         async with async_client.rooms.sessions.actions.with_streaming_response.end(
@@ -260,7 +238,6 @@ class TestAsyncActions:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_end(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `room_session_id` but received ''"):
@@ -268,7 +245,6 @@ class TestAsyncActions:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_kick(self, async_client: AsyncTelnyx) -> None:
         action = await async_client.rooms.sessions.actions.kick(
@@ -276,7 +252,6 @@ class TestAsyncActions:
         )
         assert_matches_type(ActionKickResponse, action, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_kick_with_all_params(self, async_client: AsyncTelnyx) -> None:
         action = await async_client.rooms.sessions.actions.kick(
@@ -286,7 +261,6 @@ class TestAsyncActions:
         )
         assert_matches_type(ActionKickResponse, action, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_kick(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.rooms.sessions.actions.with_raw_response.kick(
@@ -298,7 +272,6 @@ class TestAsyncActions:
         action = await response.parse()
         assert_matches_type(ActionKickResponse, action, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_kick(self, async_client: AsyncTelnyx) -> None:
         async with async_client.rooms.sessions.actions.with_streaming_response.kick(
@@ -312,7 +285,6 @@ class TestAsyncActions:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_kick(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `room_session_id` but received ''"):
@@ -320,7 +292,6 @@ class TestAsyncActions:
                 room_session_id="",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_mute(self, async_client: AsyncTelnyx) -> None:
         action = await async_client.rooms.sessions.actions.mute(
@@ -328,7 +299,6 @@ class TestAsyncActions:
         )
         assert_matches_type(ActionMuteResponse, action, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_mute_with_all_params(self, async_client: AsyncTelnyx) -> None:
         action = await async_client.rooms.sessions.actions.mute(
@@ -338,7 +308,6 @@ class TestAsyncActions:
         )
         assert_matches_type(ActionMuteResponse, action, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_mute(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.rooms.sessions.actions.with_raw_response.mute(
@@ -350,7 +319,6 @@ class TestAsyncActions:
         action = await response.parse()
         assert_matches_type(ActionMuteResponse, action, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_mute(self, async_client: AsyncTelnyx) -> None:
         async with async_client.rooms.sessions.actions.with_streaming_response.mute(
@@ -364,7 +332,6 @@ class TestAsyncActions:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_mute(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `room_session_id` but received ''"):
@@ -372,7 +339,6 @@ class TestAsyncActions:
                 room_session_id="",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_unmute(self, async_client: AsyncTelnyx) -> None:
         action = await async_client.rooms.sessions.actions.unmute(
@@ -380,7 +346,6 @@ class TestAsyncActions:
         )
         assert_matches_type(ActionUnmuteResponse, action, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_unmute_with_all_params(self, async_client: AsyncTelnyx) -> None:
         action = await async_client.rooms.sessions.actions.unmute(
@@ -390,7 +355,6 @@ class TestAsyncActions:
         )
         assert_matches_type(ActionUnmuteResponse, action, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_unmute(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.rooms.sessions.actions.with_raw_response.unmute(
@@ -402,7 +366,6 @@ class TestAsyncActions:
         action = await response.parse()
         assert_matches_type(ActionUnmuteResponse, action, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_unmute(self, async_client: AsyncTelnyx) -> None:
         async with async_client.rooms.sessions.actions.with_streaming_response.unmute(
@@ -416,7 +379,6 @@ class TestAsyncActions:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_unmute(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `room_session_id` but received ''"):

@@ -17,7 +17,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestCalls:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_update(self, client: Telnyx) -> None:
         call = client.texml.calls.update(
@@ -25,7 +24,6 @@ class TestCalls:
         )
         assert_matches_type(CallUpdateResponse, call, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_update_with_all_params(self, client: Telnyx) -> None:
         call = client.texml.calls.update(
@@ -41,7 +39,6 @@ class TestCalls:
         )
         assert_matches_type(CallUpdateResponse, call, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_update(self, client: Telnyx) -> None:
         response = client.texml.calls.with_raw_response.update(
@@ -53,7 +50,6 @@ class TestCalls:
         call = response.parse()
         assert_matches_type(CallUpdateResponse, call, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_update(self, client: Telnyx) -> None:
         with client.texml.calls.with_streaming_response.update(
@@ -67,7 +63,6 @@ class TestCalls:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_update(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `call_sid` but received ''"):
@@ -75,7 +70,6 @@ class TestCalls:
                 call_sid="",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_initiate(self, client: Telnyx) -> None:
         call = client.texml.calls.initiate(
@@ -85,7 +79,6 @@ class TestCalls:
         )
         assert_matches_type(CallInitiateResponse, call, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_initiate_with_all_params(self, client: Telnyx) -> None:
         call = client.texml.calls.initiate(
@@ -124,7 +117,6 @@ class TestCalls:
         )
         assert_matches_type(CallInitiateResponse, call, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_initiate(self, client: Telnyx) -> None:
         response = client.texml.calls.with_raw_response.initiate(
@@ -138,7 +130,6 @@ class TestCalls:
         call = response.parse()
         assert_matches_type(CallInitiateResponse, call, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_initiate(self, client: Telnyx) -> None:
         with client.texml.calls.with_streaming_response.initiate(
@@ -154,7 +145,6 @@ class TestCalls:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_initiate(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `application_id` but received ''"):
@@ -170,7 +160,6 @@ class TestAsyncCalls:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_update(self, async_client: AsyncTelnyx) -> None:
         call = await async_client.texml.calls.update(
@@ -178,7 +167,6 @@ class TestAsyncCalls:
         )
         assert_matches_type(CallUpdateResponse, call, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncTelnyx) -> None:
         call = await async_client.texml.calls.update(
@@ -194,7 +182,6 @@ class TestAsyncCalls:
         )
         assert_matches_type(CallUpdateResponse, call, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.texml.calls.with_raw_response.update(
@@ -206,7 +193,6 @@ class TestAsyncCalls:
         call = await response.parse()
         assert_matches_type(CallUpdateResponse, call, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncTelnyx) -> None:
         async with async_client.texml.calls.with_streaming_response.update(
@@ -220,7 +206,6 @@ class TestAsyncCalls:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_update(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `call_sid` but received ''"):
@@ -228,7 +213,6 @@ class TestAsyncCalls:
                 call_sid="",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_initiate(self, async_client: AsyncTelnyx) -> None:
         call = await async_client.texml.calls.initiate(
@@ -238,7 +222,6 @@ class TestAsyncCalls:
         )
         assert_matches_type(CallInitiateResponse, call, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_initiate_with_all_params(self, async_client: AsyncTelnyx) -> None:
         call = await async_client.texml.calls.initiate(
@@ -277,7 +260,6 @@ class TestAsyncCalls:
         )
         assert_matches_type(CallInitiateResponse, call, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_initiate(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.texml.calls.with_raw_response.initiate(
@@ -291,7 +273,6 @@ class TestAsyncCalls:
         call = await response.parse()
         assert_matches_type(CallInitiateResponse, call, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_initiate(self, async_client: AsyncTelnyx) -> None:
         async with async_client.texml.calls.with_streaming_response.initiate(
@@ -307,7 +288,6 @@ class TestAsyncCalls:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_initiate(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `application_id` but received ''"):

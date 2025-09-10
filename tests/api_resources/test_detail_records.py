@@ -17,13 +17,11 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestDetailRecords:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         detail_record = client.detail_records.list()
         assert_matches_type(DetailRecordListResponse, detail_record, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         detail_record = client.detail_records.list(
@@ -39,7 +37,6 @@ class TestDetailRecords:
         )
         assert_matches_type(DetailRecordListResponse, detail_record, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Telnyx) -> None:
         response = client.detail_records.with_raw_response.list()
@@ -49,7 +46,6 @@ class TestDetailRecords:
         detail_record = response.parse()
         assert_matches_type(DetailRecordListResponse, detail_record, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Telnyx) -> None:
         with client.detail_records.with_streaming_response.list() as response:
@@ -67,13 +63,11 @@ class TestAsyncDetailRecords:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         detail_record = await async_client.detail_records.list()
         assert_matches_type(DetailRecordListResponse, detail_record, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         detail_record = await async_client.detail_records.list(
@@ -89,7 +83,6 @@ class TestAsyncDetailRecords:
         )
         assert_matches_type(DetailRecordListResponse, detail_record, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.detail_records.with_raw_response.list()
@@ -99,7 +92,6 @@ class TestAsyncDetailRecords:
         detail_record = await response.parse()
         assert_matches_type(DetailRecordListResponse, detail_record, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncTelnyx) -> None:
         async with async_client.detail_records.with_streaming_response.list() as response:

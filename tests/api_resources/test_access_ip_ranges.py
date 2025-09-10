@@ -21,7 +21,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestAccessIPRanges:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create(self, client: Telnyx) -> None:
         access_ip_range = client.access_ip_ranges.create(
@@ -29,7 +28,6 @@ class TestAccessIPRanges:
         )
         assert_matches_type(AccessIPRange, access_ip_range, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create_with_all_params(self, client: Telnyx) -> None:
         access_ip_range = client.access_ip_ranges.create(
@@ -38,7 +36,6 @@ class TestAccessIPRanges:
         )
         assert_matches_type(AccessIPRange, access_ip_range, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: Telnyx) -> None:
         response = client.access_ip_ranges.with_raw_response.create(
@@ -50,7 +47,6 @@ class TestAccessIPRanges:
         access_ip_range = response.parse()
         assert_matches_type(AccessIPRange, access_ip_range, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: Telnyx) -> None:
         with client.access_ip_ranges.with_streaming_response.create(
@@ -64,13 +60,11 @@ class TestAccessIPRanges:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         access_ip_range = client.access_ip_ranges.list()
         assert_matches_type(AccessIPRangeListResponse, access_ip_range, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         access_ip_range = client.access_ip_ranges.list(
@@ -85,7 +79,6 @@ class TestAccessIPRanges:
         )
         assert_matches_type(AccessIPRangeListResponse, access_ip_range, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Telnyx) -> None:
         response = client.access_ip_ranges.with_raw_response.list()
@@ -95,7 +88,6 @@ class TestAccessIPRanges:
         access_ip_range = response.parse()
         assert_matches_type(AccessIPRangeListResponse, access_ip_range, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Telnyx) -> None:
         with client.access_ip_ranges.with_streaming_response.list() as response:
@@ -107,7 +99,6 @@ class TestAccessIPRanges:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_delete(self, client: Telnyx) -> None:
         access_ip_range = client.access_ip_ranges.delete(
@@ -115,7 +106,6 @@ class TestAccessIPRanges:
         )
         assert_matches_type(AccessIPRange, access_ip_range, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_delete(self, client: Telnyx) -> None:
         response = client.access_ip_ranges.with_raw_response.delete(
@@ -127,7 +117,6 @@ class TestAccessIPRanges:
         access_ip_range = response.parse()
         assert_matches_type(AccessIPRange, access_ip_range, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_delete(self, client: Telnyx) -> None:
         with client.access_ip_ranges.with_streaming_response.delete(
@@ -141,7 +130,6 @@ class TestAccessIPRanges:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_delete(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `access_ip_range_id` but received ''"):
@@ -155,7 +143,6 @@ class TestAsyncAccessIPRanges:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncTelnyx) -> None:
         access_ip_range = await async_client.access_ip_ranges.create(
@@ -163,7 +150,6 @@ class TestAsyncAccessIPRanges:
         )
         assert_matches_type(AccessIPRange, access_ip_range, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncTelnyx) -> None:
         access_ip_range = await async_client.access_ip_ranges.create(
@@ -172,7 +158,6 @@ class TestAsyncAccessIPRanges:
         )
         assert_matches_type(AccessIPRange, access_ip_range, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.access_ip_ranges.with_raw_response.create(
@@ -184,7 +169,6 @@ class TestAsyncAccessIPRanges:
         access_ip_range = await response.parse()
         assert_matches_type(AccessIPRange, access_ip_range, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncTelnyx) -> None:
         async with async_client.access_ip_ranges.with_streaming_response.create(
@@ -198,13 +182,11 @@ class TestAsyncAccessIPRanges:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         access_ip_range = await async_client.access_ip_ranges.list()
         assert_matches_type(AccessIPRangeListResponse, access_ip_range, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         access_ip_range = await async_client.access_ip_ranges.list(
@@ -219,7 +201,6 @@ class TestAsyncAccessIPRanges:
         )
         assert_matches_type(AccessIPRangeListResponse, access_ip_range, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.access_ip_ranges.with_raw_response.list()
@@ -229,7 +210,6 @@ class TestAsyncAccessIPRanges:
         access_ip_range = await response.parse()
         assert_matches_type(AccessIPRangeListResponse, access_ip_range, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncTelnyx) -> None:
         async with async_client.access_ip_ranges.with_streaming_response.list() as response:
@@ -241,7 +221,6 @@ class TestAsyncAccessIPRanges:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_delete(self, async_client: AsyncTelnyx) -> None:
         access_ip_range = await async_client.access_ip_ranges.delete(
@@ -249,7 +228,6 @@ class TestAsyncAccessIPRanges:
         )
         assert_matches_type(AccessIPRange, access_ip_range, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.access_ip_ranges.with_raw_response.delete(
@@ -261,7 +239,6 @@ class TestAsyncAccessIPRanges:
         access_ip_range = await response.parse()
         assert_matches_type(AccessIPRange, access_ip_range, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncTelnyx) -> None:
         async with async_client.access_ip_ranges.with_streaming_response.delete(
@@ -275,7 +252,6 @@ class TestAsyncAccessIPRanges:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `access_ip_range_id` but received ''"):

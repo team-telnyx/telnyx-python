@@ -21,7 +21,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestNumberBlockOrders:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create(self, client: Telnyx) -> None:
         number_block_order = client.number_block_orders.create(
@@ -30,7 +29,6 @@ class TestNumberBlockOrders:
         )
         assert_matches_type(NumberBlockOrderCreateResponse, number_block_order, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create_with_all_params(self, client: Telnyx) -> None:
         number_block_order = client.number_block_orders.create(
@@ -42,7 +40,6 @@ class TestNumberBlockOrders:
         )
         assert_matches_type(NumberBlockOrderCreateResponse, number_block_order, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: Telnyx) -> None:
         response = client.number_block_orders.with_raw_response.create(
@@ -55,7 +52,6 @@ class TestNumberBlockOrders:
         number_block_order = response.parse()
         assert_matches_type(NumberBlockOrderCreateResponse, number_block_order, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: Telnyx) -> None:
         with client.number_block_orders.with_streaming_response.create(
@@ -70,7 +66,6 @@ class TestNumberBlockOrders:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Telnyx) -> None:
         number_block_order = client.number_block_orders.retrieve(
@@ -78,7 +73,6 @@ class TestNumberBlockOrders:
         )
         assert_matches_type(NumberBlockOrderRetrieveResponse, number_block_order, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
         response = client.number_block_orders.with_raw_response.retrieve(
@@ -90,7 +84,6 @@ class TestNumberBlockOrders:
         number_block_order = response.parse()
         assert_matches_type(NumberBlockOrderRetrieveResponse, number_block_order, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
         with client.number_block_orders.with_streaming_response.retrieve(
@@ -104,7 +97,6 @@ class TestNumberBlockOrders:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_retrieve(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `number_block_order_id` but received ''"):
@@ -112,13 +104,11 @@ class TestNumberBlockOrders:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         number_block_order = client.number_block_orders.list()
         assert_matches_type(NumberBlockOrderListResponse, number_block_order, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         number_block_order = client.number_block_orders.list(
@@ -137,7 +127,6 @@ class TestNumberBlockOrders:
         )
         assert_matches_type(NumberBlockOrderListResponse, number_block_order, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Telnyx) -> None:
         response = client.number_block_orders.with_raw_response.list()
@@ -147,7 +136,6 @@ class TestNumberBlockOrders:
         number_block_order = response.parse()
         assert_matches_type(NumberBlockOrderListResponse, number_block_order, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Telnyx) -> None:
         with client.number_block_orders.with_streaming_response.list() as response:
@@ -165,7 +153,6 @@ class TestAsyncNumberBlockOrders:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncTelnyx) -> None:
         number_block_order = await async_client.number_block_orders.create(
@@ -174,7 +161,6 @@ class TestAsyncNumberBlockOrders:
         )
         assert_matches_type(NumberBlockOrderCreateResponse, number_block_order, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncTelnyx) -> None:
         number_block_order = await async_client.number_block_orders.create(
@@ -186,7 +172,6 @@ class TestAsyncNumberBlockOrders:
         )
         assert_matches_type(NumberBlockOrderCreateResponse, number_block_order, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.number_block_orders.with_raw_response.create(
@@ -199,7 +184,6 @@ class TestAsyncNumberBlockOrders:
         number_block_order = await response.parse()
         assert_matches_type(NumberBlockOrderCreateResponse, number_block_order, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncTelnyx) -> None:
         async with async_client.number_block_orders.with_streaming_response.create(
@@ -214,7 +198,6 @@ class TestAsyncNumberBlockOrders:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
         number_block_order = await async_client.number_block_orders.retrieve(
@@ -222,7 +205,6 @@ class TestAsyncNumberBlockOrders:
         )
         assert_matches_type(NumberBlockOrderRetrieveResponse, number_block_order, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.number_block_orders.with_raw_response.retrieve(
@@ -234,7 +216,6 @@ class TestAsyncNumberBlockOrders:
         number_block_order = await response.parse()
         assert_matches_type(NumberBlockOrderRetrieveResponse, number_block_order, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         async with async_client.number_block_orders.with_streaming_response.retrieve(
@@ -248,7 +229,6 @@ class TestAsyncNumberBlockOrders:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `number_block_order_id` but received ''"):
@@ -256,13 +236,11 @@ class TestAsyncNumberBlockOrders:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         number_block_order = await async_client.number_block_orders.list()
         assert_matches_type(NumberBlockOrderListResponse, number_block_order, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         number_block_order = await async_client.number_block_orders.list(
@@ -281,7 +259,6 @@ class TestAsyncNumberBlockOrders:
         )
         assert_matches_type(NumberBlockOrderListResponse, number_block_order, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.number_block_orders.with_raw_response.list()
@@ -291,7 +268,6 @@ class TestAsyncNumberBlockOrders:
         number_block_order = await response.parse()
         assert_matches_type(NumberBlockOrderListResponse, number_block_order, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncTelnyx) -> None:
         async with async_client.number_block_orders.with_streaming_response.list() as response:

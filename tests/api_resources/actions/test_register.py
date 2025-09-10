@@ -17,7 +17,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestRegister:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create(self, client: Telnyx) -> None:
         register = client.actions.register.create(
@@ -25,7 +24,6 @@ class TestRegister:
         )
         assert_matches_type(RegisterCreateResponse, register, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create_with_all_params(self, client: Telnyx) -> None:
         register = client.actions.register.create(
@@ -36,7 +34,6 @@ class TestRegister:
         )
         assert_matches_type(RegisterCreateResponse, register, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: Telnyx) -> None:
         response = client.actions.register.with_raw_response.create(
@@ -48,7 +45,6 @@ class TestRegister:
         register = response.parse()
         assert_matches_type(RegisterCreateResponse, register, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: Telnyx) -> None:
         with client.actions.register.with_streaming_response.create(
@@ -68,7 +64,6 @@ class TestAsyncRegister:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncTelnyx) -> None:
         register = await async_client.actions.register.create(
@@ -76,7 +71,6 @@ class TestAsyncRegister:
         )
         assert_matches_type(RegisterCreateResponse, register, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncTelnyx) -> None:
         register = await async_client.actions.register.create(
@@ -87,7 +81,6 @@ class TestAsyncRegister:
         )
         assert_matches_type(RegisterCreateResponse, register, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.actions.register.with_raw_response.create(
@@ -99,7 +92,6 @@ class TestAsyncRegister:
         register = await response.parse()
         assert_matches_type(RegisterCreateResponse, register, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncTelnyx) -> None:
         async with async_client.actions.register.with_streaming_response.create(

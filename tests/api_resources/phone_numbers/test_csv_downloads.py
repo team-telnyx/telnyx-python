@@ -21,13 +21,11 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestCsvDownloads:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create(self, client: Telnyx) -> None:
         csv_download = client.phone_numbers.csv_downloads.create()
         assert_matches_type(CsvDownloadCreateResponse, csv_download, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create_with_all_params(self, client: Telnyx) -> None:
         csv_download = client.phone_numbers.csv_downloads.create(
@@ -52,7 +50,6 @@ class TestCsvDownloads:
         )
         assert_matches_type(CsvDownloadCreateResponse, csv_download, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: Telnyx) -> None:
         response = client.phone_numbers.csv_downloads.with_raw_response.create()
@@ -62,7 +59,6 @@ class TestCsvDownloads:
         csv_download = response.parse()
         assert_matches_type(CsvDownloadCreateResponse, csv_download, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: Telnyx) -> None:
         with client.phone_numbers.csv_downloads.with_streaming_response.create() as response:
@@ -74,7 +70,6 @@ class TestCsvDownloads:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Telnyx) -> None:
         csv_download = client.phone_numbers.csv_downloads.retrieve(
@@ -82,7 +77,6 @@ class TestCsvDownloads:
         )
         assert_matches_type(CsvDownloadRetrieveResponse, csv_download, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
         response = client.phone_numbers.csv_downloads.with_raw_response.retrieve(
@@ -94,7 +88,6 @@ class TestCsvDownloads:
         csv_download = response.parse()
         assert_matches_type(CsvDownloadRetrieveResponse, csv_download, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
         with client.phone_numbers.csv_downloads.with_streaming_response.retrieve(
@@ -108,7 +101,6 @@ class TestCsvDownloads:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_retrieve(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -116,13 +108,11 @@ class TestCsvDownloads:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         csv_download = client.phone_numbers.csv_downloads.list()
         assert_matches_type(CsvDownloadListResponse, csv_download, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         csv_download = client.phone_numbers.csv_downloads.list(
@@ -133,7 +123,6 @@ class TestCsvDownloads:
         )
         assert_matches_type(CsvDownloadListResponse, csv_download, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Telnyx) -> None:
         response = client.phone_numbers.csv_downloads.with_raw_response.list()
@@ -143,7 +132,6 @@ class TestCsvDownloads:
         csv_download = response.parse()
         assert_matches_type(CsvDownloadListResponse, csv_download, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Telnyx) -> None:
         with client.phone_numbers.csv_downloads.with_streaming_response.list() as response:
@@ -161,13 +149,11 @@ class TestAsyncCsvDownloads:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncTelnyx) -> None:
         csv_download = await async_client.phone_numbers.csv_downloads.create()
         assert_matches_type(CsvDownloadCreateResponse, csv_download, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncTelnyx) -> None:
         csv_download = await async_client.phone_numbers.csv_downloads.create(
@@ -192,7 +178,6 @@ class TestAsyncCsvDownloads:
         )
         assert_matches_type(CsvDownloadCreateResponse, csv_download, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.phone_numbers.csv_downloads.with_raw_response.create()
@@ -202,7 +187,6 @@ class TestAsyncCsvDownloads:
         csv_download = await response.parse()
         assert_matches_type(CsvDownloadCreateResponse, csv_download, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncTelnyx) -> None:
         async with async_client.phone_numbers.csv_downloads.with_streaming_response.create() as response:
@@ -214,7 +198,6 @@ class TestAsyncCsvDownloads:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
         csv_download = await async_client.phone_numbers.csv_downloads.retrieve(
@@ -222,7 +205,6 @@ class TestAsyncCsvDownloads:
         )
         assert_matches_type(CsvDownloadRetrieveResponse, csv_download, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.phone_numbers.csv_downloads.with_raw_response.retrieve(
@@ -234,7 +216,6 @@ class TestAsyncCsvDownloads:
         csv_download = await response.parse()
         assert_matches_type(CsvDownloadRetrieveResponse, csv_download, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         async with async_client.phone_numbers.csv_downloads.with_streaming_response.retrieve(
@@ -248,7 +229,6 @@ class TestAsyncCsvDownloads:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -256,13 +236,11 @@ class TestAsyncCsvDownloads:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         csv_download = await async_client.phone_numbers.csv_downloads.list()
         assert_matches_type(CsvDownloadListResponse, csv_download, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         csv_download = await async_client.phone_numbers.csv_downloads.list(
@@ -273,7 +251,6 @@ class TestAsyncCsvDownloads:
         )
         assert_matches_type(CsvDownloadListResponse, csv_download, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.phone_numbers.csv_downloads.with_raw_response.list()
@@ -283,7 +260,6 @@ class TestAsyncCsvDownloads:
         csv_download = await response.parse()
         assert_matches_type(CsvDownloadListResponse, csv_download, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncTelnyx) -> None:
         async with async_client.phone_numbers.csv_downloads.with_streaming_response.list() as response:
