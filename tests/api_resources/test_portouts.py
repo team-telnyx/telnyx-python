@@ -23,7 +23,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestPortouts:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Telnyx) -> None:
         portout = client.portouts.retrieve(
@@ -31,7 +30,6 @@ class TestPortouts:
         )
         assert_matches_type(PortoutRetrieveResponse, portout, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
         response = client.portouts.with_raw_response.retrieve(
@@ -43,7 +41,6 @@ class TestPortouts:
         portout = response.parse()
         assert_matches_type(PortoutRetrieveResponse, portout, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
         with client.portouts.with_streaming_response.retrieve(
@@ -57,7 +54,6 @@ class TestPortouts:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_retrieve(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -65,13 +61,11 @@ class TestPortouts:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         portout = client.portouts.list()
         assert_matches_type(PortoutListResponse, portout, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         portout = client.portouts.list(
@@ -102,7 +96,6 @@ class TestPortouts:
         )
         assert_matches_type(PortoutListResponse, portout, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Telnyx) -> None:
         response = client.portouts.with_raw_response.list()
@@ -112,7 +105,6 @@ class TestPortouts:
         portout = response.parse()
         assert_matches_type(PortoutListResponse, portout, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Telnyx) -> None:
         with client.portouts.with_streaming_response.list() as response:
@@ -124,7 +116,6 @@ class TestPortouts:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_rejection_codes(self, client: Telnyx) -> None:
         portout = client.portouts.list_rejection_codes(
@@ -132,7 +123,6 @@ class TestPortouts:
         )
         assert_matches_type(PortoutListRejectionCodesResponse, portout, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_rejection_codes_with_all_params(self, client: Telnyx) -> None:
         portout = client.portouts.list_rejection_codes(
@@ -141,7 +131,6 @@ class TestPortouts:
         )
         assert_matches_type(PortoutListRejectionCodesResponse, portout, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list_rejection_codes(self, client: Telnyx) -> None:
         response = client.portouts.with_raw_response.list_rejection_codes(
@@ -153,7 +142,6 @@ class TestPortouts:
         portout = response.parse()
         assert_matches_type(PortoutListRejectionCodesResponse, portout, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list_rejection_codes(self, client: Telnyx) -> None:
         with client.portouts.with_streaming_response.list_rejection_codes(
@@ -167,7 +155,6 @@ class TestPortouts:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_list_rejection_codes(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `portout_id` but received ''"):
@@ -175,7 +162,6 @@ class TestPortouts:
                 portout_id="",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_update_status(self, client: Telnyx) -> None:
         portout = client.portouts.update_status(
@@ -185,7 +171,6 @@ class TestPortouts:
         )
         assert_matches_type(PortoutUpdateStatusResponse, portout, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_update_status_with_all_params(self, client: Telnyx) -> None:
         portout = client.portouts.update_status(
@@ -196,7 +181,6 @@ class TestPortouts:
         )
         assert_matches_type(PortoutUpdateStatusResponse, portout, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_update_status(self, client: Telnyx) -> None:
         response = client.portouts.with_raw_response.update_status(
@@ -210,7 +194,6 @@ class TestPortouts:
         portout = response.parse()
         assert_matches_type(PortoutUpdateStatusResponse, portout, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_update_status(self, client: Telnyx) -> None:
         with client.portouts.with_streaming_response.update_status(
@@ -226,7 +209,6 @@ class TestPortouts:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_update_status(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -242,7 +224,6 @@ class TestAsyncPortouts:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
         portout = await async_client.portouts.retrieve(
@@ -250,7 +231,6 @@ class TestAsyncPortouts:
         )
         assert_matches_type(PortoutRetrieveResponse, portout, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.portouts.with_raw_response.retrieve(
@@ -262,7 +242,6 @@ class TestAsyncPortouts:
         portout = await response.parse()
         assert_matches_type(PortoutRetrieveResponse, portout, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         async with async_client.portouts.with_streaming_response.retrieve(
@@ -276,7 +255,6 @@ class TestAsyncPortouts:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -284,13 +262,11 @@ class TestAsyncPortouts:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         portout = await async_client.portouts.list()
         assert_matches_type(PortoutListResponse, portout, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         portout = await async_client.portouts.list(
@@ -321,7 +297,6 @@ class TestAsyncPortouts:
         )
         assert_matches_type(PortoutListResponse, portout, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.portouts.with_raw_response.list()
@@ -331,7 +306,6 @@ class TestAsyncPortouts:
         portout = await response.parse()
         assert_matches_type(PortoutListResponse, portout, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncTelnyx) -> None:
         async with async_client.portouts.with_streaming_response.list() as response:
@@ -343,7 +317,6 @@ class TestAsyncPortouts:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_rejection_codes(self, async_client: AsyncTelnyx) -> None:
         portout = await async_client.portouts.list_rejection_codes(
@@ -351,7 +324,6 @@ class TestAsyncPortouts:
         )
         assert_matches_type(PortoutListRejectionCodesResponse, portout, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_rejection_codes_with_all_params(self, async_client: AsyncTelnyx) -> None:
         portout = await async_client.portouts.list_rejection_codes(
@@ -360,7 +332,6 @@ class TestAsyncPortouts:
         )
         assert_matches_type(PortoutListRejectionCodesResponse, portout, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list_rejection_codes(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.portouts.with_raw_response.list_rejection_codes(
@@ -372,7 +343,6 @@ class TestAsyncPortouts:
         portout = await response.parse()
         assert_matches_type(PortoutListRejectionCodesResponse, portout, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list_rejection_codes(self, async_client: AsyncTelnyx) -> None:
         async with async_client.portouts.with_streaming_response.list_rejection_codes(
@@ -386,7 +356,6 @@ class TestAsyncPortouts:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_list_rejection_codes(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `portout_id` but received ''"):
@@ -394,7 +363,6 @@ class TestAsyncPortouts:
                 portout_id="",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_update_status(self, async_client: AsyncTelnyx) -> None:
         portout = await async_client.portouts.update_status(
@@ -404,7 +372,6 @@ class TestAsyncPortouts:
         )
         assert_matches_type(PortoutUpdateStatusResponse, portout, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_update_status_with_all_params(self, async_client: AsyncTelnyx) -> None:
         portout = await async_client.portouts.update_status(
@@ -415,7 +382,6 @@ class TestAsyncPortouts:
         )
         assert_matches_type(PortoutUpdateStatusResponse, portout, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_update_status(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.portouts.with_raw_response.update_status(
@@ -429,7 +395,6 @@ class TestAsyncPortouts:
         portout = await response.parse()
         assert_matches_type(PortoutUpdateStatusResponse, portout, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_update_status(self, async_client: AsyncTelnyx) -> None:
         async with async_client.portouts.with_streaming_response.update_status(
@@ -445,7 +410,6 @@ class TestAsyncPortouts:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_update_status(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):

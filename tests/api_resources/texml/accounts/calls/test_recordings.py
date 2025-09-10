@@ -17,7 +17,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestRecordings:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_recording_sid_json(self, client: Telnyx) -> None:
         recording = client.texml.accounts.calls.recordings.recording_sid_json(
@@ -27,7 +26,6 @@ class TestRecordings:
         )
         assert_matches_type(RecordingRecordingSidJsonResponse, recording, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_recording_sid_json_with_all_params(self, client: Telnyx) -> None:
         recording = client.texml.accounts.calls.recordings.recording_sid_json(
@@ -38,7 +36,6 @@ class TestRecordings:
         )
         assert_matches_type(RecordingRecordingSidJsonResponse, recording, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_recording_sid_json(self, client: Telnyx) -> None:
         response = client.texml.accounts.calls.recordings.with_raw_response.recording_sid_json(
@@ -52,7 +49,6 @@ class TestRecordings:
         recording = response.parse()
         assert_matches_type(RecordingRecordingSidJsonResponse, recording, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_recording_sid_json(self, client: Telnyx) -> None:
         with client.texml.accounts.calls.recordings.with_streaming_response.recording_sid_json(
@@ -68,7 +64,6 @@ class TestRecordings:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_recording_sid_json(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_sid` but received ''"):
@@ -98,7 +93,6 @@ class TestAsyncRecordings:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_recording_sid_json(self, async_client: AsyncTelnyx) -> None:
         recording = await async_client.texml.accounts.calls.recordings.recording_sid_json(
@@ -108,7 +102,6 @@ class TestAsyncRecordings:
         )
         assert_matches_type(RecordingRecordingSidJsonResponse, recording, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_recording_sid_json_with_all_params(self, async_client: AsyncTelnyx) -> None:
         recording = await async_client.texml.accounts.calls.recordings.recording_sid_json(
@@ -119,7 +112,6 @@ class TestAsyncRecordings:
         )
         assert_matches_type(RecordingRecordingSidJsonResponse, recording, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_recording_sid_json(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.texml.accounts.calls.recordings.with_raw_response.recording_sid_json(
@@ -133,7 +125,6 @@ class TestAsyncRecordings:
         recording = await response.parse()
         assert_matches_type(RecordingRecordingSidJsonResponse, recording, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_recording_sid_json(self, async_client: AsyncTelnyx) -> None:
         async with async_client.texml.accounts.calls.recordings.with_streaming_response.recording_sid_json(
@@ -149,7 +140,6 @@ class TestAsyncRecordings:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_recording_sid_json(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_sid` but received ''"):

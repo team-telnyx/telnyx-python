@@ -17,7 +17,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestStreams:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_streaming_sid_json(self, client: Telnyx) -> None:
         stream = client.texml.accounts.calls.streams.streaming_sid_json(
@@ -27,7 +26,6 @@ class TestStreams:
         )
         assert_matches_type(StreamStreamingSidJsonResponse, stream, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_streaming_sid_json_with_all_params(self, client: Telnyx) -> None:
         stream = client.texml.accounts.calls.streams.streaming_sid_json(
@@ -38,7 +36,6 @@ class TestStreams:
         )
         assert_matches_type(StreamStreamingSidJsonResponse, stream, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_streaming_sid_json(self, client: Telnyx) -> None:
         response = client.texml.accounts.calls.streams.with_raw_response.streaming_sid_json(
@@ -52,7 +49,6 @@ class TestStreams:
         stream = response.parse()
         assert_matches_type(StreamStreamingSidJsonResponse, stream, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_streaming_sid_json(self, client: Telnyx) -> None:
         with client.texml.accounts.calls.streams.with_streaming_response.streaming_sid_json(
@@ -68,7 +64,6 @@ class TestStreams:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_streaming_sid_json(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_sid` but received ''"):
@@ -98,7 +93,6 @@ class TestAsyncStreams:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_streaming_sid_json(self, async_client: AsyncTelnyx) -> None:
         stream = await async_client.texml.accounts.calls.streams.streaming_sid_json(
@@ -108,7 +102,6 @@ class TestAsyncStreams:
         )
         assert_matches_type(StreamStreamingSidJsonResponse, stream, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_streaming_sid_json_with_all_params(self, async_client: AsyncTelnyx) -> None:
         stream = await async_client.texml.accounts.calls.streams.streaming_sid_json(
@@ -119,7 +112,6 @@ class TestAsyncStreams:
         )
         assert_matches_type(StreamStreamingSidJsonResponse, stream, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_streaming_sid_json(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.texml.accounts.calls.streams.with_raw_response.streaming_sid_json(
@@ -133,7 +125,6 @@ class TestAsyncStreams:
         stream = await response.parse()
         assert_matches_type(StreamStreamingSidJsonResponse, stream, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_streaming_sid_json(self, async_client: AsyncTelnyx) -> None:
         async with async_client.texml.accounts.calls.streams.with_streaming_response.streaming_sid_json(
@@ -149,7 +140,6 @@ class TestAsyncStreams:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_streaming_sid_json(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_sid` but received ''"):

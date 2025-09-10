@@ -20,7 +20,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestAutorespConfigs:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create(self, client: Telnyx) -> None:
         autoresp_config = client.messaging_profiles.autoresp_configs.create(
@@ -31,7 +30,6 @@ class TestAutorespConfigs:
         )
         assert_matches_type(AutoRespConfigResponse, autoresp_config, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create_with_all_params(self, client: Telnyx) -> None:
         autoresp_config = client.messaging_profiles.autoresp_configs.create(
@@ -43,7 +41,6 @@ class TestAutorespConfigs:
         )
         assert_matches_type(AutoRespConfigResponse, autoresp_config, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: Telnyx) -> None:
         response = client.messaging_profiles.autoresp_configs.with_raw_response.create(
@@ -58,7 +55,6 @@ class TestAutorespConfigs:
         autoresp_config = response.parse()
         assert_matches_type(AutoRespConfigResponse, autoresp_config, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: Telnyx) -> None:
         with client.messaging_profiles.autoresp_configs.with_streaming_response.create(
@@ -75,7 +71,6 @@ class TestAutorespConfigs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_create(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `profile_id` but received ''"):
@@ -86,7 +81,6 @@ class TestAutorespConfigs:
                 op="start",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Telnyx) -> None:
         autoresp_config = client.messaging_profiles.autoresp_configs.retrieve(
@@ -95,7 +89,6 @@ class TestAutorespConfigs:
         )
         assert_matches_type(AutoRespConfigResponse, autoresp_config, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
         response = client.messaging_profiles.autoresp_configs.with_raw_response.retrieve(
@@ -108,7 +101,6 @@ class TestAutorespConfigs:
         autoresp_config = response.parse()
         assert_matches_type(AutoRespConfigResponse, autoresp_config, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
         with client.messaging_profiles.autoresp_configs.with_streaming_response.retrieve(
@@ -123,7 +115,6 @@ class TestAutorespConfigs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_retrieve(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `profile_id` but received ''"):
@@ -138,7 +129,6 @@ class TestAutorespConfigs:
                 profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_update(self, client: Telnyx) -> None:
         autoresp_config = client.messaging_profiles.autoresp_configs.update(
@@ -150,7 +140,6 @@ class TestAutorespConfigs:
         )
         assert_matches_type(AutoRespConfigResponse, autoresp_config, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_update_with_all_params(self, client: Telnyx) -> None:
         autoresp_config = client.messaging_profiles.autoresp_configs.update(
@@ -163,7 +152,6 @@ class TestAutorespConfigs:
         )
         assert_matches_type(AutoRespConfigResponse, autoresp_config, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_update(self, client: Telnyx) -> None:
         response = client.messaging_profiles.autoresp_configs.with_raw_response.update(
@@ -179,7 +167,6 @@ class TestAutorespConfigs:
         autoresp_config = response.parse()
         assert_matches_type(AutoRespConfigResponse, autoresp_config, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_update(self, client: Telnyx) -> None:
         with client.messaging_profiles.autoresp_configs.with_streaming_response.update(
@@ -197,7 +184,6 @@ class TestAutorespConfigs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_update(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `profile_id` but received ''"):
@@ -218,7 +204,6 @@ class TestAutorespConfigs:
                 op="start",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         autoresp_config = client.messaging_profiles.autoresp_configs.list(
@@ -226,7 +211,6 @@ class TestAutorespConfigs:
         )
         assert_matches_type(AutorespConfigListResponse, autoresp_config, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         autoresp_config = client.messaging_profiles.autoresp_configs.list(
@@ -243,7 +227,6 @@ class TestAutorespConfigs:
         )
         assert_matches_type(AutorespConfigListResponse, autoresp_config, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Telnyx) -> None:
         response = client.messaging_profiles.autoresp_configs.with_raw_response.list(
@@ -255,7 +238,6 @@ class TestAutorespConfigs:
         autoresp_config = response.parse()
         assert_matches_type(AutorespConfigListResponse, autoresp_config, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Telnyx) -> None:
         with client.messaging_profiles.autoresp_configs.with_streaming_response.list(
@@ -269,7 +251,6 @@ class TestAutorespConfigs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_list(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `profile_id` but received ''"):
@@ -277,7 +258,6 @@ class TestAutorespConfigs:
                 profile_id="",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_delete(self, client: Telnyx) -> None:
         autoresp_config = client.messaging_profiles.autoresp_configs.delete(
@@ -286,7 +266,6 @@ class TestAutorespConfigs:
         )
         assert_matches_type(object, autoresp_config, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_delete(self, client: Telnyx) -> None:
         response = client.messaging_profiles.autoresp_configs.with_raw_response.delete(
@@ -299,7 +278,6 @@ class TestAutorespConfigs:
         autoresp_config = response.parse()
         assert_matches_type(object, autoresp_config, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_delete(self, client: Telnyx) -> None:
         with client.messaging_profiles.autoresp_configs.with_streaming_response.delete(
@@ -314,7 +292,6 @@ class TestAutorespConfigs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_delete(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `profile_id` but received ''"):
@@ -335,7 +312,6 @@ class TestAsyncAutorespConfigs:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncTelnyx) -> None:
         autoresp_config = await async_client.messaging_profiles.autoresp_configs.create(
@@ -346,7 +322,6 @@ class TestAsyncAutorespConfigs:
         )
         assert_matches_type(AutoRespConfigResponse, autoresp_config, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncTelnyx) -> None:
         autoresp_config = await async_client.messaging_profiles.autoresp_configs.create(
@@ -358,7 +333,6 @@ class TestAsyncAutorespConfigs:
         )
         assert_matches_type(AutoRespConfigResponse, autoresp_config, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.messaging_profiles.autoresp_configs.with_raw_response.create(
@@ -373,7 +347,6 @@ class TestAsyncAutorespConfigs:
         autoresp_config = await response.parse()
         assert_matches_type(AutoRespConfigResponse, autoresp_config, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncTelnyx) -> None:
         async with async_client.messaging_profiles.autoresp_configs.with_streaming_response.create(
@@ -390,7 +363,6 @@ class TestAsyncAutorespConfigs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_create(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `profile_id` but received ''"):
@@ -401,7 +373,6 @@ class TestAsyncAutorespConfigs:
                 op="start",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
         autoresp_config = await async_client.messaging_profiles.autoresp_configs.retrieve(
@@ -410,7 +381,6 @@ class TestAsyncAutorespConfigs:
         )
         assert_matches_type(AutoRespConfigResponse, autoresp_config, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.messaging_profiles.autoresp_configs.with_raw_response.retrieve(
@@ -423,7 +393,6 @@ class TestAsyncAutorespConfigs:
         autoresp_config = await response.parse()
         assert_matches_type(AutoRespConfigResponse, autoresp_config, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         async with async_client.messaging_profiles.autoresp_configs.with_streaming_response.retrieve(
@@ -438,7 +407,6 @@ class TestAsyncAutorespConfigs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `profile_id` but received ''"):
@@ -453,7 +421,6 @@ class TestAsyncAutorespConfigs:
                 profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_update(self, async_client: AsyncTelnyx) -> None:
         autoresp_config = await async_client.messaging_profiles.autoresp_configs.update(
@@ -465,7 +432,6 @@ class TestAsyncAutorespConfigs:
         )
         assert_matches_type(AutoRespConfigResponse, autoresp_config, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncTelnyx) -> None:
         autoresp_config = await async_client.messaging_profiles.autoresp_configs.update(
@@ -478,7 +444,6 @@ class TestAsyncAutorespConfigs:
         )
         assert_matches_type(AutoRespConfigResponse, autoresp_config, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.messaging_profiles.autoresp_configs.with_raw_response.update(
@@ -494,7 +459,6 @@ class TestAsyncAutorespConfigs:
         autoresp_config = await response.parse()
         assert_matches_type(AutoRespConfigResponse, autoresp_config, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncTelnyx) -> None:
         async with async_client.messaging_profiles.autoresp_configs.with_streaming_response.update(
@@ -512,7 +476,6 @@ class TestAsyncAutorespConfigs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_update(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `profile_id` but received ''"):
@@ -533,7 +496,6 @@ class TestAsyncAutorespConfigs:
                 op="start",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         autoresp_config = await async_client.messaging_profiles.autoresp_configs.list(
@@ -541,7 +503,6 @@ class TestAsyncAutorespConfigs:
         )
         assert_matches_type(AutorespConfigListResponse, autoresp_config, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         autoresp_config = await async_client.messaging_profiles.autoresp_configs.list(
@@ -558,7 +519,6 @@ class TestAsyncAutorespConfigs:
         )
         assert_matches_type(AutorespConfigListResponse, autoresp_config, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.messaging_profiles.autoresp_configs.with_raw_response.list(
@@ -570,7 +530,6 @@ class TestAsyncAutorespConfigs:
         autoresp_config = await response.parse()
         assert_matches_type(AutorespConfigListResponse, autoresp_config, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncTelnyx) -> None:
         async with async_client.messaging_profiles.autoresp_configs.with_streaming_response.list(
@@ -584,7 +543,6 @@ class TestAsyncAutorespConfigs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_list(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `profile_id` but received ''"):
@@ -592,7 +550,6 @@ class TestAsyncAutorespConfigs:
                 profile_id="",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_delete(self, async_client: AsyncTelnyx) -> None:
         autoresp_config = await async_client.messaging_profiles.autoresp_configs.delete(
@@ -601,7 +558,6 @@ class TestAsyncAutorespConfigs:
         )
         assert_matches_type(object, autoresp_config, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.messaging_profiles.autoresp_configs.with_raw_response.delete(
@@ -614,7 +570,6 @@ class TestAsyncAutorespConfigs:
         autoresp_config = await response.parse()
         assert_matches_type(object, autoresp_config, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncTelnyx) -> None:
         async with async_client.messaging_profiles.autoresp_configs.with_streaming_response.delete(
@@ -629,7 +584,6 @@ class TestAsyncAutorespConfigs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `profile_id` but received ''"):

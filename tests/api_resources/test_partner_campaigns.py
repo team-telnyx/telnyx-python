@@ -22,7 +22,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestPartnerCampaigns:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Telnyx) -> None:
         partner_campaign = client.partner_campaigns.retrieve(
@@ -30,7 +29,6 @@ class TestPartnerCampaigns:
         )
         assert_matches_type(TelnyxDownstreamCampaign, partner_campaign, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
         response = client.partner_campaigns.with_raw_response.retrieve(
@@ -42,7 +40,6 @@ class TestPartnerCampaigns:
         partner_campaign = response.parse()
         assert_matches_type(TelnyxDownstreamCampaign, partner_campaign, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
         with client.partner_campaigns.with_streaming_response.retrieve(
@@ -56,7 +53,6 @@ class TestPartnerCampaigns:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_retrieve(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `campaign_id` but received ''"):
@@ -64,7 +60,6 @@ class TestPartnerCampaigns:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_update(self, client: Telnyx) -> None:
         partner_campaign = client.partner_campaigns.update(
@@ -72,7 +67,6 @@ class TestPartnerCampaigns:
         )
         assert_matches_type(TelnyxDownstreamCampaign, partner_campaign, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_update_with_all_params(self, client: Telnyx) -> None:
         partner_campaign = client.partner_campaigns.update(
@@ -82,7 +76,6 @@ class TestPartnerCampaigns:
         )
         assert_matches_type(TelnyxDownstreamCampaign, partner_campaign, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_update(self, client: Telnyx) -> None:
         response = client.partner_campaigns.with_raw_response.update(
@@ -94,7 +87,6 @@ class TestPartnerCampaigns:
         partner_campaign = response.parse()
         assert_matches_type(TelnyxDownstreamCampaign, partner_campaign, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_update(self, client: Telnyx) -> None:
         with client.partner_campaigns.with_streaming_response.update(
@@ -108,7 +100,6 @@ class TestPartnerCampaigns:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_update(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `campaign_id` but received ''"):
@@ -116,13 +107,11 @@ class TestPartnerCampaigns:
                 campaign_id="",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         partner_campaign = client.partner_campaigns.list()
         assert_matches_type(PartnerCampaignListResponse, partner_campaign, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         partner_campaign = client.partner_campaigns.list(
@@ -132,7 +121,6 @@ class TestPartnerCampaigns:
         )
         assert_matches_type(PartnerCampaignListResponse, partner_campaign, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Telnyx) -> None:
         response = client.partner_campaigns.with_raw_response.list()
@@ -142,7 +130,6 @@ class TestPartnerCampaigns:
         partner_campaign = response.parse()
         assert_matches_type(PartnerCampaignListResponse, partner_campaign, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Telnyx) -> None:
         with client.partner_campaigns.with_streaming_response.list() as response:
@@ -154,13 +141,11 @@ class TestPartnerCampaigns:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_shared_by_me(self, client: Telnyx) -> None:
         partner_campaign = client.partner_campaigns.list_shared_by_me()
         assert_matches_type(PartnerCampaignListSharedByMeResponse, partner_campaign, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_shared_by_me_with_all_params(self, client: Telnyx) -> None:
         partner_campaign = client.partner_campaigns.list_shared_by_me(
@@ -169,7 +154,6 @@ class TestPartnerCampaigns:
         )
         assert_matches_type(PartnerCampaignListSharedByMeResponse, partner_campaign, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list_shared_by_me(self, client: Telnyx) -> None:
         response = client.partner_campaigns.with_raw_response.list_shared_by_me()
@@ -179,7 +163,6 @@ class TestPartnerCampaigns:
         partner_campaign = response.parse()
         assert_matches_type(PartnerCampaignListSharedByMeResponse, partner_campaign, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list_shared_by_me(self, client: Telnyx) -> None:
         with client.partner_campaigns.with_streaming_response.list_shared_by_me() as response:
@@ -191,7 +174,6 @@ class TestPartnerCampaigns:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_retrieve_sharing_status(self, client: Telnyx) -> None:
         partner_campaign = client.partner_campaigns.retrieve_sharing_status(
@@ -199,7 +181,6 @@ class TestPartnerCampaigns:
         )
         assert_matches_type(PartnerCampaignRetrieveSharingStatusResponse, partner_campaign, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_retrieve_sharing_status(self, client: Telnyx) -> None:
         response = client.partner_campaigns.with_raw_response.retrieve_sharing_status(
@@ -211,7 +192,6 @@ class TestPartnerCampaigns:
         partner_campaign = response.parse()
         assert_matches_type(PartnerCampaignRetrieveSharingStatusResponse, partner_campaign, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_retrieve_sharing_status(self, client: Telnyx) -> None:
         with client.partner_campaigns.with_streaming_response.retrieve_sharing_status(
@@ -225,7 +205,6 @@ class TestPartnerCampaigns:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_retrieve_sharing_status(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `campaign_id` but received ''"):
@@ -239,7 +218,6 @@ class TestAsyncPartnerCampaigns:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
         partner_campaign = await async_client.partner_campaigns.retrieve(
@@ -247,7 +225,6 @@ class TestAsyncPartnerCampaigns:
         )
         assert_matches_type(TelnyxDownstreamCampaign, partner_campaign, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.partner_campaigns.with_raw_response.retrieve(
@@ -259,7 +236,6 @@ class TestAsyncPartnerCampaigns:
         partner_campaign = await response.parse()
         assert_matches_type(TelnyxDownstreamCampaign, partner_campaign, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         async with async_client.partner_campaigns.with_streaming_response.retrieve(
@@ -273,7 +249,6 @@ class TestAsyncPartnerCampaigns:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `campaign_id` but received ''"):
@@ -281,7 +256,6 @@ class TestAsyncPartnerCampaigns:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_update(self, async_client: AsyncTelnyx) -> None:
         partner_campaign = await async_client.partner_campaigns.update(
@@ -289,7 +263,6 @@ class TestAsyncPartnerCampaigns:
         )
         assert_matches_type(TelnyxDownstreamCampaign, partner_campaign, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncTelnyx) -> None:
         partner_campaign = await async_client.partner_campaigns.update(
@@ -299,7 +272,6 @@ class TestAsyncPartnerCampaigns:
         )
         assert_matches_type(TelnyxDownstreamCampaign, partner_campaign, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.partner_campaigns.with_raw_response.update(
@@ -311,7 +283,6 @@ class TestAsyncPartnerCampaigns:
         partner_campaign = await response.parse()
         assert_matches_type(TelnyxDownstreamCampaign, partner_campaign, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncTelnyx) -> None:
         async with async_client.partner_campaigns.with_streaming_response.update(
@@ -325,7 +296,6 @@ class TestAsyncPartnerCampaigns:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_update(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `campaign_id` but received ''"):
@@ -333,13 +303,11 @@ class TestAsyncPartnerCampaigns:
                 campaign_id="",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         partner_campaign = await async_client.partner_campaigns.list()
         assert_matches_type(PartnerCampaignListResponse, partner_campaign, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         partner_campaign = await async_client.partner_campaigns.list(
@@ -349,7 +317,6 @@ class TestAsyncPartnerCampaigns:
         )
         assert_matches_type(PartnerCampaignListResponse, partner_campaign, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.partner_campaigns.with_raw_response.list()
@@ -359,7 +326,6 @@ class TestAsyncPartnerCampaigns:
         partner_campaign = await response.parse()
         assert_matches_type(PartnerCampaignListResponse, partner_campaign, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncTelnyx) -> None:
         async with async_client.partner_campaigns.with_streaming_response.list() as response:
@@ -371,13 +337,11 @@ class TestAsyncPartnerCampaigns:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_shared_by_me(self, async_client: AsyncTelnyx) -> None:
         partner_campaign = await async_client.partner_campaigns.list_shared_by_me()
         assert_matches_type(PartnerCampaignListSharedByMeResponse, partner_campaign, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_shared_by_me_with_all_params(self, async_client: AsyncTelnyx) -> None:
         partner_campaign = await async_client.partner_campaigns.list_shared_by_me(
@@ -386,7 +350,6 @@ class TestAsyncPartnerCampaigns:
         )
         assert_matches_type(PartnerCampaignListSharedByMeResponse, partner_campaign, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list_shared_by_me(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.partner_campaigns.with_raw_response.list_shared_by_me()
@@ -396,7 +359,6 @@ class TestAsyncPartnerCampaigns:
         partner_campaign = await response.parse()
         assert_matches_type(PartnerCampaignListSharedByMeResponse, partner_campaign, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list_shared_by_me(self, async_client: AsyncTelnyx) -> None:
         async with async_client.partner_campaigns.with_streaming_response.list_shared_by_me() as response:
@@ -408,7 +370,6 @@ class TestAsyncPartnerCampaigns:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_retrieve_sharing_status(self, async_client: AsyncTelnyx) -> None:
         partner_campaign = await async_client.partner_campaigns.retrieve_sharing_status(
@@ -416,7 +377,6 @@ class TestAsyncPartnerCampaigns:
         )
         assert_matches_type(PartnerCampaignRetrieveSharingStatusResponse, partner_campaign, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_retrieve_sharing_status(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.partner_campaigns.with_raw_response.retrieve_sharing_status(
@@ -428,7 +388,6 @@ class TestAsyncPartnerCampaigns:
         partner_campaign = await response.parse()
         assert_matches_type(PartnerCampaignRetrieveSharingStatusResponse, partner_campaign, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve_sharing_status(self, async_client: AsyncTelnyx) -> None:
         async with async_client.partner_campaigns.with_streaming_response.retrieve_sharing_status(
@@ -442,7 +401,6 @@ class TestAsyncPartnerCampaigns:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_retrieve_sharing_status(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `campaign_id` but received ''"):
