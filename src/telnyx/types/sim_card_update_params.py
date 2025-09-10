@@ -2,16 +2,16 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Literal, TypedDict
 
+from .._types import SequenceNotStr
 from .shared_params.sim_card_status import SimCardStatus
 
 __all__ = ["SimCardUpdateParams", "DataLimit"]
 
 
 class SimCardUpdateParams(TypedDict, total=False):
-    authorized_imeis: List[str]
+    authorized_imeis: SequenceNotStr[str]
     """List of IMEIs authorized to use a given SIM card."""
 
     data_limit: DataLimit
@@ -26,7 +26,7 @@ class SimCardUpdateParams(TypedDict, total=False):
 
     status: SimCardStatus
 
-    tags: List[str]
+    tags: SequenceNotStr[str]
     """Searchable tags associated with the SIM card"""
 
 

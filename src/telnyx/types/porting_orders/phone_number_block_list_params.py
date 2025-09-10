@@ -5,6 +5,8 @@ from __future__ import annotations
 from typing import List, Union
 from typing_extensions import Literal, TypedDict
 
+from ..._types import SequenceNotStr
+
 __all__ = ["PhoneNumberBlockListParams", "Filter", "Page", "Sort"]
 
 
@@ -44,13 +46,13 @@ class Filter(TypedDict, total=False):
     ]
     """Filter results by activation status"""
 
-    phone_number: List[str]
+    phone_number: SequenceNotStr[str]
     """Filter results by a list of phone numbers"""
 
     portability_status: Literal["pending", "confirmed", "provisional"]
     """Filter results by portability status"""
 
-    porting_order_id: List[str]
+    porting_order_id: SequenceNotStr[str]
     """Filter results by a list of porting order ids"""
 
     status: Union[
@@ -82,7 +84,7 @@ class Filter(TypedDict, total=False):
     Originally: filter[status], filter[status][in][]
     """
 
-    support_key: Union[str, List[str]]
+    support_key: Union[str, SequenceNotStr[str]]
     """Filter results by support key(s).
 
     Originally: filter[support_key][eq], filter[support_key][in][]

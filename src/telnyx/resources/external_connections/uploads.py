@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -53,7 +53,7 @@ class UploadsResource(SyncAPIResource):
         self,
         id: str,
         *,
-        number_ids: List[str],
+        number_ids: SequenceNotStr[str],
         additional_usages: List[Literal["calling_user_assignment", "first_party_app_assignment"]]
         | NotGiven = NOT_GIVEN,
         civic_address_id: str | NotGiven = NOT_GIVEN,
@@ -326,7 +326,7 @@ class AsyncUploadsResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        number_ids: List[str],
+        number_ids: SequenceNotStr[str],
         additional_usages: List[Literal["calling_user_assignment", "first_party_app_assignment"]]
         | NotGiven = NOT_GIVEN,
         civic_address_id: str | NotGiven = NOT_GIVEN,

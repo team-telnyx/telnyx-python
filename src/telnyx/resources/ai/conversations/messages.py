@@ -2,12 +2,12 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Iterable
+from typing import Dict, Union, Iterable
 from datetime import datetime
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -50,7 +50,7 @@ class MessagesResource(SyncAPIResource):
         *,
         role: str,
         content: str | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, Union[str, int, bool, List[Union[str, int, bool]]]] | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, Union[str, int, bool, SequenceNotStr[Union[str, int, bool]]]] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         sent_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         tool_call_id: str | NotGiven = NOT_GIVEN,
@@ -163,7 +163,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         *,
         role: str,
         content: str | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, Union[str, int, bool, List[Union[str, int, bool]]]] | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, Union[str, int, bool, SequenceNotStr[Union[str, int, bool]]]] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         sent_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         tool_call_id: str | NotGiven = NOT_GIVEN,

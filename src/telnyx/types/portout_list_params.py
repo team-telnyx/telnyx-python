@@ -6,6 +6,7 @@ from typing import List, Union
 from datetime import datetime
 from typing_extensions import Literal, Annotated, TypedDict
 
+from .._types import SequenceNotStr
 from .._utils import PropertyInfo
 
 __all__ = ["PortoutListParams", "Filter", "FilterInsertedAt", "FilterPortedOutAt", "Page"]
@@ -51,7 +52,7 @@ class Filter(TypedDict, total=False):
     country_code: str
     """Filter by 2-letter country code"""
 
-    country_code_in: List[str]
+    country_code_in: SequenceNotStr[str]
     """Filter by a list of 2-letter country codes"""
 
     foc_date: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]

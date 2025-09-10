@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import TypedDict
+
+from ..._types import SequenceNotStr
 
 __all__ = ["ActionHoldParams"]
 
@@ -15,7 +16,7 @@ class ActionHoldParams(TypedDict, total=False):
     media_name and audio_url cannot be used together in one request.
     """
 
-    call_control_ids: List[str]
+    call_control_ids: SequenceNotStr[str]
     """List of unique identifiers and tokens for controlling the call.
 
     When empty all participants will be placed on hold.

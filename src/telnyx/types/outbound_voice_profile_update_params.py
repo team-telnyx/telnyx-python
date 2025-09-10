@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import Optional
 from typing_extensions import Required, TypedDict
 
+from .._types import SequenceNotStr
 from .service_plan import ServicePlan
 from .traffic_type import TrafficType
 from .usage_payment_method import UsagePaymentMethod
@@ -56,7 +57,7 @@ class OutboundVoiceProfileUpdateParams(TypedDict, total=False):
     service_plan: ServicePlan
     """Indicates the coverage of the termination regions."""
 
-    tags: List[str]
+    tags: SequenceNotStr[str]
 
     traffic_type: TrafficType
     """Specifies the type of traffic allowed in this profile."""
@@ -64,7 +65,7 @@ class OutboundVoiceProfileUpdateParams(TypedDict, total=False):
     usage_payment_method: UsagePaymentMethod
     """Setting for how costs for outbound profile are calculated."""
 
-    whitelisted_destinations: List[str]
+    whitelisted_destinations: SequenceNotStr[str]
     """
     The list of destinations you want to be able to call using this outbound voice
     profile formatted in alpha2.

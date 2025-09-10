@@ -2,11 +2,12 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import TypedDict
+
+from ..._types import SequenceNotStr
 
 __all__ = ["ActionValidateRegistrationCodesParams"]
 
 
 class ActionValidateRegistrationCodesParams(TypedDict, total=False):
-    registration_codes: List[str]
+    registration_codes: SequenceNotStr[str]

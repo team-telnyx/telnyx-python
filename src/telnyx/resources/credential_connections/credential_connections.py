@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import Optional
 from typing_extensions import Literal
 
 import httpx
@@ -23,7 +23,7 @@ from .actions import (
     ActionsResourceWithStreamingResponse,
     AsyncActionsResourceWithStreamingResponse,
 )
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -92,7 +92,7 @@ class CredentialConnectionsResource(SyncAPIResource):
         outbound: CredentialOutboundParam | NotGiven = NOT_GIVEN,
         rtcp_settings: ConnectionRtcpSettingsParam | NotGiven = NOT_GIVEN,
         sip_uri_calling_preference: Literal["disabled", "unrestricted", "internal"] | NotGiven = NOT_GIVEN,
-        tags: List[str] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         webhook_api_version: Literal["1", "2", "texml"] | NotGiven = NOT_GIVEN,
         webhook_event_failover_url: Optional[str] | NotGiven = NOT_GIVEN,
         webhook_event_url: str | NotGiven = NOT_GIVEN,
@@ -257,7 +257,7 @@ class CredentialConnectionsResource(SyncAPIResource):
         password: str | NotGiven = NOT_GIVEN,
         rtcp_settings: ConnectionRtcpSettingsParam | NotGiven = NOT_GIVEN,
         sip_uri_calling_preference: Literal["disabled", "unrestricted", "internal"] | NotGiven = NOT_GIVEN,
-        tags: List[str] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         user_name: str | NotGiven = NOT_GIVEN,
         webhook_api_version: Literal["1", "2"] | NotGiven = NOT_GIVEN,
         webhook_event_failover_url: Optional[str] | NotGiven = NOT_GIVEN,
@@ -515,7 +515,7 @@ class AsyncCredentialConnectionsResource(AsyncAPIResource):
         outbound: CredentialOutboundParam | NotGiven = NOT_GIVEN,
         rtcp_settings: ConnectionRtcpSettingsParam | NotGiven = NOT_GIVEN,
         sip_uri_calling_preference: Literal["disabled", "unrestricted", "internal"] | NotGiven = NOT_GIVEN,
-        tags: List[str] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         webhook_api_version: Literal["1", "2", "texml"] | NotGiven = NOT_GIVEN,
         webhook_event_failover_url: Optional[str] | NotGiven = NOT_GIVEN,
         webhook_event_url: str | NotGiven = NOT_GIVEN,
@@ -680,7 +680,7 @@ class AsyncCredentialConnectionsResource(AsyncAPIResource):
         password: str | NotGiven = NOT_GIVEN,
         rtcp_settings: ConnectionRtcpSettingsParam | NotGiven = NOT_GIVEN,
         sip_uri_calling_preference: Literal["disabled", "unrestricted", "internal"] | NotGiven = NOT_GIVEN,
-        tags: List[str] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         user_name: str | NotGiven = NOT_GIVEN,
         webhook_api_version: Literal["1", "2"] | NotGiven = NOT_GIVEN,
         webhook_event_failover_url: Optional[str] | NotGiven = NOT_GIVEN,

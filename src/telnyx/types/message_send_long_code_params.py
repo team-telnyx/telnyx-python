@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
+from .._types import SequenceNotStr
 from .._utils import PropertyInfo
 
 __all__ = ["MessageSendLongCodeParams"]
@@ -23,7 +23,7 @@ class MessageSendLongCodeParams(TypedDict, total=False):
     recommended limit of message parts.
     """
 
-    media_urls: List[str]
+    media_urls: SequenceNotStr[str]
     """A list of media URLs. The total media size must be less than 1 MB.
 
     **Required for MMS**

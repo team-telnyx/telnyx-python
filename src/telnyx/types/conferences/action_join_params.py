@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Literal, Required, TypedDict
+
+from ..._types import SequenceNotStr
 
 __all__ = ["ActionJoinParams"]
 
@@ -92,7 +93,7 @@ class ActionJoinParams(TypedDict, total=False):
     Defaults to "none".
     """
 
-    whisper_call_control_ids: List[str]
+    whisper_call_control_ids: SequenceNotStr[str]
     """Array of unique call_control_ids the joining supervisor can whisper to.
 
     If none provided, the supervisor will join the conference as a monitoring

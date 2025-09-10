@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Iterable
+from typing import Dict, Iterable
 from typing_extensions import Literal, Required, TypedDict
+
+from ..._types import SequenceNotStr
 
 __all__ = ["InferenceEmbeddingWebhookToolParamsParam", "BodyParameters", "Header", "PathParameters", "QueryParameters"]
 
@@ -12,7 +14,7 @@ class BodyParameters(TypedDict, total=False):
     properties: Dict[str, object]
     """The properties of the body parameters."""
 
-    required: List[str]
+    required: SequenceNotStr[str]
     """The required properties of the body parameters."""
 
     type: Literal["object"]
@@ -34,7 +36,7 @@ class PathParameters(TypedDict, total=False):
     properties: Dict[str, object]
     """The properties of the path parameters."""
 
-    required: List[str]
+    required: SequenceNotStr[str]
     """The required properties of the path parameters."""
 
     type: Literal["object"]
@@ -44,7 +46,7 @@ class QueryParameters(TypedDict, total=False):
     properties: Dict[str, object]
     """The properties of the query parameters."""
 
-    required: List[str]
+    required: SequenceNotStr[str]
     """The required properties of the query parameters."""
 
     type: Literal["object"]

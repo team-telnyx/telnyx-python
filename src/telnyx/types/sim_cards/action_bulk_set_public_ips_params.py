@@ -2,11 +2,12 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Required, TypedDict
+
+from ..._types import SequenceNotStr
 
 __all__ = ["ActionBulkSetPublicIPsParams"]
 
 
 class ActionBulkSetPublicIPsParams(TypedDict, total=False):
-    sim_card_ids: Required[List[str]]
+    sim_card_ids: Required[SequenceNotStr[str]]

@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Iterable
+from typing import Iterable
 from typing_extensions import Literal, TypedDict
 
+from ..._types import SequenceNotStr
 from .google_transcription_language import GoogleTranscriptionLanguage
 
 __all__ = ["TranscriptionEngineAConfigParam", "SpeechContext"]
@@ -14,14 +15,14 @@ class SpeechContext(TypedDict, total=False):
     boost: float
     """Boost factor for the speech context."""
 
-    phrases: List[str]
+    phrases: SequenceNotStr[str]
 
 
 class TranscriptionEngineAConfigParam(TypedDict, total=False):
     enable_speaker_diarization: bool
     """Enables speaker diarization."""
 
-    hints: List[str]
+    hints: SequenceNotStr[str]
     """Hints to improve transcription accuracy."""
 
     interim_results: bool

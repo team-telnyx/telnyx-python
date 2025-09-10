@@ -6,6 +6,7 @@ from typing import List, Union
 from datetime import datetime
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
+from ..._types import SequenceNotStr
 from ..._utils import PropertyInfo
 
 __all__ = ["ExportPortoutsCsvReportParam", "Filters"]
@@ -18,13 +19,13 @@ class Filters(TypedDict, total=False):
     created_at_lt: Annotated[Union[str, datetime], PropertyInfo(alias="created_at__lt", format="iso8601")]
     """The date and time the port-out was created before."""
 
-    customer_reference_in: Annotated[List[str], PropertyInfo(alias="customer_reference__in")]
+    customer_reference_in: Annotated[SequenceNotStr[str], PropertyInfo(alias="customer_reference__in")]
     """The customer reference of the port-outs to include in the report."""
 
     end_user_name: str
     """The end user name of the port-outs to include in the report."""
 
-    phone_numbers_overlaps: Annotated[List[str], PropertyInfo(alias="phone_numbers__overlaps")]
+    phone_numbers_overlaps: Annotated[SequenceNotStr[str], PropertyInfo(alias="phone_numbers__overlaps")]
     """A list of phone numbers that the port-outs phone numbers must overlap with."""
 
     status_in: Annotated[

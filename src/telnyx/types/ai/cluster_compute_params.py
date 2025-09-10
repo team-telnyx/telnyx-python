@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Required, TypedDict
+
+from ..._types import SequenceNotStr
 
 __all__ = ["ClusterComputeParams"]
 
@@ -16,7 +17,7 @@ class ClusterComputeParams(TypedDict, total=False):
     [embedded](https://developers.telnyx.com/api/inference/inference-embedding/post-embedding).
     """
 
-    files: List[str]
+    files: SequenceNotStr[str]
     """Array of files to filter which are included."""
 
     min_cluster_size: int

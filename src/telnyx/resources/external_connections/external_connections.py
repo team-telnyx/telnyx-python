@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import Optional
 from typing_extensions import Literal
 
 import httpx
@@ -21,7 +21,7 @@ from .uploads import (
     UploadsResourceWithStreamingResponse,
     AsyncUploadsResourceWithStreamingResponse,
 )
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ..._utils import maybe_transform, async_maybe_transform
 from .releases import (
     ReleasesResource,
@@ -121,7 +121,7 @@ class ExternalConnectionsResource(SyncAPIResource):
         outbound: external_connection_create_params.Outbound,
         active: bool | NotGiven = NOT_GIVEN,
         inbound: external_connection_create_params.Inbound | NotGiven = NOT_GIVEN,
-        tags: List[str] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         webhook_event_failover_url: Optional[str] | NotGiven = NOT_GIVEN,
         webhook_event_url: str | NotGiven = NOT_GIVEN,
         webhook_timeout_secs: Optional[int] | NotGiven = NOT_GIVEN,
@@ -223,7 +223,7 @@ class ExternalConnectionsResource(SyncAPIResource):
         outbound: external_connection_update_params.Outbound,
         active: bool | NotGiven = NOT_GIVEN,
         inbound: external_connection_update_params.Inbound | NotGiven = NOT_GIVEN,
-        tags: List[str] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         webhook_event_failover_url: Optional[str] | NotGiven = NOT_GIVEN,
         webhook_event_url: str | NotGiven = NOT_GIVEN,
         webhook_timeout_secs: Optional[int] | NotGiven = NOT_GIVEN,
@@ -460,7 +460,7 @@ class AsyncExternalConnectionsResource(AsyncAPIResource):
         outbound: external_connection_create_params.Outbound,
         active: bool | NotGiven = NOT_GIVEN,
         inbound: external_connection_create_params.Inbound | NotGiven = NOT_GIVEN,
-        tags: List[str] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         webhook_event_failover_url: Optional[str] | NotGiven = NOT_GIVEN,
         webhook_event_url: str | NotGiven = NOT_GIVEN,
         webhook_timeout_secs: Optional[int] | NotGiven = NOT_GIVEN,
@@ -562,7 +562,7 @@ class AsyncExternalConnectionsResource(AsyncAPIResource):
         outbound: external_connection_update_params.Outbound,
         active: bool | NotGiven = NOT_GIVEN,
         inbound: external_connection_update_params.Inbound | NotGiven = NOT_GIVEN,
-        tags: List[str] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         webhook_event_failover_url: Optional[str] | NotGiven = NOT_GIVEN,
         webhook_event_url: str | NotGiven = NOT_GIVEN,
         webhook_timeout_secs: Optional[int] | NotGiven = NOT_GIVEN,

@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import Optional
 from typing_extensions import Required, TypedDict
+
+from ..._types import SequenceNotStr
 
 __all__ = ["JobUpdateEmergencySettingsBatchParams"]
 
@@ -12,7 +14,7 @@ class JobUpdateEmergencySettingsBatchParams(TypedDict, total=False):
     emergency_enabled: Required[bool]
     """Indicates whether to enable or disable emergency services on the numbers."""
 
-    phone_numbers: Required[List[str]]
+    phone_numbers: Required[SequenceNotStr[str]]
 
     emergency_address_id: Optional[str]
     """Identifies the address to be used with emergency services.

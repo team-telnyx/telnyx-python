@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import Optional
 from typing_extensions import Literal, Required, TypedDict
+
+from .._types import SequenceNotStr
 
 __all__ = ["ExternalConnectionCreateParams", "Outbound", "Inbound"]
 
@@ -19,7 +21,7 @@ class ExternalConnectionCreateParams(TypedDict, total=False):
 
     inbound: Inbound
 
-    tags: List[str]
+    tags: SequenceNotStr[str]
     """Tags associated with the connection."""
 
     webhook_event_failover_url: Optional[str]

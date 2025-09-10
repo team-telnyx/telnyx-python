@@ -6,6 +6,7 @@ from typing import List, Union
 from datetime import datetime
 from typing_extensions import Literal, Annotated, TypedDict
 
+from .._types import SequenceNotStr
 from .._utils import PropertyInfo
 
 __all__ = [
@@ -49,7 +50,7 @@ class FilterCreatedAt(TypedDict, total=False):
 _FilterPhoneNumberReservedKeywords = TypedDict(
     "_FilterPhoneNumberReservedKeywords",
     {
-        "in": List[str],
+        "in": SequenceNotStr[str],
     },
     total=False,
 )

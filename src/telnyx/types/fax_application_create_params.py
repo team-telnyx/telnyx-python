@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import Optional
 from typing_extensions import Literal, Required, TypedDict
 
+from .._types import SequenceNotStr
 from .anchorsite_override import AnchorsiteOverride
 
 __all__ = ["FaxApplicationCreateParams", "Inbound", "Outbound"]
@@ -34,7 +35,7 @@ class FaxApplicationCreateParams(TypedDict, total=False):
 
     outbound: Outbound
 
-    tags: List[str]
+    tags: SequenceNotStr[str]
     """Tags associated with the Fax Application."""
 
     webhook_event_failover_url: Optional[str]

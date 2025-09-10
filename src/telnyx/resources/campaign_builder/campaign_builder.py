@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, List, Iterable, cast
+from typing import Any, Iterable, cast
 
 import httpx
 
@@ -15,7 +15,7 @@ from .brand import (
     AsyncBrandResourceWithStreamingResponse,
 )
 from ...types import campaign_builder_create_params
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -87,8 +87,8 @@ class CampaignBuilderResource(SyncAPIResource):
         subscriber_help: bool | NotGiven = NOT_GIVEN,
         subscriber_optin: bool | NotGiven = NOT_GIVEN,
         subscriber_optout: bool | NotGiven = NOT_GIVEN,
-        sub_usecases: List[str] | NotGiven = NOT_GIVEN,
-        tag: List[str] | NotGiven = NOT_GIVEN,
+        sub_usecases: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        tag: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         terms_and_conditions: bool | NotGiven = NOT_GIVEN,
         terms_and_conditions_link: str | NotGiven = NOT_GIVEN,
         webhook_failover_url: str | NotGiven = NOT_GIVEN,
@@ -307,8 +307,8 @@ class AsyncCampaignBuilderResource(AsyncAPIResource):
         subscriber_help: bool | NotGiven = NOT_GIVEN,
         subscriber_optin: bool | NotGiven = NOT_GIVEN,
         subscriber_optout: bool | NotGiven = NOT_GIVEN,
-        sub_usecases: List[str] | NotGiven = NOT_GIVEN,
-        tag: List[str] | NotGiven = NOT_GIVEN,
+        sub_usecases: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        tag: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         terms_and_conditions: bool | NotGiven = NOT_GIVEN,
         terms_and_conditions_link: str | NotGiven = NOT_GIVEN,
         webhook_failover_url: str | NotGiven = NOT_GIVEN,

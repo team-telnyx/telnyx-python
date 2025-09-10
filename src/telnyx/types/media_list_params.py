@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import TypedDict
+
+from .._types import SequenceNotStr
 
 __all__ = ["MediaListParams", "Filter"]
 
@@ -17,5 +18,5 @@ class MediaListParams(TypedDict, total=False):
 
 
 class Filter(TypedDict, total=False):
-    content_type: List[str]
+    content_type: SequenceNotStr[str]
     """Filters files by given content types"""

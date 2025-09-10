@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Literal, Required, TypedDict
+
+from ..._types import SequenceNotStr
 
 __all__ = ["AutorespConfigUpdateParams"]
 
@@ -13,7 +14,7 @@ class AutorespConfigUpdateParams(TypedDict, total=False):
 
     country_code: Required[str]
 
-    keywords: Required[List[str]]
+    keywords: Required[SequenceNotStr[str]]
 
     op: Required[Literal["start", "stop", "info"]]
 

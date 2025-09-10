@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Iterable
+from typing import Iterable
 from typing_extensions import Required, Annotated, TypedDict
 
+from .._types import SequenceNotStr
 from .._utils import PropertyInfo
 
 __all__ = ["CampaignBuilderCreateParams"]
@@ -122,14 +123,14 @@ class CampaignBuilderCreateParams(TypedDict, total=False):
     subscriber_optout: Annotated[bool, PropertyInfo(alias="subscriberOptout")]
     """Does campaign support subscriber opt-out keyword(s)?"""
 
-    sub_usecases: Annotated[List[str], PropertyInfo(alias="subUsecases")]
+    sub_usecases: Annotated[SequenceNotStr[str], PropertyInfo(alias="subUsecases")]
     """Campaign sub-usecases.
 
     Must be of defined valid sub-usecase types. Use `/registry/enum/usecase`
     operation to retrieve list of valid sub-usecases
     """
 
-    tag: List[str]
+    tag: SequenceNotStr[str]
     """Tags to be set on the Campaign."""
 
     terms_and_conditions: Annotated[bool, PropertyInfo(alias="termsAndConditions")]

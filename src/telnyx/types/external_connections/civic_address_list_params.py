@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import TypedDict
+
+from ..._types import SequenceNotStr
 
 __all__ = ["CivicAddressListParams", "Filter"]
 
@@ -17,5 +18,5 @@ class CivicAddressListParams(TypedDict, total=False):
 
 
 class Filter(TypedDict, total=False):
-    country: List[str]
+    country: SequenceNotStr[str]
     """The country (or countries) to filter addresses by."""

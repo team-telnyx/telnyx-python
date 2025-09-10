@@ -2,13 +2,12 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Literal
 
 import httpx
 
 from ..types import usage_report_list_params, usage_report_get_options_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from .._utils import maybe_transform, strip_not_given, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -48,8 +47,8 @@ class UsageReportsResource(SyncAPIResource):
     def list(
         self,
         *,
-        dimensions: List[str],
-        metrics: List[str],
+        dimensions: SequenceNotStr[str],
+        metrics: SequenceNotStr[str],
         product: str,
         date_range: str | NotGiven = NOT_GIVEN,
         end_date: str | NotGiven = NOT_GIVEN,
@@ -57,7 +56,7 @@ class UsageReportsResource(SyncAPIResource):
         format: Literal["csv", "json"] | NotGiven = NOT_GIVEN,
         managed_accounts: bool | NotGiven = NOT_GIVEN,
         page: usage_report_list_params.Page | NotGiven = NOT_GIVEN,
-        sort: List[str] | NotGiven = NOT_GIVEN,
+        sort: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         start_date: str | NotGiven = NOT_GIVEN,
         authorization_bearer: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -206,8 +205,8 @@ class AsyncUsageReportsResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        dimensions: List[str],
-        metrics: List[str],
+        dimensions: SequenceNotStr[str],
+        metrics: SequenceNotStr[str],
         product: str,
         date_range: str | NotGiven = NOT_GIVEN,
         end_date: str | NotGiven = NOT_GIVEN,
@@ -215,7 +214,7 @@ class AsyncUsageReportsResource(AsyncAPIResource):
         format: Literal["csv", "json"] | NotGiven = NOT_GIVEN,
         managed_accounts: bool | NotGiven = NOT_GIVEN,
         page: usage_report_list_params.Page | NotGiven = NOT_GIVEN,
-        sort: List[str] | NotGiven = NOT_GIVEN,
+        sort: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         start_date: str | NotGiven = NOT_GIVEN,
         authorization_bearer: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

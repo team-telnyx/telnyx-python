@@ -2,10 +2,11 @@
 
 from __future__ import annotations
 
-from typing import List, Union
+from typing import Union
 from datetime import datetime
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
+from ..._types import SequenceNotStr
 from ..._utils import PropertyInfo
 
 __all__ = ["MdrUsageReportFetchSyncParams"]
@@ -16,6 +17,6 @@ class MdrUsageReportFetchSyncParams(TypedDict, total=False):
 
     end_date: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
 
-    profiles: List[str]
+    profiles: SequenceNotStr[str]
 
     start_date: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
