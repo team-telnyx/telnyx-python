@@ -26,6 +26,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestSimCards:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Telnyx) -> None:
         sim_card = client.sim_cards.retrieve(
@@ -33,6 +34,7 @@ class TestSimCards:
         )
         assert_matches_type(SimCardRetrieveResponse, sim_card, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_retrieve_with_all_params(self, client: Telnyx) -> None:
         sim_card = client.sim_cards.retrieve(
@@ -42,6 +44,7 @@ class TestSimCards:
         )
         assert_matches_type(SimCardRetrieveResponse, sim_card, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
         response = client.sim_cards.with_raw_response.retrieve(
@@ -53,6 +56,7 @@ class TestSimCards:
         sim_card = response.parse()
         assert_matches_type(SimCardRetrieveResponse, sim_card, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
         with client.sim_cards.with_streaming_response.retrieve(
@@ -66,6 +70,7 @@ class TestSimCards:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_retrieve(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -73,6 +78,7 @@ class TestSimCards:
                 id="",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_update(self, client: Telnyx) -> None:
         sim_card = client.sim_cards.update(
@@ -80,6 +86,7 @@ class TestSimCards:
         )
         assert_matches_type(SimCardUpdateResponse, sim_card, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_update_with_all_params(self, client: Telnyx) -> None:
         sim_card = client.sim_cards.update(
@@ -95,6 +102,7 @@ class TestSimCards:
         )
         assert_matches_type(SimCardUpdateResponse, sim_card, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_update(self, client: Telnyx) -> None:
         response = client.sim_cards.with_raw_response.update(
@@ -106,6 +114,7 @@ class TestSimCards:
         sim_card = response.parse()
         assert_matches_type(SimCardUpdateResponse, sim_card, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_update(self, client: Telnyx) -> None:
         with client.sim_cards.with_streaming_response.update(
@@ -119,6 +128,7 @@ class TestSimCards:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_update(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -126,11 +136,13 @@ class TestSimCards:
                 id="",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         sim_card = client.sim_cards.list()
         assert_matches_type(SimCardListResponse, sim_card, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         sim_card = client.sim_cards.list(
@@ -149,6 +161,7 @@ class TestSimCards:
         )
         assert_matches_type(SimCardListResponse, sim_card, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Telnyx) -> None:
         response = client.sim_cards.with_raw_response.list()
@@ -158,6 +171,7 @@ class TestSimCards:
         sim_card = response.parse()
         assert_matches_type(SimCardListResponse, sim_card, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Telnyx) -> None:
         with client.sim_cards.with_streaming_response.list() as response:
@@ -169,6 +183,7 @@ class TestSimCards:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_delete(self, client: Telnyx) -> None:
         sim_card = client.sim_cards.delete(
@@ -176,6 +191,7 @@ class TestSimCards:
         )
         assert_matches_type(SimCardDeleteResponse, sim_card, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_delete_with_all_params(self, client: Telnyx) -> None:
         sim_card = client.sim_cards.delete(
@@ -184,6 +200,7 @@ class TestSimCards:
         )
         assert_matches_type(SimCardDeleteResponse, sim_card, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_delete(self, client: Telnyx) -> None:
         response = client.sim_cards.with_raw_response.delete(
@@ -195,6 +212,7 @@ class TestSimCards:
         sim_card = response.parse()
         assert_matches_type(SimCardDeleteResponse, sim_card, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_delete(self, client: Telnyx) -> None:
         with client.sim_cards.with_streaming_response.delete(
@@ -208,6 +226,7 @@ class TestSimCards:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_delete(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -215,6 +234,7 @@ class TestSimCards:
                 id="",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_get_activation_code(self, client: Telnyx) -> None:
         sim_card = client.sim_cards.get_activation_code(
@@ -222,6 +242,7 @@ class TestSimCards:
         )
         assert_matches_type(SimCardGetActivationCodeResponse, sim_card, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_get_activation_code(self, client: Telnyx) -> None:
         response = client.sim_cards.with_raw_response.get_activation_code(
@@ -233,6 +254,7 @@ class TestSimCards:
         sim_card = response.parse()
         assert_matches_type(SimCardGetActivationCodeResponse, sim_card, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_get_activation_code(self, client: Telnyx) -> None:
         with client.sim_cards.with_streaming_response.get_activation_code(
@@ -246,6 +268,7 @@ class TestSimCards:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_get_activation_code(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -253,6 +276,7 @@ class TestSimCards:
                 "",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_get_device_details(self, client: Telnyx) -> None:
         sim_card = client.sim_cards.get_device_details(
@@ -260,6 +284,7 @@ class TestSimCards:
         )
         assert_matches_type(SimCardGetDeviceDetailsResponse, sim_card, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_get_device_details(self, client: Telnyx) -> None:
         response = client.sim_cards.with_raw_response.get_device_details(
@@ -271,6 +296,7 @@ class TestSimCards:
         sim_card = response.parse()
         assert_matches_type(SimCardGetDeviceDetailsResponse, sim_card, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_get_device_details(self, client: Telnyx) -> None:
         with client.sim_cards.with_streaming_response.get_device_details(
@@ -284,6 +310,7 @@ class TestSimCards:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_get_device_details(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -291,6 +318,7 @@ class TestSimCards:
                 "",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_get_public_ip(self, client: Telnyx) -> None:
         sim_card = client.sim_cards.get_public_ip(
@@ -298,6 +326,7 @@ class TestSimCards:
         )
         assert_matches_type(SimCardGetPublicIPResponse, sim_card, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_get_public_ip(self, client: Telnyx) -> None:
         response = client.sim_cards.with_raw_response.get_public_ip(
@@ -309,6 +338,7 @@ class TestSimCards:
         sim_card = response.parse()
         assert_matches_type(SimCardGetPublicIPResponse, sim_card, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_get_public_ip(self, client: Telnyx) -> None:
         with client.sim_cards.with_streaming_response.get_public_ip(
@@ -322,6 +352,7 @@ class TestSimCards:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_get_public_ip(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -329,6 +360,7 @@ class TestSimCards:
                 "",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_wireless_connectivity_logs(self, client: Telnyx) -> None:
         sim_card = client.sim_cards.list_wireless_connectivity_logs(
@@ -336,6 +368,7 @@ class TestSimCards:
         )
         assert_matches_type(SimCardListWirelessConnectivityLogsResponse, sim_card, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_wireless_connectivity_logs_with_all_params(self, client: Telnyx) -> None:
         sim_card = client.sim_cards.list_wireless_connectivity_logs(
@@ -345,6 +378,7 @@ class TestSimCards:
         )
         assert_matches_type(SimCardListWirelessConnectivityLogsResponse, sim_card, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list_wireless_connectivity_logs(self, client: Telnyx) -> None:
         response = client.sim_cards.with_raw_response.list_wireless_connectivity_logs(
@@ -356,6 +390,7 @@ class TestSimCards:
         sim_card = response.parse()
         assert_matches_type(SimCardListWirelessConnectivityLogsResponse, sim_card, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list_wireless_connectivity_logs(self, client: Telnyx) -> None:
         with client.sim_cards.with_streaming_response.list_wireless_connectivity_logs(
@@ -369,6 +404,7 @@ class TestSimCards:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_list_wireless_connectivity_logs(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -382,6 +418,7 @@ class TestAsyncSimCards:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
         sim_card = await async_client.sim_cards.retrieve(
@@ -389,6 +426,7 @@ class TestAsyncSimCards:
         )
         assert_matches_type(SimCardRetrieveResponse, sim_card, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_retrieve_with_all_params(self, async_client: AsyncTelnyx) -> None:
         sim_card = await async_client.sim_cards.retrieve(
@@ -398,6 +436,7 @@ class TestAsyncSimCards:
         )
         assert_matches_type(SimCardRetrieveResponse, sim_card, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.sim_cards.with_raw_response.retrieve(
@@ -409,6 +448,7 @@ class TestAsyncSimCards:
         sim_card = await response.parse()
         assert_matches_type(SimCardRetrieveResponse, sim_card, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         async with async_client.sim_cards.with_streaming_response.retrieve(
@@ -422,6 +462,7 @@ class TestAsyncSimCards:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -429,6 +470,7 @@ class TestAsyncSimCards:
                 id="",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_update(self, async_client: AsyncTelnyx) -> None:
         sim_card = await async_client.sim_cards.update(
@@ -436,6 +478,7 @@ class TestAsyncSimCards:
         )
         assert_matches_type(SimCardUpdateResponse, sim_card, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncTelnyx) -> None:
         sim_card = await async_client.sim_cards.update(
@@ -451,6 +494,7 @@ class TestAsyncSimCards:
         )
         assert_matches_type(SimCardUpdateResponse, sim_card, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.sim_cards.with_raw_response.update(
@@ -462,6 +506,7 @@ class TestAsyncSimCards:
         sim_card = await response.parse()
         assert_matches_type(SimCardUpdateResponse, sim_card, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncTelnyx) -> None:
         async with async_client.sim_cards.with_streaming_response.update(
@@ -475,6 +520,7 @@ class TestAsyncSimCards:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_update(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -482,11 +528,13 @@ class TestAsyncSimCards:
                 id="",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         sim_card = await async_client.sim_cards.list()
         assert_matches_type(SimCardListResponse, sim_card, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         sim_card = await async_client.sim_cards.list(
@@ -505,6 +553,7 @@ class TestAsyncSimCards:
         )
         assert_matches_type(SimCardListResponse, sim_card, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.sim_cards.with_raw_response.list()
@@ -514,6 +563,7 @@ class TestAsyncSimCards:
         sim_card = await response.parse()
         assert_matches_type(SimCardListResponse, sim_card, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncTelnyx) -> None:
         async with async_client.sim_cards.with_streaming_response.list() as response:
@@ -525,6 +575,7 @@ class TestAsyncSimCards:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_delete(self, async_client: AsyncTelnyx) -> None:
         sim_card = await async_client.sim_cards.delete(
@@ -532,6 +583,7 @@ class TestAsyncSimCards:
         )
         assert_matches_type(SimCardDeleteResponse, sim_card, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_delete_with_all_params(self, async_client: AsyncTelnyx) -> None:
         sim_card = await async_client.sim_cards.delete(
@@ -540,6 +592,7 @@ class TestAsyncSimCards:
         )
         assert_matches_type(SimCardDeleteResponse, sim_card, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.sim_cards.with_raw_response.delete(
@@ -551,6 +604,7 @@ class TestAsyncSimCards:
         sim_card = await response.parse()
         assert_matches_type(SimCardDeleteResponse, sim_card, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncTelnyx) -> None:
         async with async_client.sim_cards.with_streaming_response.delete(
@@ -564,6 +618,7 @@ class TestAsyncSimCards:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -571,6 +626,7 @@ class TestAsyncSimCards:
                 id="",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_get_activation_code(self, async_client: AsyncTelnyx) -> None:
         sim_card = await async_client.sim_cards.get_activation_code(
@@ -578,6 +634,7 @@ class TestAsyncSimCards:
         )
         assert_matches_type(SimCardGetActivationCodeResponse, sim_card, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_get_activation_code(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.sim_cards.with_raw_response.get_activation_code(
@@ -589,6 +646,7 @@ class TestAsyncSimCards:
         sim_card = await response.parse()
         assert_matches_type(SimCardGetActivationCodeResponse, sim_card, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_get_activation_code(self, async_client: AsyncTelnyx) -> None:
         async with async_client.sim_cards.with_streaming_response.get_activation_code(
@@ -602,6 +660,7 @@ class TestAsyncSimCards:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_get_activation_code(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -609,6 +668,7 @@ class TestAsyncSimCards:
                 "",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_get_device_details(self, async_client: AsyncTelnyx) -> None:
         sim_card = await async_client.sim_cards.get_device_details(
@@ -616,6 +676,7 @@ class TestAsyncSimCards:
         )
         assert_matches_type(SimCardGetDeviceDetailsResponse, sim_card, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_get_device_details(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.sim_cards.with_raw_response.get_device_details(
@@ -627,6 +688,7 @@ class TestAsyncSimCards:
         sim_card = await response.parse()
         assert_matches_type(SimCardGetDeviceDetailsResponse, sim_card, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_get_device_details(self, async_client: AsyncTelnyx) -> None:
         async with async_client.sim_cards.with_streaming_response.get_device_details(
@@ -640,6 +702,7 @@ class TestAsyncSimCards:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_get_device_details(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -647,6 +710,7 @@ class TestAsyncSimCards:
                 "",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_get_public_ip(self, async_client: AsyncTelnyx) -> None:
         sim_card = await async_client.sim_cards.get_public_ip(
@@ -654,6 +718,7 @@ class TestAsyncSimCards:
         )
         assert_matches_type(SimCardGetPublicIPResponse, sim_card, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_get_public_ip(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.sim_cards.with_raw_response.get_public_ip(
@@ -665,6 +730,7 @@ class TestAsyncSimCards:
         sim_card = await response.parse()
         assert_matches_type(SimCardGetPublicIPResponse, sim_card, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_get_public_ip(self, async_client: AsyncTelnyx) -> None:
         async with async_client.sim_cards.with_streaming_response.get_public_ip(
@@ -678,6 +744,7 @@ class TestAsyncSimCards:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_get_public_ip(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -685,6 +752,7 @@ class TestAsyncSimCards:
                 "",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_wireless_connectivity_logs(self, async_client: AsyncTelnyx) -> None:
         sim_card = await async_client.sim_cards.list_wireless_connectivity_logs(
@@ -692,6 +760,7 @@ class TestAsyncSimCards:
         )
         assert_matches_type(SimCardListWirelessConnectivityLogsResponse, sim_card, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_wireless_connectivity_logs_with_all_params(self, async_client: AsyncTelnyx) -> None:
         sim_card = await async_client.sim_cards.list_wireless_connectivity_logs(
@@ -701,6 +770,7 @@ class TestAsyncSimCards:
         )
         assert_matches_type(SimCardListWirelessConnectivityLogsResponse, sim_card, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list_wireless_connectivity_logs(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.sim_cards.with_raw_response.list_wireless_connectivity_logs(
@@ -712,6 +782,7 @@ class TestAsyncSimCards:
         sim_card = await response.parse()
         assert_matches_type(SimCardListWirelessConnectivityLogsResponse, sim_card, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list_wireless_connectivity_logs(self, async_client: AsyncTelnyx) -> None:
         async with async_client.sim_cards.with_streaming_response.list_wireless_connectivity_logs(
@@ -725,6 +796,7 @@ class TestAsyncSimCards:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_list_wireless_connectivity_logs(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):

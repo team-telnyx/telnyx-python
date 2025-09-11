@@ -20,11 +20,13 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestReports:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_mdrs(self, client: Telnyx) -> None:
         report = client.reports.list_mdrs()
         assert_matches_type(ReportListMdrsResponse, report, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_mdrs_with_all_params(self, client: Telnyx) -> None:
         report = client.reports.list_mdrs(
@@ -40,6 +42,7 @@ class TestReports:
         )
         assert_matches_type(ReportListMdrsResponse, report, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list_mdrs(self, client: Telnyx) -> None:
         response = client.reports.with_raw_response.list_mdrs()
@@ -49,6 +52,7 @@ class TestReports:
         report = response.parse()
         assert_matches_type(ReportListMdrsResponse, report, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list_mdrs(self, client: Telnyx) -> None:
         with client.reports.with_streaming_response.list_mdrs() as response:
@@ -60,11 +64,13 @@ class TestReports:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_wdrs(self, client: Telnyx) -> None:
         report = client.reports.list_wdrs()
         assert_matches_type(ReportListWdrsResponse, report, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_wdrs_with_all_params(self, client: Telnyx) -> None:
         report = client.reports.list_wdrs(
@@ -86,6 +92,7 @@ class TestReports:
         )
         assert_matches_type(ReportListWdrsResponse, report, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list_wdrs(self, client: Telnyx) -> None:
         response = client.reports.with_raw_response.list_wdrs()
@@ -95,6 +102,7 @@ class TestReports:
         report = response.parse()
         assert_matches_type(ReportListWdrsResponse, report, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list_wdrs(self, client: Telnyx) -> None:
         with client.reports.with_streaming_response.list_wdrs() as response:
@@ -112,11 +120,13 @@ class TestAsyncReports:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_mdrs(self, async_client: AsyncTelnyx) -> None:
         report = await async_client.reports.list_mdrs()
         assert_matches_type(ReportListMdrsResponse, report, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_mdrs_with_all_params(self, async_client: AsyncTelnyx) -> None:
         report = await async_client.reports.list_mdrs(
@@ -132,6 +142,7 @@ class TestAsyncReports:
         )
         assert_matches_type(ReportListMdrsResponse, report, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list_mdrs(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.reports.with_raw_response.list_mdrs()
@@ -141,6 +152,7 @@ class TestAsyncReports:
         report = await response.parse()
         assert_matches_type(ReportListMdrsResponse, report, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list_mdrs(self, async_client: AsyncTelnyx) -> None:
         async with async_client.reports.with_streaming_response.list_mdrs() as response:
@@ -152,11 +164,13 @@ class TestAsyncReports:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_wdrs(self, async_client: AsyncTelnyx) -> None:
         report = await async_client.reports.list_wdrs()
         assert_matches_type(ReportListWdrsResponse, report, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_wdrs_with_all_params(self, async_client: AsyncTelnyx) -> None:
         report = await async_client.reports.list_wdrs(
@@ -178,6 +192,7 @@ class TestAsyncReports:
         )
         assert_matches_type(ReportListWdrsResponse, report, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list_wdrs(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.reports.with_raw_response.list_wdrs()
@@ -187,6 +202,7 @@ class TestAsyncReports:
         report = await response.parse()
         assert_matches_type(ReportListWdrsResponse, report, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list_wdrs(self, async_client: AsyncTelnyx) -> None:
         async with async_client.reports.with_streaming_response.list_wdrs() as response:

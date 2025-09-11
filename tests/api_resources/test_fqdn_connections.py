@@ -23,6 +23,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestFqdnConnections:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create(self, client: Telnyx) -> None:
         fqdn_connection = client.fqdn_connections.create(
@@ -30,6 +31,7 @@ class TestFqdnConnections:
         )
         assert_matches_type(FqdnConnectionCreateResponse, fqdn_connection, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create_with_all_params(self, client: Telnyx) -> None:
         fqdn_connection = client.fqdn_connections.create(
@@ -95,6 +97,7 @@ class TestFqdnConnections:
         )
         assert_matches_type(FqdnConnectionCreateResponse, fqdn_connection, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: Telnyx) -> None:
         response = client.fqdn_connections.with_raw_response.create(
@@ -106,6 +109,7 @@ class TestFqdnConnections:
         fqdn_connection = response.parse()
         assert_matches_type(FqdnConnectionCreateResponse, fqdn_connection, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: Telnyx) -> None:
         with client.fqdn_connections.with_streaming_response.create(
@@ -119,6 +123,7 @@ class TestFqdnConnections:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Telnyx) -> None:
         fqdn_connection = client.fqdn_connections.retrieve(
@@ -126,6 +131,7 @@ class TestFqdnConnections:
         )
         assert_matches_type(FqdnConnectionRetrieveResponse, fqdn_connection, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
         response = client.fqdn_connections.with_raw_response.retrieve(
@@ -137,6 +143,7 @@ class TestFqdnConnections:
         fqdn_connection = response.parse()
         assert_matches_type(FqdnConnectionRetrieveResponse, fqdn_connection, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
         with client.fqdn_connections.with_streaming_response.retrieve(
@@ -150,6 +157,7 @@ class TestFqdnConnections:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_retrieve(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -157,6 +165,7 @@ class TestFqdnConnections:
                 "",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_update(self, client: Telnyx) -> None:
         fqdn_connection = client.fqdn_connections.update(
@@ -164,6 +173,7 @@ class TestFqdnConnections:
         )
         assert_matches_type(FqdnConnectionUpdateResponse, fqdn_connection, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_update_with_all_params(self, client: Telnyx) -> None:
         fqdn_connection = client.fqdn_connections.update(
@@ -229,6 +239,7 @@ class TestFqdnConnections:
         )
         assert_matches_type(FqdnConnectionUpdateResponse, fqdn_connection, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_update(self, client: Telnyx) -> None:
         response = client.fqdn_connections.with_raw_response.update(
@@ -240,6 +251,7 @@ class TestFqdnConnections:
         fqdn_connection = response.parse()
         assert_matches_type(FqdnConnectionUpdateResponse, fqdn_connection, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_update(self, client: Telnyx) -> None:
         with client.fqdn_connections.with_streaming_response.update(
@@ -253,6 +265,7 @@ class TestFqdnConnections:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_update(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -260,11 +273,13 @@ class TestFqdnConnections:
                 id="",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         fqdn_connection = client.fqdn_connections.list()
         assert_matches_type(FqdnConnectionListResponse, fqdn_connection, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         fqdn_connection = client.fqdn_connections.list(
@@ -281,6 +296,7 @@ class TestFqdnConnections:
         )
         assert_matches_type(FqdnConnectionListResponse, fqdn_connection, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Telnyx) -> None:
         response = client.fqdn_connections.with_raw_response.list()
@@ -290,6 +306,7 @@ class TestFqdnConnections:
         fqdn_connection = response.parse()
         assert_matches_type(FqdnConnectionListResponse, fqdn_connection, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Telnyx) -> None:
         with client.fqdn_connections.with_streaming_response.list() as response:
@@ -301,6 +318,7 @@ class TestFqdnConnections:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_delete(self, client: Telnyx) -> None:
         fqdn_connection = client.fqdn_connections.delete(
@@ -308,6 +326,7 @@ class TestFqdnConnections:
         )
         assert_matches_type(FqdnConnectionDeleteResponse, fqdn_connection, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_delete(self, client: Telnyx) -> None:
         response = client.fqdn_connections.with_raw_response.delete(
@@ -319,6 +338,7 @@ class TestFqdnConnections:
         fqdn_connection = response.parse()
         assert_matches_type(FqdnConnectionDeleteResponse, fqdn_connection, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_delete(self, client: Telnyx) -> None:
         with client.fqdn_connections.with_streaming_response.delete(
@@ -332,6 +352,7 @@ class TestFqdnConnections:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_delete(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -345,6 +366,7 @@ class TestAsyncFqdnConnections:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncTelnyx) -> None:
         fqdn_connection = await async_client.fqdn_connections.create(
@@ -352,6 +374,7 @@ class TestAsyncFqdnConnections:
         )
         assert_matches_type(FqdnConnectionCreateResponse, fqdn_connection, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncTelnyx) -> None:
         fqdn_connection = await async_client.fqdn_connections.create(
@@ -417,6 +440,7 @@ class TestAsyncFqdnConnections:
         )
         assert_matches_type(FqdnConnectionCreateResponse, fqdn_connection, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.fqdn_connections.with_raw_response.create(
@@ -428,6 +452,7 @@ class TestAsyncFqdnConnections:
         fqdn_connection = await response.parse()
         assert_matches_type(FqdnConnectionCreateResponse, fqdn_connection, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncTelnyx) -> None:
         async with async_client.fqdn_connections.with_streaming_response.create(
@@ -441,6 +466,7 @@ class TestAsyncFqdnConnections:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
         fqdn_connection = await async_client.fqdn_connections.retrieve(
@@ -448,6 +474,7 @@ class TestAsyncFqdnConnections:
         )
         assert_matches_type(FqdnConnectionRetrieveResponse, fqdn_connection, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.fqdn_connections.with_raw_response.retrieve(
@@ -459,6 +486,7 @@ class TestAsyncFqdnConnections:
         fqdn_connection = await response.parse()
         assert_matches_type(FqdnConnectionRetrieveResponse, fqdn_connection, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         async with async_client.fqdn_connections.with_streaming_response.retrieve(
@@ -472,6 +500,7 @@ class TestAsyncFqdnConnections:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -479,6 +508,7 @@ class TestAsyncFqdnConnections:
                 "",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_update(self, async_client: AsyncTelnyx) -> None:
         fqdn_connection = await async_client.fqdn_connections.update(
@@ -486,6 +516,7 @@ class TestAsyncFqdnConnections:
         )
         assert_matches_type(FqdnConnectionUpdateResponse, fqdn_connection, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncTelnyx) -> None:
         fqdn_connection = await async_client.fqdn_connections.update(
@@ -551,6 +582,7 @@ class TestAsyncFqdnConnections:
         )
         assert_matches_type(FqdnConnectionUpdateResponse, fqdn_connection, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.fqdn_connections.with_raw_response.update(
@@ -562,6 +594,7 @@ class TestAsyncFqdnConnections:
         fqdn_connection = await response.parse()
         assert_matches_type(FqdnConnectionUpdateResponse, fqdn_connection, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncTelnyx) -> None:
         async with async_client.fqdn_connections.with_streaming_response.update(
@@ -575,6 +608,7 @@ class TestAsyncFqdnConnections:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_update(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -582,11 +616,13 @@ class TestAsyncFqdnConnections:
                 id="",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         fqdn_connection = await async_client.fqdn_connections.list()
         assert_matches_type(FqdnConnectionListResponse, fqdn_connection, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         fqdn_connection = await async_client.fqdn_connections.list(
@@ -603,6 +639,7 @@ class TestAsyncFqdnConnections:
         )
         assert_matches_type(FqdnConnectionListResponse, fqdn_connection, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.fqdn_connections.with_raw_response.list()
@@ -612,6 +649,7 @@ class TestAsyncFqdnConnections:
         fqdn_connection = await response.parse()
         assert_matches_type(FqdnConnectionListResponse, fqdn_connection, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncTelnyx) -> None:
         async with async_client.fqdn_connections.with_streaming_response.list() as response:
@@ -623,6 +661,7 @@ class TestAsyncFqdnConnections:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_delete(self, async_client: AsyncTelnyx) -> None:
         fqdn_connection = await async_client.fqdn_connections.delete(
@@ -630,6 +669,7 @@ class TestAsyncFqdnConnections:
         )
         assert_matches_type(FqdnConnectionDeleteResponse, fqdn_connection, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.fqdn_connections.with_raw_response.delete(
@@ -641,6 +681,7 @@ class TestAsyncFqdnConnections:
         fqdn_connection = await response.parse()
         assert_matches_type(FqdnConnectionDeleteResponse, fqdn_connection, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncTelnyx) -> None:
         async with async_client.fqdn_connections.with_streaming_response.delete(
@@ -654,6 +695,7 @@ class TestAsyncFqdnConnections:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):

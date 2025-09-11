@@ -21,6 +21,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestRecordingTranscriptions:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Telnyx) -> None:
         recording_transcription = client.recording_transcriptions.retrieve(
@@ -28,6 +29,7 @@ class TestRecordingTranscriptions:
         )
         assert_matches_type(RecordingTranscriptionRetrieveResponse, recording_transcription, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
         response = client.recording_transcriptions.with_raw_response.retrieve(
@@ -39,6 +41,7 @@ class TestRecordingTranscriptions:
         recording_transcription = response.parse()
         assert_matches_type(RecordingTranscriptionRetrieveResponse, recording_transcription, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
         with client.recording_transcriptions.with_streaming_response.retrieve(
@@ -52,6 +55,7 @@ class TestRecordingTranscriptions:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_retrieve(self, client: Telnyx) -> None:
         with pytest.raises(
@@ -61,11 +65,13 @@ class TestRecordingTranscriptions:
                 "",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         recording_transcription = client.recording_transcriptions.list()
         assert_matches_type(RecordingTranscriptionListResponse, recording_transcription, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Telnyx) -> None:
         response = client.recording_transcriptions.with_raw_response.list()
@@ -75,6 +81,7 @@ class TestRecordingTranscriptions:
         recording_transcription = response.parse()
         assert_matches_type(RecordingTranscriptionListResponse, recording_transcription, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Telnyx) -> None:
         with client.recording_transcriptions.with_streaming_response.list() as response:
@@ -86,6 +93,7 @@ class TestRecordingTranscriptions:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_delete(self, client: Telnyx) -> None:
         recording_transcription = client.recording_transcriptions.delete(
@@ -93,6 +101,7 @@ class TestRecordingTranscriptions:
         )
         assert_matches_type(RecordingTranscriptionDeleteResponse, recording_transcription, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_delete(self, client: Telnyx) -> None:
         response = client.recording_transcriptions.with_raw_response.delete(
@@ -104,6 +113,7 @@ class TestRecordingTranscriptions:
         recording_transcription = response.parse()
         assert_matches_type(RecordingTranscriptionDeleteResponse, recording_transcription, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_delete(self, client: Telnyx) -> None:
         with client.recording_transcriptions.with_streaming_response.delete(
@@ -117,6 +127,7 @@ class TestRecordingTranscriptions:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_delete(self, client: Telnyx) -> None:
         with pytest.raises(
@@ -132,6 +143,7 @@ class TestAsyncRecordingTranscriptions:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
         recording_transcription = await async_client.recording_transcriptions.retrieve(
@@ -139,6 +151,7 @@ class TestAsyncRecordingTranscriptions:
         )
         assert_matches_type(RecordingTranscriptionRetrieveResponse, recording_transcription, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.recording_transcriptions.with_raw_response.retrieve(
@@ -150,6 +163,7 @@ class TestAsyncRecordingTranscriptions:
         recording_transcription = await response.parse()
         assert_matches_type(RecordingTranscriptionRetrieveResponse, recording_transcription, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         async with async_client.recording_transcriptions.with_streaming_response.retrieve(
@@ -163,6 +177,7 @@ class TestAsyncRecordingTranscriptions:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(
@@ -172,11 +187,13 @@ class TestAsyncRecordingTranscriptions:
                 "",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         recording_transcription = await async_client.recording_transcriptions.list()
         assert_matches_type(RecordingTranscriptionListResponse, recording_transcription, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.recording_transcriptions.with_raw_response.list()
@@ -186,6 +203,7 @@ class TestAsyncRecordingTranscriptions:
         recording_transcription = await response.parse()
         assert_matches_type(RecordingTranscriptionListResponse, recording_transcription, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncTelnyx) -> None:
         async with async_client.recording_transcriptions.with_streaming_response.list() as response:
@@ -197,6 +215,7 @@ class TestAsyncRecordingTranscriptions:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_delete(self, async_client: AsyncTelnyx) -> None:
         recording_transcription = await async_client.recording_transcriptions.delete(
@@ -204,6 +223,7 @@ class TestAsyncRecordingTranscriptions:
         )
         assert_matches_type(RecordingTranscriptionDeleteResponse, recording_transcription, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.recording_transcriptions.with_raw_response.delete(
@@ -215,6 +235,7 @@ class TestAsyncRecordingTranscriptions:
         recording_transcription = await response.parse()
         assert_matches_type(RecordingTranscriptionDeleteResponse, recording_transcription, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncTelnyx) -> None:
         async with async_client.recording_transcriptions.with_streaming_response.delete(
@@ -228,6 +249,7 @@ class TestAsyncRecordingTranscriptions:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(

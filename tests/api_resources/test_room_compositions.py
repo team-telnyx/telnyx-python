@@ -22,11 +22,13 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestRoomCompositions:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create(self, client: Telnyx) -> None:
         room_composition = client.room_compositions.create()
         assert_matches_type(RoomCompositionCreateResponse, room_composition, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create_with_all_params(self, client: Telnyx) -> None:
         room_composition = client.room_compositions.create(
@@ -51,6 +53,7 @@ class TestRoomCompositions:
         )
         assert_matches_type(RoomCompositionCreateResponse, room_composition, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: Telnyx) -> None:
         response = client.room_compositions.with_raw_response.create()
@@ -60,6 +63,7 @@ class TestRoomCompositions:
         room_composition = response.parse()
         assert_matches_type(RoomCompositionCreateResponse, room_composition, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: Telnyx) -> None:
         with client.room_compositions.with_streaming_response.create() as response:
@@ -71,6 +75,7 @@ class TestRoomCompositions:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Telnyx) -> None:
         room_composition = client.room_compositions.retrieve(
@@ -78,6 +83,7 @@ class TestRoomCompositions:
         )
         assert_matches_type(RoomCompositionRetrieveResponse, room_composition, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
         response = client.room_compositions.with_raw_response.retrieve(
@@ -89,6 +95,7 @@ class TestRoomCompositions:
         room_composition = response.parse()
         assert_matches_type(RoomCompositionRetrieveResponse, room_composition, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
         with client.room_compositions.with_streaming_response.retrieve(
@@ -102,6 +109,7 @@ class TestRoomCompositions:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_retrieve(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `room_composition_id` but received ''"):
@@ -109,11 +117,13 @@ class TestRoomCompositions:
                 "",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         room_composition = client.room_compositions.list()
         assert_matches_type(RoomCompositionListResponse, room_composition, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         room_composition = client.room_compositions.list(
@@ -133,6 +143,7 @@ class TestRoomCompositions:
         )
         assert_matches_type(RoomCompositionListResponse, room_composition, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Telnyx) -> None:
         response = client.room_compositions.with_raw_response.list()
@@ -142,6 +153,7 @@ class TestRoomCompositions:
         room_composition = response.parse()
         assert_matches_type(RoomCompositionListResponse, room_composition, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Telnyx) -> None:
         with client.room_compositions.with_streaming_response.list() as response:
@@ -153,6 +165,7 @@ class TestRoomCompositions:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_delete(self, client: Telnyx) -> None:
         room_composition = client.room_compositions.delete(
@@ -160,6 +173,7 @@ class TestRoomCompositions:
         )
         assert room_composition is None
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_delete(self, client: Telnyx) -> None:
         response = client.room_compositions.with_raw_response.delete(
@@ -171,6 +185,7 @@ class TestRoomCompositions:
         room_composition = response.parse()
         assert room_composition is None
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_delete(self, client: Telnyx) -> None:
         with client.room_compositions.with_streaming_response.delete(
@@ -184,6 +199,7 @@ class TestRoomCompositions:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_delete(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `room_composition_id` but received ''"):
@@ -197,11 +213,13 @@ class TestAsyncRoomCompositions:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncTelnyx) -> None:
         room_composition = await async_client.room_compositions.create()
         assert_matches_type(RoomCompositionCreateResponse, room_composition, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncTelnyx) -> None:
         room_composition = await async_client.room_compositions.create(
@@ -226,6 +244,7 @@ class TestAsyncRoomCompositions:
         )
         assert_matches_type(RoomCompositionCreateResponse, room_composition, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.room_compositions.with_raw_response.create()
@@ -235,6 +254,7 @@ class TestAsyncRoomCompositions:
         room_composition = await response.parse()
         assert_matches_type(RoomCompositionCreateResponse, room_composition, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncTelnyx) -> None:
         async with async_client.room_compositions.with_streaming_response.create() as response:
@@ -246,6 +266,7 @@ class TestAsyncRoomCompositions:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
         room_composition = await async_client.room_compositions.retrieve(
@@ -253,6 +274,7 @@ class TestAsyncRoomCompositions:
         )
         assert_matches_type(RoomCompositionRetrieveResponse, room_composition, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.room_compositions.with_raw_response.retrieve(
@@ -264,6 +286,7 @@ class TestAsyncRoomCompositions:
         room_composition = await response.parse()
         assert_matches_type(RoomCompositionRetrieveResponse, room_composition, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         async with async_client.room_compositions.with_streaming_response.retrieve(
@@ -277,6 +300,7 @@ class TestAsyncRoomCompositions:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `room_composition_id` but received ''"):
@@ -284,11 +308,13 @@ class TestAsyncRoomCompositions:
                 "",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         room_composition = await async_client.room_compositions.list()
         assert_matches_type(RoomCompositionListResponse, room_composition, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         room_composition = await async_client.room_compositions.list(
@@ -308,6 +334,7 @@ class TestAsyncRoomCompositions:
         )
         assert_matches_type(RoomCompositionListResponse, room_composition, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.room_compositions.with_raw_response.list()
@@ -317,6 +344,7 @@ class TestAsyncRoomCompositions:
         room_composition = await response.parse()
         assert_matches_type(RoomCompositionListResponse, room_composition, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncTelnyx) -> None:
         async with async_client.room_compositions.with_streaming_response.list() as response:
@@ -328,6 +356,7 @@ class TestAsyncRoomCompositions:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_delete(self, async_client: AsyncTelnyx) -> None:
         room_composition = await async_client.room_compositions.delete(
@@ -335,6 +364,7 @@ class TestAsyncRoomCompositions:
         )
         assert room_composition is None
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.room_compositions.with_raw_response.delete(
@@ -346,6 +376,7 @@ class TestAsyncRoomCompositions:
         room_composition = await response.parse()
         assert room_composition is None
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncTelnyx) -> None:
         async with async_client.room_compositions.with_streaming_response.delete(
@@ -359,6 +390,7 @@ class TestAsyncRoomCompositions:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `room_composition_id` but received ''"):

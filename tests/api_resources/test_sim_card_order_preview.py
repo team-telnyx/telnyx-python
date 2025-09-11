@@ -17,6 +17,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestSimCardOrderPreview:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_preview(self, client: Telnyx) -> None:
         sim_card_order_preview = client.sim_card_order_preview.preview(
@@ -25,6 +26,7 @@ class TestSimCardOrderPreview:
         )
         assert_matches_type(SimCardOrderPreviewPreviewResponse, sim_card_order_preview, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_preview(self, client: Telnyx) -> None:
         response = client.sim_card_order_preview.with_raw_response.preview(
@@ -37,6 +39,7 @@ class TestSimCardOrderPreview:
         sim_card_order_preview = response.parse()
         assert_matches_type(SimCardOrderPreviewPreviewResponse, sim_card_order_preview, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_preview(self, client: Telnyx) -> None:
         with client.sim_card_order_preview.with_streaming_response.preview(
@@ -57,6 +60,7 @@ class TestAsyncSimCardOrderPreview:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_preview(self, async_client: AsyncTelnyx) -> None:
         sim_card_order_preview = await async_client.sim_card_order_preview.preview(
@@ -65,6 +69,7 @@ class TestAsyncSimCardOrderPreview:
         )
         assert_matches_type(SimCardOrderPreviewPreviewResponse, sim_card_order_preview, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_preview(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.sim_card_order_preview.with_raw_response.preview(
@@ -77,6 +82,7 @@ class TestAsyncSimCardOrderPreview:
         sim_card_order_preview = await response.parse()
         assert_matches_type(SimCardOrderPreviewPreviewResponse, sim_card_order_preview, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_preview(self, async_client: AsyncTelnyx) -> None:
         async with async_client.sim_card_order_preview.with_streaming_response.preview(

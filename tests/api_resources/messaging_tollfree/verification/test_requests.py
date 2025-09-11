@@ -22,6 +22,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestRequests:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create(self, client: Telnyx) -> None:
         request = client.messaging_tollfree.verification.requests.create(
@@ -50,6 +51,7 @@ class TestRequests:
         )
         assert_matches_type(VerificationRequestEgress, request, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create_with_all_params(self, client: Telnyx) -> None:
         request = client.messaging_tollfree.verification.requests.create(
@@ -80,6 +82,7 @@ class TestRequests:
         )
         assert_matches_type(VerificationRequestEgress, request, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: Telnyx) -> None:
         response = client.messaging_tollfree.verification.requests.with_raw_response.create(
@@ -112,6 +115,7 @@ class TestRequests:
         request = response.parse()
         assert_matches_type(VerificationRequestEgress, request, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: Telnyx) -> None:
         with client.messaging_tollfree.verification.requests.with_streaming_response.create(
@@ -146,6 +150,7 @@ class TestRequests:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Telnyx) -> None:
         request = client.messaging_tollfree.verification.requests.retrieve(
@@ -153,6 +158,7 @@ class TestRequests:
         )
         assert_matches_type(VerificationRequestStatus, request, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
         response = client.messaging_tollfree.verification.requests.with_raw_response.retrieve(
@@ -164,6 +170,7 @@ class TestRequests:
         request = response.parse()
         assert_matches_type(VerificationRequestStatus, request, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
         with client.messaging_tollfree.verification.requests.with_streaming_response.retrieve(
@@ -177,6 +184,7 @@ class TestRequests:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_retrieve(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -184,6 +192,7 @@ class TestRequests:
                 "",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_update(self, client: Telnyx) -> None:
         request = client.messaging_tollfree.verification.requests.update(
@@ -213,6 +222,7 @@ class TestRequests:
         )
         assert_matches_type(VerificationRequestEgress, request, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_update_with_all_params(self, client: Telnyx) -> None:
         request = client.messaging_tollfree.verification.requests.update(
@@ -244,6 +254,7 @@ class TestRequests:
         )
         assert_matches_type(VerificationRequestEgress, request, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_update(self, client: Telnyx) -> None:
         response = client.messaging_tollfree.verification.requests.with_raw_response.update(
@@ -277,6 +288,7 @@ class TestRequests:
         request = response.parse()
         assert_matches_type(VerificationRequestEgress, request, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_update(self, client: Telnyx) -> None:
         with client.messaging_tollfree.verification.requests.with_streaming_response.update(
@@ -312,6 +324,7 @@ class TestRequests:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_update(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -341,6 +354,7 @@ class TestRequests:
                 use_case_summary="This is a use case where Telnyx sends out 2FA codes to portal users to verify their identity in order to sign into the portal",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         request = client.messaging_tollfree.verification.requests.list(
@@ -349,6 +363,7 @@ class TestRequests:
         )
         assert_matches_type(RequestListResponse, request, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         request = client.messaging_tollfree.verification.requests.list(
@@ -361,6 +376,7 @@ class TestRequests:
         )
         assert_matches_type(RequestListResponse, request, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Telnyx) -> None:
         response = client.messaging_tollfree.verification.requests.with_raw_response.list(
@@ -373,6 +389,7 @@ class TestRequests:
         request = response.parse()
         assert_matches_type(RequestListResponse, request, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Telnyx) -> None:
         with client.messaging_tollfree.verification.requests.with_streaming_response.list(
@@ -387,6 +404,7 @@ class TestRequests:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_delete(self, client: Telnyx) -> None:
         request = client.messaging_tollfree.verification.requests.delete(
@@ -394,6 +412,7 @@ class TestRequests:
         )
         assert_matches_type(object, request, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_delete(self, client: Telnyx) -> None:
         response = client.messaging_tollfree.verification.requests.with_raw_response.delete(
@@ -405,6 +424,7 @@ class TestRequests:
         request = response.parse()
         assert_matches_type(object, request, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_delete(self, client: Telnyx) -> None:
         with client.messaging_tollfree.verification.requests.with_streaming_response.delete(
@@ -418,6 +438,7 @@ class TestRequests:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_delete(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -431,6 +452,7 @@ class TestAsyncRequests:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncTelnyx) -> None:
         request = await async_client.messaging_tollfree.verification.requests.create(
@@ -459,6 +481,7 @@ class TestAsyncRequests:
         )
         assert_matches_type(VerificationRequestEgress, request, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncTelnyx) -> None:
         request = await async_client.messaging_tollfree.verification.requests.create(
@@ -489,6 +512,7 @@ class TestAsyncRequests:
         )
         assert_matches_type(VerificationRequestEgress, request, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.messaging_tollfree.verification.requests.with_raw_response.create(
@@ -521,6 +545,7 @@ class TestAsyncRequests:
         request = await response.parse()
         assert_matches_type(VerificationRequestEgress, request, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncTelnyx) -> None:
         async with async_client.messaging_tollfree.verification.requests.with_streaming_response.create(
@@ -555,6 +580,7 @@ class TestAsyncRequests:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
         request = await async_client.messaging_tollfree.verification.requests.retrieve(
@@ -562,6 +588,7 @@ class TestAsyncRequests:
         )
         assert_matches_type(VerificationRequestStatus, request, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.messaging_tollfree.verification.requests.with_raw_response.retrieve(
@@ -573,6 +600,7 @@ class TestAsyncRequests:
         request = await response.parse()
         assert_matches_type(VerificationRequestStatus, request, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         async with async_client.messaging_tollfree.verification.requests.with_streaming_response.retrieve(
@@ -586,6 +614,7 @@ class TestAsyncRequests:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -593,6 +622,7 @@ class TestAsyncRequests:
                 "",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_update(self, async_client: AsyncTelnyx) -> None:
         request = await async_client.messaging_tollfree.verification.requests.update(
@@ -622,6 +652,7 @@ class TestAsyncRequests:
         )
         assert_matches_type(VerificationRequestEgress, request, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncTelnyx) -> None:
         request = await async_client.messaging_tollfree.verification.requests.update(
@@ -653,6 +684,7 @@ class TestAsyncRequests:
         )
         assert_matches_type(VerificationRequestEgress, request, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.messaging_tollfree.verification.requests.with_raw_response.update(
@@ -686,6 +718,7 @@ class TestAsyncRequests:
         request = await response.parse()
         assert_matches_type(VerificationRequestEgress, request, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncTelnyx) -> None:
         async with async_client.messaging_tollfree.verification.requests.with_streaming_response.update(
@@ -721,6 +754,7 @@ class TestAsyncRequests:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_update(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -750,6 +784,7 @@ class TestAsyncRequests:
                 use_case_summary="This is a use case where Telnyx sends out 2FA codes to portal users to verify their identity in order to sign into the portal",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         request = await async_client.messaging_tollfree.verification.requests.list(
@@ -758,6 +793,7 @@ class TestAsyncRequests:
         )
         assert_matches_type(RequestListResponse, request, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         request = await async_client.messaging_tollfree.verification.requests.list(
@@ -770,6 +806,7 @@ class TestAsyncRequests:
         )
         assert_matches_type(RequestListResponse, request, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.messaging_tollfree.verification.requests.with_raw_response.list(
@@ -782,6 +819,7 @@ class TestAsyncRequests:
         request = await response.parse()
         assert_matches_type(RequestListResponse, request, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncTelnyx) -> None:
         async with async_client.messaging_tollfree.verification.requests.with_streaming_response.list(
@@ -796,6 +834,7 @@ class TestAsyncRequests:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_delete(self, async_client: AsyncTelnyx) -> None:
         request = await async_client.messaging_tollfree.verification.requests.delete(
@@ -803,6 +842,7 @@ class TestAsyncRequests:
         )
         assert_matches_type(object, request, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.messaging_tollfree.verification.requests.with_raw_response.delete(
@@ -814,6 +854,7 @@ class TestAsyncRequests:
         request = await response.parse()
         assert_matches_type(object, request, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncTelnyx) -> None:
         async with async_client.messaging_tollfree.verification.requests.with_streaming_response.delete(
@@ -827,6 +868,7 @@ class TestAsyncRequests:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):

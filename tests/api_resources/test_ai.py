@@ -17,11 +17,13 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestAI:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_retrieve_models(self, client: Telnyx) -> None:
         ai = client.ai.retrieve_models()
         assert_matches_type(AIRetrieveModelsResponse, ai, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_retrieve_models(self, client: Telnyx) -> None:
         response = client.ai.with_raw_response.retrieve_models()
@@ -31,6 +33,7 @@ class TestAI:
         ai = response.parse()
         assert_matches_type(AIRetrieveModelsResponse, ai, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_retrieve_models(self, client: Telnyx) -> None:
         with client.ai.with_streaming_response.retrieve_models() as response:
@@ -42,6 +45,7 @@ class TestAI:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_summarize(self, client: Telnyx) -> None:
         ai = client.ai.summarize(
@@ -50,6 +54,7 @@ class TestAI:
         )
         assert_matches_type(AISummarizeResponse, ai, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_summarize_with_all_params(self, client: Telnyx) -> None:
         ai = client.ai.summarize(
@@ -59,6 +64,7 @@ class TestAI:
         )
         assert_matches_type(AISummarizeResponse, ai, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_summarize(self, client: Telnyx) -> None:
         response = client.ai.with_raw_response.summarize(
@@ -71,6 +77,7 @@ class TestAI:
         ai = response.parse()
         assert_matches_type(AISummarizeResponse, ai, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_summarize(self, client: Telnyx) -> None:
         with client.ai.with_streaming_response.summarize(
@@ -91,11 +98,13 @@ class TestAsyncAI:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_retrieve_models(self, async_client: AsyncTelnyx) -> None:
         ai = await async_client.ai.retrieve_models()
         assert_matches_type(AIRetrieveModelsResponse, ai, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_retrieve_models(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.ai.with_raw_response.retrieve_models()
@@ -105,6 +114,7 @@ class TestAsyncAI:
         ai = await response.parse()
         assert_matches_type(AIRetrieveModelsResponse, ai, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve_models(self, async_client: AsyncTelnyx) -> None:
         async with async_client.ai.with_streaming_response.retrieve_models() as response:
@@ -116,6 +126,7 @@ class TestAsyncAI:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_summarize(self, async_client: AsyncTelnyx) -> None:
         ai = await async_client.ai.summarize(
@@ -124,6 +135,7 @@ class TestAsyncAI:
         )
         assert_matches_type(AISummarizeResponse, ai, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_summarize_with_all_params(self, async_client: AsyncTelnyx) -> None:
         ai = await async_client.ai.summarize(
@@ -133,6 +145,7 @@ class TestAsyncAI:
         )
         assert_matches_type(AISummarizeResponse, ai, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_summarize(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.ai.with_raw_response.summarize(
@@ -145,6 +158,7 @@ class TestAsyncAI:
         ai = await response.parse()
         assert_matches_type(AISummarizeResponse, ai, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_summarize(self, async_client: AsyncTelnyx) -> None:
         async with async_client.ai.with_streaming_response.summarize(

@@ -17,6 +17,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestVirtualCrossConnectsCoverage:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         virtual_cross_connects_coverage = client.virtual_cross_connects_coverage.list()
@@ -24,6 +25,7 @@ class TestVirtualCrossConnectsCoverage:
             VirtualCrossConnectsCoverageListResponse, virtual_cross_connects_coverage, path=["response"]
         )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         virtual_cross_connects_coverage = client.virtual_cross_connects_coverage.list(
@@ -45,6 +47,7 @@ class TestVirtualCrossConnectsCoverage:
             VirtualCrossConnectsCoverageListResponse, virtual_cross_connects_coverage, path=["response"]
         )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Telnyx) -> None:
         response = client.virtual_cross_connects_coverage.with_raw_response.list()
@@ -56,6 +59,7 @@ class TestVirtualCrossConnectsCoverage:
             VirtualCrossConnectsCoverageListResponse, virtual_cross_connects_coverage, path=["response"]
         )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Telnyx) -> None:
         with client.virtual_cross_connects_coverage.with_streaming_response.list() as response:
@@ -75,6 +79,7 @@ class TestAsyncVirtualCrossConnectsCoverage:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         virtual_cross_connects_coverage = await async_client.virtual_cross_connects_coverage.list()
@@ -82,6 +87,7 @@ class TestAsyncVirtualCrossConnectsCoverage:
             VirtualCrossConnectsCoverageListResponse, virtual_cross_connects_coverage, path=["response"]
         )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         virtual_cross_connects_coverage = await async_client.virtual_cross_connects_coverage.list(
@@ -103,6 +109,7 @@ class TestAsyncVirtualCrossConnectsCoverage:
             VirtualCrossConnectsCoverageListResponse, virtual_cross_connects_coverage, path=["response"]
         )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.virtual_cross_connects_coverage.with_raw_response.list()
@@ -114,6 +121,7 @@ class TestAsyncVirtualCrossConnectsCoverage:
             VirtualCrossConnectsCoverageListResponse, virtual_cross_connects_coverage, path=["response"]
         )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncTelnyx) -> None:
         async with async_client.virtual_cross_connects_coverage.with_streaming_response.list() as response:

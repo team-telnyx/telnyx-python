@@ -17,6 +17,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestCampaignBuilder:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create(self, client: Telnyx) -> None:
         campaign_builder = client.campaign_builder.create(
@@ -26,6 +27,7 @@ class TestCampaignBuilder:
         )
         assert_matches_type(CampaignBuilderCreateResponse, campaign_builder, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create_with_all_params(self, client: Telnyx) -> None:
         campaign_builder = client.campaign_builder.create(
@@ -67,6 +69,7 @@ class TestCampaignBuilder:
         )
         assert_matches_type(CampaignBuilderCreateResponse, campaign_builder, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: Telnyx) -> None:
         response = client.campaign_builder.with_raw_response.create(
@@ -80,6 +83,7 @@ class TestCampaignBuilder:
         campaign_builder = response.parse()
         assert_matches_type(CampaignBuilderCreateResponse, campaign_builder, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: Telnyx) -> None:
         with client.campaign_builder.with_streaming_response.create(
@@ -101,6 +105,7 @@ class TestAsyncCampaignBuilder:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncTelnyx) -> None:
         campaign_builder = await async_client.campaign_builder.create(
@@ -110,6 +115,7 @@ class TestAsyncCampaignBuilder:
         )
         assert_matches_type(CampaignBuilderCreateResponse, campaign_builder, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncTelnyx) -> None:
         campaign_builder = await async_client.campaign_builder.create(
@@ -151,6 +157,7 @@ class TestAsyncCampaignBuilder:
         )
         assert_matches_type(CampaignBuilderCreateResponse, campaign_builder, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.campaign_builder.with_raw_response.create(
@@ -164,6 +171,7 @@ class TestAsyncCampaignBuilder:
         campaign_builder = await response.parse()
         assert_matches_type(CampaignBuilderCreateResponse, campaign_builder, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncTelnyx) -> None:
         async with async_client.campaign_builder.with_streaming_response.create(

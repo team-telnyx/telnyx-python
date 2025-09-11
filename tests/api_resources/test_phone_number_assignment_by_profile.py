@@ -21,6 +21,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestPhoneNumberAssignmentByProfile:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_assign(self, client: Telnyx) -> None:
         phone_number_assignment_by_profile = client.phone_number_assignment_by_profile.assign(
@@ -30,6 +31,7 @@ class TestPhoneNumberAssignmentByProfile:
             PhoneNumberAssignmentByProfileAssignResponse, phone_number_assignment_by_profile, path=["response"]
         )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_assign_with_all_params(self, client: Telnyx) -> None:
         phone_number_assignment_by_profile = client.phone_number_assignment_by_profile.assign(
@@ -41,6 +43,7 @@ class TestPhoneNumberAssignmentByProfile:
             PhoneNumberAssignmentByProfileAssignResponse, phone_number_assignment_by_profile, path=["response"]
         )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_assign(self, client: Telnyx) -> None:
         response = client.phone_number_assignment_by_profile.with_raw_response.assign(
@@ -54,6 +57,7 @@ class TestPhoneNumberAssignmentByProfile:
             PhoneNumberAssignmentByProfileAssignResponse, phone_number_assignment_by_profile, path=["response"]
         )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_assign(self, client: Telnyx) -> None:
         with client.phone_number_assignment_by_profile.with_streaming_response.assign(
@@ -69,6 +73,7 @@ class TestPhoneNumberAssignmentByProfile:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_retrieve_phone_number_status(self, client: Telnyx) -> None:
         phone_number_assignment_by_profile = client.phone_number_assignment_by_profile.retrieve_phone_number_status(
@@ -80,6 +85,7 @@ class TestPhoneNumberAssignmentByProfile:
             path=["response"],
         )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_retrieve_phone_number_status_with_all_params(self, client: Telnyx) -> None:
         phone_number_assignment_by_profile = client.phone_number_assignment_by_profile.retrieve_phone_number_status(
@@ -93,6 +99,7 @@ class TestPhoneNumberAssignmentByProfile:
             path=["response"],
         )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_retrieve_phone_number_status(self, client: Telnyx) -> None:
         response = client.phone_number_assignment_by_profile.with_raw_response.retrieve_phone_number_status(
@@ -108,6 +115,7 @@ class TestPhoneNumberAssignmentByProfile:
             path=["response"],
         )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_retrieve_phone_number_status(self, client: Telnyx) -> None:
         with client.phone_number_assignment_by_profile.with_streaming_response.retrieve_phone_number_status(
@@ -125,6 +133,7 @@ class TestPhoneNumberAssignmentByProfile:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_retrieve_phone_number_status(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `task_id` but received ''"):
@@ -132,6 +141,7 @@ class TestPhoneNumberAssignmentByProfile:
                 task_id="",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_retrieve_status(self, client: Telnyx) -> None:
         phone_number_assignment_by_profile = client.phone_number_assignment_by_profile.retrieve_status(
@@ -141,6 +151,7 @@ class TestPhoneNumberAssignmentByProfile:
             PhoneNumberAssignmentByProfileRetrieveStatusResponse, phone_number_assignment_by_profile, path=["response"]
         )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_retrieve_status(self, client: Telnyx) -> None:
         response = client.phone_number_assignment_by_profile.with_raw_response.retrieve_status(
@@ -154,6 +165,7 @@ class TestPhoneNumberAssignmentByProfile:
             PhoneNumberAssignmentByProfileRetrieveStatusResponse, phone_number_assignment_by_profile, path=["response"]
         )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_retrieve_status(self, client: Telnyx) -> None:
         with client.phone_number_assignment_by_profile.with_streaming_response.retrieve_status(
@@ -171,6 +183,7 @@ class TestPhoneNumberAssignmentByProfile:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_retrieve_status(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `task_id` but received ''"):
@@ -184,6 +197,7 @@ class TestAsyncPhoneNumberAssignmentByProfile:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_assign(self, async_client: AsyncTelnyx) -> None:
         phone_number_assignment_by_profile = await async_client.phone_number_assignment_by_profile.assign(
@@ -193,6 +207,7 @@ class TestAsyncPhoneNumberAssignmentByProfile:
             PhoneNumberAssignmentByProfileAssignResponse, phone_number_assignment_by_profile, path=["response"]
         )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_assign_with_all_params(self, async_client: AsyncTelnyx) -> None:
         phone_number_assignment_by_profile = await async_client.phone_number_assignment_by_profile.assign(
@@ -204,6 +219,7 @@ class TestAsyncPhoneNumberAssignmentByProfile:
             PhoneNumberAssignmentByProfileAssignResponse, phone_number_assignment_by_profile, path=["response"]
         )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_assign(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.phone_number_assignment_by_profile.with_raw_response.assign(
@@ -217,6 +233,7 @@ class TestAsyncPhoneNumberAssignmentByProfile:
             PhoneNumberAssignmentByProfileAssignResponse, phone_number_assignment_by_profile, path=["response"]
         )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_assign(self, async_client: AsyncTelnyx) -> None:
         async with async_client.phone_number_assignment_by_profile.with_streaming_response.assign(
@@ -232,6 +249,7 @@ class TestAsyncPhoneNumberAssignmentByProfile:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_retrieve_phone_number_status(self, async_client: AsyncTelnyx) -> None:
         phone_number_assignment_by_profile = (
@@ -245,6 +263,7 @@ class TestAsyncPhoneNumberAssignmentByProfile:
             path=["response"],
         )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_retrieve_phone_number_status_with_all_params(self, async_client: AsyncTelnyx) -> None:
         phone_number_assignment_by_profile = (
@@ -260,6 +279,7 @@ class TestAsyncPhoneNumberAssignmentByProfile:
             path=["response"],
         )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_retrieve_phone_number_status(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.phone_number_assignment_by_profile.with_raw_response.retrieve_phone_number_status(
@@ -275,6 +295,7 @@ class TestAsyncPhoneNumberAssignmentByProfile:
             path=["response"],
         )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve_phone_number_status(self, async_client: AsyncTelnyx) -> None:
         async with async_client.phone_number_assignment_by_profile.with_streaming_response.retrieve_phone_number_status(
@@ -292,6 +313,7 @@ class TestAsyncPhoneNumberAssignmentByProfile:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_retrieve_phone_number_status(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `task_id` but received ''"):
@@ -299,6 +321,7 @@ class TestAsyncPhoneNumberAssignmentByProfile:
                 task_id="",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_retrieve_status(self, async_client: AsyncTelnyx) -> None:
         phone_number_assignment_by_profile = await async_client.phone_number_assignment_by_profile.retrieve_status(
@@ -308,6 +331,7 @@ class TestAsyncPhoneNumberAssignmentByProfile:
             PhoneNumberAssignmentByProfileRetrieveStatusResponse, phone_number_assignment_by_profile, path=["response"]
         )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_retrieve_status(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.phone_number_assignment_by_profile.with_raw_response.retrieve_status(
@@ -321,6 +345,7 @@ class TestAsyncPhoneNumberAssignmentByProfile:
             PhoneNumberAssignmentByProfileRetrieveStatusResponse, phone_number_assignment_by_profile, path=["response"]
         )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve_status(self, async_client: AsyncTelnyx) -> None:
         async with async_client.phone_number_assignment_by_profile.with_streaming_response.retrieve_status(
@@ -338,6 +363,7 @@ class TestAsyncPhoneNumberAssignmentByProfile:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_retrieve_status(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `task_id` but received ''"):

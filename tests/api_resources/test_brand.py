@@ -22,6 +22,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestBrand:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create(self, client: Telnyx) -> None:
         brand = client.brand.create(
@@ -33,6 +34,7 @@ class TestBrand:
         )
         assert_matches_type(TelnyxBrand, brand, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create_with_all_params(self, client: Telnyx) -> None:
         brand = client.brand.create(
@@ -63,6 +65,7 @@ class TestBrand:
         )
         assert_matches_type(TelnyxBrand, brand, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: Telnyx) -> None:
         response = client.brand.with_raw_response.create(
@@ -78,6 +81,7 @@ class TestBrand:
         brand = response.parse()
         assert_matches_type(TelnyxBrand, brand, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: Telnyx) -> None:
         with client.brand.with_streaming_response.create(
@@ -95,6 +99,7 @@ class TestBrand:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Telnyx) -> None:
         brand = client.brand.retrieve(
@@ -102,6 +107,7 @@ class TestBrand:
         )
         assert_matches_type(BrandRetrieveResponse, brand, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
         response = client.brand.with_raw_response.retrieve(
@@ -113,6 +119,7 @@ class TestBrand:
         brand = response.parse()
         assert_matches_type(BrandRetrieveResponse, brand, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
         with client.brand.with_streaming_response.retrieve(
@@ -126,6 +133,7 @@ class TestBrand:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_retrieve(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `brand_id` but received ''"):
@@ -133,6 +141,7 @@ class TestBrand:
                 "",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_update(self, client: Telnyx) -> None:
         brand = client.brand.update(
@@ -145,6 +154,7 @@ class TestBrand:
         )
         assert_matches_type(TelnyxBrand, brand, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_update_with_all_params(self, client: Telnyx) -> None:
         brand = client.brand.update(
@@ -177,6 +187,7 @@ class TestBrand:
         )
         assert_matches_type(TelnyxBrand, brand, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_update(self, client: Telnyx) -> None:
         response = client.brand.with_raw_response.update(
@@ -193,6 +204,7 @@ class TestBrand:
         brand = response.parse()
         assert_matches_type(TelnyxBrand, brand, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_update(self, client: Telnyx) -> None:
         with client.brand.with_streaming_response.update(
@@ -211,6 +223,7 @@ class TestBrand:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_update(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `brand_id` but received ''"):
@@ -223,11 +236,13 @@ class TestBrand:
                 vertical="TECHNOLOGY",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         brand = client.brand.list()
         assert_matches_type(BrandListResponse, brand, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         brand = client.brand.list(
@@ -243,6 +258,7 @@ class TestBrand:
         )
         assert_matches_type(BrandListResponse, brand, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Telnyx) -> None:
         response = client.brand.with_raw_response.list()
@@ -252,6 +268,7 @@ class TestBrand:
         brand = response.parse()
         assert_matches_type(BrandListResponse, brand, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Telnyx) -> None:
         with client.brand.with_streaming_response.list() as response:
@@ -263,6 +280,7 @@ class TestBrand:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_delete(self, client: Telnyx) -> None:
         brand = client.brand.delete(
@@ -270,6 +288,7 @@ class TestBrand:
         )
         assert_matches_type(object, brand, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_delete(self, client: Telnyx) -> None:
         response = client.brand.with_raw_response.delete(
@@ -281,6 +300,7 @@ class TestBrand:
         brand = response.parse()
         assert_matches_type(object, brand, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_delete(self, client: Telnyx) -> None:
         with client.brand.with_streaming_response.delete(
@@ -294,6 +314,7 @@ class TestBrand:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_delete(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `brand_id` but received ''"):
@@ -301,6 +322,7 @@ class TestBrand:
                 "",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_get_feedback(self, client: Telnyx) -> None:
         brand = client.brand.get_feedback(
@@ -308,6 +330,7 @@ class TestBrand:
         )
         assert_matches_type(BrandGetFeedbackResponse, brand, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_get_feedback(self, client: Telnyx) -> None:
         response = client.brand.with_raw_response.get_feedback(
@@ -319,6 +342,7 @@ class TestBrand:
         brand = response.parse()
         assert_matches_type(BrandGetFeedbackResponse, brand, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_get_feedback(self, client: Telnyx) -> None:
         with client.brand.with_streaming_response.get_feedback(
@@ -332,6 +356,7 @@ class TestBrand:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_get_feedback(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `brand_id` but received ''"):
@@ -339,6 +364,7 @@ class TestBrand:
                 "",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_resend_2fa_email(self, client: Telnyx) -> None:
         brand = client.brand.resend_2fa_email(
@@ -346,6 +372,7 @@ class TestBrand:
         )
         assert brand is None
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_resend_2fa_email(self, client: Telnyx) -> None:
         response = client.brand.with_raw_response.resend_2fa_email(
@@ -357,6 +384,7 @@ class TestBrand:
         brand = response.parse()
         assert brand is None
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_resend_2fa_email(self, client: Telnyx) -> None:
         with client.brand.with_streaming_response.resend_2fa_email(
@@ -370,6 +398,7 @@ class TestBrand:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_resend_2fa_email(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `brand_id` but received ''"):
@@ -377,6 +406,7 @@ class TestBrand:
                 "",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_revet(self, client: Telnyx) -> None:
         brand = client.brand.revet(
@@ -384,6 +414,7 @@ class TestBrand:
         )
         assert_matches_type(object, brand, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_revet(self, client: Telnyx) -> None:
         response = client.brand.with_raw_response.revet(
@@ -395,6 +426,7 @@ class TestBrand:
         brand = response.parse()
         assert_matches_type(object, brand, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_revet(self, client: Telnyx) -> None:
         with client.brand.with_streaming_response.revet(
@@ -408,6 +440,7 @@ class TestBrand:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_revet(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `brand_id` but received ''"):
@@ -421,6 +454,7 @@ class TestAsyncBrand:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncTelnyx) -> None:
         brand = await async_client.brand.create(
@@ -432,6 +466,7 @@ class TestAsyncBrand:
         )
         assert_matches_type(TelnyxBrand, brand, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncTelnyx) -> None:
         brand = await async_client.brand.create(
@@ -462,6 +497,7 @@ class TestAsyncBrand:
         )
         assert_matches_type(TelnyxBrand, brand, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.brand.with_raw_response.create(
@@ -477,6 +513,7 @@ class TestAsyncBrand:
         brand = await response.parse()
         assert_matches_type(TelnyxBrand, brand, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncTelnyx) -> None:
         async with async_client.brand.with_streaming_response.create(
@@ -494,6 +531,7 @@ class TestAsyncBrand:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
         brand = await async_client.brand.retrieve(
@@ -501,6 +539,7 @@ class TestAsyncBrand:
         )
         assert_matches_type(BrandRetrieveResponse, brand, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.brand.with_raw_response.retrieve(
@@ -512,6 +551,7 @@ class TestAsyncBrand:
         brand = await response.parse()
         assert_matches_type(BrandRetrieveResponse, brand, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         async with async_client.brand.with_streaming_response.retrieve(
@@ -525,6 +565,7 @@ class TestAsyncBrand:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `brand_id` but received ''"):
@@ -532,6 +573,7 @@ class TestAsyncBrand:
                 "",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_update(self, async_client: AsyncTelnyx) -> None:
         brand = await async_client.brand.update(
@@ -544,6 +586,7 @@ class TestAsyncBrand:
         )
         assert_matches_type(TelnyxBrand, brand, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncTelnyx) -> None:
         brand = await async_client.brand.update(
@@ -576,6 +619,7 @@ class TestAsyncBrand:
         )
         assert_matches_type(TelnyxBrand, brand, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.brand.with_raw_response.update(
@@ -592,6 +636,7 @@ class TestAsyncBrand:
         brand = await response.parse()
         assert_matches_type(TelnyxBrand, brand, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncTelnyx) -> None:
         async with async_client.brand.with_streaming_response.update(
@@ -610,6 +655,7 @@ class TestAsyncBrand:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_update(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `brand_id` but received ''"):
@@ -622,11 +668,13 @@ class TestAsyncBrand:
                 vertical="TECHNOLOGY",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         brand = await async_client.brand.list()
         assert_matches_type(BrandListResponse, brand, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         brand = await async_client.brand.list(
@@ -642,6 +690,7 @@ class TestAsyncBrand:
         )
         assert_matches_type(BrandListResponse, brand, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.brand.with_raw_response.list()
@@ -651,6 +700,7 @@ class TestAsyncBrand:
         brand = await response.parse()
         assert_matches_type(BrandListResponse, brand, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncTelnyx) -> None:
         async with async_client.brand.with_streaming_response.list() as response:
@@ -662,6 +712,7 @@ class TestAsyncBrand:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_delete(self, async_client: AsyncTelnyx) -> None:
         brand = await async_client.brand.delete(
@@ -669,6 +720,7 @@ class TestAsyncBrand:
         )
         assert_matches_type(object, brand, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.brand.with_raw_response.delete(
@@ -680,6 +732,7 @@ class TestAsyncBrand:
         brand = await response.parse()
         assert_matches_type(object, brand, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncTelnyx) -> None:
         async with async_client.brand.with_streaming_response.delete(
@@ -693,6 +746,7 @@ class TestAsyncBrand:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `brand_id` but received ''"):
@@ -700,6 +754,7 @@ class TestAsyncBrand:
                 "",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_get_feedback(self, async_client: AsyncTelnyx) -> None:
         brand = await async_client.brand.get_feedback(
@@ -707,6 +762,7 @@ class TestAsyncBrand:
         )
         assert_matches_type(BrandGetFeedbackResponse, brand, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_get_feedback(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.brand.with_raw_response.get_feedback(
@@ -718,6 +774,7 @@ class TestAsyncBrand:
         brand = await response.parse()
         assert_matches_type(BrandGetFeedbackResponse, brand, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_get_feedback(self, async_client: AsyncTelnyx) -> None:
         async with async_client.brand.with_streaming_response.get_feedback(
@@ -731,6 +788,7 @@ class TestAsyncBrand:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_get_feedback(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `brand_id` but received ''"):
@@ -738,6 +796,7 @@ class TestAsyncBrand:
                 "",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_resend_2fa_email(self, async_client: AsyncTelnyx) -> None:
         brand = await async_client.brand.resend_2fa_email(
@@ -745,6 +804,7 @@ class TestAsyncBrand:
         )
         assert brand is None
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_resend_2fa_email(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.brand.with_raw_response.resend_2fa_email(
@@ -756,6 +816,7 @@ class TestAsyncBrand:
         brand = await response.parse()
         assert brand is None
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_resend_2fa_email(self, async_client: AsyncTelnyx) -> None:
         async with async_client.brand.with_streaming_response.resend_2fa_email(
@@ -769,6 +830,7 @@ class TestAsyncBrand:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_resend_2fa_email(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `brand_id` but received ''"):
@@ -776,6 +838,7 @@ class TestAsyncBrand:
                 "",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_revet(self, async_client: AsyncTelnyx) -> None:
         brand = await async_client.brand.revet(
@@ -783,6 +846,7 @@ class TestAsyncBrand:
         )
         assert_matches_type(object, brand, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_revet(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.brand.with_raw_response.revet(
@@ -794,6 +858,7 @@ class TestAsyncBrand:
         brand = await response.parse()
         assert_matches_type(object, brand, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_revet(self, async_client: AsyncTelnyx) -> None:
         async with async_client.brand.with_streaming_response.revet(
@@ -807,6 +872,7 @@ class TestAsyncBrand:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_revet(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `brand_id` but received ''"):
