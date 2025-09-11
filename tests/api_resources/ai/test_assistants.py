@@ -24,6 +24,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestAssistants:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create(self, client: Telnyx) -> None:
         assistant = client.ai.assistants.create(
@@ -33,6 +34,7 @@ class TestAssistants:
         )
         assert_matches_type(AssistantCreateResponse, assistant, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create_with_all_params(self, client: Telnyx) -> None:
         assistant = client.ai.assistants.create(
@@ -102,6 +104,7 @@ class TestAssistants:
         )
         assert_matches_type(AssistantCreateResponse, assistant, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: Telnyx) -> None:
         response = client.ai.assistants.with_raw_response.create(
@@ -115,6 +118,7 @@ class TestAssistants:
         assistant = response.parse()
         assert_matches_type(AssistantCreateResponse, assistant, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: Telnyx) -> None:
         with client.ai.assistants.with_streaming_response.create(
@@ -130,6 +134,7 @@ class TestAssistants:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Telnyx) -> None:
         assistant = client.ai.assistants.retrieve(
@@ -137,6 +142,7 @@ class TestAssistants:
         )
         assert_matches_type(AssistantRetrieveResponse, assistant, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_retrieve_with_all_params(self, client: Telnyx) -> None:
         assistant = client.ai.assistants.retrieve(
@@ -148,6 +154,7 @@ class TestAssistants:
         )
         assert_matches_type(AssistantRetrieveResponse, assistant, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
         response = client.ai.assistants.with_raw_response.retrieve(
@@ -159,6 +166,7 @@ class TestAssistants:
         assistant = response.parse()
         assert_matches_type(AssistantRetrieveResponse, assistant, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
         with client.ai.assistants.with_streaming_response.retrieve(
@@ -172,6 +180,7 @@ class TestAssistants:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_retrieve(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `assistant_id` but received ''"):
@@ -179,6 +188,7 @@ class TestAssistants:
                 assistant_id="",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_update(self, client: Telnyx) -> None:
         assistant = client.ai.assistants.update(
@@ -186,6 +196,7 @@ class TestAssistants:
         )
         assert_matches_type(object, assistant, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_update_with_all_params(self, client: Telnyx) -> None:
         assistant = client.ai.assistants.update(
@@ -257,6 +268,7 @@ class TestAssistants:
         )
         assert_matches_type(object, assistant, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_update(self, client: Telnyx) -> None:
         response = client.ai.assistants.with_raw_response.update(
@@ -268,6 +280,7 @@ class TestAssistants:
         assistant = response.parse()
         assert_matches_type(object, assistant, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_update(self, client: Telnyx) -> None:
         with client.ai.assistants.with_streaming_response.update(
@@ -281,6 +294,7 @@ class TestAssistants:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_update(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `assistant_id` but received ''"):
@@ -288,11 +302,13 @@ class TestAssistants:
                 assistant_id="",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         assistant = client.ai.assistants.list()
         assert_matches_type(AssistantsList, assistant, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Telnyx) -> None:
         response = client.ai.assistants.with_raw_response.list()
@@ -302,6 +318,7 @@ class TestAssistants:
         assistant = response.parse()
         assert_matches_type(AssistantsList, assistant, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Telnyx) -> None:
         with client.ai.assistants.with_streaming_response.list() as response:
@@ -313,6 +330,7 @@ class TestAssistants:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_delete(self, client: Telnyx) -> None:
         assistant = client.ai.assistants.delete(
@@ -320,6 +338,7 @@ class TestAssistants:
         )
         assert_matches_type(AssistantDeleteResponse, assistant, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_delete(self, client: Telnyx) -> None:
         response = client.ai.assistants.with_raw_response.delete(
@@ -331,6 +350,7 @@ class TestAssistants:
         assistant = response.parse()
         assert_matches_type(AssistantDeleteResponse, assistant, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_delete(self, client: Telnyx) -> None:
         with client.ai.assistants.with_streaming_response.delete(
@@ -344,6 +364,7 @@ class TestAssistants:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_delete(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `assistant_id` but received ''"):
@@ -351,6 +372,7 @@ class TestAssistants:
                 "",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_chat(self, client: Telnyx) -> None:
         assistant = client.ai.assistants.chat(
@@ -360,6 +382,7 @@ class TestAssistants:
         )
         assert_matches_type(AssistantChatResponse, assistant, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_chat_with_all_params(self, client: Telnyx) -> None:
         assistant = client.ai.assistants.chat(
@@ -370,6 +393,7 @@ class TestAssistants:
         )
         assert_matches_type(AssistantChatResponse, assistant, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_chat(self, client: Telnyx) -> None:
         response = client.ai.assistants.with_raw_response.chat(
@@ -383,6 +407,7 @@ class TestAssistants:
         assistant = response.parse()
         assert_matches_type(AssistantChatResponse, assistant, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_chat(self, client: Telnyx) -> None:
         with client.ai.assistants.with_streaming_response.chat(
@@ -398,6 +423,7 @@ class TestAssistants:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_chat(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `assistant_id` but received ''"):
@@ -407,6 +433,7 @@ class TestAssistants:
                 conversation_id="42b20469-1215-4a9a-8964-c36f66b406f4",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_clone(self, client: Telnyx) -> None:
         assistant = client.ai.assistants.clone(
@@ -414,6 +441,7 @@ class TestAssistants:
         )
         assert_matches_type(AssistantCloneResponse, assistant, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_clone(self, client: Telnyx) -> None:
         response = client.ai.assistants.with_raw_response.clone(
@@ -425,6 +453,7 @@ class TestAssistants:
         assistant = response.parse()
         assert_matches_type(AssistantCloneResponse, assistant, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_clone(self, client: Telnyx) -> None:
         with client.ai.assistants.with_streaming_response.clone(
@@ -438,6 +467,7 @@ class TestAssistants:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_clone(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `assistant_id` but received ''"):
@@ -445,6 +475,7 @@ class TestAssistants:
                 "",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_get_texml(self, client: Telnyx) -> None:
         assistant = client.ai.assistants.get_texml(
@@ -452,6 +483,7 @@ class TestAssistants:
         )
         assert_matches_type(str, assistant, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_get_texml(self, client: Telnyx) -> None:
         response = client.ai.assistants.with_raw_response.get_texml(
@@ -463,6 +495,7 @@ class TestAssistants:
         assistant = response.parse()
         assert_matches_type(str, assistant, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_get_texml(self, client: Telnyx) -> None:
         with client.ai.assistants.with_streaming_response.get_texml(
@@ -476,6 +509,7 @@ class TestAssistants:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_get_texml(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `assistant_id` but received ''"):
@@ -483,6 +517,7 @@ class TestAssistants:
                 "",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_import(self, client: Telnyx) -> None:
         assistant = client.ai.assistants.import_(
@@ -491,6 +526,7 @@ class TestAssistants:
         )
         assert_matches_type(AssistantsList, assistant, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_import(self, client: Telnyx) -> None:
         response = client.ai.assistants.with_raw_response.import_(
@@ -503,6 +539,7 @@ class TestAssistants:
         assistant = response.parse()
         assert_matches_type(AssistantsList, assistant, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_import(self, client: Telnyx) -> None:
         with client.ai.assistants.with_streaming_response.import_(
@@ -523,6 +560,7 @@ class TestAsyncAssistants:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncTelnyx) -> None:
         assistant = await async_client.ai.assistants.create(
@@ -532,6 +570,7 @@ class TestAsyncAssistants:
         )
         assert_matches_type(AssistantCreateResponse, assistant, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncTelnyx) -> None:
         assistant = await async_client.ai.assistants.create(
@@ -601,6 +640,7 @@ class TestAsyncAssistants:
         )
         assert_matches_type(AssistantCreateResponse, assistant, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.ai.assistants.with_raw_response.create(
@@ -614,6 +654,7 @@ class TestAsyncAssistants:
         assistant = await response.parse()
         assert_matches_type(AssistantCreateResponse, assistant, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncTelnyx) -> None:
         async with async_client.ai.assistants.with_streaming_response.create(
@@ -629,6 +670,7 @@ class TestAsyncAssistants:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
         assistant = await async_client.ai.assistants.retrieve(
@@ -636,6 +678,7 @@ class TestAsyncAssistants:
         )
         assert_matches_type(AssistantRetrieveResponse, assistant, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_retrieve_with_all_params(self, async_client: AsyncTelnyx) -> None:
         assistant = await async_client.ai.assistants.retrieve(
@@ -647,6 +690,7 @@ class TestAsyncAssistants:
         )
         assert_matches_type(AssistantRetrieveResponse, assistant, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.ai.assistants.with_raw_response.retrieve(
@@ -658,6 +702,7 @@ class TestAsyncAssistants:
         assistant = await response.parse()
         assert_matches_type(AssistantRetrieveResponse, assistant, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         async with async_client.ai.assistants.with_streaming_response.retrieve(
@@ -671,6 +716,7 @@ class TestAsyncAssistants:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `assistant_id` but received ''"):
@@ -678,6 +724,7 @@ class TestAsyncAssistants:
                 assistant_id="",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_update(self, async_client: AsyncTelnyx) -> None:
         assistant = await async_client.ai.assistants.update(
@@ -685,6 +732,7 @@ class TestAsyncAssistants:
         )
         assert_matches_type(object, assistant, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncTelnyx) -> None:
         assistant = await async_client.ai.assistants.update(
@@ -756,6 +804,7 @@ class TestAsyncAssistants:
         )
         assert_matches_type(object, assistant, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.ai.assistants.with_raw_response.update(
@@ -767,6 +816,7 @@ class TestAsyncAssistants:
         assistant = await response.parse()
         assert_matches_type(object, assistant, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncTelnyx) -> None:
         async with async_client.ai.assistants.with_streaming_response.update(
@@ -780,6 +830,7 @@ class TestAsyncAssistants:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_update(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `assistant_id` but received ''"):
@@ -787,11 +838,13 @@ class TestAsyncAssistants:
                 assistant_id="",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         assistant = await async_client.ai.assistants.list()
         assert_matches_type(AssistantsList, assistant, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.ai.assistants.with_raw_response.list()
@@ -801,6 +854,7 @@ class TestAsyncAssistants:
         assistant = await response.parse()
         assert_matches_type(AssistantsList, assistant, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncTelnyx) -> None:
         async with async_client.ai.assistants.with_streaming_response.list() as response:
@@ -812,6 +866,7 @@ class TestAsyncAssistants:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_delete(self, async_client: AsyncTelnyx) -> None:
         assistant = await async_client.ai.assistants.delete(
@@ -819,6 +874,7 @@ class TestAsyncAssistants:
         )
         assert_matches_type(AssistantDeleteResponse, assistant, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.ai.assistants.with_raw_response.delete(
@@ -830,6 +886,7 @@ class TestAsyncAssistants:
         assistant = await response.parse()
         assert_matches_type(AssistantDeleteResponse, assistant, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncTelnyx) -> None:
         async with async_client.ai.assistants.with_streaming_response.delete(
@@ -843,6 +900,7 @@ class TestAsyncAssistants:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `assistant_id` but received ''"):
@@ -850,6 +908,7 @@ class TestAsyncAssistants:
                 "",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_chat(self, async_client: AsyncTelnyx) -> None:
         assistant = await async_client.ai.assistants.chat(
@@ -859,6 +918,7 @@ class TestAsyncAssistants:
         )
         assert_matches_type(AssistantChatResponse, assistant, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_chat_with_all_params(self, async_client: AsyncTelnyx) -> None:
         assistant = await async_client.ai.assistants.chat(
@@ -869,6 +929,7 @@ class TestAsyncAssistants:
         )
         assert_matches_type(AssistantChatResponse, assistant, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_chat(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.ai.assistants.with_raw_response.chat(
@@ -882,6 +943,7 @@ class TestAsyncAssistants:
         assistant = await response.parse()
         assert_matches_type(AssistantChatResponse, assistant, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_chat(self, async_client: AsyncTelnyx) -> None:
         async with async_client.ai.assistants.with_streaming_response.chat(
@@ -897,6 +959,7 @@ class TestAsyncAssistants:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_chat(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `assistant_id` but received ''"):
@@ -906,6 +969,7 @@ class TestAsyncAssistants:
                 conversation_id="42b20469-1215-4a9a-8964-c36f66b406f4",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_clone(self, async_client: AsyncTelnyx) -> None:
         assistant = await async_client.ai.assistants.clone(
@@ -913,6 +977,7 @@ class TestAsyncAssistants:
         )
         assert_matches_type(AssistantCloneResponse, assistant, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_clone(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.ai.assistants.with_raw_response.clone(
@@ -924,6 +989,7 @@ class TestAsyncAssistants:
         assistant = await response.parse()
         assert_matches_type(AssistantCloneResponse, assistant, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_clone(self, async_client: AsyncTelnyx) -> None:
         async with async_client.ai.assistants.with_streaming_response.clone(
@@ -937,6 +1003,7 @@ class TestAsyncAssistants:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_clone(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `assistant_id` but received ''"):
@@ -944,6 +1011,7 @@ class TestAsyncAssistants:
                 "",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_get_texml(self, async_client: AsyncTelnyx) -> None:
         assistant = await async_client.ai.assistants.get_texml(
@@ -951,6 +1019,7 @@ class TestAsyncAssistants:
         )
         assert_matches_type(str, assistant, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_get_texml(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.ai.assistants.with_raw_response.get_texml(
@@ -962,6 +1031,7 @@ class TestAsyncAssistants:
         assistant = await response.parse()
         assert_matches_type(str, assistant, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_get_texml(self, async_client: AsyncTelnyx) -> None:
         async with async_client.ai.assistants.with_streaming_response.get_texml(
@@ -975,6 +1045,7 @@ class TestAsyncAssistants:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_get_texml(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `assistant_id` but received ''"):
@@ -982,6 +1053,7 @@ class TestAsyncAssistants:
                 "",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_import(self, async_client: AsyncTelnyx) -> None:
         assistant = await async_client.ai.assistants.import_(
@@ -990,6 +1062,7 @@ class TestAsyncAssistants:
         )
         assert_matches_type(AssistantsList, assistant, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_import(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.ai.assistants.with_raw_response.import_(
@@ -1002,6 +1075,7 @@ class TestAsyncAssistants:
         assistant = await response.parse()
         assert_matches_type(AssistantsList, assistant, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_import(self, async_client: AsyncTelnyx) -> None:
         async with async_client.ai.assistants.with_streaming_response.import_(

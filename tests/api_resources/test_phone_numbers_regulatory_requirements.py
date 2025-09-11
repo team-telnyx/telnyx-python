@@ -19,6 +19,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestPhoneNumbersRegulatoryRequirements:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Telnyx) -> None:
         phone_numbers_regulatory_requirement = client.phone_numbers_regulatory_requirements.retrieve()
@@ -26,6 +27,7 @@ class TestPhoneNumbersRegulatoryRequirements:
             PhoneNumbersRegulatoryRequirementRetrieveResponse, phone_numbers_regulatory_requirement, path=["response"]
         )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_retrieve_with_all_params(self, client: Telnyx) -> None:
         phone_numbers_regulatory_requirement = client.phone_numbers_regulatory_requirements.retrieve(
@@ -35,6 +37,7 @@ class TestPhoneNumbersRegulatoryRequirements:
             PhoneNumbersRegulatoryRequirementRetrieveResponse, phone_numbers_regulatory_requirement, path=["response"]
         )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
         response = client.phone_numbers_regulatory_requirements.with_raw_response.retrieve()
@@ -46,6 +49,7 @@ class TestPhoneNumbersRegulatoryRequirements:
             PhoneNumbersRegulatoryRequirementRetrieveResponse, phone_numbers_regulatory_requirement, path=["response"]
         )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
         with client.phone_numbers_regulatory_requirements.with_streaming_response.retrieve() as response:
@@ -67,6 +71,7 @@ class TestAsyncPhoneNumbersRegulatoryRequirements:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
         phone_numbers_regulatory_requirement = await async_client.phone_numbers_regulatory_requirements.retrieve()
@@ -74,6 +79,7 @@ class TestAsyncPhoneNumbersRegulatoryRequirements:
             PhoneNumbersRegulatoryRequirementRetrieveResponse, phone_numbers_regulatory_requirement, path=["response"]
         )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_retrieve_with_all_params(self, async_client: AsyncTelnyx) -> None:
         phone_numbers_regulatory_requirement = await async_client.phone_numbers_regulatory_requirements.retrieve(
@@ -83,6 +89,7 @@ class TestAsyncPhoneNumbersRegulatoryRequirements:
             PhoneNumbersRegulatoryRequirementRetrieveResponse, phone_numbers_regulatory_requirement, path=["response"]
         )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.phone_numbers_regulatory_requirements.with_raw_response.retrieve()
@@ -94,6 +101,7 @@ class TestAsyncPhoneNumbersRegulatoryRequirements:
             PhoneNumbersRegulatoryRequirementRetrieveResponse, phone_numbers_regulatory_requirement, path=["response"]
         )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         async with async_client.phone_numbers_regulatory_requirements.with_streaming_response.retrieve() as response:

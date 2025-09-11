@@ -22,6 +22,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestActions:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_activate(self, client: Telnyx) -> None:
         action = client.porting_orders.actions.activate(
@@ -29,6 +30,7 @@ class TestActions:
         )
         assert_matches_type(ActionActivateResponse, action, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_activate(self, client: Telnyx) -> None:
         response = client.porting_orders.actions.with_raw_response.activate(
@@ -40,6 +42,7 @@ class TestActions:
         action = response.parse()
         assert_matches_type(ActionActivateResponse, action, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_activate(self, client: Telnyx) -> None:
         with client.porting_orders.actions.with_streaming_response.activate(
@@ -53,6 +56,7 @@ class TestActions:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_activate(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -60,6 +64,7 @@ class TestActions:
                 "",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_cancel(self, client: Telnyx) -> None:
         action = client.porting_orders.actions.cancel(
@@ -67,6 +72,7 @@ class TestActions:
         )
         assert_matches_type(ActionCancelResponse, action, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_cancel(self, client: Telnyx) -> None:
         response = client.porting_orders.actions.with_raw_response.cancel(
@@ -78,6 +84,7 @@ class TestActions:
         action = response.parse()
         assert_matches_type(ActionCancelResponse, action, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_cancel(self, client: Telnyx) -> None:
         with client.porting_orders.actions.with_streaming_response.cancel(
@@ -91,6 +98,7 @@ class TestActions:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_cancel(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -98,6 +106,7 @@ class TestActions:
                 "",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_confirm(self, client: Telnyx) -> None:
         action = client.porting_orders.actions.confirm(
@@ -105,6 +114,7 @@ class TestActions:
         )
         assert_matches_type(ActionConfirmResponse, action, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_confirm(self, client: Telnyx) -> None:
         response = client.porting_orders.actions.with_raw_response.confirm(
@@ -116,6 +126,7 @@ class TestActions:
         action = response.parse()
         assert_matches_type(ActionConfirmResponse, action, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_confirm(self, client: Telnyx) -> None:
         with client.porting_orders.actions.with_streaming_response.confirm(
@@ -129,6 +140,7 @@ class TestActions:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_confirm(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -136,6 +148,7 @@ class TestActions:
                 "",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_share(self, client: Telnyx) -> None:
         action = client.porting_orders.actions.share(
@@ -143,6 +156,7 @@ class TestActions:
         )
         assert_matches_type(ActionShareResponse, action, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_share_with_all_params(self, client: Telnyx) -> None:
         action = client.porting_orders.actions.share(
@@ -152,6 +166,7 @@ class TestActions:
         )
         assert_matches_type(ActionShareResponse, action, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_share(self, client: Telnyx) -> None:
         response = client.porting_orders.actions.with_raw_response.share(
@@ -163,6 +178,7 @@ class TestActions:
         action = response.parse()
         assert_matches_type(ActionShareResponse, action, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_share(self, client: Telnyx) -> None:
         with client.porting_orders.actions.with_streaming_response.share(
@@ -176,6 +192,7 @@ class TestActions:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_share(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -189,6 +206,7 @@ class TestAsyncActions:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_activate(self, async_client: AsyncTelnyx) -> None:
         action = await async_client.porting_orders.actions.activate(
@@ -196,6 +214,7 @@ class TestAsyncActions:
         )
         assert_matches_type(ActionActivateResponse, action, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_activate(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.porting_orders.actions.with_raw_response.activate(
@@ -207,6 +226,7 @@ class TestAsyncActions:
         action = await response.parse()
         assert_matches_type(ActionActivateResponse, action, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_activate(self, async_client: AsyncTelnyx) -> None:
         async with async_client.porting_orders.actions.with_streaming_response.activate(
@@ -220,6 +240,7 @@ class TestAsyncActions:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_activate(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -227,6 +248,7 @@ class TestAsyncActions:
                 "",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_cancel(self, async_client: AsyncTelnyx) -> None:
         action = await async_client.porting_orders.actions.cancel(
@@ -234,6 +256,7 @@ class TestAsyncActions:
         )
         assert_matches_type(ActionCancelResponse, action, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_cancel(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.porting_orders.actions.with_raw_response.cancel(
@@ -245,6 +268,7 @@ class TestAsyncActions:
         action = await response.parse()
         assert_matches_type(ActionCancelResponse, action, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_cancel(self, async_client: AsyncTelnyx) -> None:
         async with async_client.porting_orders.actions.with_streaming_response.cancel(
@@ -258,6 +282,7 @@ class TestAsyncActions:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_cancel(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -265,6 +290,7 @@ class TestAsyncActions:
                 "",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_confirm(self, async_client: AsyncTelnyx) -> None:
         action = await async_client.porting_orders.actions.confirm(
@@ -272,6 +298,7 @@ class TestAsyncActions:
         )
         assert_matches_type(ActionConfirmResponse, action, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_confirm(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.porting_orders.actions.with_raw_response.confirm(
@@ -283,6 +310,7 @@ class TestAsyncActions:
         action = await response.parse()
         assert_matches_type(ActionConfirmResponse, action, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_confirm(self, async_client: AsyncTelnyx) -> None:
         async with async_client.porting_orders.actions.with_streaming_response.confirm(
@@ -296,6 +324,7 @@ class TestAsyncActions:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_confirm(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -303,6 +332,7 @@ class TestAsyncActions:
                 "",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_share(self, async_client: AsyncTelnyx) -> None:
         action = await async_client.porting_orders.actions.share(
@@ -310,6 +340,7 @@ class TestAsyncActions:
         )
         assert_matches_type(ActionShareResponse, action, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_share_with_all_params(self, async_client: AsyncTelnyx) -> None:
         action = await async_client.porting_orders.actions.share(
@@ -319,6 +350,7 @@ class TestAsyncActions:
         )
         assert_matches_type(ActionShareResponse, action, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_share(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.porting_orders.actions.with_raw_response.share(
@@ -330,6 +362,7 @@ class TestAsyncActions:
         action = await response.parse()
         assert_matches_type(ActionShareResponse, action, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_share(self, async_client: AsyncTelnyx) -> None:
         async with async_client.porting_orders.actions.with_streaming_response.share(
@@ -343,6 +376,7 @@ class TestAsyncActions:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_share(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):

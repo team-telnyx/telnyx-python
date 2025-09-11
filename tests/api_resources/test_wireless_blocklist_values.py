@@ -17,6 +17,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestWirelessBlocklistValues:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         wireless_blocklist_value = client.wireless_blocklist_values.list(
@@ -24,6 +25,7 @@ class TestWirelessBlocklistValues:
         )
         assert_matches_type(WirelessBlocklistValueListResponse, wireless_blocklist_value, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Telnyx) -> None:
         response = client.wireless_blocklist_values.with_raw_response.list(
@@ -35,6 +37,7 @@ class TestWirelessBlocklistValues:
         wireless_blocklist_value = response.parse()
         assert_matches_type(WirelessBlocklistValueListResponse, wireless_blocklist_value, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Telnyx) -> None:
         with client.wireless_blocklist_values.with_streaming_response.list(
@@ -54,6 +57,7 @@ class TestAsyncWirelessBlocklistValues:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         wireless_blocklist_value = await async_client.wireless_blocklist_values.list(
@@ -61,6 +65,7 @@ class TestAsyncWirelessBlocklistValues:
         )
         assert_matches_type(WirelessBlocklistValueListResponse, wireless_blocklist_value, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.wireless_blocklist_values.with_raw_response.list(
@@ -72,6 +77,7 @@ class TestAsyncWirelessBlocklistValues:
         wireless_blocklist_value = await response.parse()
         assert_matches_type(WirelessBlocklistValueListResponse, wireless_blocklist_value, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncTelnyx) -> None:
         async with async_client.wireless_blocklist_values.with_streaming_response.list(

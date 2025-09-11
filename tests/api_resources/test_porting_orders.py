@@ -35,6 +35,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestPortingOrders:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create(self, client: Telnyx) -> None:
         porting_order = client.porting_orders.create(
@@ -42,6 +43,7 @@ class TestPortingOrders:
         )
         assert_matches_type(PortingOrderCreateResponse, porting_order, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create_with_all_params(self, client: Telnyx) -> None:
         porting_order = client.porting_orders.create(
@@ -50,6 +52,7 @@ class TestPortingOrders:
         )
         assert_matches_type(PortingOrderCreateResponse, porting_order, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: Telnyx) -> None:
         response = client.porting_orders.with_raw_response.create(
@@ -61,6 +64,7 @@ class TestPortingOrders:
         porting_order = response.parse()
         assert_matches_type(PortingOrderCreateResponse, porting_order, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: Telnyx) -> None:
         with client.porting_orders.with_streaming_response.create(
@@ -74,6 +78,7 @@ class TestPortingOrders:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Telnyx) -> None:
         porting_order = client.porting_orders.retrieve(
@@ -81,6 +86,7 @@ class TestPortingOrders:
         )
         assert_matches_type(PortingOrderRetrieveResponse, porting_order, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_retrieve_with_all_params(self, client: Telnyx) -> None:
         porting_order = client.porting_orders.retrieve(
@@ -89,6 +95,7 @@ class TestPortingOrders:
         )
         assert_matches_type(PortingOrderRetrieveResponse, porting_order, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
         response = client.porting_orders.with_raw_response.retrieve(
@@ -100,6 +107,7 @@ class TestPortingOrders:
         porting_order = response.parse()
         assert_matches_type(PortingOrderRetrieveResponse, porting_order, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
         with client.porting_orders.with_streaming_response.retrieve(
@@ -113,6 +121,7 @@ class TestPortingOrders:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_retrieve(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -120,6 +129,7 @@ class TestPortingOrders:
                 id="",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_update(self, client: Telnyx) -> None:
         porting_order = client.porting_orders.update(
@@ -127,6 +137,7 @@ class TestPortingOrders:
         )
         assert_matches_type(PortingOrderUpdateResponse, porting_order, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_update_with_all_params(self, client: Telnyx) -> None:
         porting_order = client.porting_orders.update(
@@ -184,6 +195,7 @@ class TestPortingOrders:
         )
         assert_matches_type(PortingOrderUpdateResponse, porting_order, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_update(self, client: Telnyx) -> None:
         response = client.porting_orders.with_raw_response.update(
@@ -195,6 +207,7 @@ class TestPortingOrders:
         porting_order = response.parse()
         assert_matches_type(PortingOrderUpdateResponse, porting_order, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_update(self, client: Telnyx) -> None:
         with client.porting_orders.with_streaming_response.update(
@@ -208,6 +221,7 @@ class TestPortingOrders:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_update(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -215,11 +229,13 @@ class TestPortingOrders:
                 id="",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         porting_order = client.porting_orders.list()
         assert_matches_type(PortingOrderListResponse, porting_order, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         porting_order = client.porting_orders.list(
@@ -247,6 +263,7 @@ class TestPortingOrders:
         )
         assert_matches_type(PortingOrderListResponse, porting_order, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Telnyx) -> None:
         response = client.porting_orders.with_raw_response.list()
@@ -256,6 +273,7 @@ class TestPortingOrders:
         porting_order = response.parse()
         assert_matches_type(PortingOrderListResponse, porting_order, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Telnyx) -> None:
         with client.porting_orders.with_streaming_response.list() as response:
@@ -267,6 +285,7 @@ class TestPortingOrders:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_delete(self, client: Telnyx) -> None:
         porting_order = client.porting_orders.delete(
@@ -274,6 +293,7 @@ class TestPortingOrders:
         )
         assert porting_order is None
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_delete(self, client: Telnyx) -> None:
         response = client.porting_orders.with_raw_response.delete(
@@ -285,6 +305,7 @@ class TestPortingOrders:
         porting_order = response.parse()
         assert porting_order is None
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_delete(self, client: Telnyx) -> None:
         with client.porting_orders.with_streaming_response.delete(
@@ -298,6 +319,7 @@ class TestPortingOrders:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_delete(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -305,6 +327,7 @@ class TestPortingOrders:
                 "",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_retrieve_allowed_foc_windows(self, client: Telnyx) -> None:
         porting_order = client.porting_orders.retrieve_allowed_foc_windows(
@@ -312,6 +335,7 @@ class TestPortingOrders:
         )
         assert_matches_type(PortingOrderRetrieveAllowedFocWindowsResponse, porting_order, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_retrieve_allowed_foc_windows(self, client: Telnyx) -> None:
         response = client.porting_orders.with_raw_response.retrieve_allowed_foc_windows(
@@ -323,6 +347,7 @@ class TestPortingOrders:
         porting_order = response.parse()
         assert_matches_type(PortingOrderRetrieveAllowedFocWindowsResponse, porting_order, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_retrieve_allowed_foc_windows(self, client: Telnyx) -> None:
         with client.porting_orders.with_streaming_response.retrieve_allowed_foc_windows(
@@ -336,6 +361,7 @@ class TestPortingOrders:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_retrieve_allowed_foc_windows(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -343,11 +369,13 @@ class TestPortingOrders:
                 "",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_retrieve_exception_types(self, client: Telnyx) -> None:
         porting_order = client.porting_orders.retrieve_exception_types()
         assert_matches_type(PortingOrderRetrieveExceptionTypesResponse, porting_order, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_retrieve_exception_types(self, client: Telnyx) -> None:
         response = client.porting_orders.with_raw_response.retrieve_exception_types()
@@ -357,6 +385,7 @@ class TestPortingOrders:
         porting_order = response.parse()
         assert_matches_type(PortingOrderRetrieveExceptionTypesResponse, porting_order, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_retrieve_exception_types(self, client: Telnyx) -> None:
         with client.porting_orders.with_streaming_response.retrieve_exception_types() as response:
@@ -439,6 +468,7 @@ class TestPortingOrders:
                 id="",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_retrieve_requirements(self, client: Telnyx) -> None:
         porting_order = client.porting_orders.retrieve_requirements(
@@ -446,6 +476,7 @@ class TestPortingOrders:
         )
         assert_matches_type(PortingOrderRetrieveRequirementsResponse, porting_order, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_retrieve_requirements_with_all_params(self, client: Telnyx) -> None:
         porting_order = client.porting_orders.retrieve_requirements(
@@ -457,6 +488,7 @@ class TestPortingOrders:
         )
         assert_matches_type(PortingOrderRetrieveRequirementsResponse, porting_order, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_retrieve_requirements(self, client: Telnyx) -> None:
         response = client.porting_orders.with_raw_response.retrieve_requirements(
@@ -468,6 +500,7 @@ class TestPortingOrders:
         porting_order = response.parse()
         assert_matches_type(PortingOrderRetrieveRequirementsResponse, porting_order, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_retrieve_requirements(self, client: Telnyx) -> None:
         with client.porting_orders.with_streaming_response.retrieve_requirements(
@@ -481,6 +514,7 @@ class TestPortingOrders:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_retrieve_requirements(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -488,6 +522,7 @@ class TestPortingOrders:
                 id="",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_retrieve_sub_request(self, client: Telnyx) -> None:
         porting_order = client.porting_orders.retrieve_sub_request(
@@ -495,6 +530,7 @@ class TestPortingOrders:
         )
         assert_matches_type(PortingOrderRetrieveSubRequestResponse, porting_order, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_retrieve_sub_request(self, client: Telnyx) -> None:
         response = client.porting_orders.with_raw_response.retrieve_sub_request(
@@ -506,6 +542,7 @@ class TestPortingOrders:
         porting_order = response.parse()
         assert_matches_type(PortingOrderRetrieveSubRequestResponse, porting_order, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_retrieve_sub_request(self, client: Telnyx) -> None:
         with client.porting_orders.with_streaming_response.retrieve_sub_request(
@@ -519,6 +556,7 @@ class TestPortingOrders:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_retrieve_sub_request(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -532,6 +570,7 @@ class TestAsyncPortingOrders:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncTelnyx) -> None:
         porting_order = await async_client.porting_orders.create(
@@ -539,6 +578,7 @@ class TestAsyncPortingOrders:
         )
         assert_matches_type(PortingOrderCreateResponse, porting_order, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncTelnyx) -> None:
         porting_order = await async_client.porting_orders.create(
@@ -547,6 +587,7 @@ class TestAsyncPortingOrders:
         )
         assert_matches_type(PortingOrderCreateResponse, porting_order, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.porting_orders.with_raw_response.create(
@@ -558,6 +599,7 @@ class TestAsyncPortingOrders:
         porting_order = await response.parse()
         assert_matches_type(PortingOrderCreateResponse, porting_order, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncTelnyx) -> None:
         async with async_client.porting_orders.with_streaming_response.create(
@@ -571,6 +613,7 @@ class TestAsyncPortingOrders:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
         porting_order = await async_client.porting_orders.retrieve(
@@ -578,6 +621,7 @@ class TestAsyncPortingOrders:
         )
         assert_matches_type(PortingOrderRetrieveResponse, porting_order, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_retrieve_with_all_params(self, async_client: AsyncTelnyx) -> None:
         porting_order = await async_client.porting_orders.retrieve(
@@ -586,6 +630,7 @@ class TestAsyncPortingOrders:
         )
         assert_matches_type(PortingOrderRetrieveResponse, porting_order, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.porting_orders.with_raw_response.retrieve(
@@ -597,6 +642,7 @@ class TestAsyncPortingOrders:
         porting_order = await response.parse()
         assert_matches_type(PortingOrderRetrieveResponse, porting_order, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         async with async_client.porting_orders.with_streaming_response.retrieve(
@@ -610,6 +656,7 @@ class TestAsyncPortingOrders:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -617,6 +664,7 @@ class TestAsyncPortingOrders:
                 id="",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_update(self, async_client: AsyncTelnyx) -> None:
         porting_order = await async_client.porting_orders.update(
@@ -624,6 +672,7 @@ class TestAsyncPortingOrders:
         )
         assert_matches_type(PortingOrderUpdateResponse, porting_order, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncTelnyx) -> None:
         porting_order = await async_client.porting_orders.update(
@@ -681,6 +730,7 @@ class TestAsyncPortingOrders:
         )
         assert_matches_type(PortingOrderUpdateResponse, porting_order, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.porting_orders.with_raw_response.update(
@@ -692,6 +742,7 @@ class TestAsyncPortingOrders:
         porting_order = await response.parse()
         assert_matches_type(PortingOrderUpdateResponse, porting_order, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncTelnyx) -> None:
         async with async_client.porting_orders.with_streaming_response.update(
@@ -705,6 +756,7 @@ class TestAsyncPortingOrders:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_update(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -712,11 +764,13 @@ class TestAsyncPortingOrders:
                 id="",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         porting_order = await async_client.porting_orders.list()
         assert_matches_type(PortingOrderListResponse, porting_order, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         porting_order = await async_client.porting_orders.list(
@@ -744,6 +798,7 @@ class TestAsyncPortingOrders:
         )
         assert_matches_type(PortingOrderListResponse, porting_order, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.porting_orders.with_raw_response.list()
@@ -753,6 +808,7 @@ class TestAsyncPortingOrders:
         porting_order = await response.parse()
         assert_matches_type(PortingOrderListResponse, porting_order, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncTelnyx) -> None:
         async with async_client.porting_orders.with_streaming_response.list() as response:
@@ -764,6 +820,7 @@ class TestAsyncPortingOrders:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_delete(self, async_client: AsyncTelnyx) -> None:
         porting_order = await async_client.porting_orders.delete(
@@ -771,6 +828,7 @@ class TestAsyncPortingOrders:
         )
         assert porting_order is None
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.porting_orders.with_raw_response.delete(
@@ -782,6 +840,7 @@ class TestAsyncPortingOrders:
         porting_order = await response.parse()
         assert porting_order is None
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncTelnyx) -> None:
         async with async_client.porting_orders.with_streaming_response.delete(
@@ -795,6 +854,7 @@ class TestAsyncPortingOrders:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -802,6 +862,7 @@ class TestAsyncPortingOrders:
                 "",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_retrieve_allowed_foc_windows(self, async_client: AsyncTelnyx) -> None:
         porting_order = await async_client.porting_orders.retrieve_allowed_foc_windows(
@@ -809,6 +870,7 @@ class TestAsyncPortingOrders:
         )
         assert_matches_type(PortingOrderRetrieveAllowedFocWindowsResponse, porting_order, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_retrieve_allowed_foc_windows(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.porting_orders.with_raw_response.retrieve_allowed_foc_windows(
@@ -820,6 +882,7 @@ class TestAsyncPortingOrders:
         porting_order = await response.parse()
         assert_matches_type(PortingOrderRetrieveAllowedFocWindowsResponse, porting_order, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve_allowed_foc_windows(self, async_client: AsyncTelnyx) -> None:
         async with async_client.porting_orders.with_streaming_response.retrieve_allowed_foc_windows(
@@ -833,6 +896,7 @@ class TestAsyncPortingOrders:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_retrieve_allowed_foc_windows(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -840,11 +904,13 @@ class TestAsyncPortingOrders:
                 "",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_retrieve_exception_types(self, async_client: AsyncTelnyx) -> None:
         porting_order = await async_client.porting_orders.retrieve_exception_types()
         assert_matches_type(PortingOrderRetrieveExceptionTypesResponse, porting_order, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_retrieve_exception_types(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.porting_orders.with_raw_response.retrieve_exception_types()
@@ -854,6 +920,7 @@ class TestAsyncPortingOrders:
         porting_order = await response.parse()
         assert_matches_type(PortingOrderRetrieveExceptionTypesResponse, porting_order, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve_exception_types(self, async_client: AsyncTelnyx) -> None:
         async with async_client.porting_orders.with_streaming_response.retrieve_exception_types() as response:
@@ -940,6 +1007,7 @@ class TestAsyncPortingOrders:
                 id="",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_retrieve_requirements(self, async_client: AsyncTelnyx) -> None:
         porting_order = await async_client.porting_orders.retrieve_requirements(
@@ -947,6 +1015,7 @@ class TestAsyncPortingOrders:
         )
         assert_matches_type(PortingOrderRetrieveRequirementsResponse, porting_order, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_retrieve_requirements_with_all_params(self, async_client: AsyncTelnyx) -> None:
         porting_order = await async_client.porting_orders.retrieve_requirements(
@@ -958,6 +1027,7 @@ class TestAsyncPortingOrders:
         )
         assert_matches_type(PortingOrderRetrieveRequirementsResponse, porting_order, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_retrieve_requirements(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.porting_orders.with_raw_response.retrieve_requirements(
@@ -969,6 +1039,7 @@ class TestAsyncPortingOrders:
         porting_order = await response.parse()
         assert_matches_type(PortingOrderRetrieveRequirementsResponse, porting_order, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve_requirements(self, async_client: AsyncTelnyx) -> None:
         async with async_client.porting_orders.with_streaming_response.retrieve_requirements(
@@ -982,6 +1053,7 @@ class TestAsyncPortingOrders:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_retrieve_requirements(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -989,6 +1061,7 @@ class TestAsyncPortingOrders:
                 id="",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_retrieve_sub_request(self, async_client: AsyncTelnyx) -> None:
         porting_order = await async_client.porting_orders.retrieve_sub_request(
@@ -996,6 +1069,7 @@ class TestAsyncPortingOrders:
         )
         assert_matches_type(PortingOrderRetrieveSubRequestResponse, porting_order, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_retrieve_sub_request(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.porting_orders.with_raw_response.retrieve_sub_request(
@@ -1007,6 +1081,7 @@ class TestAsyncPortingOrders:
         porting_order = await response.parse()
         assert_matches_type(PortingOrderRetrieveSubRequestResponse, porting_order, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve_sub_request(self, async_client: AsyncTelnyx) -> None:
         async with async_client.porting_orders.with_streaming_response.retrieve_sub_request(
@@ -1020,6 +1095,7 @@ class TestAsyncPortingOrders:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_retrieve_sub_request(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):

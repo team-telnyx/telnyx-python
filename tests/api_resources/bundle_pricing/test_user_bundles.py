@@ -24,11 +24,13 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestUserBundles:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create(self, client: Telnyx) -> None:
         user_bundle = client.bundle_pricing.user_bundles.create()
         assert_matches_type(UserBundleCreateResponse, user_bundle, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create_with_all_params(self, client: Telnyx) -> None:
         user_bundle = client.bundle_pricing.user_bundles.create(
@@ -43,6 +45,7 @@ class TestUserBundles:
         )
         assert_matches_type(UserBundleCreateResponse, user_bundle, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: Telnyx) -> None:
         response = client.bundle_pricing.user_bundles.with_raw_response.create()
@@ -52,6 +55,7 @@ class TestUserBundles:
         user_bundle = response.parse()
         assert_matches_type(UserBundleCreateResponse, user_bundle, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: Telnyx) -> None:
         with client.bundle_pricing.user_bundles.with_streaming_response.create() as response:
@@ -63,6 +67,7 @@ class TestUserBundles:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Telnyx) -> None:
         user_bundle = client.bundle_pricing.user_bundles.retrieve(
@@ -70,6 +75,7 @@ class TestUserBundles:
         )
         assert_matches_type(UserBundleRetrieveResponse, user_bundle, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_retrieve_with_all_params(self, client: Telnyx) -> None:
         user_bundle = client.bundle_pricing.user_bundles.retrieve(
@@ -78,6 +84,7 @@ class TestUserBundles:
         )
         assert_matches_type(UserBundleRetrieveResponse, user_bundle, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
         response = client.bundle_pricing.user_bundles.with_raw_response.retrieve(
@@ -89,6 +96,7 @@ class TestUserBundles:
         user_bundle = response.parse()
         assert_matches_type(UserBundleRetrieveResponse, user_bundle, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
         with client.bundle_pricing.user_bundles.with_streaming_response.retrieve(
@@ -102,6 +110,7 @@ class TestUserBundles:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_retrieve(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `user_bundle_id` but received ''"):
@@ -109,11 +118,13 @@ class TestUserBundles:
                 user_bundle_id="",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         user_bundle = client.bundle_pricing.user_bundles.list()
         assert_matches_type(UserBundleListResponse, user_bundle, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         user_bundle = client.bundle_pricing.user_bundles.list(
@@ -129,6 +140,7 @@ class TestUserBundles:
         )
         assert_matches_type(UserBundleListResponse, user_bundle, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Telnyx) -> None:
         response = client.bundle_pricing.user_bundles.with_raw_response.list()
@@ -138,6 +150,7 @@ class TestUserBundles:
         user_bundle = response.parse()
         assert_matches_type(UserBundleListResponse, user_bundle, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Telnyx) -> None:
         with client.bundle_pricing.user_bundles.with_streaming_response.list() as response:
@@ -149,6 +162,7 @@ class TestUserBundles:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_deactivate(self, client: Telnyx) -> None:
         user_bundle = client.bundle_pricing.user_bundles.deactivate(
@@ -156,6 +170,7 @@ class TestUserBundles:
         )
         assert_matches_type(UserBundleDeactivateResponse, user_bundle, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_deactivate_with_all_params(self, client: Telnyx) -> None:
         user_bundle = client.bundle_pricing.user_bundles.deactivate(
@@ -164,6 +179,7 @@ class TestUserBundles:
         )
         assert_matches_type(UserBundleDeactivateResponse, user_bundle, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_deactivate(self, client: Telnyx) -> None:
         response = client.bundle_pricing.user_bundles.with_raw_response.deactivate(
@@ -175,6 +191,7 @@ class TestUserBundles:
         user_bundle = response.parse()
         assert_matches_type(UserBundleDeactivateResponse, user_bundle, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_deactivate(self, client: Telnyx) -> None:
         with client.bundle_pricing.user_bundles.with_streaming_response.deactivate(
@@ -188,6 +205,7 @@ class TestUserBundles:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_deactivate(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `user_bundle_id` but received ''"):
@@ -195,6 +213,7 @@ class TestUserBundles:
                 user_bundle_id="",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_resources(self, client: Telnyx) -> None:
         user_bundle = client.bundle_pricing.user_bundles.list_resources(
@@ -202,6 +221,7 @@ class TestUserBundles:
         )
         assert_matches_type(UserBundleListResourcesResponse, user_bundle, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_resources_with_all_params(self, client: Telnyx) -> None:
         user_bundle = client.bundle_pricing.user_bundles.list_resources(
@@ -210,6 +230,7 @@ class TestUserBundles:
         )
         assert_matches_type(UserBundleListResourcesResponse, user_bundle, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list_resources(self, client: Telnyx) -> None:
         response = client.bundle_pricing.user_bundles.with_raw_response.list_resources(
@@ -221,6 +242,7 @@ class TestUserBundles:
         user_bundle = response.parse()
         assert_matches_type(UserBundleListResourcesResponse, user_bundle, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list_resources(self, client: Telnyx) -> None:
         with client.bundle_pricing.user_bundles.with_streaming_response.list_resources(
@@ -234,6 +256,7 @@ class TestUserBundles:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_list_resources(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `user_bundle_id` but received ''"):
@@ -241,11 +264,13 @@ class TestUserBundles:
                 user_bundle_id="",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_unused(self, client: Telnyx) -> None:
         user_bundle = client.bundle_pricing.user_bundles.list_unused()
         assert_matches_type(UserBundleListUnusedResponse, user_bundle, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_unused_with_all_params(self, client: Telnyx) -> None:
         user_bundle = client.bundle_pricing.user_bundles.list_unused(
@@ -257,6 +282,7 @@ class TestUserBundles:
         )
         assert_matches_type(UserBundleListUnusedResponse, user_bundle, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list_unused(self, client: Telnyx) -> None:
         response = client.bundle_pricing.user_bundles.with_raw_response.list_unused()
@@ -266,6 +292,7 @@ class TestUserBundles:
         user_bundle = response.parse()
         assert_matches_type(UserBundleListUnusedResponse, user_bundle, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list_unused(self, client: Telnyx) -> None:
         with client.bundle_pricing.user_bundles.with_streaming_response.list_unused() as response:
@@ -283,11 +310,13 @@ class TestAsyncUserBundles:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncTelnyx) -> None:
         user_bundle = await async_client.bundle_pricing.user_bundles.create()
         assert_matches_type(UserBundleCreateResponse, user_bundle, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncTelnyx) -> None:
         user_bundle = await async_client.bundle_pricing.user_bundles.create(
@@ -302,6 +331,7 @@ class TestAsyncUserBundles:
         )
         assert_matches_type(UserBundleCreateResponse, user_bundle, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.bundle_pricing.user_bundles.with_raw_response.create()
@@ -311,6 +341,7 @@ class TestAsyncUserBundles:
         user_bundle = await response.parse()
         assert_matches_type(UserBundleCreateResponse, user_bundle, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncTelnyx) -> None:
         async with async_client.bundle_pricing.user_bundles.with_streaming_response.create() as response:
@@ -322,6 +353,7 @@ class TestAsyncUserBundles:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
         user_bundle = await async_client.bundle_pricing.user_bundles.retrieve(
@@ -329,6 +361,7 @@ class TestAsyncUserBundles:
         )
         assert_matches_type(UserBundleRetrieveResponse, user_bundle, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_retrieve_with_all_params(self, async_client: AsyncTelnyx) -> None:
         user_bundle = await async_client.bundle_pricing.user_bundles.retrieve(
@@ -337,6 +370,7 @@ class TestAsyncUserBundles:
         )
         assert_matches_type(UserBundleRetrieveResponse, user_bundle, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.bundle_pricing.user_bundles.with_raw_response.retrieve(
@@ -348,6 +382,7 @@ class TestAsyncUserBundles:
         user_bundle = await response.parse()
         assert_matches_type(UserBundleRetrieveResponse, user_bundle, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         async with async_client.bundle_pricing.user_bundles.with_streaming_response.retrieve(
@@ -361,6 +396,7 @@ class TestAsyncUserBundles:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `user_bundle_id` but received ''"):
@@ -368,11 +404,13 @@ class TestAsyncUserBundles:
                 user_bundle_id="",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         user_bundle = await async_client.bundle_pricing.user_bundles.list()
         assert_matches_type(UserBundleListResponse, user_bundle, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         user_bundle = await async_client.bundle_pricing.user_bundles.list(
@@ -388,6 +426,7 @@ class TestAsyncUserBundles:
         )
         assert_matches_type(UserBundleListResponse, user_bundle, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.bundle_pricing.user_bundles.with_raw_response.list()
@@ -397,6 +436,7 @@ class TestAsyncUserBundles:
         user_bundle = await response.parse()
         assert_matches_type(UserBundleListResponse, user_bundle, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncTelnyx) -> None:
         async with async_client.bundle_pricing.user_bundles.with_streaming_response.list() as response:
@@ -408,6 +448,7 @@ class TestAsyncUserBundles:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_deactivate(self, async_client: AsyncTelnyx) -> None:
         user_bundle = await async_client.bundle_pricing.user_bundles.deactivate(
@@ -415,6 +456,7 @@ class TestAsyncUserBundles:
         )
         assert_matches_type(UserBundleDeactivateResponse, user_bundle, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_deactivate_with_all_params(self, async_client: AsyncTelnyx) -> None:
         user_bundle = await async_client.bundle_pricing.user_bundles.deactivate(
@@ -423,6 +465,7 @@ class TestAsyncUserBundles:
         )
         assert_matches_type(UserBundleDeactivateResponse, user_bundle, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_deactivate(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.bundle_pricing.user_bundles.with_raw_response.deactivate(
@@ -434,6 +477,7 @@ class TestAsyncUserBundles:
         user_bundle = await response.parse()
         assert_matches_type(UserBundleDeactivateResponse, user_bundle, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_deactivate(self, async_client: AsyncTelnyx) -> None:
         async with async_client.bundle_pricing.user_bundles.with_streaming_response.deactivate(
@@ -447,6 +491,7 @@ class TestAsyncUserBundles:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_deactivate(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `user_bundle_id` but received ''"):
@@ -454,6 +499,7 @@ class TestAsyncUserBundles:
                 user_bundle_id="",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_resources(self, async_client: AsyncTelnyx) -> None:
         user_bundle = await async_client.bundle_pricing.user_bundles.list_resources(
@@ -461,6 +507,7 @@ class TestAsyncUserBundles:
         )
         assert_matches_type(UserBundleListResourcesResponse, user_bundle, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_resources_with_all_params(self, async_client: AsyncTelnyx) -> None:
         user_bundle = await async_client.bundle_pricing.user_bundles.list_resources(
@@ -469,6 +516,7 @@ class TestAsyncUserBundles:
         )
         assert_matches_type(UserBundleListResourcesResponse, user_bundle, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list_resources(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.bundle_pricing.user_bundles.with_raw_response.list_resources(
@@ -480,6 +528,7 @@ class TestAsyncUserBundles:
         user_bundle = await response.parse()
         assert_matches_type(UserBundleListResourcesResponse, user_bundle, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list_resources(self, async_client: AsyncTelnyx) -> None:
         async with async_client.bundle_pricing.user_bundles.with_streaming_response.list_resources(
@@ -493,6 +542,7 @@ class TestAsyncUserBundles:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_list_resources(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `user_bundle_id` but received ''"):
@@ -500,11 +550,13 @@ class TestAsyncUserBundles:
                 user_bundle_id="",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_unused(self, async_client: AsyncTelnyx) -> None:
         user_bundle = await async_client.bundle_pricing.user_bundles.list_unused()
         assert_matches_type(UserBundleListUnusedResponse, user_bundle, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_unused_with_all_params(self, async_client: AsyncTelnyx) -> None:
         user_bundle = await async_client.bundle_pricing.user_bundles.list_unused(
@@ -516,6 +568,7 @@ class TestAsyncUserBundles:
         )
         assert_matches_type(UserBundleListUnusedResponse, user_bundle, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list_unused(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.bundle_pricing.user_bundles.with_raw_response.list_unused()
@@ -525,6 +578,7 @@ class TestAsyncUserBundles:
         user_bundle = await response.parse()
         assert_matches_type(UserBundleListUnusedResponse, user_bundle, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list_unused(self, async_client: AsyncTelnyx) -> None:
         async with async_client.bundle_pricing.user_bundles.with_streaming_response.list_unused() as response:

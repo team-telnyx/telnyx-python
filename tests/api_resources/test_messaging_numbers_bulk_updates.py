@@ -20,6 +20,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestMessagingNumbersBulkUpdates:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create(self, client: Telnyx) -> None:
         messaging_numbers_bulk_update = client.messaging_numbers_bulk_updates.create(
@@ -28,6 +29,7 @@ class TestMessagingNumbersBulkUpdates:
         )
         assert_matches_type(MessagingNumbersBulkUpdateCreateResponse, messaging_numbers_bulk_update, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: Telnyx) -> None:
         response = client.messaging_numbers_bulk_updates.with_raw_response.create(
@@ -40,6 +42,7 @@ class TestMessagingNumbersBulkUpdates:
         messaging_numbers_bulk_update = response.parse()
         assert_matches_type(MessagingNumbersBulkUpdateCreateResponse, messaging_numbers_bulk_update, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: Telnyx) -> None:
         with client.messaging_numbers_bulk_updates.with_streaming_response.create(
@@ -56,6 +59,7 @@ class TestMessagingNumbersBulkUpdates:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Telnyx) -> None:
         messaging_numbers_bulk_update = client.messaging_numbers_bulk_updates.retrieve(
@@ -65,6 +69,7 @@ class TestMessagingNumbersBulkUpdates:
             MessagingNumbersBulkUpdateRetrieveResponse, messaging_numbers_bulk_update, path=["response"]
         )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
         response = client.messaging_numbers_bulk_updates.with_raw_response.retrieve(
@@ -78,6 +83,7 @@ class TestMessagingNumbersBulkUpdates:
             MessagingNumbersBulkUpdateRetrieveResponse, messaging_numbers_bulk_update, path=["response"]
         )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
         with client.messaging_numbers_bulk_updates.with_streaming_response.retrieve(
@@ -93,6 +99,7 @@ class TestMessagingNumbersBulkUpdates:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_retrieve(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `order_id` but received ''"):
@@ -106,6 +113,7 @@ class TestAsyncMessagingNumbersBulkUpdates:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncTelnyx) -> None:
         messaging_numbers_bulk_update = await async_client.messaging_numbers_bulk_updates.create(
@@ -114,6 +122,7 @@ class TestAsyncMessagingNumbersBulkUpdates:
         )
         assert_matches_type(MessagingNumbersBulkUpdateCreateResponse, messaging_numbers_bulk_update, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.messaging_numbers_bulk_updates.with_raw_response.create(
@@ -126,6 +135,7 @@ class TestAsyncMessagingNumbersBulkUpdates:
         messaging_numbers_bulk_update = await response.parse()
         assert_matches_type(MessagingNumbersBulkUpdateCreateResponse, messaging_numbers_bulk_update, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncTelnyx) -> None:
         async with async_client.messaging_numbers_bulk_updates.with_streaming_response.create(
@@ -142,6 +152,7 @@ class TestAsyncMessagingNumbersBulkUpdates:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
         messaging_numbers_bulk_update = await async_client.messaging_numbers_bulk_updates.retrieve(
@@ -151,6 +162,7 @@ class TestAsyncMessagingNumbersBulkUpdates:
             MessagingNumbersBulkUpdateRetrieveResponse, messaging_numbers_bulk_update, path=["response"]
         )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.messaging_numbers_bulk_updates.with_raw_response.retrieve(
@@ -164,6 +176,7 @@ class TestAsyncMessagingNumbersBulkUpdates:
             MessagingNumbersBulkUpdateRetrieveResponse, messaging_numbers_bulk_update, path=["response"]
         )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         async with async_client.messaging_numbers_bulk_updates.with_streaming_response.retrieve(
@@ -179,6 +192,7 @@ class TestAsyncMessagingNumbersBulkUpdates:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `order_id` but received ''"):

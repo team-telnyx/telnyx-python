@@ -17,6 +17,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestJson:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_delete_recording_transcription_sid_json(self, client: Telnyx) -> None:
         json = client.texml.accounts.transcriptions.json.delete_recording_transcription_sid_json(
@@ -25,6 +26,7 @@ class TestJson:
         )
         assert json is None
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_delete_recording_transcription_sid_json(self, client: Telnyx) -> None:
         response = client.texml.accounts.transcriptions.json.with_raw_response.delete_recording_transcription_sid_json(
@@ -37,6 +39,7 @@ class TestJson:
         json = response.parse()
         assert json is None
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_delete_recording_transcription_sid_json(self, client: Telnyx) -> None:
         with client.texml.accounts.transcriptions.json.with_streaming_response.delete_recording_transcription_sid_json(
@@ -51,6 +54,7 @@ class TestJson:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_delete_recording_transcription_sid_json(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_sid` but received ''"):
@@ -67,6 +71,7 @@ class TestJson:
                 account_sid="account_sid",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_retrieve_recording_transcription_sid_json(self, client: Telnyx) -> None:
         json = client.texml.accounts.transcriptions.json.retrieve_recording_transcription_sid_json(
@@ -75,6 +80,7 @@ class TestJson:
         )
         assert_matches_type(JsonRetrieveRecordingTranscriptionSidJsonResponse, json, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_retrieve_recording_transcription_sid_json(self, client: Telnyx) -> None:
         response = (
@@ -89,6 +95,7 @@ class TestJson:
         json = response.parse()
         assert_matches_type(JsonRetrieveRecordingTranscriptionSidJsonResponse, json, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_retrieve_recording_transcription_sid_json(self, client: Telnyx) -> None:
         with (
@@ -105,6 +112,7 @@ class TestJson:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_retrieve_recording_transcription_sid_json(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_sid` but received ''"):
@@ -127,6 +135,7 @@ class TestAsyncJson:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_delete_recording_transcription_sid_json(self, async_client: AsyncTelnyx) -> None:
         json = await async_client.texml.accounts.transcriptions.json.delete_recording_transcription_sid_json(
@@ -135,6 +144,7 @@ class TestAsyncJson:
         )
         assert json is None
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_delete_recording_transcription_sid_json(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.texml.accounts.transcriptions.json.with_raw_response.delete_recording_transcription_sid_json(
@@ -147,6 +157,7 @@ class TestAsyncJson:
         json = await response.parse()
         assert json is None
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_delete_recording_transcription_sid_json(self, async_client: AsyncTelnyx) -> None:
         async with async_client.texml.accounts.transcriptions.json.with_streaming_response.delete_recording_transcription_sid_json(
@@ -161,6 +172,7 @@ class TestAsyncJson:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_delete_recording_transcription_sid_json(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_sid` but received ''"):
@@ -177,6 +189,7 @@ class TestAsyncJson:
                 account_sid="account_sid",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_retrieve_recording_transcription_sid_json(self, async_client: AsyncTelnyx) -> None:
         json = await async_client.texml.accounts.transcriptions.json.retrieve_recording_transcription_sid_json(
@@ -185,6 +198,7 @@ class TestAsyncJson:
         )
         assert_matches_type(JsonRetrieveRecordingTranscriptionSidJsonResponse, json, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_retrieve_recording_transcription_sid_json(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.texml.accounts.transcriptions.json.with_raw_response.retrieve_recording_transcription_sid_json(
@@ -197,6 +211,7 @@ class TestAsyncJson:
         json = await response.parse()
         assert_matches_type(JsonRetrieveRecordingTranscriptionSidJsonResponse, json, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve_recording_transcription_sid_json(
         self, async_client: AsyncTelnyx
@@ -213,6 +228,7 @@ class TestAsyncJson:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_retrieve_recording_transcription_sid_json(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_sid` but received ''"):

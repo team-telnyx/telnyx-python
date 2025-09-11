@@ -15,6 +15,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestActions:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_delete(self, client: Telnyx) -> None:
         action = client.recordings.actions.delete(
@@ -22,6 +23,7 @@ class TestActions:
         )
         assert action is None
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_delete(self, client: Telnyx) -> None:
         response = client.recordings.actions.with_raw_response.delete(
@@ -33,6 +35,7 @@ class TestActions:
         action = response.parse()
         assert action is None
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_delete(self, client: Telnyx) -> None:
         with client.recordings.actions.with_streaming_response.delete(
@@ -52,6 +55,7 @@ class TestAsyncActions:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_delete(self, async_client: AsyncTelnyx) -> None:
         action = await async_client.recordings.actions.delete(
@@ -59,6 +63,7 @@ class TestAsyncActions:
         )
         assert action is None
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.recordings.actions.with_raw_response.delete(
@@ -70,6 +75,7 @@ class TestAsyncActions:
         action = await response.parse()
         assert action is None
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncTelnyx) -> None:
         async with async_client.recordings.actions.with_streaming_response.delete(
