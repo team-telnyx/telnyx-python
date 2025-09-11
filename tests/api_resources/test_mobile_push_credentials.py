@@ -20,6 +20,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestMobilePushCredentials:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create_overload_1(self, client: Telnyx) -> None:
         mobile_push_credential = client.mobile_push_credentials.create(
@@ -30,6 +31,7 @@ class TestMobilePushCredentials:
         )
         assert_matches_type(PushCredentialResponse, mobile_push_credential, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_create_overload_1(self, client: Telnyx) -> None:
         response = client.mobile_push_credentials.with_raw_response.create(
@@ -44,6 +46,7 @@ class TestMobilePushCredentials:
         mobile_push_credential = response.parse()
         assert_matches_type(PushCredentialResponse, mobile_push_credential, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_create_overload_1(self, client: Telnyx) -> None:
         with client.mobile_push_credentials.with_streaming_response.create(
@@ -60,6 +63,7 @@ class TestMobilePushCredentials:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create_overload_2(self, client: Telnyx) -> None:
         mobile_push_credential = client.mobile_push_credentials.create(
@@ -72,6 +76,7 @@ class TestMobilePushCredentials:
         )
         assert_matches_type(PushCredentialResponse, mobile_push_credential, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_create_overload_2(self, client: Telnyx) -> None:
         response = client.mobile_push_credentials.with_raw_response.create(
@@ -88,6 +93,7 @@ class TestMobilePushCredentials:
         mobile_push_credential = response.parse()
         assert_matches_type(PushCredentialResponse, mobile_push_credential, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_create_overload_2(self, client: Telnyx) -> None:
         with client.mobile_push_credentials.with_streaming_response.create(
@@ -106,6 +112,7 @@ class TestMobilePushCredentials:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Telnyx) -> None:
         mobile_push_credential = client.mobile_push_credentials.retrieve(
@@ -113,6 +120,7 @@ class TestMobilePushCredentials:
         )
         assert_matches_type(PushCredentialResponse, mobile_push_credential, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
         response = client.mobile_push_credentials.with_raw_response.retrieve(
@@ -124,6 +132,7 @@ class TestMobilePushCredentials:
         mobile_push_credential = response.parse()
         assert_matches_type(PushCredentialResponse, mobile_push_credential, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
         with client.mobile_push_credentials.with_streaming_response.retrieve(
@@ -137,6 +146,7 @@ class TestMobilePushCredentials:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_retrieve(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `push_credential_id` but received ''"):
@@ -144,11 +154,13 @@ class TestMobilePushCredentials:
                 "",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         mobile_push_credential = client.mobile_push_credentials.list()
         assert_matches_type(MobilePushCredentialListResponse, mobile_push_credential, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         mobile_push_credential = client.mobile_push_credentials.list(
@@ -163,6 +175,7 @@ class TestMobilePushCredentials:
         )
         assert_matches_type(MobilePushCredentialListResponse, mobile_push_credential, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Telnyx) -> None:
         response = client.mobile_push_credentials.with_raw_response.list()
@@ -172,6 +185,7 @@ class TestMobilePushCredentials:
         mobile_push_credential = response.parse()
         assert_matches_type(MobilePushCredentialListResponse, mobile_push_credential, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Telnyx) -> None:
         with client.mobile_push_credentials.with_streaming_response.list() as response:
@@ -183,6 +197,7 @@ class TestMobilePushCredentials:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_delete(self, client: Telnyx) -> None:
         mobile_push_credential = client.mobile_push_credentials.delete(
@@ -190,6 +205,7 @@ class TestMobilePushCredentials:
         )
         assert mobile_push_credential is None
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_delete(self, client: Telnyx) -> None:
         response = client.mobile_push_credentials.with_raw_response.delete(
@@ -201,6 +217,7 @@ class TestMobilePushCredentials:
         mobile_push_credential = response.parse()
         assert mobile_push_credential is None
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_delete(self, client: Telnyx) -> None:
         with client.mobile_push_credentials.with_streaming_response.delete(
@@ -214,6 +231,7 @@ class TestMobilePushCredentials:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_delete(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `push_credential_id` but received ''"):
@@ -227,6 +245,7 @@ class TestAsyncMobilePushCredentials:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create_overload_1(self, async_client: AsyncTelnyx) -> None:
         mobile_push_credential = await async_client.mobile_push_credentials.create(
@@ -237,6 +256,7 @@ class TestAsyncMobilePushCredentials:
         )
         assert_matches_type(PushCredentialResponse, mobile_push_credential, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_create_overload_1(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.mobile_push_credentials.with_raw_response.create(
@@ -251,6 +271,7 @@ class TestAsyncMobilePushCredentials:
         mobile_push_credential = await response.parse()
         assert_matches_type(PushCredentialResponse, mobile_push_credential, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_create_overload_1(self, async_client: AsyncTelnyx) -> None:
         async with async_client.mobile_push_credentials.with_streaming_response.create(
@@ -267,6 +288,7 @@ class TestAsyncMobilePushCredentials:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create_overload_2(self, async_client: AsyncTelnyx) -> None:
         mobile_push_credential = await async_client.mobile_push_credentials.create(
@@ -279,6 +301,7 @@ class TestAsyncMobilePushCredentials:
         )
         assert_matches_type(PushCredentialResponse, mobile_push_credential, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_create_overload_2(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.mobile_push_credentials.with_raw_response.create(
@@ -295,6 +318,7 @@ class TestAsyncMobilePushCredentials:
         mobile_push_credential = await response.parse()
         assert_matches_type(PushCredentialResponse, mobile_push_credential, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_create_overload_2(self, async_client: AsyncTelnyx) -> None:
         async with async_client.mobile_push_credentials.with_streaming_response.create(
@@ -313,6 +337,7 @@ class TestAsyncMobilePushCredentials:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
         mobile_push_credential = await async_client.mobile_push_credentials.retrieve(
@@ -320,6 +345,7 @@ class TestAsyncMobilePushCredentials:
         )
         assert_matches_type(PushCredentialResponse, mobile_push_credential, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.mobile_push_credentials.with_raw_response.retrieve(
@@ -331,6 +357,7 @@ class TestAsyncMobilePushCredentials:
         mobile_push_credential = await response.parse()
         assert_matches_type(PushCredentialResponse, mobile_push_credential, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         async with async_client.mobile_push_credentials.with_streaming_response.retrieve(
@@ -344,6 +371,7 @@ class TestAsyncMobilePushCredentials:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `push_credential_id` but received ''"):
@@ -351,11 +379,13 @@ class TestAsyncMobilePushCredentials:
                 "",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         mobile_push_credential = await async_client.mobile_push_credentials.list()
         assert_matches_type(MobilePushCredentialListResponse, mobile_push_credential, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         mobile_push_credential = await async_client.mobile_push_credentials.list(
@@ -370,6 +400,7 @@ class TestAsyncMobilePushCredentials:
         )
         assert_matches_type(MobilePushCredentialListResponse, mobile_push_credential, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.mobile_push_credentials.with_raw_response.list()
@@ -379,6 +410,7 @@ class TestAsyncMobilePushCredentials:
         mobile_push_credential = await response.parse()
         assert_matches_type(MobilePushCredentialListResponse, mobile_push_credential, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncTelnyx) -> None:
         async with async_client.mobile_push_credentials.with_streaming_response.list() as response:
@@ -390,6 +422,7 @@ class TestAsyncMobilePushCredentials:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_delete(self, async_client: AsyncTelnyx) -> None:
         mobile_push_credential = await async_client.mobile_push_credentials.delete(
@@ -397,6 +430,7 @@ class TestAsyncMobilePushCredentials:
         )
         assert mobile_push_credential is None
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.mobile_push_credentials.with_raw_response.delete(
@@ -408,6 +442,7 @@ class TestAsyncMobilePushCredentials:
         mobile_push_credential = await response.parse()
         assert mobile_push_credential is None
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncTelnyx) -> None:
         async with async_client.mobile_push_credentials.with_streaming_response.delete(
@@ -421,6 +456,7 @@ class TestAsyncMobilePushCredentials:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `push_credential_id` but received ''"):

@@ -20,6 +20,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestInsights:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create(self, client: Telnyx) -> None:
         insight = client.ai.conversations.insights.create(
@@ -28,6 +29,7 @@ class TestInsights:
         )
         assert_matches_type(InsightTemplateDetail, insight, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create_with_all_params(self, client: Telnyx) -> None:
         insight = client.ai.conversations.insights.create(
@@ -38,6 +40,7 @@ class TestInsights:
         )
         assert_matches_type(InsightTemplateDetail, insight, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: Telnyx) -> None:
         response = client.ai.conversations.insights.with_raw_response.create(
@@ -50,6 +53,7 @@ class TestInsights:
         insight = response.parse()
         assert_matches_type(InsightTemplateDetail, insight, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: Telnyx) -> None:
         with client.ai.conversations.insights.with_streaming_response.create(
@@ -64,6 +68,7 @@ class TestInsights:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Telnyx) -> None:
         insight = client.ai.conversations.insights.retrieve(
@@ -71,6 +76,7 @@ class TestInsights:
         )
         assert_matches_type(InsightTemplateDetail, insight, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
         response = client.ai.conversations.insights.with_raw_response.retrieve(
@@ -82,6 +88,7 @@ class TestInsights:
         insight = response.parse()
         assert_matches_type(InsightTemplateDetail, insight, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
         with client.ai.conversations.insights.with_streaming_response.retrieve(
@@ -95,6 +102,7 @@ class TestInsights:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_retrieve(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `insight_id` but received ''"):
@@ -102,6 +110,7 @@ class TestInsights:
                 "",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_update(self, client: Telnyx) -> None:
         insight = client.ai.conversations.insights.update(
@@ -109,6 +118,7 @@ class TestInsights:
         )
         assert_matches_type(InsightTemplateDetail, insight, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_update_with_all_params(self, client: Telnyx) -> None:
         insight = client.ai.conversations.insights.update(
@@ -120,6 +130,7 @@ class TestInsights:
         )
         assert_matches_type(InsightTemplateDetail, insight, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_update(self, client: Telnyx) -> None:
         response = client.ai.conversations.insights.with_raw_response.update(
@@ -131,6 +142,7 @@ class TestInsights:
         insight = response.parse()
         assert_matches_type(InsightTemplateDetail, insight, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_update(self, client: Telnyx) -> None:
         with client.ai.conversations.insights.with_streaming_response.update(
@@ -144,6 +156,7 @@ class TestInsights:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_update(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `insight_id` but received ''"):
@@ -151,11 +164,13 @@ class TestInsights:
                 insight_id="",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         insight = client.ai.conversations.insights.list()
         assert_matches_type(InsightListResponse, insight, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         insight = client.ai.conversations.insights.list(
@@ -166,6 +181,7 @@ class TestInsights:
         )
         assert_matches_type(InsightListResponse, insight, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Telnyx) -> None:
         response = client.ai.conversations.insights.with_raw_response.list()
@@ -175,6 +191,7 @@ class TestInsights:
         insight = response.parse()
         assert_matches_type(InsightListResponse, insight, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Telnyx) -> None:
         with client.ai.conversations.insights.with_streaming_response.list() as response:
@@ -186,6 +203,7 @@ class TestInsights:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_delete(self, client: Telnyx) -> None:
         insight = client.ai.conversations.insights.delete(
@@ -193,6 +211,7 @@ class TestInsights:
         )
         assert_matches_type(object, insight, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_delete(self, client: Telnyx) -> None:
         response = client.ai.conversations.insights.with_raw_response.delete(
@@ -204,6 +223,7 @@ class TestInsights:
         insight = response.parse()
         assert_matches_type(object, insight, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_delete(self, client: Telnyx) -> None:
         with client.ai.conversations.insights.with_streaming_response.delete(
@@ -217,6 +237,7 @@ class TestInsights:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_delete(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `insight_id` but received ''"):
@@ -230,6 +251,7 @@ class TestAsyncInsights:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncTelnyx) -> None:
         insight = await async_client.ai.conversations.insights.create(
@@ -238,6 +260,7 @@ class TestAsyncInsights:
         )
         assert_matches_type(InsightTemplateDetail, insight, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncTelnyx) -> None:
         insight = await async_client.ai.conversations.insights.create(
@@ -248,6 +271,7 @@ class TestAsyncInsights:
         )
         assert_matches_type(InsightTemplateDetail, insight, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.ai.conversations.insights.with_raw_response.create(
@@ -260,6 +284,7 @@ class TestAsyncInsights:
         insight = await response.parse()
         assert_matches_type(InsightTemplateDetail, insight, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncTelnyx) -> None:
         async with async_client.ai.conversations.insights.with_streaming_response.create(
@@ -274,6 +299,7 @@ class TestAsyncInsights:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
         insight = await async_client.ai.conversations.insights.retrieve(
@@ -281,6 +307,7 @@ class TestAsyncInsights:
         )
         assert_matches_type(InsightTemplateDetail, insight, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.ai.conversations.insights.with_raw_response.retrieve(
@@ -292,6 +319,7 @@ class TestAsyncInsights:
         insight = await response.parse()
         assert_matches_type(InsightTemplateDetail, insight, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         async with async_client.ai.conversations.insights.with_streaming_response.retrieve(
@@ -305,6 +333,7 @@ class TestAsyncInsights:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `insight_id` but received ''"):
@@ -312,6 +341,7 @@ class TestAsyncInsights:
                 "",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_update(self, async_client: AsyncTelnyx) -> None:
         insight = await async_client.ai.conversations.insights.update(
@@ -319,6 +349,7 @@ class TestAsyncInsights:
         )
         assert_matches_type(InsightTemplateDetail, insight, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncTelnyx) -> None:
         insight = await async_client.ai.conversations.insights.update(
@@ -330,6 +361,7 @@ class TestAsyncInsights:
         )
         assert_matches_type(InsightTemplateDetail, insight, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.ai.conversations.insights.with_raw_response.update(
@@ -341,6 +373,7 @@ class TestAsyncInsights:
         insight = await response.parse()
         assert_matches_type(InsightTemplateDetail, insight, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncTelnyx) -> None:
         async with async_client.ai.conversations.insights.with_streaming_response.update(
@@ -354,6 +387,7 @@ class TestAsyncInsights:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_update(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `insight_id` but received ''"):
@@ -361,11 +395,13 @@ class TestAsyncInsights:
                 insight_id="",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         insight = await async_client.ai.conversations.insights.list()
         assert_matches_type(InsightListResponse, insight, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         insight = await async_client.ai.conversations.insights.list(
@@ -376,6 +412,7 @@ class TestAsyncInsights:
         )
         assert_matches_type(InsightListResponse, insight, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.ai.conversations.insights.with_raw_response.list()
@@ -385,6 +422,7 @@ class TestAsyncInsights:
         insight = await response.parse()
         assert_matches_type(InsightListResponse, insight, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncTelnyx) -> None:
         async with async_client.ai.conversations.insights.with_streaming_response.list() as response:
@@ -396,6 +434,7 @@ class TestAsyncInsights:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_delete(self, async_client: AsyncTelnyx) -> None:
         insight = await async_client.ai.conversations.insights.delete(
@@ -403,6 +442,7 @@ class TestAsyncInsights:
         )
         assert_matches_type(object, insight, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.ai.conversations.insights.with_raw_response.delete(
@@ -414,6 +454,7 @@ class TestAsyncInsights:
         insight = await response.parse()
         assert_matches_type(object, insight, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncTelnyx) -> None:
         async with async_client.ai.conversations.insights.with_streaming_response.delete(
@@ -427,6 +468,7 @@ class TestAsyncInsights:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `insight_id` but received ''"):

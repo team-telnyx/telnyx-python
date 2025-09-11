@@ -28,6 +28,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestClient:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create_bucket(self, client: Telnyx) -> None:
         client_ = client.create_bucket(
@@ -35,6 +36,7 @@ class TestClient:
         )
         assert client_ is None
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create_bucket_with_all_params(self, client: Telnyx) -> None:
         client_ = client.create_bucket(
@@ -43,6 +45,7 @@ class TestClient:
         )
         assert client_ is None
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_create_bucket(self, client: Telnyx) -> None:
         response = client.with_raw_response.create_bucket(
@@ -54,6 +57,7 @@ class TestClient:
         client_ = response.parse()
         assert client_ is None
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_create_bucket(self, client: Telnyx) -> None:
         with client.with_streaming_response.create_bucket(
@@ -67,6 +71,7 @@ class TestClient:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_create_bucket(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `bucket_name` but received ''"):
@@ -74,6 +79,7 @@ class TestClient:
                 bucket_name="",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_delete_bucket(self, client: Telnyx) -> None:
         client_ = client.delete_bucket(
@@ -81,6 +87,7 @@ class TestClient:
         )
         assert client_ is None
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_delete_bucket(self, client: Telnyx) -> None:
         response = client.with_raw_response.delete_bucket(
@@ -92,6 +99,7 @@ class TestClient:
         client_ = response.parse()
         assert client_ is None
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_delete_bucket(self, client: Telnyx) -> None:
         with client.with_streaming_response.delete_bucket(
@@ -105,6 +113,7 @@ class TestClient:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_delete_bucket(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `bucket_name` but received ''"):
@@ -112,6 +121,7 @@ class TestClient:
                 "",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_delete_object(self, client: Telnyx) -> None:
         client_ = client.delete_object(
@@ -120,6 +130,7 @@ class TestClient:
         )
         assert client_ is None
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_delete_object(self, client: Telnyx) -> None:
         response = client.with_raw_response.delete_object(
@@ -132,6 +143,7 @@ class TestClient:
         client_ = response.parse()
         assert client_ is None
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_delete_object(self, client: Telnyx) -> None:
         with client.with_streaming_response.delete_object(
@@ -146,6 +158,7 @@ class TestClient:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_delete_object(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `bucket_name` but received ''"):
@@ -160,6 +173,7 @@ class TestClient:
                 bucket_name="bucketName",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_delete_objects(self, client: Telnyx) -> None:
         client_ = client.delete_objects(
@@ -169,6 +183,7 @@ class TestClient:
         )
         assert_matches_type(object, client_, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_delete_objects(self, client: Telnyx) -> None:
         response = client.with_raw_response.delete_objects(
@@ -182,6 +197,7 @@ class TestClient:
         client_ = response.parse()
         assert_matches_type(object, client_, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_delete_objects(self, client: Telnyx) -> None:
         with client.with_streaming_response.delete_objects(
@@ -197,6 +213,7 @@ class TestClient:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_delete_objects(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `bucket_name` but received ''"):
@@ -280,11 +297,13 @@ class TestClient:
                 bucket_name="bucketName",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_buckets(self, client: Telnyx) -> None:
         client_ = client.list_buckets()
         assert_matches_type(ListBucketsResponse, client_, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list_buckets(self, client: Telnyx) -> None:
         response = client.with_raw_response.list_buckets()
@@ -294,6 +313,7 @@ class TestClient:
         client_ = response.parse()
         assert_matches_type(ListBucketsResponse, client_, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list_buckets(self, client: Telnyx) -> None:
         with client.with_streaming_response.list_buckets() as response:
@@ -305,6 +325,7 @@ class TestClient:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_objects(self, client: Telnyx) -> None:
         client_ = client.list_objects(
@@ -312,6 +333,7 @@ class TestClient:
         )
         assert_matches_type(ListObjectsResponse, client_, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_objects_with_all_params(self, client: Telnyx) -> None:
         client_ = client.list_objects(
@@ -320,6 +342,7 @@ class TestClient:
         )
         assert_matches_type(ListObjectsResponse, client_, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list_objects(self, client: Telnyx) -> None:
         response = client.with_raw_response.list_objects(
@@ -331,6 +354,7 @@ class TestClient:
         client_ = response.parse()
         assert_matches_type(ListObjectsResponse, client_, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list_objects(self, client: Telnyx) -> None:
         with client.with_streaming_response.list_objects(
@@ -344,6 +368,7 @@ class TestClient:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_list_objects(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `bucket_name` but received ''"):
@@ -351,6 +376,7 @@ class TestClient:
                 bucket_name="",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_put_object(self, client: Telnyx) -> None:
         client_ = client.put_object(
@@ -360,6 +386,7 @@ class TestClient:
         )
         assert client_ is None
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_put_object_with_all_params(self, client: Telnyx) -> None:
         client_ = client.put_object(
@@ -371,6 +398,7 @@ class TestClient:
         )
         assert client_ is None
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_put_object(self, client: Telnyx) -> None:
         response = client.with_raw_response.put_object(
@@ -384,6 +412,7 @@ class TestClient:
         client_ = response.parse()
         assert client_ is None
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_put_object(self, client: Telnyx) -> None:
         with client.with_streaming_response.put_object(
@@ -399,6 +428,7 @@ class TestClient:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_put_object(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `bucket_name` but received ''"):
@@ -421,6 +451,7 @@ class TestAsyncClient:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create_bucket(self, async_client: AsyncTelnyx) -> None:
         client = await async_client.create_bucket(
@@ -428,6 +459,7 @@ class TestAsyncClient:
         )
         assert client is None
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create_bucket_with_all_params(self, async_client: AsyncTelnyx) -> None:
         client = await async_client.create_bucket(
@@ -436,6 +468,7 @@ class TestAsyncClient:
         )
         assert client is None
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_create_bucket(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.with_raw_response.create_bucket(
@@ -447,6 +480,7 @@ class TestAsyncClient:
         client = await response.parse()
         assert client is None
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_create_bucket(self, async_client: AsyncTelnyx) -> None:
         async with async_client.with_streaming_response.create_bucket(
@@ -460,6 +494,7 @@ class TestAsyncClient:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_create_bucket(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `bucket_name` but received ''"):
@@ -467,6 +502,7 @@ class TestAsyncClient:
                 bucket_name="",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_delete_bucket(self, async_client: AsyncTelnyx) -> None:
         client = await async_client.delete_bucket(
@@ -474,6 +510,7 @@ class TestAsyncClient:
         )
         assert client is None
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_delete_bucket(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.with_raw_response.delete_bucket(
@@ -485,6 +522,7 @@ class TestAsyncClient:
         client = await response.parse()
         assert client is None
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_delete_bucket(self, async_client: AsyncTelnyx) -> None:
         async with async_client.with_streaming_response.delete_bucket(
@@ -498,6 +536,7 @@ class TestAsyncClient:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_delete_bucket(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `bucket_name` but received ''"):
@@ -505,6 +544,7 @@ class TestAsyncClient:
                 "",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_delete_object(self, async_client: AsyncTelnyx) -> None:
         client = await async_client.delete_object(
@@ -513,6 +553,7 @@ class TestAsyncClient:
         )
         assert client is None
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_delete_object(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.with_raw_response.delete_object(
@@ -525,6 +566,7 @@ class TestAsyncClient:
         client = await response.parse()
         assert client is None
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_delete_object(self, async_client: AsyncTelnyx) -> None:
         async with async_client.with_streaming_response.delete_object(
@@ -539,6 +581,7 @@ class TestAsyncClient:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_delete_object(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `bucket_name` but received ''"):
@@ -553,6 +596,7 @@ class TestAsyncClient:
                 bucket_name="bucketName",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_delete_objects(self, async_client: AsyncTelnyx) -> None:
         client = await async_client.delete_objects(
@@ -562,6 +606,7 @@ class TestAsyncClient:
         )
         assert_matches_type(object, client, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_delete_objects(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.with_raw_response.delete_objects(
@@ -575,6 +620,7 @@ class TestAsyncClient:
         client = await response.parse()
         assert_matches_type(object, client, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_delete_objects(self, async_client: AsyncTelnyx) -> None:
         async with async_client.with_streaming_response.delete_objects(
@@ -590,6 +636,7 @@ class TestAsyncClient:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_delete_objects(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `bucket_name` but received ''"):
@@ -673,11 +720,13 @@ class TestAsyncClient:
                 bucket_name="bucketName",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_buckets(self, async_client: AsyncTelnyx) -> None:
         client = await async_client.list_buckets()
         assert_matches_type(ListBucketsResponse, client, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list_buckets(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.with_raw_response.list_buckets()
@@ -687,6 +736,7 @@ class TestAsyncClient:
         client = await response.parse()
         assert_matches_type(ListBucketsResponse, client, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list_buckets(self, async_client: AsyncTelnyx) -> None:
         async with async_client.with_streaming_response.list_buckets() as response:
@@ -698,6 +748,7 @@ class TestAsyncClient:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_objects(self, async_client: AsyncTelnyx) -> None:
         client = await async_client.list_objects(
@@ -705,6 +756,7 @@ class TestAsyncClient:
         )
         assert_matches_type(ListObjectsResponse, client, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_objects_with_all_params(self, async_client: AsyncTelnyx) -> None:
         client = await async_client.list_objects(
@@ -713,6 +765,7 @@ class TestAsyncClient:
         )
         assert_matches_type(ListObjectsResponse, client, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list_objects(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.with_raw_response.list_objects(
@@ -724,6 +777,7 @@ class TestAsyncClient:
         client = await response.parse()
         assert_matches_type(ListObjectsResponse, client, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list_objects(self, async_client: AsyncTelnyx) -> None:
         async with async_client.with_streaming_response.list_objects(
@@ -737,6 +791,7 @@ class TestAsyncClient:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_list_objects(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `bucket_name` but received ''"):
@@ -744,6 +799,7 @@ class TestAsyncClient:
                 bucket_name="",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_put_object(self, async_client: AsyncTelnyx) -> None:
         client = await async_client.put_object(
@@ -753,6 +809,7 @@ class TestAsyncClient:
         )
         assert client is None
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_put_object_with_all_params(self, async_client: AsyncTelnyx) -> None:
         client = await async_client.put_object(
@@ -764,6 +821,7 @@ class TestAsyncClient:
         )
         assert client is None
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_put_object(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.with_raw_response.put_object(
@@ -777,6 +835,7 @@ class TestAsyncClient:
         client = await response.parse()
         assert client is None
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_put_object(self, async_client: AsyncTelnyx) -> None:
         async with async_client.with_streaming_response.put_object(
@@ -792,6 +851,7 @@ class TestAsyncClient:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_put_object(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `bucket_name` but received ''"):

@@ -20,11 +20,13 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestPhoneNumberConfigurations:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create(self, client: Telnyx) -> None:
         phone_number_configuration = client.porting_orders.phone_number_configurations.create()
         assert_matches_type(PhoneNumberConfigurationCreateResponse, phone_number_configuration, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create_with_all_params(self, client: Telnyx) -> None:
         phone_number_configuration = client.porting_orders.phone_number_configurations.create(
@@ -37,6 +39,7 @@ class TestPhoneNumberConfigurations:
         )
         assert_matches_type(PhoneNumberConfigurationCreateResponse, phone_number_configuration, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: Telnyx) -> None:
         response = client.porting_orders.phone_number_configurations.with_raw_response.create()
@@ -46,6 +49,7 @@ class TestPhoneNumberConfigurations:
         phone_number_configuration = response.parse()
         assert_matches_type(PhoneNumberConfigurationCreateResponse, phone_number_configuration, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: Telnyx) -> None:
         with client.porting_orders.phone_number_configurations.with_streaming_response.create() as response:
@@ -57,11 +61,13 @@ class TestPhoneNumberConfigurations:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         phone_number_configuration = client.porting_orders.phone_number_configurations.list()
         assert_matches_type(PhoneNumberConfigurationListResponse, phone_number_configuration, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         phone_number_configuration = client.porting_orders.phone_number_configurations.list(
@@ -78,6 +84,7 @@ class TestPhoneNumberConfigurations:
         )
         assert_matches_type(PhoneNumberConfigurationListResponse, phone_number_configuration, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Telnyx) -> None:
         response = client.porting_orders.phone_number_configurations.with_raw_response.list()
@@ -87,6 +94,7 @@ class TestPhoneNumberConfigurations:
         phone_number_configuration = response.parse()
         assert_matches_type(PhoneNumberConfigurationListResponse, phone_number_configuration, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Telnyx) -> None:
         with client.porting_orders.phone_number_configurations.with_streaming_response.list() as response:
@@ -104,11 +112,13 @@ class TestAsyncPhoneNumberConfigurations:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncTelnyx) -> None:
         phone_number_configuration = await async_client.porting_orders.phone_number_configurations.create()
         assert_matches_type(PhoneNumberConfigurationCreateResponse, phone_number_configuration, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncTelnyx) -> None:
         phone_number_configuration = await async_client.porting_orders.phone_number_configurations.create(
@@ -121,6 +131,7 @@ class TestAsyncPhoneNumberConfigurations:
         )
         assert_matches_type(PhoneNumberConfigurationCreateResponse, phone_number_configuration, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.porting_orders.phone_number_configurations.with_raw_response.create()
@@ -130,6 +141,7 @@ class TestAsyncPhoneNumberConfigurations:
         phone_number_configuration = await response.parse()
         assert_matches_type(PhoneNumberConfigurationCreateResponse, phone_number_configuration, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncTelnyx) -> None:
         async with async_client.porting_orders.phone_number_configurations.with_streaming_response.create() as response:
@@ -141,11 +153,13 @@ class TestAsyncPhoneNumberConfigurations:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         phone_number_configuration = await async_client.porting_orders.phone_number_configurations.list()
         assert_matches_type(PhoneNumberConfigurationListResponse, phone_number_configuration, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         phone_number_configuration = await async_client.porting_orders.phone_number_configurations.list(
@@ -162,6 +176,7 @@ class TestAsyncPhoneNumberConfigurations:
         )
         assert_matches_type(PhoneNumberConfigurationListResponse, phone_number_configuration, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.porting_orders.phone_number_configurations.with_raw_response.list()
@@ -171,6 +186,7 @@ class TestAsyncPhoneNumberConfigurations:
         phone_number_configuration = await response.parse()
         assert_matches_type(PhoneNumberConfigurationListResponse, phone_number_configuration, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncTelnyx) -> None:
         async with async_client.porting_orders.phone_number_configurations.with_streaming_response.list() as response:

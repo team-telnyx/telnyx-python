@@ -23,11 +23,13 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestNotificationChannels:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create(self, client: Telnyx) -> None:
         notification_channel = client.notification_channels.create()
         assert_matches_type(NotificationChannelCreateResponse, notification_channel, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create_with_all_params(self, client: Telnyx) -> None:
         notification_channel = client.notification_channels.create(
@@ -37,6 +39,7 @@ class TestNotificationChannels:
         )
         assert_matches_type(NotificationChannelCreateResponse, notification_channel, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: Telnyx) -> None:
         response = client.notification_channels.with_raw_response.create()
@@ -46,6 +49,7 @@ class TestNotificationChannels:
         notification_channel = response.parse()
         assert_matches_type(NotificationChannelCreateResponse, notification_channel, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: Telnyx) -> None:
         with client.notification_channels.with_streaming_response.create() as response:
@@ -57,6 +61,7 @@ class TestNotificationChannels:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Telnyx) -> None:
         notification_channel = client.notification_channels.retrieve(
@@ -64,6 +69,7 @@ class TestNotificationChannels:
         )
         assert_matches_type(NotificationChannelRetrieveResponse, notification_channel, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
         response = client.notification_channels.with_raw_response.retrieve(
@@ -75,6 +81,7 @@ class TestNotificationChannels:
         notification_channel = response.parse()
         assert_matches_type(NotificationChannelRetrieveResponse, notification_channel, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
         with client.notification_channels.with_streaming_response.retrieve(
@@ -88,6 +95,7 @@ class TestNotificationChannels:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_retrieve(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -95,6 +103,7 @@ class TestNotificationChannels:
                 "",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_update(self, client: Telnyx) -> None:
         notification_channel = client.notification_channels.update(
@@ -102,6 +111,7 @@ class TestNotificationChannels:
         )
         assert_matches_type(NotificationChannelUpdateResponse, notification_channel, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_update_with_all_params(self, client: Telnyx) -> None:
         notification_channel = client.notification_channels.update(
@@ -112,6 +122,7 @@ class TestNotificationChannels:
         )
         assert_matches_type(NotificationChannelUpdateResponse, notification_channel, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_update(self, client: Telnyx) -> None:
         response = client.notification_channels.with_raw_response.update(
@@ -123,6 +134,7 @@ class TestNotificationChannels:
         notification_channel = response.parse()
         assert_matches_type(NotificationChannelUpdateResponse, notification_channel, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_update(self, client: Telnyx) -> None:
         with client.notification_channels.with_streaming_response.update(
@@ -136,6 +148,7 @@ class TestNotificationChannels:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_update(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -143,11 +156,13 @@ class TestNotificationChannels:
                 id="",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         notification_channel = client.notification_channels.list()
         assert_matches_type(NotificationChannelListResponse, notification_channel, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         notification_channel = client.notification_channels.list(
@@ -166,6 +181,7 @@ class TestNotificationChannels:
         )
         assert_matches_type(NotificationChannelListResponse, notification_channel, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Telnyx) -> None:
         response = client.notification_channels.with_raw_response.list()
@@ -175,6 +191,7 @@ class TestNotificationChannels:
         notification_channel = response.parse()
         assert_matches_type(NotificationChannelListResponse, notification_channel, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Telnyx) -> None:
         with client.notification_channels.with_streaming_response.list() as response:
@@ -186,6 +203,7 @@ class TestNotificationChannels:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_delete(self, client: Telnyx) -> None:
         notification_channel = client.notification_channels.delete(
@@ -193,6 +211,7 @@ class TestNotificationChannels:
         )
         assert_matches_type(NotificationChannelDeleteResponse, notification_channel, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_delete(self, client: Telnyx) -> None:
         response = client.notification_channels.with_raw_response.delete(
@@ -204,6 +223,7 @@ class TestNotificationChannels:
         notification_channel = response.parse()
         assert_matches_type(NotificationChannelDeleteResponse, notification_channel, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_delete(self, client: Telnyx) -> None:
         with client.notification_channels.with_streaming_response.delete(
@@ -217,6 +237,7 @@ class TestNotificationChannels:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_delete(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -230,11 +251,13 @@ class TestAsyncNotificationChannels:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncTelnyx) -> None:
         notification_channel = await async_client.notification_channels.create()
         assert_matches_type(NotificationChannelCreateResponse, notification_channel, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncTelnyx) -> None:
         notification_channel = await async_client.notification_channels.create(
@@ -244,6 +267,7 @@ class TestAsyncNotificationChannels:
         )
         assert_matches_type(NotificationChannelCreateResponse, notification_channel, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.notification_channels.with_raw_response.create()
@@ -253,6 +277,7 @@ class TestAsyncNotificationChannels:
         notification_channel = await response.parse()
         assert_matches_type(NotificationChannelCreateResponse, notification_channel, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncTelnyx) -> None:
         async with async_client.notification_channels.with_streaming_response.create() as response:
@@ -264,6 +289,7 @@ class TestAsyncNotificationChannels:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
         notification_channel = await async_client.notification_channels.retrieve(
@@ -271,6 +297,7 @@ class TestAsyncNotificationChannels:
         )
         assert_matches_type(NotificationChannelRetrieveResponse, notification_channel, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.notification_channels.with_raw_response.retrieve(
@@ -282,6 +309,7 @@ class TestAsyncNotificationChannels:
         notification_channel = await response.parse()
         assert_matches_type(NotificationChannelRetrieveResponse, notification_channel, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         async with async_client.notification_channels.with_streaming_response.retrieve(
@@ -295,6 +323,7 @@ class TestAsyncNotificationChannels:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -302,6 +331,7 @@ class TestAsyncNotificationChannels:
                 "",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_update(self, async_client: AsyncTelnyx) -> None:
         notification_channel = await async_client.notification_channels.update(
@@ -309,6 +339,7 @@ class TestAsyncNotificationChannels:
         )
         assert_matches_type(NotificationChannelUpdateResponse, notification_channel, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncTelnyx) -> None:
         notification_channel = await async_client.notification_channels.update(
@@ -319,6 +350,7 @@ class TestAsyncNotificationChannels:
         )
         assert_matches_type(NotificationChannelUpdateResponse, notification_channel, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.notification_channels.with_raw_response.update(
@@ -330,6 +362,7 @@ class TestAsyncNotificationChannels:
         notification_channel = await response.parse()
         assert_matches_type(NotificationChannelUpdateResponse, notification_channel, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncTelnyx) -> None:
         async with async_client.notification_channels.with_streaming_response.update(
@@ -343,6 +376,7 @@ class TestAsyncNotificationChannels:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_update(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -350,11 +384,13 @@ class TestAsyncNotificationChannels:
                 id="",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         notification_channel = await async_client.notification_channels.list()
         assert_matches_type(NotificationChannelListResponse, notification_channel, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         notification_channel = await async_client.notification_channels.list(
@@ -373,6 +409,7 @@ class TestAsyncNotificationChannels:
         )
         assert_matches_type(NotificationChannelListResponse, notification_channel, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.notification_channels.with_raw_response.list()
@@ -382,6 +419,7 @@ class TestAsyncNotificationChannels:
         notification_channel = await response.parse()
         assert_matches_type(NotificationChannelListResponse, notification_channel, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncTelnyx) -> None:
         async with async_client.notification_channels.with_streaming_response.list() as response:
@@ -393,6 +431,7 @@ class TestAsyncNotificationChannels:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_delete(self, async_client: AsyncTelnyx) -> None:
         notification_channel = await async_client.notification_channels.delete(
@@ -400,6 +439,7 @@ class TestAsyncNotificationChannels:
         )
         assert_matches_type(NotificationChannelDeleteResponse, notification_channel, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.notification_channels.with_raw_response.delete(
@@ -411,6 +451,7 @@ class TestAsyncNotificationChannels:
         notification_channel = await response.parse()
         assert_matches_type(NotificationChannelDeleteResponse, notification_channel, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncTelnyx) -> None:
         async with async_client.notification_channels.with_streaming_response.delete(
@@ -424,6 +465,7 @@ class TestAsyncNotificationChannels:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):

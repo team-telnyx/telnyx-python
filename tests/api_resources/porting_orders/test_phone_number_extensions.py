@@ -21,6 +21,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestPhoneNumberExtensions:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create(self, client: Telnyx) -> None:
         phone_number_extension = client.porting_orders.phone_number_extensions.create(
@@ -39,6 +40,7 @@ class TestPhoneNumberExtensions:
         )
         assert_matches_type(PhoneNumberExtensionCreateResponse, phone_number_extension, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: Telnyx) -> None:
         response = client.porting_orders.phone_number_extensions.with_raw_response.create(
@@ -61,6 +63,7 @@ class TestPhoneNumberExtensions:
         phone_number_extension = response.parse()
         assert_matches_type(PhoneNumberExtensionCreateResponse, phone_number_extension, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: Telnyx) -> None:
         with client.porting_orders.phone_number_extensions.with_streaming_response.create(
@@ -85,6 +88,7 @@ class TestPhoneNumberExtensions:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_create(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `porting_order_id` but received ''"):
@@ -103,6 +107,7 @@ class TestPhoneNumberExtensions:
                 porting_phone_number_id="f24151b6-3389-41d3-8747-7dd8c681e5e2",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         phone_number_extension = client.porting_orders.phone_number_extensions.list(
@@ -110,6 +115,7 @@ class TestPhoneNumberExtensions:
         )
         assert_matches_type(PhoneNumberExtensionListResponse, phone_number_extension, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         phone_number_extension = client.porting_orders.phone_number_extensions.list(
@@ -123,6 +129,7 @@ class TestPhoneNumberExtensions:
         )
         assert_matches_type(PhoneNumberExtensionListResponse, phone_number_extension, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Telnyx) -> None:
         response = client.porting_orders.phone_number_extensions.with_raw_response.list(
@@ -134,6 +141,7 @@ class TestPhoneNumberExtensions:
         phone_number_extension = response.parse()
         assert_matches_type(PhoneNumberExtensionListResponse, phone_number_extension, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Telnyx) -> None:
         with client.porting_orders.phone_number_extensions.with_streaming_response.list(
@@ -147,6 +155,7 @@ class TestPhoneNumberExtensions:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_list(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `porting_order_id` but received ''"):
@@ -154,6 +163,7 @@ class TestPhoneNumberExtensions:
                 porting_order_id="",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_delete(self, client: Telnyx) -> None:
         phone_number_extension = client.porting_orders.phone_number_extensions.delete(
@@ -162,6 +172,7 @@ class TestPhoneNumberExtensions:
         )
         assert_matches_type(PhoneNumberExtensionDeleteResponse, phone_number_extension, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_delete(self, client: Telnyx) -> None:
         response = client.porting_orders.phone_number_extensions.with_raw_response.delete(
@@ -174,6 +185,7 @@ class TestPhoneNumberExtensions:
         phone_number_extension = response.parse()
         assert_matches_type(PhoneNumberExtensionDeleteResponse, phone_number_extension, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_delete(self, client: Telnyx) -> None:
         with client.porting_orders.phone_number_extensions.with_streaming_response.delete(
@@ -188,6 +200,7 @@ class TestPhoneNumberExtensions:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_delete(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `porting_order_id` but received ''"):
@@ -208,6 +221,7 @@ class TestAsyncPhoneNumberExtensions:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncTelnyx) -> None:
         phone_number_extension = await async_client.porting_orders.phone_number_extensions.create(
@@ -226,6 +240,7 @@ class TestAsyncPhoneNumberExtensions:
         )
         assert_matches_type(PhoneNumberExtensionCreateResponse, phone_number_extension, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.porting_orders.phone_number_extensions.with_raw_response.create(
@@ -248,6 +263,7 @@ class TestAsyncPhoneNumberExtensions:
         phone_number_extension = await response.parse()
         assert_matches_type(PhoneNumberExtensionCreateResponse, phone_number_extension, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncTelnyx) -> None:
         async with async_client.porting_orders.phone_number_extensions.with_streaming_response.create(
@@ -272,6 +288,7 @@ class TestAsyncPhoneNumberExtensions:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_create(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `porting_order_id` but received ''"):
@@ -290,6 +307,7 @@ class TestAsyncPhoneNumberExtensions:
                 porting_phone_number_id="f24151b6-3389-41d3-8747-7dd8c681e5e2",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         phone_number_extension = await async_client.porting_orders.phone_number_extensions.list(
@@ -297,6 +315,7 @@ class TestAsyncPhoneNumberExtensions:
         )
         assert_matches_type(PhoneNumberExtensionListResponse, phone_number_extension, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         phone_number_extension = await async_client.porting_orders.phone_number_extensions.list(
@@ -310,6 +329,7 @@ class TestAsyncPhoneNumberExtensions:
         )
         assert_matches_type(PhoneNumberExtensionListResponse, phone_number_extension, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.porting_orders.phone_number_extensions.with_raw_response.list(
@@ -321,6 +341,7 @@ class TestAsyncPhoneNumberExtensions:
         phone_number_extension = await response.parse()
         assert_matches_type(PhoneNumberExtensionListResponse, phone_number_extension, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncTelnyx) -> None:
         async with async_client.porting_orders.phone_number_extensions.with_streaming_response.list(
@@ -334,6 +355,7 @@ class TestAsyncPhoneNumberExtensions:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_list(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `porting_order_id` but received ''"):
@@ -341,6 +363,7 @@ class TestAsyncPhoneNumberExtensions:
                 porting_order_id="",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_delete(self, async_client: AsyncTelnyx) -> None:
         phone_number_extension = await async_client.porting_orders.phone_number_extensions.delete(
@@ -349,6 +372,7 @@ class TestAsyncPhoneNumberExtensions:
         )
         assert_matches_type(PhoneNumberExtensionDeleteResponse, phone_number_extension, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.porting_orders.phone_number_extensions.with_raw_response.delete(
@@ -361,6 +385,7 @@ class TestAsyncPhoneNumberExtensions:
         phone_number_extension = await response.parse()
         assert_matches_type(PhoneNumberExtensionDeleteResponse, phone_number_extension, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncTelnyx) -> None:
         async with async_client.porting_orders.phone_number_extensions.with_streaming_response.delete(
@@ -375,6 +400,7 @@ class TestAsyncPhoneNumberExtensions:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `porting_order_id` but received ''"):

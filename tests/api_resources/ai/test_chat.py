@@ -16,6 +16,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestChat:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create_completion(self, client: Telnyx) -> None:
         chat = client.ai.chat.create_completion(
@@ -32,6 +33,7 @@ class TestChat:
         )
         assert_matches_type(object, chat, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create_completion_with_all_params(self, client: Telnyx) -> None:
         chat = client.ai.chat.create_completion(
@@ -79,6 +81,7 @@ class TestChat:
         )
         assert_matches_type(object, chat, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_create_completion(self, client: Telnyx) -> None:
         response = client.ai.chat.with_raw_response.create_completion(
@@ -99,6 +102,7 @@ class TestChat:
         chat = response.parse()
         assert_matches_type(object, chat, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_create_completion(self, client: Telnyx) -> None:
         with client.ai.chat.with_streaming_response.create_completion(
@@ -127,6 +131,7 @@ class TestAsyncChat:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create_completion(self, async_client: AsyncTelnyx) -> None:
         chat = await async_client.ai.chat.create_completion(
@@ -143,6 +148,7 @@ class TestAsyncChat:
         )
         assert_matches_type(object, chat, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create_completion_with_all_params(self, async_client: AsyncTelnyx) -> None:
         chat = await async_client.ai.chat.create_completion(
@@ -190,6 +196,7 @@ class TestAsyncChat:
         )
         assert_matches_type(object, chat, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_create_completion(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.ai.chat.with_raw_response.create_completion(
@@ -210,6 +217,7 @@ class TestAsyncChat:
         chat = await response.parse()
         assert_matches_type(object, chat, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_create_completion(self, async_client: AsyncTelnyx) -> None:
         async with async_client.ai.chat.with_streaming_response.create_completion(

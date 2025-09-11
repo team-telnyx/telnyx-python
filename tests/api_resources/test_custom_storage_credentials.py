@@ -21,6 +21,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestCustomStorageCredentials:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create(self, client: Telnyx) -> None:
         custom_storage_credential = client.custom_storage_credentials.create(
@@ -30,6 +31,7 @@ class TestCustomStorageCredentials:
         )
         assert_matches_type(CustomStorageCredentialCreateResponse, custom_storage_credential, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create_with_all_params(self, client: Telnyx) -> None:
         custom_storage_credential = client.custom_storage_credentials.create(
@@ -42,6 +44,7 @@ class TestCustomStorageCredentials:
         )
         assert_matches_type(CustomStorageCredentialCreateResponse, custom_storage_credential, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: Telnyx) -> None:
         response = client.custom_storage_credentials.with_raw_response.create(
@@ -55,6 +58,7 @@ class TestCustomStorageCredentials:
         custom_storage_credential = response.parse()
         assert_matches_type(CustomStorageCredentialCreateResponse, custom_storage_credential, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: Telnyx) -> None:
         with client.custom_storage_credentials.with_streaming_response.create(
@@ -70,6 +74,7 @@ class TestCustomStorageCredentials:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_create(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `connection_id` but received ''"):
@@ -79,6 +84,7 @@ class TestCustomStorageCredentials:
                 configuration={},
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Telnyx) -> None:
         custom_storage_credential = client.custom_storage_credentials.retrieve(
@@ -86,6 +92,7 @@ class TestCustomStorageCredentials:
         )
         assert_matches_type(CustomStorageCredentialRetrieveResponse, custom_storage_credential, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
         response = client.custom_storage_credentials.with_raw_response.retrieve(
@@ -97,6 +104,7 @@ class TestCustomStorageCredentials:
         custom_storage_credential = response.parse()
         assert_matches_type(CustomStorageCredentialRetrieveResponse, custom_storage_credential, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
         with client.custom_storage_credentials.with_streaming_response.retrieve(
@@ -110,6 +118,7 @@ class TestCustomStorageCredentials:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_retrieve(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `connection_id` but received ''"):
@@ -117,6 +126,7 @@ class TestCustomStorageCredentials:
                 "",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_update(self, client: Telnyx) -> None:
         custom_storage_credential = client.custom_storage_credentials.update(
@@ -126,6 +136,7 @@ class TestCustomStorageCredentials:
         )
         assert_matches_type(CustomStorageCredentialUpdateResponse, custom_storage_credential, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_update_with_all_params(self, client: Telnyx) -> None:
         custom_storage_credential = client.custom_storage_credentials.update(
@@ -138,6 +149,7 @@ class TestCustomStorageCredentials:
         )
         assert_matches_type(CustomStorageCredentialUpdateResponse, custom_storage_credential, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_update(self, client: Telnyx) -> None:
         response = client.custom_storage_credentials.with_raw_response.update(
@@ -151,6 +163,7 @@ class TestCustomStorageCredentials:
         custom_storage_credential = response.parse()
         assert_matches_type(CustomStorageCredentialUpdateResponse, custom_storage_credential, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_update(self, client: Telnyx) -> None:
         with client.custom_storage_credentials.with_streaming_response.update(
@@ -166,6 +179,7 @@ class TestCustomStorageCredentials:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_update(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `connection_id` but received ''"):
@@ -175,6 +189,7 @@ class TestCustomStorageCredentials:
                 configuration={},
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_delete(self, client: Telnyx) -> None:
         custom_storage_credential = client.custom_storage_credentials.delete(
@@ -182,6 +197,7 @@ class TestCustomStorageCredentials:
         )
         assert custom_storage_credential is None
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_delete(self, client: Telnyx) -> None:
         response = client.custom_storage_credentials.with_raw_response.delete(
@@ -193,6 +209,7 @@ class TestCustomStorageCredentials:
         custom_storage_credential = response.parse()
         assert custom_storage_credential is None
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_delete(self, client: Telnyx) -> None:
         with client.custom_storage_credentials.with_streaming_response.delete(
@@ -206,6 +223,7 @@ class TestCustomStorageCredentials:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_delete(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `connection_id` but received ''"):
@@ -219,6 +237,7 @@ class TestAsyncCustomStorageCredentials:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncTelnyx) -> None:
         custom_storage_credential = await async_client.custom_storage_credentials.create(
@@ -228,6 +247,7 @@ class TestAsyncCustomStorageCredentials:
         )
         assert_matches_type(CustomStorageCredentialCreateResponse, custom_storage_credential, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncTelnyx) -> None:
         custom_storage_credential = await async_client.custom_storage_credentials.create(
@@ -240,6 +260,7 @@ class TestAsyncCustomStorageCredentials:
         )
         assert_matches_type(CustomStorageCredentialCreateResponse, custom_storage_credential, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.custom_storage_credentials.with_raw_response.create(
@@ -253,6 +274,7 @@ class TestAsyncCustomStorageCredentials:
         custom_storage_credential = await response.parse()
         assert_matches_type(CustomStorageCredentialCreateResponse, custom_storage_credential, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncTelnyx) -> None:
         async with async_client.custom_storage_credentials.with_streaming_response.create(
@@ -268,6 +290,7 @@ class TestAsyncCustomStorageCredentials:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_create(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `connection_id` but received ''"):
@@ -277,6 +300,7 @@ class TestAsyncCustomStorageCredentials:
                 configuration={},
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
         custom_storage_credential = await async_client.custom_storage_credentials.retrieve(
@@ -284,6 +308,7 @@ class TestAsyncCustomStorageCredentials:
         )
         assert_matches_type(CustomStorageCredentialRetrieveResponse, custom_storage_credential, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.custom_storage_credentials.with_raw_response.retrieve(
@@ -295,6 +320,7 @@ class TestAsyncCustomStorageCredentials:
         custom_storage_credential = await response.parse()
         assert_matches_type(CustomStorageCredentialRetrieveResponse, custom_storage_credential, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         async with async_client.custom_storage_credentials.with_streaming_response.retrieve(
@@ -308,6 +334,7 @@ class TestAsyncCustomStorageCredentials:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `connection_id` but received ''"):
@@ -315,6 +342,7 @@ class TestAsyncCustomStorageCredentials:
                 "",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_update(self, async_client: AsyncTelnyx) -> None:
         custom_storage_credential = await async_client.custom_storage_credentials.update(
@@ -324,6 +352,7 @@ class TestAsyncCustomStorageCredentials:
         )
         assert_matches_type(CustomStorageCredentialUpdateResponse, custom_storage_credential, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncTelnyx) -> None:
         custom_storage_credential = await async_client.custom_storage_credentials.update(
@@ -336,6 +365,7 @@ class TestAsyncCustomStorageCredentials:
         )
         assert_matches_type(CustomStorageCredentialUpdateResponse, custom_storage_credential, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.custom_storage_credentials.with_raw_response.update(
@@ -349,6 +379,7 @@ class TestAsyncCustomStorageCredentials:
         custom_storage_credential = await response.parse()
         assert_matches_type(CustomStorageCredentialUpdateResponse, custom_storage_credential, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncTelnyx) -> None:
         async with async_client.custom_storage_credentials.with_streaming_response.update(
@@ -364,6 +395,7 @@ class TestAsyncCustomStorageCredentials:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_update(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `connection_id` but received ''"):
@@ -373,6 +405,7 @@ class TestAsyncCustomStorageCredentials:
                 configuration={},
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_delete(self, async_client: AsyncTelnyx) -> None:
         custom_storage_credential = await async_client.custom_storage_credentials.delete(
@@ -380,6 +413,7 @@ class TestAsyncCustomStorageCredentials:
         )
         assert custom_storage_credential is None
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.custom_storage_credentials.with_raw_response.delete(
@@ -391,6 +425,7 @@ class TestAsyncCustomStorageCredentials:
         custom_storage_credential = await response.parse()
         assert custom_storage_credential is None
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncTelnyx) -> None:
         async with async_client.custom_storage_credentials.with_streaming_response.delete(
@@ -404,6 +439,7 @@ class TestAsyncCustomStorageCredentials:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `connection_id` but received ''"):

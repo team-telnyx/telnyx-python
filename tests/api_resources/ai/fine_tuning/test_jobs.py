@@ -17,6 +17,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestJobs:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create(self, client: Telnyx) -> None:
         job = client.ai.fine_tuning.jobs.create(
@@ -25,6 +26,7 @@ class TestJobs:
         )
         assert_matches_type(FineTuningJob, job, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create_with_all_params(self, client: Telnyx) -> None:
         job = client.ai.fine_tuning.jobs.create(
@@ -35,6 +37,7 @@ class TestJobs:
         )
         assert_matches_type(FineTuningJob, job, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: Telnyx) -> None:
         response = client.ai.fine_tuning.jobs.with_raw_response.create(
@@ -47,6 +50,7 @@ class TestJobs:
         job = response.parse()
         assert_matches_type(FineTuningJob, job, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: Telnyx) -> None:
         with client.ai.fine_tuning.jobs.with_streaming_response.create(
@@ -61,6 +65,7 @@ class TestJobs:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Telnyx) -> None:
         job = client.ai.fine_tuning.jobs.retrieve(
@@ -68,6 +73,7 @@ class TestJobs:
         )
         assert_matches_type(FineTuningJob, job, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
         response = client.ai.fine_tuning.jobs.with_raw_response.retrieve(
@@ -79,6 +85,7 @@ class TestJobs:
         job = response.parse()
         assert_matches_type(FineTuningJob, job, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
         with client.ai.fine_tuning.jobs.with_streaming_response.retrieve(
@@ -92,6 +99,7 @@ class TestJobs:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_retrieve(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `job_id` but received ''"):
@@ -99,11 +107,13 @@ class TestJobs:
                 "",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         job = client.ai.fine_tuning.jobs.list()
         assert_matches_type(JobListResponse, job, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Telnyx) -> None:
         response = client.ai.fine_tuning.jobs.with_raw_response.list()
@@ -113,6 +123,7 @@ class TestJobs:
         job = response.parse()
         assert_matches_type(JobListResponse, job, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Telnyx) -> None:
         with client.ai.fine_tuning.jobs.with_streaming_response.list() as response:
@@ -124,6 +135,7 @@ class TestJobs:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_cancel(self, client: Telnyx) -> None:
         job = client.ai.fine_tuning.jobs.cancel(
@@ -131,6 +143,7 @@ class TestJobs:
         )
         assert_matches_type(FineTuningJob, job, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_cancel(self, client: Telnyx) -> None:
         response = client.ai.fine_tuning.jobs.with_raw_response.cancel(
@@ -142,6 +155,7 @@ class TestJobs:
         job = response.parse()
         assert_matches_type(FineTuningJob, job, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_cancel(self, client: Telnyx) -> None:
         with client.ai.fine_tuning.jobs.with_streaming_response.cancel(
@@ -155,6 +169,7 @@ class TestJobs:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_cancel(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `job_id` but received ''"):
@@ -168,6 +183,7 @@ class TestAsyncJobs:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncTelnyx) -> None:
         job = await async_client.ai.fine_tuning.jobs.create(
@@ -176,6 +192,7 @@ class TestAsyncJobs:
         )
         assert_matches_type(FineTuningJob, job, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncTelnyx) -> None:
         job = await async_client.ai.fine_tuning.jobs.create(
@@ -186,6 +203,7 @@ class TestAsyncJobs:
         )
         assert_matches_type(FineTuningJob, job, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.ai.fine_tuning.jobs.with_raw_response.create(
@@ -198,6 +216,7 @@ class TestAsyncJobs:
         job = await response.parse()
         assert_matches_type(FineTuningJob, job, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncTelnyx) -> None:
         async with async_client.ai.fine_tuning.jobs.with_streaming_response.create(
@@ -212,6 +231,7 @@ class TestAsyncJobs:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
         job = await async_client.ai.fine_tuning.jobs.retrieve(
@@ -219,6 +239,7 @@ class TestAsyncJobs:
         )
         assert_matches_type(FineTuningJob, job, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.ai.fine_tuning.jobs.with_raw_response.retrieve(
@@ -230,6 +251,7 @@ class TestAsyncJobs:
         job = await response.parse()
         assert_matches_type(FineTuningJob, job, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         async with async_client.ai.fine_tuning.jobs.with_streaming_response.retrieve(
@@ -243,6 +265,7 @@ class TestAsyncJobs:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `job_id` but received ''"):
@@ -250,11 +273,13 @@ class TestAsyncJobs:
                 "",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         job = await async_client.ai.fine_tuning.jobs.list()
         assert_matches_type(JobListResponse, job, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.ai.fine_tuning.jobs.with_raw_response.list()
@@ -264,6 +289,7 @@ class TestAsyncJobs:
         job = await response.parse()
         assert_matches_type(JobListResponse, job, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncTelnyx) -> None:
         async with async_client.ai.fine_tuning.jobs.with_streaming_response.list() as response:
@@ -275,6 +301,7 @@ class TestAsyncJobs:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_cancel(self, async_client: AsyncTelnyx) -> None:
         job = await async_client.ai.fine_tuning.jobs.cancel(
@@ -282,6 +309,7 @@ class TestAsyncJobs:
         )
         assert_matches_type(FineTuningJob, job, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_cancel(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.ai.fine_tuning.jobs.with_raw_response.cancel(
@@ -293,6 +321,7 @@ class TestAsyncJobs:
         job = await response.parse()
         assert_matches_type(FineTuningJob, job, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_cancel(self, async_client: AsyncTelnyx) -> None:
         async with async_client.ai.fine_tuning.jobs.with_streaming_response.cancel(
@@ -306,6 +335,7 @@ class TestAsyncJobs:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_cancel(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `job_id` but received ''"):

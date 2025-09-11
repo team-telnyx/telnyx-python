@@ -23,6 +23,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestFaxApplications:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create(self, client: Telnyx) -> None:
         fax_application = client.fax_applications.create(
@@ -31,6 +32,7 @@ class TestFaxApplications:
         )
         assert_matches_type(FaxApplicationCreateResponse, fax_application, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create_with_all_params(self, client: Telnyx) -> None:
         fax_application = client.fax_applications.create(
@@ -53,6 +55,7 @@ class TestFaxApplications:
         )
         assert_matches_type(FaxApplicationCreateResponse, fax_application, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: Telnyx) -> None:
         response = client.fax_applications.with_raw_response.create(
@@ -65,6 +68,7 @@ class TestFaxApplications:
         fax_application = response.parse()
         assert_matches_type(FaxApplicationCreateResponse, fax_application, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: Telnyx) -> None:
         with client.fax_applications.with_streaming_response.create(
@@ -79,6 +83,7 @@ class TestFaxApplications:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Telnyx) -> None:
         fax_application = client.fax_applications.retrieve(
@@ -86,6 +91,7 @@ class TestFaxApplications:
         )
         assert_matches_type(FaxApplicationRetrieveResponse, fax_application, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
         response = client.fax_applications.with_raw_response.retrieve(
@@ -97,6 +103,7 @@ class TestFaxApplications:
         fax_application = response.parse()
         assert_matches_type(FaxApplicationRetrieveResponse, fax_application, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
         with client.fax_applications.with_streaming_response.retrieve(
@@ -110,6 +117,7 @@ class TestFaxApplications:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_retrieve(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -117,6 +125,7 @@ class TestFaxApplications:
                 "",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_update(self, client: Telnyx) -> None:
         fax_application = client.fax_applications.update(
@@ -126,6 +135,7 @@ class TestFaxApplications:
         )
         assert_matches_type(FaxApplicationUpdateResponse, fax_application, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_update_with_all_params(self, client: Telnyx) -> None:
         fax_application = client.fax_applications.update(
@@ -150,6 +160,7 @@ class TestFaxApplications:
         )
         assert_matches_type(FaxApplicationUpdateResponse, fax_application, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_update(self, client: Telnyx) -> None:
         response = client.fax_applications.with_raw_response.update(
@@ -163,6 +174,7 @@ class TestFaxApplications:
         fax_application = response.parse()
         assert_matches_type(FaxApplicationUpdateResponse, fax_application, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_update(self, client: Telnyx) -> None:
         with client.fax_applications.with_streaming_response.update(
@@ -178,6 +190,7 @@ class TestFaxApplications:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_update(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -187,11 +200,13 @@ class TestFaxApplications:
                 webhook_event_url="https://example.com",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         fax_application = client.fax_applications.list()
         assert_matches_type(FaxApplicationListResponse, fax_application, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         fax_application = client.fax_applications.list(
@@ -207,6 +222,7 @@ class TestFaxApplications:
         )
         assert_matches_type(FaxApplicationListResponse, fax_application, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Telnyx) -> None:
         response = client.fax_applications.with_raw_response.list()
@@ -216,6 +232,7 @@ class TestFaxApplications:
         fax_application = response.parse()
         assert_matches_type(FaxApplicationListResponse, fax_application, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Telnyx) -> None:
         with client.fax_applications.with_streaming_response.list() as response:
@@ -227,6 +244,7 @@ class TestFaxApplications:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_delete(self, client: Telnyx) -> None:
         fax_application = client.fax_applications.delete(
@@ -234,6 +252,7 @@ class TestFaxApplications:
         )
         assert_matches_type(FaxApplicationDeleteResponse, fax_application, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_delete(self, client: Telnyx) -> None:
         response = client.fax_applications.with_raw_response.delete(
@@ -245,6 +264,7 @@ class TestFaxApplications:
         fax_application = response.parse()
         assert_matches_type(FaxApplicationDeleteResponse, fax_application, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_delete(self, client: Telnyx) -> None:
         with client.fax_applications.with_streaming_response.delete(
@@ -258,6 +278,7 @@ class TestFaxApplications:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_delete(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -271,6 +292,7 @@ class TestAsyncFaxApplications:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncTelnyx) -> None:
         fax_application = await async_client.fax_applications.create(
@@ -279,6 +301,7 @@ class TestAsyncFaxApplications:
         )
         assert_matches_type(FaxApplicationCreateResponse, fax_application, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncTelnyx) -> None:
         fax_application = await async_client.fax_applications.create(
@@ -301,6 +324,7 @@ class TestAsyncFaxApplications:
         )
         assert_matches_type(FaxApplicationCreateResponse, fax_application, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.fax_applications.with_raw_response.create(
@@ -313,6 +337,7 @@ class TestAsyncFaxApplications:
         fax_application = await response.parse()
         assert_matches_type(FaxApplicationCreateResponse, fax_application, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncTelnyx) -> None:
         async with async_client.fax_applications.with_streaming_response.create(
@@ -327,6 +352,7 @@ class TestAsyncFaxApplications:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
         fax_application = await async_client.fax_applications.retrieve(
@@ -334,6 +360,7 @@ class TestAsyncFaxApplications:
         )
         assert_matches_type(FaxApplicationRetrieveResponse, fax_application, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.fax_applications.with_raw_response.retrieve(
@@ -345,6 +372,7 @@ class TestAsyncFaxApplications:
         fax_application = await response.parse()
         assert_matches_type(FaxApplicationRetrieveResponse, fax_application, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         async with async_client.fax_applications.with_streaming_response.retrieve(
@@ -358,6 +386,7 @@ class TestAsyncFaxApplications:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -365,6 +394,7 @@ class TestAsyncFaxApplications:
                 "",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_update(self, async_client: AsyncTelnyx) -> None:
         fax_application = await async_client.fax_applications.update(
@@ -374,6 +404,7 @@ class TestAsyncFaxApplications:
         )
         assert_matches_type(FaxApplicationUpdateResponse, fax_application, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncTelnyx) -> None:
         fax_application = await async_client.fax_applications.update(
@@ -398,6 +429,7 @@ class TestAsyncFaxApplications:
         )
         assert_matches_type(FaxApplicationUpdateResponse, fax_application, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.fax_applications.with_raw_response.update(
@@ -411,6 +443,7 @@ class TestAsyncFaxApplications:
         fax_application = await response.parse()
         assert_matches_type(FaxApplicationUpdateResponse, fax_application, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncTelnyx) -> None:
         async with async_client.fax_applications.with_streaming_response.update(
@@ -426,6 +459,7 @@ class TestAsyncFaxApplications:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_update(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -435,11 +469,13 @@ class TestAsyncFaxApplications:
                 webhook_event_url="https://example.com",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         fax_application = await async_client.fax_applications.list()
         assert_matches_type(FaxApplicationListResponse, fax_application, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         fax_application = await async_client.fax_applications.list(
@@ -455,6 +491,7 @@ class TestAsyncFaxApplications:
         )
         assert_matches_type(FaxApplicationListResponse, fax_application, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.fax_applications.with_raw_response.list()
@@ -464,6 +501,7 @@ class TestAsyncFaxApplications:
         fax_application = await response.parse()
         assert_matches_type(FaxApplicationListResponse, fax_application, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncTelnyx) -> None:
         async with async_client.fax_applications.with_streaming_response.list() as response:
@@ -475,6 +513,7 @@ class TestAsyncFaxApplications:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_delete(self, async_client: AsyncTelnyx) -> None:
         fax_application = await async_client.fax_applications.delete(
@@ -482,6 +521,7 @@ class TestAsyncFaxApplications:
         )
         assert_matches_type(FaxApplicationDeleteResponse, fax_application, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.fax_applications.with_raw_response.delete(
@@ -493,6 +533,7 @@ class TestAsyncFaxApplications:
         fax_application = await response.parse()
         assert_matches_type(FaxApplicationDeleteResponse, fax_application, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncTelnyx) -> None:
         async with async_client.fax_applications.with_streaming_response.delete(
@@ -506,6 +547,7 @@ class TestAsyncFaxApplications:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):

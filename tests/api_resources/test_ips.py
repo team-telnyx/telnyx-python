@@ -23,6 +23,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestIPs:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create(self, client: Telnyx) -> None:
         ip = client.ips.create(
@@ -30,6 +31,7 @@ class TestIPs:
         )
         assert_matches_type(IPCreateResponse, ip, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create_with_all_params(self, client: Telnyx) -> None:
         ip = client.ips.create(
@@ -39,6 +41,7 @@ class TestIPs:
         )
         assert_matches_type(IPCreateResponse, ip, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: Telnyx) -> None:
         response = client.ips.with_raw_response.create(
@@ -50,6 +53,7 @@ class TestIPs:
         ip = response.parse()
         assert_matches_type(IPCreateResponse, ip, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: Telnyx) -> None:
         with client.ips.with_streaming_response.create(
@@ -63,6 +67,7 @@ class TestIPs:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Telnyx) -> None:
         ip = client.ips.retrieve(
@@ -70,6 +75,7 @@ class TestIPs:
         )
         assert_matches_type(IPRetrieveResponse, ip, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
         response = client.ips.with_raw_response.retrieve(
@@ -81,6 +87,7 @@ class TestIPs:
         ip = response.parse()
         assert_matches_type(IPRetrieveResponse, ip, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
         with client.ips.with_streaming_response.retrieve(
@@ -94,6 +101,7 @@ class TestIPs:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_retrieve(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -101,6 +109,7 @@ class TestIPs:
                 "",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_update(self, client: Telnyx) -> None:
         ip = client.ips.update(
@@ -109,6 +118,7 @@ class TestIPs:
         )
         assert_matches_type(IPUpdateResponse, ip, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_update_with_all_params(self, client: Telnyx) -> None:
         ip = client.ips.update(
@@ -119,6 +129,7 @@ class TestIPs:
         )
         assert_matches_type(IPUpdateResponse, ip, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_update(self, client: Telnyx) -> None:
         response = client.ips.with_raw_response.update(
@@ -131,6 +142,7 @@ class TestIPs:
         ip = response.parse()
         assert_matches_type(IPUpdateResponse, ip, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_update(self, client: Telnyx) -> None:
         with client.ips.with_streaming_response.update(
@@ -145,6 +157,7 @@ class TestIPs:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_update(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -153,11 +166,13 @@ class TestIPs:
                 ip_address="192.168.0.0",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         ip = client.ips.list()
         assert_matches_type(IPListResponse, ip, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         ip = client.ips.list(
@@ -173,6 +188,7 @@ class TestIPs:
         )
         assert_matches_type(IPListResponse, ip, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Telnyx) -> None:
         response = client.ips.with_raw_response.list()
@@ -182,6 +198,7 @@ class TestIPs:
         ip = response.parse()
         assert_matches_type(IPListResponse, ip, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Telnyx) -> None:
         with client.ips.with_streaming_response.list() as response:
@@ -193,6 +210,7 @@ class TestIPs:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_delete(self, client: Telnyx) -> None:
         ip = client.ips.delete(
@@ -200,6 +218,7 @@ class TestIPs:
         )
         assert_matches_type(IPDeleteResponse, ip, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_delete(self, client: Telnyx) -> None:
         response = client.ips.with_raw_response.delete(
@@ -211,6 +230,7 @@ class TestIPs:
         ip = response.parse()
         assert_matches_type(IPDeleteResponse, ip, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_delete(self, client: Telnyx) -> None:
         with client.ips.with_streaming_response.delete(
@@ -224,6 +244,7 @@ class TestIPs:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_delete(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -237,6 +258,7 @@ class TestAsyncIPs:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncTelnyx) -> None:
         ip = await async_client.ips.create(
@@ -244,6 +266,7 @@ class TestAsyncIPs:
         )
         assert_matches_type(IPCreateResponse, ip, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncTelnyx) -> None:
         ip = await async_client.ips.create(
@@ -253,6 +276,7 @@ class TestAsyncIPs:
         )
         assert_matches_type(IPCreateResponse, ip, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.ips.with_raw_response.create(
@@ -264,6 +288,7 @@ class TestAsyncIPs:
         ip = await response.parse()
         assert_matches_type(IPCreateResponse, ip, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncTelnyx) -> None:
         async with async_client.ips.with_streaming_response.create(
@@ -277,6 +302,7 @@ class TestAsyncIPs:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
         ip = await async_client.ips.retrieve(
@@ -284,6 +310,7 @@ class TestAsyncIPs:
         )
         assert_matches_type(IPRetrieveResponse, ip, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.ips.with_raw_response.retrieve(
@@ -295,6 +322,7 @@ class TestAsyncIPs:
         ip = await response.parse()
         assert_matches_type(IPRetrieveResponse, ip, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         async with async_client.ips.with_streaming_response.retrieve(
@@ -308,6 +336,7 @@ class TestAsyncIPs:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -315,6 +344,7 @@ class TestAsyncIPs:
                 "",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_update(self, async_client: AsyncTelnyx) -> None:
         ip = await async_client.ips.update(
@@ -323,6 +353,7 @@ class TestAsyncIPs:
         )
         assert_matches_type(IPUpdateResponse, ip, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncTelnyx) -> None:
         ip = await async_client.ips.update(
@@ -333,6 +364,7 @@ class TestAsyncIPs:
         )
         assert_matches_type(IPUpdateResponse, ip, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.ips.with_raw_response.update(
@@ -345,6 +377,7 @@ class TestAsyncIPs:
         ip = await response.parse()
         assert_matches_type(IPUpdateResponse, ip, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncTelnyx) -> None:
         async with async_client.ips.with_streaming_response.update(
@@ -359,6 +392,7 @@ class TestAsyncIPs:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_update(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -367,11 +401,13 @@ class TestAsyncIPs:
                 ip_address="192.168.0.0",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         ip = await async_client.ips.list()
         assert_matches_type(IPListResponse, ip, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         ip = await async_client.ips.list(
@@ -387,6 +423,7 @@ class TestAsyncIPs:
         )
         assert_matches_type(IPListResponse, ip, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.ips.with_raw_response.list()
@@ -396,6 +433,7 @@ class TestAsyncIPs:
         ip = await response.parse()
         assert_matches_type(IPListResponse, ip, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncTelnyx) -> None:
         async with async_client.ips.with_streaming_response.list() as response:
@@ -407,6 +445,7 @@ class TestAsyncIPs:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_delete(self, async_client: AsyncTelnyx) -> None:
         ip = await async_client.ips.delete(
@@ -414,6 +453,7 @@ class TestAsyncIPs:
         )
         assert_matches_type(IPDeleteResponse, ip, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.ips.with_raw_response.delete(
@@ -425,6 +465,7 @@ class TestAsyncIPs:
         ip = await response.parse()
         assert_matches_type(IPDeleteResponse, ip, path=["response"])
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncTelnyx) -> None:
         async with async_client.ips.with_streaming_response.delete(
@@ -438,6 +479,7 @@ class TestAsyncIPs:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
