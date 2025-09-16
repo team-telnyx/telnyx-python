@@ -712,20 +712,20 @@ class TestTelnyx:
     @mock.patch("telnyx._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter, client: Telnyx) -> None:
-        respx_mock.get("/").mock(side_effect=httpx.TimeoutException("Test timeout error"))
+        respx_mock.post("/number_orders").mock(side_effect=httpx.TimeoutException("Test timeout error"))
 
         with pytest.raises(APITimeoutError):
-            client.with_streaming_response.list_buckets().__enter__()
+            client.number_orders.with_streaming_response.create().__enter__()
 
         assert _get_open_connections(self.client) == 0
 
     @mock.patch("telnyx._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter, client: Telnyx) -> None:
-        respx_mock.get("/").mock(return_value=httpx.Response(500))
+        respx_mock.post("/number_orders").mock(return_value=httpx.Response(500))
 
         with pytest.raises(APIStatusError):
-            client.with_streaming_response.list_buckets().__enter__()
+            client.number_orders.with_streaming_response.create().__enter__()
         assert _get_open_connections(self.client) == 0
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
@@ -752,9 +752,9 @@ class TestTelnyx:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.get("/").mock(side_effect=retry_handler)
+        respx_mock.post("/number_orders").mock(side_effect=retry_handler)
 
-        response = client.with_raw_response.list_buckets()
+        response = client.number_orders.with_raw_response.create()
 
         assert response.retries_taken == failures_before_success
         assert int(response.http_request.headers.get("x-stainless-retry-count")) == failures_before_success
@@ -776,9 +776,9 @@ class TestTelnyx:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.get("/").mock(side_effect=retry_handler)
+        respx_mock.post("/number_orders").mock(side_effect=retry_handler)
 
-        response = client.with_raw_response.list_buckets(extra_headers={"x-stainless-retry-count": Omit()})
+        response = client.number_orders.with_raw_response.create(extra_headers={"x-stainless-retry-count": Omit()})
 
         assert len(response.http_request.headers.get_list("x-stainless-retry-count")) == 0
 
@@ -799,9 +799,9 @@ class TestTelnyx:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.get("/").mock(side_effect=retry_handler)
+        respx_mock.post("/number_orders").mock(side_effect=retry_handler)
 
-        response = client.with_raw_response.list_buckets(extra_headers={"x-stainless-retry-count": "42"})
+        response = client.number_orders.with_raw_response.create(extra_headers={"x-stainless-retry-count": "42"})
 
         assert response.http_request.headers.get("x-stainless-retry-count") == "42"
 
@@ -1527,20 +1527,20 @@ class TestAsyncTelnyx:
     @mock.patch("telnyx._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     async def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter, async_client: AsyncTelnyx) -> None:
-        respx_mock.get("/").mock(side_effect=httpx.TimeoutException("Test timeout error"))
+        respx_mock.post("/number_orders").mock(side_effect=httpx.TimeoutException("Test timeout error"))
 
         with pytest.raises(APITimeoutError):
-            await async_client.with_streaming_response.list_buckets().__aenter__()
+            await async_client.number_orders.with_streaming_response.create().__aenter__()
 
         assert _get_open_connections(self.client) == 0
 
     @mock.patch("telnyx._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     async def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter, async_client: AsyncTelnyx) -> None:
-        respx_mock.get("/").mock(return_value=httpx.Response(500))
+        respx_mock.post("/number_orders").mock(return_value=httpx.Response(500))
 
         with pytest.raises(APIStatusError):
-            await async_client.with_streaming_response.list_buckets().__aenter__()
+            await async_client.number_orders.with_streaming_response.create().__aenter__()
         assert _get_open_connections(self.client) == 0
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
@@ -1568,9 +1568,9 @@ class TestAsyncTelnyx:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.get("/").mock(side_effect=retry_handler)
+        respx_mock.post("/number_orders").mock(side_effect=retry_handler)
 
-        response = await client.with_raw_response.list_buckets()
+        response = await client.number_orders.with_raw_response.create()
 
         assert response.retries_taken == failures_before_success
         assert int(response.http_request.headers.get("x-stainless-retry-count")) == failures_before_success
@@ -1593,9 +1593,11 @@ class TestAsyncTelnyx:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.get("/").mock(side_effect=retry_handler)
+        respx_mock.post("/number_orders").mock(side_effect=retry_handler)
 
-        response = await client.with_raw_response.list_buckets(extra_headers={"x-stainless-retry-count": Omit()})
+        response = await client.number_orders.with_raw_response.create(
+            extra_headers={"x-stainless-retry-count": Omit()}
+        )
 
         assert len(response.http_request.headers.get_list("x-stainless-retry-count")) == 0
 
@@ -1617,9 +1619,9 @@ class TestAsyncTelnyx:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.get("/").mock(side_effect=retry_handler)
+        respx_mock.post("/number_orders").mock(side_effect=retry_handler)
 
-        response = await client.with_raw_response.list_buckets(extra_headers={"x-stainless-retry-count": "42"})
+        response = await client.number_orders.with_raw_response.create(extra_headers={"x-stainless-retry-count": "42"})
 
         assert response.http_request.headers.get("x-stainless-retry-count") == "42"
 
