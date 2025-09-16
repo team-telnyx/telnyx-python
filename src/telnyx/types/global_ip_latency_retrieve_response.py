@@ -97,19 +97,19 @@ class DataPercentileLatency_99(BaseModel):
 
 
 class DataPercentileLatency(BaseModel):
-    api_0: Optional[DataPercentileLatency_0] = FieldInfo(alias="0", default=None)
+    p0: Optional[DataPercentileLatency_0] = FieldInfo(alias="0", default=None)
 
-    api_100: Optional[DataPercentileLatency_100] = FieldInfo(alias="100", default=None)
+    p100: Optional[DataPercentileLatency_100] = FieldInfo(alias="100", default=None)
 
-    api_25: Optional[DataPercentileLatency_25] = FieldInfo(alias="25", default=None)
+    p25: Optional[DataPercentileLatency_25] = FieldInfo(alias="25", default=None)
 
-    api_50: Optional[DataPercentileLatency_50] = FieldInfo(alias="50", default=None)
+    p50: Optional[DataPercentileLatency_50] = FieldInfo(alias="50", default=None)
 
-    api_75: Optional[DataPercentileLatency_75] = FieldInfo(alias="75", default=None)
+    p75: Optional[DataPercentileLatency_75] = FieldInfo(alias="75", default=None)
 
-    api_90: Optional[DataPercentileLatency_90] = FieldInfo(alias="90", default=None)
+    p90: Optional[DataPercentileLatency_90] = FieldInfo(alias="90", default=None)
 
-    api_99: Optional[DataPercentileLatency_99] = FieldInfo(alias="99", default=None)
+    p99: Optional[DataPercentileLatency_99] = FieldInfo(alias="99", default=None)
 
 
 class DataProberLocation(BaseModel):

@@ -32,8 +32,13 @@ client = Telnyx(
     api_key=os.environ.get("TELNYX_API_KEY"),  # This is the default and can be omitted
 )
 
-response = client.list_buckets()
-print(response.buckets)
+response = client.calls.dial(
+    connection_id="conn12345",
+    from_="+15557654321",
+    to="+15551234567",
+    webhook_url="https://your-webhook.url/events",
+)
+print(response.data)
 ```
 
 While you can provide an `api_key` keyword argument,
@@ -56,8 +61,13 @@ client = AsyncTelnyx(
 
 
 async def main() -> None:
-    response = await client.list_buckets()
-    print(response.buckets)
+    response = await client.calls.dial(
+        connection_id="conn12345",
+        from_="+15557654321",
+        to="+15551234567",
+        webhook_url="https://your-webhook.url/events",
+    )
+    print(response.data)
 
 
 asyncio.run(main())
@@ -89,8 +99,13 @@ async def main() -> None:
         api_key="My API Key",
         http_client=DefaultAioHttpClient(),
     ) as client:
-        response = await client.list_buckets()
-        print(response.buckets)
+        response = await client.calls.dial(
+            connection_id="conn12345",
+            from_="+15557654321",
+            to="+15551234567",
+            webhook_url="https://your-webhook.url/events",
+        )
+        print(response.data)
 
 
 asyncio.run(main())
@@ -114,10 +129,24 @@ from telnyx import Telnyx
 
 client = Telnyx()
 
-access_ip_addresses = client.access_ip_address.list(
-    filter={},
+response = client.calls.dial(
+    connection_id="7267xxxxxxxxxxxxxx",
+    from_="+18005550101",
+    to="+18005550100 or sip:username@sip.telnyx.com",
+    answering_machine_detection_config={
+        "after_greeting_silence_millis": 1000,
+        "between_words_silence_millis": 1000,
+        "greeting_duration_millis": 1000,
+        "greeting_silence_duration_millis": 2000,
+        "greeting_total_analysis_time_millis": 50000,
+        "initial_silence_millis": 1000,
+        "maximum_number_of_words": 1000,
+        "maximum_word_length_millis": 2000,
+        "silence_threshold": 512,
+        "total_analysis_time_millis": 5000,
+    },
 )
-print(access_ip_addresses.filter)
+print(response.answering_machine_detection_config)
 ```
 
 ## File uploads
@@ -154,7 +183,9 @@ from telnyx import Telnyx
 client = Telnyx()
 
 try:
-    client.list_buckets()
+    client.number_orders.create(
+        phone_numbers=[{"phone_number": "+15558675309"}],
+    )
 except telnyx.APIConnectionError as e:
     print("The server could not be reached")
     print(e.__cause__)  # an underlying Exception, likely raised within httpx.
@@ -197,7 +228,9 @@ client = Telnyx(
 )
 
 # Or, configure per-request:
-client.with_options(max_retries=5).list_buckets()
+client.with_options(max_retries=5).number_orders.create(
+    phone_numbers=[{"phone_number": "+15558675309"}],
+)
 ```
 
 ### Timeouts
@@ -220,7 +253,9 @@ client = Telnyx(
 )
 
 # Override per-request:
-client.with_options(timeout=5.0).list_buckets()
+client.with_options(timeout=5.0).number_orders.create(
+    phone_numbers=[{"phone_number": "+15558675309"}],
+)
 ```
 
 On timeout, an `APITimeoutError` is thrown.
@@ -261,11 +296,15 @@ The "raw" Response object can be accessed by prefixing `.with_raw_response.` to 
 from telnyx import Telnyx
 
 client = Telnyx()
-response = client.with_raw_response.list_buckets()
+response = client.number_orders.with_raw_response.create(
+    phone_numbers=[{
+        "phone_number": "+15558675309"
+    }],
+)
 print(response.headers.get('X-My-Header'))
 
-client = response.parse()  # get the object that `list_buckets()` would have returned
-print(client.buckets)
+number_order = response.parse()  # get the object that `number_orders.create()` would have returned
+print(number_order.data)
 ```
 
 These methods return an [`APIResponse`](https://github.com/team-telnyx/telnyx-python/tree/master/src/telnyx/_response.py) object.
@@ -279,7 +318,9 @@ The above interface eagerly reads the full response body when you make the reque
 To stream the response body, use `.with_streaming_response` instead, which requires a context manager and only reads the response body once you call `.read()`, `.text()`, `.json()`, `.iter_bytes()`, `.iter_text()`, `.iter_lines()` or `.parse()`. In the async client, these are async methods.
 
 ```python
-with client.with_streaming_response.list_buckets() as response:
+with client.number_orders.with_streaming_response.create(
+    phone_numbers=[{"phone_number": "+15558675309"}],
+) as response:
     print(response.headers.get("X-My-Header"))
 
     for line in response.iter_lines():
