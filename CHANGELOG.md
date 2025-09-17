@@ -1,5 +1,20 @@
 # Changelog
 
+## 3.5.0-alpha (2025-09-17)
+
+Full Changelog: [v3.4.0-alpha...v3.5.0-alpha](https://github.com/team-telnyx/telnyx-python/compare/v3.4.0-alpha...v3.5.0-alpha)
+
+### Features
+
+* **api:** manual updates ([d4fd511](https://github.com/team-telnyx/telnyx-python/commit/d4fd5118081b91c12d3bf2a77c0ba1f12a7a04cb))
+* **api:** manual updates ([0eb047b](https://github.com/team-telnyx/telnyx-python/commit/0eb047bc54d338569aa15df91c1ebf7f741f3ec8))
+* **api:** rename enums with problematic characters ([1334c75](https://github.com/team-telnyx/telnyx-python/commit/1334c755da81fe115f35af23fceb1064fd3c2bc5))
+
+
+### Chores
+
+* **internal:** update pydantic dependency ([09a43dc](https://github.com/team-telnyx/telnyx-python/commit/09a43dc632831b1d7ae2f571a8d426cb57422526))
+
 ## 3.4.0-alpha (2025-09-09)
 
 Full Changelog: [v3.3.0-alpha...v3.4.0-alpha](https://github.com/team-telnyx/telnyx-python/compare/v3.3.0-alpha...v3.4.0-alpha)
