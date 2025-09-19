@@ -12,7 +12,7 @@ from .insights import (
     InsightsResourceWithStreamingResponse,
     AsyncInsightsResourceWithStreamingResponse,
 )
-from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ....._utils import maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
@@ -69,7 +69,7 @@ class InsightGroupsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InsightTemplateGroupDetail:
         """
         Get insight group by ID
@@ -99,15 +99,15 @@ class InsightGroupsResource(SyncAPIResource):
         self,
         group_id: str,
         *,
-        description: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        webhook: str | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        name: str | Omit = omit,
+        webhook: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InsightTemplateGroupDetail:
         """
         Update an insight template group
@@ -150,7 +150,7 @@ class InsightGroupsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Delete insight group by ID
@@ -180,14 +180,14 @@ class InsightGroupsResource(SyncAPIResource):
         self,
         *,
         name: str,
-        description: str | NotGiven = NOT_GIVEN,
-        webhook: str | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        webhook: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InsightTemplateGroupDetail:
         """
         Create a new insight group
@@ -220,13 +220,13 @@ class InsightGroupsResource(SyncAPIResource):
     def retrieve_insight_groups(
         self,
         *,
-        page: insight_group_retrieve_insight_groups_params.Page | NotGiven = NOT_GIVEN,
+        page: insight_group_retrieve_insight_groups_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InsightGroupRetrieveInsightGroupsResponse:
         """
         Get all insight groups
@@ -291,7 +291,7 @@ class AsyncInsightGroupsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InsightTemplateGroupDetail:
         """
         Get insight group by ID
@@ -321,15 +321,15 @@ class AsyncInsightGroupsResource(AsyncAPIResource):
         self,
         group_id: str,
         *,
-        description: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        webhook: str | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        name: str | Omit = omit,
+        webhook: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InsightTemplateGroupDetail:
         """
         Update an insight template group
@@ -372,7 +372,7 @@ class AsyncInsightGroupsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Delete insight group by ID
@@ -402,14 +402,14 @@ class AsyncInsightGroupsResource(AsyncAPIResource):
         self,
         *,
         name: str,
-        description: str | NotGiven = NOT_GIVEN,
-        webhook: str | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        webhook: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InsightTemplateGroupDetail:
         """
         Create a new insight group
@@ -442,13 +442,13 @@ class AsyncInsightGroupsResource(AsyncAPIResource):
     async def retrieve_insight_groups(
         self,
         *,
-        page: insight_group_retrieve_insight_groups_params.Page | NotGiven = NOT_GIVEN,
+        page: insight_group_retrieve_insight_groups_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InsightGroupRetrieveInsightGroupsResponse:
         """
         Get all insight groups

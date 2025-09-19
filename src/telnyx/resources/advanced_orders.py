@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..types import advanced_order_create_params, advanced_order_update_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -46,21 +46,20 @@ class AdvancedOrdersResource(SyncAPIResource):
     def create(
         self,
         *,
-        area_code: str | NotGiven = NOT_GIVEN,
-        comments: str | NotGiven = NOT_GIVEN,
-        country_code: str | NotGiven = NOT_GIVEN,
-        customer_reference: str | NotGiven = NOT_GIVEN,
-        features: List[Literal["sms", "mms", "voice", "fax", "emergency"]] | NotGiven = NOT_GIVEN,
-        phone_number_type: Literal["local", "mobile", "toll_free", "shared_cost", "national", "landline"]
-        | NotGiven = NOT_GIVEN,
-        quantity: int | NotGiven = NOT_GIVEN,
-        requirement_group_id: str | NotGiven = NOT_GIVEN,
+        area_code: str | Omit = omit,
+        comments: str | Omit = omit,
+        country_code: str | Omit = omit,
+        customer_reference: str | Omit = omit,
+        features: List[Literal["sms", "mms", "voice", "fax", "emergency"]] | Omit = omit,
+        phone_number_type: Literal["local", "mobile", "toll_free", "shared_cost", "national", "landline"] | Omit = omit,
+        quantity: int | Omit = omit,
+        requirement_group_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Create Advanced Order
@@ -106,7 +105,7 @@ class AdvancedOrdersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Get Advanced Order
@@ -134,21 +133,20 @@ class AdvancedOrdersResource(SyncAPIResource):
         self,
         order_id: str,
         *,
-        area_code: str | NotGiven = NOT_GIVEN,
-        comments: str | NotGiven = NOT_GIVEN,
-        country_code: str | NotGiven = NOT_GIVEN,
-        customer_reference: str | NotGiven = NOT_GIVEN,
-        features: List[Literal["sms", "mms", "voice", "fax", "emergency"]] | NotGiven = NOT_GIVEN,
-        phone_number_type: Literal["local", "mobile", "toll_free", "shared_cost", "national", "landline"]
-        | NotGiven = NOT_GIVEN,
-        quantity: int | NotGiven = NOT_GIVEN,
-        requirement_group_id: str | NotGiven = NOT_GIVEN,
+        area_code: str | Omit = omit,
+        comments: str | Omit = omit,
+        country_code: str | Omit = omit,
+        customer_reference: str | Omit = omit,
+        features: List[Literal["sms", "mms", "voice", "fax", "emergency"]] | Omit = omit,
+        phone_number_type: Literal["local", "mobile", "toll_free", "shared_cost", "national", "landline"] | Omit = omit,
+        quantity: int | Omit = omit,
+        requirement_group_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Update Advanced Order
@@ -195,7 +193,7 @@ class AdvancedOrdersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """List Advanced Orders"""
         return self._get(
@@ -230,21 +228,20 @@ class AsyncAdvancedOrdersResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        area_code: str | NotGiven = NOT_GIVEN,
-        comments: str | NotGiven = NOT_GIVEN,
-        country_code: str | NotGiven = NOT_GIVEN,
-        customer_reference: str | NotGiven = NOT_GIVEN,
-        features: List[Literal["sms", "mms", "voice", "fax", "emergency"]] | NotGiven = NOT_GIVEN,
-        phone_number_type: Literal["local", "mobile", "toll_free", "shared_cost", "national", "landline"]
-        | NotGiven = NOT_GIVEN,
-        quantity: int | NotGiven = NOT_GIVEN,
-        requirement_group_id: str | NotGiven = NOT_GIVEN,
+        area_code: str | Omit = omit,
+        comments: str | Omit = omit,
+        country_code: str | Omit = omit,
+        customer_reference: str | Omit = omit,
+        features: List[Literal["sms", "mms", "voice", "fax", "emergency"]] | Omit = omit,
+        phone_number_type: Literal["local", "mobile", "toll_free", "shared_cost", "national", "landline"] | Omit = omit,
+        quantity: int | Omit = omit,
+        requirement_group_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Create Advanced Order
@@ -290,7 +287,7 @@ class AsyncAdvancedOrdersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Get Advanced Order
@@ -318,21 +315,20 @@ class AsyncAdvancedOrdersResource(AsyncAPIResource):
         self,
         order_id: str,
         *,
-        area_code: str | NotGiven = NOT_GIVEN,
-        comments: str | NotGiven = NOT_GIVEN,
-        country_code: str | NotGiven = NOT_GIVEN,
-        customer_reference: str | NotGiven = NOT_GIVEN,
-        features: List[Literal["sms", "mms", "voice", "fax", "emergency"]] | NotGiven = NOT_GIVEN,
-        phone_number_type: Literal["local", "mobile", "toll_free", "shared_cost", "national", "landline"]
-        | NotGiven = NOT_GIVEN,
-        quantity: int | NotGiven = NOT_GIVEN,
-        requirement_group_id: str | NotGiven = NOT_GIVEN,
+        area_code: str | Omit = omit,
+        comments: str | Omit = omit,
+        country_code: str | Omit = omit,
+        customer_reference: str | Omit = omit,
+        features: List[Literal["sms", "mms", "voice", "fax", "emergency"]] | Omit = omit,
+        phone_number_type: Literal["local", "mobile", "toll_free", "shared_cost", "national", "landline"] | Omit = omit,
+        quantity: int | Omit = omit,
+        requirement_group_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Update Advanced Order
@@ -379,7 +375,7 @@ class AsyncAdvancedOrdersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """List Advanced Orders"""
         return await self._get(

@@ -12,7 +12,7 @@ from .actions import (
     ActionsResourceWithStreamingResponse,
     AsyncActionsResourceWithStreamingResponse,
 )
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -61,13 +61,13 @@ class MigrationsResource(SyncAPIResource):
         source_id: str,
         target_bucket_name: str,
         target_region: str,
-        refresh: bool | NotGiven = NOT_GIVEN,
+        refresh: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MigrationCreateResponse:
         """Initiate a migration of data from an external provider into Telnyx Cloud
         Storage.
@@ -119,7 +119,7 @@ class MigrationsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MigrationRetrieveResponse:
         """
         Get a Migration
@@ -151,7 +151,7 @@ class MigrationsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MigrationListResponse:
         """List all Migrations"""
         return self._get(
@@ -193,13 +193,13 @@ class AsyncMigrationsResource(AsyncAPIResource):
         source_id: str,
         target_bucket_name: str,
         target_region: str,
-        refresh: bool | NotGiven = NOT_GIVEN,
+        refresh: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MigrationCreateResponse:
         """Initiate a migration of data from an external provider into Telnyx Cloud
         Storage.
@@ -251,7 +251,7 @@ class AsyncMigrationsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MigrationRetrieveResponse:
         """
         Get a Migration
@@ -283,7 +283,7 @@ class AsyncMigrationsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MigrationListResponse:
         """List all Migrations"""
         return await self._get(

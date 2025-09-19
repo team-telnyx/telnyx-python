@@ -7,7 +7,7 @@ from typing import Iterable
 import httpx
 
 from ..types import notification_setting_list_params, notification_setting_create_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -49,16 +49,16 @@ class NotificationSettingsResource(SyncAPIResource):
     def create(
         self,
         *,
-        notification_channel_id: str | NotGiven = NOT_GIVEN,
-        notification_event_condition_id: str | NotGiven = NOT_GIVEN,
-        notification_profile_id: str | NotGiven = NOT_GIVEN,
-        parameters: Iterable[notification_setting_create_params.Parameter] | NotGiven = NOT_GIVEN,
+        notification_channel_id: str | Omit = omit,
+        notification_event_condition_id: str | Omit = omit,
+        notification_profile_id: str | Omit = omit,
+        parameters: Iterable[notification_setting_create_params.Parameter] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NotificationSettingCreateResponse:
         """
         Add a notification setting.
@@ -104,7 +104,7 @@ class NotificationSettingsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NotificationSettingRetrieveResponse:
         """
         Get a notification setting.
@@ -131,14 +131,14 @@ class NotificationSettingsResource(SyncAPIResource):
     def list(
         self,
         *,
-        filter: notification_setting_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: notification_setting_list_params.Page | NotGiven = NOT_GIVEN,
+        filter: notification_setting_list_params.Filter | Omit = omit,
+        page: notification_setting_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NotificationSettingListResponse:
         """
         List notification settings.
@@ -188,7 +188,7 @@ class NotificationSettingsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NotificationSettingDeleteResponse:
         """
         Delete a notification setting.
@@ -236,16 +236,16 @@ class AsyncNotificationSettingsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        notification_channel_id: str | NotGiven = NOT_GIVEN,
-        notification_event_condition_id: str | NotGiven = NOT_GIVEN,
-        notification_profile_id: str | NotGiven = NOT_GIVEN,
-        parameters: Iterable[notification_setting_create_params.Parameter] | NotGiven = NOT_GIVEN,
+        notification_channel_id: str | Omit = omit,
+        notification_event_condition_id: str | Omit = omit,
+        notification_profile_id: str | Omit = omit,
+        parameters: Iterable[notification_setting_create_params.Parameter] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NotificationSettingCreateResponse:
         """
         Add a notification setting.
@@ -291,7 +291,7 @@ class AsyncNotificationSettingsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NotificationSettingRetrieveResponse:
         """
         Get a notification setting.
@@ -318,14 +318,14 @@ class AsyncNotificationSettingsResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        filter: notification_setting_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: notification_setting_list_params.Page | NotGiven = NOT_GIVEN,
+        filter: notification_setting_list_params.Filter | Omit = omit,
+        page: notification_setting_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NotificationSettingListResponse:
         """
         List notification settings.
@@ -375,7 +375,7 @@ class AsyncNotificationSettingsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NotificationSettingDeleteResponse:
         """
         Delete a notification setting.

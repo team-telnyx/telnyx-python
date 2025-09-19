@@ -7,7 +7,7 @@ from datetime import datetime
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -80,14 +80,14 @@ class RequestsResource(SyncAPIResource):
         production_message_content: str,
         use_case: UseCaseCategories,
         use_case_summary: str,
-        business_addr2: str | NotGiven = NOT_GIVEN,
-        webhook_url: str | NotGiven = NOT_GIVEN,
+        business_addr2: str | Omit = omit,
+        webhook_url: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VerificationRequestEgress:
         """
         Submit a new tollfree verification request
@@ -190,7 +190,7 @@ class RequestsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VerificationRequestStatus:
         """
         Get a single verification request by its ID.
@@ -237,14 +237,14 @@ class RequestsResource(SyncAPIResource):
         production_message_content: str,
         use_case: UseCaseCategories,
         use_case_summary: str,
-        business_addr2: str | NotGiven = NOT_GIVEN,
-        webhook_url: str | NotGiven = NOT_GIVEN,
+        business_addr2: str | Omit = omit,
+        webhook_url: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VerificationRequestEgress:
         """Update an existing tollfree verification request.
 
@@ -347,16 +347,16 @@ class RequestsResource(SyncAPIResource):
         *,
         page: int,
         page_size: int,
-        date_end: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        date_start: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        phone_number: str | NotGiven = NOT_GIVEN,
-        status: TfVerificationStatus | NotGiven = NOT_GIVEN,
+        date_end: Union[str, datetime] | Omit = omit,
+        date_start: Union[str, datetime] | Omit = omit,
+        phone_number: str | Omit = omit,
+        status: TfVerificationStatus | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RequestListResponse:
         """
         Get a list of previously-submitted tollfree verification requests
@@ -407,7 +407,7 @@ class RequestsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Delete a verification request
@@ -480,14 +480,14 @@ class AsyncRequestsResource(AsyncAPIResource):
         production_message_content: str,
         use_case: UseCaseCategories,
         use_case_summary: str,
-        business_addr2: str | NotGiven = NOT_GIVEN,
-        webhook_url: str | NotGiven = NOT_GIVEN,
+        business_addr2: str | Omit = omit,
+        webhook_url: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VerificationRequestEgress:
         """
         Submit a new tollfree verification request
@@ -590,7 +590,7 @@ class AsyncRequestsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VerificationRequestStatus:
         """
         Get a single verification request by its ID.
@@ -637,14 +637,14 @@ class AsyncRequestsResource(AsyncAPIResource):
         production_message_content: str,
         use_case: UseCaseCategories,
         use_case_summary: str,
-        business_addr2: str | NotGiven = NOT_GIVEN,
-        webhook_url: str | NotGiven = NOT_GIVEN,
+        business_addr2: str | Omit = omit,
+        webhook_url: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VerificationRequestEgress:
         """Update an existing tollfree verification request.
 
@@ -747,16 +747,16 @@ class AsyncRequestsResource(AsyncAPIResource):
         *,
         page: int,
         page_size: int,
-        date_end: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        date_start: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        phone_number: str | NotGiven = NOT_GIVEN,
-        status: TfVerificationStatus | NotGiven = NOT_GIVEN,
+        date_end: Union[str, datetime] | Omit = omit,
+        date_start: Union[str, datetime] | Omit = omit,
+        phone_number: str | Omit = omit,
+        status: TfVerificationStatus | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RequestListResponse:
         """
         Get a list of previously-submitted tollfree verification requests
@@ -807,7 +807,7 @@ class AsyncRequestsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Delete a verification request

@@ -7,7 +7,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..types import integration_secret_list_params, integration_secret_create_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from .._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -49,15 +49,15 @@ class IntegrationSecretsResource(SyncAPIResource):
         *,
         identifier: str,
         type: Literal["bearer", "basic"],
-        token: str | NotGiven = NOT_GIVEN,
-        password: str | NotGiven = NOT_GIVEN,
-        username: str | NotGiven = NOT_GIVEN,
+        token: str | Omit = omit,
+        password: str | Omit = omit,
+        username: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IntegrationSecretCreateResponse:
         """
         Create a new secret with an associated identifier that can be used to securely
@@ -103,14 +103,14 @@ class IntegrationSecretsResource(SyncAPIResource):
     def list(
         self,
         *,
-        filter: integration_secret_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: integration_secret_list_params.Page | NotGiven = NOT_GIVEN,
+        filter: integration_secret_list_params.Filter | Omit = omit,
+        page: integration_secret_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IntegrationSecretListResponse:
         """
         Retrieve a list of all integration secrets configured by the user.
@@ -156,7 +156,7 @@ class IntegrationSecretsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Delete an integration secret given its ID.
@@ -207,15 +207,15 @@ class AsyncIntegrationSecretsResource(AsyncAPIResource):
         *,
         identifier: str,
         type: Literal["bearer", "basic"],
-        token: str | NotGiven = NOT_GIVEN,
-        password: str | NotGiven = NOT_GIVEN,
-        username: str | NotGiven = NOT_GIVEN,
+        token: str | Omit = omit,
+        password: str | Omit = omit,
+        username: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IntegrationSecretCreateResponse:
         """
         Create a new secret with an associated identifier that can be used to securely
@@ -261,14 +261,14 @@ class AsyncIntegrationSecretsResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        filter: integration_secret_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: integration_secret_list_params.Page | NotGiven = NOT_GIVEN,
+        filter: integration_secret_list_params.Filter | Omit = omit,
+        page: integration_secret_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IntegrationSecretListResponse:
         """
         Retrieve a list of all integration secrets configured by the user.
@@ -314,7 +314,7 @@ class AsyncIntegrationSecretsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Delete an integration secret given its ID.

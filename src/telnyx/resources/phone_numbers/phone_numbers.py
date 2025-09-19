@@ -31,7 +31,7 @@ from .actions import (
     ActionsResourceWithStreamingResponse,
     AsyncActionsResourceWithStreamingResponse,
 )
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from .messaging import (
@@ -128,7 +128,7 @@ class PhoneNumbersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PhoneNumberRetrieveResponse:
         """
         Retrieve a phone number
@@ -156,18 +156,18 @@ class PhoneNumbersResource(SyncAPIResource):
         self,
         id: str,
         *,
-        billing_group_id: str | NotGiven = NOT_GIVEN,
-        connection_id: str | NotGiven = NOT_GIVEN,
-        customer_reference: str | NotGiven = NOT_GIVEN,
-        external_pin: str | NotGiven = NOT_GIVEN,
-        hd_voice_enabled: bool | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        billing_group_id: str | Omit = omit,
+        connection_id: str | Omit = omit,
+        customer_reference: str | Omit = omit,
+        external_pin: str | Omit = omit,
+        hd_voice_enabled: bool | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PhoneNumberUpdateResponse:
         """
         Update a phone number
@@ -220,15 +220,15 @@ class PhoneNumbersResource(SyncAPIResource):
     def list(
         self,
         *,
-        filter: phone_number_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: phone_number_list_params.Page | NotGiven = NOT_GIVEN,
-        sort: Literal["purchased_at", "phone_number", "connection_name", "usage_payment_method"] | NotGiven = NOT_GIVEN,
+        filter: phone_number_list_params.Filter | Omit = omit,
+        page: phone_number_list_params.Page | Omit = omit,
+        sort: Literal["purchased_at", "phone_number", "connection_name", "usage_payment_method"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PhoneNumberListResponse:
         """
         List phone numbers
@@ -283,7 +283,7 @@ class PhoneNumbersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PhoneNumberDeleteResponse:
         """
         Delete a phone number
@@ -310,17 +310,17 @@ class PhoneNumbersResource(SyncAPIResource):
     def slim_list(
         self,
         *,
-        filter: phone_number_slim_list_params.Filter | NotGiven = NOT_GIVEN,
-        include_connection: bool | NotGiven = NOT_GIVEN,
-        include_tags: bool | NotGiven = NOT_GIVEN,
-        page: phone_number_slim_list_params.Page | NotGiven = NOT_GIVEN,
-        sort: Literal["purchased_at", "phone_number", "connection_name", "usage_payment_method"] | NotGiven = NOT_GIVEN,
+        filter: phone_number_slim_list_params.Filter | Omit = omit,
+        include_connection: bool | Omit = omit,
+        include_tags: bool | Omit = omit,
+        page: phone_number_slim_list_params.Page | Omit = omit,
+        sort: Literal["purchased_at", "phone_number", "connection_name", "usage_payment_method"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PhoneNumberSlimListResponse:
         """
         List phone numbers, This endpoint is a lighter version of the /phone_numbers
@@ -427,7 +427,7 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PhoneNumberRetrieveResponse:
         """
         Retrieve a phone number
@@ -455,18 +455,18 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        billing_group_id: str | NotGiven = NOT_GIVEN,
-        connection_id: str | NotGiven = NOT_GIVEN,
-        customer_reference: str | NotGiven = NOT_GIVEN,
-        external_pin: str | NotGiven = NOT_GIVEN,
-        hd_voice_enabled: bool | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        billing_group_id: str | Omit = omit,
+        connection_id: str | Omit = omit,
+        customer_reference: str | Omit = omit,
+        external_pin: str | Omit = omit,
+        hd_voice_enabled: bool | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PhoneNumberUpdateResponse:
         """
         Update a phone number
@@ -519,15 +519,15 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        filter: phone_number_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: phone_number_list_params.Page | NotGiven = NOT_GIVEN,
-        sort: Literal["purchased_at", "phone_number", "connection_name", "usage_payment_method"] | NotGiven = NOT_GIVEN,
+        filter: phone_number_list_params.Filter | Omit = omit,
+        page: phone_number_list_params.Page | Omit = omit,
+        sort: Literal["purchased_at", "phone_number", "connection_name", "usage_payment_method"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PhoneNumberListResponse:
         """
         List phone numbers
@@ -582,7 +582,7 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PhoneNumberDeleteResponse:
         """
         Delete a phone number
@@ -609,17 +609,17 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
     async def slim_list(
         self,
         *,
-        filter: phone_number_slim_list_params.Filter | NotGiven = NOT_GIVEN,
-        include_connection: bool | NotGiven = NOT_GIVEN,
-        include_tags: bool | NotGiven = NOT_GIVEN,
-        page: phone_number_slim_list_params.Page | NotGiven = NOT_GIVEN,
-        sort: Literal["purchased_at", "phone_number", "connection_name", "usage_payment_method"] | NotGiven = NOT_GIVEN,
+        filter: phone_number_slim_list_params.Filter | Omit = omit,
+        include_connection: bool | Omit = omit,
+        include_tags: bool | Omit = omit,
+        page: phone_number_slim_list_params.Page | Omit = omit,
+        sort: Literal["purchased_at", "phone_number", "connection_name", "usage_payment_method"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PhoneNumberSlimListResponse:
         """
         List phone numbers, This endpoint is a lighter version of the /phone_numbers

@@ -12,7 +12,7 @@ from .actions import (
     ActionsResourceWithStreamingResponse,
     AsyncActionsResourceWithStreamingResponse,
 )
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -65,13 +65,13 @@ class SessionsResource(SyncAPIResource):
         self,
         room_session_id: str,
         *,
-        include_participants: bool | NotGiven = NOT_GIVEN,
+        include_participants: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SessionRetrieveResponse:
         """
         View a room session.
@@ -106,15 +106,15 @@ class SessionsResource(SyncAPIResource):
     def list_0(
         self,
         *,
-        filter: session_list_0_params.Filter | NotGiven = NOT_GIVEN,
-        include_participants: bool | NotGiven = NOT_GIVEN,
-        page: session_list_0_params.Page | NotGiven = NOT_GIVEN,
+        filter: session_list_0_params.Filter | Omit = omit,
+        include_participants: bool | Omit = omit,
+        page: session_list_0_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SessionList0Response:
         """
         View a list of room sessions.
@@ -164,15 +164,15 @@ class SessionsResource(SyncAPIResource):
         self,
         room_id: str,
         *,
-        filter: session_list_1_params.Filter | NotGiven = NOT_GIVEN,
-        include_participants: bool | NotGiven = NOT_GIVEN,
-        page: session_list_1_params.Page | NotGiven = NOT_GIVEN,
+        filter: session_list_1_params.Filter | Omit = omit,
+        include_participants: bool | Omit = omit,
+        page: session_list_1_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SessionList1Response:
         """
         View a list of room sessions.
@@ -224,14 +224,14 @@ class SessionsResource(SyncAPIResource):
         self,
         room_session_id: str,
         *,
-        filter: session_retrieve_participants_params.Filter | NotGiven = NOT_GIVEN,
-        page: session_retrieve_participants_params.Page | NotGiven = NOT_GIVEN,
+        filter: session_retrieve_participants_params.Filter | Omit = omit,
+        page: session_retrieve_participants_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SessionRetrieveParticipantsResponse:
         """
         View a list of room participants.
@@ -305,13 +305,13 @@ class AsyncSessionsResource(AsyncAPIResource):
         self,
         room_session_id: str,
         *,
-        include_participants: bool | NotGiven = NOT_GIVEN,
+        include_participants: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SessionRetrieveResponse:
         """
         View a room session.
@@ -346,15 +346,15 @@ class AsyncSessionsResource(AsyncAPIResource):
     async def list_0(
         self,
         *,
-        filter: session_list_0_params.Filter | NotGiven = NOT_GIVEN,
-        include_participants: bool | NotGiven = NOT_GIVEN,
-        page: session_list_0_params.Page | NotGiven = NOT_GIVEN,
+        filter: session_list_0_params.Filter | Omit = omit,
+        include_participants: bool | Omit = omit,
+        page: session_list_0_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SessionList0Response:
         """
         View a list of room sessions.
@@ -404,15 +404,15 @@ class AsyncSessionsResource(AsyncAPIResource):
         self,
         room_id: str,
         *,
-        filter: session_list_1_params.Filter | NotGiven = NOT_GIVEN,
-        include_participants: bool | NotGiven = NOT_GIVEN,
-        page: session_list_1_params.Page | NotGiven = NOT_GIVEN,
+        filter: session_list_1_params.Filter | Omit = omit,
+        include_participants: bool | Omit = omit,
+        page: session_list_1_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SessionList1Response:
         """
         View a list of room sessions.
@@ -464,14 +464,14 @@ class AsyncSessionsResource(AsyncAPIResource):
         self,
         room_session_id: str,
         *,
-        filter: session_retrieve_participants_params.Filter | NotGiven = NOT_GIVEN,
-        page: session_retrieve_participants_params.Page | NotGiven = NOT_GIVEN,
+        filter: session_retrieve_participants_params.Filter | Omit = omit,
+        page: session_retrieve_participants_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SessionRetrieveParticipantsResponse:
         """
         View a list of room participants.

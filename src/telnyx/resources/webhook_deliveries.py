@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ..types import webhook_delivery_list_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -51,7 +51,7 @@ class WebhookDeliveriesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WebhookDeliveryRetrieveResponse:
         """
         Provides webhook_delivery debug data, such as timestamps, delivery status and
@@ -79,14 +79,14 @@ class WebhookDeliveriesResource(SyncAPIResource):
     def list(
         self,
         *,
-        filter: webhook_delivery_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: webhook_delivery_list_params.Page | NotGiven = NOT_GIVEN,
+        filter: webhook_delivery_list_params.Filter | Omit = omit,
+        page: webhook_delivery_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WebhookDeliveryListResponse:
         """
         Lists webhook_deliveries for the authenticated user
@@ -157,7 +157,7 @@ class AsyncWebhookDeliveriesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WebhookDeliveryRetrieveResponse:
         """
         Provides webhook_delivery debug data, such as timestamps, delivery status and
@@ -185,14 +185,14 @@ class AsyncWebhookDeliveriesResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        filter: webhook_delivery_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: webhook_delivery_list_params.Page | NotGiven = NOT_GIVEN,
+        filter: webhook_delivery_list_params.Filter | Omit = omit,
+        page: webhook_delivery_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WebhookDeliveryListResponse:
         """
         Lists webhook_deliveries for the authenticated user

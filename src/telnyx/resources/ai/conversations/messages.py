@@ -7,7 +7,7 @@ from datetime import datetime
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -49,19 +49,19 @@ class MessagesResource(SyncAPIResource):
         conversation_id: str,
         *,
         role: str,
-        content: str | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, Union[str, int, bool, SequenceNotStr[Union[str, int, bool]]]] | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        sent_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        tool_call_id: str | NotGiven = NOT_GIVEN,
-        tool_calls: Iterable[Dict[str, object]] | NotGiven = NOT_GIVEN,
-        tool_choice: Union[str, object] | NotGiven = NOT_GIVEN,
+        content: str | Omit = omit,
+        metadata: Dict[str, Union[str, int, bool, SequenceNotStr[Union[str, int, bool]]]] | Omit = omit,
+        name: str | Omit = omit,
+        sent_at: Union[str, datetime] | Omit = omit,
+        tool_call_id: str | Omit = omit,
+        tool_calls: Iterable[Dict[str, object]] | Omit = omit,
+        tool_choice: Union[str, object] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """Add a new message to the conversation.
 
@@ -111,7 +111,7 @@ class MessagesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessageListResponse:
         """
         Retrieve messages for a specific conversation, including tool calls made by the
@@ -162,19 +162,19 @@ class AsyncMessagesResource(AsyncAPIResource):
         conversation_id: str,
         *,
         role: str,
-        content: str | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, Union[str, int, bool, SequenceNotStr[Union[str, int, bool]]]] | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        sent_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        tool_call_id: str | NotGiven = NOT_GIVEN,
-        tool_calls: Iterable[Dict[str, object]] | NotGiven = NOT_GIVEN,
-        tool_choice: Union[str, object] | NotGiven = NOT_GIVEN,
+        content: str | Omit = omit,
+        metadata: Dict[str, Union[str, int, bool, SequenceNotStr[Union[str, int, bool]]]] | Omit = omit,
+        name: str | Omit = omit,
+        sent_at: Union[str, datetime] | Omit = omit,
+        tool_call_id: str | Omit = omit,
+        tool_calls: Iterable[Dict[str, object]] | Omit = omit,
+        tool_choice: Union[str, object] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """Add a new message to the conversation.
 
@@ -224,7 +224,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessageListResponse:
         """
         Retrieve messages for a specific conversation, including tool calls made by the

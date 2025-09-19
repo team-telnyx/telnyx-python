@@ -6,7 +6,7 @@ from typing import Mapping, cast
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, FileTypes
+from ...._types import Body, Omit, Query, Headers, NotGiven, FileTypes, omit, not_given
 from ...._utils import extract_files, maybe_transform, deepcopy_minimal, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -49,14 +49,14 @@ class SslCertificateResource(SyncAPIResource):
         self,
         bucket_name: str,
         *,
-        certificate: FileTypes | NotGiven = NOT_GIVEN,
-        private_key: FileTypes | NotGiven = NOT_GIVEN,
+        certificate: FileTypes | Omit = omit,
+        private_key: FileTypes | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SslCertificateCreateResponse:
         """
         Uploads an SSL certificate and its matching secret so that you can use Telnyx’s
@@ -107,7 +107,7 @@ class SslCertificateResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SslCertificateRetrieveResponse:
         """
         Returns the stored certificate detail of a bucket, if applicable.
@@ -140,7 +140,7 @@ class SslCertificateResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SslCertificateDeleteResponse:
         """
         Deletes an SSL certificate and its matching secret.
@@ -189,14 +189,14 @@ class AsyncSslCertificateResource(AsyncAPIResource):
         self,
         bucket_name: str,
         *,
-        certificate: FileTypes | NotGiven = NOT_GIVEN,
-        private_key: FileTypes | NotGiven = NOT_GIVEN,
+        certificate: FileTypes | Omit = omit,
+        private_key: FileTypes | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SslCertificateCreateResponse:
         """
         Uploads an SSL certificate and its matching secret so that you can use Telnyx’s
@@ -247,7 +247,7 @@ class AsyncSslCertificateResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SslCertificateRetrieveResponse:
         """
         Returns the stored certificate detail of a bucket, if applicable.
@@ -280,7 +280,7 @@ class AsyncSslCertificateResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SslCertificateDeleteResponse:
         """
         Deletes an SSL certificate and its matching secret.

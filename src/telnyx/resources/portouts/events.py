@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -51,7 +51,7 @@ class EventsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EventRetrieveResponse:
         """
         Show a specific port-out event.
@@ -78,14 +78,14 @@ class EventsResource(SyncAPIResource):
     def list(
         self,
         *,
-        filter: event_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: event_list_params.Page | NotGiven = NOT_GIVEN,
+        filter: event_list_params.Filter | Omit = omit,
+        page: event_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EventListResponse:
         """
         Returns a list of all port-out events.
@@ -133,7 +133,7 @@ class EventsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Republish a specific port-out event.
@@ -188,7 +188,7 @@ class AsyncEventsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EventRetrieveResponse:
         """
         Show a specific port-out event.
@@ -215,14 +215,14 @@ class AsyncEventsResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        filter: event_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: event_list_params.Page | NotGiven = NOT_GIVEN,
+        filter: event_list_params.Filter | Omit = omit,
+        page: event_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EventListResponse:
         """
         Returns a list of all port-out events.
@@ -270,7 +270,7 @@ class AsyncEventsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Republish a specific port-out event.

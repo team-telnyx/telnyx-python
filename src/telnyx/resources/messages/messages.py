@@ -24,7 +24,7 @@ from ...types import (
     message_send_short_code_params,
     message_send_number_pool_params,
 )
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -80,7 +80,7 @@ class MessagesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessageRetrieveResponse:
         """
         Note: This API endpoint can only retrieve messages that are no older than 10
@@ -116,7 +116,7 @@ class MessagesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessageCancelScheduledResponse:
         """Cancel a scheduled message that has not yet been sent.
 
@@ -146,23 +146,23 @@ class MessagesResource(SyncAPIResource):
         self,
         *,
         to: str,
-        auto_detect: bool | NotGiven = NOT_GIVEN,
-        from_: str | NotGiven = NOT_GIVEN,
-        media_urls: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        messaging_profile_id: str | NotGiven = NOT_GIVEN,
-        send_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        subject: str | NotGiven = NOT_GIVEN,
-        text: str | NotGiven = NOT_GIVEN,
-        type: Literal["SMS", "MMS"] | NotGiven = NOT_GIVEN,
-        use_profile_webhooks: bool | NotGiven = NOT_GIVEN,
-        webhook_failover_url: str | NotGiven = NOT_GIVEN,
-        webhook_url: str | NotGiven = NOT_GIVEN,
+        auto_detect: bool | Omit = omit,
+        from_: str | Omit = omit,
+        media_urls: SequenceNotStr[str] | Omit = omit,
+        messaging_profile_id: str | Omit = omit,
+        send_at: Union[str, datetime] | Omit = omit,
+        subject: str | Omit = omit,
+        text: str | Omit = omit,
+        type: Literal["SMS", "MMS"] | Omit = omit,
+        use_profile_webhooks: bool | Omit = omit,
+        webhook_failover_url: str | Omit = omit,
+        webhook_url: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessageScheduleResponse:
         """
         Schedule a message with a Phone Number, Alphanumeric Sender ID, Short Code or
@@ -249,23 +249,23 @@ class MessagesResource(SyncAPIResource):
         self,
         *,
         to: str,
-        auto_detect: bool | NotGiven = NOT_GIVEN,
-        from_: str | NotGiven = NOT_GIVEN,
-        media_urls: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        messaging_profile_id: str | NotGiven = NOT_GIVEN,
-        send_at: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        subject: str | NotGiven = NOT_GIVEN,
-        text: str | NotGiven = NOT_GIVEN,
-        type: Literal["SMS", "MMS"] | NotGiven = NOT_GIVEN,
-        use_profile_webhooks: bool | NotGiven = NOT_GIVEN,
-        webhook_failover_url: str | NotGiven = NOT_GIVEN,
-        webhook_url: str | NotGiven = NOT_GIVEN,
+        auto_detect: bool | Omit = omit,
+        from_: str | Omit = omit,
+        media_urls: SequenceNotStr[str] | Omit = omit,
+        messaging_profile_id: str | Omit = omit,
+        send_at: Union[str, datetime, None] | Omit = omit,
+        subject: str | Omit = omit,
+        text: str | Omit = omit,
+        type: Literal["SMS", "MMS"] | Omit = omit,
+        use_profile_webhooks: bool | Omit = omit,
+        webhook_failover_url: str | Omit = omit,
+        webhook_url: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessageSendResponse:
         """
         Send a message with a Phone Number, Alphanumeric Sender ID, Short Code or Number
@@ -353,18 +353,18 @@ class MessagesResource(SyncAPIResource):
         *,
         from_: str,
         to: SequenceNotStr[str],
-        media_urls: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        subject: str | NotGiven = NOT_GIVEN,
-        text: str | NotGiven = NOT_GIVEN,
-        use_profile_webhooks: bool | NotGiven = NOT_GIVEN,
-        webhook_failover_url: str | NotGiven = NOT_GIVEN,
-        webhook_url: str | NotGiven = NOT_GIVEN,
+        media_urls: SequenceNotStr[str] | Omit = omit,
+        subject: str | Omit = omit,
+        text: str | Omit = omit,
+        use_profile_webhooks: bool | Omit = omit,
+        webhook_failover_url: str | Omit = omit,
+        webhook_url: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessageSendGroupMmsResponse:
         """
         Send a group MMS message
@@ -423,20 +423,20 @@ class MessagesResource(SyncAPIResource):
         *,
         from_: str,
         to: str,
-        auto_detect: bool | NotGiven = NOT_GIVEN,
-        media_urls: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        subject: str | NotGiven = NOT_GIVEN,
-        text: str | NotGiven = NOT_GIVEN,
-        type: Literal["SMS", "MMS"] | NotGiven = NOT_GIVEN,
-        use_profile_webhooks: bool | NotGiven = NOT_GIVEN,
-        webhook_failover_url: str | NotGiven = NOT_GIVEN,
-        webhook_url: str | NotGiven = NOT_GIVEN,
+        auto_detect: bool | Omit = omit,
+        media_urls: SequenceNotStr[str] | Omit = omit,
+        subject: str | Omit = omit,
+        text: str | Omit = omit,
+        type: Literal["SMS", "MMS"] | Omit = omit,
+        use_profile_webhooks: bool | Omit = omit,
+        webhook_failover_url: str | Omit = omit,
+        webhook_url: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessageSendLongCodeResponse:
         """
         Send a long code message
@@ -506,20 +506,20 @@ class MessagesResource(SyncAPIResource):
         *,
         messaging_profile_id: str,
         to: str,
-        auto_detect: bool | NotGiven = NOT_GIVEN,
-        media_urls: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        subject: str | NotGiven = NOT_GIVEN,
-        text: str | NotGiven = NOT_GIVEN,
-        type: Literal["SMS", "MMS"] | NotGiven = NOT_GIVEN,
-        use_profile_webhooks: bool | NotGiven = NOT_GIVEN,
-        webhook_failover_url: str | NotGiven = NOT_GIVEN,
-        webhook_url: str | NotGiven = NOT_GIVEN,
+        auto_detect: bool | Omit = omit,
+        media_urls: SequenceNotStr[str] | Omit = omit,
+        subject: str | Omit = omit,
+        text: str | Omit = omit,
+        type: Literal["SMS", "MMS"] | Omit = omit,
+        use_profile_webhooks: bool | Omit = omit,
+        webhook_failover_url: str | Omit = omit,
+        webhook_url: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessageSendNumberPoolResponse:
         """
         Send a message using number pool
@@ -589,20 +589,20 @@ class MessagesResource(SyncAPIResource):
         *,
         from_: str,
         to: str,
-        auto_detect: bool | NotGiven = NOT_GIVEN,
-        media_urls: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        subject: str | NotGiven = NOT_GIVEN,
-        text: str | NotGiven = NOT_GIVEN,
-        type: Literal["SMS", "MMS"] | NotGiven = NOT_GIVEN,
-        use_profile_webhooks: bool | NotGiven = NOT_GIVEN,
-        webhook_failover_url: str | NotGiven = NOT_GIVEN,
-        webhook_url: str | NotGiven = NOT_GIVEN,
+        auto_detect: bool | Omit = omit,
+        media_urls: SequenceNotStr[str] | Omit = omit,
+        subject: str | Omit = omit,
+        text: str | Omit = omit,
+        type: Literal["SMS", "MMS"] | Omit = omit,
+        use_profile_webhooks: bool | Omit = omit,
+        webhook_failover_url: str | Omit = omit,
+        webhook_url: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessageSendShortCodeResponse:
         """
         Send a short code message
@@ -701,7 +701,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessageRetrieveResponse:
         """
         Note: This API endpoint can only retrieve messages that are no older than 10
@@ -737,7 +737,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessageCancelScheduledResponse:
         """Cancel a scheduled message that has not yet been sent.
 
@@ -767,23 +767,23 @@ class AsyncMessagesResource(AsyncAPIResource):
         self,
         *,
         to: str,
-        auto_detect: bool | NotGiven = NOT_GIVEN,
-        from_: str | NotGiven = NOT_GIVEN,
-        media_urls: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        messaging_profile_id: str | NotGiven = NOT_GIVEN,
-        send_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        subject: str | NotGiven = NOT_GIVEN,
-        text: str | NotGiven = NOT_GIVEN,
-        type: Literal["SMS", "MMS"] | NotGiven = NOT_GIVEN,
-        use_profile_webhooks: bool | NotGiven = NOT_GIVEN,
-        webhook_failover_url: str | NotGiven = NOT_GIVEN,
-        webhook_url: str | NotGiven = NOT_GIVEN,
+        auto_detect: bool | Omit = omit,
+        from_: str | Omit = omit,
+        media_urls: SequenceNotStr[str] | Omit = omit,
+        messaging_profile_id: str | Omit = omit,
+        send_at: Union[str, datetime] | Omit = omit,
+        subject: str | Omit = omit,
+        text: str | Omit = omit,
+        type: Literal["SMS", "MMS"] | Omit = omit,
+        use_profile_webhooks: bool | Omit = omit,
+        webhook_failover_url: str | Omit = omit,
+        webhook_url: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessageScheduleResponse:
         """
         Schedule a message with a Phone Number, Alphanumeric Sender ID, Short Code or
@@ -870,23 +870,23 @@ class AsyncMessagesResource(AsyncAPIResource):
         self,
         *,
         to: str,
-        auto_detect: bool | NotGiven = NOT_GIVEN,
-        from_: str | NotGiven = NOT_GIVEN,
-        media_urls: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        messaging_profile_id: str | NotGiven = NOT_GIVEN,
-        send_at: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        subject: str | NotGiven = NOT_GIVEN,
-        text: str | NotGiven = NOT_GIVEN,
-        type: Literal["SMS", "MMS"] | NotGiven = NOT_GIVEN,
-        use_profile_webhooks: bool | NotGiven = NOT_GIVEN,
-        webhook_failover_url: str | NotGiven = NOT_GIVEN,
-        webhook_url: str | NotGiven = NOT_GIVEN,
+        auto_detect: bool | Omit = omit,
+        from_: str | Omit = omit,
+        media_urls: SequenceNotStr[str] | Omit = omit,
+        messaging_profile_id: str | Omit = omit,
+        send_at: Union[str, datetime, None] | Omit = omit,
+        subject: str | Omit = omit,
+        text: str | Omit = omit,
+        type: Literal["SMS", "MMS"] | Omit = omit,
+        use_profile_webhooks: bool | Omit = omit,
+        webhook_failover_url: str | Omit = omit,
+        webhook_url: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessageSendResponse:
         """
         Send a message with a Phone Number, Alphanumeric Sender ID, Short Code or Number
@@ -974,18 +974,18 @@ class AsyncMessagesResource(AsyncAPIResource):
         *,
         from_: str,
         to: SequenceNotStr[str],
-        media_urls: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        subject: str | NotGiven = NOT_GIVEN,
-        text: str | NotGiven = NOT_GIVEN,
-        use_profile_webhooks: bool | NotGiven = NOT_GIVEN,
-        webhook_failover_url: str | NotGiven = NOT_GIVEN,
-        webhook_url: str | NotGiven = NOT_GIVEN,
+        media_urls: SequenceNotStr[str] | Omit = omit,
+        subject: str | Omit = omit,
+        text: str | Omit = omit,
+        use_profile_webhooks: bool | Omit = omit,
+        webhook_failover_url: str | Omit = omit,
+        webhook_url: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessageSendGroupMmsResponse:
         """
         Send a group MMS message
@@ -1044,20 +1044,20 @@ class AsyncMessagesResource(AsyncAPIResource):
         *,
         from_: str,
         to: str,
-        auto_detect: bool | NotGiven = NOT_GIVEN,
-        media_urls: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        subject: str | NotGiven = NOT_GIVEN,
-        text: str | NotGiven = NOT_GIVEN,
-        type: Literal["SMS", "MMS"] | NotGiven = NOT_GIVEN,
-        use_profile_webhooks: bool | NotGiven = NOT_GIVEN,
-        webhook_failover_url: str | NotGiven = NOT_GIVEN,
-        webhook_url: str | NotGiven = NOT_GIVEN,
+        auto_detect: bool | Omit = omit,
+        media_urls: SequenceNotStr[str] | Omit = omit,
+        subject: str | Omit = omit,
+        text: str | Omit = omit,
+        type: Literal["SMS", "MMS"] | Omit = omit,
+        use_profile_webhooks: bool | Omit = omit,
+        webhook_failover_url: str | Omit = omit,
+        webhook_url: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessageSendLongCodeResponse:
         """
         Send a long code message
@@ -1127,20 +1127,20 @@ class AsyncMessagesResource(AsyncAPIResource):
         *,
         messaging_profile_id: str,
         to: str,
-        auto_detect: bool | NotGiven = NOT_GIVEN,
-        media_urls: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        subject: str | NotGiven = NOT_GIVEN,
-        text: str | NotGiven = NOT_GIVEN,
-        type: Literal["SMS", "MMS"] | NotGiven = NOT_GIVEN,
-        use_profile_webhooks: bool | NotGiven = NOT_GIVEN,
-        webhook_failover_url: str | NotGiven = NOT_GIVEN,
-        webhook_url: str | NotGiven = NOT_GIVEN,
+        auto_detect: bool | Omit = omit,
+        media_urls: SequenceNotStr[str] | Omit = omit,
+        subject: str | Omit = omit,
+        text: str | Omit = omit,
+        type: Literal["SMS", "MMS"] | Omit = omit,
+        use_profile_webhooks: bool | Omit = omit,
+        webhook_failover_url: str | Omit = omit,
+        webhook_url: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessageSendNumberPoolResponse:
         """
         Send a message using number pool
@@ -1210,20 +1210,20 @@ class AsyncMessagesResource(AsyncAPIResource):
         *,
         from_: str,
         to: str,
-        auto_detect: bool | NotGiven = NOT_GIVEN,
-        media_urls: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        subject: str | NotGiven = NOT_GIVEN,
-        text: str | NotGiven = NOT_GIVEN,
-        type: Literal["SMS", "MMS"] | NotGiven = NOT_GIVEN,
-        use_profile_webhooks: bool | NotGiven = NOT_GIVEN,
-        webhook_failover_url: str | NotGiven = NOT_GIVEN,
-        webhook_url: str | NotGiven = NOT_GIVEN,
+        auto_detect: bool | Omit = omit,
+        media_urls: SequenceNotStr[str] | Omit = omit,
+        subject: str | Omit = omit,
+        text: str | Omit = omit,
+        type: Literal["SMS", "MMS"] | Omit = omit,
+        use_profile_webhooks: bool | Omit = omit,
+        webhook_failover_url: str | Omit = omit,
+        webhook_url: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessageSendShortCodeResponse:
         """
         Send a short code message

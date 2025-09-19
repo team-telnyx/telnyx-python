@@ -22,7 +22,7 @@ from .actions import (
     ActionsResourceWithStreamingResponse,
     AsyncActionsResourceWithStreamingResponse,
 )
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -77,14 +77,14 @@ class MessagingHostedNumberOrdersResource(SyncAPIResource):
     def create(
         self,
         *,
-        messaging_profile_id: str | NotGiven = NOT_GIVEN,
-        phone_numbers: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        messaging_profile_id: str | Omit = omit,
+        phone_numbers: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessagingHostedNumberOrderCreateResponse:
         """
         Create a messaging hosted number order
@@ -127,7 +127,7 @@ class MessagingHostedNumberOrdersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessagingHostedNumberOrderRetrieveResponse:
         """
         Retrieve a messaging hosted number order
@@ -154,13 +154,13 @@ class MessagingHostedNumberOrdersResource(SyncAPIResource):
     def list(
         self,
         *,
-        page: messaging_hosted_number_order_list_params.Page | NotGiven = NOT_GIVEN,
+        page: messaging_hosted_number_order_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessagingHostedNumberOrderListResponse:
         """
         List messaging hosted number orders
@@ -200,7 +200,7 @@ class MessagingHostedNumberOrdersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessagingHostedNumberOrderDeleteResponse:
         """
         Delete a messaging hosted number order and all associated phone numbers.
@@ -233,7 +233,7 @@ class MessagingHostedNumberOrdersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessagingHostedNumberOrderCheckEligibilityResponse:
         """
         Check eligibility of phone numbers for hosted messaging
@@ -272,7 +272,7 @@ class MessagingHostedNumberOrdersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessagingHostedNumberOrderCreateVerificationCodesResponse:
         """Create verification codes to validate numbers of the hosted order.
 
@@ -315,7 +315,7 @@ class MessagingHostedNumberOrdersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessagingHostedNumberOrderValidateCodesResponse:
         """Validate the verification codes sent to the numbers of the hosted order.
 
@@ -373,14 +373,14 @@ class AsyncMessagingHostedNumberOrdersResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        messaging_profile_id: str | NotGiven = NOT_GIVEN,
-        phone_numbers: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        messaging_profile_id: str | Omit = omit,
+        phone_numbers: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessagingHostedNumberOrderCreateResponse:
         """
         Create a messaging hosted number order
@@ -423,7 +423,7 @@ class AsyncMessagingHostedNumberOrdersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessagingHostedNumberOrderRetrieveResponse:
         """
         Retrieve a messaging hosted number order
@@ -450,13 +450,13 @@ class AsyncMessagingHostedNumberOrdersResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        page: messaging_hosted_number_order_list_params.Page | NotGiven = NOT_GIVEN,
+        page: messaging_hosted_number_order_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessagingHostedNumberOrderListResponse:
         """
         List messaging hosted number orders
@@ -496,7 +496,7 @@ class AsyncMessagingHostedNumberOrdersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessagingHostedNumberOrderDeleteResponse:
         """
         Delete a messaging hosted number order and all associated phone numbers.
@@ -529,7 +529,7 @@ class AsyncMessagingHostedNumberOrdersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessagingHostedNumberOrderCheckEligibilityResponse:
         """
         Check eligibility of phone numbers for hosted messaging
@@ -568,7 +568,7 @@ class AsyncMessagingHostedNumberOrdersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessagingHostedNumberOrderCreateVerificationCodesResponse:
         """Create verification codes to validate numbers of the hosted order.
 
@@ -611,7 +611,7 @@ class AsyncMessagingHostedNumberOrdersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessagingHostedNumberOrderValidateCodesResponse:
         """Validate the verification codes sent to the numbers of the hosted order.
 

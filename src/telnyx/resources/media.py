@@ -7,7 +7,7 @@ from typing import Mapping, cast
 import httpx
 
 from ..types import media_list_params, media_update_params, media_upload_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from .._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from .._utils import extract_files, maybe_transform, deepcopy_minimal, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -63,7 +63,7 @@ class MediaResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MediaRetrieveResponse:
         """
         Returns the information about a stored media file.
@@ -91,14 +91,14 @@ class MediaResource(SyncAPIResource):
         self,
         media_name: str,
         *,
-        media_url: str | NotGiven = NOT_GIVEN,
-        ttl_secs: int | NotGiven = NOT_GIVEN,
+        media_url: str | Omit = omit,
+        ttl_secs: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MediaUpdateResponse:
         """
         Updates a stored media file.
@@ -145,13 +145,13 @@ class MediaResource(SyncAPIResource):
     def list(
         self,
         *,
-        filter: media_list_params.Filter | NotGiven = NOT_GIVEN,
+        filter: media_list_params.Filter | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MediaListResponse:
         """
         Returns a list of stored media files.
@@ -190,7 +190,7 @@ class MediaResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Deletes a stored media file.
@@ -224,7 +224,7 @@ class MediaResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BinaryAPIResponse:
         """
         Downloads a stored media file.
@@ -253,14 +253,14 @@ class MediaResource(SyncAPIResource):
         self,
         *,
         media_url: str,
-        media_name: str | NotGiven = NOT_GIVEN,
-        ttl_secs: int | NotGiven = NOT_GIVEN,
+        media_name: str | Omit = omit,
+        ttl_secs: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MediaUploadResponse:
         """
         Upload media file to Telnyx so it can be used with other Telnyx services
@@ -335,7 +335,7 @@ class AsyncMediaResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MediaRetrieveResponse:
         """
         Returns the information about a stored media file.
@@ -363,14 +363,14 @@ class AsyncMediaResource(AsyncAPIResource):
         self,
         media_name: str,
         *,
-        media_url: str | NotGiven = NOT_GIVEN,
-        ttl_secs: int | NotGiven = NOT_GIVEN,
+        media_url: str | Omit = omit,
+        ttl_secs: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MediaUpdateResponse:
         """
         Updates a stored media file.
@@ -417,13 +417,13 @@ class AsyncMediaResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        filter: media_list_params.Filter | NotGiven = NOT_GIVEN,
+        filter: media_list_params.Filter | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MediaListResponse:
         """
         Returns a list of stored media files.
@@ -462,7 +462,7 @@ class AsyncMediaResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Deletes a stored media file.
@@ -496,7 +496,7 @@ class AsyncMediaResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncBinaryAPIResponse:
         """
         Downloads a stored media file.
@@ -525,14 +525,14 @@ class AsyncMediaResource(AsyncAPIResource):
         self,
         *,
         media_url: str,
-        media_name: str | NotGiven = NOT_GIVEN,
-        ttl_secs: int | NotGiven = NOT_GIVEN,
+        media_name: str | Omit = omit,
+        ttl_secs: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MediaUploadResponse:
         """
         Upload media file to Telnyx so it can be used with other Telnyx services

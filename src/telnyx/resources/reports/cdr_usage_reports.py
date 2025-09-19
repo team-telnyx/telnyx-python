@@ -8,7 +8,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -50,15 +50,15 @@ class CdrUsageReportsResource(SyncAPIResource):
         *,
         aggregation_type: Literal["NO_AGGREGATION", "CONNECTION", "TAG", "BILLING_GROUP"],
         product_breakdown: Literal["NO_BREAKDOWN", "DID_VS_TOLL_FREE", "COUNTRY", "DID_VS_TOLL_FREE_PER_COUNTRY"],
-        connections: Iterable[float] | NotGiven = NOT_GIVEN,
-        end_date: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        start_date: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        connections: Iterable[float] | Omit = omit,
+        end_date: Union[str, datetime] | Omit = omit,
+        start_date: Union[str, datetime] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CdrUsageReportFetchSyncResponse:
         """Generate and fetch voice usage report synchronously.
 
@@ -122,15 +122,15 @@ class AsyncCdrUsageReportsResource(AsyncAPIResource):
         *,
         aggregation_type: Literal["NO_AGGREGATION", "CONNECTION", "TAG", "BILLING_GROUP"],
         product_breakdown: Literal["NO_BREAKDOWN", "DID_VS_TOLL_FREE", "COUNTRY", "DID_VS_TOLL_FREE_PER_COUNTRY"],
-        connections: Iterable[float] | NotGiven = NOT_GIVEN,
-        end_date: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        start_date: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        connections: Iterable[float] | Omit = omit,
+        end_date: Union[str, datetime] | Omit = omit,
+        start_date: Union[str, datetime] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CdrUsageReportFetchSyncResponse:
         """Generate and fetch voice usage report synchronously.
 

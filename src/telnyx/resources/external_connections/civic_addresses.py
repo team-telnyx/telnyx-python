@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -52,7 +52,7 @@ class CivicAddressesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CivicAddressRetrieveResponse:
         """
         Return the details of an existing Civic Address with its Locations inside the
@@ -83,13 +83,13 @@ class CivicAddressesResource(SyncAPIResource):
         self,
         id: str,
         *,
-        filter: civic_address_list_params.Filter | NotGiven = NOT_GIVEN,
+        filter: civic_address_list_params.Filter | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CivicAddressListResponse:
         """
         Returns the civic addresses and locations from Microsoft Teams.
@@ -151,7 +151,7 @@ class AsyncCivicAddressesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CivicAddressRetrieveResponse:
         """
         Return the details of an existing Civic Address with its Locations inside the
@@ -182,13 +182,13 @@ class AsyncCivicAddressesResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        filter: civic_address_list_params.Filter | NotGiven = NOT_GIVEN,
+        filter: civic_address_list_params.Filter | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CivicAddressListResponse:
         """
         Returns the civic addresses and locations from Microsoft Teams.

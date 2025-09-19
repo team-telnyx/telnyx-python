@@ -16,7 +16,7 @@ from .actions import (
     ActionsResourceWithStreamingResponse,
     AsyncActionsResourceWithStreamingResponse,
 )
-from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from ..._utils import extract_files, maybe_transform, deepcopy_minimal, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -64,23 +64,23 @@ class FaxesResource(SyncAPIResource):
         connection_id: str,
         from_: str,
         to: str,
-        client_state: str | NotGiven = NOT_GIVEN,
-        from_display_name: str | NotGiven = NOT_GIVEN,
-        media_name: str | NotGiven = NOT_GIVEN,
-        media_url: str | NotGiven = NOT_GIVEN,
-        monochrome: bool | NotGiven = NOT_GIVEN,
-        preview_format: Literal["pdf", "tiff"] | NotGiven = NOT_GIVEN,
-        quality: Literal["normal", "high", "very_high", "ultra_light", "ultra_dark"] | NotGiven = NOT_GIVEN,
-        store_media: bool | NotGiven = NOT_GIVEN,
-        store_preview: bool | NotGiven = NOT_GIVEN,
-        t38_enabled: bool | NotGiven = NOT_GIVEN,
-        webhook_url: str | NotGiven = NOT_GIVEN,
+        client_state: str | Omit = omit,
+        from_display_name: str | Omit = omit,
+        media_name: str | Omit = omit,
+        media_url: str | Omit = omit,
+        monochrome: bool | Omit = omit,
+        preview_format: Literal["pdf", "tiff"] | Omit = omit,
+        quality: Literal["normal", "high", "very_high", "ultra_light", "ultra_dark"] | Omit = omit,
+        store_media: bool | Omit = omit,
+        store_preview: bool | Omit = omit,
+        t38_enabled: bool | Omit = omit,
+        webhook_url: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FaxCreateResponse:
         """Send a fax.
 
@@ -188,7 +188,7 @@ class FaxesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FaxRetrieveResponse:
         """
         View a fax
@@ -215,14 +215,14 @@ class FaxesResource(SyncAPIResource):
     def list(
         self,
         *,
-        filter: fax_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: fax_list_params.Page | NotGiven = NOT_GIVEN,
+        filter: fax_list_params.Filter | Omit = omit,
+        page: fax_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FaxListResponse:
         """
         View a list of faxes
@@ -271,7 +271,7 @@ class FaxesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Delete a fax
@@ -327,23 +327,23 @@ class AsyncFaxesResource(AsyncAPIResource):
         connection_id: str,
         from_: str,
         to: str,
-        client_state: str | NotGiven = NOT_GIVEN,
-        from_display_name: str | NotGiven = NOT_GIVEN,
-        media_name: str | NotGiven = NOT_GIVEN,
-        media_url: str | NotGiven = NOT_GIVEN,
-        monochrome: bool | NotGiven = NOT_GIVEN,
-        preview_format: Literal["pdf", "tiff"] | NotGiven = NOT_GIVEN,
-        quality: Literal["normal", "high", "very_high", "ultra_light", "ultra_dark"] | NotGiven = NOT_GIVEN,
-        store_media: bool | NotGiven = NOT_GIVEN,
-        store_preview: bool | NotGiven = NOT_GIVEN,
-        t38_enabled: bool | NotGiven = NOT_GIVEN,
-        webhook_url: str | NotGiven = NOT_GIVEN,
+        client_state: str | Omit = omit,
+        from_display_name: str | Omit = omit,
+        media_name: str | Omit = omit,
+        media_url: str | Omit = omit,
+        monochrome: bool | Omit = omit,
+        preview_format: Literal["pdf", "tiff"] | Omit = omit,
+        quality: Literal["normal", "high", "very_high", "ultra_light", "ultra_dark"] | Omit = omit,
+        store_media: bool | Omit = omit,
+        store_preview: bool | Omit = omit,
+        t38_enabled: bool | Omit = omit,
+        webhook_url: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FaxCreateResponse:
         """Send a fax.
 
@@ -451,7 +451,7 @@ class AsyncFaxesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FaxRetrieveResponse:
         """
         View a fax
@@ -478,14 +478,14 @@ class AsyncFaxesResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        filter: fax_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: fax_list_params.Page | NotGiven = NOT_GIVEN,
+        filter: fax_list_params.Filter | Omit = omit,
+        page: fax_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FaxListResponse:
         """
         View a list of faxes
@@ -534,7 +534,7 @@ class AsyncFaxesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Delete a fax

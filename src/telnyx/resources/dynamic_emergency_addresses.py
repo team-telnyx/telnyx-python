@@ -7,7 +7,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..types import dynamic_emergency_address_list_params, dynamic_emergency_address_create_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -55,17 +55,17 @@ class DynamicEmergencyAddressesResource(SyncAPIResource):
         locality: str,
         postal_code: str,
         street_name: str,
-        extended_address: str | NotGiven = NOT_GIVEN,
-        house_suffix: str | NotGiven = NOT_GIVEN,
-        street_post_directional: str | NotGiven = NOT_GIVEN,
-        street_pre_directional: str | NotGiven = NOT_GIVEN,
-        street_suffix: str | NotGiven = NOT_GIVEN,
+        extended_address: str | Omit = omit,
+        house_suffix: str | Omit = omit,
+        street_post_directional: str | Omit = omit,
+        street_pre_directional: str | Omit = omit,
+        street_suffix: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DynamicEmergencyAddressCreateResponse:
         """
         Creates a dynamic emergency address.
@@ -112,7 +112,7 @@ class DynamicEmergencyAddressesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DynamicEmergencyAddressRetrieveResponse:
         """
         Returns the dynamic emergency address based on the ID provided
@@ -139,14 +139,14 @@ class DynamicEmergencyAddressesResource(SyncAPIResource):
     def list(
         self,
         *,
-        filter: dynamic_emergency_address_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: dynamic_emergency_address_list_params.Page | NotGiven = NOT_GIVEN,
+        filter: dynamic_emergency_address_list_params.Filter | Omit = omit,
+        page: dynamic_emergency_address_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DynamicEmergencyAddressListResponse:
         """
         Returns the dynamic emergency addresses according to filters
@@ -193,7 +193,7 @@ class DynamicEmergencyAddressesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DynamicEmergencyAddressDeleteResponse:
         """
         Deletes the dynamic emergency address based on the ID provided
@@ -247,17 +247,17 @@ class AsyncDynamicEmergencyAddressesResource(AsyncAPIResource):
         locality: str,
         postal_code: str,
         street_name: str,
-        extended_address: str | NotGiven = NOT_GIVEN,
-        house_suffix: str | NotGiven = NOT_GIVEN,
-        street_post_directional: str | NotGiven = NOT_GIVEN,
-        street_pre_directional: str | NotGiven = NOT_GIVEN,
-        street_suffix: str | NotGiven = NOT_GIVEN,
+        extended_address: str | Omit = omit,
+        house_suffix: str | Omit = omit,
+        street_post_directional: str | Omit = omit,
+        street_pre_directional: str | Omit = omit,
+        street_suffix: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DynamicEmergencyAddressCreateResponse:
         """
         Creates a dynamic emergency address.
@@ -304,7 +304,7 @@ class AsyncDynamicEmergencyAddressesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DynamicEmergencyAddressRetrieveResponse:
         """
         Returns the dynamic emergency address based on the ID provided
@@ -331,14 +331,14 @@ class AsyncDynamicEmergencyAddressesResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        filter: dynamic_emergency_address_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: dynamic_emergency_address_list_params.Page | NotGiven = NOT_GIVEN,
+        filter: dynamic_emergency_address_list_params.Filter | Omit = omit,
+        page: dynamic_emergency_address_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DynamicEmergencyAddressListResponse:
         """
         Returns the dynamic emergency addresses according to filters
@@ -385,7 +385,7 @@ class AsyncDynamicEmergencyAddressesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DynamicEmergencyAddressDeleteResponse:
         """
         Deletes the dynamic emergency address based on the ID provided

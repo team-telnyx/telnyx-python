@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -52,7 +52,7 @@ class MessagingResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessagingRetrieveResponse:
         """
         Retrieve a phone number with messaging settings
@@ -80,14 +80,14 @@ class MessagingResource(SyncAPIResource):
         self,
         id: str,
         *,
-        messaging_product: str | NotGiven = NOT_GIVEN,
-        messaging_profile_id: str | NotGiven = NOT_GIVEN,
+        messaging_product: str | Omit = omit,
+        messaging_profile_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessagingUpdateResponse:
         """
         Update the messaging profile and/or messaging product of a phone number
@@ -135,13 +135,13 @@ class MessagingResource(SyncAPIResource):
     def list(
         self,
         *,
-        page: messaging_list_params.Page | NotGiven = NOT_GIVEN,
+        page: messaging_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessagingListResponse:
         """
         List phone numbers with messaging settings
@@ -200,7 +200,7 @@ class AsyncMessagingResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessagingRetrieveResponse:
         """
         Retrieve a phone number with messaging settings
@@ -228,14 +228,14 @@ class AsyncMessagingResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        messaging_product: str | NotGiven = NOT_GIVEN,
-        messaging_profile_id: str | NotGiven = NOT_GIVEN,
+        messaging_product: str | Omit = omit,
+        messaging_profile_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessagingUpdateResponse:
         """
         Update the messaging profile and/or messaging product of a phone number
@@ -283,13 +283,13 @@ class AsyncMessagingResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        page: messaging_list_params.Page | NotGiven = NOT_GIVEN,
+        page: messaging_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessagingListResponse:
         """
         List phone numbers with messaging settings

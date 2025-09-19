@@ -7,7 +7,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..types import custom_storage_credential_create_params, custom_storage_credential_update_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from .._types import Body, Query, Headers, NoneType, NotGiven, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -56,7 +56,7 @@ class CustomStorageCredentialsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomStorageCredentialCreateResponse:
         """
         Creates a custom storage credentials configuration.
@@ -96,7 +96,7 @@ class CustomStorageCredentialsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomStorageCredentialRetrieveResponse:
         """
         Returns the information about custom storage credentials.
@@ -131,7 +131,7 @@ class CustomStorageCredentialsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomStorageCredentialUpdateResponse:
         """
         Updates a stored custom credentials configuration.
@@ -171,7 +171,7 @@ class CustomStorageCredentialsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Deletes a stored custom credentials configuration.
@@ -228,7 +228,7 @@ class AsyncCustomStorageCredentialsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomStorageCredentialCreateResponse:
         """
         Creates a custom storage credentials configuration.
@@ -268,7 +268,7 @@ class AsyncCustomStorageCredentialsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomStorageCredentialRetrieveResponse:
         """
         Returns the information about custom storage credentials.
@@ -303,7 +303,7 @@ class AsyncCustomStorageCredentialsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomStorageCredentialUpdateResponse:
         """
         Updates a stored custom credentials configuration.
@@ -343,7 +343,7 @@ class AsyncCustomStorageCredentialsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Deletes a stored custom credentials configuration.

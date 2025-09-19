@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -63,7 +63,7 @@ class JobsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> JobRetrieveResponse:
         """
         Retrieve a phone numbers job
@@ -90,15 +90,15 @@ class JobsResource(SyncAPIResource):
     def list(
         self,
         *,
-        filter: job_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: job_list_params.Page | NotGiven = NOT_GIVEN,
-        sort: Literal["created_at"] | NotGiven = NOT_GIVEN,
+        filter: job_list_params.Filter | Omit = omit,
+        page: job_list_params.Page | Omit = omit,
+        sort: Literal["created_at"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> JobListResponse:
         """
         Lists the phone numbers jobs
@@ -148,7 +148,7 @@ class JobsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> JobDeleteBatchResponse:
         """Creates a new background job to delete a batch of numbers.
 
@@ -177,20 +177,20 @@ class JobsResource(SyncAPIResource):
         self,
         *,
         phone_numbers: SequenceNotStr[str],
-        filter: job_update_batch_params.Filter | NotGiven = NOT_GIVEN,
-        billing_group_id: str | NotGiven = NOT_GIVEN,
-        connection_id: str | NotGiven = NOT_GIVEN,
-        customer_reference: str | NotGiven = NOT_GIVEN,
-        external_pin: str | NotGiven = NOT_GIVEN,
-        hd_voice_enabled: bool | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        voice: UpdateVoiceSettingsParam | NotGiven = NOT_GIVEN,
+        filter: job_update_batch_params.Filter | Omit = omit,
+        billing_group_id: str | Omit = omit,
+        connection_id: str | Omit = omit,
+        customer_reference: str | Omit = omit,
+        external_pin: str | Omit = omit,
+        hd_voice_enabled: bool | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        voice: UpdateVoiceSettingsParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> JobUpdateBatchResponse:
         """Creates a new background job to update a batch of numbers.
 
@@ -273,13 +273,13 @@ class JobsResource(SyncAPIResource):
         *,
         emergency_enabled: bool,
         phone_numbers: SequenceNotStr[str],
-        emergency_address_id: Optional[str] | NotGiven = NOT_GIVEN,
+        emergency_address_id: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> JobUpdateEmergencySettingsBatchResponse:
         """
         Creates a background job to update the emergency settings of a collection of
@@ -346,7 +346,7 @@ class AsyncJobsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> JobRetrieveResponse:
         """
         Retrieve a phone numbers job
@@ -373,15 +373,15 @@ class AsyncJobsResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        filter: job_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: job_list_params.Page | NotGiven = NOT_GIVEN,
-        sort: Literal["created_at"] | NotGiven = NOT_GIVEN,
+        filter: job_list_params.Filter | Omit = omit,
+        page: job_list_params.Page | Omit = omit,
+        sort: Literal["created_at"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> JobListResponse:
         """
         Lists the phone numbers jobs
@@ -431,7 +431,7 @@ class AsyncJobsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> JobDeleteBatchResponse:
         """Creates a new background job to delete a batch of numbers.
 
@@ -462,20 +462,20 @@ class AsyncJobsResource(AsyncAPIResource):
         self,
         *,
         phone_numbers: SequenceNotStr[str],
-        filter: job_update_batch_params.Filter | NotGiven = NOT_GIVEN,
-        billing_group_id: str | NotGiven = NOT_GIVEN,
-        connection_id: str | NotGiven = NOT_GIVEN,
-        customer_reference: str | NotGiven = NOT_GIVEN,
-        external_pin: str | NotGiven = NOT_GIVEN,
-        hd_voice_enabled: bool | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        voice: UpdateVoiceSettingsParam | NotGiven = NOT_GIVEN,
+        filter: job_update_batch_params.Filter | Omit = omit,
+        billing_group_id: str | Omit = omit,
+        connection_id: str | Omit = omit,
+        customer_reference: str | Omit = omit,
+        external_pin: str | Omit = omit,
+        hd_voice_enabled: bool | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        voice: UpdateVoiceSettingsParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> JobUpdateBatchResponse:
         """Creates a new background job to update a batch of numbers.
 
@@ -558,13 +558,13 @@ class AsyncJobsResource(AsyncAPIResource):
         *,
         emergency_enabled: bool,
         phone_numbers: SequenceNotStr[str],
-        emergency_address_id: Optional[str] | NotGiven = NOT_GIVEN,
+        emergency_address_id: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> JobUpdateEmergencySettingsBatchResponse:
         """
         Creates a background job to update the emergency settings of a collection of

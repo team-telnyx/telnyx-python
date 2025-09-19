@@ -14,7 +14,7 @@ from .runs import (
     RunsResourceWithStreamingResponse,
     AsyncRunsResourceWithStreamingResponse,
 )
-from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ....._utils import maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
@@ -78,16 +78,16 @@ class TestsResource(SyncAPIResource):
         instructions: str,
         name: str,
         rubric: Iterable[test_create_params.Rubric],
-        description: str | NotGiven = NOT_GIVEN,
-        max_duration_seconds: int | NotGiven = NOT_GIVEN,
-        telnyx_conversation_channel: TelnyxConversationChannel | NotGiven = NOT_GIVEN,
-        test_suite: str | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        max_duration_seconds: int | Omit = omit,
+        telnyx_conversation_channel: TelnyxConversationChannel | Omit = omit,
+        test_suite: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AssistantTest:
         """
         Creates a comprehensive test configuration for evaluating AI assistant
@@ -157,7 +157,7 @@ class TestsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AssistantTest:
         """
         Retrieves detailed information about a specific assistant test
@@ -185,20 +185,20 @@ class TestsResource(SyncAPIResource):
         self,
         test_id: str,
         *,
-        description: str | NotGiven = NOT_GIVEN,
-        destination: str | NotGiven = NOT_GIVEN,
-        instructions: str | NotGiven = NOT_GIVEN,
-        max_duration_seconds: int | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        rubric: Iterable[test_update_params.Rubric] | NotGiven = NOT_GIVEN,
-        telnyx_conversation_channel: TelnyxConversationChannel | NotGiven = NOT_GIVEN,
-        test_suite: str | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        destination: str | Omit = omit,
+        instructions: str | Omit = omit,
+        max_duration_seconds: int | Omit = omit,
+        name: str | Omit = omit,
+        rubric: Iterable[test_update_params.Rubric] | Omit = omit,
+        telnyx_conversation_channel: TelnyxConversationChannel | Omit = omit,
+        test_suite: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AssistantTest:
         """
         Updates an existing assistant test configuration with new settings
@@ -254,16 +254,16 @@ class TestsResource(SyncAPIResource):
     def list(
         self,
         *,
-        destination: str | NotGiven = NOT_GIVEN,
-        page: test_list_params.Page | NotGiven = NOT_GIVEN,
-        telnyx_conversation_channel: str | NotGiven = NOT_GIVEN,
-        test_suite: str | NotGiven = NOT_GIVEN,
+        destination: str | Omit = omit,
+        page: test_list_params.Page | Omit = omit,
+        telnyx_conversation_channel: str | Omit = omit,
+        test_suite: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TestListResponse:
         """
         Retrieves a paginated list of assistant tests with optional filtering
@@ -316,7 +316,7 @@ class TestsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Permanently removes an assistant test and all associated data
@@ -376,16 +376,16 @@ class AsyncTestsResource(AsyncAPIResource):
         instructions: str,
         name: str,
         rubric: Iterable[test_create_params.Rubric],
-        description: str | NotGiven = NOT_GIVEN,
-        max_duration_seconds: int | NotGiven = NOT_GIVEN,
-        telnyx_conversation_channel: TelnyxConversationChannel | NotGiven = NOT_GIVEN,
-        test_suite: str | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        max_duration_seconds: int | Omit = omit,
+        telnyx_conversation_channel: TelnyxConversationChannel | Omit = omit,
+        test_suite: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AssistantTest:
         """
         Creates a comprehensive test configuration for evaluating AI assistant
@@ -455,7 +455,7 @@ class AsyncTestsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AssistantTest:
         """
         Retrieves detailed information about a specific assistant test
@@ -483,20 +483,20 @@ class AsyncTestsResource(AsyncAPIResource):
         self,
         test_id: str,
         *,
-        description: str | NotGiven = NOT_GIVEN,
-        destination: str | NotGiven = NOT_GIVEN,
-        instructions: str | NotGiven = NOT_GIVEN,
-        max_duration_seconds: int | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        rubric: Iterable[test_update_params.Rubric] | NotGiven = NOT_GIVEN,
-        telnyx_conversation_channel: TelnyxConversationChannel | NotGiven = NOT_GIVEN,
-        test_suite: str | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        destination: str | Omit = omit,
+        instructions: str | Omit = omit,
+        max_duration_seconds: int | Omit = omit,
+        name: str | Omit = omit,
+        rubric: Iterable[test_update_params.Rubric] | Omit = omit,
+        telnyx_conversation_channel: TelnyxConversationChannel | Omit = omit,
+        test_suite: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AssistantTest:
         """
         Updates an existing assistant test configuration with new settings
@@ -552,16 +552,16 @@ class AsyncTestsResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        destination: str | NotGiven = NOT_GIVEN,
-        page: test_list_params.Page | NotGiven = NOT_GIVEN,
-        telnyx_conversation_channel: str | NotGiven = NOT_GIVEN,
-        test_suite: str | NotGiven = NOT_GIVEN,
+        destination: str | Omit = omit,
+        page: test_list_params.Page | Omit = omit,
+        telnyx_conversation_channel: str | Omit = omit,
+        test_suite: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TestListResponse:
         """
         Retrieves a paginated list of assistant tests with optional filtering
@@ -614,7 +614,7 @@ class AsyncTestsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Permanently removes an assistant test and all associated data
