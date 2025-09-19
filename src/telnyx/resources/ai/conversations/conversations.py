@@ -22,7 +22,7 @@ from .messages import (
     MessagesResourceWithStreamingResponse,
     AsyncMessagesResourceWithStreamingResponse,
 )
-from ...._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ....types.ai import conversation_list_params, conversation_create_params, conversation_update_params
@@ -88,14 +88,14 @@ class ConversationsResource(SyncAPIResource):
     def create(
         self,
         *,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, str] | Omit = omit,
+        name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Conversation:
         """
         Create a new AI Conversation.
@@ -135,7 +135,7 @@ class ConversationsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConversationRetrieveResponse:
         """
         Retrieve a specific AI conversation by its ID.
@@ -163,13 +163,13 @@ class ConversationsResource(SyncAPIResource):
         self,
         conversation_id: str,
         *,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConversationUpdateResponse:
         """
         Update metadata for a specific conversation.
@@ -199,24 +199,24 @@ class ConversationsResource(SyncAPIResource):
     def list(
         self,
         *,
-        id: str | NotGiven = NOT_GIVEN,
-        created_at: str | NotGiven = NOT_GIVEN,
-        last_message_at: str | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        metadata_assistant_id: str | NotGiven = NOT_GIVEN,
-        metadata_call_control_id: str | NotGiven = NOT_GIVEN,
-        metadata_telnyx_agent_target: str | NotGiven = NOT_GIVEN,
-        metadata_telnyx_conversation_channel: str | NotGiven = NOT_GIVEN,
-        metadata_telnyx_end_user_target: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        or_: str | NotGiven = NOT_GIVEN,
-        order: str | NotGiven = NOT_GIVEN,
+        id: str | Omit = omit,
+        created_at: str | Omit = omit,
+        last_message_at: str | Omit = omit,
+        limit: int | Omit = omit,
+        metadata_assistant_id: str | Omit = omit,
+        metadata_call_control_id: str | Omit = omit,
+        metadata_telnyx_agent_target: str | Omit = omit,
+        metadata_telnyx_conversation_channel: str | Omit = omit,
+        metadata_telnyx_end_user_target: str | Omit = omit,
+        name: str | Omit = omit,
+        or_: str | Omit = omit,
+        order: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConversationListResponse:
         """Retrieve a list of all AI conversations configured by the user.
 
@@ -301,7 +301,7 @@ class ConversationsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Delete a specific conversation by its ID.
@@ -335,7 +335,7 @@ class ConversationsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConversationRetrieveConversationsInsightsResponse:
         """
         Retrieve insights for a specific conversation
@@ -395,14 +395,14 @@ class AsyncConversationsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, str] | Omit = omit,
+        name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Conversation:
         """
         Create a new AI Conversation.
@@ -442,7 +442,7 @@ class AsyncConversationsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConversationRetrieveResponse:
         """
         Retrieve a specific AI conversation by its ID.
@@ -470,13 +470,13 @@ class AsyncConversationsResource(AsyncAPIResource):
         self,
         conversation_id: str,
         *,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConversationUpdateResponse:
         """
         Update metadata for a specific conversation.
@@ -508,24 +508,24 @@ class AsyncConversationsResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        id: str | NotGiven = NOT_GIVEN,
-        created_at: str | NotGiven = NOT_GIVEN,
-        last_message_at: str | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        metadata_assistant_id: str | NotGiven = NOT_GIVEN,
-        metadata_call_control_id: str | NotGiven = NOT_GIVEN,
-        metadata_telnyx_agent_target: str | NotGiven = NOT_GIVEN,
-        metadata_telnyx_conversation_channel: str | NotGiven = NOT_GIVEN,
-        metadata_telnyx_end_user_target: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        or_: str | NotGiven = NOT_GIVEN,
-        order: str | NotGiven = NOT_GIVEN,
+        id: str | Omit = omit,
+        created_at: str | Omit = omit,
+        last_message_at: str | Omit = omit,
+        limit: int | Omit = omit,
+        metadata_assistant_id: str | Omit = omit,
+        metadata_call_control_id: str | Omit = omit,
+        metadata_telnyx_agent_target: str | Omit = omit,
+        metadata_telnyx_conversation_channel: str | Omit = omit,
+        metadata_telnyx_end_user_target: str | Omit = omit,
+        name: str | Omit = omit,
+        or_: str | Omit = omit,
+        order: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConversationListResponse:
         """Retrieve a list of all AI conversations configured by the user.
 
@@ -610,7 +610,7 @@ class AsyncConversationsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Delete a specific conversation by its ID.
@@ -644,7 +644,7 @@ class AsyncConversationsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConversationRetrieveConversationsInsightsResponse:
         """
         Retrieve insights for a specific conversation

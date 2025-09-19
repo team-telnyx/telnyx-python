@@ -6,7 +6,7 @@ from typing import Iterable
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, strip_not_given, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -51,15 +51,15 @@ class UserBundlesResource(SyncAPIResource):
     def create(
         self,
         *,
-        idempotency_key: str | NotGiven = NOT_GIVEN,
-        items: Iterable[user_bundle_create_params.Item] | NotGiven = NOT_GIVEN,
-        authorization_bearer: str | NotGiven = NOT_GIVEN,
+        idempotency_key: str | Omit = omit,
+        items: Iterable[user_bundle_create_params.Item] | Omit = omit,
+        authorization_bearer: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UserBundleCreateResponse:
         """
         Creates multiple user bundles for the user.
@@ -98,13 +98,13 @@ class UserBundlesResource(SyncAPIResource):
         self,
         user_bundle_id: str,
         *,
-        authorization_bearer: str | NotGiven = NOT_GIVEN,
+        authorization_bearer: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UserBundleRetrieveResponse:
         """
         Retrieves a user bundle by its ID.
@@ -136,15 +136,15 @@ class UserBundlesResource(SyncAPIResource):
     def list(
         self,
         *,
-        filter: user_bundle_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: user_bundle_list_params.Page | NotGiven = NOT_GIVEN,
-        authorization_bearer: str | NotGiven = NOT_GIVEN,
+        filter: user_bundle_list_params.Filter | Omit = omit,
+        page: user_bundle_list_params.Page | Omit = omit,
+        authorization_bearer: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UserBundleListResponse:
         """
         Get a paginated list of user bundles.
@@ -190,13 +190,13 @@ class UserBundlesResource(SyncAPIResource):
         self,
         user_bundle_id: str,
         *,
-        authorization_bearer: str | NotGiven = NOT_GIVEN,
+        authorization_bearer: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UserBundleDeactivateResponse:
         """
         Deactivates a user bundle by its ID.
@@ -229,13 +229,13 @@ class UserBundlesResource(SyncAPIResource):
         self,
         user_bundle_id: str,
         *,
-        authorization_bearer: str | NotGiven = NOT_GIVEN,
+        authorization_bearer: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UserBundleListResourcesResponse:
         """
         Retrieves the resources of a user bundle by its ID.
@@ -267,14 +267,14 @@ class UserBundlesResource(SyncAPIResource):
     def list_unused(
         self,
         *,
-        filter: user_bundle_list_unused_params.Filter | NotGiven = NOT_GIVEN,
-        authorization_bearer: str | NotGiven = NOT_GIVEN,
+        filter: user_bundle_list_unused_params.Filter | Omit = omit,
+        authorization_bearer: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UserBundleListUnusedResponse:
         """
         Returns all user bundles that aren't in use.
@@ -331,15 +331,15 @@ class AsyncUserBundlesResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        idempotency_key: str | NotGiven = NOT_GIVEN,
-        items: Iterable[user_bundle_create_params.Item] | NotGiven = NOT_GIVEN,
-        authorization_bearer: str | NotGiven = NOT_GIVEN,
+        idempotency_key: str | Omit = omit,
+        items: Iterable[user_bundle_create_params.Item] | Omit = omit,
+        authorization_bearer: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UserBundleCreateResponse:
         """
         Creates multiple user bundles for the user.
@@ -378,13 +378,13 @@ class AsyncUserBundlesResource(AsyncAPIResource):
         self,
         user_bundle_id: str,
         *,
-        authorization_bearer: str | NotGiven = NOT_GIVEN,
+        authorization_bearer: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UserBundleRetrieveResponse:
         """
         Retrieves a user bundle by its ID.
@@ -416,15 +416,15 @@ class AsyncUserBundlesResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        filter: user_bundle_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: user_bundle_list_params.Page | NotGiven = NOT_GIVEN,
-        authorization_bearer: str | NotGiven = NOT_GIVEN,
+        filter: user_bundle_list_params.Filter | Omit = omit,
+        page: user_bundle_list_params.Page | Omit = omit,
+        authorization_bearer: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UserBundleListResponse:
         """
         Get a paginated list of user bundles.
@@ -470,13 +470,13 @@ class AsyncUserBundlesResource(AsyncAPIResource):
         self,
         user_bundle_id: str,
         *,
-        authorization_bearer: str | NotGiven = NOT_GIVEN,
+        authorization_bearer: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UserBundleDeactivateResponse:
         """
         Deactivates a user bundle by its ID.
@@ -509,13 +509,13 @@ class AsyncUserBundlesResource(AsyncAPIResource):
         self,
         user_bundle_id: str,
         *,
-        authorization_bearer: str | NotGiven = NOT_GIVEN,
+        authorization_bearer: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UserBundleListResourcesResponse:
         """
         Retrieves the resources of a user bundle by its ID.
@@ -547,14 +547,14 @@ class AsyncUserBundlesResource(AsyncAPIResource):
     async def list_unused(
         self,
         *,
-        filter: user_bundle_list_unused_params.Filter | NotGiven = NOT_GIVEN,
-        authorization_bearer: str | NotGiven = NOT_GIVEN,
+        filter: user_bundle_list_unused_params.Filter | Omit = omit,
+        authorization_bearer: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UserBundleListUnusedResponse:
         """
         Returns all user bundles that aren't in use.

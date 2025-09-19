@@ -7,7 +7,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...types import report_list_mdrs_params, report_list_wdrs_params
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -71,22 +71,22 @@ class ReportsResource(SyncAPIResource):
     def list_mdrs(
         self,
         *,
-        id: str | NotGiven = NOT_GIVEN,
-        cld: str | NotGiven = NOT_GIVEN,
-        cli: str | NotGiven = NOT_GIVEN,
-        direction: Literal["INBOUND", "OUTBOUND"] | NotGiven = NOT_GIVEN,
-        end_date: str | NotGiven = NOT_GIVEN,
-        message_type: Literal["SMS", "MMS"] | NotGiven = NOT_GIVEN,
-        profile: str | NotGiven = NOT_GIVEN,
-        start_date: str | NotGiven = NOT_GIVEN,
+        id: str | Omit = omit,
+        cld: str | Omit = omit,
+        cli: str | Omit = omit,
+        direction: Literal["INBOUND", "OUTBOUND"] | Omit = omit,
+        end_date: str | Omit = omit,
+        message_type: Literal["SMS", "MMS"] | Omit = omit,
+        profile: str | Omit = omit,
+        start_date: str | Omit = omit,
         status: Literal["GW_TIMEOUT", "DELIVERED", "DLR_UNCONFIRMED", "DLR_TIMEOUT", "RECEIVED", "GW_REJECT", "FAILED"]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ReportListMdrsResponse:
         """
         Fetch all Mdr records
@@ -146,24 +146,24 @@ class ReportsResource(SyncAPIResource):
     def list_wdrs(
         self,
         *,
-        id: str | NotGiven = NOT_GIVEN,
-        end_date: str | NotGiven = NOT_GIVEN,
-        imsi: str | NotGiven = NOT_GIVEN,
-        mcc: str | NotGiven = NOT_GIVEN,
-        mnc: str | NotGiven = NOT_GIVEN,
-        page: report_list_wdrs_params.Page | NotGiven = NOT_GIVEN,
-        phone_number: str | NotGiven = NOT_GIVEN,
-        sim_card_id: str | NotGiven = NOT_GIVEN,
-        sim_group_id: str | NotGiven = NOT_GIVEN,
-        sim_group_name: str | NotGiven = NOT_GIVEN,
-        sort: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        start_date: str | NotGiven = NOT_GIVEN,
+        id: str | Omit = omit,
+        end_date: str | Omit = omit,
+        imsi: str | Omit = omit,
+        mcc: str | Omit = omit,
+        mnc: str | Omit = omit,
+        page: report_list_wdrs_params.Page | Omit = omit,
+        phone_number: str | Omit = omit,
+        sim_card_id: str | Omit = omit,
+        sim_group_id: str | Omit = omit,
+        sim_group_name: str | Omit = omit,
+        sort: SequenceNotStr[str] | Omit = omit,
+        start_date: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ReportListWdrsResponse:
         """
         Fetch all Wdr records
@@ -263,22 +263,22 @@ class AsyncReportsResource(AsyncAPIResource):
     async def list_mdrs(
         self,
         *,
-        id: str | NotGiven = NOT_GIVEN,
-        cld: str | NotGiven = NOT_GIVEN,
-        cli: str | NotGiven = NOT_GIVEN,
-        direction: Literal["INBOUND", "OUTBOUND"] | NotGiven = NOT_GIVEN,
-        end_date: str | NotGiven = NOT_GIVEN,
-        message_type: Literal["SMS", "MMS"] | NotGiven = NOT_GIVEN,
-        profile: str | NotGiven = NOT_GIVEN,
-        start_date: str | NotGiven = NOT_GIVEN,
+        id: str | Omit = omit,
+        cld: str | Omit = omit,
+        cli: str | Omit = omit,
+        direction: Literal["INBOUND", "OUTBOUND"] | Omit = omit,
+        end_date: str | Omit = omit,
+        message_type: Literal["SMS", "MMS"] | Omit = omit,
+        profile: str | Omit = omit,
+        start_date: str | Omit = omit,
         status: Literal["GW_TIMEOUT", "DELIVERED", "DLR_UNCONFIRMED", "DLR_TIMEOUT", "RECEIVED", "GW_REJECT", "FAILED"]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ReportListMdrsResponse:
         """
         Fetch all Mdr records
@@ -338,24 +338,24 @@ class AsyncReportsResource(AsyncAPIResource):
     async def list_wdrs(
         self,
         *,
-        id: str | NotGiven = NOT_GIVEN,
-        end_date: str | NotGiven = NOT_GIVEN,
-        imsi: str | NotGiven = NOT_GIVEN,
-        mcc: str | NotGiven = NOT_GIVEN,
-        mnc: str | NotGiven = NOT_GIVEN,
-        page: report_list_wdrs_params.Page | NotGiven = NOT_GIVEN,
-        phone_number: str | NotGiven = NOT_GIVEN,
-        sim_card_id: str | NotGiven = NOT_GIVEN,
-        sim_group_id: str | NotGiven = NOT_GIVEN,
-        sim_group_name: str | NotGiven = NOT_GIVEN,
-        sort: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        start_date: str | NotGiven = NOT_GIVEN,
+        id: str | Omit = omit,
+        end_date: str | Omit = omit,
+        imsi: str | Omit = omit,
+        mcc: str | Omit = omit,
+        mnc: str | Omit = omit,
+        page: report_list_wdrs_params.Page | Omit = omit,
+        phone_number: str | Omit = omit,
+        sim_card_id: str | Omit = omit,
+        sim_group_id: str | Omit = omit,
+        sim_group_name: str | Omit = omit,
+        sort: SequenceNotStr[str] | Omit = omit,
+        start_date: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ReportListWdrsResponse:
         """
         Fetch all Wdr records

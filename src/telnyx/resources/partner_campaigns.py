@@ -11,7 +11,7 @@ from ..types import (
     partner_campaign_update_params,
     partner_campaign_list_shared_by_me_params,
 )
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -59,7 +59,7 @@ class PartnerCampaignsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TelnyxDownstreamCampaign:
         """
         Retrieve campaign details by `campaignId`.
@@ -87,14 +87,14 @@ class PartnerCampaignsResource(SyncAPIResource):
         self,
         campaign_id: str,
         *,
-        webhook_failover_url: str | NotGiven = NOT_GIVEN,
-        webhook_url: str | NotGiven = NOT_GIVEN,
+        webhook_failover_url: str | Omit = omit,
+        webhook_url: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TelnyxDownstreamCampaign:
         """Update campaign details by `campaignId`.
 
@@ -134,8 +134,8 @@ class PartnerCampaignsResource(SyncAPIResource):
     def list(
         self,
         *,
-        page: int | NotGiven = NOT_GIVEN,
-        records_per_page: int | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
+        records_per_page: int | Omit = omit,
         sort: Literal[
             "assignedPhoneNumbersCount",
             "-assignedPhoneNumbersCount",
@@ -150,13 +150,13 @@ class PartnerCampaignsResource(SyncAPIResource):
             "campaignStatus",
             "-campaignStatus",
         ]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PartnerCampaignListResponse:
         """
         Retrieve all partner campaigns you have shared to Telnyx in a paginated fashion.
@@ -204,14 +204,14 @@ class PartnerCampaignsResource(SyncAPIResource):
     def list_shared_by_me(
         self,
         *,
-        page: int | NotGiven = NOT_GIVEN,
-        records_per_page: int | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
+        records_per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PartnerCampaignListSharedByMeResponse:
         """
         Get all partner campaigns you have shared to Telnyx in a paginated fashion
@@ -261,7 +261,7 @@ class PartnerCampaignsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PartnerCampaignRetrieveSharingStatusResponse:
         """
         Get Sharing Status
@@ -317,7 +317,7 @@ class AsyncPartnerCampaignsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TelnyxDownstreamCampaign:
         """
         Retrieve campaign details by `campaignId`.
@@ -345,14 +345,14 @@ class AsyncPartnerCampaignsResource(AsyncAPIResource):
         self,
         campaign_id: str,
         *,
-        webhook_failover_url: str | NotGiven = NOT_GIVEN,
-        webhook_url: str | NotGiven = NOT_GIVEN,
+        webhook_failover_url: str | Omit = omit,
+        webhook_url: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TelnyxDownstreamCampaign:
         """Update campaign details by `campaignId`.
 
@@ -392,8 +392,8 @@ class AsyncPartnerCampaignsResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        page: int | NotGiven = NOT_GIVEN,
-        records_per_page: int | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
+        records_per_page: int | Omit = omit,
         sort: Literal[
             "assignedPhoneNumbersCount",
             "-assignedPhoneNumbersCount",
@@ -408,13 +408,13 @@ class AsyncPartnerCampaignsResource(AsyncAPIResource):
             "campaignStatus",
             "-campaignStatus",
         ]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PartnerCampaignListResponse:
         """
         Retrieve all partner campaigns you have shared to Telnyx in a paginated fashion.
@@ -462,14 +462,14 @@ class AsyncPartnerCampaignsResource(AsyncAPIResource):
     async def list_shared_by_me(
         self,
         *,
-        page: int | NotGiven = NOT_GIVEN,
-        records_per_page: int | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
+        records_per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PartnerCampaignListSharedByMeResponse:
         """
         Get all partner campaigns you have shared to Telnyx in a paginated fashion
@@ -519,7 +519,7 @@ class AsyncPartnerCampaignsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PartnerCampaignRetrieveSharingStatusResponse:
         """
         Get Sharing Status

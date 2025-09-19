@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Union, Mapping, Iterable
+from typing import Any, Mapping, Iterable
 from typing_extensions import Self, Literal, override
 
 import httpx
@@ -18,7 +18,6 @@ from .types import (
     client_delete_objects_params,
 )
 from ._types import (
-    NOT_GIVEN,
     Body,
     Omit,
     Query,
@@ -30,6 +29,8 @@ from ._types import (
     Transport,
     ProxiesTypes,
     RequestOptions,
+    omit,
+    not_given,
 )
 from ._utils import (
     is_given,
@@ -376,7 +377,7 @@ class Telnyx(SyncAPIClient):
         *,
         api_key: str | None = None,
         base_url: str | httpx.URL | None = None,
-        timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
+        timeout: float | Timeout | None | NotGiven = not_given,
         max_retries: int = DEFAULT_MAX_RETRIES,
         default_headers: Mapping[str, str] | None = None,
         default_query: Mapping[str, object] | None = None,
@@ -605,9 +606,9 @@ class Telnyx(SyncAPIClient):
         *,
         api_key: str | None = None,
         base_url: str | httpx.URL | None = None,
-        timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | Timeout | None | NotGiven = not_given,
         http_client: httpx.Client | None = None,
-        max_retries: int | NotGiven = NOT_GIVEN,
+        max_retries: int | NotGiven = not_given,
         default_headers: Mapping[str, str] | None = None,
         set_default_headers: Mapping[str, str] | None = None,
         default_query: Mapping[str, object] | None = None,
@@ -655,13 +656,13 @@ class Telnyx(SyncAPIClient):
         self,
         bucket_name: str,
         *,
-        location_constraint: str | NotGiven = NOT_GIVEN,
+        location_constraint: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Create a bucket.
@@ -698,7 +699,7 @@ class Telnyx(SyncAPIClient):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """Deletes a bucket.
 
@@ -734,7 +735,7 @@ class Telnyx(SyncAPIClient):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Delete an object from a given bucket.
@@ -772,7 +773,7 @@ class Telnyx(SyncAPIClient):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Deletes one or multiple objects from a given bucket.
@@ -807,13 +808,13 @@ class Telnyx(SyncAPIClient):
         object_name: str,
         *,
         bucket_name: str,
-        upload_id: str | NotGiven = NOT_GIVEN,
+        upload_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BinaryAPIResponse:
         """
         Retrieves an object from a given bucket.
@@ -852,7 +853,7 @@ class Telnyx(SyncAPIClient):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ListBucketsResponse:
         """List all Buckets."""
         extra_headers = {"Accept": "application/xml", **(extra_headers or {})}
@@ -868,13 +869,13 @@ class Telnyx(SyncAPIClient):
         self,
         bucket_name: str,
         *,
-        list_type: Literal[2] | NotGiven = NOT_GIVEN,
+        list_type: Literal[2] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ListObjectsResponse:
         """
         List all objects contained in a given bucket.
@@ -909,14 +910,14 @@ class Telnyx(SyncAPIClient):
         *,
         bucket_name: str,
         body: FileTypes,
-        part_number: str | NotGiven = NOT_GIVEN,
-        upload_id: str | NotGiven = NOT_GIVEN,
+        part_number: str | Omit = omit,
+        upload_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Add an object to a bucket.
@@ -1149,7 +1150,7 @@ class AsyncTelnyx(AsyncAPIClient):
         *,
         api_key: str | None = None,
         base_url: str | httpx.URL | None = None,
-        timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
+        timeout: float | Timeout | None | NotGiven = not_given,
         max_retries: int = DEFAULT_MAX_RETRIES,
         default_headers: Mapping[str, str] | None = None,
         default_query: Mapping[str, object] | None = None,
@@ -1384,9 +1385,9 @@ class AsyncTelnyx(AsyncAPIClient):
         *,
         api_key: str | None = None,
         base_url: str | httpx.URL | None = None,
-        timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | Timeout | None | NotGiven = not_given,
         http_client: httpx.AsyncClient | None = None,
-        max_retries: int | NotGiven = NOT_GIVEN,
+        max_retries: int | NotGiven = not_given,
         default_headers: Mapping[str, str] | None = None,
         set_default_headers: Mapping[str, str] | None = None,
         default_query: Mapping[str, object] | None = None,
@@ -1434,13 +1435,13 @@ class AsyncTelnyx(AsyncAPIClient):
         self,
         bucket_name: str,
         *,
-        location_constraint: str | NotGiven = NOT_GIVEN,
+        location_constraint: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Create a bucket.
@@ -1477,7 +1478,7 @@ class AsyncTelnyx(AsyncAPIClient):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """Deletes a bucket.
 
@@ -1513,7 +1514,7 @@ class AsyncTelnyx(AsyncAPIClient):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Delete an object from a given bucket.
@@ -1551,7 +1552,7 @@ class AsyncTelnyx(AsyncAPIClient):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Deletes one or multiple objects from a given bucket.
@@ -1588,13 +1589,13 @@ class AsyncTelnyx(AsyncAPIClient):
         object_name: str,
         *,
         bucket_name: str,
-        upload_id: str | NotGiven = NOT_GIVEN,
+        upload_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncBinaryAPIResponse:
         """
         Retrieves an object from a given bucket.
@@ -1635,7 +1636,7 @@ class AsyncTelnyx(AsyncAPIClient):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ListBucketsResponse:
         """List all Buckets."""
         extra_headers = {"Accept": "application/xml", **(extra_headers or {})}
@@ -1651,13 +1652,13 @@ class AsyncTelnyx(AsyncAPIClient):
         self,
         bucket_name: str,
         *,
-        list_type: Literal[2] | NotGiven = NOT_GIVEN,
+        list_type: Literal[2] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ListObjectsResponse:
         """
         List all objects contained in a given bucket.
@@ -1694,14 +1695,14 @@ class AsyncTelnyx(AsyncAPIClient):
         *,
         bucket_name: str,
         body: FileTypes,
-        part_number: str | NotGiven = NOT_GIVEN,
-        upload_id: str | NotGiven = NOT_GIVEN,
+        part_number: str | Omit = omit,
+        upload_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Add an object to a bucket.

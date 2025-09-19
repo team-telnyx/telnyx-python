@@ -6,7 +6,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -47,15 +47,15 @@ class RegisterResource(SyncAPIResource):
         self,
         *,
         registration_codes: SequenceNotStr[str],
-        sim_card_group_id: str | NotGiven = NOT_GIVEN,
-        status: Literal["enabled", "disabled", "standby"] | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        sim_card_group_id: str | Omit = omit,
+        status: Literal["enabled", "disabled", "standby"] | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RegisterCreateResponse:
         """
         Register the SIM cards associated with the provided registration codes to the
@@ -121,15 +121,15 @@ class AsyncRegisterResource(AsyncAPIResource):
         self,
         *,
         registration_codes: SequenceNotStr[str],
-        sim_card_group_id: str | NotGiven = NOT_GIVEN,
-        status: Literal["enabled", "disabled", "standby"] | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        sim_card_group_id: str | Omit = omit,
+        status: Literal["enabled", "disabled", "standby"] | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RegisterCreateResponse:
         """
         Register the SIM cards associated with the provided registration codes to the

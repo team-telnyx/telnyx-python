@@ -6,7 +6,7 @@ from typing import Union
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -49,14 +49,14 @@ class InsightsResource(SyncAPIResource):
         *,
         instructions: str,
         name: str,
-        json_schema: Union[str, object] | NotGiven = NOT_GIVEN,
-        webhook: str | NotGiven = NOT_GIVEN,
+        json_schema: Union[str, object] | Omit = omit,
+        webhook: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InsightTemplateDetail:
         """
         Create a new insight
@@ -98,7 +98,7 @@ class InsightsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InsightTemplateDetail:
         """
         Get insight by ID
@@ -128,16 +128,16 @@ class InsightsResource(SyncAPIResource):
         self,
         insight_id: str,
         *,
-        instructions: str | NotGiven = NOT_GIVEN,
-        json_schema: Union[str, object] | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        webhook: str | NotGiven = NOT_GIVEN,
+        instructions: str | Omit = omit,
+        json_schema: Union[str, object] | Omit = omit,
+        name: str | Omit = omit,
+        webhook: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InsightTemplateDetail:
         """
         Update an insight template
@@ -175,13 +175,13 @@ class InsightsResource(SyncAPIResource):
     def list(
         self,
         *,
-        page: insight_list_params.Page | NotGiven = NOT_GIVEN,
+        page: insight_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InsightListResponse:
         """Get all insights
 
@@ -220,7 +220,7 @@ class InsightsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Delete insight by ID
@@ -272,14 +272,14 @@ class AsyncInsightsResource(AsyncAPIResource):
         *,
         instructions: str,
         name: str,
-        json_schema: Union[str, object] | NotGiven = NOT_GIVEN,
-        webhook: str | NotGiven = NOT_GIVEN,
+        json_schema: Union[str, object] | Omit = omit,
+        webhook: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InsightTemplateDetail:
         """
         Create a new insight
@@ -321,7 +321,7 @@ class AsyncInsightsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InsightTemplateDetail:
         """
         Get insight by ID
@@ -351,16 +351,16 @@ class AsyncInsightsResource(AsyncAPIResource):
         self,
         insight_id: str,
         *,
-        instructions: str | NotGiven = NOT_GIVEN,
-        json_schema: Union[str, object] | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        webhook: str | NotGiven = NOT_GIVEN,
+        instructions: str | Omit = omit,
+        json_schema: Union[str, object] | Omit = omit,
+        name: str | Omit = omit,
+        webhook: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InsightTemplateDetail:
         """
         Update an insight template
@@ -398,13 +398,13 @@ class AsyncInsightsResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        page: insight_list_params.Page | NotGiven = NOT_GIVEN,
+        page: insight_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InsightListResponse:
         """Get all insights
 
@@ -443,7 +443,7 @@ class AsyncInsightsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Delete insight by ID

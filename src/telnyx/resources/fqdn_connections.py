@@ -17,7 +17,7 @@ from ..types import (
     fqdn_connection_create_params,
     fqdn_connection_update_params,
 )
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from .._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -69,31 +69,31 @@ class FqdnConnectionsResource(SyncAPIResource):
         self,
         *,
         connection_name: str,
-        active: bool | NotGiven = NOT_GIVEN,
-        anchorsite_override: AnchorsiteOverride | NotGiven = NOT_GIVEN,
-        android_push_credential_id: Optional[str] | NotGiven = NOT_GIVEN,
-        default_on_hold_comfort_noise_enabled: bool | NotGiven = NOT_GIVEN,
-        dtmf_type: DtmfType | NotGiven = NOT_GIVEN,
-        encode_contact_header_enabled: bool | NotGiven = NOT_GIVEN,
-        encrypted_media: Optional[EncryptedMedia] | NotGiven = NOT_GIVEN,
-        inbound: InboundFqdnParam | NotGiven = NOT_GIVEN,
-        ios_push_credential_id: Optional[str] | NotGiven = NOT_GIVEN,
-        microsoft_teams_sbc: bool | NotGiven = NOT_GIVEN,
-        onnet_t38_passthrough_enabled: bool | NotGiven = NOT_GIVEN,
-        outbound: OutboundFqdnParam | NotGiven = NOT_GIVEN,
-        rtcp_settings: ConnectionRtcpSettingsParam | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        transport_protocol: TransportProtocol | NotGiven = NOT_GIVEN,
-        webhook_api_version: WebhookAPIVersion | NotGiven = NOT_GIVEN,
-        webhook_event_failover_url: Optional[str] | NotGiven = NOT_GIVEN,
-        webhook_event_url: str | NotGiven = NOT_GIVEN,
-        webhook_timeout_secs: Optional[int] | NotGiven = NOT_GIVEN,
+        active: bool | Omit = omit,
+        anchorsite_override: AnchorsiteOverride | Omit = omit,
+        android_push_credential_id: Optional[str] | Omit = omit,
+        default_on_hold_comfort_noise_enabled: bool | Omit = omit,
+        dtmf_type: DtmfType | Omit = omit,
+        encode_contact_header_enabled: bool | Omit = omit,
+        encrypted_media: Optional[EncryptedMedia] | Omit = omit,
+        inbound: InboundFqdnParam | Omit = omit,
+        ios_push_credential_id: Optional[str] | Omit = omit,
+        microsoft_teams_sbc: bool | Omit = omit,
+        onnet_t38_passthrough_enabled: bool | Omit = omit,
+        outbound: OutboundFqdnParam | Omit = omit,
+        rtcp_settings: ConnectionRtcpSettingsParam | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        transport_protocol: TransportProtocol | Omit = omit,
+        webhook_api_version: WebhookAPIVersion | Omit = omit,
+        webhook_event_failover_url: Optional[str] | Omit = omit,
+        webhook_event_url: str | Omit = omit,
+        webhook_timeout_secs: Optional[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FqdnConnectionCreateResponse:
         """
         Creates a FQDN connection.
@@ -196,7 +196,7 @@ class FqdnConnectionsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FqdnConnectionRetrieveResponse:
         """
         Retrieves the details of an existing FQDN connection.
@@ -224,31 +224,31 @@ class FqdnConnectionsResource(SyncAPIResource):
         self,
         id: str,
         *,
-        active: bool | NotGiven = NOT_GIVEN,
-        anchorsite_override: AnchorsiteOverride | NotGiven = NOT_GIVEN,
-        android_push_credential_id: Optional[str] | NotGiven = NOT_GIVEN,
-        connection_name: str | NotGiven = NOT_GIVEN,
-        default_on_hold_comfort_noise_enabled: bool | NotGiven = NOT_GIVEN,
-        dtmf_type: DtmfType | NotGiven = NOT_GIVEN,
-        encode_contact_header_enabled: bool | NotGiven = NOT_GIVEN,
-        encrypted_media: Optional[EncryptedMedia] | NotGiven = NOT_GIVEN,
-        inbound: InboundFqdnParam | NotGiven = NOT_GIVEN,
-        ios_push_credential_id: Optional[str] | NotGiven = NOT_GIVEN,
-        onnet_t38_passthrough_enabled: bool | NotGiven = NOT_GIVEN,
-        outbound: OutboundFqdnParam | NotGiven = NOT_GIVEN,
-        rtcp_settings: ConnectionRtcpSettingsParam | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        transport_protocol: TransportProtocol | NotGiven = NOT_GIVEN,
-        webhook_api_version: WebhookAPIVersion | NotGiven = NOT_GIVEN,
-        webhook_event_failover_url: Optional[str] | NotGiven = NOT_GIVEN,
-        webhook_event_url: str | NotGiven = NOT_GIVEN,
-        webhook_timeout_secs: Optional[int] | NotGiven = NOT_GIVEN,
+        active: bool | Omit = omit,
+        anchorsite_override: AnchorsiteOverride | Omit = omit,
+        android_push_credential_id: Optional[str] | Omit = omit,
+        connection_name: str | Omit = omit,
+        default_on_hold_comfort_noise_enabled: bool | Omit = omit,
+        dtmf_type: DtmfType | Omit = omit,
+        encode_contact_header_enabled: bool | Omit = omit,
+        encrypted_media: Optional[EncryptedMedia] | Omit = omit,
+        inbound: InboundFqdnParam | Omit = omit,
+        ios_push_credential_id: Optional[str] | Omit = omit,
+        onnet_t38_passthrough_enabled: bool | Omit = omit,
+        outbound: OutboundFqdnParam | Omit = omit,
+        rtcp_settings: ConnectionRtcpSettingsParam | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        transport_protocol: TransportProtocol | Omit = omit,
+        webhook_api_version: WebhookAPIVersion | Omit = omit,
+        webhook_event_failover_url: Optional[str] | Omit = omit,
+        webhook_event_url: str | Omit = omit,
+        webhook_timeout_secs: Optional[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FqdnConnectionUpdateResponse:
         """
         Updates settings of an existing FQDN connection.
@@ -343,15 +343,15 @@ class FqdnConnectionsResource(SyncAPIResource):
     def list(
         self,
         *,
-        filter: fqdn_connection_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: fqdn_connection_list_params.Page | NotGiven = NOT_GIVEN,
-        sort: Literal["created_at", "connection_name", "active"] | NotGiven = NOT_GIVEN,
+        filter: fqdn_connection_list_params.Filter | Omit = omit,
+        page: fqdn_connection_list_params.Page | Omit = omit,
+        sort: Literal["created_at", "connection_name", "active"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FqdnConnectionListResponse:
         """
         Returns a list of your FQDN connections.
@@ -416,7 +416,7 @@ class FqdnConnectionsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FqdnConnectionDeleteResponse:
         """
         Deletes an FQDN connection.
@@ -465,31 +465,31 @@ class AsyncFqdnConnectionsResource(AsyncAPIResource):
         self,
         *,
         connection_name: str,
-        active: bool | NotGiven = NOT_GIVEN,
-        anchorsite_override: AnchorsiteOverride | NotGiven = NOT_GIVEN,
-        android_push_credential_id: Optional[str] | NotGiven = NOT_GIVEN,
-        default_on_hold_comfort_noise_enabled: bool | NotGiven = NOT_GIVEN,
-        dtmf_type: DtmfType | NotGiven = NOT_GIVEN,
-        encode_contact_header_enabled: bool | NotGiven = NOT_GIVEN,
-        encrypted_media: Optional[EncryptedMedia] | NotGiven = NOT_GIVEN,
-        inbound: InboundFqdnParam | NotGiven = NOT_GIVEN,
-        ios_push_credential_id: Optional[str] | NotGiven = NOT_GIVEN,
-        microsoft_teams_sbc: bool | NotGiven = NOT_GIVEN,
-        onnet_t38_passthrough_enabled: bool | NotGiven = NOT_GIVEN,
-        outbound: OutboundFqdnParam | NotGiven = NOT_GIVEN,
-        rtcp_settings: ConnectionRtcpSettingsParam | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        transport_protocol: TransportProtocol | NotGiven = NOT_GIVEN,
-        webhook_api_version: WebhookAPIVersion | NotGiven = NOT_GIVEN,
-        webhook_event_failover_url: Optional[str] | NotGiven = NOT_GIVEN,
-        webhook_event_url: str | NotGiven = NOT_GIVEN,
-        webhook_timeout_secs: Optional[int] | NotGiven = NOT_GIVEN,
+        active: bool | Omit = omit,
+        anchorsite_override: AnchorsiteOverride | Omit = omit,
+        android_push_credential_id: Optional[str] | Omit = omit,
+        default_on_hold_comfort_noise_enabled: bool | Omit = omit,
+        dtmf_type: DtmfType | Omit = omit,
+        encode_contact_header_enabled: bool | Omit = omit,
+        encrypted_media: Optional[EncryptedMedia] | Omit = omit,
+        inbound: InboundFqdnParam | Omit = omit,
+        ios_push_credential_id: Optional[str] | Omit = omit,
+        microsoft_teams_sbc: bool | Omit = omit,
+        onnet_t38_passthrough_enabled: bool | Omit = omit,
+        outbound: OutboundFqdnParam | Omit = omit,
+        rtcp_settings: ConnectionRtcpSettingsParam | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        transport_protocol: TransportProtocol | Omit = omit,
+        webhook_api_version: WebhookAPIVersion | Omit = omit,
+        webhook_event_failover_url: Optional[str] | Omit = omit,
+        webhook_event_url: str | Omit = omit,
+        webhook_timeout_secs: Optional[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FqdnConnectionCreateResponse:
         """
         Creates a FQDN connection.
@@ -592,7 +592,7 @@ class AsyncFqdnConnectionsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FqdnConnectionRetrieveResponse:
         """
         Retrieves the details of an existing FQDN connection.
@@ -620,31 +620,31 @@ class AsyncFqdnConnectionsResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        active: bool | NotGiven = NOT_GIVEN,
-        anchorsite_override: AnchorsiteOverride | NotGiven = NOT_GIVEN,
-        android_push_credential_id: Optional[str] | NotGiven = NOT_GIVEN,
-        connection_name: str | NotGiven = NOT_GIVEN,
-        default_on_hold_comfort_noise_enabled: bool | NotGiven = NOT_GIVEN,
-        dtmf_type: DtmfType | NotGiven = NOT_GIVEN,
-        encode_contact_header_enabled: bool | NotGiven = NOT_GIVEN,
-        encrypted_media: Optional[EncryptedMedia] | NotGiven = NOT_GIVEN,
-        inbound: InboundFqdnParam | NotGiven = NOT_GIVEN,
-        ios_push_credential_id: Optional[str] | NotGiven = NOT_GIVEN,
-        onnet_t38_passthrough_enabled: bool | NotGiven = NOT_GIVEN,
-        outbound: OutboundFqdnParam | NotGiven = NOT_GIVEN,
-        rtcp_settings: ConnectionRtcpSettingsParam | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        transport_protocol: TransportProtocol | NotGiven = NOT_GIVEN,
-        webhook_api_version: WebhookAPIVersion | NotGiven = NOT_GIVEN,
-        webhook_event_failover_url: Optional[str] | NotGiven = NOT_GIVEN,
-        webhook_event_url: str | NotGiven = NOT_GIVEN,
-        webhook_timeout_secs: Optional[int] | NotGiven = NOT_GIVEN,
+        active: bool | Omit = omit,
+        anchorsite_override: AnchorsiteOverride | Omit = omit,
+        android_push_credential_id: Optional[str] | Omit = omit,
+        connection_name: str | Omit = omit,
+        default_on_hold_comfort_noise_enabled: bool | Omit = omit,
+        dtmf_type: DtmfType | Omit = omit,
+        encode_contact_header_enabled: bool | Omit = omit,
+        encrypted_media: Optional[EncryptedMedia] | Omit = omit,
+        inbound: InboundFqdnParam | Omit = omit,
+        ios_push_credential_id: Optional[str] | Omit = omit,
+        onnet_t38_passthrough_enabled: bool | Omit = omit,
+        outbound: OutboundFqdnParam | Omit = omit,
+        rtcp_settings: ConnectionRtcpSettingsParam | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        transport_protocol: TransportProtocol | Omit = omit,
+        webhook_api_version: WebhookAPIVersion | Omit = omit,
+        webhook_event_failover_url: Optional[str] | Omit = omit,
+        webhook_event_url: str | Omit = omit,
+        webhook_timeout_secs: Optional[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FqdnConnectionUpdateResponse:
         """
         Updates settings of an existing FQDN connection.
@@ -739,15 +739,15 @@ class AsyncFqdnConnectionsResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        filter: fqdn_connection_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: fqdn_connection_list_params.Page | NotGiven = NOT_GIVEN,
-        sort: Literal["created_at", "connection_name", "active"] | NotGiven = NOT_GIVEN,
+        filter: fqdn_connection_list_params.Filter | Omit = omit,
+        page: fqdn_connection_list_params.Page | Omit = omit,
+        sort: Literal["created_at", "connection_name", "active"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FqdnConnectionListResponse:
         """
         Returns a list of your FQDN connections.
@@ -812,7 +812,7 @@ class AsyncFqdnConnectionsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FqdnConnectionDeleteResponse:
         """
         Deletes an FQDN connection.

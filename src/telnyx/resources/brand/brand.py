@@ -16,7 +16,7 @@ from ...types import (
     brand_create_params,
     brand_update_params,
 )
-from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -80,31 +80,31 @@ class BrandResource(SyncAPIResource):
         email: str,
         entity_type: EntityType,
         vertical: Vertical,
-        business_contact_email: str | NotGiven = NOT_GIVEN,
-        city: str | NotGiven = NOT_GIVEN,
-        company_name: str | NotGiven = NOT_GIVEN,
-        ein: str | NotGiven = NOT_GIVEN,
-        first_name: str | NotGiven = NOT_GIVEN,
-        ip_address: str | NotGiven = NOT_GIVEN,
-        is_reseller: bool | NotGiven = NOT_GIVEN,
-        last_name: str | NotGiven = NOT_GIVEN,
-        mobile_phone: str | NotGiven = NOT_GIVEN,
-        mock: bool | NotGiven = NOT_GIVEN,
-        phone: str | NotGiven = NOT_GIVEN,
-        postal_code: str | NotGiven = NOT_GIVEN,
-        state: str | NotGiven = NOT_GIVEN,
-        stock_exchange: StockExchange | NotGiven = NOT_GIVEN,
-        stock_symbol: str | NotGiven = NOT_GIVEN,
-        street: str | NotGiven = NOT_GIVEN,
-        webhook_failover_url: str | NotGiven = NOT_GIVEN,
-        webhook_url: str | NotGiven = NOT_GIVEN,
-        website: str | NotGiven = NOT_GIVEN,
+        business_contact_email: str | Omit = omit,
+        city: str | Omit = omit,
+        company_name: str | Omit = omit,
+        ein: str | Omit = omit,
+        first_name: str | Omit = omit,
+        ip_address: str | Omit = omit,
+        is_reseller: bool | Omit = omit,
+        last_name: str | Omit = omit,
+        mobile_phone: str | Omit = omit,
+        mock: bool | Omit = omit,
+        phone: str | Omit = omit,
+        postal_code: str | Omit = omit,
+        state: str | Omit = omit,
+        stock_exchange: StockExchange | Omit = omit,
+        stock_symbol: str | Omit = omit,
+        street: str | Omit = omit,
+        webhook_failover_url: str | Omit = omit,
+        webhook_url: str | Omit = omit,
+        website: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TelnyxBrand:
         """This endpoint is used to create a new brand.
 
@@ -217,7 +217,7 @@ class BrandResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BrandRetrieveResponse:
         """
         Retrieve a brand by `brandId`.
@@ -250,32 +250,32 @@ class BrandResource(SyncAPIResource):
         email: str,
         entity_type: EntityType,
         vertical: Vertical,
-        alt_business_id: str | NotGiven = NOT_GIVEN,
-        alt_business_id_type: AltBusinessIDType | NotGiven = NOT_GIVEN,
-        business_contact_email: str | NotGiven = NOT_GIVEN,
-        city: str | NotGiven = NOT_GIVEN,
-        company_name: str | NotGiven = NOT_GIVEN,
-        ein: str | NotGiven = NOT_GIVEN,
-        first_name: str | NotGiven = NOT_GIVEN,
-        identity_status: BrandIdentityStatus | NotGiven = NOT_GIVEN,
-        ip_address: str | NotGiven = NOT_GIVEN,
-        is_reseller: bool | NotGiven = NOT_GIVEN,
-        last_name: str | NotGiven = NOT_GIVEN,
-        phone: str | NotGiven = NOT_GIVEN,
-        postal_code: str | NotGiven = NOT_GIVEN,
-        state: str | NotGiven = NOT_GIVEN,
-        stock_exchange: StockExchange | NotGiven = NOT_GIVEN,
-        stock_symbol: str | NotGiven = NOT_GIVEN,
-        street: str | NotGiven = NOT_GIVEN,
-        webhook_failover_url: str | NotGiven = NOT_GIVEN,
-        webhook_url: str | NotGiven = NOT_GIVEN,
-        website: str | NotGiven = NOT_GIVEN,
+        alt_business_id: str | Omit = omit,
+        alt_business_id_type: AltBusinessIDType | Omit = omit,
+        business_contact_email: str | Omit = omit,
+        city: str | Omit = omit,
+        company_name: str | Omit = omit,
+        ein: str | Omit = omit,
+        first_name: str | Omit = omit,
+        identity_status: BrandIdentityStatus | Omit = omit,
+        ip_address: str | Omit = omit,
+        is_reseller: bool | Omit = omit,
+        last_name: str | Omit = omit,
+        phone: str | Omit = omit,
+        postal_code: str | Omit = omit,
+        state: str | Omit = omit,
+        stock_exchange: StockExchange | Omit = omit,
+        stock_symbol: str | Omit = omit,
+        street: str | Omit = omit,
+        webhook_failover_url: str | Omit = omit,
+        webhook_url: str | Omit = omit,
+        website: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TelnyxBrand:
         """
         Update a brand's attributes by `brandId`.
@@ -383,12 +383,12 @@ class BrandResource(SyncAPIResource):
     def list(
         self,
         *,
-        brand_id: str | NotGiven = NOT_GIVEN,
-        country: str | NotGiven = NOT_GIVEN,
-        display_name: str | NotGiven = NOT_GIVEN,
-        entity_type: str | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        records_per_page: int | NotGiven = NOT_GIVEN,
+        brand_id: str | Omit = omit,
+        country: str | Omit = omit,
+        display_name: str | Omit = omit,
+        entity_type: str | Omit = omit,
+        page: int | Omit = omit,
+        records_per_page: int | Omit = omit,
         sort: Literal[
             "assignedCampaignsCount",
             "-assignedCampaignsCount",
@@ -405,15 +405,15 @@ class BrandResource(SyncAPIResource):
             "tcrBrandId",
             "-tcrBrandId",
         ]
-        | NotGiven = NOT_GIVEN,
-        state: str | NotGiven = NOT_GIVEN,
-        tcr_brand_id: str | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        state: str | Omit = omit,
+        tcr_brand_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BrandListResponse:
         """
         This endpoint is used to list all brands associated with your organization.
@@ -470,7 +470,7 @@ class BrandResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """Delete Brand.
 
@@ -506,7 +506,7 @@ class BrandResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BrandGetFeedbackResponse:
         """Get feedback about a brand by ID.
 
@@ -552,7 +552,7 @@ class BrandResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Resend brand 2FA email
@@ -586,7 +586,7 @@ class BrandResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """This operation allows you to revet the brand.
 
@@ -646,31 +646,31 @@ class AsyncBrandResource(AsyncAPIResource):
         email: str,
         entity_type: EntityType,
         vertical: Vertical,
-        business_contact_email: str | NotGiven = NOT_GIVEN,
-        city: str | NotGiven = NOT_GIVEN,
-        company_name: str | NotGiven = NOT_GIVEN,
-        ein: str | NotGiven = NOT_GIVEN,
-        first_name: str | NotGiven = NOT_GIVEN,
-        ip_address: str | NotGiven = NOT_GIVEN,
-        is_reseller: bool | NotGiven = NOT_GIVEN,
-        last_name: str | NotGiven = NOT_GIVEN,
-        mobile_phone: str | NotGiven = NOT_GIVEN,
-        mock: bool | NotGiven = NOT_GIVEN,
-        phone: str | NotGiven = NOT_GIVEN,
-        postal_code: str | NotGiven = NOT_GIVEN,
-        state: str | NotGiven = NOT_GIVEN,
-        stock_exchange: StockExchange | NotGiven = NOT_GIVEN,
-        stock_symbol: str | NotGiven = NOT_GIVEN,
-        street: str | NotGiven = NOT_GIVEN,
-        webhook_failover_url: str | NotGiven = NOT_GIVEN,
-        webhook_url: str | NotGiven = NOT_GIVEN,
-        website: str | NotGiven = NOT_GIVEN,
+        business_contact_email: str | Omit = omit,
+        city: str | Omit = omit,
+        company_name: str | Omit = omit,
+        ein: str | Omit = omit,
+        first_name: str | Omit = omit,
+        ip_address: str | Omit = omit,
+        is_reseller: bool | Omit = omit,
+        last_name: str | Omit = omit,
+        mobile_phone: str | Omit = omit,
+        mock: bool | Omit = omit,
+        phone: str | Omit = omit,
+        postal_code: str | Omit = omit,
+        state: str | Omit = omit,
+        stock_exchange: StockExchange | Omit = omit,
+        stock_symbol: str | Omit = omit,
+        street: str | Omit = omit,
+        webhook_failover_url: str | Omit = omit,
+        webhook_url: str | Omit = omit,
+        website: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TelnyxBrand:
         """This endpoint is used to create a new brand.
 
@@ -783,7 +783,7 @@ class AsyncBrandResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BrandRetrieveResponse:
         """
         Retrieve a brand by `brandId`.
@@ -816,32 +816,32 @@ class AsyncBrandResource(AsyncAPIResource):
         email: str,
         entity_type: EntityType,
         vertical: Vertical,
-        alt_business_id: str | NotGiven = NOT_GIVEN,
-        alt_business_id_type: AltBusinessIDType | NotGiven = NOT_GIVEN,
-        business_contact_email: str | NotGiven = NOT_GIVEN,
-        city: str | NotGiven = NOT_GIVEN,
-        company_name: str | NotGiven = NOT_GIVEN,
-        ein: str | NotGiven = NOT_GIVEN,
-        first_name: str | NotGiven = NOT_GIVEN,
-        identity_status: BrandIdentityStatus | NotGiven = NOT_GIVEN,
-        ip_address: str | NotGiven = NOT_GIVEN,
-        is_reseller: bool | NotGiven = NOT_GIVEN,
-        last_name: str | NotGiven = NOT_GIVEN,
-        phone: str | NotGiven = NOT_GIVEN,
-        postal_code: str | NotGiven = NOT_GIVEN,
-        state: str | NotGiven = NOT_GIVEN,
-        stock_exchange: StockExchange | NotGiven = NOT_GIVEN,
-        stock_symbol: str | NotGiven = NOT_GIVEN,
-        street: str | NotGiven = NOT_GIVEN,
-        webhook_failover_url: str | NotGiven = NOT_GIVEN,
-        webhook_url: str | NotGiven = NOT_GIVEN,
-        website: str | NotGiven = NOT_GIVEN,
+        alt_business_id: str | Omit = omit,
+        alt_business_id_type: AltBusinessIDType | Omit = omit,
+        business_contact_email: str | Omit = omit,
+        city: str | Omit = omit,
+        company_name: str | Omit = omit,
+        ein: str | Omit = omit,
+        first_name: str | Omit = omit,
+        identity_status: BrandIdentityStatus | Omit = omit,
+        ip_address: str | Omit = omit,
+        is_reseller: bool | Omit = omit,
+        last_name: str | Omit = omit,
+        phone: str | Omit = omit,
+        postal_code: str | Omit = omit,
+        state: str | Omit = omit,
+        stock_exchange: StockExchange | Omit = omit,
+        stock_symbol: str | Omit = omit,
+        street: str | Omit = omit,
+        webhook_failover_url: str | Omit = omit,
+        webhook_url: str | Omit = omit,
+        website: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TelnyxBrand:
         """
         Update a brand's attributes by `brandId`.
@@ -949,12 +949,12 @@ class AsyncBrandResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        brand_id: str | NotGiven = NOT_GIVEN,
-        country: str | NotGiven = NOT_GIVEN,
-        display_name: str | NotGiven = NOT_GIVEN,
-        entity_type: str | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        records_per_page: int | NotGiven = NOT_GIVEN,
+        brand_id: str | Omit = omit,
+        country: str | Omit = omit,
+        display_name: str | Omit = omit,
+        entity_type: str | Omit = omit,
+        page: int | Omit = omit,
+        records_per_page: int | Omit = omit,
         sort: Literal[
             "assignedCampaignsCount",
             "-assignedCampaignsCount",
@@ -971,15 +971,15 @@ class AsyncBrandResource(AsyncAPIResource):
             "tcrBrandId",
             "-tcrBrandId",
         ]
-        | NotGiven = NOT_GIVEN,
-        state: str | NotGiven = NOT_GIVEN,
-        tcr_brand_id: str | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        state: str | Omit = omit,
+        tcr_brand_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BrandListResponse:
         """
         This endpoint is used to list all brands associated with your organization.
@@ -1036,7 +1036,7 @@ class AsyncBrandResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """Delete Brand.
 
@@ -1072,7 +1072,7 @@ class AsyncBrandResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BrandGetFeedbackResponse:
         """Get feedback about a brand by ID.
 
@@ -1118,7 +1118,7 @@ class AsyncBrandResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Resend brand 2FA email
@@ -1152,7 +1152,7 @@ class AsyncBrandResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """This operation allows you to revet the brand.
 

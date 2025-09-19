@@ -21,7 +21,7 @@ from .actions import (
     ActionsResourceWithStreamingResponse,
     AsyncActionsResourceWithStreamingResponse,
 )
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -73,14 +73,14 @@ class SimCardsResource(SyncAPIResource):
         self,
         id: str,
         *,
-        include_pin_puk_codes: bool | NotGiven = NOT_GIVEN,
-        include_sim_card_group: bool | NotGiven = NOT_GIVEN,
+        include_pin_puk_codes: bool | Omit = omit,
+        include_sim_card_group: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SimCardRetrieveResponse:
         """
         Returns the details regarding a specific SIM card.
@@ -124,17 +124,17 @@ class SimCardsResource(SyncAPIResource):
         self,
         id: str,
         *,
-        authorized_imeis: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        data_limit: sim_card_update_params.DataLimit | NotGiven = NOT_GIVEN,
-        sim_card_group_id: str | NotGiven = NOT_GIVEN,
-        status: SimCardStatus | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        authorized_imeis: SequenceNotStr[str] | Omit = omit,
+        data_limit: sim_card_update_params.DataLimit | Omit = omit,
+        sim_card_group_id: str | Omit = omit,
+        status: SimCardStatus | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SimCardUpdateResponse:
         """
         Updates SIM card data
@@ -180,17 +180,17 @@ class SimCardsResource(SyncAPIResource):
     def list(
         self,
         *,
-        filter: sim_card_list_params.Filter | NotGiven = NOT_GIVEN,
-        filter_sim_card_group_id: str | NotGiven = NOT_GIVEN,
-        include_sim_card_group: bool | NotGiven = NOT_GIVEN,
-        page: sim_card_list_params.Page | NotGiven = NOT_GIVEN,
-        sort: Literal["current_billing_period_consumed_data.amount"] | NotGiven = NOT_GIVEN,
+        filter: sim_card_list_params.Filter | Omit = omit,
+        filter_sim_card_group_id: str | Omit = omit,
+        include_sim_card_group: bool | Omit = omit,
+        page: sim_card_list_params.Page | Omit = omit,
+        sort: Literal["current_billing_period_consumed_data.amount"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SimCardListResponse:
         """
         Get all SIM cards belonging to the user that match the given filters.
@@ -243,13 +243,13 @@ class SimCardsResource(SyncAPIResource):
         self,
         id: str,
         *,
-        report_lost: bool | NotGiven = NOT_GIVEN,
+        report_lost: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SimCardDeleteResponse:
         """
         The SIM card will be decommissioned, removed from your account and you will stop
@@ -295,7 +295,7 @@ class SimCardsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SimCardGetActivationCodeResponse:
         """
         It returns the activation code for an eSIM.<br/><br/> This API is only available
@@ -330,7 +330,7 @@ class SimCardsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SimCardGetDeviceDetailsResponse:
         """
         It returns the device details where a SIM card is currently being used.
@@ -363,7 +363,7 @@ class SimCardsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SimCardGetPublicIPResponse:
         """
         It returns the public IP requested for a SIM card.
@@ -391,14 +391,14 @@ class SimCardsResource(SyncAPIResource):
         self,
         id: str,
         *,
-        page_number: int | NotGiven = NOT_GIVEN,
-        page_size: int | NotGiven = NOT_GIVEN,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SimCardListWirelessConnectivityLogsResponse:
         """
         This API allows listing a paginated collection of Wireless Connectivity Logs
@@ -466,14 +466,14 @@ class AsyncSimCardsResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        include_pin_puk_codes: bool | NotGiven = NOT_GIVEN,
-        include_sim_card_group: bool | NotGiven = NOT_GIVEN,
+        include_pin_puk_codes: bool | Omit = omit,
+        include_sim_card_group: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SimCardRetrieveResponse:
         """
         Returns the details regarding a specific SIM card.
@@ -517,17 +517,17 @@ class AsyncSimCardsResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        authorized_imeis: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        data_limit: sim_card_update_params.DataLimit | NotGiven = NOT_GIVEN,
-        sim_card_group_id: str | NotGiven = NOT_GIVEN,
-        status: SimCardStatus | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        authorized_imeis: SequenceNotStr[str] | Omit = omit,
+        data_limit: sim_card_update_params.DataLimit | Omit = omit,
+        sim_card_group_id: str | Omit = omit,
+        status: SimCardStatus | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SimCardUpdateResponse:
         """
         Updates SIM card data
@@ -573,17 +573,17 @@ class AsyncSimCardsResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        filter: sim_card_list_params.Filter | NotGiven = NOT_GIVEN,
-        filter_sim_card_group_id: str | NotGiven = NOT_GIVEN,
-        include_sim_card_group: bool | NotGiven = NOT_GIVEN,
-        page: sim_card_list_params.Page | NotGiven = NOT_GIVEN,
-        sort: Literal["current_billing_period_consumed_data.amount"] | NotGiven = NOT_GIVEN,
+        filter: sim_card_list_params.Filter | Omit = omit,
+        filter_sim_card_group_id: str | Omit = omit,
+        include_sim_card_group: bool | Omit = omit,
+        page: sim_card_list_params.Page | Omit = omit,
+        sort: Literal["current_billing_period_consumed_data.amount"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SimCardListResponse:
         """
         Get all SIM cards belonging to the user that match the given filters.
@@ -636,13 +636,13 @@ class AsyncSimCardsResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        report_lost: bool | NotGiven = NOT_GIVEN,
+        report_lost: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SimCardDeleteResponse:
         """
         The SIM card will be decommissioned, removed from your account and you will stop
@@ -690,7 +690,7 @@ class AsyncSimCardsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SimCardGetActivationCodeResponse:
         """
         It returns the activation code for an eSIM.<br/><br/> This API is only available
@@ -725,7 +725,7 @@ class AsyncSimCardsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SimCardGetDeviceDetailsResponse:
         """
         It returns the device details where a SIM card is currently being used.
@@ -758,7 +758,7 @@ class AsyncSimCardsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SimCardGetPublicIPResponse:
         """
         It returns the public IP requested for a SIM card.
@@ -786,14 +786,14 @@ class AsyncSimCardsResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        page_number: int | NotGiven = NOT_GIVEN,
-        page_size: int | NotGiven = NOT_GIVEN,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SimCardListWirelessConnectivityLogsResponse:
         """
         This API allows listing a paginated collection of Wireless Connectivity Logs

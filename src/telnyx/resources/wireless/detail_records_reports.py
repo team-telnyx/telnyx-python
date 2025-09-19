@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -47,14 +47,14 @@ class DetailRecordsReportsResource(SyncAPIResource):
     def create(
         self,
         *,
-        end_time: str | NotGiven = NOT_GIVEN,
-        start_time: str | NotGiven = NOT_GIVEN,
+        end_time: str | Omit = omit,
+        start_time: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DetailRecordsReportCreateResponse:
         """
         Asynchronously create a report containing Wireless Detail Records (WDRs) for the
@@ -97,7 +97,7 @@ class DetailRecordsReportsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DetailRecordsReportRetrieveResponse:
         """
         Returns one specific WDR report
@@ -124,14 +124,14 @@ class DetailRecordsReportsResource(SyncAPIResource):
     def list(
         self,
         *,
-        page_number: int | NotGiven = NOT_GIVEN,
-        page_size: int | NotGiven = NOT_GIVEN,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DetailRecordsReportListResponse:
         """
         Returns the WDR Reports that match the given parameters.
@@ -176,7 +176,7 @@ class DetailRecordsReportsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DetailRecordsReportDeleteResponse:
         """
         Deletes one specific WDR report.
@@ -224,14 +224,14 @@ class AsyncDetailRecordsReportsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        end_time: str | NotGiven = NOT_GIVEN,
-        start_time: str | NotGiven = NOT_GIVEN,
+        end_time: str | Omit = omit,
+        start_time: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DetailRecordsReportCreateResponse:
         """
         Asynchronously create a report containing Wireless Detail Records (WDRs) for the
@@ -274,7 +274,7 @@ class AsyncDetailRecordsReportsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DetailRecordsReportRetrieveResponse:
         """
         Returns one specific WDR report
@@ -301,14 +301,14 @@ class AsyncDetailRecordsReportsResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        page_number: int | NotGiven = NOT_GIVEN,
-        page_size: int | NotGiven = NOT_GIVEN,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DetailRecordsReportListResponse:
         """
         Returns the WDR Reports that match the given parameters.
@@ -353,7 +353,7 @@ class AsyncDetailRecordsReportsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DetailRecordsReportDeleteResponse:
         """
         Deletes one specific WDR report.

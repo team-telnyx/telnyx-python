@@ -9,7 +9,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..types import sub_number_orders_report_create_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -49,18 +49,18 @@ class SubNumberOrdersReportResource(SyncAPIResource):
     def create(
         self,
         *,
-        country_code: str | NotGiven = NOT_GIVEN,
-        created_at_gt: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        created_at_lt: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        customer_reference: str | NotGiven = NOT_GIVEN,
-        order_request_id: str | NotGiven = NOT_GIVEN,
-        status: Literal["pending", "success", "failure"] | NotGiven = NOT_GIVEN,
+        country_code: str | Omit = omit,
+        created_at_gt: Union[str, datetime] | Omit = omit,
+        created_at_lt: Union[str, datetime] | Omit = omit,
+        customer_reference: str | Omit = omit,
+        order_request_id: str | Omit = omit,
+        status: Literal["pending", "success", "failure"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SubNumberOrdersReportCreateResponse:
         """Create a CSV report for sub number orders.
 
@@ -116,7 +116,7 @@ class SubNumberOrdersReportResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SubNumberOrdersReportRetrieveResponse:
         """
         Get the status and details of a sub number orders report.
@@ -149,7 +149,7 @@ class SubNumberOrdersReportResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
         """Download the CSV file for a completed sub number orders report.
 
@@ -200,18 +200,18 @@ class AsyncSubNumberOrdersReportResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        country_code: str | NotGiven = NOT_GIVEN,
-        created_at_gt: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        created_at_lt: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        customer_reference: str | NotGiven = NOT_GIVEN,
-        order_request_id: str | NotGiven = NOT_GIVEN,
-        status: Literal["pending", "success", "failure"] | NotGiven = NOT_GIVEN,
+        country_code: str | Omit = omit,
+        created_at_gt: Union[str, datetime] | Omit = omit,
+        created_at_lt: Union[str, datetime] | Omit = omit,
+        customer_reference: str | Omit = omit,
+        order_request_id: str | Omit = omit,
+        status: Literal["pending", "success", "failure"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SubNumberOrdersReportCreateResponse:
         """Create a CSV report for sub number orders.
 
@@ -267,7 +267,7 @@ class AsyncSubNumberOrdersReportResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SubNumberOrdersReportRetrieveResponse:
         """
         Get the status and details of a sub number orders report.
@@ -300,7 +300,7 @@ class AsyncSubNumberOrdersReportResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
         """Download the CSV file for a completed sub number orders report.
 

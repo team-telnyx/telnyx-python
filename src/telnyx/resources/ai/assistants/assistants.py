@@ -23,7 +23,7 @@ from .versions import (
     VersionsResourceWithStreamingResponse,
     AsyncVersionsResourceWithStreamingResponse,
 )
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ....types.ai import (
@@ -129,25 +129,25 @@ class AssistantsResource(SyncAPIResource):
         instructions: str,
         model: str,
         name: str,
-        description: str | NotGiven = NOT_GIVEN,
-        dynamic_variables: Dict[str, object] | NotGiven = NOT_GIVEN,
-        dynamic_variables_webhook_url: str | NotGiven = NOT_GIVEN,
-        enabled_features: List[EnabledFeatures] | NotGiven = NOT_GIVEN,
-        greeting: str | NotGiven = NOT_GIVEN,
-        insight_settings: InsightSettingsParam | NotGiven = NOT_GIVEN,
-        llm_api_key_ref: str | NotGiven = NOT_GIVEN,
-        messaging_settings: MessagingSettingsParam | NotGiven = NOT_GIVEN,
-        privacy_settings: PrivacySettingsParam | NotGiven = NOT_GIVEN,
-        telephony_settings: TelephonySettingsParam | NotGiven = NOT_GIVEN,
-        tools: Iterable[AssistantToolParam] | NotGiven = NOT_GIVEN,
-        transcription: TranscriptionSettingsParam | NotGiven = NOT_GIVEN,
-        voice_settings: VoiceSettingsParam | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        dynamic_variables: Dict[str, object] | Omit = omit,
+        dynamic_variables_webhook_url: str | Omit = omit,
+        enabled_features: List[EnabledFeatures] | Omit = omit,
+        greeting: str | Omit = omit,
+        insight_settings: InsightSettingsParam | Omit = omit,
+        llm_api_key_ref: str | Omit = omit,
+        messaging_settings: MessagingSettingsParam | Omit = omit,
+        privacy_settings: PrivacySettingsParam | Omit = omit,
+        telephony_settings: TelephonySettingsParam | Omit = omit,
+        tools: Iterable[AssistantToolParam] | Omit = omit,
+        transcription: TranscriptionSettingsParam | Omit = omit,
+        voice_settings: VoiceSettingsParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AssistantCreateResponse:
         """
         Create a new AI Assistant.
@@ -221,16 +221,16 @@ class AssistantsResource(SyncAPIResource):
         self,
         assistant_id: str,
         *,
-        call_control_id: str | NotGiven = NOT_GIVEN,
-        fetch_dynamic_variables_from_webhook: bool | NotGiven = NOT_GIVEN,
-        from_: str | NotGiven = NOT_GIVEN,
-        to: str | NotGiven = NOT_GIVEN,
+        call_control_id: str | Omit = omit,
+        fetch_dynamic_variables_from_webhook: bool | Omit = omit,
+        from_: str | Omit = omit,
+        to: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AssistantRetrieveResponse:
         """
         Retrieve an AI Assistant configuration by `assistant_id`.
@@ -270,29 +270,29 @@ class AssistantsResource(SyncAPIResource):
         self,
         assistant_id: str,
         *,
-        description: str | NotGiven = NOT_GIVEN,
-        dynamic_variables: Dict[str, object] | NotGiven = NOT_GIVEN,
-        dynamic_variables_webhook_url: str | NotGiven = NOT_GIVEN,
-        enabled_features: List[EnabledFeatures] | NotGiven = NOT_GIVEN,
-        greeting: str | NotGiven = NOT_GIVEN,
-        insight_settings: InsightSettingsParam | NotGiven = NOT_GIVEN,
-        instructions: str | NotGiven = NOT_GIVEN,
-        llm_api_key_ref: str | NotGiven = NOT_GIVEN,
-        messaging_settings: MessagingSettingsParam | NotGiven = NOT_GIVEN,
-        model: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        privacy_settings: PrivacySettingsParam | NotGiven = NOT_GIVEN,
-        promote_to_main: bool | NotGiven = NOT_GIVEN,
-        telephony_settings: TelephonySettingsParam | NotGiven = NOT_GIVEN,
-        tools: Iterable[AssistantToolParam] | NotGiven = NOT_GIVEN,
-        transcription: TranscriptionSettingsParam | NotGiven = NOT_GIVEN,
-        voice_settings: VoiceSettingsParam | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        dynamic_variables: Dict[str, object] | Omit = omit,
+        dynamic_variables_webhook_url: str | Omit = omit,
+        enabled_features: List[EnabledFeatures] | Omit = omit,
+        greeting: str | Omit = omit,
+        insight_settings: InsightSettingsParam | Omit = omit,
+        instructions: str | Omit = omit,
+        llm_api_key_ref: str | Omit = omit,
+        messaging_settings: MessagingSettingsParam | Omit = omit,
+        model: str | Omit = omit,
+        name: str | Omit = omit,
+        privacy_settings: PrivacySettingsParam | Omit = omit,
+        promote_to_main: bool | Omit = omit,
+        telephony_settings: TelephonySettingsParam | Omit = omit,
+        tools: Iterable[AssistantToolParam] | Omit = omit,
+        transcription: TranscriptionSettingsParam | Omit = omit,
+        voice_settings: VoiceSettingsParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Update an AI Assistant's attributes.
@@ -376,7 +376,7 @@ class AssistantsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AssistantsList:
         """Retrieve a list of all AI Assistants configured by the user."""
         return self._get(
@@ -396,7 +396,7 @@ class AssistantsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AssistantDeleteResponse:
         """
         Delete an AI Assistant by `assistant_id`.
@@ -426,13 +426,13 @@ class AssistantsResource(SyncAPIResource):
         *,
         content: str,
         conversation_id: str,
-        name: str | NotGiven = NOT_GIVEN,
+        name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AssistantChatResponse:
         """
         This endpoint allows a client to send a chat message to a specific AI Assistant.
@@ -486,7 +486,7 @@ class AssistantsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AssistantCloneResponse:
         """
         Clone an existing assistant, excluding telephony and messaging settings.
@@ -519,7 +519,7 @@ class AssistantsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
         """
         Get an assistant texml by `assistant_id`.
@@ -553,7 +553,7 @@ class AssistantsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AssistantsList:
         """Import assistants from external providers.
 
@@ -638,25 +638,25 @@ class AsyncAssistantsResource(AsyncAPIResource):
         instructions: str,
         model: str,
         name: str,
-        description: str | NotGiven = NOT_GIVEN,
-        dynamic_variables: Dict[str, object] | NotGiven = NOT_GIVEN,
-        dynamic_variables_webhook_url: str | NotGiven = NOT_GIVEN,
-        enabled_features: List[EnabledFeatures] | NotGiven = NOT_GIVEN,
-        greeting: str | NotGiven = NOT_GIVEN,
-        insight_settings: InsightSettingsParam | NotGiven = NOT_GIVEN,
-        llm_api_key_ref: str | NotGiven = NOT_GIVEN,
-        messaging_settings: MessagingSettingsParam | NotGiven = NOT_GIVEN,
-        privacy_settings: PrivacySettingsParam | NotGiven = NOT_GIVEN,
-        telephony_settings: TelephonySettingsParam | NotGiven = NOT_GIVEN,
-        tools: Iterable[AssistantToolParam] | NotGiven = NOT_GIVEN,
-        transcription: TranscriptionSettingsParam | NotGiven = NOT_GIVEN,
-        voice_settings: VoiceSettingsParam | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        dynamic_variables: Dict[str, object] | Omit = omit,
+        dynamic_variables_webhook_url: str | Omit = omit,
+        enabled_features: List[EnabledFeatures] | Omit = omit,
+        greeting: str | Omit = omit,
+        insight_settings: InsightSettingsParam | Omit = omit,
+        llm_api_key_ref: str | Omit = omit,
+        messaging_settings: MessagingSettingsParam | Omit = omit,
+        privacy_settings: PrivacySettingsParam | Omit = omit,
+        telephony_settings: TelephonySettingsParam | Omit = omit,
+        tools: Iterable[AssistantToolParam] | Omit = omit,
+        transcription: TranscriptionSettingsParam | Omit = omit,
+        voice_settings: VoiceSettingsParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AssistantCreateResponse:
         """
         Create a new AI Assistant.
@@ -730,16 +730,16 @@ class AsyncAssistantsResource(AsyncAPIResource):
         self,
         assistant_id: str,
         *,
-        call_control_id: str | NotGiven = NOT_GIVEN,
-        fetch_dynamic_variables_from_webhook: bool | NotGiven = NOT_GIVEN,
-        from_: str | NotGiven = NOT_GIVEN,
-        to: str | NotGiven = NOT_GIVEN,
+        call_control_id: str | Omit = omit,
+        fetch_dynamic_variables_from_webhook: bool | Omit = omit,
+        from_: str | Omit = omit,
+        to: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AssistantRetrieveResponse:
         """
         Retrieve an AI Assistant configuration by `assistant_id`.
@@ -779,29 +779,29 @@ class AsyncAssistantsResource(AsyncAPIResource):
         self,
         assistant_id: str,
         *,
-        description: str | NotGiven = NOT_GIVEN,
-        dynamic_variables: Dict[str, object] | NotGiven = NOT_GIVEN,
-        dynamic_variables_webhook_url: str | NotGiven = NOT_GIVEN,
-        enabled_features: List[EnabledFeatures] | NotGiven = NOT_GIVEN,
-        greeting: str | NotGiven = NOT_GIVEN,
-        insight_settings: InsightSettingsParam | NotGiven = NOT_GIVEN,
-        instructions: str | NotGiven = NOT_GIVEN,
-        llm_api_key_ref: str | NotGiven = NOT_GIVEN,
-        messaging_settings: MessagingSettingsParam | NotGiven = NOT_GIVEN,
-        model: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        privacy_settings: PrivacySettingsParam | NotGiven = NOT_GIVEN,
-        promote_to_main: bool | NotGiven = NOT_GIVEN,
-        telephony_settings: TelephonySettingsParam | NotGiven = NOT_GIVEN,
-        tools: Iterable[AssistantToolParam] | NotGiven = NOT_GIVEN,
-        transcription: TranscriptionSettingsParam | NotGiven = NOT_GIVEN,
-        voice_settings: VoiceSettingsParam | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        dynamic_variables: Dict[str, object] | Omit = omit,
+        dynamic_variables_webhook_url: str | Omit = omit,
+        enabled_features: List[EnabledFeatures] | Omit = omit,
+        greeting: str | Omit = omit,
+        insight_settings: InsightSettingsParam | Omit = omit,
+        instructions: str | Omit = omit,
+        llm_api_key_ref: str | Omit = omit,
+        messaging_settings: MessagingSettingsParam | Omit = omit,
+        model: str | Omit = omit,
+        name: str | Omit = omit,
+        privacy_settings: PrivacySettingsParam | Omit = omit,
+        promote_to_main: bool | Omit = omit,
+        telephony_settings: TelephonySettingsParam | Omit = omit,
+        tools: Iterable[AssistantToolParam] | Omit = omit,
+        transcription: TranscriptionSettingsParam | Omit = omit,
+        voice_settings: VoiceSettingsParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Update an AI Assistant's attributes.
@@ -885,7 +885,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AssistantsList:
         """Retrieve a list of all AI Assistants configured by the user."""
         return await self._get(
@@ -905,7 +905,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AssistantDeleteResponse:
         """
         Delete an AI Assistant by `assistant_id`.
@@ -935,13 +935,13 @@ class AsyncAssistantsResource(AsyncAPIResource):
         *,
         content: str,
         conversation_id: str,
-        name: str | NotGiven = NOT_GIVEN,
+        name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AssistantChatResponse:
         """
         This endpoint allows a client to send a chat message to a specific AI Assistant.
@@ -995,7 +995,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AssistantCloneResponse:
         """
         Clone an existing assistant, excluding telephony and messaging settings.
@@ -1028,7 +1028,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
         """
         Get an assistant texml by `assistant_id`.
@@ -1062,7 +1062,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AssistantsList:
         """Import assistants from external providers.
 

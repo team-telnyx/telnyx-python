@@ -6,7 +6,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ....._utils import maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from .participants import (
@@ -71,7 +71,7 @@ class ConferencesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConferenceRetrieveResponse:
         """
         Returns a conference resource.
@@ -102,15 +102,15 @@ class ConferencesResource(SyncAPIResource):
         conference_sid: str,
         *,
         account_sid: str,
-        announce_method: Literal["GET", "POST"] | NotGiven = NOT_GIVEN,
-        announce_url: str | NotGiven = NOT_GIVEN,
-        status: str | NotGiven = NOT_GIVEN,
+        announce_method: Literal["GET", "POST"] | Omit = omit,
+        announce_url: str | Omit = omit,
+        status: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConferenceUpdateResponse:
         """
         Updates a conference resource.
@@ -157,19 +157,19 @@ class ConferencesResource(SyncAPIResource):
         self,
         account_sid: str,
         *,
-        date_created: str | NotGiven = NOT_GIVEN,
-        date_updated: str | NotGiven = NOT_GIVEN,
-        friendly_name: str | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        page_size: int | NotGiven = NOT_GIVEN,
-        page_token: str | NotGiven = NOT_GIVEN,
-        status: Literal["init", "in-progress", "completed"] | NotGiven = NOT_GIVEN,
+        date_created: str | Omit = omit,
+        date_updated: str | Omit = omit,
+        friendly_name: str | Omit = omit,
+        page: int | Omit = omit,
+        page_size: int | Omit = omit,
+        page_token: str | Omit = omit,
+        status: Literal["init", "in-progress", "completed"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConferenceRetrieveConferencesResponse:
         """
         Lists conference resources.
@@ -235,7 +235,7 @@ class ConferencesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConferenceRetrieveRecordingsResponse:
         """
         Lists conference recordings
@@ -271,7 +271,7 @@ class ConferencesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConferenceRetrieveRecordingsJsonResponse:
         """
         Returns recordings for a conference identified by conference_sid.
@@ -332,7 +332,7 @@ class AsyncConferencesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConferenceRetrieveResponse:
         """
         Returns a conference resource.
@@ -363,15 +363,15 @@ class AsyncConferencesResource(AsyncAPIResource):
         conference_sid: str,
         *,
         account_sid: str,
-        announce_method: Literal["GET", "POST"] | NotGiven = NOT_GIVEN,
-        announce_url: str | NotGiven = NOT_GIVEN,
-        status: str | NotGiven = NOT_GIVEN,
+        announce_method: Literal["GET", "POST"] | Omit = omit,
+        announce_url: str | Omit = omit,
+        status: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConferenceUpdateResponse:
         """
         Updates a conference resource.
@@ -418,19 +418,19 @@ class AsyncConferencesResource(AsyncAPIResource):
         self,
         account_sid: str,
         *,
-        date_created: str | NotGiven = NOT_GIVEN,
-        date_updated: str | NotGiven = NOT_GIVEN,
-        friendly_name: str | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        page_size: int | NotGiven = NOT_GIVEN,
-        page_token: str | NotGiven = NOT_GIVEN,
-        status: Literal["init", "in-progress", "completed"] | NotGiven = NOT_GIVEN,
+        date_created: str | Omit = omit,
+        date_updated: str | Omit = omit,
+        friendly_name: str | Omit = omit,
+        page: int | Omit = omit,
+        page_size: int | Omit = omit,
+        page_token: str | Omit = omit,
+        status: Literal["init", "in-progress", "completed"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConferenceRetrieveConferencesResponse:
         """
         Lists conference resources.
@@ -496,7 +496,7 @@ class AsyncConferencesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConferenceRetrieveRecordingsResponse:
         """
         Lists conference recordings
@@ -532,7 +532,7 @@ class AsyncConferencesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConferenceRetrieveRecordingsJsonResponse:
         """
         Returns recordings for a conference identified by conference_sid.

@@ -15,7 +15,7 @@ from ..types import (
     outbound_voice_profile_create_params,
     outbound_voice_profile_update_params,
 )
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from .._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -63,24 +63,24 @@ class OutboundVoiceProfilesResource(SyncAPIResource):
         self,
         *,
         name: str,
-        billing_group_id: Optional[str] | NotGiven = NOT_GIVEN,
-        call_recording: OutboundCallRecordingParam | NotGiven = NOT_GIVEN,
-        concurrent_call_limit: Optional[int] | NotGiven = NOT_GIVEN,
-        daily_spend_limit: str | NotGiven = NOT_GIVEN,
-        daily_spend_limit_enabled: bool | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        max_destination_rate: float | NotGiven = NOT_GIVEN,
-        service_plan: ServicePlan | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        traffic_type: TrafficType | NotGiven = NOT_GIVEN,
-        usage_payment_method: UsagePaymentMethod | NotGiven = NOT_GIVEN,
-        whitelisted_destinations: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        billing_group_id: Optional[str] | Omit = omit,
+        call_recording: OutboundCallRecordingParam | Omit = omit,
+        concurrent_call_limit: Optional[int] | Omit = omit,
+        daily_spend_limit: str | Omit = omit,
+        daily_spend_limit_enabled: bool | Omit = omit,
+        enabled: bool | Omit = omit,
+        max_destination_rate: float | Omit = omit,
+        service_plan: ServicePlan | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        traffic_type: TrafficType | Omit = omit,
+        usage_payment_method: UsagePaymentMethod | Omit = omit,
+        whitelisted_destinations: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OutboundVoiceProfileCreateResponse:
         """
         Create an outbound voice profile.
@@ -157,7 +157,7 @@ class OutboundVoiceProfilesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OutboundVoiceProfileRetrieveResponse:
         """
         Retrieves the details of an existing outbound voice profile.
@@ -186,24 +186,24 @@ class OutboundVoiceProfilesResource(SyncAPIResource):
         id: str,
         *,
         name: str,
-        billing_group_id: Optional[str] | NotGiven = NOT_GIVEN,
-        call_recording: OutboundCallRecordingParam | NotGiven = NOT_GIVEN,
-        concurrent_call_limit: Optional[int] | NotGiven = NOT_GIVEN,
-        daily_spend_limit: str | NotGiven = NOT_GIVEN,
-        daily_spend_limit_enabled: bool | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        max_destination_rate: float | NotGiven = NOT_GIVEN,
-        service_plan: ServicePlan | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        traffic_type: TrafficType | NotGiven = NOT_GIVEN,
-        usage_payment_method: UsagePaymentMethod | NotGiven = NOT_GIVEN,
-        whitelisted_destinations: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        billing_group_id: Optional[str] | Omit = omit,
+        call_recording: OutboundCallRecordingParam | Omit = omit,
+        concurrent_call_limit: Optional[int] | Omit = omit,
+        daily_spend_limit: str | Omit = omit,
+        daily_spend_limit_enabled: bool | Omit = omit,
+        enabled: bool | Omit = omit,
+        max_destination_rate: float | Omit = omit,
+        service_plan: ServicePlan | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        traffic_type: TrafficType | Omit = omit,
+        usage_payment_method: UsagePaymentMethod | Omit = omit,
+        whitelisted_destinations: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OutboundVoiceProfileUpdateResponse:
         """
         Updates an existing outbound voice profile.
@@ -276,8 +276,8 @@ class OutboundVoiceProfilesResource(SyncAPIResource):
     def list(
         self,
         *,
-        filter: outbound_voice_profile_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: outbound_voice_profile_list_params.Page | NotGiven = NOT_GIVEN,
+        filter: outbound_voice_profile_list_params.Filter | Omit = omit,
+        page: outbound_voice_profile_list_params.Page | Omit = omit,
         sort: Literal[
             "enabled",
             "-enabled",
@@ -292,13 +292,13 @@ class OutboundVoiceProfilesResource(SyncAPIResource):
             "usage_payment_method",
             "-usage_payment_method",
         ]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OutboundVoiceProfileListResponse:
         """
         Get all outbound voice profiles belonging to the user that match the given
@@ -363,7 +363,7 @@ class OutboundVoiceProfilesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OutboundVoiceProfileDeleteResponse:
         """
         Deletes an existing outbound voice profile.
@@ -412,24 +412,24 @@ class AsyncOutboundVoiceProfilesResource(AsyncAPIResource):
         self,
         *,
         name: str,
-        billing_group_id: Optional[str] | NotGiven = NOT_GIVEN,
-        call_recording: OutboundCallRecordingParam | NotGiven = NOT_GIVEN,
-        concurrent_call_limit: Optional[int] | NotGiven = NOT_GIVEN,
-        daily_spend_limit: str | NotGiven = NOT_GIVEN,
-        daily_spend_limit_enabled: bool | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        max_destination_rate: float | NotGiven = NOT_GIVEN,
-        service_plan: ServicePlan | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        traffic_type: TrafficType | NotGiven = NOT_GIVEN,
-        usage_payment_method: UsagePaymentMethod | NotGiven = NOT_GIVEN,
-        whitelisted_destinations: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        billing_group_id: Optional[str] | Omit = omit,
+        call_recording: OutboundCallRecordingParam | Omit = omit,
+        concurrent_call_limit: Optional[int] | Omit = omit,
+        daily_spend_limit: str | Omit = omit,
+        daily_spend_limit_enabled: bool | Omit = omit,
+        enabled: bool | Omit = omit,
+        max_destination_rate: float | Omit = omit,
+        service_plan: ServicePlan | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        traffic_type: TrafficType | Omit = omit,
+        usage_payment_method: UsagePaymentMethod | Omit = omit,
+        whitelisted_destinations: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OutboundVoiceProfileCreateResponse:
         """
         Create an outbound voice profile.
@@ -506,7 +506,7 @@ class AsyncOutboundVoiceProfilesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OutboundVoiceProfileRetrieveResponse:
         """
         Retrieves the details of an existing outbound voice profile.
@@ -535,24 +535,24 @@ class AsyncOutboundVoiceProfilesResource(AsyncAPIResource):
         id: str,
         *,
         name: str,
-        billing_group_id: Optional[str] | NotGiven = NOT_GIVEN,
-        call_recording: OutboundCallRecordingParam | NotGiven = NOT_GIVEN,
-        concurrent_call_limit: Optional[int] | NotGiven = NOT_GIVEN,
-        daily_spend_limit: str | NotGiven = NOT_GIVEN,
-        daily_spend_limit_enabled: bool | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        max_destination_rate: float | NotGiven = NOT_GIVEN,
-        service_plan: ServicePlan | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        traffic_type: TrafficType | NotGiven = NOT_GIVEN,
-        usage_payment_method: UsagePaymentMethod | NotGiven = NOT_GIVEN,
-        whitelisted_destinations: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        billing_group_id: Optional[str] | Omit = omit,
+        call_recording: OutboundCallRecordingParam | Omit = omit,
+        concurrent_call_limit: Optional[int] | Omit = omit,
+        daily_spend_limit: str | Omit = omit,
+        daily_spend_limit_enabled: bool | Omit = omit,
+        enabled: bool | Omit = omit,
+        max_destination_rate: float | Omit = omit,
+        service_plan: ServicePlan | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        traffic_type: TrafficType | Omit = omit,
+        usage_payment_method: UsagePaymentMethod | Omit = omit,
+        whitelisted_destinations: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OutboundVoiceProfileUpdateResponse:
         """
         Updates an existing outbound voice profile.
@@ -625,8 +625,8 @@ class AsyncOutboundVoiceProfilesResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        filter: outbound_voice_profile_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: outbound_voice_profile_list_params.Page | NotGiven = NOT_GIVEN,
+        filter: outbound_voice_profile_list_params.Filter | Omit = omit,
+        page: outbound_voice_profile_list_params.Page | Omit = omit,
         sort: Literal[
             "enabled",
             "-enabled",
@@ -641,13 +641,13 @@ class AsyncOutboundVoiceProfilesResource(AsyncAPIResource):
             "usage_payment_method",
             "-usage_payment_method",
         ]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OutboundVoiceProfileListResponse:
         """
         Get all outbound voice profiles belonging to the user that match the given
@@ -712,7 +712,7 @@ class AsyncOutboundVoiceProfilesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OutboundVoiceProfileDeleteResponse:
         """
         Deletes an existing outbound voice profile.

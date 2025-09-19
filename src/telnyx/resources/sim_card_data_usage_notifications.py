@@ -9,7 +9,7 @@ from ..types import (
     sim_card_data_usage_notification_create_params,
     sim_card_data_usage_notification_update_params,
 )
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -59,7 +59,7 @@ class SimCardDataUsageNotificationsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SimCardDataUsageNotificationCreateResponse:
         """
         Creates a new SIM card data usage notification.
@@ -101,7 +101,7 @@ class SimCardDataUsageNotificationsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SimCardDataUsageNotificationRetrieveResponse:
         """
         Get a single SIM Card Data Usage Notification.
@@ -129,14 +129,14 @@ class SimCardDataUsageNotificationsResource(SyncAPIResource):
         self,
         id: str,
         *,
-        sim_card_id: str | NotGiven = NOT_GIVEN,
-        threshold: sim_card_data_usage_notification_update_params.Threshold | NotGiven = NOT_GIVEN,
+        sim_card_id: str | Omit = omit,
+        threshold: sim_card_data_usage_notification_update_params.Threshold | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SimCardDataUsageNotificationUpdateResponse:
         """
         Updates information for a SIM Card Data Usage Notification.
@@ -174,15 +174,15 @@ class SimCardDataUsageNotificationsResource(SyncAPIResource):
     def list(
         self,
         *,
-        filter_sim_card_id: str | NotGiven = NOT_GIVEN,
-        page_number: int | NotGiven = NOT_GIVEN,
-        page_size: int | NotGiven = NOT_GIVEN,
+        filter_sim_card_id: str | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SimCardDataUsageNotificationListResponse:
         """Lists a paginated collection of SIM card data usage notifications.
 
@@ -232,7 +232,7 @@ class SimCardDataUsageNotificationsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SimCardDataUsageNotificationDeleteResponse:
         """
         Delete the SIM Card Data Usage Notification.
@@ -287,7 +287,7 @@ class AsyncSimCardDataUsageNotificationsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SimCardDataUsageNotificationCreateResponse:
         """
         Creates a new SIM card data usage notification.
@@ -329,7 +329,7 @@ class AsyncSimCardDataUsageNotificationsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SimCardDataUsageNotificationRetrieveResponse:
         """
         Get a single SIM Card Data Usage Notification.
@@ -357,14 +357,14 @@ class AsyncSimCardDataUsageNotificationsResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        sim_card_id: str | NotGiven = NOT_GIVEN,
-        threshold: sim_card_data_usage_notification_update_params.Threshold | NotGiven = NOT_GIVEN,
+        sim_card_id: str | Omit = omit,
+        threshold: sim_card_data_usage_notification_update_params.Threshold | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SimCardDataUsageNotificationUpdateResponse:
         """
         Updates information for a SIM Card Data Usage Notification.
@@ -402,15 +402,15 @@ class AsyncSimCardDataUsageNotificationsResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        filter_sim_card_id: str | NotGiven = NOT_GIVEN,
-        page_number: int | NotGiven = NOT_GIVEN,
-        page_size: int | NotGiven = NOT_GIVEN,
+        filter_sim_card_id: str | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SimCardDataUsageNotificationListResponse:
         """Lists a paginated collection of SIM card data usage notifications.
 
@@ -460,7 +460,7 @@ class AsyncSimCardDataUsageNotificationsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SimCardDataUsageNotificationDeleteResponse:
         """
         Delete the SIM Card Data Usage Notification.

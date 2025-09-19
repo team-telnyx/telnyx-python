@@ -6,7 +6,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -48,14 +48,14 @@ class CsvDownloadsResource(SyncAPIResource):
     def create(
         self,
         *,
-        csv_format: Literal["V1", "V2"] | NotGiven = NOT_GIVEN,
-        filter: csv_download_create_params.Filter | NotGiven = NOT_GIVEN,
+        csv_format: Literal["V1", "V2"] | Omit = omit,
+        filter: csv_download_create_params.Filter | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CsvDownloadCreateResponse:
         """
         Create a CSV download
@@ -106,7 +106,7 @@ class CsvDownloadsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CsvDownloadRetrieveResponse:
         """
         Retrieve a CSV download
@@ -133,13 +133,13 @@ class CsvDownloadsResource(SyncAPIResource):
     def list(
         self,
         *,
-        page: csv_download_list_params.Page | NotGiven = NOT_GIVEN,
+        page: csv_download_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CsvDownloadListResponse:
         """List CSV downloads
 
@@ -193,14 +193,14 @@ class AsyncCsvDownloadsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        csv_format: Literal["V1", "V2"] | NotGiven = NOT_GIVEN,
-        filter: csv_download_create_params.Filter | NotGiven = NOT_GIVEN,
+        csv_format: Literal["V1", "V2"] | Omit = omit,
+        filter: csv_download_create_params.Filter | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CsvDownloadCreateResponse:
         """
         Create a CSV download
@@ -251,7 +251,7 @@ class AsyncCsvDownloadsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CsvDownloadRetrieveResponse:
         """
         Retrieve a CSV download
@@ -278,13 +278,13 @@ class AsyncCsvDownloadsResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        page: csv_download_list_params.Page | NotGiven = NOT_GIVEN,
+        page: csv_download_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CsvDownloadListResponse:
         """List CSV downloads
 

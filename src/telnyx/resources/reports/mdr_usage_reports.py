@@ -8,7 +8,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -59,13 +59,13 @@ class MdrUsageReportsResource(SyncAPIResource):
         aggregation_type: Literal["NO_AGGREGATION", "PROFILE", "TAGS"],
         end_date: Union[str, datetime],
         start_date: Union[str, datetime],
-        profiles: str | NotGiven = NOT_GIVEN,
+        profiles: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MdrUsageReportCreateResponse:
         """Submit request for new new messaging usage report.
 
@@ -107,7 +107,7 @@ class MdrUsageReportsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MdrUsageReportRetrieveResponse:
         """
         Fetch a single messaging usage report by id
@@ -134,13 +134,13 @@ class MdrUsageReportsResource(SyncAPIResource):
     def list(
         self,
         *,
-        page: mdr_usage_report_list_params.Page | NotGiven = NOT_GIVEN,
+        page: mdr_usage_report_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MdrUsageReportListResponse:
         """Fetch all messaging usage reports.
 
@@ -180,7 +180,7 @@ class MdrUsageReportsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MdrUsageReportDeleteResponse:
         """
         Delete messaging usage report by id
@@ -208,15 +208,15 @@ class MdrUsageReportsResource(SyncAPIResource):
         self,
         *,
         aggregation_type: Literal["NO_AGGREGATION", "PROFILE", "TAGS"],
-        end_date: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        profiles: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        start_date: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        end_date: Union[str, datetime] | Omit = omit,
+        profiles: SequenceNotStr[str] | Omit = omit,
+        start_date: Union[str, datetime] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MdrUsageReportFetchSyncResponse:
         """Generate and fetch messaging usage report synchronously.
 
@@ -280,13 +280,13 @@ class AsyncMdrUsageReportsResource(AsyncAPIResource):
         aggregation_type: Literal["NO_AGGREGATION", "PROFILE", "TAGS"],
         end_date: Union[str, datetime],
         start_date: Union[str, datetime],
-        profiles: str | NotGiven = NOT_GIVEN,
+        profiles: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MdrUsageReportCreateResponse:
         """Submit request for new new messaging usage report.
 
@@ -328,7 +328,7 @@ class AsyncMdrUsageReportsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MdrUsageReportRetrieveResponse:
         """
         Fetch a single messaging usage report by id
@@ -355,13 +355,13 @@ class AsyncMdrUsageReportsResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        page: mdr_usage_report_list_params.Page | NotGiven = NOT_GIVEN,
+        page: mdr_usage_report_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MdrUsageReportListResponse:
         """Fetch all messaging usage reports.
 
@@ -403,7 +403,7 @@ class AsyncMdrUsageReportsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MdrUsageReportDeleteResponse:
         """
         Delete messaging usage report by id
@@ -431,15 +431,15 @@ class AsyncMdrUsageReportsResource(AsyncAPIResource):
         self,
         *,
         aggregation_type: Literal["NO_AGGREGATION", "PROFILE", "TAGS"],
-        end_date: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        profiles: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        start_date: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        end_date: Union[str, datetime] | Omit = omit,
+        profiles: SequenceNotStr[str] | Omit = omit,
+        start_date: Union[str, datetime] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MdrUsageReportFetchSyncResponse:
         """Generate and fetch messaging usage report synchronously.
 

@@ -10,7 +10,7 @@ from ..types import (
     phone_number_assignment_by_profile_assign_params,
     phone_number_assignment_by_profile_retrieve_phone_number_status_params,
 )
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -56,14 +56,14 @@ class PhoneNumberAssignmentByProfileResource(SyncAPIResource):
         self,
         *,
         messaging_profile_id: str,
-        campaign_id: str | NotGiven = NOT_GIVEN,
-        tcr_campaign_id: str | NotGiven = NOT_GIVEN,
+        campaign_id: str | Omit = omit,
+        tcr_campaign_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PhoneNumberAssignmentByProfileAssignResponse:
         """
         This endpoint allows you to link all phone numbers associated with a Messaging
@@ -117,14 +117,14 @@ class PhoneNumberAssignmentByProfileResource(SyncAPIResource):
         self,
         task_id: str,
         *,
-        page: int | NotGiven = NOT_GIVEN,
-        records_per_page: int | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
+        records_per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PhoneNumberAssignmentByProfileRetrievePhoneNumberStatusResponse:
         """
         Check the status of the individual phone number/campaign assignments associated
@@ -168,7 +168,7 @@ class PhoneNumberAssignmentByProfileResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PhoneNumberAssignmentByProfileRetrieveStatusResponse:
         """
         Check the status of the task associated with assigning all phone numbers on a
@@ -218,14 +218,14 @@ class AsyncPhoneNumberAssignmentByProfileResource(AsyncAPIResource):
         self,
         *,
         messaging_profile_id: str,
-        campaign_id: str | NotGiven = NOT_GIVEN,
-        tcr_campaign_id: str | NotGiven = NOT_GIVEN,
+        campaign_id: str | Omit = omit,
+        tcr_campaign_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PhoneNumberAssignmentByProfileAssignResponse:
         """
         This endpoint allows you to link all phone numbers associated with a Messaging
@@ -279,14 +279,14 @@ class AsyncPhoneNumberAssignmentByProfileResource(AsyncAPIResource):
         self,
         task_id: str,
         *,
-        page: int | NotGiven = NOT_GIVEN,
-        records_per_page: int | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
+        records_per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PhoneNumberAssignmentByProfileRetrievePhoneNumberStatusResponse:
         """
         Check the status of the individual phone number/campaign assignments associated
@@ -330,7 +330,7 @@ class AsyncPhoneNumberAssignmentByProfileResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PhoneNumberAssignmentByProfileRetrieveStatusResponse:
         """
         Check the status of the task associated with assigning all phone numbers on a

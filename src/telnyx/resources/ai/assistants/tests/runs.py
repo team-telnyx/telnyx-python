@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import httpx
 
-from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ....._utils import maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
@@ -52,7 +52,7 @@ class RunsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TestRunResponse:
         """
         Retrieves detailed information about a specific test run execution
@@ -82,14 +82,14 @@ class RunsResource(SyncAPIResource):
         self,
         test_id: str,
         *,
-        page: run_list_params.Page | NotGiven = NOT_GIVEN,
-        status: str | NotGiven = NOT_GIVEN,
+        page: run_list_params.Page | Omit = omit,
+        status: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PaginatedTestRunList:
         """
         Retrieves paginated execution history for a specific assistant test with
@@ -133,13 +133,13 @@ class RunsResource(SyncAPIResource):
         self,
         test_id: str,
         *,
-        destination_version_id: str | NotGiven = NOT_GIVEN,
+        destination_version_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TestRunResponse:
         """
         Initiates immediate execution of a specific assistant test
@@ -201,7 +201,7 @@ class AsyncRunsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TestRunResponse:
         """
         Retrieves detailed information about a specific test run execution
@@ -231,14 +231,14 @@ class AsyncRunsResource(AsyncAPIResource):
         self,
         test_id: str,
         *,
-        page: run_list_params.Page | NotGiven = NOT_GIVEN,
-        status: str | NotGiven = NOT_GIVEN,
+        page: run_list_params.Page | Omit = omit,
+        status: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PaginatedTestRunList:
         """
         Retrieves paginated execution history for a specific assistant test with
@@ -282,13 +282,13 @@ class AsyncRunsResource(AsyncAPIResource):
         self,
         test_id: str,
         *,
-        destination_version_id: str | NotGiven = NOT_GIVEN,
+        destination_version_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TestRunResponse:
         """
         Initiates immediate execution of a specific assistant test

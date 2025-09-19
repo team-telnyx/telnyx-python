@@ -23,7 +23,7 @@ from .reports import (
     ReportsResourceWithStreamingResponse,
     AsyncReportsResourceWithStreamingResponse,
 )
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from .comments import (
     CommentsResource,
@@ -103,7 +103,7 @@ class PortoutsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PortoutRetrieveResponse:
         """
         Returns the portout request based on the ID provided
@@ -130,14 +130,14 @@ class PortoutsResource(SyncAPIResource):
     def list(
         self,
         *,
-        filter: portout_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: portout_list_params.Page | NotGiven = NOT_GIVEN,
+        filter: portout_list_params.Filter | Omit = omit,
+        page: portout_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PortoutListResponse:
         """
         Returns the portout requests according to filters
@@ -183,13 +183,13 @@ class PortoutsResource(SyncAPIResource):
         self,
         portout_id: str,
         *,
-        filter: portout_list_rejection_codes_params.Filter | NotGiven = NOT_GIVEN,
+        filter: portout_list_rejection_codes_params.Filter | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PortoutListRejectionCodesResponse:
         """
         Given a port-out ID, list rejection codes that are eligible for that port-out
@@ -228,13 +228,13 @@ class PortoutsResource(SyncAPIResource):
         *,
         id: str,
         reason: str,
-        host_messaging: bool | NotGiven = NOT_GIVEN,
+        host_messaging: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PortoutUpdateStatusResponse:
         """
         Authorize or reject portout request
@@ -318,7 +318,7 @@ class AsyncPortoutsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PortoutRetrieveResponse:
         """
         Returns the portout request based on the ID provided
@@ -345,14 +345,14 @@ class AsyncPortoutsResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        filter: portout_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: portout_list_params.Page | NotGiven = NOT_GIVEN,
+        filter: portout_list_params.Filter | Omit = omit,
+        page: portout_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PortoutListResponse:
         """
         Returns the portout requests according to filters
@@ -398,13 +398,13 @@ class AsyncPortoutsResource(AsyncAPIResource):
         self,
         portout_id: str,
         *,
-        filter: portout_list_rejection_codes_params.Filter | NotGiven = NOT_GIVEN,
+        filter: portout_list_rejection_codes_params.Filter | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PortoutListRejectionCodesResponse:
         """
         Given a port-out ID, list rejection codes that are eligible for that port-out
@@ -443,13 +443,13 @@ class AsyncPortoutsResource(AsyncAPIResource):
         *,
         id: str,
         reason: str,
-        host_messaging: bool | NotGiven = NOT_GIVEN,
+        host_messaging: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PortoutUpdateStatusResponse:
         """
         Authorize or reject portout request

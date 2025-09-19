@@ -19,7 +19,7 @@ from .actions import (
     ActionsResourceWithStreamingResponse,
     AsyncActionsResourceWithStreamingResponse,
 )
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -81,7 +81,7 @@ class VerificationsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VerificationRetrieveResponse:
         """
         Retrieve verification
@@ -110,14 +110,14 @@ class VerificationsResource(SyncAPIResource):
         *,
         phone_number: str,
         verify_profile_id: str,
-        custom_code: Optional[str] | NotGiven = NOT_GIVEN,
-        timeout_secs: int | NotGiven = NOT_GIVEN,
+        custom_code: Optional[str] | Omit = omit,
+        timeout_secs: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CreateVerificationResponse:
         """
         Trigger Call verification
@@ -161,13 +161,13 @@ class VerificationsResource(SyncAPIResource):
         *,
         phone_number: str,
         verify_profile_id: str,
-        timeout_secs: int | NotGiven = NOT_GIVEN,
+        timeout_secs: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CreateVerificationResponse:
         """
         Trigger Flash call verification
@@ -208,14 +208,14 @@ class VerificationsResource(SyncAPIResource):
         *,
         phone_number: str,
         verify_profile_id: str,
-        custom_code: Optional[str] | NotGiven = NOT_GIVEN,
-        timeout_secs: int | NotGiven = NOT_GIVEN,
+        custom_code: Optional[str] | Omit = omit,
+        timeout_secs: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CreateVerificationResponse:
         """
         Trigger SMS verification
@@ -292,7 +292,7 @@ class AsyncVerificationsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VerificationRetrieveResponse:
         """
         Retrieve verification
@@ -321,14 +321,14 @@ class AsyncVerificationsResource(AsyncAPIResource):
         *,
         phone_number: str,
         verify_profile_id: str,
-        custom_code: Optional[str] | NotGiven = NOT_GIVEN,
-        timeout_secs: int | NotGiven = NOT_GIVEN,
+        custom_code: Optional[str] | Omit = omit,
+        timeout_secs: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CreateVerificationResponse:
         """
         Trigger Call verification
@@ -372,13 +372,13 @@ class AsyncVerificationsResource(AsyncAPIResource):
         *,
         phone_number: str,
         verify_profile_id: str,
-        timeout_secs: int | NotGiven = NOT_GIVEN,
+        timeout_secs: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CreateVerificationResponse:
         """
         Trigger Flash call verification
@@ -419,14 +419,14 @@ class AsyncVerificationsResource(AsyncAPIResource):
         *,
         phone_number: str,
         verify_profile_id: str,
-        custom_code: Optional[str] | NotGiven = NOT_GIVEN,
-        timeout_secs: int | NotGiven = NOT_GIVEN,
+        custom_code: Optional[str] | Omit = omit,
+        timeout_secs: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CreateVerificationResponse:
         """
         Trigger SMS verification

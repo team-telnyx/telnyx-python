@@ -11,7 +11,7 @@ from ..types import (
     virtual_cross_connect_create_params,
     virtual_cross_connect_update_params,
 )
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -60,21 +60,21 @@ class VirtualCrossConnectsResource(SyncAPIResource):
         network_id: str,
         primary_cloud_account_id: str,
         region_code: str,
-        bandwidth_mbps: float | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        primary_bgp_key: str | NotGiven = NOT_GIVEN,
-        primary_cloud_ip: str | NotGiven = NOT_GIVEN,
-        primary_telnyx_ip: str | NotGiven = NOT_GIVEN,
-        secondary_bgp_key: str | NotGiven = NOT_GIVEN,
-        secondary_cloud_account_id: str | NotGiven = NOT_GIVEN,
-        secondary_cloud_ip: str | NotGiven = NOT_GIVEN,
-        secondary_telnyx_ip: str | NotGiven = NOT_GIVEN,
+        bandwidth_mbps: float | Omit = omit,
+        name: str | Omit = omit,
+        primary_bgp_key: str | Omit = omit,
+        primary_cloud_ip: str | Omit = omit,
+        primary_telnyx_ip: str | Omit = omit,
+        secondary_bgp_key: str | Omit = omit,
+        secondary_cloud_account_id: str | Omit = omit,
+        secondary_cloud_ip: str | Omit = omit,
+        secondary_telnyx_ip: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VirtualCrossConnectCreateResponse:
         """
         Create a new Virtual Cross Connect.<br /><br />For AWS and GCE, you have the
@@ -181,7 +181,7 @@ class VirtualCrossConnectsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VirtualCrossConnectRetrieveResponse:
         """
         Retrieve a Virtual Cross Connect.
@@ -209,18 +209,18 @@ class VirtualCrossConnectsResource(SyncAPIResource):
         self,
         id: str,
         *,
-        primary_cloud_ip: str | NotGiven = NOT_GIVEN,
-        primary_enabled: bool | NotGiven = NOT_GIVEN,
-        primary_routing_announcement: bool | NotGiven = NOT_GIVEN,
-        secondary_cloud_ip: str | NotGiven = NOT_GIVEN,
-        secondary_enabled: bool | NotGiven = NOT_GIVEN,
-        secondary_routing_announcement: bool | NotGiven = NOT_GIVEN,
+        primary_cloud_ip: str | Omit = omit,
+        primary_enabled: bool | Omit = omit,
+        primary_routing_announcement: bool | Omit = omit,
+        secondary_cloud_ip: str | Omit = omit,
+        secondary_enabled: bool | Omit = omit,
+        secondary_routing_announcement: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VirtualCrossConnectUpdateResponse:
         """
         Update the Virtual Cross Connect.<br /><br />Cloud IPs can only be patched
@@ -282,14 +282,14 @@ class VirtualCrossConnectsResource(SyncAPIResource):
     def list(
         self,
         *,
-        filter: virtual_cross_connect_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: virtual_cross_connect_list_params.Page | NotGiven = NOT_GIVEN,
+        filter: virtual_cross_connect_list_params.Filter | Omit = omit,
+        page: virtual_cross_connect_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VirtualCrossConnectListResponse:
         """
         List all Virtual Cross Connects.
@@ -335,7 +335,7 @@ class VirtualCrossConnectsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VirtualCrossConnectDeleteResponse:
         """
         Delete a Virtual Cross Connect.
@@ -389,21 +389,21 @@ class AsyncVirtualCrossConnectsResource(AsyncAPIResource):
         network_id: str,
         primary_cloud_account_id: str,
         region_code: str,
-        bandwidth_mbps: float | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        primary_bgp_key: str | NotGiven = NOT_GIVEN,
-        primary_cloud_ip: str | NotGiven = NOT_GIVEN,
-        primary_telnyx_ip: str | NotGiven = NOT_GIVEN,
-        secondary_bgp_key: str | NotGiven = NOT_GIVEN,
-        secondary_cloud_account_id: str | NotGiven = NOT_GIVEN,
-        secondary_cloud_ip: str | NotGiven = NOT_GIVEN,
-        secondary_telnyx_ip: str | NotGiven = NOT_GIVEN,
+        bandwidth_mbps: float | Omit = omit,
+        name: str | Omit = omit,
+        primary_bgp_key: str | Omit = omit,
+        primary_cloud_ip: str | Omit = omit,
+        primary_telnyx_ip: str | Omit = omit,
+        secondary_bgp_key: str | Omit = omit,
+        secondary_cloud_account_id: str | Omit = omit,
+        secondary_cloud_ip: str | Omit = omit,
+        secondary_telnyx_ip: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VirtualCrossConnectCreateResponse:
         """
         Create a new Virtual Cross Connect.<br /><br />For AWS and GCE, you have the
@@ -510,7 +510,7 @@ class AsyncVirtualCrossConnectsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VirtualCrossConnectRetrieveResponse:
         """
         Retrieve a Virtual Cross Connect.
@@ -538,18 +538,18 @@ class AsyncVirtualCrossConnectsResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        primary_cloud_ip: str | NotGiven = NOT_GIVEN,
-        primary_enabled: bool | NotGiven = NOT_GIVEN,
-        primary_routing_announcement: bool | NotGiven = NOT_GIVEN,
-        secondary_cloud_ip: str | NotGiven = NOT_GIVEN,
-        secondary_enabled: bool | NotGiven = NOT_GIVEN,
-        secondary_routing_announcement: bool | NotGiven = NOT_GIVEN,
+        primary_cloud_ip: str | Omit = omit,
+        primary_enabled: bool | Omit = omit,
+        primary_routing_announcement: bool | Omit = omit,
+        secondary_cloud_ip: str | Omit = omit,
+        secondary_enabled: bool | Omit = omit,
+        secondary_routing_announcement: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VirtualCrossConnectUpdateResponse:
         """
         Update the Virtual Cross Connect.<br /><br />Cloud IPs can only be patched
@@ -611,14 +611,14 @@ class AsyncVirtualCrossConnectsResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        filter: virtual_cross_connect_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: virtual_cross_connect_list_params.Page | NotGiven = NOT_GIVEN,
+        filter: virtual_cross_connect_list_params.Filter | Omit = omit,
+        page: virtual_cross_connect_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VirtualCrossConnectListResponse:
         """
         List all Virtual Cross Connects.
@@ -664,7 +664,7 @@ class AsyncVirtualCrossConnectsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VirtualCrossConnectDeleteResponse:
         """
         Delete a Virtual Cross Connect.

@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ..types import public_internet_gateway_list_params, public_internet_gateway_create_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -47,15 +47,15 @@ class PublicInternetGatewaysResource(SyncAPIResource):
     def create(
         self,
         *,
-        name: str | NotGiven = NOT_GIVEN,
-        network_id: str | NotGiven = NOT_GIVEN,
-        region_code: str | NotGiven = NOT_GIVEN,
+        name: str | Omit = omit,
+        network_id: str | Omit = omit,
+        region_code: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PublicInternetGatewayCreateResponse:
         """
         Create a new Public Internet Gateway.
@@ -100,7 +100,7 @@ class PublicInternetGatewaysResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PublicInternetGatewayRetrieveResponse:
         """
         Retrieve a Public Internet Gateway.
@@ -127,14 +127,14 @@ class PublicInternetGatewaysResource(SyncAPIResource):
     def list(
         self,
         *,
-        filter: public_internet_gateway_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: public_internet_gateway_list_params.Page | NotGiven = NOT_GIVEN,
+        filter: public_internet_gateway_list_params.Filter | Omit = omit,
+        page: public_internet_gateway_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PublicInternetGatewayListResponse:
         """
         List all Public Internet Gateways.
@@ -180,7 +180,7 @@ class PublicInternetGatewaysResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PublicInternetGatewayDeleteResponse:
         """
         Delete a Public Internet Gateway.
@@ -228,15 +228,15 @@ class AsyncPublicInternetGatewaysResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        name: str | NotGiven = NOT_GIVEN,
-        network_id: str | NotGiven = NOT_GIVEN,
-        region_code: str | NotGiven = NOT_GIVEN,
+        name: str | Omit = omit,
+        network_id: str | Omit = omit,
+        region_code: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PublicInternetGatewayCreateResponse:
         """
         Create a new Public Internet Gateway.
@@ -281,7 +281,7 @@ class AsyncPublicInternetGatewaysResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PublicInternetGatewayRetrieveResponse:
         """
         Retrieve a Public Internet Gateway.
@@ -308,14 +308,14 @@ class AsyncPublicInternetGatewaysResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        filter: public_internet_gateway_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: public_internet_gateway_list_params.Page | NotGiven = NOT_GIVEN,
+        filter: public_internet_gateway_list_params.Filter | Omit = omit,
+        page: public_internet_gateway_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PublicInternetGatewayListResponse:
         """
         List all Public Internet Gateways.
@@ -361,7 +361,7 @@ class AsyncPublicInternetGatewaysResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PublicInternetGatewayDeleteResponse:
         """
         Delete a Public Internet Gateway.

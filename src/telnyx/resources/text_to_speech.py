@@ -7,7 +7,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..types import text_to_speech_list_voices_params, text_to_speech_generate_speech_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -61,7 +61,7 @@ class TextToSpeechResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BinaryAPIResponse:
         """
         Converts the provided text to speech using the specified voice and returns audio
@@ -109,14 +109,14 @@ class TextToSpeechResource(SyncAPIResource):
     def list_voices(
         self,
         *,
-        elevenlabs_api_key_ref: str | NotGiven = NOT_GIVEN,
-        provider: Literal["aws", "azure", "elevenlabs", "telnyx"] | NotGiven = NOT_GIVEN,
+        elevenlabs_api_key_ref: str | Omit = omit,
+        provider: Literal["aws", "azure", "elevenlabs", "telnyx"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TextToSpeechListVoicesResponse:
         """
         Returns a list of voices that can be used with the text to speech commands.
@@ -183,7 +183,7 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncBinaryAPIResponse:
         """
         Converts the provided text to speech using the specified voice and returns audio
@@ -231,14 +231,14 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
     async def list_voices(
         self,
         *,
-        elevenlabs_api_key_ref: str | NotGiven = NOT_GIVEN,
-        provider: Literal["aws", "azure", "elevenlabs", "telnyx"] | NotGiven = NOT_GIVEN,
+        elevenlabs_api_key_ref: str | Omit = omit,
+        provider: Literal["aws", "azure", "elevenlabs", "telnyx"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TextToSpeechListVoicesResponse:
         """
         Returns a list of voices that can be used with the text to speech commands.

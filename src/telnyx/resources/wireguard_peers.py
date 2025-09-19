@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ..types import wireguard_peer_list_params, wireguard_peer_create_params, wireguard_peer_update_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -49,13 +49,13 @@ class WireguardPeersResource(SyncAPIResource):
         self,
         *,
         wireguard_interface_id: str,
-        public_key: str | NotGiven = NOT_GIVEN,
+        public_key: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WireguardPeerCreateResponse:
         """Create a new WireGuard Peer.
 
@@ -100,7 +100,7 @@ class WireguardPeersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WireguardPeerRetrieveResponse:
         """
         Retrieve the WireGuard peer.
@@ -128,13 +128,13 @@ class WireguardPeersResource(SyncAPIResource):
         self,
         id: str,
         *,
-        public_key: str | NotGiven = NOT_GIVEN,
+        public_key: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WireguardPeerUpdateResponse:
         """
         Update the WireGuard peer.
@@ -165,14 +165,14 @@ class WireguardPeersResource(SyncAPIResource):
     def list(
         self,
         *,
-        filter: wireguard_peer_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: wireguard_peer_list_params.Page | NotGiven = NOT_GIVEN,
+        filter: wireguard_peer_list_params.Filter | Omit = omit,
+        page: wireguard_peer_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WireguardPeerListResponse:
         """
         List all WireGuard peers.
@@ -220,7 +220,7 @@ class WireguardPeersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WireguardPeerDeleteResponse:
         """
         Delete the WireGuard peer.
@@ -253,7 +253,7 @@ class WireguardPeersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
         """
         Retrieve Wireguard config template for Peer
@@ -303,13 +303,13 @@ class AsyncWireguardPeersResource(AsyncAPIResource):
         self,
         *,
         wireguard_interface_id: str,
-        public_key: str | NotGiven = NOT_GIVEN,
+        public_key: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WireguardPeerCreateResponse:
         """Create a new WireGuard Peer.
 
@@ -354,7 +354,7 @@ class AsyncWireguardPeersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WireguardPeerRetrieveResponse:
         """
         Retrieve the WireGuard peer.
@@ -382,13 +382,13 @@ class AsyncWireguardPeersResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        public_key: str | NotGiven = NOT_GIVEN,
+        public_key: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WireguardPeerUpdateResponse:
         """
         Update the WireGuard peer.
@@ -421,14 +421,14 @@ class AsyncWireguardPeersResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        filter: wireguard_peer_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: wireguard_peer_list_params.Page | NotGiven = NOT_GIVEN,
+        filter: wireguard_peer_list_params.Filter | Omit = omit,
+        page: wireguard_peer_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WireguardPeerListResponse:
         """
         List all WireGuard peers.
@@ -476,7 +476,7 @@ class AsyncWireguardPeersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WireguardPeerDeleteResponse:
         """
         Delete the WireGuard peer.
@@ -509,7 +509,7 @@ class AsyncWireguardPeersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
         """
         Retrieve Wireguard config template for Peer

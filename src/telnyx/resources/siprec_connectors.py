@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ..types import siprec_connector_create_params, siprec_connector_update_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from .._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -49,13 +49,13 @@ class SiprecConnectorsResource(SyncAPIResource):
         host: str,
         name: str,
         port: int,
-        app_subdomain: str | NotGiven = NOT_GIVEN,
+        app_subdomain: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SiprecConnectorCreateResponse:
         """
         Creates a new SIPREC connector configuration.
@@ -103,7 +103,7 @@ class SiprecConnectorsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SiprecConnectorRetrieveResponse:
         """
         Returns details of a stored SIPREC connector.
@@ -134,13 +134,13 @@ class SiprecConnectorsResource(SyncAPIResource):
         host: str,
         name: str,
         port: int,
-        app_subdomain: str | NotGiven = NOT_GIVEN,
+        app_subdomain: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SiprecConnectorUpdateResponse:
         """
         Updates a stored SIPREC connector configuration.
@@ -190,7 +190,7 @@ class SiprecConnectorsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Deletes a stored SIPREC connector.
@@ -242,13 +242,13 @@ class AsyncSiprecConnectorsResource(AsyncAPIResource):
         host: str,
         name: str,
         port: int,
-        app_subdomain: str | NotGiven = NOT_GIVEN,
+        app_subdomain: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SiprecConnectorCreateResponse:
         """
         Creates a new SIPREC connector configuration.
@@ -296,7 +296,7 @@ class AsyncSiprecConnectorsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SiprecConnectorRetrieveResponse:
         """
         Returns details of a stored SIPREC connector.
@@ -327,13 +327,13 @@ class AsyncSiprecConnectorsResource(AsyncAPIResource):
         host: str,
         name: str,
         port: int,
-        app_subdomain: str | NotGiven = NOT_GIVEN,
+        app_subdomain: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SiprecConnectorUpdateResponse:
         """
         Updates a stored SIPREC connector configuration.
@@ -383,7 +383,7 @@ class AsyncSiprecConnectorsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Deletes a stored SIPREC connector.

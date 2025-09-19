@@ -21,7 +21,7 @@ from .uploads import (
     UploadsResourceWithStreamingResponse,
     AsyncUploadsResourceWithStreamingResponse,
 )
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from .releases import (
     ReleasesResource,
@@ -119,18 +119,18 @@ class ExternalConnectionsResource(SyncAPIResource):
         *,
         external_sip_connection: Literal["zoom"],
         outbound: external_connection_create_params.Outbound,
-        active: bool | NotGiven = NOT_GIVEN,
-        inbound: external_connection_create_params.Inbound | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        webhook_event_failover_url: Optional[str] | NotGiven = NOT_GIVEN,
-        webhook_event_url: str | NotGiven = NOT_GIVEN,
-        webhook_timeout_secs: Optional[int] | NotGiven = NOT_GIVEN,
+        active: bool | Omit = omit,
+        inbound: external_connection_create_params.Inbound | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        webhook_event_failover_url: Optional[str] | Omit = omit,
+        webhook_event_url: str | Omit = omit,
+        webhook_timeout_secs: Optional[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ExternalConnectionCreateResponse:
         """
         Creates a new External Connection based on the parameters sent in the request.
@@ -191,7 +191,7 @@ class ExternalConnectionsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ExternalConnectionRetrieveResponse:
         """
         Return the details of an existing External Connection inside the 'data'
@@ -221,18 +221,18 @@ class ExternalConnectionsResource(SyncAPIResource):
         id: str,
         *,
         outbound: external_connection_update_params.Outbound,
-        active: bool | NotGiven = NOT_GIVEN,
-        inbound: external_connection_update_params.Inbound | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        webhook_event_failover_url: Optional[str] | NotGiven = NOT_GIVEN,
-        webhook_event_url: str | NotGiven = NOT_GIVEN,
-        webhook_timeout_secs: Optional[int] | NotGiven = NOT_GIVEN,
+        active: bool | Omit = omit,
+        inbound: external_connection_update_params.Inbound | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        webhook_event_failover_url: Optional[str] | Omit = omit,
+        webhook_event_url: str | Omit = omit,
+        webhook_timeout_secs: Optional[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ExternalConnectionUpdateResponse:
         """
         Updates settings of an existing External Connection based on the parameters of
@@ -284,14 +284,14 @@ class ExternalConnectionsResource(SyncAPIResource):
     def list(
         self,
         *,
-        filter: external_connection_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: external_connection_list_params.Page | NotGiven = NOT_GIVEN,
+        filter: external_connection_list_params.Filter | Omit = omit,
+        page: external_connection_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ExternalConnectionListResponse:
         """
         This endpoint returns a list of your External Connections inside the 'data'
@@ -341,7 +341,7 @@ class ExternalConnectionsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ExternalConnectionDeleteResponse:
         """Permanently deletes an External Connection.
 
@@ -380,7 +380,7 @@ class ExternalConnectionsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ExternalConnectionUpdateLocationResponse:
         """
         Update a location's static emergency address
@@ -458,18 +458,18 @@ class AsyncExternalConnectionsResource(AsyncAPIResource):
         *,
         external_sip_connection: Literal["zoom"],
         outbound: external_connection_create_params.Outbound,
-        active: bool | NotGiven = NOT_GIVEN,
-        inbound: external_connection_create_params.Inbound | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        webhook_event_failover_url: Optional[str] | NotGiven = NOT_GIVEN,
-        webhook_event_url: str | NotGiven = NOT_GIVEN,
-        webhook_timeout_secs: Optional[int] | NotGiven = NOT_GIVEN,
+        active: bool | Omit = omit,
+        inbound: external_connection_create_params.Inbound | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        webhook_event_failover_url: Optional[str] | Omit = omit,
+        webhook_event_url: str | Omit = omit,
+        webhook_timeout_secs: Optional[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ExternalConnectionCreateResponse:
         """
         Creates a new External Connection based on the parameters sent in the request.
@@ -530,7 +530,7 @@ class AsyncExternalConnectionsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ExternalConnectionRetrieveResponse:
         """
         Return the details of an existing External Connection inside the 'data'
@@ -560,18 +560,18 @@ class AsyncExternalConnectionsResource(AsyncAPIResource):
         id: str,
         *,
         outbound: external_connection_update_params.Outbound,
-        active: bool | NotGiven = NOT_GIVEN,
-        inbound: external_connection_update_params.Inbound | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        webhook_event_failover_url: Optional[str] | NotGiven = NOT_GIVEN,
-        webhook_event_url: str | NotGiven = NOT_GIVEN,
-        webhook_timeout_secs: Optional[int] | NotGiven = NOT_GIVEN,
+        active: bool | Omit = omit,
+        inbound: external_connection_update_params.Inbound | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        webhook_event_failover_url: Optional[str] | Omit = omit,
+        webhook_event_url: str | Omit = omit,
+        webhook_timeout_secs: Optional[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ExternalConnectionUpdateResponse:
         """
         Updates settings of an existing External Connection based on the parameters of
@@ -623,14 +623,14 @@ class AsyncExternalConnectionsResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        filter: external_connection_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: external_connection_list_params.Page | NotGiven = NOT_GIVEN,
+        filter: external_connection_list_params.Filter | Omit = omit,
+        page: external_connection_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ExternalConnectionListResponse:
         """
         This endpoint returns a list of your External Connections inside the 'data'
@@ -680,7 +680,7 @@ class AsyncExternalConnectionsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ExternalConnectionDeleteResponse:
         """Permanently deletes an External Connection.
 
@@ -719,7 +719,7 @@ class AsyncExternalConnectionsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ExternalConnectionUpdateLocationResponse:
         """
         Update a location's static emergency address

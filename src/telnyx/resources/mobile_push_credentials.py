@@ -8,7 +8,7 @@ from typing_extensions import Literal, overload
 import httpx
 
 from ..types import mobile_push_credential_list_params, mobile_push_credential_create_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from .._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from .._utils import required_args, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -58,7 +58,7 @@ class MobilePushCredentialsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PushCredentialResponse:
         """
         Creates a new mobile push credential
@@ -94,7 +94,7 @@ class MobilePushCredentialsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PushCredentialResponse:
         """
         Creates a new mobile push credential
@@ -121,16 +121,16 @@ class MobilePushCredentialsResource(SyncAPIResource):
         self,
         *,
         alias: str,
-        certificate: str | NotGiven = NOT_GIVEN,
-        private_key: str | NotGiven = NOT_GIVEN,
+        certificate: str | Omit = omit,
+        private_key: str | Omit = omit,
         type: Literal["ios"] | Literal["android"],
-        project_account_json_file: Dict[str, object] | NotGiven = NOT_GIVEN,
+        project_account_json_file: Dict[str, object] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PushCredentialResponse:
         return self._post(
             "/mobile_push_credentials",
@@ -159,7 +159,7 @@ class MobilePushCredentialsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PushCredentialResponse:
         """
         Retrieves mobile push credential based on the given `push_credential_id`
@@ -186,14 +186,14 @@ class MobilePushCredentialsResource(SyncAPIResource):
     def list(
         self,
         *,
-        filter: mobile_push_credential_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: mobile_push_credential_list_params.Page | NotGiven = NOT_GIVEN,
+        filter: mobile_push_credential_list_params.Filter | Omit = omit,
+        page: mobile_push_credential_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MobilePushCredentialListResponse:
         """
         List mobile push credentials
@@ -240,7 +240,7 @@ class MobilePushCredentialsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Deletes a mobile push credential based on the given `push_credential_id`
@@ -299,7 +299,7 @@ class AsyncMobilePushCredentialsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PushCredentialResponse:
         """
         Creates a new mobile push credential
@@ -335,7 +335,7 @@ class AsyncMobilePushCredentialsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PushCredentialResponse:
         """
         Creates a new mobile push credential
@@ -362,16 +362,16 @@ class AsyncMobilePushCredentialsResource(AsyncAPIResource):
         self,
         *,
         alias: str,
-        certificate: str | NotGiven = NOT_GIVEN,
-        private_key: str | NotGiven = NOT_GIVEN,
+        certificate: str | Omit = omit,
+        private_key: str | Omit = omit,
         type: Literal["ios"] | Literal["android"],
-        project_account_json_file: Dict[str, object] | NotGiven = NOT_GIVEN,
+        project_account_json_file: Dict[str, object] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PushCredentialResponse:
         return await self._post(
             "/mobile_push_credentials",
@@ -400,7 +400,7 @@ class AsyncMobilePushCredentialsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PushCredentialResponse:
         """
         Retrieves mobile push credential based on the given `push_credential_id`
@@ -427,14 +427,14 @@ class AsyncMobilePushCredentialsResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        filter: mobile_push_credential_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: mobile_push_credential_list_params.Page | NotGiven = NOT_GIVEN,
+        filter: mobile_push_credential_list_params.Filter | Omit = omit,
+        page: mobile_push_credential_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MobilePushCredentialListResponse:
         """
         List mobile push credentials
@@ -481,7 +481,7 @@ class AsyncMobilePushCredentialsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Deletes a mobile push credential based on the given `push_credential_id`

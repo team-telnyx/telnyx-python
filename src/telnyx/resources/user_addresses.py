@@ -7,7 +7,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..types import user_address_list_params, user_address_create_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -54,20 +54,20 @@ class UserAddressesResource(SyncAPIResource):
         last_name: str,
         locality: str,
         street_address: str,
-        administrative_area: str | NotGiven = NOT_GIVEN,
-        borough: str | NotGiven = NOT_GIVEN,
-        customer_reference: str | NotGiven = NOT_GIVEN,
-        extended_address: str | NotGiven = NOT_GIVEN,
-        neighborhood: str | NotGiven = NOT_GIVEN,
-        phone_number: str | NotGiven = NOT_GIVEN,
-        postal_code: str | NotGiven = NOT_GIVEN,
-        skip_address_verification: str | NotGiven = NOT_GIVEN,
+        administrative_area: str | Omit = omit,
+        borough: str | Omit = omit,
+        customer_reference: str | Omit = omit,
+        extended_address: str | Omit = omit,
+        neighborhood: str | Omit = omit,
+        phone_number: str | Omit = omit,
+        postal_code: str | Omit = omit,
+        skip_address_verification: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UserAddressCreateResponse:
         """
         Creates a user address.
@@ -160,7 +160,7 @@ class UserAddressesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UserAddressRetrieveResponse:
         """
         Retrieves the details of an existing user address.
@@ -187,16 +187,15 @@ class UserAddressesResource(SyncAPIResource):
     def list(
         self,
         *,
-        filter: user_address_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: user_address_list_params.Page | NotGiven = NOT_GIVEN,
-        sort: Literal["created_at", "first_name", "last_name", "business_name", "street_address"]
-        | NotGiven = NOT_GIVEN,
+        filter: user_address_list_params.Filter | Omit = omit,
+        page: user_address_list_params.Page | Omit = omit,
+        sort: Literal["created_at", "first_name", "last_name", "business_name", "street_address"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UserAddressListResponse:
         """
         Returns a list of your user addresses.
@@ -282,20 +281,20 @@ class AsyncUserAddressesResource(AsyncAPIResource):
         last_name: str,
         locality: str,
         street_address: str,
-        administrative_area: str | NotGiven = NOT_GIVEN,
-        borough: str | NotGiven = NOT_GIVEN,
-        customer_reference: str | NotGiven = NOT_GIVEN,
-        extended_address: str | NotGiven = NOT_GIVEN,
-        neighborhood: str | NotGiven = NOT_GIVEN,
-        phone_number: str | NotGiven = NOT_GIVEN,
-        postal_code: str | NotGiven = NOT_GIVEN,
-        skip_address_verification: str | NotGiven = NOT_GIVEN,
+        administrative_area: str | Omit = omit,
+        borough: str | Omit = omit,
+        customer_reference: str | Omit = omit,
+        extended_address: str | Omit = omit,
+        neighborhood: str | Omit = omit,
+        phone_number: str | Omit = omit,
+        postal_code: str | Omit = omit,
+        skip_address_verification: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UserAddressCreateResponse:
         """
         Creates a user address.
@@ -388,7 +387,7 @@ class AsyncUserAddressesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UserAddressRetrieveResponse:
         """
         Retrieves the details of an existing user address.
@@ -415,16 +414,15 @@ class AsyncUserAddressesResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        filter: user_address_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: user_address_list_params.Page | NotGiven = NOT_GIVEN,
-        sort: Literal["created_at", "first_name", "last_name", "business_name", "street_address"]
-        | NotGiven = NOT_GIVEN,
+        filter: user_address_list_params.Filter | Omit = omit,
+        page: user_address_list_params.Page | Omit = omit,
+        sort: Literal["created_at", "first_name", "last_name", "business_name", "street_address"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UserAddressListResponse:
         """
         Returns a list of your user addresses.

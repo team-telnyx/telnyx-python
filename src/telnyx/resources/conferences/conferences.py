@@ -15,7 +15,7 @@ from .actions import (
     ActionsResourceWithStreamingResponse,
     AsyncActionsResourceWithStreamingResponse,
 )
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -63,21 +63,21 @@ class ConferencesResource(SyncAPIResource):
         *,
         call_control_id: str,
         name: str,
-        beep_enabled: Literal["always", "never", "on_enter", "on_exit"] | NotGiven = NOT_GIVEN,
-        client_state: str | NotGiven = NOT_GIVEN,
-        comfort_noise: bool | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
-        duration_minutes: int | NotGiven = NOT_GIVEN,
-        hold_audio_url: str | NotGiven = NOT_GIVEN,
-        hold_media_name: str | NotGiven = NOT_GIVEN,
-        max_participants: int | NotGiven = NOT_GIVEN,
-        start_conference_on_create: bool | NotGiven = NOT_GIVEN,
+        beep_enabled: Literal["always", "never", "on_enter", "on_exit"] | Omit = omit,
+        client_state: str | Omit = omit,
+        comfort_noise: bool | Omit = omit,
+        command_id: str | Omit = omit,
+        duration_minutes: int | Omit = omit,
+        hold_audio_url: str | Omit = omit,
+        hold_media_name: str | Omit = omit,
+        max_participants: int | Omit = omit,
+        start_conference_on_create: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConferenceCreateResponse:
         """
         Create a conference from an existing call leg using a `call_control_id` and a
@@ -176,7 +176,7 @@ class ConferencesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConferenceRetrieveResponse:
         """
         Retrieve an existing conference
@@ -203,14 +203,14 @@ class ConferencesResource(SyncAPIResource):
     def list(
         self,
         *,
-        filter: conference_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: conference_list_params.Page | NotGiven = NOT_GIVEN,
+        filter: conference_list_params.Filter | Omit = omit,
+        page: conference_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConferenceListResponse:
         """Lists conferences.
 
@@ -260,14 +260,14 @@ class ConferencesResource(SyncAPIResource):
         self,
         conference_id: str,
         *,
-        filter: conference_list_participants_params.Filter | NotGiven = NOT_GIVEN,
-        page: conference_list_participants_params.Page | NotGiven = NOT_GIVEN,
+        filter: conference_list_participants_params.Filter | Omit = omit,
+        page: conference_list_participants_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConferenceListParticipantsResponse:
         """
         Lists conference participants
@@ -337,21 +337,21 @@ class AsyncConferencesResource(AsyncAPIResource):
         *,
         call_control_id: str,
         name: str,
-        beep_enabled: Literal["always", "never", "on_enter", "on_exit"] | NotGiven = NOT_GIVEN,
-        client_state: str | NotGiven = NOT_GIVEN,
-        comfort_noise: bool | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
-        duration_minutes: int | NotGiven = NOT_GIVEN,
-        hold_audio_url: str | NotGiven = NOT_GIVEN,
-        hold_media_name: str | NotGiven = NOT_GIVEN,
-        max_participants: int | NotGiven = NOT_GIVEN,
-        start_conference_on_create: bool | NotGiven = NOT_GIVEN,
+        beep_enabled: Literal["always", "never", "on_enter", "on_exit"] | Omit = omit,
+        client_state: str | Omit = omit,
+        comfort_noise: bool | Omit = omit,
+        command_id: str | Omit = omit,
+        duration_minutes: int | Omit = omit,
+        hold_audio_url: str | Omit = omit,
+        hold_media_name: str | Omit = omit,
+        max_participants: int | Omit = omit,
+        start_conference_on_create: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConferenceCreateResponse:
         """
         Create a conference from an existing call leg using a `call_control_id` and a
@@ -450,7 +450,7 @@ class AsyncConferencesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConferenceRetrieveResponse:
         """
         Retrieve an existing conference
@@ -477,14 +477,14 @@ class AsyncConferencesResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        filter: conference_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: conference_list_params.Page | NotGiven = NOT_GIVEN,
+        filter: conference_list_params.Filter | Omit = omit,
+        page: conference_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConferenceListResponse:
         """Lists conferences.
 
@@ -534,14 +534,14 @@ class AsyncConferencesResource(AsyncAPIResource):
         self,
         conference_id: str,
         *,
-        filter: conference_list_participants_params.Filter | NotGiven = NOT_GIVEN,
-        page: conference_list_participants_params.Page | NotGiven = NOT_GIVEN,
+        filter: conference_list_participants_params.Filter | Omit = omit,
+        page: conference_list_participants_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConferenceListParticipantsResponse:
         """
         Lists conference participants

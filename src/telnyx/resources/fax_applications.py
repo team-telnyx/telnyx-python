@@ -13,7 +13,7 @@ from ..types import (
     fax_application_create_params,
     fax_application_update_params,
 )
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from .._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -59,19 +59,19 @@ class FaxApplicationsResource(SyncAPIResource):
         *,
         application_name: str,
         webhook_event_url: str,
-        active: bool | NotGiven = NOT_GIVEN,
-        anchorsite_override: AnchorsiteOverride | NotGiven = NOT_GIVEN,
-        inbound: fax_application_create_params.Inbound | NotGiven = NOT_GIVEN,
-        outbound: fax_application_create_params.Outbound | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        webhook_event_failover_url: Optional[str] | NotGiven = NOT_GIVEN,
-        webhook_timeout_secs: Optional[int] | NotGiven = NOT_GIVEN,
+        active: bool | Omit = omit,
+        anchorsite_override: AnchorsiteOverride | Omit = omit,
+        inbound: fax_application_create_params.Inbound | Omit = omit,
+        outbound: fax_application_create_params.Outbound | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        webhook_event_failover_url: Optional[str] | Omit = omit,
+        webhook_timeout_secs: Optional[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FaxApplicationCreateResponse:
         """Creates a new Fax Application based on the parameters sent in the request.
 
@@ -137,7 +137,7 @@ class FaxApplicationsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FaxApplicationRetrieveResponse:
         """
         Return the details of an existing Fax Application inside the 'data' attribute of
@@ -168,20 +168,20 @@ class FaxApplicationsResource(SyncAPIResource):
         *,
         application_name: str,
         webhook_event_url: str,
-        active: bool | NotGiven = NOT_GIVEN,
-        anchorsite_override: AnchorsiteOverride | NotGiven = NOT_GIVEN,
-        fax_email_recipient: Optional[str] | NotGiven = NOT_GIVEN,
-        inbound: fax_application_update_params.Inbound | NotGiven = NOT_GIVEN,
-        outbound: fax_application_update_params.Outbound | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        webhook_event_failover_url: Optional[str] | NotGiven = NOT_GIVEN,
-        webhook_timeout_secs: Optional[int] | NotGiven = NOT_GIVEN,
+        active: bool | Omit = omit,
+        anchorsite_override: AnchorsiteOverride | Omit = omit,
+        fax_email_recipient: Optional[str] | Omit = omit,
+        inbound: fax_application_update_params.Inbound | Omit = omit,
+        outbound: fax_application_update_params.Outbound | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        webhook_event_failover_url: Optional[str] | Omit = omit,
+        webhook_timeout_secs: Optional[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FaxApplicationUpdateResponse:
         """
         Updates settings of an existing Fax Application based on the parameters of the
@@ -245,15 +245,15 @@ class FaxApplicationsResource(SyncAPIResource):
     def list(
         self,
         *,
-        filter: fax_application_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: fax_application_list_params.Page | NotGiven = NOT_GIVEN,
-        sort: Literal["created_at", "application_name", "active"] | NotGiven = NOT_GIVEN,
+        filter: fax_application_list_params.Filter | Omit = omit,
+        page: fax_application_list_params.Page | Omit = omit,
+        sort: Literal["created_at", "application_name", "active"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FaxApplicationListResponse:
         """
         This endpoint returns a list of your Fax Applications inside the 'data'
@@ -320,7 +320,7 @@ class FaxApplicationsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FaxApplicationDeleteResponse:
         """Permanently deletes a Fax Application.
 
@@ -372,19 +372,19 @@ class AsyncFaxApplicationsResource(AsyncAPIResource):
         *,
         application_name: str,
         webhook_event_url: str,
-        active: bool | NotGiven = NOT_GIVEN,
-        anchorsite_override: AnchorsiteOverride | NotGiven = NOT_GIVEN,
-        inbound: fax_application_create_params.Inbound | NotGiven = NOT_GIVEN,
-        outbound: fax_application_create_params.Outbound | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        webhook_event_failover_url: Optional[str] | NotGiven = NOT_GIVEN,
-        webhook_timeout_secs: Optional[int] | NotGiven = NOT_GIVEN,
+        active: bool | Omit = omit,
+        anchorsite_override: AnchorsiteOverride | Omit = omit,
+        inbound: fax_application_create_params.Inbound | Omit = omit,
+        outbound: fax_application_create_params.Outbound | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        webhook_event_failover_url: Optional[str] | Omit = omit,
+        webhook_timeout_secs: Optional[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FaxApplicationCreateResponse:
         """Creates a new Fax Application based on the parameters sent in the request.
 
@@ -450,7 +450,7 @@ class AsyncFaxApplicationsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FaxApplicationRetrieveResponse:
         """
         Return the details of an existing Fax Application inside the 'data' attribute of
@@ -481,20 +481,20 @@ class AsyncFaxApplicationsResource(AsyncAPIResource):
         *,
         application_name: str,
         webhook_event_url: str,
-        active: bool | NotGiven = NOT_GIVEN,
-        anchorsite_override: AnchorsiteOverride | NotGiven = NOT_GIVEN,
-        fax_email_recipient: Optional[str] | NotGiven = NOT_GIVEN,
-        inbound: fax_application_update_params.Inbound | NotGiven = NOT_GIVEN,
-        outbound: fax_application_update_params.Outbound | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        webhook_event_failover_url: Optional[str] | NotGiven = NOT_GIVEN,
-        webhook_timeout_secs: Optional[int] | NotGiven = NOT_GIVEN,
+        active: bool | Omit = omit,
+        anchorsite_override: AnchorsiteOverride | Omit = omit,
+        fax_email_recipient: Optional[str] | Omit = omit,
+        inbound: fax_application_update_params.Inbound | Omit = omit,
+        outbound: fax_application_update_params.Outbound | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        webhook_event_failover_url: Optional[str] | Omit = omit,
+        webhook_timeout_secs: Optional[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FaxApplicationUpdateResponse:
         """
         Updates settings of an existing Fax Application based on the parameters of the
@@ -558,15 +558,15 @@ class AsyncFaxApplicationsResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        filter: fax_application_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: fax_application_list_params.Page | NotGiven = NOT_GIVEN,
-        sort: Literal["created_at", "application_name", "active"] | NotGiven = NOT_GIVEN,
+        filter: fax_application_list_params.Filter | Omit = omit,
+        page: fax_application_list_params.Page | Omit = omit,
+        sort: Literal["created_at", "application_name", "active"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FaxApplicationListResponse:
         """
         This endpoint returns a list of your Fax Applications inside the 'data'
@@ -633,7 +633,7 @@ class AsyncFaxApplicationsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FaxApplicationDeleteResponse:
         """Permanently deletes a Fax Application.
 

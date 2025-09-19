@@ -14,7 +14,7 @@ from ...types import (
     messaging_profile_list_short_codes_params,
     messaging_profile_list_phone_numbers_params,
 )
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -75,23 +75,23 @@ class MessagingProfilesResource(SyncAPIResource):
         *,
         name: str,
         whitelisted_destinations: SequenceNotStr[str],
-        alpha_sender: Optional[str] | NotGiven = NOT_GIVEN,
-        daily_spend_limit: str | NotGiven = NOT_GIVEN,
-        daily_spend_limit_enabled: bool | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        mms_fall_back_to_sms: bool | NotGiven = NOT_GIVEN,
-        mms_transcoding: bool | NotGiven = NOT_GIVEN,
-        number_pool_settings: Optional[NumberPoolSettingsParam] | NotGiven = NOT_GIVEN,
-        url_shortener_settings: Optional[URLShortenerSettingsParam] | NotGiven = NOT_GIVEN,
-        webhook_api_version: Literal["1", "2", "2010-04-01"] | NotGiven = NOT_GIVEN,
-        webhook_failover_url: Optional[str] | NotGiven = NOT_GIVEN,
-        webhook_url: Optional[str] | NotGiven = NOT_GIVEN,
+        alpha_sender: Optional[str] | Omit = omit,
+        daily_spend_limit: str | Omit = omit,
+        daily_spend_limit_enabled: bool | Omit = omit,
+        enabled: bool | Omit = omit,
+        mms_fall_back_to_sms: bool | Omit = omit,
+        mms_transcoding: bool | Omit = omit,
+        number_pool_settings: Optional[NumberPoolSettingsParam] | Omit = omit,
+        url_shortener_settings: Optional[URLShortenerSettingsParam] | Omit = omit,
+        webhook_api_version: Literal["1", "2", "2010-04-01"] | Omit = omit,
+        webhook_failover_url: Optional[str] | Omit = omit,
+        webhook_url: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessagingProfileCreateResponse:
         """
         Create a messaging profile
@@ -182,7 +182,7 @@ class MessagingProfilesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessagingProfileRetrieveResponse:
         """
         Retrieve a messaging profile
@@ -210,26 +210,26 @@ class MessagingProfilesResource(SyncAPIResource):
         self,
         id: str,
         *,
-        alpha_sender: Optional[str] | NotGiven = NOT_GIVEN,
-        daily_spend_limit: str | NotGiven = NOT_GIVEN,
-        daily_spend_limit_enabled: bool | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        mms_fall_back_to_sms: bool | NotGiven = NOT_GIVEN,
-        mms_transcoding: bool | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        number_pool_settings: Optional[NumberPoolSettingsParam] | NotGiven = NOT_GIVEN,
-        url_shortener_settings: Optional[URLShortenerSettingsParam] | NotGiven = NOT_GIVEN,
-        v1_secret: str | NotGiven = NOT_GIVEN,
-        webhook_api_version: Literal["1", "2", "2010-04-01"] | NotGiven = NOT_GIVEN,
-        webhook_failover_url: Optional[str] | NotGiven = NOT_GIVEN,
-        webhook_url: Optional[str] | NotGiven = NOT_GIVEN,
-        whitelisted_destinations: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        alpha_sender: Optional[str] | Omit = omit,
+        daily_spend_limit: str | Omit = omit,
+        daily_spend_limit_enabled: bool | Omit = omit,
+        enabled: bool | Omit = omit,
+        mms_fall_back_to_sms: bool | Omit = omit,
+        mms_transcoding: bool | Omit = omit,
+        name: str | Omit = omit,
+        number_pool_settings: Optional[NumberPoolSettingsParam] | Omit = omit,
+        url_shortener_settings: Optional[URLShortenerSettingsParam] | Omit = omit,
+        v1_secret: str | Omit = omit,
+        webhook_api_version: Literal["1", "2", "2010-04-01"] | Omit = omit,
+        webhook_failover_url: Optional[str] | Omit = omit,
+        webhook_url: Optional[str] | Omit = omit,
+        whitelisted_destinations: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessagingProfileUpdateResponse:
         """
         Update a messaging profile
@@ -321,14 +321,14 @@ class MessagingProfilesResource(SyncAPIResource):
     def list(
         self,
         *,
-        filter: messaging_profile_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: messaging_profile_list_params.Page | NotGiven = NOT_GIVEN,
+        filter: messaging_profile_list_params.Filter | Omit = omit,
+        page: messaging_profile_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessagingProfileListResponse:
         """
         List messaging profiles
@@ -374,7 +374,7 @@ class MessagingProfilesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessagingProfileDeleteResponse:
         """
         Delete a messaging profile
@@ -402,13 +402,13 @@ class MessagingProfilesResource(SyncAPIResource):
         self,
         id: str,
         *,
-        page: messaging_profile_list_phone_numbers_params.Page | NotGiven = NOT_GIVEN,
+        page: messaging_profile_list_phone_numbers_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessagingProfileListPhoneNumbersResponse:
         """
         List phone numbers associated with a messaging profile
@@ -445,13 +445,13 @@ class MessagingProfilesResource(SyncAPIResource):
         self,
         id: str,
         *,
-        page: messaging_profile_list_short_codes_params.Page | NotGiven = NOT_GIVEN,
+        page: messaging_profile_list_short_codes_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessagingProfileListShortCodesResponse:
         """
         List short codes associated with a messaging profile
@@ -514,23 +514,23 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
         *,
         name: str,
         whitelisted_destinations: SequenceNotStr[str],
-        alpha_sender: Optional[str] | NotGiven = NOT_GIVEN,
-        daily_spend_limit: str | NotGiven = NOT_GIVEN,
-        daily_spend_limit_enabled: bool | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        mms_fall_back_to_sms: bool | NotGiven = NOT_GIVEN,
-        mms_transcoding: bool | NotGiven = NOT_GIVEN,
-        number_pool_settings: Optional[NumberPoolSettingsParam] | NotGiven = NOT_GIVEN,
-        url_shortener_settings: Optional[URLShortenerSettingsParam] | NotGiven = NOT_GIVEN,
-        webhook_api_version: Literal["1", "2", "2010-04-01"] | NotGiven = NOT_GIVEN,
-        webhook_failover_url: Optional[str] | NotGiven = NOT_GIVEN,
-        webhook_url: Optional[str] | NotGiven = NOT_GIVEN,
+        alpha_sender: Optional[str] | Omit = omit,
+        daily_spend_limit: str | Omit = omit,
+        daily_spend_limit_enabled: bool | Omit = omit,
+        enabled: bool | Omit = omit,
+        mms_fall_back_to_sms: bool | Omit = omit,
+        mms_transcoding: bool | Omit = omit,
+        number_pool_settings: Optional[NumberPoolSettingsParam] | Omit = omit,
+        url_shortener_settings: Optional[URLShortenerSettingsParam] | Omit = omit,
+        webhook_api_version: Literal["1", "2", "2010-04-01"] | Omit = omit,
+        webhook_failover_url: Optional[str] | Omit = omit,
+        webhook_url: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessagingProfileCreateResponse:
         """
         Create a messaging profile
@@ -621,7 +621,7 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessagingProfileRetrieveResponse:
         """
         Retrieve a messaging profile
@@ -649,26 +649,26 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        alpha_sender: Optional[str] | NotGiven = NOT_GIVEN,
-        daily_spend_limit: str | NotGiven = NOT_GIVEN,
-        daily_spend_limit_enabled: bool | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        mms_fall_back_to_sms: bool | NotGiven = NOT_GIVEN,
-        mms_transcoding: bool | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        number_pool_settings: Optional[NumberPoolSettingsParam] | NotGiven = NOT_GIVEN,
-        url_shortener_settings: Optional[URLShortenerSettingsParam] | NotGiven = NOT_GIVEN,
-        v1_secret: str | NotGiven = NOT_GIVEN,
-        webhook_api_version: Literal["1", "2", "2010-04-01"] | NotGiven = NOT_GIVEN,
-        webhook_failover_url: Optional[str] | NotGiven = NOT_GIVEN,
-        webhook_url: Optional[str] | NotGiven = NOT_GIVEN,
-        whitelisted_destinations: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        alpha_sender: Optional[str] | Omit = omit,
+        daily_spend_limit: str | Omit = omit,
+        daily_spend_limit_enabled: bool | Omit = omit,
+        enabled: bool | Omit = omit,
+        mms_fall_back_to_sms: bool | Omit = omit,
+        mms_transcoding: bool | Omit = omit,
+        name: str | Omit = omit,
+        number_pool_settings: Optional[NumberPoolSettingsParam] | Omit = omit,
+        url_shortener_settings: Optional[URLShortenerSettingsParam] | Omit = omit,
+        v1_secret: str | Omit = omit,
+        webhook_api_version: Literal["1", "2", "2010-04-01"] | Omit = omit,
+        webhook_failover_url: Optional[str] | Omit = omit,
+        webhook_url: Optional[str] | Omit = omit,
+        whitelisted_destinations: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessagingProfileUpdateResponse:
         """
         Update a messaging profile
@@ -760,14 +760,14 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        filter: messaging_profile_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: messaging_profile_list_params.Page | NotGiven = NOT_GIVEN,
+        filter: messaging_profile_list_params.Filter | Omit = omit,
+        page: messaging_profile_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessagingProfileListResponse:
         """
         List messaging profiles
@@ -813,7 +813,7 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessagingProfileDeleteResponse:
         """
         Delete a messaging profile
@@ -841,13 +841,13 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        page: messaging_profile_list_phone_numbers_params.Page | NotGiven = NOT_GIVEN,
+        page: messaging_profile_list_phone_numbers_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessagingProfileListPhoneNumbersResponse:
         """
         List phone numbers associated with a messaging profile
@@ -884,13 +884,13 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        page: messaging_profile_list_short_codes_params.Page | NotGiven = NOT_GIVEN,
+        page: messaging_profile_list_short_codes_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessagingProfileListShortCodesResponse:
         """
         List short codes associated with a messaging profile

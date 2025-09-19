@@ -22,7 +22,7 @@ from .actions import (
     ActionsResourceWithStreamingResponse,
     AsyncActionsResourceWithStreamingResponse,
 )
-from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven, SequenceNotStr
+from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from .comments import (
     CommentsResource,
@@ -194,13 +194,13 @@ class PortingOrdersResource(SyncAPIResource):
         self,
         *,
         phone_numbers: SequenceNotStr[str],
-        customer_reference: str | NotGiven = NOT_GIVEN,
+        customer_reference: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PortingOrderCreateResponse:
         """
         Creates a new porting order object.
@@ -237,13 +237,13 @@ class PortingOrdersResource(SyncAPIResource):
         self,
         id: str,
         *,
-        include_phone_numbers: bool | NotGiven = NOT_GIVEN,
+        include_phone_numbers: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PortingOrderRetrieveResponse:
         """
         Retrieves the details of an existing porting order.
@@ -280,23 +280,23 @@ class PortingOrdersResource(SyncAPIResource):
         self,
         id: str,
         *,
-        activation_settings: porting_order_update_params.ActivationSettings | NotGiven = NOT_GIVEN,
-        customer_reference: str | NotGiven = NOT_GIVEN,
-        documents: PortingOrderDocumentsParam | NotGiven = NOT_GIVEN,
-        end_user: PortingOrderEndUserParam | NotGiven = NOT_GIVEN,
-        messaging: porting_order_update_params.Messaging | NotGiven = NOT_GIVEN,
-        misc: PortingOrderMiscParam | NotGiven = NOT_GIVEN,
-        phone_number_configuration: PortingOrderPhoneNumberConfigurationParam | NotGiven = NOT_GIVEN,
-        requirement_group_id: str | NotGiven = NOT_GIVEN,
-        requirements: Iterable[porting_order_update_params.Requirement] | NotGiven = NOT_GIVEN,
-        user_feedback: PortingOrderUserFeedbackParam | NotGiven = NOT_GIVEN,
-        webhook_url: str | NotGiven = NOT_GIVEN,
+        activation_settings: porting_order_update_params.ActivationSettings | Omit = omit,
+        customer_reference: str | Omit = omit,
+        documents: PortingOrderDocumentsParam | Omit = omit,
+        end_user: PortingOrderEndUserParam | Omit = omit,
+        messaging: porting_order_update_params.Messaging | Omit = omit,
+        misc: PortingOrderMiscParam | Omit = omit,
+        phone_number_configuration: PortingOrderPhoneNumberConfigurationParam | Omit = omit,
+        requirement_group_id: str | Omit = omit,
+        requirements: Iterable[porting_order_update_params.Requirement] | Omit = omit,
+        user_feedback: PortingOrderUserFeedbackParam | Omit = omit,
+        webhook_url: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PortingOrderUpdateResponse:
         """
         Edits the details of an existing porting order.
@@ -357,16 +357,16 @@ class PortingOrdersResource(SyncAPIResource):
     def list(
         self,
         *,
-        filter: porting_order_list_params.Filter | NotGiven = NOT_GIVEN,
-        include_phone_numbers: bool | NotGiven = NOT_GIVEN,
-        page: porting_order_list_params.Page | NotGiven = NOT_GIVEN,
-        sort: porting_order_list_params.Sort | NotGiven = NOT_GIVEN,
+        filter: porting_order_list_params.Filter | Omit = omit,
+        include_phone_numbers: bool | Omit = omit,
+        page: porting_order_list_params.Page | Omit = omit,
+        sort: porting_order_list_params.Sort | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PortingOrderListResponse:
         """
         Returns a list of your porting order.
@@ -427,7 +427,7 @@ class PortingOrdersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """Deletes an existing porting order.
 
@@ -463,7 +463,7 @@ class PortingOrdersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PortingOrderRetrieveAllowedFocWindowsResponse:
         """
         Returns a list of allowed FOC dates for a porting order.
@@ -495,7 +495,7 @@ class PortingOrdersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PortingOrderRetrieveExceptionTypesResponse:
         """Returns a list of all possible exception types for a porting order."""
         return self._get(
@@ -510,13 +510,13 @@ class PortingOrdersResource(SyncAPIResource):
         self,
         id: str,
         *,
-        loa_configuration_id: str | NotGiven = NOT_GIVEN,
+        loa_configuration_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BinaryAPIResponse:
         """
         Download a porting order loa template
@@ -555,13 +555,13 @@ class PortingOrdersResource(SyncAPIResource):
         self,
         id: str,
         *,
-        page: porting_order_retrieve_requirements_params.Page | NotGiven = NOT_GIVEN,
+        page: porting_order_retrieve_requirements_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PortingOrderRetrieveRequirementsResponse:
         """
         Returns a list of all requirements based on country/number type for this porting
@@ -604,7 +604,7 @@ class PortingOrdersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PortingOrderRetrieveSubRequestResponse:
         """
         Retrieve the associated V1 sub_request_id and port_request_id
@@ -693,13 +693,13 @@ class AsyncPortingOrdersResource(AsyncAPIResource):
         self,
         *,
         phone_numbers: SequenceNotStr[str],
-        customer_reference: str | NotGiven = NOT_GIVEN,
+        customer_reference: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PortingOrderCreateResponse:
         """
         Creates a new porting order object.
@@ -736,13 +736,13 @@ class AsyncPortingOrdersResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        include_phone_numbers: bool | NotGiven = NOT_GIVEN,
+        include_phone_numbers: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PortingOrderRetrieveResponse:
         """
         Retrieves the details of an existing porting order.
@@ -779,23 +779,23 @@ class AsyncPortingOrdersResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        activation_settings: porting_order_update_params.ActivationSettings | NotGiven = NOT_GIVEN,
-        customer_reference: str | NotGiven = NOT_GIVEN,
-        documents: PortingOrderDocumentsParam | NotGiven = NOT_GIVEN,
-        end_user: PortingOrderEndUserParam | NotGiven = NOT_GIVEN,
-        messaging: porting_order_update_params.Messaging | NotGiven = NOT_GIVEN,
-        misc: PortingOrderMiscParam | NotGiven = NOT_GIVEN,
-        phone_number_configuration: PortingOrderPhoneNumberConfigurationParam | NotGiven = NOT_GIVEN,
-        requirement_group_id: str | NotGiven = NOT_GIVEN,
-        requirements: Iterable[porting_order_update_params.Requirement] | NotGiven = NOT_GIVEN,
-        user_feedback: PortingOrderUserFeedbackParam | NotGiven = NOT_GIVEN,
-        webhook_url: str | NotGiven = NOT_GIVEN,
+        activation_settings: porting_order_update_params.ActivationSettings | Omit = omit,
+        customer_reference: str | Omit = omit,
+        documents: PortingOrderDocumentsParam | Omit = omit,
+        end_user: PortingOrderEndUserParam | Omit = omit,
+        messaging: porting_order_update_params.Messaging | Omit = omit,
+        misc: PortingOrderMiscParam | Omit = omit,
+        phone_number_configuration: PortingOrderPhoneNumberConfigurationParam | Omit = omit,
+        requirement_group_id: str | Omit = omit,
+        requirements: Iterable[porting_order_update_params.Requirement] | Omit = omit,
+        user_feedback: PortingOrderUserFeedbackParam | Omit = omit,
+        webhook_url: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PortingOrderUpdateResponse:
         """
         Edits the details of an existing porting order.
@@ -856,16 +856,16 @@ class AsyncPortingOrdersResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        filter: porting_order_list_params.Filter | NotGiven = NOT_GIVEN,
-        include_phone_numbers: bool | NotGiven = NOT_GIVEN,
-        page: porting_order_list_params.Page | NotGiven = NOT_GIVEN,
-        sort: porting_order_list_params.Sort | NotGiven = NOT_GIVEN,
+        filter: porting_order_list_params.Filter | Omit = omit,
+        include_phone_numbers: bool | Omit = omit,
+        page: porting_order_list_params.Page | Omit = omit,
+        sort: porting_order_list_params.Sort | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PortingOrderListResponse:
         """
         Returns a list of your porting order.
@@ -926,7 +926,7 @@ class AsyncPortingOrdersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """Deletes an existing porting order.
 
@@ -962,7 +962,7 @@ class AsyncPortingOrdersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PortingOrderRetrieveAllowedFocWindowsResponse:
         """
         Returns a list of allowed FOC dates for a porting order.
@@ -994,7 +994,7 @@ class AsyncPortingOrdersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PortingOrderRetrieveExceptionTypesResponse:
         """Returns a list of all possible exception types for a porting order."""
         return await self._get(
@@ -1009,13 +1009,13 @@ class AsyncPortingOrdersResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        loa_configuration_id: str | NotGiven = NOT_GIVEN,
+        loa_configuration_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncBinaryAPIResponse:
         """
         Download a porting order loa template
@@ -1054,13 +1054,13 @@ class AsyncPortingOrdersResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        page: porting_order_retrieve_requirements_params.Page | NotGiven = NOT_GIVEN,
+        page: porting_order_retrieve_requirements_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PortingOrderRetrieveRequirementsResponse:
         """
         Returns a list of all requirements based on country/number type for this porting
@@ -1103,7 +1103,7 @@ class AsyncPortingOrdersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PortingOrderRetrieveSubRequestResponse:
         """
         Retrieve the associated V1 sub_request_id and port_request_id

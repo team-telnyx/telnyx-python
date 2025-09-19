@@ -6,7 +6,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -61,7 +61,7 @@ class VoiceResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VoiceRetrieveResponse:
         """
         Retrieve a phone number with voice settings
@@ -89,21 +89,21 @@ class VoiceResource(SyncAPIResource):
         self,
         id: str,
         *,
-        call_forwarding: CallForwardingParam | NotGiven = NOT_GIVEN,
-        call_recording: CallRecordingParam | NotGiven = NOT_GIVEN,
-        caller_id_name_enabled: bool | NotGiven = NOT_GIVEN,
-        cnam_listing: CnamListingParam | NotGiven = NOT_GIVEN,
-        inbound_call_screening: Literal["disabled", "reject_calls", "flag_calls"] | NotGiven = NOT_GIVEN,
-        media_features: MediaFeaturesParam | NotGiven = NOT_GIVEN,
-        tech_prefix_enabled: bool | NotGiven = NOT_GIVEN,
-        translated_number: str | NotGiven = NOT_GIVEN,
-        usage_payment_method: Literal["pay-per-minute", "channel"] | NotGiven = NOT_GIVEN,
+        call_forwarding: CallForwardingParam | Omit = omit,
+        call_recording: CallRecordingParam | Omit = omit,
+        caller_id_name_enabled: bool | Omit = omit,
+        cnam_listing: CnamListingParam | Omit = omit,
+        inbound_call_screening: Literal["disabled", "reject_calls", "flag_calls"] | Omit = omit,
+        media_features: MediaFeaturesParam | Omit = omit,
+        tech_prefix_enabled: bool | Omit = omit,
+        translated_number: str | Omit = omit,
+        usage_payment_method: Literal["pay-per-minute", "channel"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VoiceUpdateResponse:
         """
         Update a phone number with voice settings
@@ -167,15 +167,15 @@ class VoiceResource(SyncAPIResource):
     def list(
         self,
         *,
-        filter: voice_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: voice_list_params.Page | NotGiven = NOT_GIVEN,
-        sort: Literal["purchased_at", "phone_number", "connection_name", "usage_payment_method"] | NotGiven = NOT_GIVEN,
+        filter: voice_list_params.Filter | Omit = omit,
+        page: voice_list_params.Page | Omit = omit,
+        sort: Literal["purchased_at", "phone_number", "connection_name", "usage_payment_method"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VoiceListResponse:
         """
         List phone numbers with voice settings
@@ -249,7 +249,7 @@ class AsyncVoiceResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VoiceRetrieveResponse:
         """
         Retrieve a phone number with voice settings
@@ -277,21 +277,21 @@ class AsyncVoiceResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        call_forwarding: CallForwardingParam | NotGiven = NOT_GIVEN,
-        call_recording: CallRecordingParam | NotGiven = NOT_GIVEN,
-        caller_id_name_enabled: bool | NotGiven = NOT_GIVEN,
-        cnam_listing: CnamListingParam | NotGiven = NOT_GIVEN,
-        inbound_call_screening: Literal["disabled", "reject_calls", "flag_calls"] | NotGiven = NOT_GIVEN,
-        media_features: MediaFeaturesParam | NotGiven = NOT_GIVEN,
-        tech_prefix_enabled: bool | NotGiven = NOT_GIVEN,
-        translated_number: str | NotGiven = NOT_GIVEN,
-        usage_payment_method: Literal["pay-per-minute", "channel"] | NotGiven = NOT_GIVEN,
+        call_forwarding: CallForwardingParam | Omit = omit,
+        call_recording: CallRecordingParam | Omit = omit,
+        caller_id_name_enabled: bool | Omit = omit,
+        cnam_listing: CnamListingParam | Omit = omit,
+        inbound_call_screening: Literal["disabled", "reject_calls", "flag_calls"] | Omit = omit,
+        media_features: MediaFeaturesParam | Omit = omit,
+        tech_prefix_enabled: bool | Omit = omit,
+        translated_number: str | Omit = omit,
+        usage_payment_method: Literal["pay-per-minute", "channel"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VoiceUpdateResponse:
         """
         Update a phone number with voice settings
@@ -355,15 +355,15 @@ class AsyncVoiceResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        filter: voice_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: voice_list_params.Page | NotGiven = NOT_GIVEN,
-        sort: Literal["purchased_at", "phone_number", "connection_name", "usage_payment_method"] | NotGiven = NOT_GIVEN,
+        filter: voice_list_params.Filter | Omit = omit,
+        page: voice_list_params.Page | Omit = omit,
+        sort: Literal["purchased_at", "phone_number", "connection_name", "usage_payment_method"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VoiceListResponse:
         """
         List phone numbers with voice settings

@@ -6,7 +6,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ....._utils import maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
@@ -53,19 +53,19 @@ class RecordingsJsonResource(SyncAPIResource):
         call_sid: str,
         *,
         account_sid: str,
-        play_beep: bool | NotGiven = NOT_GIVEN,
-        recording_channels: Literal["single", "dual"] | NotGiven = NOT_GIVEN,
-        recording_status_callback: str | NotGiven = NOT_GIVEN,
-        recording_status_callback_event: str | NotGiven = NOT_GIVEN,
-        recording_status_callback_method: Literal["GET", "POST"] | NotGiven = NOT_GIVEN,
-        recording_track: Literal["inbound", "outbound", "both"] | NotGiven = NOT_GIVEN,
-        send_recording_url: bool | NotGiven = NOT_GIVEN,
+        play_beep: bool | Omit = omit,
+        recording_channels: Literal["single", "dual"] | Omit = omit,
+        recording_status_callback: str | Omit = omit,
+        recording_status_callback_event: str | Omit = omit,
+        recording_status_callback_method: Literal["GET", "POST"] | Omit = omit,
+        recording_track: Literal["inbound", "outbound", "both"] | Omit = omit,
+        send_recording_url: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RecordingsJsonRecordingsJsonResponse:
         """
         Starts recording with specified parameters for call idientified by call_sid.
@@ -130,7 +130,7 @@ class RecordingsJsonResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RecordingsJsonRetrieveRecordingsJsonResponse:
         """
         Returns recordings for a call identified by call_sid.
@@ -182,19 +182,19 @@ class AsyncRecordingsJsonResource(AsyncAPIResource):
         call_sid: str,
         *,
         account_sid: str,
-        play_beep: bool | NotGiven = NOT_GIVEN,
-        recording_channels: Literal["single", "dual"] | NotGiven = NOT_GIVEN,
-        recording_status_callback: str | NotGiven = NOT_GIVEN,
-        recording_status_callback_event: str | NotGiven = NOT_GIVEN,
-        recording_status_callback_method: Literal["GET", "POST"] | NotGiven = NOT_GIVEN,
-        recording_track: Literal["inbound", "outbound", "both"] | NotGiven = NOT_GIVEN,
-        send_recording_url: bool | NotGiven = NOT_GIVEN,
+        play_beep: bool | Omit = omit,
+        recording_channels: Literal["single", "dual"] | Omit = omit,
+        recording_status_callback: str | Omit = omit,
+        recording_status_callback_event: str | Omit = omit,
+        recording_status_callback_method: Literal["GET", "POST"] | Omit = omit,
+        recording_track: Literal["inbound", "outbound", "both"] | Omit = omit,
+        send_recording_url: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RecordingsJsonRecordingsJsonResponse:
         """
         Starts recording with specified parameters for call idientified by call_sid.
@@ -259,7 +259,7 @@ class AsyncRecordingsJsonResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RecordingsJsonRetrieveRecordingsJsonResponse:
         """
         Returns recordings for a call identified by call_sid.
