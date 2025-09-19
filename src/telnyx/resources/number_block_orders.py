@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ..types import number_block_order_list_params, number_block_order_create_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -48,15 +48,15 @@ class NumberBlockOrdersResource(SyncAPIResource):
         *,
         range: int,
         starting_number: str,
-        connection_id: str | NotGiven = NOT_GIVEN,
-        customer_reference: str | NotGiven = NOT_GIVEN,
-        messaging_profile_id: str | NotGiven = NOT_GIVEN,
+        connection_id: str | Omit = omit,
+        customer_reference: str | Omit = omit,
+        messaging_profile_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NumberBlockOrderCreateResponse:
         """
         Creates a phone number block order.
@@ -107,7 +107,7 @@ class NumberBlockOrdersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NumberBlockOrderRetrieveResponse:
         """
         Get an existing phone number block order.
@@ -136,14 +136,14 @@ class NumberBlockOrdersResource(SyncAPIResource):
     def list(
         self,
         *,
-        filter: number_block_order_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: number_block_order_list_params.Page | NotGiven = NOT_GIVEN,
+        filter: number_block_order_list_params.Filter | Omit = omit,
+        page: number_block_order_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NumberBlockOrderListResponse:
         """
         Get a paginated list of number block orders.
@@ -207,15 +207,15 @@ class AsyncNumberBlockOrdersResource(AsyncAPIResource):
         *,
         range: int,
         starting_number: str,
-        connection_id: str | NotGiven = NOT_GIVEN,
-        customer_reference: str | NotGiven = NOT_GIVEN,
-        messaging_profile_id: str | NotGiven = NOT_GIVEN,
+        connection_id: str | Omit = omit,
+        customer_reference: str | Omit = omit,
+        messaging_profile_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NumberBlockOrderCreateResponse:
         """
         Creates a phone number block order.
@@ -266,7 +266,7 @@ class AsyncNumberBlockOrdersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NumberBlockOrderRetrieveResponse:
         """
         Get an existing phone number block order.
@@ -295,14 +295,14 @@ class AsyncNumberBlockOrdersResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        filter: number_block_order_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: number_block_order_list_params.Page | NotGiven = NOT_GIVEN,
+        filter: number_block_order_list_params.Filter | Omit = omit,
+        page: number_block_order_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NumberBlockOrderListResponse:
         """
         Get a paginated list of number block orders.

@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -52,7 +52,7 @@ class ReleasesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ReleaseRetrieveResponse:
         """
         Return the details of a Release request and its phone numbers.
@@ -82,14 +82,14 @@ class ReleasesResource(SyncAPIResource):
         self,
         id: str,
         *,
-        filter: release_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: release_list_params.Page | NotGiven = NOT_GIVEN,
+        filter: release_list_params.Filter | Omit = omit,
+        page: release_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ReleaseListResponse:
         """Returns a list of your Releases for the given external connection.
 
@@ -163,7 +163,7 @@ class AsyncReleasesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ReleaseRetrieveResponse:
         """
         Return the details of a Release request and its phone numbers.
@@ -193,14 +193,14 @@ class AsyncReleasesResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        filter: release_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: release_list_params.Page | NotGiven = NOT_GIVEN,
+        filter: release_list_params.Filter | Omit = omit,
+        page: release_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ReleaseListResponse:
         """Returns a list of your Releases for the given external connection.
 

@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, FileTypes
+from ..._types import Body, Omit, Query, Headers, NotGiven, FileTypes, omit, not_given
 from ..._utils import extract_files, maybe_transform, deepcopy_minimal, async_maybe_transform
 from ..._compat import cached_property
 from ...types.ai import audio_transcribe_params
@@ -48,16 +48,16 @@ class AudioResource(SyncAPIResource):
         self,
         *,
         model: Literal["distil-whisper/distil-large-v2", "openai/whisper-large-v3-turbo"],
-        file: FileTypes | NotGiven = NOT_GIVEN,
-        file_url: str | NotGiven = NOT_GIVEN,
-        response_format: Literal["json", "verbose_json"] | NotGiven = NOT_GIVEN,
-        timestamp_granularities: Literal["segment"] | NotGiven = NOT_GIVEN,
+        file: FileTypes | Omit = omit,
+        file_url: str | Omit = omit,
+        response_format: Literal["json", "verbose_json"] | Omit = omit,
+        timestamp_granularities: Literal["segment"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AudioTranscribeResponse:
         """Transcribe speech to text.
 
@@ -142,16 +142,16 @@ class AsyncAudioResource(AsyncAPIResource):
         self,
         *,
         model: Literal["distil-whisper/distil-large-v2", "openai/whisper-large-v3-turbo"],
-        file: FileTypes | NotGiven = NOT_GIVEN,
-        file_url: str | NotGiven = NOT_GIVEN,
-        response_format: Literal["json", "verbose_json"] | NotGiven = NOT_GIVEN,
-        timestamp_granularities: Literal["segment"] | NotGiven = NOT_GIVEN,
+        file: FileTypes | Omit = omit,
+        file_url: str | Omit = omit,
+        response_format: Literal["json", "verbose_json"] | Omit = omit,
+        timestamp_granularities: Literal["segment"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AudioTranscribeResponse:
         """Transcribe speech to text.
 

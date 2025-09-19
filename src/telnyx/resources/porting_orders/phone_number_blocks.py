@@ -6,7 +6,7 @@ from typing import Iterable
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -56,7 +56,7 @@ class PhoneNumberBlocksResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PhoneNumberBlockCreateResponse:
         """
         Creates a new phone number block.
@@ -95,15 +95,15 @@ class PhoneNumberBlocksResource(SyncAPIResource):
         self,
         porting_order_id: str,
         *,
-        filter: phone_number_block_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: phone_number_block_list_params.Page | NotGiven = NOT_GIVEN,
-        sort: phone_number_block_list_params.Sort | NotGiven = NOT_GIVEN,
+        filter: phone_number_block_list_params.Filter | Omit = omit,
+        page: phone_number_block_list_params.Page | Omit = omit,
+        sort: phone_number_block_list_params.Sort | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PhoneNumberBlockListResponse:
         """
         Returns a list of all phone number blocks of a porting order.
@@ -158,7 +158,7 @@ class PhoneNumberBlocksResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PhoneNumberBlockDeleteResponse:
         """
         Deletes a phone number block.
@@ -216,7 +216,7 @@ class AsyncPhoneNumberBlocksResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PhoneNumberBlockCreateResponse:
         """
         Creates a new phone number block.
@@ -255,15 +255,15 @@ class AsyncPhoneNumberBlocksResource(AsyncAPIResource):
         self,
         porting_order_id: str,
         *,
-        filter: phone_number_block_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: phone_number_block_list_params.Page | NotGiven = NOT_GIVEN,
-        sort: phone_number_block_list_params.Sort | NotGiven = NOT_GIVEN,
+        filter: phone_number_block_list_params.Filter | Omit = omit,
+        page: phone_number_block_list_params.Page | Omit = omit,
+        sort: phone_number_block_list_params.Sort | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PhoneNumberBlockListResponse:
         """
         Returns a list of all phone number blocks of a porting order.
@@ -318,7 +318,7 @@ class AsyncPhoneNumberBlocksResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PhoneNumberBlockDeleteResponse:
         """
         Deletes a phone number block.

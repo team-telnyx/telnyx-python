@@ -7,7 +7,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..types import usage_report_list_params, usage_report_get_options_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from .._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from .._utils import maybe_transform, strip_not_given, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -50,21 +50,21 @@ class UsageReportsResource(SyncAPIResource):
         dimensions: SequenceNotStr[str],
         metrics: SequenceNotStr[str],
         product: str,
-        date_range: str | NotGiven = NOT_GIVEN,
-        end_date: str | NotGiven = NOT_GIVEN,
-        filter: str | NotGiven = NOT_GIVEN,
-        format: Literal["csv", "json"] | NotGiven = NOT_GIVEN,
-        managed_accounts: bool | NotGiven = NOT_GIVEN,
-        page: usage_report_list_params.Page | NotGiven = NOT_GIVEN,
-        sort: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        start_date: str | NotGiven = NOT_GIVEN,
-        authorization_bearer: str | NotGiven = NOT_GIVEN,
+        date_range: str | Omit = omit,
+        end_date: str | Omit = omit,
+        filter: str | Omit = omit,
+        format: Literal["csv", "json"] | Omit = omit,
+        managed_accounts: bool | Omit = omit,
+        page: usage_report_list_params.Page | Omit = omit,
+        sort: SequenceNotStr[str] | Omit = omit,
+        start_date: str | Omit = omit,
+        authorization_bearer: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UsageReportListResponse:
         """
         Get Telnyx usage data by product, broken out by the specified dimensions
@@ -139,14 +139,14 @@ class UsageReportsResource(SyncAPIResource):
     def get_options(
         self,
         *,
-        product: str | NotGiven = NOT_GIVEN,
-        authorization_bearer: str | NotGiven = NOT_GIVEN,
+        product: str | Omit = omit,
+        authorization_bearer: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UsageReportGetOptionsResponse:
         """
         Get the Usage Reports options for querying usage, including the products
@@ -208,21 +208,21 @@ class AsyncUsageReportsResource(AsyncAPIResource):
         dimensions: SequenceNotStr[str],
         metrics: SequenceNotStr[str],
         product: str,
-        date_range: str | NotGiven = NOT_GIVEN,
-        end_date: str | NotGiven = NOT_GIVEN,
-        filter: str | NotGiven = NOT_GIVEN,
-        format: Literal["csv", "json"] | NotGiven = NOT_GIVEN,
-        managed_accounts: bool | NotGiven = NOT_GIVEN,
-        page: usage_report_list_params.Page | NotGiven = NOT_GIVEN,
-        sort: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        start_date: str | NotGiven = NOT_GIVEN,
-        authorization_bearer: str | NotGiven = NOT_GIVEN,
+        date_range: str | Omit = omit,
+        end_date: str | Omit = omit,
+        filter: str | Omit = omit,
+        format: Literal["csv", "json"] | Omit = omit,
+        managed_accounts: bool | Omit = omit,
+        page: usage_report_list_params.Page | Omit = omit,
+        sort: SequenceNotStr[str] | Omit = omit,
+        start_date: str | Omit = omit,
+        authorization_bearer: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UsageReportListResponse:
         """
         Get Telnyx usage data by product, broken out by the specified dimensions
@@ -297,14 +297,14 @@ class AsyncUsageReportsResource(AsyncAPIResource):
     async def get_options(
         self,
         *,
-        product: str | NotGiven = NOT_GIVEN,
-        authorization_bearer: str | NotGiven = NOT_GIVEN,
+        product: str | Omit = omit,
+        authorization_bearer: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UsageReportGetOptionsResponse:
         """
         Get the Usage Reports options for querying usage, including the products

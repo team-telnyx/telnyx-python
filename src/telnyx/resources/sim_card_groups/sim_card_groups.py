@@ -18,7 +18,7 @@ from .actions import (
     ActionsResourceWithStreamingResponse,
     AsyncActionsResourceWithStreamingResponse,
 )
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -66,13 +66,13 @@ class SimCardGroupsResource(SyncAPIResource):
         self,
         *,
         name: str,
-        data_limit: sim_card_group_create_params.DataLimit | NotGiven = NOT_GIVEN,
+        data_limit: sim_card_group_create_params.DataLimit | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SimCardGroupCreateResponse:
         """
         Creates a new SIM card group object
@@ -109,13 +109,13 @@ class SimCardGroupsResource(SyncAPIResource):
         self,
         id: str,
         *,
-        include_iccids: bool | NotGiven = NOT_GIVEN,
+        include_iccids: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SimCardGroupRetrieveResponse:
         """
         Returns the details regarding a specific SIM card group
@@ -151,14 +151,14 @@ class SimCardGroupsResource(SyncAPIResource):
         self,
         id: str,
         *,
-        data_limit: sim_card_group_update_params.DataLimit | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
+        data_limit: sim_card_group_update_params.DataLimit | Omit = omit,
+        name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SimCardGroupUpdateResponse:
         """
         Updates a SIM card group
@@ -196,17 +196,17 @@ class SimCardGroupsResource(SyncAPIResource):
     def list(
         self,
         *,
-        filter_name: str | NotGiven = NOT_GIVEN,
-        filter_private_wireless_gateway_id: str | NotGiven = NOT_GIVEN,
-        filter_wireless_blocklist_id: str | NotGiven = NOT_GIVEN,
-        page_number: int | NotGiven = NOT_GIVEN,
-        page_size: int | NotGiven = NOT_GIVEN,
+        filter_name: str | Omit = omit,
+        filter_private_wireless_gateway_id: str | Omit = omit,
+        filter_wireless_blocklist_id: str | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SimCardGroupListResponse:
         """
         Get all SIM card groups belonging to the user that match the given filters.
@@ -260,7 +260,7 @@ class SimCardGroupsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SimCardGroupDeleteResponse:
         """
         Permanently deletes a SIM card group
@@ -313,13 +313,13 @@ class AsyncSimCardGroupsResource(AsyncAPIResource):
         self,
         *,
         name: str,
-        data_limit: sim_card_group_create_params.DataLimit | NotGiven = NOT_GIVEN,
+        data_limit: sim_card_group_create_params.DataLimit | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SimCardGroupCreateResponse:
         """
         Creates a new SIM card group object
@@ -356,13 +356,13 @@ class AsyncSimCardGroupsResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        include_iccids: bool | NotGiven = NOT_GIVEN,
+        include_iccids: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SimCardGroupRetrieveResponse:
         """
         Returns the details regarding a specific SIM card group
@@ -398,14 +398,14 @@ class AsyncSimCardGroupsResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        data_limit: sim_card_group_update_params.DataLimit | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
+        data_limit: sim_card_group_update_params.DataLimit | Omit = omit,
+        name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SimCardGroupUpdateResponse:
         """
         Updates a SIM card group
@@ -443,17 +443,17 @@ class AsyncSimCardGroupsResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        filter_name: str | NotGiven = NOT_GIVEN,
-        filter_private_wireless_gateway_id: str | NotGiven = NOT_GIVEN,
-        filter_wireless_blocklist_id: str | NotGiven = NOT_GIVEN,
-        page_number: int | NotGiven = NOT_GIVEN,
-        page_size: int | NotGiven = NOT_GIVEN,
+        filter_name: str | Omit = omit,
+        filter_private_wireless_gateway_id: str | Omit = omit,
+        filter_wireless_blocklist_id: str | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SimCardGroupListResponse:
         """
         Get all SIM card groups belonging to the user that match the given filters.
@@ -507,7 +507,7 @@ class AsyncSimCardGroupsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SimCardGroupDeleteResponse:
         """
         Permanently deletes a SIM card group

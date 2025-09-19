@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -54,17 +54,16 @@ class UploadsResource(SyncAPIResource):
         id: str,
         *,
         number_ids: SequenceNotStr[str],
-        additional_usages: List[Literal["calling_user_assignment", "first_party_app_assignment"]]
-        | NotGiven = NOT_GIVEN,
-        civic_address_id: str | NotGiven = NOT_GIVEN,
-        location_id: str | NotGiven = NOT_GIVEN,
-        usage: Literal["calling_user_assignment", "first_party_app_assignment"] | NotGiven = NOT_GIVEN,
+        additional_usages: List[Literal["calling_user_assignment", "first_party_app_assignment"]] | Omit = omit,
+        civic_address_id: str | Omit = omit,
+        location_id: str | Omit = omit,
+        usage: Literal["calling_user_assignment", "first_party_app_assignment"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UploadCreateResponse:
         """
         Creates a new Upload request to Microsoft teams with the included phone numbers.
@@ -117,7 +116,7 @@ class UploadsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UploadRetrieveResponse:
         """
         Return the details of an Upload request and its phone numbers.
@@ -147,14 +146,14 @@ class UploadsResource(SyncAPIResource):
         self,
         id: str,
         *,
-        filter: upload_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: upload_list_params.Page | NotGiven = NOT_GIVEN,
+        filter: upload_list_params.Filter | Omit = omit,
+        page: upload_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UploadListResponse:
         """
         Returns a list of your Upload requests for the given external connection.
@@ -203,7 +202,7 @@ class UploadsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UploadPendingCountResponse:
         """
         Returns the count of all pending upload requests for the given external
@@ -237,7 +236,7 @@ class UploadsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UploadRefreshStatusResponse:
         """
         Forces a recheck of the status of all pending Upload requests for the given
@@ -272,7 +271,7 @@ class UploadsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UploadRetryResponse:
         """
         If there were any errors during the upload process, this endpoint will retry the
@@ -327,17 +326,16 @@ class AsyncUploadsResource(AsyncAPIResource):
         id: str,
         *,
         number_ids: SequenceNotStr[str],
-        additional_usages: List[Literal["calling_user_assignment", "first_party_app_assignment"]]
-        | NotGiven = NOT_GIVEN,
-        civic_address_id: str | NotGiven = NOT_GIVEN,
-        location_id: str | NotGiven = NOT_GIVEN,
-        usage: Literal["calling_user_assignment", "first_party_app_assignment"] | NotGiven = NOT_GIVEN,
+        additional_usages: List[Literal["calling_user_assignment", "first_party_app_assignment"]] | Omit = omit,
+        civic_address_id: str | Omit = omit,
+        location_id: str | Omit = omit,
+        usage: Literal["calling_user_assignment", "first_party_app_assignment"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UploadCreateResponse:
         """
         Creates a new Upload request to Microsoft teams with the included phone numbers.
@@ -390,7 +388,7 @@ class AsyncUploadsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UploadRetrieveResponse:
         """
         Return the details of an Upload request and its phone numbers.
@@ -420,14 +418,14 @@ class AsyncUploadsResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        filter: upload_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: upload_list_params.Page | NotGiven = NOT_GIVEN,
+        filter: upload_list_params.Filter | Omit = omit,
+        page: upload_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UploadListResponse:
         """
         Returns a list of your Upload requests for the given external connection.
@@ -476,7 +474,7 @@ class AsyncUploadsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UploadPendingCountResponse:
         """
         Returns the count of all pending upload requests for the given external
@@ -510,7 +508,7 @@ class AsyncUploadsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UploadRefreshStatusResponse:
         """
         Forces a recheck of the status of all pending Upload requests for the given
@@ -545,7 +543,7 @@ class AsyncUploadsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UploadRetryResponse:
         """
         If there were any errors during the upload process, this endpoint will retry the

@@ -13,7 +13,7 @@ from ..types import (
     texml_application_create_params,
     texml_application_update_params,
 )
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from .._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -60,24 +60,24 @@ class TexmlApplicationsResource(SyncAPIResource):
         *,
         friendly_name: str,
         voice_url: str,
-        active: bool | NotGiven = NOT_GIVEN,
-        anchorsite_override: AnchorsiteOverride | NotGiven = NOT_GIVEN,
-        dtmf_type: DtmfType | NotGiven = NOT_GIVEN,
-        first_command_timeout: bool | NotGiven = NOT_GIVEN,
-        first_command_timeout_secs: int | NotGiven = NOT_GIVEN,
-        inbound: texml_application_create_params.Inbound | NotGiven = NOT_GIVEN,
-        outbound: texml_application_create_params.Outbound | NotGiven = NOT_GIVEN,
-        status_callback: str | NotGiven = NOT_GIVEN,
-        status_callback_method: Literal["get", "post"] | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        voice_fallback_url: str | NotGiven = NOT_GIVEN,
-        voice_method: Literal["get", "post"] | NotGiven = NOT_GIVEN,
+        active: bool | Omit = omit,
+        anchorsite_override: AnchorsiteOverride | Omit = omit,
+        dtmf_type: DtmfType | Omit = omit,
+        first_command_timeout: bool | Omit = omit,
+        first_command_timeout_secs: int | Omit = omit,
+        inbound: texml_application_create_params.Inbound | Omit = omit,
+        outbound: texml_application_create_params.Outbound | Omit = omit,
+        status_callback: str | Omit = omit,
+        status_callback_method: Literal["get", "post"] | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        voice_fallback_url: str | Omit = omit,
+        voice_method: Literal["get", "post"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TexmlApplicationCreateResponse:
         """
         Creates a TeXML Application.
@@ -158,7 +158,7 @@ class TexmlApplicationsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TexmlApplicationRetrieveResponse:
         """
         Retrieves the details of an existing TeXML Application.
@@ -188,24 +188,24 @@ class TexmlApplicationsResource(SyncAPIResource):
         *,
         friendly_name: str,
         voice_url: str,
-        active: bool | NotGiven = NOT_GIVEN,
-        anchorsite_override: AnchorsiteOverride | NotGiven = NOT_GIVEN,
-        dtmf_type: DtmfType | NotGiven = NOT_GIVEN,
-        first_command_timeout: bool | NotGiven = NOT_GIVEN,
-        first_command_timeout_secs: int | NotGiven = NOT_GIVEN,
-        inbound: texml_application_update_params.Inbound | NotGiven = NOT_GIVEN,
-        outbound: texml_application_update_params.Outbound | NotGiven = NOT_GIVEN,
-        status_callback: str | NotGiven = NOT_GIVEN,
-        status_callback_method: Literal["get", "post"] | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        voice_fallback_url: str | NotGiven = NOT_GIVEN,
-        voice_method: Literal["get", "post"] | NotGiven = NOT_GIVEN,
+        active: bool | Omit = omit,
+        anchorsite_override: AnchorsiteOverride | Omit = omit,
+        dtmf_type: DtmfType | Omit = omit,
+        first_command_timeout: bool | Omit = omit,
+        first_command_timeout_secs: int | Omit = omit,
+        inbound: texml_application_update_params.Inbound | Omit = omit,
+        outbound: texml_application_update_params.Outbound | Omit = omit,
+        status_callback: str | Omit = omit,
+        status_callback_method: Literal["get", "post"] | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        voice_fallback_url: str | Omit = omit,
+        voice_method: Literal["get", "post"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TexmlApplicationUpdateResponse:
         """
         Updates settings of an existing TeXML Application.
@@ -282,15 +282,15 @@ class TexmlApplicationsResource(SyncAPIResource):
     def list(
         self,
         *,
-        filter: texml_application_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: texml_application_list_params.Page | NotGiven = NOT_GIVEN,
-        sort: Literal["created_at", "friendly_name", "active"] | NotGiven = NOT_GIVEN,
+        filter: texml_application_list_params.Filter | Omit = omit,
+        page: texml_application_list_params.Page | Omit = omit,
+        sort: Literal["created_at", "friendly_name", "active"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TexmlApplicationListResponse:
         """
         Returns a list of your TeXML Applications.
@@ -354,7 +354,7 @@ class TexmlApplicationsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TexmlApplicationDeleteResponse:
         """
         Deletes a TeXML Application.
@@ -404,24 +404,24 @@ class AsyncTexmlApplicationsResource(AsyncAPIResource):
         *,
         friendly_name: str,
         voice_url: str,
-        active: bool | NotGiven = NOT_GIVEN,
-        anchorsite_override: AnchorsiteOverride | NotGiven = NOT_GIVEN,
-        dtmf_type: DtmfType | NotGiven = NOT_GIVEN,
-        first_command_timeout: bool | NotGiven = NOT_GIVEN,
-        first_command_timeout_secs: int | NotGiven = NOT_GIVEN,
-        inbound: texml_application_create_params.Inbound | NotGiven = NOT_GIVEN,
-        outbound: texml_application_create_params.Outbound | NotGiven = NOT_GIVEN,
-        status_callback: str | NotGiven = NOT_GIVEN,
-        status_callback_method: Literal["get", "post"] | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        voice_fallback_url: str | NotGiven = NOT_GIVEN,
-        voice_method: Literal["get", "post"] | NotGiven = NOT_GIVEN,
+        active: bool | Omit = omit,
+        anchorsite_override: AnchorsiteOverride | Omit = omit,
+        dtmf_type: DtmfType | Omit = omit,
+        first_command_timeout: bool | Omit = omit,
+        first_command_timeout_secs: int | Omit = omit,
+        inbound: texml_application_create_params.Inbound | Omit = omit,
+        outbound: texml_application_create_params.Outbound | Omit = omit,
+        status_callback: str | Omit = omit,
+        status_callback_method: Literal["get", "post"] | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        voice_fallback_url: str | Omit = omit,
+        voice_method: Literal["get", "post"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TexmlApplicationCreateResponse:
         """
         Creates a TeXML Application.
@@ -502,7 +502,7 @@ class AsyncTexmlApplicationsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TexmlApplicationRetrieveResponse:
         """
         Retrieves the details of an existing TeXML Application.
@@ -532,24 +532,24 @@ class AsyncTexmlApplicationsResource(AsyncAPIResource):
         *,
         friendly_name: str,
         voice_url: str,
-        active: bool | NotGiven = NOT_GIVEN,
-        anchorsite_override: AnchorsiteOverride | NotGiven = NOT_GIVEN,
-        dtmf_type: DtmfType | NotGiven = NOT_GIVEN,
-        first_command_timeout: bool | NotGiven = NOT_GIVEN,
-        first_command_timeout_secs: int | NotGiven = NOT_GIVEN,
-        inbound: texml_application_update_params.Inbound | NotGiven = NOT_GIVEN,
-        outbound: texml_application_update_params.Outbound | NotGiven = NOT_GIVEN,
-        status_callback: str | NotGiven = NOT_GIVEN,
-        status_callback_method: Literal["get", "post"] | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        voice_fallback_url: str | NotGiven = NOT_GIVEN,
-        voice_method: Literal["get", "post"] | NotGiven = NOT_GIVEN,
+        active: bool | Omit = omit,
+        anchorsite_override: AnchorsiteOverride | Omit = omit,
+        dtmf_type: DtmfType | Omit = omit,
+        first_command_timeout: bool | Omit = omit,
+        first_command_timeout_secs: int | Omit = omit,
+        inbound: texml_application_update_params.Inbound | Omit = omit,
+        outbound: texml_application_update_params.Outbound | Omit = omit,
+        status_callback: str | Omit = omit,
+        status_callback_method: Literal["get", "post"] | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        voice_fallback_url: str | Omit = omit,
+        voice_method: Literal["get", "post"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TexmlApplicationUpdateResponse:
         """
         Updates settings of an existing TeXML Application.
@@ -626,15 +626,15 @@ class AsyncTexmlApplicationsResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        filter: texml_application_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: texml_application_list_params.Page | NotGiven = NOT_GIVEN,
-        sort: Literal["created_at", "friendly_name", "active"] | NotGiven = NOT_GIVEN,
+        filter: texml_application_list_params.Filter | Omit = omit,
+        page: texml_application_list_params.Page | Omit = omit,
+        sort: Literal["created_at", "friendly_name", "active"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TexmlApplicationListResponse:
         """
         Returns a list of your TeXML Applications.
@@ -698,7 +698,7 @@ class AsyncTexmlApplicationsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TexmlApplicationDeleteResponse:
         """
         Deletes a TeXML Application.

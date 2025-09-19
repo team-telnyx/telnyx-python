@@ -9,7 +9,7 @@ from ..types import (
     global_ip_assignment_create_params,
     global_ip_assignment_update_params,
 )
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -52,15 +52,15 @@ class GlobalIPAssignmentsResource(SyncAPIResource):
     def create(
         self,
         *,
-        global_ip_id: str | NotGiven = NOT_GIVEN,
-        is_in_maintenance: bool | NotGiven = NOT_GIVEN,
-        wireguard_peer_id: str | NotGiven = NOT_GIVEN,
+        global_ip_id: str | Omit = omit,
+        is_in_maintenance: bool | Omit = omit,
+        wireguard_peer_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GlobalIPAssignmentCreateResponse:
         """
         Create a Global IP assignment.
@@ -105,7 +105,7 @@ class GlobalIPAssignmentsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GlobalIPAssignmentRetrieveResponse:
         """
         Retrieve a Global IP assignment.
@@ -139,7 +139,7 @@ class GlobalIPAssignmentsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GlobalIPAssignmentUpdateResponse:
         """
         Update a Global IP assignment.
@@ -167,13 +167,13 @@ class GlobalIPAssignmentsResource(SyncAPIResource):
     def list(
         self,
         *,
-        page: global_ip_assignment_list_params.Page | NotGiven = NOT_GIVEN,
+        page: global_ip_assignment_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GlobalIPAssignmentListResponse:
         """
         List all Global IP assignments.
@@ -211,7 +211,7 @@ class GlobalIPAssignmentsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GlobalIPAssignmentDeleteResponse:
         """
         Delete a Global IP assignment.
@@ -259,15 +259,15 @@ class AsyncGlobalIPAssignmentsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        global_ip_id: str | NotGiven = NOT_GIVEN,
-        is_in_maintenance: bool | NotGiven = NOT_GIVEN,
-        wireguard_peer_id: str | NotGiven = NOT_GIVEN,
+        global_ip_id: str | Omit = omit,
+        is_in_maintenance: bool | Omit = omit,
+        wireguard_peer_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GlobalIPAssignmentCreateResponse:
         """
         Create a Global IP assignment.
@@ -312,7 +312,7 @@ class AsyncGlobalIPAssignmentsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GlobalIPAssignmentRetrieveResponse:
         """
         Retrieve a Global IP assignment.
@@ -346,7 +346,7 @@ class AsyncGlobalIPAssignmentsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GlobalIPAssignmentUpdateResponse:
         """
         Update a Global IP assignment.
@@ -374,13 +374,13 @@ class AsyncGlobalIPAssignmentsResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        page: global_ip_assignment_list_params.Page | NotGiven = NOT_GIVEN,
+        page: global_ip_assignment_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GlobalIPAssignmentListResponse:
         """
         List all Global IP assignments.
@@ -420,7 +420,7 @@ class AsyncGlobalIPAssignmentsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GlobalIPAssignmentDeleteResponse:
         """
         Delete a Global IP assignment.

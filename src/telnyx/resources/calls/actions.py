@@ -13,7 +13,7 @@ from ...types import (
     StreamBidirectionalCodec,
     StreamBidirectionalTargetLegs,
 )
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -141,38 +141,38 @@ class ActionsResource(SyncAPIResource):
         self,
         call_control_id: str,
         *,
-        billing_group_id: str | NotGiven = NOT_GIVEN,
-        client_state: str | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
-        custom_headers: Iterable[CustomSipHeaderParam] | NotGiven = NOT_GIVEN,
-        preferred_codecs: Literal["G722,PCMU,PCMA,G729,OPUS,VP8,H264"] | NotGiven = NOT_GIVEN,
-        record: Literal["record-from-answer"] | NotGiven = NOT_GIVEN,
-        record_channels: Literal["single", "dual"] | NotGiven = NOT_GIVEN,
-        record_custom_file_name: str | NotGiven = NOT_GIVEN,
-        record_format: Literal["wav", "mp3"] | NotGiven = NOT_GIVEN,
-        record_max_length: int | NotGiven = NOT_GIVEN,
-        record_timeout_secs: int | NotGiven = NOT_GIVEN,
-        record_track: Literal["both", "inbound", "outbound"] | NotGiven = NOT_GIVEN,
-        record_trim: Literal["trim-silence"] | NotGiven = NOT_GIVEN,
-        send_silence_when_idle: bool | NotGiven = NOT_GIVEN,
-        sip_headers: Iterable[SipHeaderParam] | NotGiven = NOT_GIVEN,
-        sound_modifications: SoundModificationsParam | NotGiven = NOT_GIVEN,
-        stream_bidirectional_codec: StreamBidirectionalCodec | NotGiven = NOT_GIVEN,
-        stream_bidirectional_mode: StreamBidirectionalMode | NotGiven = NOT_GIVEN,
-        stream_bidirectional_target_legs: StreamBidirectionalTargetLegs | NotGiven = NOT_GIVEN,
-        stream_codec: StreamCodec | NotGiven = NOT_GIVEN,
-        stream_track: Literal["inbound_track", "outbound_track", "both_tracks"] | NotGiven = NOT_GIVEN,
-        stream_url: str | NotGiven = NOT_GIVEN,
-        transcription: bool | NotGiven = NOT_GIVEN,
-        transcription_config: TranscriptionStartRequestParam | NotGiven = NOT_GIVEN,
-        webhook_url: str | NotGiven = NOT_GIVEN,
-        webhook_url_method: Literal["POST", "GET"] | NotGiven = NOT_GIVEN,
+        billing_group_id: str | Omit = omit,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
+        custom_headers: Iterable[CustomSipHeaderParam] | Omit = omit,
+        preferred_codecs: Literal["G722,PCMU,PCMA,G729,OPUS,VP8,H264"] | Omit = omit,
+        record: Literal["record-from-answer"] | Omit = omit,
+        record_channels: Literal["single", "dual"] | Omit = omit,
+        record_custom_file_name: str | Omit = omit,
+        record_format: Literal["wav", "mp3"] | Omit = omit,
+        record_max_length: int | Omit = omit,
+        record_timeout_secs: int | Omit = omit,
+        record_track: Literal["both", "inbound", "outbound"] | Omit = omit,
+        record_trim: Literal["trim-silence"] | Omit = omit,
+        send_silence_when_idle: bool | Omit = omit,
+        sip_headers: Iterable[SipHeaderParam] | Omit = omit,
+        sound_modifications: SoundModificationsParam | Omit = omit,
+        stream_bidirectional_codec: StreamBidirectionalCodec | Omit = omit,
+        stream_bidirectional_mode: StreamBidirectionalMode | Omit = omit,
+        stream_bidirectional_target_legs: StreamBidirectionalTargetLegs | Omit = omit,
+        stream_codec: StreamCodec | Omit = omit,
+        stream_track: Literal["inbound_track", "outbound_track", "both_tracks"] | Omit = omit,
+        stream_url: str | Omit = omit,
+        transcription: bool | Omit = omit,
+        transcription_config: TranscriptionStartRequestParam | Omit = omit,
+        webhook_url: str | Omit = omit,
+        webhook_url_method: Literal["POST", "GET"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionAnswerResponse:
         """Answer an incoming call.
 
@@ -315,20 +315,20 @@ class ActionsResource(SyncAPIResource):
         path_call_control_id: str,
         *,
         body_call_control_id: str,
-        client_state: str | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
-        mute_dtmf: Literal["none", "both", "self", "opposite"] | NotGiven = NOT_GIVEN,
-        park_after_unbridge: str | NotGiven = NOT_GIVEN,
-        play_ringtone: bool | NotGiven = NOT_GIVEN,
-        queue: str | NotGiven = NOT_GIVEN,
-        record: Literal["record-from-answer"] | NotGiven = NOT_GIVEN,
-        record_channels: Literal["single", "dual"] | NotGiven = NOT_GIVEN,
-        record_custom_file_name: str | NotGiven = NOT_GIVEN,
-        record_format: Literal["wav", "mp3"] | NotGiven = NOT_GIVEN,
-        record_max_length: int | NotGiven = NOT_GIVEN,
-        record_timeout_secs: int | NotGiven = NOT_GIVEN,
-        record_track: Literal["both", "inbound", "outbound"] | NotGiven = NOT_GIVEN,
-        record_trim: Literal["trim-silence"] | NotGiven = NOT_GIVEN,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
+        mute_dtmf: Literal["none", "both", "self", "opposite"] | Omit = omit,
+        park_after_unbridge: str | Omit = omit,
+        play_ringtone: bool | Omit = omit,
+        queue: str | Omit = omit,
+        record: Literal["record-from-answer"] | Omit = omit,
+        record_channels: Literal["single", "dual"] | Omit = omit,
+        record_custom_file_name: str | Omit = omit,
+        record_format: Literal["wav", "mp3"] | Omit = omit,
+        record_max_length: int | Omit = omit,
+        record_timeout_secs: int | Omit = omit,
+        record_track: Literal["both", "inbound", "outbound"] | Omit = omit,
+        record_trim: Literal["trim-silence"] | Omit = omit,
         ringtone: Literal[
             "at",
             "au",
@@ -371,15 +371,15 @@ class ActionsResource(SyncAPIResource):
             "ve",
             "za",
         ]
-        | NotGiven = NOT_GIVEN,
-        video_room_context: str | NotGiven = NOT_GIVEN,
-        video_room_id: str | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        video_room_context: str | Omit = omit,
+        video_room_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionBridgeResponse:
         """
         Bridge two call control calls.
@@ -503,16 +503,16 @@ class ActionsResource(SyncAPIResource):
         call_control_id: str,
         *,
         queue_name: str,
-        client_state: str | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
-        max_size: int | NotGiven = NOT_GIVEN,
-        max_wait_time_secs: int | NotGiven = NOT_GIVEN,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
+        max_size: int | Omit = omit,
+        max_wait_time_secs: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionEnqueueResponse:
         """
         Put the call in a queue.
@@ -564,22 +564,22 @@ class ActionsResource(SyncAPIResource):
         self,
         call_control_id: str,
         *,
-        client_state: str | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
-        gather_id: str | NotGiven = NOT_GIVEN,
-        initial_timeout_millis: int | NotGiven = NOT_GIVEN,
-        inter_digit_timeout_millis: int | NotGiven = NOT_GIVEN,
-        maximum_digits: int | NotGiven = NOT_GIVEN,
-        minimum_digits: int | NotGiven = NOT_GIVEN,
-        terminating_digit: str | NotGiven = NOT_GIVEN,
-        timeout_millis: int | NotGiven = NOT_GIVEN,
-        valid_digits: str | NotGiven = NOT_GIVEN,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
+        gather_id: str | Omit = omit,
+        initial_timeout_millis: int | Omit = omit,
+        inter_digit_timeout_millis: int | Omit = omit,
+        maximum_digits: int | Omit = omit,
+        minimum_digits: int | Omit = omit,
+        terminating_digit: str | Omit = omit,
+        timeout_millis: int | Omit = omit,
+        valid_digits: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionGatherResponse:
         """
         Gather DTMF signals to build interactive menus.
@@ -658,25 +658,25 @@ class ActionsResource(SyncAPIResource):
         call_control_id: str,
         *,
         parameters: object,
-        assistant: AssistantParam | NotGiven = NOT_GIVEN,
-        client_state: str | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
-        greeting: str | NotGiven = NOT_GIVEN,
-        interruption_settings: InterruptionSettingsParam | NotGiven = NOT_GIVEN,
-        language: GoogleTranscriptionLanguage | NotGiven = NOT_GIVEN,
-        message_history: Iterable[action_gather_using_ai_params.MessageHistory] | NotGiven = NOT_GIVEN,
-        send_message_history_updates: bool | NotGiven = NOT_GIVEN,
-        send_partial_results: bool | NotGiven = NOT_GIVEN,
-        transcription: TranscriptionConfigParam | NotGiven = NOT_GIVEN,
-        user_response_timeout_ms: int | NotGiven = NOT_GIVEN,
-        voice: str | NotGiven = NOT_GIVEN,
-        voice_settings: action_gather_using_ai_params.VoiceSettings | NotGiven = NOT_GIVEN,
+        assistant: AssistantParam | Omit = omit,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
+        greeting: str | Omit = omit,
+        interruption_settings: InterruptionSettingsParam | Omit = omit,
+        language: GoogleTranscriptionLanguage | Omit = omit,
+        message_history: Iterable[action_gather_using_ai_params.MessageHistory] | Omit = omit,
+        send_message_history_updates: bool | Omit = omit,
+        send_partial_results: bool | Omit = omit,
+        transcription: TranscriptionConfigParam | Omit = omit,
+        user_response_timeout_ms: int | Omit = omit,
+        voice: str | Omit = omit,
+        voice_settings: action_gather_using_ai_params.VoiceSettings | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionGatherUsingAIResponse:
         """
         Gather parameters defined in the request payload using a voice assistant.
@@ -806,25 +806,25 @@ class ActionsResource(SyncAPIResource):
         self,
         call_control_id: str,
         *,
-        audio_url: str | NotGiven = NOT_GIVEN,
-        client_state: str | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
-        inter_digit_timeout_millis: int | NotGiven = NOT_GIVEN,
-        invalid_audio_url: str | NotGiven = NOT_GIVEN,
-        invalid_media_name: str | NotGiven = NOT_GIVEN,
-        maximum_digits: int | NotGiven = NOT_GIVEN,
-        maximum_tries: int | NotGiven = NOT_GIVEN,
-        media_name: str | NotGiven = NOT_GIVEN,
-        minimum_digits: int | NotGiven = NOT_GIVEN,
-        terminating_digit: str | NotGiven = NOT_GIVEN,
-        timeout_millis: int | NotGiven = NOT_GIVEN,
-        valid_digits: str | NotGiven = NOT_GIVEN,
+        audio_url: str | Omit = omit,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
+        inter_digit_timeout_millis: int | Omit = omit,
+        invalid_audio_url: str | Omit = omit,
+        invalid_media_name: str | Omit = omit,
+        maximum_digits: int | Omit = omit,
+        maximum_tries: int | Omit = omit,
+        media_name: str | Omit = omit,
+        minimum_digits: int | Omit = omit,
+        terminating_digit: str | Omit = omit,
+        timeout_millis: int | Omit = omit,
+        valid_digits: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionGatherUsingAudioResponse:
         """
         Play an audio file on the call until the required DTMF signals are gathered to
@@ -930,10 +930,10 @@ class ActionsResource(SyncAPIResource):
         *,
         payload: str,
         voice: str,
-        client_state: str | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
-        inter_digit_timeout_millis: int | NotGiven = NOT_GIVEN,
-        invalid_payload: str | NotGiven = NOT_GIVEN,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
+        inter_digit_timeout_millis: int | Omit = omit,
+        invalid_payload: str | Omit = omit,
         language: Literal[
             "arb",
             "cmn-CN",
@@ -965,22 +965,22 @@ class ActionsResource(SyncAPIResource):
             "sv-SE",
             "tr-TR",
         ]
-        | NotGiven = NOT_GIVEN,
-        maximum_digits: int | NotGiven = NOT_GIVEN,
-        maximum_tries: int | NotGiven = NOT_GIVEN,
-        minimum_digits: int | NotGiven = NOT_GIVEN,
-        payload_type: Literal["text", "ssml"] | NotGiven = NOT_GIVEN,
-        service_level: Literal["basic", "premium"] | NotGiven = NOT_GIVEN,
-        terminating_digit: str | NotGiven = NOT_GIVEN,
-        timeout_millis: int | NotGiven = NOT_GIVEN,
-        valid_digits: str | NotGiven = NOT_GIVEN,
-        voice_settings: action_gather_using_speak_params.VoiceSettings | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        maximum_digits: int | Omit = omit,
+        maximum_tries: int | Omit = omit,
+        minimum_digits: int | Omit = omit,
+        payload_type: Literal["text", "ssml"] | Omit = omit,
+        service_level: Literal["basic", "premium"] | Omit = omit,
+        terminating_digit: str | Omit = omit,
+        timeout_millis: int | Omit = omit,
+        valid_digits: str | Omit = omit,
+        voice_settings: action_gather_using_speak_params.VoiceSettings | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionGatherUsingSpeakResponse:
         """
         Convert text to speech and play it on the call until the required DTMF signals
@@ -1112,14 +1112,14 @@ class ActionsResource(SyncAPIResource):
         self,
         call_control_id: str,
         *,
-        client_state: str | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionHangupResponse:
         """
         Hang up the call.
@@ -1167,14 +1167,14 @@ class ActionsResource(SyncAPIResource):
         self,
         call_control_id: str,
         *,
-        client_state: str | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionLeaveQueueResponse:
         """
         Removes the call from a queue.
@@ -1215,15 +1215,15 @@ class ActionsResource(SyncAPIResource):
         self,
         call_control_id: str,
         *,
-        client_state: str | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
-        recording_id: str | NotGiven = NOT_GIVEN,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
+        recording_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionPauseRecordingResponse:
         """Pause recording the call.
 
@@ -1273,18 +1273,18 @@ class ActionsResource(SyncAPIResource):
         call_control_id: str,
         *,
         sip_address: str,
-        client_state: str | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
-        custom_headers: Iterable[CustomSipHeaderParam] | NotGiven = NOT_GIVEN,
-        sip_auth_password: str | NotGiven = NOT_GIVEN,
-        sip_auth_username: str | NotGiven = NOT_GIVEN,
-        sip_headers: Iterable[SipHeaderParam] | NotGiven = NOT_GIVEN,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
+        custom_headers: Iterable[CustomSipHeaderParam] | Omit = omit,
+        sip_auth_password: str | Omit = omit,
+        sip_auth_username: str | Omit = omit,
+        sip_headers: Iterable[SipHeaderParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionReferResponse:
         """Initiate a SIP Refer on a Call Control call.
 
@@ -1353,14 +1353,14 @@ class ActionsResource(SyncAPIResource):
         call_control_id: str,
         *,
         cause: Literal["CALL_REJECTED", "USER_BUSY"],
-        client_state: str | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionRejectResponse:
         """
         Reject an incoming call.
@@ -1410,15 +1410,15 @@ class ActionsResource(SyncAPIResource):
         self,
         call_control_id: str,
         *,
-        client_state: str | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
-        recording_id: str | NotGiven = NOT_GIVEN,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
+        recording_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionResumeRecordingResponse:
         """
         Resume recording the call.
@@ -1467,15 +1467,15 @@ class ActionsResource(SyncAPIResource):
         call_control_id: str,
         *,
         digits: str,
-        client_state: str | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
-        duration_millis: int | NotGiven = NOT_GIVEN,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
+        duration_millis: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionSendDtmfResponse:
         """Sends DTMF tones from this leg.
 
@@ -1532,14 +1532,14 @@ class ActionsResource(SyncAPIResource):
         *,
         body: str,
         content_type: str,
-        client_state: str | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionSendSipInfoResponse:
         """
         Sends SIP info from this leg.
@@ -1593,8 +1593,8 @@ class ActionsResource(SyncAPIResource):
         *,
         payload: str,
         voice: str,
-        client_state: str | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
         language: Literal[
             "arb",
             "cmn-CN",
@@ -1626,17 +1626,17 @@ class ActionsResource(SyncAPIResource):
             "sv-SE",
             "tr-TR",
         ]
-        | NotGiven = NOT_GIVEN,
-        payload_type: Literal["text", "ssml"] | NotGiven = NOT_GIVEN,
-        service_level: Literal["basic", "premium"] | NotGiven = NOT_GIVEN,
-        stop: str | NotGiven = NOT_GIVEN,
-        voice_settings: action_speak_params.VoiceSettings | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        payload_type: Literal["text", "ssml"] | Omit = omit,
+        service_level: Literal["basic", "premium"] | Omit = omit,
+        stop: str | Omit = omit,
+        voice_settings: action_speak_params.VoiceSettings | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionSpeakResponse:
         """Convert text to speech and play it back on the call.
 
@@ -1741,20 +1741,20 @@ class ActionsResource(SyncAPIResource):
         self,
         call_control_id: str,
         *,
-        assistant: action_start_ai_assistant_params.Assistant | NotGiven = NOT_GIVEN,
-        client_state: str | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
-        greeting: str | NotGiven = NOT_GIVEN,
-        interruption_settings: InterruptionSettingsParam | NotGiven = NOT_GIVEN,
-        transcription: TranscriptionConfigParam | NotGiven = NOT_GIVEN,
-        voice: str | NotGiven = NOT_GIVEN,
-        voice_settings: action_start_ai_assistant_params.VoiceSettings | NotGiven = NOT_GIVEN,
+        assistant: action_start_ai_assistant_params.Assistant | Omit = omit,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
+        greeting: str | Omit = omit,
+        interruption_settings: InterruptionSettingsParam | Omit = omit,
+        transcription: TranscriptionConfigParam | Omit = omit,
+        voice: str | Omit = omit,
+        voice_settings: action_start_ai_assistant_params.VoiceSettings | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionStartAIAssistantResponse:
         """
         Start an AI assistant on the call.
@@ -1846,17 +1846,17 @@ class ActionsResource(SyncAPIResource):
         self,
         call_control_id: str,
         *,
-        client_state: str | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
-        rx: str | NotGiven = NOT_GIVEN,
-        stream_type: Literal["decrypted"] | NotGiven = NOT_GIVEN,
-        tx: str | NotGiven = NOT_GIVEN,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
+        rx: str | Omit = omit,
+        stream_type: Literal["decrypted"] | Omit = omit,
+        tx: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionStartForkingResponse:
         """
         Call forking allows you to stream the media from a call to a specific target in
@@ -1921,16 +1921,16 @@ class ActionsResource(SyncAPIResource):
         self,
         call_control_id: str,
         *,
-        client_state: str | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
-        direction: Literal["inbound", "outbound", "both"] | NotGiven = NOT_GIVEN,
-        noise_suppression_engine: Literal["A", "B"] | NotGiven = NOT_GIVEN,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
+        direction: Literal["inbound", "outbound", "both"] | Omit = omit,
+        noise_suppression_engine: Literal["A", "B"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionStartNoiseSuppressionResponse:
         """
         Noise Suppression Start (BETA)
@@ -1978,23 +1978,23 @@ class ActionsResource(SyncAPIResource):
         self,
         call_control_id: str,
         *,
-        audio_type: Literal["mp3", "wav"] | NotGiven = NOT_GIVEN,
-        audio_url: str | NotGiven = NOT_GIVEN,
-        cache_audio: bool | NotGiven = NOT_GIVEN,
-        client_state: str | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
-        loop: LoopcountParam | NotGiven = NOT_GIVEN,
-        media_name: str | NotGiven = NOT_GIVEN,
-        overlay: bool | NotGiven = NOT_GIVEN,
-        playback_content: str | NotGiven = NOT_GIVEN,
-        stop: str | NotGiven = NOT_GIVEN,
-        target_legs: str | NotGiven = NOT_GIVEN,
+        audio_type: Literal["mp3", "wav"] | Omit = omit,
+        audio_url: str | Omit = omit,
+        cache_audio: bool | Omit = omit,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
+        loop: LoopcountParam | Omit = omit,
+        media_name: str | Omit = omit,
+        overlay: bool | Omit = omit,
+        playback_content: str | Omit = omit,
+        stop: str | Omit = omit,
+        target_legs: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionStartPlaybackResponse:
         """Play an audio file on the call.
 
@@ -2094,15 +2094,15 @@ class ActionsResource(SyncAPIResource):
         *,
         channels: Literal["single", "dual"],
         format: Literal["wav", "mp3"],
-        client_state: str | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
-        custom_file_name: str | NotGiven = NOT_GIVEN,
-        max_length: int | NotGiven = NOT_GIVEN,
-        play_beep: bool | NotGiven = NOT_GIVEN,
-        recording_track: Literal["both", "inbound", "outbound"] | NotGiven = NOT_GIVEN,
-        timeout_secs: int | NotGiven = NOT_GIVEN,
-        transcription: bool | NotGiven = NOT_GIVEN,
-        transcription_engine: str | NotGiven = NOT_GIVEN,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
+        custom_file_name: str | Omit = omit,
+        max_length: int | Omit = omit,
+        play_beep: bool | Omit = omit,
+        recording_track: Literal["both", "inbound", "outbound"] | Omit = omit,
+        timeout_secs: int | Omit = omit,
+        transcription: bool | Omit = omit,
+        transcription_engine: str | Omit = omit,
         transcription_language: Literal[
             "af-ZA",
             "am-ET",
@@ -2250,18 +2250,18 @@ class ActionsResource(SyncAPIResource):
             "zh-TW",
             "zu-ZA",
         ]
-        | NotGiven = NOT_GIVEN,
-        transcription_max_speaker_count: int | NotGiven = NOT_GIVEN,
-        transcription_min_speaker_count: int | NotGiven = NOT_GIVEN,
-        transcription_profanity_filter: bool | NotGiven = NOT_GIVEN,
-        transcription_speaker_diarization: bool | NotGiven = NOT_GIVEN,
-        trim: Literal["trim-silence"] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        transcription_max_speaker_count: int | Omit = omit,
+        transcription_min_speaker_count: int | Omit = omit,
+        transcription_profanity_filter: bool | Omit = omit,
+        transcription_speaker_diarization: bool | Omit = omit,
+        trim: Literal["trim-silence"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionStartRecordingResponse:
         """Start recording the call.
 
@@ -2369,19 +2369,19 @@ class ActionsResource(SyncAPIResource):
         self,
         call_control_id: str,
         *,
-        client_state: str | NotGiven = NOT_GIVEN,
-        connector_name: str | NotGiven = NOT_GIVEN,
-        include_metadata_custom_headers: Literal[True, False] | NotGiven = NOT_GIVEN,
-        secure: Literal[True, False] | NotGiven = NOT_GIVEN,
-        session_timeout_secs: int | NotGiven = NOT_GIVEN,
-        sip_transport: Literal["udp", "tcp", "tls"] | NotGiven = NOT_GIVEN,
-        siprec_track: Literal["inbound_track", "outbound_track", "both_tracks"] | NotGiven = NOT_GIVEN,
+        client_state: str | Omit = omit,
+        connector_name: str | Omit = omit,
+        include_metadata_custom_headers: Literal[True, False] | Omit = omit,
+        secure: Literal[True, False] | Omit = omit,
+        session_timeout_secs: int | Omit = omit,
+        sip_transport: Literal["udp", "tcp", "tls"] | Omit = omit,
+        siprec_track: Literal["inbound_track", "outbound_track", "both_tracks"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionStartSiprecResponse:
         """
         Start siprec session to configured in SIPREC connector SRS.
@@ -2447,22 +2447,22 @@ class ActionsResource(SyncAPIResource):
         self,
         call_control_id: str,
         *,
-        client_state: str | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
-        dialogflow_config: DialogflowConfigParam | NotGiven = NOT_GIVEN,
-        enable_dialogflow: bool | NotGiven = NOT_GIVEN,
-        stream_bidirectional_codec: StreamBidirectionalCodec | NotGiven = NOT_GIVEN,
-        stream_bidirectional_mode: StreamBidirectionalMode | NotGiven = NOT_GIVEN,
-        stream_bidirectional_target_legs: StreamBidirectionalTargetLegs | NotGiven = NOT_GIVEN,
-        stream_codec: StreamCodec | NotGiven = NOT_GIVEN,
-        stream_track: Literal["inbound_track", "outbound_track", "both_tracks"] | NotGiven = NOT_GIVEN,
-        stream_url: str | NotGiven = NOT_GIVEN,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
+        dialogflow_config: DialogflowConfigParam | Omit = omit,
+        enable_dialogflow: bool | Omit = omit,
+        stream_bidirectional_codec: StreamBidirectionalCodec | Omit = omit,
+        stream_bidirectional_mode: StreamBidirectionalMode | Omit = omit,
+        stream_bidirectional_target_legs: StreamBidirectionalTargetLegs | Omit = omit,
+        stream_codec: StreamCodec | Omit = omit,
+        stream_track: Literal["inbound_track", "outbound_track", "both_tracks"] | Omit = omit,
+        stream_url: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionStartStreamingResponse:
         """
         Start streaming the media from a call to a specific WebSocket address or
@@ -2533,17 +2533,17 @@ class ActionsResource(SyncAPIResource):
         self,
         call_control_id: str,
         *,
-        client_state: str | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
-        transcription_engine: Literal["A", "B"] | NotGiven = NOT_GIVEN,
-        transcription_engine_config: action_start_transcription_params.TranscriptionEngineConfig | NotGiven = NOT_GIVEN,
-        transcription_tracks: str | NotGiven = NOT_GIVEN,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
+        transcription_engine: Literal["A", "B"] | Omit = omit,
+        transcription_engine_config: action_start_transcription_params.TranscriptionEngineConfig | Omit = omit,
+        transcription_tracks: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionStartTranscriptionResponse:
         """Start real-time transcription.
 
@@ -2601,14 +2601,14 @@ class ActionsResource(SyncAPIResource):
         self,
         call_control_id: str,
         *,
-        client_state: str | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionStopAIAssistantResponse:
         """
         Stop an AI assistant on the call.
@@ -2649,15 +2649,15 @@ class ActionsResource(SyncAPIResource):
         self,
         call_control_id: str,
         *,
-        client_state: str | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
-        stream_type: Literal["raw", "decrypted"] | NotGiven = NOT_GIVEN,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
+        stream_type: Literal["raw", "decrypted"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionStopForkingResponse:
         """
         Stop forking a call.
@@ -2708,14 +2708,14 @@ class ActionsResource(SyncAPIResource):
         self,
         call_control_id: str,
         *,
-        client_state: str | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionStopGatherResponse:
         """
         Stop current gather.
@@ -2762,14 +2762,14 @@ class ActionsResource(SyncAPIResource):
         self,
         call_control_id: str,
         *,
-        client_state: str | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionStopNoiseSuppressionResponse:
         """
         Noise Suppression Stop (BETA)
@@ -2810,16 +2810,16 @@ class ActionsResource(SyncAPIResource):
         self,
         call_control_id: str,
         *,
-        client_state: str | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
-        overlay: bool | NotGiven = NOT_GIVEN,
-        stop: str | NotGiven = NOT_GIVEN,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
+        overlay: bool | Omit = omit,
+        stop: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionStopPlaybackResponse:
         """
         Stop audio being played on the call.
@@ -2873,15 +2873,15 @@ class ActionsResource(SyncAPIResource):
         self,
         call_control_id: str,
         *,
-        client_state: str | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
-        recording_id: str | NotGiven = NOT_GIVEN,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
+        recording_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionStopRecordingResponse:
         """
         Stop recording the call.
@@ -2931,14 +2931,14 @@ class ActionsResource(SyncAPIResource):
         self,
         call_control_id: str,
         *,
-        client_state: str | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionStopSiprecResponse:
         """
         Stop SIPREC session.
@@ -2983,15 +2983,15 @@ class ActionsResource(SyncAPIResource):
         self,
         call_control_id: str,
         *,
-        client_state: str | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
-        stream_id: str | NotGiven = NOT_GIVEN,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
+        stream_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionStopStreamingResponse:
         """
         Stop streaming a call to a WebSocket.
@@ -3042,14 +3042,14 @@ class ActionsResource(SyncAPIResource):
         self,
         call_control_id: str,
         *,
-        client_state: str | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionStopTranscriptionResponse:
         """
         Stop real-time transcription.
@@ -3096,7 +3096,7 @@ class ActionsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionSwitchSupervisorRoleResponse:
         """Switch the supervisor role for a bridged call.
 
@@ -3134,36 +3134,35 @@ class ActionsResource(SyncAPIResource):
         answering_machine_detection: Literal[
             "premium", "detect", "detect_beep", "detect_words", "greeting_end", "disabled"
         ]
-        | NotGiven = NOT_GIVEN,
-        answering_machine_detection_config: action_transfer_params.AnsweringMachineDetectionConfig
-        | NotGiven = NOT_GIVEN,
-        audio_url: str | NotGiven = NOT_GIVEN,
-        client_state: str | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
-        custom_headers: Iterable[CustomSipHeaderParam] | NotGiven = NOT_GIVEN,
-        early_media: bool | NotGiven = NOT_GIVEN,
-        from_: str | NotGiven = NOT_GIVEN,
-        from_display_name: str | NotGiven = NOT_GIVEN,
-        media_encryption: Literal["disabled", "SRTP", "DTLS"] | NotGiven = NOT_GIVEN,
-        media_name: str | NotGiven = NOT_GIVEN,
-        mute_dtmf: Literal["none", "both", "self", "opposite"] | NotGiven = NOT_GIVEN,
-        park_after_unbridge: str | NotGiven = NOT_GIVEN,
-        sip_auth_password: str | NotGiven = NOT_GIVEN,
-        sip_auth_username: str | NotGiven = NOT_GIVEN,
-        sip_headers: Iterable[SipHeaderParam] | NotGiven = NOT_GIVEN,
-        sip_transport_protocol: Literal["UDP", "TCP", "TLS"] | NotGiven = NOT_GIVEN,
-        sound_modifications: SoundModificationsParam | NotGiven = NOT_GIVEN,
-        target_leg_client_state: str | NotGiven = NOT_GIVEN,
-        time_limit_secs: int | NotGiven = NOT_GIVEN,
-        timeout_secs: int | NotGiven = NOT_GIVEN,
-        webhook_url: str | NotGiven = NOT_GIVEN,
-        webhook_url_method: Literal["POST", "GET"] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        answering_machine_detection_config: action_transfer_params.AnsweringMachineDetectionConfig | Omit = omit,
+        audio_url: str | Omit = omit,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
+        custom_headers: Iterable[CustomSipHeaderParam] | Omit = omit,
+        early_media: bool | Omit = omit,
+        from_: str | Omit = omit,
+        from_display_name: str | Omit = omit,
+        media_encryption: Literal["disabled", "SRTP", "DTLS"] | Omit = omit,
+        media_name: str | Omit = omit,
+        mute_dtmf: Literal["none", "both", "self", "opposite"] | Omit = omit,
+        park_after_unbridge: str | Omit = omit,
+        sip_auth_password: str | Omit = omit,
+        sip_auth_username: str | Omit = omit,
+        sip_headers: Iterable[SipHeaderParam] | Omit = omit,
+        sip_transport_protocol: Literal["UDP", "TCP", "TLS"] | Omit = omit,
+        sound_modifications: SoundModificationsParam | Omit = omit,
+        target_leg_client_state: str | Omit = omit,
+        time_limit_secs: int | Omit = omit,
+        timeout_secs: int | Omit = omit,
+        webhook_url: str | Omit = omit,
+        webhook_url_method: Literal["POST", "GET"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionTransferResponse:
         """Transfer a call to a new destination.
 
@@ -3329,7 +3328,7 @@ class ActionsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionUpdateClientStateResponse:
         """
         Updates client state
@@ -3384,38 +3383,38 @@ class AsyncActionsResource(AsyncAPIResource):
         self,
         call_control_id: str,
         *,
-        billing_group_id: str | NotGiven = NOT_GIVEN,
-        client_state: str | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
-        custom_headers: Iterable[CustomSipHeaderParam] | NotGiven = NOT_GIVEN,
-        preferred_codecs: Literal["G722,PCMU,PCMA,G729,OPUS,VP8,H264"] | NotGiven = NOT_GIVEN,
-        record: Literal["record-from-answer"] | NotGiven = NOT_GIVEN,
-        record_channels: Literal["single", "dual"] | NotGiven = NOT_GIVEN,
-        record_custom_file_name: str | NotGiven = NOT_GIVEN,
-        record_format: Literal["wav", "mp3"] | NotGiven = NOT_GIVEN,
-        record_max_length: int | NotGiven = NOT_GIVEN,
-        record_timeout_secs: int | NotGiven = NOT_GIVEN,
-        record_track: Literal["both", "inbound", "outbound"] | NotGiven = NOT_GIVEN,
-        record_trim: Literal["trim-silence"] | NotGiven = NOT_GIVEN,
-        send_silence_when_idle: bool | NotGiven = NOT_GIVEN,
-        sip_headers: Iterable[SipHeaderParam] | NotGiven = NOT_GIVEN,
-        sound_modifications: SoundModificationsParam | NotGiven = NOT_GIVEN,
-        stream_bidirectional_codec: StreamBidirectionalCodec | NotGiven = NOT_GIVEN,
-        stream_bidirectional_mode: StreamBidirectionalMode | NotGiven = NOT_GIVEN,
-        stream_bidirectional_target_legs: StreamBidirectionalTargetLegs | NotGiven = NOT_GIVEN,
-        stream_codec: StreamCodec | NotGiven = NOT_GIVEN,
-        stream_track: Literal["inbound_track", "outbound_track", "both_tracks"] | NotGiven = NOT_GIVEN,
-        stream_url: str | NotGiven = NOT_GIVEN,
-        transcription: bool | NotGiven = NOT_GIVEN,
-        transcription_config: TranscriptionStartRequestParam | NotGiven = NOT_GIVEN,
-        webhook_url: str | NotGiven = NOT_GIVEN,
-        webhook_url_method: Literal["POST", "GET"] | NotGiven = NOT_GIVEN,
+        billing_group_id: str | Omit = omit,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
+        custom_headers: Iterable[CustomSipHeaderParam] | Omit = omit,
+        preferred_codecs: Literal["G722,PCMU,PCMA,G729,OPUS,VP8,H264"] | Omit = omit,
+        record: Literal["record-from-answer"] | Omit = omit,
+        record_channels: Literal["single", "dual"] | Omit = omit,
+        record_custom_file_name: str | Omit = omit,
+        record_format: Literal["wav", "mp3"] | Omit = omit,
+        record_max_length: int | Omit = omit,
+        record_timeout_secs: int | Omit = omit,
+        record_track: Literal["both", "inbound", "outbound"] | Omit = omit,
+        record_trim: Literal["trim-silence"] | Omit = omit,
+        send_silence_when_idle: bool | Omit = omit,
+        sip_headers: Iterable[SipHeaderParam] | Omit = omit,
+        sound_modifications: SoundModificationsParam | Omit = omit,
+        stream_bidirectional_codec: StreamBidirectionalCodec | Omit = omit,
+        stream_bidirectional_mode: StreamBidirectionalMode | Omit = omit,
+        stream_bidirectional_target_legs: StreamBidirectionalTargetLegs | Omit = omit,
+        stream_codec: StreamCodec | Omit = omit,
+        stream_track: Literal["inbound_track", "outbound_track", "both_tracks"] | Omit = omit,
+        stream_url: str | Omit = omit,
+        transcription: bool | Omit = omit,
+        transcription_config: TranscriptionStartRequestParam | Omit = omit,
+        webhook_url: str | Omit = omit,
+        webhook_url_method: Literal["POST", "GET"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionAnswerResponse:
         """Answer an incoming call.
 
@@ -3558,20 +3557,20 @@ class AsyncActionsResource(AsyncAPIResource):
         path_call_control_id: str,
         *,
         body_call_control_id: str,
-        client_state: str | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
-        mute_dtmf: Literal["none", "both", "self", "opposite"] | NotGiven = NOT_GIVEN,
-        park_after_unbridge: str | NotGiven = NOT_GIVEN,
-        play_ringtone: bool | NotGiven = NOT_GIVEN,
-        queue: str | NotGiven = NOT_GIVEN,
-        record: Literal["record-from-answer"] | NotGiven = NOT_GIVEN,
-        record_channels: Literal["single", "dual"] | NotGiven = NOT_GIVEN,
-        record_custom_file_name: str | NotGiven = NOT_GIVEN,
-        record_format: Literal["wav", "mp3"] | NotGiven = NOT_GIVEN,
-        record_max_length: int | NotGiven = NOT_GIVEN,
-        record_timeout_secs: int | NotGiven = NOT_GIVEN,
-        record_track: Literal["both", "inbound", "outbound"] | NotGiven = NOT_GIVEN,
-        record_trim: Literal["trim-silence"] | NotGiven = NOT_GIVEN,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
+        mute_dtmf: Literal["none", "both", "self", "opposite"] | Omit = omit,
+        park_after_unbridge: str | Omit = omit,
+        play_ringtone: bool | Omit = omit,
+        queue: str | Omit = omit,
+        record: Literal["record-from-answer"] | Omit = omit,
+        record_channels: Literal["single", "dual"] | Omit = omit,
+        record_custom_file_name: str | Omit = omit,
+        record_format: Literal["wav", "mp3"] | Omit = omit,
+        record_max_length: int | Omit = omit,
+        record_timeout_secs: int | Omit = omit,
+        record_track: Literal["both", "inbound", "outbound"] | Omit = omit,
+        record_trim: Literal["trim-silence"] | Omit = omit,
         ringtone: Literal[
             "at",
             "au",
@@ -3614,15 +3613,15 @@ class AsyncActionsResource(AsyncAPIResource):
             "ve",
             "za",
         ]
-        | NotGiven = NOT_GIVEN,
-        video_room_context: str | NotGiven = NOT_GIVEN,
-        video_room_id: str | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        video_room_context: str | Omit = omit,
+        video_room_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionBridgeResponse:
         """
         Bridge two call control calls.
@@ -3746,16 +3745,16 @@ class AsyncActionsResource(AsyncAPIResource):
         call_control_id: str,
         *,
         queue_name: str,
-        client_state: str | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
-        max_size: int | NotGiven = NOT_GIVEN,
-        max_wait_time_secs: int | NotGiven = NOT_GIVEN,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
+        max_size: int | Omit = omit,
+        max_wait_time_secs: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionEnqueueResponse:
         """
         Put the call in a queue.
@@ -3807,22 +3806,22 @@ class AsyncActionsResource(AsyncAPIResource):
         self,
         call_control_id: str,
         *,
-        client_state: str | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
-        gather_id: str | NotGiven = NOT_GIVEN,
-        initial_timeout_millis: int | NotGiven = NOT_GIVEN,
-        inter_digit_timeout_millis: int | NotGiven = NOT_GIVEN,
-        maximum_digits: int | NotGiven = NOT_GIVEN,
-        minimum_digits: int | NotGiven = NOT_GIVEN,
-        terminating_digit: str | NotGiven = NOT_GIVEN,
-        timeout_millis: int | NotGiven = NOT_GIVEN,
-        valid_digits: str | NotGiven = NOT_GIVEN,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
+        gather_id: str | Omit = omit,
+        initial_timeout_millis: int | Omit = omit,
+        inter_digit_timeout_millis: int | Omit = omit,
+        maximum_digits: int | Omit = omit,
+        minimum_digits: int | Omit = omit,
+        terminating_digit: str | Omit = omit,
+        timeout_millis: int | Omit = omit,
+        valid_digits: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionGatherResponse:
         """
         Gather DTMF signals to build interactive menus.
@@ -3901,25 +3900,25 @@ class AsyncActionsResource(AsyncAPIResource):
         call_control_id: str,
         *,
         parameters: object,
-        assistant: AssistantParam | NotGiven = NOT_GIVEN,
-        client_state: str | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
-        greeting: str | NotGiven = NOT_GIVEN,
-        interruption_settings: InterruptionSettingsParam | NotGiven = NOT_GIVEN,
-        language: GoogleTranscriptionLanguage | NotGiven = NOT_GIVEN,
-        message_history: Iterable[action_gather_using_ai_params.MessageHistory] | NotGiven = NOT_GIVEN,
-        send_message_history_updates: bool | NotGiven = NOT_GIVEN,
-        send_partial_results: bool | NotGiven = NOT_GIVEN,
-        transcription: TranscriptionConfigParam | NotGiven = NOT_GIVEN,
-        user_response_timeout_ms: int | NotGiven = NOT_GIVEN,
-        voice: str | NotGiven = NOT_GIVEN,
-        voice_settings: action_gather_using_ai_params.VoiceSettings | NotGiven = NOT_GIVEN,
+        assistant: AssistantParam | Omit = omit,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
+        greeting: str | Omit = omit,
+        interruption_settings: InterruptionSettingsParam | Omit = omit,
+        language: GoogleTranscriptionLanguage | Omit = omit,
+        message_history: Iterable[action_gather_using_ai_params.MessageHistory] | Omit = omit,
+        send_message_history_updates: bool | Omit = omit,
+        send_partial_results: bool | Omit = omit,
+        transcription: TranscriptionConfigParam | Omit = omit,
+        user_response_timeout_ms: int | Omit = omit,
+        voice: str | Omit = omit,
+        voice_settings: action_gather_using_ai_params.VoiceSettings | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionGatherUsingAIResponse:
         """
         Gather parameters defined in the request payload using a voice assistant.
@@ -4049,25 +4048,25 @@ class AsyncActionsResource(AsyncAPIResource):
         self,
         call_control_id: str,
         *,
-        audio_url: str | NotGiven = NOT_GIVEN,
-        client_state: str | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
-        inter_digit_timeout_millis: int | NotGiven = NOT_GIVEN,
-        invalid_audio_url: str | NotGiven = NOT_GIVEN,
-        invalid_media_name: str | NotGiven = NOT_GIVEN,
-        maximum_digits: int | NotGiven = NOT_GIVEN,
-        maximum_tries: int | NotGiven = NOT_GIVEN,
-        media_name: str | NotGiven = NOT_GIVEN,
-        minimum_digits: int | NotGiven = NOT_GIVEN,
-        terminating_digit: str | NotGiven = NOT_GIVEN,
-        timeout_millis: int | NotGiven = NOT_GIVEN,
-        valid_digits: str | NotGiven = NOT_GIVEN,
+        audio_url: str | Omit = omit,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
+        inter_digit_timeout_millis: int | Omit = omit,
+        invalid_audio_url: str | Omit = omit,
+        invalid_media_name: str | Omit = omit,
+        maximum_digits: int | Omit = omit,
+        maximum_tries: int | Omit = omit,
+        media_name: str | Omit = omit,
+        minimum_digits: int | Omit = omit,
+        terminating_digit: str | Omit = omit,
+        timeout_millis: int | Omit = omit,
+        valid_digits: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionGatherUsingAudioResponse:
         """
         Play an audio file on the call until the required DTMF signals are gathered to
@@ -4173,10 +4172,10 @@ class AsyncActionsResource(AsyncAPIResource):
         *,
         payload: str,
         voice: str,
-        client_state: str | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
-        inter_digit_timeout_millis: int | NotGiven = NOT_GIVEN,
-        invalid_payload: str | NotGiven = NOT_GIVEN,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
+        inter_digit_timeout_millis: int | Omit = omit,
+        invalid_payload: str | Omit = omit,
         language: Literal[
             "arb",
             "cmn-CN",
@@ -4208,22 +4207,22 @@ class AsyncActionsResource(AsyncAPIResource):
             "sv-SE",
             "tr-TR",
         ]
-        | NotGiven = NOT_GIVEN,
-        maximum_digits: int | NotGiven = NOT_GIVEN,
-        maximum_tries: int | NotGiven = NOT_GIVEN,
-        minimum_digits: int | NotGiven = NOT_GIVEN,
-        payload_type: Literal["text", "ssml"] | NotGiven = NOT_GIVEN,
-        service_level: Literal["basic", "premium"] | NotGiven = NOT_GIVEN,
-        terminating_digit: str | NotGiven = NOT_GIVEN,
-        timeout_millis: int | NotGiven = NOT_GIVEN,
-        valid_digits: str | NotGiven = NOT_GIVEN,
-        voice_settings: action_gather_using_speak_params.VoiceSettings | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        maximum_digits: int | Omit = omit,
+        maximum_tries: int | Omit = omit,
+        minimum_digits: int | Omit = omit,
+        payload_type: Literal["text", "ssml"] | Omit = omit,
+        service_level: Literal["basic", "premium"] | Omit = omit,
+        terminating_digit: str | Omit = omit,
+        timeout_millis: int | Omit = omit,
+        valid_digits: str | Omit = omit,
+        voice_settings: action_gather_using_speak_params.VoiceSettings | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionGatherUsingSpeakResponse:
         """
         Convert text to speech and play it on the call until the required DTMF signals
@@ -4355,14 +4354,14 @@ class AsyncActionsResource(AsyncAPIResource):
         self,
         call_control_id: str,
         *,
-        client_state: str | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionHangupResponse:
         """
         Hang up the call.
@@ -4410,14 +4409,14 @@ class AsyncActionsResource(AsyncAPIResource):
         self,
         call_control_id: str,
         *,
-        client_state: str | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionLeaveQueueResponse:
         """
         Removes the call from a queue.
@@ -4458,15 +4457,15 @@ class AsyncActionsResource(AsyncAPIResource):
         self,
         call_control_id: str,
         *,
-        client_state: str | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
-        recording_id: str | NotGiven = NOT_GIVEN,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
+        recording_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionPauseRecordingResponse:
         """Pause recording the call.
 
@@ -4516,18 +4515,18 @@ class AsyncActionsResource(AsyncAPIResource):
         call_control_id: str,
         *,
         sip_address: str,
-        client_state: str | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
-        custom_headers: Iterable[CustomSipHeaderParam] | NotGiven = NOT_GIVEN,
-        sip_auth_password: str | NotGiven = NOT_GIVEN,
-        sip_auth_username: str | NotGiven = NOT_GIVEN,
-        sip_headers: Iterable[SipHeaderParam] | NotGiven = NOT_GIVEN,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
+        custom_headers: Iterable[CustomSipHeaderParam] | Omit = omit,
+        sip_auth_password: str | Omit = omit,
+        sip_auth_username: str | Omit = omit,
+        sip_headers: Iterable[SipHeaderParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionReferResponse:
         """Initiate a SIP Refer on a Call Control call.
 
@@ -4596,14 +4595,14 @@ class AsyncActionsResource(AsyncAPIResource):
         call_control_id: str,
         *,
         cause: Literal["CALL_REJECTED", "USER_BUSY"],
-        client_state: str | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionRejectResponse:
         """
         Reject an incoming call.
@@ -4653,15 +4652,15 @@ class AsyncActionsResource(AsyncAPIResource):
         self,
         call_control_id: str,
         *,
-        client_state: str | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
-        recording_id: str | NotGiven = NOT_GIVEN,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
+        recording_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionResumeRecordingResponse:
         """
         Resume recording the call.
@@ -4710,15 +4709,15 @@ class AsyncActionsResource(AsyncAPIResource):
         call_control_id: str,
         *,
         digits: str,
-        client_state: str | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
-        duration_millis: int | NotGiven = NOT_GIVEN,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
+        duration_millis: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionSendDtmfResponse:
         """Sends DTMF tones from this leg.
 
@@ -4775,14 +4774,14 @@ class AsyncActionsResource(AsyncAPIResource):
         *,
         body: str,
         content_type: str,
-        client_state: str | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionSendSipInfoResponse:
         """
         Sends SIP info from this leg.
@@ -4836,8 +4835,8 @@ class AsyncActionsResource(AsyncAPIResource):
         *,
         payload: str,
         voice: str,
-        client_state: str | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
         language: Literal[
             "arb",
             "cmn-CN",
@@ -4869,17 +4868,17 @@ class AsyncActionsResource(AsyncAPIResource):
             "sv-SE",
             "tr-TR",
         ]
-        | NotGiven = NOT_GIVEN,
-        payload_type: Literal["text", "ssml"] | NotGiven = NOT_GIVEN,
-        service_level: Literal["basic", "premium"] | NotGiven = NOT_GIVEN,
-        stop: str | NotGiven = NOT_GIVEN,
-        voice_settings: action_speak_params.VoiceSettings | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        payload_type: Literal["text", "ssml"] | Omit = omit,
+        service_level: Literal["basic", "premium"] | Omit = omit,
+        stop: str | Omit = omit,
+        voice_settings: action_speak_params.VoiceSettings | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionSpeakResponse:
         """Convert text to speech and play it back on the call.
 
@@ -4984,20 +4983,20 @@ class AsyncActionsResource(AsyncAPIResource):
         self,
         call_control_id: str,
         *,
-        assistant: action_start_ai_assistant_params.Assistant | NotGiven = NOT_GIVEN,
-        client_state: str | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
-        greeting: str | NotGiven = NOT_GIVEN,
-        interruption_settings: InterruptionSettingsParam | NotGiven = NOT_GIVEN,
-        transcription: TranscriptionConfigParam | NotGiven = NOT_GIVEN,
-        voice: str | NotGiven = NOT_GIVEN,
-        voice_settings: action_start_ai_assistant_params.VoiceSettings | NotGiven = NOT_GIVEN,
+        assistant: action_start_ai_assistant_params.Assistant | Omit = omit,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
+        greeting: str | Omit = omit,
+        interruption_settings: InterruptionSettingsParam | Omit = omit,
+        transcription: TranscriptionConfigParam | Omit = omit,
+        voice: str | Omit = omit,
+        voice_settings: action_start_ai_assistant_params.VoiceSettings | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionStartAIAssistantResponse:
         """
         Start an AI assistant on the call.
@@ -5089,17 +5088,17 @@ class AsyncActionsResource(AsyncAPIResource):
         self,
         call_control_id: str,
         *,
-        client_state: str | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
-        rx: str | NotGiven = NOT_GIVEN,
-        stream_type: Literal["decrypted"] | NotGiven = NOT_GIVEN,
-        tx: str | NotGiven = NOT_GIVEN,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
+        rx: str | Omit = omit,
+        stream_type: Literal["decrypted"] | Omit = omit,
+        tx: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionStartForkingResponse:
         """
         Call forking allows you to stream the media from a call to a specific target in
@@ -5164,16 +5163,16 @@ class AsyncActionsResource(AsyncAPIResource):
         self,
         call_control_id: str,
         *,
-        client_state: str | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
-        direction: Literal["inbound", "outbound", "both"] | NotGiven = NOT_GIVEN,
-        noise_suppression_engine: Literal["A", "B"] | NotGiven = NOT_GIVEN,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
+        direction: Literal["inbound", "outbound", "both"] | Omit = omit,
+        noise_suppression_engine: Literal["A", "B"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionStartNoiseSuppressionResponse:
         """
         Noise Suppression Start (BETA)
@@ -5221,23 +5220,23 @@ class AsyncActionsResource(AsyncAPIResource):
         self,
         call_control_id: str,
         *,
-        audio_type: Literal["mp3", "wav"] | NotGiven = NOT_GIVEN,
-        audio_url: str | NotGiven = NOT_GIVEN,
-        cache_audio: bool | NotGiven = NOT_GIVEN,
-        client_state: str | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
-        loop: LoopcountParam | NotGiven = NOT_GIVEN,
-        media_name: str | NotGiven = NOT_GIVEN,
-        overlay: bool | NotGiven = NOT_GIVEN,
-        playback_content: str | NotGiven = NOT_GIVEN,
-        stop: str | NotGiven = NOT_GIVEN,
-        target_legs: str | NotGiven = NOT_GIVEN,
+        audio_type: Literal["mp3", "wav"] | Omit = omit,
+        audio_url: str | Omit = omit,
+        cache_audio: bool | Omit = omit,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
+        loop: LoopcountParam | Omit = omit,
+        media_name: str | Omit = omit,
+        overlay: bool | Omit = omit,
+        playback_content: str | Omit = omit,
+        stop: str | Omit = omit,
+        target_legs: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionStartPlaybackResponse:
         """Play an audio file on the call.
 
@@ -5337,15 +5336,15 @@ class AsyncActionsResource(AsyncAPIResource):
         *,
         channels: Literal["single", "dual"],
         format: Literal["wav", "mp3"],
-        client_state: str | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
-        custom_file_name: str | NotGiven = NOT_GIVEN,
-        max_length: int | NotGiven = NOT_GIVEN,
-        play_beep: bool | NotGiven = NOT_GIVEN,
-        recording_track: Literal["both", "inbound", "outbound"] | NotGiven = NOT_GIVEN,
-        timeout_secs: int | NotGiven = NOT_GIVEN,
-        transcription: bool | NotGiven = NOT_GIVEN,
-        transcription_engine: str | NotGiven = NOT_GIVEN,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
+        custom_file_name: str | Omit = omit,
+        max_length: int | Omit = omit,
+        play_beep: bool | Omit = omit,
+        recording_track: Literal["both", "inbound", "outbound"] | Omit = omit,
+        timeout_secs: int | Omit = omit,
+        transcription: bool | Omit = omit,
+        transcription_engine: str | Omit = omit,
         transcription_language: Literal[
             "af-ZA",
             "am-ET",
@@ -5493,18 +5492,18 @@ class AsyncActionsResource(AsyncAPIResource):
             "zh-TW",
             "zu-ZA",
         ]
-        | NotGiven = NOT_GIVEN,
-        transcription_max_speaker_count: int | NotGiven = NOT_GIVEN,
-        transcription_min_speaker_count: int | NotGiven = NOT_GIVEN,
-        transcription_profanity_filter: bool | NotGiven = NOT_GIVEN,
-        transcription_speaker_diarization: bool | NotGiven = NOT_GIVEN,
-        trim: Literal["trim-silence"] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        transcription_max_speaker_count: int | Omit = omit,
+        transcription_min_speaker_count: int | Omit = omit,
+        transcription_profanity_filter: bool | Omit = omit,
+        transcription_speaker_diarization: bool | Omit = omit,
+        trim: Literal["trim-silence"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionStartRecordingResponse:
         """Start recording the call.
 
@@ -5612,19 +5611,19 @@ class AsyncActionsResource(AsyncAPIResource):
         self,
         call_control_id: str,
         *,
-        client_state: str | NotGiven = NOT_GIVEN,
-        connector_name: str | NotGiven = NOT_GIVEN,
-        include_metadata_custom_headers: Literal[True, False] | NotGiven = NOT_GIVEN,
-        secure: Literal[True, False] | NotGiven = NOT_GIVEN,
-        session_timeout_secs: int | NotGiven = NOT_GIVEN,
-        sip_transport: Literal["udp", "tcp", "tls"] | NotGiven = NOT_GIVEN,
-        siprec_track: Literal["inbound_track", "outbound_track", "both_tracks"] | NotGiven = NOT_GIVEN,
+        client_state: str | Omit = omit,
+        connector_name: str | Omit = omit,
+        include_metadata_custom_headers: Literal[True, False] | Omit = omit,
+        secure: Literal[True, False] | Omit = omit,
+        session_timeout_secs: int | Omit = omit,
+        sip_transport: Literal["udp", "tcp", "tls"] | Omit = omit,
+        siprec_track: Literal["inbound_track", "outbound_track", "both_tracks"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionStartSiprecResponse:
         """
         Start siprec session to configured in SIPREC connector SRS.
@@ -5690,22 +5689,22 @@ class AsyncActionsResource(AsyncAPIResource):
         self,
         call_control_id: str,
         *,
-        client_state: str | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
-        dialogflow_config: DialogflowConfigParam | NotGiven = NOT_GIVEN,
-        enable_dialogflow: bool | NotGiven = NOT_GIVEN,
-        stream_bidirectional_codec: StreamBidirectionalCodec | NotGiven = NOT_GIVEN,
-        stream_bidirectional_mode: StreamBidirectionalMode | NotGiven = NOT_GIVEN,
-        stream_bidirectional_target_legs: StreamBidirectionalTargetLegs | NotGiven = NOT_GIVEN,
-        stream_codec: StreamCodec | NotGiven = NOT_GIVEN,
-        stream_track: Literal["inbound_track", "outbound_track", "both_tracks"] | NotGiven = NOT_GIVEN,
-        stream_url: str | NotGiven = NOT_GIVEN,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
+        dialogflow_config: DialogflowConfigParam | Omit = omit,
+        enable_dialogflow: bool | Omit = omit,
+        stream_bidirectional_codec: StreamBidirectionalCodec | Omit = omit,
+        stream_bidirectional_mode: StreamBidirectionalMode | Omit = omit,
+        stream_bidirectional_target_legs: StreamBidirectionalTargetLegs | Omit = omit,
+        stream_codec: StreamCodec | Omit = omit,
+        stream_track: Literal["inbound_track", "outbound_track", "both_tracks"] | Omit = omit,
+        stream_url: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionStartStreamingResponse:
         """
         Start streaming the media from a call to a specific WebSocket address or
@@ -5776,17 +5775,17 @@ class AsyncActionsResource(AsyncAPIResource):
         self,
         call_control_id: str,
         *,
-        client_state: str | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
-        transcription_engine: Literal["A", "B"] | NotGiven = NOT_GIVEN,
-        transcription_engine_config: action_start_transcription_params.TranscriptionEngineConfig | NotGiven = NOT_GIVEN,
-        transcription_tracks: str | NotGiven = NOT_GIVEN,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
+        transcription_engine: Literal["A", "B"] | Omit = omit,
+        transcription_engine_config: action_start_transcription_params.TranscriptionEngineConfig | Omit = omit,
+        transcription_tracks: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionStartTranscriptionResponse:
         """Start real-time transcription.
 
@@ -5844,14 +5843,14 @@ class AsyncActionsResource(AsyncAPIResource):
         self,
         call_control_id: str,
         *,
-        client_state: str | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionStopAIAssistantResponse:
         """
         Stop an AI assistant on the call.
@@ -5892,15 +5891,15 @@ class AsyncActionsResource(AsyncAPIResource):
         self,
         call_control_id: str,
         *,
-        client_state: str | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
-        stream_type: Literal["raw", "decrypted"] | NotGiven = NOT_GIVEN,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
+        stream_type: Literal["raw", "decrypted"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionStopForkingResponse:
         """
         Stop forking a call.
@@ -5951,14 +5950,14 @@ class AsyncActionsResource(AsyncAPIResource):
         self,
         call_control_id: str,
         *,
-        client_state: str | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionStopGatherResponse:
         """
         Stop current gather.
@@ -6005,14 +6004,14 @@ class AsyncActionsResource(AsyncAPIResource):
         self,
         call_control_id: str,
         *,
-        client_state: str | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionStopNoiseSuppressionResponse:
         """
         Noise Suppression Stop (BETA)
@@ -6053,16 +6052,16 @@ class AsyncActionsResource(AsyncAPIResource):
         self,
         call_control_id: str,
         *,
-        client_state: str | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
-        overlay: bool | NotGiven = NOT_GIVEN,
-        stop: str | NotGiven = NOT_GIVEN,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
+        overlay: bool | Omit = omit,
+        stop: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionStopPlaybackResponse:
         """
         Stop audio being played on the call.
@@ -6116,15 +6115,15 @@ class AsyncActionsResource(AsyncAPIResource):
         self,
         call_control_id: str,
         *,
-        client_state: str | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
-        recording_id: str | NotGiven = NOT_GIVEN,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
+        recording_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionStopRecordingResponse:
         """
         Stop recording the call.
@@ -6174,14 +6173,14 @@ class AsyncActionsResource(AsyncAPIResource):
         self,
         call_control_id: str,
         *,
-        client_state: str | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionStopSiprecResponse:
         """
         Stop SIPREC session.
@@ -6226,15 +6225,15 @@ class AsyncActionsResource(AsyncAPIResource):
         self,
         call_control_id: str,
         *,
-        client_state: str | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
-        stream_id: str | NotGiven = NOT_GIVEN,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
+        stream_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionStopStreamingResponse:
         """
         Stop streaming a call to a WebSocket.
@@ -6285,14 +6284,14 @@ class AsyncActionsResource(AsyncAPIResource):
         self,
         call_control_id: str,
         *,
-        client_state: str | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionStopTranscriptionResponse:
         """
         Stop real-time transcription.
@@ -6339,7 +6338,7 @@ class AsyncActionsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionSwitchSupervisorRoleResponse:
         """Switch the supervisor role for a bridged call.
 
@@ -6379,36 +6378,35 @@ class AsyncActionsResource(AsyncAPIResource):
         answering_machine_detection: Literal[
             "premium", "detect", "detect_beep", "detect_words", "greeting_end", "disabled"
         ]
-        | NotGiven = NOT_GIVEN,
-        answering_machine_detection_config: action_transfer_params.AnsweringMachineDetectionConfig
-        | NotGiven = NOT_GIVEN,
-        audio_url: str | NotGiven = NOT_GIVEN,
-        client_state: str | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
-        custom_headers: Iterable[CustomSipHeaderParam] | NotGiven = NOT_GIVEN,
-        early_media: bool | NotGiven = NOT_GIVEN,
-        from_: str | NotGiven = NOT_GIVEN,
-        from_display_name: str | NotGiven = NOT_GIVEN,
-        media_encryption: Literal["disabled", "SRTP", "DTLS"] | NotGiven = NOT_GIVEN,
-        media_name: str | NotGiven = NOT_GIVEN,
-        mute_dtmf: Literal["none", "both", "self", "opposite"] | NotGiven = NOT_GIVEN,
-        park_after_unbridge: str | NotGiven = NOT_GIVEN,
-        sip_auth_password: str | NotGiven = NOT_GIVEN,
-        sip_auth_username: str | NotGiven = NOT_GIVEN,
-        sip_headers: Iterable[SipHeaderParam] | NotGiven = NOT_GIVEN,
-        sip_transport_protocol: Literal["UDP", "TCP", "TLS"] | NotGiven = NOT_GIVEN,
-        sound_modifications: SoundModificationsParam | NotGiven = NOT_GIVEN,
-        target_leg_client_state: str | NotGiven = NOT_GIVEN,
-        time_limit_secs: int | NotGiven = NOT_GIVEN,
-        timeout_secs: int | NotGiven = NOT_GIVEN,
-        webhook_url: str | NotGiven = NOT_GIVEN,
-        webhook_url_method: Literal["POST", "GET"] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        answering_machine_detection_config: action_transfer_params.AnsweringMachineDetectionConfig | Omit = omit,
+        audio_url: str | Omit = omit,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
+        custom_headers: Iterable[CustomSipHeaderParam] | Omit = omit,
+        early_media: bool | Omit = omit,
+        from_: str | Omit = omit,
+        from_display_name: str | Omit = omit,
+        media_encryption: Literal["disabled", "SRTP", "DTLS"] | Omit = omit,
+        media_name: str | Omit = omit,
+        mute_dtmf: Literal["none", "both", "self", "opposite"] | Omit = omit,
+        park_after_unbridge: str | Omit = omit,
+        sip_auth_password: str | Omit = omit,
+        sip_auth_username: str | Omit = omit,
+        sip_headers: Iterable[SipHeaderParam] | Omit = omit,
+        sip_transport_protocol: Literal["UDP", "TCP", "TLS"] | Omit = omit,
+        sound_modifications: SoundModificationsParam | Omit = omit,
+        target_leg_client_state: str | Omit = omit,
+        time_limit_secs: int | Omit = omit,
+        timeout_secs: int | Omit = omit,
+        webhook_url: str | Omit = omit,
+        webhook_url_method: Literal["POST", "GET"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionTransferResponse:
         """Transfer a call to a new destination.
 
@@ -6574,7 +6572,7 @@ class AsyncActionsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionUpdateClientStateResponse:
         """
         Updates client state

@@ -7,7 +7,7 @@ from typing import Optional
 import httpx
 
 from ..types import fqdn_list_params, fqdn_create_params, fqdn_update_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -53,13 +53,13 @@ class FqdnsResource(SyncAPIResource):
         connection_id: str,
         dns_record_type: str,
         fqdn: str,
-        port: Optional[int] | NotGiven = NOT_GIVEN,
+        port: Optional[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FqdnCreateResponse:
         """
         Create a new FQDN object.
@@ -110,7 +110,7 @@ class FqdnsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FqdnRetrieveResponse:
         """
         Return the details regarding a specific FQDN.
@@ -138,16 +138,16 @@ class FqdnsResource(SyncAPIResource):
         self,
         id: str,
         *,
-        connection_id: str | NotGiven = NOT_GIVEN,
-        dns_record_type: str | NotGiven = NOT_GIVEN,
-        fqdn: str | NotGiven = NOT_GIVEN,
-        port: Optional[int] | NotGiven = NOT_GIVEN,
+        connection_id: str | Omit = omit,
+        dns_record_type: str | Omit = omit,
+        fqdn: str | Omit = omit,
+        port: Optional[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FqdnUpdateResponse:
         """
         Update the details of a specific FQDN.
@@ -194,14 +194,14 @@ class FqdnsResource(SyncAPIResource):
     def list(
         self,
         *,
-        filter: fqdn_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: fqdn_list_params.Page | NotGiven = NOT_GIVEN,
+        filter: fqdn_list_params.Filter | Omit = omit,
+        page: fqdn_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FqdnListResponse:
         """
         Get all FQDNs belonging to the user that match the given filters.
@@ -249,7 +249,7 @@ class FqdnsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FqdnDeleteResponse:
         """
         Delete an FQDN.
@@ -300,13 +300,13 @@ class AsyncFqdnsResource(AsyncAPIResource):
         connection_id: str,
         dns_record_type: str,
         fqdn: str,
-        port: Optional[int] | NotGiven = NOT_GIVEN,
+        port: Optional[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FqdnCreateResponse:
         """
         Create a new FQDN object.
@@ -357,7 +357,7 @@ class AsyncFqdnsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FqdnRetrieveResponse:
         """
         Return the details regarding a specific FQDN.
@@ -385,16 +385,16 @@ class AsyncFqdnsResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        connection_id: str | NotGiven = NOT_GIVEN,
-        dns_record_type: str | NotGiven = NOT_GIVEN,
-        fqdn: str | NotGiven = NOT_GIVEN,
-        port: Optional[int] | NotGiven = NOT_GIVEN,
+        connection_id: str | Omit = omit,
+        dns_record_type: str | Omit = omit,
+        fqdn: str | Omit = omit,
+        port: Optional[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FqdnUpdateResponse:
         """
         Update the details of a specific FQDN.
@@ -441,14 +441,14 @@ class AsyncFqdnsResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        filter: fqdn_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: fqdn_list_params.Page | NotGiven = NOT_GIVEN,
+        filter: fqdn_list_params.Filter | Omit = omit,
+        page: fqdn_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FqdnListResponse:
         """
         Get all FQDNs belonging to the user that match the given filters.
@@ -496,7 +496,7 @@ class AsyncFqdnsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FqdnDeleteResponse:
         """
         Delete an FQDN.

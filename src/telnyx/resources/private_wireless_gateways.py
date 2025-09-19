@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ..types import private_wireless_gateway_list_params, private_wireless_gateway_create_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -49,13 +49,13 @@ class PrivateWirelessGatewaysResource(SyncAPIResource):
         *,
         name: str,
         network_id: str,
-        region_code: str | NotGiven = NOT_GIVEN,
+        region_code: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PrivateWirelessGatewayCreateResponse:
         """
         Asynchronously create a Private Wireless Gateway for SIM cards for a previously
@@ -103,7 +103,7 @@ class PrivateWirelessGatewaysResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PrivateWirelessGatewayRetrieveResponse:
         """
         Retrieve information about a Private Wireless Gateway.
@@ -130,19 +130,19 @@ class PrivateWirelessGatewaysResource(SyncAPIResource):
     def list(
         self,
         *,
-        filter_created_at: str | NotGiven = NOT_GIVEN,
-        filter_ip_range: str | NotGiven = NOT_GIVEN,
-        filter_name: str | NotGiven = NOT_GIVEN,
-        filter_region_code: str | NotGiven = NOT_GIVEN,
-        filter_updated_at: str | NotGiven = NOT_GIVEN,
-        page_number: int | NotGiven = NOT_GIVEN,
-        page_size: int | NotGiven = NOT_GIVEN,
+        filter_created_at: str | Omit = omit,
+        filter_ip_range: str | Omit = omit,
+        filter_name: str | Omit = omit,
+        filter_region_code: str | Omit = omit,
+        filter_updated_at: str | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PrivateWirelessGatewayListResponse:
         """
         Get all Private Wireless Gateways belonging to the user.
@@ -202,7 +202,7 @@ class PrivateWirelessGatewaysResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PrivateWirelessGatewayDeleteResponse:
         """
         Deletes the Private Wireless Gateway.
@@ -252,13 +252,13 @@ class AsyncPrivateWirelessGatewaysResource(AsyncAPIResource):
         *,
         name: str,
         network_id: str,
-        region_code: str | NotGiven = NOT_GIVEN,
+        region_code: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PrivateWirelessGatewayCreateResponse:
         """
         Asynchronously create a Private Wireless Gateway for SIM cards for a previously
@@ -306,7 +306,7 @@ class AsyncPrivateWirelessGatewaysResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PrivateWirelessGatewayRetrieveResponse:
         """
         Retrieve information about a Private Wireless Gateway.
@@ -333,19 +333,19 @@ class AsyncPrivateWirelessGatewaysResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        filter_created_at: str | NotGiven = NOT_GIVEN,
-        filter_ip_range: str | NotGiven = NOT_GIVEN,
-        filter_name: str | NotGiven = NOT_GIVEN,
-        filter_region_code: str | NotGiven = NOT_GIVEN,
-        filter_updated_at: str | NotGiven = NOT_GIVEN,
-        page_number: int | NotGiven = NOT_GIVEN,
-        page_size: int | NotGiven = NOT_GIVEN,
+        filter_created_at: str | Omit = omit,
+        filter_ip_range: str | Omit = omit,
+        filter_name: str | Omit = omit,
+        filter_region_code: str | Omit = omit,
+        filter_updated_at: str | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PrivateWirelessGatewayListResponse:
         """
         Get all Private Wireless Gateways belonging to the user.
@@ -405,7 +405,7 @@ class AsyncPrivateWirelessGatewaysResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PrivateWirelessGatewayDeleteResponse:
         """
         Deletes the Private Wireless Gateway.

@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven, SequenceNotStr
+from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ...types.ai import cluster_list_params, cluster_compute_params, cluster_retrieve_params, cluster_fetch_graph_params
@@ -47,14 +47,14 @@ class ClustersResource(SyncAPIResource):
         self,
         task_id: str,
         *,
-        show_subclusters: bool | NotGiven = NOT_GIVEN,
-        top_n_nodes: int | NotGiven = NOT_GIVEN,
+        show_subclusters: bool | Omit = omit,
+        top_n_nodes: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ClusterRetrieveResponse:
         """
         Fetch a cluster
@@ -96,13 +96,13 @@ class ClustersResource(SyncAPIResource):
     def list(
         self,
         *,
-        page: cluster_list_params.Page | NotGiven = NOT_GIVEN,
+        page: cluster_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ClusterListResponse:
         """List all clusters
 
@@ -141,7 +141,7 @@ class ClustersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Delete a cluster
@@ -170,16 +170,16 @@ class ClustersResource(SyncAPIResource):
         self,
         *,
         bucket: str,
-        files: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        min_cluster_size: int | NotGiven = NOT_GIVEN,
-        min_subcluster_size: int | NotGiven = NOT_GIVEN,
-        prefix: str | NotGiven = NOT_GIVEN,
+        files: SequenceNotStr[str] | Omit = omit,
+        min_cluster_size: int | Omit = omit,
+        min_subcluster_size: int | Omit = omit,
+        prefix: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ClusterComputeResponse:
         """
         Starts a background task to compute how the data in an
@@ -231,13 +231,13 @@ class ClustersResource(SyncAPIResource):
         self,
         task_id: str,
         *,
-        cluster_id: int | NotGiven = NOT_GIVEN,
+        cluster_id: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Fetch a cluster visualization
@@ -290,14 +290,14 @@ class AsyncClustersResource(AsyncAPIResource):
         self,
         task_id: str,
         *,
-        show_subclusters: bool | NotGiven = NOT_GIVEN,
-        top_n_nodes: int | NotGiven = NOT_GIVEN,
+        show_subclusters: bool | Omit = omit,
+        top_n_nodes: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ClusterRetrieveResponse:
         """
         Fetch a cluster
@@ -339,13 +339,13 @@ class AsyncClustersResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        page: cluster_list_params.Page | NotGiven = NOT_GIVEN,
+        page: cluster_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ClusterListResponse:
         """List all clusters
 
@@ -384,7 +384,7 @@ class AsyncClustersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Delete a cluster
@@ -413,16 +413,16 @@ class AsyncClustersResource(AsyncAPIResource):
         self,
         *,
         bucket: str,
-        files: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        min_cluster_size: int | NotGiven = NOT_GIVEN,
-        min_subcluster_size: int | NotGiven = NOT_GIVEN,
-        prefix: str | NotGiven = NOT_GIVEN,
+        files: SequenceNotStr[str] | Omit = omit,
+        min_cluster_size: int | Omit = omit,
+        min_subcluster_size: int | Omit = omit,
+        prefix: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ClusterComputeResponse:
         """
         Starts a background task to compute how the data in an
@@ -474,13 +474,13 @@ class AsyncClustersResource(AsyncAPIResource):
         self,
         task_id: str,
         *,
-        cluster_id: int | NotGiven = NOT_GIVEN,
+        cluster_id: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Fetch a cluster visualization

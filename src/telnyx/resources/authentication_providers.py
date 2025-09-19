@@ -11,7 +11,7 @@ from ..types import (
     authentication_provider_create_params,
     authentication_provider_update_params,
 )
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -58,14 +58,14 @@ class AuthenticationProvidersResource(SyncAPIResource):
         name: str,
         settings: SettingsParam,
         short_name: str,
-        active: bool | NotGiven = NOT_GIVEN,
-        settings_url: str | NotGiven = NOT_GIVEN,
+        active: bool | Omit = omit,
+        settings_url: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AuthenticationProviderCreateResponse:
         """
         Creates an authentication provider.
@@ -118,7 +118,7 @@ class AuthenticationProvidersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AuthenticationProviderRetrieveResponse:
         """
         Retrieves the details of an existing authentication provider.
@@ -146,17 +146,17 @@ class AuthenticationProvidersResource(SyncAPIResource):
         self,
         id: str,
         *,
-        active: bool | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        settings: SettingsParam | NotGiven = NOT_GIVEN,
-        settings_url: str | NotGiven = NOT_GIVEN,
-        short_name: str | NotGiven = NOT_GIVEN,
+        active: bool | Omit = omit,
+        name: str | Omit = omit,
+        settings: SettingsParam | Omit = omit,
+        settings_url: str | Omit = omit,
+        short_name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AuthenticationProviderUpdateResponse:
         """
         Updates settings of an existing authentication provider.
@@ -205,7 +205,7 @@ class AuthenticationProvidersResource(SyncAPIResource):
     def list(
         self,
         *,
-        page: authentication_provider_list_params.Page | NotGiven = NOT_GIVEN,
+        page: authentication_provider_list_params.Page | Omit = omit,
         sort: Literal[
             "name",
             "-name",
@@ -218,13 +218,13 @@ class AuthenticationProvidersResource(SyncAPIResource):
             "updated_at",
             "-updated_at",
         ]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AuthenticationProviderListResponse:
         """
         Returns a list of your SSO authentication providers.
@@ -282,7 +282,7 @@ class AuthenticationProvidersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AuthenticationProviderDeleteResponse:
         """
         Deletes an existing authentication provider.
@@ -333,14 +333,14 @@ class AsyncAuthenticationProvidersResource(AsyncAPIResource):
         name: str,
         settings: SettingsParam,
         short_name: str,
-        active: bool | NotGiven = NOT_GIVEN,
-        settings_url: str | NotGiven = NOT_GIVEN,
+        active: bool | Omit = omit,
+        settings_url: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AuthenticationProviderCreateResponse:
         """
         Creates an authentication provider.
@@ -393,7 +393,7 @@ class AsyncAuthenticationProvidersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AuthenticationProviderRetrieveResponse:
         """
         Retrieves the details of an existing authentication provider.
@@ -421,17 +421,17 @@ class AsyncAuthenticationProvidersResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        active: bool | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        settings: SettingsParam | NotGiven = NOT_GIVEN,
-        settings_url: str | NotGiven = NOT_GIVEN,
-        short_name: str | NotGiven = NOT_GIVEN,
+        active: bool | Omit = omit,
+        name: str | Omit = omit,
+        settings: SettingsParam | Omit = omit,
+        settings_url: str | Omit = omit,
+        short_name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AuthenticationProviderUpdateResponse:
         """
         Updates settings of an existing authentication provider.
@@ -480,7 +480,7 @@ class AsyncAuthenticationProvidersResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        page: authentication_provider_list_params.Page | NotGiven = NOT_GIVEN,
+        page: authentication_provider_list_params.Page | Omit = omit,
         sort: Literal[
             "name",
             "-name",
@@ -493,13 +493,13 @@ class AsyncAuthenticationProvidersResource(AsyncAPIResource):
             "updated_at",
             "-updated_at",
         ]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AuthenticationProviderListResponse:
         """
         Returns a list of your SSO authentication providers.
@@ -557,7 +557,7 @@ class AsyncAuthenticationProvidersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AuthenticationProviderDeleteResponse:
         """
         Deletes an existing authentication provider.

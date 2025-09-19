@@ -9,7 +9,7 @@ from ..types import (
     customer_service_record_create_params,
     customer_service_record_verify_phone_number_coverage_params,
 )
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from .._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -54,14 +54,14 @@ class CustomerServiceRecordsResource(SyncAPIResource):
         self,
         *,
         phone_number: str,
-        additional_data: customer_service_record_create_params.AdditionalData | NotGiven = NOT_GIVEN,
-        webhook_url: str | NotGiven = NOT_GIVEN,
+        additional_data: customer_service_record_create_params.AdditionalData | Omit = omit,
+        webhook_url: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerServiceRecordCreateResponse:
         """
         Create a new customer service record for the provided phone number.
@@ -104,7 +104,7 @@ class CustomerServiceRecordsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerServiceRecordRetrieveResponse:
         """
         Get a specific customer service record.
@@ -133,15 +133,15 @@ class CustomerServiceRecordsResource(SyncAPIResource):
     def list(
         self,
         *,
-        filter: customer_service_record_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: customer_service_record_list_params.Page | NotGiven = NOT_GIVEN,
-        sort: customer_service_record_list_params.Sort | NotGiven = NOT_GIVEN,
+        filter: customer_service_record_list_params.Filter | Omit = omit,
+        page: customer_service_record_list_params.Page | Omit = omit,
+        sort: customer_service_record_list_params.Sort | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerServiceRecordListResponse:
         """
         List customer service records.
@@ -193,7 +193,7 @@ class CustomerServiceRecordsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerServiceRecordVerifyPhoneNumberCoverageResponse:
         """
         Verify the coverage for a list of phone numbers.
@@ -246,14 +246,14 @@ class AsyncCustomerServiceRecordsResource(AsyncAPIResource):
         self,
         *,
         phone_number: str,
-        additional_data: customer_service_record_create_params.AdditionalData | NotGiven = NOT_GIVEN,
-        webhook_url: str | NotGiven = NOT_GIVEN,
+        additional_data: customer_service_record_create_params.AdditionalData | Omit = omit,
+        webhook_url: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerServiceRecordCreateResponse:
         """
         Create a new customer service record for the provided phone number.
@@ -296,7 +296,7 @@ class AsyncCustomerServiceRecordsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerServiceRecordRetrieveResponse:
         """
         Get a specific customer service record.
@@ -325,15 +325,15 @@ class AsyncCustomerServiceRecordsResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        filter: customer_service_record_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: customer_service_record_list_params.Page | NotGiven = NOT_GIVEN,
-        sort: customer_service_record_list_params.Sort | NotGiven = NOT_GIVEN,
+        filter: customer_service_record_list_params.Filter | Omit = omit,
+        page: customer_service_record_list_params.Page | Omit = omit,
+        sort: customer_service_record_list_params.Sort | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerServiceRecordListResponse:
         """
         List customer service records.
@@ -385,7 +385,7 @@ class AsyncCustomerServiceRecordsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerServiceRecordVerifyPhoneNumberCoverageResponse:
         """
         Verify the coverage for a list of phone numbers.

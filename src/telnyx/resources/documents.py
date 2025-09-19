@@ -8,7 +8,7 @@ from typing_extensions import Literal, overload
 import httpx
 
 from ..types import document_list_params, document_update_params, document_upload_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven, Base64FileInput
+from .._types import Body, Omit, Query, Headers, NotGiven, Base64FileInput, omit, not_given
 from .._utils import extract_files, required_args, maybe_transform, deepcopy_minimal, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -66,7 +66,7 @@ class DocumentsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DocumentRetrieveResponse:
         """
         Retrieve a document.
@@ -94,14 +94,14 @@ class DocumentsResource(SyncAPIResource):
         self,
         id: str,
         *,
-        customer_reference: str | NotGiven = NOT_GIVEN,
-        filename: str | NotGiven = NOT_GIVEN,
+        customer_reference: str | Omit = omit,
+        filename: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DocumentUpdateResponse:
         """
         Update a document.
@@ -139,16 +139,16 @@ class DocumentsResource(SyncAPIResource):
     def list(
         self,
         *,
-        filter: document_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: document_list_params.Page | NotGiven = NOT_GIVEN,
+        filter: document_list_params.Filter | Omit = omit,
+        page: document_list_params.Page | Omit = omit,
         sort: List[Literal["filename", "created_at", "updated_at", "-filename", "-created_at", "-updated_at"]]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DocumentListResponse:
         """
         List all documents ordered by created_at descending.
@@ -200,7 +200,7 @@ class DocumentsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DocumentDeleteResponse:
         """
         Delete a document.<br /><br />A document can only be deleted if it's not linked
@@ -235,7 +235,7 @@ class DocumentsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BinaryAPIResponse:
         """
         Download a document.
@@ -269,7 +269,7 @@ class DocumentsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DocumentGenerateDownloadLinkResponse:
         """
         Generates a temporary pre-signed URL that can be used to download the document
@@ -299,14 +299,14 @@ class DocumentsResource(SyncAPIResource):
         self,
         *,
         url: str,
-        customer_reference: str | NotGiven = NOT_GIVEN,
-        filename: str | NotGiven = NOT_GIVEN,
+        customer_reference: str | Omit = omit,
+        filename: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DocumentUploadResponse:
         """
         Upload a document.<br /><br />Uploaded files must be linked to a service within
@@ -335,14 +335,14 @@ class DocumentsResource(SyncAPIResource):
         self,
         *,
         file: Union[str, Base64FileInput],
-        customer_reference: str | NotGiven = NOT_GIVEN,
-        filename: str | NotGiven = NOT_GIVEN,
+        customer_reference: str | Omit = omit,
+        filename: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DocumentUploadResponse:
         """
         Upload a document.<br /><br />Uploaded files must be linked to a service within
@@ -369,16 +369,16 @@ class DocumentsResource(SyncAPIResource):
     def upload(
         self,
         *,
-        url: str | NotGiven = NOT_GIVEN,
-        customer_reference: str | NotGiven = NOT_GIVEN,
-        filename: str | NotGiven = NOT_GIVEN,
-        file: Union[str, Base64FileInput] | NotGiven = NOT_GIVEN,
+        url: str | Omit = omit,
+        customer_reference: str | Omit = omit,
+        filename: str | Omit = omit,
+        file: Union[str, Base64FileInput] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DocumentUploadResponse:
         body = deepcopy_minimal(
             {
@@ -434,7 +434,7 @@ class AsyncDocumentsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DocumentRetrieveResponse:
         """
         Retrieve a document.
@@ -462,14 +462,14 @@ class AsyncDocumentsResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        customer_reference: str | NotGiven = NOT_GIVEN,
-        filename: str | NotGiven = NOT_GIVEN,
+        customer_reference: str | Omit = omit,
+        filename: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DocumentUpdateResponse:
         """
         Update a document.
@@ -507,16 +507,16 @@ class AsyncDocumentsResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        filter: document_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: document_list_params.Page | NotGiven = NOT_GIVEN,
+        filter: document_list_params.Filter | Omit = omit,
+        page: document_list_params.Page | Omit = omit,
         sort: List[Literal["filename", "created_at", "updated_at", "-filename", "-created_at", "-updated_at"]]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DocumentListResponse:
         """
         List all documents ordered by created_at descending.
@@ -568,7 +568,7 @@ class AsyncDocumentsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DocumentDeleteResponse:
         """
         Delete a document.<br /><br />A document can only be deleted if it's not linked
@@ -603,7 +603,7 @@ class AsyncDocumentsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncBinaryAPIResponse:
         """
         Download a document.
@@ -637,7 +637,7 @@ class AsyncDocumentsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DocumentGenerateDownloadLinkResponse:
         """
         Generates a temporary pre-signed URL that can be used to download the document
@@ -667,14 +667,14 @@ class AsyncDocumentsResource(AsyncAPIResource):
         self,
         *,
         url: str,
-        customer_reference: str | NotGiven = NOT_GIVEN,
-        filename: str | NotGiven = NOT_GIVEN,
+        customer_reference: str | Omit = omit,
+        filename: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DocumentUploadResponse:
         """
         Upload a document.<br /><br />Uploaded files must be linked to a service within
@@ -703,14 +703,14 @@ class AsyncDocumentsResource(AsyncAPIResource):
         self,
         *,
         file: Union[str, Base64FileInput],
-        customer_reference: str | NotGiven = NOT_GIVEN,
-        filename: str | NotGiven = NOT_GIVEN,
+        customer_reference: str | Omit = omit,
+        filename: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DocumentUploadResponse:
         """
         Upload a document.<br /><br />Uploaded files must be linked to a service within
@@ -737,16 +737,16 @@ class AsyncDocumentsResource(AsyncAPIResource):
     async def upload(
         self,
         *,
-        url: str | NotGiven = NOT_GIVEN,
-        customer_reference: str | NotGiven = NOT_GIVEN,
-        filename: str | NotGiven = NOT_GIVEN,
-        file: Union[str, Base64FileInput] | NotGiven = NOT_GIVEN,
+        url: str | Omit = omit,
+        customer_reference: str | Omit = omit,
+        filename: str | Omit = omit,
+        file: Union[str, Base64FileInput] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DocumentUploadResponse:
         body = deepcopy_minimal(
             {

@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ..types import verify_profile_list_params, verify_profile_create_params, verify_profile_update_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -47,18 +47,18 @@ class VerifyProfilesResource(SyncAPIResource):
         self,
         *,
         name: str,
-        call: verify_profile_create_params.Call | NotGiven = NOT_GIVEN,
-        flashcall: verify_profile_create_params.Flashcall | NotGiven = NOT_GIVEN,
-        language: str | NotGiven = NOT_GIVEN,
-        sms: verify_profile_create_params.SMS | NotGiven = NOT_GIVEN,
-        webhook_failover_url: str | NotGiven = NOT_GIVEN,
-        webhook_url: str | NotGiven = NOT_GIVEN,
+        call: verify_profile_create_params.Call | Omit = omit,
+        flashcall: verify_profile_create_params.Flashcall | Omit = omit,
+        language: str | Omit = omit,
+        sms: verify_profile_create_params.SMS | Omit = omit,
+        webhook_failover_url: str | Omit = omit,
+        webhook_url: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VerifyProfileData:
         """
         Creates a new Verify profile to associate verifications with.
@@ -101,7 +101,7 @@ class VerifyProfilesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VerifyProfileData:
         """
         Gets a single Verify profile.
@@ -129,19 +129,19 @@ class VerifyProfilesResource(SyncAPIResource):
         self,
         verify_profile_id: str,
         *,
-        call: verify_profile_update_params.Call | NotGiven = NOT_GIVEN,
-        flashcall: verify_profile_update_params.Flashcall | NotGiven = NOT_GIVEN,
-        language: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        sms: verify_profile_update_params.SMS | NotGiven = NOT_GIVEN,
-        webhook_failover_url: str | NotGiven = NOT_GIVEN,
-        webhook_url: str | NotGiven = NOT_GIVEN,
+        call: verify_profile_update_params.Call | Omit = omit,
+        flashcall: verify_profile_update_params.Flashcall | Omit = omit,
+        language: str | Omit = omit,
+        name: str | Omit = omit,
+        sms: verify_profile_update_params.SMS | Omit = omit,
+        webhook_failover_url: str | Omit = omit,
+        webhook_url: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VerifyProfileData:
         """
         Update Verify profile
@@ -180,14 +180,14 @@ class VerifyProfilesResource(SyncAPIResource):
     def list(
         self,
         *,
-        filter: verify_profile_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: verify_profile_list_params.Page | NotGiven = NOT_GIVEN,
+        filter: verify_profile_list_params.Filter | Omit = omit,
+        page: verify_profile_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VerifyProfileListResponse:
         """
         Gets a paginated list of Verify profiles.
@@ -233,7 +233,7 @@ class VerifyProfilesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VerifyProfileData:
         """
         Delete Verify profile
@@ -265,7 +265,7 @@ class VerifyProfilesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VerifyProfileRetrieveTemplatesResponse:
         """List all Verify profile message templates."""
         return self._get(
@@ -301,18 +301,18 @@ class AsyncVerifyProfilesResource(AsyncAPIResource):
         self,
         *,
         name: str,
-        call: verify_profile_create_params.Call | NotGiven = NOT_GIVEN,
-        flashcall: verify_profile_create_params.Flashcall | NotGiven = NOT_GIVEN,
-        language: str | NotGiven = NOT_GIVEN,
-        sms: verify_profile_create_params.SMS | NotGiven = NOT_GIVEN,
-        webhook_failover_url: str | NotGiven = NOT_GIVEN,
-        webhook_url: str | NotGiven = NOT_GIVEN,
+        call: verify_profile_create_params.Call | Omit = omit,
+        flashcall: verify_profile_create_params.Flashcall | Omit = omit,
+        language: str | Omit = omit,
+        sms: verify_profile_create_params.SMS | Omit = omit,
+        webhook_failover_url: str | Omit = omit,
+        webhook_url: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VerifyProfileData:
         """
         Creates a new Verify profile to associate verifications with.
@@ -355,7 +355,7 @@ class AsyncVerifyProfilesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VerifyProfileData:
         """
         Gets a single Verify profile.
@@ -383,19 +383,19 @@ class AsyncVerifyProfilesResource(AsyncAPIResource):
         self,
         verify_profile_id: str,
         *,
-        call: verify_profile_update_params.Call | NotGiven = NOT_GIVEN,
-        flashcall: verify_profile_update_params.Flashcall | NotGiven = NOT_GIVEN,
-        language: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        sms: verify_profile_update_params.SMS | NotGiven = NOT_GIVEN,
-        webhook_failover_url: str | NotGiven = NOT_GIVEN,
-        webhook_url: str | NotGiven = NOT_GIVEN,
+        call: verify_profile_update_params.Call | Omit = omit,
+        flashcall: verify_profile_update_params.Flashcall | Omit = omit,
+        language: str | Omit = omit,
+        name: str | Omit = omit,
+        sms: verify_profile_update_params.SMS | Omit = omit,
+        webhook_failover_url: str | Omit = omit,
+        webhook_url: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VerifyProfileData:
         """
         Update Verify profile
@@ -434,14 +434,14 @@ class AsyncVerifyProfilesResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        filter: verify_profile_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: verify_profile_list_params.Page | NotGiven = NOT_GIVEN,
+        filter: verify_profile_list_params.Filter | Omit = omit,
+        page: verify_profile_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VerifyProfileListResponse:
         """
         Gets a paginated list of Verify profiles.
@@ -487,7 +487,7 @@ class AsyncVerifyProfilesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VerifyProfileData:
         """
         Delete Verify profile
@@ -519,7 +519,7 @@ class AsyncVerifyProfilesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VerifyProfileRetrieveTemplatesResponse:
         """List all Verify profile message templates."""
         return await self._get(

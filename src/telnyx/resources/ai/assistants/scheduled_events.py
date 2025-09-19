@@ -7,7 +7,7 @@ from datetime import datetime
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -54,14 +54,14 @@ class ScheduledEventsResource(SyncAPIResource):
         telnyx_agent_target: str,
         telnyx_conversation_channel: ConversationChannelType,
         telnyx_end_user_target: str,
-        conversation_metadata: Dict[str, Union[str, int, bool]] | NotGiven = NOT_GIVEN,
-        text: str | NotGiven = NOT_GIVEN,
+        conversation_metadata: Dict[str, Union[str, int, bool]] | Omit = omit,
+        text: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ScheduledEventResponse:
         """
         Create a scheduled event for an assistant
@@ -122,7 +122,7 @@ class ScheduledEventsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ScheduledEventResponse:
         """
         Retrieve a scheduled event by event ID
@@ -157,16 +157,16 @@ class ScheduledEventsResource(SyncAPIResource):
         self,
         assistant_id: str,
         *,
-        conversation_channel: ConversationChannelType | NotGiven = NOT_GIVEN,
-        from_date: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        page: scheduled_event_list_params.Page | NotGiven = NOT_GIVEN,
-        to_date: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        conversation_channel: ConversationChannelType | Omit = omit,
+        from_date: Union[str, datetime] | Omit = omit,
+        page: scheduled_event_list_params.Page | Omit = omit,
+        to_date: Union[str, datetime] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ScheduledEventListResponse:
         """
         Get scheduled events for an assistant with pagination and filtering
@@ -215,7 +215,7 @@ class ScheduledEventsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """If the event is pending, this will cancel the event.
 
@@ -272,14 +272,14 @@ class AsyncScheduledEventsResource(AsyncAPIResource):
         telnyx_agent_target: str,
         telnyx_conversation_channel: ConversationChannelType,
         telnyx_end_user_target: str,
-        conversation_metadata: Dict[str, Union[str, int, bool]] | NotGiven = NOT_GIVEN,
-        text: str | NotGiven = NOT_GIVEN,
+        conversation_metadata: Dict[str, Union[str, int, bool]] | Omit = omit,
+        text: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ScheduledEventResponse:
         """
         Create a scheduled event for an assistant
@@ -340,7 +340,7 @@ class AsyncScheduledEventsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ScheduledEventResponse:
         """
         Retrieve a scheduled event by event ID
@@ -375,16 +375,16 @@ class AsyncScheduledEventsResource(AsyncAPIResource):
         self,
         assistant_id: str,
         *,
-        conversation_channel: ConversationChannelType | NotGiven = NOT_GIVEN,
-        from_date: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        page: scheduled_event_list_params.Page | NotGiven = NOT_GIVEN,
-        to_date: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        conversation_channel: ConversationChannelType | Omit = omit,
+        from_date: Union[str, datetime] | Omit = omit,
+        page: scheduled_event_list_params.Page | Omit = omit,
+        to_date: Union[str, datetime] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ScheduledEventListResponse:
         """
         Get scheduled events for an assistant with pagination and filtering
@@ -433,7 +433,7 @@ class AsyncScheduledEventsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """If the event is pending, this will cancel the event.
 

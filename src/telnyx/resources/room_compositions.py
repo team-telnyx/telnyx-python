@@ -7,7 +7,7 @@ from typing import Dict, Optional
 import httpx
 
 from ..types import room_composition_list_params, room_composition_create_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from .._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -49,19 +49,19 @@ class RoomCompositionsResource(SyncAPIResource):
     def create(
         self,
         *,
-        format: Optional[str] | NotGiven = NOT_GIVEN,
-        resolution: Optional[str] | NotGiven = NOT_GIVEN,
-        session_id: Optional[str] | NotGiven = NOT_GIVEN,
-        video_layout: Dict[str, VideoRegionParam] | NotGiven = NOT_GIVEN,
-        webhook_event_failover_url: Optional[str] | NotGiven = NOT_GIVEN,
-        webhook_event_url: str | NotGiven = NOT_GIVEN,
-        webhook_timeout_secs: Optional[int] | NotGiven = NOT_GIVEN,
+        format: Optional[str] | Omit = omit,
+        resolution: Optional[str] | Omit = omit,
+        session_id: Optional[str] | Omit = omit,
+        video_layout: Dict[str, VideoRegionParam] | Omit = omit,
+        webhook_event_failover_url: Optional[str] | Omit = omit,
+        webhook_event_url: str | Omit = omit,
+        webhook_timeout_secs: Optional[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RoomCompositionCreateResponse:
         """
         Asynchronously create a room composition.
@@ -122,7 +122,7 @@ class RoomCompositionsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RoomCompositionRetrieveResponse:
         """
         View a room composition.
@@ -151,14 +151,14 @@ class RoomCompositionsResource(SyncAPIResource):
     def list(
         self,
         *,
-        filter: room_composition_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: room_composition_list_params.Page | NotGiven = NOT_GIVEN,
+        filter: room_composition_list_params.Filter | Omit = omit,
+        page: room_composition_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RoomCompositionListResponse:
         """
         View a list of room compositions.
@@ -207,7 +207,7 @@ class RoomCompositionsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Synchronously delete a room composition.
@@ -258,19 +258,19 @@ class AsyncRoomCompositionsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        format: Optional[str] | NotGiven = NOT_GIVEN,
-        resolution: Optional[str] | NotGiven = NOT_GIVEN,
-        session_id: Optional[str] | NotGiven = NOT_GIVEN,
-        video_layout: Dict[str, VideoRegionParam] | NotGiven = NOT_GIVEN,
-        webhook_event_failover_url: Optional[str] | NotGiven = NOT_GIVEN,
-        webhook_event_url: str | NotGiven = NOT_GIVEN,
-        webhook_timeout_secs: Optional[int] | NotGiven = NOT_GIVEN,
+        format: Optional[str] | Omit = omit,
+        resolution: Optional[str] | Omit = omit,
+        session_id: Optional[str] | Omit = omit,
+        video_layout: Dict[str, VideoRegionParam] | Omit = omit,
+        webhook_event_failover_url: Optional[str] | Omit = omit,
+        webhook_event_url: str | Omit = omit,
+        webhook_timeout_secs: Optional[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RoomCompositionCreateResponse:
         """
         Asynchronously create a room composition.
@@ -331,7 +331,7 @@ class AsyncRoomCompositionsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RoomCompositionRetrieveResponse:
         """
         View a room composition.
@@ -360,14 +360,14 @@ class AsyncRoomCompositionsResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        filter: room_composition_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: room_composition_list_params.Page | NotGiven = NOT_GIVEN,
+        filter: room_composition_list_params.Filter | Omit = omit,
+        page: room_composition_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RoomCompositionListResponse:
         """
         View a list of room compositions.
@@ -416,7 +416,7 @@ class AsyncRoomCompositionsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Synchronously delete a room composition.

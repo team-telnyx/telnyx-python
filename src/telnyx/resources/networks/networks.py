@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ...types import network_list_params, network_create_params, network_update_params, network_list_interfaces_params
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -67,7 +67,7 @@ class NetworksResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NetworkCreateResponse:
         """
         Create a new Network.
@@ -101,7 +101,7 @@ class NetworksResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NetworkRetrieveResponse:
         """
         Retrieve a Network.
@@ -135,7 +135,7 @@ class NetworksResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NetworkUpdateResponse:
         """
         Update a Network.
@@ -165,14 +165,14 @@ class NetworksResource(SyncAPIResource):
     def list(
         self,
         *,
-        filter: network_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: network_list_params.Page | NotGiven = NOT_GIVEN,
+        filter: network_list_params.Filter | Omit = omit,
+        page: network_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NetworkListResponse:
         """
         List all Networks.
@@ -218,7 +218,7 @@ class NetworksResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NetworkDeleteResponse:
         """
         Delete a Network.
@@ -246,14 +246,14 @@ class NetworksResource(SyncAPIResource):
         self,
         id: str,
         *,
-        filter: network_list_interfaces_params.Filter | NotGiven = NOT_GIVEN,
-        page: network_list_interfaces_params.Page | NotGiven = NOT_GIVEN,
+        filter: network_list_interfaces_params.Filter | Omit = omit,
+        page: network_list_interfaces_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NetworkListInterfacesResponse:
         """
         List all Interfaces for a Network.
@@ -327,7 +327,7 @@ class AsyncNetworksResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NetworkCreateResponse:
         """
         Create a new Network.
@@ -361,7 +361,7 @@ class AsyncNetworksResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NetworkRetrieveResponse:
         """
         Retrieve a Network.
@@ -395,7 +395,7 @@ class AsyncNetworksResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NetworkUpdateResponse:
         """
         Update a Network.
@@ -425,14 +425,14 @@ class AsyncNetworksResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        filter: network_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: network_list_params.Page | NotGiven = NOT_GIVEN,
+        filter: network_list_params.Filter | Omit = omit,
+        page: network_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NetworkListResponse:
         """
         List all Networks.
@@ -478,7 +478,7 @@ class AsyncNetworksResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NetworkDeleteResponse:
         """
         Delete a Network.
@@ -506,14 +506,14 @@ class AsyncNetworksResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        filter: network_list_interfaces_params.Filter | NotGiven = NOT_GIVEN,
-        page: network_list_interfaces_params.Page | NotGiven = NOT_GIVEN,
+        filter: network_list_interfaces_params.Filter | Omit = omit,
+        page: network_list_interfaces_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NetworkListInterfacesResponse:
         """
         List all Interfaces for a Network.

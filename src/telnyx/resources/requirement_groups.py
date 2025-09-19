@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..types import requirement_group_list_params, requirement_group_create_params, requirement_group_update_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -51,14 +51,14 @@ class RequirementGroupsResource(SyncAPIResource):
         action: Literal["ordering", "porting"],
         country_code: str,
         phone_number_type: Literal["local", "toll_free", "mobile", "national", "shared_cost"],
-        customer_reference: str | NotGiven = NOT_GIVEN,
-        regulatory_requirements: Iterable[requirement_group_create_params.RegulatoryRequirement] | NotGiven = NOT_GIVEN,
+        customer_reference: str | Omit = omit,
+        regulatory_requirements: Iterable[requirement_group_create_params.RegulatoryRequirement] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RequirementGroup:
         """
         Create a new requirement group
@@ -101,7 +101,7 @@ class RequirementGroupsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RequirementGroup:
         """
         Get a single requirement group by ID
@@ -129,14 +129,14 @@ class RequirementGroupsResource(SyncAPIResource):
         self,
         id: str,
         *,
-        customer_reference: str | NotGiven = NOT_GIVEN,
-        regulatory_requirements: Iterable[requirement_group_update_params.RegulatoryRequirement] | NotGiven = NOT_GIVEN,
+        customer_reference: str | Omit = omit,
+        regulatory_requirements: Iterable[requirement_group_update_params.RegulatoryRequirement] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RequirementGroup:
         """
         Update requirement values in requirement group
@@ -172,13 +172,13 @@ class RequirementGroupsResource(SyncAPIResource):
     def list(
         self,
         *,
-        filter: requirement_group_list_params.Filter | NotGiven = NOT_GIVEN,
+        filter: requirement_group_list_params.Filter | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RequirementGroupListResponse:
         """
         List requirement groups
@@ -218,7 +218,7 @@ class RequirementGroupsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RequirementGroup:
         """
         Delete a requirement group by ID
@@ -251,7 +251,7 @@ class RequirementGroupsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RequirementGroup:
         """
         Submit a Requirement Group for Approval
@@ -302,14 +302,14 @@ class AsyncRequirementGroupsResource(AsyncAPIResource):
         action: Literal["ordering", "porting"],
         country_code: str,
         phone_number_type: Literal["local", "toll_free", "mobile", "national", "shared_cost"],
-        customer_reference: str | NotGiven = NOT_GIVEN,
-        regulatory_requirements: Iterable[requirement_group_create_params.RegulatoryRequirement] | NotGiven = NOT_GIVEN,
+        customer_reference: str | Omit = omit,
+        regulatory_requirements: Iterable[requirement_group_create_params.RegulatoryRequirement] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RequirementGroup:
         """
         Create a new requirement group
@@ -352,7 +352,7 @@ class AsyncRequirementGroupsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RequirementGroup:
         """
         Get a single requirement group by ID
@@ -380,14 +380,14 @@ class AsyncRequirementGroupsResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        customer_reference: str | NotGiven = NOT_GIVEN,
-        regulatory_requirements: Iterable[requirement_group_update_params.RegulatoryRequirement] | NotGiven = NOT_GIVEN,
+        customer_reference: str | Omit = omit,
+        regulatory_requirements: Iterable[requirement_group_update_params.RegulatoryRequirement] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RequirementGroup:
         """
         Update requirement values in requirement group
@@ -423,13 +423,13 @@ class AsyncRequirementGroupsResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        filter: requirement_group_list_params.Filter | NotGiven = NOT_GIVEN,
+        filter: requirement_group_list_params.Filter | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RequirementGroupListResponse:
         """
         List requirement groups
@@ -471,7 +471,7 @@ class AsyncRequirementGroupsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RequirementGroup:
         """
         Delete a requirement group by ID
@@ -504,7 +504,7 @@ class AsyncRequirementGroupsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RequirementGroup:
         """
         Submit a Requirement Group for Approval

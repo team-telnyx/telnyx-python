@@ -20,7 +20,7 @@ from .actions import (
     ActionsResourceWithStreamingResponse,
     AsyncActionsResourceWithStreamingResponse,
 )
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -71,16 +71,16 @@ class ManagedAccountsResource(SyncAPIResource):
         self,
         *,
         business_name: str,
-        email: str | NotGiven = NOT_GIVEN,
-        managed_account_allow_custom_pricing: bool | NotGiven = NOT_GIVEN,
-        password: str | NotGiven = NOT_GIVEN,
-        rollup_billing: bool | NotGiven = NOT_GIVEN,
+        email: str | Omit = omit,
+        managed_account_allow_custom_pricing: bool | Omit = omit,
+        password: str | Omit = omit,
+        rollup_billing: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ManagedAccountCreateResponse:
         """Create a new managed account owned by the authenticated user.
 
@@ -145,7 +145,7 @@ class ManagedAccountsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ManagedAccountRetrieveResponse:
         """
         Retrieves the details of a single managed account.
@@ -173,13 +173,13 @@ class ManagedAccountsResource(SyncAPIResource):
         self,
         id: str,
         *,
-        managed_account_allow_custom_pricing: bool | NotGiven = NOT_GIVEN,
+        managed_account_allow_custom_pricing: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ManagedAccountUpdateResponse:
         """
         Update a single managed account.
@@ -215,16 +215,16 @@ class ManagedAccountsResource(SyncAPIResource):
     def list(
         self,
         *,
-        filter: managed_account_list_params.Filter | NotGiven = NOT_GIVEN,
-        include_cancelled_accounts: bool | NotGiven = NOT_GIVEN,
-        page: managed_account_list_params.Page | NotGiven = NOT_GIVEN,
-        sort: Literal["created_at", "email"] | NotGiven = NOT_GIVEN,
+        filter: managed_account_list_params.Filter | Omit = omit,
+        include_cancelled_accounts: bool | Omit = omit,
+        page: managed_account_list_params.Page | Omit = omit,
+        sort: Literal["created_at", "email"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ManagedAccountListResponse:
         """Lists the accounts managed by the current user.
 
@@ -293,7 +293,7 @@ class ManagedAccountsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ManagedAccountGetAllocatableGlobalOutboundChannelsResponse:
         """
         Display information about allocatable global outbound channels for the current
@@ -311,13 +311,13 @@ class ManagedAccountsResource(SyncAPIResource):
         self,
         id: str,
         *,
-        channel_limit: int | NotGiven = NOT_GIVEN,
+        channel_limit: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ManagedAccountUpdateGlobalChannelLimitResponse:
         """
         Update the amount of allocatable global outbound channels allocated to a
@@ -380,16 +380,16 @@ class AsyncManagedAccountsResource(AsyncAPIResource):
         self,
         *,
         business_name: str,
-        email: str | NotGiven = NOT_GIVEN,
-        managed_account_allow_custom_pricing: bool | NotGiven = NOT_GIVEN,
-        password: str | NotGiven = NOT_GIVEN,
-        rollup_billing: bool | NotGiven = NOT_GIVEN,
+        email: str | Omit = omit,
+        managed_account_allow_custom_pricing: bool | Omit = omit,
+        password: str | Omit = omit,
+        rollup_billing: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ManagedAccountCreateResponse:
         """Create a new managed account owned by the authenticated user.
 
@@ -454,7 +454,7 @@ class AsyncManagedAccountsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ManagedAccountRetrieveResponse:
         """
         Retrieves the details of a single managed account.
@@ -482,13 +482,13 @@ class AsyncManagedAccountsResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        managed_account_allow_custom_pricing: bool | NotGiven = NOT_GIVEN,
+        managed_account_allow_custom_pricing: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ManagedAccountUpdateResponse:
         """
         Update a single managed account.
@@ -524,16 +524,16 @@ class AsyncManagedAccountsResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        filter: managed_account_list_params.Filter | NotGiven = NOT_GIVEN,
-        include_cancelled_accounts: bool | NotGiven = NOT_GIVEN,
-        page: managed_account_list_params.Page | NotGiven = NOT_GIVEN,
-        sort: Literal["created_at", "email"] | NotGiven = NOT_GIVEN,
+        filter: managed_account_list_params.Filter | Omit = omit,
+        include_cancelled_accounts: bool | Omit = omit,
+        page: managed_account_list_params.Page | Omit = omit,
+        sort: Literal["created_at", "email"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ManagedAccountListResponse:
         """Lists the accounts managed by the current user.
 
@@ -602,7 +602,7 @@ class AsyncManagedAccountsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ManagedAccountGetAllocatableGlobalOutboundChannelsResponse:
         """
         Display information about allocatable global outbound channels for the current
@@ -620,13 +620,13 @@ class AsyncManagedAccountsResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        channel_limit: int | NotGiven = NOT_GIVEN,
+        channel_limit: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ManagedAccountUpdateGlobalChannelLimitResponse:
         """
         Update the amount of allocatable global outbound channels allocated to a

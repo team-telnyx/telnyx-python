@@ -7,7 +7,7 @@ from typing import Dict
 import httpx
 
 from ..types import global_ip_health_check_list_params, global_ip_health_check_create_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -49,15 +49,15 @@ class GlobalIPHealthChecksResource(SyncAPIResource):
     def create(
         self,
         *,
-        global_ip_id: str | NotGiven = NOT_GIVEN,
-        health_check_params: Dict[str, object] | NotGiven = NOT_GIVEN,
-        health_check_type: str | NotGiven = NOT_GIVEN,
+        global_ip_id: str | Omit = omit,
+        health_check_params: Dict[str, object] | Omit = omit,
+        health_check_type: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GlobalIPHealthCheckCreateResponse:
         """
         Create a Global IP health check.
@@ -102,7 +102,7 @@ class GlobalIPHealthChecksResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GlobalIPHealthCheckRetrieveResponse:
         """
         Retrieve a Global IP health check.
@@ -129,13 +129,13 @@ class GlobalIPHealthChecksResource(SyncAPIResource):
     def list(
         self,
         *,
-        page: global_ip_health_check_list_params.Page | NotGiven = NOT_GIVEN,
+        page: global_ip_health_check_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GlobalIPHealthCheckListResponse:
         """
         List all Global IP health checks.
@@ -173,7 +173,7 @@ class GlobalIPHealthChecksResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GlobalIPHealthCheckDeleteResponse:
         """
         Delete a Global IP health check.
@@ -221,15 +221,15 @@ class AsyncGlobalIPHealthChecksResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        global_ip_id: str | NotGiven = NOT_GIVEN,
-        health_check_params: Dict[str, object] | NotGiven = NOT_GIVEN,
-        health_check_type: str | NotGiven = NOT_GIVEN,
+        global_ip_id: str | Omit = omit,
+        health_check_params: Dict[str, object] | Omit = omit,
+        health_check_type: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GlobalIPHealthCheckCreateResponse:
         """
         Create a Global IP health check.
@@ -274,7 +274,7 @@ class AsyncGlobalIPHealthChecksResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GlobalIPHealthCheckRetrieveResponse:
         """
         Retrieve a Global IP health check.
@@ -301,13 +301,13 @@ class AsyncGlobalIPHealthChecksResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        page: global_ip_health_check_list_params.Page | NotGiven = NOT_GIVEN,
+        page: global_ip_health_check_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GlobalIPHealthCheckListResponse:
         """
         List all Global IP health checks.
@@ -347,7 +347,7 @@ class AsyncGlobalIPHealthChecksResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GlobalIPHealthCheckDeleteResponse:
         """
         Delete a Global IP health check.

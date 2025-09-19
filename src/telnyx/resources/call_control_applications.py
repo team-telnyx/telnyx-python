@@ -12,7 +12,7 @@ from ..types import (
     call_control_application_create_params,
     call_control_application_update_params,
 )
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from .._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -59,24 +59,23 @@ class CallControlApplicationsResource(SyncAPIResource):
         *,
         application_name: str,
         webhook_event_url: str,
-        active: bool | NotGiven = NOT_GIVEN,
-        anchorsite_override: Literal['"Latency"', '"Chicago, IL"', '"Ashburn, VA"', '"San Jose, CA"']
-        | NotGiven = NOT_GIVEN,
-        dtmf_type: Literal["RFC 2833", "Inband", "SIP INFO"] | NotGiven = NOT_GIVEN,
-        first_command_timeout: bool | NotGiven = NOT_GIVEN,
-        first_command_timeout_secs: int | NotGiven = NOT_GIVEN,
-        inbound: CallControlApplicationInboundParam | NotGiven = NOT_GIVEN,
-        outbound: CallControlApplicationOutboundParam | NotGiven = NOT_GIVEN,
-        redact_dtmf_debug_logging: bool | NotGiven = NOT_GIVEN,
-        webhook_api_version: Literal["1", "2"] | NotGiven = NOT_GIVEN,
-        webhook_event_failover_url: Optional[str] | NotGiven = NOT_GIVEN,
-        webhook_timeout_secs: Optional[int] | NotGiven = NOT_GIVEN,
+        active: bool | Omit = omit,
+        anchorsite_override: Literal['"Latency"', '"Chicago, IL"', '"Ashburn, VA"', '"San Jose, CA"'] | Omit = omit,
+        dtmf_type: Literal["RFC 2833", "Inband", "SIP INFO"] | Omit = omit,
+        first_command_timeout: bool | Omit = omit,
+        first_command_timeout_secs: int | Omit = omit,
+        inbound: CallControlApplicationInboundParam | Omit = omit,
+        outbound: CallControlApplicationOutboundParam | Omit = omit,
+        redact_dtmf_debug_logging: bool | Omit = omit,
+        webhook_api_version: Literal["1", "2"] | Omit = omit,
+        webhook_event_failover_url: Optional[str] | Omit = omit,
+        webhook_timeout_secs: Optional[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CallControlApplicationCreateResponse:
         """
         Create a call control application.
@@ -155,7 +154,7 @@ class CallControlApplicationsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CallControlApplicationRetrieveResponse:
         """
         Retrieves the details of an existing call control application.
@@ -185,25 +184,24 @@ class CallControlApplicationsResource(SyncAPIResource):
         *,
         application_name: str,
         webhook_event_url: str,
-        active: bool | NotGiven = NOT_GIVEN,
-        anchorsite_override: Literal['"Latency"', '"Chicago, IL"', '"Ashburn, VA"', '"San Jose, CA"']
-        | NotGiven = NOT_GIVEN,
-        dtmf_type: Literal["RFC 2833", "Inband", "SIP INFO"] | NotGiven = NOT_GIVEN,
-        first_command_timeout: bool | NotGiven = NOT_GIVEN,
-        first_command_timeout_secs: int | NotGiven = NOT_GIVEN,
-        inbound: CallControlApplicationInboundParam | NotGiven = NOT_GIVEN,
-        outbound: CallControlApplicationOutboundParam | NotGiven = NOT_GIVEN,
-        redact_dtmf_debug_logging: bool | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        webhook_api_version: Literal["1", "2"] | NotGiven = NOT_GIVEN,
-        webhook_event_failover_url: Optional[str] | NotGiven = NOT_GIVEN,
-        webhook_timeout_secs: Optional[int] | NotGiven = NOT_GIVEN,
+        active: bool | Omit = omit,
+        anchorsite_override: Literal['"Latency"', '"Chicago, IL"', '"Ashburn, VA"', '"San Jose, CA"'] | Omit = omit,
+        dtmf_type: Literal["RFC 2833", "Inband", "SIP INFO"] | Omit = omit,
+        first_command_timeout: bool | Omit = omit,
+        first_command_timeout_secs: int | Omit = omit,
+        inbound: CallControlApplicationInboundParam | Omit = omit,
+        outbound: CallControlApplicationOutboundParam | Omit = omit,
+        redact_dtmf_debug_logging: bool | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        webhook_api_version: Literal["1", "2"] | Omit = omit,
+        webhook_event_failover_url: Optional[str] | Omit = omit,
+        webhook_timeout_secs: Optional[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CallControlApplicationUpdateResponse:
         """
         Updates settings of an existing call control application.
@@ -281,15 +279,15 @@ class CallControlApplicationsResource(SyncAPIResource):
     def list(
         self,
         *,
-        filter: call_control_application_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: call_control_application_list_params.Page | NotGiven = NOT_GIVEN,
-        sort: Literal["created_at", "connection_name", "active"] | NotGiven = NOT_GIVEN,
+        filter: call_control_application_list_params.Filter | Omit = omit,
+        page: call_control_application_list_params.Page | Omit = omit,
+        sort: Literal["created_at", "connection_name", "active"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CallControlApplicationListResponse:
         """
         Return a list of call control applications.
@@ -356,7 +354,7 @@ class CallControlApplicationsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CallControlApplicationDeleteResponse:
         """
         Deletes a call control application.
@@ -406,24 +404,23 @@ class AsyncCallControlApplicationsResource(AsyncAPIResource):
         *,
         application_name: str,
         webhook_event_url: str,
-        active: bool | NotGiven = NOT_GIVEN,
-        anchorsite_override: Literal['"Latency"', '"Chicago, IL"', '"Ashburn, VA"', '"San Jose, CA"']
-        | NotGiven = NOT_GIVEN,
-        dtmf_type: Literal["RFC 2833", "Inband", "SIP INFO"] | NotGiven = NOT_GIVEN,
-        first_command_timeout: bool | NotGiven = NOT_GIVEN,
-        first_command_timeout_secs: int | NotGiven = NOT_GIVEN,
-        inbound: CallControlApplicationInboundParam | NotGiven = NOT_GIVEN,
-        outbound: CallControlApplicationOutboundParam | NotGiven = NOT_GIVEN,
-        redact_dtmf_debug_logging: bool | NotGiven = NOT_GIVEN,
-        webhook_api_version: Literal["1", "2"] | NotGiven = NOT_GIVEN,
-        webhook_event_failover_url: Optional[str] | NotGiven = NOT_GIVEN,
-        webhook_timeout_secs: Optional[int] | NotGiven = NOT_GIVEN,
+        active: bool | Omit = omit,
+        anchorsite_override: Literal['"Latency"', '"Chicago, IL"', '"Ashburn, VA"', '"San Jose, CA"'] | Omit = omit,
+        dtmf_type: Literal["RFC 2833", "Inband", "SIP INFO"] | Omit = omit,
+        first_command_timeout: bool | Omit = omit,
+        first_command_timeout_secs: int | Omit = omit,
+        inbound: CallControlApplicationInboundParam | Omit = omit,
+        outbound: CallControlApplicationOutboundParam | Omit = omit,
+        redact_dtmf_debug_logging: bool | Omit = omit,
+        webhook_api_version: Literal["1", "2"] | Omit = omit,
+        webhook_event_failover_url: Optional[str] | Omit = omit,
+        webhook_timeout_secs: Optional[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CallControlApplicationCreateResponse:
         """
         Create a call control application.
@@ -502,7 +499,7 @@ class AsyncCallControlApplicationsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CallControlApplicationRetrieveResponse:
         """
         Retrieves the details of an existing call control application.
@@ -532,25 +529,24 @@ class AsyncCallControlApplicationsResource(AsyncAPIResource):
         *,
         application_name: str,
         webhook_event_url: str,
-        active: bool | NotGiven = NOT_GIVEN,
-        anchorsite_override: Literal['"Latency"', '"Chicago, IL"', '"Ashburn, VA"', '"San Jose, CA"']
-        | NotGiven = NOT_GIVEN,
-        dtmf_type: Literal["RFC 2833", "Inband", "SIP INFO"] | NotGiven = NOT_GIVEN,
-        first_command_timeout: bool | NotGiven = NOT_GIVEN,
-        first_command_timeout_secs: int | NotGiven = NOT_GIVEN,
-        inbound: CallControlApplicationInboundParam | NotGiven = NOT_GIVEN,
-        outbound: CallControlApplicationOutboundParam | NotGiven = NOT_GIVEN,
-        redact_dtmf_debug_logging: bool | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        webhook_api_version: Literal["1", "2"] | NotGiven = NOT_GIVEN,
-        webhook_event_failover_url: Optional[str] | NotGiven = NOT_GIVEN,
-        webhook_timeout_secs: Optional[int] | NotGiven = NOT_GIVEN,
+        active: bool | Omit = omit,
+        anchorsite_override: Literal['"Latency"', '"Chicago, IL"', '"Ashburn, VA"', '"San Jose, CA"'] | Omit = omit,
+        dtmf_type: Literal["RFC 2833", "Inband", "SIP INFO"] | Omit = omit,
+        first_command_timeout: bool | Omit = omit,
+        first_command_timeout_secs: int | Omit = omit,
+        inbound: CallControlApplicationInboundParam | Omit = omit,
+        outbound: CallControlApplicationOutboundParam | Omit = omit,
+        redact_dtmf_debug_logging: bool | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        webhook_api_version: Literal["1", "2"] | Omit = omit,
+        webhook_event_failover_url: Optional[str] | Omit = omit,
+        webhook_timeout_secs: Optional[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CallControlApplicationUpdateResponse:
         """
         Updates settings of an existing call control application.
@@ -628,15 +624,15 @@ class AsyncCallControlApplicationsResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        filter: call_control_application_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: call_control_application_list_params.Page | NotGiven = NOT_GIVEN,
-        sort: Literal["created_at", "connection_name", "active"] | NotGiven = NOT_GIVEN,
+        filter: call_control_application_list_params.Filter | Omit = omit,
+        page: call_control_application_list_params.Page | Omit = omit,
+        sort: Literal["created_at", "connection_name", "active"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CallControlApplicationListResponse:
         """
         Return a list of call control applications.
@@ -703,7 +699,7 @@ class AsyncCallControlApplicationsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CallControlApplicationDeleteResponse:
         """
         Deletes a call control application.

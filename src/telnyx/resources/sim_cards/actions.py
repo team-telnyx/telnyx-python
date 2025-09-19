@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -63,7 +63,7 @@ class ActionsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionRetrieveResponse:
         """
         This API fetches detailed information about a SIM card action to follow-up on an
@@ -91,14 +91,14 @@ class ActionsResource(SyncAPIResource):
     def list(
         self,
         *,
-        filter: action_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: action_list_params.Page | NotGiven = NOT_GIVEN,
+        filter: action_list_params.Filter | Omit = omit,
+        page: action_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionListResponse:
         """This API lists a paginated collection of SIM card actions.
 
@@ -148,7 +148,7 @@ class ActionsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionBulkSetPublicIPsResponse:
         """
         This API triggers an asynchronous operation to set a public IP for each of the
@@ -186,7 +186,7 @@ class ActionsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionDisableResponse:
         """
         This API disables a SIM card, disconnecting it from the network and making it
@@ -224,7 +224,7 @@ class ActionsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionEnableResponse:
         """
         This API enables a SIM card, connecting it to the network and making it possible
@@ -263,7 +263,7 @@ class ActionsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionRemovePublicIPResponse:
         """This API removes an existing public IP from a SIM card.
 
@@ -296,13 +296,13 @@ class ActionsResource(SyncAPIResource):
         self,
         id: str,
         *,
-        region_code: str | NotGiven = NOT_GIVEN,
+        region_code: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionSetPublicIPResponse:
         """
         This API makes a SIM card reachable on the public internet by mapping a random
@@ -350,7 +350,7 @@ class ActionsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionSetStandbyResponse:
         """
         The SIM card will be able to connect to the network once the process to set it
@@ -384,13 +384,13 @@ class ActionsResource(SyncAPIResource):
     def validate_registration_codes(
         self,
         *,
-        registration_codes: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        registration_codes: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionValidateRegistrationCodesResponse:
         """
         It validates whether SIM card registration codes are valid or not.
@@ -446,7 +446,7 @@ class AsyncActionsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionRetrieveResponse:
         """
         This API fetches detailed information about a SIM card action to follow-up on an
@@ -474,14 +474,14 @@ class AsyncActionsResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        filter: action_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: action_list_params.Page | NotGiven = NOT_GIVEN,
+        filter: action_list_params.Filter | Omit = omit,
+        page: action_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionListResponse:
         """This API lists a paginated collection of SIM card actions.
 
@@ -531,7 +531,7 @@ class AsyncActionsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionBulkSetPublicIPsResponse:
         """
         This API triggers an asynchronous operation to set a public IP for each of the
@@ -569,7 +569,7 @@ class AsyncActionsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionDisableResponse:
         """
         This API disables a SIM card, disconnecting it from the network and making it
@@ -607,7 +607,7 @@ class AsyncActionsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionEnableResponse:
         """
         This API enables a SIM card, connecting it to the network and making it possible
@@ -646,7 +646,7 @@ class AsyncActionsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionRemovePublicIPResponse:
         """This API removes an existing public IP from a SIM card.
 
@@ -679,13 +679,13 @@ class AsyncActionsResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        region_code: str | NotGiven = NOT_GIVEN,
+        region_code: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionSetPublicIPResponse:
         """
         This API makes a SIM card reachable on the public internet by mapping a random
@@ -733,7 +733,7 @@ class AsyncActionsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionSetStandbyResponse:
         """
         The SIM card will be able to connect to the network once the process to set it
@@ -767,13 +767,13 @@ class AsyncActionsResource(AsyncAPIResource):
     async def validate_registration_codes(
         self,
         *,
-        registration_codes: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        registration_codes: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionValidateRegistrationCodesResponse:
         """
         It validates whether SIM card registration codes are valid or not.

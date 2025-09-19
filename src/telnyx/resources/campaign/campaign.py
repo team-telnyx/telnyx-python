@@ -23,7 +23,7 @@ from .usecase import (
     UsecaseResourceWithStreamingResponse,
     AsyncUsecaseResourceWithStreamingResponse,
 )
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -81,7 +81,7 @@ class CampaignResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TelnyxCampaignCsp:
         """
         Retrieve campaign details by `campaignId`.
@@ -109,23 +109,23 @@ class CampaignResource(SyncAPIResource):
         self,
         campaign_id: str,
         *,
-        auto_renewal: bool | NotGiven = NOT_GIVEN,
-        help_message: str | NotGiven = NOT_GIVEN,
-        message_flow: str | NotGiven = NOT_GIVEN,
-        reseller_id: str | NotGiven = NOT_GIVEN,
-        sample1: str | NotGiven = NOT_GIVEN,
-        sample2: str | NotGiven = NOT_GIVEN,
-        sample3: str | NotGiven = NOT_GIVEN,
-        sample4: str | NotGiven = NOT_GIVEN,
-        sample5: str | NotGiven = NOT_GIVEN,
-        webhook_failover_url: str | NotGiven = NOT_GIVEN,
-        webhook_url: str | NotGiven = NOT_GIVEN,
+        auto_renewal: bool | Omit = omit,
+        help_message: str | Omit = omit,
+        message_flow: str | Omit = omit,
+        reseller_id: str | Omit = omit,
+        sample1: str | Omit = omit,
+        sample2: str | Omit = omit,
+        sample3: str | Omit = omit,
+        sample4: str | Omit = omit,
+        sample5: str | Omit = omit,
+        webhook_failover_url: str | Omit = omit,
+        webhook_url: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TelnyxCampaignCsp:
         """Update a campaign's properties by `campaignId`.
 
@@ -194,8 +194,8 @@ class CampaignResource(SyncAPIResource):
         self,
         *,
         brand_id: str,
-        page: int | NotGiven = NOT_GIVEN,
-        records_per_page: int | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
+        records_per_page: int | Omit = omit,
         sort: Literal[
             "assignedPhoneNumbersCount",
             "-assignedPhoneNumbersCount",
@@ -208,13 +208,13 @@ class CampaignResource(SyncAPIResource):
             "tcrCampaignId",
             "-tcrCampaignId",
         ]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CampaignListResponse:
         """
         Retrieve a list of campaigns associated with a supplied `brandId`.
@@ -265,7 +265,7 @@ class CampaignResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Manually accept a campaign shared with Telnyx
@@ -300,7 +300,7 @@ class CampaignResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CampaignDeactivateResponse:
         """Terminate a campaign.
 
@@ -334,7 +334,7 @@ class CampaignResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CampaignGetMnoMetadataResponse:
         """
         Get the campaign metadata for each MNO it was submitted to.
@@ -369,7 +369,7 @@ class CampaignResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Retrieve campaign's operation status at MNO level.
@@ -402,7 +402,7 @@ class CampaignResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CampaignGetSharingStatusResponse:
         """
         Get Sharing Status
@@ -438,7 +438,7 @@ class CampaignResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CampaignSubmitAppealResponse:
         """
         Submits an appeal for rejected native campaigns in TELNYX_FAILED or MNO_REJECTED
@@ -509,7 +509,7 @@ class AsyncCampaignResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TelnyxCampaignCsp:
         """
         Retrieve campaign details by `campaignId`.
@@ -537,23 +537,23 @@ class AsyncCampaignResource(AsyncAPIResource):
         self,
         campaign_id: str,
         *,
-        auto_renewal: bool | NotGiven = NOT_GIVEN,
-        help_message: str | NotGiven = NOT_GIVEN,
-        message_flow: str | NotGiven = NOT_GIVEN,
-        reseller_id: str | NotGiven = NOT_GIVEN,
-        sample1: str | NotGiven = NOT_GIVEN,
-        sample2: str | NotGiven = NOT_GIVEN,
-        sample3: str | NotGiven = NOT_GIVEN,
-        sample4: str | NotGiven = NOT_GIVEN,
-        sample5: str | NotGiven = NOT_GIVEN,
-        webhook_failover_url: str | NotGiven = NOT_GIVEN,
-        webhook_url: str | NotGiven = NOT_GIVEN,
+        auto_renewal: bool | Omit = omit,
+        help_message: str | Omit = omit,
+        message_flow: str | Omit = omit,
+        reseller_id: str | Omit = omit,
+        sample1: str | Omit = omit,
+        sample2: str | Omit = omit,
+        sample3: str | Omit = omit,
+        sample4: str | Omit = omit,
+        sample5: str | Omit = omit,
+        webhook_failover_url: str | Omit = omit,
+        webhook_url: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TelnyxCampaignCsp:
         """Update a campaign's properties by `campaignId`.
 
@@ -622,8 +622,8 @@ class AsyncCampaignResource(AsyncAPIResource):
         self,
         *,
         brand_id: str,
-        page: int | NotGiven = NOT_GIVEN,
-        records_per_page: int | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
+        records_per_page: int | Omit = omit,
         sort: Literal[
             "assignedPhoneNumbersCount",
             "-assignedPhoneNumbersCount",
@@ -636,13 +636,13 @@ class AsyncCampaignResource(AsyncAPIResource):
             "tcrCampaignId",
             "-tcrCampaignId",
         ]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CampaignListResponse:
         """
         Retrieve a list of campaigns associated with a supplied `brandId`.
@@ -693,7 +693,7 @@ class AsyncCampaignResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Manually accept a campaign shared with Telnyx
@@ -728,7 +728,7 @@ class AsyncCampaignResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CampaignDeactivateResponse:
         """Terminate a campaign.
 
@@ -762,7 +762,7 @@ class AsyncCampaignResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CampaignGetMnoMetadataResponse:
         """
         Get the campaign metadata for each MNO it was submitted to.
@@ -797,7 +797,7 @@ class AsyncCampaignResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Retrieve campaign's operation status at MNO level.
@@ -830,7 +830,7 @@ class AsyncCampaignResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CampaignGetSharingStatusResponse:
         """
         Get Sharing Status
@@ -866,7 +866,7 @@ class AsyncCampaignResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CampaignSubmitAppealResponse:
         """
         Submits an appeal for rejected native campaigns in TELNYX_FAILED or MNO_REJECTED

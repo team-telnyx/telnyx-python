@@ -6,7 +6,7 @@ from typing import Iterable
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -48,13 +48,13 @@ class AdditionalDocumentsResource(SyncAPIResource):
         self,
         id: str,
         *,
-        additional_documents: Iterable[additional_document_create_params.AdditionalDocument] | NotGiven = NOT_GIVEN,
+        additional_documents: Iterable[additional_document_create_params.AdditionalDocument] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AdditionalDocumentCreateResponse:
         """
         Creates a list of additional documents for a porting order.
@@ -86,15 +86,15 @@ class AdditionalDocumentsResource(SyncAPIResource):
         self,
         id: str,
         *,
-        filter: additional_document_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: additional_document_list_params.Page | NotGiven = NOT_GIVEN,
-        sort: additional_document_list_params.Sort | NotGiven = NOT_GIVEN,
+        filter: additional_document_list_params.Filter | Omit = omit,
+        page: additional_document_list_params.Page | Omit = omit,
+        sort: additional_document_list_params.Sort | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AdditionalDocumentListResponse:
         """
         Returns a list of additional documents for a porting order.
@@ -148,7 +148,7 @@ class AdditionalDocumentsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Deletes an additional document for a porting order.
@@ -202,13 +202,13 @@ class AsyncAdditionalDocumentsResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        additional_documents: Iterable[additional_document_create_params.AdditionalDocument] | NotGiven = NOT_GIVEN,
+        additional_documents: Iterable[additional_document_create_params.AdditionalDocument] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AdditionalDocumentCreateResponse:
         """
         Creates a list of additional documents for a porting order.
@@ -240,15 +240,15 @@ class AsyncAdditionalDocumentsResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        filter: additional_document_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: additional_document_list_params.Page | NotGiven = NOT_GIVEN,
-        sort: additional_document_list_params.Sort | NotGiven = NOT_GIVEN,
+        filter: additional_document_list_params.Filter | Omit = omit,
+        page: additional_document_list_params.Page | Omit = omit,
+        sort: additional_document_list_params.Sort | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AdditionalDocumentListResponse:
         """
         Returns a list of additional documents for a porting order.
@@ -302,7 +302,7 @@ class AsyncAdditionalDocumentsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Deletes an additional document for a porting order.

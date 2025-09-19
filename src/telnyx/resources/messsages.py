@@ -7,7 +7,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..types import messsage_rcs_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -51,16 +51,16 @@ class MesssagesResource(SyncAPIResource):
         agent_message: RcsAgentMessageParam,
         messaging_profile_id: str,
         to: str,
-        mms_fallback: messsage_rcs_params.MmsFallback | NotGiven = NOT_GIVEN,
-        sms_fallback: messsage_rcs_params.SMSFallback | NotGiven = NOT_GIVEN,
-        type: Literal["RCS"] | NotGiven = NOT_GIVEN,
-        webhook_url: str | NotGiven = NOT_GIVEN,
+        mms_fallback: messsage_rcs_params.MmsFallback | Omit = omit,
+        sms_fallback: messsage_rcs_params.SMSFallback | Omit = omit,
+        type: Literal["RCS"] | Omit = omit,
+        webhook_url: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MesssageRcsResponse:
         """
         Send an RCS message
@@ -133,16 +133,16 @@ class AsyncMesssagesResource(AsyncAPIResource):
         agent_message: RcsAgentMessageParam,
         messaging_profile_id: str,
         to: str,
-        mms_fallback: messsage_rcs_params.MmsFallback | NotGiven = NOT_GIVEN,
-        sms_fallback: messsage_rcs_params.SMSFallback | NotGiven = NOT_GIVEN,
-        type: Literal["RCS"] | NotGiven = NOT_GIVEN,
-        webhook_url: str | NotGiven = NOT_GIVEN,
+        mms_fallback: messsage_rcs_params.MmsFallback | Omit = omit,
+        sms_fallback: messsage_rcs_params.SMSFallback | Omit = omit,
+        type: Literal["RCS"] | Omit = omit,
+        webhook_url: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MesssageRcsResponse:
         """
         Send an RCS message

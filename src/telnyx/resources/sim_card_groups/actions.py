@@ -6,7 +6,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -65,7 +65,7 @@ class ActionsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionRetrieveResponse:
         """
         This API allows fetching detailed information about a SIM card group action
@@ -93,23 +93,23 @@ class ActionsResource(SyncAPIResource):
     def list(
         self,
         *,
-        filter_sim_card_group_id: str | NotGiven = NOT_GIVEN,
-        filter_status: Literal["in-progress", "completed", "failed"] | NotGiven = NOT_GIVEN,
+        filter_sim_card_group_id: str | Omit = omit,
+        filter_status: Literal["in-progress", "completed", "failed"] | Omit = omit,
         filter_type: Literal[
             "set_private_wireless_gateway",
             "remove_private_wireless_gateway",
             "set_wireless_blocklist",
             "remove_wireless_blocklist",
         ]
-        | NotGiven = NOT_GIVEN,
-        page_number: int | NotGiven = NOT_GIVEN,
-        page_size: int | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionListResponse:
         """This API allows listing a paginated collection a SIM card group actions.
 
@@ -166,7 +166,7 @@ class ActionsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionRemovePrivateWirelessGatewayResponse:
         """
         This action will asynchronously remove an existing Private Wireless Gateway
@@ -202,7 +202,7 @@ class ActionsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionRemoveWirelessBlocklistResponse:
         """
         This action will asynchronously remove an existing Wireless Blocklist to all the
@@ -237,7 +237,7 @@ class ActionsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionSetPrivateWirelessGatewayResponse:
         """
         This action will asynchronously assign a provisioned Private Wireless Gateway to
@@ -283,7 +283,7 @@ class ActionsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionSetWirelessBlocklistResponse:
         """
         This action will asynchronously assign a Wireless Blocklist to all the SIMs in
@@ -344,7 +344,7 @@ class AsyncActionsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionRetrieveResponse:
         """
         This API allows fetching detailed information about a SIM card group action
@@ -372,23 +372,23 @@ class AsyncActionsResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        filter_sim_card_group_id: str | NotGiven = NOT_GIVEN,
-        filter_status: Literal["in-progress", "completed", "failed"] | NotGiven = NOT_GIVEN,
+        filter_sim_card_group_id: str | Omit = omit,
+        filter_status: Literal["in-progress", "completed", "failed"] | Omit = omit,
         filter_type: Literal[
             "set_private_wireless_gateway",
             "remove_private_wireless_gateway",
             "set_wireless_blocklist",
             "remove_wireless_blocklist",
         ]
-        | NotGiven = NOT_GIVEN,
-        page_number: int | NotGiven = NOT_GIVEN,
-        page_size: int | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionListResponse:
         """This API allows listing a paginated collection a SIM card group actions.
 
@@ -445,7 +445,7 @@ class AsyncActionsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionRemovePrivateWirelessGatewayResponse:
         """
         This action will asynchronously remove an existing Private Wireless Gateway
@@ -481,7 +481,7 @@ class AsyncActionsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionRemoveWirelessBlocklistResponse:
         """
         This action will asynchronously remove an existing Wireless Blocklist to all the
@@ -516,7 +516,7 @@ class AsyncActionsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionSetPrivateWirelessGatewayResponse:
         """
         This action will asynchronously assign a provisioned Private Wireless Gateway to
@@ -562,7 +562,7 @@ class AsyncActionsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionSetWirelessBlocklistResponse:
         """
         This action will asynchronously assign a Wireless Blocklist to all the SIMs in

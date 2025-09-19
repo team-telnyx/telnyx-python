@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, strip_not_given, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -46,13 +46,13 @@ class BillingBundlesResource(SyncAPIResource):
         self,
         bundle_id: str,
         *,
-        authorization_bearer: str | NotGiven = NOT_GIVEN,
+        authorization_bearer: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BillingBundleRetrieveResponse:
         """
         Get a single bundle by ID.
@@ -84,15 +84,15 @@ class BillingBundlesResource(SyncAPIResource):
     def list(
         self,
         *,
-        filter: billing_bundle_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: billing_bundle_list_params.Page | NotGiven = NOT_GIVEN,
-        authorization_bearer: str | NotGiven = NOT_GIVEN,
+        filter: billing_bundle_list_params.Filter | Omit = omit,
+        page: billing_bundle_list_params.Page | Omit = omit,
+        authorization_bearer: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BillingBundleListResponse:
         """
         Get all allowed bundles.
@@ -159,13 +159,13 @@ class AsyncBillingBundlesResource(AsyncAPIResource):
         self,
         bundle_id: str,
         *,
-        authorization_bearer: str | NotGiven = NOT_GIVEN,
+        authorization_bearer: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BillingBundleRetrieveResponse:
         """
         Get a single bundle by ID.
@@ -197,15 +197,15 @@ class AsyncBillingBundlesResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        filter: billing_bundle_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: billing_bundle_list_params.Page | NotGiven = NOT_GIVEN,
-        authorization_bearer: str | NotGiven = NOT_GIVEN,
+        filter: billing_bundle_list_params.Filter | Omit = omit,
+        page: billing_bundle_list_params.Page | Omit = omit,
+        authorization_bearer: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BillingBundleListResponse:
         """
         Get all allowed bundles.

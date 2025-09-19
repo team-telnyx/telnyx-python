@@ -11,7 +11,7 @@ from ..types import (
     phone_number_campaign_create_params,
     phone_number_campaign_update_params,
 )
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -58,7 +58,7 @@ class PhoneNumberCampaignsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PhoneNumberCampaign:
         """
         Create New Phone Number Campaign
@@ -100,7 +100,7 @@ class PhoneNumberCampaignsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PhoneNumberCampaign:
         """
         Retrieve an individual phone number/campaign assignment by `phoneNumber`.
@@ -135,7 +135,7 @@ class PhoneNumberCampaignsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PhoneNumberCampaign:
         """
         Create New Phone Number Campaign
@@ -173,17 +173,17 @@ class PhoneNumberCampaignsResource(SyncAPIResource):
     def list(
         self,
         *,
-        filter: phone_number_campaign_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        records_per_page: int | NotGiven = NOT_GIVEN,
+        filter: phone_number_campaign_list_params.Filter | Omit = omit,
+        page: int | Omit = omit,
+        records_per_page: int | Omit = omit,
         sort: Literal["assignmentStatus", "-assignmentStatus", "createdAt", "-createdAt", "phoneNumber", "-phoneNumber"]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PhoneNumberCampaignListResponse:
         """
         Retrieve All Phone Number Campaigns
@@ -234,7 +234,7 @@ class PhoneNumberCampaignsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PhoneNumberCampaign:
         """
         This endpoint allows you to remove a campaign assignment from the supplied
@@ -290,7 +290,7 @@ class AsyncPhoneNumberCampaignsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PhoneNumberCampaign:
         """
         Create New Phone Number Campaign
@@ -332,7 +332,7 @@ class AsyncPhoneNumberCampaignsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PhoneNumberCampaign:
         """
         Retrieve an individual phone number/campaign assignment by `phoneNumber`.
@@ -367,7 +367,7 @@ class AsyncPhoneNumberCampaignsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PhoneNumberCampaign:
         """
         Create New Phone Number Campaign
@@ -405,17 +405,17 @@ class AsyncPhoneNumberCampaignsResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        filter: phone_number_campaign_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        records_per_page: int | NotGiven = NOT_GIVEN,
+        filter: phone_number_campaign_list_params.Filter | Omit = omit,
+        page: int | Omit = omit,
+        records_per_page: int | Omit = omit,
         sort: Literal["assignmentStatus", "-assignmentStatus", "createdAt", "-createdAt", "phoneNumber", "-phoneNumber"]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PhoneNumberCampaignListResponse:
         """
         Retrieve All Phone Number Campaigns
@@ -466,7 +466,7 @@ class AsyncPhoneNumberCampaignsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PhoneNumberCampaign:
         """
         This endpoint allows you to remove a campaign assignment from the supplied

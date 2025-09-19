@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ..types import room_recording_list_params, room_recording_delete_bulk_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from .._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -52,7 +52,7 @@ class RoomRecordingsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RoomRecordingRetrieveResponse:
         """
         View a room recording.
@@ -79,14 +79,14 @@ class RoomRecordingsResource(SyncAPIResource):
     def list(
         self,
         *,
-        filter: room_recording_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: room_recording_list_params.Page | NotGiven = NOT_GIVEN,
+        filter: room_recording_list_params.Filter | Omit = omit,
+        page: room_recording_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RoomRecordingListResponse:
         """
         View a list of room recordings.
@@ -138,7 +138,7 @@ class RoomRecordingsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Synchronously delete a Room Recording.
@@ -166,14 +166,14 @@ class RoomRecordingsResource(SyncAPIResource):
     def delete_bulk(
         self,
         *,
-        filter: room_recording_delete_bulk_params.Filter | NotGiven = NOT_GIVEN,
-        page: room_recording_delete_bulk_params.Page | NotGiven = NOT_GIVEN,
+        filter: room_recording_delete_bulk_params.Filter | Omit = omit,
+        page: room_recording_delete_bulk_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RoomRecordingDeleteBulkResponse:
         """
         Delete several room recordings in a bulk.
@@ -246,7 +246,7 @@ class AsyncRoomRecordingsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RoomRecordingRetrieveResponse:
         """
         View a room recording.
@@ -273,14 +273,14 @@ class AsyncRoomRecordingsResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        filter: room_recording_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: room_recording_list_params.Page | NotGiven = NOT_GIVEN,
+        filter: room_recording_list_params.Filter | Omit = omit,
+        page: room_recording_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RoomRecordingListResponse:
         """
         View a list of room recordings.
@@ -332,7 +332,7 @@ class AsyncRoomRecordingsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Synchronously delete a Room Recording.
@@ -360,14 +360,14 @@ class AsyncRoomRecordingsResource(AsyncAPIResource):
     async def delete_bulk(
         self,
         *,
-        filter: room_recording_delete_bulk_params.Filter | NotGiven = NOT_GIVEN,
-        page: room_recording_delete_bulk_params.Page | NotGiven = NOT_GIVEN,
+        filter: room_recording_delete_bulk_params.Filter | Omit = omit,
+        page: room_recording_delete_bulk_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RoomRecordingDeleteBulkResponse:
         """
         Delete several room recordings in a bulk.

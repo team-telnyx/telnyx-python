@@ -6,7 +6,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -78,14 +78,14 @@ class ActionsResource(SyncAPIResource):
         *,
         call_control_id: str,
         supervisor_role: Literal["barge", "monitor", "none", "whisper"],
-        command_id: str | NotGiven = NOT_GIVEN,
-        whisper_call_control_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        command_id: str | Omit = omit,
+        whisper_call_control_ids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionUpdateResponse:
         """
         Update conference participant supervisor_role
@@ -138,15 +138,15 @@ class ActionsResource(SyncAPIResource):
         self,
         id: str,
         *,
-        audio_url: str | NotGiven = NOT_GIVEN,
-        call_control_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        media_name: str | NotGiven = NOT_GIVEN,
+        audio_url: str | Omit = omit,
+        call_control_ids: SequenceNotStr[str] | Omit = omit,
+        media_name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionHoldResponse:
         """
         Hold a list of participants in a conference call
@@ -194,24 +194,24 @@ class ActionsResource(SyncAPIResource):
         id: str,
         *,
         call_control_id: str,
-        beep_enabled: Literal["always", "never", "on_enter", "on_exit"] | NotGiven = NOT_GIVEN,
-        client_state: str | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
-        end_conference_on_exit: bool | NotGiven = NOT_GIVEN,
-        hold: bool | NotGiven = NOT_GIVEN,
-        hold_audio_url: str | NotGiven = NOT_GIVEN,
-        hold_media_name: str | NotGiven = NOT_GIVEN,
-        mute: bool | NotGiven = NOT_GIVEN,
-        soft_end_conference_on_exit: bool | NotGiven = NOT_GIVEN,
-        start_conference_on_enter: bool | NotGiven = NOT_GIVEN,
-        supervisor_role: Literal["barge", "monitor", "none", "whisper"] | NotGiven = NOT_GIVEN,
-        whisper_call_control_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        beep_enabled: Literal["always", "never", "on_enter", "on_exit"] | Omit = omit,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
+        end_conference_on_exit: bool | Omit = omit,
+        hold: bool | Omit = omit,
+        hold_audio_url: str | Omit = omit,
+        hold_media_name: str | Omit = omit,
+        mute: bool | Omit = omit,
+        soft_end_conference_on_exit: bool | Omit = omit,
+        start_conference_on_enter: bool | Omit = omit,
+        supervisor_role: Literal["barge", "monitor", "none", "whisper"] | Omit = omit,
+        whisper_call_control_ids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionJoinResponse:
         """Join an existing call leg to a conference.
 
@@ -322,14 +322,14 @@ class ActionsResource(SyncAPIResource):
         id: str,
         *,
         call_control_id: str,
-        beep_enabled: Literal["always", "never", "on_enter", "on_exit"] | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
+        beep_enabled: Literal["always", "never", "on_enter", "on_exit"] | Omit = omit,
+        command_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionLeaveResponse:
         """
         Removes a call leg from a conference and moves it back to parked state.
@@ -380,13 +380,13 @@ class ActionsResource(SyncAPIResource):
         self,
         id: str,
         *,
-        call_control_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        call_control_ids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionMuteResponse:
         """
         Mute a list of participants in a conference call
@@ -418,16 +418,16 @@ class ActionsResource(SyncAPIResource):
         self,
         id: str,
         *,
-        audio_url: str | NotGiven = NOT_GIVEN,
-        call_control_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        loop: LoopcountParam | NotGiven = NOT_GIVEN,
-        media_name: str | NotGiven = NOT_GIVEN,
+        audio_url: str | Omit = omit,
+        call_control_ids: SequenceNotStr[str] | Omit = omit,
+        loop: LoopcountParam | Omit = omit,
+        media_name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionPlayResponse:
         """
         Play audio to all or some participants on a conference call.
@@ -478,14 +478,14 @@ class ActionsResource(SyncAPIResource):
         self,
         id: str,
         *,
-        command_id: str | NotGiven = NOT_GIVEN,
-        recording_id: str | NotGiven = NOT_GIVEN,
+        command_id: str | Omit = omit,
+        recording_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionRecordPauseResponse:
         """
         Pause conference recording.
@@ -525,14 +525,14 @@ class ActionsResource(SyncAPIResource):
         self,
         id: str,
         *,
-        command_id: str | NotGiven = NOT_GIVEN,
-        recording_id: str | NotGiven = NOT_GIVEN,
+        command_id: str | Omit = omit,
+        recording_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionRecordResumeResponse:
         """
         Resume conference recording.
@@ -573,16 +573,16 @@ class ActionsResource(SyncAPIResource):
         id: str,
         *,
         format: Literal["wav", "mp3"],
-        command_id: str | NotGiven = NOT_GIVEN,
-        custom_file_name: str | NotGiven = NOT_GIVEN,
-        play_beep: bool | NotGiven = NOT_GIVEN,
-        trim: Literal["trim-silence"] | NotGiven = NOT_GIVEN,
+        command_id: str | Omit = omit,
+        custom_file_name: str | Omit = omit,
+        play_beep: bool | Omit = omit,
+        trim: Literal["trim-silence"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionRecordStartResponse:
         """Start recording the conference.
 
@@ -642,15 +642,15 @@ class ActionsResource(SyncAPIResource):
         self,
         id: str,
         *,
-        client_state: str | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
-        recording_id: str | NotGiven = NOT_GIVEN,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
+        recording_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionRecordStopResponse:
         """
         Stop recording the conference.
@@ -702,8 +702,8 @@ class ActionsResource(SyncAPIResource):
         *,
         payload: str,
         voice: str,
-        call_control_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
+        call_control_ids: SequenceNotStr[str] | Omit = omit,
+        command_id: str | Omit = omit,
         language: Literal[
             "arb",
             "cmn-CN",
@@ -735,15 +735,15 @@ class ActionsResource(SyncAPIResource):
             "sv-SE",
             "tr-TR",
         ]
-        | NotGiven = NOT_GIVEN,
-        payload_type: Literal["text", "ssml"] | NotGiven = NOT_GIVEN,
-        voice_settings: action_speak_params.VoiceSettings | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        payload_type: Literal["text", "ssml"] | Omit = omit,
+        voice_settings: action_speak_params.VoiceSettings | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionSpeakResponse:
         """
         Convert text to speech and play it to all or some participants.
@@ -829,13 +829,13 @@ class ActionsResource(SyncAPIResource):
         self,
         id: str,
         *,
-        call_control_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        call_control_ids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionStopResponse:
         """
         Stop audio being played to all or some participants on a conference call.
@@ -873,7 +873,7 @@ class ActionsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionUnholdResponse:
         """
         Unhold a list of participants in a conference call
@@ -905,13 +905,13 @@ class ActionsResource(SyncAPIResource):
         self,
         id: str,
         *,
-        call_control_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        call_control_ids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionUnmuteResponse:
         """
         Unmute a list of participants in a conference call
@@ -966,14 +966,14 @@ class AsyncActionsResource(AsyncAPIResource):
         *,
         call_control_id: str,
         supervisor_role: Literal["barge", "monitor", "none", "whisper"],
-        command_id: str | NotGiven = NOT_GIVEN,
-        whisper_call_control_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        command_id: str | Omit = omit,
+        whisper_call_control_ids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionUpdateResponse:
         """
         Update conference participant supervisor_role
@@ -1026,15 +1026,15 @@ class AsyncActionsResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        audio_url: str | NotGiven = NOT_GIVEN,
-        call_control_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        media_name: str | NotGiven = NOT_GIVEN,
+        audio_url: str | Omit = omit,
+        call_control_ids: SequenceNotStr[str] | Omit = omit,
+        media_name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionHoldResponse:
         """
         Hold a list of participants in a conference call
@@ -1082,24 +1082,24 @@ class AsyncActionsResource(AsyncAPIResource):
         id: str,
         *,
         call_control_id: str,
-        beep_enabled: Literal["always", "never", "on_enter", "on_exit"] | NotGiven = NOT_GIVEN,
-        client_state: str | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
-        end_conference_on_exit: bool | NotGiven = NOT_GIVEN,
-        hold: bool | NotGiven = NOT_GIVEN,
-        hold_audio_url: str | NotGiven = NOT_GIVEN,
-        hold_media_name: str | NotGiven = NOT_GIVEN,
-        mute: bool | NotGiven = NOT_GIVEN,
-        soft_end_conference_on_exit: bool | NotGiven = NOT_GIVEN,
-        start_conference_on_enter: bool | NotGiven = NOT_GIVEN,
-        supervisor_role: Literal["barge", "monitor", "none", "whisper"] | NotGiven = NOT_GIVEN,
-        whisper_call_control_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        beep_enabled: Literal["always", "never", "on_enter", "on_exit"] | Omit = omit,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
+        end_conference_on_exit: bool | Omit = omit,
+        hold: bool | Omit = omit,
+        hold_audio_url: str | Omit = omit,
+        hold_media_name: str | Omit = omit,
+        mute: bool | Omit = omit,
+        soft_end_conference_on_exit: bool | Omit = omit,
+        start_conference_on_enter: bool | Omit = omit,
+        supervisor_role: Literal["barge", "monitor", "none", "whisper"] | Omit = omit,
+        whisper_call_control_ids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionJoinResponse:
         """Join an existing call leg to a conference.
 
@@ -1210,14 +1210,14 @@ class AsyncActionsResource(AsyncAPIResource):
         id: str,
         *,
         call_control_id: str,
-        beep_enabled: Literal["always", "never", "on_enter", "on_exit"] | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
+        beep_enabled: Literal["always", "never", "on_enter", "on_exit"] | Omit = omit,
+        command_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionLeaveResponse:
         """
         Removes a call leg from a conference and moves it back to parked state.
@@ -1268,13 +1268,13 @@ class AsyncActionsResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        call_control_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        call_control_ids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionMuteResponse:
         """
         Mute a list of participants in a conference call
@@ -1308,16 +1308,16 @@ class AsyncActionsResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        audio_url: str | NotGiven = NOT_GIVEN,
-        call_control_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        loop: LoopcountParam | NotGiven = NOT_GIVEN,
-        media_name: str | NotGiven = NOT_GIVEN,
+        audio_url: str | Omit = omit,
+        call_control_ids: SequenceNotStr[str] | Omit = omit,
+        loop: LoopcountParam | Omit = omit,
+        media_name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionPlayResponse:
         """
         Play audio to all or some participants on a conference call.
@@ -1368,14 +1368,14 @@ class AsyncActionsResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        command_id: str | NotGiven = NOT_GIVEN,
-        recording_id: str | NotGiven = NOT_GIVEN,
+        command_id: str | Omit = omit,
+        recording_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionRecordPauseResponse:
         """
         Pause conference recording.
@@ -1415,14 +1415,14 @@ class AsyncActionsResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        command_id: str | NotGiven = NOT_GIVEN,
-        recording_id: str | NotGiven = NOT_GIVEN,
+        command_id: str | Omit = omit,
+        recording_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionRecordResumeResponse:
         """
         Resume conference recording.
@@ -1463,16 +1463,16 @@ class AsyncActionsResource(AsyncAPIResource):
         id: str,
         *,
         format: Literal["wav", "mp3"],
-        command_id: str | NotGiven = NOT_GIVEN,
-        custom_file_name: str | NotGiven = NOT_GIVEN,
-        play_beep: bool | NotGiven = NOT_GIVEN,
-        trim: Literal["trim-silence"] | NotGiven = NOT_GIVEN,
+        command_id: str | Omit = omit,
+        custom_file_name: str | Omit = omit,
+        play_beep: bool | Omit = omit,
+        trim: Literal["trim-silence"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionRecordStartResponse:
         """Start recording the conference.
 
@@ -1532,15 +1532,15 @@ class AsyncActionsResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        client_state: str | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
-        recording_id: str | NotGiven = NOT_GIVEN,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
+        recording_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionRecordStopResponse:
         """
         Stop recording the conference.
@@ -1592,8 +1592,8 @@ class AsyncActionsResource(AsyncAPIResource):
         *,
         payload: str,
         voice: str,
-        call_control_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        command_id: str | NotGiven = NOT_GIVEN,
+        call_control_ids: SequenceNotStr[str] | Omit = omit,
+        command_id: str | Omit = omit,
         language: Literal[
             "arb",
             "cmn-CN",
@@ -1625,15 +1625,15 @@ class AsyncActionsResource(AsyncAPIResource):
             "sv-SE",
             "tr-TR",
         ]
-        | NotGiven = NOT_GIVEN,
-        payload_type: Literal["text", "ssml"] | NotGiven = NOT_GIVEN,
-        voice_settings: action_speak_params.VoiceSettings | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        payload_type: Literal["text", "ssml"] | Omit = omit,
+        voice_settings: action_speak_params.VoiceSettings | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionSpeakResponse:
         """
         Convert text to speech and play it to all or some participants.
@@ -1719,13 +1719,13 @@ class AsyncActionsResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        call_control_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        call_control_ids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionStopResponse:
         """
         Stop audio being played to all or some participants on a conference call.
@@ -1765,7 +1765,7 @@ class AsyncActionsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionUnholdResponse:
         """
         Unhold a list of participants in a conference call
@@ -1799,13 +1799,13 @@ class AsyncActionsResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        call_control_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        call_control_ids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionUnmuteResponse:
         """
         Unmute a list of participants in a conference call

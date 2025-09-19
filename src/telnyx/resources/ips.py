@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ..types import ip_list_params, ip_create_params, ip_update_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -49,14 +49,14 @@ class IPsResource(SyncAPIResource):
         self,
         *,
         ip_address: str,
-        connection_id: str | NotGiven = NOT_GIVEN,
-        port: int | NotGiven = NOT_GIVEN,
+        connection_id: str | Omit = omit,
+        port: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IPCreateResponse:
         """
         Create a new IP object.
@@ -101,7 +101,7 @@ class IPsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IPRetrieveResponse:
         """
         Return the details regarding a specific IP.
@@ -130,14 +130,14 @@ class IPsResource(SyncAPIResource):
         id: str,
         *,
         ip_address: str,
-        connection_id: str | NotGiven = NOT_GIVEN,
-        port: int | NotGiven = NOT_GIVEN,
+        connection_id: str | Omit = omit,
+        port: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IPUpdateResponse:
         """
         Update the details of a specific IP.
@@ -178,14 +178,14 @@ class IPsResource(SyncAPIResource):
     def list(
         self,
         *,
-        filter: ip_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: ip_list_params.Page | NotGiven = NOT_GIVEN,
+        filter: ip_list_params.Filter | Omit = omit,
+        page: ip_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IPListResponse:
         """
         Get all IPs belonging to the user that match the given filters.
@@ -233,7 +233,7 @@ class IPsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IPDeleteResponse:
         """
         Delete an IP.
@@ -282,14 +282,14 @@ class AsyncIPsResource(AsyncAPIResource):
         self,
         *,
         ip_address: str,
-        connection_id: str | NotGiven = NOT_GIVEN,
-        port: int | NotGiven = NOT_GIVEN,
+        connection_id: str | Omit = omit,
+        port: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IPCreateResponse:
         """
         Create a new IP object.
@@ -334,7 +334,7 @@ class AsyncIPsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IPRetrieveResponse:
         """
         Return the details regarding a specific IP.
@@ -363,14 +363,14 @@ class AsyncIPsResource(AsyncAPIResource):
         id: str,
         *,
         ip_address: str,
-        connection_id: str | NotGiven = NOT_GIVEN,
-        port: int | NotGiven = NOT_GIVEN,
+        connection_id: str | Omit = omit,
+        port: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IPUpdateResponse:
         """
         Update the details of a specific IP.
@@ -411,14 +411,14 @@ class AsyncIPsResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        filter: ip_list_params.Filter | NotGiven = NOT_GIVEN,
-        page: ip_list_params.Page | NotGiven = NOT_GIVEN,
+        filter: ip_list_params.Filter | Omit = omit,
+        page: ip_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IPListResponse:
         """
         Get all IPs belonging to the user that match the given filters.
@@ -466,7 +466,7 @@ class AsyncIPsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IPDeleteResponse:
         """
         Delete an IP.

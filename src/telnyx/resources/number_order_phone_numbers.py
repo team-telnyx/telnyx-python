@@ -11,7 +11,7 @@ from ..types import (
     number_order_phone_number_update_requirements_params,
     number_order_phone_number_update_requirement_group_params,
 )
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -64,7 +64,7 @@ class NumberOrderPhoneNumbersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NumberOrderPhoneNumberRetrieveResponse:
         """
         Get an existing phone number in number order.
@@ -93,13 +93,13 @@ class NumberOrderPhoneNumbersResource(SyncAPIResource):
     def list(
         self,
         *,
-        filter: number_order_phone_number_list_params.Filter | NotGiven = NOT_GIVEN,
+        filter: number_order_phone_number_list_params.Filter | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NumberOrderPhoneNumberListResponse:
         """
         Get a list of phone numbers associated to orders.
@@ -141,7 +141,7 @@ class NumberOrderPhoneNumbersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NumberOrderPhoneNumberUpdateRequirementGroupResponse:
         """
         Update requirement group for a phone number order
@@ -175,13 +175,13 @@ class NumberOrderPhoneNumbersResource(SyncAPIResource):
         self,
         number_order_phone_number_id: str,
         *,
-        regulatory_requirements: Iterable[UpdateRegulatoryRequirementParam] | NotGiven = NOT_GIVEN,
+        regulatory_requirements: Iterable[UpdateRegulatoryRequirementParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NumberOrderPhoneNumberUpdateRequirementsResponse:
         """
         Updates requirements for a single phone number within a number order.
@@ -241,7 +241,7 @@ class AsyncNumberOrderPhoneNumbersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NumberOrderPhoneNumberRetrieveResponse:
         """
         Get an existing phone number in number order.
@@ -270,13 +270,13 @@ class AsyncNumberOrderPhoneNumbersResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        filter: number_order_phone_number_list_params.Filter | NotGiven = NOT_GIVEN,
+        filter: number_order_phone_number_list_params.Filter | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NumberOrderPhoneNumberListResponse:
         """
         Get a list of phone numbers associated to orders.
@@ -318,7 +318,7 @@ class AsyncNumberOrderPhoneNumbersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NumberOrderPhoneNumberUpdateRequirementGroupResponse:
         """
         Update requirement group for a phone number order
@@ -352,13 +352,13 @@ class AsyncNumberOrderPhoneNumbersResource(AsyncAPIResource):
         self,
         number_order_phone_number_id: str,
         *,
-        regulatory_requirements: Iterable[UpdateRegulatoryRequirementParam] | NotGiven = NOT_GIVEN,
+        regulatory_requirements: Iterable[UpdateRegulatoryRequirementParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NumberOrderPhoneNumberUpdateRequirementsResponse:
         """
         Updates requirements for a single phone number within a number order.
