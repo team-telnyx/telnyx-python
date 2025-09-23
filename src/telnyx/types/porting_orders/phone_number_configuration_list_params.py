@@ -3,12 +3,11 @@
 from __future__ import annotations
 
 from typing import List
-from typing_extensions import Literal, Annotated, TypedDict
+from typing_extensions import Literal, TypedDict
 
 from ..._types import SequenceNotStr
-from ..._utils import PropertyInfo
 
-__all__ = ["PhoneNumberConfigurationListParams", "Filter", "Page", "Sort"]
+__all__ = ["PhoneNumberConfigurationListParams", "Filter", "FilterPortingOrder", "Page", "Sort"]
 
 
 class PhoneNumberConfigurationListParams(TypedDict, total=False):
@@ -29,24 +28,25 @@ class PhoneNumberConfigurationListParams(TypedDict, total=False):
     """Consolidated sort parameter (deepObject style). Originally: sort[value]"""
 
 
-class Filter(TypedDict, total=False):
-    porting_order_status: Annotated[
-        List[
-            Literal[
-                "activation-in-progress",
-                "cancel-pending",
-                "cancelled",
-                "draft",
-                "exception",
-                "foc-date-confirmed",
-                "in-process",
-                "ported",
-                "submitted",
-            ]
-        ],
-        PropertyInfo(alias="porting_order.status"),
+class FilterPortingOrder(TypedDict, total=False):
+    status: List[
+        Literal[
+            "activation-in-progress",
+            "cancel-pending",
+            "cancelled",
+            "draft",
+            "exception",
+            "foc-date-confirmed",
+            "in-process",
+            "ported",
+            "submitted",
+        ]
     ]
     """Filter results by specific porting order statuses"""
+
+
+class Filter(TypedDict, total=False):
+    porting_order: FilterPortingOrder
 
     porting_phone_number: SequenceNotStr[str]
     """Filter results by a list of porting phone number IDs"""

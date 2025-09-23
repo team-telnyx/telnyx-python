@@ -149,6 +149,7 @@ class TestPhoneNumbers:
                     "starts_with": "test",
                 },
                 "voice_usage_payment_method": "channel",
+                "without_tags": "true",
             },
             page={
                 "number": 1,
@@ -415,6 +416,7 @@ class TestAsyncPhoneNumbers:
                     "starts_with": "test",
                 },
                 "voice_usage_payment_method": "channel",
+                "without_tags": "true",
             },
             page={
                 "number": 1,

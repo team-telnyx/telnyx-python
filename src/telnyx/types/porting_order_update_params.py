@@ -19,6 +19,8 @@ __all__ = ["PortingOrderUpdateParams", "ActivationSettings", "Messaging", "Requi
 class PortingOrderUpdateParams(TypedDict, total=False):
     activation_settings: ActivationSettings
 
+    customer_group_reference: str
+
     customer_reference: str
 
     documents: PortingOrderDocumentsParam

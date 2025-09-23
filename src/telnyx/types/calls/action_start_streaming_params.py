@@ -41,6 +41,9 @@ class ActionStartStreamingParams(TypedDict, total=False):
     stream_bidirectional_mode: StreamBidirectionalMode
     """Configures method of bidirectional streaming (mp3, rtp)."""
 
+    stream_bidirectional_sampling_rate: Literal[8000, 16000, 22050, 24000, 48000]
+    """Audio sampling rate."""
+
     stream_bidirectional_target_legs: StreamBidirectionalTargetLegs
     """Specifies which call legs should receive the bidirectional stream audio."""
 
@@ -48,8 +51,7 @@ class ActionStartStreamingParams(TypedDict, total=False):
     """Specifies the codec to be used for the streamed audio.
 
     When set to 'default' or when transcoding is not possible, the codec from the
-    call will be used. Currently, transcoding is only supported between PCMU and
-    PCMA codecs.
+    call will be used.
     """
 
     stream_track: Literal["inbound_track", "outbound_track", "both_tracks"]

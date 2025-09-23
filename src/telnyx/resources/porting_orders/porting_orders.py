@@ -194,6 +194,7 @@ class PortingOrdersResource(SyncAPIResource):
         self,
         *,
         phone_numbers: SequenceNotStr[str],
+        customer_group_reference: str | Omit = omit,
         customer_reference: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -207,6 +208,8 @@ class PortingOrdersResource(SyncAPIResource):
 
         Args:
           phone_numbers: The list of +E.164 formatted phone numbers
+
+          customer_group_reference: A customer-specified group reference for customer bookkeeping purposes
 
           customer_reference: A customer-specified reference number for customer bookkeeping purposes
 
@@ -223,6 +226,7 @@ class PortingOrdersResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "phone_numbers": phone_numbers,
+                    "customer_group_reference": customer_group_reference,
                     "customer_reference": customer_reference,
                 },
                 porting_order_create_params.PortingOrderCreateParams,
@@ -281,6 +285,7 @@ class PortingOrdersResource(SyncAPIResource):
         id: str,
         *,
         activation_settings: porting_order_update_params.ActivationSettings | Omit = omit,
+        customer_group_reference: str | Omit = omit,
         customer_reference: str | Omit = omit,
         documents: PortingOrderDocumentsParam | Omit = omit,
         end_user: PortingOrderEndUserParam | Omit = omit,
@@ -335,6 +340,7 @@ class PortingOrdersResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "activation_settings": activation_settings,
+                    "customer_group_reference": customer_group_reference,
                     "customer_reference": customer_reference,
                     "documents": documents,
                     "end_user": end_user,
@@ -374,10 +380,10 @@ class PortingOrdersResource(SyncAPIResource):
         Args:
           filter:
               Consolidated filter parameter (deepObject style). Originally:
-              filter[customer_reference], filter[parent_support_key],
-              filter[phone_numbers.country_code], filter[phone_numbers.carrier_name],
-              filter[misc.type], filter[end_user.admin.entity_name],
-              filter[end_user.admin.auth_person_name],
+              filter[customer_reference], filter[customer_group_reference],
+              filter[parent_support_key], filter[phone_numbers.country_code],
+              filter[phone_numbers.carrier_name], filter[misc.type],
+              filter[end_user.admin.entity_name], filter[end_user.admin.auth_person_name],
               filter[activation_settings.fast_port_eligible],
               filter[activation_settings.foc_datetime_requested][gt],
               filter[activation_settings.foc_datetime_requested][lt],
@@ -693,6 +699,7 @@ class AsyncPortingOrdersResource(AsyncAPIResource):
         self,
         *,
         phone_numbers: SequenceNotStr[str],
+        customer_group_reference: str | Omit = omit,
         customer_reference: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -706,6 +713,8 @@ class AsyncPortingOrdersResource(AsyncAPIResource):
 
         Args:
           phone_numbers: The list of +E.164 formatted phone numbers
+
+          customer_group_reference: A customer-specified group reference for customer bookkeeping purposes
 
           customer_reference: A customer-specified reference number for customer bookkeeping purposes
 
@@ -722,6 +731,7 @@ class AsyncPortingOrdersResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "phone_numbers": phone_numbers,
+                    "customer_group_reference": customer_group_reference,
                     "customer_reference": customer_reference,
                 },
                 porting_order_create_params.PortingOrderCreateParams,
@@ -780,6 +790,7 @@ class AsyncPortingOrdersResource(AsyncAPIResource):
         id: str,
         *,
         activation_settings: porting_order_update_params.ActivationSettings | Omit = omit,
+        customer_group_reference: str | Omit = omit,
         customer_reference: str | Omit = omit,
         documents: PortingOrderDocumentsParam | Omit = omit,
         end_user: PortingOrderEndUserParam | Omit = omit,
@@ -834,6 +845,7 @@ class AsyncPortingOrdersResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "activation_settings": activation_settings,
+                    "customer_group_reference": customer_group_reference,
                     "customer_reference": customer_reference,
                     "documents": documents,
                     "end_user": end_user,
@@ -873,10 +885,10 @@ class AsyncPortingOrdersResource(AsyncAPIResource):
         Args:
           filter:
               Consolidated filter parameter (deepObject style). Originally:
-              filter[customer_reference], filter[parent_support_key],
-              filter[phone_numbers.country_code], filter[phone_numbers.carrier_name],
-              filter[misc.type], filter[end_user.admin.entity_name],
-              filter[end_user.admin.auth_person_name],
+              filter[customer_reference], filter[customer_group_reference],
+              filter[parent_support_key], filter[phone_numbers.country_code],
+              filter[phone_numbers.carrier_name], filter[misc.type],
+              filter[end_user.admin.entity_name], filter[end_user.admin.auth_person_name],
               filter[activation_settings.fast_port_eligible],
               filter[activation_settings.foc_datetime_requested][gt],
               filter[activation_settings.foc_datetime_requested][lt],

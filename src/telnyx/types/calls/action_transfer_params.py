@@ -102,6 +102,56 @@ class ActionTransferParams(TypedDict, total=False):
     behavior is to hang up the leg.
     """
 
+    record: Literal["record-from-answer"]
+    """Start recording automatically after an event. Disabled by default."""
+
+    record_channels: Literal["single", "dual"]
+    """
+    Defines which channel should be recorded ('single' or 'dual') when `record` is
+    specified.
+    """
+
+    record_custom_file_name: str
+    """The custom recording file name to be used instead of the default `call_leg_id`.
+
+    Telnyx will still add a Unix timestamp suffix.
+    """
+
+    record_format: Literal["wav", "mp3"]
+    """
+    Defines the format of the recording ('wav' or 'mp3') when `record` is specified.
+    """
+
+    record_max_length: int
+    """
+    Defines the maximum length for the recording in seconds when `record` is
+    specified. The minimum value is 0. The maximum value is 43200. The default value
+    is 0 (infinite).
+    """
+
+    record_timeout_secs: int
+    """
+    The number of seconds that Telnyx will wait for the recording to be stopped if
+    silence is detected when `record` is specified. The timer only starts when the
+    speech is detected. Please note that call transcription is used to detect
+    silence and the related charge will be applied. The minimum value is 0. The
+    default value is 0 (infinite).
+    """
+
+    record_track: Literal["both", "inbound", "outbound"]
+    """The audio track to be recorded.
+
+    Can be either `both`, `inbound` or `outbound`. If only single track is specified
+    (`inbound`, `outbound`), `channels` configuration is ignored and it will be
+    recorded as mono (single channel).
+    """
+
+    record_trim: Literal["trim-silence"]
+    """
+    When set to `trim-silence`, silence will be removed from the beginning and end
+    of the recording.
+    """
+
     sip_auth_password: str
     """SIP Authentication password used for SIP challenges."""
 

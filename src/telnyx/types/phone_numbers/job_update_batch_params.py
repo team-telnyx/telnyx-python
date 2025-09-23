@@ -39,6 +39,13 @@ class JobUpdateBatchParams(TypedDict, total=False):
     customer_reference: str
     """A customer reference string for customer look ups."""
 
+    deletion_lock_enabled: bool
+    """Indicates whether to enable or disable the deletion lock on each phone number.
+
+    When enabled, this prevents the phone number from being deleted via the API or
+    Telnyx portal.
+    """
+
     external_pin: str
     """
     If someone attempts to port your phone number away from Telnyx and your phone

@@ -179,9 +179,7 @@ class ActionsResource(SyncAPIResource):
         You must issue this command before executing subsequent
         commands on an incoming call.
 
-        **Expected Webhooks (see
-        [callback schema](https://developers.telnyx.com/api/call-control/answer-call#callbacks)
-        below):**
+        **Expected Webhooks:**
 
         - `call.answered`
         - `streaming.started`, `streaming.stopped` or `streaming.failed` if `stream_url`
@@ -248,7 +246,6 @@ class ActionsResource(SyncAPIResource):
 
           stream_codec: Specifies the codec to be used for the streamed audio. When set to 'default' or
               when transcoding is not possible, the codec from the call will be used.
-              Currently, transcoding is only supported between PCMU and PCMA codecs.
 
           stream_track: Specifies which track should be streamed.
 
@@ -384,9 +381,7 @@ class ActionsResource(SyncAPIResource):
         """
         Bridge two call control calls.
 
-        **Expected Webhooks (see
-        [callback schema](https://developers.telnyx.com/api/call-control/bridge-call#callbacks)
-        below):**
+        **Expected Webhooks:**
 
         - `call.bridged` for Leg A
         - `call.bridged` for Leg B
@@ -587,9 +582,7 @@ class ActionsResource(SyncAPIResource):
         You can pass a list of valid digits. The `Answer` command must be issued before
         the `gather` command.
 
-        **Expected Webhooks (see
-        [callback schema](https://developers.telnyx.com/api/call-control/gather-call#callbacks)
-        below):**
+        **Expected Webhooks:**
 
         - `call.dtmf.received` (you may receive many of these webhooks)
         - `call.gather.ended`
@@ -684,9 +677,7 @@ class ActionsResource(SyncAPIResource):
         You can pass parameters described as a JSON Schema object and the voice
         assistant will attempt to gather these informations.
 
-        **Expected Webhooks (see
-        [callback schema](https://developers.telnyx.com/api/call-control/call-gather-using-ai#callbacks)
-        below):**
+        **Expected Webhooks:**
 
         - `call.ai_gather.ended`
         - `call.conversation.ended`
@@ -721,16 +712,13 @@ class ActionsResource(SyncAPIResource):
               information to the voice assistant.
 
           send_message_history_updates: Default is `false`. If set to `true`, the voice assistant will send updates to
-              the message history via the `call.ai_gather.message_history_updated`
-              [callback](https://developers.telnyx.com/api/call-control/call-gather-using-ai#callbacks)
-              in real time as the message history is updated.
+              the message history via the `call.ai_gather.message_history_updated` callback in
+              real time as the message history is updated.
 
           send_partial_results: Default is `false`. If set to `true`, the voice assistant will send partial
-              results via the `call.ai_gather.partial_results`
-              [callback](https://developers.telnyx.com/api/call-control/call-gather-using-ai#callbacks)
-              in real time as individual fields are gathered. If set to `false`, the voice
-              assistant will only send the final result via the `call.ai_gather.ended`
-              callback.
+              results via the `call.ai_gather.partial_results` callback in real time as
+              individual fields are gathered. If set to `false`, the voice assistant will only
+              send the final result via the `call.ai_gather.ended` callback.
 
           transcription: The settings associated with speech to text for the voice assistant. This is
               only relevant if the assistant uses a text-to-text language model. Any assistant
@@ -835,9 +823,7 @@ class ActionsResource(SyncAPIResource):
         interrupted when a DTMF signal is received. The
         `Answer command must be issued before the `gather_using_audio` command.
 
-        **Expected Webhooks (see
-        [callback schema](https://developers.telnyx.com/api/call-control/gather-using-audio#callbacks)
-        below):**
+        **Expected Webhooks:**
 
         - `call.playback.started`
         - `call.playback.ended`
@@ -991,9 +977,7 @@ class ActionsResource(SyncAPIResource):
         a DTMF signal is received. The `Answer` command must be issued before the
         `gather_using_speak` command.
 
-        **Expected Webhooks (see
-        [callback schema](https://developers.telnyx.com/api/call-control/gather-using-speak#callbacks)
-        below):**
+        **Expected Webhooks:**
 
         - `call.dtmf.received` (you may receive many of these webhooks)
         - `call.gather.ended`
@@ -1124,9 +1108,7 @@ class ActionsResource(SyncAPIResource):
         """
         Hang up the call.
 
-        **Expected Webhooks (see
-        [callback schema](https://developers.telnyx.com/api/call-control/hangup-call#callbacks)
-        below):**
+        **Expected Webhooks:**
 
         - `call.hangup`
         - `call.recording.saved`
@@ -1291,9 +1273,7 @@ class ActionsResource(SyncAPIResource):
         You can initiate a SIP Refer at any
         point in the duration of a call.
 
-        **Expected Webhooks (see
-        [callback schema](https://developers.telnyx.com/api/call-control/refer-call#callbacks)
-        below):**
+        **Expected Webhooks:**
 
         - `call.refer.started`
         - `call.refer.completed`
@@ -1365,9 +1345,7 @@ class ActionsResource(SyncAPIResource):
         """
         Reject an incoming call.
 
-        **Expected Webhooks (see
-        [callback schema](https://developers.telnyx.com/api/call-control/reject-call#callbacks)
-        below):**
+        **Expected Webhooks:**
 
         - `call.hangup`
 
@@ -1644,9 +1622,7 @@ class ActionsResource(SyncAPIResource):
         commands are issued consecutively, the audio files will be placed in a queue
         awaiting playback.
 
-        **Expected Webhooks (see
-        [callback schema](https://developers.telnyx.com/api/call-control/speak-call#callbacks)
-        below):**
+        **Expected Webhooks:**
 
         - `call.speak.started`
         - `call.speak.ended`
@@ -1759,9 +1735,7 @@ class ActionsResource(SyncAPIResource):
         """
         Start an AI assistant on the call.
 
-        **Expected Webhooks (see
-        [callback schema](https://developers.telnyx.com/api/call-control/call-start-ai-assistant#callbacks)
-        below):**
+        **Expected Webhooks:**
 
         - `call.conversation.ended`
         - `call.conversation_insights.generated`
@@ -1865,9 +1839,7 @@ class ActionsResource(SyncAPIResource):
         audio responses. Requests must specify either the `target` attribute or the `rx`
         and `tx` attributes.
 
-        **Expected Webhooks (see
-        [callback schema](https://developers.telnyx.com/api/call-control/start-call-fork#callbacks)
-        below):**
+        **Expected Webhooks:**
 
         - `call.fork.started`
         - `call.fork.stopped`
@@ -2007,9 +1979,7 @@ class ActionsResource(SyncAPIResource):
         - A customer cannot Play Audio with `overlay=true` unless there is a Play Audio
           with `overlay=false` actively playing.
 
-        **Expected Webhooks (see
-        [callback schema](https://developers.telnyx.com/api/call-control/start-call-playback#callbacks)
-        below):**
+        **Expected Webhooks:**
 
         - `call.playback.started`
         - `call.playback.ended`
@@ -2268,9 +2238,7 @@ class ActionsResource(SyncAPIResource):
         Recording will stop on call hang-up, or can be
         initiated via the Stop Recording command.
 
-        **Expected Webhooks (see
-        [callback schema](https://developers.telnyx.com/api/call-control/start-call-record#callbacks)
-        below):**
+        **Expected Webhooks:**
 
         - `call.recording.saved`
         - `call.recording.transcription.saved`
@@ -2453,6 +2421,7 @@ class ActionsResource(SyncAPIResource):
         enable_dialogflow: bool | Omit = omit,
         stream_bidirectional_codec: StreamBidirectionalCodec | Omit = omit,
         stream_bidirectional_mode: StreamBidirectionalMode | Omit = omit,
+        stream_bidirectional_sampling_rate: Literal[8000, 16000, 22050, 24000, 48000] | Omit = omit,
         stream_bidirectional_target_legs: StreamBidirectionalTargetLegs | Omit = omit,
         stream_codec: StreamCodec | Omit = omit,
         stream_track: Literal["inbound_track", "outbound_track", "both_tracks"] | Omit = omit,
@@ -2486,11 +2455,12 @@ class ActionsResource(SyncAPIResource):
 
           stream_bidirectional_mode: Configures method of bidirectional streaming (mp3, rtp).
 
+          stream_bidirectional_sampling_rate: Audio sampling rate.
+
           stream_bidirectional_target_legs: Specifies which call legs should receive the bidirectional stream audio.
 
           stream_codec: Specifies the codec to be used for the streamed audio. When set to 'default' or
               when transcoding is not possible, the codec from the call will be used.
-              Currently, transcoding is only supported between PCMU and PCMA codecs.
 
           stream_track: Specifies which track should be streamed.
 
@@ -2516,6 +2486,7 @@ class ActionsResource(SyncAPIResource):
                     "enable_dialogflow": enable_dialogflow,
                     "stream_bidirectional_codec": stream_bidirectional_codec,
                     "stream_bidirectional_mode": stream_bidirectional_mode,
+                    "stream_bidirectional_sampling_rate": stream_bidirectional_sampling_rate,
                     "stream_bidirectional_target_legs": stream_bidirectional_target_legs,
                     "stream_codec": stream_codec,
                     "stream_track": stream_track,
@@ -2550,9 +2521,7 @@ class ActionsResource(SyncAPIResource):
         Transcription will stop on call hang-up, or can
         be initiated via the Transcription stop command.
 
-        **Expected Webhooks (see
-        [callback schema](https://developers.telnyx.com/api/call-control/start-call-transcription#callbacks)
-        below):**
+        **Expected Webhooks:**
 
         - `call.transcription`
 
@@ -2662,9 +2631,7 @@ class ActionsResource(SyncAPIResource):
         """
         Stop forking a call.
 
-        **Expected Webhooks (see
-        [callback schema](https://developers.telnyx.com/api/call-control/stop-call-fork#callbacks)
-        below):**
+        **Expected Webhooks:**
 
         - `call.fork.stopped`
 
@@ -2720,9 +2687,7 @@ class ActionsResource(SyncAPIResource):
         """
         Stop current gather.
 
-        **Expected Webhooks (see
-        [callback schema](https://developers.telnyx.com/api/call-control/stop-call-gather#callbacks)
-        below):**
+        **Expected Webhooks:**
 
         - `call.gather.ended`
 
@@ -2824,9 +2789,7 @@ class ActionsResource(SyncAPIResource):
         """
         Stop audio being played on the call.
 
-        **Expected Webhooks (see
-        [callback schema](https://developers.telnyx.com/api/call-control/stop-call-playback#callbacks)
-        below):**
+        **Expected Webhooks:**
 
         - `call.playback.ended` or `call.speak.ended`
 
@@ -2886,9 +2849,7 @@ class ActionsResource(SyncAPIResource):
         """
         Stop recording the call.
 
-        **Expected Webhooks (see
-        [callback schema](https://developers.telnyx.com/api/call-control/stop-call-recording#callbacks)
-        below):**
+        **Expected Webhooks:**
 
         - `call.recording.saved`
 
@@ -2996,9 +2957,7 @@ class ActionsResource(SyncAPIResource):
         """
         Stop streaming a call to a WebSocket.
 
-        **Expected Webhooks (see
-        [callback schema](https://developers.telnyx.com/api/call-control/stop-call-streaming#callbacks)
-        below):**
+        **Expected Webhooks:**
 
         - `streaming.stopped`
 
@@ -3147,6 +3106,14 @@ class ActionsResource(SyncAPIResource):
         media_name: str | Omit = omit,
         mute_dtmf: Literal["none", "both", "self", "opposite"] | Omit = omit,
         park_after_unbridge: str | Omit = omit,
+        record: Literal["record-from-answer"] | Omit = omit,
+        record_channels: Literal["single", "dual"] | Omit = omit,
+        record_custom_file_name: str | Omit = omit,
+        record_format: Literal["wav", "mp3"] | Omit = omit,
+        record_max_length: int | Omit = omit,
+        record_timeout_secs: int | Omit = omit,
+        record_track: Literal["both", "inbound", "outbound"] | Omit = omit,
+        record_trim: Literal["trim-silence"] | Omit = omit,
         sip_auth_password: str | Omit = omit,
         sip_auth_username: str | Omit = omit,
         sip_headers: Iterable[SipHeaderParam] | Omit = omit,
@@ -3172,9 +3139,7 @@ class ActionsResource(SyncAPIResource):
         may be issued additional commands, potentially transfering the call to an
         alternate destination.
 
-        **Expected Webhooks (see
-        [callback schema](https://developers.telnyx.com/api/call-control/transfer-call#callbacks)
-        below):**
+        **Expected Webhooks:**
 
         - `call.initiated`
         - `call.bridged` to Leg B
@@ -3239,6 +3204,33 @@ class ActionsResource(SyncAPIResource):
               or is transferred). If supplied with the value `self`, the current leg will be
               parked after unbridge. If not set, the default behavior is to hang up the leg.
 
+          record: Start recording automatically after an event. Disabled by default.
+
+          record_channels: Defines which channel should be recorded ('single' or 'dual') when `record` is
+              specified.
+
+          record_custom_file_name: The custom recording file name to be used instead of the default `call_leg_id`.
+              Telnyx will still add a Unix timestamp suffix.
+
+          record_format: Defines the format of the recording ('wav' or 'mp3') when `record` is specified.
+
+          record_max_length: Defines the maximum length for the recording in seconds when `record` is
+              specified. The minimum value is 0. The maximum value is 43200. The default value
+              is 0 (infinite).
+
+          record_timeout_secs: The number of seconds that Telnyx will wait for the recording to be stopped if
+              silence is detected when `record` is specified. The timer only starts when the
+              speech is detected. Please note that call transcription is used to detect
+              silence and the related charge will be applied. The minimum value is 0. The
+              default value is 0 (infinite).
+
+          record_track: The audio track to be recorded. Can be either `both`, `inbound` or `outbound`.
+              If only single track is specified (`inbound`, `outbound`), `channels`
+              configuration is ignored and it will be recorded as mono (single channel).
+
+          record_trim: When set to `trim-silence`, silence will be removed from the beginning and end
+              of the recording.
+
           sip_auth_password: SIP Authentication password used for SIP challenges.
 
           sip_auth_username: SIP Authentication username used for SIP challenges.
@@ -3299,6 +3291,14 @@ class ActionsResource(SyncAPIResource):
                     "media_name": media_name,
                     "mute_dtmf": mute_dtmf,
                     "park_after_unbridge": park_after_unbridge,
+                    "record": record,
+                    "record_channels": record_channels,
+                    "record_custom_file_name": record_custom_file_name,
+                    "record_format": record_format,
+                    "record_max_length": record_max_length,
+                    "record_timeout_secs": record_timeout_secs,
+                    "record_track": record_track,
+                    "record_trim": record_trim,
                     "sip_auth_password": sip_auth_password,
                     "sip_auth_username": sip_auth_username,
                     "sip_headers": sip_headers,
@@ -3421,9 +3421,7 @@ class AsyncActionsResource(AsyncAPIResource):
         You must issue this command before executing subsequent
         commands on an incoming call.
 
-        **Expected Webhooks (see
-        [callback schema](https://developers.telnyx.com/api/call-control/answer-call#callbacks)
-        below):**
+        **Expected Webhooks:**
 
         - `call.answered`
         - `streaming.started`, `streaming.stopped` or `streaming.failed` if `stream_url`
@@ -3490,7 +3488,6 @@ class AsyncActionsResource(AsyncAPIResource):
 
           stream_codec: Specifies the codec to be used for the streamed audio. When set to 'default' or
               when transcoding is not possible, the codec from the call will be used.
-              Currently, transcoding is only supported between PCMU and PCMA codecs.
 
           stream_track: Specifies which track should be streamed.
 
@@ -3626,9 +3623,7 @@ class AsyncActionsResource(AsyncAPIResource):
         """
         Bridge two call control calls.
 
-        **Expected Webhooks (see
-        [callback schema](https://developers.telnyx.com/api/call-control/bridge-call#callbacks)
-        below):**
+        **Expected Webhooks:**
 
         - `call.bridged` for Leg A
         - `call.bridged` for Leg B
@@ -3829,9 +3824,7 @@ class AsyncActionsResource(AsyncAPIResource):
         You can pass a list of valid digits. The `Answer` command must be issued before
         the `gather` command.
 
-        **Expected Webhooks (see
-        [callback schema](https://developers.telnyx.com/api/call-control/gather-call#callbacks)
-        below):**
+        **Expected Webhooks:**
 
         - `call.dtmf.received` (you may receive many of these webhooks)
         - `call.gather.ended`
@@ -3926,9 +3919,7 @@ class AsyncActionsResource(AsyncAPIResource):
         You can pass parameters described as a JSON Schema object and the voice
         assistant will attempt to gather these informations.
 
-        **Expected Webhooks (see
-        [callback schema](https://developers.telnyx.com/api/call-control/call-gather-using-ai#callbacks)
-        below):**
+        **Expected Webhooks:**
 
         - `call.ai_gather.ended`
         - `call.conversation.ended`
@@ -3963,16 +3954,13 @@ class AsyncActionsResource(AsyncAPIResource):
               information to the voice assistant.
 
           send_message_history_updates: Default is `false`. If set to `true`, the voice assistant will send updates to
-              the message history via the `call.ai_gather.message_history_updated`
-              [callback](https://developers.telnyx.com/api/call-control/call-gather-using-ai#callbacks)
-              in real time as the message history is updated.
+              the message history via the `call.ai_gather.message_history_updated` callback in
+              real time as the message history is updated.
 
           send_partial_results: Default is `false`. If set to `true`, the voice assistant will send partial
-              results via the `call.ai_gather.partial_results`
-              [callback](https://developers.telnyx.com/api/call-control/call-gather-using-ai#callbacks)
-              in real time as individual fields are gathered. If set to `false`, the voice
-              assistant will only send the final result via the `call.ai_gather.ended`
-              callback.
+              results via the `call.ai_gather.partial_results` callback in real time as
+              individual fields are gathered. If set to `false`, the voice assistant will only
+              send the final result via the `call.ai_gather.ended` callback.
 
           transcription: The settings associated with speech to text for the voice assistant. This is
               only relevant if the assistant uses a text-to-text language model. Any assistant
@@ -4077,9 +4065,7 @@ class AsyncActionsResource(AsyncAPIResource):
         interrupted when a DTMF signal is received. The
         `Answer command must be issued before the `gather_using_audio` command.
 
-        **Expected Webhooks (see
-        [callback schema](https://developers.telnyx.com/api/call-control/gather-using-audio#callbacks)
-        below):**
+        **Expected Webhooks:**
 
         - `call.playback.started`
         - `call.playback.ended`
@@ -4233,9 +4219,7 @@ class AsyncActionsResource(AsyncAPIResource):
         a DTMF signal is received. The `Answer` command must be issued before the
         `gather_using_speak` command.
 
-        **Expected Webhooks (see
-        [callback schema](https://developers.telnyx.com/api/call-control/gather-using-speak#callbacks)
-        below):**
+        **Expected Webhooks:**
 
         - `call.dtmf.received` (you may receive many of these webhooks)
         - `call.gather.ended`
@@ -4366,9 +4350,7 @@ class AsyncActionsResource(AsyncAPIResource):
         """
         Hang up the call.
 
-        **Expected Webhooks (see
-        [callback schema](https://developers.telnyx.com/api/call-control/hangup-call#callbacks)
-        below):**
+        **Expected Webhooks:**
 
         - `call.hangup`
         - `call.recording.saved`
@@ -4533,9 +4515,7 @@ class AsyncActionsResource(AsyncAPIResource):
         You can initiate a SIP Refer at any
         point in the duration of a call.
 
-        **Expected Webhooks (see
-        [callback schema](https://developers.telnyx.com/api/call-control/refer-call#callbacks)
-        below):**
+        **Expected Webhooks:**
 
         - `call.refer.started`
         - `call.refer.completed`
@@ -4607,9 +4587,7 @@ class AsyncActionsResource(AsyncAPIResource):
         """
         Reject an incoming call.
 
-        **Expected Webhooks (see
-        [callback schema](https://developers.telnyx.com/api/call-control/reject-call#callbacks)
-        below):**
+        **Expected Webhooks:**
 
         - `call.hangup`
 
@@ -4886,9 +4864,7 @@ class AsyncActionsResource(AsyncAPIResource):
         commands are issued consecutively, the audio files will be placed in a queue
         awaiting playback.
 
-        **Expected Webhooks (see
-        [callback schema](https://developers.telnyx.com/api/call-control/speak-call#callbacks)
-        below):**
+        **Expected Webhooks:**
 
         - `call.speak.started`
         - `call.speak.ended`
@@ -5001,9 +4977,7 @@ class AsyncActionsResource(AsyncAPIResource):
         """
         Start an AI assistant on the call.
 
-        **Expected Webhooks (see
-        [callback schema](https://developers.telnyx.com/api/call-control/call-start-ai-assistant#callbacks)
-        below):**
+        **Expected Webhooks:**
 
         - `call.conversation.ended`
         - `call.conversation_insights.generated`
@@ -5107,9 +5081,7 @@ class AsyncActionsResource(AsyncAPIResource):
         audio responses. Requests must specify either the `target` attribute or the `rx`
         and `tx` attributes.
 
-        **Expected Webhooks (see
-        [callback schema](https://developers.telnyx.com/api/call-control/start-call-fork#callbacks)
-        below):**
+        **Expected Webhooks:**
 
         - `call.fork.started`
         - `call.fork.stopped`
@@ -5249,9 +5221,7 @@ class AsyncActionsResource(AsyncAPIResource):
         - A customer cannot Play Audio with `overlay=true` unless there is a Play Audio
           with `overlay=false` actively playing.
 
-        **Expected Webhooks (see
-        [callback schema](https://developers.telnyx.com/api/call-control/start-call-playback#callbacks)
-        below):**
+        **Expected Webhooks:**
 
         - `call.playback.started`
         - `call.playback.ended`
@@ -5510,9 +5480,7 @@ class AsyncActionsResource(AsyncAPIResource):
         Recording will stop on call hang-up, or can be
         initiated via the Stop Recording command.
 
-        **Expected Webhooks (see
-        [callback schema](https://developers.telnyx.com/api/call-control/start-call-record#callbacks)
-        below):**
+        **Expected Webhooks:**
 
         - `call.recording.saved`
         - `call.recording.transcription.saved`
@@ -5695,6 +5663,7 @@ class AsyncActionsResource(AsyncAPIResource):
         enable_dialogflow: bool | Omit = omit,
         stream_bidirectional_codec: StreamBidirectionalCodec | Omit = omit,
         stream_bidirectional_mode: StreamBidirectionalMode | Omit = omit,
+        stream_bidirectional_sampling_rate: Literal[8000, 16000, 22050, 24000, 48000] | Omit = omit,
         stream_bidirectional_target_legs: StreamBidirectionalTargetLegs | Omit = omit,
         stream_codec: StreamCodec | Omit = omit,
         stream_track: Literal["inbound_track", "outbound_track", "both_tracks"] | Omit = omit,
@@ -5728,11 +5697,12 @@ class AsyncActionsResource(AsyncAPIResource):
 
           stream_bidirectional_mode: Configures method of bidirectional streaming (mp3, rtp).
 
+          stream_bidirectional_sampling_rate: Audio sampling rate.
+
           stream_bidirectional_target_legs: Specifies which call legs should receive the bidirectional stream audio.
 
           stream_codec: Specifies the codec to be used for the streamed audio. When set to 'default' or
               when transcoding is not possible, the codec from the call will be used.
-              Currently, transcoding is only supported between PCMU and PCMA codecs.
 
           stream_track: Specifies which track should be streamed.
 
@@ -5758,6 +5728,7 @@ class AsyncActionsResource(AsyncAPIResource):
                     "enable_dialogflow": enable_dialogflow,
                     "stream_bidirectional_codec": stream_bidirectional_codec,
                     "stream_bidirectional_mode": stream_bidirectional_mode,
+                    "stream_bidirectional_sampling_rate": stream_bidirectional_sampling_rate,
                     "stream_bidirectional_target_legs": stream_bidirectional_target_legs,
                     "stream_codec": stream_codec,
                     "stream_track": stream_track,
@@ -5792,9 +5763,7 @@ class AsyncActionsResource(AsyncAPIResource):
         Transcription will stop on call hang-up, or can
         be initiated via the Transcription stop command.
 
-        **Expected Webhooks (see
-        [callback schema](https://developers.telnyx.com/api/call-control/start-call-transcription#callbacks)
-        below):**
+        **Expected Webhooks:**
 
         - `call.transcription`
 
@@ -5904,9 +5873,7 @@ class AsyncActionsResource(AsyncAPIResource):
         """
         Stop forking a call.
 
-        **Expected Webhooks (see
-        [callback schema](https://developers.telnyx.com/api/call-control/stop-call-fork#callbacks)
-        below):**
+        **Expected Webhooks:**
 
         - `call.fork.stopped`
 
@@ -5962,9 +5929,7 @@ class AsyncActionsResource(AsyncAPIResource):
         """
         Stop current gather.
 
-        **Expected Webhooks (see
-        [callback schema](https://developers.telnyx.com/api/call-control/stop-call-gather#callbacks)
-        below):**
+        **Expected Webhooks:**
 
         - `call.gather.ended`
 
@@ -6066,9 +6031,7 @@ class AsyncActionsResource(AsyncAPIResource):
         """
         Stop audio being played on the call.
 
-        **Expected Webhooks (see
-        [callback schema](https://developers.telnyx.com/api/call-control/stop-call-playback#callbacks)
-        below):**
+        **Expected Webhooks:**
 
         - `call.playback.ended` or `call.speak.ended`
 
@@ -6128,9 +6091,7 @@ class AsyncActionsResource(AsyncAPIResource):
         """
         Stop recording the call.
 
-        **Expected Webhooks (see
-        [callback schema](https://developers.telnyx.com/api/call-control/stop-call-recording#callbacks)
-        below):**
+        **Expected Webhooks:**
 
         - `call.recording.saved`
 
@@ -6238,9 +6199,7 @@ class AsyncActionsResource(AsyncAPIResource):
         """
         Stop streaming a call to a WebSocket.
 
-        **Expected Webhooks (see
-        [callback schema](https://developers.telnyx.com/api/call-control/stop-call-streaming#callbacks)
-        below):**
+        **Expected Webhooks:**
 
         - `streaming.stopped`
 
@@ -6391,6 +6350,14 @@ class AsyncActionsResource(AsyncAPIResource):
         media_name: str | Omit = omit,
         mute_dtmf: Literal["none", "both", "self", "opposite"] | Omit = omit,
         park_after_unbridge: str | Omit = omit,
+        record: Literal["record-from-answer"] | Omit = omit,
+        record_channels: Literal["single", "dual"] | Omit = omit,
+        record_custom_file_name: str | Omit = omit,
+        record_format: Literal["wav", "mp3"] | Omit = omit,
+        record_max_length: int | Omit = omit,
+        record_timeout_secs: int | Omit = omit,
+        record_track: Literal["both", "inbound", "outbound"] | Omit = omit,
+        record_trim: Literal["trim-silence"] | Omit = omit,
         sip_auth_password: str | Omit = omit,
         sip_auth_username: str | Omit = omit,
         sip_headers: Iterable[SipHeaderParam] | Omit = omit,
@@ -6416,9 +6383,7 @@ class AsyncActionsResource(AsyncAPIResource):
         may be issued additional commands, potentially transfering the call to an
         alternate destination.
 
-        **Expected Webhooks (see
-        [callback schema](https://developers.telnyx.com/api/call-control/transfer-call#callbacks)
-        below):**
+        **Expected Webhooks:**
 
         - `call.initiated`
         - `call.bridged` to Leg B
@@ -6483,6 +6448,33 @@ class AsyncActionsResource(AsyncAPIResource):
               or is transferred). If supplied with the value `self`, the current leg will be
               parked after unbridge. If not set, the default behavior is to hang up the leg.
 
+          record: Start recording automatically after an event. Disabled by default.
+
+          record_channels: Defines which channel should be recorded ('single' or 'dual') when `record` is
+              specified.
+
+          record_custom_file_name: The custom recording file name to be used instead of the default `call_leg_id`.
+              Telnyx will still add a Unix timestamp suffix.
+
+          record_format: Defines the format of the recording ('wav' or 'mp3') when `record` is specified.
+
+          record_max_length: Defines the maximum length for the recording in seconds when `record` is
+              specified. The minimum value is 0. The maximum value is 43200. The default value
+              is 0 (infinite).
+
+          record_timeout_secs: The number of seconds that Telnyx will wait for the recording to be stopped if
+              silence is detected when `record` is specified. The timer only starts when the
+              speech is detected. Please note that call transcription is used to detect
+              silence and the related charge will be applied. The minimum value is 0. The
+              default value is 0 (infinite).
+
+          record_track: The audio track to be recorded. Can be either `both`, `inbound` or `outbound`.
+              If only single track is specified (`inbound`, `outbound`), `channels`
+              configuration is ignored and it will be recorded as mono (single channel).
+
+          record_trim: When set to `trim-silence`, silence will be removed from the beginning and end
+              of the recording.
+
           sip_auth_password: SIP Authentication password used for SIP challenges.
 
           sip_auth_username: SIP Authentication username used for SIP challenges.
@@ -6543,6 +6535,14 @@ class AsyncActionsResource(AsyncAPIResource):
                     "media_name": media_name,
                     "mute_dtmf": mute_dtmf,
                     "park_after_unbridge": park_after_unbridge,
+                    "record": record,
+                    "record_channels": record_channels,
+                    "record_custom_file_name": record_custom_file_name,
+                    "record_format": record_format,
+                    "record_max_length": record_max_length,
+                    "record_timeout_secs": record_timeout_secs,
+                    "record_track": record_track,
+                    "record_trim": record_trim,
                     "sip_auth_password": sip_auth_password,
                     "sip_auth_username": sip_auth_username,
                     "sip_headers": sip_headers,

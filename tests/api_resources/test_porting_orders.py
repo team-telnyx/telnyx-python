@@ -48,6 +48,7 @@ class TestPortingOrders:
     def test_method_create_with_all_params(self, client: Telnyx) -> None:
         porting_order = client.porting_orders.create(
             phone_numbers=["+13035550000", "+13035550001", "+13035550002"],
+            customer_group_reference="Group-456",
             customer_reference="Acct 123abc",
         )
         assert_matches_type(PortingOrderCreateResponse, porting_order, path=["response"])
@@ -143,6 +144,7 @@ class TestPortingOrders:
         porting_order = client.porting_orders.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             activation_settings={"foc_datetime_requested": parse_datetime("2021-03-19T10:07:15.527Z")},
+            customer_group_reference="customer_group_reference",
             customer_reference="customer_reference",
             documents={
                 "invoice": "ce74b771-d23d-4960-81ec-8741b3862146",
@@ -240,19 +242,28 @@ class TestPortingOrders:
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         porting_order = client.porting_orders.list(
             filter={
-                "activation_settings_fast_port_eligible": True,
-                "activation_settings_foc_datetime_requested": {
-                    "gt": "2021-03-25T10:00:00.000Z",
-                    "lt": "2021-03-25T10:00:00.000Z",
+                "activation_settings": {
+                    "fast_port_eligible": True,
+                    "foc_datetime_requested": {
+                        "gt": "2021-03-25T10:00:00.000Z",
+                        "lt": "2021-03-25T10:00:00.000Z",
+                    },
                 },
+                "customer_group_reference": "customer_group_reference",
                 "customer_reference": "customer_reference",
-                "end_user_admin_auth_person_name": "end_user.admin.auth_person_name",
-                "end_user_admin_entity_name": "end_user.admin.entity_name",
-                "misc_type": "full",
+                "end_user": {
+                    "admin": {
+                        "auth_person_name": "auth_person_name",
+                        "entity_name": "entity_name",
+                    }
+                },
+                "misc": {"type": "full"},
                 "parent_support_key": "parent_support_key",
-                "phone_numbers_carrier_name": "phone_numbers.carrier_name",
-                "phone_numbers_country_code": "phone_numbers.country_code",
-                "phone_numbers_phone_number": {"contains": "contains"},
+                "phone_numbers": {
+                    "carrier_name": "carrier_name",
+                    "country_code": "country_code",
+                    "phone_number": {"contains": "contains"},
+                },
             },
             include_phone_numbers=True,
             page={
@@ -583,6 +594,7 @@ class TestAsyncPortingOrders:
     async def test_method_create_with_all_params(self, async_client: AsyncTelnyx) -> None:
         porting_order = await async_client.porting_orders.create(
             phone_numbers=["+13035550000", "+13035550001", "+13035550002"],
+            customer_group_reference="Group-456",
             customer_reference="Acct 123abc",
         )
         assert_matches_type(PortingOrderCreateResponse, porting_order, path=["response"])
@@ -678,6 +690,7 @@ class TestAsyncPortingOrders:
         porting_order = await async_client.porting_orders.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             activation_settings={"foc_datetime_requested": parse_datetime("2021-03-19T10:07:15.527Z")},
+            customer_group_reference="customer_group_reference",
             customer_reference="customer_reference",
             documents={
                 "invoice": "ce74b771-d23d-4960-81ec-8741b3862146",
@@ -775,19 +788,28 @@ class TestAsyncPortingOrders:
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         porting_order = await async_client.porting_orders.list(
             filter={
-                "activation_settings_fast_port_eligible": True,
-                "activation_settings_foc_datetime_requested": {
-                    "gt": "2021-03-25T10:00:00.000Z",
-                    "lt": "2021-03-25T10:00:00.000Z",
+                "activation_settings": {
+                    "fast_port_eligible": True,
+                    "foc_datetime_requested": {
+                        "gt": "2021-03-25T10:00:00.000Z",
+                        "lt": "2021-03-25T10:00:00.000Z",
+                    },
                 },
+                "customer_group_reference": "customer_group_reference",
                 "customer_reference": "customer_reference",
-                "end_user_admin_auth_person_name": "end_user.admin.auth_person_name",
-                "end_user_admin_entity_name": "end_user.admin.entity_name",
-                "misc_type": "full",
+                "end_user": {
+                    "admin": {
+                        "auth_person_name": "auth_person_name",
+                        "entity_name": "entity_name",
+                    }
+                },
+                "misc": {"type": "full"},
                 "parent_support_key": "parent_support_key",
-                "phone_numbers_carrier_name": "phone_numbers.carrier_name",
-                "phone_numbers_country_code": "phone_numbers.country_code",
-                "phone_numbers_phone_number": {"contains": "contains"},
+                "phone_numbers": {
+                    "carrier_name": "carrier_name",
+                    "country_code": "country_code",
+                    "phone_number": {"contains": "contains"},
+                },
             },
             include_phone_numbers=True,
             page={

@@ -12,6 +12,8 @@ from tests.utils import assert_matches_type
 from telnyx.types import (
     VerifyProfileData,
     VerifyProfileListResponse,
+    VerifyProfileCreateTemplateResponse,
+    VerifyProfileUpdateTemplateResponse,
     VerifyProfileRetrieveTemplatesResponse,
 )
 
@@ -284,6 +286,40 @@ class TestVerifyProfiles:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
+    def test_method_create_template(self, client: Telnyx) -> None:
+        verify_profile = client.verify_profiles.create_template(
+            text="Your {{app_name}} verification code is: {{code}}.",
+        )
+        assert_matches_type(VerifyProfileCreateTemplateResponse, verify_profile, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_raw_response_create_template(self, client: Telnyx) -> None:
+        response = client.verify_profiles.with_raw_response.create_template(
+            text="Your {{app_name}} verification code is: {{code}}.",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        verify_profile = response.parse()
+        assert_matches_type(VerifyProfileCreateTemplateResponse, verify_profile, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_streaming_response_create_template(self, client: Telnyx) -> None:
+        with client.verify_profiles.with_streaming_response.create_template(
+            text="Your {{app_name}} verification code is: {{code}}.",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            verify_profile = response.parse()
+            assert_matches_type(VerifyProfileCreateTemplateResponse, verify_profile, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
     def test_method_retrieve_templates(self, client: Telnyx) -> None:
         verify_profile = client.verify_profiles.retrieve_templates()
         assert_matches_type(VerifyProfileRetrieveTemplatesResponse, verify_profile, path=["response"])
@@ -309,6 +345,52 @@ class TestVerifyProfiles:
             assert_matches_type(VerifyProfileRetrieveTemplatesResponse, verify_profile, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_method_update_template(self, client: Telnyx) -> None:
+        verify_profile = client.verify_profiles.update_template(
+            template_id="12ade33a-21c0-473b-b055-b3c836e1c292",
+            text="Your {{app_name}} verification code is: {{code}}.",
+        )
+        assert_matches_type(VerifyProfileUpdateTemplateResponse, verify_profile, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_raw_response_update_template(self, client: Telnyx) -> None:
+        response = client.verify_profiles.with_raw_response.update_template(
+            template_id="12ade33a-21c0-473b-b055-b3c836e1c292",
+            text="Your {{app_name}} verification code is: {{code}}.",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        verify_profile = response.parse()
+        assert_matches_type(VerifyProfileUpdateTemplateResponse, verify_profile, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_streaming_response_update_template(self, client: Telnyx) -> None:
+        with client.verify_profiles.with_streaming_response.update_template(
+            template_id="12ade33a-21c0-473b-b055-b3c836e1c292",
+            text="Your {{app_name}} verification code is: {{code}}.",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            verify_profile = response.parse()
+            assert_matches_type(VerifyProfileUpdateTemplateResponse, verify_profile, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_path_params_update_template(self, client: Telnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `template_id` but received ''"):
+            client.verify_profiles.with_raw_response.update_template(
+                template_id="",
+                text="Your {{app_name}} verification code is: {{code}}.",
+            )
 
 
 class TestAsyncVerifyProfiles:
@@ -579,6 +661,40 @@ class TestAsyncVerifyProfiles:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
+    async def test_method_create_template(self, async_client: AsyncTelnyx) -> None:
+        verify_profile = await async_client.verify_profiles.create_template(
+            text="Your {{app_name}} verification code is: {{code}}.",
+        )
+        assert_matches_type(VerifyProfileCreateTemplateResponse, verify_profile, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_raw_response_create_template(self, async_client: AsyncTelnyx) -> None:
+        response = await async_client.verify_profiles.with_raw_response.create_template(
+            text="Your {{app_name}} verification code is: {{code}}.",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        verify_profile = await response.parse()
+        assert_matches_type(VerifyProfileCreateTemplateResponse, verify_profile, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_streaming_response_create_template(self, async_client: AsyncTelnyx) -> None:
+        async with async_client.verify_profiles.with_streaming_response.create_template(
+            text="Your {{app_name}} verification code is: {{code}}.",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            verify_profile = await response.parse()
+            assert_matches_type(VerifyProfileCreateTemplateResponse, verify_profile, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
     async def test_method_retrieve_templates(self, async_client: AsyncTelnyx) -> None:
         verify_profile = await async_client.verify_profiles.retrieve_templates()
         assert_matches_type(VerifyProfileRetrieveTemplatesResponse, verify_profile, path=["response"])
@@ -604,3 +720,49 @@ class TestAsyncVerifyProfiles:
             assert_matches_type(VerifyProfileRetrieveTemplatesResponse, verify_profile, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_method_update_template(self, async_client: AsyncTelnyx) -> None:
+        verify_profile = await async_client.verify_profiles.update_template(
+            template_id="12ade33a-21c0-473b-b055-b3c836e1c292",
+            text="Your {{app_name}} verification code is: {{code}}.",
+        )
+        assert_matches_type(VerifyProfileUpdateTemplateResponse, verify_profile, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_raw_response_update_template(self, async_client: AsyncTelnyx) -> None:
+        response = await async_client.verify_profiles.with_raw_response.update_template(
+            template_id="12ade33a-21c0-473b-b055-b3c836e1c292",
+            text="Your {{app_name}} verification code is: {{code}}.",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        verify_profile = await response.parse()
+        assert_matches_type(VerifyProfileUpdateTemplateResponse, verify_profile, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_streaming_response_update_template(self, async_client: AsyncTelnyx) -> None:
+        async with async_client.verify_profiles.with_streaming_response.update_template(
+            template_id="12ade33a-21c0-473b-b055-b3c836e1c292",
+            text="Your {{app_name}} verification code is: {{code}}.",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            verify_profile = await response.parse()
+            assert_matches_type(VerifyProfileUpdateTemplateResponse, verify_profile, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_path_params_update_template(self, async_client: AsyncTelnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `template_id` but received ''"):
+            await async_client.verify_profiles.with_raw_response.update_template(
+                template_id="",
+                text="Your {{app_name}} verification code is: {{code}}.",
+            )

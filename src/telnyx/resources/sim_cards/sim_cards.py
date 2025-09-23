@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import Optional
 from typing_extensions import Literal
 
 import httpx
@@ -124,7 +125,7 @@ class SimCardsResource(SyncAPIResource):
         self,
         id: str,
         *,
-        authorized_imeis: SequenceNotStr[str] | Omit = omit,
+        authorized_imeis: Optional[SequenceNotStr[str]] | Omit = omit,
         data_limit: sim_card_update_params.DataLimit | Omit = omit,
         sim_card_group_id: str | Omit = omit,
         status: SimCardStatus | Omit = omit,
@@ -517,7 +518,7 @@ class AsyncSimCardsResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        authorized_imeis: SequenceNotStr[str] | Omit = omit,
+        authorized_imeis: Optional[SequenceNotStr[str]] | Omit = omit,
         data_limit: sim_card_update_params.DataLimit | Omit = omit,
         sim_card_group_id: str | Omit = omit,
         status: SimCardStatus | Omit = omit,

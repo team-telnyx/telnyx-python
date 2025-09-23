@@ -86,9 +86,7 @@ class ConferencesResource(SyncAPIResource):
         left the conference or after 4 hours regardless of the number of active
         participants.
 
-        **Expected Webhooks (see
-        [callback schema](https://developers.telnyx.com/api/call-control/create-conference#callbacks)
-        below):**
+        **Expected Webhooks:**
 
         - `conference.created`
         - `conference.participant.joined`
@@ -360,9 +358,7 @@ class AsyncConferencesResource(AsyncAPIResource):
         left the conference or after 4 hours regardless of the number of active
         participants.
 
-        **Expected Webhooks (see
-        [callback schema](https://developers.telnyx.com/api/call-control/create-conference#callbacks)
-        below):**
+        **Expected Webhooks:**
 
         - `conference.created`
         - `conference.participant.joined`

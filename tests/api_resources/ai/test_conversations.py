@@ -9,6 +9,7 @@ import pytest
 
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
+from telnyx._utils import parse_datetime
 from telnyx.types.ai import (
     Conversation,
     ConversationListResponse,
@@ -240,6 +241,68 @@ class TestConversations:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `conversation_id` but received ''"):
             client.ai.conversations.with_raw_response.delete(
                 "",
+            )
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_method_add_message(self, client: Telnyx) -> None:
+        conversation = client.ai.conversations.add_message(
+            conversation_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            role="role",
+        )
+        assert_matches_type(object, conversation, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_method_add_message_with_all_params(self, client: Telnyx) -> None:
+        conversation = client.ai.conversations.add_message(
+            conversation_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            role="role",
+            content="content",
+            metadata={"foo": "string"},
+            name="name",
+            sent_at=parse_datetime("2019-12-27T18:11:19.117Z"),
+            tool_call_id="tool_call_id",
+            tool_calls=[{"foo": "bar"}],
+            tool_choice="string",
+        )
+        assert_matches_type(object, conversation, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_raw_response_add_message(self, client: Telnyx) -> None:
+        response = client.ai.conversations.with_raw_response.add_message(
+            conversation_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            role="role",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        conversation = response.parse()
+        assert_matches_type(object, conversation, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_streaming_response_add_message(self, client: Telnyx) -> None:
+        with client.ai.conversations.with_streaming_response.add_message(
+            conversation_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            role="role",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            conversation = response.parse()
+            assert_matches_type(object, conversation, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_path_params_add_message(self, client: Telnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `conversation_id` but received ''"):
+            client.ai.conversations.with_raw_response.add_message(
+                conversation_id="",
+                role="role",
             )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -507,6 +570,68 @@ class TestAsyncConversations:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `conversation_id` but received ''"):
             await async_client.ai.conversations.with_raw_response.delete(
                 "",
+            )
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_method_add_message(self, async_client: AsyncTelnyx) -> None:
+        conversation = await async_client.ai.conversations.add_message(
+            conversation_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            role="role",
+        )
+        assert_matches_type(object, conversation, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_method_add_message_with_all_params(self, async_client: AsyncTelnyx) -> None:
+        conversation = await async_client.ai.conversations.add_message(
+            conversation_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            role="role",
+            content="content",
+            metadata={"foo": "string"},
+            name="name",
+            sent_at=parse_datetime("2019-12-27T18:11:19.117Z"),
+            tool_call_id="tool_call_id",
+            tool_calls=[{"foo": "bar"}],
+            tool_choice="string",
+        )
+        assert_matches_type(object, conversation, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_raw_response_add_message(self, async_client: AsyncTelnyx) -> None:
+        response = await async_client.ai.conversations.with_raw_response.add_message(
+            conversation_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            role="role",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        conversation = await response.parse()
+        assert_matches_type(object, conversation, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_streaming_response_add_message(self, async_client: AsyncTelnyx) -> None:
+        async with async_client.ai.conversations.with_streaming_response.add_message(
+            conversation_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            role="role",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            conversation = await response.parse()
+            assert_matches_type(object, conversation, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_path_params_add_message(self, async_client: AsyncTelnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `conversation_id` but received ''"):
+            await async_client.ai.conversations.with_raw_response.add_message(
+                conversation_id="",
+                role="role",
             )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
