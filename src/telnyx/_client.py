@@ -70,6 +70,7 @@ from .resources import (
     messsages,
     user_tags,
     global_ips,
+    well_known,
     call_events,
     connections,
     ota_updates,
@@ -181,7 +182,6 @@ from .resources.calls import calls
 from .resources.faxes import faxes
 from .resources.rooms import rooms
 from .resources.texml import texml
-from .resources.client import client
 from .resources.legacy import legacy
 from .resources.queues import queues
 from .resources.actions import actions
@@ -375,7 +375,7 @@ class Telnyx(SyncAPIClient):
     wireless_blocklist_values: wireless_blocklist_values.WirelessBlocklistValuesResource
     wireless_blocklists: wireless_blocklists.WirelessBlocklistsResource
     partner_campaigns: partner_campaigns.PartnerCampaignsResource
-    client: client.ClientResource
+    well_known: well_known.WellKnownResource
     with_raw_response: TelnyxWithRawResponse
     with_streaming_response: TelnyxWithStreamedResponse
 
@@ -593,7 +593,7 @@ class Telnyx(SyncAPIClient):
         self.wireless_blocklist_values = wireless_blocklist_values.WirelessBlocklistValuesResource(self)
         self.wireless_blocklists = wireless_blocklists.WirelessBlocklistsResource(self)
         self.partner_campaigns = partner_campaigns.PartnerCampaignsResource(self)
-        self.client = client.ClientResource(self)
+        self.well_known = well_known.WellKnownResource(self)
         self.with_raw_response = TelnyxWithRawResponse(self)
         self.with_streaming_response = TelnyxWithStreamedResponse(self)
 
@@ -1161,7 +1161,7 @@ class AsyncTelnyx(AsyncAPIClient):
     wireless_blocklist_values: wireless_blocklist_values.AsyncWirelessBlocklistValuesResource
     wireless_blocklists: wireless_blocklists.AsyncWirelessBlocklistsResource
     partner_campaigns: partner_campaigns.AsyncPartnerCampaignsResource
-    client: client.AsyncClientResource
+    well_known: well_known.AsyncWellKnownResource
     with_raw_response: AsyncTelnyxWithRawResponse
     with_streaming_response: AsyncTelnyxWithStreamedResponse
 
@@ -1385,7 +1385,7 @@ class AsyncTelnyx(AsyncAPIClient):
         self.wireless_blocklist_values = wireless_blocklist_values.AsyncWirelessBlocklistValuesResource(self)
         self.wireless_blocklists = wireless_blocklists.AsyncWirelessBlocklistsResource(self)
         self.partner_campaigns = partner_campaigns.AsyncPartnerCampaignsResource(self)
-        self.client = client.AsyncClientResource(self)
+        self.well_known = well_known.AsyncWellKnownResource(self)
         self.with_raw_response = AsyncTelnyxWithRawResponse(self)
         self.with_streaming_response = AsyncTelnyxWithStreamedResponse(self)
 
@@ -2085,7 +2085,7 @@ class TelnyxWithRawResponse:
             client.wireless_blocklists
         )
         self.partner_campaigns = partner_campaigns.PartnerCampaignsResourceWithRawResponse(client.partner_campaigns)
-        self.client = client.ClientResourceWithRawResponse(client.client)
+        self.well_known = well_known.WellKnownResourceWithRawResponse(client.well_known)
 
         self.create_bucket = to_raw_response_wrapper(
             client.create_bucket,
@@ -2434,7 +2434,7 @@ class AsyncTelnyxWithRawResponse:
         self.partner_campaigns = partner_campaigns.AsyncPartnerCampaignsResourceWithRawResponse(
             client.partner_campaigns
         )
-        self.client = client.AsyncClientResourceWithRawResponse(client.client)
+        self.well_known = well_known.AsyncWellKnownResourceWithRawResponse(client.well_known)
 
         self.create_bucket = async_to_raw_response_wrapper(
             client.create_bucket,
@@ -2789,7 +2789,7 @@ class TelnyxWithStreamedResponse:
         self.partner_campaigns = partner_campaigns.PartnerCampaignsResourceWithStreamingResponse(
             client.partner_campaigns
         )
-        self.client = client.ClientResourceWithStreamingResponse(client.client)
+        self.well_known = well_known.WellKnownResourceWithStreamingResponse(client.well_known)
 
         self.create_bucket = to_streamed_response_wrapper(
             client.create_bucket,
@@ -3186,7 +3186,7 @@ class AsyncTelnyxWithStreamedResponse:
         self.partner_campaigns = partner_campaigns.AsyncPartnerCampaignsResourceWithStreamingResponse(
             client.partner_campaigns
         )
-        self.client = client.AsyncClientResourceWithStreamingResponse(client.client)
+        self.well_known = well_known.AsyncWellKnownResourceWithStreamingResponse(client.well_known)
 
         self.create_bucket = async_to_streamed_response_wrapper(
             client.create_bucket,

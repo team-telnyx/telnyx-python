@@ -4655,14 +4655,12 @@ Methods:
 - <code title="get /partnerCampaign/sharedByMe">client.partner_campaigns.<a href="./src/telnyx/resources/partner_campaigns.py">list_shared_by_me</a>(\*\*<a href="src/telnyx/types/partner_campaign_list_shared_by_me_params.py">params</a>) -> <a href="./src/telnyx/types/partner_campaign_list_shared_by_me_response.py">PartnerCampaignListSharedByMeResponse</a></code>
 - <code title="get /partnerCampaign/{campaignId}/sharing">client.partner_campaigns.<a href="./src/telnyx/resources/partner_campaigns.py">retrieve_sharing_status</a>(campaign_id) -> <a href="./src/telnyx/types/partner_campaign_retrieve_sharing_status_response.py">PartnerCampaignRetrieveSharingStatusResponse</a></code>
 
-# Client
-
-## WellKnown
+# WellKnown
 
 Types:
 
 ```python
-from telnyx.types.client import (
+from telnyx.types import (
     WellKnownRetrieveAuthorizationServerMetadataResponse,
     WellKnownRetrieveProtectedResourceMetadataResponse,
 )
@@ -4670,5 +4668,5 @@ from telnyx.types.client import (
 
 Methods:
 
-- <code title="get /.well-known/oauth-authorization-server">client.client.well_known.<a href="./src/telnyx/resources/client/well_known.py">retrieve_authorization_server_metadata</a>() -> <a href="./src/telnyx/types/client/well_known_retrieve_authorization_server_metadata_response.py">WellKnownRetrieveAuthorizationServerMetadataResponse</a></code>
-- <code title="get /.well-known/oauth-protected-resource">client.client.well_known.<a href="./src/telnyx/resources/client/well_known.py">retrieve_protected_resource_metadata</a>() -> <a href="./src/telnyx/types/client/well_known_retrieve_protected_resource_metadata_response.py">WellKnownRetrieveProtectedResourceMetadataResponse</a></code>
+- <code title="get /.well-known/oauth-authorization-server">client.well_known.<a href="./src/telnyx/resources/well_known.py">retrieve_authorization_server_metadata</a>() -> <a href="./src/telnyx/types/well_known_retrieve_authorization_server_metadata_response.py">WellKnownRetrieveAuthorizationServerMetadataResponse</a></code>
+- <code title="get /.well-known/oauth-protected-resource">client.well_known.<a href="./src/telnyx/resources/well_known.py">retrieve_protected_resource_metadata</a>() -> <a href="./src/telnyx/types/well_known_retrieve_protected_resource_metadata_response.py">WellKnownRetrieveProtectedResourceMetadataResponse</a></code>

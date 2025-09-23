@@ -104,14 +104,6 @@ from .texml import (
     TexmlResourceWithStreamingResponse,
     AsyncTexmlResourceWithStreamingResponse,
 )
-from .client import (
-    ClientResource,
-    AsyncClientResource,
-    ClientResourceWithRawResponse,
-    AsyncClientResourceWithRawResponse,
-    ClientResourceWithStreamingResponse,
-    AsyncClientResourceWithStreamingResponse,
-)
 from .legacy import (
     LegacyResource,
     AsyncLegacyResource,
@@ -304,6 +296,14 @@ from .recordings import (
     AsyncRecordingsResourceWithRawResponse,
     RecordingsResourceWithStreamingResponse,
     AsyncRecordingsResourceWithStreamingResponse,
+)
+from .well_known import (
+    WellKnownResource,
+    AsyncWellKnownResource,
+    WellKnownResourceWithRawResponse,
+    AsyncWellKnownResourceWithRawResponse,
+    WellKnownResourceWithStreamingResponse,
+    AsyncWellKnownResourceWithStreamingResponse,
 )
 from .call_events import (
     CallEventsResource,
@@ -2113,10 +2113,10 @@ __all__ = [
     "AsyncPartnerCampaignsResourceWithRawResponse",
     "PartnerCampaignsResourceWithStreamingResponse",
     "AsyncPartnerCampaignsResourceWithStreamingResponse",
-    "ClientResource",
-    "AsyncClientResource",
-    "ClientResourceWithRawResponse",
-    "AsyncClientResourceWithRawResponse",
-    "ClientResourceWithStreamingResponse",
-    "AsyncClientResourceWithStreamingResponse",
+    "WellKnownResource",
+    "AsyncWellKnownResource",
+    "WellKnownResourceWithRawResponse",
+    "AsyncWellKnownResourceWithRawResponse",
+    "WellKnownResourceWithStreamingResponse",
+    "AsyncWellKnownResourceWithStreamingResponse",
 ]

@@ -1329,8 +1329,14 @@ from .phone_numbers_regulatory_requirement_retrieve_response import (
 from .messaging_hosted_number_order_check_eligibility_response import (
     MessagingHostedNumberOrderCheckEligibilityResponse as MessagingHostedNumberOrderCheckEligibilityResponse,
 )
+from .well_known_retrieve_protected_resource_metadata_response import (
+    WellKnownRetrieveProtectedResourceMetadataResponse as WellKnownRetrieveProtectedResourceMetadataResponse,
+)
 from .number_order_phone_number_update_requirement_group_params import (
     NumberOrderPhoneNumberUpdateRequirementGroupParams as NumberOrderPhoneNumberUpdateRequirementGroupParams,
+)
+from .well_known_retrieve_authorization_server_metadata_response import (
+    WellKnownRetrieveAuthorizationServerMetadataResponse as WellKnownRetrieveAuthorizationServerMetadataResponse,
 )
 from .customer_service_record_verify_phone_number_coverage_params import (
     CustomerServiceRecordVerifyPhoneNumberCoverageParams as CustomerServiceRecordVerifyPhoneNumberCoverageParams,
