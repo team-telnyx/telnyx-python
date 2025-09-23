@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.7.0-alpha (2025-09-23)
+
+Full Changelog: [v3.6.0-alpha...v3.7.0-alpha](https://github.com/team-telnyx/telnyx-python/compare/v3.6.0-alpha...v3.7.0-alpha)
+
+### Features
+
+* **api:** manual updates ([aee8355](https://github.com/team-telnyx/telnyx-python/commit/aee8355d4c368124161e2ac0f8c7f9ab87010b0e))
+
 ## 3.6.0-alpha (2025-09-23)
 
 Full Changelog: [v3.5.0-alpha...v3.6.0-alpha](https://github.com/team-telnyx/telnyx-python/compare/v3.5.0-alpha...v3.6.0-alpha)
