@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.0.0 (2025-09-23)
+
+Full Changelog: [v3.7.0-alpha...v3.0.0](https://github.com/team-telnyx/telnyx-python/compare/v3.7.0-alpha...v3.0.0)
+
+### Chores
+
+* trigger CI/CD pipeline ([e2a1c9d](https://github.com/team-telnyx/telnyx-python/commit/e2a1c9d5f7d6e0c64ed3e7b3578aff0684283f47))
+
 ## 3.7.0-alpha (2025-09-23)
 
 Full Changelog: [v3.6.0-alpha...v3.7.0-alpha](https://github.com/team-telnyx/telnyx-python/compare/v3.6.0-alpha...v3.7.0-alpha)
