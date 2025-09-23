@@ -66,7 +66,7 @@ class TestSubNumberOrdersReport:
     @parametrize
     def test_method_retrieve(self, client: Telnyx) -> None:
         sub_number_orders_report = client.sub_number_orders_report.retrieve(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "12ade33a-21c0-473b-b055-b3c836e1c293",
         )
         assert_matches_type(SubNumberOrdersReportRetrieveResponse, sub_number_orders_report, path=["response"])
 
@@ -74,7 +74,7 @@ class TestSubNumberOrdersReport:
     @parametrize
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
         response = client.sub_number_orders_report.with_raw_response.retrieve(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "12ade33a-21c0-473b-b055-b3c836e1c293",
         )
 
         assert response.is_closed is True
@@ -86,7 +86,7 @@ class TestSubNumberOrdersReport:
     @parametrize
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
         with client.sub_number_orders_report.with_streaming_response.retrieve(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "12ade33a-21c0-473b-b055-b3c836e1c293",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -108,7 +108,7 @@ class TestSubNumberOrdersReport:
     @parametrize
     def test_method_download(self, client: Telnyx) -> None:
         sub_number_orders_report = client.sub_number_orders_report.download(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "12ade33a-21c0-473b-b055-b3c836e1c293",
         )
         assert_matches_type(str, sub_number_orders_report, path=["response"])
 
@@ -116,7 +116,7 @@ class TestSubNumberOrdersReport:
     @parametrize
     def test_raw_response_download(self, client: Telnyx) -> None:
         response = client.sub_number_orders_report.with_raw_response.download(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "12ade33a-21c0-473b-b055-b3c836e1c293",
         )
 
         assert response.is_closed is True
@@ -128,7 +128,7 @@ class TestSubNumberOrdersReport:
     @parametrize
     def test_streaming_response_download(self, client: Telnyx) -> None:
         with client.sub_number_orders_report.with_streaming_response.download(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "12ade33a-21c0-473b-b055-b3c836e1c293",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -197,7 +197,7 @@ class TestAsyncSubNumberOrdersReport:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
         sub_number_orders_report = await async_client.sub_number_orders_report.retrieve(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "12ade33a-21c0-473b-b055-b3c836e1c293",
         )
         assert_matches_type(SubNumberOrdersReportRetrieveResponse, sub_number_orders_report, path=["response"])
 
@@ -205,7 +205,7 @@ class TestAsyncSubNumberOrdersReport:
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.sub_number_orders_report.with_raw_response.retrieve(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "12ade33a-21c0-473b-b055-b3c836e1c293",
         )
 
         assert response.is_closed is True
@@ -217,7 +217,7 @@ class TestAsyncSubNumberOrdersReport:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         async with async_client.sub_number_orders_report.with_streaming_response.retrieve(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "12ade33a-21c0-473b-b055-b3c836e1c293",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -239,7 +239,7 @@ class TestAsyncSubNumberOrdersReport:
     @parametrize
     async def test_method_download(self, async_client: AsyncTelnyx) -> None:
         sub_number_orders_report = await async_client.sub_number_orders_report.download(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "12ade33a-21c0-473b-b055-b3c836e1c293",
         )
         assert_matches_type(str, sub_number_orders_report, path=["response"])
 
@@ -247,7 +247,7 @@ class TestAsyncSubNumberOrdersReport:
     @parametrize
     async def test_raw_response_download(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.sub_number_orders_report.with_raw_response.download(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "12ade33a-21c0-473b-b055-b3c836e1c293",
         )
 
         assert response.is_closed is True
@@ -259,7 +259,7 @@ class TestAsyncSubNumberOrdersReport:
     @parametrize
     async def test_streaming_response_download(self, async_client: AsyncTelnyx) -> None:
         async with async_client.sub_number_orders_report.with_streaming_response.download(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "12ade33a-21c0-473b-b055-b3c836e1c293",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

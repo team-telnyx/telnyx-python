@@ -83,7 +83,7 @@ class TestUsage:
     @parametrize
     def test_method_get_bucket_usage(self, client: Telnyx) -> None:
         usage = client.storage.buckets.usage.get_bucket_usage(
-            "bucketName",
+            "",
         )
         assert_matches_type(UsageGetBucketUsageResponse, usage, path=["response"])
 
@@ -91,7 +91,7 @@ class TestUsage:
     @parametrize
     def test_raw_response_get_bucket_usage(self, client: Telnyx) -> None:
         response = client.storage.buckets.usage.with_raw_response.get_bucket_usage(
-            "bucketName",
+            "",
         )
 
         assert response.is_closed is True
@@ -103,7 +103,7 @@ class TestUsage:
     @parametrize
     def test_streaming_response_get_bucket_usage(self, client: Telnyx) -> None:
         with client.storage.buckets.usage.with_streaming_response.get_bucket_usage(
-            "bucketName",
+            "",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -189,7 +189,7 @@ class TestAsyncUsage:
     @parametrize
     async def test_method_get_bucket_usage(self, async_client: AsyncTelnyx) -> None:
         usage = await async_client.storage.buckets.usage.get_bucket_usage(
-            "bucketName",
+            "",
         )
         assert_matches_type(UsageGetBucketUsageResponse, usage, path=["response"])
 
@@ -197,7 +197,7 @@ class TestAsyncUsage:
     @parametrize
     async def test_raw_response_get_bucket_usage(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.storage.buckets.usage.with_raw_response.get_bucket_usage(
-            "bucketName",
+            "",
         )
 
         assert response.is_closed is True
@@ -209,7 +209,7 @@ class TestAsyncUsage:
     @parametrize
     async def test_streaming_response_get_bucket_usage(self, async_client: AsyncTelnyx) -> None:
         async with async_client.storage.buckets.usage.with_streaming_response.get_bucket_usage(
-            "bucketName",
+            "",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

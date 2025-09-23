@@ -21,7 +21,7 @@ class TestRequirements:
     @parametrize
     def test_method_retrieve(self, client: Telnyx) -> None:
         requirement = client.requirements.retrieve(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "a9dad8d5-fdbd-49d7-aa23-39bb08a5ebaa",
         )
         assert_matches_type(RequirementRetrieveResponse, requirement, path=["response"])
 
@@ -29,7 +29,7 @@ class TestRequirements:
     @parametrize
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
         response = client.requirements.with_raw_response.retrieve(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "a9dad8d5-fdbd-49d7-aa23-39bb08a5ebaa",
         )
 
         assert response.is_closed is True
@@ -41,7 +41,7 @@ class TestRequirements:
     @parametrize
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
         with client.requirements.with_streaming_response.retrieve(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "a9dad8d5-fdbd-49d7-aa23-39bb08a5ebaa",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -114,7 +114,7 @@ class TestAsyncRequirements:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
         requirement = await async_client.requirements.retrieve(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "a9dad8d5-fdbd-49d7-aa23-39bb08a5ebaa",
         )
         assert_matches_type(RequirementRetrieveResponse, requirement, path=["response"])
 
@@ -122,7 +122,7 @@ class TestAsyncRequirements:
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.requirements.with_raw_response.retrieve(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "a9dad8d5-fdbd-49d7-aa23-39bb08a5ebaa",
         )
 
         assert response.is_closed is True
@@ -134,7 +134,7 @@ class TestAsyncRequirements:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         async with async_client.requirements.with_streaming_response.retrieve(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "a9dad8d5-fdbd-49d7-aa23-39bb08a5ebaa",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

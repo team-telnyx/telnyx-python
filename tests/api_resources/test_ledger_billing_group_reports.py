@@ -61,7 +61,7 @@ class TestLedgerBillingGroupReports:
     @parametrize
     def test_method_retrieve(self, client: Telnyx) -> None:
         ledger_billing_group_report = client.ledger_billing_group_reports.retrieve(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "f5586561-8ff0-4291-a0ac-84fe544797bd",
         )
         assert_matches_type(LedgerBillingGroupReportRetrieveResponse, ledger_billing_group_report, path=["response"])
 
@@ -69,7 +69,7 @@ class TestLedgerBillingGroupReports:
     @parametrize
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
         response = client.ledger_billing_group_reports.with_raw_response.retrieve(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "f5586561-8ff0-4291-a0ac-84fe544797bd",
         )
 
         assert response.is_closed is True
@@ -81,7 +81,7 @@ class TestLedgerBillingGroupReports:
     @parametrize
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
         with client.ledger_billing_group_reports.with_streaming_response.retrieve(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "f5586561-8ff0-4291-a0ac-84fe544797bd",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -148,7 +148,7 @@ class TestAsyncLedgerBillingGroupReports:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
         ledger_billing_group_report = await async_client.ledger_billing_group_reports.retrieve(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "f5586561-8ff0-4291-a0ac-84fe544797bd",
         )
         assert_matches_type(LedgerBillingGroupReportRetrieveResponse, ledger_billing_group_report, path=["response"])
 
@@ -156,7 +156,7 @@ class TestAsyncLedgerBillingGroupReports:
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.ledger_billing_group_reports.with_raw_response.retrieve(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "f5586561-8ff0-4291-a0ac-84fe544797bd",
         )
 
         assert response.is_closed is True
@@ -168,7 +168,7 @@ class TestAsyncLedgerBillingGroupReports:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         async with async_client.ledger_billing_group_reports.with_streaming_response.retrieve(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "f5586561-8ff0-4291-a0ac-84fe544797bd",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
