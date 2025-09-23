@@ -2123,7 +2123,7 @@ Types:
 
 ```python
 from telnyx.types import (
-    Error,
+    APIError,
     MessagingError,
     OutboundMessagePayload,
     MessageRetrieveResponse,
