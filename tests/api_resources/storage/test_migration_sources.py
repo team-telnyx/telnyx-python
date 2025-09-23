@@ -80,7 +80,7 @@ class TestMigrationSources:
     @parametrize
     def test_method_retrieve(self, client: Telnyx) -> None:
         migration_source = client.storage.migration_sources.retrieve(
-            "id",
+            "",
         )
         assert_matches_type(MigrationSourceRetrieveResponse, migration_source, path=["response"])
 
@@ -88,7 +88,7 @@ class TestMigrationSources:
     @parametrize
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
         response = client.storage.migration_sources.with_raw_response.retrieve(
-            "id",
+            "",
         )
 
         assert response.is_closed is True
@@ -100,7 +100,7 @@ class TestMigrationSources:
     @parametrize
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
         with client.storage.migration_sources.with_streaming_response.retrieve(
-            "id",
+            "",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -150,7 +150,7 @@ class TestMigrationSources:
     @parametrize
     def test_method_delete(self, client: Telnyx) -> None:
         migration_source = client.storage.migration_sources.delete(
-            "id",
+            "",
         )
         assert_matches_type(MigrationSourceDeleteResponse, migration_source, path=["response"])
 
@@ -158,7 +158,7 @@ class TestMigrationSources:
     @parametrize
     def test_raw_response_delete(self, client: Telnyx) -> None:
         response = client.storage.migration_sources.with_raw_response.delete(
-            "id",
+            "",
         )
 
         assert response.is_closed is True
@@ -170,7 +170,7 @@ class TestMigrationSources:
     @parametrize
     def test_streaming_response_delete(self, client: Telnyx) -> None:
         with client.storage.migration_sources.with_streaming_response.delete(
-            "id",
+            "",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -252,7 +252,7 @@ class TestAsyncMigrationSources:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
         migration_source = await async_client.storage.migration_sources.retrieve(
-            "id",
+            "",
         )
         assert_matches_type(MigrationSourceRetrieveResponse, migration_source, path=["response"])
 
@@ -260,7 +260,7 @@ class TestAsyncMigrationSources:
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.storage.migration_sources.with_raw_response.retrieve(
-            "id",
+            "",
         )
 
         assert response.is_closed is True
@@ -272,7 +272,7 @@ class TestAsyncMigrationSources:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         async with async_client.storage.migration_sources.with_streaming_response.retrieve(
-            "id",
+            "",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -322,7 +322,7 @@ class TestAsyncMigrationSources:
     @parametrize
     async def test_method_delete(self, async_client: AsyncTelnyx) -> None:
         migration_source = await async_client.storage.migration_sources.delete(
-            "id",
+            "",
         )
         assert_matches_type(MigrationSourceDeleteResponse, migration_source, path=["response"])
 
@@ -330,7 +330,7 @@ class TestAsyncMigrationSources:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.storage.migration_sources.with_raw_response.delete(
-            "id",
+            "",
         )
 
         assert response.is_closed is True
@@ -342,7 +342,7 @@ class TestAsyncMigrationSources:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncTelnyx) -> None:
         async with async_client.storage.migration_sources.with_streaming_response.delete(
-            "id",
+            "",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

@@ -199,7 +199,7 @@ class TestJobs:
                     "t38_fax_gateway_enabled": True,
                 },
                 "tech_prefix_enabled": True,
-                "translated_number": "translated_number",
+                "translated_number": "+13035559999",
                 "usage_payment_method": "pay-per-minute",
             },
         )
@@ -460,7 +460,7 @@ class TestAsyncJobs:
                     "t38_fax_gateway_enabled": True,
                 },
                 "tech_prefix_enabled": True,
-                "translated_number": "translated_number",
+                "translated_number": "+13035559999",
                 "usage_payment_method": "pay-per-minute",
             },
         )

@@ -77,7 +77,7 @@ class TestVoicemail:
     @parametrize
     def test_method_retrieve(self, client: Telnyx) -> None:
         voicemail = client.phone_numbers.voicemail.retrieve(
-            "phone_number_id",
+            "123455678900",
         )
         assert_matches_type(VoicemailRetrieveResponse, voicemail, path=["response"])
 
@@ -85,7 +85,7 @@ class TestVoicemail:
     @parametrize
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
         response = client.phone_numbers.voicemail.with_raw_response.retrieve(
-            "phone_number_id",
+            "123455678900",
         )
 
         assert response.is_closed is True
@@ -97,7 +97,7 @@ class TestVoicemail:
     @parametrize
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
         with client.phone_numbers.voicemail.with_streaming_response.retrieve(
-            "phone_number_id",
+            "123455678900",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -229,7 +229,7 @@ class TestAsyncVoicemail:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
         voicemail = await async_client.phone_numbers.voicemail.retrieve(
-            "phone_number_id",
+            "123455678900",
         )
         assert_matches_type(VoicemailRetrieveResponse, voicemail, path=["response"])
 
@@ -237,7 +237,7 @@ class TestAsyncVoicemail:
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.phone_numbers.voicemail.with_raw_response.retrieve(
-            "phone_number_id",
+            "123455678900",
         )
 
         assert response.is_closed is True
@@ -249,7 +249,7 @@ class TestAsyncVoicemail:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         async with async_client.phone_numbers.voicemail.with_streaming_response.retrieve(
-            "phone_number_id",
+            "123455678900",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

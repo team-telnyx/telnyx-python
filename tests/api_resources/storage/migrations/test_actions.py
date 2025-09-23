@@ -21,7 +21,7 @@ class TestActions:
     @parametrize
     def test_method_stop(self, client: Telnyx) -> None:
         action = client.storage.migrations.actions.stop(
-            "id",
+            "",
         )
         assert_matches_type(ActionStopResponse, action, path=["response"])
 
@@ -29,7 +29,7 @@ class TestActions:
     @parametrize
     def test_raw_response_stop(self, client: Telnyx) -> None:
         response = client.storage.migrations.actions.with_raw_response.stop(
-            "id",
+            "",
         )
 
         assert response.is_closed is True
@@ -41,7 +41,7 @@ class TestActions:
     @parametrize
     def test_streaming_response_stop(self, client: Telnyx) -> None:
         with client.storage.migrations.actions.with_streaming_response.stop(
-            "id",
+            "",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -69,7 +69,7 @@ class TestAsyncActions:
     @parametrize
     async def test_method_stop(self, async_client: AsyncTelnyx) -> None:
         action = await async_client.storage.migrations.actions.stop(
-            "id",
+            "",
         )
         assert_matches_type(ActionStopResponse, action, path=["response"])
 
@@ -77,7 +77,7 @@ class TestAsyncActions:
     @parametrize
     async def test_raw_response_stop(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.storage.migrations.actions.with_raw_response.stop(
-            "id",
+            "",
         )
 
         assert response.is_closed is True
@@ -89,7 +89,7 @@ class TestAsyncActions:
     @parametrize
     async def test_streaming_response_stop(self, async_client: AsyncTelnyx) -> None:
         async with async_client.storage.migrations.actions.with_streaming_response.stop(
-            "id",
+            "",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
