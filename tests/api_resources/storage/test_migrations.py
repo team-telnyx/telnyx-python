@@ -76,7 +76,7 @@ class TestMigrations:
     @parametrize
     def test_method_retrieve(self, client: Telnyx) -> None:
         migration = client.storage.migrations.retrieve(
-            "id",
+            "",
         )
         assert_matches_type(MigrationRetrieveResponse, migration, path=["response"])
 
@@ -84,7 +84,7 @@ class TestMigrations:
     @parametrize
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
         response = client.storage.migrations.with_raw_response.retrieve(
-            "id",
+            "",
         )
 
         assert response.is_closed is True
@@ -96,7 +96,7 @@ class TestMigrations:
     @parametrize
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
         with client.storage.migrations.with_streaming_response.retrieve(
-            "id",
+            "",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -203,7 +203,7 @@ class TestAsyncMigrations:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
         migration = await async_client.storage.migrations.retrieve(
-            "id",
+            "",
         )
         assert_matches_type(MigrationRetrieveResponse, migration, path=["response"])
 
@@ -211,7 +211,7 @@ class TestAsyncMigrations:
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.storage.migrations.with_raw_response.retrieve(
-            "id",
+            "",
         )
 
         assert response.is_closed is True
@@ -223,7 +223,7 @@ class TestAsyncMigrations:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         async with async_client.storage.migrations.with_streaming_response.retrieve(
-            "id",
+            "",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

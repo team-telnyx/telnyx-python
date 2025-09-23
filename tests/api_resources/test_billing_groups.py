@@ -63,7 +63,7 @@ class TestBillingGroups:
     @parametrize
     def test_method_retrieve(self, client: Telnyx) -> None:
         billing_group = client.billing_groups.retrieve(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "f5586561-8ff0-4291-a0ac-84fe544797bd",
         )
         assert_matches_type(BillingGroupRetrieveResponse, billing_group, path=["response"])
 
@@ -71,7 +71,7 @@ class TestBillingGroups:
     @parametrize
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
         response = client.billing_groups.with_raw_response.retrieve(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "f5586561-8ff0-4291-a0ac-84fe544797bd",
         )
 
         assert response.is_closed is True
@@ -83,7 +83,7 @@ class TestBillingGroups:
     @parametrize
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
         with client.billing_groups.with_streaming_response.retrieve(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "f5586561-8ff0-4291-a0ac-84fe544797bd",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -195,7 +195,7 @@ class TestBillingGroups:
     @parametrize
     def test_method_delete(self, client: Telnyx) -> None:
         billing_group = client.billing_groups.delete(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "f5586561-8ff0-4291-a0ac-84fe544797bd",
         )
         assert_matches_type(BillingGroupDeleteResponse, billing_group, path=["response"])
 
@@ -203,7 +203,7 @@ class TestBillingGroups:
     @parametrize
     def test_raw_response_delete(self, client: Telnyx) -> None:
         response = client.billing_groups.with_raw_response.delete(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "f5586561-8ff0-4291-a0ac-84fe544797bd",
         )
 
         assert response.is_closed is True
@@ -215,7 +215,7 @@ class TestBillingGroups:
     @parametrize
     def test_streaming_response_delete(self, client: Telnyx) -> None:
         with client.billing_groups.with_streaming_response.delete(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "f5586561-8ff0-4291-a0ac-84fe544797bd",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -279,7 +279,7 @@ class TestAsyncBillingGroups:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
         billing_group = await async_client.billing_groups.retrieve(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "f5586561-8ff0-4291-a0ac-84fe544797bd",
         )
         assert_matches_type(BillingGroupRetrieveResponse, billing_group, path=["response"])
 
@@ -287,7 +287,7 @@ class TestAsyncBillingGroups:
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.billing_groups.with_raw_response.retrieve(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "f5586561-8ff0-4291-a0ac-84fe544797bd",
         )
 
         assert response.is_closed is True
@@ -299,7 +299,7 @@ class TestAsyncBillingGroups:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         async with async_client.billing_groups.with_streaming_response.retrieve(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "f5586561-8ff0-4291-a0ac-84fe544797bd",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -411,7 +411,7 @@ class TestAsyncBillingGroups:
     @parametrize
     async def test_method_delete(self, async_client: AsyncTelnyx) -> None:
         billing_group = await async_client.billing_groups.delete(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "f5586561-8ff0-4291-a0ac-84fe544797bd",
         )
         assert_matches_type(BillingGroupDeleteResponse, billing_group, path=["response"])
 
@@ -419,7 +419,7 @@ class TestAsyncBillingGroups:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.billing_groups.with_raw_response.delete(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "f5586561-8ff0-4291-a0ac-84fe544797bd",
         )
 
         assert response.is_closed is True
@@ -431,7 +431,7 @@ class TestAsyncBillingGroups:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncTelnyx) -> None:
         async with async_client.billing_groups.with_streaming_response.delete(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "f5586561-8ff0-4291-a0ac-84fe544797bd",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
