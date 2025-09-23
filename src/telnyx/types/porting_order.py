@@ -33,6 +33,9 @@ class PortingOrder(BaseModel):
     created_at: Optional[datetime] = None
     """ISO 8601 formatted date indicating when the resource was created."""
 
+    customer_group_reference: Optional[str] = None
+    """A customer-specified group reference for customer bookkeeping purposes"""
+
     customer_reference: Optional[str] = None
     """A customer-specified reference number for customer bookkeeping purposes"""
 

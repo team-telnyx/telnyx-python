@@ -122,6 +122,12 @@ class Filter(TypedDict, total=False):
     ]
     """Filter by usage_payment_method."""
 
+    without_tags: Literal["true", "false"]
+    """When set to 'true', filters for phone numbers that do not have any tags applied.
+
+    All other values are ignored.
+    """
+
 
 class Page(TypedDict, total=False):
     number: int

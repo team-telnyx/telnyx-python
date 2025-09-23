@@ -4,7 +4,13 @@ from __future__ import annotations
 
 import httpx
 
-from ..types import verify_profile_list_params, verify_profile_create_params, verify_profile_update_params
+from ..types import (
+    verify_profile_list_params,
+    verify_profile_create_params,
+    verify_profile_update_params,
+    verify_profile_create_template_params,
+    verify_profile_update_template_params,
+)
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
@@ -18,6 +24,8 @@ from .._response import (
 from .._base_client import make_request_options
 from ..types.verify_profile_data import VerifyProfileData
 from ..types.verify_profile_list_response import VerifyProfileListResponse
+from ..types.verify_profile_create_template_response import VerifyProfileCreateTemplateResponse
+from ..types.verify_profile_update_template_response import VerifyProfileUpdateTemplateResponse
 from ..types.verify_profile_retrieve_templates_response import VerifyProfileRetrieveTemplatesResponse
 
 __all__ = ["VerifyProfilesResource", "AsyncVerifyProfilesResource"]
@@ -257,6 +265,42 @@ class VerifyProfilesResource(SyncAPIResource):
             cast_to=VerifyProfileData,
         )
 
+    def create_template(
+        self,
+        *,
+        text: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> VerifyProfileCreateTemplateResponse:
+        """
+        Create a new Verify profile message template.
+
+        Args:
+          text: The text content of the message template.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._post(
+            "/verify_profiles/templates",
+            body=maybe_transform(
+                {"text": text}, verify_profile_create_template_params.VerifyProfileCreateTemplateParams
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=VerifyProfileCreateTemplateResponse,
+        )
+
     def retrieve_templates(
         self,
         *,
@@ -274,6 +318,45 @@ class VerifyProfilesResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=VerifyProfileRetrieveTemplatesResponse,
+        )
+
+    def update_template(
+        self,
+        template_id: str,
+        *,
+        text: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> VerifyProfileUpdateTemplateResponse:
+        """
+        Update an existing Verify profile message template.
+
+        Args:
+          text: The text content of the message template.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not template_id:
+            raise ValueError(f"Expected a non-empty value for `template_id` but received {template_id!r}")
+        return self._patch(
+            f"/verify_profiles/templates/{template_id}",
+            body=maybe_transform(
+                {"text": text}, verify_profile_update_template_params.VerifyProfileUpdateTemplateParams
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=VerifyProfileUpdateTemplateResponse,
         )
 
 
@@ -511,6 +594,42 @@ class AsyncVerifyProfilesResource(AsyncAPIResource):
             cast_to=VerifyProfileData,
         )
 
+    async def create_template(
+        self,
+        *,
+        text: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> VerifyProfileCreateTemplateResponse:
+        """
+        Create a new Verify profile message template.
+
+        Args:
+          text: The text content of the message template.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._post(
+            "/verify_profiles/templates",
+            body=await async_maybe_transform(
+                {"text": text}, verify_profile_create_template_params.VerifyProfileCreateTemplateParams
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=VerifyProfileCreateTemplateResponse,
+        )
+
     async def retrieve_templates(
         self,
         *,
@@ -528,6 +647,45 @@ class AsyncVerifyProfilesResource(AsyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=VerifyProfileRetrieveTemplatesResponse,
+        )
+
+    async def update_template(
+        self,
+        template_id: str,
+        *,
+        text: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> VerifyProfileUpdateTemplateResponse:
+        """
+        Update an existing Verify profile message template.
+
+        Args:
+          text: The text content of the message template.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not template_id:
+            raise ValueError(f"Expected a non-empty value for `template_id` but received {template_id!r}")
+        return await self._patch(
+            f"/verify_profiles/templates/{template_id}",
+            body=await async_maybe_transform(
+                {"text": text}, verify_profile_update_template_params.VerifyProfileUpdateTemplateParams
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=VerifyProfileUpdateTemplateResponse,
         )
 
 
@@ -550,8 +708,14 @@ class VerifyProfilesResourceWithRawResponse:
         self.delete = to_raw_response_wrapper(
             verify_profiles.delete,
         )
+        self.create_template = to_raw_response_wrapper(
+            verify_profiles.create_template,
+        )
         self.retrieve_templates = to_raw_response_wrapper(
             verify_profiles.retrieve_templates,
+        )
+        self.update_template = to_raw_response_wrapper(
+            verify_profiles.update_template,
         )
 
 
@@ -574,8 +738,14 @@ class AsyncVerifyProfilesResourceWithRawResponse:
         self.delete = async_to_raw_response_wrapper(
             verify_profiles.delete,
         )
+        self.create_template = async_to_raw_response_wrapper(
+            verify_profiles.create_template,
+        )
         self.retrieve_templates = async_to_raw_response_wrapper(
             verify_profiles.retrieve_templates,
+        )
+        self.update_template = async_to_raw_response_wrapper(
+            verify_profiles.update_template,
         )
 
 
@@ -598,8 +768,14 @@ class VerifyProfilesResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             verify_profiles.delete,
         )
+        self.create_template = to_streamed_response_wrapper(
+            verify_profiles.create_template,
+        )
         self.retrieve_templates = to_streamed_response_wrapper(
             verify_profiles.retrieve_templates,
+        )
+        self.update_template = to_streamed_response_wrapper(
+            verify_profiles.update_template,
         )
 
 
@@ -622,6 +798,12 @@ class AsyncVerifyProfilesResourceWithStreamingResponse:
         self.delete = async_to_streamed_response_wrapper(
             verify_profiles.delete,
         )
+        self.create_template = async_to_streamed_response_wrapper(
+            verify_profiles.create_template,
+        )
         self.retrieve_templates = async_to_streamed_response_wrapper(
             verify_profiles.retrieve_templates,
+        )
+        self.update_template = async_to_streamed_response_wrapper(
+            verify_profiles.update_template,
         )

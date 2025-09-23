@@ -124,8 +124,7 @@ class ActionAnswerParams(TypedDict, total=False):
     """Specifies the codec to be used for the streamed audio.
 
     When set to 'default' or when transcoding is not possible, the codec from the
-    call will be used. Currently, transcoding is only supported between PCMU and
-    PCMA codecs.
+    call will be used.
     """
 
     stream_track: Literal["inbound_track", "outbound_track", "both_tracks"]

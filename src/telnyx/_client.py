@@ -60,6 +60,7 @@ from .resources import (
     seti,
     fqdns,
     media,
+    oauth,
     balance,
     regions,
     comments,
@@ -74,10 +75,12 @@ from .resources import (
     ota_updates,
     short_codes,
     audit_events,
+    oauth_grants,
     requirements,
     channel_zones,
     number_lookup,
     number_orders,
+    oauth_clients,
     usage_reports,
     billing_groups,
     detail_records,
@@ -178,6 +181,8 @@ from .resources.calls import calls
 from .resources.faxes import faxes
 from .resources.rooms import rooms
 from .resources.texml import texml
+from .resources.client import client
+from .resources.legacy import legacy
 from .resources.queues import queues
 from .resources.actions import actions
 from .resources.payment import payment
@@ -217,6 +222,10 @@ __all__ = ["Timeout", "Transport", "ProxiesTypes", "RequestOptions", "Telnyx", "
 
 
 class Telnyx(SyncAPIClient):
+    legacy: legacy.LegacyResource
+    oauth: oauth.OAuthResource
+    oauth_clients: oauth_clients.OAuthClientsResource
+    oauth_grants: oauth_grants.OAuthGrantsResource
     webhooks: webhooks.WebhooksResource
     access_ip_address: access_ip_address.AccessIPAddressResource
     access_ip_ranges: access_ip_ranges.AccessIPRangesResource
@@ -366,6 +375,7 @@ class Telnyx(SyncAPIClient):
     wireless_blocklist_values: wireless_blocklist_values.WirelessBlocklistValuesResource
     wireless_blocklists: wireless_blocklists.WirelessBlocklistsResource
     partner_campaigns: partner_campaigns.PartnerCampaignsResource
+    client: client.ClientResource
     with_raw_response: TelnyxWithRawResponse
     with_streaming_response: TelnyxWithStreamedResponse
 
@@ -409,6 +419,7 @@ class Telnyx(SyncAPIClient):
 
         if base_url is None:
             base_url = os.environ.get("TELNYX_BASE_URL")
+        self._base_url_overridden = base_url is not None
         if base_url is None:
             base_url = f"https://api.telnyx.com/v2"
 
@@ -423,6 +434,10 @@ class Telnyx(SyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
+        self.legacy = legacy.LegacyResource(self)
+        self.oauth = oauth.OAuthResource(self)
+        self.oauth_clients = oauth_clients.OAuthClientsResource(self)
+        self.oauth_grants = oauth_grants.OAuthGrantsResource(self)
         self.webhooks = webhooks.WebhooksResource(self)
         self.access_ip_address = access_ip_address.AccessIPAddressResource(self)
         self.access_ip_ranges = access_ip_ranges.AccessIPRangesResource(self)
@@ -578,6 +593,7 @@ class Telnyx(SyncAPIClient):
         self.wireless_blocklist_values = wireless_blocklist_values.WirelessBlocklistValuesResource(self)
         self.wireless_blocklists = wireless_blocklists.WirelessBlocklistsResource(self)
         self.partner_campaigns = partner_campaigns.PartnerCampaignsResource(self)
+        self.client = client.ClientResource(self)
         self.with_raw_response = TelnyxWithRawResponse(self)
         self.with_streaming_response = TelnyxWithStreamedResponse(self)
 
@@ -637,7 +653,7 @@ class Telnyx(SyncAPIClient):
             params = set_default_query
 
         http_client = http_client or self._client
-        return self.__class__(
+        client = self.__class__(
             api_key=api_key or self.api_key,
             base_url=base_url or self.base_url,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
@@ -647,6 +663,8 @@ class Telnyx(SyncAPIClient):
             default_query=params,
             **_extra_kwargs,
         )
+        client._base_url_overridden = self._base_url_overridden or base_url is not None
+        return client
 
     # Alias for `copy` for nicer inline usage, e.g.
     # client.with_options(timeout=10).foo.create(...)
@@ -990,6 +1008,10 @@ class Telnyx(SyncAPIClient):
 
 
 class AsyncTelnyx(AsyncAPIClient):
+    legacy: legacy.AsyncLegacyResource
+    oauth: oauth.AsyncOAuthResource
+    oauth_clients: oauth_clients.AsyncOAuthClientsResource
+    oauth_grants: oauth_grants.AsyncOAuthGrantsResource
     webhooks: webhooks.AsyncWebhooksResource
     access_ip_address: access_ip_address.AsyncAccessIPAddressResource
     access_ip_ranges: access_ip_ranges.AsyncAccessIPRangesResource
@@ -1139,6 +1161,7 @@ class AsyncTelnyx(AsyncAPIClient):
     wireless_blocklist_values: wireless_blocklist_values.AsyncWirelessBlocklistValuesResource
     wireless_blocklists: wireless_blocklists.AsyncWirelessBlocklistsResource
     partner_campaigns: partner_campaigns.AsyncPartnerCampaignsResource
+    client: client.AsyncClientResource
     with_raw_response: AsyncTelnyxWithRawResponse
     with_streaming_response: AsyncTelnyxWithStreamedResponse
 
@@ -1182,6 +1205,7 @@ class AsyncTelnyx(AsyncAPIClient):
 
         if base_url is None:
             base_url = os.environ.get("TELNYX_BASE_URL")
+        self._base_url_overridden = base_url is not None
         if base_url is None:
             base_url = f"https://api.telnyx.com/v2"
 
@@ -1196,6 +1220,10 @@ class AsyncTelnyx(AsyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
+        self.legacy = legacy.AsyncLegacyResource(self)
+        self.oauth = oauth.AsyncOAuthResource(self)
+        self.oauth_clients = oauth_clients.AsyncOAuthClientsResource(self)
+        self.oauth_grants = oauth_grants.AsyncOAuthGrantsResource(self)
         self.webhooks = webhooks.AsyncWebhooksResource(self)
         self.access_ip_address = access_ip_address.AsyncAccessIPAddressResource(self)
         self.access_ip_ranges = access_ip_ranges.AsyncAccessIPRangesResource(self)
@@ -1357,6 +1385,7 @@ class AsyncTelnyx(AsyncAPIClient):
         self.wireless_blocklist_values = wireless_blocklist_values.AsyncWirelessBlocklistValuesResource(self)
         self.wireless_blocklists = wireless_blocklists.AsyncWirelessBlocklistsResource(self)
         self.partner_campaigns = partner_campaigns.AsyncPartnerCampaignsResource(self)
+        self.client = client.AsyncClientResource(self)
         self.with_raw_response = AsyncTelnyxWithRawResponse(self)
         self.with_streaming_response = AsyncTelnyxWithStreamedResponse(self)
 
@@ -1416,7 +1445,7 @@ class AsyncTelnyx(AsyncAPIClient):
             params = set_default_query
 
         http_client = http_client or self._client
-        return self.__class__(
+        client = self.__class__(
             api_key=api_key or self.api_key,
             base_url=base_url or self.base_url,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
@@ -1426,6 +1455,8 @@ class AsyncTelnyx(AsyncAPIClient):
             default_query=params,
             **_extra_kwargs,
         )
+        client._base_url_overridden = self._base_url_overridden or base_url is not None
+        return client
 
     # Alias for `copy` for nicer inline usage, e.g.
     # client.with_options(timeout=10).foo.create(...)
@@ -1776,6 +1807,10 @@ class AsyncTelnyx(AsyncAPIClient):
 
 class TelnyxWithRawResponse:
     def __init__(self, client: Telnyx) -> None:
+        self.legacy = legacy.LegacyResourceWithRawResponse(client.legacy)
+        self.oauth = oauth.OAuthResourceWithRawResponse(client.oauth)
+        self.oauth_clients = oauth_clients.OAuthClientsResourceWithRawResponse(client.oauth_clients)
+        self.oauth_grants = oauth_grants.OAuthGrantsResourceWithRawResponse(client.oauth_grants)
         self.access_ip_address = access_ip_address.AccessIPAddressResourceWithRawResponse(client.access_ip_address)
         self.access_ip_ranges = access_ip_ranges.AccessIPRangesResourceWithRawResponse(client.access_ip_ranges)
         self.actions = actions.ActionsResourceWithRawResponse(client.actions)
@@ -2050,6 +2085,7 @@ class TelnyxWithRawResponse:
             client.wireless_blocklists
         )
         self.partner_campaigns = partner_campaigns.PartnerCampaignsResourceWithRawResponse(client.partner_campaigns)
+        self.client = client.ClientResourceWithRawResponse(client.client)
 
         self.create_bucket = to_raw_response_wrapper(
             client.create_bucket,
@@ -2080,6 +2116,10 @@ class TelnyxWithRawResponse:
 
 class AsyncTelnyxWithRawResponse:
     def __init__(self, client: AsyncTelnyx) -> None:
+        self.legacy = legacy.AsyncLegacyResourceWithRawResponse(client.legacy)
+        self.oauth = oauth.AsyncOAuthResourceWithRawResponse(client.oauth)
+        self.oauth_clients = oauth_clients.AsyncOAuthClientsResourceWithRawResponse(client.oauth_clients)
+        self.oauth_grants = oauth_grants.AsyncOAuthGrantsResourceWithRawResponse(client.oauth_grants)
         self.access_ip_address = access_ip_address.AsyncAccessIPAddressResourceWithRawResponse(client.access_ip_address)
         self.access_ip_ranges = access_ip_ranges.AsyncAccessIPRangesResourceWithRawResponse(client.access_ip_ranges)
         self.actions = actions.AsyncActionsResourceWithRawResponse(client.actions)
@@ -2394,6 +2434,7 @@ class AsyncTelnyxWithRawResponse:
         self.partner_campaigns = partner_campaigns.AsyncPartnerCampaignsResourceWithRawResponse(
             client.partner_campaigns
         )
+        self.client = client.AsyncClientResourceWithRawResponse(client.client)
 
         self.create_bucket = async_to_raw_response_wrapper(
             client.create_bucket,
@@ -2424,6 +2465,10 @@ class AsyncTelnyxWithRawResponse:
 
 class TelnyxWithStreamedResponse:
     def __init__(self, client: Telnyx) -> None:
+        self.legacy = legacy.LegacyResourceWithStreamingResponse(client.legacy)
+        self.oauth = oauth.OAuthResourceWithStreamingResponse(client.oauth)
+        self.oauth_clients = oauth_clients.OAuthClientsResourceWithStreamingResponse(client.oauth_clients)
+        self.oauth_grants = oauth_grants.OAuthGrantsResourceWithStreamingResponse(client.oauth_grants)
         self.access_ip_address = access_ip_address.AccessIPAddressResourceWithStreamingResponse(
             client.access_ip_address
         )
@@ -2744,6 +2789,7 @@ class TelnyxWithStreamedResponse:
         self.partner_campaigns = partner_campaigns.PartnerCampaignsResourceWithStreamingResponse(
             client.partner_campaigns
         )
+        self.client = client.ClientResourceWithStreamingResponse(client.client)
 
         self.create_bucket = to_streamed_response_wrapper(
             client.create_bucket,
@@ -2774,6 +2820,10 @@ class TelnyxWithStreamedResponse:
 
 class AsyncTelnyxWithStreamedResponse:
     def __init__(self, client: AsyncTelnyx) -> None:
+        self.legacy = legacy.AsyncLegacyResourceWithStreamingResponse(client.legacy)
+        self.oauth = oauth.AsyncOAuthResourceWithStreamingResponse(client.oauth)
+        self.oauth_clients = oauth_clients.AsyncOAuthClientsResourceWithStreamingResponse(client.oauth_clients)
+        self.oauth_grants = oauth_grants.AsyncOAuthGrantsResourceWithStreamingResponse(client.oauth_grants)
         self.access_ip_address = access_ip_address.AsyncAccessIPAddressResourceWithStreamingResponse(
             client.access_ip_address
         )
@@ -3136,6 +3186,7 @@ class AsyncTelnyxWithStreamedResponse:
         self.partner_campaigns = partner_campaigns.AsyncPartnerCampaignsResourceWithStreamingResponse(
             client.partner_campaigns
         )
+        self.client = client.AsyncClientResourceWithStreamingResponse(client.client)
 
         self.create_bucket = async_to_streamed_response_wrapper(
             client.create_bucket,

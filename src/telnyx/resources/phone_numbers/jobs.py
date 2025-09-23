@@ -181,6 +181,7 @@ class JobsResource(SyncAPIResource):
         billing_group_id: str | Omit = omit,
         connection_id: str | Omit = omit,
         customer_reference: str | Omit = omit,
+        deletion_lock_enabled: bool | Omit = omit,
         external_pin: str | Omit = omit,
         hd_voice_enabled: bool | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
@@ -224,6 +225,10 @@ class JobsResource(SyncAPIResource):
 
           customer_reference: A customer reference string for customer look ups.
 
+          deletion_lock_enabled: Indicates whether to enable or disable the deletion lock on each phone number.
+              When enabled, this prevents the phone number from being deleted via the API or
+              Telnyx portal.
+
           external_pin: If someone attempts to port your phone number away from Telnyx and your phone
               number has an external PIN set, we will attempt to verify that you provided the
               correct external PIN to the winning carrier. Note that not all carriers
@@ -251,6 +256,7 @@ class JobsResource(SyncAPIResource):
                     "billing_group_id": billing_group_id,
                     "connection_id": connection_id,
                     "customer_reference": customer_reference,
+                    "deletion_lock_enabled": deletion_lock_enabled,
                     "external_pin": external_pin,
                     "hd_voice_enabled": hd_voice_enabled,
                     "tags": tags,
@@ -466,6 +472,7 @@ class AsyncJobsResource(AsyncAPIResource):
         billing_group_id: str | Omit = omit,
         connection_id: str | Omit = omit,
         customer_reference: str | Omit = omit,
+        deletion_lock_enabled: bool | Omit = omit,
         external_pin: str | Omit = omit,
         hd_voice_enabled: bool | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
@@ -509,6 +516,10 @@ class AsyncJobsResource(AsyncAPIResource):
 
           customer_reference: A customer reference string for customer look ups.
 
+          deletion_lock_enabled: Indicates whether to enable or disable the deletion lock on each phone number.
+              When enabled, this prevents the phone number from being deleted via the API or
+              Telnyx portal.
+
           external_pin: If someone attempts to port your phone number away from Telnyx and your phone
               number has an external PIN set, we will attempt to verify that you provided the
               correct external PIN to the winning carrier. Note that not all carriers
@@ -536,6 +547,7 @@ class AsyncJobsResource(AsyncAPIResource):
                     "billing_group_id": billing_group_id,
                     "connection_id": connection_id,
                     "customer_reference": customer_reference,
+                    "deletion_lock_enabled": deletion_lock_enabled,
                     "external_pin": external_pin,
                     "hd_voice_enabled": hd_voice_enabled,
                     "tags": tags,

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import Optional
 from typing_extensions import Literal, TypedDict
 
 from .._types import SequenceNotStr
@@ -11,7 +12,7 @@ __all__ = ["SimCardUpdateParams", "DataLimit"]
 
 
 class SimCardUpdateParams(TypedDict, total=False):
-    authorized_imeis: SequenceNotStr[str]
+    authorized_imeis: Optional[SequenceNotStr[str]]
     """List of IMEIs authorized to use a given SIM card."""
 
     data_limit: DataLimit

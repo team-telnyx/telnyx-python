@@ -18,5 +18,12 @@ class VerificationTriggerCallParams(TypedDict, total=False):
     custom_code: Optional[str]
     """Send a self-generated numeric code to the end-user"""
 
+    extension: Optional[str]
+    """Optional extension to dial after call is answered using DTMF digits.
+
+    Valid digits are 0-9, A-D, \\**, and #. Pauses can be added using w (0.5s) and W
+    (1s).
+    """
+
     timeout_secs: int
     """The number of seconds the verification code is valid for."""

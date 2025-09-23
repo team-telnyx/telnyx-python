@@ -72,7 +72,7 @@ class TestPhoneNumberConfigurations:
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         phone_number_configuration = client.porting_orders.phone_number_configurations.list(
             filter={
-                "porting_order_status": ["activation-in-progress"],
+                "porting_order": {"status": ["activation-in-progress"]},
                 "porting_phone_number": ["5d6f7ede-1961-4717-bfb5-db392c5efc2d"],
                 "user_bundle_id": ["5d6f7ede-1961-4717-bfb5-db392c5efc2d"],
             },
@@ -164,7 +164,7 @@ class TestAsyncPhoneNumberConfigurations:
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         phone_number_configuration = await async_client.porting_orders.phone_number_configurations.list(
             filter={
-                "porting_order_status": ["activation-in-progress"],
+                "porting_order": {"status": ["activation-in-progress"]},
                 "porting_phone_number": ["5d6f7ede-1961-4717-bfb5-db392c5efc2d"],
                 "user_bundle_id": ["5d6f7ede-1961-4717-bfb5-db392c5efc2d"],
             },
