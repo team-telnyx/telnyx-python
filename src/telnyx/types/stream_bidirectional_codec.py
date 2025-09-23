@@ -4,4 +4,4 @@ from typing_extensions import Literal, TypeAlias
 
 __all__ = ["StreamBidirectionalCodec"]
 
-StreamBidirectionalCodec: TypeAlias = Literal["PCMU", "PCMA", "G722", "OPUS", "AMR-WB"]
+StreamBidirectionalCodec: TypeAlias = Literal["PCMU", "PCMA", "G722", "OPUS", "AMR-WB", "L16"]

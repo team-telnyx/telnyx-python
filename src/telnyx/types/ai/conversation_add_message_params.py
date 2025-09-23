@@ -6,13 +6,13 @@ from typing import Dict, Union, Iterable
 from datetime import datetime
 from typing_extensions import Required, Annotated, TypedDict
 
-from ...._types import SequenceNotStr
-from ...._utils import PropertyInfo
+from ..._types import SequenceNotStr
+from ..._utils import PropertyInfo
 
-__all__ = ["MessageCreateParams"]
+__all__ = ["ConversationAddMessageParams"]
 
 
-class MessageCreateParams(TypedDict, total=False):
+class ConversationAddMessageParams(TypedDict, total=False):
     role: Required[str]
 
     content: str

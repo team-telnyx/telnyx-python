@@ -111,6 +111,7 @@ class VerificationsResource(SyncAPIResource):
         phone_number: str,
         verify_profile_id: str,
         custom_code: Optional[str] | Omit = omit,
+        extension: Optional[str] | Omit = omit,
         timeout_secs: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -129,6 +130,9 @@ class VerificationsResource(SyncAPIResource):
 
           custom_code: Send a self-generated numeric code to the end-user
 
+          extension: Optional extension to dial after call is answered using DTMF digits. Valid
+              digits are 0-9, A-D, \\**, and #. Pauses can be added using w (0.5s) and W (1s).
+
           timeout_secs: The number of seconds the verification code is valid for.
 
           extra_headers: Send extra headers
@@ -146,6 +150,7 @@ class VerificationsResource(SyncAPIResource):
                     "phone_number": phone_number,
                     "verify_profile_id": verify_profile_id,
                     "custom_code": custom_code,
+                    "extension": extension,
                     "timeout_secs": timeout_secs,
                 },
                 verification_trigger_call_params.VerificationTriggerCallParams,
@@ -322,6 +327,7 @@ class AsyncVerificationsResource(AsyncAPIResource):
         phone_number: str,
         verify_profile_id: str,
         custom_code: Optional[str] | Omit = omit,
+        extension: Optional[str] | Omit = omit,
         timeout_secs: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -340,6 +346,9 @@ class AsyncVerificationsResource(AsyncAPIResource):
 
           custom_code: Send a self-generated numeric code to the end-user
 
+          extension: Optional extension to dial after call is answered using DTMF digits. Valid
+              digits are 0-9, A-D, \\**, and #. Pauses can be added using w (0.5s) and W (1s).
+
           timeout_secs: The number of seconds the verification code is valid for.
 
           extra_headers: Send extra headers
@@ -357,6 +366,7 @@ class AsyncVerificationsResource(AsyncAPIResource):
                     "phone_number": phone_number,
                     "verify_profile_id": verify_profile_id,
                     "custom_code": custom_code,
+                    "extension": extension,
                     "timeout_secs": timeout_secs,
                 },
                 verification_trigger_call_params.VerificationTriggerCallParams,

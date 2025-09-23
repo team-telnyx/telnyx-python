@@ -80,6 +80,14 @@ from .media import (
     MediaResourceWithStreamingResponse,
     AsyncMediaResourceWithStreamingResponse,
 )
+from .oauth import (
+    OAuthResource,
+    AsyncOAuthResource,
+    OAuthResourceWithRawResponse,
+    AsyncOAuthResourceWithRawResponse,
+    OAuthResourceWithStreamingResponse,
+    AsyncOAuthResourceWithStreamingResponse,
+)
 from .rooms import (
     RoomsResource,
     AsyncRoomsResource,
@@ -95,6 +103,22 @@ from .texml import (
     AsyncTexmlResourceWithRawResponse,
     TexmlResourceWithStreamingResponse,
     AsyncTexmlResourceWithStreamingResponse,
+)
+from .client import (
+    ClientResource,
+    AsyncClientResource,
+    ClientResourceWithRawResponse,
+    AsyncClientResourceWithRawResponse,
+    ClientResourceWithStreamingResponse,
+    AsyncClientResourceWithStreamingResponse,
+)
+from .legacy import (
+    LegacyResource,
+    AsyncLegacyResource,
+    LegacyResourceWithRawResponse,
+    AsyncLegacyResourceWithRawResponse,
+    LegacyResourceWithStreamingResponse,
+    AsyncLegacyResourceWithStreamingResponse,
 )
 from .queues import (
     QueuesResource,
@@ -329,6 +353,14 @@ from .audit_events import (
     AuditEventsResourceWithStreamingResponse,
     AsyncAuditEventsResourceWithStreamingResponse,
 )
+from .oauth_grants import (
+    OAuthGrantsResource,
+    AsyncOAuthGrantsResource,
+    OAuthGrantsResourceWithRawResponse,
+    AsyncOAuthGrantsResourceWithRawResponse,
+    OAuthGrantsResourceWithStreamingResponse,
+    AsyncOAuthGrantsResourceWithStreamingResponse,
+)
 from .requirements import (
     RequirementsResource,
     AsyncRequirementsResource,
@@ -360,6 +392,14 @@ from .number_orders import (
     AsyncNumberOrdersResourceWithRawResponse,
     NumberOrdersResourceWithStreamingResponse,
     AsyncNumberOrdersResourceWithStreamingResponse,
+)
+from .oauth_clients import (
+    OAuthClientsResource,
+    AsyncOAuthClientsResource,
+    OAuthClientsResourceWithRawResponse,
+    AsyncOAuthClientsResourceWithRawResponse,
+    OAuthClientsResourceWithStreamingResponse,
+    AsyncOAuthClientsResourceWithStreamingResponse,
 )
 from .phone_numbers import (
     PhoneNumbersResource,
@@ -1171,6 +1211,30 @@ from .phone_numbers_regulatory_requirements import (
 )
 
 __all__ = [
+    "LegacyResource",
+    "AsyncLegacyResource",
+    "LegacyResourceWithRawResponse",
+    "AsyncLegacyResourceWithRawResponse",
+    "LegacyResourceWithStreamingResponse",
+    "AsyncLegacyResourceWithStreamingResponse",
+    "OAuthResource",
+    "AsyncOAuthResource",
+    "OAuthResourceWithRawResponse",
+    "AsyncOAuthResourceWithRawResponse",
+    "OAuthResourceWithStreamingResponse",
+    "AsyncOAuthResourceWithStreamingResponse",
+    "OAuthClientsResource",
+    "AsyncOAuthClientsResource",
+    "OAuthClientsResourceWithRawResponse",
+    "AsyncOAuthClientsResourceWithRawResponse",
+    "OAuthClientsResourceWithStreamingResponse",
+    "AsyncOAuthClientsResourceWithStreamingResponse",
+    "OAuthGrantsResource",
+    "AsyncOAuthGrantsResource",
+    "OAuthGrantsResourceWithRawResponse",
+    "AsyncOAuthGrantsResourceWithRawResponse",
+    "OAuthGrantsResourceWithStreamingResponse",
+    "AsyncOAuthGrantsResourceWithStreamingResponse",
     "WebhooksResource",
     "AsyncWebhooksResource",
     "AccessIPAddressResource",
@@ -2049,4 +2113,10 @@ __all__ = [
     "AsyncPartnerCampaignsResourceWithRawResponse",
     "PartnerCampaignsResourceWithStreamingResponse",
     "AsyncPartnerCampaignsResourceWithStreamingResponse",
+    "ClientResource",
+    "AsyncClientResource",
+    "ClientResourceWithRawResponse",
+    "AsyncClientResourceWithRawResponse",
+    "ClientResourceWithStreamingResponse",
+    "AsyncClientResourceWithStreamingResponse",
 ]

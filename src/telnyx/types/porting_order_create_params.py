@@ -13,5 +13,8 @@ class PortingOrderCreateParams(TypedDict, total=False):
     phone_numbers: Required[SequenceNotStr[str]]
     """The list of +E.164 formatted phone numbers"""
 
+    customer_group_reference: str
+    """A customer-specified group reference for customer bookkeeping purposes"""
+
     customer_reference: str
     """A customer-specified reference number for customer bookkeeping purposes"""

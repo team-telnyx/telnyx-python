@@ -2,13 +2,9 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Iterable
-from datetime import datetime
-
 import httpx
 
-from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._types import Body, Query, Headers, NotGiven, not_given
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -18,7 +14,6 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
-from ....types.ai.conversations import message_create_params
 from ....types.ai.conversations.message_list_response import MessageListResponse
 
 __all__ = ["MessagesResource", "AsyncMessagesResource"]
@@ -43,64 +38,6 @@ class MessagesResource(SyncAPIResource):
         For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
         return MessagesResourceWithStreamingResponse(self)
-
-    def create(
-        self,
-        conversation_id: str,
-        *,
-        role: str,
-        content: str | Omit = omit,
-        metadata: Dict[str, Union[str, int, bool, SequenceNotStr[Union[str, int, bool]]]] | Omit = omit,
-        name: str | Omit = omit,
-        sent_at: Union[str, datetime] | Omit = omit,
-        tool_call_id: str | Omit = omit,
-        tool_calls: Iterable[Dict[str, object]] | Omit = omit,
-        tool_choice: Union[str, object] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
-        """Add a new message to the conversation.
-
-        Used to insert a new messages to a
-        conversation manually ( without using chat endpoint )
-
-        Args:
-          conversation_id: The ID of the conversation
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not conversation_id:
-            raise ValueError(f"Expected a non-empty value for `conversation_id` but received {conversation_id!r}")
-        return self._post(
-            f"/ai/conversations/{conversation_id}/messages",
-            body=maybe_transform(
-                {
-                    "role": role,
-                    "content": content,
-                    "metadata": metadata,
-                    "name": name,
-                    "sent_at": sent_at,
-                    "tool_call_id": tool_call_id,
-                    "tool_calls": tool_calls,
-                    "tool_choice": tool_choice,
-                },
-                message_create_params.MessageCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=object,
-        )
 
     def list(
         self,
@@ -157,64 +94,6 @@ class AsyncMessagesResource(AsyncAPIResource):
         """
         return AsyncMessagesResourceWithStreamingResponse(self)
 
-    async def create(
-        self,
-        conversation_id: str,
-        *,
-        role: str,
-        content: str | Omit = omit,
-        metadata: Dict[str, Union[str, int, bool, SequenceNotStr[Union[str, int, bool]]]] | Omit = omit,
-        name: str | Omit = omit,
-        sent_at: Union[str, datetime] | Omit = omit,
-        tool_call_id: str | Omit = omit,
-        tool_calls: Iterable[Dict[str, object]] | Omit = omit,
-        tool_choice: Union[str, object] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
-        """Add a new message to the conversation.
-
-        Used to insert a new messages to a
-        conversation manually ( without using chat endpoint )
-
-        Args:
-          conversation_id: The ID of the conversation
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not conversation_id:
-            raise ValueError(f"Expected a non-empty value for `conversation_id` but received {conversation_id!r}")
-        return await self._post(
-            f"/ai/conversations/{conversation_id}/messages",
-            body=await async_maybe_transform(
-                {
-                    "role": role,
-                    "content": content,
-                    "metadata": metadata,
-                    "name": name,
-                    "sent_at": sent_at,
-                    "tool_call_id": tool_call_id,
-                    "tool_calls": tool_calls,
-                    "tool_choice": tool_choice,
-                },
-                message_create_params.MessageCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=object,
-        )
-
     async def list(
         self,
         conversation_id: str,
@@ -254,9 +133,6 @@ class MessagesResourceWithRawResponse:
     def __init__(self, messages: MessagesResource) -> None:
         self._messages = messages
 
-        self.create = to_raw_response_wrapper(
-            messages.create,
-        )
         self.list = to_raw_response_wrapper(
             messages.list,
         )
@@ -266,9 +142,6 @@ class AsyncMessagesResourceWithRawResponse:
     def __init__(self, messages: AsyncMessagesResource) -> None:
         self._messages = messages
 
-        self.create = async_to_raw_response_wrapper(
-            messages.create,
-        )
         self.list = async_to_raw_response_wrapper(
             messages.list,
         )
@@ -278,9 +151,6 @@ class MessagesResourceWithStreamingResponse:
     def __init__(self, messages: MessagesResource) -> None:
         self._messages = messages
 
-        self.create = to_streamed_response_wrapper(
-            messages.create,
-        )
         self.list = to_streamed_response_wrapper(
             messages.list,
         )
@@ -290,9 +160,6 @@ class AsyncMessagesResourceWithStreamingResponse:
     def __init__(self, messages: AsyncMessagesResource) -> None:
         self._messages = messages
 
-        self.create = async_to_streamed_response_wrapper(
-            messages.create,
-        )
         self.list = async_to_streamed_response_wrapper(
             messages.list,
         )

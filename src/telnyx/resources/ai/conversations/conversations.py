@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Dict
+from typing import Dict, Union, Iterable
+from datetime import datetime
 
 import httpx
 
@@ -22,10 +23,15 @@ from .messages import (
     MessagesResourceWithStreamingResponse,
     AsyncMessagesResourceWithStreamingResponse,
 )
-from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
+from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
-from ....types.ai import conversation_list_params, conversation_create_params, conversation_update_params
+from ....types.ai import (
+    conversation_list_params,
+    conversation_create_params,
+    conversation_update_params,
+    conversation_add_message_params,
+)
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
     to_raw_response_wrapper,
@@ -324,6 +330,64 @@ class ConversationsResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=NoneType,
+        )
+
+    def add_message(
+        self,
+        conversation_id: str,
+        *,
+        role: str,
+        content: str | Omit = omit,
+        metadata: Dict[str, Union[str, int, bool, SequenceNotStr[Union[str, int, bool]]]] | Omit = omit,
+        name: str | Omit = omit,
+        sent_at: Union[str, datetime] | Omit = omit,
+        tool_call_id: str | Omit = omit,
+        tool_calls: Iterable[Dict[str, object]] | Omit = omit,
+        tool_choice: Union[str, object] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> object:
+        """Add a new message to the conversation.
+
+        Used to insert a new messages to a
+        conversation manually ( without using chat endpoint )
+
+        Args:
+          conversation_id: The ID of the conversation
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not conversation_id:
+            raise ValueError(f"Expected a non-empty value for `conversation_id` but received {conversation_id!r}")
+        return self._post(
+            f"/ai/conversations/{conversation_id}/message",
+            body=maybe_transform(
+                {
+                    "role": role,
+                    "content": content,
+                    "metadata": metadata,
+                    "name": name,
+                    "sent_at": sent_at,
+                    "tool_call_id": tool_call_id,
+                    "tool_calls": tool_calls,
+                    "tool_choice": tool_choice,
+                },
+                conversation_add_message_params.ConversationAddMessageParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=object,
         )
 
     def retrieve_conversations_insights(
@@ -635,6 +699,64 @@ class AsyncConversationsResource(AsyncAPIResource):
             cast_to=NoneType,
         )
 
+    async def add_message(
+        self,
+        conversation_id: str,
+        *,
+        role: str,
+        content: str | Omit = omit,
+        metadata: Dict[str, Union[str, int, bool, SequenceNotStr[Union[str, int, bool]]]] | Omit = omit,
+        name: str | Omit = omit,
+        sent_at: Union[str, datetime] | Omit = omit,
+        tool_call_id: str | Omit = omit,
+        tool_calls: Iterable[Dict[str, object]] | Omit = omit,
+        tool_choice: Union[str, object] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> object:
+        """Add a new message to the conversation.
+
+        Used to insert a new messages to a
+        conversation manually ( without using chat endpoint )
+
+        Args:
+          conversation_id: The ID of the conversation
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not conversation_id:
+            raise ValueError(f"Expected a non-empty value for `conversation_id` but received {conversation_id!r}")
+        return await self._post(
+            f"/ai/conversations/{conversation_id}/message",
+            body=await async_maybe_transform(
+                {
+                    "role": role,
+                    "content": content,
+                    "metadata": metadata,
+                    "name": name,
+                    "sent_at": sent_at,
+                    "tool_call_id": tool_call_id,
+                    "tool_calls": tool_calls,
+                    "tool_choice": tool_choice,
+                },
+                conversation_add_message_params.ConversationAddMessageParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=object,
+        )
+
     async def retrieve_conversations_insights(
         self,
         conversation_id: str,
@@ -688,6 +810,9 @@ class ConversationsResourceWithRawResponse:
         self.delete = to_raw_response_wrapper(
             conversations.delete,
         )
+        self.add_message = to_raw_response_wrapper(
+            conversations.add_message,
+        )
         self.retrieve_conversations_insights = to_raw_response_wrapper(
             conversations.retrieve_conversations_insights,
         )
@@ -723,6 +848,9 @@ class AsyncConversationsResourceWithRawResponse:
         )
         self.delete = async_to_raw_response_wrapper(
             conversations.delete,
+        )
+        self.add_message = async_to_raw_response_wrapper(
+            conversations.add_message,
         )
         self.retrieve_conversations_insights = async_to_raw_response_wrapper(
             conversations.retrieve_conversations_insights,
@@ -760,6 +888,9 @@ class ConversationsResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             conversations.delete,
         )
+        self.add_message = to_streamed_response_wrapper(
+            conversations.add_message,
+        )
         self.retrieve_conversations_insights = to_streamed_response_wrapper(
             conversations.retrieve_conversations_insights,
         )
@@ -795,6 +926,9 @@ class AsyncConversationsResourceWithStreamingResponse:
         )
         self.delete = async_to_streamed_response_wrapper(
             conversations.delete,
+        )
+        self.add_message = async_to_streamed_response_wrapper(
+            conversations.add_message,
         )
         self.retrieve_conversations_insights = async_to_streamed_response_wrapper(
             conversations.retrieve_conversations_insights,

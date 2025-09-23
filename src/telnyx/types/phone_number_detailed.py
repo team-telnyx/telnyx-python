@@ -49,6 +49,13 @@ class PhoneNumberDetailed(BaseModel):
     customer_reference: Optional[str] = None
     """A customer reference string for customer look ups."""
 
+    deletion_lock_enabled: Optional[bool] = None
+    """Indicates whether deletion lock is enabled for this number.
+
+    When enabled, this prevents the phone number from being deleted via the API or
+    Telnyx portal.
+    """
+
     emergency_address_id: Optional[str] = None
     """Identifies the emergency address associated with the phone number."""
 

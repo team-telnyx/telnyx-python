@@ -4,4 +4,4 @@ from typing_extensions import Literal, TypeAlias
 
 __all__ = ["StreamCodec"]
 
-StreamCodec: TypeAlias = Literal["PCMA", "PCMU", "default"]
+StreamCodec: TypeAlias = Literal["PCMU", "PCMA", "G722", "OPUS", "AMR-WB", "L16", "default"]

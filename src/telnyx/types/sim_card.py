@@ -103,6 +103,12 @@ class SimCard(BaseModel):
     data_limit: Optional[DataLimit] = None
     """The SIM card individual data limit configuration."""
 
+    eid: Optional[str] = None
+    """The Embedded Identity Document (eID) for eSIM cards."""
+
+    esim_installation_status: Optional[Literal["released", "disabled"]] = None
+    """The installation status of the eSIM. Only applicable for eSIM cards."""
+
     iccid: Optional[str] = None
     """The ICCID is the identifier of the specific SIM card/chip.
 
@@ -158,6 +164,9 @@ class SimCard(BaseModel):
 
     record_type: Optional[str] = None
 
+    resources_with_in_progress_actions: Optional[List[object]] = None
+    """List of resources with actions in progress."""
+
     sim_card_group_id: Optional[str] = None
     """The group SIMCardGroup identification.
 
@@ -175,3 +184,6 @@ class SimCard(BaseModel):
 
     updated_at: Optional[str] = None
     """ISO 8601 formatted date-time indicating when the resource was updated."""
+
+    version: Optional[str] = None
+    """The version of the SIM card."""

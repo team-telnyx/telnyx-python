@@ -114,7 +114,7 @@ class CallsResource(SyncAPIResource):
         sound_modifications: SoundModificationsParam | Omit = omit,
         stream_bidirectional_codec: StreamBidirectionalCodec | Omit = omit,
         stream_bidirectional_mode: StreamBidirectionalMode | Omit = omit,
-        stream_bidirectional_sampling_rate: Literal[8000, 16000, 48000] | Omit = omit,
+        stream_bidirectional_sampling_rate: Literal[8000, 16000, 22050, 24000, 48000] | Omit = omit,
         stream_bidirectional_target_legs: StreamBidirectionalTargetLegs | Omit = omit,
         stream_codec: StreamCodec | Omit = omit,
         stream_establish_before_call_originate: bool | Omit = omit,
@@ -141,9 +141,7 @@ class CallsResource(SyncAPIResource):
         include a `call_leg_id` which can be used to correlate the command with
         subsequent webhooks.
 
-        **Expected Webhooks (see
-        [schema](https://developers.telnyx.com/api/call-control/dial-call#callbacks)
-        below):**
+        **Expected Webhooks:**
 
         - `call.initiated`
         - `call.answered` or `call.hangup`
@@ -286,7 +284,6 @@ class CallsResource(SyncAPIResource):
 
           stream_codec: Specifies the codec to be used for the streamed audio. When set to 'default' or
               when transcoding is not possible, the codec from the call will be used.
-              Currently, transcoding is only supported between PCMU and PCMA codecs.
 
           stream_establish_before_call_originate: Establish websocket connection before dialing the destination. This is useful
               for cases where the websocket connection takes a long time to establish.
@@ -494,7 +491,7 @@ class AsyncCallsResource(AsyncAPIResource):
         sound_modifications: SoundModificationsParam | Omit = omit,
         stream_bidirectional_codec: StreamBidirectionalCodec | Omit = omit,
         stream_bidirectional_mode: StreamBidirectionalMode | Omit = omit,
-        stream_bidirectional_sampling_rate: Literal[8000, 16000, 48000] | Omit = omit,
+        stream_bidirectional_sampling_rate: Literal[8000, 16000, 22050, 24000, 48000] | Omit = omit,
         stream_bidirectional_target_legs: StreamBidirectionalTargetLegs | Omit = omit,
         stream_codec: StreamCodec | Omit = omit,
         stream_establish_before_call_originate: bool | Omit = omit,
@@ -521,9 +518,7 @@ class AsyncCallsResource(AsyncAPIResource):
         include a `call_leg_id` which can be used to correlate the command with
         subsequent webhooks.
 
-        **Expected Webhooks (see
-        [schema](https://developers.telnyx.com/api/call-control/dial-call#callbacks)
-        below):**
+        **Expected Webhooks:**
 
         - `call.initiated`
         - `call.answered` or `call.hangup`
@@ -666,7 +661,6 @@ class AsyncCallsResource(AsyncAPIResource):
 
           stream_codec: Specifies the codec to be used for the streamed audio. When set to 'default' or
               when transcoding is not possible, the codec from the call will be used.
-              Currently, transcoding is only supported between PCMU and PCMA codecs.
 
           stream_establish_before_call_originate: Establish websocket connection before dialing the destination. This is useful
               for cases where the websocket connection takes a long time to establish.
