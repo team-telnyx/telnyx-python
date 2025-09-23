@@ -1,5 +1,20 @@
 # Changelog
 
+## 3.6.0-alpha (2025-09-23)
+
+Full Changelog: [v3.5.0-alpha...v3.6.0-alpha](https://github.com/team-telnyx/telnyx-python/compare/v3.5.0-alpha...v3.6.0-alpha)
+
+### Features
+
+* **api:** manual updates ([12d91f6](https://github.com/team-telnyx/telnyx-python/commit/12d91f63949e7097d424fabd0de50fa74f7cce65))
+* **api:** manual updates ([04e377e](https://github.com/team-telnyx/telnyx-python/commit/04e377ec69cfdfadb46eff9f4008dee6460ec21a))
+
+
+### Chores
+
+* do not install brew dependencies in ./scripts/bootstrap by default ([f6d0905](https://github.com/team-telnyx/telnyx-python/commit/f6d09059d41e721669697646dc072b9eca5e2c5b))
+* improve example values ([38fccc3](https://github.com/team-telnyx/telnyx-python/commit/38fccc3883c842b436400beab2f5cc9932bc9039))
+
 ## 3.5.0-alpha (2025-09-19)
 
 Full Changelog: [v3.4.0-alpha...v3.5.0-alpha](https://github.com/team-telnyx/telnyx-python/compare/v3.4.0-alpha...v3.5.0-alpha)
