@@ -10,6 +10,7 @@ from .fqdn import Fqdn as Fqdn
 from .room import Room as Room
 from .record import Record as Record
 from .shared import (
+    APIError as APIError,
     Metadata as Metadata,
     ShortCode as ShortCode,
     HostedNumber as HostedNumber,
@@ -29,7 +30,6 @@ from .shared import (
 from .address import Address as Address
 from .sim_card import SimCard as SimCard
 from .vertical import Vertical as Vertical
-from .api_error import APIError as APIError
 from .dtmf_type import DtmfType as DtmfType
 from .interface import Interface as Interface
 from .rcs_agent import RcsAgent as RcsAgent

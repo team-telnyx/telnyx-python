@@ -2,6 +2,7 @@
 
 ```python
 from telnyx.types import (
+    APIError,
     ConnectionsPaginationMeta,
     DocReqsRequirementType,
     HostedNumber,
@@ -2123,7 +2124,6 @@ Types:
 
 ```python
 from telnyx.types import (
-    APIError,
     MessagingError,
     OutboundMessagePayload,
     MessageRetrieveResponse,
