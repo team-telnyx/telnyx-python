@@ -32,6 +32,16 @@ class TestVerifiedNumbers:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
+    def test_method_create_with_all_params(self, client: Telnyx) -> None:
+        verified_number = client.verified_numbers.create(
+            phone_number="+15551234567",
+            verification_method="sms",
+            extension="ww243w1",
+        )
+        assert_matches_type(VerifiedNumberCreateResponse, verified_number, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
     def test_raw_response_create(self, client: Telnyx) -> None:
         response = client.verified_numbers.with_raw_response.create(
             phone_number="+15551234567",
@@ -193,6 +203,16 @@ class TestAsyncVerifiedNumbers:
         verified_number = await async_client.verified_numbers.create(
             phone_number="+15551234567",
             verification_method="sms",
+        )
+        assert_matches_type(VerifiedNumberCreateResponse, verified_number, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_method_create_with_all_params(self, async_client: AsyncTelnyx) -> None:
+        verified_number = await async_client.verified_numbers.create(
+            phone_number="+15551234567",
+            verification_method="sms",
+            extension="ww243w1",
         )
         assert_matches_type(VerifiedNumberCreateResponse, verified_number, path=["response"])
 

@@ -139,6 +139,14 @@ class CallDialParams(TypedDict, total=False):
     WAV or MP3 file.
     """
 
+    park_after_unbridge: str
+    """If supplied with the value `self`, the current leg will be parked after
+    unbridge.
+
+    If not set, the default behavior is to hang up the leg. When park_after_unbridge
+    is set, link_to becomes required.
+    """
+
     preferred_codecs: str
     """
     The list of comma-separated codecs in a preferred order for the forked media to

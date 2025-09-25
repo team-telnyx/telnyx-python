@@ -97,6 +97,7 @@ class CallsResource(SyncAPIResource):
         link_to: str | Omit = omit,
         media_encryption: Literal["disabled", "SRTP", "DTLS"] | Omit = omit,
         media_name: str | Omit = omit,
+        park_after_unbridge: str | Omit = omit,
         preferred_codecs: str | Omit = omit,
         record: Literal["record-from-answer"] | Omit = omit,
         record_channels: Literal["single", "dual"] | Omit = omit,
@@ -230,6 +231,10 @@ class CallsResource(SyncAPIResource):
               api.telnyx.com/v2/media by the same user/organization. The file must either be a
               WAV or MP3 file.
 
+          park_after_unbridge: If supplied with the value `self`, the current leg will be parked after
+              unbridge. If not set, the default behavior is to hang up the leg. When
+              park_after_unbridge is set, link_to becomes required.
+
           preferred_codecs: The list of comma-separated codecs in a preferred order for the forked media to
               be received.
 
@@ -351,6 +356,7 @@ class CallsResource(SyncAPIResource):
                     "link_to": link_to,
                     "media_encryption": media_encryption,
                     "media_name": media_name,
+                    "park_after_unbridge": park_after_unbridge,
                     "preferred_codecs": preferred_codecs,
                     "record": record,
                     "record_channels": record_channels,
@@ -474,6 +480,7 @@ class AsyncCallsResource(AsyncAPIResource):
         link_to: str | Omit = omit,
         media_encryption: Literal["disabled", "SRTP", "DTLS"] | Omit = omit,
         media_name: str | Omit = omit,
+        park_after_unbridge: str | Omit = omit,
         preferred_codecs: str | Omit = omit,
         record: Literal["record-from-answer"] | Omit = omit,
         record_channels: Literal["single", "dual"] | Omit = omit,
@@ -607,6 +614,10 @@ class AsyncCallsResource(AsyncAPIResource):
               api.telnyx.com/v2/media by the same user/organization. The file must either be a
               WAV or MP3 file.
 
+          park_after_unbridge: If supplied with the value `self`, the current leg will be parked after
+              unbridge. If not set, the default behavior is to hang up the leg. When
+              park_after_unbridge is set, link_to becomes required.
+
           preferred_codecs: The list of comma-separated codecs in a preferred order for the forked media to
               be received.
 
@@ -728,6 +739,7 @@ class AsyncCallsResource(AsyncAPIResource):
                     "link_to": link_to,
                     "media_encryption": media_encryption,
                     "media_name": media_name,
+                    "park_after_unbridge": park_after_unbridge,
                     "preferred_codecs": preferred_codecs,
                     "record": record,
                     "record_channels": record_channels,
