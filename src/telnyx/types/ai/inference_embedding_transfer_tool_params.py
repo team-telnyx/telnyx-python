@@ -41,3 +41,9 @@ class InferenceEmbeddingTransferToolParams(BaseModel):
 
     custom_headers: Optional[List[CustomHeader]] = None
     """Custom headers to be added to the SIP INVITE for the transfer command."""
+
+    warm_transfer_instructions: Optional[str] = None
+    """
+    Natural language instructions for your agent for how to provide context for the
+    transfer recipient.
+    """

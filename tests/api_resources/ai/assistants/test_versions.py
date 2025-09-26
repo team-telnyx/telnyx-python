@@ -162,6 +162,10 @@ class TestVersions:
             voice_settings={
                 "voice": "voice",
                 "api_key_ref": "api_key_ref",
+                "background_audio": {
+                    "type": "predefined_media",
+                    "value": "silence",
+                },
                 "voice_speed": 0,
             },
         )
@@ -500,6 +504,10 @@ class TestAsyncVersions:
             voice_settings={
                 "voice": "voice",
                 "api_key_ref": "api_key_ref",
+                "background_audio": {
+                    "type": "predefined_media",
+                    "value": "silence",
+                },
                 "voice_speed": 0,
             },
         )

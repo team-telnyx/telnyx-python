@@ -1,10 +1,50 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import Union, Optional
+from typing_extensions import Literal, TypeAlias
 
 from ..._models import BaseModel
 
-__all__ = ["VoiceSettings"]
+__all__ = [
+    "VoiceSettings",
+    "BackgroundAudio",
+    "BackgroundAudioUnionMember0",
+    "BackgroundAudioUnionMember1",
+    "BackgroundAudioUnionMember2",
+]
+
+
+class BackgroundAudioUnionMember0(BaseModel):
+    type: Literal["predefined_media"]
+    """Select from predefined media options."""
+
+    value: Literal["silence", "office"]
+    """The predefined media to use. `silence` disables background audio."""
+
+
+class BackgroundAudioUnionMember1(BaseModel):
+    type: Literal["media_url"]
+    """Provide a direct URL to an MP3 file. The audio will loop during the call."""
+
+    value: str
+    """HTTPS URL to an MP3 file."""
+
+
+class BackgroundAudioUnionMember2(BaseModel):
+    type: Literal["media_name"]
+    """Reference a previously uploaded media by its name from Telnyx Media Storage."""
+
+    value: str
+    """
+    The `name` of a media asset created via
+    [Media Storage API](https://developers.telnyx.com/api/media-storage/create-media-storage).
+    The audio will loop during the call.
+    """
+
+
+BackgroundAudio: TypeAlias = Union[
+    BackgroundAudioUnionMember0, BackgroundAudioUnionMember1, BackgroundAudioUnionMember2
+]
 
 
 class VoiceSettings(BaseModel):
@@ -26,6 +66,13 @@ class VoiceSettings(BaseModel):
     [/v2/integration_secrets](https://developers.telnyx.com/api/secrets-manager/integration-secrets/create-integration-secret)
     that refers to your ElevenLabs API key. Warning: Free plans are unlikely to work
     with this integration.
+    """
+
+    background_audio: Optional[BackgroundAudio] = None
+    """Optional background audio to play on the call.
+
+    Use a predefined media bed, or supply a looped MP3 URL. If a media URL is chosen
+    in the portal, customers can preview it before saving.
     """
 
     voice_speed: Optional[float] = None
