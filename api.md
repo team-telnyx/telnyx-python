@@ -21,25 +21,6 @@ from telnyx.types import (
 )
 ```
 
-# Telnyx
-
-Types:
-
-```python
-from telnyx.types import ListBucketsResponse, ListObjectsResponse
-```
-
-Methods:
-
-- <code title="put /{bucketName}">client.<a href="./src/telnyx/_client.py">create_bucket</a>(bucket_name, \*\*<a href="src/telnyx/types/client_create_bucket_params.py">params</a>) -> None</code>
-- <code title="delete /{bucketName}">client.<a href="./src/telnyx/_client.py">delete_bucket</a>(bucket_name) -> None</code>
-- <code title="delete /{bucketName}/{objectName}">client.<a href="./src/telnyx/_client.py">delete_object</a>(object_name, \*, bucket_name) -> None</code>
-- <code title="post /{bucketName}">client.<a href="./src/telnyx/_client.py">delete_objects</a>(bucket_name, \*\*<a href="src/telnyx/types/client_delete_objects_params.py">params</a>) -> object</code>
-- <code title="get /{bucketName}/{objectName}">client.<a href="./src/telnyx/_client.py">get_object</a>(object_name, \*, bucket_name, \*\*<a href="src/telnyx/types/client_get_object_params.py">params</a>) -> BinaryAPIResponse</code>
-- <code title="get /">client.<a href="./src/telnyx/_client.py">list_buckets</a>() -> <a href="./src/telnyx/types/list_buckets_response.py">ListBucketsResponse</a></code>
-- <code title="get /{bucketName}">client.<a href="./src/telnyx/_client.py">list_objects</a>(bucket_name, \*\*<a href="src/telnyx/types/client_list_objects_params.py">params</a>) -> <a href="./src/telnyx/types/list_objects_response.py">ListObjectsResponse</a></code>
-- <code title="put /{bucketName}/{objectName}">client.<a href="./src/telnyx/_client.py">put_object</a>(object_name, \*, bucket_name, \*\*<a href="src/telnyx/types/client_put_object_params.py">params</a>) -> None</code>
-
 # Legacy
 
 ## Reporting

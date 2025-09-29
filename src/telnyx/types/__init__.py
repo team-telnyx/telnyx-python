@@ -181,8 +181,6 @@ from .credential_connection import CredentialConnection as CredentialConnection
 from .fax_retrieve_response import FaxRetrieveResponse as FaxRetrieveResponse
 from .global_ip_list_params import GlobalIPListParams as GlobalIPListParams
 from .invoice_list_response import InvoiceListResponse as InvoiceListResponse
-from .list_buckets_response import ListBucketsResponse as ListBucketsResponse
-from .list_objects_response import ListObjectsResponse as ListObjectsResponse
 from .media_update_response import MediaUpdateResponse as MediaUpdateResponse
 from .media_upload_response import MediaUploadResponse as MediaUploadResponse
 from .message_send_response import MessageSendResponse as MessageSendResponse
@@ -261,8 +259,6 @@ from .azure_configuration_data import AzureConfigurationData as AzureConfigurati
 from .call_control_application import CallControlApplication as CallControlApplication
 from .call_event_list_response import CallEventListResponse as CallEventListResponse
 from .channel_zone_list_params import ChannelZoneListParams as ChannelZoneListParams
-from .client_get_object_params import ClientGetObjectParams as ClientGetObjectParams
-from .client_put_object_params import ClientPutObjectParams as ClientPutObjectParams
 from .conference_create_params import ConferenceCreateParams as ConferenceCreateParams
 from .conference_list_response import ConferenceListResponse as ConferenceListResponse
 from .connection_list_response import ConnectionListResponse as ConnectionListResponse
@@ -321,7 +317,6 @@ from .access_ip_address_response import AccessIPAddressResponse as AccessIPAddre
 from .call_bridged_webhook_event import CallBridgedWebhookEvent as CallBridgedWebhookEvent
 from .channel_zone_list_response import ChannelZoneListResponse as ChannelZoneListResponse
 from .channel_zone_update_params import ChannelZoneUpdateParams as ChannelZoneUpdateParams
-from .client_list_objects_params import ClientListObjectsParams as ClientListObjectsParams
 from .conference_create_response import ConferenceCreateResponse as ConferenceCreateResponse
 from .document_retrieve_response import DocumentRetrieveResponse as DocumentRetrieveResponse
 from .dynamic_emergency_endpoint import DynamicEmergencyEndpoint as DynamicEmergencyEndpoint
@@ -356,7 +351,6 @@ from .billing_group_update_params import BillingGroupUpdateParams as BillingGrou
 from .brand_get_feedback_response import BrandGetFeedbackResponse as BrandGetFeedbackResponse
 from .call_answered_webhook_event import CallAnsweredWebhookEvent as CallAnsweredWebhookEvent
 from .call_enqueued_webhook_event import CallEnqueuedWebhookEvent as CallEnqueuedWebhookEvent
-from .client_create_bucket_params import ClientCreateBucketParams as ClientCreateBucketParams
 from .detail_record_list_response import DetailRecordListResponse as DetailRecordListResponse
 from .document_link_list_response import DocumentLinkListResponse as DocumentLinkListResponse
 from .fax_application_list_params import FaxApplicationListParams as FaxApplicationListParams
@@ -383,7 +377,6 @@ from .advanced_order_update_params import AdvancedOrderUpdateParams as AdvancedO
 from .call_initiated_webhook_event import CallInitiatedWebhookEvent as CallInitiatedWebhookEvent
 from .campaign_deactivate_response import CampaignDeactivateResponse as CampaignDeactivateResponse
 from .channel_zone_update_response import ChannelZoneUpdateResponse as ChannelZoneUpdateResponse
-from .client_delete_objects_params import ClientDeleteObjectsParams as ClientDeleteObjectsParams
 from .conference_retrieve_response import ConferenceRetrieveResponse as ConferenceRetrieveResponse
 from .connection_retrieve_response import ConnectionRetrieveResponse as ConnectionRetrieveResponse
 from .create_verification_response import CreateVerificationResponse as CreateVerificationResponse
