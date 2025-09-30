@@ -3,56 +3,24 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Mapping, Iterable
-from typing_extensions import Self, Literal, override
+from typing import Any, Mapping
+from typing_extensions import Self, override
 
 import httpx
 
 from . import _exceptions
 from ._qs import Querystring
-from .types import (
-    client_get_object_params,
-    client_put_object_params,
-    client_list_objects_params,
-    client_create_bucket_params,
-    client_delete_objects_params,
-)
 from ._types import (
-    Body,
     Omit,
-    Query,
-    Headers,
     Timeout,
-    NoneType,
     NotGiven,
-    FileTypes,
     Transport,
     ProxiesTypes,
     RequestOptions,
-    omit,
     not_given,
 )
-from ._utils import (
-    is_given,
-    maybe_transform,
-    get_async_library,
-    async_maybe_transform,
-)
+from ._utils import is_given, get_async_library
 from ._version import __version__
-from ._response import (
-    BinaryAPIResponse,
-    AsyncBinaryAPIResponse,
-    StreamedBinaryAPIResponse,
-    AsyncStreamedBinaryAPIResponse,
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    to_custom_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-    to_custom_streamed_response_wrapper,
-    async_to_custom_raw_response_wrapper,
-    async_to_custom_streamed_response_wrapper,
-)
 from .resources import (
     ips,
     enum,
@@ -174,7 +142,6 @@ from ._base_client import (
     DEFAULT_MAX_RETRIES,
     SyncAPIClient,
     AsyncAPIClient,
-    make_request_options,
 )
 from .resources.ai import ai
 from .resources.brand import brand
@@ -208,8 +175,6 @@ from .resources.campaign_builder import campaign_builder
 from .resources.managed_accounts import managed_accounts
 from .resources.operator_connect import operator_connect
 from .resources.verified_numbers import verified_numbers
-from .types.list_buckets_response import ListBucketsResponse
-from .types.list_objects_response import ListObjectsResponse
 from .resources.messaging_profiles import messaging_profiles
 from .resources.messaging_tollfree import messaging_tollfree
 from .resources.number_reservations import number_reservations
@@ -222,10 +187,6 @@ __all__ = ["Timeout", "Transport", "ProxiesTypes", "RequestOptions", "Telnyx", "
 
 
 class Telnyx(SyncAPIClient):
-    legacy: legacy.LegacyResource
-    oauth: oauth.OAuthResource
-    oauth_clients: oauth_clients.OAuthClientsResource
-    oauth_grants: oauth_grants.OAuthGrantsResource
     webhooks: webhooks.WebhooksResource
     access_ip_address: access_ip_address.AccessIPAddressResource
     access_ip_ranges: access_ip_ranges.AccessIPRangesResource
@@ -376,6 +337,10 @@ class Telnyx(SyncAPIClient):
     wireless_blocklists: wireless_blocklists.WirelessBlocklistsResource
     partner_campaigns: partner_campaigns.PartnerCampaignsResource
     well_known: well_known.WellKnownResource
+    legacy: legacy.LegacyResource
+    oauth: oauth.OAuthResource
+    oauth_clients: oauth_clients.OAuthClientsResource
+    oauth_grants: oauth_grants.OAuthGrantsResource
     with_raw_response: TelnyxWithRawResponse
     with_streaming_response: TelnyxWithStreamedResponse
 
@@ -434,10 +399,6 @@ class Telnyx(SyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.legacy = legacy.LegacyResource(self)
-        self.oauth = oauth.OAuthResource(self)
-        self.oauth_clients = oauth_clients.OAuthClientsResource(self)
-        self.oauth_grants = oauth_grants.OAuthGrantsResource(self)
         self.webhooks = webhooks.WebhooksResource(self)
         self.access_ip_address = access_ip_address.AccessIPAddressResource(self)
         self.access_ip_ranges = access_ip_ranges.AccessIPRangesResource(self)
@@ -594,6 +555,10 @@ class Telnyx(SyncAPIClient):
         self.wireless_blocklists = wireless_blocklists.WirelessBlocklistsResource(self)
         self.partner_campaigns = partner_campaigns.PartnerCampaignsResource(self)
         self.well_known = well_known.WellKnownResource(self)
+        self.legacy = legacy.LegacyResource(self)
+        self.oauth = oauth.OAuthResource(self)
+        self.oauth_clients = oauth_clients.OAuthClientsResource(self)
+        self.oauth_grants = oauth_grants.OAuthGrantsResource(self)
         self.with_raw_response = TelnyxWithRawResponse(self)
         self.with_streaming_response = TelnyxWithStreamedResponse(self)
 
@@ -670,309 +635,6 @@ class Telnyx(SyncAPIClient):
     # client.with_options(timeout=10).foo.create(...)
     with_options = copy
 
-    def create_bucket(
-        self,
-        bucket_name: str,
-        *,
-        location_constraint: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
-        """
-        Create a bucket.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not bucket_name:
-            raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
-        return self.put(
-            f"/{bucket_name}",
-            body=maybe_transform(
-                {"location_constraint": location_constraint}, client_create_bucket_params.ClientCreateBucketParams
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=NoneType,
-        )
-
-    def delete_bucket(
-        self,
-        bucket_name: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
-        """Deletes a bucket.
-
-        The bucket must be empty for it to be deleted.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not bucket_name:
-            raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
-        return self.delete(
-            f"/{bucket_name}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=NoneType,
-        )
-
-    def delete_object(
-        self,
-        object_name: str,
-        *,
-        bucket_name: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
-        """
-        Delete an object from a given bucket.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not bucket_name:
-            raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
-        if not object_name:
-            raise ValueError(f"Expected a non-empty value for `object_name` but received {object_name!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
-        return self.delete(
-            f"/{bucket_name}/{object_name}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=NoneType,
-        )
-
-    def delete_objects(
-        self,
-        bucket_name: str,
-        *,
-        delete: Literal[True],
-        body: Iterable[client_delete_objects_params.Body],
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
-        """
-        Deletes one or multiple objects from a given bucket.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not bucket_name:
-            raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
-        extra_headers = {"Accept": "application/xml", **(extra_headers or {})}
-        return self.post(
-            f"/{bucket_name}",
-            body=maybe_transform(body, Iterable[client_delete_objects_params.Body]),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform({"delete": delete}, client_delete_objects_params.ClientDeleteObjectsParams),
-            ),
-            cast_to=object,
-        )
-
-    def get_object(
-        self,
-        object_name: str,
-        *,
-        bucket_name: str,
-        upload_id: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> BinaryAPIResponse:
-        """
-        Retrieves an object from a given bucket.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not bucket_name:
-            raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
-        if not object_name:
-            raise ValueError(f"Expected a non-empty value for `object_name` but received {object_name!r}")
-        extra_headers = {"Accept": "application/octet-stream", **(extra_headers or {})}
-        return self.get(
-            f"/{bucket_name}/{object_name}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform({"upload_id": upload_id}, client_get_object_params.ClientGetObjectParams),
-            ),
-            cast_to=BinaryAPIResponse,
-        )
-
-    def list_buckets(
-        self,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ListBucketsResponse:
-        """List all Buckets."""
-        extra_headers = {"Accept": "application/xml", **(extra_headers or {})}
-        return self.get(
-            "/",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=ListBucketsResponse,
-        )
-
-    def list_objects(
-        self,
-        bucket_name: str,
-        *,
-        list_type: Literal[2] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ListObjectsResponse:
-        """
-        List all objects contained in a given bucket.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not bucket_name:
-            raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
-        extra_headers = {"Accept": "application/xml", **(extra_headers or {})}
-        return self.get(
-            f"/{bucket_name}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform({"list_type": list_type}, client_list_objects_params.ClientListObjectsParams),
-            ),
-            cast_to=ListObjectsResponse,
-        )
-
-    def put_object(
-        self,
-        object_name: str,
-        *,
-        bucket_name: str,
-        body: FileTypes,
-        part_number: str | Omit = omit,
-        upload_id: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
-        """
-        Add an object to a bucket.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not bucket_name:
-            raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
-        if not object_name:
-            raise ValueError(f"Expected a non-empty value for `object_name` but received {object_name!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
-        return self.put(
-            f"/{bucket_name}/{object_name}",
-            body=maybe_transform(body, client_put_object_params.ClientPutObjectParams),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "part_number": part_number,
-                        "upload_id": upload_id,
-                    },
-                    client_put_object_params.ClientPutObjectParams,
-                ),
-            ),
-            cast_to=NoneType,
-        )
-
     @override
     def _make_status_error(
         self,
@@ -1008,10 +670,6 @@ class Telnyx(SyncAPIClient):
 
 
 class AsyncTelnyx(AsyncAPIClient):
-    legacy: legacy.AsyncLegacyResource
-    oauth: oauth.AsyncOAuthResource
-    oauth_clients: oauth_clients.AsyncOAuthClientsResource
-    oauth_grants: oauth_grants.AsyncOAuthGrantsResource
     webhooks: webhooks.AsyncWebhooksResource
     access_ip_address: access_ip_address.AsyncAccessIPAddressResource
     access_ip_ranges: access_ip_ranges.AsyncAccessIPRangesResource
@@ -1162,6 +820,10 @@ class AsyncTelnyx(AsyncAPIClient):
     wireless_blocklists: wireless_blocklists.AsyncWirelessBlocklistsResource
     partner_campaigns: partner_campaigns.AsyncPartnerCampaignsResource
     well_known: well_known.AsyncWellKnownResource
+    legacy: legacy.AsyncLegacyResource
+    oauth: oauth.AsyncOAuthResource
+    oauth_clients: oauth_clients.AsyncOAuthClientsResource
+    oauth_grants: oauth_grants.AsyncOAuthGrantsResource
     with_raw_response: AsyncTelnyxWithRawResponse
     with_streaming_response: AsyncTelnyxWithStreamedResponse
 
@@ -1220,10 +882,6 @@ class AsyncTelnyx(AsyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.legacy = legacy.AsyncLegacyResource(self)
-        self.oauth = oauth.AsyncOAuthResource(self)
-        self.oauth_clients = oauth_clients.AsyncOAuthClientsResource(self)
-        self.oauth_grants = oauth_grants.AsyncOAuthGrantsResource(self)
         self.webhooks = webhooks.AsyncWebhooksResource(self)
         self.access_ip_address = access_ip_address.AsyncAccessIPAddressResource(self)
         self.access_ip_ranges = access_ip_ranges.AsyncAccessIPRangesResource(self)
@@ -1386,6 +1044,10 @@ class AsyncTelnyx(AsyncAPIClient):
         self.wireless_blocklists = wireless_blocklists.AsyncWirelessBlocklistsResource(self)
         self.partner_campaigns = partner_campaigns.AsyncPartnerCampaignsResource(self)
         self.well_known = well_known.AsyncWellKnownResource(self)
+        self.legacy = legacy.AsyncLegacyResource(self)
+        self.oauth = oauth.AsyncOAuthResource(self)
+        self.oauth_clients = oauth_clients.AsyncOAuthClientsResource(self)
+        self.oauth_grants = oauth_grants.AsyncOAuthGrantsResource(self)
         self.with_raw_response = AsyncTelnyxWithRawResponse(self)
         self.with_streaming_response = AsyncTelnyxWithStreamedResponse(self)
 
@@ -1462,315 +1124,6 @@ class AsyncTelnyx(AsyncAPIClient):
     # client.with_options(timeout=10).foo.create(...)
     with_options = copy
 
-    async def create_bucket(
-        self,
-        bucket_name: str,
-        *,
-        location_constraint: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
-        """
-        Create a bucket.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not bucket_name:
-            raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
-        return await self.put(
-            f"/{bucket_name}",
-            body=await async_maybe_transform(
-                {"location_constraint": location_constraint}, client_create_bucket_params.ClientCreateBucketParams
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=NoneType,
-        )
-
-    async def delete_bucket(
-        self,
-        bucket_name: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
-        """Deletes a bucket.
-
-        The bucket must be empty for it to be deleted.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not bucket_name:
-            raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
-        return await self.delete(
-            f"/{bucket_name}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=NoneType,
-        )
-
-    async def delete_object(
-        self,
-        object_name: str,
-        *,
-        bucket_name: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
-        """
-        Delete an object from a given bucket.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not bucket_name:
-            raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
-        if not object_name:
-            raise ValueError(f"Expected a non-empty value for `object_name` but received {object_name!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
-        return await self.delete(
-            f"/{bucket_name}/{object_name}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=NoneType,
-        )
-
-    async def delete_objects(
-        self,
-        bucket_name: str,
-        *,
-        delete: Literal[True],
-        body: Iterable[client_delete_objects_params.Body],
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
-        """
-        Deletes one or multiple objects from a given bucket.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not bucket_name:
-            raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
-        extra_headers = {"Accept": "application/xml", **(extra_headers or {})}
-        return await self.post(
-            f"/{bucket_name}",
-            body=await async_maybe_transform(body, Iterable[client_delete_objects_params.Body]),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {"delete": delete}, client_delete_objects_params.ClientDeleteObjectsParams
-                ),
-            ),
-            cast_to=object,
-        )
-
-    async def get_object(
-        self,
-        object_name: str,
-        *,
-        bucket_name: str,
-        upload_id: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncBinaryAPIResponse:
-        """
-        Retrieves an object from a given bucket.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not bucket_name:
-            raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
-        if not object_name:
-            raise ValueError(f"Expected a non-empty value for `object_name` but received {object_name!r}")
-        extra_headers = {"Accept": "application/octet-stream", **(extra_headers or {})}
-        return await self.get(
-            f"/{bucket_name}/{object_name}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {"upload_id": upload_id}, client_get_object_params.ClientGetObjectParams
-                ),
-            ),
-            cast_to=AsyncBinaryAPIResponse,
-        )
-
-    async def list_buckets(
-        self,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ListBucketsResponse:
-        """List all Buckets."""
-        extra_headers = {"Accept": "application/xml", **(extra_headers or {})}
-        return await self.get(
-            "/",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=ListBucketsResponse,
-        )
-
-    async def list_objects(
-        self,
-        bucket_name: str,
-        *,
-        list_type: Literal[2] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ListObjectsResponse:
-        """
-        List all objects contained in a given bucket.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not bucket_name:
-            raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
-        extra_headers = {"Accept": "application/xml", **(extra_headers or {})}
-        return await self.get(
-            f"/{bucket_name}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {"list_type": list_type}, client_list_objects_params.ClientListObjectsParams
-                ),
-            ),
-            cast_to=ListObjectsResponse,
-        )
-
-    async def put_object(
-        self,
-        object_name: str,
-        *,
-        bucket_name: str,
-        body: FileTypes,
-        part_number: str | Omit = omit,
-        upload_id: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
-        """
-        Add an object to a bucket.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not bucket_name:
-            raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
-        if not object_name:
-            raise ValueError(f"Expected a non-empty value for `object_name` but received {object_name!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
-        return await self.put(
-            f"/{bucket_name}/{object_name}",
-            body=await async_maybe_transform(body, client_put_object_params.ClientPutObjectParams),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {
-                        "part_number": part_number,
-                        "upload_id": upload_id,
-                    },
-                    client_put_object_params.ClientPutObjectParams,
-                ),
-            ),
-            cast_to=NoneType,
-        )
-
     @override
     def _make_status_error(
         self,
@@ -1807,10 +1160,6 @@ class AsyncTelnyx(AsyncAPIClient):
 
 class TelnyxWithRawResponse:
     def __init__(self, client: Telnyx) -> None:
-        self.legacy = legacy.LegacyResourceWithRawResponse(client.legacy)
-        self.oauth = oauth.OAuthResourceWithRawResponse(client.oauth)
-        self.oauth_clients = oauth_clients.OAuthClientsResourceWithRawResponse(client.oauth_clients)
-        self.oauth_grants = oauth_grants.OAuthGrantsResourceWithRawResponse(client.oauth_grants)
         self.access_ip_address = access_ip_address.AccessIPAddressResourceWithRawResponse(client.access_ip_address)
         self.access_ip_ranges = access_ip_ranges.AccessIPRangesResourceWithRawResponse(client.access_ip_ranges)
         self.actions = actions.ActionsResourceWithRawResponse(client.actions)
@@ -2086,40 +1435,14 @@ class TelnyxWithRawResponse:
         )
         self.partner_campaigns = partner_campaigns.PartnerCampaignsResourceWithRawResponse(client.partner_campaigns)
         self.well_known = well_known.WellKnownResourceWithRawResponse(client.well_known)
-
-        self.create_bucket = to_raw_response_wrapper(
-            client.create_bucket,
-        )
-        self.delete_bucket = to_raw_response_wrapper(
-            client.delete_bucket,
-        )
-        self.delete_object = to_raw_response_wrapper(
-            client.delete_object,
-        )
-        self.delete_objects = to_raw_response_wrapper(
-            client.delete_objects,
-        )
-        self.get_object = to_custom_raw_response_wrapper(
-            client.get_object,
-            BinaryAPIResponse,
-        )
-        self.list_buckets = to_raw_response_wrapper(
-            client.list_buckets,
-        )
-        self.list_objects = to_raw_response_wrapper(
-            client.list_objects,
-        )
-        self.put_object = to_raw_response_wrapper(
-            client.put_object,
-        )
+        self.legacy = legacy.LegacyResourceWithRawResponse(client.legacy)
+        self.oauth = oauth.OAuthResourceWithRawResponse(client.oauth)
+        self.oauth_clients = oauth_clients.OAuthClientsResourceWithRawResponse(client.oauth_clients)
+        self.oauth_grants = oauth_grants.OAuthGrantsResourceWithRawResponse(client.oauth_grants)
 
 
 class AsyncTelnyxWithRawResponse:
     def __init__(self, client: AsyncTelnyx) -> None:
-        self.legacy = legacy.AsyncLegacyResourceWithRawResponse(client.legacy)
-        self.oauth = oauth.AsyncOAuthResourceWithRawResponse(client.oauth)
-        self.oauth_clients = oauth_clients.AsyncOAuthClientsResourceWithRawResponse(client.oauth_clients)
-        self.oauth_grants = oauth_grants.AsyncOAuthGrantsResourceWithRawResponse(client.oauth_grants)
         self.access_ip_address = access_ip_address.AsyncAccessIPAddressResourceWithRawResponse(client.access_ip_address)
         self.access_ip_ranges = access_ip_ranges.AsyncAccessIPRangesResourceWithRawResponse(client.access_ip_ranges)
         self.actions = actions.AsyncActionsResourceWithRawResponse(client.actions)
@@ -2435,40 +1758,14 @@ class AsyncTelnyxWithRawResponse:
             client.partner_campaigns
         )
         self.well_known = well_known.AsyncWellKnownResourceWithRawResponse(client.well_known)
-
-        self.create_bucket = async_to_raw_response_wrapper(
-            client.create_bucket,
-        )
-        self.delete_bucket = async_to_raw_response_wrapper(
-            client.delete_bucket,
-        )
-        self.delete_object = async_to_raw_response_wrapper(
-            client.delete_object,
-        )
-        self.delete_objects = async_to_raw_response_wrapper(
-            client.delete_objects,
-        )
-        self.get_object = async_to_custom_raw_response_wrapper(
-            client.get_object,
-            AsyncBinaryAPIResponse,
-        )
-        self.list_buckets = async_to_raw_response_wrapper(
-            client.list_buckets,
-        )
-        self.list_objects = async_to_raw_response_wrapper(
-            client.list_objects,
-        )
-        self.put_object = async_to_raw_response_wrapper(
-            client.put_object,
-        )
+        self.legacy = legacy.AsyncLegacyResourceWithRawResponse(client.legacy)
+        self.oauth = oauth.AsyncOAuthResourceWithRawResponse(client.oauth)
+        self.oauth_clients = oauth_clients.AsyncOAuthClientsResourceWithRawResponse(client.oauth_clients)
+        self.oauth_grants = oauth_grants.AsyncOAuthGrantsResourceWithRawResponse(client.oauth_grants)
 
 
 class TelnyxWithStreamedResponse:
     def __init__(self, client: Telnyx) -> None:
-        self.legacy = legacy.LegacyResourceWithStreamingResponse(client.legacy)
-        self.oauth = oauth.OAuthResourceWithStreamingResponse(client.oauth)
-        self.oauth_clients = oauth_clients.OAuthClientsResourceWithStreamingResponse(client.oauth_clients)
-        self.oauth_grants = oauth_grants.OAuthGrantsResourceWithStreamingResponse(client.oauth_grants)
         self.access_ip_address = access_ip_address.AccessIPAddressResourceWithStreamingResponse(
             client.access_ip_address
         )
@@ -2790,40 +2087,14 @@ class TelnyxWithStreamedResponse:
             client.partner_campaigns
         )
         self.well_known = well_known.WellKnownResourceWithStreamingResponse(client.well_known)
-
-        self.create_bucket = to_streamed_response_wrapper(
-            client.create_bucket,
-        )
-        self.delete_bucket = to_streamed_response_wrapper(
-            client.delete_bucket,
-        )
-        self.delete_object = to_streamed_response_wrapper(
-            client.delete_object,
-        )
-        self.delete_objects = to_streamed_response_wrapper(
-            client.delete_objects,
-        )
-        self.get_object = to_custom_streamed_response_wrapper(
-            client.get_object,
-            StreamedBinaryAPIResponse,
-        )
-        self.list_buckets = to_streamed_response_wrapper(
-            client.list_buckets,
-        )
-        self.list_objects = to_streamed_response_wrapper(
-            client.list_objects,
-        )
-        self.put_object = to_streamed_response_wrapper(
-            client.put_object,
-        )
+        self.legacy = legacy.LegacyResourceWithStreamingResponse(client.legacy)
+        self.oauth = oauth.OAuthResourceWithStreamingResponse(client.oauth)
+        self.oauth_clients = oauth_clients.OAuthClientsResourceWithStreamingResponse(client.oauth_clients)
+        self.oauth_grants = oauth_grants.OAuthGrantsResourceWithStreamingResponse(client.oauth_grants)
 
 
 class AsyncTelnyxWithStreamedResponse:
     def __init__(self, client: AsyncTelnyx) -> None:
-        self.legacy = legacy.AsyncLegacyResourceWithStreamingResponse(client.legacy)
-        self.oauth = oauth.AsyncOAuthResourceWithStreamingResponse(client.oauth)
-        self.oauth_clients = oauth_clients.AsyncOAuthClientsResourceWithStreamingResponse(client.oauth_clients)
-        self.oauth_grants = oauth_grants.AsyncOAuthGrantsResourceWithStreamingResponse(client.oauth_grants)
         self.access_ip_address = access_ip_address.AsyncAccessIPAddressResourceWithStreamingResponse(
             client.access_ip_address
         )
@@ -3187,32 +2458,10 @@ class AsyncTelnyxWithStreamedResponse:
             client.partner_campaigns
         )
         self.well_known = well_known.AsyncWellKnownResourceWithStreamingResponse(client.well_known)
-
-        self.create_bucket = async_to_streamed_response_wrapper(
-            client.create_bucket,
-        )
-        self.delete_bucket = async_to_streamed_response_wrapper(
-            client.delete_bucket,
-        )
-        self.delete_object = async_to_streamed_response_wrapper(
-            client.delete_object,
-        )
-        self.delete_objects = async_to_streamed_response_wrapper(
-            client.delete_objects,
-        )
-        self.get_object = async_to_custom_streamed_response_wrapper(
-            client.get_object,
-            AsyncStreamedBinaryAPIResponse,
-        )
-        self.list_buckets = async_to_streamed_response_wrapper(
-            client.list_buckets,
-        )
-        self.list_objects = async_to_streamed_response_wrapper(
-            client.list_objects,
-        )
-        self.put_object = async_to_streamed_response_wrapper(
-            client.put_object,
-        )
+        self.legacy = legacy.AsyncLegacyResourceWithStreamingResponse(client.legacy)
+        self.oauth = oauth.AsyncOAuthResourceWithStreamingResponse(client.oauth)
+        self.oauth_clients = oauth_clients.AsyncOAuthClientsResourceWithStreamingResponse(client.oauth_clients)
+        self.oauth_grants = oauth_grants.AsyncOAuthGrantsResourceWithStreamingResponse(client.oauth_grants)
 
 
 Client = Telnyx

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import Optional
 from typing_extensions import Literal
 
 import httpx
@@ -62,6 +63,7 @@ class VerifiedNumbersResource(SyncAPIResource):
         *,
         phone_number: str,
         verification_method: Literal["sms", "call"],
+        extension: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -69,11 +71,19 @@ class VerifiedNumbersResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VerifiedNumberCreateResponse:
-        """
-        Initiates phone number verification procedure.
+        """Initiates phone number verification procedure.
+
+        Supports DTMF extension dialing
+        for voice calls to numbers behind IVR systems.
 
         Args:
           verification_method: Verification method.
+
+          extension: Optional DTMF extension sequence to dial after the call is answered. This
+              parameter enables verification of phone numbers behind IVR systems that require
+              extension dialing. Valid characters: digits 0-9, letters A-D, symbols \\** and #.
+              Pauses: w = 0.5 second pause, W = 1 second pause. Maximum length: 50 characters.
+              Only works with 'call' verification method.
 
           extra_headers: Send extra headers
 
@@ -89,6 +99,7 @@ class VerifiedNumbersResource(SyncAPIResource):
                 {
                     "phone_number": phone_number,
                     "verification_method": verification_method,
+                    "extension": extension,
                 },
                 verified_number_create_params.VerifiedNumberCreateParams,
             ),
@@ -236,6 +247,7 @@ class AsyncVerifiedNumbersResource(AsyncAPIResource):
         *,
         phone_number: str,
         verification_method: Literal["sms", "call"],
+        extension: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -243,11 +255,19 @@ class AsyncVerifiedNumbersResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VerifiedNumberCreateResponse:
-        """
-        Initiates phone number verification procedure.
+        """Initiates phone number verification procedure.
+
+        Supports DTMF extension dialing
+        for voice calls to numbers behind IVR systems.
 
         Args:
           verification_method: Verification method.
+
+          extension: Optional DTMF extension sequence to dial after the call is answered. This
+              parameter enables verification of phone numbers behind IVR systems that require
+              extension dialing. Valid characters: digits 0-9, letters A-D, symbols \\** and #.
+              Pauses: w = 0.5 second pause, W = 1 second pause. Maximum length: 50 characters.
+              Only works with 'call' verification method.
 
           extra_headers: Send extra headers
 
@@ -263,6 +283,7 @@ class AsyncVerifiedNumbersResource(AsyncAPIResource):
                 {
                     "phone_number": phone_number,
                     "verification_method": verification_method,
+                    "extension": extension,
                 },
                 verified_number_create_params.VerifiedNumberCreateParams,
             ),

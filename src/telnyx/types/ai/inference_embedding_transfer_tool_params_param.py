@@ -48,3 +48,9 @@ class InferenceEmbeddingTransferToolParamsParam(
 
     custom_headers: Iterable[CustomHeader]
     """Custom headers to be added to the SIP INVITE for the transfer command."""
+
+    warm_transfer_instructions: str
+    """
+    Natural language instructions for your agent for how to provide context for the
+    transfer recipient.
+    """

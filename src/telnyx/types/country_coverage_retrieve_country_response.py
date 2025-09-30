@@ -10,6 +10,8 @@ __all__ = ["CountryCoverageRetrieveCountryResponse", "Data", "DataLocal", "DataT
 class DataLocal(BaseModel):
     features: Optional[List[str]] = None
 
+    full_pstn_replacement: Optional[bool] = None
+
     international_sms: Optional[bool] = None
 
     p2p: Optional[bool] = None
@@ -21,6 +23,8 @@ class DataLocal(BaseModel):
 
 class DataTollFree(BaseModel):
     features: Optional[List[str]] = None
+
+    full_pstn_replacement: Optional[bool] = None
 
     international_sms: Optional[bool] = None
 
@@ -58,6 +62,9 @@ class Data(BaseModel):
 
     quickship: Optional[bool] = None
     """Supports quickship"""
+
+    region: Optional[str] = None
+    """Geographic region (e.g., AMER, EMEA, APAC)"""
 
     reservable: Optional[bool] = None
     """Supports reservable"""
