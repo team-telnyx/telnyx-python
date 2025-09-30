@@ -1,5 +1,30 @@
 # Changelog
 
+## 3.1.0 (2025-09-30)
+
+Full Changelog: [v3.0.0...v3.1.0](https://github.com/team-telnyx/telnyx-python/compare/v3.0.0...v3.1.0)
+
+### ⚠ BREAKING CHANGES
+
+* **api:** extract APIError to shared models
+
+### Features
+
+* AISWE-458: Remove S3 operations from OpenAPI spec ([f504203](https://github.com/team-telnyx/telnyx-python/commit/f504203bba7bf84daff33194f57b4acb8d2b0621))
+* **api:** extract APIError to shared models ([8f20ea3](https://github.com/team-telnyx/telnyx-python/commit/8f20ea354d15ce66699a1b872c256920c3853eb8))
+* recommend against using businessContactEmail ([8616bf4](https://github.com/team-telnyx/telnyx-python/commit/8616bf4e1c18023e575c0841ac51631c56630b7a))
+* warm transfer ([9eb9c15](https://github.com/team-telnyx/telnyx-python/commit/9eb9c15000602213058fe88a705f88466439ad6f))
+
+
+### Bug Fixes
+
+* **compat:** compat with `pydantic&lt;2.8.0` when using additional fields ([f8eb065](https://github.com/team-telnyx/telnyx-python/commit/f8eb06586b920066deba23461002e6cb76ba8f83))
+
+
+### Chores
+
+* add extension variable on dev docs ([6016c06](https://github.com/team-telnyx/telnyx-python/commit/6016c06ae87381051bc85f593cde1c10fdd6d650))
+
 ## 3.0.0 (2025-09-23)
 
 Full Changelog: [v3.7.0-alpha...v3.0.0](https://github.com/team-telnyx/telnyx-python/compare/v3.7.0-alpha...v3.0.0)
