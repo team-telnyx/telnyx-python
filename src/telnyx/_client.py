@@ -187,10 +187,6 @@ __all__ = ["Timeout", "Transport", "ProxiesTypes", "RequestOptions", "Telnyx", "
 
 
 class Telnyx(SyncAPIClient):
-    legacy: legacy.LegacyResource
-    oauth: oauth.OAuthResource
-    oauth_clients: oauth_clients.OAuthClientsResource
-    oauth_grants: oauth_grants.OAuthGrantsResource
     webhooks: webhooks.WebhooksResource
     access_ip_address: access_ip_address.AccessIPAddressResource
     access_ip_ranges: access_ip_ranges.AccessIPRangesResource
@@ -341,6 +337,10 @@ class Telnyx(SyncAPIClient):
     wireless_blocklists: wireless_blocklists.WirelessBlocklistsResource
     partner_campaigns: partner_campaigns.PartnerCampaignsResource
     well_known: well_known.WellKnownResource
+    legacy: legacy.LegacyResource
+    oauth: oauth.OAuthResource
+    oauth_clients: oauth_clients.OAuthClientsResource
+    oauth_grants: oauth_grants.OAuthGrantsResource
     with_raw_response: TelnyxWithRawResponse
     with_streaming_response: TelnyxWithStreamedResponse
 
@@ -399,10 +399,6 @@ class Telnyx(SyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.legacy = legacy.LegacyResource(self)
-        self.oauth = oauth.OAuthResource(self)
-        self.oauth_clients = oauth_clients.OAuthClientsResource(self)
-        self.oauth_grants = oauth_grants.OAuthGrantsResource(self)
         self.webhooks = webhooks.WebhooksResource(self)
         self.access_ip_address = access_ip_address.AccessIPAddressResource(self)
         self.access_ip_ranges = access_ip_ranges.AccessIPRangesResource(self)
@@ -559,6 +555,10 @@ class Telnyx(SyncAPIClient):
         self.wireless_blocklists = wireless_blocklists.WirelessBlocklistsResource(self)
         self.partner_campaigns = partner_campaigns.PartnerCampaignsResource(self)
         self.well_known = well_known.WellKnownResource(self)
+        self.legacy = legacy.LegacyResource(self)
+        self.oauth = oauth.OAuthResource(self)
+        self.oauth_clients = oauth_clients.OAuthClientsResource(self)
+        self.oauth_grants = oauth_grants.OAuthGrantsResource(self)
         self.with_raw_response = TelnyxWithRawResponse(self)
         self.with_streaming_response = TelnyxWithStreamedResponse(self)
 
@@ -670,10 +670,6 @@ class Telnyx(SyncAPIClient):
 
 
 class AsyncTelnyx(AsyncAPIClient):
-    legacy: legacy.AsyncLegacyResource
-    oauth: oauth.AsyncOAuthResource
-    oauth_clients: oauth_clients.AsyncOAuthClientsResource
-    oauth_grants: oauth_grants.AsyncOAuthGrantsResource
     webhooks: webhooks.AsyncWebhooksResource
     access_ip_address: access_ip_address.AsyncAccessIPAddressResource
     access_ip_ranges: access_ip_ranges.AsyncAccessIPRangesResource
@@ -824,6 +820,10 @@ class AsyncTelnyx(AsyncAPIClient):
     wireless_blocklists: wireless_blocklists.AsyncWirelessBlocklistsResource
     partner_campaigns: partner_campaigns.AsyncPartnerCampaignsResource
     well_known: well_known.AsyncWellKnownResource
+    legacy: legacy.AsyncLegacyResource
+    oauth: oauth.AsyncOAuthResource
+    oauth_clients: oauth_clients.AsyncOAuthClientsResource
+    oauth_grants: oauth_grants.AsyncOAuthGrantsResource
     with_raw_response: AsyncTelnyxWithRawResponse
     with_streaming_response: AsyncTelnyxWithStreamedResponse
 
@@ -882,10 +882,6 @@ class AsyncTelnyx(AsyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.legacy = legacy.AsyncLegacyResource(self)
-        self.oauth = oauth.AsyncOAuthResource(self)
-        self.oauth_clients = oauth_clients.AsyncOAuthClientsResource(self)
-        self.oauth_grants = oauth_grants.AsyncOAuthGrantsResource(self)
         self.webhooks = webhooks.AsyncWebhooksResource(self)
         self.access_ip_address = access_ip_address.AsyncAccessIPAddressResource(self)
         self.access_ip_ranges = access_ip_ranges.AsyncAccessIPRangesResource(self)
@@ -1048,6 +1044,10 @@ class AsyncTelnyx(AsyncAPIClient):
         self.wireless_blocklists = wireless_blocklists.AsyncWirelessBlocklistsResource(self)
         self.partner_campaigns = partner_campaigns.AsyncPartnerCampaignsResource(self)
         self.well_known = well_known.AsyncWellKnownResource(self)
+        self.legacy = legacy.AsyncLegacyResource(self)
+        self.oauth = oauth.AsyncOAuthResource(self)
+        self.oauth_clients = oauth_clients.AsyncOAuthClientsResource(self)
+        self.oauth_grants = oauth_grants.AsyncOAuthGrantsResource(self)
         self.with_raw_response = AsyncTelnyxWithRawResponse(self)
         self.with_streaming_response = AsyncTelnyxWithStreamedResponse(self)
 
@@ -1160,10 +1160,6 @@ class AsyncTelnyx(AsyncAPIClient):
 
 class TelnyxWithRawResponse:
     def __init__(self, client: Telnyx) -> None:
-        self.legacy = legacy.LegacyResourceWithRawResponse(client.legacy)
-        self.oauth = oauth.OAuthResourceWithRawResponse(client.oauth)
-        self.oauth_clients = oauth_clients.OAuthClientsResourceWithRawResponse(client.oauth_clients)
-        self.oauth_grants = oauth_grants.OAuthGrantsResourceWithRawResponse(client.oauth_grants)
         self.access_ip_address = access_ip_address.AccessIPAddressResourceWithRawResponse(client.access_ip_address)
         self.access_ip_ranges = access_ip_ranges.AccessIPRangesResourceWithRawResponse(client.access_ip_ranges)
         self.actions = actions.ActionsResourceWithRawResponse(client.actions)
@@ -1439,14 +1435,14 @@ class TelnyxWithRawResponse:
         )
         self.partner_campaigns = partner_campaigns.PartnerCampaignsResourceWithRawResponse(client.partner_campaigns)
         self.well_known = well_known.WellKnownResourceWithRawResponse(client.well_known)
+        self.legacy = legacy.LegacyResourceWithRawResponse(client.legacy)
+        self.oauth = oauth.OAuthResourceWithRawResponse(client.oauth)
+        self.oauth_clients = oauth_clients.OAuthClientsResourceWithRawResponse(client.oauth_clients)
+        self.oauth_grants = oauth_grants.OAuthGrantsResourceWithRawResponse(client.oauth_grants)
 
 
 class AsyncTelnyxWithRawResponse:
     def __init__(self, client: AsyncTelnyx) -> None:
-        self.legacy = legacy.AsyncLegacyResourceWithRawResponse(client.legacy)
-        self.oauth = oauth.AsyncOAuthResourceWithRawResponse(client.oauth)
-        self.oauth_clients = oauth_clients.AsyncOAuthClientsResourceWithRawResponse(client.oauth_clients)
-        self.oauth_grants = oauth_grants.AsyncOAuthGrantsResourceWithRawResponse(client.oauth_grants)
         self.access_ip_address = access_ip_address.AsyncAccessIPAddressResourceWithRawResponse(client.access_ip_address)
         self.access_ip_ranges = access_ip_ranges.AsyncAccessIPRangesResourceWithRawResponse(client.access_ip_ranges)
         self.actions = actions.AsyncActionsResourceWithRawResponse(client.actions)
@@ -1762,14 +1758,14 @@ class AsyncTelnyxWithRawResponse:
             client.partner_campaigns
         )
         self.well_known = well_known.AsyncWellKnownResourceWithRawResponse(client.well_known)
+        self.legacy = legacy.AsyncLegacyResourceWithRawResponse(client.legacy)
+        self.oauth = oauth.AsyncOAuthResourceWithRawResponse(client.oauth)
+        self.oauth_clients = oauth_clients.AsyncOAuthClientsResourceWithRawResponse(client.oauth_clients)
+        self.oauth_grants = oauth_grants.AsyncOAuthGrantsResourceWithRawResponse(client.oauth_grants)
 
 
 class TelnyxWithStreamedResponse:
     def __init__(self, client: Telnyx) -> None:
-        self.legacy = legacy.LegacyResourceWithStreamingResponse(client.legacy)
-        self.oauth = oauth.OAuthResourceWithStreamingResponse(client.oauth)
-        self.oauth_clients = oauth_clients.OAuthClientsResourceWithStreamingResponse(client.oauth_clients)
-        self.oauth_grants = oauth_grants.OAuthGrantsResourceWithStreamingResponse(client.oauth_grants)
         self.access_ip_address = access_ip_address.AccessIPAddressResourceWithStreamingResponse(
             client.access_ip_address
         )
@@ -2091,14 +2087,14 @@ class TelnyxWithStreamedResponse:
             client.partner_campaigns
         )
         self.well_known = well_known.WellKnownResourceWithStreamingResponse(client.well_known)
+        self.legacy = legacy.LegacyResourceWithStreamingResponse(client.legacy)
+        self.oauth = oauth.OAuthResourceWithStreamingResponse(client.oauth)
+        self.oauth_clients = oauth_clients.OAuthClientsResourceWithStreamingResponse(client.oauth_clients)
+        self.oauth_grants = oauth_grants.OAuthGrantsResourceWithStreamingResponse(client.oauth_grants)
 
 
 class AsyncTelnyxWithStreamedResponse:
     def __init__(self, client: AsyncTelnyx) -> None:
-        self.legacy = legacy.AsyncLegacyResourceWithStreamingResponse(client.legacy)
-        self.oauth = oauth.AsyncOAuthResourceWithStreamingResponse(client.oauth)
-        self.oauth_clients = oauth_clients.AsyncOAuthClientsResourceWithStreamingResponse(client.oauth_clients)
-        self.oauth_grants = oauth_grants.AsyncOAuthGrantsResourceWithStreamingResponse(client.oauth_grants)
         self.access_ip_address = access_ip_address.AsyncAccessIPAddressResourceWithStreamingResponse(
             client.access_ip_address
         )
@@ -2462,6 +2458,10 @@ class AsyncTelnyxWithStreamedResponse:
             client.partner_campaigns
         )
         self.well_known = well_known.AsyncWellKnownResourceWithStreamingResponse(client.well_known)
+        self.legacy = legacy.AsyncLegacyResourceWithStreamingResponse(client.legacy)
+        self.oauth = oauth.AsyncOAuthResourceWithStreamingResponse(client.oauth)
+        self.oauth_clients = oauth_clients.AsyncOAuthClientsResourceWithStreamingResponse(client.oauth_clients)
+        self.oauth_grants = oauth_grants.AsyncOAuthGrantsResourceWithStreamingResponse(client.oauth_grants)
 
 
 Client = Telnyx

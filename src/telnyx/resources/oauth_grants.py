@@ -17,7 +17,7 @@ from .._response import (
 )
 from .._base_client import make_request_options
 from ..types.oauth_grant_list_response import OAuthGrantListResponse
-from ..types.oauth_grant_delete_response import OAuthGrantDeleteResponse
+from ..types.oauth_grant_revoke_response import OAuthGrantRevokeResponse
 from ..types.oauth_grant_retrieve_response import OAuthGrantRetrieveResponse
 
 __all__ = ["OAuthGrantsResource", "AsyncOAuthGrantsResource"]
@@ -122,7 +122,7 @@ class OAuthGrantsResource(SyncAPIResource):
             cast_to=OAuthGrantListResponse,
         )
 
-    def delete(
+    def revoke(
         self,
         id: str,
         *,
@@ -132,7 +132,7 @@ class OAuthGrantsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> OAuthGrantDeleteResponse:
+    ) -> OAuthGrantRevokeResponse:
         """
         Revoke an OAuth grant
 
@@ -152,7 +152,7 @@ class OAuthGrantsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=OAuthGrantDeleteResponse,
+            cast_to=OAuthGrantRevokeResponse,
         )
 
 
@@ -255,7 +255,7 @@ class AsyncOAuthGrantsResource(AsyncAPIResource):
             cast_to=OAuthGrantListResponse,
         )
 
-    async def delete(
+    async def revoke(
         self,
         id: str,
         *,
@@ -265,7 +265,7 @@ class AsyncOAuthGrantsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> OAuthGrantDeleteResponse:
+    ) -> OAuthGrantRevokeResponse:
         """
         Revoke an OAuth grant
 
@@ -285,7 +285,7 @@ class AsyncOAuthGrantsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=OAuthGrantDeleteResponse,
+            cast_to=OAuthGrantRevokeResponse,
         )
 
 
@@ -299,8 +299,8 @@ class OAuthGrantsResourceWithRawResponse:
         self.list = to_raw_response_wrapper(
             oauth_grants.list,
         )
-        self.delete = to_raw_response_wrapper(
-            oauth_grants.delete,
+        self.revoke = to_raw_response_wrapper(
+            oauth_grants.revoke,
         )
 
 
@@ -314,8 +314,8 @@ class AsyncOAuthGrantsResourceWithRawResponse:
         self.list = async_to_raw_response_wrapper(
             oauth_grants.list,
         )
-        self.delete = async_to_raw_response_wrapper(
-            oauth_grants.delete,
+        self.revoke = async_to_raw_response_wrapper(
+            oauth_grants.revoke,
         )
 
 
@@ -329,8 +329,8 @@ class OAuthGrantsResourceWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             oauth_grants.list,
         )
-        self.delete = to_streamed_response_wrapper(
-            oauth_grants.delete,
+        self.revoke = to_streamed_response_wrapper(
+            oauth_grants.revoke,
         )
 
 
@@ -344,6 +344,6 @@ class AsyncOAuthGrantsResourceWithStreamingResponse:
         self.list = async_to_streamed_response_wrapper(
             oauth_grants.list,
         )
-        self.delete = async_to_streamed_response_wrapper(
-            oauth_grants.delete,
+        self.revoke = async_to_streamed_response_wrapper(
+            oauth_grants.revoke,
         )

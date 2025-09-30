@@ -4,7 +4,7 @@ from typing import List, Optional
 
 from .._models import BaseModel
 
-__all__ = ["OAuthRetrieveResponse", "Data", "DataRequestedScope"]
+__all__ = ["OAuthRetrieveConsentResponse", "Data", "DataRequestedScope"]
 
 
 class DataRequestedScope(BaseModel):
@@ -43,5 +43,5 @@ class Data(BaseModel):
     """Whether the client is verified"""
 
 
-class OAuthRetrieveResponse(BaseModel):
+class OAuthRetrieveConsentResponse(BaseModel):
     data: Optional[Data] = None

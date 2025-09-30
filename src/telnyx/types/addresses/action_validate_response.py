@@ -5,8 +5,8 @@ from typing_extensions import Literal
 
 from pydantic import Field as FieldInfo
 
+from ..error import Error
 from ..._models import BaseModel
-from ..shared.api_error import APIError
 
 __all__ = ["ActionValidateResponse", "Data", "DataSuggested"]
 
@@ -59,7 +59,7 @@ class Data(BaseModel):
     suggested: DataSuggested
     """Provides normalized address when available."""
 
-    errors: Optional[List[APIError]] = None
+    errors: Optional[List[Error]] = None
 
     record_type: Optional[str] = None
     """Identifies the type of the resource."""

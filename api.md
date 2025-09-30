@@ -2,7 +2,6 @@
 
 ```python
 from telnyx.types import (
-    APIError,
     ConnectionsPaginationMeta,
     DocReqsRequirementType,
     HostedNumber,
@@ -20,199 +19,6 @@ from telnyx.types import (
     SubNumberOrderRegulatoryRequirementWithValue,
 )
 ```
-
-# Legacy
-
-## Reporting
-
-### BatchDetailRecords
-
-#### Messaging
-
-Types:
-
-```python
-from telnyx.types.legacy.reporting.batch_detail_records import (
-    MessagingCreateResponse,
-    MessagingRetrieveResponse,
-    MessagingListResponse,
-    MessagingDeleteResponse,
-)
-```
-
-Methods:
-
-- <code title="post /legacy/reporting/batch_detail_records/messaging">client.legacy.reporting.batch_detail_records.messaging.<a href="./src/telnyx/resources/legacy/reporting/batch_detail_records/messaging.py">create</a>(\*\*<a href="src/telnyx/types/legacy/reporting/batch_detail_records/messaging_create_params.py">params</a>) -> <a href="./src/telnyx/types/legacy/reporting/batch_detail_records/messaging_create_response.py">MessagingCreateResponse</a></code>
-- <code title="get /legacy/reporting/batch_detail_records/messaging/{id}">client.legacy.reporting.batch_detail_records.messaging.<a href="./src/telnyx/resources/legacy/reporting/batch_detail_records/messaging.py">retrieve</a>(id) -> <a href="./src/telnyx/types/legacy/reporting/batch_detail_records/messaging_retrieve_response.py">MessagingRetrieveResponse</a></code>
-- <code title="get /legacy/reporting/batch_detail_records/messaging">client.legacy.reporting.batch_detail_records.messaging.<a href="./src/telnyx/resources/legacy/reporting/batch_detail_records/messaging.py">list</a>() -> <a href="./src/telnyx/types/legacy/reporting/batch_detail_records/messaging_list_response.py">MessagingListResponse</a></code>
-- <code title="delete /legacy/reporting/batch_detail_records/messaging/{id}">client.legacy.reporting.batch_detail_records.messaging.<a href="./src/telnyx/resources/legacy/reporting/batch_detail_records/messaging.py">delete</a>(id) -> <a href="./src/telnyx/types/legacy/reporting/batch_detail_records/messaging_delete_response.py">MessagingDeleteResponse</a></code>
-
-#### SpeechToText
-
-Types:
-
-```python
-from telnyx.types.legacy.reporting.batch_detail_records import (
-    SpeechToTextCreateResponse,
-    SpeechToTextRetrieveResponse,
-    SpeechToTextListResponse,
-    SpeechToTextDeleteResponse,
-)
-```
-
-Methods:
-
-- <code title="post /legacy/reporting/batch_detail_records/speech_to_text">client.legacy.reporting.batch_detail_records.speech_to_text.<a href="./src/telnyx/resources/legacy/reporting/batch_detail_records/speech_to_text.py">create</a>(\*\*<a href="src/telnyx/types/legacy/reporting/batch_detail_records/speech_to_text_create_params.py">params</a>) -> <a href="./src/telnyx/types/legacy/reporting/batch_detail_records/speech_to_text_create_response.py">SpeechToTextCreateResponse</a></code>
-- <code title="get /legacy/reporting/batch_detail_records/speech_to_text/{id}">client.legacy.reporting.batch_detail_records.speech_to_text.<a href="./src/telnyx/resources/legacy/reporting/batch_detail_records/speech_to_text.py">retrieve</a>(id) -> <a href="./src/telnyx/types/legacy/reporting/batch_detail_records/speech_to_text_retrieve_response.py">SpeechToTextRetrieveResponse</a></code>
-- <code title="get /legacy/reporting/batch_detail_records/speech_to_text">client.legacy.reporting.batch_detail_records.speech_to_text.<a href="./src/telnyx/resources/legacy/reporting/batch_detail_records/speech_to_text.py">list</a>() -> <a href="./src/telnyx/types/legacy/reporting/batch_detail_records/speech_to_text_list_response.py">SpeechToTextListResponse</a></code>
-- <code title="delete /legacy/reporting/batch_detail_records/speech_to_text/{id}">client.legacy.reporting.batch_detail_records.speech_to_text.<a href="./src/telnyx/resources/legacy/reporting/batch_detail_records/speech_to_text.py">delete</a>(id) -> <a href="./src/telnyx/types/legacy/reporting/batch_detail_records/speech_to_text_delete_response.py">SpeechToTextDeleteResponse</a></code>
-
-#### Voice
-
-Types:
-
-```python
-from telnyx.types.legacy.reporting.batch_detail_records import (
-    VoiceCreateResponse,
-    VoiceRetrieveResponse,
-    VoiceListResponse,
-    VoiceDeleteResponse,
-    VoiceRetrieveFieldsResponse,
-)
-```
-
-Methods:
-
-- <code title="post /legacy/reporting/batch_detail_records/voice">client.legacy.reporting.batch_detail_records.voice.<a href="./src/telnyx/resources/legacy/reporting/batch_detail_records/voice.py">create</a>(\*\*<a href="src/telnyx/types/legacy/reporting/batch_detail_records/voice_create_params.py">params</a>) -> <a href="./src/telnyx/types/legacy/reporting/batch_detail_records/voice_create_response.py">VoiceCreateResponse</a></code>
-- <code title="get /legacy/reporting/batch_detail_records/voice/{id}">client.legacy.reporting.batch_detail_records.voice.<a href="./src/telnyx/resources/legacy/reporting/batch_detail_records/voice.py">retrieve</a>(id) -> <a href="./src/telnyx/types/legacy/reporting/batch_detail_records/voice_retrieve_response.py">VoiceRetrieveResponse</a></code>
-- <code title="get /legacy/reporting/batch_detail_records/voice">client.legacy.reporting.batch_detail_records.voice.<a href="./src/telnyx/resources/legacy/reporting/batch_detail_records/voice.py">list</a>() -> <a href="./src/telnyx/types/legacy/reporting/batch_detail_records/voice_list_response.py">VoiceListResponse</a></code>
-- <code title="delete /legacy/reporting/batch_detail_records/voice/{id}">client.legacy.reporting.batch_detail_records.voice.<a href="./src/telnyx/resources/legacy/reporting/batch_detail_records/voice.py">delete</a>(id) -> <a href="./src/telnyx/types/legacy/reporting/batch_detail_records/voice_delete_response.py">VoiceDeleteResponse</a></code>
-- <code title="get /legacy/reporting/batch_detail_records/voice/fields">client.legacy.reporting.batch_detail_records.voice.<a href="./src/telnyx/resources/legacy/reporting/batch_detail_records/voice.py">retrieve_fields</a>() -> <a href="./src/telnyx/types/legacy/reporting/batch_detail_records/voice_retrieve_fields_response.py">VoiceRetrieveFieldsResponse</a></code>
-
-### UsageReports
-
-Types:
-
-```python
-from telnyx.types.legacy.reporting import UsageReportRetrieveSpeechToTextResponse
-```
-
-Methods:
-
-- <code title="get /legacy/reporting/usage_reports/speech_to_text">client.legacy.reporting.usage_reports.<a href="./src/telnyx/resources/legacy/reporting/usage_reports/usage_reports.py">retrieve_speech_to_text</a>(\*\*<a href="src/telnyx/types/legacy/reporting/usage_report_retrieve_speech_to_text_params.py">params</a>) -> <a href="./src/telnyx/types/legacy/reporting/usage_report_retrieve_speech_to_text_response.py">UsageReportRetrieveSpeechToTextResponse</a></code>
-
-#### Messaging
-
-Types:
-
-```python
-from telnyx.types.legacy.reporting.usage_reports import (
-    MessagingCreateResponse,
-    MessagingRetrieveResponse,
-    MessagingListResponse,
-    MessagingDeleteResponse,
-)
-```
-
-Methods:
-
-- <code title="post /legacy/reporting/usage_reports/messaging">client.legacy.reporting.usage_reports.messaging.<a href="./src/telnyx/resources/legacy/reporting/usage_reports/messaging.py">create</a>(\*\*<a href="src/telnyx/types/legacy/reporting/usage_reports/messaging_create_params.py">params</a>) -> <a href="./src/telnyx/types/legacy/reporting/usage_reports/messaging_create_response.py">MessagingCreateResponse</a></code>
-- <code title="get /legacy/reporting/usage_reports/messaging/{id}">client.legacy.reporting.usage_reports.messaging.<a href="./src/telnyx/resources/legacy/reporting/usage_reports/messaging.py">retrieve</a>(id) -> <a href="./src/telnyx/types/legacy/reporting/usage_reports/messaging_retrieve_response.py">MessagingRetrieveResponse</a></code>
-- <code title="get /legacy/reporting/usage_reports/messaging">client.legacy.reporting.usage_reports.messaging.<a href="./src/telnyx/resources/legacy/reporting/usage_reports/messaging.py">list</a>(\*\*<a href="src/telnyx/types/legacy/reporting/usage_reports/messaging_list_params.py">params</a>) -> <a href="./src/telnyx/types/legacy/reporting/usage_reports/messaging_list_response.py">MessagingListResponse</a></code>
-- <code title="delete /legacy/reporting/usage_reports/messaging/{id}">client.legacy.reporting.usage_reports.messaging.<a href="./src/telnyx/resources/legacy/reporting/usage_reports/messaging.py">delete</a>(id) -> <a href="./src/telnyx/types/legacy/reporting/usage_reports/messaging_delete_response.py">MessagingDeleteResponse</a></code>
-
-#### NumberLookup
-
-Methods:
-
-- <code title="post /legacy/reporting/usage_reports/number_lookup">client.legacy.reporting.usage_reports.number_lookup.<a href="./src/telnyx/resources/legacy/reporting/usage_reports/number_lookup.py">create</a>(\*\*<a href="src/telnyx/types/legacy/reporting/usage_reports/number_lookup_create_params.py">params</a>) -> None</code>
-- <code title="get /legacy/reporting/usage_reports/number_lookup/{id}">client.legacy.reporting.usage_reports.number_lookup.<a href="./src/telnyx/resources/legacy/reporting/usage_reports/number_lookup.py">retrieve</a>(id) -> None</code>
-- <code title="get /legacy/reporting/usage_reports/number_lookup">client.legacy.reporting.usage_reports.number_lookup.<a href="./src/telnyx/resources/legacy/reporting/usage_reports/number_lookup.py">list</a>(\*\*<a href="src/telnyx/types/legacy/reporting/usage_reports/number_lookup_list_params.py">params</a>) -> None</code>
-- <code title="delete /legacy/reporting/usage_reports/number_lookup/{id}">client.legacy.reporting.usage_reports.number_lookup.<a href="./src/telnyx/resources/legacy/reporting/usage_reports/number_lookup.py">delete</a>(id) -> None</code>
-
-#### Voice
-
-Types:
-
-```python
-from telnyx.types.legacy.reporting.usage_reports import (
-    VoiceCreateResponse,
-    VoiceRetrieveResponse,
-    VoiceListResponse,
-    VoiceDeleteResponse,
-)
-```
-
-Methods:
-
-- <code title="post /legacy/reporting/usage_reports/voice">client.legacy.reporting.usage_reports.voice.<a href="./src/telnyx/resources/legacy/reporting/usage_reports/voice.py">create</a>(\*\*<a href="src/telnyx/types/legacy/reporting/usage_reports/voice_create_params.py">params</a>) -> <a href="./src/telnyx/types/legacy/reporting/usage_reports/voice_create_response.py">VoiceCreateResponse</a></code>
-- <code title="get /legacy/reporting/usage_reports/voice/{id}">client.legacy.reporting.usage_reports.voice.<a href="./src/telnyx/resources/legacy/reporting/usage_reports/voice.py">retrieve</a>(id) -> <a href="./src/telnyx/types/legacy/reporting/usage_reports/voice_retrieve_response.py">VoiceRetrieveResponse</a></code>
-- <code title="get /legacy/reporting/usage_reports/voice">client.legacy.reporting.usage_reports.voice.<a href="./src/telnyx/resources/legacy/reporting/usage_reports/voice.py">list</a>(\*\*<a href="src/telnyx/types/legacy/reporting/usage_reports/voice_list_params.py">params</a>) -> <a href="./src/telnyx/types/legacy/reporting/usage_reports/voice_list_response.py">VoiceListResponse</a></code>
-- <code title="delete /legacy/reporting/usage_reports/voice/{id}">client.legacy.reporting.usage_reports.voice.<a href="./src/telnyx/resources/legacy/reporting/usage_reports/voice.py">delete</a>(id) -> <a href="./src/telnyx/types/legacy/reporting/usage_reports/voice_delete_response.py">VoiceDeleteResponse</a></code>
-
-# OAuth
-
-Types:
-
-```python
-from telnyx.types import (
-    OAuthRetrieveResponse,
-    OAuthGrantsResponse,
-    OAuthIntrospectResponse,
-    OAuthRegisterResponse,
-    OAuthRetrieveJwksResponse,
-    OAuthTokenResponse,
-)
-```
-
-Methods:
-
-- <code title="get /oauth/consent/{consent_token}">client.oauth.<a href="./src/telnyx/resources/oauth.py">retrieve</a>(consent_token) -> <a href="./src/telnyx/types/oauth_retrieve_response.py">OAuthRetrieveResponse</a></code>
-- <code title="post /oauth/grants">client.oauth.<a href="./src/telnyx/resources/oauth.py">grants</a>(\*\*<a href="src/telnyx/types/oauth_grants_params.py">params</a>) -> <a href="./src/telnyx/types/oauth_grants_response.py">OAuthGrantsResponse</a></code>
-- <code title="post /oauth/introspect">client.oauth.<a href="./src/telnyx/resources/oauth.py">introspect</a>(\*\*<a href="src/telnyx/types/oauth_introspect_params.py">params</a>) -> <a href="./src/telnyx/types/oauth_introspect_response.py">OAuthIntrospectResponse</a></code>
-- <code title="post /oauth/register">client.oauth.<a href="./src/telnyx/resources/oauth.py">register</a>(\*\*<a href="src/telnyx/types/oauth_register_params.py">params</a>) -> <a href="./src/telnyx/types/oauth_register_response.py">OAuthRegisterResponse</a></code>
-- <code title="get /oauth/authorize">client.oauth.<a href="./src/telnyx/resources/oauth.py">retrieve_authorize</a>(\*\*<a href="src/telnyx/types/oauth_retrieve_authorize_params.py">params</a>) -> None</code>
-- <code title="get /oauth/jwks">client.oauth.<a href="./src/telnyx/resources/oauth.py">retrieve_jwks</a>() -> <a href="./src/telnyx/types/oauth_retrieve_jwks_response.py">OAuthRetrieveJwksResponse</a></code>
-- <code title="post /oauth/token">client.oauth.<a href="./src/telnyx/resources/oauth.py">token</a>(\*\*<a href="src/telnyx/types/oauth_token_params.py">params</a>) -> <a href="./src/telnyx/types/oauth_token_response.py">OAuthTokenResponse</a></code>
-
-# OAuthClients
-
-Types:
-
-```python
-from telnyx.types import (
-    OAuthClientCreateResponse,
-    OAuthClientRetrieveResponse,
-    OAuthClientUpdateResponse,
-    OAuthClientListResponse,
-)
-```
-
-Methods:
-
-- <code title="post /oauth_clients">client.oauth_clients.<a href="./src/telnyx/resources/oauth_clients.py">create</a>(\*\*<a href="src/telnyx/types/oauth_client_create_params.py">params</a>) -> <a href="./src/telnyx/types/oauth_client_create_response.py">OAuthClientCreateResponse</a></code>
-- <code title="get /oauth_clients/{id}">client.oauth_clients.<a href="./src/telnyx/resources/oauth_clients.py">retrieve</a>(id) -> <a href="./src/telnyx/types/oauth_client_retrieve_response.py">OAuthClientRetrieveResponse</a></code>
-- <code title="put /oauth_clients/{id}">client.oauth_clients.<a href="./src/telnyx/resources/oauth_clients.py">update</a>(id, \*\*<a href="src/telnyx/types/oauth_client_update_params.py">params</a>) -> <a href="./src/telnyx/types/oauth_client_update_response.py">OAuthClientUpdateResponse</a></code>
-- <code title="get /oauth_clients">client.oauth_clients.<a href="./src/telnyx/resources/oauth_clients.py">list</a>(\*\*<a href="src/telnyx/types/oauth_client_list_params.py">params</a>) -> <a href="./src/telnyx/types/oauth_client_list_response.py">OAuthClientListResponse</a></code>
-- <code title="delete /oauth_clients/{id}">client.oauth_clients.<a href="./src/telnyx/resources/oauth_clients.py">delete</a>(id) -> None</code>
-
-# OAuthGrants
-
-Types:
-
-```python
-from telnyx.types import (
-    OAuthGrantRetrieveResponse,
-    OAuthGrantListResponse,
-    OAuthGrantDeleteResponse,
-)
-```
-
-Methods:
-
-- <code title="get /oauth_grants/{id}">client.oauth_grants.<a href="./src/telnyx/resources/oauth_grants.py">retrieve</a>(id) -> <a href="./src/telnyx/types/oauth_grant_retrieve_response.py">OAuthGrantRetrieveResponse</a></code>
-- <code title="get /oauth_grants">client.oauth_grants.<a href="./src/telnyx/resources/oauth_grants.py">list</a>(\*\*<a href="src/telnyx/types/oauth_grant_list_params.py">params</a>) -> <a href="./src/telnyx/types/oauth_grant_list_response.py">OAuthGrantListResponse</a></code>
-- <code title="delete /oauth_grants/{id}">client.oauth_grants.<a href="./src/telnyx/resources/oauth_grants.py">delete</a>(id) -> <a href="./src/telnyx/types/oauth_grant_delete_response.py">OAuthGrantDeleteResponse</a></code>
 
 # Webhooks
 
@@ -2105,6 +1911,7 @@ Types:
 
 ```python
 from telnyx.types import (
+    Error,
     MessagingError,
     OutboundMessagePayload,
     MessageRetrieveResponse,
@@ -4651,3 +4458,196 @@ Methods:
 
 - <code title="get /.well-known/oauth-authorization-server">client.well_known.<a href="./src/telnyx/resources/well_known.py">retrieve_authorization_server_metadata</a>() -> <a href="./src/telnyx/types/well_known_retrieve_authorization_server_metadata_response.py">WellKnownRetrieveAuthorizationServerMetadataResponse</a></code>
 - <code title="get /.well-known/oauth-protected-resource">client.well_known.<a href="./src/telnyx/resources/well_known.py">retrieve_protected_resource_metadata</a>() -> <a href="./src/telnyx/types/well_known_retrieve_protected_resource_metadata_response.py">WellKnownRetrieveProtectedResourceMetadataResponse</a></code>
+
+# Legacy
+
+## Reporting
+
+### BatchDetailRecords
+
+#### Messaging
+
+Types:
+
+```python
+from telnyx.types.legacy.reporting.batch_detail_records import (
+    MessagingCreateResponse,
+    MessagingRetrieveResponse,
+    MessagingListResponse,
+    MessagingDeleteResponse,
+)
+```
+
+Methods:
+
+- <code title="post /legacy/reporting/batch_detail_records/messaging">client.legacy.reporting.batch_detail_records.messaging.<a href="./src/telnyx/resources/legacy/reporting/batch_detail_records/messaging.py">create</a>(\*\*<a href="src/telnyx/types/legacy/reporting/batch_detail_records/messaging_create_params.py">params</a>) -> <a href="./src/telnyx/types/legacy/reporting/batch_detail_records/messaging_create_response.py">MessagingCreateResponse</a></code>
+- <code title="get /legacy/reporting/batch_detail_records/messaging/{id}">client.legacy.reporting.batch_detail_records.messaging.<a href="./src/telnyx/resources/legacy/reporting/batch_detail_records/messaging.py">retrieve</a>(id) -> <a href="./src/telnyx/types/legacy/reporting/batch_detail_records/messaging_retrieve_response.py">MessagingRetrieveResponse</a></code>
+- <code title="get /legacy/reporting/batch_detail_records/messaging">client.legacy.reporting.batch_detail_records.messaging.<a href="./src/telnyx/resources/legacy/reporting/batch_detail_records/messaging.py">list</a>() -> <a href="./src/telnyx/types/legacy/reporting/batch_detail_records/messaging_list_response.py">MessagingListResponse</a></code>
+- <code title="delete /legacy/reporting/batch_detail_records/messaging/{id}">client.legacy.reporting.batch_detail_records.messaging.<a href="./src/telnyx/resources/legacy/reporting/batch_detail_records/messaging.py">delete</a>(id) -> <a href="./src/telnyx/types/legacy/reporting/batch_detail_records/messaging_delete_response.py">MessagingDeleteResponse</a></code>
+
+#### SpeechToText
+
+Types:
+
+```python
+from telnyx.types.legacy.reporting.batch_detail_records import (
+    SpeechToTextCreateResponse,
+    SpeechToTextRetrieveResponse,
+    SpeechToTextListResponse,
+    SpeechToTextDeleteResponse,
+)
+```
+
+Methods:
+
+- <code title="post /legacy/reporting/batch_detail_records/speech_to_text">client.legacy.reporting.batch_detail_records.speech_to_text.<a href="./src/telnyx/resources/legacy/reporting/batch_detail_records/speech_to_text.py">create</a>(\*\*<a href="src/telnyx/types/legacy/reporting/batch_detail_records/speech_to_text_create_params.py">params</a>) -> <a href="./src/telnyx/types/legacy/reporting/batch_detail_records/speech_to_text_create_response.py">SpeechToTextCreateResponse</a></code>
+- <code title="get /legacy/reporting/batch_detail_records/speech_to_text/{id}">client.legacy.reporting.batch_detail_records.speech_to_text.<a href="./src/telnyx/resources/legacy/reporting/batch_detail_records/speech_to_text.py">retrieve</a>(id) -> <a href="./src/telnyx/types/legacy/reporting/batch_detail_records/speech_to_text_retrieve_response.py">SpeechToTextRetrieveResponse</a></code>
+- <code title="get /legacy/reporting/batch_detail_records/speech_to_text">client.legacy.reporting.batch_detail_records.speech_to_text.<a href="./src/telnyx/resources/legacy/reporting/batch_detail_records/speech_to_text.py">list</a>() -> <a href="./src/telnyx/types/legacy/reporting/batch_detail_records/speech_to_text_list_response.py">SpeechToTextListResponse</a></code>
+- <code title="delete /legacy/reporting/batch_detail_records/speech_to_text/{id}">client.legacy.reporting.batch_detail_records.speech_to_text.<a href="./src/telnyx/resources/legacy/reporting/batch_detail_records/speech_to_text.py">delete</a>(id) -> <a href="./src/telnyx/types/legacy/reporting/batch_detail_records/speech_to_text_delete_response.py">SpeechToTextDeleteResponse</a></code>
+
+#### Voice
+
+Types:
+
+```python
+from telnyx.types.legacy.reporting.batch_detail_records import (
+    VoiceCreateResponse,
+    VoiceRetrieveResponse,
+    VoiceListResponse,
+    VoiceDeleteResponse,
+    VoiceRetrieveFieldsResponse,
+)
+```
+
+Methods:
+
+- <code title="post /legacy/reporting/batch_detail_records/voice">client.legacy.reporting.batch_detail_records.voice.<a href="./src/telnyx/resources/legacy/reporting/batch_detail_records/voice.py">create</a>(\*\*<a href="src/telnyx/types/legacy/reporting/batch_detail_records/voice_create_params.py">params</a>) -> <a href="./src/telnyx/types/legacy/reporting/batch_detail_records/voice_create_response.py">VoiceCreateResponse</a></code>
+- <code title="get /legacy/reporting/batch_detail_records/voice/{id}">client.legacy.reporting.batch_detail_records.voice.<a href="./src/telnyx/resources/legacy/reporting/batch_detail_records/voice.py">retrieve</a>(id) -> <a href="./src/telnyx/types/legacy/reporting/batch_detail_records/voice_retrieve_response.py">VoiceRetrieveResponse</a></code>
+- <code title="get /legacy/reporting/batch_detail_records/voice">client.legacy.reporting.batch_detail_records.voice.<a href="./src/telnyx/resources/legacy/reporting/batch_detail_records/voice.py">list</a>() -> <a href="./src/telnyx/types/legacy/reporting/batch_detail_records/voice_list_response.py">VoiceListResponse</a></code>
+- <code title="delete /legacy/reporting/batch_detail_records/voice/{id}">client.legacy.reporting.batch_detail_records.voice.<a href="./src/telnyx/resources/legacy/reporting/batch_detail_records/voice.py">delete</a>(id) -> <a href="./src/telnyx/types/legacy/reporting/batch_detail_records/voice_delete_response.py">VoiceDeleteResponse</a></code>
+- <code title="get /legacy/reporting/batch_detail_records/voice/fields">client.legacy.reporting.batch_detail_records.voice.<a href="./src/telnyx/resources/legacy/reporting/batch_detail_records/voice.py">retrieve_fields</a>() -> <a href="./src/telnyx/types/legacy/reporting/batch_detail_records/voice_retrieve_fields_response.py">VoiceRetrieveFieldsResponse</a></code>
+
+### UsageReports
+
+Types:
+
+```python
+from telnyx.types.legacy.reporting import UsageReportRetrieveSpeechToTextResponse
+```
+
+Methods:
+
+- <code title="get /legacy/reporting/usage_reports/speech_to_text">client.legacy.reporting.usage_reports.<a href="./src/telnyx/resources/legacy/reporting/usage_reports/usage_reports.py">retrieve_speech_to_text</a>(\*\*<a href="src/telnyx/types/legacy/reporting/usage_report_retrieve_speech_to_text_params.py">params</a>) -> <a href="./src/telnyx/types/legacy/reporting/usage_report_retrieve_speech_to_text_response.py">UsageReportRetrieveSpeechToTextResponse</a></code>
+
+#### Messaging
+
+Types:
+
+```python
+from telnyx.types.legacy.reporting.usage_reports import (
+    MessagingCreateResponse,
+    MessagingRetrieveResponse,
+    MessagingListResponse,
+    MessagingDeleteResponse,
+)
+```
+
+Methods:
+
+- <code title="post /legacy/reporting/usage_reports/messaging">client.legacy.reporting.usage_reports.messaging.<a href="./src/telnyx/resources/legacy/reporting/usage_reports/messaging.py">create</a>(\*\*<a href="src/telnyx/types/legacy/reporting/usage_reports/messaging_create_params.py">params</a>) -> <a href="./src/telnyx/types/legacy/reporting/usage_reports/messaging_create_response.py">MessagingCreateResponse</a></code>
+- <code title="get /legacy/reporting/usage_reports/messaging/{id}">client.legacy.reporting.usage_reports.messaging.<a href="./src/telnyx/resources/legacy/reporting/usage_reports/messaging.py">retrieve</a>(id) -> <a href="./src/telnyx/types/legacy/reporting/usage_reports/messaging_retrieve_response.py">MessagingRetrieveResponse</a></code>
+- <code title="get /legacy/reporting/usage_reports/messaging">client.legacy.reporting.usage_reports.messaging.<a href="./src/telnyx/resources/legacy/reporting/usage_reports/messaging.py">list</a>(\*\*<a href="src/telnyx/types/legacy/reporting/usage_reports/messaging_list_params.py">params</a>) -> <a href="./src/telnyx/types/legacy/reporting/usage_reports/messaging_list_response.py">MessagingListResponse</a></code>
+- <code title="delete /legacy/reporting/usage_reports/messaging/{id}">client.legacy.reporting.usage_reports.messaging.<a href="./src/telnyx/resources/legacy/reporting/usage_reports/messaging.py">delete</a>(id) -> <a href="./src/telnyx/types/legacy/reporting/usage_reports/messaging_delete_response.py">MessagingDeleteResponse</a></code>
+
+#### NumberLookup
+
+Methods:
+
+- <code title="post /legacy/reporting/usage_reports/number_lookup">client.legacy.reporting.usage_reports.number_lookup.<a href="./src/telnyx/resources/legacy/reporting/usage_reports/number_lookup.py">create</a>(\*\*<a href="src/telnyx/types/legacy/reporting/usage_reports/number_lookup_create_params.py">params</a>) -> None</code>
+- <code title="get /legacy/reporting/usage_reports/number_lookup/{id}">client.legacy.reporting.usage_reports.number_lookup.<a href="./src/telnyx/resources/legacy/reporting/usage_reports/number_lookup.py">retrieve</a>(id) -> None</code>
+- <code title="get /legacy/reporting/usage_reports/number_lookup">client.legacy.reporting.usage_reports.number_lookup.<a href="./src/telnyx/resources/legacy/reporting/usage_reports/number_lookup.py">list</a>(\*\*<a href="src/telnyx/types/legacy/reporting/usage_reports/number_lookup_list_params.py">params</a>) -> None</code>
+- <code title="delete /legacy/reporting/usage_reports/number_lookup/{id}">client.legacy.reporting.usage_reports.number_lookup.<a href="./src/telnyx/resources/legacy/reporting/usage_reports/number_lookup.py">delete</a>(id) -> None</code>
+
+#### Voice
+
+Types:
+
+```python
+from telnyx.types.legacy.reporting.usage_reports import (
+    VoiceCreateResponse,
+    VoiceRetrieveResponse,
+    VoiceListResponse,
+    VoiceDeleteResponse,
+)
+```
+
+Methods:
+
+- <code title="post /legacy/reporting/usage_reports/voice">client.legacy.reporting.usage_reports.voice.<a href="./src/telnyx/resources/legacy/reporting/usage_reports/voice.py">create</a>(\*\*<a href="src/telnyx/types/legacy/reporting/usage_reports/voice_create_params.py">params</a>) -> <a href="./src/telnyx/types/legacy/reporting/usage_reports/voice_create_response.py">VoiceCreateResponse</a></code>
+- <code title="get /legacy/reporting/usage_reports/voice/{id}">client.legacy.reporting.usage_reports.voice.<a href="./src/telnyx/resources/legacy/reporting/usage_reports/voice.py">retrieve</a>(id) -> <a href="./src/telnyx/types/legacy/reporting/usage_reports/voice_retrieve_response.py">VoiceRetrieveResponse</a></code>
+- <code title="get /legacy/reporting/usage_reports/voice">client.legacy.reporting.usage_reports.voice.<a href="./src/telnyx/resources/legacy/reporting/usage_reports/voice.py">list</a>(\*\*<a href="src/telnyx/types/legacy/reporting/usage_reports/voice_list_params.py">params</a>) -> <a href="./src/telnyx/types/legacy/reporting/usage_reports/voice_list_response.py">VoiceListResponse</a></code>
+- <code title="delete /legacy/reporting/usage_reports/voice/{id}">client.legacy.reporting.usage_reports.voice.<a href="./src/telnyx/resources/legacy/reporting/usage_reports/voice.py">delete</a>(id) -> <a href="./src/telnyx/types/legacy/reporting/usage_reports/voice_delete_response.py">VoiceDeleteResponse</a></code>
+
+# OAuth
+
+Types:
+
+```python
+from telnyx.types import (
+    OAuthCreateGrantResponse,
+    OAuthExchangeTokenResponse,
+    OAuthIntrospectTokenResponse,
+    OAuthRegisterClientResponse,
+    OAuthRetrieveConsentResponse,
+    OAuthRetrieveJwksResponse,
+)
+```
+
+Methods:
+
+- <code title="get /oauth/authorize">client.oauth.<a href="./src/telnyx/resources/oauth.py">authorize</a>(\*\*<a href="src/telnyx/types/oauth_authorize_params.py">params</a>) -> None</code>
+- <code title="post /oauth/grants">client.oauth.<a href="./src/telnyx/resources/oauth.py">create_grant</a>(\*\*<a href="src/telnyx/types/oauth_create_grant_params.py">params</a>) -> <a href="./src/telnyx/types/oauth_create_grant_response.py">OAuthCreateGrantResponse</a></code>
+- <code title="post /oauth/token">client.oauth.<a href="./src/telnyx/resources/oauth.py">exchange_token</a>(\*\*<a href="src/telnyx/types/oauth_exchange_token_params.py">params</a>) -> <a href="./src/telnyx/types/oauth_exchange_token_response.py">OAuthExchangeTokenResponse</a></code>
+- <code title="post /oauth/introspect">client.oauth.<a href="./src/telnyx/resources/oauth.py">introspect_token</a>(\*\*<a href="src/telnyx/types/oauth_introspect_token_params.py">params</a>) -> <a href="./src/telnyx/types/oauth_introspect_token_response.py">OAuthIntrospectTokenResponse</a></code>
+- <code title="post /oauth/register">client.oauth.<a href="./src/telnyx/resources/oauth.py">register_client</a>(\*\*<a href="src/telnyx/types/oauth_register_client_params.py">params</a>) -> <a href="./src/telnyx/types/oauth_register_client_response.py">OAuthRegisterClientResponse</a></code>
+- <code title="get /oauth/consent/{consent_token}">client.oauth.<a href="./src/telnyx/resources/oauth.py">retrieve_consent</a>(consent_token) -> <a href="./src/telnyx/types/oauth_retrieve_consent_response.py">OAuthRetrieveConsentResponse</a></code>
+- <code title="get /oauth/jwks">client.oauth.<a href="./src/telnyx/resources/oauth.py">retrieve_jwks</a>() -> <a href="./src/telnyx/types/oauth_retrieve_jwks_response.py">OAuthRetrieveJwksResponse</a></code>
+
+# OAuthClients
+
+Types:
+
+```python
+from telnyx.types import (
+    OAuthClientCreateResponse,
+    OAuthClientRetrieveResponse,
+    OAuthClientUpdateResponse,
+    OAuthClientListResponse,
+)
+```
+
+Methods:
+
+- <code title="post /oauth_clients">client.oauth_clients.<a href="./src/telnyx/resources/oauth_clients.py">create</a>(\*\*<a href="src/telnyx/types/oauth_client_create_params.py">params</a>) -> <a href="./src/telnyx/types/oauth_client_create_response.py">OAuthClientCreateResponse</a></code>
+- <code title="get /oauth_clients/{id}">client.oauth_clients.<a href="./src/telnyx/resources/oauth_clients.py">retrieve</a>(id) -> <a href="./src/telnyx/types/oauth_client_retrieve_response.py">OAuthClientRetrieveResponse</a></code>
+- <code title="put /oauth_clients/{id}">client.oauth_clients.<a href="./src/telnyx/resources/oauth_clients.py">update</a>(id, \*\*<a href="src/telnyx/types/oauth_client_update_params.py">params</a>) -> <a href="./src/telnyx/types/oauth_client_update_response.py">OAuthClientUpdateResponse</a></code>
+- <code title="get /oauth_clients">client.oauth_clients.<a href="./src/telnyx/resources/oauth_clients.py">list</a>(\*\*<a href="src/telnyx/types/oauth_client_list_params.py">params</a>) -> <a href="./src/telnyx/types/oauth_client_list_response.py">OAuthClientListResponse</a></code>
+- <code title="delete /oauth_clients/{id}">client.oauth_clients.<a href="./src/telnyx/resources/oauth_clients.py">delete</a>(id) -> None</code>
+
+# OAuthGrants
+
+Types:
+
+```python
+from telnyx.types import (
+    OAuthGrantRetrieveResponse,
+    OAuthGrantListResponse,
+    OAuthGrantRevokeResponse,
+)
+```
+
+Methods:
+
+- <code title="get /oauth_grants/{id}">client.oauth_grants.<a href="./src/telnyx/resources/oauth_grants.py">retrieve</a>(id) -> <a href="./src/telnyx/types/oauth_grant_retrieve_response.py">OAuthGrantRetrieveResponse</a></code>
+- <code title="get /oauth_grants">client.oauth_grants.<a href="./src/telnyx/resources/oauth_grants.py">list</a>(\*\*<a href="src/telnyx/types/oauth_grant_list_params.py">params</a>) -> <a href="./src/telnyx/types/oauth_grant_list_response.py">OAuthGrantListResponse</a></code>
+- <code title="delete /oauth_grants/{id}">client.oauth_grants.<a href="./src/telnyx/resources/oauth_grants.py">revoke</a>(id) -> <a href="./src/telnyx/types/oauth_grant_revoke_response.py">OAuthGrantRevokeResponse</a></code>
