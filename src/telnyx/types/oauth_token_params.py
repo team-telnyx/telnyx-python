@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from typing_extensions import Literal, Required, TypedDict
 
-__all__ = ["OAuthExchangeTokenParams"]
+__all__ = ["OAuthTokenParams"]
 
 
-class OAuthExchangeTokenParams(TypedDict, total=False):
+class OAuthTokenParams(TypedDict, total=False):
     grant_type: Required[Literal["client_credentials", "authorization_code", "refresh_token"]]
     """OAuth 2.0 grant type"""
 
