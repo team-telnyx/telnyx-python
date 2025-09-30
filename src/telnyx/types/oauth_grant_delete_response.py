@@ -6,7 +6,7 @@ from typing_extensions import Literal
 
 from .._models import BaseModel
 
-__all__ = ["OAuthGrantRevokeResponse", "Data"]
+__all__ = ["OAuthGrantDeleteResponse", "Data"]
 
 
 class Data(BaseModel):
@@ -29,5 +29,5 @@ class Data(BaseModel):
     """Timestamp when the grant was last used"""
 
 
-class OAuthGrantRevokeResponse(BaseModel):
+class OAuthGrantDeleteResponse(BaseModel):
     data: Optional[Data] = None

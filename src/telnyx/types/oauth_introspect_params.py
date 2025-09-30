@@ -4,9 +4,9 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-__all__ = ["OAuthIntrospectTokenParams"]
+__all__ = ["OAuthIntrospectParams"]
 
 
-class OAuthIntrospectTokenParams(TypedDict, total=False):
+class OAuthIntrospectParams(TypedDict, total=False):
     token: Required[str]
     """The token to introspect"""

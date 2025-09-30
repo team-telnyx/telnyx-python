@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from typing_extensions import Literal, Required, TypedDict
 
-__all__ = ["OAuthAuthorizeParams"]
+__all__ = ["OAuthRetrieveAuthorizeParams"]
 
 
-class OAuthAuthorizeParams(TypedDict, total=False):
+class OAuthRetrieveAuthorizeParams(TypedDict, total=False):
     client_id: Required[str]
     """OAuth client identifier"""
 

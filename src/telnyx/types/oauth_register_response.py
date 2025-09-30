@@ -4,10 +4,10 @@ from typing import List, Optional
 
 from .._models import BaseModel
 
-__all__ = ["OAuthRegisterClientResponse"]
+__all__ = ["OAuthRegisterResponse"]
 
 
-class OAuthRegisterClientResponse(BaseModel):
+class OAuthRegisterResponse(BaseModel):
     client_id: str
     """Unique client identifier"""
 
