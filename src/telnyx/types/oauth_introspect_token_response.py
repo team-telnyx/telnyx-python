@@ -4,10 +4,10 @@ from typing import Optional
 
 from .._models import BaseModel
 
-__all__ = ["OAuthIntrospectResponse"]
+__all__ = ["OAuthIntrospectTokenResponse"]
 
 
-class OAuthIntrospectResponse(BaseModel):
+class OAuthIntrospectTokenResponse(BaseModel):
     active: bool
     """Whether the token is active"""
 

@@ -2,9 +2,9 @@
 
 from typing import Dict, Optional
 
-from ..._models import BaseModel
+from .._models import BaseModel
 
-__all__ = ["APIError", "Source"]
+__all__ = ["Error", "Source"]
 
 
 class Source(BaseModel):
@@ -15,7 +15,7 @@ class Source(BaseModel):
     """JSON pointer (RFC6901) to the offending entity."""
 
 
-class APIError(BaseModel):
+class Error(BaseModel):
     code: str
 
     title: str

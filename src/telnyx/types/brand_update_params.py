@@ -39,7 +39,8 @@ class BrandUpdateParams(TypedDict, total=False):
     business_contact_email: Annotated[str, PropertyInfo(alias="businessContactEmail")]
     """Business contact email.
 
-    Required if `entityType` will be changed to `PUBLIC_PROFIT`.
+    Required if `entityType` will be changed to `PUBLIC_PROFIT`. Otherwise, it is
+    recommended to either omit this field or set it to `null`.
     """
 
     city: str

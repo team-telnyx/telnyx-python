@@ -2,9 +2,9 @@
 
 from .._models import BaseModel
 
-__all__ = ["OAuthGrantsResponse"]
+__all__ = ["OAuthCreateGrantResponse"]
 
 
-class OAuthGrantsResponse(BaseModel):
+class OAuthCreateGrantResponse(BaseModel):
     redirect_uri: str
     """Redirect URI with authorization code or error"""

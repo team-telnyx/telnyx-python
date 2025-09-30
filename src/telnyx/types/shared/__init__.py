@@ -1,7 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from .metadata import Metadata as Metadata
-from .api_error import APIError as APIError
 from .short_code import ShortCode as ShortCode
 from .hosted_number import HostedNumber as HostedNumber
 from .sim_card_status import SimCardStatus as SimCardStatus

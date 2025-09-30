@@ -126,7 +126,8 @@ class BrandResource(SyncAPIResource):
 
           business_contact_email: Business contact email.
 
-              Required if `entityType` is `PUBLIC_PROFIT`.
+              Required if `entityType` is `PUBLIC_PROFIT`. Otherwise, it is recommended to
+              either omit this field or set it to `null`.
 
           city: City name
 
@@ -297,7 +298,8 @@ class BrandResource(SyncAPIResource):
 
           business_contact_email: Business contact email.
 
-              Required if `entityType` will be changed to `PUBLIC_PROFIT`.
+              Required if `entityType` will be changed to `PUBLIC_PROFIT`. Otherwise, it is
+              recommended to either omit this field or set it to `null`.
 
           city: City name
 
@@ -692,7 +694,8 @@ class AsyncBrandResource(AsyncAPIResource):
 
           business_contact_email: Business contact email.
 
-              Required if `entityType` is `PUBLIC_PROFIT`.
+              Required if `entityType` is `PUBLIC_PROFIT`. Otherwise, it is recommended to
+              either omit this field or set it to `null`.
 
           city: City name
 
@@ -863,7 +866,8 @@ class AsyncBrandResource(AsyncAPIResource):
 
           business_contact_email: Business contact email.
 
-              Required if `entityType` will be changed to `PUBLIC_PROFIT`.
+              Required if `entityType` will be changed to `PUBLIC_PROFIT`. Otherwise, it is
+              recommended to either omit this field or set it to `null`.
 
           city: City name
 

@@ -8,9 +8,9 @@ from .ip import IP as IP
 from .fax import Fax as Fax
 from .fqdn import Fqdn as Fqdn
 from .room import Room as Room
+from .error import Error as Error
 from .record import Record as Record
 from .shared import (
-    APIError as APIError,
     Metadata as Metadata,
     ShortCode as ShortCode,
     HostedNumber as HostedNumber,
@@ -112,7 +112,6 @@ from .ip_delete_response import IPDeleteResponse as IPDeleteResponse
 from .ip_update_response import IPUpdateResponse as IPUpdateResponse
 from .number_block_order import NumberBlockOrder as NumberBlockOrder
 from .number_reservation import NumberReservation as NumberReservation
-from .oauth_token_params import OAuthTokenParams as OAuthTokenParams
 from .porting_order_misc import PortingOrderMisc as PortingOrderMisc
 from .porting_order_type import PortingOrderType as PortingOrderType
 from .rcs_agent_response import RcsAgentResponse as RcsAgentResponse
@@ -139,7 +138,6 @@ from .media_upload_params import MediaUploadParams as MediaUploadParams
 from .message_send_params import MessageSendParams as MessageSendParams
 from .messsage_rcs_params import MesssageRcsParams as MesssageRcsParams
 from .network_list_params import NetworkListParams as NetworkListParams
-from .oauth_grants_params import OAuthGrantsParams as OAuthGrantsParams
 from .outbound_fqdn_param import OutboundFqdnParam as OutboundFqdnParam
 from .portout_list_params import PortoutListParams as PortoutListParams
 from .telnyx_campaign_csp import TelnyxCampaignCsp as TelnyxCampaignCsp
@@ -158,7 +156,6 @@ from .notification_channel import NotificationChannel as NotificationChannel
 from .notification_profile import NotificationProfile as NotificationProfile
 from .notification_setting import NotificationSetting as NotificationSetting
 from .number_pool_settings import NumberPoolSettings as NumberPoolSettings
-from .oauth_token_response import OAuthTokenResponse as OAuthTokenResponse
 from .rcs_suggestion_param import RcsSuggestionParam as RcsSuggestionParam
 from .region_list_response import RegionListResponse as RegionListResponse
 from .room_create_response import RoomCreateResponse as RoomCreateResponse
@@ -188,8 +185,6 @@ from .messsage_rcs_response import MesssageRcsResponse as MesssageRcsResponse
 from .network_create_params import NetworkCreateParams as NetworkCreateParams
 from .network_list_response import NetworkListResponse as NetworkListResponse
 from .network_update_params import NetworkUpdateParams as NetworkUpdateParams
-from .oauth_grants_response import OAuthGrantsResponse as OAuthGrantsResponse
-from .oauth_register_params import OAuthRegisterParams as OAuthRegisterParams
 from .phone_number_campaign import PhoneNumberCampaign as PhoneNumberCampaign
 from .phone_number_detailed import PhoneNumberDetailed as PhoneNumberDetailed
 from .portout_list_response import PortoutListResponse as PortoutListResponse
@@ -208,6 +203,7 @@ from .document_upload_params import DocumentUploadParams as DocumentUploadParams
 from .enum_retrieve_response import EnumRetrieveResponse as EnumRetrieveResponse
 from .fqdn_retrieve_response import FqdnRetrieveResponse as FqdnRetrieveResponse
 from .gcs_configuration_data import GcsConfigurationData as GcsConfigurationData
+from .oauth_authorize_params import OAuthAuthorizeParams as OAuthAuthorizeParams
 from .ota_update_list_params import OtaUpdateListParams as OtaUpdateListParams
 from .outbound_voice_profile import OutboundVoiceProfile as OutboundVoiceProfile
 from .porting_order_end_user import PortingOrderEndUser as PortingOrderEndUser
@@ -241,9 +237,6 @@ from .network_create_response import NetworkCreateResponse as NetworkCreateRespo
 from .network_delete_response import NetworkDeleteResponse as NetworkDeleteResponse
 from .network_update_response import NetworkUpdateResponse as NetworkUpdateResponse
 from .oauth_grant_list_params import OAuthGrantListParams as OAuthGrantListParams
-from .oauth_introspect_params import OAuthIntrospectParams as OAuthIntrospectParams
-from .oauth_register_response import OAuthRegisterResponse as OAuthRegisterResponse
-from .oauth_retrieve_response import OAuthRetrieveResponse as OAuthRetrieveResponse
 from .outbound_call_recording import OutboundCallRecording as OutboundCallRecording
 from .porting_order_documents import PortingOrderDocuments as PortingOrderDocuments
 from .porting_order_messaging import PortingOrderMessaging as PortingOrderMessaging
@@ -302,8 +295,8 @@ from .message_retrieve_response import MessageRetrieveResponse as MessageRetriev
 from .message_schedule_response import MessageScheduleResponse as MessageScheduleResponse
 from .network_retrieve_response import NetworkRetrieveResponse as NetworkRetrieveResponse
 from .number_order_phone_number import NumberOrderPhoneNumber as NumberOrderPhoneNumber
+from .oauth_create_grant_params import OAuthCreateGrantParams as OAuthCreateGrantParams
 from .oauth_grant_list_response import OAuthGrantListResponse as OAuthGrantListResponse
-from .oauth_introspect_response import OAuthIntrospectResponse as OAuthIntrospectResponse
 from .porting_order_list_params import PortingOrderListParams as PortingOrderListParams
 from .porting_order_requirement import PortingOrderRequirement as PortingOrderRequirement
 from .portout_retrieve_response import PortoutRetrieveResponse as PortoutRetrieveResponse
@@ -362,7 +355,9 @@ from .ip_connection_list_response import IPConnectionListResponse as IPConnectio
 from .ip_connection_update_params import IPConnectionUpdateParams as IPConnectionUpdateParams
 from .ledger_billing_group_report import LedgerBillingGroupReport as LedgerBillingGroupReport
 from .managed_account_list_params import ManagedAccountListParams as ManagedAccountListParams
-from .oauth_grant_delete_response import OAuthGrantDeleteResponse as OAuthGrantDeleteResponse
+from .oauth_create_grant_response import OAuthCreateGrantResponse as OAuthCreateGrantResponse
+from .oauth_exchange_token_params import OAuthExchangeTokenParams as OAuthExchangeTokenParams
+from .oauth_grant_revoke_response import OAuthGrantRevokeResponse as OAuthGrantRevokeResponse
 from .porting_order_create_params import PortingOrderCreateParams as PortingOrderCreateParams
 from .porting_order_list_response import PortingOrderListResponse as PortingOrderListResponse
 from .porting_order_update_params import PortingOrderUpdateParams as PortingOrderUpdateParams
@@ -388,6 +383,7 @@ from .number_order_create_response import NumberOrderCreateResponse as NumberOrd
 from .number_order_update_response import NumberOrderUpdateResponse as NumberOrderUpdateResponse
 from .oauth_client_create_response import OAuthClientCreateResponse as OAuthClientCreateResponse
 from .oauth_client_update_response import OAuthClientUpdateResponse as OAuthClientUpdateResponse
+from .oauth_register_client_params import OAuthRegisterClientParams as OAuthRegisterClientParams
 from .oauth_retrieve_jwks_response import OAuthRetrieveJwksResponse as OAuthRetrieveJwksResponse
 from .ota_update_retrieve_response import OtaUpdateRetrieveResponse as OtaUpdateRetrieveResponse
 from .partner_campaign_list_params import PartnerCampaignListParams as PartnerCampaignListParams
@@ -449,7 +445,9 @@ from .message_send_long_code_params import MessageSendLongCodeParams as MessageS
 from .messaging_profile_list_params import MessagingProfileListParams as MessagingProfileListParams
 from .number_lookup_retrieve_params import NumberLookupRetrieveParams as NumberLookupRetrieveParams
 from .numbers_feature_create_params import NumbersFeatureCreateParams as NumbersFeatureCreateParams
+from .oauth_exchange_token_response import OAuthExchangeTokenResponse as OAuthExchangeTokenResponse
 from .oauth_grant_retrieve_response import OAuthGrantRetrieveResponse as OAuthGrantRetrieveResponse
+from .oauth_introspect_token_params import OAuthIntrospectTokenParams as OAuthIntrospectTokenParams
 from .outbound_call_recording_param import OutboundCallRecordingParam as OutboundCallRecordingParam
 from .phone_number_slim_list_params import PhoneNumberSlimListParams as PhoneNumberSlimListParams
 from .porting_order_create_response import PortingOrderCreateResponse as PortingOrderCreateResponse
@@ -479,6 +477,7 @@ from .number_block_order_list_params import NumberBlockOrderListParams as Number
 from .number_order_retrieve_response import NumberOrderRetrieveResponse as NumberOrderRetrieveResponse
 from .number_reservation_list_params import NumberReservationListParams as NumberReservationListParams
 from .oauth_client_retrieve_response import OAuthClientRetrieveResponse as OAuthClientRetrieveResponse
+from .oauth_register_client_response import OAuthRegisterClientResponse as OAuthRegisterClientResponse
 from .partner_campaign_list_response import PartnerCampaignListResponse as PartnerCampaignListResponse
 from .partner_campaign_update_params import PartnerCampaignUpdateParams as PartnerCampaignUpdateParams
 from .phone_number_retrieve_response import PhoneNumberRetrieveResponse as PhoneNumberRetrieveResponse
@@ -536,7 +535,8 @@ from .messaging_profile_update_params import MessagingProfileUpdateParams as Mes
 from .number_lookup_retrieve_response import NumberLookupRetrieveResponse as NumberLookupRetrieveResponse
 from .number_order_with_phone_numbers import NumberOrderWithPhoneNumbers as NumberOrderWithPhoneNumbers
 from .numbers_feature_create_response import NumbersFeatureCreateResponse as NumbersFeatureCreateResponse
-from .oauth_retrieve_authorize_params import OAuthRetrieveAuthorizeParams as OAuthRetrieveAuthorizeParams
+from .oauth_introspect_token_response import OAuthIntrospectTokenResponse as OAuthIntrospectTokenResponse
+from .oauth_retrieve_consent_response import OAuthRetrieveConsentResponse as OAuthRetrieveConsentResponse
 from .phone_number_slim_list_response import PhoneNumberSlimListResponse as PhoneNumberSlimListResponse
 from .porting_order_end_user_location import PortingOrderEndUserLocation as PortingOrderEndUserLocation
 from .porting_order_retrieve_response import PortingOrderRetrieveResponse as PortingOrderRetrieveResponse
