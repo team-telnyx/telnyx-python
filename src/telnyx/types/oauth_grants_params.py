@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-__all__ = ["OAuthCreateGrantParams"]
+__all__ = ["OAuthGrantsParams"]
 
 
-class OAuthCreateGrantParams(TypedDict, total=False):
+class OAuthGrantsParams(TypedDict, total=False):
     allowed: Required[bool]
     """Whether the grant is allowed"""
 

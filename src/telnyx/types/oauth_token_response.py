@@ -5,10 +5,10 @@ from typing_extensions import Literal
 
 from .._models import BaseModel
 
-__all__ = ["OAuthExchangeTokenResponse"]
+__all__ = ["OAuthTokenResponse"]
 
 
-class OAuthExchangeTokenResponse(BaseModel):
+class OAuthTokenResponse(BaseModel):
     access_token: str
     """The access token"""
 

@@ -7,10 +7,10 @@ from typing_extensions import Literal, TypedDict
 
 from .._types import SequenceNotStr
 
-__all__ = ["OAuthRegisterClientParams"]
+__all__ = ["OAuthRegisterParams"]
 
 
-class OAuthRegisterClientParams(TypedDict, total=False):
+class OAuthRegisterParams(TypedDict, total=False):
     client_name: str
     """Human-readable string name of the client to be presented to the end-user"""
 
