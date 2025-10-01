@@ -27,12 +27,19 @@ from telnyx.types import (
 
 ### BatchDetailRecords
 
+Types:
+
+```python
+from telnyx.types.legacy.reporting import Filter
+```
+
 #### Messaging
 
 Types:
 
 ```python
 from telnyx.types.legacy.reporting.batch_detail_records import (
+    MdrDetailReportResponse,
     MessagingCreateResponse,
     MessagingRetrieveResponse,
     MessagingListResponse,
@@ -53,6 +60,7 @@ Types:
 
 ```python
 from telnyx.types.legacy.reporting.batch_detail_records import (
+    SttDetailReportResponse,
     SpeechToTextCreateResponse,
     SpeechToTextRetrieveResponse,
     SpeechToTextListResponse,
@@ -73,6 +81,7 @@ Types:
 
 ```python
 from telnyx.types.legacy.reporting.batch_detail_records import (
+    CdrDetailedReqResponse,
     VoiceCreateResponse,
     VoiceRetrieveResponse,
     VoiceListResponse,
@@ -107,6 +116,7 @@ Types:
 
 ```python
 from telnyx.types.legacy.reporting.usage_reports import (
+    MdrUsageReportResponseLegacy,
     MessagingCreateResponse,
     MessagingRetrieveResponse,
     MessagingListResponse,
@@ -136,6 +146,7 @@ Types:
 
 ```python
 from telnyx.types.legacy.reporting.usage_reports import (
+    CdrUsageReportResponseLegacy,
     VoiceCreateResponse,
     VoiceRetrieveResponse,
     VoiceListResponse,
@@ -181,6 +192,7 @@ Types:
 
 ```python
 from telnyx.types import (
+    OAuthClient,
     OAuthClientCreateResponse,
     OAuthClientRetrieveResponse,
     OAuthClientUpdateResponse,
@@ -202,6 +214,7 @@ Types:
 
 ```python
 from telnyx.types import (
+    OAuthGrant,
     OAuthGrantRetrieveResponse,
     OAuthGrantListResponse,
     OAuthGrantDeleteResponse,
@@ -4437,6 +4450,7 @@ Types:
 from telnyx.types import (
     VerifyProfile,
     VerifyProfileData,
+    VerifyProfileMessageTemplateResponse,
     VerifyProfileListResponse,
     VerifyProfileCreateTemplateResponse,
     VerifyProfileRetrieveTemplatesResponse,
