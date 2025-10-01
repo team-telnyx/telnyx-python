@@ -18,6 +18,7 @@ from ....._response import (
     async_to_streamed_response_wrapper,
 )
 from ....._base_client import make_request_options
+from .....types.legacy.reporting.filter_param import FilterParam
 from .....types.legacy.reporting.batch_detail_records import voice_create_params
 from .....types.legacy.reporting.batch_detail_records.voice_list_response import VoiceListResponse
 from .....types.legacy.reporting.batch_detail_records.voice_create_response import VoiceCreateResponse
@@ -56,7 +57,7 @@ class VoiceResource(SyncAPIResource):
         call_types: Iterable[int] | Omit = omit,
         connections: Iterable[int] | Omit = omit,
         fields: SequenceNotStr[str] | Omit = omit,
-        filters: Iterable[voice_create_params.Filter] | Omit = omit,
+        filters: Iterable[FilterParam] | Omit = omit,
         include_all_metadata: bool | Omit = omit,
         managed_accounts: SequenceNotStr[str] | Omit = omit,
         record_types: Iterable[int] | Omit = omit,
@@ -269,7 +270,7 @@ class AsyncVoiceResource(AsyncAPIResource):
         call_types: Iterable[int] | Omit = omit,
         connections: Iterable[int] | Omit = omit,
         fields: SequenceNotStr[str] | Omit = omit,
-        filters: Iterable[voice_create_params.Filter] | Omit = omit,
+        filters: Iterable[FilterParam] | Omit = omit,
         include_all_metadata: bool | Omit = omit,
         managed_accounts: SequenceNotStr[str] | Omit = omit,
         record_types: Iterable[int] | Omit = omit,
