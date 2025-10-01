@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..types import advanced_order_create_params, advanced_order_update_params
+from ..types import advanced_order_create_params, advanced_order_update_requirement_group_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
@@ -129,9 +129,28 @@ class AdvancedOrdersResource(SyncAPIResource):
             cast_to=object,
         )
 
-    def update(
+    def list(
         self,
-        order_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> object:
+        """List Advanced Orders"""
+        return self._get(
+            "/advanced_orders",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=object,
+        )
+
+    def update_requirement_group(
+        self,
+        advanced_order_id: str,
         *,
         area_code: str | Omit = omit,
         comments: str | Omit = omit,
@@ -162,10 +181,10 @@ class AdvancedOrdersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not order_id:
-            raise ValueError(f"Expected a non-empty value for `order_id` but received {order_id!r}")
+        if not advanced_order_id:
+            raise ValueError(f"Expected a non-empty value for `advanced_order_id` but received {advanced_order_id!r}")
         return self._patch(
-            f"/advanced_orders/{order_id}",
+            f"/advanced_orders/{advanced_order_id}/requirement_group",
             body=maybe_transform(
                 {
                     "area_code": area_code,
@@ -177,27 +196,8 @@ class AdvancedOrdersResource(SyncAPIResource):
                     "quantity": quantity,
                     "requirement_group_id": requirement_group_id,
                 },
-                advanced_order_update_params.AdvancedOrderUpdateParams,
+                advanced_order_update_requirement_group_params.AdvancedOrderUpdateRequirementGroupParams,
             ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=object,
-        )
-
-    def list(
-        self,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
-        """List Advanced Orders"""
-        return self._get(
-            "/advanced_orders",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -311,9 +311,28 @@ class AsyncAdvancedOrdersResource(AsyncAPIResource):
             cast_to=object,
         )
 
-    async def update(
+    async def list(
         self,
-        order_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> object:
+        """List Advanced Orders"""
+        return await self._get(
+            "/advanced_orders",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=object,
+        )
+
+    async def update_requirement_group(
+        self,
+        advanced_order_id: str,
         *,
         area_code: str | Omit = omit,
         comments: str | Omit = omit,
@@ -344,10 +363,10 @@ class AsyncAdvancedOrdersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not order_id:
-            raise ValueError(f"Expected a non-empty value for `order_id` but received {order_id!r}")
+        if not advanced_order_id:
+            raise ValueError(f"Expected a non-empty value for `advanced_order_id` but received {advanced_order_id!r}")
         return await self._patch(
-            f"/advanced_orders/{order_id}",
+            f"/advanced_orders/{advanced_order_id}/requirement_group",
             body=await async_maybe_transform(
                 {
                     "area_code": area_code,
@@ -359,27 +378,8 @@ class AsyncAdvancedOrdersResource(AsyncAPIResource):
                     "quantity": quantity,
                     "requirement_group_id": requirement_group_id,
                 },
-                advanced_order_update_params.AdvancedOrderUpdateParams,
+                advanced_order_update_requirement_group_params.AdvancedOrderUpdateRequirementGroupParams,
             ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=object,
-        )
-
-    async def list(
-        self,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
-        """List Advanced Orders"""
-        return await self._get(
-            "/advanced_orders",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -397,11 +397,11 @@ class AdvancedOrdersResourceWithRawResponse:
         self.retrieve = to_raw_response_wrapper(
             advanced_orders.retrieve,
         )
-        self.update = to_raw_response_wrapper(
-            advanced_orders.update,
-        )
         self.list = to_raw_response_wrapper(
             advanced_orders.list,
+        )
+        self.update_requirement_group = to_raw_response_wrapper(
+            advanced_orders.update_requirement_group,
         )
 
 
@@ -415,11 +415,11 @@ class AsyncAdvancedOrdersResourceWithRawResponse:
         self.retrieve = async_to_raw_response_wrapper(
             advanced_orders.retrieve,
         )
-        self.update = async_to_raw_response_wrapper(
-            advanced_orders.update,
-        )
         self.list = async_to_raw_response_wrapper(
             advanced_orders.list,
+        )
+        self.update_requirement_group = async_to_raw_response_wrapper(
+            advanced_orders.update_requirement_group,
         )
 
 
@@ -433,11 +433,11 @@ class AdvancedOrdersResourceWithStreamingResponse:
         self.retrieve = to_streamed_response_wrapper(
             advanced_orders.retrieve,
         )
-        self.update = to_streamed_response_wrapper(
-            advanced_orders.update,
-        )
         self.list = to_streamed_response_wrapper(
             advanced_orders.list,
+        )
+        self.update_requirement_group = to_streamed_response_wrapper(
+            advanced_orders.update_requirement_group,
         )
 
 
@@ -451,9 +451,9 @@ class AsyncAdvancedOrdersResourceWithStreamingResponse:
         self.retrieve = async_to_streamed_response_wrapper(
             advanced_orders.retrieve,
         )
-        self.update = async_to_streamed_response_wrapper(
-            advanced_orders.update,
-        )
         self.list = async_to_streamed_response_wrapper(
             advanced_orders.list,
+        )
+        self.update_requirement_group = async_to_streamed_response_wrapper(
+            advanced_orders.update_requirement_group,
         )
