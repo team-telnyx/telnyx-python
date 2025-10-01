@@ -1,5 +1,19 @@
 # Changelog
 
+## 3.2.0 (2025-10-01)
+
+Full Changelog: [v3.1.0...v3.2.0](https://github.com/team-telnyx/telnyx-python/compare/v3.1.0...v3.2.0)
+
+### Features
+
+* **api:** manual updates ([5e05608](https://github.com/team-telnyx/telnyx-python/commit/5e05608fdb6f8d602f7df918ed09491afa4129b3))
+* Engdesk 44932 ([b9b7061](https://github.com/team-telnyx/telnyx-python/commit/b9b7061707f8ed70ca643ef31fd594a020d496c3))
+
+
+### Chores
+
+* configure new SDK language ([7aa88d4](https://github.com/team-telnyx/telnyx-python/commit/7aa88d4d43461cabc3a96107b863dc4f5731f0cf))
+
 ## 3.1.0 (2025-09-30)
 
 Full Changelog: [v3.0.0...v3.1.0](https://github.com/team-telnyx/telnyx-python/compare/v3.0.0...v3.1.0)
