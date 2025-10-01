@@ -373,7 +373,6 @@ from .s3_configuration_data_param import S3ConfigurationDataParam as S3Configura
 from .transcription_webhook_event import TranscriptionWebhookEvent as TranscriptionWebhookEvent
 from .verified_number_list_params import VerifiedNumberListParams as VerifiedNumberListParams
 from .advanced_order_create_params import AdvancedOrderCreateParams as AdvancedOrderCreateParams
-from .advanced_order_update_params import AdvancedOrderUpdateParams as AdvancedOrderUpdateParams
 from .call_initiated_webhook_event import CallInitiatedWebhookEvent as CallInitiatedWebhookEvent
 from .campaign_deactivate_response import CampaignDeactivateResponse as CampaignDeactivateResponse
 from .channel_zone_update_response import ChannelZoneUpdateResponse as ChannelZoneUpdateResponse
@@ -1201,6 +1200,9 @@ from .seti_retrieve_black_box_test_results_response import (
 )
 from .virtual_cross_connects_coverage_list_response import (
     VirtualCrossConnectsCoverageListResponse as VirtualCrossConnectsCoverageListResponse,
+)
+from .advanced_order_update_requirement_group_params import (
+    AdvancedOrderUpdateRequirementGroupParams as AdvancedOrderUpdateRequirementGroupParams,
 )
 from .porting_order_phone_number_configuration_param import (
     PortingOrderPhoneNumberConfigurationParam as PortingOrderPhoneNumberConfigurationParam,
