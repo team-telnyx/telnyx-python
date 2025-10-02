@@ -18,7 +18,6 @@ from ....._response import (
     async_to_streamed_response_wrapper,
 )
 from ....._base_client import make_request_options
-from .....types.legacy.reporting.filter_param import FilterParam
 from .....types.legacy.reporting.batch_detail_records import messaging_create_params
 from .....types.legacy.reporting.batch_detail_records.messaging_list_response import MessagingListResponse
 from .....types.legacy.reporting.batch_detail_records.messaging_create_response import MessagingCreateResponse
@@ -55,7 +54,7 @@ class MessagingResource(SyncAPIResource):
         start_time: Union[str, datetime],
         connections: Iterable[int] | Omit = omit,
         directions: Iterable[int] | Omit = omit,
-        filters: Iterable[FilterParam] | Omit = omit,
+        filters: Iterable[messaging_create_params.Filter] | Omit = omit,
         include_message_body: bool | Omit = omit,
         managed_accounts: SequenceNotStr[str] | Omit = omit,
         profiles: SequenceNotStr[str] | Omit = omit,
@@ -246,7 +245,7 @@ class AsyncMessagingResource(AsyncAPIResource):
         start_time: Union[str, datetime],
         connections: Iterable[int] | Omit = omit,
         directions: Iterable[int] | Omit = omit,
-        filters: Iterable[FilterParam] | Omit = omit,
+        filters: Iterable[messaging_create_params.Filter] | Omit = omit,
         include_message_body: bool | Omit = omit,
         managed_accounts: SequenceNotStr[str] | Omit = omit,
         profiles: SequenceNotStr[str] | Omit = omit,

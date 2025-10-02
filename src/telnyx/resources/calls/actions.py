@@ -2506,7 +2506,7 @@ class ActionsResource(SyncAPIResource):
         *,
         client_state: str | Omit = omit,
         command_id: str | Omit = omit,
-        transcription_engine: Literal["A", "B"] | Omit = omit,
+        transcription_engine: Literal["Google", "Telnyx", "Deepgram", "A", "B"] | Omit = omit,
         transcription_engine_config: action_start_transcription_params.TranscriptionEngineConfig | Omit = omit,
         transcription_tracks: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -2532,7 +2532,8 @@ class ActionsResource(SyncAPIResource):
           command_id: Use this field to avoid duplicate commands. Telnyx will ignore any command with
               the same `command_id` for the same `call_control_id`.
 
-          transcription_engine: Engine to use for speech recognition. `A` - `Google`, `B` - `Telnyx`.
+          transcription_engine: Engine to use for speech recognition. Legacy values `A` - `Google`, `B` -
+              `Telnyx` are supported for backward compatibility.
 
           transcription_tracks: Indicates which leg of the call will be transcribed. Use `inbound` for the leg
               that requested the transcription, `outbound` for the other leg, and `both` for
@@ -5748,7 +5749,7 @@ class AsyncActionsResource(AsyncAPIResource):
         *,
         client_state: str | Omit = omit,
         command_id: str | Omit = omit,
-        transcription_engine: Literal["A", "B"] | Omit = omit,
+        transcription_engine: Literal["Google", "Telnyx", "Deepgram", "A", "B"] | Omit = omit,
         transcription_engine_config: action_start_transcription_params.TranscriptionEngineConfig | Omit = omit,
         transcription_tracks: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -5774,7 +5775,8 @@ class AsyncActionsResource(AsyncAPIResource):
           command_id: Use this field to avoid duplicate commands. Telnyx will ignore any command with
               the same `command_id` for the same `call_control_id`.
 
-          transcription_engine: Engine to use for speech recognition. `A` - `Google`, `B` - `Telnyx`.
+          transcription_engine: Engine to use for speech recognition. Legacy values `A` - `Google`, `B` -
+              `Telnyx` are supported for backward compatibility.
 
           transcription_tracks: Indicates which leg of the call will be transcribed. Use `inbound` for the leg
               that requested the transcription, `outbound` for the other leg, and `both` for

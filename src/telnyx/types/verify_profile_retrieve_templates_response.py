@@ -1,12 +1,17 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List
+from typing import List, Optional
 
 from .._models import BaseModel
-from .verify_profile_message_template_response import VerifyProfileMessageTemplateResponse
 
-__all__ = ["VerifyProfileRetrieveTemplatesResponse"]
+__all__ = ["VerifyProfileRetrieveTemplatesResponse", "Data"]
+
+
+class Data(BaseModel):
+    id: Optional[str] = None
+
+    text: Optional[str] = None
 
 
 class VerifyProfileRetrieveTemplatesResponse(BaseModel):
-    data: List[VerifyProfileMessageTemplateResponse]
+    data: List[Data]
