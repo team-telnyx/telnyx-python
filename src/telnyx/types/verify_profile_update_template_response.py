@@ -3,15 +3,10 @@
 from typing import Optional
 
 from .._models import BaseModel
+from .verify_profile_message_template_response import VerifyProfileMessageTemplateResponse
 
-__all__ = ["VerifyProfileUpdateTemplateResponse", "Data"]
-
-
-class Data(BaseModel):
-    id: Optional[str] = None
-
-    text: Optional[str] = None
+__all__ = ["VerifyProfileUpdateTemplateResponse"]
 
 
 class VerifyProfileUpdateTemplateResponse(BaseModel):
-    data: Optional[Data] = None
+    data: Optional[VerifyProfileMessageTemplateResponse] = None

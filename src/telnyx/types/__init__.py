@@ -38,10 +38,12 @@ from .conference import Conference as Conference
 from .inbound_ip import InboundIP as InboundIP
 from .sip_header import SipHeader as SipHeader
 from .entity_type import EntityType as EntityType
+from .oauth_grant import OAuthGrant as OAuthGrant
 from .outbound_ip import OutboundIP as OutboundIP
 from .task_status import TaskStatus as TaskStatus
 from .inbound_fqdn import InboundFqdn as InboundFqdn
 from .month_detail import MonthDetail as MonthDetail
+from .oauth_client import OAuthClient as OAuthClient
 from .phone_number import PhoneNumber as PhoneNumber
 from .record_param import RecordParam as RecordParam
 from .room_session import RoomSession as RoomSession
@@ -1014,6 +1016,9 @@ from .regulatory_requirement_retrieve_response import (
 )
 from .sub_number_orders_report_create_response import (
     SubNumberOrdersReportCreateResponse as SubNumberOrdersReportCreateResponse,
+)
+from .verify_profile_message_template_response import (
+    VerifyProfileMessageTemplateResponse as VerifyProfileMessageTemplateResponse,
 )
 from .authentication_provider_retrieve_response import (
     AuthenticationProviderRetrieveResponse as AuthenticationProviderRetrieveResponse,
