@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Union, Iterable
-from typing_extensions import Literal, TypeAlias, TypedDict
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from ..._types import SequenceNotStr
 from .google_transcription_language import GoogleTranscriptionLanguage
@@ -187,17 +187,72 @@ class TranscriptionEngineConfigTranscriptionEngineTelnyxConfig(TypedDict, total=
 
 
 class TranscriptionEngineConfigTranscriptionEngineDeepgramConfig(TypedDict, total=False):
-    language: str
+    transcription_engine: Required[Literal["Deepgram"]]
+    """Engine identifier for Deepgram transcription service"""
+
+    transcription_model: Required[Literal["deepgram/nova-2", "deepgram/nova-3"]]
+    """The model to use for transcription."""
+
+    language: Literal[
+        "bg",
+        "ca",
+        "zh",
+        "zh-CN",
+        "zh-Hans",
+        "zh-TW",
+        "zh-Hant",
+        "zh-HK",
+        "cs",
+        "da",
+        "da-DK",
+        "nl",
+        "en",
+        "en-US",
+        "en-AU",
+        "en-GB",
+        "en-NZ",
+        "en-IN",
+        "et",
+        "fi",
+        "nl-BE",
+        "fr",
+        "fr-CA",
+        "de",
+        "de-CH",
+        "el",
+        "hi",
+        "hu",
+        "id",
+        "it",
+        "ja",
+        "ko",
+        "ko-KR",
+        "lv",
+        "lt",
+        "ms",
+        "no",
+        "pl",
+        "pt",
+        "pt-BR",
+        "pt-PT",
+        "ro",
+        "ru",
+        "sk",
+        "es",
+        "es-419",
+        "sv",
+        "sv-SE",
+        "th",
+        "th-TH",
+        "tr",
+        "uk",
+        "vi",
+        "auto_detect",
+    ]
     """Language to use for speech recognition.
 
     Available languages depend on the selected model.
     """
-
-    transcription_engine: Literal["Deepgram"]
-    """Engine identifier for Deepgram transcription service"""
-
-    transcription_model: Literal["deepgram/nova-2", "deepgram/nova-3"]
-    """The model to use for transcription."""
 
 
 TranscriptionEngineConfig: TypeAlias = Union[
