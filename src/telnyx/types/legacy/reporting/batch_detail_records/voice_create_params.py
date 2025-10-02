@@ -4,13 +4,12 @@ from __future__ import annotations
 
 from typing import Union, Iterable
 from datetime import datetime
-from typing_extensions import Required, Annotated, TypedDict
+from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ....._types import SequenceNotStr
 from ....._utils import PropertyInfo
-from ..filter_param import FilterParam
 
-__all__ = ["VoiceCreateParams"]
+__all__ = ["VoiceCreateParams", "Filter"]
 
 
 class VoiceCreateParams(TypedDict, total=False):
@@ -29,7 +28,7 @@ class VoiceCreateParams(TypedDict, total=False):
     fields: SequenceNotStr[str]
     """Set of fields to include in the report"""
 
-    filters: Iterable[FilterParam]
+    filters: Iterable[Filter]
     """List of filters to apply"""
 
     include_all_metadata: bool
@@ -55,3 +54,26 @@ class VoiceCreateParams(TypedDict, total=False):
 
     timezone: str
     """Timezone for the report"""
+
+
+class Filter(TypedDict, total=False):
+    billing_group: str
+    """Billing group UUID to filter by"""
+
+    cld: str
+    """Called line identification (destination number)"""
+
+    cld_filter: Literal["contains", "starts_with", "ends_with"]
+    """Filter type for CLD matching"""
+
+    cli: str
+    """Calling line identification (caller ID)"""
+
+    cli_filter: Literal["contains", "starts_with", "ends_with"]
+    """Filter type for CLI matching"""
+
+    filter_type: Literal["and", "or"]
+    """Logical operator for combining filters"""
+
+    tags_list: str
+    """Tag name to filter by"""
