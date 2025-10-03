@@ -136,10 +136,10 @@ class TestCalls:
             transcription_config={
                 "client_state": "aGF2ZSBhIG5pY2UgZGF5ID1d",
                 "command_id": "891510ac-f3e4-11e8-af5b-de00688a4901",
-                "transcription_engine": "A",
+                "transcription_engine": "Google",
                 "transcription_engine_config": {
                     "enable_speaker_diarization": True,
-                    "hints": ["Telnyx"],
+                    "hints": ["string"],
                     "interim_results": True,
                     "language": "en",
                     "max_speaker_count": 4,
@@ -149,10 +149,10 @@ class TestCalls:
                     "speech_context": [
                         {
                             "boost": 1,
-                            "phrases": ["Telnyx"],
+                            "phrases": ["string"],
                         }
                     ],
-                    "transcription_engine": "A",
+                    "transcription_engine": "Google",
                     "use_enhanced": True,
                 },
                 "transcription_tracks": "both",
@@ -356,10 +356,10 @@ class TestAsyncCalls:
             transcription_config={
                 "client_state": "aGF2ZSBhIG5pY2UgZGF5ID1d",
                 "command_id": "891510ac-f3e4-11e8-af5b-de00688a4901",
-                "transcription_engine": "A",
+                "transcription_engine": "Google",
                 "transcription_engine_config": {
                     "enable_speaker_diarization": True,
-                    "hints": ["Telnyx"],
+                    "hints": ["string"],
                     "interim_results": True,
                     "language": "en",
                     "max_speaker_count": 4,
@@ -369,10 +369,10 @@ class TestAsyncCalls:
                     "speech_context": [
                         {
                             "boost": 1,
-                            "phrases": ["Telnyx"],
+                            "phrases": ["string"],
                         }
                     ],
-                    "transcription_engine": "A",
+                    "transcription_engine": "Google",
                     "use_enhanced": True,
                 },
                 "transcription_tracks": "both",
