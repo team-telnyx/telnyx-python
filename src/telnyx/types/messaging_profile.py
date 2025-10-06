@@ -42,6 +42,9 @@ class MessagingProfile(BaseModel):
     mms_transcoding: Optional[bool] = None
     """enables automated resizing of MMS media."""
 
+    mobile_only: Optional[bool] = None
+    """Send messages only to mobile phone numbers."""
+
     name: Optional[str] = None
     """A user friendly name for the messaging profile."""
 
