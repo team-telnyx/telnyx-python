@@ -273,6 +273,12 @@ class TestParticipants:
             conference_status_callback_event="start end join leave",
             conference_status_callback_method="GET",
             conference_trim="trim-silence",
+            custom_headers=[
+                {
+                    "name": "X-Custom-Header",
+                    "value": "custom-value",
+                }
+            ],
             early_media=True,
             end_conference_on_exit=True,
             from_="+12065550200",
@@ -656,6 +662,12 @@ class TestAsyncParticipants:
             conference_status_callback_event="start end join leave",
             conference_status_callback_method="GET",
             conference_trim="trim-silence",
+            custom_headers=[
+                {
+                    "name": "X-Custom-Header",
+                    "value": "custom-value",
+                }
+            ],
             early_media=True,
             end_conference_on_exit=True,
             from_="+12065550200",

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import Iterable
 from typing_extensions import Literal
 
 import httpx
@@ -231,6 +232,7 @@ class CallsResource(SyncAPIResource):
         caller_id: str | Omit = omit,
         cancel_playback_on_detect_message_end: bool | Omit = omit,
         cancel_playback_on_machine_detection: bool | Omit = omit,
+        custom_headers: Iterable[call_calls_params.CustomHeader] | Omit = omit,
         detection_mode: Literal["Premium", "Regular"] | Omit = omit,
         fallback_url: str | Omit = omit,
         machine_detection: Literal["Enable", "Disable", "DetectMessageEnd"] | Omit = omit,
@@ -293,6 +295,9 @@ class CallsResource(SyncAPIResource):
               `true`.
 
           cancel_playback_on_machine_detection: Whether to cancel ongoing playback on `machine` detection. Defaults to `true`.
+
+          custom_headers: Custom HTTP headers to be sent with the call. Each header should be an object
+              with 'name' and 'value' properties.
 
           detection_mode: Allows you to chose between Premium and Standard detections.
 
@@ -377,6 +382,7 @@ class CallsResource(SyncAPIResource):
                     "caller_id": caller_id,
                     "cancel_playback_on_detect_message_end": cancel_playback_on_detect_message_end,
                     "cancel_playback_on_machine_detection": cancel_playback_on_machine_detection,
+                    "custom_headers": custom_headers,
                     "detection_mode": detection_mode,
                     "fallback_url": fallback_url,
                     "machine_detection": machine_detection,
@@ -824,6 +830,7 @@ class AsyncCallsResource(AsyncAPIResource):
         caller_id: str | Omit = omit,
         cancel_playback_on_detect_message_end: bool | Omit = omit,
         cancel_playback_on_machine_detection: bool | Omit = omit,
+        custom_headers: Iterable[call_calls_params.CustomHeader] | Omit = omit,
         detection_mode: Literal["Premium", "Regular"] | Omit = omit,
         fallback_url: str | Omit = omit,
         machine_detection: Literal["Enable", "Disable", "DetectMessageEnd"] | Omit = omit,
@@ -886,6 +893,9 @@ class AsyncCallsResource(AsyncAPIResource):
               `true`.
 
           cancel_playback_on_machine_detection: Whether to cancel ongoing playback on `machine` detection. Defaults to `true`.
+
+          custom_headers: Custom HTTP headers to be sent with the call. Each header should be an object
+              with 'name' and 'value' properties.
 
           detection_mode: Allows you to chose between Premium and Standard detections.
 
@@ -970,6 +980,7 @@ class AsyncCallsResource(AsyncAPIResource):
                     "caller_id": caller_id,
                     "cancel_playback_on_detect_message_end": cancel_playback_on_detect_message_end,
                     "cancel_playback_on_machine_detection": cancel_playback_on_machine_detection,
+                    "custom_headers": custom_headers,
                     "detection_mode": detection_mode,
                     "fallback_url": fallback_url,
                     "machine_detection": machine_detection,
