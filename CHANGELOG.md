@@ -1,5 +1,14 @@
 # Changelog
 
+## 3.3.0 (2025-10-06)
+
+Full Changelog: [v3.2.0...v3.3.0](https://github.com/team-telnyx/telnyx-python/compare/v3.2.0...v3.3.0)
+
+### Features
+
+* Fix listing deepgram languages for transcription start ([e348b76](https://github.com/team-telnyx/telnyx-python/commit/e348b7666742f3449cf70eef7801f3e68fc31026))
+* TELAPPS-5367: Update transcription start docs ([ce4c62c](https://github.com/team-telnyx/telnyx-python/commit/ce4c62ca1e2c210975be6a6844efaa39244658c4))
+
 ## 3.2.0 (2025-10-01)
 
 Full Changelog: [v3.1.0...v3.2.0](https://github.com/team-telnyx/telnyx-python/compare/v3.1.0...v3.2.0)
