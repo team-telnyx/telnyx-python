@@ -81,6 +81,7 @@ class MessagingProfilesResource(SyncAPIResource):
         enabled: bool | Omit = omit,
         mms_fall_back_to_sms: bool | Omit = omit,
         mms_transcoding: bool | Omit = omit,
+        mobile_only: bool | Omit = omit,
         number_pool_settings: Optional[NumberPoolSettingsParam] | Omit = omit,
         url_shortener_settings: Optional[URLShortenerSettingsParam] | Omit = omit,
         webhook_api_version: Literal["1", "2", "2010-04-01"] | Omit = omit,
@@ -116,6 +117,8 @@ class MessagingProfilesResource(SyncAPIResource):
           mms_fall_back_to_sms: enables SMS fallback for MMS messages.
 
           mms_transcoding: enables automated resizing of MMS media.
+
+          mobile_only: Send messages only to mobile phone numbers.
 
           number_pool_settings: Number Pool allows you to send messages from a pool of numbers of different
               types, assigning weights to each type. The pool consists of all the long code
@@ -159,6 +162,7 @@ class MessagingProfilesResource(SyncAPIResource):
                     "enabled": enabled,
                     "mms_fall_back_to_sms": mms_fall_back_to_sms,
                     "mms_transcoding": mms_transcoding,
+                    "mobile_only": mobile_only,
                     "number_pool_settings": number_pool_settings,
                     "url_shortener_settings": url_shortener_settings,
                     "webhook_api_version": webhook_api_version,
@@ -216,6 +220,7 @@ class MessagingProfilesResource(SyncAPIResource):
         enabled: bool | Omit = omit,
         mms_fall_back_to_sms: bool | Omit = omit,
         mms_transcoding: bool | Omit = omit,
+        mobile_only: bool | Omit = omit,
         name: str | Omit = omit,
         number_pool_settings: Optional[NumberPoolSettingsParam] | Omit = omit,
         url_shortener_settings: Optional[URLShortenerSettingsParam] | Omit = omit,
@@ -248,6 +253,8 @@ class MessagingProfilesResource(SyncAPIResource):
           mms_fall_back_to_sms: enables SMS fallback for MMS messages.
 
           mms_transcoding: enables automated resizing of MMS media.
+
+          mobile_only: Send messages only to mobile phone numbers.
 
           name: A user friendly name for the messaging profile.
 
@@ -301,6 +308,7 @@ class MessagingProfilesResource(SyncAPIResource):
                     "enabled": enabled,
                     "mms_fall_back_to_sms": mms_fall_back_to_sms,
                     "mms_transcoding": mms_transcoding,
+                    "mobile_only": mobile_only,
                     "name": name,
                     "number_pool_settings": number_pool_settings,
                     "url_shortener_settings": url_shortener_settings,
@@ -520,6 +528,7 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
         enabled: bool | Omit = omit,
         mms_fall_back_to_sms: bool | Omit = omit,
         mms_transcoding: bool | Omit = omit,
+        mobile_only: bool | Omit = omit,
         number_pool_settings: Optional[NumberPoolSettingsParam] | Omit = omit,
         url_shortener_settings: Optional[URLShortenerSettingsParam] | Omit = omit,
         webhook_api_version: Literal["1", "2", "2010-04-01"] | Omit = omit,
@@ -555,6 +564,8 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
           mms_fall_back_to_sms: enables SMS fallback for MMS messages.
 
           mms_transcoding: enables automated resizing of MMS media.
+
+          mobile_only: Send messages only to mobile phone numbers.
 
           number_pool_settings: Number Pool allows you to send messages from a pool of numbers of different
               types, assigning weights to each type. The pool consists of all the long code
@@ -598,6 +609,7 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
                     "enabled": enabled,
                     "mms_fall_back_to_sms": mms_fall_back_to_sms,
                     "mms_transcoding": mms_transcoding,
+                    "mobile_only": mobile_only,
                     "number_pool_settings": number_pool_settings,
                     "url_shortener_settings": url_shortener_settings,
                     "webhook_api_version": webhook_api_version,
@@ -655,6 +667,7 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
         enabled: bool | Omit = omit,
         mms_fall_back_to_sms: bool | Omit = omit,
         mms_transcoding: bool | Omit = omit,
+        mobile_only: bool | Omit = omit,
         name: str | Omit = omit,
         number_pool_settings: Optional[NumberPoolSettingsParam] | Omit = omit,
         url_shortener_settings: Optional[URLShortenerSettingsParam] | Omit = omit,
@@ -687,6 +700,8 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
           mms_fall_back_to_sms: enables SMS fallback for MMS messages.
 
           mms_transcoding: enables automated resizing of MMS media.
+
+          mobile_only: Send messages only to mobile phone numbers.
 
           name: A user friendly name for the messaging profile.
 
@@ -740,6 +755,7 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
                     "enabled": enabled,
                     "mms_fall_back_to_sms": mms_fall_back_to_sms,
                     "mms_transcoding": mms_transcoding,
+                    "mobile_only": mobile_only,
                     "name": name,
                     "number_pool_settings": number_pool_settings,
                     "url_shortener_settings": url_shortener_settings,
