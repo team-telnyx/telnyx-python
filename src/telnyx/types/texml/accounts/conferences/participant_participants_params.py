@@ -2,11 +2,12 @@
 
 from __future__ import annotations
 
+from typing import Iterable
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ....._utils import PropertyInfo
 
-__all__ = ["ParticipantParticipantsParams"]
+__all__ = ["ParticipantParticipantsParams", "CustomHeader"]
 
 
 class ParticipantParticipantsParams(TypedDict, total=False):
@@ -111,6 +112,12 @@ class ParticipantParticipantsParams(TypedDict, total=False):
     """Whether to trim any leading and trailing silence from the conference recording.
 
     Defaults to `trim-silence`.
+    """
+
+    custom_headers: Annotated[Iterable[CustomHeader], PropertyInfo(alias="CustomHeaders")]
+    """Custom HTTP headers to be sent with the call.
+
+    Each header should be an object with 'name' and 'value' properties.
     """
 
     early_media: Annotated[bool, PropertyInfo(alias="EarlyMedia")]
@@ -249,3 +256,11 @@ class ParticipantParticipantsParams(TypedDict, total=False):
     The URL to call for an audio file to play while the participant is waiting for
     the conference to start.
     """
+
+
+class CustomHeader(TypedDict, total=False):
+    name: Required[str]
+    """The name of the custom header"""
+
+    value: Required[str]
+    """The value of the custom header"""
