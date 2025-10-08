@@ -1,5 +1,14 @@
 # Changelog
 
+## 3.4.0 (2025-10-06)
+
+Full Changelog: [v3.3.0...v3.4.0](https://github.com/team-telnyx/telnyx-python/compare/v3.3.0...v3.4.0)
+
+### Features
+
+* ENGDESK-45343: Add CustomHeaders documentation to TeXML Dial endpoints ([ee94cac](https://github.com/team-telnyx/telnyx-python/commit/ee94cacc2228a6b2c02d207e53bef535474fb196))
+* MSG-5944: added mobile_only field to messaging profiles ([d34e586](https://github.com/team-telnyx/telnyx-python/commit/d34e586ab25edc4e346abf49837dfe23f5620593))
+
 ## 3.3.0 (2025-10-06)
 
 Full Changelog: [v3.2.0...v3.3.0](https://github.com/team-telnyx/telnyx-python/compare/v3.2.0...v3.3.0)

@@ -170,6 +170,12 @@ class TestCalls:
             caller_id="Info",
             cancel_playback_on_detect_message_end=False,
             cancel_playback_on_machine_detection=False,
+            custom_headers=[
+                {
+                    "name": "X-Custom-Header",
+                    "value": "custom-value",
+                }
+            ],
             detection_mode="Premium",
             fallback_url="https://www.example.com/instructions-fallback.xml",
             machine_detection="Enable",
@@ -592,6 +598,12 @@ class TestAsyncCalls:
             caller_id="Info",
             cancel_playback_on_detect_message_end=False,
             cancel_playback_on_machine_detection=False,
+            custom_headers=[
+                {
+                    "name": "X-Custom-Header",
+                    "value": "custom-value",
+                }
+            ],
             detection_mode="Premium",
             fallback_url="https://www.example.com/instructions-fallback.xml",
             machine_detection="Enable",

@@ -47,6 +47,9 @@ class MessagingProfileCreateParams(TypedDict, total=False):
     mms_transcoding: bool
     """enables automated resizing of MMS media."""
 
+    mobile_only: bool
+    """Send messages only to mobile phone numbers."""
+
     number_pool_settings: Optional[NumberPoolSettingsParam]
     """
     Number Pool allows you to send messages from a pool of numbers of different

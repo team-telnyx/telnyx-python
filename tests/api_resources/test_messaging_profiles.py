@@ -46,6 +46,7 @@ class TestMessagingProfiles:
             enabled=True,
             mms_fall_back_to_sms=True,
             mms_transcoding=True,
+            mobile_only=True,
             number_pool_settings={
                 "long_code_weight": 1,
                 "skip_unhealthy": True,
@@ -154,6 +155,7 @@ class TestMessagingProfiles:
             enabled=True,
             mms_fall_back_to_sms=True,
             mms_transcoding=True,
+            mobile_only=True,
             name="Updated Profile for Messages",
             number_pool_settings={
                 "long_code_weight": 2,
@@ -427,6 +429,7 @@ class TestAsyncMessagingProfiles:
             enabled=True,
             mms_fall_back_to_sms=True,
             mms_transcoding=True,
+            mobile_only=True,
             number_pool_settings={
                 "long_code_weight": 1,
                 "skip_unhealthy": True,
@@ -535,6 +538,7 @@ class TestAsyncMessagingProfiles:
             enabled=True,
             mms_fall_back_to_sms=True,
             mms_transcoding=True,
+            mobile_only=True,
             name="Updated Profile for Messages",
             number_pool_settings={
                 "long_code_weight": 2,

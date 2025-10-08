@@ -2,11 +2,12 @@
 
 from __future__ import annotations
 
+from typing import Iterable
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ...._utils import PropertyInfo
 
-__all__ = ["CallCallsParams"]
+__all__ = ["CallCallsParams", "CustomHeader"]
 
 
 class CallCallsParams(TypedDict, total=False):
@@ -58,6 +59,12 @@ class CallCallsParams(TypedDict, total=False):
 
     cancel_playback_on_machine_detection: Annotated[bool, PropertyInfo(alias="CancelPlaybackOnMachineDetection")]
     """Whether to cancel ongoing playback on `machine` detection. Defaults to `true`."""
+
+    custom_headers: Annotated[Iterable[CustomHeader], PropertyInfo(alias="CustomHeaders")]
+    """Custom HTTP headers to be sent with the call.
+
+    Each header should be an object with 'name' and 'value' properties.
+    """
 
     detection_mode: Annotated[Literal["Premium", "Regular"], PropertyInfo(alias="DetectionMode")]
     """Allows you to chose between Premium and Standard detections."""
@@ -167,3 +174,11 @@ class CallCallsParams(TypedDict, total=False):
 
     The default value is inherited from TeXML Application setting.
     """
+
+
+class CustomHeader(TypedDict, total=False):
+    name: Required[str]
+    """The name of the custom header"""
+
+    value: Required[str]
+    """The value of the custom header"""

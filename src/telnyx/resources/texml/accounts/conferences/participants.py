@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import Iterable
 from typing_extensions import Literal
 
 import httpx
@@ -251,6 +252,7 @@ class ParticipantsResource(SyncAPIResource):
         conference_status_callback_event: str | Omit = omit,
         conference_status_callback_method: Literal["GET", "POST"] | Omit = omit,
         conference_trim: Literal["trim-silence", "do-not-trim"] | Omit = omit,
+        custom_headers: Iterable[participant_participants_params.CustomHeader] | Omit = omit,
         early_media: bool | Omit = omit,
         end_conference_on_exit: bool | Omit = omit,
         from_: str | Omit = omit,
@@ -342,6 +344,9 @@ class ParticipantsResource(SyncAPIResource):
 
           conference_trim: Whether to trim any leading and trailing silence from the conference recording.
               Defaults to `trim-silence`.
+
+          custom_headers: Custom HTTP headers to be sent with the call. Each header should be an object
+              with 'name' and 'value' properties.
 
           early_media: Whether participant shall be bridged to conference before the participant
               answers (from early media if available). Defaults to `false`.
@@ -451,6 +456,7 @@ class ParticipantsResource(SyncAPIResource):
                     "conference_status_callback_event": conference_status_callback_event,
                     "conference_status_callback_method": conference_status_callback_method,
                     "conference_trim": conference_trim,
+                    "custom_headers": custom_headers,
                     "early_media": early_media,
                     "end_conference_on_exit": end_conference_on_exit,
                     "from_": from_,
@@ -748,6 +754,7 @@ class AsyncParticipantsResource(AsyncAPIResource):
         conference_status_callback_event: str | Omit = omit,
         conference_status_callback_method: Literal["GET", "POST"] | Omit = omit,
         conference_trim: Literal["trim-silence", "do-not-trim"] | Omit = omit,
+        custom_headers: Iterable[participant_participants_params.CustomHeader] | Omit = omit,
         early_media: bool | Omit = omit,
         end_conference_on_exit: bool | Omit = omit,
         from_: str | Omit = omit,
@@ -839,6 +846,9 @@ class AsyncParticipantsResource(AsyncAPIResource):
 
           conference_trim: Whether to trim any leading and trailing silence from the conference recording.
               Defaults to `trim-silence`.
+
+          custom_headers: Custom HTTP headers to be sent with the call. Each header should be an object
+              with 'name' and 'value' properties.
 
           early_media: Whether participant shall be bridged to conference before the participant
               answers (from early media if available). Defaults to `false`.
@@ -948,6 +958,7 @@ class AsyncParticipantsResource(AsyncAPIResource):
                     "conference_status_callback_event": conference_status_callback_event,
                     "conference_status_callback_method": conference_status_callback_method,
                     "conference_trim": conference_trim,
+                    "custom_headers": custom_headers,
                     "early_media": early_media,
                     "end_conference_on_exit": end_conference_on_exit,
                     "from_": from_,
