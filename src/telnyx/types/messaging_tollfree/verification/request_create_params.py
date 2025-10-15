@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Iterable
-from typing_extensions import Required, Annotated, TypedDict
+from typing import Iterable, Optional
+from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from .volume import Volume
 from ...._utils import PropertyInfo
@@ -84,8 +84,60 @@ class RequestCreateParams(TypedDict, total=False):
     use_case_summary: Required[Annotated[str, PropertyInfo(alias="useCaseSummary")]]
     """Human-readable summary of the desired use-case"""
 
+    age_gated_content: Annotated[bool, PropertyInfo(alias="ageGatedContent")]
+    """Indicates if messaging content requires age gating (e.g., 18+).
+
+    Defaults to false if not provided.
+    """
+
     business_addr2: Annotated[str, PropertyInfo(alias="businessAddr2")]
     """Line 2 of the business address"""
+
+    business_registration_country: Annotated[Optional[str], PropertyInfo(alias="businessRegistrationCountry")]
+    """ISO 3166-1 alpha-2 country code of the issuing business authority.
+
+    Must be exactly 2 letters. Automatically converted to uppercase. Required from
+    January 2026.
+    """
+
+    business_registration_number: Annotated[Optional[str], PropertyInfo(alias="businessRegistrationNumber")]
+    """
+    Official business registration number (e.g., Employer Identification Number
+    (EIN) in the U.S.). Required from January 2026.
+    """
+
+    business_registration_type: Annotated[Optional[str], PropertyInfo(alias="businessRegistrationType")]
+    """Type of business registration being provided. Required from January 2026."""
+
+    doing_business_as: Annotated[Optional[str], PropertyInfo(alias="doingBusinessAs")]
+    """Doing Business As (DBA) name if different from legal name"""
+
+    entity_type: Annotated[
+        Optional[Literal["SOLE_PROPRIETOR", "PRIVATE_PROFIT", "PUBLIC_PROFIT", "NON_PROFIT", "GOVERNMENT"]],
+        PropertyInfo(alias="entityType"),
+    ]
+    """Business entity classification"""
+
+    help_message_response: Annotated[Optional[str], PropertyInfo(alias="helpMessageResponse")]
+    """The message returned when users text 'HELP'"""
+
+    opt_in_confirmation_response: Annotated[Optional[str], PropertyInfo(alias="optInConfirmationResponse")]
+    """Message sent to users confirming their opt-in to receive messages"""
+
+    opt_in_keywords: Annotated[Optional[str], PropertyInfo(alias="optInKeywords")]
+    """Keywords used to collect and process consumer opt-ins"""
+
+    privacy_policy_url: Annotated[Optional[str], PropertyInfo(alias="privacyPolicyURL")]
+    """URL pointing to the business's privacy policy.
+
+    Plain string, no URL format validation.
+    """
+
+    terms_and_condition_url: Annotated[Optional[str], PropertyInfo(alias="termsAndConditionURL")]
+    """URL pointing to the business's terms and conditions.
+
+    Plain string, no URL format validation.
+    """
 
     webhook_url: Annotated[str, PropertyInfo(alias="webhookUrl")]
     """URL that should receive webhooks relating to this verification request"""
