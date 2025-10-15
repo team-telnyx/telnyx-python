@@ -29,5 +29,5 @@ class Filter(TypedDict, total=False):
     phone_number_type: Literal["local", "toll_free", "mobile", "national", "shared_cost"]
     """Filter requirement groups by phone number type."""
 
-    status: Literal["approved", "unapproved", "pending-approval", "declined"]
+    status: Literal["approved", "unapproved", "pending-approval", "declined", "expired"]
     """Filter requirement groups by status"""

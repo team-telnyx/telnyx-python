@@ -20,7 +20,7 @@ class RegulatoryRequirement(BaseModel):
 
     requirement_id: Optional[str] = None
 
-    status: Optional[Literal["approved", "unapproved", "pending-approval", "declined"]] = None
+    status: Optional[Literal["approved", "unapproved", "pending-approval", "declined", "expired"]] = None
 
     updated_at: Optional[datetime] = None
 
@@ -42,6 +42,6 @@ class RequirementGroup(BaseModel):
 
     regulatory_requirements: Optional[List[RegulatoryRequirement]] = None
 
-    status: Optional[Literal["approved", "unapproved", "pending-approval", "declined"]] = None
+    status: Optional[Literal["approved", "unapproved", "pending-approval", "declined", "expired"]] = None
 
     updated_at: Optional[datetime] = None
