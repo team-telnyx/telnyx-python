@@ -65,6 +65,7 @@ class OutboundVoiceProfilesResource(SyncAPIResource):
         name: str,
         billing_group_id: Optional[str] | Omit = omit,
         call_recording: OutboundCallRecordingParam | Omit = omit,
+        calling_window: outbound_voice_profile_create_params.CallingWindow | Omit = omit,
         concurrent_call_limit: Optional[int] | Omit = omit,
         daily_spend_limit: str | Omit = omit,
         daily_spend_limit_enabled: bool | Omit = omit,
@@ -90,6 +91,9 @@ class OutboundVoiceProfilesResource(SyncAPIResource):
 
           billing_group_id: The ID of the billing group associated with the outbound proflile. Defaults to
               null (for no group assigned).
+
+          calling_window: (BETA) Specifies the time window and call limits for calls made using this
+              outbound voice profile. Note that all times are UTC in 24-hour clock time.
 
           concurrent_call_limit: Must be no more than your global concurrent call limit. Null means no limit.
 
@@ -129,6 +133,7 @@ class OutboundVoiceProfilesResource(SyncAPIResource):
                     "name": name,
                     "billing_group_id": billing_group_id,
                     "call_recording": call_recording,
+                    "calling_window": calling_window,
                     "concurrent_call_limit": concurrent_call_limit,
                     "daily_spend_limit": daily_spend_limit,
                     "daily_spend_limit_enabled": daily_spend_limit_enabled,
@@ -188,6 +193,7 @@ class OutboundVoiceProfilesResource(SyncAPIResource):
         name: str,
         billing_group_id: Optional[str] | Omit = omit,
         call_recording: OutboundCallRecordingParam | Omit = omit,
+        calling_window: outbound_voice_profile_update_params.CallingWindow | Omit = omit,
         concurrent_call_limit: Optional[int] | Omit = omit,
         daily_spend_limit: str | Omit = omit,
         daily_spend_limit_enabled: bool | Omit = omit,
@@ -213,6 +219,9 @@ class OutboundVoiceProfilesResource(SyncAPIResource):
 
           billing_group_id: The ID of the billing group associated with the outbound proflile. Defaults to
               null (for no group assigned).
+
+          calling_window: (BETA) Specifies the time window and call limits for calls made using this
+              outbound voice profile.
 
           concurrent_call_limit: Must be no more than your global concurrent call limit. Null means no limit.
 
@@ -254,6 +263,7 @@ class OutboundVoiceProfilesResource(SyncAPIResource):
                     "name": name,
                     "billing_group_id": billing_group_id,
                     "call_recording": call_recording,
+                    "calling_window": calling_window,
                     "concurrent_call_limit": concurrent_call_limit,
                     "daily_spend_limit": daily_spend_limit,
                     "daily_spend_limit_enabled": daily_spend_limit_enabled,
@@ -309,8 +319,8 @@ class OutboundVoiceProfilesResource(SyncAPIResource):
               Consolidated filter parameter (deepObject style). Originally:
               filter[name][contains]
 
-          page: Consolidated page parameter (deepObject style). Originally: page[number],
-              page[size]
+          page: Consolidated page parameter (deepObject style). Originally: page[size],
+              page[number]
 
           sort: Specifies the sort order for results. By default sorting direction is ascending.
               To have the results sorted in descending order add the <code>-</code>
@@ -414,6 +424,7 @@ class AsyncOutboundVoiceProfilesResource(AsyncAPIResource):
         name: str,
         billing_group_id: Optional[str] | Omit = omit,
         call_recording: OutboundCallRecordingParam | Omit = omit,
+        calling_window: outbound_voice_profile_create_params.CallingWindow | Omit = omit,
         concurrent_call_limit: Optional[int] | Omit = omit,
         daily_spend_limit: str | Omit = omit,
         daily_spend_limit_enabled: bool | Omit = omit,
@@ -439,6 +450,9 @@ class AsyncOutboundVoiceProfilesResource(AsyncAPIResource):
 
           billing_group_id: The ID of the billing group associated with the outbound proflile. Defaults to
               null (for no group assigned).
+
+          calling_window: (BETA) Specifies the time window and call limits for calls made using this
+              outbound voice profile. Note that all times are UTC in 24-hour clock time.
 
           concurrent_call_limit: Must be no more than your global concurrent call limit. Null means no limit.
 
@@ -478,6 +492,7 @@ class AsyncOutboundVoiceProfilesResource(AsyncAPIResource):
                     "name": name,
                     "billing_group_id": billing_group_id,
                     "call_recording": call_recording,
+                    "calling_window": calling_window,
                     "concurrent_call_limit": concurrent_call_limit,
                     "daily_spend_limit": daily_spend_limit,
                     "daily_spend_limit_enabled": daily_spend_limit_enabled,
@@ -537,6 +552,7 @@ class AsyncOutboundVoiceProfilesResource(AsyncAPIResource):
         name: str,
         billing_group_id: Optional[str] | Omit = omit,
         call_recording: OutboundCallRecordingParam | Omit = omit,
+        calling_window: outbound_voice_profile_update_params.CallingWindow | Omit = omit,
         concurrent_call_limit: Optional[int] | Omit = omit,
         daily_spend_limit: str | Omit = omit,
         daily_spend_limit_enabled: bool | Omit = omit,
@@ -562,6 +578,9 @@ class AsyncOutboundVoiceProfilesResource(AsyncAPIResource):
 
           billing_group_id: The ID of the billing group associated with the outbound proflile. Defaults to
               null (for no group assigned).
+
+          calling_window: (BETA) Specifies the time window and call limits for calls made using this
+              outbound voice profile.
 
           concurrent_call_limit: Must be no more than your global concurrent call limit. Null means no limit.
 
@@ -603,6 +622,7 @@ class AsyncOutboundVoiceProfilesResource(AsyncAPIResource):
                     "name": name,
                     "billing_group_id": billing_group_id,
                     "call_recording": call_recording,
+                    "calling_window": calling_window,
                     "concurrent_call_limit": concurrent_call_limit,
                     "daily_spend_limit": daily_spend_limit,
                     "daily_spend_limit_enabled": daily_spend_limit_enabled,
@@ -658,8 +678,8 @@ class AsyncOutboundVoiceProfilesResource(AsyncAPIResource):
               Consolidated filter parameter (deepObject style). Originally:
               filter[name][contains]
 
-          page: Consolidated page parameter (deepObject style). Originally: page[number],
-              page[size]
+          page: Consolidated page parameter (deepObject style). Originally: page[size],
+              page[number]
 
           sort: Specifies the sort order for results. By default sorting direction is ascending.
               To have the results sorted in descending order add the <code>-</code>

@@ -8,7 +8,27 @@ from .traffic_type import TrafficType
 from .usage_payment_method import UsagePaymentMethod
 from .outbound_call_recording import OutboundCallRecording
 
-__all__ = ["OutboundVoiceProfile"]
+__all__ = ["OutboundVoiceProfile", "CallingWindow"]
+
+
+class CallingWindow(BaseModel):
+    calls_per_cld: Optional[int] = None
+    """
+    (BETA) The maximum number of calls that can be initiated to a single called
+    party (CLD) within the calling window. A null value means no limit.
+    """
+
+    end_time: Optional[str] = None
+    """
+    (BETA) The UTC time of day (in HH:MM format, 24-hour clock) when calls are no
+    longer allowed to start.
+    """
+
+    start_time: Optional[str] = None
+    """
+    (BETA) The UTC time of day (in HH:MM format, 24-hour clock) when calls are
+    allowed to start.
+    """
 
 
 class OutboundVoiceProfile(BaseModel):
@@ -25,6 +45,12 @@ class OutboundVoiceProfile(BaseModel):
     """
 
     call_recording: Optional[OutboundCallRecording] = None
+
+    calling_window: Optional[CallingWindow] = None
+    """
+    (BETA) Specifies the time window and call limits for calls made using this
+    outbound voice profile. Note that all times are UTC in 24-hour clock time.
+    """
 
     concurrent_call_limit: Optional[int] = None
     """Must be no more than your global concurrent call limit. Null means no limit."""
