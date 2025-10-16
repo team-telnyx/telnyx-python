@@ -15,5 +15,5 @@ class AssistantImportParams(TypedDict, total=False):
     /v2/integration_secrets.
     """
 
-    provider: Required[Literal["elevenlabs", "vapi"]]
+    provider: Required[Literal["elevenlabs", "vapi", "retell"]]
     """The external provider to import assistants from."""

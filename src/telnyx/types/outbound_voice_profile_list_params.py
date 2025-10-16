@@ -17,7 +17,7 @@ class OutboundVoiceProfileListParams(TypedDict, total=False):
     page: Page
     """Consolidated page parameter (deepObject style).
 
-    Originally: page[number], page[size]
+    Originally: page[size], page[number]
     """
 
     sort: Literal[

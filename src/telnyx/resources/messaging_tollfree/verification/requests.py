@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-from typing import Union, Iterable
+from typing import Union, Iterable, Optional
 from datetime import datetime
+from typing_extensions import Literal
 
 import httpx
 
@@ -80,7 +81,19 @@ class RequestsResource(SyncAPIResource):
         production_message_content: str,
         use_case: UseCaseCategories,
         use_case_summary: str,
+        age_gated_content: bool | Omit = omit,
         business_addr2: str | Omit = omit,
+        business_registration_country: Optional[str] | Omit = omit,
+        business_registration_number: Optional[str] | Omit = omit,
+        business_registration_type: Optional[str] | Omit = omit,
+        doing_business_as: Optional[str] | Omit = omit,
+        entity_type: Optional[Literal["SOLE_PROPRIETOR", "PRIVATE_PROFIT", "PUBLIC_PROFIT", "NON_PROFIT", "GOVERNMENT"]]
+        | Omit = omit,
+        help_message_response: Optional[str] | Omit = omit,
+        opt_in_confirmation_response: Optional[str] | Omit = omit,
+        opt_in_keywords: Optional[str] | Omit = omit,
+        privacy_policy_url: Optional[str] | Omit = omit,
+        terms_and_condition_url: Optional[str] | Omit = omit,
         webhook_url: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -135,7 +148,35 @@ class RequestsResource(SyncAPIResource):
 
           use_case_summary: Human-readable summary of the desired use-case
 
+          age_gated_content: Indicates if messaging content requires age gating (e.g., 18+). Defaults to
+              false if not provided.
+
           business_addr2: Line 2 of the business address
+
+          business_registration_country: ISO 3166-1 alpha-2 country code of the issuing business authority. Must be
+              exactly 2 letters. Automatically converted to uppercase. Required from
+              January 2026.
+
+          business_registration_number: Official business registration number (e.g., Employer Identification Number
+              (EIN) in the U.S.). Required from January 2026.
+
+          business_registration_type: Type of business registration being provided. Required from January 2026.
+
+          doing_business_as: Doing Business As (DBA) name if different from legal name
+
+          entity_type: Business entity classification
+
+          help_message_response: The message returned when users text 'HELP'
+
+          opt_in_confirmation_response: Message sent to users confirming their opt-in to receive messages
+
+          opt_in_keywords: Keywords used to collect and process consumer opt-ins
+
+          privacy_policy_url: URL pointing to the business's privacy policy. Plain string, no URL format
+              validation.
+
+          terms_and_condition_url: URL pointing to the business's terms and conditions. Plain string, no URL format
+              validation.
 
           webhook_url: URL that should receive webhooks relating to this verification request
 
@@ -170,7 +211,18 @@ class RequestsResource(SyncAPIResource):
                     "production_message_content": production_message_content,
                     "use_case": use_case,
                     "use_case_summary": use_case_summary,
+                    "age_gated_content": age_gated_content,
                     "business_addr2": business_addr2,
+                    "business_registration_country": business_registration_country,
+                    "business_registration_number": business_registration_number,
+                    "business_registration_type": business_registration_type,
+                    "doing_business_as": doing_business_as,
+                    "entity_type": entity_type,
+                    "help_message_response": help_message_response,
+                    "opt_in_confirmation_response": opt_in_confirmation_response,
+                    "opt_in_keywords": opt_in_keywords,
+                    "privacy_policy_url": privacy_policy_url,
+                    "terms_and_condition_url": terms_and_condition_url,
                     "webhook_url": webhook_url,
                 },
                 request_create_params.RequestCreateParams,
@@ -237,7 +289,19 @@ class RequestsResource(SyncAPIResource):
         production_message_content: str,
         use_case: UseCaseCategories,
         use_case_summary: str,
+        age_gated_content: bool | Omit = omit,
         business_addr2: str | Omit = omit,
+        business_registration_country: Optional[str] | Omit = omit,
+        business_registration_number: Optional[str] | Omit = omit,
+        business_registration_type: Optional[str] | Omit = omit,
+        doing_business_as: Optional[str] | Omit = omit,
+        entity_type: Optional[Literal["SOLE_PROPRIETOR", "PRIVATE_PROFIT", "PUBLIC_PROFIT", "NON_PROFIT", "GOVERNMENT"]]
+        | Omit = omit,
+        help_message_response: Optional[str] | Omit = omit,
+        opt_in_confirmation_response: Optional[str] | Omit = omit,
+        opt_in_keywords: Optional[str] | Omit = omit,
+        privacy_policy_url: Optional[str] | Omit = omit,
+        terms_and_condition_url: Optional[str] | Omit = omit,
         webhook_url: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -294,7 +358,35 @@ class RequestsResource(SyncAPIResource):
 
           use_case_summary: Human-readable summary of the desired use-case
 
+          age_gated_content: Indicates if messaging content requires age gating (e.g., 18+). Defaults to
+              false if not provided.
+
           business_addr2: Line 2 of the business address
+
+          business_registration_country: ISO 3166-1 alpha-2 country code of the issuing business authority. Must be
+              exactly 2 letters. Automatically converted to uppercase. Required from
+              January 2026.
+
+          business_registration_number: Official business registration number (e.g., Employer Identification Number
+              (EIN) in the U.S.). Required from January 2026.
+
+          business_registration_type: Type of business registration being provided. Required from January 2026.
+
+          doing_business_as: Doing Business As (DBA) name if different from legal name
+
+          entity_type: Business entity classification
+
+          help_message_response: The message returned when users text 'HELP'
+
+          opt_in_confirmation_response: Message sent to users confirming their opt-in to receive messages
+
+          opt_in_keywords: Keywords used to collect and process consumer opt-ins
+
+          privacy_policy_url: URL pointing to the business's privacy policy. Plain string, no URL format
+              validation.
+
+          terms_and_condition_url: URL pointing to the business's terms and conditions. Plain string, no URL format
+              validation.
 
           webhook_url: URL that should receive webhooks relating to this verification request
 
@@ -331,7 +423,18 @@ class RequestsResource(SyncAPIResource):
                     "production_message_content": production_message_content,
                     "use_case": use_case,
                     "use_case_summary": use_case_summary,
+                    "age_gated_content": age_gated_content,
                     "business_addr2": business_addr2,
+                    "business_registration_country": business_registration_country,
+                    "business_registration_number": business_registration_number,
+                    "business_registration_type": business_registration_type,
+                    "doing_business_as": doing_business_as,
+                    "entity_type": entity_type,
+                    "help_message_response": help_message_response,
+                    "opt_in_confirmation_response": opt_in_confirmation_response,
+                    "opt_in_keywords": opt_in_keywords,
+                    "privacy_policy_url": privacy_policy_url,
+                    "terms_and_condition_url": terms_and_condition_url,
                     "webhook_url": webhook_url,
                 },
                 request_update_params.RequestUpdateParams,
@@ -480,7 +583,19 @@ class AsyncRequestsResource(AsyncAPIResource):
         production_message_content: str,
         use_case: UseCaseCategories,
         use_case_summary: str,
+        age_gated_content: bool | Omit = omit,
         business_addr2: str | Omit = omit,
+        business_registration_country: Optional[str] | Omit = omit,
+        business_registration_number: Optional[str] | Omit = omit,
+        business_registration_type: Optional[str] | Omit = omit,
+        doing_business_as: Optional[str] | Omit = omit,
+        entity_type: Optional[Literal["SOLE_PROPRIETOR", "PRIVATE_PROFIT", "PUBLIC_PROFIT", "NON_PROFIT", "GOVERNMENT"]]
+        | Omit = omit,
+        help_message_response: Optional[str] | Omit = omit,
+        opt_in_confirmation_response: Optional[str] | Omit = omit,
+        opt_in_keywords: Optional[str] | Omit = omit,
+        privacy_policy_url: Optional[str] | Omit = omit,
+        terms_and_condition_url: Optional[str] | Omit = omit,
         webhook_url: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -535,7 +650,35 @@ class AsyncRequestsResource(AsyncAPIResource):
 
           use_case_summary: Human-readable summary of the desired use-case
 
+          age_gated_content: Indicates if messaging content requires age gating (e.g., 18+). Defaults to
+              false if not provided.
+
           business_addr2: Line 2 of the business address
+
+          business_registration_country: ISO 3166-1 alpha-2 country code of the issuing business authority. Must be
+              exactly 2 letters. Automatically converted to uppercase. Required from
+              January 2026.
+
+          business_registration_number: Official business registration number (e.g., Employer Identification Number
+              (EIN) in the U.S.). Required from January 2026.
+
+          business_registration_type: Type of business registration being provided. Required from January 2026.
+
+          doing_business_as: Doing Business As (DBA) name if different from legal name
+
+          entity_type: Business entity classification
+
+          help_message_response: The message returned when users text 'HELP'
+
+          opt_in_confirmation_response: Message sent to users confirming their opt-in to receive messages
+
+          opt_in_keywords: Keywords used to collect and process consumer opt-ins
+
+          privacy_policy_url: URL pointing to the business's privacy policy. Plain string, no URL format
+              validation.
+
+          terms_and_condition_url: URL pointing to the business's terms and conditions. Plain string, no URL format
+              validation.
 
           webhook_url: URL that should receive webhooks relating to this verification request
 
@@ -570,7 +713,18 @@ class AsyncRequestsResource(AsyncAPIResource):
                     "production_message_content": production_message_content,
                     "use_case": use_case,
                     "use_case_summary": use_case_summary,
+                    "age_gated_content": age_gated_content,
                     "business_addr2": business_addr2,
+                    "business_registration_country": business_registration_country,
+                    "business_registration_number": business_registration_number,
+                    "business_registration_type": business_registration_type,
+                    "doing_business_as": doing_business_as,
+                    "entity_type": entity_type,
+                    "help_message_response": help_message_response,
+                    "opt_in_confirmation_response": opt_in_confirmation_response,
+                    "opt_in_keywords": opt_in_keywords,
+                    "privacy_policy_url": privacy_policy_url,
+                    "terms_and_condition_url": terms_and_condition_url,
                     "webhook_url": webhook_url,
                 },
                 request_create_params.RequestCreateParams,
@@ -637,7 +791,19 @@ class AsyncRequestsResource(AsyncAPIResource):
         production_message_content: str,
         use_case: UseCaseCategories,
         use_case_summary: str,
+        age_gated_content: bool | Omit = omit,
         business_addr2: str | Omit = omit,
+        business_registration_country: Optional[str] | Omit = omit,
+        business_registration_number: Optional[str] | Omit = omit,
+        business_registration_type: Optional[str] | Omit = omit,
+        doing_business_as: Optional[str] | Omit = omit,
+        entity_type: Optional[Literal["SOLE_PROPRIETOR", "PRIVATE_PROFIT", "PUBLIC_PROFIT", "NON_PROFIT", "GOVERNMENT"]]
+        | Omit = omit,
+        help_message_response: Optional[str] | Omit = omit,
+        opt_in_confirmation_response: Optional[str] | Omit = omit,
+        opt_in_keywords: Optional[str] | Omit = omit,
+        privacy_policy_url: Optional[str] | Omit = omit,
+        terms_and_condition_url: Optional[str] | Omit = omit,
         webhook_url: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -694,7 +860,35 @@ class AsyncRequestsResource(AsyncAPIResource):
 
           use_case_summary: Human-readable summary of the desired use-case
 
+          age_gated_content: Indicates if messaging content requires age gating (e.g., 18+). Defaults to
+              false if not provided.
+
           business_addr2: Line 2 of the business address
+
+          business_registration_country: ISO 3166-1 alpha-2 country code of the issuing business authority. Must be
+              exactly 2 letters. Automatically converted to uppercase. Required from
+              January 2026.
+
+          business_registration_number: Official business registration number (e.g., Employer Identification Number
+              (EIN) in the U.S.). Required from January 2026.
+
+          business_registration_type: Type of business registration being provided. Required from January 2026.
+
+          doing_business_as: Doing Business As (DBA) name if different from legal name
+
+          entity_type: Business entity classification
+
+          help_message_response: The message returned when users text 'HELP'
+
+          opt_in_confirmation_response: Message sent to users confirming their opt-in to receive messages
+
+          opt_in_keywords: Keywords used to collect and process consumer opt-ins
+
+          privacy_policy_url: URL pointing to the business's privacy policy. Plain string, no URL format
+              validation.
+
+          terms_and_condition_url: URL pointing to the business's terms and conditions. Plain string, no URL format
+              validation.
 
           webhook_url: URL that should receive webhooks relating to this verification request
 
@@ -731,7 +925,18 @@ class AsyncRequestsResource(AsyncAPIResource):
                     "production_message_content": production_message_content,
                     "use_case": use_case,
                     "use_case_summary": use_case_summary,
+                    "age_gated_content": age_gated_content,
                     "business_addr2": business_addr2,
+                    "business_registration_country": business_registration_country,
+                    "business_registration_number": business_registration_number,
+                    "business_registration_type": business_registration_type,
+                    "doing_business_as": doing_business_as,
+                    "entity_type": entity_type,
+                    "help_message_response": help_message_response,
+                    "opt_in_confirmation_response": opt_in_confirmation_response,
+                    "opt_in_keywords": opt_in_keywords,
+                    "privacy_policy_url": privacy_policy_url,
+                    "terms_and_condition_url": terms_and_condition_url,
                     "webhook_url": webhook_url,
                 },
                 request_update_params.RequestUpdateParams,

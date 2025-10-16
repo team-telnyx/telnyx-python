@@ -11,7 +11,7 @@ from .traffic_type import TrafficType
 from .usage_payment_method import UsagePaymentMethod
 from .outbound_call_recording_param import OutboundCallRecordingParam
 
-__all__ = ["OutboundVoiceProfileUpdateParams"]
+__all__ = ["OutboundVoiceProfileUpdateParams", "CallingWindow"]
 
 
 class OutboundVoiceProfileUpdateParams(TypedDict, total=False):
@@ -25,6 +25,12 @@ class OutboundVoiceProfileUpdateParams(TypedDict, total=False):
     """
 
     call_recording: OutboundCallRecordingParam
+
+    calling_window: CallingWindow
+    """
+    (BETA) Specifies the time window and call limits for calls made using this
+    outbound voice profile.
+    """
 
     concurrent_call_limit: Optional[int]
     """Must be no more than your global concurrent call limit. Null means no limit."""
@@ -69,4 +75,24 @@ class OutboundVoiceProfileUpdateParams(TypedDict, total=False):
     """
     The list of destinations you want to be able to call using this outbound voice
     profile formatted in alpha2.
+    """
+
+
+class CallingWindow(TypedDict, total=False):
+    calls_per_cld: int
+    """
+    (BETA) The maximum number of calls that can be initiated to a single called
+    party (CLD) within the calling window. A null value means no limit.
+    """
+
+    end_time: str
+    """
+    (BETA) The UTC time of day (in HH:MM format, 24-hour clock) when calls are no
+    longer allowed to start.
+    """
+
+    start_time: str
+    """
+    (BETA) The UTC time of day (in HH:MM format, 24-hour clock) when calls are
+    allowed to start.
     """

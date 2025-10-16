@@ -12,5 +12,5 @@ class ImportMetadata(BaseModel):
     import_id: Optional[str] = None
     """ID of the assistant in the provider's system."""
 
-    import_provider: Optional[Literal["elevenlabs", "vapi"]] = None
+    import_provider: Optional[Literal["elevenlabs", "vapi", "retell"]] = None
     """Provider the assistant was imported from."""
