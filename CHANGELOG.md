@@ -1,5 +1,21 @@
 # Changelog
 
+## 3.5.0 (2025-10-16)
+
+Full Changelog: [v3.4.0...v3.5.0](https://github.com/team-telnyx/telnyx-python/compare/v3.4.0...v3.5.0)
+
+### Features
+
+* ENGDESK-45836: Document private endpoint for republishing account events ([ef2d4f5](https://github.com/team-telnyx/telnyx-python/commit/ef2d4f59b792b3653865265fa3845d1cf37ccc83))
+* Fix broken link to List SIM card action ([cfb471a](https://github.com/team-telnyx/telnyx-python/commit/cfb471a27db576b59f9f592239aeb27f53168f7c))
+* MSG-5978: Add BRN fields to toll-free verification OpenAPI specs ([b91e46c](https://github.com/team-telnyx/telnyx-python/commit/b91e46c9d601e74d735c1f9d4bcd8508f81ecc63))
+* Retell assistants import ([99b3af8](https://github.com/team-telnyx/telnyx-python/commit/99b3af8f253027bc8e92aa282cc9ca86c6d6043e))
+
+
+### Chores
+
+* **internal:** detect missing future annotations with ruff ([d9c098b](https://github.com/team-telnyx/telnyx-python/commit/d9c098baaf9f97d6f2303ec2b482bf75f99ab4c3))
+
 ## 3.4.0 (2025-10-06)
 
 Full Changelog: [v3.3.0...v3.4.0](https://github.com/team-telnyx/telnyx-python/compare/v3.3.0...v3.4.0)
