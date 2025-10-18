@@ -2,7 +2,6 @@
 
 from typing import List, Optional
 from datetime import datetime
-from typing_extensions import Literal
 
 from pydantic import Field as FieldInfo
 
@@ -12,6 +11,7 @@ from ...._models import BaseModel
 from .tf_phone_number import TfPhoneNumber
 from .use_case_categories import UseCaseCategories
 from .tf_verification_status import TfVerificationStatus
+from .toll_free_verification_entity_type import TollFreeVerificationEntityType
 
 __all__ = ["VerificationRequestStatus"]
 
@@ -76,9 +76,7 @@ class VerificationRequestStatus(BaseModel):
 
     doing_business_as: Optional[str] = FieldInfo(alias="doingBusinessAs", default=None)
 
-    entity_type: Optional[Literal["SOLE_PROPRIETOR", "PRIVATE_PROFIT", "PUBLIC_PROFIT", "NON_PROFIT", "GOVERNMENT"]] = (
-        FieldInfo(alias="entityType", default=None)
-    )
+    entity_type: Optional[TollFreeVerificationEntityType] = FieldInfo(alias="entityType", default=None)
     """Business entity classification"""
 
     help_message_response: Optional[str] = FieldInfo(alias="helpMessageResponse", default=None)

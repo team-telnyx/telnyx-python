@@ -3,21 +3,21 @@
 from typing import Dict, List, Optional
 from datetime import datetime
 
-from ...._models import BaseModel
-from ..assistant_tool import AssistantTool
-from ..voice_settings import VoiceSettings
-from ..import_metadata import ImportMetadata
-from ..enabled_features import EnabledFeatures
-from ..insight_settings import InsightSettings
-from ..privacy_settings import PrivacySettings
-from ..messaging_settings import MessagingSettings
-from ..telephony_settings import TelephonySettings
-from ..transcription_settings import TranscriptionSettings
+from ..._models import BaseModel
+from .assistant_tool import AssistantTool
+from .voice_settings import VoiceSettings
+from .import_metadata import ImportMetadata
+from .enabled_features import EnabledFeatures
+from .insight_settings import InsightSettings
+from .privacy_settings import PrivacySettings
+from .messaging_settings import MessagingSettings
+from .telephony_settings import TelephonySettings
+from .transcription_settings import TranscriptionSettings
 
-__all__ = ["VersionUpdateResponse"]
+__all__ = ["InferenceEmbedding"]
 
 
-class VersionUpdateResponse(BaseModel):
+class InferenceEmbedding(BaseModel):
     id: str
 
     created_at: datetime

@@ -22,10 +22,9 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._base_client import make_request_options
+from ..types.message_template import MessageTemplate
 from ..types.verify_profile_data import VerifyProfileData
 from ..types.verify_profile_list_response import VerifyProfileListResponse
-from ..types.verify_profile_create_template_response import VerifyProfileCreateTemplateResponse
-from ..types.verify_profile_update_template_response import VerifyProfileUpdateTemplateResponse
 from ..types.verify_profile_retrieve_templates_response import VerifyProfileRetrieveTemplatesResponse
 
 __all__ = ["VerifyProfilesResource", "AsyncVerifyProfilesResource"]
@@ -275,7 +274,7 @@ class VerifyProfilesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> VerifyProfileCreateTemplateResponse:
+    ) -> MessageTemplate:
         """
         Create a new Verify profile message template.
 
@@ -298,7 +297,7 @@ class VerifyProfilesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=VerifyProfileCreateTemplateResponse,
+            cast_to=MessageTemplate,
         )
 
     def retrieve_templates(
@@ -331,7 +330,7 @@ class VerifyProfilesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> VerifyProfileUpdateTemplateResponse:
+    ) -> MessageTemplate:
         """
         Update an existing Verify profile message template.
 
@@ -356,7 +355,7 @@ class VerifyProfilesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=VerifyProfileUpdateTemplateResponse,
+            cast_to=MessageTemplate,
         )
 
 
@@ -604,7 +603,7 @@ class AsyncVerifyProfilesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> VerifyProfileCreateTemplateResponse:
+    ) -> MessageTemplate:
         """
         Create a new Verify profile message template.
 
@@ -627,7 +626,7 @@ class AsyncVerifyProfilesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=VerifyProfileCreateTemplateResponse,
+            cast_to=MessageTemplate,
         )
 
     async def retrieve_templates(
@@ -660,7 +659,7 @@ class AsyncVerifyProfilesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> VerifyProfileUpdateTemplateResponse:
+    ) -> MessageTemplate:
         """
         Update an existing Verify profile message template.
 
@@ -685,7 +684,7 @@ class AsyncVerifyProfilesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=VerifyProfileUpdateTemplateResponse,
+            cast_to=MessageTemplate,
         )
 
 

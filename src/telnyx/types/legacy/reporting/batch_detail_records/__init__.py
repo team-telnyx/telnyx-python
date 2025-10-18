@@ -9,6 +9,7 @@ from .voice_delete_response import VoiceDeleteResponse as VoiceDeleteResponse
 from .messaging_create_params import MessagingCreateParams as MessagingCreateParams
 from .messaging_list_response import MessagingListResponse as MessagingListResponse
 from .voice_retrieve_response import VoiceRetrieveResponse as VoiceRetrieveResponse
+from .batch_csv_pagination_meta import BatchCsvPaginationMeta as BatchCsvPaginationMeta
 from .cdr_detailed_req_response import CdrDetailedReqResponse as CdrDetailedReqResponse
 from .messaging_create_response import MessagingCreateResponse as MessagingCreateResponse
 from .messaging_delete_response import MessagingDeleteResponse as MessagingDeleteResponse
