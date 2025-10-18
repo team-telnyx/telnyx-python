@@ -23,6 +23,7 @@ from .messaging_settings import MessagingSettings as MessagingSettings
 from .telephony_settings import TelephonySettings as TelephonySettings
 from .webhook_tool_param import WebhookToolParam as WebhookToolParam
 from .cluster_list_params import ClusterListParams as ClusterListParams
+from .inference_embedding import InferenceEmbedding as InferenceEmbedding
 from .transfer_tool_param import TransferToolParam as TransferToolParam
 from .assistant_tool_param import AssistantToolParam as AssistantToolParam
 from .embedding_url_params import EmbeddingURLParams as EmbeddingURLParams
@@ -44,13 +45,11 @@ from .audio_transcribe_params import AudioTranscribeParams as AudioTranscribePar
 from .cluster_retrieve_params import ClusterRetrieveParams as ClusterRetrieveParams
 from .embedding_create_params import EmbeddingCreateParams as EmbeddingCreateParams
 from .embedding_list_response import EmbeddingListResponse as EmbeddingListResponse
-from .assistant_clone_response import AssistantCloneResponse as AssistantCloneResponse
 from .cluster_compute_response import ClusterComputeResponse as ClusterComputeResponse
 from .conversation_list_params import ConversationListParams as ConversationListParams
 from .hangup_tool_params_param import HangupToolParamsParam as HangupToolParamsParam
 from .messaging_settings_param import MessagingSettingsParam as MessagingSettingsParam
 from .telephony_settings_param import TelephonySettingsParam as TelephonySettingsParam
-from .assistant_create_response import AssistantCreateResponse as AssistantCreateResponse
 from .assistant_delete_response import AssistantDeleteResponse as AssistantDeleteResponse
 from .assistant_retrieve_params import AssistantRetrieveParams as AssistantRetrieveParams
 from .audio_transcribe_response import AudioTranscribeResponse as AudioTranscribeResponse
@@ -59,7 +58,6 @@ from .cluster_fetch_graph_params import ClusterFetchGraphParams as ClusterFetchG
 from .conversation_create_params import ConversationCreateParams as ConversationCreateParams
 from .conversation_list_response import ConversationListResponse as ConversationListResponse
 from .conversation_update_params import ConversationUpdateParams as ConversationUpdateParams
-from .assistant_retrieve_response import AssistantRetrieveResponse as AssistantRetrieveResponse
 from .embedding_retrieve_response import EmbeddingRetrieveResponse as EmbeddingRetrieveResponse
 from .assistant_get_texml_response import AssistantGetTexmlResponse as AssistantGetTexmlResponse
 from .conversation_update_response import ConversationUpdateResponse as ConversationUpdateResponse

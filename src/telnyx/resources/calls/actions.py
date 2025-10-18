@@ -12,6 +12,7 @@ from ...types import (
     StreamBidirectionalMode,
     StreamBidirectionalCodec,
     StreamBidirectionalTargetLegs,
+    StreamBidirectionalSamplingRate,
 )
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
@@ -90,6 +91,7 @@ from ...types.calls.action_stop_siprec_response import ActionStopSiprecResponse
 from ...types.calls.interruption_settings_param import InterruptionSettingsParam
 from ...types.calls.action_start_siprec_response import ActionStartSiprecResponse
 from ...types.calls.action_stop_forking_response import ActionStopForkingResponse
+from ...types.stream_bidirectional_sampling_rate import StreamBidirectionalSamplingRate
 from ...types.calls.action_send_sip_info_response import ActionSendSipInfoResponse
 from ...types.calls.action_start_forking_response import ActionStartForkingResponse
 from ...types.calls.action_stop_playback_response import ActionStopPlaybackResponse
@@ -2421,7 +2423,7 @@ class ActionsResource(SyncAPIResource):
         enable_dialogflow: bool | Omit = omit,
         stream_bidirectional_codec: StreamBidirectionalCodec | Omit = omit,
         stream_bidirectional_mode: StreamBidirectionalMode | Omit = omit,
-        stream_bidirectional_sampling_rate: Literal[8000, 16000, 22050, 24000, 48000] | Omit = omit,
+        stream_bidirectional_sampling_rate: StreamBidirectionalSamplingRate | Omit = omit,
         stream_bidirectional_target_legs: StreamBidirectionalTargetLegs | Omit = omit,
         stream_codec: StreamCodec | Omit = omit,
         stream_track: Literal["inbound_track", "outbound_track", "both_tracks"] | Omit = omit,
@@ -5664,7 +5666,7 @@ class AsyncActionsResource(AsyncAPIResource):
         enable_dialogflow: bool | Omit = omit,
         stream_bidirectional_codec: StreamBidirectionalCodec | Omit = omit,
         stream_bidirectional_mode: StreamBidirectionalMode | Omit = omit,
-        stream_bidirectional_sampling_rate: Literal[8000, 16000, 22050, 24000, 48000] | Omit = omit,
+        stream_bidirectional_sampling_rate: StreamBidirectionalSamplingRate | Omit = omit,
         stream_bidirectional_target_legs: StreamBidirectionalTargetLegs | Omit = omit,
         stream_codec: StreamCodec | Omit = omit,
         stream_track: Literal["inbound_track", "outbound_track", "both_tracks"] | Omit = omit,

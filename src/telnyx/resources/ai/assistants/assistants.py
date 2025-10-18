@@ -67,17 +67,15 @@ from .scheduled_events import (
 )
 from ....types.ai.assistants_list import AssistantsList
 from ....types.ai.enabled_features import EnabledFeatures
+from ....types.ai.inference_embedding import InferenceEmbedding
 from ....types.ai.assistant_tool_param import AssistantToolParam
 from ....types.ai.voice_settings_param import VoiceSettingsParam
 from ....types.ai.insight_settings_param import InsightSettingsParam
 from ....types.ai.privacy_settings_param import PrivacySettingsParam
 from ....types.ai.assistant_chat_response import AssistantChatResponse
-from ....types.ai.assistant_clone_response import AssistantCloneResponse
 from ....types.ai.messaging_settings_param import MessagingSettingsParam
 from ....types.ai.telephony_settings_param import TelephonySettingsParam
-from ....types.ai.assistant_create_response import AssistantCreateResponse
 from ....types.ai.assistant_delete_response import AssistantDeleteResponse
-from ....types.ai.assistant_retrieve_response import AssistantRetrieveResponse
 from ....types.ai.transcription_settings_param import TranscriptionSettingsParam
 
 __all__ = ["AssistantsResource", "AsyncAssistantsResource"]
@@ -148,7 +146,7 @@ class AssistantsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AssistantCreateResponse:
+    ) -> InferenceEmbedding:
         """
         Create a new AI Assistant.
 
@@ -214,7 +212,7 @@ class AssistantsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=AssistantCreateResponse,
+            cast_to=InferenceEmbedding,
         )
 
     def retrieve(
@@ -231,7 +229,7 @@ class AssistantsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AssistantRetrieveResponse:
+    ) -> InferenceEmbedding:
         """
         Retrieve an AI Assistant configuration by `assistant_id`.
 
@@ -263,7 +261,7 @@ class AssistantsResource(SyncAPIResource):
                     assistant_retrieve_params.AssistantRetrieveParams,
                 ),
             ),
-            cast_to=AssistantRetrieveResponse,
+            cast_to=InferenceEmbedding,
         )
 
     def update(
@@ -487,7 +485,7 @@ class AssistantsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AssistantCloneResponse:
+    ) -> InferenceEmbedding:
         """
         Clone an existing assistant, excluding telephony and messaging settings.
 
@@ -507,7 +505,7 @@ class AssistantsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=AssistantCloneResponse,
+            cast_to=InferenceEmbedding,
         )
 
     def get_texml(
@@ -657,7 +655,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AssistantCreateResponse:
+    ) -> InferenceEmbedding:
         """
         Create a new AI Assistant.
 
@@ -723,7 +721,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=AssistantCreateResponse,
+            cast_to=InferenceEmbedding,
         )
 
     async def retrieve(
@@ -740,7 +738,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AssistantRetrieveResponse:
+    ) -> InferenceEmbedding:
         """
         Retrieve an AI Assistant configuration by `assistant_id`.
 
@@ -772,7 +770,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
                     assistant_retrieve_params.AssistantRetrieveParams,
                 ),
             ),
-            cast_to=AssistantRetrieveResponse,
+            cast_to=InferenceEmbedding,
         )
 
     async def update(
@@ -996,7 +994,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AssistantCloneResponse:
+    ) -> InferenceEmbedding:
         """
         Clone an existing assistant, excluding telephony and messaging settings.
 
@@ -1016,7 +1014,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=AssistantCloneResponse,
+            cast_to=InferenceEmbedding,
         )
 
     async def get_texml(

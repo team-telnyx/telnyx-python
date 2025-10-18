@@ -15,11 +15,8 @@ from .version_config_param import VersionConfigParam as VersionConfigParam
 from .version_update_params import VersionUpdateParams as VersionUpdateParams
 from .canary_deploy_response import CanaryDeployResponse as CanaryDeployResponse
 from .version_retrieve_params import VersionRetrieveParams as VersionRetrieveParams
-from .version_update_response import VersionUpdateResponse as VersionUpdateResponse
 from .scheduled_event_response import ScheduledEventResponse as ScheduledEventResponse
-from .version_promote_response import VersionPromoteResponse as VersionPromoteResponse
 from .conversation_channel_type import ConversationChannelType as ConversationChannelType
-from .version_retrieve_response import VersionRetrieveResponse as VersionRetrieveResponse
 from .canary_deploy_create_params import CanaryDeployCreateParams as CanaryDeployCreateParams
 from .canary_deploy_update_params import CanaryDeployUpdateParams as CanaryDeployUpdateParams
 from .scheduled_event_list_params import ScheduledEventListParams as ScheduledEventListParams

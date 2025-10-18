@@ -4,7 +4,6 @@ from __future__ import annotations
 
 from typing import Union, Iterable, Optional
 from datetime import datetime
-from typing_extensions import Literal
 
 import httpx
 
@@ -23,6 +22,7 @@ from ....types.messaging_tollfree.verification import (
     Volume,
     UseCaseCategories,
     TfVerificationStatus,
+    TollFreeVerificationEntityType,
     request_list_params,
     request_create_params,
     request_update_params,
@@ -35,6 +35,7 @@ from ....types.messaging_tollfree.verification.tf_phone_number_param import TfPh
 from ....types.messaging_tollfree.verification.tf_verification_status import TfVerificationStatus
 from ....types.messaging_tollfree.verification.verification_request_egress import VerificationRequestEgress
 from ....types.messaging_tollfree.verification.verification_request_status import VerificationRequestStatus
+from ....types.messaging_tollfree.verification.toll_free_verification_entity_type import TollFreeVerificationEntityType
 
 __all__ = ["RequestsResource", "AsyncRequestsResource"]
 
@@ -87,8 +88,7 @@ class RequestsResource(SyncAPIResource):
         business_registration_number: Optional[str] | Omit = omit,
         business_registration_type: Optional[str] | Omit = omit,
         doing_business_as: Optional[str] | Omit = omit,
-        entity_type: Optional[Literal["SOLE_PROPRIETOR", "PRIVATE_PROFIT", "PUBLIC_PROFIT", "NON_PROFIT", "GOVERNMENT"]]
-        | Omit = omit,
+        entity_type: Optional[TollFreeVerificationEntityType] | Omit = omit,
         help_message_response: Optional[str] | Omit = omit,
         opt_in_confirmation_response: Optional[str] | Omit = omit,
         opt_in_keywords: Optional[str] | Omit = omit,
@@ -295,8 +295,7 @@ class RequestsResource(SyncAPIResource):
         business_registration_number: Optional[str] | Omit = omit,
         business_registration_type: Optional[str] | Omit = omit,
         doing_business_as: Optional[str] | Omit = omit,
-        entity_type: Optional[Literal["SOLE_PROPRIETOR", "PRIVATE_PROFIT", "PUBLIC_PROFIT", "NON_PROFIT", "GOVERNMENT"]]
-        | Omit = omit,
+        entity_type: Optional[TollFreeVerificationEntityType] | Omit = omit,
         help_message_response: Optional[str] | Omit = omit,
         opt_in_confirmation_response: Optional[str] | Omit = omit,
         opt_in_keywords: Optional[str] | Omit = omit,
@@ -589,8 +588,7 @@ class AsyncRequestsResource(AsyncAPIResource):
         business_registration_number: Optional[str] | Omit = omit,
         business_registration_type: Optional[str] | Omit = omit,
         doing_business_as: Optional[str] | Omit = omit,
-        entity_type: Optional[Literal["SOLE_PROPRIETOR", "PRIVATE_PROFIT", "PUBLIC_PROFIT", "NON_PROFIT", "GOVERNMENT"]]
-        | Omit = omit,
+        entity_type: Optional[TollFreeVerificationEntityType] | Omit = omit,
         help_message_response: Optional[str] | Omit = omit,
         opt_in_confirmation_response: Optional[str] | Omit = omit,
         opt_in_keywords: Optional[str] | Omit = omit,
@@ -797,8 +795,7 @@ class AsyncRequestsResource(AsyncAPIResource):
         business_registration_number: Optional[str] | Omit = omit,
         business_registration_type: Optional[str] | Omit = omit,
         doing_business_as: Optional[str] | Omit = omit,
-        entity_type: Optional[Literal["SOLE_PROPRIETOR", "PRIVATE_PROFIT", "PUBLIC_PROFIT", "NON_PROFIT", "GOVERNMENT"]]
-        | Omit = omit,
+        entity_type: Optional[TollFreeVerificationEntityType] | Omit = omit,
         help_message_response: Optional[str] | Omit = omit,
         opt_in_confirmation_response: Optional[str] | Omit = omit,
         opt_in_keywords: Optional[str] | Omit = omit,

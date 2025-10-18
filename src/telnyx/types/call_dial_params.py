@@ -15,6 +15,7 @@ from .sound_modifications_param import SoundModificationsParam
 from .stream_bidirectional_mode import StreamBidirectionalMode
 from .stream_bidirectional_codec import StreamBidirectionalCodec
 from .stream_bidirectional_target_legs import StreamBidirectionalTargetLegs
+from .stream_bidirectional_sampling_rate import StreamBidirectionalSamplingRate
 from .calls.transcription_start_request_param import TranscriptionStartRequestParam
 
 __all__ = ["CallDialParams", "AnsweringMachineDetectionConfig", "ConferenceConfig"]
@@ -233,7 +234,7 @@ class CallDialParams(TypedDict, total=False):
     stream_bidirectional_mode: StreamBidirectionalMode
     """Configures method of bidirectional streaming (mp3, rtp)."""
 
-    stream_bidirectional_sampling_rate: Literal[8000, 16000, 22050, 24000, 48000]
+    stream_bidirectional_sampling_rate: StreamBidirectionalSamplingRate
     """Audio sampling rate."""
 
     stream_bidirectional_target_legs: StreamBidirectionalTargetLegs

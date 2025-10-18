@@ -3,22 +3,13 @@
 from typing import List, Optional
 
 from ....._models import BaseModel
+from .standard_pagination_meta import StandardPaginationMeta
 from .mdr_usage_report_response_legacy import MdrUsageReportResponseLegacy
 
-__all__ = ["MessagingListResponse", "Meta"]
-
-
-class Meta(BaseModel):
-    page_number: Optional[int] = None
-
-    page_size: Optional[int] = None
-
-    total_pages: Optional[int] = None
-
-    total_results: Optional[int] = None
+__all__ = ["MessagingListResponse"]
 
 
 class MessagingListResponse(BaseModel):
     data: Optional[List[MdrUsageReportResponseLegacy]] = None
 
-    meta: Optional[Meta] = None
+    meta: Optional[StandardPaginationMeta] = None

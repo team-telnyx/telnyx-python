@@ -11,11 +11,7 @@ from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types.ai import (
     AssistantsList,
-)
-from telnyx.types.ai.assistants import (
-    VersionUpdateResponse,
-    VersionPromoteResponse,
-    VersionRetrieveResponse,
+    InferenceEmbedding,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -31,7 +27,7 @@ class TestVersions:
             version_id="version_id",
             assistant_id="assistant_id",
         )
-        assert_matches_type(VersionRetrieveResponse, version, path=["response"])
+        assert_matches_type(InferenceEmbedding, version, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -41,7 +37,7 @@ class TestVersions:
             assistant_id="assistant_id",
             include_mcp_servers=True,
         )
-        assert_matches_type(VersionRetrieveResponse, version, path=["response"])
+        assert_matches_type(InferenceEmbedding, version, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -54,7 +50,7 @@ class TestVersions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         version = response.parse()
-        assert_matches_type(VersionRetrieveResponse, version, path=["response"])
+        assert_matches_type(InferenceEmbedding, version, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -67,7 +63,7 @@ class TestVersions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             version = response.parse()
-            assert_matches_type(VersionRetrieveResponse, version, path=["response"])
+            assert_matches_type(InferenceEmbedding, version, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -93,7 +89,7 @@ class TestVersions:
             version_id="version_id",
             assistant_id="assistant_id",
         )
-        assert_matches_type(VersionUpdateResponse, version, path=["response"])
+        assert_matches_type(InferenceEmbedding, version, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -169,7 +165,7 @@ class TestVersions:
                 "voice_speed": 0,
             },
         )
-        assert_matches_type(VersionUpdateResponse, version, path=["response"])
+        assert_matches_type(InferenceEmbedding, version, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -182,7 +178,7 @@ class TestVersions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         version = response.parse()
-        assert_matches_type(VersionUpdateResponse, version, path=["response"])
+        assert_matches_type(InferenceEmbedding, version, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -195,7 +191,7 @@ class TestVersions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             version = response.parse()
-            assert_matches_type(VersionUpdateResponse, version, path=["response"])
+            assert_matches_type(InferenceEmbedding, version, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -315,7 +311,7 @@ class TestVersions:
             version_id="version_id",
             assistant_id="assistant_id",
         )
-        assert_matches_type(VersionPromoteResponse, version, path=["response"])
+        assert_matches_type(InferenceEmbedding, version, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -328,7 +324,7 @@ class TestVersions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         version = response.parse()
-        assert_matches_type(VersionPromoteResponse, version, path=["response"])
+        assert_matches_type(InferenceEmbedding, version, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -341,7 +337,7 @@ class TestVersions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             version = response.parse()
-            assert_matches_type(VersionPromoteResponse, version, path=["response"])
+            assert_matches_type(InferenceEmbedding, version, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -373,7 +369,7 @@ class TestAsyncVersions:
             version_id="version_id",
             assistant_id="assistant_id",
         )
-        assert_matches_type(VersionRetrieveResponse, version, path=["response"])
+        assert_matches_type(InferenceEmbedding, version, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -383,7 +379,7 @@ class TestAsyncVersions:
             assistant_id="assistant_id",
             include_mcp_servers=True,
         )
-        assert_matches_type(VersionRetrieveResponse, version, path=["response"])
+        assert_matches_type(InferenceEmbedding, version, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -396,7 +392,7 @@ class TestAsyncVersions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         version = await response.parse()
-        assert_matches_type(VersionRetrieveResponse, version, path=["response"])
+        assert_matches_type(InferenceEmbedding, version, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -409,7 +405,7 @@ class TestAsyncVersions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             version = await response.parse()
-            assert_matches_type(VersionRetrieveResponse, version, path=["response"])
+            assert_matches_type(InferenceEmbedding, version, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -435,7 +431,7 @@ class TestAsyncVersions:
             version_id="version_id",
             assistant_id="assistant_id",
         )
-        assert_matches_type(VersionUpdateResponse, version, path=["response"])
+        assert_matches_type(InferenceEmbedding, version, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -511,7 +507,7 @@ class TestAsyncVersions:
                 "voice_speed": 0,
             },
         )
-        assert_matches_type(VersionUpdateResponse, version, path=["response"])
+        assert_matches_type(InferenceEmbedding, version, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -524,7 +520,7 @@ class TestAsyncVersions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         version = await response.parse()
-        assert_matches_type(VersionUpdateResponse, version, path=["response"])
+        assert_matches_type(InferenceEmbedding, version, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -537,7 +533,7 @@ class TestAsyncVersions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             version = await response.parse()
-            assert_matches_type(VersionUpdateResponse, version, path=["response"])
+            assert_matches_type(InferenceEmbedding, version, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -657,7 +653,7 @@ class TestAsyncVersions:
             version_id="version_id",
             assistant_id="assistant_id",
         )
-        assert_matches_type(VersionPromoteResponse, version, path=["response"])
+        assert_matches_type(InferenceEmbedding, version, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -670,7 +666,7 @@ class TestAsyncVersions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         version = await response.parse()
-        assert_matches_type(VersionPromoteResponse, version, path=["response"])
+        assert_matches_type(InferenceEmbedding, version, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -683,7 +679,7 @@ class TestAsyncVersions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             version = await response.parse()
-            assert_matches_type(VersionPromoteResponse, version, path=["response"])
+            assert_matches_type(InferenceEmbedding, version, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

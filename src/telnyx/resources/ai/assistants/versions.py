@@ -20,6 +20,7 @@ from ...._base_client import make_request_options
 from ....types.ai.assistants import version_update_params, version_retrieve_params
 from ....types.ai.assistants_list import AssistantsList
 from ....types.ai.enabled_features import EnabledFeatures
+from ....types.ai.inference_embedding import InferenceEmbedding
 from ....types.ai.assistant_tool_param import AssistantToolParam
 from ....types.ai.voice_settings_param import VoiceSettingsParam
 from ....types.ai.insight_settings_param import InsightSettingsParam
@@ -27,9 +28,6 @@ from ....types.ai.privacy_settings_param import PrivacySettingsParam
 from ....types.ai.messaging_settings_param import MessagingSettingsParam
 from ....types.ai.telephony_settings_param import TelephonySettingsParam
 from ....types.ai.transcription_settings_param import TranscriptionSettingsParam
-from ....types.ai.assistants.version_update_response import VersionUpdateResponse
-from ....types.ai.assistants.version_promote_response import VersionPromoteResponse
-from ....types.ai.assistants.version_retrieve_response import VersionRetrieveResponse
 
 __all__ = ["VersionsResource", "AsyncVersionsResource"]
 
@@ -66,7 +64,7 @@ class VersionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> VersionRetrieveResponse:
+    ) -> InferenceEmbedding:
         """
         Retrieves a specific version of an assistant by assistant_id and version_id
 
@@ -94,7 +92,7 @@ class VersionsResource(SyncAPIResource):
                     {"include_mcp_servers": include_mcp_servers}, version_retrieve_params.VersionRetrieveParams
                 ),
             ),
-            cast_to=VersionRetrieveResponse,
+            cast_to=InferenceEmbedding,
         )
 
     def update(
@@ -124,7 +122,7 @@ class VersionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> VersionUpdateResponse:
+    ) -> InferenceEmbedding:
         """Updates the configuration of a specific assistant version.
 
         Can not update main
@@ -196,7 +194,7 @@ class VersionsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=VersionUpdateResponse,
+            cast_to=InferenceEmbedding,
         )
 
     def list(
@@ -283,7 +281,7 @@ class VersionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> VersionPromoteResponse:
+    ) -> InferenceEmbedding:
         """
         Promotes a specific version to be the main/current version of the assistant.
         This will delete any existing canary deploy configuration and send all live
@@ -307,7 +305,7 @@ class VersionsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=VersionPromoteResponse,
+            cast_to=InferenceEmbedding,
         )
 
 
@@ -343,7 +341,7 @@ class AsyncVersionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> VersionRetrieveResponse:
+    ) -> InferenceEmbedding:
         """
         Retrieves a specific version of an assistant by assistant_id and version_id
 
@@ -371,7 +369,7 @@ class AsyncVersionsResource(AsyncAPIResource):
                     {"include_mcp_servers": include_mcp_servers}, version_retrieve_params.VersionRetrieveParams
                 ),
             ),
-            cast_to=VersionRetrieveResponse,
+            cast_to=InferenceEmbedding,
         )
 
     async def update(
@@ -401,7 +399,7 @@ class AsyncVersionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> VersionUpdateResponse:
+    ) -> InferenceEmbedding:
         """Updates the configuration of a specific assistant version.
 
         Can not update main
@@ -473,7 +471,7 @@ class AsyncVersionsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=VersionUpdateResponse,
+            cast_to=InferenceEmbedding,
         )
 
     async def list(
@@ -560,7 +558,7 @@ class AsyncVersionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> VersionPromoteResponse:
+    ) -> InferenceEmbedding:
         """
         Promotes a specific version to be the main/current version of the assistant.
         This will delete any existing canary deploy configuration and send all live
@@ -584,7 +582,7 @@ class AsyncVersionsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=VersionPromoteResponse,
+            cast_to=InferenceEmbedding,
         )
 
 

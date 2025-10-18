@@ -3,22 +3,13 @@
 from typing import List, Optional
 
 from ....._models import BaseModel
+from .batch_csv_pagination_meta import BatchCsvPaginationMeta
 from .mdr_detail_report_response import MdrDetailReportResponse
 
-__all__ = ["MessagingListResponse", "Meta"]
-
-
-class Meta(BaseModel):
-    page_number: Optional[int] = None
-
-    page_size: Optional[int] = None
-
-    total_pages: Optional[int] = None
-
-    total_results: Optional[int] = None
+__all__ = ["MessagingListResponse"]
 
 
 class MessagingListResponse(BaseModel):
     data: Optional[List[MdrDetailReportResponse]] = None
 
-    meta: Optional[Meta] = None
+    meta: Optional[BatchCsvPaginationMeta] = None

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from .job import Job as Job
+from .job_error import JobError as JobError
 from .job_list_params import JobListParams as JobListParams
 from .job_list_response import JobListResponse as JobListResponse
 from .job_retrieve_response import JobRetrieveResponse as JobRetrieveResponse

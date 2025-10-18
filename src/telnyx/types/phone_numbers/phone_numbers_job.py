@@ -5,49 +5,16 @@ from datetime import datetime
 from typing_extensions import Literal
 
 from ..._models import BaseModel
+from ..phone_number_blocks.job_error import JobError
 
-__all__ = [
-    "PhoneNumbersJob",
-    "FailedOperation",
-    "FailedOperationError",
-    "FailedOperationErrorMeta",
-    "FailedOperationErrorSource",
-    "PendingOperation",
-    "PhoneNumber",
-    "SuccessfulOperation",
-]
-
-
-class FailedOperationErrorMeta(BaseModel):
-    url: Optional[str] = None
-    """URL with additional information on the error."""
-
-
-class FailedOperationErrorSource(BaseModel):
-    parameter: Optional[str] = None
-    """Indicates which query parameter caused the error."""
-
-    pointer: Optional[str] = None
-    """JSON pointer (RFC6901) to the offending entity."""
-
-
-class FailedOperationError(BaseModel):
-    code: str
-
-    title: str
-
-    detail: Optional[str] = None
-
-    meta: Optional[FailedOperationErrorMeta] = None
-
-    source: Optional[FailedOperationErrorSource] = None
+__all__ = ["PhoneNumbersJob", "FailedOperation", "PendingOperation", "PhoneNumber", "SuccessfulOperation"]
 
 
 class FailedOperation(BaseModel):
     id: Optional[str] = None
     """The phone number's ID"""
 
-    errors: Optional[List[FailedOperationError]] = None
+    errors: Optional[List[JobError]] = None
 
     phone_number: Optional[str] = None
     """The phone number in e164 format."""
