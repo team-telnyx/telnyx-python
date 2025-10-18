@@ -85,6 +85,7 @@ from .interface_status import InterfaceStatus as InterfaceStatus
 from .ip_create_params import IPCreateParams as IPCreateParams
 from .ip_list_response import IPListResponse as IPListResponse
 from .ip_update_params import IPUpdateParams as IPUpdateParams
+from .message_template import MessageTemplate as MessageTemplate
 from .rcs_card_content import RcsCardContent as RcsCardContent
 from .rcs_content_info import RcsContentInfo as RcsContentInfo
 from .room_composition import RoomComposition as RoomComposition
@@ -192,6 +193,7 @@ from .network_list_response import NetworkListResponse as NetworkListResponse
 from .network_update_params import NetworkUpdateParams as NetworkUpdateParams
 from .oauth_grants_response import OAuthGrantsResponse as OAuthGrantsResponse
 from .oauth_register_params import OAuthRegisterParams as OAuthRegisterParams
+from .pagination_meta_oauth import PaginationMetaOAuth as PaginationMetaOAuth
 from .phone_number_campaign import PhoneNumberCampaign as PhoneNumberCampaign
 from .phone_number_detailed import PhoneNumberDetailed as PhoneNumberDetailed
 from .portout_list_response import PortoutListResponse as PortoutListResponse
@@ -666,6 +668,7 @@ from .requirement_type_retrieve_response import RequirementTypeRetrieveResponse 
 from .room_composition_retrieve_response import RoomCompositionRetrieveResponse as RoomCompositionRetrieveResponse
 from .room_participant_retrieve_response import RoomParticipantRetrieveResponse as RoomParticipantRetrieveResponse
 from .siprec_connector_retrieve_response import SiprecConnectorRetrieveResponse as SiprecConnectorRetrieveResponse
+from .stream_bidirectional_sampling_rate import StreamBidirectionalSamplingRate as StreamBidirectionalSamplingRate
 from .sub_number_order_retrieve_response import SubNumberOrderRetrieveResponse as SubNumberOrderRetrieveResponse
 from .telephony_credential_create_params import TelephonyCredentialCreateParams as TelephonyCredentialCreateParams
 from .telephony_credential_list_response import TelephonyCredentialListResponse as TelephonyCredentialListResponse
@@ -939,6 +942,9 @@ from .messaging_hosted_number_delete_response import (
 from .number_order_phone_number_list_response import (
     NumberOrderPhoneNumberListResponse as NumberOrderPhoneNumberListResponse,
 )
+from .pagination_meta_cloudflare_ip_list_sync import (
+    PaginationMetaCloudflareIPListSync as PaginationMetaCloudflareIPListSync,
+)
 from .public_internet_gateway_create_response import (
     PublicInternetGatewayCreateResponse as PublicInternetGatewayCreateResponse,
 )
@@ -953,12 +959,6 @@ from .sim_card_order_preview_preview_response import (
 )
 from .sub_number_order_regulatory_requirement import (
     SubNumberOrderRegulatoryRequirement as SubNumberOrderRegulatoryRequirement,
-)
-from .verify_profile_create_template_response import (
-    VerifyProfileCreateTemplateResponse as VerifyProfileCreateTemplateResponse,
-)
-from .verify_profile_update_template_response import (
-    VerifyProfileUpdateTemplateResponse as VerifyProfileUpdateTemplateResponse,
 )
 from .virtual_cross_connect_retrieve_response import (
     VirtualCrossConnectRetrieveResponse as VirtualCrossConnectRetrieveResponse,

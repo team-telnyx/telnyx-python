@@ -4,21 +4,12 @@ from typing import List
 
 from .._models import BaseModel
 from .access_ip_range import AccessIPRange
+from .pagination_meta_cloudflare_ip_list_sync import PaginationMetaCloudflareIPListSync
 
-__all__ = ["AccessIPRangeListResponse", "Meta"]
-
-
-class Meta(BaseModel):
-    page_number: int
-
-    page_size: int
-
-    total_pages: int
-
-    total_results: int
+__all__ = ["AccessIPRangeListResponse"]
 
 
 class AccessIPRangeListResponse(BaseModel):
     data: List[AccessIPRange]
 
-    meta: Meta
+    meta: PaginationMetaCloudflareIPListSync

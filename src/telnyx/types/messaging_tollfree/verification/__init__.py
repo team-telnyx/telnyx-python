@@ -15,3 +15,4 @@ from .tf_phone_number_param import TfPhoneNumberParam as TfPhoneNumberParam
 from .tf_verification_status import TfVerificationStatus as TfVerificationStatus
 from .verification_request_egress import VerificationRequestEgress as VerificationRequestEgress
 from .verification_request_status import VerificationRequestStatus as VerificationRequestStatus
+from .toll_free_verification_entity_type import TollFreeVerificationEntityType as TollFreeVerificationEntityType

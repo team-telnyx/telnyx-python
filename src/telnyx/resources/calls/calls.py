@@ -12,6 +12,7 @@ from ...types import (
     StreamBidirectionalMode,
     StreamBidirectionalCodec,
     StreamBidirectionalTargetLegs,
+    StreamBidirectionalSamplingRate,
     call_dial_params,
 )
 from .actions import (
@@ -43,6 +44,7 @@ from ...types.stream_bidirectional_mode import StreamBidirectionalMode
 from ...types.stream_bidirectional_codec import StreamBidirectionalCodec
 from ...types.call_retrieve_status_response import CallRetrieveStatusResponse
 from ...types.stream_bidirectional_target_legs import StreamBidirectionalTargetLegs
+from ...types.stream_bidirectional_sampling_rate import StreamBidirectionalSamplingRate
 from ...types.calls.transcription_start_request_param import TranscriptionStartRequestParam
 
 __all__ = ["CallsResource", "AsyncCallsResource"]
@@ -115,7 +117,7 @@ class CallsResource(SyncAPIResource):
         sound_modifications: SoundModificationsParam | Omit = omit,
         stream_bidirectional_codec: StreamBidirectionalCodec | Omit = omit,
         stream_bidirectional_mode: StreamBidirectionalMode | Omit = omit,
-        stream_bidirectional_sampling_rate: Literal[8000, 16000, 22050, 24000, 48000] | Omit = omit,
+        stream_bidirectional_sampling_rate: StreamBidirectionalSamplingRate | Omit = omit,
         stream_bidirectional_target_legs: StreamBidirectionalTargetLegs | Omit = omit,
         stream_codec: StreamCodec | Omit = omit,
         stream_establish_before_call_originate: bool | Omit = omit,
@@ -498,7 +500,7 @@ class AsyncCallsResource(AsyncAPIResource):
         sound_modifications: SoundModificationsParam | Omit = omit,
         stream_bidirectional_codec: StreamBidirectionalCodec | Omit = omit,
         stream_bidirectional_mode: StreamBidirectionalMode | Omit = omit,
-        stream_bidirectional_sampling_rate: Literal[8000, 16000, 22050, 24000, 48000] | Omit = omit,
+        stream_bidirectional_sampling_rate: StreamBidirectionalSamplingRate | Omit = omit,
         stream_bidirectional_target_legs: StreamBidirectionalTargetLegs | Omit = omit,
         stream_codec: StreamCodec | Omit = omit,
         stream_establish_before_call_originate: bool | Omit = omit,

@@ -3,13 +3,14 @@
 from __future__ import annotations
 
 from typing import Iterable, Optional
-from typing_extensions import Literal, Required, Annotated, TypedDict
+from typing_extensions import Required, Annotated, TypedDict
 
 from .volume import Volume
 from ...._utils import PropertyInfo
 from .url_param import URLParam
 from .use_case_categories import UseCaseCategories
 from .tf_phone_number_param import TfPhoneNumberParam
+from .toll_free_verification_entity_type import TollFreeVerificationEntityType
 
 __all__ = ["RequestCreateParams"]
 
@@ -112,10 +113,7 @@ class RequestCreateParams(TypedDict, total=False):
     doing_business_as: Annotated[Optional[str], PropertyInfo(alias="doingBusinessAs")]
     """Doing Business As (DBA) name if different from legal name"""
 
-    entity_type: Annotated[
-        Optional[Literal["SOLE_PROPRIETOR", "PRIVATE_PROFIT", "PUBLIC_PROFIT", "NON_PROFIT", "GOVERNMENT"]],
-        PropertyInfo(alias="entityType"),
-    ]
+    entity_type: Annotated[Optional[TollFreeVerificationEntityType], PropertyInfo(alias="entityType")]
     """Business entity classification"""
 
     help_message_response: Annotated[Optional[str], PropertyInfo(alias="helpMessageResponse")]

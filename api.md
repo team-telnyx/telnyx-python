@@ -39,6 +39,7 @@ Types:
 
 ```python
 from telnyx.types.legacy.reporting.batch_detail_records import (
+    BatchCsvPaginationMeta,
     MdrDetailReportResponse,
     MessagingCreateResponse,
     MessagingRetrieveResponse,
@@ -117,6 +118,7 @@ Types:
 ```python
 from telnyx.types.legacy.reporting.usage_reports import (
     MdrUsageReportResponseLegacy,
+    StandardPaginationMeta,
     MessagingCreateResponse,
     MessagingRetrieveResponse,
     MessagingListResponse,
@@ -193,6 +195,7 @@ Types:
 ```python
 from telnyx.types import (
     OAuthClient,
+    PaginationMetaOAuth,
     OAuthClientCreateResponse,
     OAuthClientRetrieveResponse,
     OAuthClientUpdateResponse,
@@ -306,7 +309,12 @@ from telnyx.types import (
 Types:
 
 ```python
-from telnyx.types import AccessIPAddressResponse, CloudflareSyncStatus, AccessIPAddressListResponse
+from telnyx.types import (
+    AccessIPAddressResponse,
+    CloudflareSyncStatus,
+    PaginationMetaCloudflareIPListSync,
+    AccessIPAddressListResponse,
+)
 ```
 
 Methods:
@@ -392,6 +400,12 @@ Methods:
 
 # AdvancedOrders
 
+Types:
+
+```python
+from telnyx.types import AdvancedOrder
+```
+
 Methods:
 
 - <code title="post /advanced_orders">client.advanced_orders.<a href="./src/telnyx/resources/advanced_orders.py">create</a>(\*\*<a href="src/telnyx/types/advanced_order_create_params.py">params</a>) -> object</code>
@@ -425,6 +439,7 @@ from telnyx.types.ai import (
     HangupTool,
     HangupToolParams,
     ImportMetadata,
+    InferenceEmbedding,
     InferenceEmbeddingBucketIDs,
     InferenceEmbeddingTransferToolParams,
     InferenceEmbeddingWebhookToolParams,
@@ -437,24 +452,21 @@ from telnyx.types.ai import (
     TransferTool,
     VoiceSettings,
     WebhookTool,
-    AssistantCreateResponse,
-    AssistantRetrieveResponse,
     AssistantDeleteResponse,
     AssistantChatResponse,
-    AssistantCloneResponse,
     AssistantGetTexmlResponse,
 )
 ```
 
 Methods:
 
-- <code title="post /ai/assistants">client.ai.assistants.<a href="./src/telnyx/resources/ai/assistants/assistants.py">create</a>(\*\*<a href="src/telnyx/types/ai/assistant_create_params.py">params</a>) -> <a href="./src/telnyx/types/ai/assistant_create_response.py">AssistantCreateResponse</a></code>
-- <code title="get /ai/assistants/{assistant_id}">client.ai.assistants.<a href="./src/telnyx/resources/ai/assistants/assistants.py">retrieve</a>(assistant_id, \*\*<a href="src/telnyx/types/ai/assistant_retrieve_params.py">params</a>) -> <a href="./src/telnyx/types/ai/assistant_retrieve_response.py">AssistantRetrieveResponse</a></code>
+- <code title="post /ai/assistants">client.ai.assistants.<a href="./src/telnyx/resources/ai/assistants/assistants.py">create</a>(\*\*<a href="src/telnyx/types/ai/assistant_create_params.py">params</a>) -> <a href="./src/telnyx/types/ai/inference_embedding.py">InferenceEmbedding</a></code>
+- <code title="get /ai/assistants/{assistant_id}">client.ai.assistants.<a href="./src/telnyx/resources/ai/assistants/assistants.py">retrieve</a>(assistant_id, \*\*<a href="src/telnyx/types/ai/assistant_retrieve_params.py">params</a>) -> <a href="./src/telnyx/types/ai/inference_embedding.py">InferenceEmbedding</a></code>
 - <code title="post /ai/assistants/{assistant_id}">client.ai.assistants.<a href="./src/telnyx/resources/ai/assistants/assistants.py">update</a>(assistant_id, \*\*<a href="src/telnyx/types/ai/assistant_update_params.py">params</a>) -> object</code>
 - <code title="get /ai/assistants">client.ai.assistants.<a href="./src/telnyx/resources/ai/assistants/assistants.py">list</a>() -> <a href="./src/telnyx/types/ai/assistants_list.py">AssistantsList</a></code>
 - <code title="delete /ai/assistants/{assistant_id}">client.ai.assistants.<a href="./src/telnyx/resources/ai/assistants/assistants.py">delete</a>(assistant_id) -> <a href="./src/telnyx/types/ai/assistant_delete_response.py">AssistantDeleteResponse</a></code>
 - <code title="post /ai/assistants/{assistant_id}/chat">client.ai.assistants.<a href="./src/telnyx/resources/ai/assistants/assistants.py">chat</a>(assistant_id, \*\*<a href="src/telnyx/types/ai/assistant_chat_params.py">params</a>) -> <a href="./src/telnyx/types/ai/assistant_chat_response.py">AssistantChatResponse</a></code>
-- <code title="post /ai/assistants/{assistant_id}/clone">client.ai.assistants.<a href="./src/telnyx/resources/ai/assistants/assistants.py">clone</a>(assistant_id) -> <a href="./src/telnyx/types/ai/assistant_clone_response.py">AssistantCloneResponse</a></code>
+- <code title="post /ai/assistants/{assistant_id}/clone">client.ai.assistants.<a href="./src/telnyx/resources/ai/assistants/assistants.py">clone</a>(assistant_id) -> <a href="./src/telnyx/types/ai/inference_embedding.py">InferenceEmbedding</a></code>
 - <code title="get /ai/assistants/{assistant_id}/texml">client.ai.assistants.<a href="./src/telnyx/resources/ai/assistants/assistants.py">get_texml</a>(assistant_id) -> str</code>
 - <code title="post /ai/assistants/import">client.ai.assistants.<a href="./src/telnyx/resources/ai/assistants/assistants.py">import\_</a>(\*\*<a href="src/telnyx/types/ai/assistant_import_params.py">params</a>) -> <a href="./src/telnyx/types/ai/assistants_list.py">AssistantsList</a></code>
 
@@ -571,21 +583,16 @@ Methods:
 Types:
 
 ```python
-from telnyx.types.ai.assistants import (
-    UpdateAssistant,
-    VersionRetrieveResponse,
-    VersionUpdateResponse,
-    VersionPromoteResponse,
-)
+from telnyx.types.ai.assistants import UpdateAssistant
 ```
 
 Methods:
 
-- <code title="get /ai/assistants/{assistant_id}/versions/{version_id}">client.ai.assistants.versions.<a href="./src/telnyx/resources/ai/assistants/versions.py">retrieve</a>(version_id, \*, assistant_id, \*\*<a href="src/telnyx/types/ai/assistants/version_retrieve_params.py">params</a>) -> <a href="./src/telnyx/types/ai/assistants/version_retrieve_response.py">VersionRetrieveResponse</a></code>
-- <code title="post /ai/assistants/{assistant_id}/versions/{version_id}">client.ai.assistants.versions.<a href="./src/telnyx/resources/ai/assistants/versions.py">update</a>(version_id, \*, assistant_id, \*\*<a href="src/telnyx/types/ai/assistants/version_update_params.py">params</a>) -> <a href="./src/telnyx/types/ai/assistants/version_update_response.py">VersionUpdateResponse</a></code>
+- <code title="get /ai/assistants/{assistant_id}/versions/{version_id}">client.ai.assistants.versions.<a href="./src/telnyx/resources/ai/assistants/versions.py">retrieve</a>(version_id, \*, assistant_id, \*\*<a href="src/telnyx/types/ai/assistants/version_retrieve_params.py">params</a>) -> <a href="./src/telnyx/types/ai/inference_embedding.py">InferenceEmbedding</a></code>
+- <code title="post /ai/assistants/{assistant_id}/versions/{version_id}">client.ai.assistants.versions.<a href="./src/telnyx/resources/ai/assistants/versions.py">update</a>(version_id, \*, assistant_id, \*\*<a href="src/telnyx/types/ai/assistants/version_update_params.py">params</a>) -> <a href="./src/telnyx/types/ai/inference_embedding.py">InferenceEmbedding</a></code>
 - <code title="get /ai/assistants/{assistant_id}/versions">client.ai.assistants.versions.<a href="./src/telnyx/resources/ai/assistants/versions.py">list</a>(assistant_id) -> <a href="./src/telnyx/types/ai/assistants_list.py">AssistantsList</a></code>
 - <code title="delete /ai/assistants/{assistant_id}/versions/{version_id}">client.ai.assistants.versions.<a href="./src/telnyx/resources/ai/assistants/versions.py">delete</a>(version_id, \*, assistant_id) -> None</code>
-- <code title="post /ai/assistants/{assistant_id}/versions/{version_id}/promote">client.ai.assistants.versions.<a href="./src/telnyx/resources/ai/assistants/versions.py">promote</a>(version_id, \*, assistant_id) -> <a href="./src/telnyx/types/ai/assistants/version_promote_response.py">VersionPromoteResponse</a></code>
+- <code title="post /ai/assistants/{assistant_id}/versions/{version_id}/promote">client.ai.assistants.versions.<a href="./src/telnyx/resources/ai/assistants/versions.py">promote</a>(version_id, \*, assistant_id) -> <a href="./src/telnyx/types/ai/inference_embedding.py">InferenceEmbedding</a></code>
 
 ## Audio
 
@@ -1015,6 +1022,7 @@ from telnyx.types import (
     SoundModifications,
     StreamBidirectionalCodec,
     StreamBidirectionalMode,
+    StreamBidirectionalSamplingRate,
     StreamBidirectionalTargetLegs,
     StreamCodec,
     CallDialResponse,
@@ -1040,6 +1048,7 @@ from telnyx.types.calls import (
     InterruptionSettings,
     Loopcount,
     StopRecordingRequest,
+    TelnyxTranscriptionLanguage,
     TelnyxVoiceSettings,
     TranscriptionConfig,
     TranscriptionEngineAConfig,
@@ -2330,6 +2339,7 @@ from telnyx.types.messaging_tollfree.verification import (
     TfPhoneNumber,
     TfVerificationRequest,
     TfVerificationStatus,
+    TollFreeVerificationEntityType,
     URL,
     UseCaseCategories,
     VerificationRequestEgress,
@@ -2767,6 +2777,7 @@ Types:
 ```python
 from telnyx.types.phone_number_blocks import (
     Job,
+    JobError,
     JobRetrieveResponse,
     JobListResponse,
     JobDeletePhoneNumberBlockResponse,
@@ -3523,6 +3534,7 @@ Types:
 ```python
 from telnyx.types.reports import (
     MdrUsageReport,
+    PaginationMetaReporting,
     MdrUsageReportCreateResponse,
     MdrUsageReportRetrieveResponse,
     MdrUsageReportListResponse,
@@ -4391,7 +4403,7 @@ Methods:
 Types:
 
 ```python
-from telnyx.types.verifications import ByPhoneNumberListResponse
+from telnyx.types.verifications import VerifyMeta, ByPhoneNumberListResponse
 ```
 
 Methods:
@@ -4448,13 +4460,12 @@ Types:
 
 ```python
 from telnyx.types import (
+    MessageTemplate,
     VerifyProfile,
     VerifyProfileData,
     VerifyProfileMessageTemplateResponse,
     VerifyProfileListResponse,
-    VerifyProfileCreateTemplateResponse,
     VerifyProfileRetrieveTemplatesResponse,
-    VerifyProfileUpdateTemplateResponse,
 )
 ```
 
@@ -4465,9 +4476,9 @@ Methods:
 - <code title="patch /verify_profiles/{verify_profile_id}">client.verify_profiles.<a href="./src/telnyx/resources/verify_profiles.py">update</a>(verify_profile_id, \*\*<a href="src/telnyx/types/verify_profile_update_params.py">params</a>) -> <a href="./src/telnyx/types/verify_profile_data.py">VerifyProfileData</a></code>
 - <code title="get /verify_profiles">client.verify_profiles.<a href="./src/telnyx/resources/verify_profiles.py">list</a>(\*\*<a href="src/telnyx/types/verify_profile_list_params.py">params</a>) -> <a href="./src/telnyx/types/verify_profile_list_response.py">VerifyProfileListResponse</a></code>
 - <code title="delete /verify_profiles/{verify_profile_id}">client.verify_profiles.<a href="./src/telnyx/resources/verify_profiles.py">delete</a>(verify_profile_id) -> <a href="./src/telnyx/types/verify_profile_data.py">VerifyProfileData</a></code>
-- <code title="post /verify_profiles/templates">client.verify_profiles.<a href="./src/telnyx/resources/verify_profiles.py">create_template</a>(\*\*<a href="src/telnyx/types/verify_profile_create_template_params.py">params</a>) -> <a href="./src/telnyx/types/verify_profile_create_template_response.py">VerifyProfileCreateTemplateResponse</a></code>
+- <code title="post /verify_profiles/templates">client.verify_profiles.<a href="./src/telnyx/resources/verify_profiles.py">create_template</a>(\*\*<a href="src/telnyx/types/verify_profile_create_template_params.py">params</a>) -> <a href="./src/telnyx/types/message_template.py">MessageTemplate</a></code>
 - <code title="get /verify_profiles/templates">client.verify_profiles.<a href="./src/telnyx/resources/verify_profiles.py">retrieve_templates</a>() -> <a href="./src/telnyx/types/verify_profile_retrieve_templates_response.py">VerifyProfileRetrieveTemplatesResponse</a></code>
-- <code title="patch /verify_profiles/templates/{template_id}">client.verify_profiles.<a href="./src/telnyx/resources/verify_profiles.py">update_template</a>(template_id, \*\*<a href="src/telnyx/types/verify_profile_update_template_params.py">params</a>) -> <a href="./src/telnyx/types/verify_profile_update_template_response.py">VerifyProfileUpdateTemplateResponse</a></code>
+- <code title="patch /verify_profiles/templates/{template_id}">client.verify_profiles.<a href="./src/telnyx/resources/verify_profiles.py">update_template</a>(template_id, \*\*<a href="src/telnyx/types/verify_profile_update_template_params.py">params</a>) -> <a href="./src/telnyx/types/message_template.py">MessageTemplate</a></code>
 
 # VirtualCrossConnects
 

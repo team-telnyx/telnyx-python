@@ -4,21 +4,12 @@ from typing import List, Optional
 
 from ..._models import BaseModel
 from .mdr_usage_report import MdrUsageReport
+from .pagination_meta_reporting import PaginationMetaReporting
 
-__all__ = ["MdrUsageReportListResponse", "Meta"]
-
-
-class Meta(BaseModel):
-    page_number: Optional[int] = None
-
-    page_size: Optional[int] = None
-
-    total_pages: Optional[int] = None
-
-    total_results: Optional[int] = None
+__all__ = ["MdrUsageReportListResponse"]
 
 
 class MdrUsageReportListResponse(BaseModel):
     data: Optional[List[MdrUsageReport]] = None
 
-    meta: Optional[Meta] = None
+    meta: Optional[PaginationMetaReporting] = None

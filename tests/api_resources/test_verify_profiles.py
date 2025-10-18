@@ -10,10 +10,9 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types import (
+    MessageTemplate,
     VerifyProfileData,
     VerifyProfileListResponse,
-    VerifyProfileCreateTemplateResponse,
-    VerifyProfileUpdateTemplateResponse,
     VerifyProfileRetrieveTemplatesResponse,
 )
 
@@ -290,7 +289,7 @@ class TestVerifyProfiles:
         verify_profile = client.verify_profiles.create_template(
             text="Your {{app_name}} verification code is: {{code}}.",
         )
-        assert_matches_type(VerifyProfileCreateTemplateResponse, verify_profile, path=["response"])
+        assert_matches_type(MessageTemplate, verify_profile, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -302,7 +301,7 @@ class TestVerifyProfiles:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         verify_profile = response.parse()
-        assert_matches_type(VerifyProfileCreateTemplateResponse, verify_profile, path=["response"])
+        assert_matches_type(MessageTemplate, verify_profile, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -314,7 +313,7 @@ class TestVerifyProfiles:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             verify_profile = response.parse()
-            assert_matches_type(VerifyProfileCreateTemplateResponse, verify_profile, path=["response"])
+            assert_matches_type(MessageTemplate, verify_profile, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -353,7 +352,7 @@ class TestVerifyProfiles:
             template_id="12ade33a-21c0-473b-b055-b3c836e1c292",
             text="Your {{app_name}} verification code is: {{code}}.",
         )
-        assert_matches_type(VerifyProfileUpdateTemplateResponse, verify_profile, path=["response"])
+        assert_matches_type(MessageTemplate, verify_profile, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -366,7 +365,7 @@ class TestVerifyProfiles:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         verify_profile = response.parse()
-        assert_matches_type(VerifyProfileUpdateTemplateResponse, verify_profile, path=["response"])
+        assert_matches_type(MessageTemplate, verify_profile, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -379,7 +378,7 @@ class TestVerifyProfiles:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             verify_profile = response.parse()
-            assert_matches_type(VerifyProfileUpdateTemplateResponse, verify_profile, path=["response"])
+            assert_matches_type(MessageTemplate, verify_profile, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -665,7 +664,7 @@ class TestAsyncVerifyProfiles:
         verify_profile = await async_client.verify_profiles.create_template(
             text="Your {{app_name}} verification code is: {{code}}.",
         )
-        assert_matches_type(VerifyProfileCreateTemplateResponse, verify_profile, path=["response"])
+        assert_matches_type(MessageTemplate, verify_profile, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -677,7 +676,7 @@ class TestAsyncVerifyProfiles:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         verify_profile = await response.parse()
-        assert_matches_type(VerifyProfileCreateTemplateResponse, verify_profile, path=["response"])
+        assert_matches_type(MessageTemplate, verify_profile, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -689,7 +688,7 @@ class TestAsyncVerifyProfiles:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             verify_profile = await response.parse()
-            assert_matches_type(VerifyProfileCreateTemplateResponse, verify_profile, path=["response"])
+            assert_matches_type(MessageTemplate, verify_profile, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -728,7 +727,7 @@ class TestAsyncVerifyProfiles:
             template_id="12ade33a-21c0-473b-b055-b3c836e1c292",
             text="Your {{app_name}} verification code is: {{code}}.",
         )
-        assert_matches_type(VerifyProfileUpdateTemplateResponse, verify_profile, path=["response"])
+        assert_matches_type(MessageTemplate, verify_profile, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -741,7 +740,7 @@ class TestAsyncVerifyProfiles:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         verify_profile = await response.parse()
-        assert_matches_type(VerifyProfileUpdateTemplateResponse, verify_profile, path=["response"])
+        assert_matches_type(MessageTemplate, verify_profile, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -754,7 +753,7 @@ class TestAsyncVerifyProfiles:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             verify_profile = await response.parse()
-            assert_matches_type(VerifyProfileUpdateTemplateResponse, verify_profile, path=["response"])
+            assert_matches_type(MessageTemplate, verify_profile, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
