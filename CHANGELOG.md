@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.8.0 (2025-10-21)
+
+Full Changelog: [v3.7.0...v3.8.0](https://github.com/team-telnyx/telnyx-python/compare/v3.7.0...v3.8.0)
+
+### Features
+
+* **api:** added webhook public key ([1d410a8](https://github.com/team-telnyx/telnyx-python/commit/1d410a89914a1725596d96fe09bdcef1d5f48c83))
+
 ## 3.7.0 (2025-10-21)
 
 Full Changelog: [v3.6.0...v3.7.0](https://github.com/team-telnyx/telnyx-python/compare/v3.6.0...v3.7.0)
