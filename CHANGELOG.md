@@ -1,5 +1,21 @@
 # Changelog
 
+## 3.6.0 (2025-10-21)
+
+Full Changelog: [v3.5.0...v3.6.0](https://github.com/team-telnyx/telnyx-python/compare/v3.5.0...v3.6.0)
+
+### Features
+
+* **api:** add method to upload JSON documents ([c5028bb](https://github.com/team-telnyx/telnyx-python/commit/c5028bbf20b22dc10b82425eb59622361add546e))
+* **api:** manual updates ([12f6545](https://github.com/team-telnyx/telnyx-python/commit/12f6545ff47c2b41f7c45cdc0de37b1c23736b4a))
+* **api:** manual updates ([2250b8d](https://github.com/team-telnyx/telnyx-python/commit/2250b8d642d21b0f6629f00cfa066d6ba5eea7a8))
+* define more models ([0f72fad](https://github.com/team-telnyx/telnyx-python/commit/0f72fad4e087b153f8e0fbb5bd602f1292b7d957))
+
+
+### Chores
+
+* bump `httpx-aiohttp` version to 0.1.9 ([b97919a](https://github.com/team-telnyx/telnyx-python/commit/b97919af398967c61448c7f0c328567ed13d6e23))
+
 ## 3.5.0 (2025-10-16)
 
 Full Changelog: [v3.4.0...v3.5.0](https://github.com/team-telnyx/telnyx-python/compare/v3.4.0...v3.5.0)
