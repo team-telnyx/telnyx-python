@@ -1494,6 +1494,7 @@ from telnyx.types import (
     DocumentDeleteResponse,
     DocumentGenerateDownloadLinkResponse,
     DocumentUploadResponse,
+    DocumentUploadJsonResponse,
 )
 ```
 
@@ -1505,7 +1506,8 @@ Methods:
 - <code title="delete /documents/{id}">client.documents.<a href="./src/telnyx/resources/documents.py">delete</a>(id) -> <a href="./src/telnyx/types/document_delete_response.py">DocumentDeleteResponse</a></code>
 - <code title="get /documents/{id}/download">client.documents.<a href="./src/telnyx/resources/documents.py">download</a>(id) -> BinaryAPIResponse</code>
 - <code title="get /documents/{id}/download_link">client.documents.<a href="./src/telnyx/resources/documents.py">generate_download_link</a>(id) -> <a href="./src/telnyx/types/document_generate_download_link_response.py">DocumentGenerateDownloadLinkResponse</a></code>
-- <code title="post /documents">client.documents.<a href="./src/telnyx/resources/documents.py">upload</a>(\*\*<a href="src/telnyx/types/document_upload_params.py">params</a>) -> <a href="./src/telnyx/types/document_upload_response.py">DocumentUploadResponse</a></code>
+- <code title="post /documents?content-type=multipart">client.documents.<a href="./src/telnyx/resources/documents.py">upload</a>(\*\*<a href="src/telnyx/types/document_upload_params.py">params</a>) -> <a href="./src/telnyx/types/document_upload_response.py">DocumentUploadResponse</a></code>
+- <code title="post /documents">client.documents.<a href="./src/telnyx/resources/documents.py">upload_json</a>(\*\*<a href="src/telnyx/types/document_upload_json_params.py">params</a>) -> <a href="./src/telnyx/types/document_upload_json_response.py">DocumentUploadJsonResponse</a></code>
 
 # DynamicEmergencyAddresses
 
