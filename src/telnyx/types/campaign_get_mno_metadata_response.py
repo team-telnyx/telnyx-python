@@ -32,4 +32,4 @@ class _10999(BaseModel):
 
 
 class CampaignGetMnoMetadataResponse(BaseModel):
-    _10999: Optional[_10999] = FieldInfo(alias="10999", default=None)
+    api_10999: Optional[_10999] = FieldInfo(alias="10999", default=None)
