@@ -346,11 +346,13 @@ class Telnyx(SyncAPIClient):
 
     # client options
     api_key: str
+    public_key: str | None
 
     def __init__(
         self,
         *,
         api_key: str | None = None,
+        public_key: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
         max_retries: int = DEFAULT_MAX_RETRIES,
@@ -372,7 +374,9 @@ class Telnyx(SyncAPIClient):
     ) -> None:
         """Construct a new synchronous Telnyx client instance.
 
-        This automatically infers the `api_key` argument from the `TELNYX_API_KEY` environment variable if it is not provided.
+        This automatically infers the following arguments from their corresponding environment variables if they are not provided:
+        - `api_key` from `TELNYX_API_KEY`
+        - `public_key` from `TELNYX_PUBLIC_KEY`
         """
         if api_key is None:
             api_key = os.environ.get("TELNYX_API_KEY")
@@ -381,6 +385,10 @@ class Telnyx(SyncAPIClient):
                 "The api_key client option must be set either by passing api_key to the client or by setting the TELNYX_API_KEY environment variable"
             )
         self.api_key = api_key
+
+        if public_key is None:
+            public_key = os.environ.get("TELNYX_PUBLIC_KEY")
+        self.public_key = public_key
 
         if base_url is None:
             base_url = os.environ.get("TELNYX_BASE_URL")
@@ -586,6 +594,7 @@ class Telnyx(SyncAPIClient):
         self,
         *,
         api_key: str | None = None,
+        public_key: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
         http_client: httpx.Client | None = None,
@@ -620,6 +629,7 @@ class Telnyx(SyncAPIClient):
         http_client = http_client or self._client
         client = self.__class__(
             api_key=api_key or self.api_key,
+            public_key=public_key or self.public_key,
             base_url=base_url or self.base_url,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
             http_client=http_client,
@@ -829,11 +839,13 @@ class AsyncTelnyx(AsyncAPIClient):
 
     # client options
     api_key: str
+    public_key: str | None
 
     def __init__(
         self,
         *,
         api_key: str | None = None,
+        public_key: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
         max_retries: int = DEFAULT_MAX_RETRIES,
@@ -855,7 +867,9 @@ class AsyncTelnyx(AsyncAPIClient):
     ) -> None:
         """Construct a new async AsyncTelnyx client instance.
 
-        This automatically infers the `api_key` argument from the `TELNYX_API_KEY` environment variable if it is not provided.
+        This automatically infers the following arguments from their corresponding environment variables if they are not provided:
+        - `api_key` from `TELNYX_API_KEY`
+        - `public_key` from `TELNYX_PUBLIC_KEY`
         """
         if api_key is None:
             api_key = os.environ.get("TELNYX_API_KEY")
@@ -864,6 +878,10 @@ class AsyncTelnyx(AsyncAPIClient):
                 "The api_key client option must be set either by passing api_key to the client or by setting the TELNYX_API_KEY environment variable"
             )
         self.api_key = api_key
+
+        if public_key is None:
+            public_key = os.environ.get("TELNYX_PUBLIC_KEY")
+        self.public_key = public_key
 
         if base_url is None:
             base_url = os.environ.get("TELNYX_BASE_URL")
@@ -1075,6 +1093,7 @@ class AsyncTelnyx(AsyncAPIClient):
         self,
         *,
         api_key: str | None = None,
+        public_key: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
         http_client: httpx.AsyncClient | None = None,
@@ -1109,6 +1128,7 @@ class AsyncTelnyx(AsyncAPIClient):
         http_client = http_client or self._client
         client = self.__class__(
             api_key=api_key or self.api_key,
+            public_key=public_key or self.public_key,
             base_url=base_url or self.base_url,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
             http_client=http_client,
