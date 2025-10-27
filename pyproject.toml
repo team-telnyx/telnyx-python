@@ -1,11 +1,15 @@
 [project]
 name = "telnyx"
 version = "3.8.0"
-description = "The official Python library for the telnyx API"
+description = "Telnyx API SDK for global Voice, SMS, MMS, WhatsApp, Fax, Wireless IoT, SIP Trunking, and Call Control."
 dynamic = ["readme"]
 license = "MIT"
 authors = [
 { name = "Telnyx", email = "support@telnyx.com" },
+]
+keywords = [
+  "telnyx", "voice", "sms", "mms", "whatsapp", "fax", "iot", "sip", 
+  "trunking", "voip", "telephony", "api", "communications", "connectivity"
 ]
 dependencies = [
     "httpx>=0.23.0, <1",
