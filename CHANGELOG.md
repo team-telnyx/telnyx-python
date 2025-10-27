@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.9.0 (2025-10-27)
+
+Full Changelog: [v3.8.0...v3.9.0](https://github.com/team-telnyx/telnyx-python/compare/v3.8.0...v3.9.0)
+
+### Features
+
+* **webhooks:** Implement custom Telnyx webhook verification ([#2](https://github.com/team-telnyx/telnyx-python/issues/2)) ([51e8440](https://github.com/team-telnyx/telnyx-python/commit/51e8440992c3b413d6c91ee5fc33578bc21c27d6))
+
 ## 3.8.0 (2025-10-21)
 
 Full Changelog: [v3.7.0...v3.8.0](https://github.com/team-telnyx/telnyx-python/compare/v3.7.0...v3.8.0)
