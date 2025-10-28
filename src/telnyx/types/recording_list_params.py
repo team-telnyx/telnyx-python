@@ -13,7 +13,7 @@ class RecordingListParams(TypedDict, total=False):
 
     Originally: filter[conference_id], filter[created_at][gte],
     filter[created_at][lte], filter[call_leg_id], filter[call_session_id],
-    filter[from], filter[to], filter[connection_id]
+    filter[from], filter[to], filter[connection_id], filter[sip_call_id]
     """
 
     page: Page
@@ -60,6 +60,12 @@ class Filter(_FilterReservedKeywords, total=False):
     """
 
     created_at: FilterCreatedAt
+
+    sip_call_id: str
+    """
+    If present, recordings will be filtered to those with a matching `sip_call_id`
+    attribute. Matching is case-sensitive
+    """
 
     to: str
     """
