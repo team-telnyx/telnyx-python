@@ -83,6 +83,7 @@ class TestRecordings:
                     "lte": "2019-03-29T11:10:00Z",
                 },
                 "from": "1234567890",
+                "sip_call_id": "428c31b6-7af4-4bcb-b7f5-5013ef9657c1",
                 "to": "1234567890",
             },
             page={
@@ -224,6 +225,7 @@ class TestAsyncRecordings:
                     "lte": "2019-03-29T11:10:00Z",
                 },
                 "from": "1234567890",
+                "sip_call_id": "428c31b6-7af4-4bcb-b7f5-5013ef9657c1",
                 "to": "1234567890",
             },
             page={
