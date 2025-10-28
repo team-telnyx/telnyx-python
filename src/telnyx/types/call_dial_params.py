@@ -219,6 +219,9 @@ class CallDialParams(TypedDict, total=False):
     Currently only User-to-User header is supported.
     """
 
+    sip_region: Literal["US", "Europe", "Canada", "Australia", "Middle East"]
+    """Defines the SIP region to be used for the call."""
+
     sip_transport_protocol: Literal["UDP", "TCP", "TLS"]
     """Defines SIP transport protocol to be used on the call."""
 
