@@ -113,6 +113,7 @@ class TestCalls:
                     "value": "12345",
                 }
             ],
+            sip_region="Canada",
             sip_transport_protocol="TLS",
             sound_modifications={
                 "octaves": 0.1,
@@ -333,6 +334,7 @@ class TestAsyncCalls:
                     "value": "12345",
                 }
             ],
+            sip_region="Canada",
             sip_transport_protocol="TLS",
             sound_modifications={
                 "octaves": 0.1,
