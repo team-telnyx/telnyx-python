@@ -2269,6 +2269,7 @@ class TestActions:
                     "value": "value",
                 }
             ],
+            sip_region="Canada",
             sip_transport_protocol="TLS",
             sound_modifications={
                 "octaves": 0.1,
@@ -4588,6 +4589,7 @@ class TestAsyncActions:
                     "value": "value",
                 }
             ],
+            sip_region="Canada",
             sip_transport_protocol="TLS",
             sound_modifications={
                 "octaves": 0.1,

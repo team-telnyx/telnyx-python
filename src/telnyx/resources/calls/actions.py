@@ -3120,6 +3120,7 @@ class ActionsResource(SyncAPIResource):
         sip_auth_password: str | Omit = omit,
         sip_auth_username: str | Omit = omit,
         sip_headers: Iterable[SipHeaderParam] | Omit = omit,
+        sip_region: Literal["US", "Europe", "Canada", "Australia", "Middle East"] | Omit = omit,
         sip_transport_protocol: Literal["UDP", "TCP", "TLS"] | Omit = omit,
         sound_modifications: SoundModificationsParam | Omit = omit,
         target_leg_client_state: str | Omit = omit,
@@ -3241,6 +3242,8 @@ class ActionsResource(SyncAPIResource):
           sip_headers: SIP headers to be added to the SIP INVITE. Currently only User-to-User header is
               supported.
 
+          sip_region: Defines the SIP region to be used for the call.
+
           sip_transport_protocol: Defines SIP transport protocol to be used on the call.
 
           sound_modifications: Use this field to modify sound effects, for example adjust the pitch.
@@ -3305,6 +3308,7 @@ class ActionsResource(SyncAPIResource):
                     "sip_auth_password": sip_auth_password,
                     "sip_auth_username": sip_auth_username,
                     "sip_headers": sip_headers,
+                    "sip_region": sip_region,
                     "sip_transport_protocol": sip_transport_protocol,
                     "sound_modifications": sound_modifications,
                     "target_leg_client_state": target_leg_client_state,
@@ -6365,6 +6369,7 @@ class AsyncActionsResource(AsyncAPIResource):
         sip_auth_password: str | Omit = omit,
         sip_auth_username: str | Omit = omit,
         sip_headers: Iterable[SipHeaderParam] | Omit = omit,
+        sip_region: Literal["US", "Europe", "Canada", "Australia", "Middle East"] | Omit = omit,
         sip_transport_protocol: Literal["UDP", "TCP", "TLS"] | Omit = omit,
         sound_modifications: SoundModificationsParam | Omit = omit,
         target_leg_client_state: str | Omit = omit,
@@ -6486,6 +6491,8 @@ class AsyncActionsResource(AsyncAPIResource):
           sip_headers: SIP headers to be added to the SIP INVITE. Currently only User-to-User header is
               supported.
 
+          sip_region: Defines the SIP region to be used for the call.
+
           sip_transport_protocol: Defines SIP transport protocol to be used on the call.
 
           sound_modifications: Use this field to modify sound effects, for example adjust the pitch.
@@ -6550,6 +6557,7 @@ class AsyncActionsResource(AsyncAPIResource):
                     "sip_auth_password": sip_auth_password,
                     "sip_auth_username": sip_auth_username,
                     "sip_headers": sip_headers,
+                    "sip_region": sip_region,
                     "sip_transport_protocol": sip_transport_protocol,
                     "sound_modifications": sound_modifications,
                     "target_leg_client_state": target_leg_client_state,
