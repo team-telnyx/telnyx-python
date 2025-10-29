@@ -30,6 +30,12 @@ class ActionUpdateParams(TypedDict, total=False):
     has already been executed.
     """
 
+    region: Literal["Australia", "Europe", "Middle East", "US"]
+    """Region where the conference data is located.
+
+    Defaults to the region defined in user's data locality settings (Europe or US).
+    """
+
     whisper_call_control_ids: SequenceNotStr[str]
     """Array of unique call_control_ids the supervisor can whisper to.
 

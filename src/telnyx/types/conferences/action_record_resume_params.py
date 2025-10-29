@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
+from typing_extensions import Literal, TypedDict
 
 __all__ = ["ActionRecordResumeParams"]
 
@@ -17,3 +17,9 @@ class ActionRecordResumeParams(TypedDict, total=False):
 
     recording_id: str
     """Use this field to resume specific recording."""
+
+    region: Literal["Australia", "Europe", "Middle East", "US"]
+    """Region where the conference data is located.
+
+    Defaults to the region defined in user's data locality settings (Europe or US).
+    """

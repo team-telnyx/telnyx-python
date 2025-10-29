@@ -104,6 +104,12 @@ class ActionSpeakParams(TypedDict, total=False):
     (SSML).
     """
 
+    region: Literal["Australia", "Europe", "Middle East", "US"]
+    """Region where the conference data is located.
+
+    Defaults to the region defined in user's data locality settings (Europe or US).
+    """
+
     voice_settings: VoiceSettings
     """The settings associated with the voice selected"""
 

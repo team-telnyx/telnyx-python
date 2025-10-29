@@ -79,6 +79,7 @@ class ActionsResource(SyncAPIResource):
         call_control_id: str,
         supervisor_role: Literal["barge", "monitor", "none", "whisper"],
         command_id: str | Omit = omit,
+        region: Literal["Australia", "Europe", "Middle East", "US"] | Omit = omit,
         whisper_call_control_ids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -103,6 +104,9 @@ class ActionsResource(SyncAPIResource):
               subsequent commands with the same `command_id` as one that has already been
               executed.
 
+          region: Region where the conference data is located. Defaults to the region defined in
+              user's data locality settings (Europe or US).
+
           whisper_call_control_ids: Array of unique call_control_ids the supervisor can whisper to. If none
               provided, the supervisor will join the conference as a monitoring participant
               only.
@@ -124,6 +128,7 @@ class ActionsResource(SyncAPIResource):
                     "call_control_id": call_control_id,
                     "supervisor_role": supervisor_role,
                     "command_id": command_id,
+                    "region": region,
                     "whisper_call_control_ids": whisper_call_control_ids,
                 },
                 action_update_params.ActionUpdateParams,
@@ -141,6 +146,7 @@ class ActionsResource(SyncAPIResource):
         audio_url: str | Omit = omit,
         call_control_ids: SequenceNotStr[str] | Omit = omit,
         media_name: str | Omit = omit,
+        region: Literal["Australia", "Europe", "Middle East", "US"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -163,6 +169,9 @@ class ActionsResource(SyncAPIResource):
               api.telnyx.com/v2/media by the same user/organization. The file must either be a
               WAV or MP3 file.
 
+          region: Region where the conference data is located. Defaults to the region defined in
+              user's data locality settings (Europe or US).
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -180,6 +189,7 @@ class ActionsResource(SyncAPIResource):
                     "audio_url": audio_url,
                     "call_control_ids": call_control_ids,
                     "media_name": media_name,
+                    "region": region,
                 },
                 action_hold_params.ActionHoldParams,
             ),
@@ -202,6 +212,7 @@ class ActionsResource(SyncAPIResource):
         hold_audio_url: str | Omit = omit,
         hold_media_name: str | Omit = omit,
         mute: bool | Omit = omit,
+        region: Literal["Australia", "Europe", "Middle East", "US"] | Omit = omit,
         soft_end_conference_on_exit: bool | Omit = omit,
         start_conference_on_enter: bool | Omit = omit,
         supervisor_role: Literal["barge", "monitor", "none", "whisper"] | Omit = omit,
@@ -262,6 +273,9 @@ class ActionsResource(SyncAPIResource):
           mute: Whether the participant should be muted immediately after joining the
               conference. Defaults to "false".
 
+          region: Region where the conference data is located. Defaults to the region defined in
+              user's data locality settings (Europe or US).
+
           soft_end_conference_on_exit: Whether the conference should end after the participant leaves the conference.
               NOTE this doesn't hang up the other participants. Defaults to "false".
 
@@ -302,6 +316,7 @@ class ActionsResource(SyncAPIResource):
                     "hold_audio_url": hold_audio_url,
                     "hold_media_name": hold_media_name,
                     "mute": mute,
+                    "region": region,
                     "soft_end_conference_on_exit": soft_end_conference_on_exit,
                     "start_conference_on_enter": start_conference_on_enter,
                     "supervisor_role": supervisor_role,
@@ -322,6 +337,7 @@ class ActionsResource(SyncAPIResource):
         call_control_id: str,
         beep_enabled: Literal["always", "never", "on_enter", "on_exit"] | Omit = omit,
         command_id: str | Omit = omit,
+        region: Literal["Australia", "Europe", "Middle East", "US"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -346,6 +362,9 @@ class ActionsResource(SyncAPIResource):
               subsequent commands with the same `command_id` as one that has already been
               executed.
 
+          region: Region where the conference data is located. Defaults to the region defined in
+              user's data locality settings (Europe or US).
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -363,6 +382,7 @@ class ActionsResource(SyncAPIResource):
                     "call_control_id": call_control_id,
                     "beep_enabled": beep_enabled,
                     "command_id": command_id,
+                    "region": region,
                 },
                 action_leave_params.ActionLeaveParams,
             ),
@@ -377,6 +397,7 @@ class ActionsResource(SyncAPIResource):
         id: str,
         *,
         call_control_ids: SequenceNotStr[str] | Omit = omit,
+        region: Literal["Australia", "Europe", "Middle East", "US"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -391,6 +412,9 @@ class ActionsResource(SyncAPIResource):
           call_control_ids: Array of unique identifiers and tokens for controlling the call. When empty all
               participants will be muted.
 
+          region: Region where the conference data is located. Defaults to the region defined in
+              user's data locality settings (Europe or US).
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -403,7 +427,13 @@ class ActionsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._post(
             f"/conferences/{id}/actions/mute",
-            body=maybe_transform({"call_control_ids": call_control_ids}, action_mute_params.ActionMuteParams),
+            body=maybe_transform(
+                {
+                    "call_control_ids": call_control_ids,
+                    "region": region,
+                },
+                action_mute_params.ActionMuteParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -418,6 +448,7 @@ class ActionsResource(SyncAPIResource):
         call_control_ids: SequenceNotStr[str] | Omit = omit,
         loop: LoopcountParam | Omit = omit,
         media_name: str | Omit = omit,
+        region: Literal["Australia", "Europe", "Middle East", "US"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -443,6 +474,9 @@ class ActionsResource(SyncAPIResource):
               must point to a file previously uploaded to api.telnyx.com/v2/media by the same
               user/organization. The file must either be a WAV or MP3 file.
 
+          region: Region where the conference data is located. Defaults to the region defined in
+              user's data locality settings (Europe or US).
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -461,6 +495,7 @@ class ActionsResource(SyncAPIResource):
                     "call_control_ids": call_control_ids,
                     "loop": loop,
                     "media_name": media_name,
+                    "region": region,
                 },
                 action_play_params.ActionPlayParams,
             ),
@@ -476,6 +511,7 @@ class ActionsResource(SyncAPIResource):
         *,
         command_id: str | Omit = omit,
         recording_id: str | Omit = omit,
+        region: Literal["Australia", "Europe", "Middle East", "US"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -491,6 +527,9 @@ class ActionsResource(SyncAPIResource):
               the same `command_id` for the same `call_control_id`.
 
           recording_id: Use this field to pause specific recording.
+
+          region: Region where the conference data is located. Defaults to the region defined in
+              user's data locality settings (Europe or US).
 
           extra_headers: Send extra headers
 
@@ -508,6 +547,7 @@ class ActionsResource(SyncAPIResource):
                 {
                     "command_id": command_id,
                     "recording_id": recording_id,
+                    "region": region,
                 },
                 action_record_pause_params.ActionRecordPauseParams,
             ),
@@ -523,6 +563,7 @@ class ActionsResource(SyncAPIResource):
         *,
         command_id: str | Omit = omit,
         recording_id: str | Omit = omit,
+        region: Literal["Australia", "Europe", "Middle East", "US"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -538,6 +579,9 @@ class ActionsResource(SyncAPIResource):
               the same `command_id` for the same `call_control_id`.
 
           recording_id: Use this field to resume specific recording.
+
+          region: Region where the conference data is located. Defaults to the region defined in
+              user's data locality settings (Europe or US).
 
           extra_headers: Send extra headers
 
@@ -555,6 +599,7 @@ class ActionsResource(SyncAPIResource):
                 {
                     "command_id": command_id,
                     "recording_id": recording_id,
+                    "region": region,
                 },
                 action_record_resume_params.ActionRecordResumeParams,
             ),
@@ -572,6 +617,7 @@ class ActionsResource(SyncAPIResource):
         command_id: str | Omit = omit,
         custom_file_name: str | Omit = omit,
         play_beep: bool | Omit = omit,
+        region: Literal["Australia", "Europe", "Middle East", "US"] | Omit = omit,
         trim: Literal["trim-silence"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -601,6 +647,9 @@ class ActionsResource(SyncAPIResource):
 
           play_beep: If enabled, a beep sound will be played at the start of a recording.
 
+          region: Region where the conference data is located. Defaults to the region defined in
+              user's data locality settings (Europe or US).
+
           trim: When set to `trim-silence`, silence will be removed from the beginning and end
               of the recording.
 
@@ -622,6 +671,7 @@ class ActionsResource(SyncAPIResource):
                     "command_id": command_id,
                     "custom_file_name": custom_file_name,
                     "play_beep": play_beep,
+                    "region": region,
                     "trim": trim,
                 },
                 action_record_start_params.ActionRecordStartParams,
@@ -639,6 +689,7 @@ class ActionsResource(SyncAPIResource):
         client_state: str | Omit = omit,
         command_id: str | Omit = omit,
         recording_id: str | Omit = omit,
+        region: Literal["Australia", "Europe", "Middle East", "US"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -662,6 +713,9 @@ class ActionsResource(SyncAPIResource):
 
           recording_id: Uniquely identifies the resource.
 
+          region: Region where the conference data is located. Defaults to the region defined in
+              user's data locality settings (Europe or US).
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -679,6 +733,7 @@ class ActionsResource(SyncAPIResource):
                     "client_state": client_state,
                     "command_id": command_id,
                     "recording_id": recording_id,
+                    "region": region,
                 },
                 action_record_stop_params.ActionRecordStopParams,
             ),
@@ -729,6 +784,7 @@ class ActionsResource(SyncAPIResource):
         ]
         | Omit = omit,
         payload_type: Literal["text", "ssml"] | Omit = omit,
+        region: Literal["Australia", "Europe", "Middle East", "US"] | Omit = omit,
         voice_settings: action_speak_params.VoiceSettings | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -785,6 +841,9 @@ class ActionsResource(SyncAPIResource):
           payload_type: The type of the provided payload. The payload can either be plain text, or
               Speech Synthesis Markup Language (SSML).
 
+          region: Region where the conference data is located. Defaults to the region defined in
+              user's data locality settings (Europe or US).
+
           voice_settings: The settings associated with the voice selected
 
           extra_headers: Send extra headers
@@ -807,6 +866,7 @@ class ActionsResource(SyncAPIResource):
                     "command_id": command_id,
                     "language": language,
                     "payload_type": payload_type,
+                    "region": region,
                     "voice_settings": voice_settings,
                 },
                 action_speak_params.ActionSpeakParams,
@@ -822,6 +882,7 @@ class ActionsResource(SyncAPIResource):
         id: str,
         *,
         call_control_ids: SequenceNotStr[str] | Omit = omit,
+        region: Literal["Australia", "Europe", "Middle East", "US"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -836,6 +897,9 @@ class ActionsResource(SyncAPIResource):
           call_control_ids: List of call control ids identifying participants the audio file should stop be
               played to. If not given, the audio will be stoped to the entire conference.
 
+          region: Region where the conference data is located. Defaults to the region defined in
+              user's data locality settings (Europe or US).
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -848,7 +912,13 @@ class ActionsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._post(
             f"/conferences/{id}/actions/stop",
-            body=maybe_transform({"call_control_ids": call_control_ids}, action_stop_params.ActionStopParams),
+            body=maybe_transform(
+                {
+                    "call_control_ids": call_control_ids,
+                    "region": region,
+                },
+                action_stop_params.ActionStopParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -860,6 +930,7 @@ class ActionsResource(SyncAPIResource):
         id: str,
         *,
         call_control_ids: SequenceNotStr[str],
+        region: Literal["Australia", "Europe", "Middle East", "US"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -874,6 +945,9 @@ class ActionsResource(SyncAPIResource):
           call_control_ids: List of unique identifiers and tokens for controlling the call. Enter each call
               control ID to be unheld.
 
+          region: Region where the conference data is located. Defaults to the region defined in
+              user's data locality settings (Europe or US).
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -886,7 +960,13 @@ class ActionsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._post(
             f"/conferences/{id}/actions/unhold",
-            body=maybe_transform({"call_control_ids": call_control_ids}, action_unhold_params.ActionUnholdParams),
+            body=maybe_transform(
+                {
+                    "call_control_ids": call_control_ids,
+                    "region": region,
+                },
+                action_unhold_params.ActionUnholdParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -898,6 +978,7 @@ class ActionsResource(SyncAPIResource):
         id: str,
         *,
         call_control_ids: SequenceNotStr[str] | Omit = omit,
+        region: Literal["Australia", "Europe", "Middle East", "US"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -912,6 +993,9 @@ class ActionsResource(SyncAPIResource):
           call_control_ids: List of unique identifiers and tokens for controlling the call. Enter each call
               control ID to be unmuted. When empty all participants will be unmuted.
 
+          region: Region where the conference data is located. Defaults to the region defined in
+              user's data locality settings (Europe or US).
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -924,7 +1008,13 @@ class ActionsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._post(
             f"/conferences/{id}/actions/unmute",
-            body=maybe_transform({"call_control_ids": call_control_ids}, action_unmute_params.ActionUnmuteParams),
+            body=maybe_transform(
+                {
+                    "call_control_ids": call_control_ids,
+                    "region": region,
+                },
+                action_unmute_params.ActionUnmuteParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -959,6 +1049,7 @@ class AsyncActionsResource(AsyncAPIResource):
         call_control_id: str,
         supervisor_role: Literal["barge", "monitor", "none", "whisper"],
         command_id: str | Omit = omit,
+        region: Literal["Australia", "Europe", "Middle East", "US"] | Omit = omit,
         whisper_call_control_ids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -983,6 +1074,9 @@ class AsyncActionsResource(AsyncAPIResource):
               subsequent commands with the same `command_id` as one that has already been
               executed.
 
+          region: Region where the conference data is located. Defaults to the region defined in
+              user's data locality settings (Europe or US).
+
           whisper_call_control_ids: Array of unique call_control_ids the supervisor can whisper to. If none
               provided, the supervisor will join the conference as a monitoring participant
               only.
@@ -1004,6 +1098,7 @@ class AsyncActionsResource(AsyncAPIResource):
                     "call_control_id": call_control_id,
                     "supervisor_role": supervisor_role,
                     "command_id": command_id,
+                    "region": region,
                     "whisper_call_control_ids": whisper_call_control_ids,
                 },
                 action_update_params.ActionUpdateParams,
@@ -1021,6 +1116,7 @@ class AsyncActionsResource(AsyncAPIResource):
         audio_url: str | Omit = omit,
         call_control_ids: SequenceNotStr[str] | Omit = omit,
         media_name: str | Omit = omit,
+        region: Literal["Australia", "Europe", "Middle East", "US"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1043,6 +1139,9 @@ class AsyncActionsResource(AsyncAPIResource):
               api.telnyx.com/v2/media by the same user/organization. The file must either be a
               WAV or MP3 file.
 
+          region: Region where the conference data is located. Defaults to the region defined in
+              user's data locality settings (Europe or US).
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1060,6 +1159,7 @@ class AsyncActionsResource(AsyncAPIResource):
                     "audio_url": audio_url,
                     "call_control_ids": call_control_ids,
                     "media_name": media_name,
+                    "region": region,
                 },
                 action_hold_params.ActionHoldParams,
             ),
@@ -1082,6 +1182,7 @@ class AsyncActionsResource(AsyncAPIResource):
         hold_audio_url: str | Omit = omit,
         hold_media_name: str | Omit = omit,
         mute: bool | Omit = omit,
+        region: Literal["Australia", "Europe", "Middle East", "US"] | Omit = omit,
         soft_end_conference_on_exit: bool | Omit = omit,
         start_conference_on_enter: bool | Omit = omit,
         supervisor_role: Literal["barge", "monitor", "none", "whisper"] | Omit = omit,
@@ -1142,6 +1243,9 @@ class AsyncActionsResource(AsyncAPIResource):
           mute: Whether the participant should be muted immediately after joining the
               conference. Defaults to "false".
 
+          region: Region where the conference data is located. Defaults to the region defined in
+              user's data locality settings (Europe or US).
+
           soft_end_conference_on_exit: Whether the conference should end after the participant leaves the conference.
               NOTE this doesn't hang up the other participants. Defaults to "false".
 
@@ -1182,6 +1286,7 @@ class AsyncActionsResource(AsyncAPIResource):
                     "hold_audio_url": hold_audio_url,
                     "hold_media_name": hold_media_name,
                     "mute": mute,
+                    "region": region,
                     "soft_end_conference_on_exit": soft_end_conference_on_exit,
                     "start_conference_on_enter": start_conference_on_enter,
                     "supervisor_role": supervisor_role,
@@ -1202,6 +1307,7 @@ class AsyncActionsResource(AsyncAPIResource):
         call_control_id: str,
         beep_enabled: Literal["always", "never", "on_enter", "on_exit"] | Omit = omit,
         command_id: str | Omit = omit,
+        region: Literal["Australia", "Europe", "Middle East", "US"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1226,6 +1332,9 @@ class AsyncActionsResource(AsyncAPIResource):
               subsequent commands with the same `command_id` as one that has already been
               executed.
 
+          region: Region where the conference data is located. Defaults to the region defined in
+              user's data locality settings (Europe or US).
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1243,6 +1352,7 @@ class AsyncActionsResource(AsyncAPIResource):
                     "call_control_id": call_control_id,
                     "beep_enabled": beep_enabled,
                     "command_id": command_id,
+                    "region": region,
                 },
                 action_leave_params.ActionLeaveParams,
             ),
@@ -1257,6 +1367,7 @@ class AsyncActionsResource(AsyncAPIResource):
         id: str,
         *,
         call_control_ids: SequenceNotStr[str] | Omit = omit,
+        region: Literal["Australia", "Europe", "Middle East", "US"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1271,6 +1382,9 @@ class AsyncActionsResource(AsyncAPIResource):
           call_control_ids: Array of unique identifiers and tokens for controlling the call. When empty all
               participants will be muted.
 
+          region: Region where the conference data is located. Defaults to the region defined in
+              user's data locality settings (Europe or US).
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1284,7 +1398,11 @@ class AsyncActionsResource(AsyncAPIResource):
         return await self._post(
             f"/conferences/{id}/actions/mute",
             body=await async_maybe_transform(
-                {"call_control_ids": call_control_ids}, action_mute_params.ActionMuteParams
+                {
+                    "call_control_ids": call_control_ids,
+                    "region": region,
+                },
+                action_mute_params.ActionMuteParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -1300,6 +1418,7 @@ class AsyncActionsResource(AsyncAPIResource):
         call_control_ids: SequenceNotStr[str] | Omit = omit,
         loop: LoopcountParam | Omit = omit,
         media_name: str | Omit = omit,
+        region: Literal["Australia", "Europe", "Middle East", "US"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1325,6 +1444,9 @@ class AsyncActionsResource(AsyncAPIResource):
               must point to a file previously uploaded to api.telnyx.com/v2/media by the same
               user/organization. The file must either be a WAV or MP3 file.
 
+          region: Region where the conference data is located. Defaults to the region defined in
+              user's data locality settings (Europe or US).
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1343,6 +1465,7 @@ class AsyncActionsResource(AsyncAPIResource):
                     "call_control_ids": call_control_ids,
                     "loop": loop,
                     "media_name": media_name,
+                    "region": region,
                 },
                 action_play_params.ActionPlayParams,
             ),
@@ -1358,6 +1481,7 @@ class AsyncActionsResource(AsyncAPIResource):
         *,
         command_id: str | Omit = omit,
         recording_id: str | Omit = omit,
+        region: Literal["Australia", "Europe", "Middle East", "US"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1373,6 +1497,9 @@ class AsyncActionsResource(AsyncAPIResource):
               the same `command_id` for the same `call_control_id`.
 
           recording_id: Use this field to pause specific recording.
+
+          region: Region where the conference data is located. Defaults to the region defined in
+              user's data locality settings (Europe or US).
 
           extra_headers: Send extra headers
 
@@ -1390,6 +1517,7 @@ class AsyncActionsResource(AsyncAPIResource):
                 {
                     "command_id": command_id,
                     "recording_id": recording_id,
+                    "region": region,
                 },
                 action_record_pause_params.ActionRecordPauseParams,
             ),
@@ -1405,6 +1533,7 @@ class AsyncActionsResource(AsyncAPIResource):
         *,
         command_id: str | Omit = omit,
         recording_id: str | Omit = omit,
+        region: Literal["Australia", "Europe", "Middle East", "US"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1420,6 +1549,9 @@ class AsyncActionsResource(AsyncAPIResource):
               the same `command_id` for the same `call_control_id`.
 
           recording_id: Use this field to resume specific recording.
+
+          region: Region where the conference data is located. Defaults to the region defined in
+              user's data locality settings (Europe or US).
 
           extra_headers: Send extra headers
 
@@ -1437,6 +1569,7 @@ class AsyncActionsResource(AsyncAPIResource):
                 {
                     "command_id": command_id,
                     "recording_id": recording_id,
+                    "region": region,
                 },
                 action_record_resume_params.ActionRecordResumeParams,
             ),
@@ -1454,6 +1587,7 @@ class AsyncActionsResource(AsyncAPIResource):
         command_id: str | Omit = omit,
         custom_file_name: str | Omit = omit,
         play_beep: bool | Omit = omit,
+        region: Literal["Australia", "Europe", "Middle East", "US"] | Omit = omit,
         trim: Literal["trim-silence"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1483,6 +1617,9 @@ class AsyncActionsResource(AsyncAPIResource):
 
           play_beep: If enabled, a beep sound will be played at the start of a recording.
 
+          region: Region where the conference data is located. Defaults to the region defined in
+              user's data locality settings (Europe or US).
+
           trim: When set to `trim-silence`, silence will be removed from the beginning and end
               of the recording.
 
@@ -1504,6 +1641,7 @@ class AsyncActionsResource(AsyncAPIResource):
                     "command_id": command_id,
                     "custom_file_name": custom_file_name,
                     "play_beep": play_beep,
+                    "region": region,
                     "trim": trim,
                 },
                 action_record_start_params.ActionRecordStartParams,
@@ -1521,6 +1659,7 @@ class AsyncActionsResource(AsyncAPIResource):
         client_state: str | Omit = omit,
         command_id: str | Omit = omit,
         recording_id: str | Omit = omit,
+        region: Literal["Australia", "Europe", "Middle East", "US"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1544,6 +1683,9 @@ class AsyncActionsResource(AsyncAPIResource):
 
           recording_id: Uniquely identifies the resource.
 
+          region: Region where the conference data is located. Defaults to the region defined in
+              user's data locality settings (Europe or US).
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1561,6 +1703,7 @@ class AsyncActionsResource(AsyncAPIResource):
                     "client_state": client_state,
                     "command_id": command_id,
                     "recording_id": recording_id,
+                    "region": region,
                 },
                 action_record_stop_params.ActionRecordStopParams,
             ),
@@ -1611,6 +1754,7 @@ class AsyncActionsResource(AsyncAPIResource):
         ]
         | Omit = omit,
         payload_type: Literal["text", "ssml"] | Omit = omit,
+        region: Literal["Australia", "Europe", "Middle East", "US"] | Omit = omit,
         voice_settings: action_speak_params.VoiceSettings | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1667,6 +1811,9 @@ class AsyncActionsResource(AsyncAPIResource):
           payload_type: The type of the provided payload. The payload can either be plain text, or
               Speech Synthesis Markup Language (SSML).
 
+          region: Region where the conference data is located. Defaults to the region defined in
+              user's data locality settings (Europe or US).
+
           voice_settings: The settings associated with the voice selected
 
           extra_headers: Send extra headers
@@ -1689,6 +1836,7 @@ class AsyncActionsResource(AsyncAPIResource):
                     "command_id": command_id,
                     "language": language,
                     "payload_type": payload_type,
+                    "region": region,
                     "voice_settings": voice_settings,
                 },
                 action_speak_params.ActionSpeakParams,
@@ -1704,6 +1852,7 @@ class AsyncActionsResource(AsyncAPIResource):
         id: str,
         *,
         call_control_ids: SequenceNotStr[str] | Omit = omit,
+        region: Literal["Australia", "Europe", "Middle East", "US"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1718,6 +1867,9 @@ class AsyncActionsResource(AsyncAPIResource):
           call_control_ids: List of call control ids identifying participants the audio file should stop be
               played to. If not given, the audio will be stoped to the entire conference.
 
+          region: Region where the conference data is located. Defaults to the region defined in
+              user's data locality settings (Europe or US).
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1731,7 +1883,11 @@ class AsyncActionsResource(AsyncAPIResource):
         return await self._post(
             f"/conferences/{id}/actions/stop",
             body=await async_maybe_transform(
-                {"call_control_ids": call_control_ids}, action_stop_params.ActionStopParams
+                {
+                    "call_control_ids": call_control_ids,
+                    "region": region,
+                },
+                action_stop_params.ActionStopParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -1744,6 +1900,7 @@ class AsyncActionsResource(AsyncAPIResource):
         id: str,
         *,
         call_control_ids: SequenceNotStr[str],
+        region: Literal["Australia", "Europe", "Middle East", "US"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1758,6 +1915,9 @@ class AsyncActionsResource(AsyncAPIResource):
           call_control_ids: List of unique identifiers and tokens for controlling the call. Enter each call
               control ID to be unheld.
 
+          region: Region where the conference data is located. Defaults to the region defined in
+              user's data locality settings (Europe or US).
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1771,7 +1931,11 @@ class AsyncActionsResource(AsyncAPIResource):
         return await self._post(
             f"/conferences/{id}/actions/unhold",
             body=await async_maybe_transform(
-                {"call_control_ids": call_control_ids}, action_unhold_params.ActionUnholdParams
+                {
+                    "call_control_ids": call_control_ids,
+                    "region": region,
+                },
+                action_unhold_params.ActionUnholdParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -1784,6 +1948,7 @@ class AsyncActionsResource(AsyncAPIResource):
         id: str,
         *,
         call_control_ids: SequenceNotStr[str] | Omit = omit,
+        region: Literal["Australia", "Europe", "Middle East", "US"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1798,6 +1963,9 @@ class AsyncActionsResource(AsyncAPIResource):
           call_control_ids: List of unique identifiers and tokens for controlling the call. Enter each call
               control ID to be unmuted. When empty all participants will be unmuted.
 
+          region: Region where the conference data is located. Defaults to the region defined in
+              user's data locality settings (Europe or US).
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1811,7 +1979,11 @@ class AsyncActionsResource(AsyncAPIResource):
         return await self._post(
             f"/conferences/{id}/actions/unmute",
             body=await async_maybe_transform(
-                {"call_control_ids": call_control_ids}, action_unmute_params.ActionUnmuteParams
+                {
+                    "call_control_ids": call_control_ids,
+                    "region": region,
+                },
+                action_unmute_params.ActionUnmuteParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
