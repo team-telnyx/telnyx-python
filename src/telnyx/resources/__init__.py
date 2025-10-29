@@ -224,7 +224,7 @@ from .portouts import (
     PortoutsResourceWithStreamingResponse,
     AsyncPortoutsResourceWithStreamingResponse,
 )
-from .webhooks import TelnyxWebhook, WebhooksResource, AsyncWebhooksResource, TelnyxWebhookVerificationError
+from .webhooks import WebhooksResource, AsyncWebhooksResource, TelnyxWebhookVerificationError
 from .wireless import (
     WirelessResource,
     AsyncWirelessResource,
@@ -1237,7 +1237,6 @@ __all__ = [
     "AsyncOAuthGrantsResourceWithStreamingResponse",
     "WebhooksResource",
     "AsyncWebhooksResource",
-    "TelnyxWebhook",
     "TelnyxWebhookVerificationError",
     "AccessIPAddressResource",
     "AsyncAccessIPAddressResource",
