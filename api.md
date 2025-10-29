@@ -840,6 +840,54 @@ Methods:
 - <code title="get /ai/fine_tuning/jobs">client.ai.fine_tuning.jobs.<a href="./src/telnyx/resources/ai/fine_tuning/jobs.py">list</a>() -> <a href="./src/telnyx/types/ai/fine_tuning/job_list_response.py">JobListResponse</a></code>
 - <code title="post /ai/fine_tuning/jobs/{job_id}/cancel">client.ai.fine_tuning.jobs.<a href="./src/telnyx/resources/ai/fine_tuning/jobs.py">cancel</a>(job_id) -> <a href="./src/telnyx/types/ai/fine_tuning/fine_tuning_job.py">FineTuningJob</a></code>
 
+## Integrations
+
+Types:
+
+```python
+from telnyx.types.ai import IntegrationRetrieveResponse, IntegrationListResponse
+```
+
+Methods:
+
+- <code title="get /ai/integrations/{integration_id}">client.ai.integrations.<a href="./src/telnyx/resources/ai/integrations/integrations.py">retrieve</a>(integration_id) -> <a href="./src/telnyx/types/ai/integration_retrieve_response.py">IntegrationRetrieveResponse</a></code>
+- <code title="get /ai/integrations">client.ai.integrations.<a href="./src/telnyx/resources/ai/integrations/integrations.py">list</a>() -> <a href="./src/telnyx/types/ai/integration_list_response.py">IntegrationListResponse</a></code>
+
+### Connections
+
+Types:
+
+```python
+from telnyx.types.ai.integrations import ConnectionRetrieveResponse, ConnectionListResponse
+```
+
+Methods:
+
+- <code title="get /ai/integrations/connections/{user_connection_id}">client.ai.integrations.connections.<a href="./src/telnyx/resources/ai/integrations/connections.py">retrieve</a>(user_connection_id) -> <a href="./src/telnyx/types/ai/integrations/connection_retrieve_response.py">ConnectionRetrieveResponse</a></code>
+- <code title="get /ai/integrations/connections">client.ai.integrations.connections.<a href="./src/telnyx/resources/ai/integrations/connections.py">list</a>() -> <a href="./src/telnyx/types/ai/integrations/connection_list_response.py">ConnectionListResponse</a></code>
+- <code title="delete /ai/integrations/connections/{user_connection_id}">client.ai.integrations.connections.<a href="./src/telnyx/resources/ai/integrations/connections.py">delete</a>(user_connection_id) -> None</code>
+
+## McpServers
+
+Types:
+
+```python
+from telnyx.types.ai import (
+    McpServerCreateResponse,
+    McpServerRetrieveResponse,
+    McpServerUpdateResponse,
+    McpServerListResponse,
+)
+```
+
+Methods:
+
+- <code title="post /ai/mcp_servers">client.ai.mcp_servers.<a href="./src/telnyx/resources/ai/mcp_servers.py">create</a>(\*\*<a href="src/telnyx/types/ai/mcp_server_create_params.py">params</a>) -> <a href="./src/telnyx/types/ai/mcp_server_create_response.py">McpServerCreateResponse</a></code>
+- <code title="get /ai/mcp_servers/{mcp_server_id}">client.ai.mcp_servers.<a href="./src/telnyx/resources/ai/mcp_servers.py">retrieve</a>(mcp_server_id) -> <a href="./src/telnyx/types/ai/mcp_server_retrieve_response.py">McpServerRetrieveResponse</a></code>
+- <code title="put /ai/mcp_servers/{mcp_server_id}">client.ai.mcp_servers.<a href="./src/telnyx/resources/ai/mcp_servers.py">update</a>(mcp_server_id, \*\*<a href="src/telnyx/types/ai/mcp_server_update_params.py">params</a>) -> <a href="./src/telnyx/types/ai/mcp_server_update_response.py">McpServerUpdateResponse</a></code>
+- <code title="get /ai/mcp_servers">client.ai.mcp_servers.<a href="./src/telnyx/resources/ai/mcp_servers.py">list</a>(\*\*<a href="src/telnyx/types/ai/mcp_server_list_params.py">params</a>) -> <a href="./src/telnyx/types/ai/mcp_server_list_response.py">McpServerListResponse</a></code>
+- <code title="delete /ai/mcp_servers/{mcp_server_id}">client.ai.mcp_servers.<a href="./src/telnyx/resources/ai/mcp_servers.py">delete</a>(mcp_server_id) -> object</code>
+
 # AuditEvents
 
 Types:

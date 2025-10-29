@@ -56,6 +56,22 @@ from .fine_tuning import (
     FineTuningResourceWithStreamingResponse,
     AsyncFineTuningResourceWithStreamingResponse,
 )
+from .mcp_servers import (
+    McpServersResource,
+    AsyncMcpServersResource,
+    McpServersResourceWithRawResponse,
+    AsyncMcpServersResourceWithRawResponse,
+    McpServersResourceWithStreamingResponse,
+    AsyncMcpServersResourceWithStreamingResponse,
+)
+from .integrations import (
+    IntegrationsResource,
+    AsyncIntegrationsResource,
+    IntegrationsResourceWithRawResponse,
+    AsyncIntegrationsResourceWithRawResponse,
+    IntegrationsResourceWithStreamingResponse,
+    AsyncIntegrationsResourceWithStreamingResponse,
+)
 from .conversations import (
     ConversationsResource,
     AsyncConversationsResource,
@@ -108,6 +124,18 @@ __all__ = [
     "AsyncFineTuningResourceWithRawResponse",
     "FineTuningResourceWithStreamingResponse",
     "AsyncFineTuningResourceWithStreamingResponse",
+    "IntegrationsResource",
+    "AsyncIntegrationsResource",
+    "IntegrationsResourceWithRawResponse",
+    "AsyncIntegrationsResourceWithRawResponse",
+    "IntegrationsResourceWithStreamingResponse",
+    "AsyncIntegrationsResourceWithStreamingResponse",
+    "McpServersResource",
+    "AsyncMcpServersResource",
+    "McpServersResourceWithRawResponse",
+    "AsyncMcpServersResourceWithRawResponse",
+    "McpServersResourceWithStreamingResponse",
+    "AsyncMcpServersResourceWithStreamingResponse",
     "AIResource",
     "AsyncAIResource",
     "AIResourceWithRawResponse",
