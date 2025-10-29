@@ -146,6 +146,11 @@ class CallCallsParams(TypedDict, total=False):
     sip_auth_username: Annotated[str, PropertyInfo(alias="SipAuthUsername")]
     """The username to use for SIP authentication."""
 
+    sip_region: Annotated[
+        Literal["US", "Europe", "Canada", "Australia", "Middle East"], PropertyInfo(alias="SipRegion")
+    ]
+    """Defines the SIP region to be used for the call."""
+
     status_callback: Annotated[str, PropertyInfo(alias="StatusCallback")]
     """URL destination for Telnyx to send status callback events to for the call."""
 

@@ -50,6 +50,7 @@ class TestActions:
             call_control_id="v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg",
             supervisor_role="whisper",
             command_id="891510ac-f3e4-11e8-af5b-de00688a4901",
+            region="US",
             whisper_call_control_ids=[
                 "v2:Sg1xxxQ_U3ixxxyXT_VDNI3xxxazZdg6Vxxxs4-GNYxxxVaJPOhFMRQ",
                 "v2:qqpb0mmvd-ovhhBr0BUQQn0fld5jIboaaX3-De0DkqXHzbf8d75xkw",
@@ -113,6 +114,7 @@ class TestActions:
             audio_url="http://example.com/message.wav",
             call_control_ids=["v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg"],
             media_name="my_media_uploaded_to_media_storage_api",
+            region="US",
         )
         assert_matches_type(ActionHoldResponse, action, path=["response"])
 
@@ -173,6 +175,7 @@ class TestActions:
             hold_audio_url="http://www.example.com/audio.wav",
             hold_media_name="my_media_uploaded_to_media_storage_api",
             mute=True,
+            region="US",
             soft_end_conference_on_exit=True,
             start_conference_on_enter=True,
             supervisor_role="whisper",
@@ -237,6 +240,7 @@ class TestActions:
             call_control_id="c46e06d7-b78f-4b13-96b6-c576af9640ff",
             beep_enabled="never",
             command_id="891510ac-f3e4-11e8-af5b-de00688a4901",
+            region="US",
         )
         assert_matches_type(ActionLeaveResponse, action, path=["response"])
 
@@ -291,6 +295,7 @@ class TestActions:
         action = client.conferences.actions.mute(
             id="id",
             call_control_ids=["v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg"],
+            region="US",
         )
         assert_matches_type(ActionMuteResponse, action, path=["response"])
 
@@ -345,6 +350,7 @@ class TestActions:
             call_control_ids=["string"],
             loop="infinity",
             media_name="my_media_uploaded_to_media_storage_api",
+            region="US",
         )
         assert_matches_type(ActionPlayResponse, action, path=["response"])
 
@@ -397,6 +403,7 @@ class TestActions:
             id="id",
             command_id="891510ac-f3e4-11e8-af5b-de00688a4901",
             recording_id="891510ac-f3e4-11e8-af5b-de00688a4901",
+            region="US",
         )
         assert_matches_type(ActionRecordPauseResponse, action, path=["response"])
 
@@ -449,6 +456,7 @@ class TestActions:
             id="id",
             command_id="891510ac-f3e4-11e8-af5b-de00688a4901",
             recording_id="891510ac-f3e4-11e8-af5b-de00688a4901",
+            region="US",
         )
         assert_matches_type(ActionRecordResumeResponse, action, path=["response"])
 
@@ -504,6 +512,7 @@ class TestActions:
             command_id="891510ac-f3e4-11e8-af5b-de00688a4901",
             custom_file_name="my_recording_file_name",
             play_beep=True,
+            region="US",
             trim="trim-silence",
         )
         assert_matches_type(ActionRecordStartResponse, action, path=["response"])
@@ -561,6 +570,7 @@ class TestActions:
             client_state="aGF2ZSBhIG5pY2UgZGF5ID1d",
             command_id="891510ac-f3e4-11e8-af5b-de00688a4901",
             recording_id="6e00ab49-9487-4364-8ad6-23965965afb2",
+            region="US",
         )
         assert_matches_type(ActionRecordStopResponse, action, path=["response"])
 
@@ -619,6 +629,7 @@ class TestActions:
             command_id="891510ac-f3e4-11e8-af5b-de00688a4901",
             language="en-US",
             payload_type="text",
+            region="US",
             voice_settings={"api_key_ref": "my_elevenlabs_api_key"},
         )
         assert_matches_type(ActionSpeakResponse, action, path=["response"])
@@ -677,6 +688,7 @@ class TestActions:
         action = client.conferences.actions.stop(
             id="id",
             call_control_ids=["string"],
+            region="US",
         )
         assert_matches_type(ActionStopResponse, action, path=["response"])
 
@@ -720,6 +732,16 @@ class TestActions:
         action = client.conferences.actions.unhold(
             id="id",
             call_control_ids=["v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg"],
+        )
+        assert_matches_type(ActionUnholdResponse, action, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_method_unhold_with_all_params(self, client: Telnyx) -> None:
+        action = client.conferences.actions.unhold(
+            id="id",
+            call_control_ids=["v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg"],
+            region="US",
         )
         assert_matches_type(ActionUnholdResponse, action, path=["response"])
 
@@ -774,6 +796,7 @@ class TestActions:
         action = client.conferences.actions.unmute(
             id="id",
             call_control_ids=["v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg"],
+            region="US",
         )
         assert_matches_type(ActionUnmuteResponse, action, path=["response"])
 
@@ -835,6 +858,7 @@ class TestAsyncActions:
             call_control_id="v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg",
             supervisor_role="whisper",
             command_id="891510ac-f3e4-11e8-af5b-de00688a4901",
+            region="US",
             whisper_call_control_ids=[
                 "v2:Sg1xxxQ_U3ixxxyXT_VDNI3xxxazZdg6Vxxxs4-GNYxxxVaJPOhFMRQ",
                 "v2:qqpb0mmvd-ovhhBr0BUQQn0fld5jIboaaX3-De0DkqXHzbf8d75xkw",
@@ -898,6 +922,7 @@ class TestAsyncActions:
             audio_url="http://example.com/message.wav",
             call_control_ids=["v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg"],
             media_name="my_media_uploaded_to_media_storage_api",
+            region="US",
         )
         assert_matches_type(ActionHoldResponse, action, path=["response"])
 
@@ -958,6 +983,7 @@ class TestAsyncActions:
             hold_audio_url="http://www.example.com/audio.wav",
             hold_media_name="my_media_uploaded_to_media_storage_api",
             mute=True,
+            region="US",
             soft_end_conference_on_exit=True,
             start_conference_on_enter=True,
             supervisor_role="whisper",
@@ -1022,6 +1048,7 @@ class TestAsyncActions:
             call_control_id="c46e06d7-b78f-4b13-96b6-c576af9640ff",
             beep_enabled="never",
             command_id="891510ac-f3e4-11e8-af5b-de00688a4901",
+            region="US",
         )
         assert_matches_type(ActionLeaveResponse, action, path=["response"])
 
@@ -1076,6 +1103,7 @@ class TestAsyncActions:
         action = await async_client.conferences.actions.mute(
             id="id",
             call_control_ids=["v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg"],
+            region="US",
         )
         assert_matches_type(ActionMuteResponse, action, path=["response"])
 
@@ -1130,6 +1158,7 @@ class TestAsyncActions:
             call_control_ids=["string"],
             loop="infinity",
             media_name="my_media_uploaded_to_media_storage_api",
+            region="US",
         )
         assert_matches_type(ActionPlayResponse, action, path=["response"])
 
@@ -1182,6 +1211,7 @@ class TestAsyncActions:
             id="id",
             command_id="891510ac-f3e4-11e8-af5b-de00688a4901",
             recording_id="891510ac-f3e4-11e8-af5b-de00688a4901",
+            region="US",
         )
         assert_matches_type(ActionRecordPauseResponse, action, path=["response"])
 
@@ -1234,6 +1264,7 @@ class TestAsyncActions:
             id="id",
             command_id="891510ac-f3e4-11e8-af5b-de00688a4901",
             recording_id="891510ac-f3e4-11e8-af5b-de00688a4901",
+            region="US",
         )
         assert_matches_type(ActionRecordResumeResponse, action, path=["response"])
 
@@ -1289,6 +1320,7 @@ class TestAsyncActions:
             command_id="891510ac-f3e4-11e8-af5b-de00688a4901",
             custom_file_name="my_recording_file_name",
             play_beep=True,
+            region="US",
             trim="trim-silence",
         )
         assert_matches_type(ActionRecordStartResponse, action, path=["response"])
@@ -1346,6 +1378,7 @@ class TestAsyncActions:
             client_state="aGF2ZSBhIG5pY2UgZGF5ID1d",
             command_id="891510ac-f3e4-11e8-af5b-de00688a4901",
             recording_id="6e00ab49-9487-4364-8ad6-23965965afb2",
+            region="US",
         )
         assert_matches_type(ActionRecordStopResponse, action, path=["response"])
 
@@ -1404,6 +1437,7 @@ class TestAsyncActions:
             command_id="891510ac-f3e4-11e8-af5b-de00688a4901",
             language="en-US",
             payload_type="text",
+            region="US",
             voice_settings={"api_key_ref": "my_elevenlabs_api_key"},
         )
         assert_matches_type(ActionSpeakResponse, action, path=["response"])
@@ -1462,6 +1496,7 @@ class TestAsyncActions:
         action = await async_client.conferences.actions.stop(
             id="id",
             call_control_ids=["string"],
+            region="US",
         )
         assert_matches_type(ActionStopResponse, action, path=["response"])
 
@@ -1505,6 +1540,16 @@ class TestAsyncActions:
         action = await async_client.conferences.actions.unhold(
             id="id",
             call_control_ids=["v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg"],
+        )
+        assert_matches_type(ActionUnholdResponse, action, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_method_unhold_with_all_params(self, async_client: AsyncTelnyx) -> None:
+        action = await async_client.conferences.actions.unhold(
+            id="id",
+            call_control_ids=["v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg"],
+            region="US",
         )
         assert_matches_type(ActionUnholdResponse, action, path=["response"])
 
@@ -1559,6 +1604,7 @@ class TestAsyncActions:
         action = await async_client.conferences.actions.unmute(
             id="id",
             call_control_ids=["v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg"],
+            region="US",
         )
         assert_matches_type(ActionUnmuteResponse, action, path=["response"])
 

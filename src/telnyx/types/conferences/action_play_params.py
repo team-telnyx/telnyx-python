@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
+from typing_extensions import Literal, TypedDict
 
 from ..._types import SequenceNotStr
 from ..calls.loopcount_param import LoopcountParam
@@ -36,4 +36,10 @@ class ActionPlayParams(TypedDict, total=False):
     The media_name must point to a file previously uploaded to
     api.telnyx.com/v2/media by the same user/organization. The file must either be a
     WAV or MP3 file.
+    """
+
+    region: Literal["Australia", "Europe", "Middle East", "US"]
+    """Region where the conference data is located.
+
+    Defaults to the region defined in user's data locality settings (Europe or US).
     """

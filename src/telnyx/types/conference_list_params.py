@@ -26,6 +26,9 @@ class ConferenceListParams(TypedDict, total=False):
     Originally: page[after], page[before], page[limit], page[size], page[number]
     """
 
+    region: Literal["Australia", "Europe", "Middle East", "US"]
+    """Region where the conference data is located"""
+
 
 class FilterApplicationName(TypedDict, total=False):
     contains: str

@@ -71,6 +71,12 @@ class ActionJoinParams(TypedDict, total=False):
     Defaults to "false".
     """
 
+    region: Literal["Australia", "Europe", "Middle East", "US"]
+    """Region where the conference data is located.
+
+    Defaults to the region defined in user's data locality settings (Europe or US).
+    """
+
     soft_end_conference_on_exit: bool
     """Whether the conference should end after the participant leaves the conference.
 

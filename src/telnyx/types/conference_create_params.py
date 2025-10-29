@@ -64,6 +64,12 @@ class ConferenceCreateParams(TypedDict, total=False):
     Must be between 2 and 800. Defaults to 250
     """
 
+    region: Literal["Australia", "Europe", "Middle East", "US"]
+    """Sets the region where the conference data will be hosted.
+
+    Defaults to the region defined in user's data locality settings (Europe or US).
+    """
+
     start_conference_on_create: bool
     """Whether the conference should be started on creation.
 
