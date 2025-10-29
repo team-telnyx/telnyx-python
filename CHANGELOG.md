@@ -1,5 +1,19 @@
 # Changelog
 
+## 3.10.0 (2025-10-29)
+
+Full Changelog: [v3.9.0...v3.10.0](https://github.com/team-telnyx/telnyx-python/compare/v3.9.0...v3.10.0)
+
+### Features
+
+* ENGDESK-45429 - Add sip_region documentation for dial and transfer command ([59adfcd](https://github.com/team-telnyx/telnyx-python/commit/59adfcd68a21d12dc85aa969564b048fc325b384))
+* ENGDESK-46399 - Add sip_call_id filter for retreiving recordings ([16958a6](https://github.com/team-telnyx/telnyx-python/commit/16958a6ed43f725e0dd8923d85c6d2740b93769f))
+
+
+### Bug Fixes
+
+* **client:** close streams without requiring full consumption ([8e32050](https://github.com/team-telnyx/telnyx-python/commit/8e320501ca64eae389e2eb33b861cec09f284eff))
+
 ## 3.9.0 (2025-10-27)
 
 Full Changelog: [v3.8.0...v3.9.0](https://github.com/team-telnyx/telnyx-python/compare/v3.8.0...v3.9.0)
