@@ -251,6 +251,7 @@ class CallsResource(SyncAPIResource):
         send_recording_url: bool | Omit = omit,
         sip_auth_password: str | Omit = omit,
         sip_auth_username: str | Omit = omit,
+        sip_region: Literal["US", "Europe", "Canada", "Australia", "Middle East"] | Omit = omit,
         status_callback: str | Omit = omit,
         status_callback_event: Literal["initiated", "ringing", "answered", "completed"] | Omit = omit,
         status_callback_method: Literal["GET", "POST"] | Omit = omit,
@@ -344,6 +345,8 @@ class CallsResource(SyncAPIResource):
 
           sip_auth_username: The username to use for SIP authentication.
 
+          sip_region: Defines the SIP region to be used for the call.
+
           status_callback: URL destination for Telnyx to send status callback events to for the call.
 
           status_callback_event: The call events for which Telnyx should send a webhook. Multiple events can be
@@ -401,6 +404,7 @@ class CallsResource(SyncAPIResource):
                     "send_recording_url": send_recording_url,
                     "sip_auth_password": sip_auth_password,
                     "sip_auth_username": sip_auth_username,
+                    "sip_region": sip_region,
                     "status_callback": status_callback,
                     "status_callback_event": status_callback_event,
                     "status_callback_method": status_callback_method,
@@ -849,6 +853,7 @@ class AsyncCallsResource(AsyncAPIResource):
         send_recording_url: bool | Omit = omit,
         sip_auth_password: str | Omit = omit,
         sip_auth_username: str | Omit = omit,
+        sip_region: Literal["US", "Europe", "Canada", "Australia", "Middle East"] | Omit = omit,
         status_callback: str | Omit = omit,
         status_callback_event: Literal["initiated", "ringing", "answered", "completed"] | Omit = omit,
         status_callback_method: Literal["GET", "POST"] | Omit = omit,
@@ -942,6 +947,8 @@ class AsyncCallsResource(AsyncAPIResource):
 
           sip_auth_username: The username to use for SIP authentication.
 
+          sip_region: Defines the SIP region to be used for the call.
+
           status_callback: URL destination for Telnyx to send status callback events to for the call.
 
           status_callback_event: The call events for which Telnyx should send a webhook. Multiple events can be
@@ -999,6 +1006,7 @@ class AsyncCallsResource(AsyncAPIResource):
                     "send_recording_url": send_recording_url,
                     "sip_auth_password": sip_auth_password,
                     "sip_auth_username": sip_auth_username,
+                    "sip_region": sip_region,
                     "status_callback": status_callback,
                     "status_callback_event": status_callback_event,
                     "status_callback_method": status_callback_method,

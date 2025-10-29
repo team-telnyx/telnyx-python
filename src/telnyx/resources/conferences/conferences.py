@@ -6,7 +6,12 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...types import conference_list_params, conference_create_params, conference_list_participants_params
+from ...types import (
+    conference_list_params,
+    conference_create_params,
+    conference_retrieve_params,
+    conference_list_participants_params,
+)
 from .actions import (
     ActionsResource,
     AsyncActionsResource,
@@ -71,6 +76,7 @@ class ConferencesResource(SyncAPIResource):
         hold_audio_url: str | Omit = omit,
         hold_media_name: str | Omit = omit,
         max_participants: int | Omit = omit,
+        region: Literal["Australia", "Europe", "Middle East", "US"] | Omit = omit,
         start_conference_on_create: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -129,6 +135,9 @@ class ConferencesResource(SyncAPIResource):
           max_participants: The maximum number of active conference participants to allow. Must be between 2
               and 800. Defaults to 250
 
+          region: Sets the region where the conference data will be hosted. Defaults to the region
+              defined in user's data locality settings (Europe or US).
+
           start_conference_on_create: Whether the conference should be started on creation. If the conference isn't
               started all participants that join are automatically put on hold. Defaults to
               "true".
@@ -155,6 +164,7 @@ class ConferencesResource(SyncAPIResource):
                     "hold_audio_url": hold_audio_url,
                     "hold_media_name": hold_media_name,
                     "max_participants": max_participants,
+                    "region": region,
                     "start_conference_on_create": start_conference_on_create,
                 },
                 conference_create_params.ConferenceCreateParams,
@@ -169,6 +179,7 @@ class ConferencesResource(SyncAPIResource):
         self,
         id: str,
         *,
+        region: Literal["Australia", "Europe", "Middle East", "US"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -180,6 +191,8 @@ class ConferencesResource(SyncAPIResource):
         Retrieve an existing conference
 
         Args:
+          region: Region where the conference data is located
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -193,7 +206,11 @@ class ConferencesResource(SyncAPIResource):
         return self._get(
             f"/conferences/{id}",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"region": region}, conference_retrieve_params.ConferenceRetrieveParams),
             ),
             cast_to=ConferenceRetrieveResponse,
         )
@@ -203,6 +220,7 @@ class ConferencesResource(SyncAPIResource):
         *,
         filter: conference_list_params.Filter | Omit = omit,
         page: conference_list_params.Page | Omit = omit,
+        region: Literal["Australia", "Europe", "Middle East", "US"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -228,6 +246,8 @@ class ConferencesResource(SyncAPIResource):
           page: Consolidated page parameter (deepObject style). Originally: page[after],
               page[before], page[limit], page[size], page[number]
 
+          region: Region where the conference data is located
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -247,6 +267,7 @@ class ConferencesResource(SyncAPIResource):
                     {
                         "filter": filter,
                         "page": page,
+                        "region": region,
                     },
                     conference_list_params.ConferenceListParams,
                 ),
@@ -260,6 +281,7 @@ class ConferencesResource(SyncAPIResource):
         *,
         filter: conference_list_participants_params.Filter | Omit = omit,
         page: conference_list_participants_params.Page | Omit = omit,
+        region: Literal["Australia", "Europe", "Middle East", "US"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -276,6 +298,8 @@ class ConferencesResource(SyncAPIResource):
 
           page: Consolidated page parameter (deepObject style). Originally: page[after],
               page[before], page[limit], page[size], page[number]
+
+          region: Region where the conference data is located
 
           extra_headers: Send extra headers
 
@@ -298,6 +322,7 @@ class ConferencesResource(SyncAPIResource):
                     {
                         "filter": filter,
                         "page": page,
+                        "region": region,
                     },
                     conference_list_participants_params.ConferenceListParticipantsParams,
                 ),
@@ -343,6 +368,7 @@ class AsyncConferencesResource(AsyncAPIResource):
         hold_audio_url: str | Omit = omit,
         hold_media_name: str | Omit = omit,
         max_participants: int | Omit = omit,
+        region: Literal["Australia", "Europe", "Middle East", "US"] | Omit = omit,
         start_conference_on_create: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -401,6 +427,9 @@ class AsyncConferencesResource(AsyncAPIResource):
           max_participants: The maximum number of active conference participants to allow. Must be between 2
               and 800. Defaults to 250
 
+          region: Sets the region where the conference data will be hosted. Defaults to the region
+              defined in user's data locality settings (Europe or US).
+
           start_conference_on_create: Whether the conference should be started on creation. If the conference isn't
               started all participants that join are automatically put on hold. Defaults to
               "true".
@@ -427,6 +456,7 @@ class AsyncConferencesResource(AsyncAPIResource):
                     "hold_audio_url": hold_audio_url,
                     "hold_media_name": hold_media_name,
                     "max_participants": max_participants,
+                    "region": region,
                     "start_conference_on_create": start_conference_on_create,
                 },
                 conference_create_params.ConferenceCreateParams,
@@ -441,6 +471,7 @@ class AsyncConferencesResource(AsyncAPIResource):
         self,
         id: str,
         *,
+        region: Literal["Australia", "Europe", "Middle East", "US"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -452,6 +483,8 @@ class AsyncConferencesResource(AsyncAPIResource):
         Retrieve an existing conference
 
         Args:
+          region: Region where the conference data is located
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -465,7 +498,13 @@ class AsyncConferencesResource(AsyncAPIResource):
         return await self._get(
             f"/conferences/{id}",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {"region": region}, conference_retrieve_params.ConferenceRetrieveParams
+                ),
             ),
             cast_to=ConferenceRetrieveResponse,
         )
@@ -475,6 +514,7 @@ class AsyncConferencesResource(AsyncAPIResource):
         *,
         filter: conference_list_params.Filter | Omit = omit,
         page: conference_list_params.Page | Omit = omit,
+        region: Literal["Australia", "Europe", "Middle East", "US"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -500,6 +540,8 @@ class AsyncConferencesResource(AsyncAPIResource):
           page: Consolidated page parameter (deepObject style). Originally: page[after],
               page[before], page[limit], page[size], page[number]
 
+          region: Region where the conference data is located
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -519,6 +561,7 @@ class AsyncConferencesResource(AsyncAPIResource):
                     {
                         "filter": filter,
                         "page": page,
+                        "region": region,
                     },
                     conference_list_params.ConferenceListParams,
                 ),
@@ -532,6 +575,7 @@ class AsyncConferencesResource(AsyncAPIResource):
         *,
         filter: conference_list_participants_params.Filter | Omit = omit,
         page: conference_list_participants_params.Page | Omit = omit,
+        region: Literal["Australia", "Europe", "Middle East", "US"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -548,6 +592,8 @@ class AsyncConferencesResource(AsyncAPIResource):
 
           page: Consolidated page parameter (deepObject style). Originally: page[after],
               page[before], page[limit], page[size], page[number]
+
+          region: Region where the conference data is located
 
           extra_headers: Send extra headers
 
@@ -570,6 +616,7 @@ class AsyncConferencesResource(AsyncAPIResource):
                     {
                         "filter": filter,
                         "page": page,
+                        "region": region,
                     },
                     conference_list_participants_params.ConferenceListParticipantsParams,
                 ),

@@ -24,3 +24,9 @@ class ActionLeaveParams(TypedDict, total=False):
     Telnyx will ignore subsequent commands with the same `command_id` as one that
     has already been executed.
     """
+
+    region: Literal["Australia", "Europe", "Middle East", "US"]
+    """Region where the conference data is located.
+
+    Defaults to the region defined in user's data locality settings (Europe or US).
+    """

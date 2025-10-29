@@ -1341,7 +1341,7 @@ from telnyx.types import (
 Methods:
 
 - <code title="post /conferences">client.conferences.<a href="./src/telnyx/resources/conferences/conferences.py">create</a>(\*\*<a href="src/telnyx/types/conference_create_params.py">params</a>) -> <a href="./src/telnyx/types/conference_create_response.py">ConferenceCreateResponse</a></code>
-- <code title="get /conferences/{id}">client.conferences.<a href="./src/telnyx/resources/conferences/conferences.py">retrieve</a>(id) -> <a href="./src/telnyx/types/conference_retrieve_response.py">ConferenceRetrieveResponse</a></code>
+- <code title="get /conferences/{id}">client.conferences.<a href="./src/telnyx/resources/conferences/conferences.py">retrieve</a>(id, \*\*<a href="src/telnyx/types/conference_retrieve_params.py">params</a>) -> <a href="./src/telnyx/types/conference_retrieve_response.py">ConferenceRetrieveResponse</a></code>
 - <code title="get /conferences">client.conferences.<a href="./src/telnyx/resources/conferences/conferences.py">list</a>(\*\*<a href="src/telnyx/types/conference_list_params.py">params</a>) -> <a href="./src/telnyx/types/conference_list_response.py">ConferenceListResponse</a></code>
 - <code title="get /conferences/{conference_id}/participants">client.conferences.<a href="./src/telnyx/resources/conferences/conferences.py">list_participants</a>(conference_id, \*\*<a href="src/telnyx/types/conference_list_participants_params.py">params</a>) -> <a href="./src/telnyx/types/conference_list_participants_response.py">ConferenceListParticipantsResponse</a></code>
 

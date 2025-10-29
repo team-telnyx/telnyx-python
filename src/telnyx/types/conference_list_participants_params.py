@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
+from typing_extensions import Literal, TypedDict
 
 __all__ = ["ConferenceListParticipantsParams", "Filter", "Page"]
 
@@ -19,6 +19,9 @@ class ConferenceListParticipantsParams(TypedDict, total=False):
 
     Originally: page[after], page[before], page[limit], page[size], page[number]
     """
+
+    region: Literal["Australia", "Europe", "Middle East", "US"]
+    """Region where the conference data is located"""
 
 
 class Filter(TypedDict, total=False):

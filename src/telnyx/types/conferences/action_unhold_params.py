@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
 from ..._types import SequenceNotStr
 
@@ -14,4 +14,10 @@ class ActionUnholdParams(TypedDict, total=False):
     """List of unique identifiers and tokens for controlling the call.
 
     Enter each call control ID to be unheld.
+    """
+
+    region: Literal["Australia", "Europe", "Middle East", "US"]
+    """Region where the conference data is located.
+
+    Defaults to the region defined in user's data locality settings (Europe or US).
     """
