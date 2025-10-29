@@ -39,6 +39,14 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
+from .mcp_servers import (
+    McpServersResource,
+    AsyncMcpServersResource,
+    McpServersResourceWithRawResponse,
+    AsyncMcpServersResourceWithRawResponse,
+    McpServersResourceWithStreamingResponse,
+    AsyncMcpServersResourceWithStreamingResponse,
+)
 from ..._base_client import make_request_options
 from .assistants.assistants import (
     AssistantsResource,
@@ -63,6 +71,14 @@ from .fine_tuning.fine_tuning import (
     AsyncFineTuningResourceWithRawResponse,
     FineTuningResourceWithStreamingResponse,
     AsyncFineTuningResourceWithStreamingResponse,
+)
+from .integrations.integrations import (
+    IntegrationsResource,
+    AsyncIntegrationsResource,
+    IntegrationsResourceWithRawResponse,
+    AsyncIntegrationsResourceWithRawResponse,
+    IntegrationsResourceWithStreamingResponse,
+    AsyncIntegrationsResourceWithStreamingResponse,
 )
 from .conversations.conversations import (
     ConversationsResource,
@@ -106,6 +122,14 @@ class AIResource(SyncAPIResource):
     @cached_property
     def fine_tuning(self) -> FineTuningResource:
         return FineTuningResource(self._client)
+
+    @cached_property
+    def integrations(self) -> IntegrationsResource:
+        return IntegrationsResource(self._client)
+
+    @cached_property
+    def mcp_servers(self) -> McpServersResource:
+        return McpServersResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AIResourceWithRawResponse:
@@ -237,6 +261,14 @@ class AsyncAIResource(AsyncAPIResource):
     @cached_property
     def fine_tuning(self) -> AsyncFineTuningResource:
         return AsyncFineTuningResource(self._client)
+
+    @cached_property
+    def integrations(self) -> AsyncIntegrationsResource:
+        return AsyncIntegrationsResource(self._client)
+
+    @cached_property
+    def mcp_servers(self) -> AsyncMcpServersResource:
+        return AsyncMcpServersResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncAIResourceWithRawResponse:
@@ -379,6 +411,14 @@ class AIResourceWithRawResponse:
     def fine_tuning(self) -> FineTuningResourceWithRawResponse:
         return FineTuningResourceWithRawResponse(self._ai.fine_tuning)
 
+    @cached_property
+    def integrations(self) -> IntegrationsResourceWithRawResponse:
+        return IntegrationsResourceWithRawResponse(self._ai.integrations)
+
+    @cached_property
+    def mcp_servers(self) -> McpServersResourceWithRawResponse:
+        return McpServersResourceWithRawResponse(self._ai.mcp_servers)
+
 
 class AsyncAIResourceWithRawResponse:
     def __init__(self, ai: AsyncAIResource) -> None:
@@ -418,6 +458,14 @@ class AsyncAIResourceWithRawResponse:
     @cached_property
     def fine_tuning(self) -> AsyncFineTuningResourceWithRawResponse:
         return AsyncFineTuningResourceWithRawResponse(self._ai.fine_tuning)
+
+    @cached_property
+    def integrations(self) -> AsyncIntegrationsResourceWithRawResponse:
+        return AsyncIntegrationsResourceWithRawResponse(self._ai.integrations)
+
+    @cached_property
+    def mcp_servers(self) -> AsyncMcpServersResourceWithRawResponse:
+        return AsyncMcpServersResourceWithRawResponse(self._ai.mcp_servers)
 
 
 class AIResourceWithStreamingResponse:
@@ -459,6 +507,14 @@ class AIResourceWithStreamingResponse:
     def fine_tuning(self) -> FineTuningResourceWithStreamingResponse:
         return FineTuningResourceWithStreamingResponse(self._ai.fine_tuning)
 
+    @cached_property
+    def integrations(self) -> IntegrationsResourceWithStreamingResponse:
+        return IntegrationsResourceWithStreamingResponse(self._ai.integrations)
+
+    @cached_property
+    def mcp_servers(self) -> McpServersResourceWithStreamingResponse:
+        return McpServersResourceWithStreamingResponse(self._ai.mcp_servers)
+
 
 class AsyncAIResourceWithStreamingResponse:
     def __init__(self, ai: AsyncAIResource) -> None:
@@ -498,3 +554,11 @@ class AsyncAIResourceWithStreamingResponse:
     @cached_property
     def fine_tuning(self) -> AsyncFineTuningResourceWithStreamingResponse:
         return AsyncFineTuningResourceWithStreamingResponse(self._ai.fine_tuning)
+
+    @cached_property
+    def integrations(self) -> AsyncIntegrationsResourceWithStreamingResponse:
+        return AsyncIntegrationsResourceWithStreamingResponse(self._ai.integrations)
+
+    @cached_property
+    def mcp_servers(self) -> AsyncMcpServersResourceWithStreamingResponse:
+        return AsyncMcpServersResourceWithStreamingResponse(self._ai.mcp_servers)
