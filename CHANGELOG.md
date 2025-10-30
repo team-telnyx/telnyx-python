@@ -1,5 +1,24 @@
 # Changelog
 
+## 3.11.0 (2025-10-30)
+
+Full Changelog: [v3.10.0...v3.11.0](https://github.com/team-telnyx/telnyx-python/compare/v3.10.0...v3.11.0)
+
+### Features
+
+* AI-1842: Add MCP Servers and Integrations sections ([8a8c1e1](https://github.com/team-telnyx/telnyx-python/commit/8a8c1e1825ab7b8261ea8ac7e035d8e3b879f41e))
+* TELAPPS-5399 Add region to conference commands ([3f12db2](https://github.com/team-telnyx/telnyx-python/commit/3f12db2e89e7bcc5c6d7120db3344b0b925982af))
+
+
+### Bug Fixes
+
+* **client:** fix issue with example webhook payload ([c41b9b0](https://github.com/team-telnyx/telnyx-python/commit/c41b9b04422d0ee052b884cd295fe902d6dca2c5))
+
+
+### Refactors
+
+* **webhooks:** simplify webhook verification to function-based approach ([#7](https://github.com/team-telnyx/telnyx-python/issues/7)) ([f8ece68](https://github.com/team-telnyx/telnyx-python/commit/f8ece682653fb3169002b04e9dca970eafad7165))
+
 ## 3.10.0 (2025-10-29)
 
 Full Changelog: [v3.9.0...v3.10.0](https://github.com/team-telnyx/telnyx-python/compare/v3.9.0...v3.10.0)
