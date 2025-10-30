@@ -160,6 +160,45 @@ class CallsResource(SyncAPIResource):
             cast_to=CallListResponse,
         )
 
+    def remove(
+        self,
+        call_control_id: str,
+        *,
+        queue_name: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> None:
+        """Removes an inactive call from a queue.
+
+        If the call is no longer active, use this
+        command to remove it from the queue.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not queue_name:
+            raise ValueError(f"Expected a non-empty value for `queue_name` but received {queue_name!r}")
+        if not call_control_id:
+            raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        return self._delete(
+            f"/queues/{queue_name}/calls/{call_control_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=NoneType,
+        )
+
 
 class AsyncCallsResource(AsyncAPIResource):
     @cached_property
@@ -301,6 +340,45 @@ class AsyncCallsResource(AsyncAPIResource):
             cast_to=CallListResponse,
         )
 
+    async def remove(
+        self,
+        call_control_id: str,
+        *,
+        queue_name: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> None:
+        """Removes an inactive call from a queue.
+
+        If the call is no longer active, use this
+        command to remove it from the queue.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not queue_name:
+            raise ValueError(f"Expected a non-empty value for `queue_name` but received {queue_name!r}")
+        if not call_control_id:
+            raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        return await self._delete(
+            f"/queues/{queue_name}/calls/{call_control_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=NoneType,
+        )
+
 
 class CallsResourceWithRawResponse:
     def __init__(self, calls: CallsResource) -> None:
@@ -314,6 +392,9 @@ class CallsResourceWithRawResponse:
         )
         self.list = to_raw_response_wrapper(
             calls.list,
+        )
+        self.remove = to_raw_response_wrapper(
+            calls.remove,
         )
 
 
@@ -330,6 +411,9 @@ class AsyncCallsResourceWithRawResponse:
         self.list = async_to_raw_response_wrapper(
             calls.list,
         )
+        self.remove = async_to_raw_response_wrapper(
+            calls.remove,
+        )
 
 
 class CallsResourceWithStreamingResponse:
@@ -345,6 +429,9 @@ class CallsResourceWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             calls.list,
         )
+        self.remove = to_streamed_response_wrapper(
+            calls.remove,
+        )
 
 
 class AsyncCallsResourceWithStreamingResponse:
@@ -359,4 +446,7 @@ class AsyncCallsResourceWithStreamingResponse:
         )
         self.list = async_to_streamed_response_wrapper(
             calls.list,
+        )
+        self.remove = async_to_streamed_response_wrapper(
+            calls.remove,
         )

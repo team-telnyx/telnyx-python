@@ -3541,6 +3541,7 @@ Methods:
 - <code title="get /queues/{queue_name}/calls/{call_control_id}">client.queues.calls.<a href="./src/telnyx/resources/queues/calls.py">retrieve</a>(call_control_id, \*, queue_name) -> <a href="./src/telnyx/types/queues/call_retrieve_response.py">CallRetrieveResponse</a></code>
 - <code title="patch /queues/{queue_name}/calls/{call_control_id}">client.queues.calls.<a href="./src/telnyx/resources/queues/calls.py">update</a>(call_control_id, \*, queue_name, \*\*<a href="src/telnyx/types/queues/call_update_params.py">params</a>) -> None</code>
 - <code title="get /queues/{queue_name}/calls">client.queues.calls.<a href="./src/telnyx/resources/queues/calls.py">list</a>(queue_name, \*\*<a href="src/telnyx/types/queues/call_list_params.py">params</a>) -> <a href="./src/telnyx/types/queues/call_list_response.py">CallListResponse</a></code>
+- <code title="delete /queues/{queue_name}/calls/{call_control_id}">client.queues.calls.<a href="./src/telnyx/resources/queues/calls.py">remove</a>(call_control_id, \*, queue_name) -> None</code>
 
 # RcsAgents
 
