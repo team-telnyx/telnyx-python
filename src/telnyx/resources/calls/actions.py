@@ -502,6 +502,7 @@ class ActionsResource(SyncAPIResource):
         queue_name: str,
         client_state: str | Omit = omit,
         command_id: str | Omit = omit,
+        keep_after_hangup: bool | Omit = omit,
         max_size: int | Omit = omit,
         max_wait_time_secs: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -523,6 +524,10 @@ class ActionsResource(SyncAPIResource):
 
           command_id: Use this field to avoid duplicate commands. Telnyx will ignore any command with
               the same `command_id` for the same `call_control_id`.
+
+          keep_after_hangup: If set to true, the call will remain in the queue after hangup. In this case
+              bridging to such call will fail with necessary information needed to
+              re-establish the call.
 
           max_size: The maximum number of calls allowed in the queue at a given time. Can't be
               modified for an existing queue.
@@ -546,6 +551,7 @@ class ActionsResource(SyncAPIResource):
                     "queue_name": queue_name,
                     "client_state": client_state,
                     "command_id": command_id,
+                    "keep_after_hangup": keep_after_hangup,
                     "max_size": max_size,
                     "max_wait_time_secs": max_wait_time_secs,
                 },
@@ -3749,6 +3755,7 @@ class AsyncActionsResource(AsyncAPIResource):
         queue_name: str,
         client_state: str | Omit = omit,
         command_id: str | Omit = omit,
+        keep_after_hangup: bool | Omit = omit,
         max_size: int | Omit = omit,
         max_wait_time_secs: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -3770,6 +3777,10 @@ class AsyncActionsResource(AsyncAPIResource):
 
           command_id: Use this field to avoid duplicate commands. Telnyx will ignore any command with
               the same `command_id` for the same `call_control_id`.
+
+          keep_after_hangup: If set to true, the call will remain in the queue after hangup. In this case
+              bridging to such call will fail with necessary information needed to
+              re-establish the call.
 
           max_size: The maximum number of calls allowed in the queue at a given time. Can't be
               modified for an existing queue.
@@ -3793,6 +3804,7 @@ class AsyncActionsResource(AsyncAPIResource):
                     "queue_name": queue_name,
                     "client_state": client_state,
                     "command_id": command_id,
+                    "keep_after_hangup": keep_after_hangup,
                     "max_size": max_size,
                     "max_wait_time_secs": max_wait_time_secs,
                 },

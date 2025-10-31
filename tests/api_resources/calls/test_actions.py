@@ -261,6 +261,7 @@ class TestActions:
             queue_name="support",
             client_state="aGF2ZSBhIG5pY2UgZGF5ID1d",
             command_id="891510ac-f3e4-11e8-af5b-de00688a4901",
+            keep_after_hangup=True,
             max_size=20,
             max_wait_time_secs=600,
         )
@@ -2581,6 +2582,7 @@ class TestAsyncActions:
             queue_name="support",
             client_state="aGF2ZSBhIG5pY2UgZGF5ID1d",
             command_id="891510ac-f3e4-11e8-af5b-de00688a4901",
+            keep_after_hangup=True,
             max_size=20,
             max_wait_time_secs=600,
         )

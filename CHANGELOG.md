@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.12.0 (2025-10-31)
+
+Full Changelog: [v3.11.0...v3.12.0](https://github.com/team-telnyx/telnyx-python/compare/v3.11.0...v3.12.0)
+
+### Features
+
+* TELAPPS-ENGDESK-46395 Add keep_after_hangup to enqueue command ([a66e1d6](https://github.com/team-telnyx/telnyx-python/commit/a66e1d6c8498977f92d972882e2954fecb58b5db))
+
 ## 3.11.0 (2025-10-30)
 
 Full Changelog: [v3.10.0...v3.11.0](https://github.com/team-telnyx/telnyx-python/compare/v3.10.0...v3.11.0)
