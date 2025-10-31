@@ -27,6 +27,13 @@ class ActionEnqueueParams(TypedDict, total=False):
     `call_control_id`.
     """
 
+    keep_after_hangup: bool
+    """If set to true, the call will remain in the queue after hangup.
+
+    In this case bridging to such call will fail with necessary information needed
+    to re-establish the call.
+    """
+
     max_size: int
     """The maximum number of calls allowed in the queue at a given time.
 
