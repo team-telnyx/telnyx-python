@@ -85,7 +85,7 @@ typing-extensions==4.12.2
     # via typing-inspection
 typing-inspection==0.4.1
     # via pydantic
-wrapt==2.0.0
+wrapt==2.0.1
     # via deprecated
 yarl==1.20.0
     # via aiohttp
