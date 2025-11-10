@@ -1,5 +1,31 @@
 # Changelog
 
+## 3.12.0 (2025-11-10)
+
+Full Changelog: [v3.11.0...v3.12.0](https://github.com/team-telnyx/telnyx-python/compare/v3.11.0...v3.12.0)
+
+### Features
+
+* ENGDESK-44767 - Document force remove calls from queue ([4f3e07c](https://github.com/team-telnyx/telnyx-python/commit/4f3e07ce069af324044fe0d65f554262e55aca84))
+* TELAPPS-ENGDESK-46395 Add keep_after_hangup to enqueue command ([a46975c](https://github.com/team-telnyx/telnyx-python/commit/a46975cb94df72a7abeb4b5cc25e5f3a9e8ecda6))
+* TELAPPS-ENGDESK-46395 Add keep_after_hangup to enqueue command ([a66e1d6](https://github.com/team-telnyx/telnyx-python/commit/a66e1d6c8498977f92d972882e2954fecb58b5db))
+* TELAPPS-ENGDESK-46395 Add PATCH /queues/{queue_name}/calls/{call_control_id} endpoint ([e68a26a](https://github.com/team-telnyx/telnyx-python/commit/e68a26acd908024e958cc1d2226c209de420e524))
+
+
+### Bug Fixes
+
+* compat with Python 3.14 ([f27f60c](https://github.com/team-telnyx/telnyx-python/commit/f27f60ced40b3636d3c17a559976a0c27e2560a8))
+
+
+### Chores
+
+* **internal/tests:** avoid race condition with implicit client cleanup ([40ec679](https://github.com/team-telnyx/telnyx-python/commit/40ec679f230637e0cd766e94a23aa37bb3936ba1))
+* **internal:** codegen related update ([0c875d3](https://github.com/team-telnyx/telnyx-python/commit/0c875d3b039eb53b6c739b7b294f2f48d0dc8161))
+* **internal:** codegen related update ([c1b1aed](https://github.com/team-telnyx/telnyx-python/commit/c1b1aeddfc89abb6b2a937a06d67b5e8bc2379f6))
+* **internal:** codegen related update ([82c1747](https://github.com/team-telnyx/telnyx-python/commit/82c1747ec0acb375a7572c666c88f1f835711b76))
+* **internal:** grammar fix (it's -&gt; its) ([6245054](https://github.com/team-telnyx/telnyx-python/commit/6245054bb0a7694a623338d331ccbc2d8c0c4668))
+* **package:** drop Python 3.8 support ([322da01](https://github.com/team-telnyx/telnyx-python/commit/322da015d8137ccde0bf1f76b02247787dc9b1c1))
+
 ## 3.11.0 (2025-10-30)
 
 Full Changelog: [v3.10.0...v3.11.0](https://github.com/team-telnyx/telnyx-python/compare/v3.10.0...v3.11.0)
