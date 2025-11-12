@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.12.1 (2025-11-12)
+
+Full Changelog: [v3.12.0...v3.12.1](https://github.com/team-telnyx/telnyx-python/compare/v3.12.0...v3.12.1)
+
+### Bug Fixes
+
+* **compat:** update signatures of `model_dump` and `model_dump_json` for Pydantic v1 ([6ccdc25](https://github.com/team-telnyx/telnyx-python/commit/6ccdc25b1278118129d58af1acb2d5836b0721c7))
+
 ## 3.12.0 (2025-11-10)
 
 Full Changelog: [v3.11.0...v3.12.0](https://github.com/team-telnyx/telnyx-python/compare/v3.11.0...v3.12.0)
