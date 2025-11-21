@@ -1,5 +1,14 @@
 # Changelog
 
+## 3.12.2 (2025-11-21)
+
+Full Changelog: [v3.12.1...v3.12.2](https://github.com/team-telnyx/telnyx-python/compare/v3.12.1...v3.12.2)
+
+### Chores
+
+* **internal:** codegen related update ([45049e3](https://github.com/team-telnyx/telnyx-python/commit/45049e3263e4f1b6bd332730b9753e8e4195191f))
+* **internal:** codegen related update ([b4d2c6d](https://github.com/team-telnyx/telnyx-python/commit/b4d2c6d2910c9ddc9bc41afd9d829414096282a5))
+
 ## 3.12.1 (2025-11-12)
 
 Full Changelog: [v3.12.0...v3.12.1](https://github.com/team-telnyx/telnyx-python/compare/v3.12.0...v3.12.1)
