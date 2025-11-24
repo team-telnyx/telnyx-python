@@ -153,7 +153,14 @@ class TestVersions:
             ],
             transcription={
                 "language": "language",
-                "model": "model",
+                "model": "deepgram/flux",
+                "region": "region",
+                "settings": {
+                    "eot_threshold": 0,
+                    "eot_timeout_ms": 0,
+                    "numerals": True,
+                    "smart_format": True,
+                },
             },
             voice_settings={
                 "voice": "voice",
@@ -495,7 +502,14 @@ class TestAsyncVersions:
             ],
             transcription={
                 "language": "language",
-                "model": "model",
+                "model": "deepgram/flux",
+                "region": "region",
+                "settings": {
+                    "eot_threshold": 0,
+                    "eot_timeout_ms": 0,
+                    "numerals": True,
+                    "smart_format": True,
+                },
             },
             voice_settings={
                 "voice": "voice",

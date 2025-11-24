@@ -520,6 +520,7 @@ from telnyx.types.ai import (
     AssistantDeleteResponse,
     AssistantChatResponse,
     AssistantGetTexmlResponse,
+    AssistantSendSMSResponse,
 )
 ```
 
@@ -534,6 +535,7 @@ Methods:
 - <code title="post /ai/assistants/{assistant_id}/clone">client.ai.assistants.<a href="./src/telnyx/resources/ai/assistants/assistants.py">clone</a>(assistant_id) -> <a href="./src/telnyx/types/ai/inference_embedding.py">InferenceEmbedding</a></code>
 - <code title="get /ai/assistants/{assistant_id}/texml">client.ai.assistants.<a href="./src/telnyx/resources/ai/assistants/assistants.py">get_texml</a>(assistant_id) -> str</code>
 - <code title="post /ai/assistants/import">client.ai.assistants.<a href="./src/telnyx/resources/ai/assistants/assistants.py">import\_</a>(\*\*<a href="src/telnyx/types/ai/assistant_import_params.py">params</a>) -> <a href="./src/telnyx/types/ai/assistants_list.py">AssistantsList</a></code>
+- <code title="post /ai/assistants/{assistant_id}/chat/sms">client.ai.assistants.<a href="./src/telnyx/resources/ai/assistants/assistants.py">send_sms</a>(assistant_id, \*\*<a href="src/telnyx/types/ai/assistant_send_sms_params.py">params</a>) -> <a href="./src/telnyx/types/ai/assistant_send_sms_response.py">AssistantSendSMSResponse</a></code>
 
 ### Tests
 
@@ -4793,3 +4795,21 @@ Methods:
 
 - <code title="get /.well-known/oauth-authorization-server">client.well_known.<a href="./src/telnyx/resources/well_known.py">retrieve_authorization_server_metadata</a>() -> <a href="./src/telnyx/types/well_known_retrieve_authorization_server_metadata_response.py">WellKnownRetrieveAuthorizationServerMetadataResponse</a></code>
 - <code title="get /.well-known/oauth-protected-resource">client.well_known.<a href="./src/telnyx/resources/well_known.py">retrieve_protected_resource_metadata</a>() -> <a href="./src/telnyx/types/well_known_retrieve_protected_resource_metadata_response.py">WellKnownRetrieveProtectedResourceMetadataResponse</a></code>
+
+# InexplicitNumberOrders
+
+Types:
+
+```python
+from telnyx.types import (
+    InexplicitNumberOrderCreateResponse,
+    InexplicitNumberOrderRetrieveResponse,
+    InexplicitNumberOrderListResponse,
+)
+```
+
+Methods:
+
+- <code title="post /inexplicit_number_orders">client.inexplicit_number_orders.<a href="./src/telnyx/resources/inexplicit_number_orders.py">create</a>(\*\*<a href="src/telnyx/types/inexplicit_number_order_create_params.py">params</a>) -> <a href="./src/telnyx/types/inexplicit_number_order_create_response.py">InexplicitNumberOrderCreateResponse</a></code>
+- <code title="get /inexplicit_number_orders/{id}">client.inexplicit_number_orders.<a href="./src/telnyx/resources/inexplicit_number_orders.py">retrieve</a>(id) -> <a href="./src/telnyx/types/inexplicit_number_order_retrieve_response.py">InexplicitNumberOrderRetrieveResponse</a></code>
+- <code title="get /inexplicit_number_orders">client.inexplicit_number_orders.<a href="./src/telnyx/resources/inexplicit_number_orders.py">list</a>(\*\*<a href="src/telnyx/types/inexplicit_number_order_list_params.py">params</a>) -> <a href="./src/telnyx/types/inexplicit_number_order_list_response.py">InexplicitNumberOrderListResponse</a></code>

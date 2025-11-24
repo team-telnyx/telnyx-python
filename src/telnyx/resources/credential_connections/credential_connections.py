@@ -82,6 +82,7 @@ class CredentialConnectionsResource(SyncAPIResource):
         active: bool | Omit = omit,
         anchorsite_override: AnchorsiteOverride | Omit = omit,
         android_push_credential_id: Optional[str] | Omit = omit,
+        call_cost_in_webhooks: bool | Omit = omit,
         default_on_hold_comfort_noise_enabled: bool | Omit = omit,
         dtmf_type: DtmfType | Omit = omit,
         encode_contact_header_enabled: bool | Omit = omit,
@@ -123,6 +124,8 @@ class CredentialConnectionsResource(SyncAPIResource):
               ping messages. This can be disabled by specifying a site to handle all media.
 
           android_push_credential_id: The uuid of the push credential for Android
+
+          call_cost_in_webhooks: Specifies if call cost webhooks should be sent for this connection.
 
           default_on_hold_comfort_noise_enabled: When enabled, Telnyx will generate comfort noise when you place the call on
               hold. If disabled, you will need to generate comfort noise or on hold music to
@@ -181,6 +184,7 @@ class CredentialConnectionsResource(SyncAPIResource):
                     "active": active,
                     "anchorsite_override": anchorsite_override,
                     "android_push_credential_id": android_push_credential_id,
+                    "call_cost_in_webhooks": call_cost_in_webhooks,
                     "default_on_hold_comfort_noise_enabled": default_on_hold_comfort_noise_enabled,
                     "dtmf_type": dtmf_type,
                     "encode_contact_header_enabled": encode_contact_header_enabled,
@@ -245,6 +249,7 @@ class CredentialConnectionsResource(SyncAPIResource):
         active: bool | Omit = omit,
         anchorsite_override: AnchorsiteOverride | Omit = omit,
         android_push_credential_id: Optional[str] | Omit = omit,
+        call_cost_in_webhooks: bool | Omit = omit,
         connection_name: str | Omit = omit,
         default_on_hold_comfort_noise_enabled: bool | Omit = omit,
         dtmf_type: DtmfType | Omit = omit,
@@ -281,6 +286,8 @@ class CredentialConnectionsResource(SyncAPIResource):
               ping messages. This can be disabled by specifying a site to handle all media.
 
           android_push_credential_id: The uuid of the push credential for Android
+
+          call_cost_in_webhooks: Specifies if call cost webhooks should be sent for this connection.
 
           connection_name: A user-assigned name to help manage the connection.
 
@@ -344,6 +351,7 @@ class CredentialConnectionsResource(SyncAPIResource):
                     "active": active,
                     "anchorsite_override": anchorsite_override,
                     "android_push_credential_id": android_push_credential_id,
+                    "call_cost_in_webhooks": call_cost_in_webhooks,
                     "connection_name": connection_name,
                     "default_on_hold_comfort_noise_enabled": default_on_hold_comfort_noise_enabled,
                     "dtmf_type": dtmf_type,
@@ -505,6 +513,7 @@ class AsyncCredentialConnectionsResource(AsyncAPIResource):
         active: bool | Omit = omit,
         anchorsite_override: AnchorsiteOverride | Omit = omit,
         android_push_credential_id: Optional[str] | Omit = omit,
+        call_cost_in_webhooks: bool | Omit = omit,
         default_on_hold_comfort_noise_enabled: bool | Omit = omit,
         dtmf_type: DtmfType | Omit = omit,
         encode_contact_header_enabled: bool | Omit = omit,
@@ -546,6 +555,8 @@ class AsyncCredentialConnectionsResource(AsyncAPIResource):
               ping messages. This can be disabled by specifying a site to handle all media.
 
           android_push_credential_id: The uuid of the push credential for Android
+
+          call_cost_in_webhooks: Specifies if call cost webhooks should be sent for this connection.
 
           default_on_hold_comfort_noise_enabled: When enabled, Telnyx will generate comfort noise when you place the call on
               hold. If disabled, you will need to generate comfort noise or on hold music to
@@ -604,6 +615,7 @@ class AsyncCredentialConnectionsResource(AsyncAPIResource):
                     "active": active,
                     "anchorsite_override": anchorsite_override,
                     "android_push_credential_id": android_push_credential_id,
+                    "call_cost_in_webhooks": call_cost_in_webhooks,
                     "default_on_hold_comfort_noise_enabled": default_on_hold_comfort_noise_enabled,
                     "dtmf_type": dtmf_type,
                     "encode_contact_header_enabled": encode_contact_header_enabled,
@@ -668,6 +680,7 @@ class AsyncCredentialConnectionsResource(AsyncAPIResource):
         active: bool | Omit = omit,
         anchorsite_override: AnchorsiteOverride | Omit = omit,
         android_push_credential_id: Optional[str] | Omit = omit,
+        call_cost_in_webhooks: bool | Omit = omit,
         connection_name: str | Omit = omit,
         default_on_hold_comfort_noise_enabled: bool | Omit = omit,
         dtmf_type: DtmfType | Omit = omit,
@@ -704,6 +717,8 @@ class AsyncCredentialConnectionsResource(AsyncAPIResource):
               ping messages. This can be disabled by specifying a site to handle all media.
 
           android_push_credential_id: The uuid of the push credential for Android
+
+          call_cost_in_webhooks: Specifies if call cost webhooks should be sent for this connection.
 
           connection_name: A user-assigned name to help manage the connection.
 
@@ -767,6 +782,7 @@ class AsyncCredentialConnectionsResource(AsyncAPIResource):
                     "active": active,
                     "anchorsite_override": anchorsite_override,
                     "android_push_credential_id": android_push_credential_id,
+                    "call_cost_in_webhooks": call_cost_in_webhooks,
                     "connection_name": connection_name,
                     "default_on_hold_comfort_noise_enabled": default_on_hold_comfort_noise_enabled,
                     "dtmf_type": dtmf_type,

@@ -1017,6 +1017,14 @@ from .customer_service_records import (
     CustomerServiceRecordsResourceWithStreamingResponse,
     AsyncCustomerServiceRecordsResourceWithStreamingResponse,
 )
+from .inexplicit_number_orders import (
+    InexplicitNumberOrdersResource,
+    AsyncInexplicitNumberOrdersResource,
+    InexplicitNumberOrdersResourceWithRawResponse,
+    AsyncInexplicitNumberOrdersResourceWithRawResponse,
+    InexplicitNumberOrdersResourceWithStreamingResponse,
+    AsyncInexplicitNumberOrdersResourceWithStreamingResponse,
+)
 from .messaging_hosted_numbers import (
     MessagingHostedNumbersResource,
     AsyncMessagingHostedNumbersResource,
@@ -2120,4 +2128,10 @@ __all__ = [
     "AsyncWellKnownResourceWithRawResponse",
     "WellKnownResourceWithStreamingResponse",
     "AsyncWellKnownResourceWithStreamingResponse",
+    "InexplicitNumberOrdersResource",
+    "AsyncInexplicitNumberOrdersResource",
+    "InexplicitNumberOrdersResourceWithRawResponse",
+    "AsyncInexplicitNumberOrdersResourceWithRawResponse",
+    "InexplicitNumberOrdersResourceWithStreamingResponse",
+    "AsyncInexplicitNumberOrdersResourceWithStreamingResponse",
 ]

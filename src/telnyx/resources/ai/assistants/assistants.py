@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Iterable
+from typing import Dict, List, Union, Iterable
 from typing_extensions import Literal
 
 import httpx
@@ -32,6 +32,7 @@ from ....types.ai import (
     assistant_import_params,
     assistant_update_params,
     assistant_retrieve_params,
+    assistant_send_sms_params,
 )
 from .tests.tests import (
     TestsResource,
@@ -76,6 +77,7 @@ from ....types.ai.assistant_chat_response import AssistantChatResponse
 from ....types.ai.messaging_settings_param import MessagingSettingsParam
 from ....types.ai.telephony_settings_param import TelephonySettingsParam
 from ....types.ai.assistant_delete_response import AssistantDeleteResponse
+from ....types.ai.assistant_send_sms_response import AssistantSendSMSResponse
 from ....types.ai.transcription_settings_param import TranscriptionSettingsParam
 
 __all__ = ["AssistantsResource", "AsyncAssistantsResource"]
@@ -589,6 +591,65 @@ class AssistantsResource(SyncAPIResource):
             cast_to=AssistantsList,
         )
 
+    def send_sms(
+        self,
+        assistant_id: str,
+        *,
+        from_: str,
+        text: str,
+        to: str,
+        conversation_metadata: Dict[str, Union[str, int, bool]] | Omit = omit,
+        should_create_conversation: bool | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AssistantSendSMSResponse:
+        """Send an SMS message for an assistant.
+
+        This endpoint:
+
+        1. Validates the assistant exists and has messaging profile configured
+        2. If should_create_conversation is true, creates a new conversation with
+           metadata
+        3. Sends the SMS message (If `text` is set, this will be sent. Otherwise, if
+           this is the first message in the conversation and the assistant has a
+           `greeting` configured, this will be sent. Otherwise the assistant will
+           generate the text to send.)
+        4. Updates conversation metadata if provided
+        5. Returns the conversation ID
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not assistant_id:
+            raise ValueError(f"Expected a non-empty value for `assistant_id` but received {assistant_id!r}")
+        return self._post(
+            f"/ai/assistants/{assistant_id}/chat/sms",
+            body=maybe_transform(
+                {
+                    "from_": from_,
+                    "text": text,
+                    "to": to,
+                    "conversation_metadata": conversation_metadata,
+                    "should_create_conversation": should_create_conversation,
+                },
+                assistant_send_sms_params.AssistantSendSMSParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=AssistantSendSMSResponse,
+        )
+
 
 class AsyncAssistantsResource(AsyncAPIResource):
     @cached_property
@@ -1098,6 +1159,65 @@ class AsyncAssistantsResource(AsyncAPIResource):
             cast_to=AssistantsList,
         )
 
+    async def send_sms(
+        self,
+        assistant_id: str,
+        *,
+        from_: str,
+        text: str,
+        to: str,
+        conversation_metadata: Dict[str, Union[str, int, bool]] | Omit = omit,
+        should_create_conversation: bool | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AssistantSendSMSResponse:
+        """Send an SMS message for an assistant.
+
+        This endpoint:
+
+        1. Validates the assistant exists and has messaging profile configured
+        2. If should_create_conversation is true, creates a new conversation with
+           metadata
+        3. Sends the SMS message (If `text` is set, this will be sent. Otherwise, if
+           this is the first message in the conversation and the assistant has a
+           `greeting` configured, this will be sent. Otherwise the assistant will
+           generate the text to send.)
+        4. Updates conversation metadata if provided
+        5. Returns the conversation ID
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not assistant_id:
+            raise ValueError(f"Expected a non-empty value for `assistant_id` but received {assistant_id!r}")
+        return await self._post(
+            f"/ai/assistants/{assistant_id}/chat/sms",
+            body=await async_maybe_transform(
+                {
+                    "from_": from_,
+                    "text": text,
+                    "to": to,
+                    "conversation_metadata": conversation_metadata,
+                    "should_create_conversation": should_create_conversation,
+                },
+                assistant_send_sms_params.AssistantSendSMSParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=AssistantSendSMSResponse,
+        )
+
 
 class AssistantsResourceWithRawResponse:
     def __init__(self, assistants: AssistantsResource) -> None:
@@ -1129,6 +1249,9 @@ class AssistantsResourceWithRawResponse:
         )
         self.import_ = to_raw_response_wrapper(
             assistants.import_,
+        )
+        self.send_sms = to_raw_response_wrapper(
+            assistants.send_sms,
         )
 
     @cached_property
@@ -1183,6 +1306,9 @@ class AsyncAssistantsResourceWithRawResponse:
         self.import_ = async_to_raw_response_wrapper(
             assistants.import_,
         )
+        self.send_sms = async_to_raw_response_wrapper(
+            assistants.send_sms,
+        )
 
     @cached_property
     def tests(self) -> AsyncTestsResourceWithRawResponse:
@@ -1236,6 +1362,9 @@ class AssistantsResourceWithStreamingResponse:
         self.import_ = to_streamed_response_wrapper(
             assistants.import_,
         )
+        self.send_sms = to_streamed_response_wrapper(
+            assistants.send_sms,
+        )
 
     @cached_property
     def tests(self) -> TestsResourceWithStreamingResponse:
@@ -1288,6 +1417,9 @@ class AsyncAssistantsResourceWithStreamingResponse:
         )
         self.import_ = async_to_streamed_response_wrapper(
             assistants.import_,
+        )
+        self.send_sms = async_to_streamed_response_wrapper(
+            assistants.send_sms,
         )
 
     @cached_property

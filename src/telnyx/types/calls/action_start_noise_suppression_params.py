@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing_extensions import Literal, TypedDict
 
-__all__ = ["ActionStartNoiseSuppressionParams"]
+__all__ = ["ActionStartNoiseSuppressionParams", "NoiseSuppressionEngineConfig"]
 
 
 class ActionStartNoiseSuppressionParams(TypedDict, total=False):
@@ -24,8 +24,19 @@ class ActionStartNoiseSuppressionParams(TypedDict, total=False):
     direction: Literal["inbound", "outbound", "both"]
     """The direction of the audio stream to be noise suppressed."""
 
-    noise_suppression_engine: Literal["A", "B"]
-    """The engine to use for noise suppression.
+    noise_suppression_engine: Literal["Denoiser", "DeepFilterNet"]
+    """
+    The engine to use for noise suppression. For backward compatibility, engines A
+    and B are also supported, but are deprecated: A - Denoiser B - DeepFilterNet
+    """
 
-    A - rnnoise engine B - deepfilter engine.
+    noise_suppression_engine_config: NoiseSuppressionEngineConfig
+    """Configuration parameters for noise suppression engines."""
+
+
+class NoiseSuppressionEngineConfig(TypedDict, total=False):
+    attenuation_limit: int
+    """The attenuation limit for noise suppression (0-100).
+
+    Only applicable for DeepFilterNet.
     """

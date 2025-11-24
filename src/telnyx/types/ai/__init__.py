@@ -56,6 +56,7 @@ from .messaging_settings_param import MessagingSettingsParam as MessagingSetting
 from .telephony_settings_param import TelephonySettingsParam as TelephonySettingsParam
 from .assistant_delete_response import AssistantDeleteResponse as AssistantDeleteResponse
 from .assistant_retrieve_params import AssistantRetrieveParams as AssistantRetrieveParams
+from .assistant_send_sms_params import AssistantSendSMSParams as AssistantSendSMSParams
 from .audio_transcribe_response import AudioTranscribeResponse as AudioTranscribeResponse
 from .cluster_retrieve_response import ClusterRetrieveResponse as ClusterRetrieveResponse
 from .integration_list_response import IntegrationListResponse as IntegrationListResponse
@@ -65,6 +66,7 @@ from .conversation_list_response import ConversationListResponse as Conversation
 from .conversation_update_params import ConversationUpdateParams as ConversationUpdateParams
 from .mcp_server_create_response import McpServerCreateResponse as McpServerCreateResponse
 from .mcp_server_update_response import McpServerUpdateResponse as McpServerUpdateResponse
+from .assistant_send_sms_response import AssistantSendSMSResponse as AssistantSendSMSResponse
 from .embedding_retrieve_response import EmbeddingRetrieveResponse as EmbeddingRetrieveResponse
 from .assistant_get_texml_response import AssistantGetTexmlResponse as AssistantGetTexmlResponse
 from .conversation_update_response import ConversationUpdateResponse as ConversationUpdateResponse

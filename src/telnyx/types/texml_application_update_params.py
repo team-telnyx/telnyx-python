@@ -28,6 +28,9 @@ class TexmlApplicationUpdateParams(TypedDict, total=False):
     ping messages. This can be disabled by specifying a site to handle all media.
     """
 
+    call_cost_in_webhooks: bool
+    """Specifies if call cost webhooks should be sent for this TeXML Application."""
+
     dtmf_type: DtmfType
     """Sets the type of DTMF digits sent from Telnyx to this Connection.
 

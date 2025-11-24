@@ -38,6 +38,9 @@ class FqdnConnection(BaseModel):
     call_cost_enabled: Optional[bool] = None
     """Indicates whether call cost calculation is enabled."""
 
+    call_cost_in_webhooks: Optional[bool] = None
+    """Specifies if call cost webhooks should be sent for this connection."""
+
     created_at: Optional[str] = None
     """ISO 8601 formatted date indicating when the resource was created."""
 
