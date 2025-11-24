@@ -1904,7 +1904,9 @@ class ActionsResource(SyncAPIResource):
         client_state: str | Omit = omit,
         command_id: str | Omit = omit,
         direction: Literal["inbound", "outbound", "both"] | Omit = omit,
-        noise_suppression_engine: Literal["A", "B"] | Omit = omit,
+        noise_suppression_engine: Literal["Denoiser", "DeepFilterNet"] | Omit = omit,
+        noise_suppression_engine_config: action_start_noise_suppression_params.NoiseSuppressionEngineConfig
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1924,8 +1926,10 @@ class ActionsResource(SyncAPIResource):
 
           direction: The direction of the audio stream to be noise suppressed.
 
-          noise_suppression_engine: The engine to use for noise suppression. A - rnnoise engine B - deepfilter
-              engine.
+          noise_suppression_engine: The engine to use for noise suppression. For backward compatibility, engines A
+              and B are also supported, but are deprecated: A - Denoiser B - DeepFilterNet
+
+          noise_suppression_engine_config: Configuration parameters for noise suppression engines.
 
           extra_headers: Send extra headers
 
@@ -1945,6 +1949,7 @@ class ActionsResource(SyncAPIResource):
                     "command_id": command_id,
                     "direction": direction,
                     "noise_suppression_engine": noise_suppression_engine,
+                    "noise_suppression_engine_config": noise_suppression_engine_config,
                 },
                 action_start_noise_suppression_params.ActionStartNoiseSuppressionParams,
             ),
@@ -5157,7 +5162,9 @@ class AsyncActionsResource(AsyncAPIResource):
         client_state: str | Omit = omit,
         command_id: str | Omit = omit,
         direction: Literal["inbound", "outbound", "both"] | Omit = omit,
-        noise_suppression_engine: Literal["A", "B"] | Omit = omit,
+        noise_suppression_engine: Literal["Denoiser", "DeepFilterNet"] | Omit = omit,
+        noise_suppression_engine_config: action_start_noise_suppression_params.NoiseSuppressionEngineConfig
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -5177,8 +5184,10 @@ class AsyncActionsResource(AsyncAPIResource):
 
           direction: The direction of the audio stream to be noise suppressed.
 
-          noise_suppression_engine: The engine to use for noise suppression. A - rnnoise engine B - deepfilter
-              engine.
+          noise_suppression_engine: The engine to use for noise suppression. For backward compatibility, engines A
+              and B are also supported, but are deprecated: A - Denoiser B - DeepFilterNet
+
+          noise_suppression_engine_config: Configuration parameters for noise suppression engines.
 
           extra_headers: Send extra headers
 
@@ -5198,6 +5207,7 @@ class AsyncActionsResource(AsyncAPIResource):
                     "command_id": command_id,
                     "direction": direction,
                     "noise_suppression_engine": noise_suppression_engine,
+                    "noise_suppression_engine_config": noise_suppression_engine_config,
                 },
                 action_start_noise_suppression_params.ActionStartNoiseSuppressionParams,
             ),

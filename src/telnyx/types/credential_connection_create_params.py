@@ -46,6 +46,9 @@ class CredentialConnectionCreateParams(TypedDict, total=False):
     android_push_credential_id: Optional[str]
     """The uuid of the push credential for Android"""
 
+    call_cost_in_webhooks: bool
+    """Specifies if call cost webhooks should be sent for this connection."""
+
     default_on_hold_comfort_noise_enabled: bool
     """When enabled, Telnyx will generate comfort noise when you place the call on
     hold.

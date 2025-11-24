@@ -14,6 +14,7 @@ from telnyx.types.ai import (
     InferenceEmbedding,
     AssistantChatResponse,
     AssistantDeleteResponse,
+    AssistantSendSMSResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -92,7 +93,14 @@ class TestAssistants:
             ],
             transcription={
                 "language": "language",
-                "model": "model",
+                "model": "deepgram/flux",
+                "region": "region",
+                "settings": {
+                    "eot_threshold": 0,
+                    "eot_timeout_ms": 0,
+                    "numerals": True,
+                    "smart_format": True,
+                },
             },
             voice_settings={
                 "voice": "voice",
@@ -260,7 +268,14 @@ class TestAssistants:
             ],
             transcription={
                 "language": "language",
-                "model": "model",
+                "model": "deepgram/flux",
+                "region": "region",
+                "settings": {
+                    "eot_threshold": 0,
+                    "eot_timeout_ms": 0,
+                    "numerals": True,
+                    "smart_format": True,
+                },
             },
             voice_settings={
                 "voice": "voice",
@@ -560,6 +575,73 @@ class TestAssistants:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_method_send_sms(self, client: Telnyx) -> None:
+        assistant = client.ai.assistants.send_sms(
+            assistant_id="assistant_id",
+            from_="from",
+            text="text",
+            to="to",
+        )
+        assert_matches_type(AssistantSendSMSResponse, assistant, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_method_send_sms_with_all_params(self, client: Telnyx) -> None:
+        assistant = client.ai.assistants.send_sms(
+            assistant_id="assistant_id",
+            from_="from",
+            text="text",
+            to="to",
+            conversation_metadata={"foo": "string"},
+            should_create_conversation=True,
+        )
+        assert_matches_type(AssistantSendSMSResponse, assistant, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_raw_response_send_sms(self, client: Telnyx) -> None:
+        response = client.ai.assistants.with_raw_response.send_sms(
+            assistant_id="assistant_id",
+            from_="from",
+            text="text",
+            to="to",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assistant = response.parse()
+        assert_matches_type(AssistantSendSMSResponse, assistant, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_streaming_response_send_sms(self, client: Telnyx) -> None:
+        with client.ai.assistants.with_streaming_response.send_sms(
+            assistant_id="assistant_id",
+            from_="from",
+            text="text",
+            to="to",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            assistant = response.parse()
+            assert_matches_type(AssistantSendSMSResponse, assistant, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_path_params_send_sms(self, client: Telnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `assistant_id` but received ''"):
+            client.ai.assistants.with_raw_response.send_sms(
+                assistant_id="",
+                from_="from",
+                text="text",
+                to="to",
+            )
+
 
 class TestAsyncAssistants:
     parametrize = pytest.mark.parametrize(
@@ -636,7 +718,14 @@ class TestAsyncAssistants:
             ],
             transcription={
                 "language": "language",
-                "model": "model",
+                "model": "deepgram/flux",
+                "region": "region",
+                "settings": {
+                    "eot_threshold": 0,
+                    "eot_timeout_ms": 0,
+                    "numerals": True,
+                    "smart_format": True,
+                },
             },
             voice_settings={
                 "voice": "voice",
@@ -804,7 +893,14 @@ class TestAsyncAssistants:
             ],
             transcription={
                 "language": "language",
-                "model": "model",
+                "model": "deepgram/flux",
+                "region": "region",
+                "settings": {
+                    "eot_threshold": 0,
+                    "eot_timeout_ms": 0,
+                    "numerals": True,
+                    "smart_format": True,
+                },
             },
             voice_settings={
                 "voice": "voice",
@@ -1103,3 +1199,70 @@ class TestAsyncAssistants:
             assert_matches_type(AssistantsList, assistant, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_method_send_sms(self, async_client: AsyncTelnyx) -> None:
+        assistant = await async_client.ai.assistants.send_sms(
+            assistant_id="assistant_id",
+            from_="from",
+            text="text",
+            to="to",
+        )
+        assert_matches_type(AssistantSendSMSResponse, assistant, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_method_send_sms_with_all_params(self, async_client: AsyncTelnyx) -> None:
+        assistant = await async_client.ai.assistants.send_sms(
+            assistant_id="assistant_id",
+            from_="from",
+            text="text",
+            to="to",
+            conversation_metadata={"foo": "string"},
+            should_create_conversation=True,
+        )
+        assert_matches_type(AssistantSendSMSResponse, assistant, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_raw_response_send_sms(self, async_client: AsyncTelnyx) -> None:
+        response = await async_client.ai.assistants.with_raw_response.send_sms(
+            assistant_id="assistant_id",
+            from_="from",
+            text="text",
+            to="to",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assistant = await response.parse()
+        assert_matches_type(AssistantSendSMSResponse, assistant, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_streaming_response_send_sms(self, async_client: AsyncTelnyx) -> None:
+        async with async_client.ai.assistants.with_streaming_response.send_sms(
+            assistant_id="assistant_id",
+            from_="from",
+            text="text",
+            to="to",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            assistant = await response.parse()
+            assert_matches_type(AssistantSendSMSResponse, assistant, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_path_params_send_sms(self, async_client: AsyncTelnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `assistant_id` but received ''"):
+            await async_client.ai.assistants.with_raw_response.send_sms(
+                assistant_id="",
+                from_="from",
+                text="text",
+                to="to",
+            )

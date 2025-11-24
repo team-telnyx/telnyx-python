@@ -26,6 +26,12 @@ class CallControlApplication(BaseModel):
     application_name: Optional[str] = None
     """A user-assigned name to help manage the application."""
 
+    call_cost_in_webhooks: Optional[bool] = None
+    """
+    Specifies if call cost webhooks should be sent for this Call Control
+    Application.
+    """
+
     created_at: Optional[str] = None
     """ISO 8601 formatted date of when the resource was created"""
 

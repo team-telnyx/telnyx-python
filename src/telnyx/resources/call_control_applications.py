@@ -61,6 +61,7 @@ class CallControlApplicationsResource(SyncAPIResource):
         webhook_event_url: str,
         active: bool | Omit = omit,
         anchorsite_override: Literal['"Latency"', '"Chicago, IL"', '"Ashburn, VA"', '"San Jose, CA"'] | Omit = omit,
+        call_cost_in_webhooks: bool | Omit = omit,
         dtmf_type: Literal["RFC 2833", "Inband", "SIP INFO"] | Omit = omit,
         first_command_timeout: bool | Omit = omit,
         first_command_timeout_secs: int | Omit = omit,
@@ -92,6 +93,9 @@ class CallControlApplicationsResource(SyncAPIResource):
               lowest round-trip time to the user's connection. Telnyx calculates this time
               using ICMP ping messages. This can be disabled by specifying a site to handle
               all media.
+
+          call_cost_in_webhooks: Specifies if call cost webhooks should be sent for this Call Control
+              Application.
 
           dtmf_type: Sets the type of DTMF digits sent from Telnyx to this Connection. Note that DTMF
               digits sent to Telnyx will be accepted in all formats.
@@ -127,6 +131,7 @@ class CallControlApplicationsResource(SyncAPIResource):
                     "webhook_event_url": webhook_event_url,
                     "active": active,
                     "anchorsite_override": anchorsite_override,
+                    "call_cost_in_webhooks": call_cost_in_webhooks,
                     "dtmf_type": dtmf_type,
                     "first_command_timeout": first_command_timeout,
                     "first_command_timeout_secs": first_command_timeout_secs,
@@ -186,6 +191,7 @@ class CallControlApplicationsResource(SyncAPIResource):
         webhook_event_url: str,
         active: bool | Omit = omit,
         anchorsite_override: Literal['"Latency"', '"Chicago, IL"', '"Ashburn, VA"', '"San Jose, CA"'] | Omit = omit,
+        call_cost_in_webhooks: bool | Omit = omit,
         dtmf_type: Literal["RFC 2833", "Inband", "SIP INFO"] | Omit = omit,
         first_command_timeout: bool | Omit = omit,
         first_command_timeout_secs: int | Omit = omit,
@@ -218,6 +224,9 @@ class CallControlApplicationsResource(SyncAPIResource):
               lowest round-trip time to the user's connection. Telnyx calculates this time
               using ICMP ping messages. This can be disabled by specifying a site to handle
               all media.
+
+          call_cost_in_webhooks: Specifies if call cost webhooks should be sent for this Call Control
+              Application.
 
           dtmf_type: Sets the type of DTMF digits sent from Telnyx to this Connection. Note that DTMF
               digits sent to Telnyx will be accepted in all formats.
@@ -257,6 +266,7 @@ class CallControlApplicationsResource(SyncAPIResource):
                     "webhook_event_url": webhook_event_url,
                     "active": active,
                     "anchorsite_override": anchorsite_override,
+                    "call_cost_in_webhooks": call_cost_in_webhooks,
                     "dtmf_type": dtmf_type,
                     "first_command_timeout": first_command_timeout,
                     "first_command_timeout_secs": first_command_timeout_secs,
@@ -406,6 +416,7 @@ class AsyncCallControlApplicationsResource(AsyncAPIResource):
         webhook_event_url: str,
         active: bool | Omit = omit,
         anchorsite_override: Literal['"Latency"', '"Chicago, IL"', '"Ashburn, VA"', '"San Jose, CA"'] | Omit = omit,
+        call_cost_in_webhooks: bool | Omit = omit,
         dtmf_type: Literal["RFC 2833", "Inband", "SIP INFO"] | Omit = omit,
         first_command_timeout: bool | Omit = omit,
         first_command_timeout_secs: int | Omit = omit,
@@ -437,6 +448,9 @@ class AsyncCallControlApplicationsResource(AsyncAPIResource):
               lowest round-trip time to the user's connection. Telnyx calculates this time
               using ICMP ping messages. This can be disabled by specifying a site to handle
               all media.
+
+          call_cost_in_webhooks: Specifies if call cost webhooks should be sent for this Call Control
+              Application.
 
           dtmf_type: Sets the type of DTMF digits sent from Telnyx to this Connection. Note that DTMF
               digits sent to Telnyx will be accepted in all formats.
@@ -472,6 +486,7 @@ class AsyncCallControlApplicationsResource(AsyncAPIResource):
                     "webhook_event_url": webhook_event_url,
                     "active": active,
                     "anchorsite_override": anchorsite_override,
+                    "call_cost_in_webhooks": call_cost_in_webhooks,
                     "dtmf_type": dtmf_type,
                     "first_command_timeout": first_command_timeout,
                     "first_command_timeout_secs": first_command_timeout_secs,
@@ -531,6 +546,7 @@ class AsyncCallControlApplicationsResource(AsyncAPIResource):
         webhook_event_url: str,
         active: bool | Omit = omit,
         anchorsite_override: Literal['"Latency"', '"Chicago, IL"', '"Ashburn, VA"', '"San Jose, CA"'] | Omit = omit,
+        call_cost_in_webhooks: bool | Omit = omit,
         dtmf_type: Literal["RFC 2833", "Inband", "SIP INFO"] | Omit = omit,
         first_command_timeout: bool | Omit = omit,
         first_command_timeout_secs: int | Omit = omit,
@@ -563,6 +579,9 @@ class AsyncCallControlApplicationsResource(AsyncAPIResource):
               lowest round-trip time to the user's connection. Telnyx calculates this time
               using ICMP ping messages. This can be disabled by specifying a site to handle
               all media.
+
+          call_cost_in_webhooks: Specifies if call cost webhooks should be sent for this Call Control
+              Application.
 
           dtmf_type: Sets the type of DTMF digits sent from Telnyx to this Connection. Note that DTMF
               digits sent to Telnyx will be accepted in all formats.
@@ -602,6 +621,7 @@ class AsyncCallControlApplicationsResource(AsyncAPIResource):
                     "webhook_event_url": webhook_event_url,
                     "active": active,
                     "anchorsite_override": anchorsite_override,
+                    "call_cost_in_webhooks": call_cost_in_webhooks,
                     "dtmf_type": dtmf_type,
                     "first_command_timeout": first_command_timeout,
                     "first_command_timeout_secs": first_command_timeout_secs,

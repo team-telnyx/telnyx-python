@@ -62,6 +62,7 @@ class TexmlApplicationsResource(SyncAPIResource):
         voice_url: str,
         active: bool | Omit = omit,
         anchorsite_override: AnchorsiteOverride | Omit = omit,
+        call_cost_in_webhooks: bool | Omit = omit,
         dtmf_type: DtmfType | Omit = omit,
         first_command_timeout: bool | Omit = omit,
         first_command_timeout_secs: int | Omit = omit,
@@ -92,6 +93,8 @@ class TexmlApplicationsResource(SyncAPIResource):
           anchorsite_override: `Latency` directs Telnyx to route media through the site with the lowest
               round-trip time to the user's connection. Telnyx calculates this time using ICMP
               ping messages. This can be disabled by specifying a site to handle all media.
+
+          call_cost_in_webhooks: Specifies if call cost webhooks should be sent for this TeXML Application.
 
           dtmf_type: Sets the type of DTMF digits sent from Telnyx to this Connection. Note that DTMF
               digits sent to Telnyx will be accepted in all formats.
@@ -130,6 +133,7 @@ class TexmlApplicationsResource(SyncAPIResource):
                     "voice_url": voice_url,
                     "active": active,
                     "anchorsite_override": anchorsite_override,
+                    "call_cost_in_webhooks": call_cost_in_webhooks,
                     "dtmf_type": dtmf_type,
                     "first_command_timeout": first_command_timeout,
                     "first_command_timeout_secs": first_command_timeout_secs,
@@ -190,6 +194,7 @@ class TexmlApplicationsResource(SyncAPIResource):
         voice_url: str,
         active: bool | Omit = omit,
         anchorsite_override: AnchorsiteOverride | Omit = omit,
+        call_cost_in_webhooks: bool | Omit = omit,
         dtmf_type: DtmfType | Omit = omit,
         first_command_timeout: bool | Omit = omit,
         first_command_timeout_secs: int | Omit = omit,
@@ -220,6 +225,8 @@ class TexmlApplicationsResource(SyncAPIResource):
           anchorsite_override: `Latency` directs Telnyx to route media through the site with the lowest
               round-trip time to the user's connection. Telnyx calculates this time using ICMP
               ping messages. This can be disabled by specifying a site to handle all media.
+
+          call_cost_in_webhooks: Specifies if call cost webhooks should be sent for this TeXML Application.
 
           dtmf_type: Sets the type of DTMF digits sent from Telnyx to this Connection. Note that DTMF
               digits sent to Telnyx will be accepted in all formats.
@@ -260,6 +267,7 @@ class TexmlApplicationsResource(SyncAPIResource):
                     "voice_url": voice_url,
                     "active": active,
                     "anchorsite_override": anchorsite_override,
+                    "call_cost_in_webhooks": call_cost_in_webhooks,
                     "dtmf_type": dtmf_type,
                     "first_command_timeout": first_command_timeout,
                     "first_command_timeout_secs": first_command_timeout_secs,
@@ -406,6 +414,7 @@ class AsyncTexmlApplicationsResource(AsyncAPIResource):
         voice_url: str,
         active: bool | Omit = omit,
         anchorsite_override: AnchorsiteOverride | Omit = omit,
+        call_cost_in_webhooks: bool | Omit = omit,
         dtmf_type: DtmfType | Omit = omit,
         first_command_timeout: bool | Omit = omit,
         first_command_timeout_secs: int | Omit = omit,
@@ -436,6 +445,8 @@ class AsyncTexmlApplicationsResource(AsyncAPIResource):
           anchorsite_override: `Latency` directs Telnyx to route media through the site with the lowest
               round-trip time to the user's connection. Telnyx calculates this time using ICMP
               ping messages. This can be disabled by specifying a site to handle all media.
+
+          call_cost_in_webhooks: Specifies if call cost webhooks should be sent for this TeXML Application.
 
           dtmf_type: Sets the type of DTMF digits sent from Telnyx to this Connection. Note that DTMF
               digits sent to Telnyx will be accepted in all formats.
@@ -474,6 +485,7 @@ class AsyncTexmlApplicationsResource(AsyncAPIResource):
                     "voice_url": voice_url,
                     "active": active,
                     "anchorsite_override": anchorsite_override,
+                    "call_cost_in_webhooks": call_cost_in_webhooks,
                     "dtmf_type": dtmf_type,
                     "first_command_timeout": first_command_timeout,
                     "first_command_timeout_secs": first_command_timeout_secs,
@@ -534,6 +546,7 @@ class AsyncTexmlApplicationsResource(AsyncAPIResource):
         voice_url: str,
         active: bool | Omit = omit,
         anchorsite_override: AnchorsiteOverride | Omit = omit,
+        call_cost_in_webhooks: bool | Omit = omit,
         dtmf_type: DtmfType | Omit = omit,
         first_command_timeout: bool | Omit = omit,
         first_command_timeout_secs: int | Omit = omit,
@@ -564,6 +577,8 @@ class AsyncTexmlApplicationsResource(AsyncAPIResource):
           anchorsite_override: `Latency` directs Telnyx to route media through the site with the lowest
               round-trip time to the user's connection. Telnyx calculates this time using ICMP
               ping messages. This can be disabled by specifying a site to handle all media.
+
+          call_cost_in_webhooks: Specifies if call cost webhooks should be sent for this TeXML Application.
 
           dtmf_type: Sets the type of DTMF digits sent from Telnyx to this Connection. Note that DTMF
               digits sent to Telnyx will be accepted in all formats.
@@ -604,6 +619,7 @@ class AsyncTexmlApplicationsResource(AsyncAPIResource):
                     "voice_url": voice_url,
                     "active": active,
                     "anchorsite_override": anchorsite_override,
+                    "call_cost_in_webhooks": call_cost_in_webhooks,
                     "dtmf_type": dtmf_type,
                     "first_command_timeout": first_command_timeout,
                     "first_command_timeout_secs": first_command_timeout_secs,

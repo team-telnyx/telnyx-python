@@ -112,6 +112,7 @@ from .resources import (
     regulatory_requirements,
     authentication_providers,
     customer_service_records,
+    inexplicit_number_orders,
     messaging_hosted_numbers,
     mobile_network_operators,
     public_internet_gateways,
@@ -341,6 +342,7 @@ class Telnyx(SyncAPIClient):
     wireless_blocklists: wireless_blocklists.WirelessBlocklistsResource
     partner_campaigns: partner_campaigns.PartnerCampaignsResource
     well_known: well_known.WellKnownResource
+    inexplicit_number_orders: inexplicit_number_orders.InexplicitNumberOrdersResource
     with_raw_response: TelnyxWithRawResponse
     with_streaming_response: TelnyxWithStreamedResponse
 
@@ -567,6 +569,7 @@ class Telnyx(SyncAPIClient):
         self.wireless_blocklists = wireless_blocklists.WirelessBlocklistsResource(self)
         self.partner_campaigns = partner_campaigns.PartnerCampaignsResource(self)
         self.well_known = well_known.WellKnownResource(self)
+        self.inexplicit_number_orders = inexplicit_number_orders.InexplicitNumberOrdersResource(self)
         self.with_raw_response = TelnyxWithRawResponse(self)
         self.with_streaming_response = TelnyxWithStreamedResponse(self)
 
@@ -834,6 +837,7 @@ class AsyncTelnyx(AsyncAPIClient):
     wireless_blocklists: wireless_blocklists.AsyncWirelessBlocklistsResource
     partner_campaigns: partner_campaigns.AsyncPartnerCampaignsResource
     well_known: well_known.AsyncWellKnownResource
+    inexplicit_number_orders: inexplicit_number_orders.AsyncInexplicitNumberOrdersResource
     with_raw_response: AsyncTelnyxWithRawResponse
     with_streaming_response: AsyncTelnyxWithStreamedResponse
 
@@ -1066,6 +1070,7 @@ class AsyncTelnyx(AsyncAPIClient):
         self.wireless_blocklists = wireless_blocklists.AsyncWirelessBlocklistsResource(self)
         self.partner_campaigns = partner_campaigns.AsyncPartnerCampaignsResource(self)
         self.well_known = well_known.AsyncWellKnownResource(self)
+        self.inexplicit_number_orders = inexplicit_number_orders.AsyncInexplicitNumberOrdersResource(self)
         self.with_raw_response = AsyncTelnyxWithRawResponse(self)
         self.with_streaming_response = AsyncTelnyxWithStreamedResponse(self)
 
@@ -1459,6 +1464,9 @@ class TelnyxWithRawResponse:
         )
         self.partner_campaigns = partner_campaigns.PartnerCampaignsResourceWithRawResponse(client.partner_campaigns)
         self.well_known = well_known.WellKnownResourceWithRawResponse(client.well_known)
+        self.inexplicit_number_orders = inexplicit_number_orders.InexplicitNumberOrdersResourceWithRawResponse(
+            client.inexplicit_number_orders
+        )
 
 
 class AsyncTelnyxWithRawResponse:
@@ -1782,6 +1790,9 @@ class AsyncTelnyxWithRawResponse:
             client.partner_campaigns
         )
         self.well_known = well_known.AsyncWellKnownResourceWithRawResponse(client.well_known)
+        self.inexplicit_number_orders = inexplicit_number_orders.AsyncInexplicitNumberOrdersResourceWithRawResponse(
+            client.inexplicit_number_orders
+        )
 
 
 class TelnyxWithStreamedResponse:
@@ -2111,6 +2122,9 @@ class TelnyxWithStreamedResponse:
             client.partner_campaigns
         )
         self.well_known = well_known.WellKnownResourceWithStreamingResponse(client.well_known)
+        self.inexplicit_number_orders = inexplicit_number_orders.InexplicitNumberOrdersResourceWithStreamingResponse(
+            client.inexplicit_number_orders
+        )
 
 
 class AsyncTelnyxWithStreamedResponse:
@@ -2482,6 +2496,11 @@ class AsyncTelnyxWithStreamedResponse:
             client.partner_campaigns
         )
         self.well_known = well_known.AsyncWellKnownResourceWithStreamingResponse(client.well_known)
+        self.inexplicit_number_orders = (
+            inexplicit_number_orders.AsyncInexplicitNumberOrdersResourceWithStreamingResponse(
+                client.inexplicit_number_orders
+            )
+        )
 
 
 Client = Telnyx
