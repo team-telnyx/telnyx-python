@@ -1320,7 +1320,8 @@ class TestActions:
             client_state="aGF2ZSBhIG5pY2UgZGF5ID1d",
             command_id="891510ac-f3e4-11e8-af5b-de00688a4901",
             direction="both",
-            noise_suppression_engine="A",
+            noise_suppression_engine="DeepFilterNet",
+            noise_suppression_engine_config={"attenuation_limit": 100},
         )
         assert_matches_type(ActionStartNoiseSuppressionResponse, action, path=["response"])
 
@@ -3641,7 +3642,8 @@ class TestAsyncActions:
             client_state="aGF2ZSBhIG5pY2UgZGF5ID1d",
             command_id="891510ac-f3e4-11e8-af5b-de00688a4901",
             direction="both",
-            noise_suppression_engine="A",
+            noise_suppression_engine="DeepFilterNet",
+            noise_suppression_engine_config={"attenuation_limit": 100},
         )
         assert_matches_type(ActionStartNoiseSuppressionResponse, action, path=["response"])
 

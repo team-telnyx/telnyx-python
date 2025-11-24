@@ -33,6 +33,12 @@ class CallControlApplicationUpdateParams(TypedDict, total=False):
     all media.
     """
 
+    call_cost_in_webhooks: bool
+    """
+    Specifies if call cost webhooks should be sent for this Call Control
+    Application.
+    """
+
     dtmf_type: Literal["RFC 2833", "Inband", "SIP INFO"]
     """Sets the type of DTMF digits sent from Telnyx to this Connection.
 

@@ -66,6 +66,9 @@ class TexmlApplication(BaseModel):
     ping messages. This can be disabled by specifying a site to handle all media.
     """
 
+    call_cost_in_webhooks: Optional[bool] = None
+    """Specifies if call cost webhooks should be sent for this TeXML Application."""
+
     created_at: Optional[str] = None
     """ISO 8601 formatted date indicating when the resource was created."""
 

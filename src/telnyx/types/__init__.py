@@ -698,6 +698,7 @@ from .external_connection_create_response import ExternalConnectionCreateRespons
 from .external_connection_delete_response import ExternalConnectionDeleteResponse as ExternalConnectionDeleteResponse
 from .external_connection_update_response import ExternalConnectionUpdateResponse as ExternalConnectionUpdateResponse
 from .global_ip_latency_retrieve_response import GlobalIPLatencyRetrieveResponse as GlobalIPLatencyRetrieveResponse
+from .inexplicit_number_order_list_params import InexplicitNumberOrderListParams as InexplicitNumberOrderListParams
 from .messaging_profile_retrieve_response import MessagingProfileRetrieveResponse as MessagingProfileRetrieveResponse
 from .mobile_network_operator_list_params import MobileNetworkOperatorListParams as MobileNetworkOperatorListParams
 from .phone_number_campaign_create_params import PhoneNumberCampaignCreateParams as PhoneNumberCampaignCreateParams
@@ -793,6 +794,12 @@ from .dynamic_emergency_address_list_params import (
 )
 from .external_connection_retrieve_response import (
     ExternalConnectionRetrieveResponse as ExternalConnectionRetrieveResponse,
+)
+from .inexplicit_number_order_create_params import (
+    InexplicitNumberOrderCreateParams as InexplicitNumberOrderCreateParams,
+)
+from .inexplicit_number_order_list_response import (
+    InexplicitNumberOrderListResponse as InexplicitNumberOrderListResponse,
 )
 from .mobile_network_operator_list_response import (
     MobileNetworkOperatorListResponse as MobileNetworkOperatorListResponse,
@@ -940,6 +947,9 @@ from .dynamic_emergency_address_create_params import (
 from .dynamic_emergency_address_list_response import (
     DynamicEmergencyAddressListResponse as DynamicEmergencyAddressListResponse,
 )
+from .inexplicit_number_order_create_response import (
+    InexplicitNumberOrderCreateResponse as InexplicitNumberOrderCreateResponse,
+)
 from .messaging_hosted_number_delete_response import (
     MessagingHostedNumberDeleteResponse as MessagingHostedNumberDeleteResponse,
 )
@@ -1053,6 +1063,9 @@ from .dynamic_emergency_address_delete_response import (
 )
 from .global_ip_health_check_type_list_response import (
     GlobalIPHealthCheckTypeListResponse as GlobalIPHealthCheckTypeListResponse,
+)
+from .inexplicit_number_order_retrieve_response import (
+    InexplicitNumberOrderRetrieveResponse as InexplicitNumberOrderRetrieveResponse,
 )
 from .ledger_billing_group_report_create_params import (
     LedgerBillingGroupReportCreateParams as LedgerBillingGroupReportCreateParams,

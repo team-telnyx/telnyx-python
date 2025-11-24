@@ -118,10 +118,7 @@ class ChatResource(SyncAPIResource):
               [many prefer](https://github.com/huggingface/transformers/issues/27670). Must be
               in [0, 1].
 
-          model: The language model to chat with. If you are optimizing for speed + price, try
-              `meta-llama/Meta-Llama-3.1-8B-Instruct`. For quality, try
-              `meta-llama/Meta-Llama-3.1-70B-Instruct`. Or explore our
-              [LLM Library](https://telnyx.com/products/llm-library).
+          model: The language model to chat with.
 
           n: This will return multiple choices for you instead of a single chat completion.
 
@@ -293,10 +290,7 @@ class AsyncChatResource(AsyncAPIResource):
               [many prefer](https://github.com/huggingface/transformers/issues/27670). Must be
               in [0, 1].
 
-          model: The language model to chat with. If you are optimizing for speed + price, try
-              `meta-llama/Meta-Llama-3.1-8B-Instruct`. For quality, try
-              `meta-llama/Meta-Llama-3.1-70B-Instruct`. Or explore our
-              [LLM Library](https://telnyx.com/products/llm-library).
+          model: The language model to chat with.
 
           n: This will return multiple choices for you instead of a single chat completion.
 
