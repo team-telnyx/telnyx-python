@@ -181,7 +181,7 @@ class TestOAuth:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism doesn't properly handle redirects")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_retrieve_authorize(self, client: Telnyx) -> None:
         oauth = client.oauth.retrieve_authorize(
@@ -191,7 +191,7 @@ class TestOAuth:
         )
         assert oauth is None
 
-    @pytest.mark.skip(reason="Prism doesn't properly handle redirects")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_retrieve_authorize_with_all_params(self, client: Telnyx) -> None:
         oauth = client.oauth.retrieve_authorize(
@@ -205,7 +205,7 @@ class TestOAuth:
         )
         assert oauth is None
 
-    @pytest.mark.skip(reason="Prism doesn't properly handle redirects")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_retrieve_authorize(self, client: Telnyx) -> None:
         response = client.oauth.with_raw_response.retrieve_authorize(
@@ -219,7 +219,7 @@ class TestOAuth:
         oauth = response.parse()
         assert oauth is None
 
-    @pytest.mark.skip(reason="Prism doesn't properly handle redirects")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_retrieve_authorize(self, client: Telnyx) -> None:
         with client.oauth.with_streaming_response.retrieve_authorize(
@@ -475,7 +475,7 @@ class TestAsyncOAuth:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism doesn't properly handle redirects")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_retrieve_authorize(self, async_client: AsyncTelnyx) -> None:
         oauth = await async_client.oauth.retrieve_authorize(
@@ -485,7 +485,7 @@ class TestAsyncOAuth:
         )
         assert oauth is None
 
-    @pytest.mark.skip(reason="Prism doesn't properly handle redirects")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_retrieve_authorize_with_all_params(self, async_client: AsyncTelnyx) -> None:
         oauth = await async_client.oauth.retrieve_authorize(
@@ -499,7 +499,7 @@ class TestAsyncOAuth:
         )
         assert oauth is None
 
-    @pytest.mark.skip(reason="Prism doesn't properly handle redirects")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_retrieve_authorize(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.oauth.with_raw_response.retrieve_authorize(
@@ -513,7 +513,7 @@ class TestAsyncOAuth:
         oauth = await response.parse()
         assert oauth is None
 
-    @pytest.mark.skip(reason="Prism doesn't properly handle redirects")
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve_authorize(self, async_client: AsyncTelnyx) -> None:
         async with async_client.oauth.with_streaming_response.retrieve_authorize(
