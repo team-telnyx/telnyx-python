@@ -213,7 +213,7 @@ class TestInsightGroups:
         insight_group = client.ai.conversations.insight_groups.retrieve_insight_groups(
             page={
                 "number": 1,
-                "size": 1,
+                "size": 0,
             },
         )
         assert_matches_type(InsightGroupRetrieveInsightGroupsResponse, insight_group, path=["response"])
@@ -439,7 +439,7 @@ class TestAsyncInsightGroups:
         insight_group = await async_client.ai.conversations.insight_groups.retrieve_insight_groups(
             page={
                 "number": 1,
-                "size": 1,
+                "size": 0,
             },
         )
         assert_matches_type(InsightGroupRetrieveInsightGroupsResponse, insight_group, path=["response"])

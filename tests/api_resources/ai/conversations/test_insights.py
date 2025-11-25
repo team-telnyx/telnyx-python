@@ -176,7 +176,7 @@ class TestInsights:
         insight = client.ai.conversations.insights.list(
             page={
                 "number": 1,
-                "size": 1,
+                "size": 0,
             },
         )
         assert_matches_type(InsightListResponse, insight, path=["response"])
@@ -407,7 +407,7 @@ class TestAsyncInsights:
         insight = await async_client.ai.conversations.insights.list(
             page={
                 "number": 1,
-                "size": 1,
+                "size": 0,
             },
         )
         assert_matches_type(InsightListResponse, insight, path=["response"])
