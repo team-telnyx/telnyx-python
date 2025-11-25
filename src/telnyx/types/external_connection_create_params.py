@@ -52,6 +52,9 @@ class Outbound(TypedDict, total=False):
 
 
 class Inbound(TypedDict, total=False):
+    outbound_voice_profile_id: Required[str]
+    """The ID of the outbound voice profile to use for inbound calls."""
+
     channel_limit: int
     """
     When set, this will limit the number of concurrent inbound calls to phone

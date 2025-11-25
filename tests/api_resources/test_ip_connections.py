@@ -45,7 +45,7 @@ class TestIPConnections:
             inbound={
                 "ani_number_format": "+E.164",
                 "channel_limit": 10,
-                "codecs": ["string"],
+                "codecs": ["G722"],
                 "default_routing_method": "sequential",
                 "dnis_number_format": "+e164",
                 "generate_ringback_tone": True,
@@ -178,7 +178,7 @@ class TestIPConnections:
             inbound={
                 "ani_number_format": "+E.164",
                 "channel_limit": 10,
-                "codecs": ["string"],
+                "codecs": ["G722"],
                 "default_primary_ip_id": "192.168.0.0",
                 "default_routing_method": "sequential",
                 "default_secondary_ip_id": "192.168.0.0",
@@ -374,7 +374,7 @@ class TestAsyncIPConnections:
             inbound={
                 "ani_number_format": "+E.164",
                 "channel_limit": 10,
-                "codecs": ["string"],
+                "codecs": ["G722"],
                 "default_routing_method": "sequential",
                 "dnis_number_format": "+e164",
                 "generate_ringback_tone": True,
@@ -507,7 +507,7 @@ class TestAsyncIPConnections:
             inbound={
                 "ani_number_format": "+E.164",
                 "channel_limit": 10,
-                "codecs": ["string"],
+                "codecs": ["G722"],
                 "default_primary_ip_id": "192.168.0.0",
                 "default_routing_method": "sequential",
                 "default_secondary_ip_id": "192.168.0.0",

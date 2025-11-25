@@ -43,7 +43,10 @@ class TestExternalConnections:
                 "outbound_voice_profile_id": "outbound_voice_profile_id",
             },
             active=False,
-            inbound={"channel_limit": 10},
+            inbound={
+                "outbound_voice_profile_id": "12345678-1234-1234-1234-123456789012",
+                "channel_limit": 10,
+            },
             tags=["tag1", "tag2"],
             webhook_event_failover_url="https://failover.example.com",
             webhook_event_url="https://example.com",
@@ -355,7 +358,10 @@ class TestAsyncExternalConnections:
                 "outbound_voice_profile_id": "outbound_voice_profile_id",
             },
             active=False,
-            inbound={"channel_limit": 10},
+            inbound={
+                "outbound_voice_profile_id": "12345678-1234-1234-1234-123456789012",
+                "channel_limit": 10,
+            },
             tags=["tag1", "tag2"],
             webhook_event_failover_url="https://failover.example.com",
             webhook_event_url="https://example.com",
