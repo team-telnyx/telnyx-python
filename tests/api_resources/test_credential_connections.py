@@ -51,7 +51,7 @@ class TestCredentialConnections:
             inbound={
                 "ani_number_format": "+E.164",
                 "channel_limit": 10,
-                "codecs": ["string"],
+                "codecs": ["G722"],
                 "dnis_number_format": "+e164",
                 "generate_ringback_tone": True,
                 "isup_headers_enabled": True,
@@ -185,7 +185,7 @@ class TestCredentialConnections:
             inbound={
                 "ani_number_format": "+E.164",
                 "channel_limit": 10,
-                "codecs": ["string"],
+                "codecs": ["G722"],
                 "dnis_number_format": "+e164",
                 "generate_ringback_tone": True,
                 "isup_headers_enabled": True,
@@ -379,7 +379,7 @@ class TestAsyncCredentialConnections:
             inbound={
                 "ani_number_format": "+E.164",
                 "channel_limit": 10,
-                "codecs": ["string"],
+                "codecs": ["G722"],
                 "dnis_number_format": "+e164",
                 "generate_ringback_tone": True,
                 "isup_headers_enabled": True,
@@ -513,7 +513,7 @@ class TestAsyncCredentialConnections:
             inbound={
                 "ani_number_format": "+E.164",
                 "channel_limit": 10,
-                "codecs": ["string"],
+                "codecs": ["G722"],
                 "dnis_number_format": "+e164",
                 "generate_ringback_tone": True,
                 "isup_headers_enabled": True,
