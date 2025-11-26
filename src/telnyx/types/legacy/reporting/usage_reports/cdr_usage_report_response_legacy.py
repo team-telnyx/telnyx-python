@@ -17,7 +17,7 @@ class CdrUsageReportResponseLegacy(BaseModel):
     Aggregation type: All = 0, By Connections = 1, By Tags = 2, By Billing Group = 3
     """
 
-    connections: Optional[List[int]] = None
+    connections: Optional[List[str]] = None
 
     created_at: Optional[datetime] = None
 
