@@ -15,7 +15,7 @@ class MdrUsageReportResponseLegacy(BaseModel):
     aggregation_type: Optional[int] = None
     """Aggregation type: No aggregation = 0, By Messaging Profile = 1, By Tags = 2"""
 
-    connections: Optional[List[int]] = None
+    connections: Optional[List[str]] = None
 
     created_at: Optional[datetime] = None
 

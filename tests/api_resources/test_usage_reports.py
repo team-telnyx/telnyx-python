@@ -43,7 +43,7 @@ class TestUsageReports:
             format="csv",
             managed_accounts=True,
             page={
-                "number": 2,
+                "number": 1,
                 "size": 5000,
             },
             sort=["string"],
@@ -148,7 +148,7 @@ class TestAsyncUsageReports:
             format="csv",
             managed_accounts=True,
             page={
-                "number": 2,
+                "number": 1,
                 "size": 5000,
             },
             sort=["string"],

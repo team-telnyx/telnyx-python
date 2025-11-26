@@ -202,7 +202,7 @@ class TestMdrUsageReports:
     @parametrize
     def test_method_fetch_sync(self, client: Telnyx) -> None:
         mdr_usage_report = client.reports.mdr_usage_reports.fetch_sync(
-            aggregation_type="NO_AGGREGATION",
+            aggregation_type="PROFILE",
         )
         assert_matches_type(MdrUsageReportFetchSyncResponse, mdr_usage_report, path=["response"])
 
@@ -210,7 +210,7 @@ class TestMdrUsageReports:
     @parametrize
     def test_method_fetch_sync_with_all_params(self, client: Telnyx) -> None:
         mdr_usage_report = client.reports.mdr_usage_reports.fetch_sync(
-            aggregation_type="NO_AGGREGATION",
+            aggregation_type="PROFILE",
             end_date=parse_datetime("2020-07-01T00:00:00-06:00"),
             profiles=["My profile"],
             start_date=parse_datetime("2020-07-01T00:00:00-06:00"),
@@ -221,7 +221,7 @@ class TestMdrUsageReports:
     @parametrize
     def test_raw_response_fetch_sync(self, client: Telnyx) -> None:
         response = client.reports.mdr_usage_reports.with_raw_response.fetch_sync(
-            aggregation_type="NO_AGGREGATION",
+            aggregation_type="PROFILE",
         )
 
         assert response.is_closed is True
@@ -233,7 +233,7 @@ class TestMdrUsageReports:
     @parametrize
     def test_streaming_response_fetch_sync(self, client: Telnyx) -> None:
         with client.reports.mdr_usage_reports.with_streaming_response.fetch_sync(
-            aggregation_type="NO_AGGREGATION",
+            aggregation_type="PROFILE",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -427,7 +427,7 @@ class TestAsyncMdrUsageReports:
     @parametrize
     async def test_method_fetch_sync(self, async_client: AsyncTelnyx) -> None:
         mdr_usage_report = await async_client.reports.mdr_usage_reports.fetch_sync(
-            aggregation_type="NO_AGGREGATION",
+            aggregation_type="PROFILE",
         )
         assert_matches_type(MdrUsageReportFetchSyncResponse, mdr_usage_report, path=["response"])
 
@@ -435,7 +435,7 @@ class TestAsyncMdrUsageReports:
     @parametrize
     async def test_method_fetch_sync_with_all_params(self, async_client: AsyncTelnyx) -> None:
         mdr_usage_report = await async_client.reports.mdr_usage_reports.fetch_sync(
-            aggregation_type="NO_AGGREGATION",
+            aggregation_type="PROFILE",
             end_date=parse_datetime("2020-07-01T00:00:00-06:00"),
             profiles=["My profile"],
             start_date=parse_datetime("2020-07-01T00:00:00-06:00"),
@@ -446,7 +446,7 @@ class TestAsyncMdrUsageReports:
     @parametrize
     async def test_raw_response_fetch_sync(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.reports.mdr_usage_reports.with_raw_response.fetch_sync(
-            aggregation_type="NO_AGGREGATION",
+            aggregation_type="PROFILE",
         )
 
         assert response.is_closed is True
@@ -458,7 +458,7 @@ class TestAsyncMdrUsageReports:
     @parametrize
     async def test_streaming_response_fetch_sync(self, async_client: AsyncTelnyx) -> None:
         async with async_client.reports.mdr_usage_reports.with_streaming_response.fetch_sync(
-            aggregation_type="NO_AGGREGATION",
+            aggregation_type="PROFILE",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
