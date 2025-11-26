@@ -18,6 +18,7 @@ __all__ = [
     "TranscriptionEngineConfigTranscriptionEngineGoogleConfigSpeechContext",
     "TranscriptionEngineConfigTranscriptionEngineTelnyxConfig",
     "TranscriptionEngineConfigTranscriptionEngineDeepgramConfig",
+    "TranscriptionEngineConfigTranscriptionEngineAzureConfig",
 ]
 
 
@@ -155,10 +156,107 @@ class TranscriptionEngineConfigTranscriptionEngineDeepgramConfig(TypedDict, tota
     """
 
 
+class TranscriptionEngineConfigTranscriptionEngineAzureConfig(TypedDict, total=False):
+    region: Required[Literal["australiaeast", "centralindia", "eastus", "northcentralus", "westeurope", "westus2"]]
+    """Azure region to use for speech recognition"""
+
+    transcription_engine: Required[Literal["Azure"]]
+    """Engine identifier for Azure transcription service"""
+
+    api_key_ref: str
+    """Reference to the API key for authentication.
+
+    See
+    [integration secrets documentation](https://developers.telnyx.com/api/secrets-manager/integration-secrets/create-integration-secret)
+    for details. The parameter is optional as defaults are available for some
+    regions.
+    """
+
+    language: Literal[
+        "af",
+        "am",
+        "ar",
+        "bg",
+        "bn",
+        "bs",
+        "ca",
+        "cs",
+        "cy",
+        "da",
+        "de",
+        "el",
+        "en",
+        "es",
+        "et",
+        "eu",
+        "fa",
+        "fi",
+        "fr",
+        "ga",
+        "gl",
+        "gu",
+        "he",
+        "hi",
+        "hr",
+        "hu",
+        "hy",
+        "id",
+        "is",
+        "it",
+        "ja",
+        "ka",
+        "kk",
+        "km",
+        "kn",
+        "ko",
+        "lo",
+        "lt",
+        "lv",
+        "mk",
+        "ml",
+        "mn",
+        "mr",
+        "ms",
+        "mt",
+        "my",
+        "nb",
+        "ne",
+        "nl",
+        "pl",
+        "ps",
+        "pt",
+        "ro",
+        "ru",
+        "si",
+        "sk",
+        "sl",
+        "so",
+        "sq",
+        "sr",
+        "sv",
+        "sw",
+        "ta",
+        "te",
+        "th",
+        "tr",
+        "uk",
+        "ur",
+        "uz",
+        "vi",
+        "wuu",
+        "yue",
+        "zh",
+        "zu",
+        "auto",
+    ]
+    """Language to use for speech recognition"""
+
+
 TranscriptionEngineConfig: TypeAlias = Union[
     TranscriptionEngineConfigTranscriptionEngineGoogleConfig,
     TranscriptionEngineConfigTranscriptionEngineTelnyxConfig,
     TranscriptionEngineConfigTranscriptionEngineDeepgramConfig,
+    TranscriptionEngineConfigTranscriptionEngineAzureConfig,
     TranscriptionEngineAConfigParam,
     TranscriptionEngineBConfigParam,
 ]
@@ -178,7 +276,7 @@ class TranscriptionStartRequestParam(TypedDict, total=False):
     `call_control_id`.
     """
 
-    transcription_engine: Literal["Google", "Telnyx", "Deepgram", "A", "B"]
+    transcription_engine: Literal["Google", "Telnyx", "Deepgram", "Azure", "A", "B"]
     """Engine to use for speech recognition.
 
     Legacy values `A` - `Google`, `B` - `Telnyx` are supported for backward

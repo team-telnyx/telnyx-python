@@ -2519,7 +2519,7 @@ class ActionsResource(SyncAPIResource):
         *,
         client_state: str | Omit = omit,
         command_id: str | Omit = omit,
-        transcription_engine: Literal["Google", "Telnyx", "Deepgram", "A", "B"] | Omit = omit,
+        transcription_engine: Literal["Google", "Telnyx", "Deepgram", "Azure", "A", "B"] | Omit = omit,
         transcription_engine_config: action_start_transcription_params.TranscriptionEngineConfig | Omit = omit,
         transcription_tracks: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -5777,7 +5777,7 @@ class AsyncActionsResource(AsyncAPIResource):
         *,
         client_state: str | Omit = omit,
         command_id: str | Omit = omit,
-        transcription_engine: Literal["Google", "Telnyx", "Deepgram", "A", "B"] | Omit = omit,
+        transcription_engine: Literal["Google", "Telnyx", "Deepgram", "Azure", "A", "B"] | Omit = omit,
         transcription_engine_config: action_start_transcription_params.TranscriptionEngineConfig | Omit = omit,
         transcription_tracks: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
