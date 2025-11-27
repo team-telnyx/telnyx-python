@@ -1,5 +1,32 @@
 # Changelog
 
+## 3.13.0 (2025-11-27)
+
+Full Changelog: [v3.12.1...v3.13.0](https://github.com/team-telnyx/telnyx-python/compare/v3.12.1...v3.13.0)
+
+### Features
+
+* Ai 1967 ([8087f6d](https://github.com/team-telnyx/telnyx-python/commit/8087f6da0f0746a55d93a2b103f8f421e0178036))
+* Ai 1967 part 2 ([2d809e8](https://github.com/team-telnyx/telnyx-python/commit/2d809e8dc67c19261a4eacec4d66c6571aad9712))
+* Fix Redocly linting errors and warnings in TDA reporting specs ([e16e080](https://github.com/team-telnyx/telnyx-python/commit/e16e080a17161b62fbbe98a94ebceab367f068f7))
+* Fix Redocly linting warnings in OAuth and Integration Secrets specs ([da507d6](https://github.com/team-telnyx/telnyx-python/commit/da507d6e268b3726694ef8b8c95e79ec1a8181bf))
+* MSG-6076: webhook event for 10DLC campaign suspended status ([04d4725](https://github.com/team-telnyx/telnyx-python/commit/04d47257cf5df294a4e268317cbed1d9b9833d87))
+* Refactored README to only contain useful information and reflect accu… ([ffecaa4](https://github.com/team-telnyx/telnyx-python/commit/ffecaa40fe0423f1a7636630c87275f8478b177c))
+* TELAPPS-5459: Add Azure to transcription start ([c503e3e](https://github.com/team-telnyx/telnyx-python/commit/c503e3e78d7ad943e0d7863cdf4cacfeaa45767c))
+* Updated README to include the step for make buildcontainer bundle to … ([4f822b8](https://github.com/team-telnyx/telnyx-python/commit/4f822b8167dfc7375eb732e28df5e7be3a7ece9c))
+
+
+### Bug Fixes
+
+* ensure streams are always closed ([ac9c87b](https://github.com/team-telnyx/telnyx-python/commit/ac9c87b9c8546a7dffb9ed4be0403cf0c1e15014))
+
+
+### Chores
+
+* **deps:** mypy 1.18.1 has a regression, pin to 1.17 ([cc2ea8e](https://github.com/team-telnyx/telnyx-python/commit/cc2ea8ea6e8d24d2e944e207192c0227039a198d))
+* **internal:** codegen related update ([45049e3](https://github.com/team-telnyx/telnyx-python/commit/45049e3263e4f1b6bd332730b9753e8e4195191f))
+* **internal:** codegen related update ([b4d2c6d](https://github.com/team-telnyx/telnyx-python/commit/b4d2c6d2910c9ddc9bc41afd9d829414096282a5))
+
 ## 3.12.1 (2025-11-12)
 
 Full Changelog: [v3.12.0...v3.12.1](https://github.com/team-telnyx/telnyx-python/compare/v3.12.0...v3.12.1)
