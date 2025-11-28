@@ -4813,3 +4813,43 @@ Methods:
 - <code title="post /inexplicit_number_orders">client.inexplicit_number_orders.<a href="./src/telnyx/resources/inexplicit_number_orders.py">create</a>(\*\*<a href="src/telnyx/types/inexplicit_number_order_create_params.py">params</a>) -> <a href="./src/telnyx/types/inexplicit_number_order_create_response.py">InexplicitNumberOrderCreateResponse</a></code>
 - <code title="get /inexplicit_number_orders/{id}">client.inexplicit_number_orders.<a href="./src/telnyx/resources/inexplicit_number_orders.py">retrieve</a>(id) -> <a href="./src/telnyx/types/inexplicit_number_order_retrieve_response.py">InexplicitNumberOrderRetrieveResponse</a></code>
 - <code title="get /inexplicit_number_orders">client.inexplicit_number_orders.<a href="./src/telnyx/resources/inexplicit_number_orders.py">list</a>(\*\*<a href="src/telnyx/types/inexplicit_number_order_list_params.py">params</a>) -> <a href="./src/telnyx/types/inexplicit_number_order_list_response.py">InexplicitNumberOrderListResponse</a></code>
+
+# MobilePhoneNumbers
+
+Types:
+
+```python
+from telnyx.types import (
+    MobilePhoneNumberRetrieveResponse,
+    MobilePhoneNumberUpdateResponse,
+    MobilePhoneNumberListResponse,
+)
+```
+
+Methods:
+
+- <code title="get /v2/mobile_phone_numbers/{id}">client.mobile_phone_numbers.<a href="./src/telnyx/resources/mobile_phone_numbers.py">retrieve</a>(id) -> <a href="./src/telnyx/types/mobile_phone_number_retrieve_response.py">MobilePhoneNumberRetrieveResponse</a></code>
+- <code title="patch /v2/mobile_phone_numbers/{id}">client.mobile_phone_numbers.<a href="./src/telnyx/resources/mobile_phone_numbers.py">update</a>(id, \*\*<a href="src/telnyx/types/mobile_phone_number_update_params.py">params</a>) -> <a href="./src/telnyx/types/mobile_phone_number_update_response.py">MobilePhoneNumberUpdateResponse</a></code>
+- <code title="get /v2/mobile_phone_numbers">client.mobile_phone_numbers.<a href="./src/telnyx/resources/mobile_phone_numbers.py">list</a>(\*\*<a href="src/telnyx/types/mobile_phone_number_list_params.py">params</a>) -> <a href="./src/telnyx/types/mobile_phone_number_list_response.py">MobilePhoneNumberListResponse</a></code>
+
+# MobileVoiceConnections
+
+Types:
+
+```python
+from telnyx.types import (
+    MobileVoiceConnectionCreateResponse,
+    MobileVoiceConnectionRetrieveResponse,
+    MobileVoiceConnectionUpdateResponse,
+    MobileVoiceConnectionListResponse,
+    MobileVoiceConnectionDeleteResponse,
+)
+```
+
+Methods:
+
+- <code title="post /v2/mobile_voice_connections">client.mobile_voice_connections.<a href="./src/telnyx/resources/mobile_voice_connections.py">create</a>(\*\*<a href="src/telnyx/types/mobile_voice_connection_create_params.py">params</a>) -> <a href="./src/telnyx/types/mobile_voice_connection_create_response.py">MobileVoiceConnectionCreateResponse</a></code>
+- <code title="get /v2/mobile_voice_connections/{id}">client.mobile_voice_connections.<a href="./src/telnyx/resources/mobile_voice_connections.py">retrieve</a>(id) -> <a href="./src/telnyx/types/mobile_voice_connection_retrieve_response.py">MobileVoiceConnectionRetrieveResponse</a></code>
+- <code title="patch /v2/mobile_voice_connections/{id}">client.mobile_voice_connections.<a href="./src/telnyx/resources/mobile_voice_connections.py">update</a>(id, \*\*<a href="src/telnyx/types/mobile_voice_connection_update_params.py">params</a>) -> <a href="./src/telnyx/types/mobile_voice_connection_update_response.py">MobileVoiceConnectionUpdateResponse</a></code>
+- <code title="get /v2/mobile_voice_connections">client.mobile_voice_connections.<a href="./src/telnyx/resources/mobile_voice_connections.py">list</a>(\*\*<a href="src/telnyx/types/mobile_voice_connection_list_params.py">params</a>) -> <a href="./src/telnyx/types/mobile_voice_connection_list_response.py">MobileVoiceConnectionListResponse</a></code>
+- <code title="delete /v2/mobile_voice_connections/{id}">client.mobile_voice_connections.<a href="./src/telnyx/resources/mobile_voice_connections.py">delete</a>(id) -> <a href="./src/telnyx/types/mobile_voice_connection_delete_response.py">MobileVoiceConnectionDeleteResponse</a></code>

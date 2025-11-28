@@ -841,6 +841,14 @@ from .external_connections import (
     ExternalConnectionsResourceWithStreamingResponse,
     AsyncExternalConnectionsResourceWithStreamingResponse,
 )
+from .mobile_phone_numbers import (
+    MobilePhoneNumbersResource,
+    AsyncMobilePhoneNumbersResource,
+    MobilePhoneNumbersResourceWithRawResponse,
+    AsyncMobilePhoneNumbersResourceWithRawResponse,
+    MobilePhoneNumbersResourceWithStreamingResponse,
+    AsyncMobilePhoneNumbersResourceWithStreamingResponse,
+)
 from .wireguard_interfaces import (
     WireguardInterfacesResource,
     AsyncWireguardInterfacesResource,
@@ -1040,6 +1048,14 @@ from .mobile_network_operators import (
     AsyncMobileNetworkOperatorsResourceWithRawResponse,
     MobileNetworkOperatorsResourceWithStreamingResponse,
     AsyncMobileNetworkOperatorsResourceWithStreamingResponse,
+)
+from .mobile_voice_connections import (
+    MobileVoiceConnectionsResource,
+    AsyncMobileVoiceConnectionsResource,
+    MobileVoiceConnectionsResourceWithRawResponse,
+    AsyncMobileVoiceConnectionsResourceWithRawResponse,
+    MobileVoiceConnectionsResourceWithStreamingResponse,
+    AsyncMobileVoiceConnectionsResourceWithStreamingResponse,
 )
 from .public_internet_gateways import (
     PublicInternetGatewaysResource,
@@ -2133,4 +2149,16 @@ __all__ = [
     "AsyncInexplicitNumberOrdersResourceWithRawResponse",
     "InexplicitNumberOrdersResourceWithStreamingResponse",
     "AsyncInexplicitNumberOrdersResourceWithStreamingResponse",
+    "MobilePhoneNumbersResource",
+    "AsyncMobilePhoneNumbersResource",
+    "MobilePhoneNumbersResourceWithRawResponse",
+    "AsyncMobilePhoneNumbersResourceWithRawResponse",
+    "MobilePhoneNumbersResourceWithStreamingResponse",
+    "AsyncMobilePhoneNumbersResourceWithStreamingResponse",
+    "MobileVoiceConnectionsResource",
+    "AsyncMobileVoiceConnectionsResource",
+    "MobileVoiceConnectionsResourceWithRawResponse",
+    "AsyncMobileVoiceConnectionsResourceWithRawResponse",
+    "MobileVoiceConnectionsResourceWithStreamingResponse",
+    "AsyncMobileVoiceConnectionsResourceWithStreamingResponse",
 ]
