@@ -91,6 +91,7 @@ from .resources import (
     notification_events,
     number_block_orders,
     wireless_blocklists,
+    mobile_phone_numbers,
     wireguard_interfaces,
     bulk_sim_card_actions,
     global_ip_assignments,
@@ -115,6 +116,7 @@ from .resources import (
     inexplicit_number_orders,
     messaging_hosted_numbers,
     mobile_network_operators,
+    mobile_voice_connections,
     public_internet_gateways,
     recording_transcriptions,
     sub_number_orders_report,
@@ -343,6 +345,8 @@ class Telnyx(SyncAPIClient):
     partner_campaigns: partner_campaigns.PartnerCampaignsResource
     well_known: well_known.WellKnownResource
     inexplicit_number_orders: inexplicit_number_orders.InexplicitNumberOrdersResource
+    mobile_phone_numbers: mobile_phone_numbers.MobilePhoneNumbersResource
+    mobile_voice_connections: mobile_voice_connections.MobileVoiceConnectionsResource
     with_raw_response: TelnyxWithRawResponse
     with_streaming_response: TelnyxWithStreamedResponse
 
@@ -570,6 +574,8 @@ class Telnyx(SyncAPIClient):
         self.partner_campaigns = partner_campaigns.PartnerCampaignsResource(self)
         self.well_known = well_known.WellKnownResource(self)
         self.inexplicit_number_orders = inexplicit_number_orders.InexplicitNumberOrdersResource(self)
+        self.mobile_phone_numbers = mobile_phone_numbers.MobilePhoneNumbersResource(self)
+        self.mobile_voice_connections = mobile_voice_connections.MobileVoiceConnectionsResource(self)
         self.with_raw_response = TelnyxWithRawResponse(self)
         self.with_streaming_response = TelnyxWithStreamedResponse(self)
 
@@ -838,6 +844,8 @@ class AsyncTelnyx(AsyncAPIClient):
     partner_campaigns: partner_campaigns.AsyncPartnerCampaignsResource
     well_known: well_known.AsyncWellKnownResource
     inexplicit_number_orders: inexplicit_number_orders.AsyncInexplicitNumberOrdersResource
+    mobile_phone_numbers: mobile_phone_numbers.AsyncMobilePhoneNumbersResource
+    mobile_voice_connections: mobile_voice_connections.AsyncMobileVoiceConnectionsResource
     with_raw_response: AsyncTelnyxWithRawResponse
     with_streaming_response: AsyncTelnyxWithStreamedResponse
 
@@ -1071,6 +1079,8 @@ class AsyncTelnyx(AsyncAPIClient):
         self.partner_campaigns = partner_campaigns.AsyncPartnerCampaignsResource(self)
         self.well_known = well_known.AsyncWellKnownResource(self)
         self.inexplicit_number_orders = inexplicit_number_orders.AsyncInexplicitNumberOrdersResource(self)
+        self.mobile_phone_numbers = mobile_phone_numbers.AsyncMobilePhoneNumbersResource(self)
+        self.mobile_voice_connections = mobile_voice_connections.AsyncMobileVoiceConnectionsResource(self)
         self.with_raw_response = AsyncTelnyxWithRawResponse(self)
         self.with_streaming_response = AsyncTelnyxWithStreamedResponse(self)
 
@@ -1467,6 +1477,12 @@ class TelnyxWithRawResponse:
         self.inexplicit_number_orders = inexplicit_number_orders.InexplicitNumberOrdersResourceWithRawResponse(
             client.inexplicit_number_orders
         )
+        self.mobile_phone_numbers = mobile_phone_numbers.MobilePhoneNumbersResourceWithRawResponse(
+            client.mobile_phone_numbers
+        )
+        self.mobile_voice_connections = mobile_voice_connections.MobileVoiceConnectionsResourceWithRawResponse(
+            client.mobile_voice_connections
+        )
 
 
 class AsyncTelnyxWithRawResponse:
@@ -1792,6 +1808,12 @@ class AsyncTelnyxWithRawResponse:
         self.well_known = well_known.AsyncWellKnownResourceWithRawResponse(client.well_known)
         self.inexplicit_number_orders = inexplicit_number_orders.AsyncInexplicitNumberOrdersResourceWithRawResponse(
             client.inexplicit_number_orders
+        )
+        self.mobile_phone_numbers = mobile_phone_numbers.AsyncMobilePhoneNumbersResourceWithRawResponse(
+            client.mobile_phone_numbers
+        )
+        self.mobile_voice_connections = mobile_voice_connections.AsyncMobileVoiceConnectionsResourceWithRawResponse(
+            client.mobile_voice_connections
         )
 
 
@@ -2124,6 +2146,12 @@ class TelnyxWithStreamedResponse:
         self.well_known = well_known.WellKnownResourceWithStreamingResponse(client.well_known)
         self.inexplicit_number_orders = inexplicit_number_orders.InexplicitNumberOrdersResourceWithStreamingResponse(
             client.inexplicit_number_orders
+        )
+        self.mobile_phone_numbers = mobile_phone_numbers.MobilePhoneNumbersResourceWithStreamingResponse(
+            client.mobile_phone_numbers
+        )
+        self.mobile_voice_connections = mobile_voice_connections.MobileVoiceConnectionsResourceWithStreamingResponse(
+            client.mobile_voice_connections
         )
 
 
@@ -2499,6 +2527,14 @@ class AsyncTelnyxWithStreamedResponse:
         self.inexplicit_number_orders = (
             inexplicit_number_orders.AsyncInexplicitNumberOrdersResourceWithStreamingResponse(
                 client.inexplicit_number_orders
+            )
+        )
+        self.mobile_phone_numbers = mobile_phone_numbers.AsyncMobilePhoneNumbersResourceWithStreamingResponse(
+            client.mobile_phone_numbers
+        )
+        self.mobile_voice_connections = (
+            mobile_voice_connections.AsyncMobileVoiceConnectionsResourceWithStreamingResponse(
+                client.mobile_voice_connections
             )
         )
 

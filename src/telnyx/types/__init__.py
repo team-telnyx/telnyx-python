@@ -540,6 +540,7 @@ from .message_send_number_pool_params import MessageSendNumberPoolParams as Mess
 from .messaging_profile_create_params import MessagingProfileCreateParams as MessagingProfileCreateParams
 from .messaging_profile_list_response import MessagingProfileListResponse as MessagingProfileListResponse
 from .messaging_profile_update_params import MessagingProfileUpdateParams as MessagingProfileUpdateParams
+from .mobile_phone_number_list_params import MobilePhoneNumberListParams as MobilePhoneNumberListParams
 from .number_lookup_retrieve_response import NumberLookupRetrieveResponse as NumberLookupRetrieveResponse
 from .number_order_with_phone_numbers import NumberOrderWithPhoneNumbers as NumberOrderWithPhoneNumbers
 from .numbers_feature_create_response import NumbersFeatureCreateResponse as NumbersFeatureCreateResponse
@@ -626,6 +627,8 @@ from .message_send_number_pool_response import MessageSendNumberPoolResponse as 
 from .messaging_profile_create_response import MessagingProfileCreateResponse as MessagingProfileCreateResponse
 from .messaging_profile_delete_response import MessagingProfileDeleteResponse as MessagingProfileDeleteResponse
 from .messaging_profile_update_response import MessagingProfileUpdateResponse as MessagingProfileUpdateResponse
+from .mobile_phone_number_list_response import MobilePhoneNumberListResponse as MobilePhoneNumberListResponse
+from .mobile_phone_number_update_params import MobilePhoneNumberUpdateParams as MobilePhoneNumberUpdateParams
 from .phone_number_campaign_list_params import PhoneNumberCampaignListParams as PhoneNumberCampaignListParams
 from .porting_list_uk_carriers_response import PortingListUkCarriersResponse as PortingListUkCarriersResponse
 from .porting_order_activation_settings import PortingOrderActivationSettings as PortingOrderActivationSettings
@@ -701,6 +704,8 @@ from .global_ip_latency_retrieve_response import GlobalIPLatencyRetrieveResponse
 from .inexplicit_number_order_list_params import InexplicitNumberOrderListParams as InexplicitNumberOrderListParams
 from .messaging_profile_retrieve_response import MessagingProfileRetrieveResponse as MessagingProfileRetrieveResponse
 from .mobile_network_operator_list_params import MobileNetworkOperatorListParams as MobileNetworkOperatorListParams
+from .mobile_phone_number_update_response import MobilePhoneNumberUpdateResponse as MobilePhoneNumberUpdateResponse
+from .mobile_voice_connection_list_params import MobileVoiceConnectionListParams as MobileVoiceConnectionListParams
 from .phone_number_campaign_create_params import PhoneNumberCampaignCreateParams as PhoneNumberCampaignCreateParams
 from .phone_number_campaign_list_response import PhoneNumberCampaignListResponse as PhoneNumberCampaignListResponse
 from .phone_number_campaign_update_params import PhoneNumberCampaignUpdateParams as PhoneNumberCampaignUpdateParams
@@ -803,6 +808,18 @@ from .inexplicit_number_order_list_response import (
 )
 from .mobile_network_operator_list_response import (
     MobileNetworkOperatorListResponse as MobileNetworkOperatorListResponse,
+)
+from .mobile_phone_number_retrieve_response import (
+    MobilePhoneNumberRetrieveResponse as MobilePhoneNumberRetrieveResponse,
+)
+from .mobile_voice_connection_create_params import (
+    MobileVoiceConnectionCreateParams as MobileVoiceConnectionCreateParams,
+)
+from .mobile_voice_connection_list_response import (
+    MobileVoiceConnectionListResponse as MobileVoiceConnectionListResponse,
+)
+from .mobile_voice_connection_update_params import (
+    MobileVoiceConnectionUpdateParams as MobileVoiceConnectionUpdateParams,
 )
 from .number_order_phone_number_list_params import NumberOrderPhoneNumberListParams as NumberOrderPhoneNumberListParams
 from .porting_order_end_user_location_param import PortingOrderEndUserLocationParam as PortingOrderEndUserLocationParam
@@ -953,6 +970,15 @@ from .inexplicit_number_order_create_response import (
 from .messaging_hosted_number_delete_response import (
     MessagingHostedNumberDeleteResponse as MessagingHostedNumberDeleteResponse,
 )
+from .mobile_voice_connection_create_response import (
+    MobileVoiceConnectionCreateResponse as MobileVoiceConnectionCreateResponse,
+)
+from .mobile_voice_connection_delete_response import (
+    MobileVoiceConnectionDeleteResponse as MobileVoiceConnectionDeleteResponse,
+)
+from .mobile_voice_connection_update_response import (
+    MobileVoiceConnectionUpdateResponse as MobileVoiceConnectionUpdateResponse,
+)
 from .number_order_phone_number_list_response import (
     NumberOrderPhoneNumberListResponse as NumberOrderPhoneNumberListResponse,
 )
@@ -1075,6 +1101,9 @@ from .messaging_hosted_number_order_list_params import (
 )
 from .messaging_profile_list_short_codes_params import (
     MessagingProfileListShortCodesParams as MessagingProfileListShortCodesParams,
+)
+from .mobile_voice_connection_retrieve_response import (
+    MobileVoiceConnectionRetrieveResponse as MobileVoiceConnectionRetrieveResponse,
 )
 from .partner_campaign_list_shared_by_me_params import (
     PartnerCampaignListSharedByMeParams as PartnerCampaignListSharedByMeParams,

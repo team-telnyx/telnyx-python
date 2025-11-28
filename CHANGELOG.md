@@ -1,5 +1,14 @@
 # Changelog
 
+## 3.14.0 (2025-11-28)
+
+Full Changelog: [v3.13.0...v3.14.0](https://github.com/team-telnyx/telnyx-python/compare/v3.13.0...v3.14.0)
+
+### Features
+
+* ENGDESK-47518 document mobile number and mobile voice connection endpoints ([3d5c806](https://github.com/team-telnyx/telnyx-python/commit/3d5c80689acac891ff2bcd1212c92f8871431df1))
+* Fixing lint errors ([852999c](https://github.com/team-telnyx/telnyx-python/commit/852999ca20da060f80143b9a3dfc3b245f577b55))
+
 ## 3.13.0 (2025-11-27)
 
 Full Changelog: [v3.12.1...v3.13.0](https://github.com/team-telnyx/telnyx-python/compare/v3.12.1...v3.13.0)

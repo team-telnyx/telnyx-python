@@ -98,7 +98,7 @@ class TestActions:
             ],
             sound_modifications={
                 "octaves": 0.1,
-                "pitch": 0,
+                "pitch": 0.8,
                 "semitone": -2,
                 "track": "both",
             },
@@ -2275,7 +2275,7 @@ class TestActions:
             sip_transport_protocol="TLS",
             sound_modifications={
                 "octaves": 0.1,
-                "pitch": 0,
+                "pitch": 0.8,
                 "semitone": -2,
                 "track": "both",
             },
@@ -2420,7 +2420,7 @@ class TestAsyncActions:
             ],
             sound_modifications={
                 "octaves": 0.1,
-                "pitch": 0,
+                "pitch": 0.8,
                 "semitone": -2,
                 "track": "both",
             },
@@ -4597,7 +4597,7 @@ class TestAsyncActions:
             sip_transport_protocol="TLS",
             sound_modifications={
                 "octaves": 0.1,
-                "pitch": 0,
+                "pitch": 0.8,
                 "semitone": -2,
                 "track": "both",
             },

@@ -117,7 +117,7 @@ class TestCalls:
             sip_transport_protocol="TLS",
             sound_modifications={
                 "octaves": 0.1,
-                "pitch": 0,
+                "pitch": 0.8,
                 "semitone": -2,
                 "track": "both",
             },
@@ -338,7 +338,7 @@ class TestAsyncCalls:
             sip_transport_protocol="TLS",
             sound_modifications={
                 "octaves": 0.1,
-                "pitch": 0,
+                "pitch": 0.8,
                 "semitone": -2,
                 "track": "both",
             },
