@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Iterable
+from typing import Iterable, Optional
 
 import httpx
 
@@ -195,7 +195,7 @@ class PortingOrdersResource(SyncAPIResource):
         *,
         phone_numbers: SequenceNotStr[str],
         customer_group_reference: str | Omit = omit,
-        customer_reference: str | Omit = omit,
+        customer_reference: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -290,7 +290,7 @@ class PortingOrdersResource(SyncAPIResource):
         documents: PortingOrderDocumentsParam | Omit = omit,
         end_user: PortingOrderEndUserParam | Omit = omit,
         messaging: porting_order_update_params.Messaging | Omit = omit,
-        misc: PortingOrderMiscParam | Omit = omit,
+        misc: Optional[PortingOrderMiscParam] | Omit = omit,
         phone_number_configuration: PortingOrderPhoneNumberConfigurationParam | Omit = omit,
         requirement_group_id: str | Omit = omit,
         requirements: Iterable[porting_order_update_params.Requirement] | Omit = omit,
@@ -700,7 +700,7 @@ class AsyncPortingOrdersResource(AsyncAPIResource):
         *,
         phone_numbers: SequenceNotStr[str],
         customer_group_reference: str | Omit = omit,
-        customer_reference: str | Omit = omit,
+        customer_reference: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -795,7 +795,7 @@ class AsyncPortingOrdersResource(AsyncAPIResource):
         documents: PortingOrderDocumentsParam | Omit = omit,
         end_user: PortingOrderEndUserParam | Omit = omit,
         messaging: porting_order_update_params.Messaging | Omit = omit,
-        misc: PortingOrderMiscParam | Omit = omit,
+        misc: Optional[PortingOrderMiscParam] | Omit = omit,
         phone_number_configuration: PortingOrderPhoneNumberConfigurationParam | Omit = omit,
         requirement_group_id: str | Omit = omit,
         requirements: Iterable[porting_order_update_params.Requirement] | Omit = omit,

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Union, Iterable
+from typing import Union, Iterable, Optional
 from datetime import datetime
 from typing_extensions import Required, Annotated, TypedDict
 
@@ -30,7 +30,7 @@ class PortingOrderUpdateParams(TypedDict, total=False):
 
     messaging: Messaging
 
-    misc: PortingOrderMiscParam
+    misc: Optional[PortingOrderMiscParam]
 
     phone_number_configuration: PortingOrderPhoneNumberConfigurationParam
 

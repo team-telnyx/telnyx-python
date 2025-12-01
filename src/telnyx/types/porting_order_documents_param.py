@@ -2,14 +2,15 @@
 
 from __future__ import annotations
 
+from typing import Optional
 from typing_extensions import TypedDict
 
 __all__ = ["PortingOrderDocumentsParam"]
 
 
 class PortingOrderDocumentsParam(TypedDict, total=False):
-    invoice: str
+    invoice: Optional[str]
     """Returned ID of the submitted Invoice via the Documents endpoint"""
 
-    loa: str
+    loa: Optional[str]
     """Returned ID of the submitted LOA via the Documents endpoint"""

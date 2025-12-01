@@ -2,32 +2,33 @@
 
 from __future__ import annotations
 
+from typing import Optional
 from typing_extensions import TypedDict
 
 __all__ = ["PortingOrderEndUserAdminParam"]
 
 
 class PortingOrderEndUserAdminParam(TypedDict, total=False):
-    account_number: str
+    account_number: Optional[str]
     """The authorized person's account number with the current service provider"""
 
-    auth_person_name: str
+    auth_person_name: Optional[str]
     """Name of person authorizing the porting order"""
 
-    billing_phone_number: str
+    billing_phone_number: Optional[str]
     """Billing phone number associated with these phone numbers"""
 
-    business_identifier: str
+    business_identifier: Optional[str]
     """European business identification number. Applicable only in the European Union"""
 
-    entity_name: str
+    entity_name: Optional[str]
     """Person Name or Company name requesting the port"""
 
-    pin_passcode: str
+    pin_passcode: Optional[str]
     """
     PIN/passcode possibly required by the old service provider for extra
     verification
     """
 
-    tax_identifier: str
+    tax_identifier: Optional[str]
     """European tax identification number. Applicable only in the European Union"""
