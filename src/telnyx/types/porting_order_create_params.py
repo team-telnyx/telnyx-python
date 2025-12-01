@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import Optional
 from typing_extensions import Required, TypedDict
 
 from .._types import SequenceNotStr
@@ -16,5 +17,5 @@ class PortingOrderCreateParams(TypedDict, total=False):
     customer_group_reference: str
     """A customer-specified group reference for customer bookkeeping purposes"""
 
-    customer_reference: str
+    customer_reference: Optional[str]
     """A customer-specified reference number for customer bookkeeping purposes"""

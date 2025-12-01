@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import Optional
 from typing_extensions import Literal, TypedDict
 
 from .porting_order_type import PortingOrderType
@@ -10,7 +11,7 @@ __all__ = ["PortingOrderMiscParam"]
 
 
 class PortingOrderMiscParam(TypedDict, total=False):
-    new_billing_phone_number: str
+    new_billing_phone_number: Optional[str]
     """New billing phone number for the remaining numbers.
 
     Used in case the current billing phone number is being ported to Telnyx. This
@@ -18,7 +19,7 @@ class PortingOrderMiscParam(TypedDict, total=False):
     of the numbers remaining on that account.
     """
 
-    remaining_numbers_action: Literal["keep", "disconnect"]
+    remaining_numbers_action: Optional[Literal["keep", "disconnect"]]
     """
     Remaining numbers can be either kept with their current service provider or
     disconnected. 'new_billing_telephone_number' is required when

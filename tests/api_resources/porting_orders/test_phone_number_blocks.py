@@ -128,7 +128,7 @@ class TestPhoneNumberBlocks:
                 "number": 1,
                 "size": 1,
             },
-            sort={"value": "-created_at"},
+            sort={"value": "created_at"},
         )
         assert_matches_type(PhoneNumberBlockListResponse, phone_number_block, path=["response"])
 
@@ -331,7 +331,7 @@ class TestAsyncPhoneNumberBlocks:
                 "number": 1,
                 "size": 1,
             },
-            sort={"value": "-created_at"},
+            sort={"value": "created_at"},
         )
         assert_matches_type(PhoneNumberBlockListResponse, phone_number_block, path=["response"])
 

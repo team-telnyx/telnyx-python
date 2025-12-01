@@ -125,7 +125,7 @@ class TestPhoneNumberExtensions:
                 "number": 1,
                 "size": 1,
             },
-            sort={"value": "-created_at"},
+            sort={"value": "created_at"},
         )
         assert_matches_type(PhoneNumberExtensionListResponse, phone_number_extension, path=["response"])
 
@@ -325,7 +325,7 @@ class TestAsyncPhoneNumberExtensions:
                 "number": 1,
                 "size": 1,
             },
-            sort={"value": "-created_at"},
+            sort={"value": "created_at"},
         )
         assert_matches_type(PhoneNumberExtensionListResponse, phone_number_extension, path=["response"])
 
