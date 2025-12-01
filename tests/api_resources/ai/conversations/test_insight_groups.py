@@ -121,7 +121,7 @@ class TestInsightGroups:
         insight_group = client.ai.conversations.insight_groups.delete(
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(object, insight_group, path=["response"])
+        assert insight_group is None
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -133,7 +133,7 @@ class TestInsightGroups:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         insight_group = response.parse()
-        assert_matches_type(object, insight_group, path=["response"])
+        assert insight_group is None
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -145,7 +145,7 @@ class TestInsightGroups:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             insight_group = response.parse()
-            assert_matches_type(object, insight_group, path=["response"])
+            assert insight_group is None
 
         assert cast(Any, response.is_closed) is True
 
@@ -347,7 +347,7 @@ class TestAsyncInsightGroups:
         insight_group = await async_client.ai.conversations.insight_groups.delete(
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(object, insight_group, path=["response"])
+        assert insight_group is None
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -359,7 +359,7 @@ class TestAsyncInsightGroups:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         insight_group = await response.parse()
-        assert_matches_type(object, insight_group, path=["response"])
+        assert insight_group is None
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -371,7 +371,7 @@ class TestAsyncInsightGroups:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             insight_group = await response.parse()
-            assert_matches_type(object, insight_group, path=["response"])
+            assert insight_group is None
 
         assert cast(Any, response.is_closed) is True
 

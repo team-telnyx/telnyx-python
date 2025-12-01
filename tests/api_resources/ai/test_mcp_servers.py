@@ -219,7 +219,7 @@ class TestMcpServers:
         mcp_server = client.ai.mcp_servers.delete(
             "mcp_server_id",
         )
-        assert_matches_type(object, mcp_server, path=["response"])
+        assert mcp_server is None
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -231,7 +231,7 @@ class TestMcpServers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         mcp_server = response.parse()
-        assert_matches_type(object, mcp_server, path=["response"])
+        assert mcp_server is None
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -243,7 +243,7 @@ class TestMcpServers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             mcp_server = response.parse()
-            assert_matches_type(object, mcp_server, path=["response"])
+            assert mcp_server is None
 
         assert cast(Any, response.is_closed) is True
 
@@ -457,7 +457,7 @@ class TestAsyncMcpServers:
         mcp_server = await async_client.ai.mcp_servers.delete(
             "mcp_server_id",
         )
-        assert_matches_type(object, mcp_server, path=["response"])
+        assert mcp_server is None
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -469,7 +469,7 @@ class TestAsyncMcpServers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         mcp_server = await response.parse()
-        assert_matches_type(object, mcp_server, path=["response"])
+        assert mcp_server is None
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -481,7 +481,7 @@ class TestAsyncMcpServers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             mcp_server = await response.parse()
-            assert_matches_type(object, mcp_server, path=["response"])
+            assert mcp_server is None
 
         assert cast(Any, response.is_closed) is True
 

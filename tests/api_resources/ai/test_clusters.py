@@ -5,7 +5,9 @@ from __future__ import annotations
 import os
 from typing import Any, cast
 
+import httpx
 import pytest
+from respx import MockRouter
 
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
@@ -13,6 +15,12 @@ from telnyx.types.ai import (
     ClusterListResponse,
     ClusterComputeResponse,
     ClusterRetrieveResponse,
+)
+from telnyx._response import (
+    BinaryAPIResponse,
+    AsyncBinaryAPIResponse,
+    StreamedBinaryAPIResponse,
+    AsyncStreamedBinaryAPIResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -200,51 +208,63 @@ class TestClusters:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_method_fetch_graph(self, client: Telnyx) -> None:
+    @pytest.mark.respx(base_url=base_url)
+    def test_method_fetch_graph(self, client: Telnyx, respx_mock: MockRouter) -> None:
+        respx_mock.get("/ai/clusters/task_id/graph").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
         cluster = client.ai.clusters.fetch_graph(
             task_id="task_id",
         )
-        assert_matches_type(object, cluster, path=["response"])
+        assert cluster.is_closed
+        assert cluster.json() == {"foo": "bar"}
+        assert cast(Any, cluster.is_closed) is True
+        assert isinstance(cluster, BinaryAPIResponse)
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_method_fetch_graph_with_all_params(self, client: Telnyx) -> None:
+    @pytest.mark.respx(base_url=base_url)
+    def test_method_fetch_graph_with_all_params(self, client: Telnyx, respx_mock: MockRouter) -> None:
+        respx_mock.get("/ai/clusters/task_id/graph").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
         cluster = client.ai.clusters.fetch_graph(
             task_id="task_id",
             cluster_id=0,
         )
-        assert_matches_type(object, cluster, path=["response"])
+        assert cluster.is_closed
+        assert cluster.json() == {"foo": "bar"}
+        assert cast(Any, cluster.is_closed) is True
+        assert isinstance(cluster, BinaryAPIResponse)
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_raw_response_fetch_graph(self, client: Telnyx) -> None:
-        response = client.ai.clusters.with_raw_response.fetch_graph(
+    @pytest.mark.respx(base_url=base_url)
+    def test_raw_response_fetch_graph(self, client: Telnyx, respx_mock: MockRouter) -> None:
+        respx_mock.get("/ai/clusters/task_id/graph").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
+
+        cluster = client.ai.clusters.with_raw_response.fetch_graph(
             task_id="task_id",
         )
 
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        cluster = response.parse()
-        assert_matches_type(object, cluster, path=["response"])
+        assert cluster.is_closed is True
+        assert cluster.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert cluster.json() == {"foo": "bar"}
+        assert isinstance(cluster, BinaryAPIResponse)
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_streaming_response_fetch_graph(self, client: Telnyx) -> None:
+    @pytest.mark.respx(base_url=base_url)
+    def test_streaming_response_fetch_graph(self, client: Telnyx, respx_mock: MockRouter) -> None:
+        respx_mock.get("/ai/clusters/task_id/graph").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
         with client.ai.clusters.with_streaming_response.fetch_graph(
             task_id="task_id",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        ) as cluster:
+            assert not cluster.is_closed
+            assert cluster.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            cluster = response.parse()
-            assert_matches_type(object, cluster, path=["response"])
+            assert cluster.json() == {"foo": "bar"}
+            assert cast(Any, cluster.is_closed) is True
+            assert isinstance(cluster, StreamedBinaryAPIResponse)
 
-        assert cast(Any, response.is_closed) is True
+        assert cast(Any, cluster.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
+    @pytest.mark.respx(base_url=base_url)
     def test_path_params_fetch_graph(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `task_id` but received ''"):
             client.ai.clusters.with_raw_response.fetch_graph(
@@ -436,51 +456,63 @@ class TestAsyncClusters:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_method_fetch_graph(self, async_client: AsyncTelnyx) -> None:
+    @pytest.mark.respx(base_url=base_url)
+    async def test_method_fetch_graph(self, async_client: AsyncTelnyx, respx_mock: MockRouter) -> None:
+        respx_mock.get("/ai/clusters/task_id/graph").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
         cluster = await async_client.ai.clusters.fetch_graph(
             task_id="task_id",
         )
-        assert_matches_type(object, cluster, path=["response"])
+        assert cluster.is_closed
+        assert await cluster.json() == {"foo": "bar"}
+        assert cast(Any, cluster.is_closed) is True
+        assert isinstance(cluster, AsyncBinaryAPIResponse)
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_method_fetch_graph_with_all_params(self, async_client: AsyncTelnyx) -> None:
+    @pytest.mark.respx(base_url=base_url)
+    async def test_method_fetch_graph_with_all_params(self, async_client: AsyncTelnyx, respx_mock: MockRouter) -> None:
+        respx_mock.get("/ai/clusters/task_id/graph").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
         cluster = await async_client.ai.clusters.fetch_graph(
             task_id="task_id",
             cluster_id=0,
         )
-        assert_matches_type(object, cluster, path=["response"])
+        assert cluster.is_closed
+        assert await cluster.json() == {"foo": "bar"}
+        assert cast(Any, cluster.is_closed) is True
+        assert isinstance(cluster, AsyncBinaryAPIResponse)
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_raw_response_fetch_graph(self, async_client: AsyncTelnyx) -> None:
-        response = await async_client.ai.clusters.with_raw_response.fetch_graph(
+    @pytest.mark.respx(base_url=base_url)
+    async def test_raw_response_fetch_graph(self, async_client: AsyncTelnyx, respx_mock: MockRouter) -> None:
+        respx_mock.get("/ai/clusters/task_id/graph").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
+
+        cluster = await async_client.ai.clusters.with_raw_response.fetch_graph(
             task_id="task_id",
         )
 
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        cluster = await response.parse()
-        assert_matches_type(object, cluster, path=["response"])
+        assert cluster.is_closed is True
+        assert cluster.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert await cluster.json() == {"foo": "bar"}
+        assert isinstance(cluster, AsyncBinaryAPIResponse)
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_streaming_response_fetch_graph(self, async_client: AsyncTelnyx) -> None:
+    @pytest.mark.respx(base_url=base_url)
+    async def test_streaming_response_fetch_graph(self, async_client: AsyncTelnyx, respx_mock: MockRouter) -> None:
+        respx_mock.get("/ai/clusters/task_id/graph").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
         async with async_client.ai.clusters.with_streaming_response.fetch_graph(
             task_id="task_id",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        ) as cluster:
+            assert not cluster.is_closed
+            assert cluster.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            cluster = await response.parse()
-            assert_matches_type(object, cluster, path=["response"])
+            assert await cluster.json() == {"foo": "bar"}
+            assert cast(Any, cluster.is_closed) is True
+            assert isinstance(cluster, AsyncStreamedBinaryAPIResponse)
 
-        assert cast(Any, response.is_closed) is True
+        assert cast(Any, cluster.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
+    @pytest.mark.respx(base_url=base_url)
     async def test_path_params_fetch_graph(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `task_id` but received ''"):
             await async_client.ai.clusters.with_raw_response.fetch_graph(

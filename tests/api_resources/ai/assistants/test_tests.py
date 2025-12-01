@@ -267,7 +267,7 @@ class TestTests:
         test = client.ai.assistants.tests.delete(
             "test_id",
         )
-        assert_matches_type(object, test, path=["response"])
+        assert test is None
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -279,7 +279,7 @@ class TestTests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         test = response.parse()
-        assert_matches_type(object, test, path=["response"])
+        assert test is None
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -291,7 +291,7 @@ class TestTests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             test = response.parse()
-            assert_matches_type(object, test, path=["response"])
+            assert test is None
 
         assert cast(Any, response.is_closed) is True
 
@@ -556,7 +556,7 @@ class TestAsyncTests:
         test = await async_client.ai.assistants.tests.delete(
             "test_id",
         )
-        assert_matches_type(object, test, path=["response"])
+        assert test is None
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -568,7 +568,7 @@ class TestAsyncTests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         test = await response.parse()
-        assert_matches_type(object, test, path=["response"])
+        assert test is None
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -580,7 +580,7 @@ class TestAsyncTests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             test = await response.parse()
-            assert_matches_type(object, test, path=["response"])
+            assert test is None
 
         assert cast(Any, response.is_closed) is True
 

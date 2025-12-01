@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import httpx
 
-from ....._types import Body, Query, Headers, NotGiven, not_given
+from ....._types import Body, Query, Headers, NoneType, NotGiven, not_given
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -49,7 +49,7 @@ class InsightsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> None:
         """
         Assign an insight to a group
 
@@ -70,12 +70,13 @@ class InsightsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `group_id` but received {group_id!r}")
         if not insight_id:
             raise ValueError(f"Expected a non-empty value for `insight_id` but received {insight_id!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
             f"/ai/conversations/insight-groups/{group_id}/insights/{insight_id}/assign",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=object,
+            cast_to=NoneType,
         )
 
     def delete_unassign(
@@ -89,7 +90,7 @@ class InsightsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> None:
         """
         Remove an insight from a group
 
@@ -110,12 +111,13 @@ class InsightsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `group_id` but received {group_id!r}")
         if not insight_id:
             raise ValueError(f"Expected a non-empty value for `insight_id` but received {insight_id!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
             f"/ai/conversations/insight-groups/{group_id}/insights/{insight_id}/unassign",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=object,
+            cast_to=NoneType,
         )
 
 
@@ -150,7 +152,7 @@ class AsyncInsightsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> None:
         """
         Assign an insight to a group
 
@@ -171,12 +173,13 @@ class AsyncInsightsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `group_id` but received {group_id!r}")
         if not insight_id:
             raise ValueError(f"Expected a non-empty value for `insight_id` but received {insight_id!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
             f"/ai/conversations/insight-groups/{group_id}/insights/{insight_id}/assign",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=object,
+            cast_to=NoneType,
         )
 
     async def delete_unassign(
@@ -190,7 +193,7 @@ class AsyncInsightsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> None:
         """
         Remove an insight from a group
 
@@ -211,12 +214,13 @@ class AsyncInsightsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `group_id` but received {group_id!r}")
         if not insight_id:
             raise ValueError(f"Expected a non-empty value for `insight_id` but received {insight_id!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
             f"/ai/conversations/insight-groups/{group_id}/insights/{insight_id}/unassign",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=object,
+            cast_to=NoneType,
         )
 
 
