@@ -236,6 +236,8 @@ Types:
 
 ```python
 from telnyx.types import (
+    CampaignStatusUpdateEvent,
+    CampaignSuspendedEvent,
     CallAIGatherEndedWebhookEvent,
     CallAIGatherMessageHistoryUpdatedWebhookEvent,
     CallAIGatherPartialResultsWebhookEvent,
