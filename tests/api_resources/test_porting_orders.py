@@ -154,10 +154,10 @@ class TestPortingOrders:
                 "admin": {
                     "account_number": "123abc",
                     "auth_person_name": "Porter McPortersen II",
-                    "billing_phone_number": "billing_phone_number",
+                    "billing_phone_number": "13035551234",
                     "business_identifier": "abc123",
                     "entity_name": "Porter McPortersen",
-                    "pin_passcode": "pin_passcode",
+                    "pin_passcode": "1234",
                     "tax_identifier": "1234abcd",
                 },
                 "location": {
@@ -700,10 +700,10 @@ class TestAsyncPortingOrders:
                 "admin": {
                     "account_number": "123abc",
                     "auth_person_name": "Porter McPortersen II",
-                    "billing_phone_number": "billing_phone_number",
+                    "billing_phone_number": "13035551234",
                     "business_identifier": "abc123",
                     "entity_name": "Porter McPortersen",
-                    "pin_passcode": "pin_passcode",
+                    "pin_passcode": "1234",
                     "tax_identifier": "1234abcd",
                 },
                 "location": {
