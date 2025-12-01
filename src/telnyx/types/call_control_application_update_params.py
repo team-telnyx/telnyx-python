@@ -25,7 +25,17 @@ class CallControlApplicationUpdateParams(TypedDict, total=False):
     active: bool
     """Specifies whether the connection can be used."""
 
-    anchorsite_override: Literal['"Latency"', '"Chicago, IL"', '"Ashburn, VA"', '"San Jose, CA"']
+    anchorsite_override: Literal[
+        "Latency",
+        "Chicago, IL",
+        "Ashburn, VA",
+        "San Jose, CA",
+        "London, UK",
+        "Chennai, IN",
+        "Amsterdam, Netherlands",
+        "Toronto, Canada",
+        "Sydney, Australia",
+    ]
     """
     <code>Latency</code> directs Telnyx to route media through the site with the
     lowest round-trip time to the user's connection. Telnyx calculates this time
