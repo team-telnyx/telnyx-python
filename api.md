@@ -528,7 +528,7 @@ Methods:
 
 - <code title="post /ai/assistants">client.ai.assistants.<a href="./src/telnyx/resources/ai/assistants/assistants.py">create</a>(\*\*<a href="src/telnyx/types/ai/assistant_create_params.py">params</a>) -> <a href="./src/telnyx/types/ai/inference_embedding.py">InferenceEmbedding</a></code>
 - <code title="get /ai/assistants/{assistant_id}">client.ai.assistants.<a href="./src/telnyx/resources/ai/assistants/assistants.py">retrieve</a>(assistant_id, \*\*<a href="src/telnyx/types/ai/assistant_retrieve_params.py">params</a>) -> <a href="./src/telnyx/types/ai/inference_embedding.py">InferenceEmbedding</a></code>
-- <code title="post /ai/assistants/{assistant_id}">client.ai.assistants.<a href="./src/telnyx/resources/ai/assistants/assistants.py">update</a>(assistant_id, \*\*<a href="src/telnyx/types/ai/assistant_update_params.py">params</a>) -> object</code>
+- <code title="post /ai/assistants/{assistant_id}">client.ai.assistants.<a href="./src/telnyx/resources/ai/assistants/assistants.py">update</a>(assistant_id, \*\*<a href="src/telnyx/types/ai/assistant_update_params.py">params</a>) -> <a href="./src/telnyx/types/ai/inference_embedding.py">InferenceEmbedding</a></code>
 - <code title="get /ai/assistants">client.ai.assistants.<a href="./src/telnyx/resources/ai/assistants/assistants.py">list</a>() -> <a href="./src/telnyx/types/ai/assistants_list.py">AssistantsList</a></code>
 - <code title="delete /ai/assistants/{assistant_id}">client.ai.assistants.<a href="./src/telnyx/resources/ai/assistants/assistants.py">delete</a>(assistant_id) -> <a href="./src/telnyx/types/ai/assistant_delete_response.py">AssistantDeleteResponse</a></code>
 - <code title="post /ai/assistants/{assistant_id}/chat">client.ai.assistants.<a href="./src/telnyx/resources/ai/assistants/assistants.py">chat</a>(assistant_id, \*\*<a href="src/telnyx/types/ai/assistant_chat_params.py">params</a>) -> <a href="./src/telnyx/types/ai/assistant_chat_response.py">AssistantChatResponse</a></code>
@@ -551,7 +551,7 @@ Methods:
 - <code title="get /ai/assistants/tests/{test_id}">client.ai.assistants.tests.<a href="./src/telnyx/resources/ai/assistants/tests/tests.py">retrieve</a>(test_id) -> <a href="./src/telnyx/types/ai/assistants/assistant_test.py">AssistantTest</a></code>
 - <code title="put /ai/assistants/tests/{test_id}">client.ai.assistants.tests.<a href="./src/telnyx/resources/ai/assistants/tests/tests.py">update</a>(test_id, \*\*<a href="src/telnyx/types/ai/assistants/test_update_params.py">params</a>) -> <a href="./src/telnyx/types/ai/assistants/assistant_test.py">AssistantTest</a></code>
 - <code title="get /ai/assistants/tests">client.ai.assistants.tests.<a href="./src/telnyx/resources/ai/assistants/tests/tests.py">list</a>(\*\*<a href="src/telnyx/types/ai/assistants/test_list_params.py">params</a>) -> <a href="./src/telnyx/types/ai/assistants/test_list_response.py">TestListResponse</a></code>
-- <code title="delete /ai/assistants/tests/{test_id}">client.ai.assistants.tests.<a href="./src/telnyx/resources/ai/assistants/tests/tests.py">delete</a>(test_id) -> object</code>
+- <code title="delete /ai/assistants/tests/{test_id}">client.ai.assistants.tests.<a href="./src/telnyx/resources/ai/assistants/tests/tests.py">delete</a>(test_id) -> None</code>
 
 #### TestSuites
 
@@ -631,7 +631,7 @@ Methods:
 - <code title="post /ai/assistants/{assistant_id}/scheduled_events">client.ai.assistants.scheduled_events.<a href="./src/telnyx/resources/ai/assistants/scheduled_events.py">create</a>(assistant_id, \*\*<a href="src/telnyx/types/ai/assistants/scheduled_event_create_params.py">params</a>) -> <a href="./src/telnyx/types/ai/assistants/scheduled_event_response.py">ScheduledEventResponse</a></code>
 - <code title="get /ai/assistants/{assistant_id}/scheduled_events/{event_id}">client.ai.assistants.scheduled_events.<a href="./src/telnyx/resources/ai/assistants/scheduled_events.py">retrieve</a>(event_id, \*, assistant_id) -> <a href="./src/telnyx/types/ai/assistants/scheduled_event_response.py">ScheduledEventResponse</a></code>
 - <code title="get /ai/assistants/{assistant_id}/scheduled_events">client.ai.assistants.scheduled_events.<a href="./src/telnyx/resources/ai/assistants/scheduled_events.py">list</a>(assistant_id, \*\*<a href="src/telnyx/types/ai/assistants/scheduled_event_list_params.py">params</a>) -> <a href="./src/telnyx/types/ai/assistants/scheduled_event_list_response.py">ScheduledEventListResponse</a></code>
-- <code title="delete /ai/assistants/{assistant_id}/scheduled_events/{event_id}">client.ai.assistants.scheduled_events.<a href="./src/telnyx/resources/ai/assistants/scheduled_events.py">delete</a>(event_id, \*, assistant_id) -> object</code>
+- <code title="delete /ai/assistants/{assistant_id}/scheduled_events/{event_id}">client.ai.assistants.scheduled_events.<a href="./src/telnyx/resources/ai/assistants/scheduled_events.py">delete</a>(event_id, \*, assistant_id) -> None</code>
 
 ### Tools
 
@@ -704,7 +704,7 @@ Methods:
 - <code title="get /ai/clusters">client.ai.clusters.<a href="./src/telnyx/resources/ai/clusters.py">list</a>(\*\*<a href="src/telnyx/types/ai/cluster_list_params.py">params</a>) -> <a href="./src/telnyx/types/ai/cluster_list_response.py">ClusterListResponse</a></code>
 - <code title="delete /ai/clusters/{task_id}">client.ai.clusters.<a href="./src/telnyx/resources/ai/clusters.py">delete</a>(task_id) -> None</code>
 - <code title="post /ai/clusters">client.ai.clusters.<a href="./src/telnyx/resources/ai/clusters.py">compute</a>(\*\*<a href="src/telnyx/types/ai/cluster_compute_params.py">params</a>) -> <a href="./src/telnyx/types/ai/cluster_compute_response.py">ClusterComputeResponse</a></code>
-- <code title="get /ai/clusters/{task_id}/graph">client.ai.clusters.<a href="./src/telnyx/resources/ai/clusters.py">fetch_graph</a>(task_id, \*\*<a href="src/telnyx/types/ai/cluster_fetch_graph_params.py">params</a>) -> object</code>
+- <code title="get /ai/clusters/{task_id}/graph">client.ai.clusters.<a href="./src/telnyx/resources/ai/clusters.py">fetch_graph</a>(task_id, \*\*<a href="src/telnyx/types/ai/cluster_fetch_graph_params.py">params</a>) -> BinaryAPIResponse</code>
 
 ## Conversations
 
@@ -727,7 +727,7 @@ Methods:
 - <code title="put /ai/conversations/{conversation_id}">client.ai.conversations.<a href="./src/telnyx/resources/ai/conversations/conversations.py">update</a>(conversation_id, \*\*<a href="src/telnyx/types/ai/conversation_update_params.py">params</a>) -> <a href="./src/telnyx/types/ai/conversation_update_response.py">ConversationUpdateResponse</a></code>
 - <code title="get /ai/conversations">client.ai.conversations.<a href="./src/telnyx/resources/ai/conversations/conversations.py">list</a>(\*\*<a href="src/telnyx/types/ai/conversation_list_params.py">params</a>) -> <a href="./src/telnyx/types/ai/conversation_list_response.py">ConversationListResponse</a></code>
 - <code title="delete /ai/conversations/{conversation_id}">client.ai.conversations.<a href="./src/telnyx/resources/ai/conversations/conversations.py">delete</a>(conversation_id) -> None</code>
-- <code title="post /ai/conversations/{conversation_id}/message">client.ai.conversations.<a href="./src/telnyx/resources/ai/conversations/conversations.py">add_message</a>(conversation_id, \*\*<a href="src/telnyx/types/ai/conversation_add_message_params.py">params</a>) -> object</code>
+- <code title="post /ai/conversations/{conversation_id}/message">client.ai.conversations.<a href="./src/telnyx/resources/ai/conversations/conversations.py">add_message</a>(conversation_id, \*\*<a href="src/telnyx/types/ai/conversation_add_message_params.py">params</a>) -> None</code>
 - <code title="get /ai/conversations/{conversation_id}/conversations-insights">client.ai.conversations.<a href="./src/telnyx/resources/ai/conversations/conversations.py">retrieve_conversations_insights</a>(conversation_id) -> <a href="./src/telnyx/types/ai/conversation_retrieve_conversations_insights_response.py">ConversationRetrieveConversationsInsightsResponse</a></code>
 
 ### InsightGroups
@@ -746,7 +746,7 @@ Methods:
 
 - <code title="get /ai/conversations/insight-groups/{group_id}">client.ai.conversations.insight_groups.<a href="./src/telnyx/resources/ai/conversations/insight_groups/insight_groups.py">retrieve</a>(group_id) -> <a href="./src/telnyx/types/ai/conversations/insight_template_group_detail.py">InsightTemplateGroupDetail</a></code>
 - <code title="put /ai/conversations/insight-groups/{group_id}">client.ai.conversations.insight_groups.<a href="./src/telnyx/resources/ai/conversations/insight_groups/insight_groups.py">update</a>(group_id, \*\*<a href="src/telnyx/types/ai/conversations/insight_group_update_params.py">params</a>) -> <a href="./src/telnyx/types/ai/conversations/insight_template_group_detail.py">InsightTemplateGroupDetail</a></code>
-- <code title="delete /ai/conversations/insight-groups/{group_id}">client.ai.conversations.insight_groups.<a href="./src/telnyx/resources/ai/conversations/insight_groups/insight_groups.py">delete</a>(group_id) -> object</code>
+- <code title="delete /ai/conversations/insight-groups/{group_id}">client.ai.conversations.insight_groups.<a href="./src/telnyx/resources/ai/conversations/insight_groups/insight_groups.py">delete</a>(group_id) -> None</code>
 - <code title="post /ai/conversations/insight-groups">client.ai.conversations.insight_groups.<a href="./src/telnyx/resources/ai/conversations/insight_groups/insight_groups.py">insight_groups</a>(\*\*<a href="src/telnyx/types/ai/conversations/insight_group_insight_groups_params.py">params</a>) -> <a href="./src/telnyx/types/ai/conversations/insight_template_group_detail.py">InsightTemplateGroupDetail</a></code>
 - <code title="get /ai/conversations/insight-groups">client.ai.conversations.insight_groups.<a href="./src/telnyx/resources/ai/conversations/insight_groups/insight_groups.py">retrieve_insight_groups</a>(\*\*<a href="src/telnyx/types/ai/conversations/insight_group_retrieve_insight_groups_params.py">params</a>) -> <a href="./src/telnyx/types/ai/conversations/insight_group_retrieve_insight_groups_response.py">InsightGroupRetrieveInsightGroupsResponse</a></code>
 
@@ -754,8 +754,8 @@ Methods:
 
 Methods:
 
-- <code title="post /ai/conversations/insight-groups/{group_id}/insights/{insight_id}/assign">client.ai.conversations.insight_groups.insights.<a href="./src/telnyx/resources/ai/conversations/insight_groups/insights.py">assign</a>(insight_id, \*, group_id) -> object</code>
-- <code title="delete /ai/conversations/insight-groups/{group_id}/insights/{insight_id}/unassign">client.ai.conversations.insight_groups.insights.<a href="./src/telnyx/resources/ai/conversations/insight_groups/insights.py">delete_unassign</a>(insight_id, \*, group_id) -> object</code>
+- <code title="post /ai/conversations/insight-groups/{group_id}/insights/{insight_id}/assign">client.ai.conversations.insight_groups.insights.<a href="./src/telnyx/resources/ai/conversations/insight_groups/insights.py">assign</a>(insight_id, \*, group_id) -> None</code>
+- <code title="delete /ai/conversations/insight-groups/{group_id}/insights/{insight_id}/unassign">client.ai.conversations.insight_groups.insights.<a href="./src/telnyx/resources/ai/conversations/insight_groups/insights.py">delete_unassign</a>(insight_id, \*, group_id) -> None</code>
 
 ### Insights
 
@@ -775,7 +775,7 @@ Methods:
 - <code title="get /ai/conversations/insights/{insight_id}">client.ai.conversations.insights.<a href="./src/telnyx/resources/ai/conversations/insights.py">retrieve</a>(insight_id) -> <a href="./src/telnyx/types/ai/conversations/insight_template_detail.py">InsightTemplateDetail</a></code>
 - <code title="put /ai/conversations/insights/{insight_id}">client.ai.conversations.insights.<a href="./src/telnyx/resources/ai/conversations/insights.py">update</a>(insight_id, \*\*<a href="src/telnyx/types/ai/conversations/insight_update_params.py">params</a>) -> <a href="./src/telnyx/types/ai/conversations/insight_template_detail.py">InsightTemplateDetail</a></code>
 - <code title="get /ai/conversations/insights">client.ai.conversations.insights.<a href="./src/telnyx/resources/ai/conversations/insights.py">list</a>(\*\*<a href="src/telnyx/types/ai/conversations/insight_list_params.py">params</a>) -> <a href="./src/telnyx/types/ai/conversations/insight_list_response.py">InsightListResponse</a></code>
-- <code title="delete /ai/conversations/insights/{insight_id}">client.ai.conversations.insights.<a href="./src/telnyx/resources/ai/conversations/insights.py">delete</a>(insight_id) -> object</code>
+- <code title="delete /ai/conversations/insights/{insight_id}">client.ai.conversations.insights.<a href="./src/telnyx/resources/ai/conversations/insights.py">delete</a>(insight_id) -> None</code>
 
 ### Messages
 
@@ -888,7 +888,7 @@ Methods:
 - <code title="get /ai/mcp_servers/{mcp_server_id}">client.ai.mcp_servers.<a href="./src/telnyx/resources/ai/mcp_servers.py">retrieve</a>(mcp_server_id) -> <a href="./src/telnyx/types/ai/mcp_server_retrieve_response.py">McpServerRetrieveResponse</a></code>
 - <code title="put /ai/mcp_servers/{mcp_server_id}">client.ai.mcp_servers.<a href="./src/telnyx/resources/ai/mcp_servers.py">update</a>(mcp_server_id, \*\*<a href="src/telnyx/types/ai/mcp_server_update_params.py">params</a>) -> <a href="./src/telnyx/types/ai/mcp_server_update_response.py">McpServerUpdateResponse</a></code>
 - <code title="get /ai/mcp_servers">client.ai.mcp_servers.<a href="./src/telnyx/resources/ai/mcp_servers.py">list</a>(\*\*<a href="src/telnyx/types/ai/mcp_server_list_params.py">params</a>) -> <a href="./src/telnyx/types/ai/mcp_server_list_response.py">McpServerListResponse</a></code>
-- <code title="delete /ai/mcp_servers/{mcp_server_id}">client.ai.mcp_servers.<a href="./src/telnyx/resources/ai/mcp_servers.py">delete</a>(mcp_server_id) -> object</code>
+- <code title="delete /ai/mcp_servers/{mcp_server_id}">client.ai.mcp_servers.<a href="./src/telnyx/resources/ai/mcp_servers.py">delete</a>(mcp_server_id) -> None</code>
 
 # AuditEvents
 

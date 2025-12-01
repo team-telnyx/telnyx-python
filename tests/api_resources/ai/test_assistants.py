@@ -204,7 +204,7 @@ class TestAssistants:
         assistant = client.ai.assistants.update(
             assistant_id="assistant_id",
         )
-        assert_matches_type(object, assistant, path=["response"])
+        assert_matches_type(InferenceEmbedding, assistant, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -287,7 +287,7 @@ class TestAssistants:
                 "voice_speed": 0,
             },
         )
-        assert_matches_type(object, assistant, path=["response"])
+        assert_matches_type(InferenceEmbedding, assistant, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -299,7 +299,7 @@ class TestAssistants:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         assistant = response.parse()
-        assert_matches_type(object, assistant, path=["response"])
+        assert_matches_type(InferenceEmbedding, assistant, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -311,7 +311,7 @@ class TestAssistants:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             assistant = response.parse()
-            assert_matches_type(object, assistant, path=["response"])
+            assert_matches_type(InferenceEmbedding, assistant, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -829,7 +829,7 @@ class TestAsyncAssistants:
         assistant = await async_client.ai.assistants.update(
             assistant_id="assistant_id",
         )
-        assert_matches_type(object, assistant, path=["response"])
+        assert_matches_type(InferenceEmbedding, assistant, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -912,7 +912,7 @@ class TestAsyncAssistants:
                 "voice_speed": 0,
             },
         )
-        assert_matches_type(object, assistant, path=["response"])
+        assert_matches_type(InferenceEmbedding, assistant, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -924,7 +924,7 @@ class TestAsyncAssistants:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         assistant = await response.parse()
-        assert_matches_type(object, assistant, path=["response"])
+        assert_matches_type(InferenceEmbedding, assistant, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -936,7 +936,7 @@ class TestAsyncAssistants:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             assistant = await response.parse()
-            assert_matches_type(object, assistant, path=["response"])
+            assert_matches_type(InferenceEmbedding, assistant, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

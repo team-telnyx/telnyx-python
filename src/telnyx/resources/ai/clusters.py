@@ -10,10 +10,18 @@ from ..._compat import cached_property
 from ...types.ai import cluster_list_params, cluster_compute_params, cluster_retrieve_params, cluster_fetch_graph_params
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
+    BinaryAPIResponse,
+    AsyncBinaryAPIResponse,
+    StreamedBinaryAPIResponse,
+    AsyncStreamedBinaryAPIResponse,
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
+    to_custom_raw_response_wrapper,
     async_to_streamed_response_wrapper,
+    to_custom_streamed_response_wrapper,
+    async_to_custom_raw_response_wrapper,
+    async_to_custom_streamed_response_wrapper,
 )
 from ..._base_client import make_request_options
 from ...types.ai.cluster_list_response import ClusterListResponse
@@ -238,7 +246,7 @@ class ClustersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> BinaryAPIResponse:
         """
         Fetch a cluster visualization
 
@@ -253,6 +261,7 @@ class ClustersResource(SyncAPIResource):
         """
         if not task_id:
             raise ValueError(f"Expected a non-empty value for `task_id` but received {task_id!r}")
+        extra_headers = {"Accept": "image/png", **(extra_headers or {})}
         return self._get(
             f"/ai/clusters/{task_id}/graph",
             options=make_request_options(
@@ -262,7 +271,7 @@ class ClustersResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform({"cluster_id": cluster_id}, cluster_fetch_graph_params.ClusterFetchGraphParams),
             ),
-            cast_to=object,
+            cast_to=BinaryAPIResponse,
         )
 
 
@@ -481,7 +490,7 @@ class AsyncClustersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> AsyncBinaryAPIResponse:
         """
         Fetch a cluster visualization
 
@@ -496,6 +505,7 @@ class AsyncClustersResource(AsyncAPIResource):
         """
         if not task_id:
             raise ValueError(f"Expected a non-empty value for `task_id` but received {task_id!r}")
+        extra_headers = {"Accept": "image/png", **(extra_headers or {})}
         return await self._get(
             f"/ai/clusters/{task_id}/graph",
             options=make_request_options(
@@ -507,7 +517,7 @@ class AsyncClustersResource(AsyncAPIResource):
                     {"cluster_id": cluster_id}, cluster_fetch_graph_params.ClusterFetchGraphParams
                 ),
             ),
-            cast_to=object,
+            cast_to=AsyncBinaryAPIResponse,
         )
 
 
@@ -527,8 +537,9 @@ class ClustersResourceWithRawResponse:
         self.compute = to_raw_response_wrapper(
             clusters.compute,
         )
-        self.fetch_graph = to_raw_response_wrapper(
+        self.fetch_graph = to_custom_raw_response_wrapper(
             clusters.fetch_graph,
+            BinaryAPIResponse,
         )
 
 
@@ -548,8 +559,9 @@ class AsyncClustersResourceWithRawResponse:
         self.compute = async_to_raw_response_wrapper(
             clusters.compute,
         )
-        self.fetch_graph = async_to_raw_response_wrapper(
+        self.fetch_graph = async_to_custom_raw_response_wrapper(
             clusters.fetch_graph,
+            AsyncBinaryAPIResponse,
         )
 
 
@@ -569,8 +581,9 @@ class ClustersResourceWithStreamingResponse:
         self.compute = to_streamed_response_wrapper(
             clusters.compute,
         )
-        self.fetch_graph = to_streamed_response_wrapper(
+        self.fetch_graph = to_custom_streamed_response_wrapper(
             clusters.fetch_graph,
+            StreamedBinaryAPIResponse,
         )
 
 
@@ -590,6 +603,7 @@ class AsyncClustersResourceWithStreamingResponse:
         self.compute = async_to_streamed_response_wrapper(
             clusters.compute,
         )
-        self.fetch_graph = async_to_streamed_response_wrapper(
+        self.fetch_graph = async_to_custom_streamed_response_wrapper(
             clusters.fetch_graph,
+            AsyncStreamedBinaryAPIResponse,
         )
