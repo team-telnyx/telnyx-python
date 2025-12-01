@@ -209,7 +209,7 @@ class TestScheduledEvents:
             event_id="event_id",
             assistant_id="assistant_id",
         )
-        assert_matches_type(object, scheduled_event, path=["response"])
+        assert scheduled_event is None
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -222,7 +222,7 @@ class TestScheduledEvents:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         scheduled_event = response.parse()
-        assert_matches_type(object, scheduled_event, path=["response"])
+        assert scheduled_event is None
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -235,7 +235,7 @@ class TestScheduledEvents:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             scheduled_event = response.parse()
-            assert_matches_type(object, scheduled_event, path=["response"])
+            assert scheduled_event is None
 
         assert cast(Any, response.is_closed) is True
 
@@ -448,7 +448,7 @@ class TestAsyncScheduledEvents:
             event_id="event_id",
             assistant_id="assistant_id",
         )
-        assert_matches_type(object, scheduled_event, path=["response"])
+        assert scheduled_event is None
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -461,7 +461,7 @@ class TestAsyncScheduledEvents:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         scheduled_event = await response.parse()
-        assert_matches_type(object, scheduled_event, path=["response"])
+        assert scheduled_event is None
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -474,7 +474,7 @@ class TestAsyncScheduledEvents:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             scheduled_event = await response.parse()
-            assert_matches_type(object, scheduled_event, path=["response"])
+            assert scheduled_event is None
 
         assert cast(Any, response.is_closed) is True
 

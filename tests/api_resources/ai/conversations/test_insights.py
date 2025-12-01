@@ -209,7 +209,7 @@ class TestInsights:
         insight = client.ai.conversations.insights.delete(
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(object, insight, path=["response"])
+        assert insight is None
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -221,7 +221,7 @@ class TestInsights:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         insight = response.parse()
-        assert_matches_type(object, insight, path=["response"])
+        assert insight is None
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -233,7 +233,7 @@ class TestInsights:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             insight = response.parse()
-            assert_matches_type(object, insight, path=["response"])
+            assert insight is None
 
         assert cast(Any, response.is_closed) is True
 
@@ -440,7 +440,7 @@ class TestAsyncInsights:
         insight = await async_client.ai.conversations.insights.delete(
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(object, insight, path=["response"])
+        assert insight is None
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -452,7 +452,7 @@ class TestAsyncInsights:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         insight = await response.parse()
-        assert_matches_type(object, insight, path=["response"])
+        assert insight is None
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -464,7 +464,7 @@ class TestAsyncInsights:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             insight = await response.parse()
-            assert_matches_type(object, insight, path=["response"])
+            assert insight is None
 
         assert cast(Any, response.is_closed) is True
 

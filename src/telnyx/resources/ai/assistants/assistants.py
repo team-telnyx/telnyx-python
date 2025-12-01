@@ -293,7 +293,7 @@ class AssistantsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> InferenceEmbedding:
         """
         Update an AI Assistant's attributes.
 
@@ -365,7 +365,7 @@ class AssistantsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=object,
+            cast_to=InferenceEmbedding,
         )
 
     def list(
@@ -861,7 +861,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> InferenceEmbedding:
         """
         Update an AI Assistant's attributes.
 
@@ -933,7 +933,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=object,
+            cast_to=InferenceEmbedding,
         )
 
     async def list(
