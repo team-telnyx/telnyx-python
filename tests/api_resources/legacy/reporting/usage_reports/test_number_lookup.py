@@ -8,7 +8,13 @@ from typing import Any, cast
 import pytest
 
 from telnyx import Telnyx, AsyncTelnyx
+from tests.utils import assert_matches_type
 from telnyx._utils import parse_date
+from telnyx.types.legacy.reporting.usage_reports import (
+    NumberLookupListResponse,
+    NumberLookupCreateResponse,
+    NumberLookupRetrieveResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -20,7 +26,7 @@ class TestNumberLookup:
     @parametrize
     def test_method_create(self, client: Telnyx) -> None:
         number_lookup = client.legacy.reporting.usage_reports.number_lookup.create()
-        assert number_lookup is None
+        assert_matches_type(NumberLookupCreateResponse, number_lookup, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -31,7 +37,7 @@ class TestNumberLookup:
             managed_accounts=["f47ac10b-58cc-4372-a567-0e02b2c3d479", "6ba7b810-9dad-11d1-80b4-00c04fd430c8"],
             start_date=parse_date("2025-02-10"),
         )
-        assert number_lookup is None
+        assert_matches_type(NumberLookupCreateResponse, number_lookup, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -41,7 +47,7 @@ class TestNumberLookup:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         number_lookup = response.parse()
-        assert number_lookup is None
+        assert_matches_type(NumberLookupCreateResponse, number_lookup, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -51,7 +57,7 @@ class TestNumberLookup:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             number_lookup = response.parse()
-            assert number_lookup is None
+            assert_matches_type(NumberLookupCreateResponse, number_lookup, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -61,7 +67,7 @@ class TestNumberLookup:
         number_lookup = client.legacy.reporting.usage_reports.number_lookup.retrieve(
             "id",
         )
-        assert number_lookup is None
+        assert_matches_type(NumberLookupRetrieveResponse, number_lookup, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -73,7 +79,7 @@ class TestNumberLookup:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         number_lookup = response.parse()
-        assert number_lookup is None
+        assert_matches_type(NumberLookupRetrieveResponse, number_lookup, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -85,7 +91,7 @@ class TestNumberLookup:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             number_lookup = response.parse()
-            assert number_lookup is None
+            assert_matches_type(NumberLookupRetrieveResponse, number_lookup, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -101,16 +107,7 @@ class TestNumberLookup:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         number_lookup = client.legacy.reporting.usage_reports.number_lookup.list()
-        assert number_lookup is None
-
-    @pytest.mark.skip(reason="Prism tests are disabled")
-    @parametrize
-    def test_method_list_with_all_params(self, client: Telnyx) -> None:
-        number_lookup = client.legacy.reporting.usage_reports.number_lookup.list(
-            page=0,
-            per_page=0,
-        )
-        assert number_lookup is None
+        assert_matches_type(NumberLookupListResponse, number_lookup, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -120,7 +117,7 @@ class TestNumberLookup:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         number_lookup = response.parse()
-        assert number_lookup is None
+        assert_matches_type(NumberLookupListResponse, number_lookup, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -130,7 +127,7 @@ class TestNumberLookup:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             number_lookup = response.parse()
-            assert number_lookup is None
+            assert_matches_type(NumberLookupListResponse, number_lookup, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -186,7 +183,7 @@ class TestAsyncNumberLookup:
     @parametrize
     async def test_method_create(self, async_client: AsyncTelnyx) -> None:
         number_lookup = await async_client.legacy.reporting.usage_reports.number_lookup.create()
-        assert number_lookup is None
+        assert_matches_type(NumberLookupCreateResponse, number_lookup, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -197,7 +194,7 @@ class TestAsyncNumberLookup:
             managed_accounts=["f47ac10b-58cc-4372-a567-0e02b2c3d479", "6ba7b810-9dad-11d1-80b4-00c04fd430c8"],
             start_date=parse_date("2025-02-10"),
         )
-        assert number_lookup is None
+        assert_matches_type(NumberLookupCreateResponse, number_lookup, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -207,7 +204,7 @@ class TestAsyncNumberLookup:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         number_lookup = await response.parse()
-        assert number_lookup is None
+        assert_matches_type(NumberLookupCreateResponse, number_lookup, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -219,7 +216,7 @@ class TestAsyncNumberLookup:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             number_lookup = await response.parse()
-            assert number_lookup is None
+            assert_matches_type(NumberLookupCreateResponse, number_lookup, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -229,7 +226,7 @@ class TestAsyncNumberLookup:
         number_lookup = await async_client.legacy.reporting.usage_reports.number_lookup.retrieve(
             "id",
         )
-        assert number_lookup is None
+        assert_matches_type(NumberLookupRetrieveResponse, number_lookup, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -241,7 +238,7 @@ class TestAsyncNumberLookup:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         number_lookup = await response.parse()
-        assert number_lookup is None
+        assert_matches_type(NumberLookupRetrieveResponse, number_lookup, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -253,7 +250,7 @@ class TestAsyncNumberLookup:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             number_lookup = await response.parse()
-            assert number_lookup is None
+            assert_matches_type(NumberLookupRetrieveResponse, number_lookup, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -269,16 +266,7 @@ class TestAsyncNumberLookup:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         number_lookup = await async_client.legacy.reporting.usage_reports.number_lookup.list()
-        assert number_lookup is None
-
-    @pytest.mark.skip(reason="Prism tests are disabled")
-    @parametrize
-    async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
-        number_lookup = await async_client.legacy.reporting.usage_reports.number_lookup.list(
-            page=0,
-            per_page=0,
-        )
-        assert number_lookup is None
+        assert_matches_type(NumberLookupListResponse, number_lookup, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -288,7 +276,7 @@ class TestAsyncNumberLookup:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         number_lookup = await response.parse()
-        assert number_lookup is None
+        assert_matches_type(NumberLookupListResponse, number_lookup, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -298,7 +286,7 @@ class TestAsyncNumberLookup:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             number_lookup = await response.parse()
-            assert number_lookup is None
+            assert_matches_type(NumberLookupListResponse, number_lookup, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
