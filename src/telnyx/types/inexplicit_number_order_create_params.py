@@ -57,6 +57,12 @@ class OrderingGroup(TypedDict, total=False):
     administrative_area: str
     """Filter for phone numbers in a given state / province"""
 
+    exclude_held_numbers: bool
+    """
+    Filter to exclude phone numbers that are currently on hold/reserved for your
+    account.
+    """
+
     features: SequenceNotStr[str]
     """
     Filter for phone numbers that have the features to satisfy your use case (e.g.,
@@ -71,6 +77,12 @@ class OrderingGroup(TypedDict, total=False):
 
     phone_number: OrderingGroupPhoneNumber
     """Phone number search criteria"""
+
+    quickship: bool
+    """
+    Filter to exclude phone numbers that need additional time after to purchase to
+    activate. Only applicable for +1 toll_free numbers.
+    """
 
     strategy: Literal["always", "never"]
     """Ordering strategy.

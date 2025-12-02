@@ -45,6 +45,7 @@ class TestInexplicitNumberOrders:
                     "country_iso": "US",
                     "phone_number_type": "phone_number_type",
                     "administrative_area": "administrative_area",
+                    "exclude_held_numbers": True,
                     "features": ["string"],
                     "locality": "locality",
                     "national_destination_code": "national_destination_code",
@@ -53,6 +54,7 @@ class TestInexplicitNumberOrders:
                         "ends_with": "ends_with",
                         "starts_with": "starts_with",
                     },
+                    "quickship": True,
                     "strategy": "always",
                 }
             ],
@@ -210,6 +212,7 @@ class TestAsyncInexplicitNumberOrders:
                     "country_iso": "US",
                     "phone_number_type": "phone_number_type",
                     "administrative_area": "administrative_area",
+                    "exclude_held_numbers": True,
                     "features": ["string"],
                     "locality": "locality",
                     "national_destination_code": "national_destination_code",
@@ -218,6 +221,7 @@ class TestAsyncInexplicitNumberOrders:
                         "ends_with": "ends_with",
                         "starts_with": "starts_with",
                     },
+                    "quickship": True,
                     "strategy": "always",
                 }
             ],
