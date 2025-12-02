@@ -89,6 +89,7 @@ pip install telnyx[aiohttp]
 Then you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:
 
 ```python
+import os
 import asyncio
 from telnyx import DefaultAioHttpClient
 from telnyx import AsyncTelnyx
@@ -96,7 +97,7 @@ from telnyx import AsyncTelnyx
 
 async def main() -> None:
     async with AsyncTelnyx(
-        api_key="My API Key",
+        api_key=os.environ.get("TELNYX_API_KEY"),  # This is the default and can be omitted
         http_client=DefaultAioHttpClient(),
     ) as client:
         response = await client.calls.dial(
