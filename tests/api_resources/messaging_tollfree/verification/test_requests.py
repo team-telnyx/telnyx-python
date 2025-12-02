@@ -432,7 +432,7 @@ class TestRequests:
         request = client.messaging_tollfree.verification.requests.delete(
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(object, request, path=["response"])
+        assert request is None
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -444,7 +444,7 @@ class TestRequests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         request = response.parse()
-        assert_matches_type(object, request, path=["response"])
+        assert request is None
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -456,7 +456,7 @@ class TestRequests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             request = response.parse()
-            assert_matches_type(object, request, path=["response"])
+            assert request is None
 
         assert cast(Any, response.is_closed) is True
 
@@ -884,7 +884,7 @@ class TestAsyncRequests:
         request = await async_client.messaging_tollfree.verification.requests.delete(
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(object, request, path=["response"])
+        assert request is None
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -896,7 +896,7 @@ class TestAsyncRequests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         request = await response.parse()
-        assert_matches_type(object, request, path=["response"])
+        assert request is None
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -908,7 +908,7 @@ class TestAsyncRequests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             request = await response.parse()
-            assert_matches_type(object, request, path=["response"])
+            assert request is None
 
         assert cast(Any, response.is_closed) is True
 

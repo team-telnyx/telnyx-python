@@ -286,7 +286,7 @@ class TestBrand:
         brand = client.brand.delete(
             "brandId",
         )
-        assert_matches_type(object, brand, path=["response"])
+        assert brand is None
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -298,7 +298,7 @@ class TestBrand:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         brand = response.parse()
-        assert_matches_type(object, brand, path=["response"])
+        assert brand is None
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -310,7 +310,7 @@ class TestBrand:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             brand = response.parse()
-            assert_matches_type(object, brand, path=["response"])
+            assert brand is None
 
         assert cast(Any, response.is_closed) is True
 
@@ -412,7 +412,7 @@ class TestBrand:
         brand = client.brand.revet(
             "brandId",
         )
-        assert_matches_type(object, brand, path=["response"])
+        assert_matches_type(TelnyxBrand, brand, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -424,7 +424,7 @@ class TestBrand:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         brand = response.parse()
-        assert_matches_type(object, brand, path=["response"])
+        assert_matches_type(TelnyxBrand, brand, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -436,7 +436,7 @@ class TestBrand:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             brand = response.parse()
-            assert_matches_type(object, brand, path=["response"])
+            assert_matches_type(TelnyxBrand, brand, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -718,7 +718,7 @@ class TestAsyncBrand:
         brand = await async_client.brand.delete(
             "brandId",
         )
-        assert_matches_type(object, brand, path=["response"])
+        assert brand is None
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -730,7 +730,7 @@ class TestAsyncBrand:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         brand = await response.parse()
-        assert_matches_type(object, brand, path=["response"])
+        assert brand is None
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -742,7 +742,7 @@ class TestAsyncBrand:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             brand = await response.parse()
-            assert_matches_type(object, brand, path=["response"])
+            assert brand is None
 
         assert cast(Any, response.is_closed) is True
 
@@ -844,7 +844,7 @@ class TestAsyncBrand:
         brand = await async_client.brand.revet(
             "brandId",
         )
-        assert_matches_type(object, brand, path=["response"])
+        assert_matches_type(TelnyxBrand, brand, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -856,7 +856,7 @@ class TestAsyncBrand:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         brand = await response.parse()
-        assert_matches_type(object, brand, path=["response"])
+        assert_matches_type(TelnyxBrand, brand, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -868,7 +868,7 @@ class TestAsyncBrand:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             brand = await response.parse()
-            assert_matches_type(object, brand, path=["response"])
+            assert_matches_type(TelnyxBrand, brand, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

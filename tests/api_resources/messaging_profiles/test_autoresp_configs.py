@@ -284,7 +284,7 @@ class TestAutorespConfigs:
             autoresp_cfg_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(object, autoresp_config, path=["response"])
+        assert_matches_type(str, autoresp_config, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -297,7 +297,7 @@ class TestAutorespConfigs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         autoresp_config = response.parse()
-        assert_matches_type(object, autoresp_config, path=["response"])
+        assert_matches_type(str, autoresp_config, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -310,7 +310,7 @@ class TestAutorespConfigs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             autoresp_config = response.parse()
-            assert_matches_type(object, autoresp_config, path=["response"])
+            assert_matches_type(str, autoresp_config, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -599,7 +599,7 @@ class TestAsyncAutorespConfigs:
             autoresp_cfg_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(object, autoresp_config, path=["response"])
+        assert_matches_type(str, autoresp_config, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -612,7 +612,7 @@ class TestAsyncAutorespConfigs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         autoresp_config = await response.parse()
-        assert_matches_type(object, autoresp_config, path=["response"])
+        assert_matches_type(str, autoresp_config, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -625,7 +625,7 @@ class TestAsyncAutorespConfigs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             autoresp_config = await response.parse()
-            assert_matches_type(object, autoresp_config, path=["response"])
+            assert_matches_type(str, autoresp_config, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
