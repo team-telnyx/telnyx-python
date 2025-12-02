@@ -19,7 +19,10 @@ from ....._response import (
     async_to_streamed_response_wrapper,
 )
 from ....._base_client import make_request_options
-from .....types.legacy.reporting.usage_reports import number_lookup_list_params, number_lookup_create_params
+from .....types.legacy.reporting.usage_reports import number_lookup_create_params
+from .....types.legacy.reporting.usage_reports.number_lookup_list_response import NumberLookupListResponse
+from .....types.legacy.reporting.usage_reports.number_lookup_create_response import NumberLookupCreateResponse
+from .....types.legacy.reporting.usage_reports.number_lookup_retrieve_response import NumberLookupRetrieveResponse
 
 __all__ = ["NumberLookupResource", "AsyncNumberLookupResource"]
 
@@ -57,7 +60,7 @@ class NumberLookupResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
+    ) -> NumberLookupCreateResponse:
         """
         Submit a new telco data usage report
 
@@ -78,7 +81,6 @@ class NumberLookupResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
             "/legacy/reporting/usage_reports/number_lookup",
             body=maybe_transform(
@@ -93,7 +95,7 @@ class NumberLookupResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NoneType,
+            cast_to=NumberLookupCreateResponse,
         )
 
     def retrieve(
@@ -106,7 +108,7 @@ class NumberLookupResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
+    ) -> NumberLookupRetrieveResponse:
         """
         Retrieve a specific telco data usage report by its ID
 
@@ -121,56 +123,31 @@ class NumberLookupResource(SyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._get(
             f"/legacy/reporting/usage_reports/number_lookup/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NoneType,
+            cast_to=NumberLookupRetrieveResponse,
         )
 
     def list(
         self,
         *,
-        page: int | Omit = omit,
-        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
-        """
-        Retrieve a paginated list of telco data usage reports
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+    ) -> NumberLookupListResponse:
+        """Retrieve a paginated list of telco data usage reports"""
         return self._get(
             "/legacy/reporting/usage_reports/number_lookup",
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "page": page,
-                        "per_page": per_page,
-                    },
-                    number_lookup_list_params.NumberLookupListParams,
-                ),
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NoneType,
+            cast_to=NumberLookupListResponse,
         )
 
     def delete(
@@ -241,7 +218,7 @@ class AsyncNumberLookupResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
+    ) -> NumberLookupCreateResponse:
         """
         Submit a new telco data usage report
 
@@ -262,7 +239,6 @@ class AsyncNumberLookupResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
             "/legacy/reporting/usage_reports/number_lookup",
             body=await async_maybe_transform(
@@ -277,7 +253,7 @@ class AsyncNumberLookupResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NoneType,
+            cast_to=NumberLookupCreateResponse,
         )
 
     async def retrieve(
@@ -290,7 +266,7 @@ class AsyncNumberLookupResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
+    ) -> NumberLookupRetrieveResponse:
         """
         Retrieve a specific telco data usage report by its ID
 
@@ -305,56 +281,31 @@ class AsyncNumberLookupResource(AsyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._get(
             f"/legacy/reporting/usage_reports/number_lookup/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NoneType,
+            cast_to=NumberLookupRetrieveResponse,
         )
 
     async def list(
         self,
         *,
-        page: int | Omit = omit,
-        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
-        """
-        Retrieve a paginated list of telco data usage reports
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+    ) -> NumberLookupListResponse:
+        """Retrieve a paginated list of telco data usage reports"""
         return await self._get(
             "/legacy/reporting/usage_reports/number_lookup",
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {
-                        "page": page,
-                        "per_page": per_page,
-                    },
-                    number_lookup_list_params.NumberLookupListParams,
-                ),
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NoneType,
+            cast_to=NumberLookupListResponse,
         )
 
     async def delete(
