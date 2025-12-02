@@ -473,7 +473,7 @@ class BrandResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> None:
         """Delete Brand.
 
         This endpoint is used to delete a brand. Note the brand cannot be
@@ -491,12 +491,13 @@ class BrandResource(SyncAPIResource):
         """
         if not brand_id:
             raise ValueError(f"Expected a non-empty value for `brand_id` but received {brand_id!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
             f"/brand/{brand_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=object,
+            cast_to=NoneType,
         )
 
     def get_feedback(
@@ -589,7 +590,7 @@ class BrandResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> TelnyxBrand:
         """This operation allows you to revet the brand.
 
         However, revetting is allowed once
@@ -612,7 +613,7 @@ class BrandResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=object,
+            cast_to=TelnyxBrand,
         )
 
 
@@ -1041,7 +1042,7 @@ class AsyncBrandResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> None:
         """Delete Brand.
 
         This endpoint is used to delete a brand. Note the brand cannot be
@@ -1059,12 +1060,13 @@ class AsyncBrandResource(AsyncAPIResource):
         """
         if not brand_id:
             raise ValueError(f"Expected a non-empty value for `brand_id` but received {brand_id!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
             f"/brand/{brand_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=object,
+            cast_to=NoneType,
         )
 
     async def get_feedback(
@@ -1157,7 +1159,7 @@ class AsyncBrandResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> TelnyxBrand:
         """This operation allows you to revet the brand.
 
         However, revetting is allowed once
@@ -1180,7 +1182,7 @@ class AsyncBrandResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=object,
+            cast_to=TelnyxBrand,
         )
 
 

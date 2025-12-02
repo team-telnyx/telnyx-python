@@ -14,8 +14,10 @@ from telnyx.types import (
     CampaignListResponse,
     CampaignDeactivateResponse,
     CampaignSubmitAppealResponse,
+    CampaignAcceptSharingResponse,
     CampaignGetMnoMetadataResponse,
     CampaignGetSharingStatusResponse,
+    CampaignGetOperationStatusResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -178,7 +180,7 @@ class TestCampaign:
         campaign = client.campaign.accept_sharing(
             "C26F1KLZN",
         )
-        assert_matches_type(object, campaign, path=["response"])
+        assert_matches_type(CampaignAcceptSharingResponse, campaign, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -190,7 +192,7 @@ class TestCampaign:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         campaign = response.parse()
-        assert_matches_type(object, campaign, path=["response"])
+        assert_matches_type(CampaignAcceptSharingResponse, campaign, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -202,7 +204,7 @@ class TestCampaign:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             campaign = response.parse()
-            assert_matches_type(object, campaign, path=["response"])
+            assert_matches_type(CampaignAcceptSharingResponse, campaign, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -304,7 +306,7 @@ class TestCampaign:
         campaign = client.campaign.get_operation_status(
             "campaignId",
         )
-        assert_matches_type(object, campaign, path=["response"])
+        assert_matches_type(CampaignGetOperationStatusResponse, campaign, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -316,7 +318,7 @@ class TestCampaign:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         campaign = response.parse()
-        assert_matches_type(object, campaign, path=["response"])
+        assert_matches_type(CampaignGetOperationStatusResponse, campaign, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -328,7 +330,7 @@ class TestCampaign:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             campaign = response.parse()
-            assert_matches_type(object, campaign, path=["response"])
+            assert_matches_type(CampaignGetOperationStatusResponse, campaign, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -588,7 +590,7 @@ class TestAsyncCampaign:
         campaign = await async_client.campaign.accept_sharing(
             "C26F1KLZN",
         )
-        assert_matches_type(object, campaign, path=["response"])
+        assert_matches_type(CampaignAcceptSharingResponse, campaign, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -600,7 +602,7 @@ class TestAsyncCampaign:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         campaign = await response.parse()
-        assert_matches_type(object, campaign, path=["response"])
+        assert_matches_type(CampaignAcceptSharingResponse, campaign, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -612,7 +614,7 @@ class TestAsyncCampaign:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             campaign = await response.parse()
-            assert_matches_type(object, campaign, path=["response"])
+            assert_matches_type(CampaignAcceptSharingResponse, campaign, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -714,7 +716,7 @@ class TestAsyncCampaign:
         campaign = await async_client.campaign.get_operation_status(
             "campaignId",
         )
-        assert_matches_type(object, campaign, path=["response"])
+        assert_matches_type(CampaignGetOperationStatusResponse, campaign, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -726,7 +728,7 @@ class TestAsyncCampaign:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         campaign = await response.parse()
-        assert_matches_type(object, campaign, path=["response"])
+        assert_matches_type(CampaignGetOperationStatusResponse, campaign, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -738,7 +740,7 @@ class TestAsyncCampaign:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             campaign = await response.parse()
-            assert_matches_type(object, campaign, path=["response"])
+            assert_matches_type(CampaignGetOperationStatusResponse, campaign, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

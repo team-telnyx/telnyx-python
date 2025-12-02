@@ -568,7 +568,7 @@ from .call_dtmf_received_webhook_event import CallDtmfReceivedWebhookEvent as Ca
 from .call_refer_started_webhook_event import CallReferStartedWebhookEvent as CallReferStartedWebhookEvent
 from .call_siprec_failed_webhook_event import CallSiprecFailedWebhookEvent as CallSiprecFailedWebhookEvent
 from .call_speak_started_webhook_event import CallSpeakStartedWebhookEvent as CallSpeakStartedWebhookEvent
-from .campaign_builder_create_response import CampaignBuilderCreateResponse as CampaignBuilderCreateResponse
+from .campaign_accept_sharing_response import CampaignAcceptSharingResponse as CampaignAcceptSharingResponse
 from .conference_created_webhook_event import ConferenceCreatedWebhookEvent as ConferenceCreatedWebhookEvent
 from .global_ip_assignment_list_params import GlobalIPAssignmentListParams as GlobalIPAssignmentListParams
 from .global_ip_protocol_list_response import GlobalIPProtocolListResponse as GlobalIPProtocolListResponse
@@ -873,6 +873,9 @@ from .call_control_application_list_response import (
 )
 from .call_control_application_update_params import (
     CallControlApplicationUpdateParams as CallControlApplicationUpdateParams,
+)
+from .campaign_get_operation_status_response import (
+    CampaignGetOperationStatusResponse as CampaignGetOperationStatusResponse,
 )
 from .conference_floor_changed_webhook_event import (
     ConferenceFloorChangedWebhookEvent as ConferenceFloorChangedWebhookEvent,

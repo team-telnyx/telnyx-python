@@ -9,7 +9,7 @@ import pytest
 
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
-from telnyx.types import CampaignBuilderCreateResponse
+from telnyx.types import TelnyxCampaignCsp
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -25,7 +25,7 @@ class TestCampaignBuilder:
             description="description",
             usecase="usecase",
         )
-        assert_matches_type(CampaignBuilderCreateResponse, campaign_builder, path=["response"])
+        assert_matches_type(TelnyxCampaignCsp, campaign_builder, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -67,7 +67,7 @@ class TestCampaignBuilder:
             webhook_failover_url="https://webhook.com/93711262-23e5-4048-a966-c0b2a16d5963",
             webhook_url="https://webhook.com/67ea78a8-9f32-4d04-b62d-f9502e8e5f93",
         )
-        assert_matches_type(CampaignBuilderCreateResponse, campaign_builder, path=["response"])
+        assert_matches_type(TelnyxCampaignCsp, campaign_builder, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -81,7 +81,7 @@ class TestCampaignBuilder:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         campaign_builder = response.parse()
-        assert_matches_type(CampaignBuilderCreateResponse, campaign_builder, path=["response"])
+        assert_matches_type(TelnyxCampaignCsp, campaign_builder, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -95,7 +95,7 @@ class TestCampaignBuilder:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             campaign_builder = response.parse()
-            assert_matches_type(CampaignBuilderCreateResponse, campaign_builder, path=["response"])
+            assert_matches_type(TelnyxCampaignCsp, campaign_builder, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -113,7 +113,7 @@ class TestAsyncCampaignBuilder:
             description="description",
             usecase="usecase",
         )
-        assert_matches_type(CampaignBuilderCreateResponse, campaign_builder, path=["response"])
+        assert_matches_type(TelnyxCampaignCsp, campaign_builder, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -155,7 +155,7 @@ class TestAsyncCampaignBuilder:
             webhook_failover_url="https://webhook.com/93711262-23e5-4048-a966-c0b2a16d5963",
             webhook_url="https://webhook.com/67ea78a8-9f32-4d04-b62d-f9502e8e5f93",
         )
-        assert_matches_type(CampaignBuilderCreateResponse, campaign_builder, path=["response"])
+        assert_matches_type(TelnyxCampaignCsp, campaign_builder, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -169,7 +169,7 @@ class TestAsyncCampaignBuilder:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         campaign_builder = await response.parse()
-        assert_matches_type(CampaignBuilderCreateResponse, campaign_builder, path=["response"])
+        assert_matches_type(TelnyxCampaignCsp, campaign_builder, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -183,6 +183,6 @@ class TestAsyncCampaignBuilder:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             campaign_builder = await response.parse()
-            assert_matches_type(CampaignBuilderCreateResponse, campaign_builder, path=["response"])
+            assert_matches_type(TelnyxCampaignCsp, campaign_builder, path=["response"])
 
         assert cast(Any, response.is_closed) is True

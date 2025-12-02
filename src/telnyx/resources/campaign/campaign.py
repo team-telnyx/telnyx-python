@@ -38,8 +38,10 @@ from ...types.telnyx_campaign_csp import TelnyxCampaignCsp
 from ...types.campaign_list_response import CampaignListResponse
 from ...types.campaign_deactivate_response import CampaignDeactivateResponse
 from ...types.campaign_submit_appeal_response import CampaignSubmitAppealResponse
+from ...types.campaign_accept_sharing_response import CampaignAcceptSharingResponse
 from ...types.campaign_get_mno_metadata_response import CampaignGetMnoMetadataResponse
 from ...types.campaign_get_sharing_status_response import CampaignGetSharingStatusResponse
+from ...types.campaign_get_operation_status_response import CampaignGetOperationStatusResponse
 
 __all__ = ["CampaignResource", "AsyncCampaignResource"]
 
@@ -266,7 +268,7 @@ class CampaignResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> CampaignAcceptSharingResponse:
         """
         Manually accept a campaign shared with Telnyx
 
@@ -288,7 +290,7 @@ class CampaignResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=object,
+            cast_to=CampaignAcceptSharingResponse,
         )
 
     def deactivate(
@@ -370,7 +372,7 @@ class CampaignResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> CampaignGetOperationStatusResponse:
         """
         Retrieve campaign's operation status at MNO level.
 
@@ -390,7 +392,7 @@ class CampaignResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=object,
+            cast_to=CampaignGetOperationStatusResponse,
         )
 
     def get_sharing_status(
@@ -694,7 +696,7 @@ class AsyncCampaignResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> CampaignAcceptSharingResponse:
         """
         Manually accept a campaign shared with Telnyx
 
@@ -716,7 +718,7 @@ class AsyncCampaignResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=object,
+            cast_to=CampaignAcceptSharingResponse,
         )
 
     async def deactivate(
@@ -798,7 +800,7 @@ class AsyncCampaignResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> CampaignGetOperationStatusResponse:
         """
         Retrieve campaign's operation status at MNO level.
 
@@ -818,7 +820,7 @@ class AsyncCampaignResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=object,
+            cast_to=CampaignGetOperationStatusResponse,
         )
 
     async def get_sharing_status(

@@ -9,6 +9,7 @@ import pytest
 
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
+from telnyx.types.campaign import OsrGetAttributesResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -22,7 +23,7 @@ class TestOsr:
         osr = client.campaign.osr.get_attributes(
             "campaignId",
         )
-        assert_matches_type(object, osr, path=["response"])
+        assert_matches_type(OsrGetAttributesResponse, osr, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -34,7 +35,7 @@ class TestOsr:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         osr = response.parse()
-        assert_matches_type(object, osr, path=["response"])
+        assert_matches_type(OsrGetAttributesResponse, osr, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -46,7 +47,7 @@ class TestOsr:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             osr = response.parse()
-            assert_matches_type(object, osr, path=["response"])
+            assert_matches_type(OsrGetAttributesResponse, osr, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -70,7 +71,7 @@ class TestAsyncOsr:
         osr = await async_client.campaign.osr.get_attributes(
             "campaignId",
         )
-        assert_matches_type(object, osr, path=["response"])
+        assert_matches_type(OsrGetAttributesResponse, osr, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -82,7 +83,7 @@ class TestAsyncOsr:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         osr = await response.parse()
-        assert_matches_type(object, osr, path=["response"])
+        assert_matches_type(OsrGetAttributesResponse, osr, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -94,7 +95,7 @@ class TestAsyncOsr:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             osr = await response.parse()
-            assert_matches_type(object, osr, path=["response"])
+            assert_matches_type(OsrGetAttributesResponse, osr, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
