@@ -10,6 +10,8 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types.brand import (
+    ExternalVettingListResponse,
+    ExternalVettingOrderResponse,
     ExternalVettingImportResponse,
 )
 
@@ -25,7 +27,7 @@ class TestExternalVetting:
         external_vetting = client.brand.external_vetting.list(
             "brandId",
         )
-        assert_matches_type(object, external_vetting, path=["response"])
+        assert_matches_type(ExternalVettingListResponse, external_vetting, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -37,7 +39,7 @@ class TestExternalVetting:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         external_vetting = response.parse()
-        assert_matches_type(object, external_vetting, path=["response"])
+        assert_matches_type(ExternalVettingListResponse, external_vetting, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -49,7 +51,7 @@ class TestExternalVetting:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             external_vetting = response.parse()
-            assert_matches_type(object, external_vetting, path=["response"])
+            assert_matches_type(ExternalVettingListResponse, external_vetting, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -130,7 +132,7 @@ class TestExternalVetting:
             evp_id="evpId",
             vetting_class="vettingClass",
         )
-        assert_matches_type(object, external_vetting, path=["response"])
+        assert_matches_type(ExternalVettingOrderResponse, external_vetting, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -144,7 +146,7 @@ class TestExternalVetting:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         external_vetting = response.parse()
-        assert_matches_type(object, external_vetting, path=["response"])
+        assert_matches_type(ExternalVettingOrderResponse, external_vetting, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -158,7 +160,7 @@ class TestExternalVetting:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             external_vetting = response.parse()
-            assert_matches_type(object, external_vetting, path=["response"])
+            assert_matches_type(ExternalVettingOrderResponse, external_vetting, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -184,7 +186,7 @@ class TestAsyncExternalVetting:
         external_vetting = await async_client.brand.external_vetting.list(
             "brandId",
         )
-        assert_matches_type(object, external_vetting, path=["response"])
+        assert_matches_type(ExternalVettingListResponse, external_vetting, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -196,7 +198,7 @@ class TestAsyncExternalVetting:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         external_vetting = await response.parse()
-        assert_matches_type(object, external_vetting, path=["response"])
+        assert_matches_type(ExternalVettingListResponse, external_vetting, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -208,7 +210,7 @@ class TestAsyncExternalVetting:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             external_vetting = await response.parse()
-            assert_matches_type(object, external_vetting, path=["response"])
+            assert_matches_type(ExternalVettingListResponse, external_vetting, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -289,7 +291,7 @@ class TestAsyncExternalVetting:
             evp_id="evpId",
             vetting_class="vettingClass",
         )
-        assert_matches_type(object, external_vetting, path=["response"])
+        assert_matches_type(ExternalVettingOrderResponse, external_vetting, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -303,7 +305,7 @@ class TestAsyncExternalVetting:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         external_vetting = await response.parse()
-        assert_matches_type(object, external_vetting, path=["response"])
+        assert_matches_type(ExternalVettingOrderResponse, external_vetting, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -317,7 +319,7 @@ class TestAsyncExternalVetting:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             external_vetting = await response.parse()
-            assert_matches_type(object, external_vetting, path=["response"])
+            assert_matches_type(ExternalVettingOrderResponse, external_vetting, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

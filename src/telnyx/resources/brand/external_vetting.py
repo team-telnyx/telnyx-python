@@ -16,6 +16,8 @@ from ..._response import (
 )
 from ...types.brand import external_vetting_order_params, external_vetting_import_params
 from ..._base_client import make_request_options
+from ...types.brand.external_vetting_list_response import ExternalVettingListResponse
+from ...types.brand.external_vetting_order_response import ExternalVettingOrderResponse
 from ...types.brand.external_vetting_import_response import ExternalVettingImportResponse
 
 __all__ = ["ExternalVettingResource", "AsyncExternalVettingResource"]
@@ -51,7 +53,7 @@ class ExternalVettingResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> ExternalVettingListResponse:
         """
         Get list of valid external vetting record for a given brand
 
@@ -71,7 +73,7 @@ class ExternalVettingResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=object,
+            cast_to=ExternalVettingListResponse,
         )
 
     def import_(
@@ -140,7 +142,7 @@ class ExternalVettingResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> ExternalVettingOrderResponse:
         """
         Order new external vetting for a brand
 
@@ -171,7 +173,7 @@ class ExternalVettingResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=object,
+            cast_to=ExternalVettingOrderResponse,
         )
 
 
@@ -205,7 +207,7 @@ class AsyncExternalVettingResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> ExternalVettingListResponse:
         """
         Get list of valid external vetting record for a given brand
 
@@ -225,7 +227,7 @@ class AsyncExternalVettingResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=object,
+            cast_to=ExternalVettingListResponse,
         )
 
     async def import_(
@@ -294,7 +296,7 @@ class AsyncExternalVettingResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> ExternalVettingOrderResponse:
         """
         Order new external vetting for a brand
 
@@ -325,7 +327,7 @@ class AsyncExternalVettingResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=object,
+            cast_to=ExternalVettingOrderResponse,
         )
 
 

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Iterable, cast
+from typing import Iterable
 
 import httpx
 
@@ -26,7 +26,7 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._base_client import make_request_options
-from ...types.campaign_builder_create_response import CampaignBuilderCreateResponse
+from ...types.telnyx_campaign_csp import TelnyxCampaignCsp
 
 __all__ = ["CampaignBuilderResource", "AsyncCampaignBuilderResource"]
 
@@ -99,7 +99,7 @@ class CampaignBuilderResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CampaignBuilderCreateResponse:
+    ) -> TelnyxCampaignCsp:
         """
         Before creating a campaign, use the
         [Qualify By Usecase endpoint](https://developers.telnyx.com/api/messaging/10dlc/get-usecase-qualification)
@@ -197,57 +197,52 @@ class CampaignBuilderResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return cast(
-            CampaignBuilderCreateResponse,
-            self._post(
-                "/campaignBuilder",
-                body=maybe_transform(
-                    {
-                        "brand_id": brand_id,
-                        "description": description,
-                        "usecase": usecase,
-                        "age_gated": age_gated,
-                        "auto_renewal": auto_renewal,
-                        "direct_lending": direct_lending,
-                        "embedded_link": embedded_link,
-                        "embedded_link_sample": embedded_link_sample,
-                        "embedded_phone": embedded_phone,
-                        "help_keywords": help_keywords,
-                        "help_message": help_message,
-                        "message_flow": message_flow,
-                        "mno_ids": mno_ids,
-                        "number_pool": number_pool,
-                        "optin_keywords": optin_keywords,
-                        "optin_message": optin_message,
-                        "optout_keywords": optout_keywords,
-                        "optout_message": optout_message,
-                        "privacy_policy_link": privacy_policy_link,
-                        "reference_id": reference_id,
-                        "reseller_id": reseller_id,
-                        "sample1": sample1,
-                        "sample2": sample2,
-                        "sample3": sample3,
-                        "sample4": sample4,
-                        "sample5": sample5,
-                        "subscriber_help": subscriber_help,
-                        "subscriber_optin": subscriber_optin,
-                        "subscriber_optout": subscriber_optout,
-                        "sub_usecases": sub_usecases,
-                        "tag": tag,
-                        "terms_and_conditions": terms_and_conditions,
-                        "terms_and_conditions_link": terms_and_conditions_link,
-                        "webhook_failover_url": webhook_failover_url,
-                        "webhook_url": webhook_url,
-                    },
-                    campaign_builder_create_params.CampaignBuilderCreateParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-                ),
-                cast_to=cast(
-                    Any, CampaignBuilderCreateResponse
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._post(
+            "/campaignBuilder",
+            body=maybe_transform(
+                {
+                    "brand_id": brand_id,
+                    "description": description,
+                    "usecase": usecase,
+                    "age_gated": age_gated,
+                    "auto_renewal": auto_renewal,
+                    "direct_lending": direct_lending,
+                    "embedded_link": embedded_link,
+                    "embedded_link_sample": embedded_link_sample,
+                    "embedded_phone": embedded_phone,
+                    "help_keywords": help_keywords,
+                    "help_message": help_message,
+                    "message_flow": message_flow,
+                    "mno_ids": mno_ids,
+                    "number_pool": number_pool,
+                    "optin_keywords": optin_keywords,
+                    "optin_message": optin_message,
+                    "optout_keywords": optout_keywords,
+                    "optout_message": optout_message,
+                    "privacy_policy_link": privacy_policy_link,
+                    "reference_id": reference_id,
+                    "reseller_id": reseller_id,
+                    "sample1": sample1,
+                    "sample2": sample2,
+                    "sample3": sample3,
+                    "sample4": sample4,
+                    "sample5": sample5,
+                    "subscriber_help": subscriber_help,
+                    "subscriber_optin": subscriber_optin,
+                    "subscriber_optout": subscriber_optout,
+                    "sub_usecases": sub_usecases,
+                    "tag": tag,
+                    "terms_and_conditions": terms_and_conditions,
+                    "terms_and_conditions_link": terms_and_conditions_link,
+                    "webhook_failover_url": webhook_failover_url,
+                    "webhook_url": webhook_url,
+                },
+                campaign_builder_create_params.CampaignBuilderCreateParams,
             ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=TelnyxCampaignCsp,
         )
 
 
@@ -319,7 +314,7 @@ class AsyncCampaignBuilderResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CampaignBuilderCreateResponse:
+    ) -> TelnyxCampaignCsp:
         """
         Before creating a campaign, use the
         [Qualify By Usecase endpoint](https://developers.telnyx.com/api/messaging/10dlc/get-usecase-qualification)
@@ -417,57 +412,52 @@ class AsyncCampaignBuilderResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return cast(
-            CampaignBuilderCreateResponse,
-            await self._post(
-                "/campaignBuilder",
-                body=await async_maybe_transform(
-                    {
-                        "brand_id": brand_id,
-                        "description": description,
-                        "usecase": usecase,
-                        "age_gated": age_gated,
-                        "auto_renewal": auto_renewal,
-                        "direct_lending": direct_lending,
-                        "embedded_link": embedded_link,
-                        "embedded_link_sample": embedded_link_sample,
-                        "embedded_phone": embedded_phone,
-                        "help_keywords": help_keywords,
-                        "help_message": help_message,
-                        "message_flow": message_flow,
-                        "mno_ids": mno_ids,
-                        "number_pool": number_pool,
-                        "optin_keywords": optin_keywords,
-                        "optin_message": optin_message,
-                        "optout_keywords": optout_keywords,
-                        "optout_message": optout_message,
-                        "privacy_policy_link": privacy_policy_link,
-                        "reference_id": reference_id,
-                        "reseller_id": reseller_id,
-                        "sample1": sample1,
-                        "sample2": sample2,
-                        "sample3": sample3,
-                        "sample4": sample4,
-                        "sample5": sample5,
-                        "subscriber_help": subscriber_help,
-                        "subscriber_optin": subscriber_optin,
-                        "subscriber_optout": subscriber_optout,
-                        "sub_usecases": sub_usecases,
-                        "tag": tag,
-                        "terms_and_conditions": terms_and_conditions,
-                        "terms_and_conditions_link": terms_and_conditions_link,
-                        "webhook_failover_url": webhook_failover_url,
-                        "webhook_url": webhook_url,
-                    },
-                    campaign_builder_create_params.CampaignBuilderCreateParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-                ),
-                cast_to=cast(
-                    Any, CampaignBuilderCreateResponse
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._post(
+            "/campaignBuilder",
+            body=await async_maybe_transform(
+                {
+                    "brand_id": brand_id,
+                    "description": description,
+                    "usecase": usecase,
+                    "age_gated": age_gated,
+                    "auto_renewal": auto_renewal,
+                    "direct_lending": direct_lending,
+                    "embedded_link": embedded_link,
+                    "embedded_link_sample": embedded_link_sample,
+                    "embedded_phone": embedded_phone,
+                    "help_keywords": help_keywords,
+                    "help_message": help_message,
+                    "message_flow": message_flow,
+                    "mno_ids": mno_ids,
+                    "number_pool": number_pool,
+                    "optin_keywords": optin_keywords,
+                    "optin_message": optin_message,
+                    "optout_keywords": optout_keywords,
+                    "optout_message": optout_message,
+                    "privacy_policy_link": privacy_policy_link,
+                    "reference_id": reference_id,
+                    "reseller_id": reseller_id,
+                    "sample1": sample1,
+                    "sample2": sample2,
+                    "sample3": sample3,
+                    "sample4": sample4,
+                    "sample5": sample5,
+                    "subscriber_help": subscriber_help,
+                    "subscriber_optin": subscriber_optin,
+                    "subscriber_optout": subscriber_optout,
+                    "sub_usecases": sub_usecases,
+                    "tag": tag,
+                    "terms_and_conditions": terms_and_conditions,
+                    "terms_and_conditions_link": terms_and_conditions_link,
+                    "webhook_failover_url": webhook_failover_url,
+                    "webhook_url": webhook_url,
+                },
+                campaign_builder_create_params.CampaignBuilderCreateParams,
             ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=TelnyxCampaignCsp,
         )
 
 
