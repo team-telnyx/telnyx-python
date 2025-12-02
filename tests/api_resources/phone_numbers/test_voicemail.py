@@ -35,7 +35,7 @@ class TestVoicemail:
         voicemail = client.phone_numbers.voicemail.create(
             phone_number_id="123455678900",
             enabled=True,
-            pin="pin",
+            pin="1234",
         )
         assert_matches_type(VoicemailCreateResponse, voicemail, path=["response"])
 
@@ -129,7 +129,7 @@ class TestVoicemail:
         voicemail = client.phone_numbers.voicemail.update(
             phone_number_id="123455678900",
             enabled=True,
-            pin="pin",
+            pin="1234",
         )
         assert_matches_type(VoicemailUpdateResponse, voicemail, path=["response"])
 
@@ -187,7 +187,7 @@ class TestAsyncVoicemail:
         voicemail = await async_client.phone_numbers.voicemail.create(
             phone_number_id="123455678900",
             enabled=True,
-            pin="pin",
+            pin="1234",
         )
         assert_matches_type(VoicemailCreateResponse, voicemail, path=["response"])
 
@@ -281,7 +281,7 @@ class TestAsyncVoicemail:
         voicemail = await async_client.phone_numbers.voicemail.update(
             phone_number_id="123455678900",
             enabled=True,
-            pin="pin",
+            pin="1234",
         )
         assert_matches_type(VoicemailUpdateResponse, voicemail, path=["response"])
 
