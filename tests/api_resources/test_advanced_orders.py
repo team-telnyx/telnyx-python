@@ -9,6 +9,12 @@ import pytest
 
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
+from telnyx.types import (
+    AdvancedOrderListResponse,
+    AdvancedOrderCreateResponse,
+    AdvancedOrderRetrieveResponse,
+    AdvancedOrderUpdateRequirementGroupResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -20,7 +26,7 @@ class TestAdvancedOrders:
     @parametrize
     def test_method_create(self, client: Telnyx) -> None:
         advanced_order = client.advanced_orders.create()
-        assert_matches_type(object, advanced_order, path=["response"])
+        assert_matches_type(AdvancedOrderCreateResponse, advanced_order, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -35,7 +41,7 @@ class TestAdvancedOrders:
             quantity=1,
             requirement_group_id="3fa85f64-5717-4562-b3fc-2c963f66afa6",
         )
-        assert_matches_type(object, advanced_order, path=["response"])
+        assert_matches_type(AdvancedOrderCreateResponse, advanced_order, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -45,7 +51,7 @@ class TestAdvancedOrders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         advanced_order = response.parse()
-        assert_matches_type(object, advanced_order, path=["response"])
+        assert_matches_type(AdvancedOrderCreateResponse, advanced_order, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -55,7 +61,7 @@ class TestAdvancedOrders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             advanced_order = response.parse()
-            assert_matches_type(object, advanced_order, path=["response"])
+            assert_matches_type(AdvancedOrderCreateResponse, advanced_order, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -65,7 +71,7 @@ class TestAdvancedOrders:
         advanced_order = client.advanced_orders.retrieve(
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(object, advanced_order, path=["response"])
+        assert_matches_type(AdvancedOrderRetrieveResponse, advanced_order, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -77,7 +83,7 @@ class TestAdvancedOrders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         advanced_order = response.parse()
-        assert_matches_type(object, advanced_order, path=["response"])
+        assert_matches_type(AdvancedOrderRetrieveResponse, advanced_order, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -89,7 +95,7 @@ class TestAdvancedOrders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             advanced_order = response.parse()
-            assert_matches_type(object, advanced_order, path=["response"])
+            assert_matches_type(AdvancedOrderRetrieveResponse, advanced_order, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -105,7 +111,7 @@ class TestAdvancedOrders:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         advanced_order = client.advanced_orders.list()
-        assert_matches_type(object, advanced_order, path=["response"])
+        assert_matches_type(AdvancedOrderListResponse, advanced_order, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -115,7 +121,7 @@ class TestAdvancedOrders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         advanced_order = response.parse()
-        assert_matches_type(object, advanced_order, path=["response"])
+        assert_matches_type(AdvancedOrderListResponse, advanced_order, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -125,7 +131,7 @@ class TestAdvancedOrders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             advanced_order = response.parse()
-            assert_matches_type(object, advanced_order, path=["response"])
+            assert_matches_type(AdvancedOrderListResponse, advanced_order, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -135,7 +141,7 @@ class TestAdvancedOrders:
         advanced_order = client.advanced_orders.update_requirement_group(
             advanced_order_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(object, advanced_order, path=["response"])
+        assert_matches_type(AdvancedOrderUpdateRequirementGroupResponse, advanced_order, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -151,7 +157,7 @@ class TestAdvancedOrders:
             quantity=1,
             requirement_group_id="3fa85f64-5717-4562-b3fc-2c963f66afa6",
         )
-        assert_matches_type(object, advanced_order, path=["response"])
+        assert_matches_type(AdvancedOrderUpdateRequirementGroupResponse, advanced_order, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -163,7 +169,7 @@ class TestAdvancedOrders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         advanced_order = response.parse()
-        assert_matches_type(object, advanced_order, path=["response"])
+        assert_matches_type(AdvancedOrderUpdateRequirementGroupResponse, advanced_order, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -175,7 +181,7 @@ class TestAdvancedOrders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             advanced_order = response.parse()
-            assert_matches_type(object, advanced_order, path=["response"])
+            assert_matches_type(AdvancedOrderUpdateRequirementGroupResponse, advanced_order, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -197,7 +203,7 @@ class TestAsyncAdvancedOrders:
     @parametrize
     async def test_method_create(self, async_client: AsyncTelnyx) -> None:
         advanced_order = await async_client.advanced_orders.create()
-        assert_matches_type(object, advanced_order, path=["response"])
+        assert_matches_type(AdvancedOrderCreateResponse, advanced_order, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -212,7 +218,7 @@ class TestAsyncAdvancedOrders:
             quantity=1,
             requirement_group_id="3fa85f64-5717-4562-b3fc-2c963f66afa6",
         )
-        assert_matches_type(object, advanced_order, path=["response"])
+        assert_matches_type(AdvancedOrderCreateResponse, advanced_order, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -222,7 +228,7 @@ class TestAsyncAdvancedOrders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         advanced_order = await response.parse()
-        assert_matches_type(object, advanced_order, path=["response"])
+        assert_matches_type(AdvancedOrderCreateResponse, advanced_order, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -232,7 +238,7 @@ class TestAsyncAdvancedOrders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             advanced_order = await response.parse()
-            assert_matches_type(object, advanced_order, path=["response"])
+            assert_matches_type(AdvancedOrderCreateResponse, advanced_order, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -242,7 +248,7 @@ class TestAsyncAdvancedOrders:
         advanced_order = await async_client.advanced_orders.retrieve(
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(object, advanced_order, path=["response"])
+        assert_matches_type(AdvancedOrderRetrieveResponse, advanced_order, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -254,7 +260,7 @@ class TestAsyncAdvancedOrders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         advanced_order = await response.parse()
-        assert_matches_type(object, advanced_order, path=["response"])
+        assert_matches_type(AdvancedOrderRetrieveResponse, advanced_order, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -266,7 +272,7 @@ class TestAsyncAdvancedOrders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             advanced_order = await response.parse()
-            assert_matches_type(object, advanced_order, path=["response"])
+            assert_matches_type(AdvancedOrderRetrieveResponse, advanced_order, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -282,7 +288,7 @@ class TestAsyncAdvancedOrders:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         advanced_order = await async_client.advanced_orders.list()
-        assert_matches_type(object, advanced_order, path=["response"])
+        assert_matches_type(AdvancedOrderListResponse, advanced_order, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -292,7 +298,7 @@ class TestAsyncAdvancedOrders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         advanced_order = await response.parse()
-        assert_matches_type(object, advanced_order, path=["response"])
+        assert_matches_type(AdvancedOrderListResponse, advanced_order, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -302,7 +308,7 @@ class TestAsyncAdvancedOrders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             advanced_order = await response.parse()
-            assert_matches_type(object, advanced_order, path=["response"])
+            assert_matches_type(AdvancedOrderListResponse, advanced_order, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -312,7 +318,7 @@ class TestAsyncAdvancedOrders:
         advanced_order = await async_client.advanced_orders.update_requirement_group(
             advanced_order_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(object, advanced_order, path=["response"])
+        assert_matches_type(AdvancedOrderUpdateRequirementGroupResponse, advanced_order, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -328,7 +334,7 @@ class TestAsyncAdvancedOrders:
             quantity=1,
             requirement_group_id="3fa85f64-5717-4562-b3fc-2c963f66afa6",
         )
-        assert_matches_type(object, advanced_order, path=["response"])
+        assert_matches_type(AdvancedOrderUpdateRequirementGroupResponse, advanced_order, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -340,7 +346,7 @@ class TestAsyncAdvancedOrders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         advanced_order = await response.parse()
-        assert_matches_type(object, advanced_order, path=["response"])
+        assert_matches_type(AdvancedOrderUpdateRequirementGroupResponse, advanced_order, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -352,7 +358,7 @@ class TestAsyncAdvancedOrders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             advanced_order = await response.parse()
-            assert_matches_type(object, advanced_order, path=["response"])
+            assert_matches_type(AdvancedOrderUpdateRequirementGroupResponse, advanced_order, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

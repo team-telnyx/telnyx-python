@@ -75,4 +75,4 @@ class Data(BaseModel):
 
 
 class CountryCoverageRetrieveResponse(BaseModel):
-    data: Optional[List[Data]] = None
+    data: Optional[Dict[str, Data]] = None
