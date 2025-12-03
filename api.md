@@ -478,15 +478,21 @@ Methods:
 Types:
 
 ```python
-from telnyx.types import AdvancedOrder
+from telnyx.types import (
+    AdvancedOrder,
+    AdvancedOrderCreateResponse,
+    AdvancedOrderRetrieveResponse,
+    AdvancedOrderListResponse,
+    AdvancedOrderUpdateRequirementGroupResponse,
+)
 ```
 
 Methods:
 
-- <code title="post /advanced_orders">client.advanced_orders.<a href="./src/telnyx/resources/advanced_orders.py">create</a>(\*\*<a href="src/telnyx/types/advanced_order_create_params.py">params</a>) -> object</code>
-- <code title="get /advanced_orders/{order_id}">client.advanced_orders.<a href="./src/telnyx/resources/advanced_orders.py">retrieve</a>(order_id) -> object</code>
-- <code title="get /advanced_orders">client.advanced_orders.<a href="./src/telnyx/resources/advanced_orders.py">list</a>() -> object</code>
-- <code title="patch /advanced_orders/{advanced-order-id}/requirement_group">client.advanced_orders.<a href="./src/telnyx/resources/advanced_orders.py">update_requirement_group</a>(advanced_order_id, \*\*<a href="src/telnyx/types/advanced_order_update_requirement_group_params.py">params</a>) -> object</code>
+- <code title="post /advanced_orders">client.advanced_orders.<a href="./src/telnyx/resources/advanced_orders.py">create</a>(\*\*<a href="src/telnyx/types/advanced_order_create_params.py">params</a>) -> <a href="./src/telnyx/types/advanced_order_create_response.py">AdvancedOrderCreateResponse</a></code>
+- <code title="get /advanced_orders/{order_id}">client.advanced_orders.<a href="./src/telnyx/resources/advanced_orders.py">retrieve</a>(order_id) -> <a href="./src/telnyx/types/advanced_order_retrieve_response.py">AdvancedOrderRetrieveResponse</a></code>
+- <code title="get /advanced_orders">client.advanced_orders.<a href="./src/telnyx/resources/advanced_orders.py">list</a>() -> <a href="./src/telnyx/types/advanced_order_list_response.py">AdvancedOrderListResponse</a></code>
+- <code title="patch /advanced_orders/{advanced-order-id}/requirement_group">client.advanced_orders.<a href="./src/telnyx/resources/advanced_orders.py">update_requirement_group</a>(advanced_order_id, \*\*<a href="src/telnyx/types/advanced_order_update_requirement_group_params.py">params</a>) -> <a href="./src/telnyx/types/advanced_order_update_requirement_group_response.py">AdvancedOrderUpdateRequirementGroupResponse</a></code>
 
 # AI
 
