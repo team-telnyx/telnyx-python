@@ -8,7 +8,7 @@ import httpx
 
 from ..types import connection_list_params, connection_list_active_calls_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import maybe_transform
+from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -17,8 +17,7 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
-from .._base_client import AsyncPaginator, make_request_options
+from .._base_client import make_request_options
 from ..types.connection_list_response import ConnectionListResponse
 from ..types.connection_retrieve_response import ConnectionRetrieveResponse
 from ..types.connection_list_active_calls_response import ConnectionListActiveCallsResponse
@@ -93,7 +92,7 @@ class ConnectionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[ConnectionListResponse]:
+    ) -> ConnectionListResponse:
         """
         Returns a list of your connections irrespective of type.
 
@@ -129,9 +128,8 @@ class ConnectionsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return self._get(
             "/connections",
-            page=SyncDefaultPagination[ConnectionListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -146,7 +144,7 @@ class ConnectionsResource(SyncAPIResource):
                     connection_list_params.ConnectionListParams,
                 ),
             ),
-            model=ConnectionListResponse,
+            cast_to=ConnectionListResponse,
         )
 
     def list_active_calls(
@@ -160,7 +158,7 @@ class ConnectionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[ConnectionListActiveCallsResponse]:
+    ) -> ConnectionListActiveCallsResponse:
         """Lists all active calls for given connection.
 
         Acceptable connections are either
@@ -181,9 +179,8 @@ class ConnectionsResource(SyncAPIResource):
         """
         if not connection_id:
             raise ValueError(f"Expected a non-empty value for `connection_id` but received {connection_id!r}")
-        return self._get_api_list(
+        return self._get(
             f"/connections/{connection_id}/active_calls",
-            page=SyncDefaultPagination[ConnectionListActiveCallsResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -193,7 +190,7 @@ class ConnectionsResource(SyncAPIResource):
                     {"page": page}, connection_list_active_calls_params.ConnectionListActiveCallsParams
                 ),
             ),
-            model=ConnectionListActiveCallsResponse,
+            cast_to=ConnectionListActiveCallsResponse,
         )
 
 
@@ -252,7 +249,7 @@ class AsyncConnectionsResource(AsyncAPIResource):
             cast_to=ConnectionRetrieveResponse,
         )
 
-    def list(
+    async def list(
         self,
         *,
         filter: connection_list_params.Filter | Omit = omit,
@@ -264,7 +261,7 @@ class AsyncConnectionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[ConnectionListResponse, AsyncDefaultPagination[ConnectionListResponse]]:
+    ) -> ConnectionListResponse:
         """
         Returns a list of your connections irrespective of type.
 
@@ -300,15 +297,14 @@ class AsyncConnectionsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return await self._get(
             "/connections",
-            page=AsyncDefaultPagination[ConnectionListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
                         "filter": filter,
                         "page": page,
@@ -317,10 +313,10 @@ class AsyncConnectionsResource(AsyncAPIResource):
                     connection_list_params.ConnectionListParams,
                 ),
             ),
-            model=ConnectionListResponse,
+            cast_to=ConnectionListResponse,
         )
 
-    def list_active_calls(
+    async def list_active_calls(
         self,
         connection_id: str,
         *,
@@ -331,7 +327,7 @@ class AsyncConnectionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[ConnectionListActiveCallsResponse, AsyncDefaultPagination[ConnectionListActiveCallsResponse]]:
+    ) -> ConnectionListActiveCallsResponse:
         """Lists all active calls for given connection.
 
         Acceptable connections are either
@@ -352,19 +348,18 @@ class AsyncConnectionsResource(AsyncAPIResource):
         """
         if not connection_id:
             raise ValueError(f"Expected a non-empty value for `connection_id` but received {connection_id!r}")
-        return self._get_api_list(
+        return await self._get(
             f"/connections/{connection_id}/active_calls",
-            page=AsyncDefaultPagination[ConnectionListActiveCallsResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {"page": page}, connection_list_active_calls_params.ConnectionListActiveCallsParams
                 ),
             ),
-            model=ConnectionListActiveCallsResponse,
+            cast_to=ConnectionListActiveCallsResponse,
         )
 
 

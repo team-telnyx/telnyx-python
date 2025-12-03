@@ -24,8 +24,7 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...pagination import SyncDefaultPagination, AsyncDefaultPagination
-from ..._base_client import AsyncPaginator, make_request_options
+from ..._base_client import make_request_options
 from .autoresp_configs import (
     AutorespConfigsResource,
     AsyncAutorespConfigsResource,
@@ -34,15 +33,15 @@ from .autoresp_configs import (
     AutorespConfigsResourceWithStreamingResponse,
     AsyncAutorespConfigsResourceWithStreamingResponse,
 )
-from ...types.messaging_profile import MessagingProfile
-from ...types.shared.short_code import ShortCode
 from ...types.number_pool_settings_param import NumberPoolSettingsParam
 from ...types.url_shortener_settings_param import URLShortenerSettingsParam
+from ...types.messaging_profile_list_response import MessagingProfileListResponse
 from ...types.messaging_profile_create_response import MessagingProfileCreateResponse
 from ...types.messaging_profile_delete_response import MessagingProfileDeleteResponse
 from ...types.messaging_profile_update_response import MessagingProfileUpdateResponse
 from ...types.messaging_profile_retrieve_response import MessagingProfileRetrieveResponse
-from ...types.shared.phone_number_with_messaging_settings import PhoneNumberWithMessagingSettings
+from ...types.messaging_profile_list_short_codes_response import MessagingProfileListShortCodesResponse
+from ...types.messaging_profile_list_phone_numbers_response import MessagingProfileListPhoneNumbersResponse
 
 __all__ = ["MessagingProfilesResource", "AsyncMessagingProfilesResource"]
 
@@ -180,7 +179,7 @@ class MessagingProfilesResource(SyncAPIResource):
 
     def retrieve(
         self,
-        messaging_profile_id: str,
+        id: str,
         *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -201,12 +200,10 @@ class MessagingProfilesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not messaging_profile_id:
-            raise ValueError(
-                f"Expected a non-empty value for `messaging_profile_id` but received {messaging_profile_id!r}"
-            )
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
-            f"/messaging_profiles/{messaging_profile_id}",
+            f"/messaging_profiles/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -215,7 +212,7 @@ class MessagingProfilesResource(SyncAPIResource):
 
     def update(
         self,
-        messaging_profile_id: str,
+        id: str,
         *,
         alpha_sender: Optional[str] | Omit = omit,
         daily_spend_limit: str | Omit = omit,
@@ -299,12 +296,10 @@ class MessagingProfilesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not messaging_profile_id:
-            raise ValueError(
-                f"Expected a non-empty value for `messaging_profile_id` but received {messaging_profile_id!r}"
-            )
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._patch(
-            f"/messaging_profiles/{messaging_profile_id}",
+            f"/messaging_profiles/{id}",
             body=maybe_transform(
                 {
                     "alpha_sender": alpha_sender,
@@ -342,7 +337,7 @@ class MessagingProfilesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[MessagingProfile]:
+    ) -> MessagingProfileListResponse:
         """
         List messaging profiles
 
@@ -360,9 +355,8 @@ class MessagingProfilesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return self._get(
             "/messaging_profiles",
-            page=SyncDefaultPagination[MessagingProfile],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -376,12 +370,12 @@ class MessagingProfilesResource(SyncAPIResource):
                     messaging_profile_list_params.MessagingProfileListParams,
                 ),
             ),
-            model=MessagingProfile,
+            cast_to=MessagingProfileListResponse,
         )
 
     def delete(
         self,
-        messaging_profile_id: str,
+        id: str,
         *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -402,12 +396,10 @@ class MessagingProfilesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not messaging_profile_id:
-            raise ValueError(
-                f"Expected a non-empty value for `messaging_profile_id` but received {messaging_profile_id!r}"
-            )
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._delete(
-            f"/messaging_profiles/{messaging_profile_id}",
+            f"/messaging_profiles/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -416,7 +408,7 @@ class MessagingProfilesResource(SyncAPIResource):
 
     def list_phone_numbers(
         self,
-        messaging_profile_id: str,
+        id: str,
         *,
         page: messaging_profile_list_phone_numbers_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -425,7 +417,7 @@ class MessagingProfilesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[PhoneNumberWithMessagingSettings]:
+    ) -> MessagingProfileListPhoneNumbersResponse:
         """
         List phone numbers associated with a messaging profile
 
@@ -441,13 +433,10 @@ class MessagingProfilesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not messaging_profile_id:
-            raise ValueError(
-                f"Expected a non-empty value for `messaging_profile_id` but received {messaging_profile_id!r}"
-            )
-        return self._get_api_list(
-            f"/messaging_profiles/{messaging_profile_id}/phone_numbers",
-            page=SyncDefaultPagination[PhoneNumberWithMessagingSettings],
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return self._get(
+            f"/messaging_profiles/{id}/phone_numbers",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -457,12 +446,12 @@ class MessagingProfilesResource(SyncAPIResource):
                     {"page": page}, messaging_profile_list_phone_numbers_params.MessagingProfileListPhoneNumbersParams
                 ),
             ),
-            model=PhoneNumberWithMessagingSettings,
+            cast_to=MessagingProfileListPhoneNumbersResponse,
         )
 
     def list_short_codes(
         self,
-        messaging_profile_id: str,
+        id: str,
         *,
         page: messaging_profile_list_short_codes_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -471,7 +460,7 @@ class MessagingProfilesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[ShortCode]:
+    ) -> MessagingProfileListShortCodesResponse:
         """
         List short codes associated with a messaging profile
 
@@ -487,13 +476,10 @@ class MessagingProfilesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not messaging_profile_id:
-            raise ValueError(
-                f"Expected a non-empty value for `messaging_profile_id` but received {messaging_profile_id!r}"
-            )
-        return self._get_api_list(
-            f"/messaging_profiles/{messaging_profile_id}/short_codes",
-            page=SyncDefaultPagination[ShortCode],
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return self._get(
+            f"/messaging_profiles/{id}/short_codes",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -503,7 +489,7 @@ class MessagingProfilesResource(SyncAPIResource):
                     {"page": page}, messaging_profile_list_short_codes_params.MessagingProfileListShortCodesParams
                 ),
             ),
-            model=ShortCode,
+            cast_to=MessagingProfileListShortCodesResponse,
         )
 
 
@@ -640,7 +626,7 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
 
     async def retrieve(
         self,
-        messaging_profile_id: str,
+        id: str,
         *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -661,12 +647,10 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not messaging_profile_id:
-            raise ValueError(
-                f"Expected a non-empty value for `messaging_profile_id` but received {messaging_profile_id!r}"
-            )
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
-            f"/messaging_profiles/{messaging_profile_id}",
+            f"/messaging_profiles/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -675,7 +659,7 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
 
     async def update(
         self,
-        messaging_profile_id: str,
+        id: str,
         *,
         alpha_sender: Optional[str] | Omit = omit,
         daily_spend_limit: str | Omit = omit,
@@ -759,12 +743,10 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not messaging_profile_id:
-            raise ValueError(
-                f"Expected a non-empty value for `messaging_profile_id` but received {messaging_profile_id!r}"
-            )
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._patch(
-            f"/messaging_profiles/{messaging_profile_id}",
+            f"/messaging_profiles/{id}",
             body=await async_maybe_transform(
                 {
                     "alpha_sender": alpha_sender,
@@ -791,7 +773,7 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
             cast_to=MessagingProfileUpdateResponse,
         )
 
-    def list(
+    async def list(
         self,
         *,
         filter: messaging_profile_list_params.Filter | Omit = omit,
@@ -802,7 +784,7 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[MessagingProfile, AsyncDefaultPagination[MessagingProfile]]:
+    ) -> MessagingProfileListResponse:
         """
         List messaging profiles
 
@@ -820,15 +802,14 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return await self._get(
             "/messaging_profiles",
-            page=AsyncDefaultPagination[MessagingProfile],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
                         "filter": filter,
                         "page": page,
@@ -836,12 +817,12 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
                     messaging_profile_list_params.MessagingProfileListParams,
                 ),
             ),
-            model=MessagingProfile,
+            cast_to=MessagingProfileListResponse,
         )
 
     async def delete(
         self,
-        messaging_profile_id: str,
+        id: str,
         *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -862,21 +843,19 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not messaging_profile_id:
-            raise ValueError(
-                f"Expected a non-empty value for `messaging_profile_id` but received {messaging_profile_id!r}"
-            )
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._delete(
-            f"/messaging_profiles/{messaging_profile_id}",
+            f"/messaging_profiles/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=MessagingProfileDeleteResponse,
         )
 
-    def list_phone_numbers(
+    async def list_phone_numbers(
         self,
-        messaging_profile_id: str,
+        id: str,
         *,
         page: messaging_profile_list_phone_numbers_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -885,7 +864,7 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[PhoneNumberWithMessagingSettings, AsyncDefaultPagination[PhoneNumberWithMessagingSettings]]:
+    ) -> MessagingProfileListPhoneNumbersResponse:
         """
         List phone numbers associated with a messaging profile
 
@@ -901,28 +880,25 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not messaging_profile_id:
-            raise ValueError(
-                f"Expected a non-empty value for `messaging_profile_id` but received {messaging_profile_id!r}"
-            )
-        return self._get_api_list(
-            f"/messaging_profiles/{messaging_profile_id}/phone_numbers",
-            page=AsyncDefaultPagination[PhoneNumberWithMessagingSettings],
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return await self._get(
+            f"/messaging_profiles/{id}/phone_numbers",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {"page": page}, messaging_profile_list_phone_numbers_params.MessagingProfileListPhoneNumbersParams
                 ),
             ),
-            model=PhoneNumberWithMessagingSettings,
+            cast_to=MessagingProfileListPhoneNumbersResponse,
         )
 
-    def list_short_codes(
+    async def list_short_codes(
         self,
-        messaging_profile_id: str,
+        id: str,
         *,
         page: messaging_profile_list_short_codes_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -931,7 +907,7 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[ShortCode, AsyncDefaultPagination[ShortCode]]:
+    ) -> MessagingProfileListShortCodesResponse:
         """
         List short codes associated with a messaging profile
 
@@ -947,23 +923,20 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not messaging_profile_id:
-            raise ValueError(
-                f"Expected a non-empty value for `messaging_profile_id` but received {messaging_profile_id!r}"
-            )
-        return self._get_api_list(
-            f"/messaging_profiles/{messaging_profile_id}/short_codes",
-            page=AsyncDefaultPagination[ShortCode],
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return await self._get(
+            f"/messaging_profiles/{id}/short_codes",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {"page": page}, messaging_profile_list_short_codes_params.MessagingProfileListShortCodesParams
                 ),
             ),
-            model=ShortCode,
+            cast_to=MessagingProfileListShortCodesResponse,
         )
 
 

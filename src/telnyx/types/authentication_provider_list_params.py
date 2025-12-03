@@ -2,17 +2,17 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Annotated, TypedDict
+from typing_extensions import Literal, TypedDict
 
-from .._utils import PropertyInfo
-
-__all__ = ["AuthenticationProviderListParams"]
+__all__ = ["AuthenticationProviderListParams", "Page"]
 
 
 class AuthenticationProviderListParams(TypedDict, total=False):
-    page_number: Annotated[int, PropertyInfo(alias="page[number]")]
+    page: Page
+    """Consolidated page parameter (deepObject style).
 
-    page_size: Annotated[int, PropertyInfo(alias="page[size]")]
+    Originally: page[number], page[size]
+    """
 
     sort: Literal[
         "name",
@@ -41,3 +41,11 @@ class AuthenticationProviderListParams(TypedDict, total=False):
       </li>
     </ul><br/>If not given, results are sorted by <code>created_at</code> in descending order.
     """
+
+
+class Page(TypedDict, total=False):
+    number: int
+    """The page number to load"""
+
+    size: int
+    """The size of the page"""

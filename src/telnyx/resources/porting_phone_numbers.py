@@ -6,7 +6,7 @@ import httpx
 
 from ..types import porting_phone_number_list_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import maybe_transform
+from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -15,8 +15,7 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
-from .._base_client import AsyncPaginator, make_request_options
+from .._base_client import make_request_options
 from ..types.porting_phone_number_list_response import PortingPhoneNumberListResponse
 
 __all__ = ["PortingPhoneNumbersResource", "AsyncPortingPhoneNumbersResource"]
@@ -53,7 +52,7 @@ class PortingPhoneNumbersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[PortingPhoneNumberListResponse]:
+    ) -> PortingPhoneNumberListResponse:
         """
         Returns a list of your porting phone numbers.
 
@@ -73,9 +72,8 @@ class PortingPhoneNumbersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return self._get(
             "/porting_phone_numbers",
-            page=SyncDefaultPagination[PortingPhoneNumberListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -89,7 +87,7 @@ class PortingPhoneNumbersResource(SyncAPIResource):
                     porting_phone_number_list_params.PortingPhoneNumberListParams,
                 ),
             ),
-            model=PortingPhoneNumberListResponse,
+            cast_to=PortingPhoneNumberListResponse,
         )
 
 
@@ -113,7 +111,7 @@ class AsyncPortingPhoneNumbersResource(AsyncAPIResource):
         """
         return AsyncPortingPhoneNumbersResourceWithStreamingResponse(self)
 
-    def list(
+    async def list(
         self,
         *,
         filter: porting_phone_number_list_params.Filter | Omit = omit,
@@ -124,7 +122,7 @@ class AsyncPortingPhoneNumbersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[PortingPhoneNumberListResponse, AsyncDefaultPagination[PortingPhoneNumberListResponse]]:
+    ) -> PortingPhoneNumberListResponse:
         """
         Returns a list of your porting phone numbers.
 
@@ -144,15 +142,14 @@ class AsyncPortingPhoneNumbersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return await self._get(
             "/porting_phone_numbers",
-            page=AsyncDefaultPagination[PortingPhoneNumberListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
                         "filter": filter,
                         "page": page,
@@ -160,7 +157,7 @@ class AsyncPortingPhoneNumbersResource(AsyncAPIResource):
                     porting_phone_number_list_params.PortingPhoneNumberListParams,
                 ),
             ),
-            model=PortingPhoneNumberListResponse,
+            cast_to=PortingPhoneNumberListResponse,
         )
 
 

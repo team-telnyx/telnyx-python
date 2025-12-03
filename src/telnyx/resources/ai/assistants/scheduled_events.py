@@ -17,8 +17,7 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ....pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
-from ...._base_client import AsyncPaginator, make_request_options
+from ...._base_client import make_request_options
 from ....types.ai.assistants import ConversationChannelType, scheduled_event_list_params, scheduled_event_create_params
 from ....types.ai.assistants.scheduled_event_response import ScheduledEventResponse
 from ....types.ai.assistants.conversation_channel_type import ConversationChannelType
@@ -160,8 +159,7 @@ class ScheduledEventsResource(SyncAPIResource):
         *,
         conversation_channel: ConversationChannelType | Omit = omit,
         from_date: Union[str, datetime] | Omit = omit,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: scheduled_event_list_params.Page | Omit = omit,
         to_date: Union[str, datetime] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -169,11 +167,14 @@ class ScheduledEventsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[ScheduledEventListResponse]:
+    ) -> ScheduledEventListResponse:
         """
         Get scheduled events for an assistant with pagination and filtering
 
         Args:
+          page: Consolidated page parameter (deepObject style). Originally: page[size],
+              page[number]
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -184,9 +185,8 @@ class ScheduledEventsResource(SyncAPIResource):
         """
         if not assistant_id:
             raise ValueError(f"Expected a non-empty value for `assistant_id` but received {assistant_id!r}")
-        return self._get_api_list(
+        return self._get(
             f"/ai/assistants/{assistant_id}/scheduled_events",
-            page=SyncDefaultFlatPagination[ScheduledEventListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -196,16 +196,13 @@ class ScheduledEventsResource(SyncAPIResource):
                     {
                         "conversation_channel": conversation_channel,
                         "from_date": from_date,
-                        "page_number": page_number,
-                        "page_size": page_size,
+                        "page": page,
                         "to_date": to_date,
                     },
                     scheduled_event_list_params.ScheduledEventListParams,
                 ),
             ),
-            model=cast(
-                Any, ScheduledEventListResponse
-            ),  # Union types cannot be passed in as arguments in the type system
+            cast_to=ScheduledEventListResponse,
         )
 
     def delete(
@@ -375,14 +372,13 @@ class AsyncScheduledEventsResource(AsyncAPIResource):
             ),
         )
 
-    def list(
+    async def list(
         self,
         assistant_id: str,
         *,
         conversation_channel: ConversationChannelType | Omit = omit,
         from_date: Union[str, datetime] | Omit = omit,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: scheduled_event_list_params.Page | Omit = omit,
         to_date: Union[str, datetime] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -390,11 +386,14 @@ class AsyncScheduledEventsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[ScheduledEventListResponse, AsyncDefaultFlatPagination[ScheduledEventListResponse]]:
+    ) -> ScheduledEventListResponse:
         """
         Get scheduled events for an assistant with pagination and filtering
 
         Args:
+          page: Consolidated page parameter (deepObject style). Originally: page[size],
+              page[number]
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -405,28 +404,24 @@ class AsyncScheduledEventsResource(AsyncAPIResource):
         """
         if not assistant_id:
             raise ValueError(f"Expected a non-empty value for `assistant_id` but received {assistant_id!r}")
-        return self._get_api_list(
+        return await self._get(
             f"/ai/assistants/{assistant_id}/scheduled_events",
-            page=AsyncDefaultFlatPagination[ScheduledEventListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
                         "conversation_channel": conversation_channel,
                         "from_date": from_date,
-                        "page_number": page_number,
-                        "page_size": page_size,
+                        "page": page,
                         "to_date": to_date,
                     },
                     scheduled_event_list_params.ScheduledEventListParams,
                 ),
             ),
-            model=cast(
-                Any, ScheduledEventListResponse
-            ),  # Union types cannot be passed in as arguments in the type system
+            cast_to=ScheduledEventListResponse,
         )
 
     async def delete(

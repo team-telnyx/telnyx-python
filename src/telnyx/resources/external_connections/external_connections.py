@@ -39,7 +39,6 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...pagination import SyncDefaultPagination, AsyncDefaultPagination
 from .log_messages import (
     LogMessagesResource,
     AsyncLogMessagesResource,
@@ -56,7 +55,7 @@ from .phone_numbers import (
     PhoneNumbersResourceWithStreamingResponse,
     AsyncPhoneNumbersResourceWithStreamingResponse,
 )
-from ..._base_client import AsyncPaginator, make_request_options
+from ..._base_client import make_request_options
 from .civic_addresses import (
     CivicAddressesResource,
     AsyncCivicAddressesResource,
@@ -65,7 +64,7 @@ from .civic_addresses import (
     CivicAddressesResourceWithStreamingResponse,
     AsyncCivicAddressesResourceWithStreamingResponse,
 )
-from ...types.external_connection import ExternalConnection
+from ...types.external_connection_list_response import ExternalConnectionListResponse
 from ...types.external_connection_create_response import ExternalConnectionCreateResponse
 from ...types.external_connection_delete_response import ExternalConnectionDeleteResponse
 from ...types.external_connection_update_response import ExternalConnectionUpdateResponse
@@ -293,7 +292,7 @@ class ExternalConnectionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[ExternalConnection]:
+    ) -> ExternalConnectionListResponse:
         """
         This endpoint returns a list of your External Connections inside the 'data'
         attribute of the response. External Connections are used by Telnyx customers to
@@ -315,9 +314,8 @@ class ExternalConnectionsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return self._get(
             "/external_connections",
-            page=SyncDefaultPagination[ExternalConnection],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -331,7 +329,7 @@ class ExternalConnectionsResource(SyncAPIResource):
                     external_connection_list_params.ExternalConnectionListParams,
                 ),
             ),
-            model=ExternalConnection,
+            cast_to=ExternalConnectionListResponse,
         )
 
     def delete(
@@ -622,7 +620,7 @@ class AsyncExternalConnectionsResource(AsyncAPIResource):
             cast_to=ExternalConnectionUpdateResponse,
         )
 
-    def list(
+    async def list(
         self,
         *,
         filter: external_connection_list_params.Filter | Omit = omit,
@@ -633,7 +631,7 @@ class AsyncExternalConnectionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[ExternalConnection, AsyncDefaultPagination[ExternalConnection]]:
+    ) -> ExternalConnectionListResponse:
         """
         This endpoint returns a list of your External Connections inside the 'data'
         attribute of the response. External Connections are used by Telnyx customers to
@@ -655,15 +653,14 @@ class AsyncExternalConnectionsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return await self._get(
             "/external_connections",
-            page=AsyncDefaultPagination[ExternalConnection],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
                         "filter": filter,
                         "page": page,
@@ -671,7 +668,7 @@ class AsyncExternalConnectionsResource(AsyncAPIResource):
                     external_connection_list_params.ExternalConnectionListParams,
                 ),
             ),
-            model=ExternalConnection,
+            cast_to=ExternalConnectionListResponse,
         )
 
     async def delete(

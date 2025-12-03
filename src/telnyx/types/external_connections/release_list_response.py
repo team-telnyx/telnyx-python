@@ -4,11 +4,12 @@ from typing import List, Optional
 from typing_extensions import Literal
 
 from ..._models import BaseModel
+from ..external_voice_integrations_pagination_meta import ExternalVoiceIntegrationsPaginationMeta
 
-__all__ = ["ReleaseListResponse", "TelephoneNumber"]
+__all__ = ["ReleaseListResponse", "Data", "DataTelephoneNumber"]
 
 
-class TelephoneNumber(BaseModel):
+class DataTelephoneNumber(BaseModel):
     number_id: Optional[str] = None
     """Phone number ID from the Telnyx API."""
 
@@ -16,7 +17,7 @@ class TelephoneNumber(BaseModel):
     """Phone number in E164 format."""
 
 
-class ReleaseListResponse(BaseModel):
+class Data(BaseModel):
     created_at: Optional[str] = None
     """ISO 8601 formatted date indicating when the resource was created."""
 
@@ -28,9 +29,15 @@ class ReleaseListResponse(BaseModel):
     ] = None
     """Represents the status of the release on Microsoft Teams."""
 
-    telephone_numbers: Optional[List[TelephoneNumber]] = None
+    telephone_numbers: Optional[List[DataTelephoneNumber]] = None
 
     tenant_id: Optional[str] = None
 
     ticket_id: Optional[str] = None
     """Uniquely identifies the resource."""
+
+
+class ReleaseListResponse(BaseModel):
+    data: Optional[List[Data]] = None
+
+    meta: Optional[ExternalVoiceIntegrationsPaginationMeta] = None

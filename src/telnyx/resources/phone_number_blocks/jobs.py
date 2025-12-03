@@ -16,10 +16,9 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...pagination import SyncDefaultPagination, AsyncDefaultPagination
-from ..._base_client import AsyncPaginator, make_request_options
+from ..._base_client import make_request_options
 from ...types.phone_number_blocks import job_list_params, job_delete_phone_number_block_params
-from ...types.phone_number_blocks.job import Job
+from ...types.phone_number_blocks.job_list_response import JobListResponse
 from ...types.phone_number_blocks.job_retrieve_response import JobRetrieveResponse
 from ...types.phone_number_blocks.job_delete_phone_number_block_response import JobDeletePhoneNumberBlockResponse
 
@@ -91,7 +90,7 @@ class JobsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[Job]:
+    ) -> JobListResponse:
         """
         Lists the phone number blocks jobs
 
@@ -113,9 +112,8 @@ class JobsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return self._get(
             "/phone_number_blocks/jobs",
-            page=SyncDefaultPagination[Job],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -130,7 +128,7 @@ class JobsResource(SyncAPIResource):
                     job_list_params.JobListParams,
                 ),
             ),
-            model=Job,
+            cast_to=JobListResponse,
         )
 
     def delete_phone_number_block(
@@ -226,7 +224,7 @@ class AsyncJobsResource(AsyncAPIResource):
             cast_to=JobRetrieveResponse,
         )
 
-    def list(
+    async def list(
         self,
         *,
         filter: job_list_params.Filter | Omit = omit,
@@ -238,7 +236,7 @@ class AsyncJobsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[Job, AsyncDefaultPagination[Job]]:
+    ) -> JobListResponse:
         """
         Lists the phone number blocks jobs
 
@@ -260,15 +258,14 @@ class AsyncJobsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return await self._get(
             "/phone_number_blocks/jobs",
-            page=AsyncDefaultPagination[Job],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
                         "filter": filter,
                         "page": page,
@@ -277,7 +274,7 @@ class AsyncJobsResource(AsyncAPIResource):
                     job_list_params.JobListParams,
                 ),
             ),
-            model=Job,
+            cast_to=JobListResponse,
         )
 
     async def delete_phone_number_block(

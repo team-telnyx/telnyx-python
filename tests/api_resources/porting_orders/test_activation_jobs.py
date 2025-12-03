@@ -9,10 +9,9 @@ import pytest
 
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
-from telnyx.types import PortingOrdersActivationJob
 from telnyx._utils import parse_datetime
-from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
 from telnyx.types.porting_orders import (
+    ActivationJobListResponse,
     ActivationJobUpdateResponse,
     ActivationJobRetrieveResponse,
 )
@@ -143,7 +142,7 @@ class TestActivationJobs:
         activation_job = client.porting_orders.activation_jobs.list(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(SyncDefaultPagination[PortingOrdersActivationJob], activation_job, path=["response"])
+        assert_matches_type(ActivationJobListResponse, activation_job, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -155,7 +154,7 @@ class TestActivationJobs:
                 "size": 1,
             },
         )
-        assert_matches_type(SyncDefaultPagination[PortingOrdersActivationJob], activation_job, path=["response"])
+        assert_matches_type(ActivationJobListResponse, activation_job, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -167,7 +166,7 @@ class TestActivationJobs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         activation_job = response.parse()
-        assert_matches_type(SyncDefaultPagination[PortingOrdersActivationJob], activation_job, path=["response"])
+        assert_matches_type(ActivationJobListResponse, activation_job, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -179,7 +178,7 @@ class TestActivationJobs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             activation_job = response.parse()
-            assert_matches_type(SyncDefaultPagination[PortingOrdersActivationJob], activation_job, path=["response"])
+            assert_matches_type(ActivationJobListResponse, activation_job, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -317,7 +316,7 @@ class TestAsyncActivationJobs:
         activation_job = await async_client.porting_orders.activation_jobs.list(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(AsyncDefaultPagination[PortingOrdersActivationJob], activation_job, path=["response"])
+        assert_matches_type(ActivationJobListResponse, activation_job, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -329,7 +328,7 @@ class TestAsyncActivationJobs:
                 "size": 1,
             },
         )
-        assert_matches_type(AsyncDefaultPagination[PortingOrdersActivationJob], activation_job, path=["response"])
+        assert_matches_type(ActivationJobListResponse, activation_job, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -341,7 +340,7 @@ class TestAsyncActivationJobs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         activation_job = await response.parse()
-        assert_matches_type(AsyncDefaultPagination[PortingOrdersActivationJob], activation_job, path=["response"])
+        assert_matches_type(ActivationJobListResponse, activation_job, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -353,7 +352,7 @@ class TestAsyncActivationJobs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             activation_job = await response.parse()
-            assert_matches_type(AsyncDefaultPagination[PortingOrdersActivationJob], activation_job, path=["response"])
+            assert_matches_type(ActivationJobListResponse, activation_job, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -16,7 +16,6 @@ from telnyx.types import (
     VirtualCrossConnectUpdateResponse,
     VirtualCrossConnectRetrieveResponse,
 )
-from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -28,6 +27,11 @@ class TestVirtualCrossConnects:
     @parametrize
     def test_method_create(self, client: Telnyx) -> None:
         virtual_cross_connect = client.virtual_cross_connects.create(
+            bgp_asn=1234,
+            cloud_provider="aws",
+            cloud_provider_region="us-east-1",
+            network_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+            primary_cloud_account_id="123456789012",
             region_code="ashburn-va",
         )
         assert_matches_type(VirtualCrossConnectCreateResponse, virtual_cross_connect, path=["response"])
@@ -36,15 +40,15 @@ class TestVirtualCrossConnects:
     @parametrize
     def test_method_create_with_all_params(self, client: Telnyx) -> None:
         virtual_cross_connect = client.virtual_cross_connects.create(
-            region_code="ashburn-va",
-            bandwidth_mbps=50,
             bgp_asn=1234,
             cloud_provider="aws",
             cloud_provider_region="us-east-1",
-            name="test interface",
             network_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
-            primary_bgp_key="yFV4wEPtPVPfDUGLWiyQzwga",
             primary_cloud_account_id="123456789012",
+            region_code="ashburn-va",
+            bandwidth_mbps=50,
+            name="test interface",
+            primary_bgp_key="yFV4wEPtPVPfDUGLWiyQzwga",
             primary_cloud_ip="169.254.0.2",
             primary_telnyx_ip="169.254.0.1",
             secondary_bgp_key="ge1lONeK9RcA83uuWaw9DvZy",
@@ -58,6 +62,11 @@ class TestVirtualCrossConnects:
     @parametrize
     def test_raw_response_create(self, client: Telnyx) -> None:
         response = client.virtual_cross_connects.with_raw_response.create(
+            bgp_asn=1234,
+            cloud_provider="aws",
+            cloud_provider_region="us-east-1",
+            network_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+            primary_cloud_account_id="123456789012",
             region_code="ashburn-va",
         )
 
@@ -70,6 +79,11 @@ class TestVirtualCrossConnects:
     @parametrize
     def test_streaming_response_create(self, client: Telnyx) -> None:
         with client.virtual_cross_connects.with_streaming_response.create(
+            bgp_asn=1234,
+            cloud_provider="aws",
+            cloud_provider_region="us-east-1",
+            network_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+            primary_cloud_account_id="123456789012",
             region_code="ashburn-va",
         ) as response:
             assert not response.is_closed
@@ -182,9 +196,7 @@ class TestVirtualCrossConnects:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         virtual_cross_connect = client.virtual_cross_connects.list()
-        assert_matches_type(
-            SyncDefaultPagination[VirtualCrossConnectListResponse], virtual_cross_connect, path=["response"]
-        )
+        assert_matches_type(VirtualCrossConnectListResponse, virtual_cross_connect, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -196,9 +208,7 @@ class TestVirtualCrossConnects:
                 "size": 1,
             },
         )
-        assert_matches_type(
-            SyncDefaultPagination[VirtualCrossConnectListResponse], virtual_cross_connect, path=["response"]
-        )
+        assert_matches_type(VirtualCrossConnectListResponse, virtual_cross_connect, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -208,9 +218,7 @@ class TestVirtualCrossConnects:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         virtual_cross_connect = response.parse()
-        assert_matches_type(
-            SyncDefaultPagination[VirtualCrossConnectListResponse], virtual_cross_connect, path=["response"]
-        )
+        assert_matches_type(VirtualCrossConnectListResponse, virtual_cross_connect, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -220,9 +228,7 @@ class TestVirtualCrossConnects:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             virtual_cross_connect = response.parse()
-            assert_matches_type(
-                SyncDefaultPagination[VirtualCrossConnectListResponse], virtual_cross_connect, path=["response"]
-            )
+            assert_matches_type(VirtualCrossConnectListResponse, virtual_cross_connect, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -278,6 +284,11 @@ class TestAsyncVirtualCrossConnects:
     @parametrize
     async def test_method_create(self, async_client: AsyncTelnyx) -> None:
         virtual_cross_connect = await async_client.virtual_cross_connects.create(
+            bgp_asn=1234,
+            cloud_provider="aws",
+            cloud_provider_region="us-east-1",
+            network_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+            primary_cloud_account_id="123456789012",
             region_code="ashburn-va",
         )
         assert_matches_type(VirtualCrossConnectCreateResponse, virtual_cross_connect, path=["response"])
@@ -286,15 +297,15 @@ class TestAsyncVirtualCrossConnects:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncTelnyx) -> None:
         virtual_cross_connect = await async_client.virtual_cross_connects.create(
-            region_code="ashburn-va",
-            bandwidth_mbps=50,
             bgp_asn=1234,
             cloud_provider="aws",
             cloud_provider_region="us-east-1",
-            name="test interface",
             network_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
-            primary_bgp_key="yFV4wEPtPVPfDUGLWiyQzwga",
             primary_cloud_account_id="123456789012",
+            region_code="ashburn-va",
+            bandwidth_mbps=50,
+            name="test interface",
+            primary_bgp_key="yFV4wEPtPVPfDUGLWiyQzwga",
             primary_cloud_ip="169.254.0.2",
             primary_telnyx_ip="169.254.0.1",
             secondary_bgp_key="ge1lONeK9RcA83uuWaw9DvZy",
@@ -308,6 +319,11 @@ class TestAsyncVirtualCrossConnects:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.virtual_cross_connects.with_raw_response.create(
+            bgp_asn=1234,
+            cloud_provider="aws",
+            cloud_provider_region="us-east-1",
+            network_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+            primary_cloud_account_id="123456789012",
             region_code="ashburn-va",
         )
 
@@ -320,6 +336,11 @@ class TestAsyncVirtualCrossConnects:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncTelnyx) -> None:
         async with async_client.virtual_cross_connects.with_streaming_response.create(
+            bgp_asn=1234,
+            cloud_provider="aws",
+            cloud_provider_region="us-east-1",
+            network_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+            primary_cloud_account_id="123456789012",
             region_code="ashburn-va",
         ) as response:
             assert not response.is_closed
@@ -432,9 +453,7 @@ class TestAsyncVirtualCrossConnects:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         virtual_cross_connect = await async_client.virtual_cross_connects.list()
-        assert_matches_type(
-            AsyncDefaultPagination[VirtualCrossConnectListResponse], virtual_cross_connect, path=["response"]
-        )
+        assert_matches_type(VirtualCrossConnectListResponse, virtual_cross_connect, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -446,9 +465,7 @@ class TestAsyncVirtualCrossConnects:
                 "size": 1,
             },
         )
-        assert_matches_type(
-            AsyncDefaultPagination[VirtualCrossConnectListResponse], virtual_cross_connect, path=["response"]
-        )
+        assert_matches_type(VirtualCrossConnectListResponse, virtual_cross_connect, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -458,9 +475,7 @@ class TestAsyncVirtualCrossConnects:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         virtual_cross_connect = await response.parse()
-        assert_matches_type(
-            AsyncDefaultPagination[VirtualCrossConnectListResponse], virtual_cross_connect, path=["response"]
-        )
+        assert_matches_type(VirtualCrossConnectListResponse, virtual_cross_connect, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -470,9 +485,7 @@ class TestAsyncVirtualCrossConnects:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             virtual_cross_connect = await response.parse()
-            assert_matches_type(
-                AsyncDefaultPagination[VirtualCrossConnectListResponse], virtual_cross_connect, path=["response"]
-            )
+            assert_matches_type(VirtualCrossConnectListResponse, virtual_cross_connect, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
