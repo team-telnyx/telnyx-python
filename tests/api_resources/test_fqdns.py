@@ -10,12 +10,13 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types import (
-    FqdnListResponse,
+    Fqdn,
     FqdnCreateResponse,
     FqdnDeleteResponse,
     FqdnUpdateResponse,
     FqdnRetrieveResponse,
 )
+from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -174,7 +175,7 @@ class TestFqdns:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         fqdn = client.fqdns.list()
-        assert_matches_type(FqdnListResponse, fqdn, path=["response"])
+        assert_matches_type(SyncDefaultPagination[Fqdn], fqdn, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -191,7 +192,7 @@ class TestFqdns:
                 "size": 1,
             },
         )
-        assert_matches_type(FqdnListResponse, fqdn, path=["response"])
+        assert_matches_type(SyncDefaultPagination[Fqdn], fqdn, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -201,7 +202,7 @@ class TestFqdns:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         fqdn = response.parse()
-        assert_matches_type(FqdnListResponse, fqdn, path=["response"])
+        assert_matches_type(SyncDefaultPagination[Fqdn], fqdn, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -211,7 +212,7 @@ class TestFqdns:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             fqdn = response.parse()
-            assert_matches_type(FqdnListResponse, fqdn, path=["response"])
+            assert_matches_type(SyncDefaultPagination[Fqdn], fqdn, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -414,7 +415,7 @@ class TestAsyncFqdns:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         fqdn = await async_client.fqdns.list()
-        assert_matches_type(FqdnListResponse, fqdn, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[Fqdn], fqdn, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -431,7 +432,7 @@ class TestAsyncFqdns:
                 "size": 1,
             },
         )
-        assert_matches_type(FqdnListResponse, fqdn, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[Fqdn], fqdn, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -441,7 +442,7 @@ class TestAsyncFqdns:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         fqdn = await response.parse()
-        assert_matches_type(FqdnListResponse, fqdn, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[Fqdn], fqdn, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -451,7 +452,7 @@ class TestAsyncFqdns:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             fqdn = await response.parse()
-            assert_matches_type(FqdnListResponse, fqdn, path=["response"])
+            assert_matches_type(AsyncDefaultPagination[Fqdn], fqdn, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

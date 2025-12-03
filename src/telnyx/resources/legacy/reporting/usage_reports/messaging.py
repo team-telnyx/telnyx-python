@@ -17,12 +17,13 @@ from ....._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ....._base_client import make_request_options
+from .....pagination import SyncPerPagePagination, AsyncPerPagePagination
+from ....._base_client import AsyncPaginator, make_request_options
 from .....types.legacy.reporting.usage_reports import messaging_list_params, messaging_create_params
-from .....types.legacy.reporting.usage_reports.messaging_list_response import MessagingListResponse
 from .....types.legacy.reporting.usage_reports.messaging_create_response import MessagingCreateResponse
 from .....types.legacy.reporting.usage_reports.messaging_delete_response import MessagingDeleteResponse
 from .....types.legacy.reporting.usage_reports.messaging_retrieve_response import MessagingRetrieveResponse
+from .....types.legacy.reporting.usage_reports.mdr_usage_report_response_legacy import MdrUsageReportResponseLegacy
 
 __all__ = ["MessagingResource", "AsyncMessagingResource"]
 
@@ -144,7 +145,7 @@ class MessagingResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MessagingListResponse:
+    ) -> SyncPerPagePagination[MdrUsageReportResponseLegacy]:
         """
         Fetch all previous requests for MDR usage reports.
 
@@ -161,8 +162,9 @@ class MessagingResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/legacy/reporting/usage_reports/messaging",
+            page=SyncPerPagePagination[MdrUsageReportResponseLegacy],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -176,7 +178,7 @@ class MessagingResource(SyncAPIResource):
                     messaging_list_params.MessagingListParams,
                 ),
             ),
-            cast_to=MessagingListResponse,
+            model=MdrUsageReportResponseLegacy,
         )
 
     def delete(
@@ -319,7 +321,7 @@ class AsyncMessagingResource(AsyncAPIResource):
             cast_to=MessagingRetrieveResponse,
         )
 
-    async def list(
+    def list(
         self,
         *,
         page: int | Omit = omit,
@@ -330,7 +332,7 @@ class AsyncMessagingResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MessagingListResponse:
+    ) -> AsyncPaginator[MdrUsageReportResponseLegacy, AsyncPerPagePagination[MdrUsageReportResponseLegacy]]:
         """
         Fetch all previous requests for MDR usage reports.
 
@@ -347,14 +349,15 @@ class AsyncMessagingResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/legacy/reporting/usage_reports/messaging",
+            page=AsyncPerPagePagination[MdrUsageReportResponseLegacy],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "page": page,
                         "per_page": per_page,
@@ -362,7 +365,7 @@ class AsyncMessagingResource(AsyncAPIResource):
                     messaging_list_params.MessagingListParams,
                 ),
             ),
-            cast_to=MessagingListResponse,
+            model=MdrUsageReportResponseLegacy,
         )
 
     async def delete(

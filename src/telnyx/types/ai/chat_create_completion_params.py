@@ -14,8 +14,8 @@ __all__ = [
     "MessageContentTextAndImageArray",
     "ResponseFormat",
     "Tool",
-    "ToolChatCompletionToolParam",
-    "ToolChatCompletionToolParamFunction",
+    "ToolFunction",
+    "ToolFunctionFunction",
     "ToolRetrieval",
 ]
 
@@ -156,7 +156,7 @@ class ResponseFormat(TypedDict, total=False):
     type: Required[Literal["text", "json_object"]]
 
 
-class ToolChatCompletionToolParamFunction(TypedDict, total=False):
+class ToolFunctionFunction(TypedDict, total=False):
     name: Required[str]
 
     description: str
@@ -164,8 +164,8 @@ class ToolChatCompletionToolParamFunction(TypedDict, total=False):
     parameters: Dict[str, object]
 
 
-class ToolChatCompletionToolParam(TypedDict, total=False):
-    function: Required[ToolChatCompletionToolParamFunction]
+class ToolFunction(TypedDict, total=False):
+    function: Required[ToolFunctionFunction]
 
     type: Required[Literal["function"]]
 
@@ -176,4 +176,4 @@ class ToolRetrieval(TypedDict, total=False):
     type: Required[Literal["retrieval"]]
 
 
-Tool: TypeAlias = Union[ToolChatCompletionToolParam, ToolRetrieval]
+Tool: TypeAlias = Union[ToolFunction, ToolRetrieval]

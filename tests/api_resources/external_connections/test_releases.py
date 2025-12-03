@@ -9,6 +9,7 @@ import pytest
 
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
+from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
 from telnyx.types.external_connections import ReleaseListResponse, ReleaseRetrieveResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -75,7 +76,7 @@ class TestReleases:
         release = client.external_connections.releases.list(
             id="id",
         )
-        assert_matches_type(ReleaseListResponse, release, path=["response"])
+        assert_matches_type(SyncDefaultPagination[ReleaseListResponse], release, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -96,7 +97,7 @@ class TestReleases:
                 "size": 1,
             },
         )
-        assert_matches_type(ReleaseListResponse, release, path=["response"])
+        assert_matches_type(SyncDefaultPagination[ReleaseListResponse], release, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -108,7 +109,7 @@ class TestReleases:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         release = response.parse()
-        assert_matches_type(ReleaseListResponse, release, path=["response"])
+        assert_matches_type(SyncDefaultPagination[ReleaseListResponse], release, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -120,7 +121,7 @@ class TestReleases:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             release = response.parse()
-            assert_matches_type(ReleaseListResponse, release, path=["response"])
+            assert_matches_type(SyncDefaultPagination[ReleaseListResponse], release, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -196,7 +197,7 @@ class TestAsyncReleases:
         release = await async_client.external_connections.releases.list(
             id="id",
         )
-        assert_matches_type(ReleaseListResponse, release, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[ReleaseListResponse], release, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -217,7 +218,7 @@ class TestAsyncReleases:
                 "size": 1,
             },
         )
-        assert_matches_type(ReleaseListResponse, release, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[ReleaseListResponse], release, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -229,7 +230,7 @@ class TestAsyncReleases:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         release = await response.parse()
-        assert_matches_type(ReleaseListResponse, release, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[ReleaseListResponse], release, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -241,7 +242,7 @@ class TestAsyncReleases:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             release = await response.parse()
-            assert_matches_type(ReleaseListResponse, release, path=["response"])
+            assert_matches_type(AsyncDefaultPagination[ReleaseListResponse], release, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

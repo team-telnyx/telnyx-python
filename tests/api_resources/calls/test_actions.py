@@ -176,8 +176,8 @@ class TestActions:
     @parametrize
     def test_method_bridge(self, client: Telnyx) -> None:
         action = client.calls.actions.bridge(
-            path_call_control_id="call_control_id",
-            body_call_control_id="v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg",
+            call_control_id_to_bridge="call_control_id",
+            call_control_id_to_bridge_with="v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg",
         )
         assert_matches_type(ActionBridgeResponse, action, path=["response"])
 
@@ -185,8 +185,8 @@ class TestActions:
     @parametrize
     def test_method_bridge_with_all_params(self, client: Telnyx) -> None:
         action = client.calls.actions.bridge(
-            path_call_control_id="call_control_id",
-            body_call_control_id="v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg",
+            call_control_id_to_bridge="call_control_id",
+            call_control_id_to_bridge_with="v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg",
             client_state="aGF2ZSBhIG5pY2UgZGF5ID1d",
             command_id="891510ac-f3e4-11e8-af5b-de00688a4901",
             mute_dtmf="opposite",
@@ -211,8 +211,8 @@ class TestActions:
     @parametrize
     def test_raw_response_bridge(self, client: Telnyx) -> None:
         response = client.calls.actions.with_raw_response.bridge(
-            path_call_control_id="call_control_id",
-            body_call_control_id="v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg",
+            call_control_id_to_bridge="call_control_id",
+            call_control_id_to_bridge_with="v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg",
         )
 
         assert response.is_closed is True
@@ -224,8 +224,8 @@ class TestActions:
     @parametrize
     def test_streaming_response_bridge(self, client: Telnyx) -> None:
         with client.calls.actions.with_streaming_response.bridge(
-            path_call_control_id="call_control_id",
-            body_call_control_id="v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg",
+            call_control_id_to_bridge="call_control_id",
+            call_control_id_to_bridge_with="v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -238,10 +238,12 @@ class TestActions:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_bridge(self, client: Telnyx) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_call_control_id` but received ''"):
+        with pytest.raises(
+            ValueError, match=r"Expected a non-empty value for `call_control_id_to_bridge` but received ''"
+        ):
             client.calls.actions.with_raw_response.bridge(
-                path_call_control_id="",
-                body_call_control_id="v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg",
+                call_control_id_to_bridge="",
+                call_control_id_to_bridge_with="v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg",
             )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -370,18 +372,9 @@ class TestActions:
         action = client.calls.actions.gather_using_ai(
             call_control_id="call_control_id",
             parameters={
-                "properties": {
-                    "age": {
-                        "description": "The age of the customer.",
-                        "type": "integer",
-                    },
-                    "location": {
-                        "description": "The location of the customer.",
-                        "type": "string",
-                    },
-                },
-                "required": ["age", "location"],
-                "type": "object",
+                "properties": "bar",
+                "required": "bar",
+                "type": "bar",
             },
         )
         assert_matches_type(ActionGatherUsingAIResponse, action, path=["response"])
@@ -392,18 +385,9 @@ class TestActions:
         action = client.calls.actions.gather_using_ai(
             call_control_id="call_control_id",
             parameters={
-                "properties": {
-                    "age": {
-                        "description": "The age of the customer.",
-                        "type": "integer",
-                    },
-                    "location": {
-                        "description": "The location of the customer.",
-                        "type": "string",
-                    },
-                },
-                "required": ["age", "location"],
-                "type": "object",
+                "properties": "bar",
+                "required": "bar",
+                "type": "bar",
             },
             assistant={
                 "instructions": "You are a friendly voice assistant.",
@@ -451,18 +435,9 @@ class TestActions:
         response = client.calls.actions.with_raw_response.gather_using_ai(
             call_control_id="call_control_id",
             parameters={
-                "properties": {
-                    "age": {
-                        "description": "The age of the customer.",
-                        "type": "integer",
-                    },
-                    "location": {
-                        "description": "The location of the customer.",
-                        "type": "string",
-                    },
-                },
-                "required": ["age", "location"],
-                "type": "object",
+                "properties": "bar",
+                "required": "bar",
+                "type": "bar",
             },
         )
 
@@ -477,18 +452,9 @@ class TestActions:
         with client.calls.actions.with_streaming_response.gather_using_ai(
             call_control_id="call_control_id",
             parameters={
-                "properties": {
-                    "age": {
-                        "description": "The age of the customer.",
-                        "type": "integer",
-                    },
-                    "location": {
-                        "description": "The location of the customer.",
-                        "type": "string",
-                    },
-                },
-                "required": ["age", "location"],
-                "type": "object",
+                "properties": "bar",
+                "required": "bar",
+                "type": "bar",
             },
         ) as response:
             assert not response.is_closed
@@ -506,18 +472,9 @@ class TestActions:
             client.calls.actions.with_raw_response.gather_using_ai(
                 call_control_id="",
                 parameters={
-                    "properties": {
-                        "age": {
-                            "description": "The age of the customer.",
-                            "type": "integer",
-                        },
-                        "location": {
-                            "description": "The location of the customer.",
-                            "type": "string",
-                        },
-                    },
-                    "required": ["age", "location"],
-                    "type": "object",
+                    "properties": "bar",
+                    "required": "bar",
+                    "type": "bar",
                 },
             )
 
@@ -2498,8 +2455,8 @@ class TestAsyncActions:
     @parametrize
     async def test_method_bridge(self, async_client: AsyncTelnyx) -> None:
         action = await async_client.calls.actions.bridge(
-            path_call_control_id="call_control_id",
-            body_call_control_id="v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg",
+            call_control_id_to_bridge="call_control_id",
+            call_control_id_to_bridge_with="v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg",
         )
         assert_matches_type(ActionBridgeResponse, action, path=["response"])
 
@@ -2507,8 +2464,8 @@ class TestAsyncActions:
     @parametrize
     async def test_method_bridge_with_all_params(self, async_client: AsyncTelnyx) -> None:
         action = await async_client.calls.actions.bridge(
-            path_call_control_id="call_control_id",
-            body_call_control_id="v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg",
+            call_control_id_to_bridge="call_control_id",
+            call_control_id_to_bridge_with="v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg",
             client_state="aGF2ZSBhIG5pY2UgZGF5ID1d",
             command_id="891510ac-f3e4-11e8-af5b-de00688a4901",
             mute_dtmf="opposite",
@@ -2533,8 +2490,8 @@ class TestAsyncActions:
     @parametrize
     async def test_raw_response_bridge(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.calls.actions.with_raw_response.bridge(
-            path_call_control_id="call_control_id",
-            body_call_control_id="v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg",
+            call_control_id_to_bridge="call_control_id",
+            call_control_id_to_bridge_with="v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg",
         )
 
         assert response.is_closed is True
@@ -2546,8 +2503,8 @@ class TestAsyncActions:
     @parametrize
     async def test_streaming_response_bridge(self, async_client: AsyncTelnyx) -> None:
         async with async_client.calls.actions.with_streaming_response.bridge(
-            path_call_control_id="call_control_id",
-            body_call_control_id="v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg",
+            call_control_id_to_bridge="call_control_id",
+            call_control_id_to_bridge_with="v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2560,10 +2517,12 @@ class TestAsyncActions:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_bridge(self, async_client: AsyncTelnyx) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_call_control_id` but received ''"):
+        with pytest.raises(
+            ValueError, match=r"Expected a non-empty value for `call_control_id_to_bridge` but received ''"
+        ):
             await async_client.calls.actions.with_raw_response.bridge(
-                path_call_control_id="",
-                body_call_control_id="v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg",
+                call_control_id_to_bridge="",
+                call_control_id_to_bridge_with="v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg",
             )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -2692,18 +2651,9 @@ class TestAsyncActions:
         action = await async_client.calls.actions.gather_using_ai(
             call_control_id="call_control_id",
             parameters={
-                "properties": {
-                    "age": {
-                        "description": "The age of the customer.",
-                        "type": "integer",
-                    },
-                    "location": {
-                        "description": "The location of the customer.",
-                        "type": "string",
-                    },
-                },
-                "required": ["age", "location"],
-                "type": "object",
+                "properties": "bar",
+                "required": "bar",
+                "type": "bar",
             },
         )
         assert_matches_type(ActionGatherUsingAIResponse, action, path=["response"])
@@ -2714,18 +2664,9 @@ class TestAsyncActions:
         action = await async_client.calls.actions.gather_using_ai(
             call_control_id="call_control_id",
             parameters={
-                "properties": {
-                    "age": {
-                        "description": "The age of the customer.",
-                        "type": "integer",
-                    },
-                    "location": {
-                        "description": "The location of the customer.",
-                        "type": "string",
-                    },
-                },
-                "required": ["age", "location"],
-                "type": "object",
+                "properties": "bar",
+                "required": "bar",
+                "type": "bar",
             },
             assistant={
                 "instructions": "You are a friendly voice assistant.",
@@ -2773,18 +2714,9 @@ class TestAsyncActions:
         response = await async_client.calls.actions.with_raw_response.gather_using_ai(
             call_control_id="call_control_id",
             parameters={
-                "properties": {
-                    "age": {
-                        "description": "The age of the customer.",
-                        "type": "integer",
-                    },
-                    "location": {
-                        "description": "The location of the customer.",
-                        "type": "string",
-                    },
-                },
-                "required": ["age", "location"],
-                "type": "object",
+                "properties": "bar",
+                "required": "bar",
+                "type": "bar",
             },
         )
 
@@ -2799,18 +2731,9 @@ class TestAsyncActions:
         async with async_client.calls.actions.with_streaming_response.gather_using_ai(
             call_control_id="call_control_id",
             parameters={
-                "properties": {
-                    "age": {
-                        "description": "The age of the customer.",
-                        "type": "integer",
-                    },
-                    "location": {
-                        "description": "The location of the customer.",
-                        "type": "string",
-                    },
-                },
-                "required": ["age", "location"],
-                "type": "object",
+                "properties": "bar",
+                "required": "bar",
+                "type": "bar",
             },
         ) as response:
             assert not response.is_closed
@@ -2828,18 +2751,9 @@ class TestAsyncActions:
             await async_client.calls.actions.with_raw_response.gather_using_ai(
                 call_control_id="",
                 parameters={
-                    "properties": {
-                        "age": {
-                            "description": "The age of the customer.",
-                            "type": "integer",
-                        },
-                        "location": {
-                            "description": "The location of the customer.",
-                            "type": "string",
-                        },
-                    },
-                    "required": ["age", "location"],
-                    "type": "object",
+                    "properties": "bar",
+                    "required": "bar",
+                    "type": "bar",
                 },
             )
 

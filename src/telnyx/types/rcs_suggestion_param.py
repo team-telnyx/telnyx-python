@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Union
+from typing import Dict, Union
 from datetime import datetime
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
@@ -95,7 +95,7 @@ class Action(TypedDict, total=False):
     results when the user taps the suggested action. Maximum 2048 characters.
     """
 
-    share_location_action: object
+    share_location_action: Dict[str, object]
     """
     Opens the RCS app's location chooser so the user can pick a location to send
     back to the agent.

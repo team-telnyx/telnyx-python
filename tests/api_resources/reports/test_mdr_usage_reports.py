@@ -10,8 +10,9 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx._utils import parse_datetime
+from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from telnyx.types.reports import (
-    MdrUsageReportListResponse,
+    MdrUsageReport,
     MdrUsageReportCreateResponse,
     MdrUsageReportDeleteResponse,
     MdrUsageReportRetrieveResponse,
@@ -121,18 +122,16 @@ class TestMdrUsageReports:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         mdr_usage_report = client.reports.mdr_usage_reports.list()
-        assert_matches_type(MdrUsageReportListResponse, mdr_usage_report, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[MdrUsageReport], mdr_usage_report, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         mdr_usage_report = client.reports.mdr_usage_reports.list(
-            page={
-                "number": 0,
-                "size": 0,
-            },
+            page_number=0,
+            page_size=0,
         )
-        assert_matches_type(MdrUsageReportListResponse, mdr_usage_report, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[MdrUsageReport], mdr_usage_report, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -142,7 +141,7 @@ class TestMdrUsageReports:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         mdr_usage_report = response.parse()
-        assert_matches_type(MdrUsageReportListResponse, mdr_usage_report, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[MdrUsageReport], mdr_usage_report, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -152,7 +151,7 @@ class TestMdrUsageReports:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             mdr_usage_report = response.parse()
-            assert_matches_type(MdrUsageReportListResponse, mdr_usage_report, path=["response"])
+            assert_matches_type(SyncDefaultFlatPagination[MdrUsageReport], mdr_usage_report, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -346,18 +345,16 @@ class TestAsyncMdrUsageReports:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         mdr_usage_report = await async_client.reports.mdr_usage_reports.list()
-        assert_matches_type(MdrUsageReportListResponse, mdr_usage_report, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[MdrUsageReport], mdr_usage_report, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         mdr_usage_report = await async_client.reports.mdr_usage_reports.list(
-            page={
-                "number": 0,
-                "size": 0,
-            },
+            page_number=0,
+            page_size=0,
         )
-        assert_matches_type(MdrUsageReportListResponse, mdr_usage_report, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[MdrUsageReport], mdr_usage_report, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -367,7 +364,7 @@ class TestAsyncMdrUsageReports:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         mdr_usage_report = await response.parse()
-        assert_matches_type(MdrUsageReportListResponse, mdr_usage_report, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[MdrUsageReport], mdr_usage_report, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -377,7 +374,7 @@ class TestAsyncMdrUsageReports:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             mdr_usage_report = await response.parse()
-            assert_matches_type(MdrUsageReportListResponse, mdr_usage_report, path=["response"])
+            assert_matches_type(AsyncDefaultFlatPagination[MdrUsageReport], mdr_usage_report, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

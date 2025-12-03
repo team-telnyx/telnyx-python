@@ -21,9 +21,9 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import make_request_options
+from ..pagination import SyncPerPagePaginationV2, AsyncPerPagePaginationV2
+from .._base_client import AsyncPaginator, make_request_options
 from ..types.phone_number_campaign import PhoneNumberCampaign
-from ..types.phone_number_campaign_list_response import PhoneNumberCampaignListResponse
 
 __all__ = ["PhoneNumberCampaignsResource", "AsyncPhoneNumberCampaignsResource"]
 
@@ -126,10 +126,10 @@ class PhoneNumberCampaignsResource(SyncAPIResource):
 
     def update(
         self,
-        path_phone_number: str,
+        campaign_phone_number: str,
         *,
         campaign_id: str,
-        body_phone_number: str,
+        phone_number: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -143,7 +143,7 @@ class PhoneNumberCampaignsResource(SyncAPIResource):
         Args:
           campaign_id: The ID of the campaign you want to link to the specified phone number.
 
-          body_phone_number: The phone number you want to link to a specified campaign.
+          phone_number: The phone number you want to link to a specified campaign.
 
           extra_headers: Send extra headers
 
@@ -153,14 +153,16 @@ class PhoneNumberCampaignsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not path_phone_number:
-            raise ValueError(f"Expected a non-empty value for `path_phone_number` but received {path_phone_number!r}")
+        if not campaign_phone_number:
+            raise ValueError(
+                f"Expected a non-empty value for `campaign_phone_number` but received {campaign_phone_number!r}"
+            )
         return self._put(
-            f"/phone_number_campaigns/{path_phone_number}",
+            f"/phone_number_campaigns/{campaign_phone_number}",
             body=maybe_transform(
                 {
                     "campaign_id": campaign_id,
-                    "body_phone_number": body_phone_number,
+                    "phone_number": phone_number,
                 },
                 phone_number_campaign_update_params.PhoneNumberCampaignUpdateParams,
             ),
@@ -184,7 +186,7 @@ class PhoneNumberCampaignsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PhoneNumberCampaignListResponse:
+    ) -> SyncPerPagePaginationV2[PhoneNumberCampaign]:
         """
         Retrieve All Phone Number Campaigns
 
@@ -205,8 +207,9 @@ class PhoneNumberCampaignsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/phone_number_campaigns",
+            page=SyncPerPagePaginationV2[PhoneNumberCampaign],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -222,7 +225,7 @@ class PhoneNumberCampaignsResource(SyncAPIResource):
                     phone_number_campaign_list_params.PhoneNumberCampaignListParams,
                 ),
             ),
-            cast_to=PhoneNumberCampaignListResponse,
+            model=PhoneNumberCampaign,
         )
 
     def delete(
@@ -358,10 +361,10 @@ class AsyncPhoneNumberCampaignsResource(AsyncAPIResource):
 
     async def update(
         self,
-        path_phone_number: str,
+        campaign_phone_number: str,
         *,
         campaign_id: str,
-        body_phone_number: str,
+        phone_number: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -375,7 +378,7 @@ class AsyncPhoneNumberCampaignsResource(AsyncAPIResource):
         Args:
           campaign_id: The ID of the campaign you want to link to the specified phone number.
 
-          body_phone_number: The phone number you want to link to a specified campaign.
+          phone_number: The phone number you want to link to a specified campaign.
 
           extra_headers: Send extra headers
 
@@ -385,14 +388,16 @@ class AsyncPhoneNumberCampaignsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not path_phone_number:
-            raise ValueError(f"Expected a non-empty value for `path_phone_number` but received {path_phone_number!r}")
+        if not campaign_phone_number:
+            raise ValueError(
+                f"Expected a non-empty value for `campaign_phone_number` but received {campaign_phone_number!r}"
+            )
         return await self._put(
-            f"/phone_number_campaigns/{path_phone_number}",
+            f"/phone_number_campaigns/{campaign_phone_number}",
             body=await async_maybe_transform(
                 {
                     "campaign_id": campaign_id,
-                    "body_phone_number": body_phone_number,
+                    "phone_number": phone_number,
                 },
                 phone_number_campaign_update_params.PhoneNumberCampaignUpdateParams,
             ),
@@ -402,7 +407,7 @@ class AsyncPhoneNumberCampaignsResource(AsyncAPIResource):
             cast_to=PhoneNumberCampaign,
         )
 
-    async def list(
+    def list(
         self,
         *,
         filter: phone_number_campaign_list_params.Filter | Omit = omit,
@@ -416,7 +421,7 @@ class AsyncPhoneNumberCampaignsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PhoneNumberCampaignListResponse:
+    ) -> AsyncPaginator[PhoneNumberCampaign, AsyncPerPagePaginationV2[PhoneNumberCampaign]]:
         """
         Retrieve All Phone Number Campaigns
 
@@ -437,14 +442,15 @@ class AsyncPhoneNumberCampaignsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/phone_number_campaigns",
+            page=AsyncPerPagePaginationV2[PhoneNumberCampaign],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "filter": filter,
                         "page": page,
@@ -454,7 +460,7 @@ class AsyncPhoneNumberCampaignsResource(AsyncAPIResource):
                     phone_number_campaign_list_params.PhoneNumberCampaignListParams,
                 ),
             ),
-            cast_to=PhoneNumberCampaignListResponse,
+            model=PhoneNumberCampaign,
         )
 
     async def delete(

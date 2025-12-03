@@ -21,9 +21,10 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import make_request_options
+from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
+from .._base_client import AsyncPaginator, make_request_options
 from ..types.settings_param import SettingsParam
-from ..types.authentication_provider_list_response import AuthenticationProviderListResponse
+from ..types.authentication_provider import AuthenticationProvider
 from ..types.authentication_provider_create_response import AuthenticationProviderCreateResponse
 from ..types.authentication_provider_delete_response import AuthenticationProviderDeleteResponse
 from ..types.authentication_provider_update_response import AuthenticationProviderUpdateResponse
@@ -205,7 +206,8 @@ class AuthenticationProvidersResource(SyncAPIResource):
     def list(
         self,
         *,
-        page: authentication_provider_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         sort: Literal[
             "name",
             "-name",
@@ -225,14 +227,11 @@ class AuthenticationProvidersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AuthenticationProviderListResponse:
+    ) -> SyncDefaultFlatPagination[AuthenticationProvider]:
         """
         Returns a list of your SSO authentication providers.
 
         Args:
-          page: Consolidated page parameter (deepObject style). Originally: page[number],
-              page[size]
-
           sort: Specifies the sort order for results. By default sorting direction is ascending.
               To have the results sorted in descending order add the <code>-</code>
               prefix.<br/><br/> That is: <ul>
@@ -255,8 +254,9 @@ class AuthenticationProvidersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/authentication_providers",
+            page=SyncDefaultFlatPagination[AuthenticationProvider],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -264,13 +264,14 @@ class AuthenticationProvidersResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                         "sort": sort,
                     },
                     authentication_provider_list_params.AuthenticationProviderListParams,
                 ),
             ),
-            cast_to=AuthenticationProviderListResponse,
+            model=AuthenticationProvider,
         )
 
     def delete(
@@ -477,10 +478,11 @@ class AsyncAuthenticationProvidersResource(AsyncAPIResource):
             cast_to=AuthenticationProviderUpdateResponse,
         )
 
-    async def list(
+    def list(
         self,
         *,
-        page: authentication_provider_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         sort: Literal[
             "name",
             "-name",
@@ -500,14 +502,11 @@ class AsyncAuthenticationProvidersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AuthenticationProviderListResponse:
+    ) -> AsyncPaginator[AuthenticationProvider, AsyncDefaultFlatPagination[AuthenticationProvider]]:
         """
         Returns a list of your SSO authentication providers.
 
         Args:
-          page: Consolidated page parameter (deepObject style). Originally: page[number],
-              page[size]
-
           sort: Specifies the sort order for results. By default sorting direction is ascending.
               To have the results sorted in descending order add the <code>-</code>
               prefix.<br/><br/> That is: <ul>
@@ -530,22 +529,24 @@ class AsyncAuthenticationProvidersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/authentication_providers",
+            page=AsyncDefaultFlatPagination[AuthenticationProvider],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                         "sort": sort,
                     },
                     authentication_provider_list_params.AuthenticationProviderListParams,
                 ),
             ),
-            cast_to=AuthenticationProviderListResponse,
+            model=AuthenticationProvider,
         )
 
     async def delete(

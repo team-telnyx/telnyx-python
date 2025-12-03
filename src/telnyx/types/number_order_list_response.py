@@ -5,12 +5,11 @@ from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
-from .pagination_meta import PaginationMeta
 
-__all__ = ["NumberOrderListResponse", "Data", "DataPhoneNumber"]
+__all__ = ["NumberOrderListResponse", "PhoneNumber"]
 
 
-class DataPhoneNumber(BaseModel):
+class PhoneNumber(BaseModel):
     id: Optional[str] = None
     """The phone number's ID"""
 
@@ -18,7 +17,7 @@ class DataPhoneNumber(BaseModel):
     """The phone number in e164 format."""
 
 
-class Data(BaseModel):
+class NumberOrderListResponse(BaseModel):
     id: Optional[str] = None
 
     billing_group_id: Optional[str] = None
@@ -36,7 +35,7 @@ class Data(BaseModel):
     messaging_profile_id: Optional[str] = None
     """Identifies the messaging profile associated with the phone number."""
 
-    phone_numbers: Optional[List[DataPhoneNumber]] = None
+    phone_numbers: Optional[List[PhoneNumber]] = None
 
     phone_numbers_count: Optional[int] = None
     """The count of phone numbers in the number order."""
@@ -53,9 +52,3 @@ class Data(BaseModel):
 
     updated_at: Optional[datetime] = None
     """An ISO 8901 datetime string for when the number order was updated."""
-
-
-class NumberOrderListResponse(BaseModel):
-    data: Optional[List[Data]] = None
-
-    meta: Optional[PaginationMeta] = None

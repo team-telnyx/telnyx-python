@@ -9,10 +9,11 @@ import pytest
 
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
+from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
 from telnyx.types.external_connections import (
-    PhoneNumberListResponse,
     PhoneNumberUpdateResponse,
     PhoneNumberRetrieveResponse,
+    ExternalConnectionPhoneNumber,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -141,7 +142,7 @@ class TestPhoneNumbers:
         phone_number = client.external_connections.phone_numbers.list(
             id="id",
         )
-        assert_matches_type(PhoneNumberListResponse, phone_number, path=["response"])
+        assert_matches_type(SyncDefaultPagination[ExternalConnectionPhoneNumber], phone_number, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -161,7 +162,7 @@ class TestPhoneNumbers:
                 "size": 1,
             },
         )
-        assert_matches_type(PhoneNumberListResponse, phone_number, path=["response"])
+        assert_matches_type(SyncDefaultPagination[ExternalConnectionPhoneNumber], phone_number, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -173,7 +174,7 @@ class TestPhoneNumbers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         phone_number = response.parse()
-        assert_matches_type(PhoneNumberListResponse, phone_number, path=["response"])
+        assert_matches_type(SyncDefaultPagination[ExternalConnectionPhoneNumber], phone_number, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -185,7 +186,7 @@ class TestPhoneNumbers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             phone_number = response.parse()
-            assert_matches_type(PhoneNumberListResponse, phone_number, path=["response"])
+            assert_matches_type(SyncDefaultPagination[ExternalConnectionPhoneNumber], phone_number, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -323,7 +324,7 @@ class TestAsyncPhoneNumbers:
         phone_number = await async_client.external_connections.phone_numbers.list(
             id="id",
         )
-        assert_matches_type(PhoneNumberListResponse, phone_number, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[ExternalConnectionPhoneNumber], phone_number, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -343,7 +344,7 @@ class TestAsyncPhoneNumbers:
                 "size": 1,
             },
         )
-        assert_matches_type(PhoneNumberListResponse, phone_number, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[ExternalConnectionPhoneNumber], phone_number, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -355,7 +356,7 @@ class TestAsyncPhoneNumbers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         phone_number = await response.parse()
-        assert_matches_type(PhoneNumberListResponse, phone_number, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[ExternalConnectionPhoneNumber], phone_number, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -367,7 +368,7 @@ class TestAsyncPhoneNumbers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             phone_number = await response.parse()
-            assert_matches_type(PhoneNumberListResponse, phone_number, path=["response"])
+            assert_matches_type(AsyncDefaultPagination[ExternalConnectionPhoneNumber], phone_number, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
