@@ -19,6 +19,10 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._base_client import make_request_options
+from ..types.advanced_order_list_response import AdvancedOrderListResponse
+from ..types.advanced_order_create_response import AdvancedOrderCreateResponse
+from ..types.advanced_order_retrieve_response import AdvancedOrderRetrieveResponse
+from ..types.advanced_order_update_requirement_group_response import AdvancedOrderUpdateRequirementGroupResponse
 
 __all__ = ["AdvancedOrdersResource", "AsyncAdvancedOrdersResource"]
 
@@ -60,7 +64,7 @@ class AdvancedOrdersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> AdvancedOrderCreateResponse:
         """
         Create Advanced Order
 
@@ -93,7 +97,7 @@ class AdvancedOrdersResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=object,
+            cast_to=AdvancedOrderCreateResponse,
         )
 
     def retrieve(
@@ -106,7 +110,7 @@ class AdvancedOrdersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> AdvancedOrderRetrieveResponse:
         """
         Get Advanced Order
 
@@ -126,7 +130,7 @@ class AdvancedOrdersResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=object,
+            cast_to=AdvancedOrderRetrieveResponse,
         )
 
     def list(
@@ -138,14 +142,14 @@ class AdvancedOrdersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> AdvancedOrderListResponse:
         """List Advanced Orders"""
         return self._get(
             "/advanced_orders",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=object,
+            cast_to=AdvancedOrderListResponse,
         )
 
     def update_requirement_group(
@@ -166,7 +170,7 @@ class AdvancedOrdersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> AdvancedOrderUpdateRequirementGroupResponse:
         """
         Update Advanced Order
 
@@ -201,7 +205,7 @@ class AdvancedOrdersResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=object,
+            cast_to=AdvancedOrderUpdateRequirementGroupResponse,
         )
 
 
@@ -242,7 +246,7 @@ class AsyncAdvancedOrdersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> AdvancedOrderCreateResponse:
         """
         Create Advanced Order
 
@@ -275,7 +279,7 @@ class AsyncAdvancedOrdersResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=object,
+            cast_to=AdvancedOrderCreateResponse,
         )
 
     async def retrieve(
@@ -288,7 +292,7 @@ class AsyncAdvancedOrdersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> AdvancedOrderRetrieveResponse:
         """
         Get Advanced Order
 
@@ -308,7 +312,7 @@ class AsyncAdvancedOrdersResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=object,
+            cast_to=AdvancedOrderRetrieveResponse,
         )
 
     async def list(
@@ -320,14 +324,14 @@ class AsyncAdvancedOrdersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> AdvancedOrderListResponse:
         """List Advanced Orders"""
         return await self._get(
             "/advanced_orders",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=object,
+            cast_to=AdvancedOrderListResponse,
         )
 
     async def update_requirement_group(
@@ -348,7 +352,7 @@ class AsyncAdvancedOrdersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> AdvancedOrderUpdateRequirementGroupResponse:
         """
         Update Advanced Order
 
@@ -383,7 +387,7 @@ class AsyncAdvancedOrdersResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=object,
+            cast_to=AdvancedOrderUpdateRequirementGroupResponse,
         )
 
 
