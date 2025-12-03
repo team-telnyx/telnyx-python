@@ -15,6 +15,7 @@ __all__ = [
     "FilterCidrBlockCidrBlockPatternFilter",
     "FilterCreatedAt",
     "FilterCreatedAtDateRangeFilter",
+    "Page",
 ]
 
 
@@ -27,9 +28,11 @@ class AccessIPRangeListParams(TypedDict, total=False):
     Supports complex bracket operations for dynamic filtering.
     """
 
-    page_number: Annotated[int, PropertyInfo(alias="page[number]")]
+    page: Page
+    """Consolidated page parameter (deepObject style).
 
-    page_size: Annotated[int, PropertyInfo(alias="page[size]")]
+    Originally: page[number], page[size]
+    """
 
 
 class FilterCidrBlockCidrBlockPatternFilter(TypedDict, total=False):
@@ -72,3 +75,9 @@ class FilterTyped(TypedDict, total=False):
 
 
 Filter: TypeAlias = Union[FilterTyped, Dict[str, object]]
+
+
+class Page(TypedDict, total=False):
+    number: int
+
+    size: int

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union
+from typing import Union
 
 import httpx
 
@@ -16,10 +16,9 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ....pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
-from ...._base_client import AsyncPaginator, make_request_options
+from ...._base_client import make_request_options
 from ....types.ai.conversations import insight_list_params, insight_create_params, insight_update_params
-from ....types.ai.conversations.insight_template import InsightTemplate
+from ....types.ai.conversations.insight_list_response import InsightListResponse
 from ....types.ai.conversations.insight_template_detail import InsightTemplateDetail
 
 __all__ = ["InsightsResource", "AsyncInsightsResource"]
@@ -50,7 +49,7 @@ class InsightsResource(SyncAPIResource):
         *,
         instructions: str,
         name: str,
-        json_schema: Union[str, Dict[str, object]] | Omit = omit,
+        json_schema: Union[str, object] | Omit = omit,
         webhook: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -130,7 +129,7 @@ class InsightsResource(SyncAPIResource):
         insight_id: str,
         *,
         instructions: str | Omit = omit,
-        json_schema: Union[str, Dict[str, object]] | Omit = omit,
+        json_schema: Union[str, object] | Omit = omit,
         name: str | Omit = omit,
         webhook: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -176,19 +175,22 @@ class InsightsResource(SyncAPIResource):
     def list(
         self,
         *,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: insight_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[InsightTemplate]:
-        """
-        Get all insights
+    ) -> InsightListResponse:
+        """Get all insights
 
         Args:
+          page: Consolidated page parameter (deepObject style).
+
+        Originally: page[number],
+              page[size]
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -197,23 +199,16 @@ class InsightsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return self._get(
             "/ai/conversations/insights",
-            page=SyncDefaultFlatPagination[InsightTemplate],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "page_number": page_number,
-                        "page_size": page_size,
-                    },
-                    insight_list_params.InsightListParams,
-                ),
+                query=maybe_transform({"page": page}, insight_list_params.InsightListParams),
             ),
-            model=InsightTemplate,
+            cast_to=InsightListResponse,
         )
 
     def delete(
@@ -278,7 +273,7 @@ class AsyncInsightsResource(AsyncAPIResource):
         *,
         instructions: str,
         name: str,
-        json_schema: Union[str, Dict[str, object]] | Omit = omit,
+        json_schema: Union[str, object] | Omit = omit,
         webhook: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -358,7 +353,7 @@ class AsyncInsightsResource(AsyncAPIResource):
         insight_id: str,
         *,
         instructions: str | Omit = omit,
-        json_schema: Union[str, Dict[str, object]] | Omit = omit,
+        json_schema: Union[str, object] | Omit = omit,
         name: str | Omit = omit,
         webhook: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -401,22 +396,25 @@ class AsyncInsightsResource(AsyncAPIResource):
             cast_to=InsightTemplateDetail,
         )
 
-    def list(
+    async def list(
         self,
         *,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: insight_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[InsightTemplate, AsyncDefaultFlatPagination[InsightTemplate]]:
-        """
-        Get all insights
+    ) -> InsightListResponse:
+        """Get all insights
 
         Args:
+          page: Consolidated page parameter (deepObject style).
+
+        Originally: page[number],
+              page[size]
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -425,23 +423,16 @@ class AsyncInsightsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return await self._get(
             "/ai/conversations/insights",
-            page=AsyncDefaultFlatPagination[InsightTemplate],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "page_number": page_number,
-                        "page_size": page_size,
-                    },
-                    insight_list_params.InsightListParams,
-                ),
+                query=await async_maybe_transform({"page": page}, insight_list_params.InsightListParams),
             ),
-            model=InsightTemplate,
+            cast_to=InsightListResponse,
         )
 
     async def delete(

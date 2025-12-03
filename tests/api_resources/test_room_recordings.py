@@ -15,7 +15,6 @@ from telnyx.types import (
     RoomRecordingDeleteBulkResponse,
 )
 from telnyx._utils import parse_date
-from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -69,7 +68,7 @@ class TestRoomRecordings:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         room_recording = client.room_recordings.list()
-        assert_matches_type(SyncDefaultPagination[RoomRecordingListResponse], room_recording, path=["response"])
+        assert_matches_type(RoomRecordingListResponse, room_recording, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -98,7 +97,7 @@ class TestRoomRecordings:
                 "size": 1,
             },
         )
-        assert_matches_type(SyncDefaultPagination[RoomRecordingListResponse], room_recording, path=["response"])
+        assert_matches_type(RoomRecordingListResponse, room_recording, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -108,7 +107,7 @@ class TestRoomRecordings:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         room_recording = response.parse()
-        assert_matches_type(SyncDefaultPagination[RoomRecordingListResponse], room_recording, path=["response"])
+        assert_matches_type(RoomRecordingListResponse, room_recording, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -118,7 +117,7 @@ class TestRoomRecordings:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             room_recording = response.parse()
-            assert_matches_type(SyncDefaultPagination[RoomRecordingListResponse], room_recording, path=["response"])
+            assert_matches_type(RoomRecordingListResponse, room_recording, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -273,7 +272,7 @@ class TestAsyncRoomRecordings:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         room_recording = await async_client.room_recordings.list()
-        assert_matches_type(AsyncDefaultPagination[RoomRecordingListResponse], room_recording, path=["response"])
+        assert_matches_type(RoomRecordingListResponse, room_recording, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -302,7 +301,7 @@ class TestAsyncRoomRecordings:
                 "size": 1,
             },
         )
-        assert_matches_type(AsyncDefaultPagination[RoomRecordingListResponse], room_recording, path=["response"])
+        assert_matches_type(RoomRecordingListResponse, room_recording, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -312,7 +311,7 @@ class TestAsyncRoomRecordings:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         room_recording = await response.parse()
-        assert_matches_type(AsyncDefaultPagination[RoomRecordingListResponse], room_recording, path=["response"])
+        assert_matches_type(RoomRecordingListResponse, room_recording, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -322,7 +321,7 @@ class TestAsyncRoomRecordings:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             room_recording = await response.parse()
-            assert_matches_type(AsyncDefaultPagination[RoomRecordingListResponse], room_recording, path=["response"])
+            assert_matches_type(RoomRecordingListResponse, room_recording, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

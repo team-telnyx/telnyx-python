@@ -19,9 +19,8 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
-from .._base_client import AsyncPaginator, make_request_options
-from ..types.telephony_credential import TelephonyCredential
+from .._base_client import make_request_options
+from ..types.telephony_credential_list_response import TelephonyCredentialListResponse
 from ..types.telephony_credential_create_response import TelephonyCredentialCreateResponse
 from ..types.telephony_credential_delete_response import TelephonyCredentialDeleteResponse
 from ..types.telephony_credential_update_response import TelephonyCredentialUpdateResponse
@@ -195,7 +194,7 @@ class TelephonyCredentialsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[TelephonyCredential]:
+    ) -> TelephonyCredentialListResponse:
         """
         List all On-demand Credentials.
 
@@ -214,9 +213,8 @@ class TelephonyCredentialsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return self._get(
             "/telephony_credentials",
-            page=SyncDefaultPagination[TelephonyCredential],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -230,7 +228,7 @@ class TelephonyCredentialsResource(SyncAPIResource):
                     telephony_credential_list_params.TelephonyCredentialListParams,
                 ),
             ),
-            model=TelephonyCredential,
+            cast_to=TelephonyCredentialListResponse,
         )
 
     def delete(
@@ -455,7 +453,7 @@ class AsyncTelephonyCredentialsResource(AsyncAPIResource):
             cast_to=TelephonyCredentialUpdateResponse,
         )
 
-    def list(
+    async def list(
         self,
         *,
         filter: telephony_credential_list_params.Filter | Omit = omit,
@@ -466,7 +464,7 @@ class AsyncTelephonyCredentialsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[TelephonyCredential, AsyncDefaultPagination[TelephonyCredential]]:
+    ) -> TelephonyCredentialListResponse:
         """
         List all On-demand Credentials.
 
@@ -485,15 +483,14 @@ class AsyncTelephonyCredentialsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return await self._get(
             "/telephony_credentials",
-            page=AsyncDefaultPagination[TelephonyCredential],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
                         "filter": filter,
                         "page": page,
@@ -501,7 +498,7 @@ class AsyncTelephonyCredentialsResource(AsyncAPIResource):
                     telephony_credential_list_params.TelephonyCredentialListParams,
                 ),
             ),
-            model=TelephonyCredential,
+            cast_to=TelephonyCredentialListResponse,
         )
 
     async def delete(

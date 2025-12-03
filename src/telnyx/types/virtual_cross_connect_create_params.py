@@ -8,6 +8,34 @@ __all__ = ["VirtualCrossConnectCreateParams"]
 
 
 class VirtualCrossConnectCreateParams(TypedDict, total=False):
+    bgp_asn: Required[float]
+    """The Border Gateway Protocol (BGP) Autonomous System Number (ASN).
+
+    If null, value will be assigned by Telnyx.
+    """
+
+    cloud_provider: Required[Literal["aws", "azure", "gce"]]
+    """
+    The Virtual Private Cloud with which you would like to establish a cross
+    connect.
+    """
+
+    cloud_provider_region: Required[str]
+    """
+    The region where your Virtual Private Cloud hosts are located.<br /><br />The
+    available regions can be found using the /virtual_cross_connect_regions
+    endpoint.
+    """
+
+    network_id: Required[str]
+    """The id of the network associated with the interface."""
+
+    primary_cloud_account_id: Required[str]
+    """The identifier for your Virtual Private Cloud.
+
+    The number will be different based upon your Cloud provider.
+    """
+
     region_code: Required[str]
     """The region the interface should be deployed to."""
 
@@ -18,39 +46,11 @@ class VirtualCrossConnectCreateParams(TypedDict, total=False):
     /virtual_cross_connect_regions endpoint.
     """
 
-    bgp_asn: float
-    """The Border Gateway Protocol (BGP) Autonomous System Number (ASN).
-
-    If null, value will be assigned by Telnyx.
-    """
-
-    cloud_provider: Literal["aws", "azure", "gce"]
-    """
-    The Virtual Private Cloud with which you would like to establish a cross
-    connect.
-    """
-
-    cloud_provider_region: str
-    """
-    The region where your Virtual Private Cloud hosts are located.<br /><br />The
-    available regions can be found using the /virtual_cross_connect_regions
-    endpoint.
-    """
-
     name: str
     """A user specified name for the interface."""
 
-    network_id: str
-    """The id of the network associated with the interface."""
-
     primary_bgp_key: str
     """The authentication key for BGP peer configuration."""
-
-    primary_cloud_account_id: str
-    """The identifier for your Virtual Private Cloud.
-
-    The number will be different based upon your Cloud provider.
-    """
 
     primary_cloud_ip: str
     """

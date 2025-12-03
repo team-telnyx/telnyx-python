@@ -2,14 +2,22 @@
 
 from __future__ import annotations
 
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import TypedDict
 
-from ..._utils import PropertyInfo
-
-__all__ = ["MdrUsageReportListParams"]
+__all__ = ["MdrUsageReportListParams", "Page"]
 
 
 class MdrUsageReportListParams(TypedDict, total=False):
-    page_number: Annotated[int, PropertyInfo(alias="page[number]")]
+    page: Page
+    """Consolidated page parameter (deepObject style).
 
-    page_size: Annotated[int, PropertyInfo(alias="page[size]")]
+    Originally: page[number], page[size]
+    """
+
+
+class Page(TypedDict, total=False):
+    number: int
+    """Page number"""
+
+    size: int
+    """Size of the page"""

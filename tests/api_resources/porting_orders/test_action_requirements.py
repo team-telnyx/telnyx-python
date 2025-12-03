@@ -9,7 +9,6 @@ import pytest
 
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
-from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
 from telnyx.types.porting_orders import (
     ActionRequirementListResponse,
     ActionRequirementInitiateResponse,
@@ -27,7 +26,7 @@ class TestActionRequirements:
         action_requirement = client.porting_orders.action_requirements.list(
             porting_order_id="porting_order_id",
         )
-        assert_matches_type(SyncDefaultPagination[ActionRequirementListResponse], action_requirement, path=["response"])
+        assert_matches_type(ActionRequirementListResponse, action_requirement, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -46,7 +45,7 @@ class TestActionRequirements:
             },
             sort={"value": "created_at"},
         )
-        assert_matches_type(SyncDefaultPagination[ActionRequirementListResponse], action_requirement, path=["response"])
+        assert_matches_type(ActionRequirementListResponse, action_requirement, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -58,7 +57,7 @@ class TestActionRequirements:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         action_requirement = response.parse()
-        assert_matches_type(SyncDefaultPagination[ActionRequirementListResponse], action_requirement, path=["response"])
+        assert_matches_type(ActionRequirementListResponse, action_requirement, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -70,9 +69,7 @@ class TestActionRequirements:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             action_requirement = response.parse()
-            assert_matches_type(
-                SyncDefaultPagination[ActionRequirementListResponse], action_requirement, path=["response"]
-            )
+            assert_matches_type(ActionRequirementListResponse, action_requirement, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -168,9 +165,7 @@ class TestAsyncActionRequirements:
         action_requirement = await async_client.porting_orders.action_requirements.list(
             porting_order_id="porting_order_id",
         )
-        assert_matches_type(
-            AsyncDefaultPagination[ActionRequirementListResponse], action_requirement, path=["response"]
-        )
+        assert_matches_type(ActionRequirementListResponse, action_requirement, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -189,9 +184,7 @@ class TestAsyncActionRequirements:
             },
             sort={"value": "created_at"},
         )
-        assert_matches_type(
-            AsyncDefaultPagination[ActionRequirementListResponse], action_requirement, path=["response"]
-        )
+        assert_matches_type(ActionRequirementListResponse, action_requirement, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -203,9 +196,7 @@ class TestAsyncActionRequirements:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         action_requirement = await response.parse()
-        assert_matches_type(
-            AsyncDefaultPagination[ActionRequirementListResponse], action_requirement, path=["response"]
-        )
+        assert_matches_type(ActionRequirementListResponse, action_requirement, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -217,9 +208,7 @@ class TestAsyncActionRequirements:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             action_requirement = await response.parse()
-            assert_matches_type(
-                AsyncDefaultPagination[ActionRequirementListResponse], action_requirement, path=["response"]
-            )
+            assert_matches_type(ActionRequirementListResponse, action_requirement, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

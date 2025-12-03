@@ -18,9 +18,8 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
-from .._base_client import AsyncPaginator, make_request_options
-from ..types.oauth_client import OAuthClient
+from .._base_client import make_request_options
+from ..types.oauth_client_list_response import OAuthClientListResponse
 from ..types.oauth_client_create_response import OAuthClientCreateResponse
 from ..types.oauth_client_update_response import OAuthClientUpdateResponse
 from ..types.oauth_client_retrieve_response import OAuthClientRetrieveResponse
@@ -240,7 +239,7 @@ class OAuthClientsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[OAuthClient]:
+    ) -> OAuthClientListResponse:
         """
         Retrieve a paginated list of OAuth clients for the authenticated user
 
@@ -269,9 +268,8 @@ class OAuthClientsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return self._get(
             "/oauth_clients",
-            page=SyncDefaultFlatPagination[OAuthClient],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -291,7 +289,7 @@ class OAuthClientsResource(SyncAPIResource):
                     oauth_client_list_params.OAuthClientListParams,
                 ),
             ),
-            model=OAuthClient,
+            cast_to=OAuthClientListResponse,
         )
 
     def delete(
@@ -523,7 +521,7 @@ class AsyncOAuthClientsResource(AsyncAPIResource):
             cast_to=OAuthClientUpdateResponse,
         )
 
-    def list(
+    async def list(
         self,
         *,
         filter_allowed_grant_types_contains: Literal["client_credentials", "authorization_code", "refresh_token"]
@@ -541,7 +539,7 @@ class AsyncOAuthClientsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[OAuthClient, AsyncDefaultFlatPagination[OAuthClient]]:
+    ) -> OAuthClientListResponse:
         """
         Retrieve a paginated list of OAuth clients for the authenticated user
 
@@ -570,15 +568,14 @@ class AsyncOAuthClientsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return await self._get(
             "/oauth_clients",
-            page=AsyncDefaultFlatPagination[OAuthClient],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
                         "filter_allowed_grant_types_contains": filter_allowed_grant_types_contains,
                         "filter_client_id": filter_client_id,
@@ -592,7 +589,7 @@ class AsyncOAuthClientsResource(AsyncAPIResource):
                     oauth_client_list_params.OAuthClientListParams,
                 ),
             ),
-            model=OAuthClient,
+            cast_to=OAuthClientListResponse,
         )
 
     async def delete(

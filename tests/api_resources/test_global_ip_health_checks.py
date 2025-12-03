@@ -15,7 +15,6 @@ from telnyx.types import (
     GlobalIPHealthCheckDeleteResponse,
     GlobalIPHealthCheckRetrieveResponse,
 )
-from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -110,9 +109,7 @@ class TestGlobalIPHealthChecks:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         global_ip_health_check = client.global_ip_health_checks.list()
-        assert_matches_type(
-            SyncDefaultPagination[GlobalIPHealthCheckListResponse], global_ip_health_check, path=["response"]
-        )
+        assert_matches_type(GlobalIPHealthCheckListResponse, global_ip_health_check, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -123,9 +120,7 @@ class TestGlobalIPHealthChecks:
                 "size": 1,
             },
         )
-        assert_matches_type(
-            SyncDefaultPagination[GlobalIPHealthCheckListResponse], global_ip_health_check, path=["response"]
-        )
+        assert_matches_type(GlobalIPHealthCheckListResponse, global_ip_health_check, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -135,9 +130,7 @@ class TestGlobalIPHealthChecks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         global_ip_health_check = response.parse()
-        assert_matches_type(
-            SyncDefaultPagination[GlobalIPHealthCheckListResponse], global_ip_health_check, path=["response"]
-        )
+        assert_matches_type(GlobalIPHealthCheckListResponse, global_ip_health_check, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -147,9 +140,7 @@ class TestGlobalIPHealthChecks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             global_ip_health_check = response.parse()
-            assert_matches_type(
-                SyncDefaultPagination[GlobalIPHealthCheckListResponse], global_ip_health_check, path=["response"]
-            )
+            assert_matches_type(GlobalIPHealthCheckListResponse, global_ip_health_check, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -288,9 +279,7 @@ class TestAsyncGlobalIPHealthChecks:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         global_ip_health_check = await async_client.global_ip_health_checks.list()
-        assert_matches_type(
-            AsyncDefaultPagination[GlobalIPHealthCheckListResponse], global_ip_health_check, path=["response"]
-        )
+        assert_matches_type(GlobalIPHealthCheckListResponse, global_ip_health_check, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -301,9 +290,7 @@ class TestAsyncGlobalIPHealthChecks:
                 "size": 1,
             },
         )
-        assert_matches_type(
-            AsyncDefaultPagination[GlobalIPHealthCheckListResponse], global_ip_health_check, path=["response"]
-        )
+        assert_matches_type(GlobalIPHealthCheckListResponse, global_ip_health_check, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -313,9 +300,7 @@ class TestAsyncGlobalIPHealthChecks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         global_ip_health_check = await response.parse()
-        assert_matches_type(
-            AsyncDefaultPagination[GlobalIPHealthCheckListResponse], global_ip_health_check, path=["response"]
-        )
+        assert_matches_type(GlobalIPHealthCheckListResponse, global_ip_health_check, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -325,9 +310,7 @@ class TestAsyncGlobalIPHealthChecks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             global_ip_health_check = await response.parse()
-            assert_matches_type(
-                AsyncDefaultPagination[GlobalIPHealthCheckListResponse], global_ip_health_check, path=["response"]
-            )
+            assert_matches_type(GlobalIPHealthCheckListResponse, global_ip_health_check, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

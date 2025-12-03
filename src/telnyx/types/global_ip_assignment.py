@@ -2,20 +2,30 @@
 
 from typing import Optional
 
-from .._models import BaseModel
+from .record import Record
+from .interface_status import InterfaceStatus
 
 __all__ = ["GlobalIPAssignment"]
 
 
-class GlobalIPAssignment(BaseModel):
-    id: Optional[str] = None
-    """Identifies the resource."""
+class GlobalIPAssignment(Record):
+    global_ip_id: Optional[str] = None
+    """Global IP ID."""
 
-    created_at: Optional[str] = None
-    """ISO 8601 formatted date-time indicating when the resource was created."""
+    is_announced: Optional[bool] = None
+    """Status of BGP announcement."""
 
-    record_type: Optional[str] = None
+    is_connected: Optional[bool] = None
+    """Wireguard peer is connected."""
+
+    is_in_maintenance: Optional[bool] = None
+    """Enable/disable BGP announcement."""
+
+    record_type: Optional[str] = None  # type: ignore
     """Identifies the type of the resource."""
 
-    updated_at: Optional[str] = None
-    """ISO 8601 formatted date-time indicating when the resource was updated."""
+    status: Optional[InterfaceStatus] = None
+    """The current status of the interface deployment."""
+
+    wireguard_peer_id: Optional[str] = None
+    """Wireguard peer ID."""

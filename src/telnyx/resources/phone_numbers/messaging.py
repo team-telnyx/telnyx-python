@@ -14,12 +14,11 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...pagination import SyncDefaultPagination, AsyncDefaultPagination
-from ..._base_client import AsyncPaginator, make_request_options
+from ..._base_client import make_request_options
 from ...types.phone_numbers import messaging_list_params, messaging_update_params
+from ...types.phone_numbers.messaging_list_response import MessagingListResponse
 from ...types.phone_numbers.messaging_update_response import MessagingUpdateResponse
 from ...types.phone_numbers.messaging_retrieve_response import MessagingRetrieveResponse
-from ...types.shared.phone_number_with_messaging_settings import PhoneNumberWithMessagingSettings
 
 __all__ = ["MessagingResource", "AsyncMessagingResource"]
 
@@ -143,7 +142,7 @@ class MessagingResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[PhoneNumberWithMessagingSettings]:
+    ) -> MessagingListResponse:
         """
         List phone numbers with messaging settings
 
@@ -159,9 +158,8 @@ class MessagingResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return self._get(
             "/phone_numbers/messaging",
-            page=SyncDefaultPagination[PhoneNumberWithMessagingSettings],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -169,7 +167,7 @@ class MessagingResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform({"page": page}, messaging_list_params.MessagingListParams),
             ),
-            model=PhoneNumberWithMessagingSettings,
+            cast_to=MessagingListResponse,
         )
 
 
@@ -282,7 +280,7 @@ class AsyncMessagingResource(AsyncAPIResource):
             cast_to=MessagingUpdateResponse,
         )
 
-    def list(
+    async def list(
         self,
         *,
         page: messaging_list_params.Page | Omit = omit,
@@ -292,7 +290,7 @@ class AsyncMessagingResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[PhoneNumberWithMessagingSettings, AsyncDefaultPagination[PhoneNumberWithMessagingSettings]]:
+    ) -> MessagingListResponse:
         """
         List phone numbers with messaging settings
 
@@ -308,17 +306,16 @@ class AsyncMessagingResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return await self._get(
             "/phone_numbers/messaging",
-            page=AsyncDefaultPagination[PhoneNumberWithMessagingSettings],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"page": page}, messaging_list_params.MessagingListParams),
+                query=await async_maybe_transform({"page": page}, messaging_list_params.MessagingListParams),
             ),
-            model=PhoneNumberWithMessagingSettings,
+            cast_to=MessagingListResponse,
         )
 
 

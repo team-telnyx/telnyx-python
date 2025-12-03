@@ -27,16 +27,15 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
-from .._base_client import AsyncPaginator, make_request_options
+from .._base_client import make_request_options
 from ..types.dtmf_type import DtmfType
 from ..types.encrypted_media import EncryptedMedia
-from ..types.fqdn_connection import FqdnConnection
 from ..types.inbound_fqdn_param import InboundFqdnParam
 from ..types.transport_protocol import TransportProtocol
 from ..types.anchorsite_override import AnchorsiteOverride
 from ..types.outbound_fqdn_param import OutboundFqdnParam
 from ..types.webhook_api_version import WebhookAPIVersion
+from ..types.fqdn_connection_list_response import FqdnConnectionListResponse
 from ..types.connection_rtcp_settings_param import ConnectionRtcpSettingsParam
 from ..types.fqdn_connection_create_response import FqdnConnectionCreateResponse
 from ..types.fqdn_connection_delete_response import FqdnConnectionDeleteResponse
@@ -361,7 +360,7 @@ class FqdnConnectionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[FqdnConnection]:
+    ) -> FqdnConnectionListResponse:
         """
         Returns a list of your FQDN connections.
 
@@ -397,9 +396,8 @@ class FqdnConnectionsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return self._get(
             "/fqdn_connections",
-            page=SyncDefaultPagination[FqdnConnection],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -414,7 +412,7 @@ class FqdnConnectionsResource(SyncAPIResource):
                     fqdn_connection_list_params.FqdnConnectionListParams,
                 ),
             ),
-            model=FqdnConnection,
+            cast_to=FqdnConnectionListResponse,
         )
 
     def delete(
@@ -754,7 +752,7 @@ class AsyncFqdnConnectionsResource(AsyncAPIResource):
             cast_to=FqdnConnectionUpdateResponse,
         )
 
-    def list(
+    async def list(
         self,
         *,
         filter: fqdn_connection_list_params.Filter | Omit = omit,
@@ -766,7 +764,7 @@ class AsyncFqdnConnectionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[FqdnConnection, AsyncDefaultPagination[FqdnConnection]]:
+    ) -> FqdnConnectionListResponse:
         """
         Returns a list of your FQDN connections.
 
@@ -802,15 +800,14 @@ class AsyncFqdnConnectionsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return await self._get(
             "/fqdn_connections",
-            page=AsyncDefaultPagination[FqdnConnection],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
                         "filter": filter,
                         "page": page,
@@ -819,7 +816,7 @@ class AsyncFqdnConnectionsResource(AsyncAPIResource):
                     fqdn_connection_list_params.FqdnConnectionListParams,
                 ),
             ),
-            model=FqdnConnection,
+            cast_to=FqdnConnectionListResponse,
         )
 
     async def delete(

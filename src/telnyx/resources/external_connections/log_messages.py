@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform
+from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -14,8 +14,7 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...pagination import SyncDefaultPaginationForLogMessages, AsyncDefaultPaginationForLogMessages
-from ..._base_client import AsyncPaginator, make_request_options
+from ..._base_client import make_request_options
 from ...types.external_connections import log_message_list_params
 from ...types.external_connections.log_message_list_response import LogMessageListResponse
 from ...types.external_connections.log_message_dismiss_response import LogMessageDismissResponse
@@ -88,7 +87,7 @@ class LogMessagesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPaginationForLogMessages[LogMessageListResponse]:
+    ) -> LogMessageListResponse:
         """
         Retrieve a list of log messages for all external connections associated with
         your account.
@@ -108,9 +107,8 @@ class LogMessagesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return self._get(
             "/external_connections/log_messages",
-            page=SyncDefaultPaginationForLogMessages[LogMessageListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -124,7 +122,7 @@ class LogMessagesResource(SyncAPIResource):
                     log_message_list_params.LogMessageListParams,
                 ),
             ),
-            model=LogMessageListResponse,
+            cast_to=LogMessageListResponse,
         )
 
     def dismiss(
@@ -214,7 +212,7 @@ class AsyncLogMessagesResource(AsyncAPIResource):
             cast_to=LogMessageRetrieveResponse,
         )
 
-    def list(
+    async def list(
         self,
         *,
         filter: log_message_list_params.Filter | Omit = omit,
@@ -225,7 +223,7 @@ class AsyncLogMessagesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[LogMessageListResponse, AsyncDefaultPaginationForLogMessages[LogMessageListResponse]]:
+    ) -> LogMessageListResponse:
         """
         Retrieve a list of log messages for all external connections associated with
         your account.
@@ -245,15 +243,14 @@ class AsyncLogMessagesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return await self._get(
             "/external_connections/log_messages",
-            page=AsyncDefaultPaginationForLogMessages[LogMessageListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
                         "filter": filter,
                         "page": page,
@@ -261,7 +258,7 @@ class AsyncLogMessagesResource(AsyncAPIResource):
                     log_message_list_params.LogMessageListParams,
                 ),
             ),
-            model=LogMessageListResponse,
+            cast_to=LogMessageListResponse,
         )
 
     async def dismiss(

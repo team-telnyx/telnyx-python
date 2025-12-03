@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import List, Optional
 from typing_extensions import Literal
 
 from pydantic import Field as FieldInfo
@@ -9,10 +9,10 @@ from .._models import BaseModel
 from .entity_type import EntityType
 from .brand_identity_status import BrandIdentityStatus
 
-__all__ = ["BrandListResponse"]
+__all__ = ["BrandListResponse", "Record"]
 
 
-class BrandListResponse(BaseModel):
+class Record(BaseModel):
     assigned_campaings_count: Optional[int] = FieldInfo(alias="assignedCampaingsCount", default=None)
     """Number of campaigns associated with the brand"""
 
@@ -51,3 +51,11 @@ class BrandListResponse(BaseModel):
 
     website: Optional[str] = None
     """Brand website URL."""
+
+
+class BrandListResponse(BaseModel):
+    page: Optional[int] = None
+
+    records: Optional[List[Record]] = None
+
+    total_records: Optional[int] = FieldInfo(alias="totalRecords", default=None)

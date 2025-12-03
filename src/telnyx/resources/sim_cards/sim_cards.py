@@ -32,14 +32,8 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...pagination import (
-    SyncDefaultPagination,
-    AsyncDefaultPagination,
-    SyncDefaultFlatPagination,
-    AsyncDefaultFlatPagination,
-)
-from ..._base_client import AsyncPaginator, make_request_options
-from ...types.shared.simple_sim_card import SimpleSimCard
+from ..._base_client import make_request_options
+from ...types.sim_card_list_response import SimCardListResponse
 from ...types.sim_card_delete_response import SimCardDeleteResponse
 from ...types.sim_card_update_response import SimCardUpdateResponse
 from ...types.sim_card_retrieve_response import SimCardRetrieveResponse
@@ -129,7 +123,7 @@ class SimCardsResource(SyncAPIResource):
 
     def update(
         self,
-        sim_card_id: str,
+        id: str,
         *,
         authorized_imeis: Optional[SequenceNotStr[str]] | Omit = omit,
         data_limit: sim_card_update_params.DataLimit | Omit = omit,
@@ -164,10 +158,10 @@ class SimCardsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not sim_card_id:
-            raise ValueError(f"Expected a non-empty value for `sim_card_id` but received {sim_card_id!r}")
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._patch(
-            f"/sim_cards/{sim_card_id}",
+            f"/sim_cards/{id}",
             body=maybe_transform(
                 {
                     "authorized_imeis": authorized_imeis,
@@ -198,7 +192,7 @@ class SimCardsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[SimpleSimCard]:
+    ) -> SimCardListResponse:
         """
         Get all SIM cards belonging to the user that match the given filters.
 
@@ -225,9 +219,8 @@ class SimCardsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return self._get(
             "/sim_cards",
-            page=SyncDefaultPagination[SimpleSimCard],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -244,7 +237,7 @@ class SimCardsResource(SyncAPIResource):
                     sim_card_list_params.SimCardListParams,
                 ),
             ),
-            model=SimpleSimCard,
+            cast_to=SimCardListResponse,
         )
 
     def delete(
@@ -407,7 +400,7 @@ class SimCardsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[SimCardListWirelessConnectivityLogsResponse]:
+    ) -> SimCardListWirelessConnectivityLogsResponse:
         """
         This API allows listing a paginated collection of Wireless Connectivity Logs
         associated with a SIM Card, for troubleshooting purposes.
@@ -427,9 +420,8 @@ class SimCardsResource(SyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return self._get_api_list(
+        return self._get(
             f"/sim_cards/{id}/wireless_connectivity_logs",
-            page=SyncDefaultFlatPagination[SimCardListWirelessConnectivityLogsResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -443,7 +435,7 @@ class SimCardsResource(SyncAPIResource):
                     sim_card_list_wireless_connectivity_logs_params.SimCardListWirelessConnectivityLogsParams,
                 ),
             ),
-            model=SimCardListWirelessConnectivityLogsResponse,
+            cast_to=SimCardListWirelessConnectivityLogsResponse,
         )
 
 
@@ -524,7 +516,7 @@ class AsyncSimCardsResource(AsyncAPIResource):
 
     async def update(
         self,
-        sim_card_id: str,
+        id: str,
         *,
         authorized_imeis: Optional[SequenceNotStr[str]] | Omit = omit,
         data_limit: sim_card_update_params.DataLimit | Omit = omit,
@@ -559,10 +551,10 @@ class AsyncSimCardsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not sim_card_id:
-            raise ValueError(f"Expected a non-empty value for `sim_card_id` but received {sim_card_id!r}")
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._patch(
-            f"/sim_cards/{sim_card_id}",
+            f"/sim_cards/{id}",
             body=await async_maybe_transform(
                 {
                     "authorized_imeis": authorized_imeis,
@@ -579,7 +571,7 @@ class AsyncSimCardsResource(AsyncAPIResource):
             cast_to=SimCardUpdateResponse,
         )
 
-    def list(
+    async def list(
         self,
         *,
         filter: sim_card_list_params.Filter | Omit = omit,
@@ -593,7 +585,7 @@ class AsyncSimCardsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[SimpleSimCard, AsyncDefaultPagination[SimpleSimCard]]:
+    ) -> SimCardListResponse:
         """
         Get all SIM cards belonging to the user that match the given filters.
 
@@ -620,15 +612,14 @@ class AsyncSimCardsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return await self._get(
             "/sim_cards",
-            page=AsyncDefaultPagination[SimpleSimCard],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
                         "filter": filter,
                         "filter_sim_card_group_id": filter_sim_card_group_id,
@@ -639,7 +630,7 @@ class AsyncSimCardsResource(AsyncAPIResource):
                     sim_card_list_params.SimCardListParams,
                 ),
             ),
-            model=SimpleSimCard,
+            cast_to=SimCardListResponse,
         )
 
     async def delete(
@@ -792,7 +783,7 @@ class AsyncSimCardsResource(AsyncAPIResource):
             cast_to=SimCardGetPublicIPResponse,
         )
 
-    def list_wireless_connectivity_logs(
+    async def list_wireless_connectivity_logs(
         self,
         id: str,
         *,
@@ -804,10 +795,7 @@ class AsyncSimCardsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[
-        SimCardListWirelessConnectivityLogsResponse,
-        AsyncDefaultFlatPagination[SimCardListWirelessConnectivityLogsResponse],
-    ]:
+    ) -> SimCardListWirelessConnectivityLogsResponse:
         """
         This API allows listing a paginated collection of Wireless Connectivity Logs
         associated with a SIM Card, for troubleshooting purposes.
@@ -827,15 +815,14 @@ class AsyncSimCardsResource(AsyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return self._get_api_list(
+        return await self._get(
             f"/sim_cards/{id}/wireless_connectivity_logs",
-            page=AsyncDefaultFlatPagination[SimCardListWirelessConnectivityLogsResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
                         "page_number": page_number,
                         "page_size": page_size,
@@ -843,7 +830,7 @@ class AsyncSimCardsResource(AsyncAPIResource):
                     sim_card_list_wireless_connectivity_logs_params.SimCardListWirelessConnectivityLogsParams,
                 ),
             ),
-            model=SimCardListWirelessConnectivityLogsResponse,
+            cast_to=SimCardListWirelessConnectivityLogsResponse,
         )
 
 

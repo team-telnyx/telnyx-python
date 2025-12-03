@@ -10,11 +10,10 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types import (
-    NumberReservation,
+    NumberReservationListResponse,
     NumberReservationCreateResponse,
     NumberReservationRetrieveResponse,
 )
-from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -105,7 +104,7 @@ class TestNumberReservations:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         number_reservation = client.number_reservations.list()
-        assert_matches_type(SyncDefaultPagination[NumberReservation], number_reservation, path=["response"])
+        assert_matches_type(NumberReservationListResponse, number_reservation, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -125,7 +124,7 @@ class TestNumberReservations:
                 "size": 1,
             },
         )
-        assert_matches_type(SyncDefaultPagination[NumberReservation], number_reservation, path=["response"])
+        assert_matches_type(NumberReservationListResponse, number_reservation, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -135,7 +134,7 @@ class TestNumberReservations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         number_reservation = response.parse()
-        assert_matches_type(SyncDefaultPagination[NumberReservation], number_reservation, path=["response"])
+        assert_matches_type(NumberReservationListResponse, number_reservation, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -145,7 +144,7 @@ class TestNumberReservations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             number_reservation = response.parse()
-            assert_matches_type(SyncDefaultPagination[NumberReservation], number_reservation, path=["response"])
+            assert_matches_type(NumberReservationListResponse, number_reservation, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -238,7 +237,7 @@ class TestAsyncNumberReservations:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         number_reservation = await async_client.number_reservations.list()
-        assert_matches_type(AsyncDefaultPagination[NumberReservation], number_reservation, path=["response"])
+        assert_matches_type(NumberReservationListResponse, number_reservation, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -258,7 +257,7 @@ class TestAsyncNumberReservations:
                 "size": 1,
             },
         )
-        assert_matches_type(AsyncDefaultPagination[NumberReservation], number_reservation, path=["response"])
+        assert_matches_type(NumberReservationListResponse, number_reservation, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -268,7 +267,7 @@ class TestAsyncNumberReservations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         number_reservation = await response.parse()
-        assert_matches_type(AsyncDefaultPagination[NumberReservation], number_reservation, path=["response"])
+        assert_matches_type(NumberReservationListResponse, number_reservation, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -278,6 +277,6 @@ class TestAsyncNumberReservations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             number_reservation = await response.parse()
-            assert_matches_type(AsyncDefaultPagination[NumberReservation], number_reservation, path=["response"])
+            assert_matches_type(NumberReservationListResponse, number_reservation, path=["response"])
 
         assert cast(Any, response.is_closed) is True

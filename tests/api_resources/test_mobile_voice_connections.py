@@ -10,13 +10,12 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types import (
-    MobileVoiceConnection,
+    MobileVoiceConnectionListResponse,
     MobileVoiceConnectionCreateResponse,
     MobileVoiceConnectionDeleteResponse,
     MobileVoiceConnectionUpdateResponse,
     MobileVoiceConnectionRetrieveResponse,
 )
-from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -179,9 +178,7 @@ class TestMobileVoiceConnections:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         mobile_voice_connection = client.mobile_voice_connections.list()
-        assert_matches_type(
-            SyncDefaultFlatPagination[MobileVoiceConnection], mobile_voice_connection, path=["response"]
-        )
+        assert_matches_type(MobileVoiceConnectionListResponse, mobile_voice_connection, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -192,9 +189,7 @@ class TestMobileVoiceConnections:
             page_size=0,
             sort="sort",
         )
-        assert_matches_type(
-            SyncDefaultFlatPagination[MobileVoiceConnection], mobile_voice_connection, path=["response"]
-        )
+        assert_matches_type(MobileVoiceConnectionListResponse, mobile_voice_connection, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -204,9 +199,7 @@ class TestMobileVoiceConnections:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         mobile_voice_connection = response.parse()
-        assert_matches_type(
-            SyncDefaultFlatPagination[MobileVoiceConnection], mobile_voice_connection, path=["response"]
-        )
+        assert_matches_type(MobileVoiceConnectionListResponse, mobile_voice_connection, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -216,9 +209,7 @@ class TestMobileVoiceConnections:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             mobile_voice_connection = response.parse()
-            assert_matches_type(
-                SyncDefaultFlatPagination[MobileVoiceConnection], mobile_voice_connection, path=["response"]
-            )
+            assert_matches_type(MobileVoiceConnectionListResponse, mobile_voice_connection, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -425,9 +416,7 @@ class TestAsyncMobileVoiceConnections:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         mobile_voice_connection = await async_client.mobile_voice_connections.list()
-        assert_matches_type(
-            AsyncDefaultFlatPagination[MobileVoiceConnection], mobile_voice_connection, path=["response"]
-        )
+        assert_matches_type(MobileVoiceConnectionListResponse, mobile_voice_connection, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -438,9 +427,7 @@ class TestAsyncMobileVoiceConnections:
             page_size=0,
             sort="sort",
         )
-        assert_matches_type(
-            AsyncDefaultFlatPagination[MobileVoiceConnection], mobile_voice_connection, path=["response"]
-        )
+        assert_matches_type(MobileVoiceConnectionListResponse, mobile_voice_connection, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -450,9 +437,7 @@ class TestAsyncMobileVoiceConnections:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         mobile_voice_connection = await response.parse()
-        assert_matches_type(
-            AsyncDefaultFlatPagination[MobileVoiceConnection], mobile_voice_connection, path=["response"]
-        )
+        assert_matches_type(MobileVoiceConnectionListResponse, mobile_voice_connection, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -462,9 +447,7 @@ class TestAsyncMobileVoiceConnections:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             mobile_voice_connection = await response.parse()
-            assert_matches_type(
-                AsyncDefaultFlatPagination[MobileVoiceConnection], mobile_voice_connection, path=["response"]
-            )
+            assert_matches_type(MobileVoiceConnectionListResponse, mobile_voice_connection, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

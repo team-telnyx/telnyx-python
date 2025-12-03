@@ -13,14 +13,14 @@ from .retrieval_tool_param import RetrievalToolParam
 __all__ = [
     "AssistantParam",
     "Tool",
-    "ToolBookAppointment",
-    "ToolBookAppointmentBookAppointment",
-    "ToolCheckAvailability",
-    "ToolCheckAvailabilityCheckAvailability",
+    "ToolBookAppointmentTool",
+    "ToolBookAppointmentToolBookAppointment",
+    "ToolCheckAvailabilityTool",
+    "ToolCheckAvailabilityToolCheckAvailability",
 ]
 
 
-class ToolBookAppointmentBookAppointment(TypedDict, total=False):
+class ToolBookAppointmentToolBookAppointment(TypedDict, total=False):
     api_key_ref: Required[str]
     """Reference to an integration secret that contains your Cal.com API key.
 
@@ -50,13 +50,13 @@ class ToolBookAppointmentBookAppointment(TypedDict, total=False):
     """
 
 
-class ToolBookAppointment(TypedDict, total=False):
-    book_appointment: Required[ToolBookAppointmentBookAppointment]
+class ToolBookAppointmentTool(TypedDict, total=False):
+    book_appointment: Required[ToolBookAppointmentToolBookAppointment]
 
     type: Required[Literal["book_appointment"]]
 
 
-class ToolCheckAvailabilityCheckAvailability(TypedDict, total=False):
+class ToolCheckAvailabilityToolCheckAvailability(TypedDict, total=False):
     api_key_ref: Required[str]
     """Reference to an integration secret that contains your Cal.com API key.
 
@@ -72,14 +72,19 @@ class ToolCheckAvailabilityCheckAvailability(TypedDict, total=False):
     """
 
 
-class ToolCheckAvailability(TypedDict, total=False):
-    check_availability: Required[ToolCheckAvailabilityCheckAvailability]
+class ToolCheckAvailabilityTool(TypedDict, total=False):
+    check_availability: Required[ToolCheckAvailabilityToolCheckAvailability]
 
     type: Required[Literal["check_availability"]]
 
 
 Tool: TypeAlias = Union[
-    ToolBookAppointment, ToolCheckAvailability, WebhookToolParam, HangupToolParam, TransferToolParam, RetrievalToolParam
+    ToolBookAppointmentTool,
+    ToolCheckAvailabilityTool,
+    WebhookToolParam,
+    HangupToolParam,
+    TransferToolParam,
+    RetrievalToolParam,
 ]
 
 

@@ -2,14 +2,14 @@
 
 from __future__ import annotations
 
-from typing import List
-from typing_extensions import Literal
+from typing import List, Union
+from typing_extensions import Literal, overload
 
 import httpx
 
 from ..types import document_list_params, document_update_params, document_upload_params, document_upload_json_params
-from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._types import Body, Omit, Query, Headers, NotGiven, Base64FileInput, omit, not_given
+from .._utils import required_args, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -26,9 +26,8 @@ from .._response import (
     async_to_custom_raw_response_wrapper,
     async_to_custom_streamed_response_wrapper,
 )
-from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
-from .._base_client import AsyncPaginator, make_request_options
-from ..types.doc_service_document import DocServiceDocument
+from .._base_client import make_request_options
+from ..types.document_list_response import DocumentListResponse
 from ..types.document_delete_response import DocumentDeleteResponse
 from ..types.document_update_response import DocumentUpdateResponse
 from ..types.document_upload_response import DocumentUploadResponse
@@ -94,7 +93,7 @@ class DocumentsResource(SyncAPIResource):
 
     def update(
         self,
-        document_id: str,
+        id: str,
         *,
         customer_reference: str | Omit = omit,
         filename: str | Omit = omit,
@@ -121,10 +120,10 @@ class DocumentsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not document_id:
-            raise ValueError(f"Expected a non-empty value for `document_id` but received {document_id!r}")
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._patch(
-            f"/documents/{document_id}",
+            f"/documents/{id}",
             body=maybe_transform(
                 {
                     "customer_reference": customer_reference,
@@ -151,7 +150,7 @@ class DocumentsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[DocServiceDocument]:
+    ) -> DocumentListResponse:
         """
         List all documents ordered by created_at descending.
 
@@ -174,9 +173,8 @@ class DocumentsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return self._get(
             "/documents",
-            page=SyncDefaultPagination[DocServiceDocument],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -191,7 +189,7 @@ class DocumentsResource(SyncAPIResource):
                     document_list_params.DocumentListParams,
                 ),
             ),
-            model=DocServiceDocument,
+            cast_to=DocumentListResponse,
         )
 
     def delete(
@@ -254,7 +252,7 @@ class DocumentsResource(SyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        extra_headers = {"Accept": "application/octet-stream", **(extra_headers or {})}
+        extra_headers = {"Accept": "*", **(extra_headers or {})}
         return self._get(
             f"/documents/{id}/download",
             options=make_request_options(
@@ -297,10 +295,13 @@ class DocumentsResource(SyncAPIResource):
             cast_to=DocumentGenerateDownloadLinkResponse,
         )
 
+    @overload
     def upload(
         self,
         *,
-        document: document_upload_params.Document,
+        url: str,
+        customer_reference: str | Omit = omit,
+        filename: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -313,6 +314,13 @@ class DocumentsResource(SyncAPIResource):
         30 minutes or they will be automatically deleted.
 
         Args:
+          url: If the file is already hosted publicly, you can provide a URL and have the
+              documents service fetch it for you.
+
+          customer_reference: Optional reference string for customer tracking.
+
+          filename: The filename of the document.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -321,19 +329,82 @@ class DocumentsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @overload
+    def upload(
+        self,
+        *,
+        file: Union[str, Base64FileInput],
+        customer_reference: str | Omit = omit,
+        filename: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> DocumentUploadResponse:
+        """
+        Upload a document.<br /><br />Uploaded files must be linked to a service within
+        30 minutes or they will be automatically deleted.
+
+        Args:
+          file: The Base64 encoded contents of the file you are uploading.
+
+          customer_reference: A customer reference string for customer look ups.
+
+          filename: The filename of the document.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(["url"], ["file"])
+    def upload(
+        self,
+        *,
+        url: str | Omit = omit,
+        customer_reference: str | Omit = omit,
+        filename: str | Omit = omit,
+        file: Union[str, Base64FileInput] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> DocumentUploadResponse:
         return self._post(
             "/documents?content-type=multipart",
-            body=maybe_transform(document, document_upload_params.DocumentUploadParams),
+            body=maybe_transform(
+                {
+                    "url": url,
+                    "customer_reference": customer_reference,
+                    "filename": filename,
+                    "file": file,
+                },
+                document_upload_params.DocumentUploadParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=DocumentUploadResponse,
         )
 
+    @overload
     def upload_json(
         self,
         *,
-        document: document_upload_json_params.Document,
+        url: str,
+        customer_reference: str | Omit = omit,
+        filename: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -346,6 +417,13 @@ class DocumentsResource(SyncAPIResource):
         30 minutes or they will be automatically deleted.
 
         Args:
+          url: If the file is already hosted publicly, you can provide a URL and have the
+              documents service fetch it for you.
+
+          customer_reference: Optional reference string for customer tracking.
+
+          filename: The filename of the document.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -354,9 +432,69 @@ class DocumentsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @overload
+    def upload_json(
+        self,
+        *,
+        file: Union[str, Base64FileInput],
+        customer_reference: str | Omit = omit,
+        filename: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> DocumentUploadJsonResponse:
+        """
+        Upload a document.<br /><br />Uploaded files must be linked to a service within
+        30 minutes or they will be automatically deleted.
+
+        Args:
+          file: The Base64 encoded contents of the file you are uploading.
+
+          customer_reference: A customer reference string for customer look ups.
+
+          filename: The filename of the document.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(["url"], ["file"])
+    def upload_json(
+        self,
+        *,
+        url: str | Omit = omit,
+        customer_reference: str | Omit = omit,
+        filename: str | Omit = omit,
+        file: Union[str, Base64FileInput] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> DocumentUploadJsonResponse:
         return self._post(
             "/documents",
-            body=maybe_transform(document, document_upload_json_params.DocumentUploadJsonParams),
+            body=maybe_transform(
+                {
+                    "url": url,
+                    "customer_reference": customer_reference,
+                    "filename": filename,
+                    "file": file,
+                },
+                document_upload_json_params.DocumentUploadJsonParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -419,7 +557,7 @@ class AsyncDocumentsResource(AsyncAPIResource):
 
     async def update(
         self,
-        document_id: str,
+        id: str,
         *,
         customer_reference: str | Omit = omit,
         filename: str | Omit = omit,
@@ -446,10 +584,10 @@ class AsyncDocumentsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not document_id:
-            raise ValueError(f"Expected a non-empty value for `document_id` but received {document_id!r}")
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._patch(
-            f"/documents/{document_id}",
+            f"/documents/{id}",
             body=await async_maybe_transform(
                 {
                     "customer_reference": customer_reference,
@@ -463,7 +601,7 @@ class AsyncDocumentsResource(AsyncAPIResource):
             cast_to=DocumentUpdateResponse,
         )
 
-    def list(
+    async def list(
         self,
         *,
         filter: document_list_params.Filter | Omit = omit,
@@ -476,7 +614,7 @@ class AsyncDocumentsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[DocServiceDocument, AsyncDefaultPagination[DocServiceDocument]]:
+    ) -> DocumentListResponse:
         """
         List all documents ordered by created_at descending.
 
@@ -499,15 +637,14 @@ class AsyncDocumentsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return await self._get(
             "/documents",
-            page=AsyncDefaultPagination[DocServiceDocument],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
                         "filter": filter,
                         "page": page,
@@ -516,7 +653,7 @@ class AsyncDocumentsResource(AsyncAPIResource):
                     document_list_params.DocumentListParams,
                 ),
             ),
-            model=DocServiceDocument,
+            cast_to=DocumentListResponse,
         )
 
     async def delete(
@@ -579,7 +716,7 @@ class AsyncDocumentsResource(AsyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        extra_headers = {"Accept": "application/octet-stream", **(extra_headers or {})}
+        extra_headers = {"Accept": "*", **(extra_headers or {})}
         return await self._get(
             f"/documents/{id}/download",
             options=make_request_options(
@@ -622,10 +759,13 @@ class AsyncDocumentsResource(AsyncAPIResource):
             cast_to=DocumentGenerateDownloadLinkResponse,
         )
 
+    @overload
     async def upload(
         self,
         *,
-        document: document_upload_params.Document,
+        url: str,
+        customer_reference: str | Omit = omit,
+        filename: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -638,6 +778,13 @@ class AsyncDocumentsResource(AsyncAPIResource):
         30 minutes or they will be automatically deleted.
 
         Args:
+          url: If the file is already hosted publicly, you can provide a URL and have the
+              documents service fetch it for you.
+
+          customer_reference: Optional reference string for customer tracking.
+
+          filename: The filename of the document.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -646,19 +793,82 @@ class AsyncDocumentsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @overload
+    async def upload(
+        self,
+        *,
+        file: Union[str, Base64FileInput],
+        customer_reference: str | Omit = omit,
+        filename: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> DocumentUploadResponse:
+        """
+        Upload a document.<br /><br />Uploaded files must be linked to a service within
+        30 minutes or they will be automatically deleted.
+
+        Args:
+          file: The Base64 encoded contents of the file you are uploading.
+
+          customer_reference: A customer reference string for customer look ups.
+
+          filename: The filename of the document.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(["url"], ["file"])
+    async def upload(
+        self,
+        *,
+        url: str | Omit = omit,
+        customer_reference: str | Omit = omit,
+        filename: str | Omit = omit,
+        file: Union[str, Base64FileInput] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> DocumentUploadResponse:
         return await self._post(
             "/documents?content-type=multipart",
-            body=await async_maybe_transform(document, document_upload_params.DocumentUploadParams),
+            body=await async_maybe_transform(
+                {
+                    "url": url,
+                    "customer_reference": customer_reference,
+                    "filename": filename,
+                    "file": file,
+                },
+                document_upload_params.DocumentUploadParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=DocumentUploadResponse,
         )
 
+    @overload
     async def upload_json(
         self,
         *,
-        document: document_upload_json_params.Document,
+        url: str,
+        customer_reference: str | Omit = omit,
+        filename: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -671,6 +881,13 @@ class AsyncDocumentsResource(AsyncAPIResource):
         30 minutes or they will be automatically deleted.
 
         Args:
+          url: If the file is already hosted publicly, you can provide a URL and have the
+              documents service fetch it for you.
+
+          customer_reference: Optional reference string for customer tracking.
+
+          filename: The filename of the document.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -679,9 +896,69 @@ class AsyncDocumentsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @overload
+    async def upload_json(
+        self,
+        *,
+        file: Union[str, Base64FileInput],
+        customer_reference: str | Omit = omit,
+        filename: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> DocumentUploadJsonResponse:
+        """
+        Upload a document.<br /><br />Uploaded files must be linked to a service within
+        30 minutes or they will be automatically deleted.
+
+        Args:
+          file: The Base64 encoded contents of the file you are uploading.
+
+          customer_reference: A customer reference string for customer look ups.
+
+          filename: The filename of the document.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(["url"], ["file"])
+    async def upload_json(
+        self,
+        *,
+        url: str | Omit = omit,
+        customer_reference: str | Omit = omit,
+        filename: str | Omit = omit,
+        file: Union[str, Base64FileInput] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> DocumentUploadJsonResponse:
         return await self._post(
             "/documents",
-            body=await async_maybe_transform(document, document_upload_json_params.DocumentUploadJsonParams),
+            body=await async_maybe_transform(
+                {
+                    "url": url,
+                    "customer_reference": customer_reference,
+                    "filename": filename,
+                    "file": file,
+                },
+                document_upload_json_params.DocumentUploadJsonParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

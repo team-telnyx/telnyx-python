@@ -1,13 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import List, Optional
 
 from .._models import BaseModel
+from .pagination_meta import PaginationMeta
 
-__all__ = ["DocumentLinkListResponse"]
+__all__ = ["DocumentLinkListResponse", "Data"]
 
 
-class DocumentLinkListResponse(BaseModel):
+class Data(BaseModel):
     id: Optional[str] = None
     """Identifies the resource."""
 
@@ -28,3 +29,9 @@ class DocumentLinkListResponse(BaseModel):
 
     updated_at: Optional[str] = None
     """ISO 8601 formatted date-time indicating when the resource was updated."""
+
+
+class DocumentLinkListResponse(BaseModel):
+    data: Optional[List[Data]] = None
+
+    meta: Optional[PaginationMeta] = None

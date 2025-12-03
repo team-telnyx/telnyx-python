@@ -10,13 +10,12 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types import (
-    NotificationProfile,
+    NotificationProfileListResponse,
     NotificationProfileCreateResponse,
     NotificationProfileDeleteResponse,
     NotificationProfileUpdateResponse,
     NotificationProfileRetrieveResponse,
 )
-from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -106,7 +105,7 @@ class TestNotificationProfiles:
     @parametrize
     def test_method_update(self, client: Telnyx) -> None:
         notification_profile = client.notification_profiles.update(
-            notification_profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(NotificationProfileUpdateResponse, notification_profile, path=["response"])
 
@@ -114,7 +113,7 @@ class TestNotificationProfiles:
     @parametrize
     def test_method_update_with_all_params(self, client: Telnyx) -> None:
         notification_profile = client.notification_profiles.update(
-            notification_profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             name="name",
         )
         assert_matches_type(NotificationProfileUpdateResponse, notification_profile, path=["response"])
@@ -123,7 +122,7 @@ class TestNotificationProfiles:
     @parametrize
     def test_raw_response_update(self, client: Telnyx) -> None:
         response = client.notification_profiles.with_raw_response.update(
-            notification_profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
 
         assert response.is_closed is True
@@ -135,7 +134,7 @@ class TestNotificationProfiles:
     @parametrize
     def test_streaming_response_update(self, client: Telnyx) -> None:
         with client.notification_profiles.with_streaming_response.update(
-            notification_profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -148,18 +147,16 @@ class TestNotificationProfiles:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_update(self, client: Telnyx) -> None:
-        with pytest.raises(
-            ValueError, match=r"Expected a non-empty value for `notification_profile_id` but received ''"
-        ):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.notification_profiles.with_raw_response.update(
-                notification_profile_id="",
+                id="",
             )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         notification_profile = client.notification_profiles.list()
-        assert_matches_type(SyncDefaultPagination[NotificationProfile], notification_profile, path=["response"])
+        assert_matches_type(NotificationProfileListResponse, notification_profile, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -170,7 +167,7 @@ class TestNotificationProfiles:
                 "size": 1,
             },
         )
-        assert_matches_type(SyncDefaultPagination[NotificationProfile], notification_profile, path=["response"])
+        assert_matches_type(NotificationProfileListResponse, notification_profile, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -180,7 +177,7 @@ class TestNotificationProfiles:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         notification_profile = response.parse()
-        assert_matches_type(SyncDefaultPagination[NotificationProfile], notification_profile, path=["response"])
+        assert_matches_type(NotificationProfileListResponse, notification_profile, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -190,7 +187,7 @@ class TestNotificationProfiles:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             notification_profile = response.parse()
-            assert_matches_type(SyncDefaultPagination[NotificationProfile], notification_profile, path=["response"])
+            assert_matches_type(NotificationProfileListResponse, notification_profile, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -324,7 +321,7 @@ class TestAsyncNotificationProfiles:
     @parametrize
     async def test_method_update(self, async_client: AsyncTelnyx) -> None:
         notification_profile = await async_client.notification_profiles.update(
-            notification_profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(NotificationProfileUpdateResponse, notification_profile, path=["response"])
 
@@ -332,7 +329,7 @@ class TestAsyncNotificationProfiles:
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncTelnyx) -> None:
         notification_profile = await async_client.notification_profiles.update(
-            notification_profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             name="name",
         )
         assert_matches_type(NotificationProfileUpdateResponse, notification_profile, path=["response"])
@@ -341,7 +338,7 @@ class TestAsyncNotificationProfiles:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.notification_profiles.with_raw_response.update(
-            notification_profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
 
         assert response.is_closed is True
@@ -353,7 +350,7 @@ class TestAsyncNotificationProfiles:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncTelnyx) -> None:
         async with async_client.notification_profiles.with_streaming_response.update(
-            notification_profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -366,18 +363,16 @@ class TestAsyncNotificationProfiles:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_update(self, async_client: AsyncTelnyx) -> None:
-        with pytest.raises(
-            ValueError, match=r"Expected a non-empty value for `notification_profile_id` but received ''"
-        ):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.notification_profiles.with_raw_response.update(
-                notification_profile_id="",
+                id="",
             )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         notification_profile = await async_client.notification_profiles.list()
-        assert_matches_type(AsyncDefaultPagination[NotificationProfile], notification_profile, path=["response"])
+        assert_matches_type(NotificationProfileListResponse, notification_profile, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -388,7 +383,7 @@ class TestAsyncNotificationProfiles:
                 "size": 1,
             },
         )
-        assert_matches_type(AsyncDefaultPagination[NotificationProfile], notification_profile, path=["response"])
+        assert_matches_type(NotificationProfileListResponse, notification_profile, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -398,7 +393,7 @@ class TestAsyncNotificationProfiles:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         notification_profile = await response.parse()
-        assert_matches_type(AsyncDefaultPagination[NotificationProfile], notification_profile, path=["response"])
+        assert_matches_type(NotificationProfileListResponse, notification_profile, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -408,7 +403,7 @@ class TestAsyncNotificationProfiles:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             notification_profile = await response.parse()
-            assert_matches_type(AsyncDefaultPagination[NotificationProfile], notification_profile, path=["response"])
+            assert_matches_type(NotificationProfileListResponse, notification_profile, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

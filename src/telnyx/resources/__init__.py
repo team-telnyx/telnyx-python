@@ -16,6 +16,14 @@ from .ips import (
     IPsResourceWithStreamingResponse,
     AsyncIPsResourceWithStreamingResponse,
 )
+from .enum import (
+    EnumResource,
+    AsyncEnumResource,
+    EnumResourceWithRawResponse,
+    AsyncEnumResourceWithRawResponse,
+    EnumResourceWithStreamingResponse,
+    AsyncEnumResourceWithStreamingResponse,
+)
 from .list import (
     ListResource,
     AsyncListResource,
@@ -320,14 +328,6 @@ from .connections import (
     AsyncConnectionsResourceWithRawResponse,
     ConnectionsResourceWithStreamingResponse,
     AsyncConnectionsResourceWithStreamingResponse,
-)
-from .enumeration import (
-    EnumerationResource,
-    AsyncEnumerationResource,
-    EnumerationResourceWithRawResponse,
-    AsyncEnumerationResourceWithRawResponse,
-    EnumerationResourceWithStreamingResponse,
-    AsyncEnumerationResourceWithStreamingResponse,
 )
 from .ota_updates import (
     OtaUpdatesResource,
@@ -1477,12 +1477,12 @@ __all__ = [
     "AsyncDynamicEmergencyEndpointsResourceWithRawResponse",
     "DynamicEmergencyEndpointsResourceWithStreamingResponse",
     "AsyncDynamicEmergencyEndpointsResourceWithStreamingResponse",
-    "EnumerationResource",
-    "AsyncEnumerationResource",
-    "EnumerationResourceWithRawResponse",
-    "AsyncEnumerationResourceWithRawResponse",
-    "EnumerationResourceWithStreamingResponse",
-    "AsyncEnumerationResourceWithStreamingResponse",
+    "EnumResource",
+    "AsyncEnumResource",
+    "EnumResourceWithRawResponse",
+    "AsyncEnumResourceWithRawResponse",
+    "EnumResourceWithStreamingResponse",
+    "AsyncEnumResourceWithStreamingResponse",
     "ExternalConnectionsResource",
     "AsyncExternalConnectionsResource",
     "ExternalConnectionsResourceWithRawResponse",

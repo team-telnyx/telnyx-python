@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, List, Optional
+from typing import List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -68,7 +68,7 @@ class DataWebhook(BaseModel):
     occurred_at: Optional[datetime] = None
     """ISO 8601 datetime of when the event occurred."""
 
-    payload: Optional[Dict[str, object]] = None
+    payload: Optional[object] = None
 
     record_type: Optional[Literal["event"]] = None
     """Identifies the type of the resource."""

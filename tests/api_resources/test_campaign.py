@@ -19,7 +19,6 @@ from telnyx.types import (
     CampaignGetSharingStatusResponse,
     CampaignGetOperationStatusResponse,
 )
-from telnyx.pagination import SyncPerPagePaginationV2, AsyncPerPagePaginationV2
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -136,7 +135,7 @@ class TestCampaign:
         campaign = client.campaign.list(
             brand_id="brandId",
         )
-        assert_matches_type(SyncPerPagePaginationV2[CampaignListResponse], campaign, path=["response"])
+        assert_matches_type(CampaignListResponse, campaign, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -147,7 +146,7 @@ class TestCampaign:
             records_per_page=0,
             sort="assignedPhoneNumbersCount",
         )
-        assert_matches_type(SyncPerPagePaginationV2[CampaignListResponse], campaign, path=["response"])
+        assert_matches_type(CampaignListResponse, campaign, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -159,7 +158,7 @@ class TestCampaign:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         campaign = response.parse()
-        assert_matches_type(SyncPerPagePaginationV2[CampaignListResponse], campaign, path=["response"])
+        assert_matches_type(CampaignListResponse, campaign, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -171,7 +170,7 @@ class TestCampaign:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             campaign = response.parse()
-            assert_matches_type(SyncPerPagePaginationV2[CampaignListResponse], campaign, path=["response"])
+            assert_matches_type(CampaignListResponse, campaign, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -546,7 +545,7 @@ class TestAsyncCampaign:
         campaign = await async_client.campaign.list(
             brand_id="brandId",
         )
-        assert_matches_type(AsyncPerPagePaginationV2[CampaignListResponse], campaign, path=["response"])
+        assert_matches_type(CampaignListResponse, campaign, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -557,7 +556,7 @@ class TestAsyncCampaign:
             records_per_page=0,
             sort="assignedPhoneNumbersCount",
         )
-        assert_matches_type(AsyncPerPagePaginationV2[CampaignListResponse], campaign, path=["response"])
+        assert_matches_type(CampaignListResponse, campaign, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -569,7 +568,7 @@ class TestAsyncCampaign:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         campaign = await response.parse()
-        assert_matches_type(AsyncPerPagePaginationV2[CampaignListResponse], campaign, path=["response"])
+        assert_matches_type(CampaignListResponse, campaign, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -581,7 +580,7 @@ class TestAsyncCampaign:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             campaign = await response.parse()
-            assert_matches_type(AsyncPerPagePaginationV2[CampaignListResponse], campaign, path=["response"])
+            assert_matches_type(CampaignListResponse, campaign, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

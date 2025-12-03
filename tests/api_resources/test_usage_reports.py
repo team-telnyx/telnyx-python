@@ -13,7 +13,6 @@ from telnyx.types import (
     UsageReportListResponse,
     UsageReportGetOptionsResponse,
 )
-from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -29,7 +28,7 @@ class TestUsageReports:
             metrics=["string"],
             product="product",
         )
-        assert_matches_type(SyncDefaultFlatPagination[UsageReportListResponse], usage_report, path=["response"])
+        assert_matches_type(UsageReportListResponse, usage_report, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -43,13 +42,15 @@ class TestUsageReports:
             filter="filter",
             format="csv",
             managed_accounts=True,
-            page_number=0,
-            page_size=0,
+            page={
+                "number": 1,
+                "size": 5000,
+            },
             sort=["string"],
             start_date="start_date",
             authorization_bearer="authorization_bearer",
         )
-        assert_matches_type(SyncDefaultFlatPagination[UsageReportListResponse], usage_report, path=["response"])
+        assert_matches_type(UsageReportListResponse, usage_report, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -63,7 +64,7 @@ class TestUsageReports:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         usage_report = response.parse()
-        assert_matches_type(SyncDefaultFlatPagination[UsageReportListResponse], usage_report, path=["response"])
+        assert_matches_type(UsageReportListResponse, usage_report, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -77,7 +78,7 @@ class TestUsageReports:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             usage_report = response.parse()
-            assert_matches_type(SyncDefaultFlatPagination[UsageReportListResponse], usage_report, path=["response"])
+            assert_matches_type(UsageReportListResponse, usage_report, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -132,7 +133,7 @@ class TestAsyncUsageReports:
             metrics=["string"],
             product="product",
         )
-        assert_matches_type(AsyncDefaultFlatPagination[UsageReportListResponse], usage_report, path=["response"])
+        assert_matches_type(UsageReportListResponse, usage_report, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -146,13 +147,15 @@ class TestAsyncUsageReports:
             filter="filter",
             format="csv",
             managed_accounts=True,
-            page_number=0,
-            page_size=0,
+            page={
+                "number": 1,
+                "size": 5000,
+            },
             sort=["string"],
             start_date="start_date",
             authorization_bearer="authorization_bearer",
         )
-        assert_matches_type(AsyncDefaultFlatPagination[UsageReportListResponse], usage_report, path=["response"])
+        assert_matches_type(UsageReportListResponse, usage_report, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -166,7 +169,7 @@ class TestAsyncUsageReports:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         usage_report = await response.parse()
-        assert_matches_type(AsyncDefaultFlatPagination[UsageReportListResponse], usage_report, path=["response"])
+        assert_matches_type(UsageReportListResponse, usage_report, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -180,7 +183,7 @@ class TestAsyncUsageReports:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             usage_report = await response.parse()
-            assert_matches_type(AsyncDefaultFlatPagination[UsageReportListResponse], usage_report, path=["response"])
+            assert_matches_type(UsageReportListResponse, usage_report, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

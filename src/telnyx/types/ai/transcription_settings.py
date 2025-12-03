@@ -4,9 +4,28 @@ from typing import Optional
 from typing_extensions import Literal
 
 from ..._models import BaseModel
-from .transcription_settings_config import TranscriptionSettingsConfig
 
-__all__ = ["TranscriptionSettings"]
+__all__ = ["TranscriptionSettings", "Settings"]
+
+
+class Settings(BaseModel):
+    eot_threshold: Optional[float] = None
+    """Available only for deepgram/flux.
+
+    Confidence required to trigger an end of turn. Higher values = more reliable
+    turn detection but slightly increased latency.
+    """
+
+    eot_timeout_ms: Optional[int] = None
+    """Available only for deepgram/flux.
+
+    Maximum milliseconds of silence before forcing an end of turn, regardless of
+    confidence.
+    """
+
+    numerals: Optional[bool] = None
+
+    smart_format: Optional[bool] = None
 
 
 class TranscriptionSettings(BaseModel):
@@ -42,4 +61,4 @@ class TranscriptionSettings(BaseModel):
     models
     """
 
-    settings: Optional[TranscriptionSettingsConfig] = None
+    settings: Optional[Settings] = None
