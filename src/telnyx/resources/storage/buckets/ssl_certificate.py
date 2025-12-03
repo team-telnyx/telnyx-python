@@ -59,7 +59,7 @@ class SslCertificateResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SslCertificateCreateResponse:
         """
-        Uploads an SSL certificate and its matching secret so that you can use Telnyx’s
+        Uploads an SSL certificate and its matching secret so that you can use Telnyx's
         storage as your CDN.
 
         Args:
@@ -199,7 +199,7 @@ class AsyncSslCertificateResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SslCertificateCreateResponse:
         """
-        Uploads an SSL certificate and its matching secret so that you can use Telnyx’s
+        Uploads an SSL certificate and its matching secret so that you can use Telnyx's
         storage as your CDN.
 
         Args:
