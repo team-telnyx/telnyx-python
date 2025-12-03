@@ -9,11 +9,8 @@ import pytest
 
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
-from telnyx.types import (
-    OAuthGrantListResponse,
-    OAuthGrantDeleteResponse,
-    OAuthGrantRetrieveResponse,
-)
+from telnyx.types import OAuthGrant, OAuthGrantDeleteResponse, OAuthGrantRetrieveResponse
+from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -67,7 +64,7 @@ class TestOAuthGrants:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         oauth_grant = client.oauth_grants.list()
-        assert_matches_type(OAuthGrantListResponse, oauth_grant, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[OAuthGrant], oauth_grant, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -76,7 +73,7 @@ class TestOAuthGrants:
             page_number=1,
             page_size=1,
         )
-        assert_matches_type(OAuthGrantListResponse, oauth_grant, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[OAuthGrant], oauth_grant, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -86,7 +83,7 @@ class TestOAuthGrants:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         oauth_grant = response.parse()
-        assert_matches_type(OAuthGrantListResponse, oauth_grant, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[OAuthGrant], oauth_grant, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -96,7 +93,7 @@ class TestOAuthGrants:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             oauth_grant = response.parse()
-            assert_matches_type(OAuthGrantListResponse, oauth_grant, path=["response"])
+            assert_matches_type(SyncDefaultFlatPagination[OAuthGrant], oauth_grant, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -194,7 +191,7 @@ class TestAsyncOAuthGrants:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         oauth_grant = await async_client.oauth_grants.list()
-        assert_matches_type(OAuthGrantListResponse, oauth_grant, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[OAuthGrant], oauth_grant, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -203,7 +200,7 @@ class TestAsyncOAuthGrants:
             page_number=1,
             page_size=1,
         )
-        assert_matches_type(OAuthGrantListResponse, oauth_grant, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[OAuthGrant], oauth_grant, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -213,7 +210,7 @@ class TestAsyncOAuthGrants:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         oauth_grant = await response.parse()
-        assert_matches_type(OAuthGrantListResponse, oauth_grant, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[OAuthGrant], oauth_grant, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -223,7 +220,7 @@ class TestAsyncOAuthGrants:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             oauth_grant = await response.parse()
-            assert_matches_type(OAuthGrantListResponse, oauth_grant, path=["response"])
+            assert_matches_type(AsyncDefaultFlatPagination[OAuthGrant], oauth_grant, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

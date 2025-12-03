@@ -13,14 +13,14 @@ from .retrieval_tool_param import RetrievalToolParam
 __all__ = [
     "AssistantParam",
     "Tool",
-    "ToolBookAppointmentTool",
-    "ToolBookAppointmentToolBookAppointment",
-    "ToolCheckAvailabilityTool",
-    "ToolCheckAvailabilityToolCheckAvailability",
+    "ToolBookAppointment",
+    "ToolBookAppointmentBookAppointment",
+    "ToolCheckAvailability",
+    "ToolCheckAvailabilityCheckAvailability",
 ]
 
 
-class ToolBookAppointmentToolBookAppointment(TypedDict, total=False):
+class ToolBookAppointmentBookAppointment(TypedDict, total=False):
     api_key_ref: Required[str]
     """Reference to an integration secret that contains your Cal.com API key.
 
@@ -50,13 +50,13 @@ class ToolBookAppointmentToolBookAppointment(TypedDict, total=False):
     """
 
 
-class ToolBookAppointmentTool(TypedDict, total=False):
-    book_appointment: Required[ToolBookAppointmentToolBookAppointment]
+class ToolBookAppointment(TypedDict, total=False):
+    book_appointment: Required[ToolBookAppointmentBookAppointment]
 
     type: Required[Literal["book_appointment"]]
 
 
-class ToolCheckAvailabilityToolCheckAvailability(TypedDict, total=False):
+class ToolCheckAvailabilityCheckAvailability(TypedDict, total=False):
     api_key_ref: Required[str]
     """Reference to an integration secret that contains your Cal.com API key.
 
@@ -72,19 +72,14 @@ class ToolCheckAvailabilityToolCheckAvailability(TypedDict, total=False):
     """
 
 
-class ToolCheckAvailabilityTool(TypedDict, total=False):
-    check_availability: Required[ToolCheckAvailabilityToolCheckAvailability]
+class ToolCheckAvailability(TypedDict, total=False):
+    check_availability: Required[ToolCheckAvailabilityCheckAvailability]
 
     type: Required[Literal["check_availability"]]
 
 
 Tool: TypeAlias = Union[
-    ToolBookAppointmentTool,
-    ToolCheckAvailabilityTool,
-    WebhookToolParam,
-    HangupToolParam,
-    TransferToolParam,
-    RetrievalToolParam,
+    ToolBookAppointment, ToolCheckAvailability, WebhookToolParam, HangupToolParam, TransferToolParam, RetrievalToolParam
 ]
 
 

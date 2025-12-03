@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Dict, List, Optional
 from typing_extensions import Literal
 
 from .._models import BaseModel
@@ -164,7 +164,7 @@ class SimCard(BaseModel):
 
     record_type: Optional[str] = None
 
-    resources_with_in_progress_actions: Optional[List[object]] = None
+    resources_with_in_progress_actions: Optional[List[Dict[str, object]]] = None
     """List of resources with actions in progress."""
 
     sim_card_group_id: Optional[str] = None

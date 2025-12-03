@@ -4,12 +4,11 @@ from typing import List, Optional
 from typing_extensions import Literal
 
 from .._models import BaseModel
-from .pagination_meta import PaginationMeta
 
-__all__ = ["ConferenceListParticipantsResponse", "Data", "DataConference"]
+__all__ = ["ConferenceListParticipantsResponse", "Conference"]
 
 
-class DataConference(BaseModel):
+class Conference(BaseModel):
     id: Optional[str] = None
     """Uniquely identifies the conference"""
 
@@ -17,7 +16,7 @@ class DataConference(BaseModel):
     """Name of the conference"""
 
 
-class Data(BaseModel):
+class ConferenceListParticipantsResponse(BaseModel):
     id: str
     """Uniquely identifies the participant"""
 
@@ -27,7 +26,7 @@ class Data(BaseModel):
     call_leg_id: str
     """Uniquely identifies the call leg associated with the participant"""
 
-    conference: DataConference
+    conference: Conference
     """Info about the conference that the participant is in"""
 
     created_at: str
@@ -61,9 +60,3 @@ class Data(BaseModel):
 
     whisper_call_control_ids: List[str]
     """Array of unique call_control_ids the participant can whisper to.."""
-
-
-class ConferenceListParticipantsResponse(BaseModel):
-    data: Optional[List[Data]] = None
-
-    meta: Optional[PaginationMeta] = None

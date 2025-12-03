@@ -21,9 +21,6 @@ class Data(Record):
     ports: Optional[Dict[str, object]] = None
     """A Global IP ports grouped by protocol code."""
 
-    record_type: Optional[str] = None  # type: ignore
-    """Identifies the type of the resource."""
-
 
 class GlobalIPRetrieveResponse(BaseModel):
     data: Optional[Data] = None

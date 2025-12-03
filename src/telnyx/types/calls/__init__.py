@@ -94,3 +94,15 @@ from .action_switch_supervisor_role_response import (
 from .action_start_noise_suppression_response import (
     ActionStartNoiseSuppressionResponse as ActionStartNoiseSuppressionResponse,
 )
+from .transcription_engine_azure_config_param import (
+    TranscriptionEngineAzureConfigParam as TranscriptionEngineAzureConfigParam,
+)
+from .transcription_engine_google_config_param import (
+    TranscriptionEngineGoogleConfigParam as TranscriptionEngineGoogleConfigParam,
+)
+from .transcription_engine_telnyx_config_param import (
+    TranscriptionEngineTelnyxConfigParam as TranscriptionEngineTelnyxConfigParam,
+)
+from .transcription_engine_deepgram_config_param import (
+    TranscriptionEngineDeepgramConfigParam as TranscriptionEngineDeepgramConfigParam,
+)

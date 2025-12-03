@@ -14,9 +14,6 @@ class Data(Record):
     network_id: Optional[str] = None
     """Network ID."""
 
-    record_type: Optional[str] = None  # type: ignore
-    """Identifies the type of the resource."""
-
     status: Optional[InterfaceStatus] = None
     """The current status of the interface deployment."""
 

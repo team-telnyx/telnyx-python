@@ -23,10 +23,11 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import make_request_options
+from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
+from .._base_client import AsyncPaginator, make_request_options
 from ..types.dtmf_type import DtmfType
+from ..types.texml_application import TexmlApplication
 from ..types.anchorsite_override import AnchorsiteOverride
-from ..types.texml_application_list_response import TexmlApplicationListResponse
 from ..types.texml_application_create_response import TexmlApplicationCreateResponse
 from ..types.texml_application_delete_response import TexmlApplicationDeleteResponse
 from ..types.texml_application_update_response import TexmlApplicationUpdateResponse
@@ -299,7 +300,7 @@ class TexmlApplicationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TexmlApplicationListResponse:
+    ) -> SyncDefaultPagination[TexmlApplication]:
         """
         Returns a list of your TeXML Applications.
 
@@ -334,8 +335,9 @@ class TexmlApplicationsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/texml_applications",
+            page=SyncDefaultPagination[TexmlApplication],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -350,7 +352,7 @@ class TexmlApplicationsResource(SyncAPIResource):
                     texml_application_list_params.TexmlApplicationListParams,
                 ),
             ),
-            cast_to=TexmlApplicationListResponse,
+            model=TexmlApplication,
         )
 
     def delete(
@@ -639,7 +641,7 @@ class AsyncTexmlApplicationsResource(AsyncAPIResource):
             cast_to=TexmlApplicationUpdateResponse,
         )
 
-    async def list(
+    def list(
         self,
         *,
         filter: texml_application_list_params.Filter | Omit = omit,
@@ -651,7 +653,7 @@ class AsyncTexmlApplicationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TexmlApplicationListResponse:
+    ) -> AsyncPaginator[TexmlApplication, AsyncDefaultPagination[TexmlApplication]]:
         """
         Returns a list of your TeXML Applications.
 
@@ -686,14 +688,15 @@ class AsyncTexmlApplicationsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/texml_applications",
+            page=AsyncDefaultPagination[TexmlApplication],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "filter": filter,
                         "page": page,
@@ -702,7 +705,7 @@ class AsyncTexmlApplicationsResource(AsyncAPIResource):
                     texml_application_list_params.TexmlApplicationListParams,
                 ),
             ),
-            cast_to=TexmlApplicationListResponse,
+            model=TexmlApplication,
         )
 
     async def delete(

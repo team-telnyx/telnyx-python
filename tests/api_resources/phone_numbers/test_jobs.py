@@ -9,8 +9,9 @@ import pytest
 
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
+from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
 from telnyx.types.phone_numbers import (
-    JobListResponse,
+    PhoneNumbersJob,
     JobRetrieveResponse,
     JobDeleteBatchResponse,
     JobUpdateBatchResponse,
@@ -69,7 +70,7 @@ class TestJobs:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         job = client.phone_numbers.jobs.list()
-        assert_matches_type(JobListResponse, job, path=["response"])
+        assert_matches_type(SyncDefaultPagination[PhoneNumbersJob], job, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -82,7 +83,7 @@ class TestJobs:
             },
             sort="created_at",
         )
-        assert_matches_type(JobListResponse, job, path=["response"])
+        assert_matches_type(SyncDefaultPagination[PhoneNumbersJob], job, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -92,7 +93,7 @@ class TestJobs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         job = response.parse()
-        assert_matches_type(JobListResponse, job, path=["response"])
+        assert_matches_type(SyncDefaultPagination[PhoneNumbersJob], job, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -102,7 +103,7 @@ class TestJobs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             job = response.parse()
-            assert_matches_type(JobListResponse, job, path=["response"])
+            assert_matches_type(SyncDefaultPagination[PhoneNumbersJob], job, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -331,7 +332,7 @@ class TestAsyncJobs:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         job = await async_client.phone_numbers.jobs.list()
-        assert_matches_type(JobListResponse, job, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[PhoneNumbersJob], job, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -344,7 +345,7 @@ class TestAsyncJobs:
             },
             sort="created_at",
         )
-        assert_matches_type(JobListResponse, job, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[PhoneNumbersJob], job, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -354,7 +355,7 @@ class TestAsyncJobs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         job = await response.parse()
-        assert_matches_type(JobListResponse, job, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[PhoneNumbersJob], job, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -364,7 +365,7 @@ class TestAsyncJobs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             job = await response.parse()
-            assert_matches_type(JobListResponse, job, path=["response"])
+            assert_matches_type(AsyncDefaultPagination[PhoneNumbersJob], job, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

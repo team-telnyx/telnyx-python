@@ -10,6 +10,7 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx._utils import parse_datetime
+from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from telnyx.types.ai.assistants import (
     ScheduledEventResponse,
     ScheduledEventListResponse,
@@ -151,7 +152,7 @@ class TestScheduledEvents:
         scheduled_event = client.ai.assistants.scheduled_events.list(
             assistant_id="assistant_id",
         )
-        assert_matches_type(ScheduledEventListResponse, scheduled_event, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[ScheduledEventListResponse], scheduled_event, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -160,13 +161,11 @@ class TestScheduledEvents:
             assistant_id="assistant_id",
             conversation_channel="phone_call",
             from_date=parse_datetime("2019-12-27T18:11:19.117Z"),
-            page={
-                "number": 1,
-                "size": 1,
-            },
+            page_number=0,
+            page_size=0,
             to_date=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
-        assert_matches_type(ScheduledEventListResponse, scheduled_event, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[ScheduledEventListResponse], scheduled_event, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -178,7 +177,7 @@ class TestScheduledEvents:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         scheduled_event = response.parse()
-        assert_matches_type(ScheduledEventListResponse, scheduled_event, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[ScheduledEventListResponse], scheduled_event, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -190,7 +189,9 @@ class TestScheduledEvents:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             scheduled_event = response.parse()
-            assert_matches_type(ScheduledEventListResponse, scheduled_event, path=["response"])
+            assert_matches_type(
+                SyncDefaultFlatPagination[ScheduledEventListResponse], scheduled_event, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True
 
@@ -390,7 +391,7 @@ class TestAsyncScheduledEvents:
         scheduled_event = await async_client.ai.assistants.scheduled_events.list(
             assistant_id="assistant_id",
         )
-        assert_matches_type(ScheduledEventListResponse, scheduled_event, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[ScheduledEventListResponse], scheduled_event, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -399,13 +400,11 @@ class TestAsyncScheduledEvents:
             assistant_id="assistant_id",
             conversation_channel="phone_call",
             from_date=parse_datetime("2019-12-27T18:11:19.117Z"),
-            page={
-                "number": 1,
-                "size": 1,
-            },
+            page_number=0,
+            page_size=0,
             to_date=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
-        assert_matches_type(ScheduledEventListResponse, scheduled_event, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[ScheduledEventListResponse], scheduled_event, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -417,7 +416,7 @@ class TestAsyncScheduledEvents:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         scheduled_event = await response.parse()
-        assert_matches_type(ScheduledEventListResponse, scheduled_event, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[ScheduledEventListResponse], scheduled_event, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -429,7 +428,9 @@ class TestAsyncScheduledEvents:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             scheduled_event = await response.parse()
-            assert_matches_type(ScheduledEventListResponse, scheduled_event, path=["response"])
+            assert_matches_type(
+                AsyncDefaultFlatPagination[ScheduledEventListResponse], scheduled_event, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True
 

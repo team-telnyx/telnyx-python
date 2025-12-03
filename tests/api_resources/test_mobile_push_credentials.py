@@ -10,9 +10,10 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types import (
+    PushCredential,
     PushCredentialResponse,
-    MobilePushCredentialListResponse,
 )
+from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -22,23 +23,27 @@ class TestMobilePushCredentials:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_method_create_overload_1(self, client: Telnyx) -> None:
+    def test_method_create(self, client: Telnyx) -> None:
         mobile_push_credential = client.mobile_push_credentials.create(
-            alias="LucyIosCredential",
-            certificate="-----BEGIN CERTIFICATE----- MIIGVDCCBTKCAQEAsNlRJVZn9ZvXcECQm65czs... -----END CERTIFICATE-----",
-            private_key="-----BEGIN RSA PRIVATE KEY----- MIIEpQIBAAKCAQEAsNlRJVZn9ZvXcECQm65czs... -----END RSA PRIVATE KEY-----",
-            type="ios",
+            create_mobile_push_credential_request={
+                "alias": "LucyIosCredential",
+                "certificate": "-----BEGIN CERTIFICATE----- MIIGVDCCBTKCAQEAsNlRJVZn9ZvXcECQm65czs... -----END CERTIFICATE-----",
+                "private_key": "-----BEGIN RSA PRIVATE KEY----- MIIEpQIBAAKCAQEAsNlRJVZn9ZvXcECQm65czs... -----END RSA PRIVATE KEY-----",
+                "type": "ios",
+            },
         )
         assert_matches_type(PushCredentialResponse, mobile_push_credential, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_raw_response_create_overload_1(self, client: Telnyx) -> None:
+    def test_raw_response_create(self, client: Telnyx) -> None:
         response = client.mobile_push_credentials.with_raw_response.create(
-            alias="LucyIosCredential",
-            certificate="-----BEGIN CERTIFICATE----- MIIGVDCCBTKCAQEAsNlRJVZn9ZvXcECQm65czs... -----END CERTIFICATE-----",
-            private_key="-----BEGIN RSA PRIVATE KEY----- MIIEpQIBAAKCAQEAsNlRJVZn9ZvXcECQm65czs... -----END RSA PRIVATE KEY-----",
-            type="ios",
+            create_mobile_push_credential_request={
+                "alias": "LucyIosCredential",
+                "certificate": "-----BEGIN CERTIFICATE----- MIIGVDCCBTKCAQEAsNlRJVZn9ZvXcECQm65czs... -----END CERTIFICATE-----",
+                "private_key": "-----BEGIN RSA PRIVATE KEY----- MIIEpQIBAAKCAQEAsNlRJVZn9ZvXcECQm65czs... -----END RSA PRIVATE KEY-----",
+                "type": "ios",
+            },
         )
 
         assert response.is_closed is True
@@ -48,61 +53,14 @@ class TestMobilePushCredentials:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_streaming_response_create_overload_1(self, client: Telnyx) -> None:
+    def test_streaming_response_create(self, client: Telnyx) -> None:
         with client.mobile_push_credentials.with_streaming_response.create(
-            alias="LucyIosCredential",
-            certificate="-----BEGIN CERTIFICATE----- MIIGVDCCBTKCAQEAsNlRJVZn9ZvXcECQm65czs... -----END CERTIFICATE-----",
-            private_key="-----BEGIN RSA PRIVATE KEY----- MIIEpQIBAAKCAQEAsNlRJVZn9ZvXcECQm65czs... -----END RSA PRIVATE KEY-----",
-            type="ios",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            mobile_push_credential = response.parse()
-            assert_matches_type(PushCredentialResponse, mobile_push_credential, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip(reason="Prism tests are disabled")
-    @parametrize
-    def test_method_create_overload_2(self, client: Telnyx) -> None:
-        mobile_push_credential = client.mobile_push_credentials.create(
-            alias="LucyAndroidCredential",
-            project_account_json_file={
-                "private_key": "bar",
-                "client_email": "bar",
+            create_mobile_push_credential_request={
+                "alias": "LucyIosCredential",
+                "certificate": "-----BEGIN CERTIFICATE----- MIIGVDCCBTKCAQEAsNlRJVZn9ZvXcECQm65czs... -----END CERTIFICATE-----",
+                "private_key": "-----BEGIN RSA PRIVATE KEY----- MIIEpQIBAAKCAQEAsNlRJVZn9ZvXcECQm65czs... -----END RSA PRIVATE KEY-----",
+                "type": "ios",
             },
-            type="android",
-        )
-        assert_matches_type(PushCredentialResponse, mobile_push_credential, path=["response"])
-
-    @pytest.mark.skip(reason="Prism tests are disabled")
-    @parametrize
-    def test_raw_response_create_overload_2(self, client: Telnyx) -> None:
-        response = client.mobile_push_credentials.with_raw_response.create(
-            alias="LucyAndroidCredential",
-            project_account_json_file={
-                "private_key": "bar",
-                "client_email": "bar",
-            },
-            type="android",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        mobile_push_credential = response.parse()
-        assert_matches_type(PushCredentialResponse, mobile_push_credential, path=["response"])
-
-    @pytest.mark.skip(reason="Prism tests are disabled")
-    @parametrize
-    def test_streaming_response_create_overload_2(self, client: Telnyx) -> None:
-        with client.mobile_push_credentials.with_streaming_response.create(
-            alias="LucyAndroidCredential",
-            project_account_json_file={
-                "private_key": "bar",
-                "client_email": "bar",
-            },
-            type="android",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -158,7 +116,7 @@ class TestMobilePushCredentials:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         mobile_push_credential = client.mobile_push_credentials.list()
-        assert_matches_type(MobilePushCredentialListResponse, mobile_push_credential, path=["response"])
+        assert_matches_type(SyncDefaultPagination[PushCredential], mobile_push_credential, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -173,7 +131,7 @@ class TestMobilePushCredentials:
                 "size": 1,
             },
         )
-        assert_matches_type(MobilePushCredentialListResponse, mobile_push_credential, path=["response"])
+        assert_matches_type(SyncDefaultPagination[PushCredential], mobile_push_credential, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -183,7 +141,7 @@ class TestMobilePushCredentials:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         mobile_push_credential = response.parse()
-        assert_matches_type(MobilePushCredentialListResponse, mobile_push_credential, path=["response"])
+        assert_matches_type(SyncDefaultPagination[PushCredential], mobile_push_credential, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -193,7 +151,7 @@ class TestMobilePushCredentials:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             mobile_push_credential = response.parse()
-            assert_matches_type(MobilePushCredentialListResponse, mobile_push_credential, path=["response"])
+            assert_matches_type(SyncDefaultPagination[PushCredential], mobile_push_credential, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -247,23 +205,27 @@ class TestAsyncMobilePushCredentials:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_method_create_overload_1(self, async_client: AsyncTelnyx) -> None:
+    async def test_method_create(self, async_client: AsyncTelnyx) -> None:
         mobile_push_credential = await async_client.mobile_push_credentials.create(
-            alias="LucyIosCredential",
-            certificate="-----BEGIN CERTIFICATE----- MIIGVDCCBTKCAQEAsNlRJVZn9ZvXcECQm65czs... -----END CERTIFICATE-----",
-            private_key="-----BEGIN RSA PRIVATE KEY----- MIIEpQIBAAKCAQEAsNlRJVZn9ZvXcECQm65czs... -----END RSA PRIVATE KEY-----",
-            type="ios",
+            create_mobile_push_credential_request={
+                "alias": "LucyIosCredential",
+                "certificate": "-----BEGIN CERTIFICATE----- MIIGVDCCBTKCAQEAsNlRJVZn9ZvXcECQm65czs... -----END CERTIFICATE-----",
+                "private_key": "-----BEGIN RSA PRIVATE KEY----- MIIEpQIBAAKCAQEAsNlRJVZn9ZvXcECQm65czs... -----END RSA PRIVATE KEY-----",
+                "type": "ios",
+            },
         )
         assert_matches_type(PushCredentialResponse, mobile_push_credential, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_raw_response_create_overload_1(self, async_client: AsyncTelnyx) -> None:
+    async def test_raw_response_create(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.mobile_push_credentials.with_raw_response.create(
-            alias="LucyIosCredential",
-            certificate="-----BEGIN CERTIFICATE----- MIIGVDCCBTKCAQEAsNlRJVZn9ZvXcECQm65czs... -----END CERTIFICATE-----",
-            private_key="-----BEGIN RSA PRIVATE KEY----- MIIEpQIBAAKCAQEAsNlRJVZn9ZvXcECQm65czs... -----END RSA PRIVATE KEY-----",
-            type="ios",
+            create_mobile_push_credential_request={
+                "alias": "LucyIosCredential",
+                "certificate": "-----BEGIN CERTIFICATE----- MIIGVDCCBTKCAQEAsNlRJVZn9ZvXcECQm65czs... -----END CERTIFICATE-----",
+                "private_key": "-----BEGIN RSA PRIVATE KEY----- MIIEpQIBAAKCAQEAsNlRJVZn9ZvXcECQm65czs... -----END RSA PRIVATE KEY-----",
+                "type": "ios",
+            },
         )
 
         assert response.is_closed is True
@@ -273,61 +235,14 @@ class TestAsyncMobilePushCredentials:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_streaming_response_create_overload_1(self, async_client: AsyncTelnyx) -> None:
+    async def test_streaming_response_create(self, async_client: AsyncTelnyx) -> None:
         async with async_client.mobile_push_credentials.with_streaming_response.create(
-            alias="LucyIosCredential",
-            certificate="-----BEGIN CERTIFICATE----- MIIGVDCCBTKCAQEAsNlRJVZn9ZvXcECQm65czs... -----END CERTIFICATE-----",
-            private_key="-----BEGIN RSA PRIVATE KEY----- MIIEpQIBAAKCAQEAsNlRJVZn9ZvXcECQm65czs... -----END RSA PRIVATE KEY-----",
-            type="ios",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            mobile_push_credential = await response.parse()
-            assert_matches_type(PushCredentialResponse, mobile_push_credential, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip(reason="Prism tests are disabled")
-    @parametrize
-    async def test_method_create_overload_2(self, async_client: AsyncTelnyx) -> None:
-        mobile_push_credential = await async_client.mobile_push_credentials.create(
-            alias="LucyAndroidCredential",
-            project_account_json_file={
-                "private_key": "bar",
-                "client_email": "bar",
+            create_mobile_push_credential_request={
+                "alias": "LucyIosCredential",
+                "certificate": "-----BEGIN CERTIFICATE----- MIIGVDCCBTKCAQEAsNlRJVZn9ZvXcECQm65czs... -----END CERTIFICATE-----",
+                "private_key": "-----BEGIN RSA PRIVATE KEY----- MIIEpQIBAAKCAQEAsNlRJVZn9ZvXcECQm65czs... -----END RSA PRIVATE KEY-----",
+                "type": "ios",
             },
-            type="android",
-        )
-        assert_matches_type(PushCredentialResponse, mobile_push_credential, path=["response"])
-
-    @pytest.mark.skip(reason="Prism tests are disabled")
-    @parametrize
-    async def test_raw_response_create_overload_2(self, async_client: AsyncTelnyx) -> None:
-        response = await async_client.mobile_push_credentials.with_raw_response.create(
-            alias="LucyAndroidCredential",
-            project_account_json_file={
-                "private_key": "bar",
-                "client_email": "bar",
-            },
-            type="android",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        mobile_push_credential = await response.parse()
-        assert_matches_type(PushCredentialResponse, mobile_push_credential, path=["response"])
-
-    @pytest.mark.skip(reason="Prism tests are disabled")
-    @parametrize
-    async def test_streaming_response_create_overload_2(self, async_client: AsyncTelnyx) -> None:
-        async with async_client.mobile_push_credentials.with_streaming_response.create(
-            alias="LucyAndroidCredential",
-            project_account_json_file={
-                "private_key": "bar",
-                "client_email": "bar",
-            },
-            type="android",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -383,7 +298,7 @@ class TestAsyncMobilePushCredentials:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         mobile_push_credential = await async_client.mobile_push_credentials.list()
-        assert_matches_type(MobilePushCredentialListResponse, mobile_push_credential, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[PushCredential], mobile_push_credential, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -398,7 +313,7 @@ class TestAsyncMobilePushCredentials:
                 "size": 1,
             },
         )
-        assert_matches_type(MobilePushCredentialListResponse, mobile_push_credential, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[PushCredential], mobile_push_credential, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -408,7 +323,7 @@ class TestAsyncMobilePushCredentials:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         mobile_push_credential = await response.parse()
-        assert_matches_type(MobilePushCredentialListResponse, mobile_push_credential, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[PushCredential], mobile_push_credential, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -418,7 +333,7 @@ class TestAsyncMobilePushCredentials:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             mobile_push_credential = await response.parse()
-            assert_matches_type(MobilePushCredentialListResponse, mobile_push_credential, path=["response"])
+            assert_matches_type(AsyncDefaultPagination[PushCredential], mobile_push_credential, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

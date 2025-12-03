@@ -1,16 +1,15 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Optional
 
 from .record import Record
 from .._models import BaseModel
-from .interface import Interface
-from .pagination_meta import PaginationMeta
+from .network_interface import NetworkInterface
 
-__all__ = ["PublicInternetGatewayListResponse", "Data", "DataRegion"]
+__all__ = ["PublicInternetGatewayListResponse", "PublicInternetGatewayListResponseRegion"]
 
 
-class DataRegion(BaseModel):
+class PublicInternetGatewayListResponseRegion(BaseModel):
     code: Optional[str] = None
     """Region code of the interface."""
 
@@ -21,20 +20,11 @@ class DataRegion(BaseModel):
     """Identifies the type of the resource."""
 
 
-class Data(Record, Interface):
+class PublicInternetGatewayListResponse(Record, NetworkInterface):
     public_ip: Optional[str] = None
     """The publically accessible ip for this interface."""
 
-    record_type: Optional[str] = None  # type: ignore
-    """Identifies the type of the resource."""
-
-    region: Optional[DataRegion] = None
+    region: Optional[PublicInternetGatewayListResponseRegion] = None
 
     region_code: Optional[str] = None
     """The region interface is deployed to."""
-
-
-class PublicInternetGatewayListResponse(BaseModel):
-    data: Optional[List[Data]] = None
-
-    meta: Optional[PaginationMeta] = None

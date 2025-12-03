@@ -2,24 +2,17 @@
 
 from __future__ import annotations
 
-from typing import Union, Iterable
-from typing_extensions import Literal, Required, TypeAlias, TypedDict
+from typing import Union
+from typing_extensions import Literal, TypeAlias, TypedDict
 
-from ..._types import SequenceNotStr
-from .google_transcription_language import GoogleTranscriptionLanguage
-from .telnyx_transcription_language import TelnyxTranscriptionLanguage
 from .transcription_engine_a_config_param import TranscriptionEngineAConfigParam
 from .transcription_engine_b_config_param import TranscriptionEngineBConfigParam
+from .transcription_engine_azure_config_param import TranscriptionEngineAzureConfigParam
+from .transcription_engine_google_config_param import TranscriptionEngineGoogleConfigParam
+from .transcription_engine_telnyx_config_param import TranscriptionEngineTelnyxConfigParam
+from .transcription_engine_deepgram_config_param import TranscriptionEngineDeepgramConfigParam
 
-__all__ = [
-    "ActionStartTranscriptionParams",
-    "TranscriptionEngineConfig",
-    "TranscriptionEngineConfigTranscriptionEngineGoogleConfig",
-    "TranscriptionEngineConfigTranscriptionEngineGoogleConfigSpeechContext",
-    "TranscriptionEngineConfigTranscriptionEngineTelnyxConfig",
-    "TranscriptionEngineConfigTranscriptionEngineDeepgramConfig",
-    "TranscriptionEngineConfigTranscriptionEngineAzureConfig",
-]
+__all__ = ["ActionStartTranscriptionParams", "TranscriptionEngineConfig"]
 
 
 class ActionStartTranscriptionParams(TypedDict, total=False):
@@ -53,241 +46,11 @@ class ActionStartTranscriptionParams(TypedDict, total=False):
     """
 
 
-class TranscriptionEngineConfigTranscriptionEngineGoogleConfigSpeechContext(TypedDict, total=False):
-    boost: float
-    """Boost factor for the speech context."""
-
-    phrases: SequenceNotStr[str]
-
-
-class TranscriptionEngineConfigTranscriptionEngineGoogleConfig(TypedDict, total=False):
-    enable_speaker_diarization: bool
-    """Enables speaker diarization."""
-
-    hints: SequenceNotStr[str]
-    """Hints to improve transcription accuracy."""
-
-    interim_results: bool
-    """Whether to send also interim results.
-
-    If set to false, only final results will be sent.
-    """
-
-    language: GoogleTranscriptionLanguage
-    """Language to use for speech recognition"""
-
-    max_speaker_count: int
-    """Defines maximum number of speakers in the conversation."""
-
-    min_speaker_count: int
-    """Defines minimum number of speakers in the conversation."""
-
-    model: Literal[
-        "latest_long",
-        "latest_short",
-        "command_and_search",
-        "phone_call",
-        "video",
-        "default",
-        "medical_conversation",
-        "medical_dictation",
-    ]
-    """The model to use for transcription."""
-
-    profanity_filter: bool
-    """Enables profanity_filter."""
-
-    speech_context: Iterable[TranscriptionEngineConfigTranscriptionEngineGoogleConfigSpeechContext]
-    """Speech context to improve transcription accuracy."""
-
-    transcription_engine: Literal["Google"]
-    """Engine identifier for Google transcription service"""
-
-    use_enhanced: bool
-    """Enables enhanced transcription, this works for models `phone_call` and `video`."""
-
-
-class TranscriptionEngineConfigTranscriptionEngineTelnyxConfig(TypedDict, total=False):
-    language: TelnyxTranscriptionLanguage
-    """Language to use for speech recognition"""
-
-    transcription_engine: Literal["Telnyx"]
-    """Engine identifier for Telnyx transcription service"""
-
-    transcription_model: Literal["openai/whisper-tiny", "openai/whisper-large-v3-turbo"]
-    """The model to use for transcription."""
-
-
-class TranscriptionEngineConfigTranscriptionEngineDeepgramConfig(TypedDict, total=False):
-    transcription_engine: Required[Literal["Deepgram"]]
-    """Engine identifier for Deepgram transcription service"""
-
-    transcription_model: Required[Literal["deepgram/nova-2", "deepgram/nova-3"]]
-    """The model to use for transcription."""
-
-    language: Literal[
-        "bg",
-        "ca",
-        "zh",
-        "zh-CN",
-        "zh-Hans",
-        "zh-TW",
-        "zh-Hant",
-        "zh-HK",
-        "cs",
-        "da",
-        "da-DK",
-        "nl",
-        "en",
-        "en-US",
-        "en-AU",
-        "en-GB",
-        "en-NZ",
-        "en-IN",
-        "et",
-        "fi",
-        "nl-BE",
-        "fr",
-        "fr-CA",
-        "de",
-        "de-CH",
-        "el",
-        "hi",
-        "hu",
-        "id",
-        "it",
-        "ja",
-        "ko",
-        "ko-KR",
-        "lv",
-        "lt",
-        "ms",
-        "no",
-        "pl",
-        "pt",
-        "pt-BR",
-        "pt-PT",
-        "ro",
-        "ru",
-        "sk",
-        "es",
-        "es-419",
-        "sv",
-        "sv-SE",
-        "th",
-        "th-TH",
-        "tr",
-        "uk",
-        "vi",
-        "auto_detect",
-    ]
-    """Language to use for speech recognition.
-
-    Available languages depend on the selected model.
-    """
-
-
-class TranscriptionEngineConfigTranscriptionEngineAzureConfig(TypedDict, total=False):
-    region: Required[Literal["australiaeast", "centralindia", "eastus", "northcentralus", "westeurope", "westus2"]]
-    """Azure region to use for speech recognition"""
-
-    transcription_engine: Required[Literal["Azure"]]
-    """Engine identifier for Azure transcription service"""
-
-    api_key_ref: str
-    """Reference to the API key for authentication.
-
-    See
-    [integration secrets documentation](https://developers.telnyx.com/api/secrets-manager/integration-secrets/create-integration-secret)
-    for details. The parameter is optional as defaults are available for some
-    regions.
-    """
-
-    language: Literal[
-        "af",
-        "am",
-        "ar",
-        "bg",
-        "bn",
-        "bs",
-        "ca",
-        "cs",
-        "cy",
-        "da",
-        "de",
-        "el",
-        "en",
-        "es",
-        "et",
-        "eu",
-        "fa",
-        "fi",
-        "fr",
-        "ga",
-        "gl",
-        "gu",
-        "he",
-        "hi",
-        "hr",
-        "hu",
-        "hy",
-        "id",
-        "is",
-        "it",
-        "ja",
-        "ka",
-        "kk",
-        "km",
-        "kn",
-        "ko",
-        "lo",
-        "lt",
-        "lv",
-        "mk",
-        "ml",
-        "mn",
-        "mr",
-        "ms",
-        "mt",
-        "my",
-        "nb",
-        "ne",
-        "nl",
-        "pl",
-        "ps",
-        "pt",
-        "ro",
-        "ru",
-        "si",
-        "sk",
-        "sl",
-        "so",
-        "sq",
-        "sr",
-        "sv",
-        "sw",
-        "ta",
-        "te",
-        "th",
-        "tr",
-        "uk",
-        "ur",
-        "uz",
-        "vi",
-        "wuu",
-        "yue",
-        "zh",
-        "zu",
-        "auto",
-    ]
-    """Language to use for speech recognition"""
-
-
 TranscriptionEngineConfig: TypeAlias = Union[
-    TranscriptionEngineConfigTranscriptionEngineGoogleConfig,
-    TranscriptionEngineConfigTranscriptionEngineTelnyxConfig,
-    TranscriptionEngineConfigTranscriptionEngineDeepgramConfig,
-    TranscriptionEngineConfigTranscriptionEngineAzureConfig,
+    TranscriptionEngineGoogleConfigParam,
+    TranscriptionEngineTelnyxConfigParam,
+    TranscriptionEngineDeepgramConfigParam,
+    TranscriptionEngineAzureConfigParam,
     TranscriptionEngineAConfigParam,
     TranscriptionEngineBConfigParam,
 ]

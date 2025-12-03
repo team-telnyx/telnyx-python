@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import Dict, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -93,7 +93,7 @@ class Action(BaseModel):
     results when the user taps the suggested action. Maximum 2048 characters.
     """
 
-    share_location_action: Optional[object] = None
+    share_location_action: Optional[Dict[str, object]] = None
     """
     Opens the RCS app's location chooser so the user can pick a location to send
     back to the agent.

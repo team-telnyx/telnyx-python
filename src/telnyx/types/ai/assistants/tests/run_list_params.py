@@ -2,25 +2,17 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
+from typing_extensions import Annotated, TypedDict
 
-__all__ = ["RunListParams", "Page"]
+from ....._utils import PropertyInfo
+
+__all__ = ["RunListParams"]
 
 
 class RunListParams(TypedDict, total=False):
-    page: Page
-    """Consolidated page parameter (deepObject style).
+    page_number: Annotated[int, PropertyInfo(alias="page[number]")]
 
-    Originally: page[size], page[number]
-    """
+    page_size: Annotated[int, PropertyInfo(alias="page[size]")]
 
     status: str
     """Filter runs by execution status (pending, running, completed, failed, timeout)"""
-
-
-class Page(TypedDict, total=False):
-    number: int
-    """Page number to retrieve (1-based indexing)"""
-
-    size: int
-    """Number of test runs to return per page (1-100)"""

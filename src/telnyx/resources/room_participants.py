@@ -6,7 +6,7 @@ import httpx
 
 from ..types import room_participant_list_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._utils import maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -15,8 +15,9 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import make_request_options
-from ..types.room_participant_list_response import RoomParticipantListResponse
+from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
+from .._base_client import AsyncPaginator, make_request_options
+from ..types.shared.room_participant import RoomParticipant
 from ..types.room_participant_retrieve_response import RoomParticipantRetrieveResponse
 
 __all__ = ["RoomParticipantsResource", "AsyncRoomParticipantsResource"]
@@ -88,7 +89,7 @@ class RoomParticipantsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RoomParticipantListResponse:
+    ) -> SyncDefaultPagination[RoomParticipant]:
         """
         View a list of room participants.
 
@@ -112,8 +113,9 @@ class RoomParticipantsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/room_participants",
+            page=SyncDefaultPagination[RoomParticipant],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -127,7 +129,7 @@ class RoomParticipantsResource(SyncAPIResource):
                     room_participant_list_params.RoomParticipantListParams,
                 ),
             ),
-            cast_to=RoomParticipantListResponse,
+            model=RoomParticipant,
         )
 
 
@@ -186,7 +188,7 @@ class AsyncRoomParticipantsResource(AsyncAPIResource):
             cast_to=RoomParticipantRetrieveResponse,
         )
 
-    async def list(
+    def list(
         self,
         *,
         filter: room_participant_list_params.Filter | Omit = omit,
@@ -197,7 +199,7 @@ class AsyncRoomParticipantsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RoomParticipantListResponse:
+    ) -> AsyncPaginator[RoomParticipant, AsyncDefaultPagination[RoomParticipant]]:
         """
         View a list of room participants.
 
@@ -221,14 +223,15 @@ class AsyncRoomParticipantsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/room_participants",
+            page=AsyncDefaultPagination[RoomParticipant],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "filter": filter,
                         "page": page,
@@ -236,7 +239,7 @@ class AsyncRoomParticipantsResource(AsyncAPIResource):
                     room_participant_list_params.RoomParticipantListParams,
                 ),
             ),
-            cast_to=RoomParticipantListResponse,
+            model=RoomParticipant,
         )
 
 
