@@ -38,6 +38,12 @@ class DataOrderingGroup(BaseModel):
     error_reason: Optional[str] = None
     """Error reason if applicable"""
 
+    exclude_held_numbers: Optional[bool] = None
+    """
+    Filter to exclude phone numbers that are currently on hold/reserved for your
+    account.
+    """
+
     national_destination_code: Optional[str] = None
     """Filter by area code"""
 
@@ -55,6 +61,12 @@ class DataOrderingGroup(BaseModel):
 
     phone_number_starts_with: Optional[str] = FieldInfo(alias="phone_number[starts_with]", default=None)
     """Filter by the starting digits of the phone number"""
+
+    quickship: Optional[bool] = None
+    """
+    Filter to exclude phone numbers that need additional time after to purchase to
+    activate. Only applicable for +1 toll_free numbers.
+    """
 
     status: Optional[Literal["pending", "processing", "failed", "success", "partial_success"]] = None
     """Status of the ordering group"""
