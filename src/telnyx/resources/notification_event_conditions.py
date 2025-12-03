@@ -6,7 +6,7 @@ import httpx
 
 from ..types import notification_event_condition_list_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import maybe_transform
+from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -15,8 +15,7 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
-from .._base_client import AsyncPaginator, make_request_options
+from .._base_client import make_request_options
 from ..types.notification_event_condition_list_response import NotificationEventConditionListResponse
 
 __all__ = ["NotificationEventConditionsResource", "AsyncNotificationEventConditionsResource"]
@@ -53,7 +52,7 @@ class NotificationEventConditionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[NotificationEventConditionListResponse]:
+    ) -> NotificationEventConditionListResponse:
         """
         Returns a list of your notifications events conditions.
 
@@ -75,9 +74,8 @@ class NotificationEventConditionsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return self._get(
             "/notification_event_conditions",
-            page=SyncDefaultPagination[NotificationEventConditionListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -91,7 +89,7 @@ class NotificationEventConditionsResource(SyncAPIResource):
                     notification_event_condition_list_params.NotificationEventConditionListParams,
                 ),
             ),
-            model=NotificationEventConditionListResponse,
+            cast_to=NotificationEventConditionListResponse,
         )
 
 
@@ -115,7 +113,7 @@ class AsyncNotificationEventConditionsResource(AsyncAPIResource):
         """
         return AsyncNotificationEventConditionsResourceWithStreamingResponse(self)
 
-    def list(
+    async def list(
         self,
         *,
         filter: notification_event_condition_list_params.Filter | Omit = omit,
@@ -126,9 +124,7 @@ class AsyncNotificationEventConditionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[
-        NotificationEventConditionListResponse, AsyncDefaultPagination[NotificationEventConditionListResponse]
-    ]:
+    ) -> NotificationEventConditionListResponse:
         """
         Returns a list of your notifications events conditions.
 
@@ -150,15 +146,14 @@ class AsyncNotificationEventConditionsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return await self._get(
             "/notification_event_conditions",
-            page=AsyncDefaultPagination[NotificationEventConditionListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
                         "filter": filter,
                         "page": page,
@@ -166,7 +161,7 @@ class AsyncNotificationEventConditionsResource(AsyncAPIResource):
                     notification_event_condition_list_params.NotificationEventConditionListParams,
                 ),
             ),
-            model=NotificationEventConditionListResponse,
+            cast_to=NotificationEventConditionListResponse,
         )
 
 

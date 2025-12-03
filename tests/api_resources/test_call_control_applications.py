@@ -10,13 +10,12 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types import (
-    CallControlApplication,
+    CallControlApplicationListResponse,
     CallControlApplicationCreateResponse,
     CallControlApplicationDeleteResponse,
     CallControlApplicationUpdateResponse,
     CallControlApplicationRetrieveResponse,
 )
-from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -217,7 +216,7 @@ class TestCallControlApplications:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         call_control_application = client.call_control_applications.list()
-        assert_matches_type(SyncDefaultPagination[CallControlApplication], call_control_application, path=["response"])
+        assert_matches_type(CallControlApplicationListResponse, call_control_application, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -253,7 +252,7 @@ class TestCallControlApplications:
             },
             sort="connection_name",
         )
-        assert_matches_type(SyncDefaultPagination[CallControlApplication], call_control_application, path=["response"])
+        assert_matches_type(CallControlApplicationListResponse, call_control_application, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -263,7 +262,7 @@ class TestCallControlApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         call_control_application = response.parse()
-        assert_matches_type(SyncDefaultPagination[CallControlApplication], call_control_application, path=["response"])
+        assert_matches_type(CallControlApplicationListResponse, call_control_application, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -273,9 +272,7 @@ class TestCallControlApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             call_control_application = response.parse()
-            assert_matches_type(
-                SyncDefaultPagination[CallControlApplication], call_control_application, path=["response"]
-            )
+            assert_matches_type(CallControlApplicationListResponse, call_control_application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -520,7 +517,7 @@ class TestAsyncCallControlApplications:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         call_control_application = await async_client.call_control_applications.list()
-        assert_matches_type(AsyncDefaultPagination[CallControlApplication], call_control_application, path=["response"])
+        assert_matches_type(CallControlApplicationListResponse, call_control_application, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -556,7 +553,7 @@ class TestAsyncCallControlApplications:
             },
             sort="connection_name",
         )
-        assert_matches_type(AsyncDefaultPagination[CallControlApplication], call_control_application, path=["response"])
+        assert_matches_type(CallControlApplicationListResponse, call_control_application, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -566,7 +563,7 @@ class TestAsyncCallControlApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         call_control_application = await response.parse()
-        assert_matches_type(AsyncDefaultPagination[CallControlApplication], call_control_application, path=["response"])
+        assert_matches_type(CallControlApplicationListResponse, call_control_application, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -576,9 +573,7 @@ class TestAsyncCallControlApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             call_control_application = await response.parse()
-            assert_matches_type(
-                AsyncDefaultPagination[CallControlApplication], call_control_application, path=["response"]
-            )
+            assert_matches_type(CallControlApplicationListResponse, call_control_application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -1,21 +1,20 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Union, Optional
-from typing_extensions import Literal, Annotated, TypeAlias
+from typing_extensions import Literal, TypeAlias
 
-from ..._utils import PropertyInfo
 from ..._models import BaseModel
 
 __all__ = [
     "VoiceSettings",
     "BackgroundAudio",
-    "BackgroundAudioPredefinedMedia",
-    "BackgroundAudioMediaURL",
-    "BackgroundAudioMediaName",
+    "BackgroundAudioUnionMember0",
+    "BackgroundAudioUnionMember1",
+    "BackgroundAudioUnionMember2",
 ]
 
 
-class BackgroundAudioPredefinedMedia(BaseModel):
+class BackgroundAudioUnionMember0(BaseModel):
     type: Literal["predefined_media"]
     """Select from predefined media options."""
 
@@ -23,7 +22,7 @@ class BackgroundAudioPredefinedMedia(BaseModel):
     """The predefined media to use. `silence` disables background audio."""
 
 
-class BackgroundAudioMediaURL(BaseModel):
+class BackgroundAudioUnionMember1(BaseModel):
     type: Literal["media_url"]
     """Provide a direct URL to an MP3 file. The audio will loop during the call."""
 
@@ -31,7 +30,7 @@ class BackgroundAudioMediaURL(BaseModel):
     """HTTPS URL to an MP3 file."""
 
 
-class BackgroundAudioMediaName(BaseModel):
+class BackgroundAudioUnionMember2(BaseModel):
     type: Literal["media_name"]
     """Reference a previously uploaded media by its name from Telnyx Media Storage."""
 
@@ -43,9 +42,8 @@ class BackgroundAudioMediaName(BaseModel):
     """
 
 
-BackgroundAudio: TypeAlias = Annotated[
-    Union[BackgroundAudioPredefinedMedia, BackgroundAudioMediaURL, BackgroundAudioMediaName],
-    PropertyInfo(discriminator="type"),
+BackgroundAudio: TypeAlias = Union[
+    BackgroundAudioUnionMember0, BackgroundAudioUnionMember1, BackgroundAudioUnionMember2
 ]
 
 

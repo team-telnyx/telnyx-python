@@ -18,9 +18,8 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
-from .._base_client import AsyncPaginator, make_request_options
-from ..types.mobile_phone_number import MobilePhoneNumber
+from .._base_client import make_request_options
+from ..types.mobile_phone_number_list_response import MobilePhoneNumberListResponse
 from ..types.mobile_phone_number_update_response import MobilePhoneNumberUpdateResponse
 from ..types.mobile_phone_number_retrieve_response import MobilePhoneNumberRetrieveResponse
 
@@ -151,7 +150,7 @@ class MobilePhoneNumbersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[MobilePhoneNumber]:
+    ) -> MobilePhoneNumberListResponse:
         """
         List Mobile Phone Numbers
 
@@ -168,9 +167,8 @@ class MobilePhoneNumbersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return self._get(
             "/v2/mobile_phone_numbers",
-            page=SyncDefaultFlatPagination[MobilePhoneNumber],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -184,7 +182,7 @@ class MobilePhoneNumbersResource(SyncAPIResource):
                     mobile_phone_number_list_params.MobilePhoneNumberListParams,
                 ),
             ),
-            model=MobilePhoneNumber,
+            cast_to=MobilePhoneNumberListResponse,
         )
 
 
@@ -301,7 +299,7 @@ class AsyncMobilePhoneNumbersResource(AsyncAPIResource):
             cast_to=MobilePhoneNumberUpdateResponse,
         )
 
-    def list(
+    async def list(
         self,
         *,
         page_number: int | Omit = omit,
@@ -312,7 +310,7 @@ class AsyncMobilePhoneNumbersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[MobilePhoneNumber, AsyncDefaultFlatPagination[MobilePhoneNumber]]:
+    ) -> MobilePhoneNumberListResponse:
         """
         List Mobile Phone Numbers
 
@@ -329,15 +327,14 @@ class AsyncMobilePhoneNumbersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return await self._get(
             "/v2/mobile_phone_numbers",
-            page=AsyncDefaultFlatPagination[MobilePhoneNumber],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
                         "page_number": page_number,
                         "page_size": page_size,
@@ -345,7 +342,7 @@ class AsyncMobilePhoneNumbersResource(AsyncAPIResource):
                     mobile_phone_number_list_params.MobilePhoneNumberListParams,
                 ),
             ),
-            model=MobilePhoneNumber,
+            cast_to=MobilePhoneNumberListResponse,
         )
 
 

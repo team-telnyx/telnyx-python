@@ -15,7 +15,6 @@ from telnyx.types import (
     BrandRetrieveResponse,
     BrandGetFeedbackResponse,
 )
-from telnyx.pagination import SyncPerPagePaginationV2, AsyncPerPagePaginationV2
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -241,7 +240,7 @@ class TestBrand:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         brand = client.brand.list()
-        assert_matches_type(SyncPerPagePaginationV2[BrandListResponse], brand, path=["response"])
+        assert_matches_type(BrandListResponse, brand, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -257,7 +256,7 @@ class TestBrand:
             state="state",
             tcr_brand_id="BBAND1",
         )
-        assert_matches_type(SyncPerPagePaginationV2[BrandListResponse], brand, path=["response"])
+        assert_matches_type(BrandListResponse, brand, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -267,7 +266,7 @@ class TestBrand:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         brand = response.parse()
-        assert_matches_type(SyncPerPagePaginationV2[BrandListResponse], brand, path=["response"])
+        assert_matches_type(BrandListResponse, brand, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -277,7 +276,7 @@ class TestBrand:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             brand = response.parse()
-            assert_matches_type(SyncPerPagePaginationV2[BrandListResponse], brand, path=["response"])
+            assert_matches_type(BrandListResponse, brand, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -673,7 +672,7 @@ class TestAsyncBrand:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         brand = await async_client.brand.list()
-        assert_matches_type(AsyncPerPagePaginationV2[BrandListResponse], brand, path=["response"])
+        assert_matches_type(BrandListResponse, brand, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -689,7 +688,7 @@ class TestAsyncBrand:
             state="state",
             tcr_brand_id="BBAND1",
         )
-        assert_matches_type(AsyncPerPagePaginationV2[BrandListResponse], brand, path=["response"])
+        assert_matches_type(BrandListResponse, brand, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -699,7 +698,7 @@ class TestAsyncBrand:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         brand = await response.parse()
-        assert_matches_type(AsyncPerPagePaginationV2[BrandListResponse], brand, path=["response"])
+        assert_matches_type(BrandListResponse, brand, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -709,7 +708,7 @@ class TestAsyncBrand:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             brand = await response.parse()
-            assert_matches_type(AsyncPerPagePaginationV2[BrandListResponse], brand, path=["response"])
+            assert_matches_type(BrandListResponse, brand, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -15,9 +15,8 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
-from .._base_client import AsyncPaginator, make_request_options
-from ..types.dynamic_emergency_endpoint import DynamicEmergencyEndpoint
+from .._base_client import make_request_options
+from ..types.dynamic_emergency_endpoint_list_response import DynamicEmergencyEndpointListResponse
 from ..types.dynamic_emergency_endpoint_create_response import DynamicEmergencyEndpointCreateResponse
 from ..types.dynamic_emergency_endpoint_delete_response import DynamicEmergencyEndpointDeleteResponse
 from ..types.dynamic_emergency_endpoint_retrieve_response import DynamicEmergencyEndpointRetrieveResponse
@@ -132,7 +131,7 @@ class DynamicEmergencyEndpointsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[DynamicEmergencyEndpoint]:
+    ) -> DynamicEmergencyEndpointListResponse:
         """
         Returns the dynamic emergency endpoints according to filters
 
@@ -151,9 +150,8 @@ class DynamicEmergencyEndpointsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return self._get(
             "/dynamic_emergency_endpoints",
-            page=SyncDefaultPagination[DynamicEmergencyEndpoint],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -167,7 +165,7 @@ class DynamicEmergencyEndpointsResource(SyncAPIResource):
                     dynamic_emergency_endpoint_list_params.DynamicEmergencyEndpointListParams,
                 ),
             ),
-            model=DynamicEmergencyEndpoint,
+            cast_to=DynamicEmergencyEndpointListResponse,
         )
 
     def delete(
@@ -300,7 +298,7 @@ class AsyncDynamicEmergencyEndpointsResource(AsyncAPIResource):
             cast_to=DynamicEmergencyEndpointRetrieveResponse,
         )
 
-    def list(
+    async def list(
         self,
         *,
         filter: dynamic_emergency_endpoint_list_params.Filter | Omit = omit,
@@ -311,7 +309,7 @@ class AsyncDynamicEmergencyEndpointsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[DynamicEmergencyEndpoint, AsyncDefaultPagination[DynamicEmergencyEndpoint]]:
+    ) -> DynamicEmergencyEndpointListResponse:
         """
         Returns the dynamic emergency endpoints according to filters
 
@@ -330,15 +328,14 @@ class AsyncDynamicEmergencyEndpointsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return await self._get(
             "/dynamic_emergency_endpoints",
-            page=AsyncDefaultPagination[DynamicEmergencyEndpoint],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
                         "filter": filter,
                         "page": page,
@@ -346,7 +343,7 @@ class AsyncDynamicEmergencyEndpointsResource(AsyncAPIResource):
                     dynamic_emergency_endpoint_list_params.DynamicEmergencyEndpointListParams,
                 ),
             ),
-            model=DynamicEmergencyEndpoint,
+            cast_to=DynamicEmergencyEndpointListResponse,
         )
 
     async def delete(

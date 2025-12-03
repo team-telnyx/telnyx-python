@@ -21,9 +21,9 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import SyncPerPagePaginationV2, AsyncPerPagePaginationV2
-from .._base_client import AsyncPaginator, make_request_options
+from .._base_client import make_request_options
 from ..types.telnyx_downstream_campaign import TelnyxDownstreamCampaign
+from ..types.partner_campaign_list_response import PartnerCampaignListResponse
 from ..types.partner_campaign_list_shared_by_me_response import PartnerCampaignListSharedByMeResponse
 from ..types.partner_campaign_retrieve_sharing_status_response import PartnerCampaignRetrieveSharingStatusResponse
 
@@ -157,7 +157,7 @@ class PartnerCampaignsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncPerPagePaginationV2[TelnyxDownstreamCampaign]:
+    ) -> PartnerCampaignListResponse:
         """
         Retrieve all partner campaigns you have shared to Telnyx in a paginated fashion.
 
@@ -182,9 +182,8 @@ class PartnerCampaignsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return self._get(
             "/partner_campaigns",
-            page=SyncPerPagePaginationV2[TelnyxDownstreamCampaign],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -199,7 +198,7 @@ class PartnerCampaignsResource(SyncAPIResource):
                     partner_campaign_list_params.PartnerCampaignListParams,
                 ),
             ),
-            model=TelnyxDownstreamCampaign,
+            cast_to=PartnerCampaignListResponse,
         )
 
     def list_shared_by_me(
@@ -213,7 +212,7 @@ class PartnerCampaignsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncPerPagePaginationV2[PartnerCampaignListSharedByMeResponse]:
+    ) -> PartnerCampaignListSharedByMeResponse:
         """
         Get all partner campaigns you have shared to Telnyx in a paginated fashion
 
@@ -235,9 +234,8 @@ class PartnerCampaignsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return self._get(
             "/partnerCampaign/sharedByMe",
-            page=SyncPerPagePaginationV2[PartnerCampaignListSharedByMeResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -251,7 +249,7 @@ class PartnerCampaignsResource(SyncAPIResource):
                     partner_campaign_list_shared_by_me_params.PartnerCampaignListSharedByMeParams,
                 ),
             ),
-            model=PartnerCampaignListSharedByMeResponse,
+            cast_to=PartnerCampaignListSharedByMeResponse,
         )
 
     def retrieve_sharing_status(
@@ -391,7 +389,7 @@ class AsyncPartnerCampaignsResource(AsyncAPIResource):
             cast_to=TelnyxDownstreamCampaign,
         )
 
-    def list(
+    async def list(
         self,
         *,
         page: int | Omit = omit,
@@ -417,7 +415,7 @@ class AsyncPartnerCampaignsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[TelnyxDownstreamCampaign, AsyncPerPagePaginationV2[TelnyxDownstreamCampaign]]:
+    ) -> PartnerCampaignListResponse:
         """
         Retrieve all partner campaigns you have shared to Telnyx in a paginated fashion.
 
@@ -442,15 +440,14 @@ class AsyncPartnerCampaignsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return await self._get(
             "/partner_campaigns",
-            page=AsyncPerPagePaginationV2[TelnyxDownstreamCampaign],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
                         "page": page,
                         "records_per_page": records_per_page,
@@ -459,10 +456,10 @@ class AsyncPartnerCampaignsResource(AsyncAPIResource):
                     partner_campaign_list_params.PartnerCampaignListParams,
                 ),
             ),
-            model=TelnyxDownstreamCampaign,
+            cast_to=PartnerCampaignListResponse,
         )
 
-    def list_shared_by_me(
+    async def list_shared_by_me(
         self,
         *,
         page: int | Omit = omit,
@@ -473,9 +470,7 @@ class AsyncPartnerCampaignsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[
-        PartnerCampaignListSharedByMeResponse, AsyncPerPagePaginationV2[PartnerCampaignListSharedByMeResponse]
-    ]:
+    ) -> PartnerCampaignListSharedByMeResponse:
         """
         Get all partner campaigns you have shared to Telnyx in a paginated fashion
 
@@ -497,15 +492,14 @@ class AsyncPartnerCampaignsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return await self._get(
             "/partnerCampaign/sharedByMe",
-            page=AsyncPerPagePaginationV2[PartnerCampaignListSharedByMeResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
                         "page": page,
                         "records_per_page": records_per_page,
@@ -513,7 +507,7 @@ class AsyncPartnerCampaignsResource(AsyncAPIResource):
                     partner_campaign_list_shared_by_me_params.PartnerCampaignListSharedByMeParams,
                 ),
             ),
-            model=PartnerCampaignListSharedByMeResponse,
+            cast_to=PartnerCampaignListSharedByMeResponse,
         )
 
     async def retrieve_sharing_status(

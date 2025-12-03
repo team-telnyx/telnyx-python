@@ -26,8 +26,7 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...pagination import SyncPerPagePaginationV2, AsyncPerPagePaginationV2
-from ..._base_client import AsyncPaginator, make_request_options
+from ..._base_client import make_request_options
 from ...types.vertical import Vertical
 from .external_vetting import (
     ExternalVettingResource,
@@ -417,7 +416,7 @@ class BrandResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncPerPagePaginationV2[BrandListResponse]:
+    ) -> BrandListResponse:
         """
         This endpoint is used to list all brands associated with your organization.
 
@@ -439,9 +438,8 @@ class BrandResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return self._get(
             "/brand",
-            page=SyncPerPagePaginationV2[BrandListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -462,7 +460,7 @@ class BrandResource(SyncAPIResource):
                     brand_list_params.BrandListParams,
                 ),
             ),
-            model=BrandListResponse,
+            cast_to=BrandListResponse,
         )
 
     def delete(
@@ -953,7 +951,7 @@ class AsyncBrandResource(AsyncAPIResource):
             cast_to=TelnyxBrand,
         )
 
-    def list(
+    async def list(
         self,
         *,
         brand_id: str | Omit = omit,
@@ -987,7 +985,7 @@ class AsyncBrandResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[BrandListResponse, AsyncPerPagePaginationV2[BrandListResponse]]:
+    ) -> BrandListResponse:
         """
         This endpoint is used to list all brands associated with your organization.
 
@@ -1009,15 +1007,14 @@ class AsyncBrandResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return await self._get(
             "/brand",
-            page=AsyncPerPagePaginationV2[BrandListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
                         "brand_id": brand_id,
                         "country": country,
@@ -1032,7 +1029,7 @@ class AsyncBrandResource(AsyncAPIResource):
                     brand_list_params.BrandListParams,
                 ),
             ),
-            model=BrandListResponse,
+            cast_to=BrandListResponse,
         )
 
     async def delete(

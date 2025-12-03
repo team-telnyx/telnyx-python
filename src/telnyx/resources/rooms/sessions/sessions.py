@@ -22,17 +22,17 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ....pagination import SyncDefaultPagination, AsyncDefaultPagination
 from ....types.rooms import (
     session_list_0_params,
     session_list_1_params,
     session_retrieve_params,
     session_retrieve_participants_params,
 )
-from ...._base_client import AsyncPaginator, make_request_options
-from ....types.room_session import RoomSession
-from ....types.shared.room_participant import RoomParticipant
+from ...._base_client import make_request_options
+from ....types.rooms.session_list_0_response import SessionList0Response
+from ....types.rooms.session_list_1_response import SessionList1Response
 from ....types.rooms.session_retrieve_response import SessionRetrieveResponse
+from ....types.rooms.session_retrieve_participants_response import SessionRetrieveParticipantsResponse
 
 __all__ = ["SessionsResource", "AsyncSessionsResource"]
 
@@ -115,7 +115,7 @@ class SessionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[RoomSession]:
+    ) -> SessionList0Response:
         """
         View a list of room sessions.
 
@@ -141,9 +141,8 @@ class SessionsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return self._get(
             "/room_sessions",
-            page=SyncDefaultPagination[RoomSession],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -158,7 +157,7 @@ class SessionsResource(SyncAPIResource):
                     session_list_0_params.SessionList0Params,
                 ),
             ),
-            model=RoomSession,
+            cast_to=SessionList0Response,
         )
 
     def list_1(
@@ -174,7 +173,7 @@ class SessionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[RoomSession]:
+    ) -> SessionList1Response:
         """
         View a list of room sessions.
 
@@ -202,9 +201,8 @@ class SessionsResource(SyncAPIResource):
         """
         if not room_id:
             raise ValueError(f"Expected a non-empty value for `room_id` but received {room_id!r}")
-        return self._get_api_list(
+        return self._get(
             f"/rooms/{room_id}/sessions",
-            page=SyncDefaultPagination[RoomSession],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -219,7 +217,7 @@ class SessionsResource(SyncAPIResource):
                     session_list_1_params.SessionList1Params,
                 ),
             ),
-            model=RoomSession,
+            cast_to=SessionList1Response,
         )
 
     def retrieve_participants(
@@ -234,7 +232,7 @@ class SessionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[RoomParticipant]:
+    ) -> SessionRetrieveParticipantsResponse:
         """
         View a list of room participants.
 
@@ -260,9 +258,8 @@ class SessionsResource(SyncAPIResource):
         """
         if not room_session_id:
             raise ValueError(f"Expected a non-empty value for `room_session_id` but received {room_session_id!r}")
-        return self._get_api_list(
+        return self._get(
             f"/room_sessions/{room_session_id}/participants",
-            page=SyncDefaultPagination[RoomParticipant],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -276,7 +273,7 @@ class SessionsResource(SyncAPIResource):
                     session_retrieve_participants_params.SessionRetrieveParticipantsParams,
                 ),
             ),
-            model=RoomParticipant,
+            cast_to=SessionRetrieveParticipantsResponse,
         )
 
 
@@ -346,7 +343,7 @@ class AsyncSessionsResource(AsyncAPIResource):
             cast_to=SessionRetrieveResponse,
         )
 
-    def list_0(
+    async def list_0(
         self,
         *,
         filter: session_list_0_params.Filter | Omit = omit,
@@ -358,7 +355,7 @@ class AsyncSessionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[RoomSession, AsyncDefaultPagination[RoomSession]]:
+    ) -> SessionList0Response:
         """
         View a list of room sessions.
 
@@ -384,15 +381,14 @@ class AsyncSessionsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return await self._get(
             "/room_sessions",
-            page=AsyncDefaultPagination[RoomSession],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
                         "filter": filter,
                         "include_participants": include_participants,
@@ -401,10 +397,10 @@ class AsyncSessionsResource(AsyncAPIResource):
                     session_list_0_params.SessionList0Params,
                 ),
             ),
-            model=RoomSession,
+            cast_to=SessionList0Response,
         )
 
-    def list_1(
+    async def list_1(
         self,
         room_id: str,
         *,
@@ -417,7 +413,7 @@ class AsyncSessionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[RoomSession, AsyncDefaultPagination[RoomSession]]:
+    ) -> SessionList1Response:
         """
         View a list of room sessions.
 
@@ -445,15 +441,14 @@ class AsyncSessionsResource(AsyncAPIResource):
         """
         if not room_id:
             raise ValueError(f"Expected a non-empty value for `room_id` but received {room_id!r}")
-        return self._get_api_list(
+        return await self._get(
             f"/rooms/{room_id}/sessions",
-            page=AsyncDefaultPagination[RoomSession],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
                         "filter": filter,
                         "include_participants": include_participants,
@@ -462,10 +457,10 @@ class AsyncSessionsResource(AsyncAPIResource):
                     session_list_1_params.SessionList1Params,
                 ),
             ),
-            model=RoomSession,
+            cast_to=SessionList1Response,
         )
 
-    def retrieve_participants(
+    async def retrieve_participants(
         self,
         room_session_id: str,
         *,
@@ -477,7 +472,7 @@ class AsyncSessionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[RoomParticipant, AsyncDefaultPagination[RoomParticipant]]:
+    ) -> SessionRetrieveParticipantsResponse:
         """
         View a list of room participants.
 
@@ -503,15 +498,14 @@ class AsyncSessionsResource(AsyncAPIResource):
         """
         if not room_session_id:
             raise ValueError(f"Expected a non-empty value for `room_session_id` but received {room_session_id!r}")
-        return self._get_api_list(
+        return await self._get(
             f"/room_sessions/{room_session_id}/participants",
-            page=AsyncDefaultPagination[RoomParticipant],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
                         "filter": filter,
                         "page": page,
@@ -519,7 +513,7 @@ class AsyncSessionsResource(AsyncAPIResource):
                     session_retrieve_participants_params.SessionRetrieveParticipantsParams,
                 ),
             ),
-            model=RoomParticipant,
+            cast_to=SessionRetrieveParticipantsResponse,
         )
 
 

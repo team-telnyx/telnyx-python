@@ -1,14 +1,15 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import List, Optional
 from datetime import datetime
 
 from ..._models import BaseModel
+from ..pagination_meta import PaginationMeta
 
-__all__ = ["VerificationCodeListResponse"]
+__all__ = ["VerificationCodeListResponse", "Data"]
 
 
-class VerificationCodeListResponse(BaseModel):
+class Data(BaseModel):
     id: Optional[str] = None
     """Uniquely identifies this porting verification code"""
 
@@ -29,3 +30,9 @@ class VerificationCodeListResponse(BaseModel):
 
     verified: Optional[bool] = None
     """Indicates whether the verification code has been verified"""
+
+
+class VerificationCodeListResponse(BaseModel):
+    data: Optional[List[Data]] = None
+
+    meta: Optional[PaginationMeta] = None

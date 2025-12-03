@@ -4,12 +4,13 @@ from typing import List, Optional
 from typing_extensions import Literal
 
 from .._models import BaseModel
+from .pagination_meta import PaginationMeta
 from .shared.doc_reqs_requirement_type import DocReqsRequirementType
 
-__all__ = ["RequirementListResponse"]
+__all__ = ["RequirementListResponse", "Data"]
 
 
-class RequirementListResponse(BaseModel):
+class Data(BaseModel):
     id: Optional[str] = None
     """Identifies the associated document"""
 
@@ -44,3 +45,9 @@ class RequirementListResponse(BaseModel):
 
     updated_at: Optional[str] = None
     """ISO 8601 formatted date-time indicating when the resource was last updated."""
+
+
+class RequirementListResponse(BaseModel):
+    data: Optional[List[Data]] = None
+
+    meta: Optional[PaginationMeta] = None

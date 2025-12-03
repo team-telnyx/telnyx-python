@@ -17,8 +17,7 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
-from ..._base_client import AsyncPaginator, make_request_options
+from ..._base_client import make_request_options
 from .cdr_usage_reports import (
     CdrUsageReportsResource,
     AsyncCdrUsageReportsResource,
@@ -152,8 +151,7 @@ class ReportsResource(SyncAPIResource):
         imsi: str | Omit = omit,
         mcc: str | Omit = omit,
         mnc: str | Omit = omit,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: report_list_wdrs_params.Page | Omit = omit,
         phone_number: str | Omit = omit,
         sim_card_id: str | Omit = omit,
         sim_group_id: str | Omit = omit,
@@ -166,7 +164,7 @@ class ReportsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[ReportListWdrsResponse]:
+    ) -> ReportListWdrsResponse:
         """
         Fetch all Wdr records
 
@@ -180,6 +178,9 @@ class ReportsResource(SyncAPIResource):
           mcc: Mobile country code
 
           mnc: Mobile network code
+
+          page: Consolidated page parameter (deepObject style). Originally: page[number],
+              page[size]
 
           phone_number: Phone number
 
@@ -202,9 +203,8 @@ class ReportsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return self._get(
             "/reports/wdrs",
-            page=SyncDefaultFlatPagination[ReportListWdrsResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -217,8 +217,7 @@ class ReportsResource(SyncAPIResource):
                         "imsi": imsi,
                         "mcc": mcc,
                         "mnc": mnc,
-                        "page_number": page_number,
-                        "page_size": page_size,
+                        "page": page,
                         "phone_number": phone_number,
                         "sim_card_id": sim_card_id,
                         "sim_group_id": sim_group_id,
@@ -229,7 +228,7 @@ class ReportsResource(SyncAPIResource):
                     report_list_wdrs_params.ReportListWdrsParams,
                 ),
             ),
-            model=ReportListWdrsResponse,
+            cast_to=ReportListWdrsResponse,
         )
 
 
@@ -336,7 +335,7 @@ class AsyncReportsResource(AsyncAPIResource):
             cast_to=ReportListMdrsResponse,
         )
 
-    def list_wdrs(
+    async def list_wdrs(
         self,
         *,
         id: str | Omit = omit,
@@ -344,8 +343,7 @@ class AsyncReportsResource(AsyncAPIResource):
         imsi: str | Omit = omit,
         mcc: str | Omit = omit,
         mnc: str | Omit = omit,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: report_list_wdrs_params.Page | Omit = omit,
         phone_number: str | Omit = omit,
         sim_card_id: str | Omit = omit,
         sim_group_id: str | Omit = omit,
@@ -358,7 +356,7 @@ class AsyncReportsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[ReportListWdrsResponse, AsyncDefaultFlatPagination[ReportListWdrsResponse]]:
+    ) -> ReportListWdrsResponse:
         """
         Fetch all Wdr records
 
@@ -372,6 +370,9 @@ class AsyncReportsResource(AsyncAPIResource):
           mcc: Mobile country code
 
           mnc: Mobile network code
+
+          page: Consolidated page parameter (deepObject style). Originally: page[number],
+              page[size]
 
           phone_number: Phone number
 
@@ -394,23 +395,21 @@ class AsyncReportsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return await self._get(
             "/reports/wdrs",
-            page=AsyncDefaultFlatPagination[ReportListWdrsResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
                         "id": id,
                         "end_date": end_date,
                         "imsi": imsi,
                         "mcc": mcc,
                         "mnc": mnc,
-                        "page_number": page_number,
-                        "page_size": page_size,
+                        "page": page,
                         "phone_number": phone_number,
                         "sim_card_id": sim_card_id,
                         "sim_group_id": sim_group_id,
@@ -421,7 +420,7 @@ class AsyncReportsResource(AsyncAPIResource):
                     report_list_wdrs_params.ReportListWdrsParams,
                 ),
             ),
-            model=ReportListWdrsResponse,
+            cast_to=ReportListWdrsResponse,
         )
 
 

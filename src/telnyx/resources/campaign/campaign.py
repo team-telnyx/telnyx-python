@@ -33,8 +33,7 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...pagination import SyncPerPagePaginationV2, AsyncPerPagePaginationV2
-from ..._base_client import AsyncPaginator, make_request_options
+from ..._base_client import make_request_options
 from ...types.telnyx_campaign_csp import TelnyxCampaignCsp
 from ...types.campaign_list_response import CampaignListResponse
 from ...types.campaign_deactivate_response import CampaignDeactivateResponse
@@ -218,7 +217,7 @@ class CampaignResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncPerPagePaginationV2[CampaignListResponse]:
+    ) -> CampaignListResponse:
         """
         Retrieve a list of campaigns associated with a supplied `brandId`.
 
@@ -239,9 +238,8 @@ class CampaignResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return self._get(
             "/campaign",
-            page=SyncPerPagePaginationV2[CampaignListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -257,7 +255,7 @@ class CampaignResource(SyncAPIResource):
                     campaign_list_params.CampaignListParams,
                 ),
             ),
-            model=CampaignListResponse,
+            cast_to=CampaignListResponse,
         )
 
     def accept_sharing(
@@ -622,7 +620,7 @@ class AsyncCampaignResource(AsyncAPIResource):
             cast_to=TelnyxCampaignCsp,
         )
 
-    def list(
+    async def list(
         self,
         *,
         brand_id: str,
@@ -647,7 +645,7 @@ class AsyncCampaignResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[CampaignListResponse, AsyncPerPagePaginationV2[CampaignListResponse]]:
+    ) -> CampaignListResponse:
         """
         Retrieve a list of campaigns associated with a supplied `brandId`.
 
@@ -668,15 +666,14 @@ class AsyncCampaignResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return await self._get(
             "/campaign",
-            page=AsyncPerPagePaginationV2[CampaignListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
                         "brand_id": brand_id,
                         "page": page,
@@ -686,7 +683,7 @@ class AsyncCampaignResource(AsyncAPIResource):
                     campaign_list_params.CampaignListParams,
                 ),
             ),
-            model=CampaignListResponse,
+            cast_to=CampaignListResponse,
         )
 
     async def accept_sharing(

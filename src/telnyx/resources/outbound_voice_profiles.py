@@ -25,13 +25,12 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
-from .._base_client import AsyncPaginator, make_request_options
+from .._base_client import make_request_options
 from ..types.service_plan import ServicePlan
 from ..types.traffic_type import TrafficType
 from ..types.usage_payment_method import UsagePaymentMethod
-from ..types.outbound_voice_profile import OutboundVoiceProfile
 from ..types.outbound_call_recording_param import OutboundCallRecordingParam
+from ..types.outbound_voice_profile_list_response import OutboundVoiceProfileListResponse
 from ..types.outbound_voice_profile_create_response import OutboundVoiceProfileCreateResponse
 from ..types.outbound_voice_profile_delete_response import OutboundVoiceProfileDeleteResponse
 from ..types.outbound_voice_profile_update_response import OutboundVoiceProfileUpdateResponse
@@ -310,7 +309,7 @@ class OutboundVoiceProfilesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[OutboundVoiceProfile]:
+    ) -> OutboundVoiceProfileListResponse:
         """
         Get all outbound voice profiles belonging to the user that match the given
         filters.
@@ -346,9 +345,8 @@ class OutboundVoiceProfilesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return self._get(
             "/outbound_voice_profiles",
-            page=SyncDefaultPagination[OutboundVoiceProfile],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -363,7 +361,7 @@ class OutboundVoiceProfilesResource(SyncAPIResource):
                     outbound_voice_profile_list_params.OutboundVoiceProfileListParams,
                 ),
             ),
-            model=OutboundVoiceProfile,
+            cast_to=OutboundVoiceProfileListResponse,
         )
 
     def delete(
@@ -644,7 +642,7 @@ class AsyncOutboundVoiceProfilesResource(AsyncAPIResource):
             cast_to=OutboundVoiceProfileUpdateResponse,
         )
 
-    def list(
+    async def list(
         self,
         *,
         filter: outbound_voice_profile_list_params.Filter | Omit = omit,
@@ -670,7 +668,7 @@ class AsyncOutboundVoiceProfilesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[OutboundVoiceProfile, AsyncDefaultPagination[OutboundVoiceProfile]]:
+    ) -> OutboundVoiceProfileListResponse:
         """
         Get all outbound voice profiles belonging to the user that match the given
         filters.
@@ -706,15 +704,14 @@ class AsyncOutboundVoiceProfilesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return await self._get(
             "/outbound_voice_profiles",
-            page=AsyncDefaultPagination[OutboundVoiceProfile],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
                         "filter": filter,
                         "page": page,
@@ -723,7 +720,7 @@ class AsyncOutboundVoiceProfilesResource(AsyncAPIResource):
                     outbound_voice_profile_list_params.OutboundVoiceProfileListParams,
                 ),
             ),
-            model=OutboundVoiceProfile,
+            cast_to=OutboundVoiceProfileListResponse,
         )
 
     async def delete(

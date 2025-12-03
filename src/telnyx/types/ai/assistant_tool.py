@@ -1,9 +1,8 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Dict, List, Union, Optional
-from typing_extensions import Literal, Annotated, TypeAlias
+from typing_extensions import Literal, TypeAlias
 
-from ..._utils import PropertyInfo
 from ..._models import BaseModel
 from .hangup_tool import HangupTool
 from .webhook_tool import WebhookTool
@@ -12,19 +11,19 @@ from .retrieval_tool import RetrievalTool
 
 __all__ = [
     "AssistantTool",
-    "Handoff",
-    "HandoffHandoff",
-    "HandoffHandoffAIAssistant",
-    "Refer",
-    "ReferRefer",
-    "ReferReferTarget",
-    "ReferReferCustomHeader",
-    "ReferReferSipHeader",
-    "SendDtmf",
+    "HandoffTool",
+    "HandoffToolHandoff",
+    "HandoffToolHandoffAIAssistant",
+    "SipReferTool",
+    "SipReferToolRefer",
+    "SipReferToolReferTarget",
+    "SipReferToolReferCustomHeader",
+    "SipReferToolReferSipHeader",
+    "DtmfTool",
 ]
 
 
-class HandoffHandoffAIAssistant(BaseModel):
+class HandoffToolHandoffAIAssistant(BaseModel):
     id: str
     """The ID of the assistant to hand off to."""
 
@@ -32,8 +31,8 @@ class HandoffHandoffAIAssistant(BaseModel):
     """Helpful name for giving context on when to handoff to the assistant."""
 
 
-class HandoffHandoff(BaseModel):
-    ai_assistants: List[HandoffHandoffAIAssistant]
+class HandoffToolHandoff(BaseModel):
+    ai_assistants: List[HandoffToolHandoffAIAssistant]
     """List of possible assistants that can receive a handoff."""
 
     voice_mode: Optional[Literal["unified", "distinct"]] = None
@@ -45,13 +44,13 @@ class HandoffHandoff(BaseModel):
     """
 
 
-class Handoff(BaseModel):
-    handoff: HandoffHandoff
+class HandoffTool(BaseModel):
+    handoff: HandoffToolHandoff
 
     type: Literal["handoff"]
 
 
-class ReferReferTarget(BaseModel):
+class SipReferToolReferTarget(BaseModel):
     name: str
     """The name of the target."""
 
@@ -65,7 +64,7 @@ class ReferReferTarget(BaseModel):
     """SIP Authentication username used for SIP challenges."""
 
 
-class ReferReferCustomHeader(BaseModel):
+class SipReferToolReferCustomHeader(BaseModel):
     name: Optional[str] = None
 
     value: Optional[str] = None
@@ -77,7 +76,7 @@ class ReferReferCustomHeader(BaseModel):
     """
 
 
-class ReferReferSipHeader(BaseModel):
+class SipReferToolReferSipHeader(BaseModel):
     name: Optional[Literal["User-to-User", "Diversion"]] = None
 
     value: Optional[str] = None
@@ -89,36 +88,35 @@ class ReferReferSipHeader(BaseModel):
     """
 
 
-class ReferRefer(BaseModel):
-    targets: List[ReferReferTarget]
+class SipReferToolRefer(BaseModel):
+    targets: List[SipReferToolReferTarget]
     """The different possible targets of the SIP refer.
 
     The assistant will be able to choose one of the targets to refer the call to.
     """
 
-    custom_headers: Optional[List[ReferReferCustomHeader]] = None
+    custom_headers: Optional[List[SipReferToolReferCustomHeader]] = None
     """Custom headers to be added to the SIP REFER."""
 
-    sip_headers: Optional[List[ReferReferSipHeader]] = None
+    sip_headers: Optional[List[SipReferToolReferSipHeader]] = None
     """SIP headers to be added to the SIP REFER.
 
     Currently only User-to-User and Diversion headers are supported.
     """
 
 
-class Refer(BaseModel):
-    refer: ReferRefer
+class SipReferTool(BaseModel):
+    refer: SipReferToolRefer
 
     type: Literal["refer"]
 
 
-class SendDtmf(BaseModel):
+class DtmfTool(BaseModel):
     send_dtmf: Dict[str, object]
 
     type: Literal["send_dtmf"]
 
 
-AssistantTool: TypeAlias = Annotated[
-    Union[WebhookTool, RetrievalTool, Handoff, HangupTool, TransferTool, Refer, SendDtmf],
-    PropertyInfo(discriminator="type"),
+AssistantTool: TypeAlias = Union[
+    WebhookTool, RetrievalTool, HandoffTool, HangupTool, TransferTool, SipReferTool, DtmfTool
 ]

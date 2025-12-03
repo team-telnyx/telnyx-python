@@ -11,7 +11,6 @@ from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types import MessagingOptoutListResponse
 from telnyx._utils import parse_datetime
-from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -23,7 +22,7 @@ class TestMessagingOptouts:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         messaging_optout = client.messaging_optouts.list()
-        assert_matches_type(SyncDefaultPagination[MessagingOptoutListResponse], messaging_optout, path=["response"])
+        assert_matches_type(MessagingOptoutListResponse, messaging_optout, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -43,7 +42,7 @@ class TestMessagingOptouts:
             },
             redaction_enabled="redaction_enabled",
         )
-        assert_matches_type(SyncDefaultPagination[MessagingOptoutListResponse], messaging_optout, path=["response"])
+        assert_matches_type(MessagingOptoutListResponse, messaging_optout, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -53,7 +52,7 @@ class TestMessagingOptouts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         messaging_optout = response.parse()
-        assert_matches_type(SyncDefaultPagination[MessagingOptoutListResponse], messaging_optout, path=["response"])
+        assert_matches_type(MessagingOptoutListResponse, messaging_optout, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -63,7 +62,7 @@ class TestMessagingOptouts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             messaging_optout = response.parse()
-            assert_matches_type(SyncDefaultPagination[MessagingOptoutListResponse], messaging_optout, path=["response"])
+            assert_matches_type(MessagingOptoutListResponse, messaging_optout, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -77,7 +76,7 @@ class TestAsyncMessagingOptouts:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         messaging_optout = await async_client.messaging_optouts.list()
-        assert_matches_type(AsyncDefaultPagination[MessagingOptoutListResponse], messaging_optout, path=["response"])
+        assert_matches_type(MessagingOptoutListResponse, messaging_optout, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -97,7 +96,7 @@ class TestAsyncMessagingOptouts:
             },
             redaction_enabled="redaction_enabled",
         )
-        assert_matches_type(AsyncDefaultPagination[MessagingOptoutListResponse], messaging_optout, path=["response"])
+        assert_matches_type(MessagingOptoutListResponse, messaging_optout, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -107,7 +106,7 @@ class TestAsyncMessagingOptouts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         messaging_optout = await response.parse()
-        assert_matches_type(AsyncDefaultPagination[MessagingOptoutListResponse], messaging_optout, path=["response"])
+        assert_matches_type(MessagingOptoutListResponse, messaging_optout, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -117,8 +116,6 @@ class TestAsyncMessagingOptouts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             messaging_optout = await response.parse()
-            assert_matches_type(
-                AsyncDefaultPagination[MessagingOptoutListResponse], messaging_optout, path=["response"]
-            )
+            assert_matches_type(MessagingOptoutListResponse, messaging_optout, path=["response"])
 
         assert cast(Any, response.is_closed) is True

@@ -17,9 +17,8 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
-from ..types.fqdn import Fqdn
-from .._base_client import AsyncPaginator, make_request_options
+from .._base_client import make_request_options
+from ..types.fqdn_list_response import FqdnListResponse
 from ..types.fqdn_create_response import FqdnCreateResponse
 from ..types.fqdn_delete_response import FqdnDeleteResponse
 from ..types.fqdn_update_response import FqdnUpdateResponse
@@ -203,7 +202,7 @@ class FqdnsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[Fqdn]:
+    ) -> FqdnListResponse:
         """
         Get all FQDNs belonging to the user that match the given filters.
 
@@ -223,9 +222,8 @@ class FqdnsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return self._get(
             "/fqdns",
-            page=SyncDefaultPagination[Fqdn],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -239,7 +237,7 @@ class FqdnsResource(SyncAPIResource):
                     fqdn_list_params.FqdnListParams,
                 ),
             ),
-            model=Fqdn,
+            cast_to=FqdnListResponse,
         )
 
     def delete(
@@ -440,7 +438,7 @@ class AsyncFqdnsResource(AsyncAPIResource):
             cast_to=FqdnUpdateResponse,
         )
 
-    def list(
+    async def list(
         self,
         *,
         filter: fqdn_list_params.Filter | Omit = omit,
@@ -451,7 +449,7 @@ class AsyncFqdnsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[Fqdn, AsyncDefaultPagination[Fqdn]]:
+    ) -> FqdnListResponse:
         """
         Get all FQDNs belonging to the user that match the given filters.
 
@@ -471,15 +469,14 @@ class AsyncFqdnsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return await self._get(
             "/fqdns",
-            page=AsyncDefaultPagination[Fqdn],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
                         "filter": filter,
                         "page": page,
@@ -487,7 +484,7 @@ class AsyncFqdnsResource(AsyncAPIResource):
                     fqdn_list_params.FqdnListParams,
                 ),
             ),
-            model=Fqdn,
+            cast_to=FqdnListResponse,
         )
 
     async def delete(

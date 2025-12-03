@@ -14,11 +14,11 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...types.brand import external_vetting_order_params, external_vetting_imports_params
+from ...types.brand import external_vetting_order_params, external_vetting_import_params
 from ..._base_client import make_request_options
 from ...types.brand.external_vetting_list_response import ExternalVettingListResponse
 from ...types.brand.external_vetting_order_response import ExternalVettingOrderResponse
-from ...types.brand.external_vetting_imports_response import ExternalVettingImportsResponse
+from ...types.brand.external_vetting_import_response import ExternalVettingImportResponse
 
 __all__ = ["ExternalVettingResource", "AsyncExternalVettingResource"]
 
@@ -76,7 +76,7 @@ class ExternalVettingResource(SyncAPIResource):
             cast_to=ExternalVettingListResponse,
         )
 
-    def imports(
+    def import_(
         self,
         brand_id: str,
         *,
@@ -89,7 +89,7 @@ class ExternalVettingResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ExternalVettingImportsResponse:
+    ) -> ExternalVettingImportResponse:
         """
         This operation can be used to import an external vetting record from a
         TCR-approved vetting provider. If the vetting provider confirms validity of the
@@ -122,12 +122,12 @@ class ExternalVettingResource(SyncAPIResource):
                     "vetting_id": vetting_id,
                     "vetting_token": vetting_token,
                 },
-                external_vetting_imports_params.ExternalVettingImportsParams,
+                external_vetting_import_params.ExternalVettingImportParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ExternalVettingImportsResponse,
+            cast_to=ExternalVettingImportResponse,
         )
 
     def order(
@@ -230,7 +230,7 @@ class AsyncExternalVettingResource(AsyncAPIResource):
             cast_to=ExternalVettingListResponse,
         )
 
-    async def imports(
+    async def import_(
         self,
         brand_id: str,
         *,
@@ -243,7 +243,7 @@ class AsyncExternalVettingResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ExternalVettingImportsResponse:
+    ) -> ExternalVettingImportResponse:
         """
         This operation can be used to import an external vetting record from a
         TCR-approved vetting provider. If the vetting provider confirms validity of the
@@ -276,12 +276,12 @@ class AsyncExternalVettingResource(AsyncAPIResource):
                     "vetting_id": vetting_id,
                     "vetting_token": vetting_token,
                 },
-                external_vetting_imports_params.ExternalVettingImportsParams,
+                external_vetting_import_params.ExternalVettingImportParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ExternalVettingImportsResponse,
+            cast_to=ExternalVettingImportResponse,
         )
 
     async def order(
@@ -338,8 +338,8 @@ class ExternalVettingResourceWithRawResponse:
         self.list = to_raw_response_wrapper(
             external_vetting.list,
         )
-        self.imports = to_raw_response_wrapper(
-            external_vetting.imports,
+        self.import_ = to_raw_response_wrapper(
+            external_vetting.import_,
         )
         self.order = to_raw_response_wrapper(
             external_vetting.order,
@@ -353,8 +353,8 @@ class AsyncExternalVettingResourceWithRawResponse:
         self.list = async_to_raw_response_wrapper(
             external_vetting.list,
         )
-        self.imports = async_to_raw_response_wrapper(
-            external_vetting.imports,
+        self.import_ = async_to_raw_response_wrapper(
+            external_vetting.import_,
         )
         self.order = async_to_raw_response_wrapper(
             external_vetting.order,
@@ -368,8 +368,8 @@ class ExternalVettingResourceWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             external_vetting.list,
         )
-        self.imports = to_streamed_response_wrapper(
-            external_vetting.imports,
+        self.import_ = to_streamed_response_wrapper(
+            external_vetting.import_,
         )
         self.order = to_streamed_response_wrapper(
             external_vetting.order,
@@ -383,8 +383,8 @@ class AsyncExternalVettingResourceWithStreamingResponse:
         self.list = async_to_streamed_response_wrapper(
             external_vetting.list,
         )
-        self.imports = async_to_streamed_response_wrapper(
-            external_vetting.imports,
+        self.import_ = async_to_streamed_response_wrapper(
+            external_vetting.import_,
         )
         self.order = async_to_streamed_response_wrapper(
             external_vetting.order,

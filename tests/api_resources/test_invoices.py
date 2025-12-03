@@ -10,7 +10,6 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types import InvoiceListResponse, InvoiceRetrieveResponse
-from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -73,17 +72,19 @@ class TestInvoices:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         invoice = client.invoices.list()
-        assert_matches_type(SyncDefaultFlatPagination[InvoiceListResponse], invoice, path=["response"])
+        assert_matches_type(InvoiceListResponse, invoice, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         invoice = client.invoices.list(
-            page_number=0,
-            page_size=0,
+            page={
+                "number": 1,
+                "size": 1,
+            },
             sort="period_start",
         )
-        assert_matches_type(SyncDefaultFlatPagination[InvoiceListResponse], invoice, path=["response"])
+        assert_matches_type(InvoiceListResponse, invoice, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -93,7 +94,7 @@ class TestInvoices:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         invoice = response.parse()
-        assert_matches_type(SyncDefaultFlatPagination[InvoiceListResponse], invoice, path=["response"])
+        assert_matches_type(InvoiceListResponse, invoice, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -103,7 +104,7 @@ class TestInvoices:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             invoice = response.parse()
-            assert_matches_type(SyncDefaultFlatPagination[InvoiceListResponse], invoice, path=["response"])
+            assert_matches_type(InvoiceListResponse, invoice, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -168,17 +169,19 @@ class TestAsyncInvoices:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         invoice = await async_client.invoices.list()
-        assert_matches_type(AsyncDefaultFlatPagination[InvoiceListResponse], invoice, path=["response"])
+        assert_matches_type(InvoiceListResponse, invoice, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         invoice = await async_client.invoices.list(
-            page_number=0,
-            page_size=0,
+            page={
+                "number": 1,
+                "size": 1,
+            },
             sort="period_start",
         )
-        assert_matches_type(AsyncDefaultFlatPagination[InvoiceListResponse], invoice, path=["response"])
+        assert_matches_type(InvoiceListResponse, invoice, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -188,7 +191,7 @@ class TestAsyncInvoices:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         invoice = await response.parse()
-        assert_matches_type(AsyncDefaultFlatPagination[InvoiceListResponse], invoice, path=["response"])
+        assert_matches_type(InvoiceListResponse, invoice, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -198,6 +201,6 @@ class TestAsyncInvoices:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             invoice = await response.parse()
-            assert_matches_type(AsyncDefaultFlatPagination[InvoiceListResponse], invoice, path=["response"])
+            assert_matches_type(InvoiceListResponse, invoice, path=["response"])
 
         assert cast(Any, response.is_closed) is True

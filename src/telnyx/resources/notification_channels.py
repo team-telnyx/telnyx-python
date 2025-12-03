@@ -21,9 +21,8 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
-from .._base_client import AsyncPaginator, make_request_options
-from ..types.notification_channel import NotificationChannel
+from .._base_client import make_request_options
+from ..types.notification_channel_list_response import NotificationChannelListResponse
 from ..types.notification_channel_create_response import NotificationChannelCreateResponse
 from ..types.notification_channel_delete_response import NotificationChannelDeleteResponse
 from ..types.notification_channel_update_response import NotificationChannelUpdateResponse
@@ -134,7 +133,7 @@ class NotificationChannelsResource(SyncAPIResource):
 
     def update(
         self,
-        notification_channel_id: str,
+        id: str,
         *,
         channel_destination: str | Omit = omit,
         channel_type_id: Literal["sms", "voice", "email", "webhook"] | Omit = omit,
@@ -164,12 +163,10 @@ class NotificationChannelsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not notification_channel_id:
-            raise ValueError(
-                f"Expected a non-empty value for `notification_channel_id` but received {notification_channel_id!r}"
-            )
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._patch(
-            f"/notification_channels/{notification_channel_id}",
+            f"/notification_channels/{id}",
             body=maybe_transform(
                 {
                     "channel_destination": channel_destination,
@@ -195,7 +192,7 @@ class NotificationChannelsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[NotificationChannel]:
+    ) -> NotificationChannelListResponse:
         """
         List notification channels.
 
@@ -217,9 +214,8 @@ class NotificationChannelsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return self._get(
             "/notification_channels",
-            page=SyncDefaultPagination[NotificationChannel],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -233,7 +229,7 @@ class NotificationChannelsResource(SyncAPIResource):
                     notification_channel_list_params.NotificationChannelListParams,
                 ),
             ),
-            model=NotificationChannel,
+            cast_to=NotificationChannelListResponse,
         )
 
     def delete(
@@ -372,7 +368,7 @@ class AsyncNotificationChannelsResource(AsyncAPIResource):
 
     async def update(
         self,
-        notification_channel_id: str,
+        id: str,
         *,
         channel_destination: str | Omit = omit,
         channel_type_id: Literal["sms", "voice", "email", "webhook"] | Omit = omit,
@@ -402,12 +398,10 @@ class AsyncNotificationChannelsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not notification_channel_id:
-            raise ValueError(
-                f"Expected a non-empty value for `notification_channel_id` but received {notification_channel_id!r}"
-            )
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._patch(
-            f"/notification_channels/{notification_channel_id}",
+            f"/notification_channels/{id}",
             body=await async_maybe_transform(
                 {
                     "channel_destination": channel_destination,
@@ -422,7 +416,7 @@ class AsyncNotificationChannelsResource(AsyncAPIResource):
             cast_to=NotificationChannelUpdateResponse,
         )
 
-    def list(
+    async def list(
         self,
         *,
         filter: notification_channel_list_params.Filter | Omit = omit,
@@ -433,7 +427,7 @@ class AsyncNotificationChannelsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[NotificationChannel, AsyncDefaultPagination[NotificationChannel]]:
+    ) -> NotificationChannelListResponse:
         """
         List notification channels.
 
@@ -455,15 +449,14 @@ class AsyncNotificationChannelsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return await self._get(
             "/notification_channels",
-            page=AsyncDefaultPagination[NotificationChannel],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
                         "filter": filter,
                         "page": page,
@@ -471,7 +464,7 @@ class AsyncNotificationChannelsResource(AsyncAPIResource):
                     notification_channel_list_params.NotificationChannelListParams,
                 ),
             ),
-            model=NotificationChannel,
+            cast_to=NotificationChannelListResponse,
         )
 
     async def delete(

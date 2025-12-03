@@ -4,17 +4,18 @@ from typing import Dict, List, Optional
 from typing_extensions import Literal
 
 from .._models import BaseModel
+from .pagination_meta import PaginationMeta
 
-__all__ = ["BulkSimCardActionListResponse", "SimCardActionsSummary"]
+__all__ = ["BulkSimCardActionListResponse", "Data", "DataSimCardActionsSummary"]
 
 
-class SimCardActionsSummary(BaseModel):
+class DataSimCardActionsSummary(BaseModel):
     count: Optional[int] = None
 
     status: Optional[Literal["in-progress", "completed", "failed", "interrupted"]] = None
 
 
-class BulkSimCardActionListResponse(BaseModel):
+class Data(BaseModel):
     id: Optional[str] = None
     """Identifies the resource."""
 
@@ -34,7 +35,13 @@ class BulkSimCardActionListResponse(BaseModel):
     settings: Optional[Dict[str, object]] = None
     """A JSON object representation of the bulk action payload."""
 
-    sim_card_actions_summary: Optional[List[SimCardActionsSummary]] = None
+    sim_card_actions_summary: Optional[List[DataSimCardActionsSummary]] = None
 
     updated_at: Optional[str] = None
     """ISO 8601 formatted date-time indicating when the resource was updated."""
+
+
+class BulkSimCardActionListResponse(BaseModel):
+    data: Optional[List[Data]] = None
+
+    meta: Optional[PaginationMeta] = None

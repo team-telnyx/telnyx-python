@@ -10,7 +10,6 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types import DocumentLinkListResponse
-from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -22,7 +21,7 @@ class TestDocumentLinks:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         document_link = client.document_links.list()
-        assert_matches_type(SyncDefaultPagination[DocumentLinkListResponse], document_link, path=["response"])
+        assert_matches_type(DocumentLinkListResponse, document_link, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -37,7 +36,7 @@ class TestDocumentLinks:
                 "size": 1,
             },
         )
-        assert_matches_type(SyncDefaultPagination[DocumentLinkListResponse], document_link, path=["response"])
+        assert_matches_type(DocumentLinkListResponse, document_link, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -47,7 +46,7 @@ class TestDocumentLinks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         document_link = response.parse()
-        assert_matches_type(SyncDefaultPagination[DocumentLinkListResponse], document_link, path=["response"])
+        assert_matches_type(DocumentLinkListResponse, document_link, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -57,7 +56,7 @@ class TestDocumentLinks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             document_link = response.parse()
-            assert_matches_type(SyncDefaultPagination[DocumentLinkListResponse], document_link, path=["response"])
+            assert_matches_type(DocumentLinkListResponse, document_link, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -71,7 +70,7 @@ class TestAsyncDocumentLinks:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         document_link = await async_client.document_links.list()
-        assert_matches_type(AsyncDefaultPagination[DocumentLinkListResponse], document_link, path=["response"])
+        assert_matches_type(DocumentLinkListResponse, document_link, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -86,7 +85,7 @@ class TestAsyncDocumentLinks:
                 "size": 1,
             },
         )
-        assert_matches_type(AsyncDefaultPagination[DocumentLinkListResponse], document_link, path=["response"])
+        assert_matches_type(DocumentLinkListResponse, document_link, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -96,7 +95,7 @@ class TestAsyncDocumentLinks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         document_link = await response.parse()
-        assert_matches_type(AsyncDefaultPagination[DocumentLinkListResponse], document_link, path=["response"])
+        assert_matches_type(DocumentLinkListResponse, document_link, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -106,6 +105,6 @@ class TestAsyncDocumentLinks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             document_link = await response.parse()
-            assert_matches_type(AsyncDefaultPagination[DocumentLinkListResponse], document_link, path=["response"])
+            assert_matches_type(DocumentLinkListResponse, document_link, path=["response"])
 
         assert cast(Any, response.is_closed) is True

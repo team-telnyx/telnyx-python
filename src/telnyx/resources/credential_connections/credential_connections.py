@@ -33,15 +33,14 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...pagination import SyncDefaultPagination, AsyncDefaultPagination
-from ..._base_client import AsyncPaginator, make_request_options
+from ..._base_client import make_request_options
 from ...types.dtmf_type import DtmfType
 from ...types.encrypted_media import EncryptedMedia
 from ...types.anchorsite_override import AnchorsiteOverride
-from ...types.credential_connection import CredentialConnection
 from ...types.credential_inbound_param import CredentialInboundParam
 from ...types.credential_outbound_param import CredentialOutboundParam
 from ...types.connection_rtcp_settings_param import ConnectionRtcpSettingsParam
+from ...types.credential_connection_list_response import CredentialConnectionListResponse
 from ...types.credential_connection_create_response import CredentialConnectionCreateResponse
 from ...types.credential_connection_delete_response import CredentialConnectionDeleteResponse
 from ...types.credential_connection_update_response import CredentialConnectionUpdateResponse
@@ -392,7 +391,7 @@ class CredentialConnectionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[CredentialConnection]:
+    ) -> CredentialConnectionListResponse:
         """
         Returns a list of your credential connections.
 
@@ -428,9 +427,8 @@ class CredentialConnectionsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return self._get(
             "/credential_connections",
-            page=SyncDefaultPagination[CredentialConnection],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -445,7 +443,7 @@ class CredentialConnectionsResource(SyncAPIResource):
                     credential_connection_list_params.CredentialConnectionListParams,
                 ),
             ),
-            model=CredentialConnection,
+            cast_to=CredentialConnectionListResponse,
         )
 
     def delete(
@@ -812,7 +810,7 @@ class AsyncCredentialConnectionsResource(AsyncAPIResource):
             cast_to=CredentialConnectionUpdateResponse,
         )
 
-    def list(
+    async def list(
         self,
         *,
         filter: credential_connection_list_params.Filter | Omit = omit,
@@ -824,7 +822,7 @@ class AsyncCredentialConnectionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[CredentialConnection, AsyncDefaultPagination[CredentialConnection]]:
+    ) -> CredentialConnectionListResponse:
         """
         Returns a list of your credential connections.
 
@@ -860,15 +858,14 @@ class AsyncCredentialConnectionsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return await self._get(
             "/credential_connections",
-            page=AsyncDefaultPagination[CredentialConnection],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
                         "filter": filter,
                         "page": page,
@@ -877,7 +874,7 @@ class AsyncCredentialConnectionsResource(AsyncAPIResource):
                     credential_connection_list_params.CredentialConnectionListParams,
                 ),
             ),
-            model=CredentialConnection,
+            cast_to=CredentialConnectionListResponse,
         )
 
     async def delete(

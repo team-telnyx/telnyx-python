@@ -1,14 +1,15 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import List, Optional
 from typing_extensions import Literal
 
 from .._models import BaseModel
+from .pagination_meta import PaginationMeta
 
-__all__ = ["SimCardListWirelessConnectivityLogsResponse"]
+__all__ = ["SimCardListWirelessConnectivityLogsResponse", "Data"]
 
 
-class SimCardListWirelessConnectivityLogsResponse(BaseModel):
+class Data(BaseModel):
     id: Optional[int] = None
     """Uniquely identifies the session."""
 
@@ -97,3 +98,9 @@ class SimCardListWirelessConnectivityLogsResponse(BaseModel):
 
     stop_time: Optional[str] = None
     """ISO 8601 formatted date-time indicating when the session ended."""
+
+
+class SimCardListWirelessConnectivityLogsResponse(BaseModel):
+    data: Optional[List[Data]] = None
+
+    meta: Optional[PaginationMeta] = None
