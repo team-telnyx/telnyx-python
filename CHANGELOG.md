@@ -1,5 +1,31 @@
 # Changelog
 
+## 3.14.0 (2025-12-03)
+
+Full Changelog: [v3.13.0...v3.14.0](https://github.com/team-telnyx/telnyx-python/compare/v3.13.0...v3.14.0)
+
+### Features
+
+* Add response schemas for telco data usage report endpoints ([fe8d5ac](https://github.com/team-telnyx/telnyx-python/commit/fe8d5ac1635793ead3ef83d5d692e048f47a4b62))
+* **api:** manual updates ([61eaa6b](https://github.com/team-telnyx/telnyx-python/commit/61eaa6b5696d098266d217d1f4dba138c92edd93))
+* **client:** add separate models for 2 events ([9a7b84b](https://github.com/team-telnyx/telnyx-python/commit/9a7b84b1b9be53a2e18372cb00dd1600ecee5927))
+* ENGDESK-47508 - part 2 shared schema fixes ([afbdf75](https://github.com/team-telnyx/telnyx-python/commit/afbdf755540b10afbd78e9875d71796959c91a5e))
+* ENGDESK-47518 document mobile number and mobile voice connection endpoints ([3d5c806](https://github.com/team-telnyx/telnyx-python/commit/3d5c80689acac891ff2bcd1212c92f8871431df1))
+* ENGDESK-47580: Add quickship and exclude_held_numbers filters to inexplicit number order API ([81bdd5f](https://github.com/team-telnyx/telnyx-python/commit/81bdd5f3769f070256d4bee813545e8642c2fb2a))
+* ENGDESK-47580: Add quickship and exclude_held_numbers to InexplicitNumberOrderResponse ([aff95e3](https://github.com/team-telnyx/telnyx-python/commit/aff95e3da2bde0aeacccd8d30545e2658de015e6))
+* ENGDESK-47759 - fix missing meta definition in authorized ips spec ([4726a4e](https://github.com/team-telnyx/telnyx-python/commit/4726a4e6690024ab604d8805e648a928a733394f))
+* Fix invalid responses ([209084d](https://github.com/team-telnyx/telnyx-python/commit/209084df5fb5f1d9a546a3018f9e23427ec350a7))
+* Fixing lint errors ([852999c](https://github.com/team-telnyx/telnyx-python/commit/852999ca20da060f80143b9a3dfc3b245f577b55))
+* MSG-6166 fix empty schema responses ([82dd85d](https://github.com/team-telnyx/telnyx-python/commit/82dd85de40ede239645d6de6340f206f0af4e8e8))
+* PORT-4528: Fix lint errors for porting ([e8c9718](https://github.com/team-telnyx/telnyx-python/commit/e8c9718f22fdd25e98cc164f01f676cf683e36ef))
+* TBS-3422: Fix TBS redocly errors ([b7e8803](https://github.com/team-telnyx/telnyx-python/commit/b7e8803b4f2762c1cb5eb654abaf214d50ea8313))
+
+
+### Chores
+
+* **docs:** use environment variables for authentication in code snippets ([b6999a6](https://github.com/team-telnyx/telnyx-python/commit/b6999a626a9940bbc4e97726e224529a78a383f5))
+* update lockfile ([bf98551](https://github.com/team-telnyx/telnyx-python/commit/bf98551bcaa73daad81934ebca6b717af84d4111))
+
 ## 3.13.0 (2025-11-27)
 
 Full Changelog: [v3.12.1...v3.13.0](https://github.com/team-telnyx/telnyx-python/compare/v3.12.1...v3.13.0)
