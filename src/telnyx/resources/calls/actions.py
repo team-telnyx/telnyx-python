@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Iterable
+from typing import Dict, Iterable
 from typing_extensions import Literal
 
 import httpx
@@ -311,9 +311,9 @@ class ActionsResource(SyncAPIResource):
 
     def bridge(
         self,
-        path_call_control_id: str,
+        call_control_id_to_bridge: str,
         *,
-        body_call_control_id: str,
+        call_control_id_to_bridge_with: str,
         client_state: str | Omit = omit,
         command_id: str | Omit = omit,
         mute_dtmf: Literal["none", "both", "self", "opposite"] | Omit = omit,
@@ -389,7 +389,7 @@ class ActionsResource(SyncAPIResource):
         - `call.bridged` for Leg B
 
         Args:
-          body_call_control_id: The Call Control ID of the call you want to bridge with, can't be used together
+          call_control_id_to_bridge_with: The Call Control ID of the call you want to bridge with, can't be used together
               with queue parameter or video_room_id parameter.
 
           client_state: Use this field to add state to every subsequent webhook. It must be a valid
@@ -460,15 +460,15 @@ class ActionsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not path_call_control_id:
+        if not call_control_id_to_bridge:
             raise ValueError(
-                f"Expected a non-empty value for `path_call_control_id` but received {path_call_control_id!r}"
+                f"Expected a non-empty value for `call_control_id_to_bridge` but received {call_control_id_to_bridge!r}"
             )
         return self._post(
-            f"/calls/{path_call_control_id}/actions/bridge",
+            f"/calls/{call_control_id_to_bridge}/actions/bridge",
             body=maybe_transform(
                 {
-                    "body_call_control_id": body_call_control_id,
+                    "call_control_id_to_bridge_with": call_control_id_to_bridge_with,
                     "client_state": client_state,
                     "command_id": command_id,
                     "mute_dtmf": mute_dtmf,
@@ -658,7 +658,7 @@ class ActionsResource(SyncAPIResource):
         self,
         call_control_id: str,
         *,
-        parameters: object,
+        parameters: Dict[str, object],
         assistant: AssistantParam | Omit = omit,
         client_state: str | Omit = omit,
         command_id: str | Omit = omit,
@@ -3569,9 +3569,9 @@ class AsyncActionsResource(AsyncAPIResource):
 
     async def bridge(
         self,
-        path_call_control_id: str,
+        call_control_id_to_bridge: str,
         *,
-        body_call_control_id: str,
+        call_control_id_to_bridge_with: str,
         client_state: str | Omit = omit,
         command_id: str | Omit = omit,
         mute_dtmf: Literal["none", "both", "self", "opposite"] | Omit = omit,
@@ -3647,7 +3647,7 @@ class AsyncActionsResource(AsyncAPIResource):
         - `call.bridged` for Leg B
 
         Args:
-          body_call_control_id: The Call Control ID of the call you want to bridge with, can't be used together
+          call_control_id_to_bridge_with: The Call Control ID of the call you want to bridge with, can't be used together
               with queue parameter or video_room_id parameter.
 
           client_state: Use this field to add state to every subsequent webhook. It must be a valid
@@ -3718,15 +3718,15 @@ class AsyncActionsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not path_call_control_id:
+        if not call_control_id_to_bridge:
             raise ValueError(
-                f"Expected a non-empty value for `path_call_control_id` but received {path_call_control_id!r}"
+                f"Expected a non-empty value for `call_control_id_to_bridge` but received {call_control_id_to_bridge!r}"
             )
         return await self._post(
-            f"/calls/{path_call_control_id}/actions/bridge",
+            f"/calls/{call_control_id_to_bridge}/actions/bridge",
             body=await async_maybe_transform(
                 {
-                    "body_call_control_id": body_call_control_id,
+                    "call_control_id_to_bridge_with": call_control_id_to_bridge_with,
                     "client_state": client_state,
                     "command_id": command_id,
                     "mute_dtmf": mute_dtmf,
@@ -3916,7 +3916,7 @@ class AsyncActionsResource(AsyncAPIResource):
         self,
         call_control_id: str,
         *,
-        parameters: object,
+        parameters: Dict[str, object],
         assistant: AssistantParam | Omit = omit,
         client_state: str | Omit = omit,
         command_id: str | Omit = omit,

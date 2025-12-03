@@ -2,25 +2,17 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, TypedDict
+from typing_extensions import Literal, Annotated, TypedDict
 
-__all__ = ["InvoiceListParams", "Page"]
+from .._utils import PropertyInfo
+
+__all__ = ["InvoiceListParams"]
 
 
 class InvoiceListParams(TypedDict, total=False):
-    page: Page
-    """Consolidated page parameter (deepObject style).
+    page_number: Annotated[int, PropertyInfo(alias="page[number]")]
 
-    Originally: page[number], page[size]
-    """
+    page_size: Annotated[int, PropertyInfo(alias="page[size]")]
 
     sort: Literal["period_start", "-period_start"]
     """Specifies the sort order for results."""
-
-
-class Page(TypedDict, total=False):
-    number: int
-    """The page number to load"""
-
-    size: int
-    """The size of the page"""

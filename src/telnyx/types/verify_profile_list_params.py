@@ -2,28 +2,22 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
+from typing_extensions import Annotated, TypedDict
 
-__all__ = ["VerifyProfileListParams", "Filter", "Page"]
+from .._utils import PropertyInfo
+
+__all__ = ["VerifyProfileListParams", "Filter"]
 
 
 class VerifyProfileListParams(TypedDict, total=False):
     filter: Filter
     """Consolidated filter parameter (deepObject style). Originally: filter[name]"""
 
-    page: Page
-    """Consolidated page parameter (deepObject style).
+    page_number: Annotated[int, PropertyInfo(alias="page[number]")]
 
-    Originally: page[size], page[number]
-    """
+    page_size: Annotated[int, PropertyInfo(alias="page[size]")]
 
 
 class Filter(TypedDict, total=False):
     name: str
     """Optional filter for profile names."""
-
-
-class Page(TypedDict, total=False):
-    number: int
-
-    size: int

@@ -1,18 +1,17 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Optional
 from typing_extensions import Literal
 
 from .record import Record
 from .._models import BaseModel
-from .interface import Interface
-from .region_in import RegionIn
-from .pagination_meta import PaginationMeta
+from .network_interface import NetworkInterface
+from .network_interface_region import NetworkInterfaceRegion
 
-__all__ = ["VirtualCrossConnectListResponse", "Data", "DataRegion"]
+__all__ = ["VirtualCrossConnectListResponse", "VirtualCrossConnectListResponseRegion"]
 
 
-class DataRegion(BaseModel):
+class VirtualCrossConnectListResponseRegion(BaseModel):
     code: Optional[str] = None
     """Region code of the interface."""
 
@@ -23,35 +22,7 @@ class DataRegion(BaseModel):
     """Identifies the type of the resource."""
 
 
-class Data(Record, Interface, RegionIn):
-    bgp_asn: float
-    """The Border Gateway Protocol (BGP) Autonomous System Number (ASN).
-
-    If null, value will be assigned by Telnyx.
-    """
-
-    cloud_provider: Literal["aws", "azure", "gce"]
-    """
-    The Virtual Private Cloud with which you would like to establish a cross
-    connect.
-    """
-
-    cloud_provider_region: str
-    """
-    The region where your Virtual Private Cloud hosts are located.<br /><br />The
-    available regions can be found using the /virtual_cross_connect_regions
-    endpoint.
-    """
-
-    primary_cloud_account_id: str
-    """The identifier for your Virtual Private Cloud.
-
-    The number will be different based upon your Cloud provider.
-    """
-
-    region_code: str  # type: ignore
-    """The region interface is deployed to."""
-
+class VirtualCrossConnectListResponse(Record, NetworkInterface, NetworkInterfaceRegion):
     bandwidth_mbps: Optional[float] = None
     """
     The desired throughput in Megabits per Second (Mbps) for your Virtual Cross
@@ -59,8 +30,33 @@ class Data(Record, Interface, RegionIn):
     /virtual_cross_connect_regions endpoint.
     """
 
+    bgp_asn: Optional[float] = None
+    """The Border Gateway Protocol (BGP) Autonomous System Number (ASN).
+
+    If null, value will be assigned by Telnyx.
+    """
+
+    cloud_provider: Optional[Literal["aws", "azure", "gce"]] = None
+    """
+    The Virtual Private Cloud with which you would like to establish a cross
+    connect.
+    """
+
+    cloud_provider_region: Optional[str] = None
+    """
+    The region where your Virtual Private Cloud hosts are located.<br /><br />The
+    available regions can be found using the /virtual_cross_connect_regions
+    endpoint.
+    """
+
     primary_bgp_key: Optional[str] = None
     """The authentication key for BGP peer configuration."""
+
+    primary_cloud_account_id: Optional[str] = None
+    """The identifier for your Virtual Private Cloud.
+
+    The number will be different based upon your Cloud provider.
+    """
 
     primary_cloud_ip: Optional[str] = None
     """
@@ -86,10 +82,10 @@ class Data(Record, Interface, RegionIn):
     of your assigned IP once the connection has been accepted.
     """
 
-    record_type: Optional[str] = None  # type: ignore
-    """Identifies the type of the resource."""
+    region: Optional[VirtualCrossConnectListResponseRegion] = None
 
-    region: Optional[DataRegion] = None
+    region_code: Optional[str] = None  # type: ignore
+    """The region interface is deployed to."""
 
     secondary_bgp_key: Optional[str] = None
     """The authentication key for BGP peer configuration."""
@@ -124,9 +120,3 @@ class Data(Record, Interface, RegionIn):
     you.<br /><br />This value should be null for GCE as Google will only inform you
     of your assigned IP once the connection has been accepted.
     """
-
-
-class VirtualCrossConnectListResponse(BaseModel):
-    data: Optional[List[Data]] = None
-
-    meta: Optional[PaginationMeta] = None

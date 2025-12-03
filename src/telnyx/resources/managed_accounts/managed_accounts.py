@@ -30,7 +30,8 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._base_client import make_request_options
+from ...pagination import SyncDefaultPagination, AsyncDefaultPagination
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.managed_account_list_response import ManagedAccountListResponse
 from ...types.managed_account_create_response import ManagedAccountCreateResponse
 from ...types.managed_account_update_response import ManagedAccountUpdateResponse
@@ -225,7 +226,7 @@ class ManagedAccountsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ManagedAccountListResponse:
+    ) -> SyncDefaultPagination[ManagedAccountListResponse]:
         """Lists the accounts managed by the current user.
 
         Users need to be explictly
@@ -265,8 +266,9 @@ class ManagedAccountsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/managed_accounts",
+            page=SyncDefaultPagination[ManagedAccountListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -282,7 +284,7 @@ class ManagedAccountsResource(SyncAPIResource):
                     managed_account_list_params.ManagedAccountListParams,
                 ),
             ),
-            cast_to=ManagedAccountListResponse,
+            model=ManagedAccountListResponse,
         )
 
     def get_allocatable_global_outbound_channels(
@@ -521,7 +523,7 @@ class AsyncManagedAccountsResource(AsyncAPIResource):
             cast_to=ManagedAccountUpdateResponse,
         )
 
-    async def list(
+    def list(
         self,
         *,
         filter: managed_account_list_params.Filter | Omit = omit,
@@ -534,7 +536,7 @@ class AsyncManagedAccountsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ManagedAccountListResponse:
+    ) -> AsyncPaginator[ManagedAccountListResponse, AsyncDefaultPagination[ManagedAccountListResponse]]:
         """Lists the accounts managed by the current user.
 
         Users need to be explictly
@@ -574,14 +576,15 @@ class AsyncManagedAccountsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/managed_accounts",
+            page=AsyncDefaultPagination[ManagedAccountListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "filter": filter,
                         "include_cancelled_accounts": include_cancelled_accounts,
@@ -591,7 +594,7 @@ class AsyncManagedAccountsResource(AsyncAPIResource):
                     managed_account_list_params.ManagedAccountListParams,
                 ),
             ),
-            cast_to=ManagedAccountListResponse,
+            model=ManagedAccountListResponse,
         )
 
     async def get_allocatable_global_outbound_channels(

@@ -4,7 +4,7 @@ from typing import Optional
 
 from .record import Record
 from .._models import BaseModel
-from .interface import Interface
+from .network_interface import NetworkInterface
 
 __all__ = ["PublicInternetGatewayCreateResponse", "Data", "DataRegion"]
 
@@ -20,12 +20,9 @@ class DataRegion(BaseModel):
     """Identifies the type of the resource."""
 
 
-class Data(Record, Interface):
+class Data(Record, NetworkInterface):
     public_ip: Optional[str] = None
     """The publically accessible ip for this interface."""
-
-    record_type: Optional[str] = None  # type: ignore
-    """Identifies the type of the resource."""
 
     region: Optional[DataRegion] = None
 

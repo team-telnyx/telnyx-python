@@ -1,15 +1,15 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Optional
 
 from pydantic import Field as FieldInfo
 
 from .._models import BaseModel
 
-__all__ = ["PartnerCampaignListSharedByMeResponse", "Record"]
+__all__ = ["PartnerCampaignListSharedByMeResponse"]
 
 
-class Record(BaseModel):
+class PartnerCampaignListSharedByMeResponse(BaseModel):
     brand_id: str = FieldInfo(alias="brandId")
     """Alphanumeric identifier of the brand associated with this campaign."""
 
@@ -35,11 +35,3 @@ class Record(BaseModel):
     Possible values: ACTIVE, EXPIRED. A newly created campaign defaults to ACTIVE
     status.
     """
-
-
-class PartnerCampaignListSharedByMeResponse(BaseModel):
-    page: Optional[int] = None
-
-    records: Optional[List[Record]] = None
-
-    total_records: Optional[int] = FieldInfo(alias="totalRecords", default=None)

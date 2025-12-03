@@ -6,7 +6,7 @@ import httpx
 
 from ..types import virtual_cross_connects_coverage_list_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._utils import maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -15,7 +15,8 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import make_request_options
+from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
+from .._base_client import AsyncPaginator, make_request_options
 from ..types.virtual_cross_connects_coverage_list_response import VirtualCrossConnectsCoverageListResponse
 
 __all__ = ["VirtualCrossConnectsCoverageResource", "AsyncVirtualCrossConnectsCoverageResource"]
@@ -53,7 +54,7 @@ class VirtualCrossConnectsCoverageResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> VirtualCrossConnectsCoverageListResponse:
+    ) -> SyncDefaultPagination[VirtualCrossConnectsCoverageListResponse]:
         """
         List Virtual Cross Connects Cloud Coverage.<br /><br />This endpoint shows which
         cloud regions are available for the `location_code` your Virtual Cross Connect
@@ -80,8 +81,9 @@ class VirtualCrossConnectsCoverageResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/virtual_cross_connects_coverage",
+            page=SyncDefaultPagination[VirtualCrossConnectsCoverageListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -96,7 +98,7 @@ class VirtualCrossConnectsCoverageResource(SyncAPIResource):
                     virtual_cross_connects_coverage_list_params.VirtualCrossConnectsCoverageListParams,
                 ),
             ),
-            cast_to=VirtualCrossConnectsCoverageListResponse,
+            model=VirtualCrossConnectsCoverageListResponse,
         )
 
 
@@ -120,7 +122,7 @@ class AsyncVirtualCrossConnectsCoverageResource(AsyncAPIResource):
         """
         return AsyncVirtualCrossConnectsCoverageResourceWithStreamingResponse(self)
 
-    async def list(
+    def list(
         self,
         *,
         filter: virtual_cross_connects_coverage_list_params.Filter | Omit = omit,
@@ -132,7 +134,9 @@ class AsyncVirtualCrossConnectsCoverageResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> VirtualCrossConnectsCoverageListResponse:
+    ) -> AsyncPaginator[
+        VirtualCrossConnectsCoverageListResponse, AsyncDefaultPagination[VirtualCrossConnectsCoverageListResponse]
+    ]:
         """
         List Virtual Cross Connects Cloud Coverage.<br /><br />This endpoint shows which
         cloud regions are available for the `location_code` your Virtual Cross Connect
@@ -159,14 +163,15 @@ class AsyncVirtualCrossConnectsCoverageResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/virtual_cross_connects_coverage",
+            page=AsyncDefaultPagination[VirtualCrossConnectsCoverageListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "filter": filter,
                         "filters": filters,
@@ -175,7 +180,7 @@ class AsyncVirtualCrossConnectsCoverageResource(AsyncAPIResource):
                     virtual_cross_connects_coverage_list_params.VirtualCrossConnectsCoverageListParams,
                 ),
             ),
-            cast_to=VirtualCrossConnectsCoverageListResponse,
+            model=VirtualCrossConnectsCoverageListResponse,
         )
 
 

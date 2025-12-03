@@ -17,12 +17,13 @@ from ....._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ....._base_client import make_request_options
+from .....pagination import SyncPerPagePagination, AsyncPerPagePagination
+from ....._base_client import AsyncPaginator, make_request_options
 from .....types.legacy.reporting.usage_reports import voice_list_params, voice_create_params
-from .....types.legacy.reporting.usage_reports.voice_list_response import VoiceListResponse
 from .....types.legacy.reporting.usage_reports.voice_create_response import VoiceCreateResponse
 from .....types.legacy.reporting.usage_reports.voice_delete_response import VoiceDeleteResponse
 from .....types.legacy.reporting.usage_reports.voice_retrieve_response import VoiceRetrieveResponse
+from .....types.legacy.reporting.usage_reports.cdr_usage_report_response_legacy import CdrUsageReportResponseLegacy
 
 __all__ = ["VoiceResource", "AsyncVoiceResource"]
 
@@ -155,7 +156,7 @@ class VoiceResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> VoiceListResponse:
+    ) -> SyncPerPagePagination[CdrUsageReportResponseLegacy]:
         """
         Fetch all previous requests for cdr usage reports.
 
@@ -172,8 +173,9 @@ class VoiceResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/legacy/reporting/usage_reports/voice",
+            page=SyncPerPagePagination[CdrUsageReportResponseLegacy],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -187,7 +189,7 @@ class VoiceResource(SyncAPIResource):
                     voice_list_params.VoiceListParams,
                 ),
             ),
-            cast_to=VoiceListResponse,
+            model=CdrUsageReportResponseLegacy,
         )
 
     def delete(
@@ -341,7 +343,7 @@ class AsyncVoiceResource(AsyncAPIResource):
             cast_to=VoiceRetrieveResponse,
         )
 
-    async def list(
+    def list(
         self,
         *,
         page: int | Omit = omit,
@@ -352,7 +354,7 @@ class AsyncVoiceResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> VoiceListResponse:
+    ) -> AsyncPaginator[CdrUsageReportResponseLegacy, AsyncPerPagePagination[CdrUsageReportResponseLegacy]]:
         """
         Fetch all previous requests for cdr usage reports.
 
@@ -369,14 +371,15 @@ class AsyncVoiceResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/legacy/reporting/usage_reports/voice",
+            page=AsyncPerPagePagination[CdrUsageReportResponseLegacy],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "page": page,
                         "per_page": per_page,
@@ -384,7 +387,7 @@ class AsyncVoiceResource(AsyncAPIResource):
                     voice_list_params.VoiceListParams,
                 ),
             ),
-            cast_to=VoiceListResponse,
+            model=CdrUsageReportResponseLegacy,
         )
 
     async def delete(

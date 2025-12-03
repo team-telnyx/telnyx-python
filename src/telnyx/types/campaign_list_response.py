@@ -7,10 +7,10 @@ from pydantic import Field as FieldInfo
 
 from .._models import BaseModel
 
-__all__ = ["CampaignListResponse", "Record"]
+__all__ = ["CampaignListResponse"]
 
 
-class Record(BaseModel):
+class CampaignListResponse(BaseModel):
     age_gated: Optional[bool] = FieldInfo(alias="ageGated", default=None)
     """Age gated content in campaign."""
 
@@ -215,11 +215,3 @@ class Record(BaseModel):
 
     webhook_url: Optional[str] = FieldInfo(alias="webhookURL", default=None)
     """Webhook to which campaign status updates are sent."""
-
-
-class CampaignListResponse(BaseModel):
-    page: Optional[int] = None
-
-    records: Optional[List[Record]] = None
-
-    total_records: Optional[int] = FieldInfo(alias="totalRecords", default=None)
