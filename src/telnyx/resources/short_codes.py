@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ..types import short_code_list_params, short_code_update_params
-from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from .._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -81,6 +81,7 @@ class ShortCodesResource(SyncAPIResource):
         id: str,
         *,
         messaging_profile_id: str,
+        tags: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -110,7 +111,11 @@ class ShortCodesResource(SyncAPIResource):
         return self._patch(
             f"/short_codes/{id}",
             body=maybe_transform(
-                {"messaging_profile_id": messaging_profile_id}, short_code_update_params.ShortCodeUpdateParams
+                {
+                    "messaging_profile_id": messaging_profile_id,
+                    "tags": tags,
+                },
+                short_code_update_params.ShortCodeUpdateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -226,6 +231,7 @@ class AsyncShortCodesResource(AsyncAPIResource):
         id: str,
         *,
         messaging_profile_id: str,
+        tags: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -255,7 +261,11 @@ class AsyncShortCodesResource(AsyncAPIResource):
         return await self._patch(
             f"/short_codes/{id}",
             body=await async_maybe_transform(
-                {"messaging_profile_id": messaging_profile_id}, short_code_update_params.ShortCodeUpdateParams
+                {
+                    "messaging_profile_id": messaging_profile_id,
+                    "tags": tags,
+                },
+                short_code_update_params.ShortCodeUpdateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
