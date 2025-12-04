@@ -36,6 +36,9 @@ class MessagingProfile(BaseModel):
     enabled: Optional[bool] = None
     """Specifies whether the messaging profile is enabled or not."""
 
+    health_webhook_url: Optional[str] = None
+    """DEPRECATED: health check url service checking"""
+
     mms_fall_back_to_sms: Optional[bool] = None
     """enables SMS fallback for MMS messages."""
 
@@ -59,6 +62,15 @@ class MessagingProfile(BaseModel):
 
     record_type: Optional[Literal["messaging_profile"]] = None
     """Identifies the type of the resource."""
+
+    redaction_enabled: Optional[bool] = None
+    """Indicates whether message content redaction is enabled for this profile."""
+
+    redaction_level: Optional[int] = None
+    """
+    Determines how much information is redacted in messages for privacy or
+    compliance purposes.
+    """
 
     updated_at: Optional[datetime] = None
     """ISO 8601 formatted date indicating when the resource was updated."""
