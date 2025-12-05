@@ -7,26 +7,38 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..types import mobile_phone_number_list_params, mobile_phone_number_update_params
-from .._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
-from .._compat import cached_property
-from .._resource import SyncAPIResource, AsyncAPIResource
-from .._response import (
+from ...types import mobile_phone_number_list_params, mobile_phone_number_update_params
+from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
+from ..._utils import maybe_transform, async_maybe_transform
+from ..._compat import cached_property
+from .messaging import (
+    MessagingResource,
+    AsyncMessagingResource,
+    MessagingResourceWithRawResponse,
+    AsyncMessagingResourceWithRawResponse,
+    MessagingResourceWithStreamingResponse,
+    AsyncMessagingResourceWithStreamingResponse,
+)
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import make_request_options
-from ..types.mobile_phone_number_list_response import MobilePhoneNumberListResponse
-from ..types.mobile_phone_number_update_response import MobilePhoneNumberUpdateResponse
-from ..types.mobile_phone_number_retrieve_response import MobilePhoneNumberRetrieveResponse
+from ..._base_client import make_request_options
+from ...types.mobile_phone_number_list_response import MobilePhoneNumberListResponse
+from ...types.mobile_phone_number_update_response import MobilePhoneNumberUpdateResponse
+from ...types.mobile_phone_number_retrieve_response import MobilePhoneNumberRetrieveResponse
 
 __all__ = ["MobilePhoneNumbersResource", "AsyncMobilePhoneNumbersResource"]
 
 
 class MobilePhoneNumbersResource(SyncAPIResource):
+    @cached_property
+    def messaging(self) -> MessagingResource:
+        return MessagingResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> MobilePhoneNumbersResourceWithRawResponse:
         """
@@ -187,6 +199,10 @@ class MobilePhoneNumbersResource(SyncAPIResource):
 
 
 class AsyncMobilePhoneNumbersResource(AsyncAPIResource):
+    @cached_property
+    def messaging(self) -> AsyncMessagingResource:
+        return AsyncMessagingResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> AsyncMobilePhoneNumbersResourceWithRawResponse:
         """
@@ -360,6 +376,10 @@ class MobilePhoneNumbersResourceWithRawResponse:
             mobile_phone_numbers.list,
         )
 
+    @cached_property
+    def messaging(self) -> MessagingResourceWithRawResponse:
+        return MessagingResourceWithRawResponse(self._mobile_phone_numbers.messaging)
+
 
 class AsyncMobilePhoneNumbersResourceWithRawResponse:
     def __init__(self, mobile_phone_numbers: AsyncMobilePhoneNumbersResource) -> None:
@@ -374,6 +394,10 @@ class AsyncMobilePhoneNumbersResourceWithRawResponse:
         self.list = async_to_raw_response_wrapper(
             mobile_phone_numbers.list,
         )
+
+    @cached_property
+    def messaging(self) -> AsyncMessagingResourceWithRawResponse:
+        return AsyncMessagingResourceWithRawResponse(self._mobile_phone_numbers.messaging)
 
 
 class MobilePhoneNumbersResourceWithStreamingResponse:
@@ -390,6 +414,10 @@ class MobilePhoneNumbersResourceWithStreamingResponse:
             mobile_phone_numbers.list,
         )
 
+    @cached_property
+    def messaging(self) -> MessagingResourceWithStreamingResponse:
+        return MessagingResourceWithStreamingResponse(self._mobile_phone_numbers.messaging)
+
 
 class AsyncMobilePhoneNumbersResourceWithStreamingResponse:
     def __init__(self, mobile_phone_numbers: AsyncMobilePhoneNumbersResource) -> None:
@@ -404,3 +432,7 @@ class AsyncMobilePhoneNumbersResourceWithStreamingResponse:
         self.list = async_to_streamed_response_wrapper(
             mobile_phone_numbers.list,
         )
+
+    @cached_property
+    def messaging(self) -> AsyncMessagingResourceWithStreamingResponse:
+        return AsyncMessagingResourceWithStreamingResponse(self._mobile_phone_numbers.messaging)

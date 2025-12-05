@@ -32,7 +32,7 @@ class TestBuckets:
         bucket = client.storage.buckets.create_presigned_url(
             object_name="",
             bucket_name="",
-            ttl=1,
+            ttl=60,
         )
         assert_matches_type(BucketCreatePresignedURLResponse, bucket, path=["response"])
 
@@ -100,7 +100,7 @@ class TestAsyncBuckets:
         bucket = await async_client.storage.buckets.create_presigned_url(
             object_name="",
             bucket_name="",
-            ttl=1,
+            ttl=60,
         )
         assert_matches_type(BucketCreatePresignedURLResponse, bucket, path=["response"])
 

@@ -11,6 +11,7 @@ from .messaging_error import MessagingError
 
 __all__ = [
     "MessageCancelScheduledResponse",
+    "Cc",
     "Cost",
     "CostBreakdown",
     "CostBreakdownCarrierFee",
@@ -19,6 +20,33 @@ __all__ = [
     "Media",
     "To",
 ]
+
+
+class Cc(BaseModel):
+    carrier: Optional[str] = None
+    """The carrier of the receiver."""
+
+    line_type: Optional[Literal["Wireline", "Wireless", "VoWiFi", "VoIP", "Pre-Paid Wireless", ""]] = None
+    """The line-type of the receiver."""
+
+    phone_number: Optional[str] = None
+    """Receiving address (+E.164 formatted phone number or short code)."""
+
+    status: Optional[
+        Literal[
+            "scheduled",
+            "queued",
+            "sending",
+            "sent",
+            "cancelled",
+            "expired",
+            "sending_failed",
+            "delivery_unconfirmed",
+            "delivered",
+            "delivery_failed",
+        ]
+    ] = None
+    """The delivery status of the message."""
 
 
 class Cost(BaseModel):
@@ -109,6 +137,8 @@ class To(BaseModel):
 class MessageCancelScheduledResponse(BaseModel):
     id: Optional[str] = None
     """Identifies the type of resource."""
+
+    cc: Optional[List[Cc]] = None
 
     completed_at: Optional[datetime] = None
     """ISO 8601 formatted date indicating when the message was finalized."""

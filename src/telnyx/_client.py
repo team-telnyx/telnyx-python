@@ -91,7 +91,6 @@ from .resources import (
     notification_events,
     number_block_orders,
     wireless_blocklists,
-    mobile_phone_numbers,
     wireguard_interfaces,
     bulk_sim_card_actions,
     global_ip_assignments,
@@ -183,6 +182,7 @@ from .resources.messaging_tollfree import messaging_tollfree
 from .resources.number_reservations import number_reservations
 from .resources.phone_number_blocks import phone_number_blocks
 from .resources.external_connections import external_connections
+from .resources.mobile_phone_numbers import mobile_phone_numbers
 from .resources.credential_connections import credential_connections
 from .resources.messaging_hosted_number_orders import messaging_hosted_number_orders
 

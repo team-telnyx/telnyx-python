@@ -2,12 +2,15 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["ElevenLabsVoiceSettingsParam"]
 
 
 class ElevenLabsVoiceSettingsParam(TypedDict, total=False):
+    type: Required[Literal["elevenlabs"]]
+    """Voice settings provider type"""
+
     api_key_ref: str
     """
     The `identifier` for an integration secret

@@ -74,6 +74,16 @@ class TestShortCodes:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
+    def test_method_update_with_all_params(self, client: Telnyx) -> None:
+        short_code = client.short_codes.update(
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            messaging_profile_id="abc85f64-5717-4562-b3fc-2c9600000000",
+            tags=["test_customer"],
+        )
+        assert_matches_type(ShortCodeUpdateResponse, short_code, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
     def test_raw_response_update(self, client: Telnyx) -> None:
         response = client.short_codes.with_raw_response.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -203,6 +213,16 @@ class TestAsyncShortCodes:
         short_code = await async_client.short_codes.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             messaging_profile_id="abc85f64-5717-4562-b3fc-2c9600000000",
+        )
+        assert_matches_type(ShortCodeUpdateResponse, short_code, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_method_update_with_all_params(self, async_client: AsyncTelnyx) -> None:
+        short_code = await async_client.short_codes.update(
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            messaging_profile_id="abc85f64-5717-4562-b3fc-2c9600000000",
+            tags=["test_customer"],
         )
         assert_matches_type(ShortCodeUpdateResponse, short_code, path=["response"])
 

@@ -2,12 +2,15 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["GcsConfigurationDataParam"]
 
 
 class GcsConfigurationDataParam(TypedDict, total=False):
+    backend: Required[Literal["gcs"]]
+    """Storage backend type"""
+
     bucket: str
     """Name of the bucket to be used to store recording files."""
 

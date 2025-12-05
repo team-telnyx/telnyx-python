@@ -441,7 +441,10 @@ class TestActions:
             transcription={"model": "distil-whisper/distil-large-v2"},
             user_response_timeout_ms=5000,
             voice="Telnyx.KokoroTTS.af",
-            voice_settings={"api_key_ref": "my_elevenlabs_api_key"},
+            voice_settings={
+                "type": "elevenlabs",
+                "api_key_ref": "my_elevenlabs_api_key",
+            },
         )
         assert_matches_type(ActionGatherUsingAIResponse, action, path=["response"])
 
@@ -614,7 +617,10 @@ class TestActions:
             terminating_digit="#",
             timeout_millis=60000,
             valid_digits="123",
-            voice_settings={"api_key_ref": "my_elevenlabs_api_key"},
+            voice_settings={
+                "type": "elevenlabs",
+                "api_key_ref": "my_elevenlabs_api_key",
+            },
         )
         assert_matches_type(ActionGatherUsingSpeakResponse, action, path=["response"])
 
@@ -1143,7 +1149,10 @@ class TestActions:
             payload_type="text",
             service_level="basic",
             stop="current",
-            voice_settings={"api_key_ref": "my_elevenlabs_api_key"},
+            voice_settings={
+                "type": "elevenlabs",
+                "api_key_ref": "my_elevenlabs_api_key",
+            },
         )
         assert_matches_type(ActionSpeakResponse, action, path=["response"])
 
@@ -1211,7 +1220,10 @@ class TestActions:
             interruption_settings={"enable": True},
             transcription={"model": "distil-whisper/distil-large-v2"},
             voice="Telnyx.KokoroTTS.af",
-            voice_settings={"api_key_ref": "my_elevenlabs_api_key"},
+            voice_settings={
+                "type": "elevenlabs",
+                "api_key_ref": "my_elevenlabs_api_key",
+            },
         )
         assert_matches_type(ActionStartAIAssistantResponse, action, path=["response"])
 
@@ -2763,7 +2775,10 @@ class TestAsyncActions:
             transcription={"model": "distil-whisper/distil-large-v2"},
             user_response_timeout_ms=5000,
             voice="Telnyx.KokoroTTS.af",
-            voice_settings={"api_key_ref": "my_elevenlabs_api_key"},
+            voice_settings={
+                "type": "elevenlabs",
+                "api_key_ref": "my_elevenlabs_api_key",
+            },
         )
         assert_matches_type(ActionGatherUsingAIResponse, action, path=["response"])
 
@@ -2936,7 +2951,10 @@ class TestAsyncActions:
             terminating_digit="#",
             timeout_millis=60000,
             valid_digits="123",
-            voice_settings={"api_key_ref": "my_elevenlabs_api_key"},
+            voice_settings={
+                "type": "elevenlabs",
+                "api_key_ref": "my_elevenlabs_api_key",
+            },
         )
         assert_matches_type(ActionGatherUsingSpeakResponse, action, path=["response"])
 
@@ -3465,7 +3483,10 @@ class TestAsyncActions:
             payload_type="text",
             service_level="basic",
             stop="current",
-            voice_settings={"api_key_ref": "my_elevenlabs_api_key"},
+            voice_settings={
+                "type": "elevenlabs",
+                "api_key_ref": "my_elevenlabs_api_key",
+            },
         )
         assert_matches_type(ActionSpeakResponse, action, path=["response"])
 
@@ -3533,7 +3554,10 @@ class TestAsyncActions:
             interruption_settings={"enable": True},
             transcription={"model": "distil-whisper/distil-large-v2"},
             voice="Telnyx.KokoroTTS.af",
-            voice_settings={"api_key_ref": "my_elevenlabs_api_key"},
+            voice_settings={
+                "type": "elevenlabs",
+                "api_key_ref": "my_elevenlabs_api_key",
+            },
         )
         assert_matches_type(ActionStartAIAssistantResponse, action, path=["response"])
 

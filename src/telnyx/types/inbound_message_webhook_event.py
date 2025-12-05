@@ -159,6 +159,9 @@ class DataPayload(BaseModel):
     messaging_profile_id: Optional[str] = None
     """Unique identifier for a messaging profile."""
 
+    organization_id: Optional[str] = None
+    """Unique identifier for a messaging profile."""
+
     parts: Optional[int] = None
     """Number of parts into which the message's body must be split."""
 
@@ -170,6 +173,9 @@ class DataPayload(BaseModel):
 
     sent_at: Optional[datetime] = None
     """Not used for inbound messages."""
+
+    subject: Optional[str] = None
+    """Message subject."""
 
     tags: Optional[List[str]] = None
     """Tags associated with the resource."""

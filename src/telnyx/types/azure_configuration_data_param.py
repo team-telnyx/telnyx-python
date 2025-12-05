@@ -2,12 +2,15 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["AzureConfigurationDataParam"]
 
 
 class AzureConfigurationDataParam(TypedDict, total=False):
+    backend: Required[Literal["azure"]]
+    """Storage backend type"""
+
     account_key: str
     """Azure Blob Storage account key."""
 

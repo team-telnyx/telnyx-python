@@ -15,4 +15,4 @@ class PublicInternetGatewayCreateParams(TypedDict, total=False):
     """The id of the network associated with the interface."""
 
     region_code: str
-    """The region the interface should be deployed to."""
+    """The region interface is deployed to."""

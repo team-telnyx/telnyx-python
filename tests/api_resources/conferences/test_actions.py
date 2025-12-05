@@ -630,7 +630,10 @@ class TestActions:
             language="en-US",
             payload_type="text",
             region="US",
-            voice_settings={"api_key_ref": "my_elevenlabs_api_key"},
+            voice_settings={
+                "type": "elevenlabs",
+                "api_key_ref": "my_elevenlabs_api_key",
+            },
         )
         assert_matches_type(ActionSpeakResponse, action, path=["response"])
 
@@ -1438,7 +1441,10 @@ class TestAsyncActions:
             language="en-US",
             payload_type="text",
             region="US",
-            voice_settings={"api_key_ref": "my_elevenlabs_api_key"},
+            voice_settings={
+                "type": "elevenlabs",
+                "api_key_ref": "my_elevenlabs_api_key",
+            },
         )
         assert_matches_type(ActionSpeakResponse, action, path=["response"])
 

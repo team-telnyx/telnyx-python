@@ -12,6 +12,7 @@ __all__ = [
     "DataFeature",
     "DataRegionInformation",
     "Meta",
+    "Metadata",
 ]
 
 
@@ -69,7 +70,15 @@ class Meta(BaseModel):
     total_results: Optional[int] = None
 
 
+class Metadata(BaseModel):
+    best_effort_results: Optional[int] = None
+
+    total_results: Optional[int] = None
+
+
 class AvailablePhoneNumberListResponse(BaseModel):
     data: Optional[List[Data]] = None
 
     meta: Optional[Meta] = None
+
+    metadata: Optional[Metadata] = None

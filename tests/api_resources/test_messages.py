@@ -328,7 +328,7 @@ class TestMessages:
     def test_method_send_number_pool(self, client: Telnyx) -> None:
         message = client.messages.send_number_pool(
             messaging_profile_id="abc85f64-5717-4562-b3fc-2c9600000000",
-            to="to",
+            to="+13125550002",
         )
         assert_matches_type(MessageSendNumberPoolResponse, message, path=["response"])
 
@@ -337,7 +337,7 @@ class TestMessages:
     def test_method_send_number_pool_with_all_params(self, client: Telnyx) -> None:
         message = client.messages.send_number_pool(
             messaging_profile_id="abc85f64-5717-4562-b3fc-2c9600000000",
-            to="to",
+            to="+13125550002",
             auto_detect=True,
             media_urls=["http://example.com"],
             subject="From Telnyx!",
@@ -354,7 +354,7 @@ class TestMessages:
     def test_raw_response_send_number_pool(self, client: Telnyx) -> None:
         response = client.messages.with_raw_response.send_number_pool(
             messaging_profile_id="abc85f64-5717-4562-b3fc-2c9600000000",
-            to="to",
+            to="+13125550002",
         )
 
         assert response.is_closed is True
@@ -367,7 +367,7 @@ class TestMessages:
     def test_streaming_response_send_number_pool(self, client: Telnyx) -> None:
         with client.messages.with_streaming_response.send_number_pool(
             messaging_profile_id="abc85f64-5717-4562-b3fc-2c9600000000",
-            to="to",
+            to="+13125550002",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -738,7 +738,7 @@ class TestAsyncMessages:
     async def test_method_send_number_pool(self, async_client: AsyncTelnyx) -> None:
         message = await async_client.messages.send_number_pool(
             messaging_profile_id="abc85f64-5717-4562-b3fc-2c9600000000",
-            to="to",
+            to="+13125550002",
         )
         assert_matches_type(MessageSendNumberPoolResponse, message, path=["response"])
 
@@ -747,7 +747,7 @@ class TestAsyncMessages:
     async def test_method_send_number_pool_with_all_params(self, async_client: AsyncTelnyx) -> None:
         message = await async_client.messages.send_number_pool(
             messaging_profile_id="abc85f64-5717-4562-b3fc-2c9600000000",
-            to="to",
+            to="+13125550002",
             auto_detect=True,
             media_urls=["http://example.com"],
             subject="From Telnyx!",
@@ -764,7 +764,7 @@ class TestAsyncMessages:
     async def test_raw_response_send_number_pool(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.messages.with_raw_response.send_number_pool(
             messaging_profile_id="abc85f64-5717-4562-b3fc-2c9600000000",
-            to="to",
+            to="+13125550002",
         )
 
         assert response.is_closed is True
@@ -777,7 +777,7 @@ class TestAsyncMessages:
     async def test_streaming_response_send_number_pool(self, async_client: AsyncTelnyx) -> None:
         async with async_client.messages.with_streaming_response.send_number_pool(
             messaging_profile_id="abc85f64-5717-4562-b3fc-2c9600000000",
-            to="to",
+            to="+13125550002",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
