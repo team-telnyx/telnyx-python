@@ -27,7 +27,7 @@ class TestCustomStorageCredentials:
         custom_storage_credential = client.custom_storage_credentials.create(
             connection_id="connection_id",
             backend="gcs",
-            configuration={},
+            configuration={"backend": "gcs"},
         )
         assert_matches_type(CustomStorageCredentialCreateResponse, custom_storage_credential, path=["response"])
 
@@ -38,6 +38,7 @@ class TestCustomStorageCredentials:
             connection_id="connection_id",
             backend="gcs",
             configuration={
+                "backend": "gcs",
                 "bucket": "example-bucket",
                 "credentials": "OPAQUE_CREDENTIALS_TOKEN",
             },
@@ -50,7 +51,7 @@ class TestCustomStorageCredentials:
         response = client.custom_storage_credentials.with_raw_response.create(
             connection_id="connection_id",
             backend="gcs",
-            configuration={},
+            configuration={"backend": "gcs"},
         )
 
         assert response.is_closed is True
@@ -64,7 +65,7 @@ class TestCustomStorageCredentials:
         with client.custom_storage_credentials.with_streaming_response.create(
             connection_id="connection_id",
             backend="gcs",
-            configuration={},
+            configuration={"backend": "gcs"},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -81,7 +82,7 @@ class TestCustomStorageCredentials:
             client.custom_storage_credentials.with_raw_response.create(
                 connection_id="",
                 backend="gcs",
-                configuration={},
+                configuration={"backend": "gcs"},
             )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -132,7 +133,7 @@ class TestCustomStorageCredentials:
         custom_storage_credential = client.custom_storage_credentials.update(
             connection_id="connection_id",
             backend="gcs",
-            configuration={},
+            configuration={"backend": "gcs"},
         )
         assert_matches_type(CustomStorageCredentialUpdateResponse, custom_storage_credential, path=["response"])
 
@@ -143,6 +144,7 @@ class TestCustomStorageCredentials:
             connection_id="connection_id",
             backend="gcs",
             configuration={
+                "backend": "gcs",
                 "bucket": "example-bucket",
                 "credentials": "OPAQUE_CREDENTIALS_TOKEN",
             },
@@ -155,7 +157,7 @@ class TestCustomStorageCredentials:
         response = client.custom_storage_credentials.with_raw_response.update(
             connection_id="connection_id",
             backend="gcs",
-            configuration={},
+            configuration={"backend": "gcs"},
         )
 
         assert response.is_closed is True
@@ -169,7 +171,7 @@ class TestCustomStorageCredentials:
         with client.custom_storage_credentials.with_streaming_response.update(
             connection_id="connection_id",
             backend="gcs",
-            configuration={},
+            configuration={"backend": "gcs"},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -186,7 +188,7 @@ class TestCustomStorageCredentials:
             client.custom_storage_credentials.with_raw_response.update(
                 connection_id="",
                 backend="gcs",
-                configuration={},
+                configuration={"backend": "gcs"},
             )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -243,7 +245,7 @@ class TestAsyncCustomStorageCredentials:
         custom_storage_credential = await async_client.custom_storage_credentials.create(
             connection_id="connection_id",
             backend="gcs",
-            configuration={},
+            configuration={"backend": "gcs"},
         )
         assert_matches_type(CustomStorageCredentialCreateResponse, custom_storage_credential, path=["response"])
 
@@ -254,6 +256,7 @@ class TestAsyncCustomStorageCredentials:
             connection_id="connection_id",
             backend="gcs",
             configuration={
+                "backend": "gcs",
                 "bucket": "example-bucket",
                 "credentials": "OPAQUE_CREDENTIALS_TOKEN",
             },
@@ -266,7 +269,7 @@ class TestAsyncCustomStorageCredentials:
         response = await async_client.custom_storage_credentials.with_raw_response.create(
             connection_id="connection_id",
             backend="gcs",
-            configuration={},
+            configuration={"backend": "gcs"},
         )
 
         assert response.is_closed is True
@@ -280,7 +283,7 @@ class TestAsyncCustomStorageCredentials:
         async with async_client.custom_storage_credentials.with_streaming_response.create(
             connection_id="connection_id",
             backend="gcs",
-            configuration={},
+            configuration={"backend": "gcs"},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -297,7 +300,7 @@ class TestAsyncCustomStorageCredentials:
             await async_client.custom_storage_credentials.with_raw_response.create(
                 connection_id="",
                 backend="gcs",
-                configuration={},
+                configuration={"backend": "gcs"},
             )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -348,7 +351,7 @@ class TestAsyncCustomStorageCredentials:
         custom_storage_credential = await async_client.custom_storage_credentials.update(
             connection_id="connection_id",
             backend="gcs",
-            configuration={},
+            configuration={"backend": "gcs"},
         )
         assert_matches_type(CustomStorageCredentialUpdateResponse, custom_storage_credential, path=["response"])
 
@@ -359,6 +362,7 @@ class TestAsyncCustomStorageCredentials:
             connection_id="connection_id",
             backend="gcs",
             configuration={
+                "backend": "gcs",
                 "bucket": "example-bucket",
                 "credentials": "OPAQUE_CREDENTIALS_TOKEN",
             },
@@ -371,7 +375,7 @@ class TestAsyncCustomStorageCredentials:
         response = await async_client.custom_storage_credentials.with_raw_response.update(
             connection_id="connection_id",
             backend="gcs",
-            configuration={},
+            configuration={"backend": "gcs"},
         )
 
         assert response.is_closed is True
@@ -385,7 +389,7 @@ class TestAsyncCustomStorageCredentials:
         async with async_client.custom_storage_credentials.with_streaming_response.update(
             connection_id="connection_id",
             backend="gcs",
-            configuration={},
+            configuration={"backend": "gcs"},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -402,7 +406,7 @@ class TestAsyncCustomStorageCredentials:
             await async_client.custom_storage_credentials.with_raw_response.update(
                 connection_id="",
                 backend="gcs",
-                configuration={},
+                configuration={"backend": "gcs"},
             )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
