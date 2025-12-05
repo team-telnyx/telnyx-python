@@ -4851,9 +4851,22 @@ from telnyx.types import (
 
 Methods:
 
-- <code title="get /v2/mobile_phone_numbers/{id}">client.mobile_phone_numbers.<a href="./src/telnyx/resources/mobile_phone_numbers.py">retrieve</a>(id) -> <a href="./src/telnyx/types/mobile_phone_number_retrieve_response.py">MobilePhoneNumberRetrieveResponse</a></code>
-- <code title="patch /v2/mobile_phone_numbers/{id}">client.mobile_phone_numbers.<a href="./src/telnyx/resources/mobile_phone_numbers.py">update</a>(id, \*\*<a href="src/telnyx/types/mobile_phone_number_update_params.py">params</a>) -> <a href="./src/telnyx/types/mobile_phone_number_update_response.py">MobilePhoneNumberUpdateResponse</a></code>
-- <code title="get /v2/mobile_phone_numbers">client.mobile_phone_numbers.<a href="./src/telnyx/resources/mobile_phone_numbers.py">list</a>(\*\*<a href="src/telnyx/types/mobile_phone_number_list_params.py">params</a>) -> <a href="./src/telnyx/types/mobile_phone_number_list_response.py">MobilePhoneNumberListResponse</a></code>
+- <code title="get /v2/mobile_phone_numbers/{id}">client.mobile_phone_numbers.<a href="./src/telnyx/resources/mobile_phone_numbers/mobile_phone_numbers.py">retrieve</a>(id) -> <a href="./src/telnyx/types/mobile_phone_number_retrieve_response.py">MobilePhoneNumberRetrieveResponse</a></code>
+- <code title="patch /v2/mobile_phone_numbers/{id}">client.mobile_phone_numbers.<a href="./src/telnyx/resources/mobile_phone_numbers/mobile_phone_numbers.py">update</a>(id, \*\*<a href="src/telnyx/types/mobile_phone_number_update_params.py">params</a>) -> <a href="./src/telnyx/types/mobile_phone_number_update_response.py">MobilePhoneNumberUpdateResponse</a></code>
+- <code title="get /v2/mobile_phone_numbers">client.mobile_phone_numbers.<a href="./src/telnyx/resources/mobile_phone_numbers/mobile_phone_numbers.py">list</a>(\*\*<a href="src/telnyx/types/mobile_phone_number_list_params.py">params</a>) -> <a href="./src/telnyx/types/mobile_phone_number_list_response.py">MobilePhoneNumberListResponse</a></code>
+
+## Messaging
+
+Types:
+
+```python
+from telnyx.types.mobile_phone_numbers import MessagingRetrieveResponse, MessagingListResponse
+```
+
+Methods:
+
+- <code title="get /mobile_phone_numbers/{id}/messaging">client.mobile_phone_numbers.messaging.<a href="./src/telnyx/resources/mobile_phone_numbers/messaging.py">retrieve</a>(id) -> <a href="./src/telnyx/types/mobile_phone_numbers/messaging_retrieve_response.py">MessagingRetrieveResponse</a></code>
+- <code title="get /mobile_phone_numbers/messaging">client.mobile_phone_numbers.messaging.<a href="./src/telnyx/resources/mobile_phone_numbers/messaging.py">list</a>(\*\*<a href="src/telnyx/types/mobile_phone_numbers/messaging_list_params.py">params</a>) -> <a href="./src/telnyx/types/mobile_phone_numbers/messaging_list_response.py">MessagingListResponse</a></code>
 
 # MobileVoiceConnections
 
