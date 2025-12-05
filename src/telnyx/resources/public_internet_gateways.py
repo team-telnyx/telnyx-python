@@ -65,7 +65,7 @@ class PublicInternetGatewaysResource(SyncAPIResource):
 
           network_id: The id of the network associated with the interface.
 
-          region_code: The region the interface should be deployed to.
+          region_code: The region interface is deployed to.
 
           extra_headers: Send extra headers
 
@@ -246,7 +246,7 @@ class AsyncPublicInternetGatewaysResource(AsyncAPIResource):
 
           network_id: The id of the network associated with the interface.
 
-          region_code: The region the interface should be deployed to.
+          region_code: The region interface is deployed to.
 
           extra_headers: Send extra headers
 
