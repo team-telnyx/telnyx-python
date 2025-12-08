@@ -694,12 +694,12 @@ Methods:
 Types:
 
 ```python
-from telnyx.types.ai import BucketIDs
+from telnyx.types.ai import BucketIDs, ChatCreateCompletionResponse
 ```
 
 Methods:
 
-- <code title="post /ai/chat/completions">client.ai.chat.<a href="./src/telnyx/resources/ai/chat.py">create_completion</a>(\*\*<a href="src/telnyx/types/ai/chat_create_completion_params.py">params</a>) -> object</code>
+- <code title="post /ai/chat/completions">client.ai.chat.<a href="./src/telnyx/resources/ai/chat.py">create_completion</a>(\*\*<a href="src/telnyx/types/ai/chat_create_completion_params.py">params</a>) -> <a href="./src/telnyx/types/ai/chat_create_completion_response.py">ChatCreateCompletionResponse</a></code>
 
 ## Clusters
 
