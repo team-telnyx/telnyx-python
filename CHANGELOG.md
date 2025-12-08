@@ -1,5 +1,26 @@
 # Changelog
 
+## 3.16.0 (2025-12-08)
+
+Full Changelog: [v3.15.0...v3.16.0](https://github.com/team-telnyx/telnyx-python/compare/v3.15.0...v3.16.0)
+
+### Features
+
+* (draft/don't review) ENGDESK-38070-c: add deepgram keyword documentation ([607a743](https://github.com/team-telnyx/telnyx-python/commit/607a74391c51140cfe9cd5db754bd26010628430))
+* alright, shut up redocly ([4e88b87](https://github.com/team-telnyx/telnyx-python/commit/4e88b8783bbe149f8269e48e88ceb489fa850c3a))
+* ENGDESK-47736: added discriminator fields to oneOffs that were missing them ([4170527](https://github.com/team-telnyx/telnyx-python/commit/4170527d5e88f6001193cf6f0beb3e2b27a346df))
+* FILE-1066: presigned url doc strings ([8a87605](https://github.com/team-telnyx/telnyx-python/commit/8a8760584e078aefa0b0b15758c408b01f603727))
+* MSG-6160 fix messaging lint issues ([6f834a8](https://github.com/team-telnyx/telnyx-python/commit/6f834a85fc74de979f8058d0eb8a252c485168b0))
+* MSG-6179: Add discriminator fields to Messaging API schemas for improved SDK performance ([2a6c5a9](https://github.com/team-telnyx/telnyx-python/commit/2a6c5a93a24a0d37fb393a966fd1044a87a5e1fa))
+* MSG-6181: Reorganize mobile phone number messaging endpoints and fix … ([e7a118b](https://github.com/team-telnyx/telnyx-python/commit/e7a118b7ef5c468a02233638daa2da4530110b75))
+* NETAPPS_687: Fixed IGW spec to match current API. ([b6fe5ec](https://github.com/team-telnyx/telnyx-python/commit/b6fe5ecc4c458a0d65cb72358557d20c74cdccfb))
+* NUM-6334/NUM-6335 - fix redocly lint errors ([d61303b](https://github.com/team-telnyx/telnyx-python/commit/d61303be787360e2d7366d2375f0b930f35470c1))
+
+
+### Bug Fixes
+
+* **types:** allow pyright to infer TypedDict types within SequenceNotStr ([277b3b8](https://github.com/team-telnyx/telnyx-python/commit/277b3b8103c2be2d2ff4ec0a792fd5d5a6bce2d1))
+
 ## 3.15.0 (2025-12-03)
 
 Full Changelog: [v3.14.0...v3.15.0](https://github.com/team-telnyx/telnyx-python/compare/v3.14.0...v3.15.0)
