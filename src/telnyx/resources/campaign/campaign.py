@@ -100,7 +100,7 @@ class CampaignResource(SyncAPIResource):
         if not campaign_id:
             raise ValueError(f"Expected a non-empty value for `campaign_id` but received {campaign_id!r}")
         return self._get(
-            f"/campaign/{campaign_id}",
+            f"/10dlc/campaign/{campaign_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -169,7 +169,7 @@ class CampaignResource(SyncAPIResource):
         if not campaign_id:
             raise ValueError(f"Expected a non-empty value for `campaign_id` but received {campaign_id!r}")
         return self._put(
-            f"/campaign/{campaign_id}",
+            f"/10dlc/campaign/{campaign_id}",
             body=maybe_transform(
                 {
                     "auto_renewal": auto_renewal,
@@ -239,7 +239,7 @@ class CampaignResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/campaign",
+            "/10dlc/campaign",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -286,7 +286,7 @@ class CampaignResource(SyncAPIResource):
         if not campaign_id:
             raise ValueError(f"Expected a non-empty value for `campaign_id` but received {campaign_id!r}")
         return self._post(
-            f"/campaign/acceptSharing/{campaign_id}",
+            f"/10dlc/campaign/acceptSharing/{campaign_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -320,7 +320,7 @@ class CampaignResource(SyncAPIResource):
         if not campaign_id:
             raise ValueError(f"Expected a non-empty value for `campaign_id` but received {campaign_id!r}")
         return self._delete(
-            f"/campaign/{campaign_id}",
+            f"/10dlc/campaign/{campaign_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -355,7 +355,7 @@ class CampaignResource(SyncAPIResource):
         if not campaign_id:
             raise ValueError(f"Expected a non-empty value for `campaign_id` but received {campaign_id!r}")
         return self._get(
-            f"/campaign/{campaign_id}/mnoMetadata",
+            f"/10dlc/campaign/{campaign_id}/mnoMetadata",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -388,7 +388,7 @@ class CampaignResource(SyncAPIResource):
         if not campaign_id:
             raise ValueError(f"Expected a non-empty value for `campaign_id` but received {campaign_id!r}")
         return self._get(
-            f"/campaign/{campaign_id}/operationStatus",
+            f"/10dlc/campaign/{campaign_id}/operationStatus",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -423,7 +423,7 @@ class CampaignResource(SyncAPIResource):
         if not campaign_id:
             raise ValueError(f"Expected a non-empty value for `campaign_id` but received {campaign_id!r}")
         return self._get(
-            f"/campaign/{campaign_id}/sharing",
+            f"/10dlc/campaign/{campaign_id}/sharing",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -463,7 +463,7 @@ class CampaignResource(SyncAPIResource):
         if not campaign_id:
             raise ValueError(f"Expected a non-empty value for `campaign_id` but received {campaign_id!r}")
         return self._post(
-            f"/campaign/{campaign_id}/appeal",
+            f"/10dlc/campaign/{campaign_id}/appeal",
             body=maybe_transform(
                 {"appeal_reason": appeal_reason}, campaign_submit_appeal_params.CampaignSubmitAppealParams
             ),
@@ -528,7 +528,7 @@ class AsyncCampaignResource(AsyncAPIResource):
         if not campaign_id:
             raise ValueError(f"Expected a non-empty value for `campaign_id` but received {campaign_id!r}")
         return await self._get(
-            f"/campaign/{campaign_id}",
+            f"/10dlc/campaign/{campaign_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -597,7 +597,7 @@ class AsyncCampaignResource(AsyncAPIResource):
         if not campaign_id:
             raise ValueError(f"Expected a non-empty value for `campaign_id` but received {campaign_id!r}")
         return await self._put(
-            f"/campaign/{campaign_id}",
+            f"/10dlc/campaign/{campaign_id}",
             body=await async_maybe_transform(
                 {
                     "auto_renewal": auto_renewal,
@@ -667,7 +667,7 @@ class AsyncCampaignResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/campaign",
+            "/10dlc/campaign",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -714,7 +714,7 @@ class AsyncCampaignResource(AsyncAPIResource):
         if not campaign_id:
             raise ValueError(f"Expected a non-empty value for `campaign_id` but received {campaign_id!r}")
         return await self._post(
-            f"/campaign/acceptSharing/{campaign_id}",
+            f"/10dlc/campaign/acceptSharing/{campaign_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -748,7 +748,7 @@ class AsyncCampaignResource(AsyncAPIResource):
         if not campaign_id:
             raise ValueError(f"Expected a non-empty value for `campaign_id` but received {campaign_id!r}")
         return await self._delete(
-            f"/campaign/{campaign_id}",
+            f"/10dlc/campaign/{campaign_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -783,7 +783,7 @@ class AsyncCampaignResource(AsyncAPIResource):
         if not campaign_id:
             raise ValueError(f"Expected a non-empty value for `campaign_id` but received {campaign_id!r}")
         return await self._get(
-            f"/campaign/{campaign_id}/mnoMetadata",
+            f"/10dlc/campaign/{campaign_id}/mnoMetadata",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -816,7 +816,7 @@ class AsyncCampaignResource(AsyncAPIResource):
         if not campaign_id:
             raise ValueError(f"Expected a non-empty value for `campaign_id` but received {campaign_id!r}")
         return await self._get(
-            f"/campaign/{campaign_id}/operationStatus",
+            f"/10dlc/campaign/{campaign_id}/operationStatus",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -851,7 +851,7 @@ class AsyncCampaignResource(AsyncAPIResource):
         if not campaign_id:
             raise ValueError(f"Expected a non-empty value for `campaign_id` but received {campaign_id!r}")
         return await self._get(
-            f"/campaign/{campaign_id}/sharing",
+            f"/10dlc/campaign/{campaign_id}/sharing",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -891,7 +891,7 @@ class AsyncCampaignResource(AsyncAPIResource):
         if not campaign_id:
             raise ValueError(f"Expected a non-empty value for `campaign_id` but received {campaign_id!r}")
         return await self._post(
-            f"/campaign/{campaign_id}/appeal",
+            f"/10dlc/campaign/{campaign_id}/appeal",
             body=await async_maybe_transform(
                 {"appeal_reason": appeal_reason}, campaign_submit_appeal_params.CampaignSubmitAppealParams
             ),

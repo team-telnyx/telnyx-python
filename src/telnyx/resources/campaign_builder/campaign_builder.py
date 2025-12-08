@@ -198,7 +198,7 @@ class CampaignBuilderResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/campaignBuilder",
+            "/10dlc/campaignBuilder",
             body=maybe_transform(
                 {
                     "brand_id": brand_id,
@@ -413,7 +413,7 @@ class AsyncCampaignBuilderResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/campaignBuilder",
+            "/10dlc/campaignBuilder",
             body=await async_maybe_transform(
                 {
                     "brand_id": brand_id,

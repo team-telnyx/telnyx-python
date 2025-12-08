@@ -69,7 +69,7 @@ class BrandResource(SyncAPIResource):
         if not usecase:
             raise ValueError(f"Expected a non-empty value for `usecase` but received {usecase!r}")
         return self._get(
-            f"/campaignBuilder/brand/{brand_id}/usecase/{usecase}",
+            f"/10dlc/campaignBuilder/brand/{brand_id}/usecase/{usecase}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -127,7 +127,7 @@ class AsyncBrandResource(AsyncAPIResource):
         if not usecase:
             raise ValueError(f"Expected a non-empty value for `usecase` but received {usecase!r}")
         return await self._get(
-            f"/campaignBuilder/brand/{brand_id}/usecase/{usecase}",
+            f"/10dlc/campaignBuilder/brand/{brand_id}/usecase/{usecase}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
