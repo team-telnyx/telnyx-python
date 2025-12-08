@@ -9,6 +9,7 @@ import pytest
 
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
+from telnyx.types.ai import ChatCreateCompletionResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -31,7 +32,7 @@ class TestChat:
                 },
             ],
         )
-        assert_matches_type(object, chat, path=["response"])
+        assert_matches_type(ChatCreateCompletionResponse, chat, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -79,7 +80,7 @@ class TestChat:
             top_p=0,
             use_beam_search=True,
         )
-        assert_matches_type(object, chat, path=["response"])
+        assert_matches_type(ChatCreateCompletionResponse, chat, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -100,7 +101,7 @@ class TestChat:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         chat = response.parse()
-        assert_matches_type(object, chat, path=["response"])
+        assert_matches_type(ChatCreateCompletionResponse, chat, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -121,7 +122,7 @@ class TestChat:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             chat = response.parse()
-            assert_matches_type(object, chat, path=["response"])
+            assert_matches_type(ChatCreateCompletionResponse, chat, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -146,7 +147,7 @@ class TestAsyncChat:
                 },
             ],
         )
-        assert_matches_type(object, chat, path=["response"])
+        assert_matches_type(ChatCreateCompletionResponse, chat, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -194,7 +195,7 @@ class TestAsyncChat:
             top_p=0,
             use_beam_search=True,
         )
-        assert_matches_type(object, chat, path=["response"])
+        assert_matches_type(ChatCreateCompletionResponse, chat, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -215,7 +216,7 @@ class TestAsyncChat:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         chat = await response.parse()
-        assert_matches_type(object, chat, path=["response"])
+        assert_matches_type(ChatCreateCompletionResponse, chat, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -236,6 +237,6 @@ class TestAsyncChat:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             chat = await response.parse()
-            assert_matches_type(object, chat, path=["response"])
+            assert_matches_type(ChatCreateCompletionResponse, chat, path=["response"])
 
         assert cast(Any, response.is_closed) is True
