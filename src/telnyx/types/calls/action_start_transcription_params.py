@@ -17,7 +17,8 @@ __all__ = [
     "TranscriptionEngineConfigTranscriptionEngineGoogleConfig",
     "TranscriptionEngineConfigTranscriptionEngineGoogleConfigSpeechContext",
     "TranscriptionEngineConfigTranscriptionEngineTelnyxConfig",
-    "TranscriptionEngineConfigTranscriptionEngineDeepgramConfig",
+    "TranscriptionEngineConfigDeepgramNova2Config",
+    "TranscriptionEngineConfigDeepgramNova3Config",
     "TranscriptionEngineConfigTranscriptionEngineAzureConfig",
 ]
 
@@ -118,12 +119,10 @@ class TranscriptionEngineConfigTranscriptionEngineTelnyxConfig(TypedDict, total=
     """The model to use for transcription."""
 
 
-class TranscriptionEngineConfigTranscriptionEngineDeepgramConfig(TypedDict, total=False):
+class TranscriptionEngineConfigDeepgramNova2Config(TypedDict, total=False):
     transcription_engine: Required[Literal["Deepgram"]]
-    """Engine identifier for Deepgram transcription service"""
 
-    transcription_model: Required[Literal["deepgram/nova-2", "deepgram/nova-3"]]
-    """The model to use for transcription."""
+    transcription_model: Required[Literal["deepgram/nova-2"]]
 
     keywords_boosting: Dict[str, float]
     """
@@ -188,10 +187,44 @@ class TranscriptionEngineConfigTranscriptionEngineDeepgramConfig(TypedDict, tota
         "vi",
         "auto_detect",
     ]
-    """Language to use for speech recognition.
+    """Language to use for speech recognition with nova-2 model"""
 
-    Available languages depend on the selected model.
+
+class TranscriptionEngineConfigDeepgramNova3Config(TypedDict, total=False):
+    transcription_engine: Required[Literal["Deepgram"]]
+
+    transcription_model: Required[Literal["deepgram/nova-3"]]
+
+    keywords_boosting: Dict[str, float]
     """
+    Keywords and their respective intensifiers (boosting values) to improve
+    transcription accuracy for specific words or phrases. The intensifier should be
+    a numeric value. Example: `{"snuffleupagus": 5, "systrom": 2, "krieger": 1}`.
+    """
+
+    language: Literal[
+        "en",
+        "en-US",
+        "en-AU",
+        "en-GB",
+        "en-IN",
+        "en-NZ",
+        "de",
+        "nl",
+        "sv",
+        "sv-SE",
+        "da",
+        "da-DK",
+        "es",
+        "es-419",
+        "fr",
+        "fr-CA",
+        "pt",
+        "pt-BR",
+        "pt-PT",
+        "auto_detect",
+    ]
+    """Language to use for speech recognition with nova-3 model"""
 
 
 class TranscriptionEngineConfigTranscriptionEngineAzureConfig(TypedDict, total=False):
@@ -293,7 +326,8 @@ class TranscriptionEngineConfigTranscriptionEngineAzureConfig(TypedDict, total=F
 TranscriptionEngineConfig: TypeAlias = Union[
     TranscriptionEngineConfigTranscriptionEngineGoogleConfig,
     TranscriptionEngineConfigTranscriptionEngineTelnyxConfig,
-    TranscriptionEngineConfigTranscriptionEngineDeepgramConfig,
+    TranscriptionEngineConfigDeepgramNova2Config,
+    TranscriptionEngineConfigDeepgramNova3Config,
     TranscriptionEngineConfigTranscriptionEngineAzureConfig,
     TranscriptionEngineAConfigParam,
     TranscriptionEngineBConfigParam,
