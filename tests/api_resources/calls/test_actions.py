@@ -112,16 +112,24 @@ class TestActions:
             transcription_config={
                 "client_state": "aGF2ZSBhIG5pY2UgZGF5ID1d",
                 "command_id": "891510ac-f3e4-11e8-af5b-de00688a4901",
-                "transcription_engine": "Deepgram",
+                "transcription_engine": "Google",
                 "transcription_engine_config": {
-                    "transcription_engine": "Deepgram",
-                    "transcription_model": "deepgram/nova-2",
-                    "keywords_boosting": {
-                        "snuffleupagus": 5,
-                        "systrom": 2,
-                        "krieger": 1,
-                    },
+                    "enable_speaker_diarization": True,
+                    "hints": ["string"],
+                    "interim_results": True,
                     "language": "en",
+                    "max_speaker_count": 4,
+                    "min_speaker_count": 4,
+                    "model": "latest_long",
+                    "profanity_filter": True,
+                    "speech_context": [
+                        {
+                            "boost": 1,
+                            "phrases": ["string"],
+                        }
+                    ],
+                    "transcription_engine": "Google",
+                    "use_enhanced": True,
                 },
                 "transcription_tracks": "both",
             },
@@ -1635,16 +1643,24 @@ class TestActions:
             call_control_id="call_control_id",
             client_state="aGF2ZSBhIG5pY2UgZGF5ID1d",
             command_id="891510ac-f3e4-11e8-af5b-de00688a4901",
-            transcription_engine="Deepgram",
+            transcription_engine="Google",
             transcription_engine_config={
-                "transcription_engine": "Deepgram",
-                "transcription_model": "deepgram/nova-2",
-                "keywords_boosting": {
-                    "snuffleupagus": 5,
-                    "systrom": 2,
-                    "krieger": 1,
-                },
+                "enable_speaker_diarization": True,
+                "hints": ["string"],
+                "interim_results": True,
                 "language": "en",
+                "max_speaker_count": 4,
+                "min_speaker_count": 4,
+                "model": "latest_long",
+                "profanity_filter": True,
+                "speech_context": [
+                    {
+                        "boost": 1,
+                        "phrases": ["string"],
+                    }
+                ],
+                "transcription_engine": "Google",
+                "use_enhanced": True,
             },
             transcription_tracks="both",
         )
@@ -2430,16 +2446,24 @@ class TestAsyncActions:
             transcription_config={
                 "client_state": "aGF2ZSBhIG5pY2UgZGF5ID1d",
                 "command_id": "891510ac-f3e4-11e8-af5b-de00688a4901",
-                "transcription_engine": "Deepgram",
+                "transcription_engine": "Google",
                 "transcription_engine_config": {
-                    "transcription_engine": "Deepgram",
-                    "transcription_model": "deepgram/nova-2",
-                    "keywords_boosting": {
-                        "snuffleupagus": 5,
-                        "systrom": 2,
-                        "krieger": 1,
-                    },
+                    "enable_speaker_diarization": True,
+                    "hints": ["string"],
+                    "interim_results": True,
                     "language": "en",
+                    "max_speaker_count": 4,
+                    "min_speaker_count": 4,
+                    "model": "latest_long",
+                    "profanity_filter": True,
+                    "speech_context": [
+                        {
+                            "boost": 1,
+                            "phrases": ["string"],
+                        }
+                    ],
+                    "transcription_engine": "Google",
+                    "use_enhanced": True,
                 },
                 "transcription_tracks": "both",
             },
@@ -3953,16 +3977,24 @@ class TestAsyncActions:
             call_control_id="call_control_id",
             client_state="aGF2ZSBhIG5pY2UgZGF5ID1d",
             command_id="891510ac-f3e4-11e8-af5b-de00688a4901",
-            transcription_engine="Deepgram",
+            transcription_engine="Google",
             transcription_engine_config={
-                "transcription_engine": "Deepgram",
-                "transcription_model": "deepgram/nova-2",
-                "keywords_boosting": {
-                    "snuffleupagus": 5,
-                    "systrom": 2,
-                    "krieger": 1,
-                },
+                "enable_speaker_diarization": True,
+                "hints": ["string"],
+                "interim_results": True,
                 "language": "en",
+                "max_speaker_count": 4,
+                "min_speaker_count": 4,
+                "model": "latest_long",
+                "profanity_filter": True,
+                "speech_context": [
+                    {
+                        "boost": 1,
+                        "phrases": ["string"],
+                    }
+                ],
+                "transcription_engine": "Google",
+                "use_enhanced": True,
             },
             transcription_tracks="both",
         )
