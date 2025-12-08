@@ -65,7 +65,7 @@ class UsecaseResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/campaign/usecase/cost",
+            "/10dlc/campaign/usecase/cost",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -121,7 +121,7 @@ class AsyncUsecaseResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/campaign/usecase/cost",
+            "/10dlc/campaign/usecase/cost",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

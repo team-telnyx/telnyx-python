@@ -173,7 +173,7 @@ class BrandResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/brand",
+            "/10dlc/brand",
             body=maybe_transform(
                 {
                     "country": country,
@@ -235,7 +235,7 @@ class BrandResource(SyncAPIResource):
         if not brand_id:
             raise ValueError(f"Expected a non-empty value for `brand_id` but received {brand_id!r}")
         return self._get(
-            f"/brand/{brand_id}",
+            f"/10dlc/brand/{brand_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -345,7 +345,7 @@ class BrandResource(SyncAPIResource):
         if not brand_id:
             raise ValueError(f"Expected a non-empty value for `brand_id` but received {brand_id!r}")
         return self._put(
-            f"/brand/{brand_id}",
+            f"/10dlc/brand/{brand_id}",
             body=maybe_transform(
                 {
                     "country": country,
@@ -439,7 +439,7 @@ class BrandResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/brand",
+            "/10dlc/brand",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -493,7 +493,7 @@ class BrandResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `brand_id` but received {brand_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/brand/{brand_id}",
+            f"/10dlc/brand/{brand_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -539,7 +539,7 @@ class BrandResource(SyncAPIResource):
         if not brand_id:
             raise ValueError(f"Expected a non-empty value for `brand_id` but received {brand_id!r}")
         return self._get(
-            f"/brand/feedback/{brand_id}",
+            f"/10dlc/brand/feedback/{brand_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -573,7 +573,7 @@ class BrandResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `brand_id` but received {brand_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
-            f"/brand/{brand_id}/2faEmail",
+            f"/10dlc/brand/{brand_id}/2faEmail",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -609,7 +609,7 @@ class BrandResource(SyncAPIResource):
         if not brand_id:
             raise ValueError(f"Expected a non-empty value for `brand_id` but received {brand_id!r}")
         return self._put(
-            f"/brand/{brand_id}/revet",
+            f"/10dlc/brand/{brand_id}/revet",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -742,7 +742,7 @@ class AsyncBrandResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/brand",
+            "/10dlc/brand",
             body=await async_maybe_transform(
                 {
                     "country": country,
@@ -804,7 +804,7 @@ class AsyncBrandResource(AsyncAPIResource):
         if not brand_id:
             raise ValueError(f"Expected a non-empty value for `brand_id` but received {brand_id!r}")
         return await self._get(
-            f"/brand/{brand_id}",
+            f"/10dlc/brand/{brand_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -914,7 +914,7 @@ class AsyncBrandResource(AsyncAPIResource):
         if not brand_id:
             raise ValueError(f"Expected a non-empty value for `brand_id` but received {brand_id!r}")
         return await self._put(
-            f"/brand/{brand_id}",
+            f"/10dlc/brand/{brand_id}",
             body=await async_maybe_transform(
                 {
                     "country": country,
@@ -1008,7 +1008,7 @@ class AsyncBrandResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/brand",
+            "/10dlc/brand",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1062,7 +1062,7 @@ class AsyncBrandResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `brand_id` but received {brand_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/brand/{brand_id}",
+            f"/10dlc/brand/{brand_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1108,7 +1108,7 @@ class AsyncBrandResource(AsyncAPIResource):
         if not brand_id:
             raise ValueError(f"Expected a non-empty value for `brand_id` but received {brand_id!r}")
         return await self._get(
-            f"/brand/feedback/{brand_id}",
+            f"/10dlc/brand/feedback/{brand_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1142,7 +1142,7 @@ class AsyncBrandResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `brand_id` but received {brand_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
-            f"/brand/{brand_id}/2faEmail",
+            f"/10dlc/brand/{brand_id}/2faEmail",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1178,7 +1178,7 @@ class AsyncBrandResource(AsyncAPIResource):
         if not brand_id:
             raise ValueError(f"Expected a non-empty value for `brand_id` but received {brand_id!r}")
         return await self._put(
-            f"/brand/{brand_id}/revet",
+            f"/10dlc/brand/{brand_id}/revet",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

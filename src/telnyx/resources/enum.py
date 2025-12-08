@@ -87,7 +87,7 @@ class EnumResource(SyncAPIResource):
         return cast(
             EnumRetrieveResponse,
             self._get(
-                f"/enum/{endpoint}",
+                f"/10dlc/enum/{endpoint}",
                 options=make_request_options(
                     extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
                 ),
@@ -163,7 +163,7 @@ class AsyncEnumResource(AsyncAPIResource):
         return cast(
             EnumRetrieveResponse,
             await self._get(
-                f"/enum/{endpoint}",
+                f"/10dlc/enum/{endpoint}",
                 options=make_request_options(
                     extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
                 ),
