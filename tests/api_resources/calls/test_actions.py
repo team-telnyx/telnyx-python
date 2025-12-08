@@ -399,7 +399,7 @@ class TestActions:
             },
             assistant={
                 "instructions": "You are a friendly voice assistant.",
-                "model": "meta-llama/Meta-Llama-3.1-70B-Instruct",
+                "model": "Qwen/Qwen3-235B-A22B",
                 "openai_api_key_ref": "my_openai_api_key",
                 "tools": [
                     {
@@ -2717,7 +2717,7 @@ class TestAsyncActions:
             },
             assistant={
                 "instructions": "You are a friendly voice assistant.",
-                "model": "meta-llama/Meta-Llama-3.1-70B-Instruct",
+                "model": "Qwen/Qwen3-235B-A22B",
                 "openai_api_key_ref": "my_openai_api_key",
                 "tools": [
                     {
