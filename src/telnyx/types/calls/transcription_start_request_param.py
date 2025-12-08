@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Union, Iterable
+from typing import Dict, Union, Iterable
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from ..._types import SequenceNotStr
@@ -93,6 +93,13 @@ class TranscriptionEngineConfigTranscriptionEngineDeepgramConfig(TypedDict, tota
 
     transcription_model: Required[Literal["deepgram/nova-2", "deepgram/nova-3"]]
     """The model to use for transcription."""
+
+    keywords_boosting: Dict[str, float]
+    """
+    Keywords and their respective intensifiers (boosting values) to improve
+    transcription accuracy for specific words or phrases. The intensifier should be
+    a numeric value. Example: `{"snuffleupagus": 5, "systrom": 2, "krieger": 1}`.
+    """
 
     language: Literal[
         "bg",
