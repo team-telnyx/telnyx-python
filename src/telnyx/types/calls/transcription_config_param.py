@@ -8,6 +8,11 @@ __all__ = ["TranscriptionConfigParam"]
 
 
 class TranscriptionConfigParam(TypedDict, total=False):
+    """The settings associated with speech to text for the voice assistant.
+
+    This is only relevant if the assistant uses a text-to-text language model. Any assistant using a model with native audio support (e.g. `fixie-ai/ultravox-v0_4`) will ignore this field.
+    """
+
     model: str
     """The speech to text model to be used by the voice assistant.
 

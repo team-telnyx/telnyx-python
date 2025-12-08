@@ -13,5 +13,7 @@ class SetiRetrieveBlackBoxTestResultsParams(TypedDict, total=False):
 
 
 class Filter(TypedDict, total=False):
+    """Consolidated filter parameter (deepObject style). Originally: filter[product]"""
+
     product: str
     """Filter results for a specific product."""

@@ -16,5 +16,10 @@ class PhoneNumbersRegulatoryRequirementRetrieveParams(TypedDict, total=False):
 
 
 class Filter(TypedDict, total=False):
+    """Consolidated filter parameter (deepObject style).
+
+    Originally: filter[phone_number]
+    """
+
     phone_number: str
     """Record type phone number/ phone numbers"""

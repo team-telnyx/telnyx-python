@@ -8,6 +8,8 @@ __all__ = ["MediaFeatures"]
 
 
 class MediaFeatures(BaseModel):
+    """The media features settings for a phone number."""
+
     accept_any_rtp_packets_enabled: Optional[bool] = None
     """
     When enabled, Telnyx will accept RTP packets from any customer-side IP address

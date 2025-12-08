@@ -23,6 +23,8 @@ class NumberOrderListParams(TypedDict, total=False):
 
 
 class FilterCreatedAt(TypedDict, total=False):
+    """Filter number orders by date range."""
+
     gt: str
     """Filter number orders later than this value."""
 
@@ -31,6 +33,11 @@ class FilterCreatedAt(TypedDict, total=False):
 
 
 class Filter(TypedDict, total=False):
+    """Consolidated filter parameter (deepObject style).
+
+    Originally: filter[status], filter[created_at], filter[phone_numbers_count], filter[customer_reference], filter[requirements_met]
+    """
+
     created_at: FilterCreatedAt
     """Filter number orders by date range."""
 
@@ -48,6 +55,11 @@ class Filter(TypedDict, total=False):
 
 
 class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[size], page[number]
+    """
+
     number: int
     """The page number to load"""
 

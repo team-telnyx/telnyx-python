@@ -17,6 +17,8 @@ __all__ = ["VerificationRequestStatus"]
 
 
 class VerificationRequestStatus(BaseModel):
+    """A verification request and its status, suitable for returning to users"""
+
     id: str
 
     additional_information: str = FieldInfo(alias="additionalInformation")

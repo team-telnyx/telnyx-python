@@ -9,6 +9,11 @@ __all__ = ["Conference", "EndedBy"]
 
 
 class EndedBy(BaseModel):
+    """IDs related to who ended the conference.
+
+    It is expected for them to all be there or all be null
+    """
+
     call_control_id: Optional[str] = None
     """Call Control ID which ended the conference"""
 

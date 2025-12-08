@@ -41,6 +41,8 @@ class FaxApplicationListParams(TypedDict, total=False):
 
 
 class FilterApplicationName(TypedDict, total=False):
+    """Application name filtering operations"""
+
     contains: str
     """
     If present, applications with <code>application_name</code> containing the given
@@ -50,6 +52,11 @@ class FilterApplicationName(TypedDict, total=False):
 
 
 class Filter(TypedDict, total=False):
+    """Consolidated filter parameter (deepObject style).
+
+    Originally: filter[application_name][contains], filter[outbound_voice_profile_id]
+    """
+
     application_name: FilterApplicationName
     """Application name filtering operations"""
 
@@ -58,6 +65,11 @@ class Filter(TypedDict, total=False):
 
 
 class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[number], page[size]
+    """
+
     number: int
     """The page number to load"""
 

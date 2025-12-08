@@ -12,6 +12,8 @@ __all__ = ["RcsCardContentParam", "Media"]
 
 
 class Media(TypedDict, total=False):
+    """A media file within a rich card."""
+
     content_info: RcsContentInfoParam
 
     height: Literal["HEIGHT_UNSPECIFIED", "SHORT", "MEDIUM", "TALL"]

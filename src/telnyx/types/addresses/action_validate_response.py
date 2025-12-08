@@ -12,6 +12,8 @@ __all__ = ["ActionValidateResponse", "Data", "DataSuggested"]
 
 
 class DataSuggested(BaseModel):
+    """Provides normalized address when available."""
+
     administrative_area: Optional[str] = None
     """The locality of the address.
 

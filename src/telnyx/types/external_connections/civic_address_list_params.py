@@ -18,5 +18,10 @@ class CivicAddressListParams(TypedDict, total=False):
 
 
 class Filter(TypedDict, total=False):
+    """Filter parameter for civic addresses (deepObject style).
+
+    Supports filtering by country.
+    """
+
     country: SequenceNotStr[str]
     """The country (or countries) to filter addresses by."""

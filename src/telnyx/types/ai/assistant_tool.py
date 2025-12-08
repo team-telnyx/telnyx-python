@@ -45,6 +45,10 @@ class HandoffToolHandoff(BaseModel):
 
 
 class HandoffTool(BaseModel):
+    """
+    The handoff tool allows the assistant to hand off control of the conversation to another AI assistant. By default, this will happen transparently to the end user.
+    """
+
     handoff: HandoffToolHandoff
 
     type: Literal["handoff"]

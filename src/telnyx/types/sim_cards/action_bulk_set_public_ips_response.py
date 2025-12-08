@@ -9,6 +9,11 @@ __all__ = ["ActionBulkSetPublicIPsResponse", "Data"]
 
 
 class Data(BaseModel):
+    """This object represents a bulk SIM card action.
+
+    It groups SIM card actions created through a bulk endpoint under a single resource for further lookup.
+    """
+
     id: Optional[str] = None
     """Identifies the resource."""
 

@@ -80,6 +80,8 @@ class ActionStartAIAssistantParams(TypedDict, total=False):
 
 
 class Assistant(TypedDict, total=False):
+    """AI Assistant configuration"""
+
     id: str
     """The identifier of the AI assistant to use"""
 

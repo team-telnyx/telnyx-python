@@ -24,6 +24,8 @@ class ActivationRange(BaseModel):
 
 
 class PhoneNumberRange(BaseModel):
+    """Specifies the phone number range for this porting phone number block."""
+
     end_at: Optional[str] = None
     """
     Specifies the end of the phone number range for this porting phone number block.

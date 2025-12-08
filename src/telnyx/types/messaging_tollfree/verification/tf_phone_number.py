@@ -8,4 +8,6 @@ __all__ = ["TfPhoneNumber"]
 
 
 class TfPhoneNumber(BaseModel):
+    """A phone number"""
+
     phone_number: str = FieldInfo(alias="phoneNumber")

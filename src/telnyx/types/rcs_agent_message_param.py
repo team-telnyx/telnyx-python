@@ -22,6 +22,8 @@ __all__ = [
 
 
 class ContentMessageRichCardCarouselCard(TypedDict, total=False):
+    """Carousel of cards."""
+
     card_contents: Required[Iterable[RcsCardContentParam]]
     """The list of contents for each card in the carousel.
 
@@ -33,6 +35,8 @@ class ContentMessageRichCardCarouselCard(TypedDict, total=False):
 
 
 class ContentMessageRichCardStandaloneCard(TypedDict, total=False):
+    """Standalone card"""
+
     card_content: Required[RcsCardContentParam]
 
     card_orientation: Required[Literal["CARD_ORIENTATION_UNSPECIFIED", "HORIZONTAL", "VERTICAL"]]
@@ -63,6 +67,8 @@ class ContentMessage(TypedDict, total=False):
 
 
 class Event(TypedDict, total=False):
+    """RCS Event to send to the recipient"""
+
     event_type: Literal["TYPE_UNSPECIFIED", "IS_TYPING", "READ"]
 
 

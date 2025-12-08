@@ -10,6 +10,12 @@ __all__ = ["PaginatedTestRunList"]
 
 
 class PaginatedTestRunList(BaseModel):
+    """Paginated list of test runs with metadata.
+
+    Returns test run execution results with pagination support for
+    handling large numbers of test executions.
+    """
+
     data: List[TestRunResponse]
     """Array of test run objects for the current page."""
 

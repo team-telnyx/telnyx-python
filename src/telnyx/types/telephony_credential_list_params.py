@@ -23,6 +23,11 @@ class TelephonyCredentialListParams(TypedDict, total=False):
 
 
 class Filter(TypedDict, total=False):
+    """Consolidated filter parameter (deepObject style).
+
+    Originally: filter[tag], filter[name], filter[status], filter[resource_id], filter[sip_username]
+    """
+
     name: str
     """Filter by name"""
 
@@ -40,6 +45,11 @@ class Filter(TypedDict, total=False):
 
 
 class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[number], page[size]
+    """
+
     number: int
     """The page number to load"""
 

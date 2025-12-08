@@ -24,6 +24,8 @@ class MobileNetworkOperatorListParams(TypedDict, total=False):
 
 
 class FilterName(TypedDict, total=False):
+    """Advanced name filtering operations"""
+
     contains: str
     """Filter by name containing match."""
 
@@ -35,6 +37,11 @@ class FilterName(TypedDict, total=False):
 
 
 class Filter(TypedDict, total=False):
+    """Consolidated filter parameter for mobile network operators (deepObject style).
+
+    Originally: filter[name][starts_with], filter[name][contains], filter[name][ends_with], filter[country_code], filter[mcc], filter[mnc], filter[tadig], filter[network_preferences_enabled]
+    """
+
     country_code: str
     """Filter by exact country_code."""
 
@@ -55,6 +62,11 @@ class Filter(TypedDict, total=False):
 
 
 class Page(TypedDict, total=False):
+    """Consolidated pagination parameter (deepObject style).
+
+    Originally: page[number], page[size]
+    """
+
     number: int
     """The page number to load."""
 

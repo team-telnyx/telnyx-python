@@ -11,6 +11,8 @@ __all__ = ["NumberOrderListResponse", "Data", "DataPhoneNumber"]
 
 
 class DataPhoneNumber(BaseModel):
+    """The unique phone numbers given as arguments in the job creation."""
+
     id: Optional[str] = None
     """The phone number's ID"""
 

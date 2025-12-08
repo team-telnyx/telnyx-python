@@ -9,6 +9,8 @@ __all__ = ["CdrDetailedReqResponse"]
 
 
 class CdrDetailedReqResponse(BaseModel):
+    """Response object for CDR detailed report"""
+
     id: Optional[str] = None
     """Unique identifier for the report"""
 

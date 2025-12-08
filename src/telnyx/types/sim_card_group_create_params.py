@@ -16,6 +16,8 @@ class SimCardGroupCreateParams(TypedDict, total=False):
 
 
 class DataLimit(TypedDict, total=False):
+    """Upper limit on the amount of data the SIM cards, within the group, can use."""
+
     amount: str
 
     unit: str

@@ -10,6 +10,11 @@ __all__ = ["OtaUpdateListResponse", "Data"]
 
 
 class Data(BaseModel):
+    """This object represents an Over the Air (OTA) update request.
+
+    It allows tracking the current status of a operation that apply settings in a particular SIM card. <br/><br/>
+    """
+
     id: Optional[str] = None
     """Identifies the resource."""
 

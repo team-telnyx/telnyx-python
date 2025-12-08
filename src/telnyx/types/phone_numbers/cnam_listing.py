@@ -8,6 +8,8 @@ __all__ = ["CnamListing"]
 
 
 class CnamListing(BaseModel):
+    """The CNAM listing settings for a phone number."""
+
     cnam_listing_details: Optional[str] = None
     """The CNAM listing details for this number.
 

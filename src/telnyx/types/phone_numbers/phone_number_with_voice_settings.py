@@ -13,6 +13,8 @@ __all__ = ["PhoneNumberWithVoiceSettings", "Emergency"]
 
 
 class Emergency(BaseModel):
+    """The emergency services settings for a phone number."""
+
     emergency_address_id: Optional[str] = None
     """Identifies the address to be used with emergency services."""
 

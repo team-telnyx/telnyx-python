@@ -21,6 +21,8 @@ __all__ = [
 
 
 class DataPayloadCallQualityStatsInbound(BaseModel):
+    """Inbound call quality statistics."""
+
     jitter_max_variance: Optional[str] = None
     """Maximum jitter variance for inbound audio."""
 
@@ -38,6 +40,8 @@ class DataPayloadCallQualityStatsInbound(BaseModel):
 
 
 class DataPayloadCallQualityStatsOutbound(BaseModel):
+    """Outbound call quality statistics."""
+
     packet_count: Optional[str] = None
     """Total number of outbound audio packets."""
 
@@ -46,6 +50,11 @@ class DataPayloadCallQualityStatsOutbound(BaseModel):
 
 
 class DataPayloadCallQualityStats(BaseModel):
+    """Call quality statistics aggregated from the CHANNEL_HANGUP_COMPLETE event.
+
+    Only includes metrics that are available (filters out nil values). Returns nil if no metrics are available.
+    """
+
     inbound: Optional[DataPayloadCallQualityStatsInbound] = None
     """Inbound call quality statistics."""
 

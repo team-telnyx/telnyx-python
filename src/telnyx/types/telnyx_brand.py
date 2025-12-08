@@ -20,6 +20,8 @@ class OptionalAttributes(BaseModel):
 
 
 class TelnyxBrand(BaseModel):
+    """Telnyx-specific extensions to The Campaign Registry's `Brand` type"""
+
     brand_relationship: Literal["BASIC_ACCOUNT", "SMALL_ACCOUNT", "MEDIUM_ACCOUNT", "LARGE_ACCOUNT", "KEY_ACCOUNT"] = (
         FieldInfo(alias="brandRelationship")
     )

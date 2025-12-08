@@ -32,6 +32,11 @@ class FilterConnectionName(TypedDict, total=False):
 
 
 class FilterPhoneNumber(TypedDict, total=False):
+    """Phone number filter for connections.
+
+    Note: Despite the 'contains' name, this requires a full E164 match per the original specification.
+    """
+
     contains: str
     """If present, connections associated with the given phone_number will be returned.
 
@@ -40,6 +45,11 @@ class FilterPhoneNumber(TypedDict, total=False):
 
 
 class Filter(TypedDict, total=False):
+    """Filter parameter for external connections (deepObject style).
+
+    Supports filtering by connection_name, external_sip_connection, id, created_at, and phone_number.
+    """
+
     id: str
     """
     If present, connections with <code>id</code> matching the given value will be
@@ -69,6 +79,11 @@ class Filter(TypedDict, total=False):
 
 
 class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[size], page[number]
+    """
+
     number: int
     """The page number to load"""
 

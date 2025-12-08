@@ -8,6 +8,8 @@ __all__ = ["SettingsParam"]
 
 
 class SettingsParam(TypedDict, total=False):
+    """The settings associated with the authentication provider."""
+
     idp_cert_fingerprint: Required[str]
     """The certificate fingerprint for the identity provider (IdP)"""
 

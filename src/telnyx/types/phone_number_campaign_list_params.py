@@ -29,6 +29,11 @@ class PhoneNumberCampaignListParams(TypedDict, total=False):
 
 
 class Filter(TypedDict, total=False):
+    """Consolidated filter parameter (deepObject style).
+
+    Originally: filter[telnyx_campaign_id], filter[telnyx_brand_id], filter[tcr_campaign_id], filter[tcr_brand_id]
+    """
+
     tcr_brand_id: str
     """Filter results by the TCR Brand id"""
 

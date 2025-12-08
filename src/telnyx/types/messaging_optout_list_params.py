@@ -35,6 +35,11 @@ class MessagingOptoutListParams(TypedDict, total=False):
 
 
 class CreatedAt(TypedDict, total=False):
+    """Consolidated created_at parameter (deepObject style).
+
+    Originally: created_at[gte], created_at[lte]
+    """
+
     gte: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """Filter opt-outs created after this date (ISO-8601 format)"""
 
@@ -52,11 +57,21 @@ _FilterReservedKeywords = TypedDict(
 
 
 class Filter(_FilterReservedKeywords, total=False):
+    """Consolidated filter parameter (deepObject style).
+
+    Originally: filter[messaging_profile_id], filter[from]
+    """
+
     messaging_profile_id: str
     """The ID of the messaging profile to retrieve opt-outs for"""
 
 
 class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[number], page[size]
+    """
+
     number: int
     """The page number to load"""
 

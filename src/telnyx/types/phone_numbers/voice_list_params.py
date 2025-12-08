@@ -31,11 +31,18 @@ class VoiceListParams(TypedDict, total=False):
 
 
 class FilterConnectionName(TypedDict, total=False):
+    """Filter by connection name pattern matching."""
+
     contains: str
     """Filter contains connection name. Requires at least three characters."""
 
 
 class Filter(TypedDict, total=False):
+    """Consolidated filter parameter (deepObject style).
+
+    Originally: filter[phone_number], filter[connection_name], filter[customer_reference], filter[voice.usage_payment_method]
+    """
+
     connection_name: FilterConnectionName
     """Filter by connection name pattern matching."""
 
@@ -56,6 +63,11 @@ class Filter(TypedDict, total=False):
 
 
 class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[size], page[number]
+    """
+
     number: int
     """The page number to load"""
 

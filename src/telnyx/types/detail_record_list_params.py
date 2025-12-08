@@ -29,6 +29,11 @@ class DetailRecordListParams(TypedDict, total=False):
 
 
 class FilterTyped(TypedDict, total=False):
+    """Filter records on a given record attribute and value.
+
+    <br/>Example: filter[status]=delivered. <br/>Required: filter[record_type] must be specified.
+    """
+
     record_type: Required[
         Literal[
             "ai-voice-assistant",
@@ -78,6 +83,11 @@ Filter: TypeAlias = Union[FilterTyped, Dict[str, object]]
 
 
 class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[number], page[size]
+    """
+
     number: int
     """Page number"""
 

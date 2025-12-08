@@ -16,6 +16,11 @@ class InsightGroupRetrieveInsightGroupsParams(TypedDict, total=False):
 
 
 class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[number], page[size]
+    """
+
     number: int
     """Page number (0-based)"""
 

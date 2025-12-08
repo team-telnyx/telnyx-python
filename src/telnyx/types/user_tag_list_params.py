@@ -16,5 +16,10 @@ class UserTagListParams(TypedDict, total=False):
 
 
 class Filter(TypedDict, total=False):
+    """Consolidated filter parameter (deepObject style).
+
+    Originally: filter[starts_with]
+    """
+
     starts_with: str
     """Filter tags by prefix"""

@@ -9,6 +9,8 @@ __all__ = ["CallForwarding"]
 
 
 class CallForwarding(BaseModel):
+    """The call forwarding settings for a phone number."""
+
     call_forwarding_enabled: Optional[bool] = None
     """
     Indicates if call forwarding will be enabled for this number if forwards_to and

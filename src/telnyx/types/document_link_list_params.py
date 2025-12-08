@@ -22,6 +22,11 @@ class DocumentLinkListParams(TypedDict, total=False):
 
 
 class Filter(TypedDict, total=False):
+    """Consolidated filter parameter for document links (deepObject style).
+
+    Originally: filter[linked_record_type], filter[linked_resource_id]
+    """
+
     linked_record_type: str
     """The linked_record_type of the document to filter on."""
 
@@ -30,6 +35,11 @@ class Filter(TypedDict, total=False):
 
 
 class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[size], page[number]
+    """
+
     number: int
     """The page number to load"""
 

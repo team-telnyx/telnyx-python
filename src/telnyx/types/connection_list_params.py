@@ -41,6 +41,8 @@ class ConnectionListParams(TypedDict, total=False):
 
 
 class FilterConnectionName(TypedDict, total=False):
+    """Filter by connection_name using nested operations"""
+
     contains: str
     """
     If present, connections with <code>connection_name</code> containing the given
@@ -50,6 +52,11 @@ class FilterConnectionName(TypedDict, total=False):
 
 
 class Filter(TypedDict, total=False):
+    """Consolidated filter parameter (deepObject style).
+
+    Originally: filter[connection_name], filter[fqdn], filter[outbound_voice_profile_id], filter[outbound.outbound_voice_profile_id]
+    """
+
     connection_name: FilterConnectionName
     """Filter by connection_name using nested operations"""
 
@@ -64,6 +71,11 @@ class Filter(TypedDict, total=False):
 
 
 class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[size], page[number]
+    """
+
     number: int
     """The page number to load"""
 

@@ -22,6 +22,11 @@ class ReportListParams(TypedDict, total=False):
 
 
 class Filter(TypedDict, total=False):
+    """Consolidated filter parameter (deepObject style).
+
+    Originally: filter[report_type], filter[status]
+    """
+
     report_type: Literal["export_porting_orders_csv"]
     """Filter reports of a specific type"""
 
@@ -30,6 +35,11 @@ class Filter(TypedDict, total=False):
 
 
 class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[size], page[number]
+    """
+
     number: int
     """The page number to load"""
 

@@ -19,10 +19,17 @@ class IntegrationSecretListParams(TypedDict, total=False):
 
 
 class Filter(TypedDict, total=False):
+    """Consolidated filter parameter (deepObject style). Originally: filter[type]"""
+
     type: Literal["bearer", "basic"]
 
 
 class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[size], page[number]
+    """
+
     number: int
 
     size: int

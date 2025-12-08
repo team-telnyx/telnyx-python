@@ -20,6 +20,11 @@ class UsageGetAPIUsageParams(TypedDict, total=False):
 
 
 class Filter(TypedDict, total=False):
+    """Consolidated filter parameter (deepObject style).
+
+    Originally: filter[start_time], filter[end_time]
+    """
+
     end_time: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
     """The end time of the period to filter the usage (ISO microsecond format)"""
 

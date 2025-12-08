@@ -10,6 +10,8 @@ __all__ = ["NotificationChannel"]
 
 
 class NotificationChannel(BaseModel):
+    """A Notification Channel"""
+
     id: Optional[str] = None
     """A UUID."""
 

@@ -26,11 +26,21 @@ class AdditionalDocumentListParams(TypedDict, total=False):
 
 
 class Filter(TypedDict, total=False):
+    """Consolidated filter parameter (deepObject style).
+
+    Originally: filter[document_type]
+    """
+
     document_type: List[Literal["loa", "invoice", "csr", "other"]]
     """Filter additional documents by a list of document types"""
 
 
 class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[size], page[number]
+    """
+
     number: int
     """The page number to load"""
 
@@ -39,6 +49,8 @@ class Page(TypedDict, total=False):
 
 
 class Sort(TypedDict, total=False):
+    """Consolidated sort parameter (deepObject style). Originally: sort[value]"""
+
     value: Literal["created_at", "-created_at"]
     """Specifies the sort order for results.
 

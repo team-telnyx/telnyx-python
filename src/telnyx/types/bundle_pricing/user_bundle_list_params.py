@@ -28,6 +28,11 @@ class UserBundleListParams(TypedDict, total=False):
 
 
 class Filter(TypedDict, total=False):
+    """Consolidated filter parameter (deepObject style).
+
+    Supports filtering by country_iso and resource. Examples: filter[country_iso]=US or filter[resource]=+15617819942
+    """
+
     country_iso: SequenceNotStr[str]
     """Filter by country code."""
 
@@ -36,6 +41,11 @@ class Filter(TypedDict, total=False):
 
 
 class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[size], page[number]
+    """
+
     number: int
     """The page number to load."""
 

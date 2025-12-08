@@ -9,6 +9,8 @@ __all__ = ["RequestListResponse"]
 
 
 class RequestListResponse(BaseModel):
+    """A paginated response"""
+
     records: Optional[List[VerificationRequestStatus]] = None
     """The records yielded by this request"""
 

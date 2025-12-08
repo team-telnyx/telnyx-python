@@ -10,6 +10,8 @@ __all__ = ["VerifyProfileListResponse"]
 
 
 class VerifyProfileListResponse(BaseModel):
+    """A paginated list of Verify profiles"""
+
     data: List[VerifyProfile]
 
     meta: VerifyMeta

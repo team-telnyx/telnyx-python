@@ -12,6 +12,8 @@ __all__ = ["AuditEventListResponse", "Data", "DataChange", "Meta"]
 
 
 class DataChange(BaseModel):
+    """Details of the changes made to a resource."""
+
     field: Optional[str] = None
     """The name of the field that was changed.
 

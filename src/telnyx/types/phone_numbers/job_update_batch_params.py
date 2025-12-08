@@ -68,6 +68,8 @@ class JobUpdateBatchParams(TypedDict, total=False):
 
 
 class FilterVoiceConnectionName(TypedDict, total=False):
+    """Filter by voice connection name pattern matching."""
+
     contains: str
     """Filter contains connection name. Requires at least three characters."""
 
@@ -82,6 +84,11 @@ class FilterVoiceConnectionName(TypedDict, total=False):
 
 
 class Filter(TypedDict, total=False):
+    """Consolidated filter parameter (deepObject style).
+
+    Originally: filter[has_bundle], filter[tag], filter[connection_id], filter[phone_number], filter[status], filter[voice.connection_name], filter[voice.usage_payment_method], filter[billing_group_id], filter[emergency_address_id], filter[customer_reference]
+    """
+
     billing_group_id: str
     """Filter by the billing_group_id associated with phone numbers.
 

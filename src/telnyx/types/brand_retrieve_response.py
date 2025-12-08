@@ -10,5 +10,7 @@ __all__ = ["BrandRetrieveResponse"]
 
 
 class BrandRetrieveResponse(TelnyxBrand):
+    """Telnyx-specific extensions to The Campaign Registry's `Brand` type"""
+
     assigned_campaigns_count: Optional[float] = FieldInfo(alias="assignedCampaignsCount", default=None)
     """Number of campaigns associated with the brand"""

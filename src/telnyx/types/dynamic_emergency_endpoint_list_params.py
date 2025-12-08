@@ -22,6 +22,11 @@ class DynamicEmergencyEndpointListParams(TypedDict, total=False):
 
 
 class Filter(TypedDict, total=False):
+    """Consolidated filter parameter (deepObject style).
+
+    Originally: filter[status], filter[country_code]
+    """
+
     country_code: str
     """Filter by country code."""
 
@@ -30,6 +35,11 @@ class Filter(TypedDict, total=False):
 
 
 class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[size], page[number]
+    """
+
     number: int
     """The page number to load"""
 

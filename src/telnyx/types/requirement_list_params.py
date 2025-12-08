@@ -40,6 +40,11 @@ class RequirementListParams(TypedDict, total=False):
 
 
 class Filter(TypedDict, total=False):
+    """Consolidated filter parameter for requirements (deepObject style).
+
+    Originally: filter[country_code], filter[phone_number_type], filter[action]
+    """
+
     action: Literal["branded_calling", "ordering", "porting"]
     """Filters requirements to those applying to a specific action."""
 
@@ -54,6 +59,11 @@ class Filter(TypedDict, total=False):
 
 
 class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[size], page[number]
+    """
+
     number: int
     """The page number to load"""
 

@@ -28,4 +28,9 @@ class FilterName(TypedDict, total=False):
 
 
 class Filter(TypedDict, total=False):
+    """Consolidated filter parameter for requirement types (deepObject style).
+
+    Originally: filter[name]
+    """
+
     name: FilterName

@@ -9,6 +9,8 @@ __all__ = ["PortingOrderMessaging"]
 
 
 class PortingOrderMessaging(BaseModel):
+    """Information about messaging porting process."""
+
     enable_messaging: Optional[bool] = None
     """
     Indicates whether Telnyx will port messaging capabilities from the losing

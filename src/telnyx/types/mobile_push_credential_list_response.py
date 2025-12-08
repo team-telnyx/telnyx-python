@@ -10,6 +10,8 @@ __all__ = ["MobilePushCredentialListResponse"]
 
 
 class MobilePushCredentialListResponse(BaseModel):
+    """Mobile mobile push credentials"""
+
     data: Optional[List[PushCredential]] = None
 
     meta: Optional[PaginationMeta] = None

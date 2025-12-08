@@ -27,6 +27,8 @@ __all__ = [
 
 
 class DataPayloadWebhookPortingOrderDeletedPayload(BaseModel):
+    """The webhook payload for the porting_order.deleted event"""
+
     id: Optional[str] = None
     """Identifies the porting order that was deleted."""
 
@@ -38,6 +40,8 @@ class DataPayloadWebhookPortingOrderDeletedPayload(BaseModel):
 
 
 class DataPayloadWebhookPortingOrderMessagingChangedPayloadMessaging(BaseModel):
+    """The messaging portability status of the porting order."""
+
     enable_messaging: Optional[bool] = None
     """
     Indicates whether Telnyx will port messaging capabilities from the losing
@@ -58,6 +62,8 @@ class DataPayloadWebhookPortingOrderMessagingChangedPayloadMessaging(BaseModel):
 
 
 class DataPayloadWebhookPortingOrderMessagingChangedPayload(BaseModel):
+    """The webhook payload for the porting_order.messaging_changed event"""
+
     id: Optional[str] = None
     """Identifies the porting order that was moved."""
 
@@ -72,6 +78,8 @@ class DataPayloadWebhookPortingOrderMessagingChangedPayload(BaseModel):
 
 
 class DataPayloadWebhookPortingOrderStatusChangedPayload(BaseModel):
+    """The webhook payload for the porting_order.status_changed event"""
+
     id: Optional[str] = None
     """Identifies the porting order that was moved."""
 
@@ -92,6 +100,8 @@ class DataPayloadWebhookPortingOrderStatusChangedPayload(BaseModel):
 
 
 class DataPayloadWebhookPortingOrderNewCommentPayloadComment(BaseModel):
+    """The comment that was added to the porting order."""
+
     id: Optional[str] = None
     """Identifies the comment."""
 
@@ -109,6 +119,8 @@ class DataPayloadWebhookPortingOrderNewCommentPayloadComment(BaseModel):
 
 
 class DataPayloadWebhookPortingOrderNewCommentPayload(BaseModel):
+    """The webhook payload for the porting_order.new_comment event"""
+
     comment: Optional[DataPayloadWebhookPortingOrderNewCommentPayloadComment] = None
     """The comment that was added to the porting order."""
 
@@ -120,6 +132,8 @@ class DataPayloadWebhookPortingOrderNewCommentPayload(BaseModel):
 
 
 class DataPayloadWebhookPortingOrderSplitPayloadFrom(BaseModel):
+    """The porting order that was split."""
+
     id: Optional[str] = None
     """Identifies the porting order that was split."""
 
@@ -130,11 +144,15 @@ class DataPayloadWebhookPortingOrderSplitPayloadPortingPhoneNumber(BaseModel):
 
 
 class DataPayloadWebhookPortingOrderSplitPayloadTo(BaseModel):
+    """The new porting order that the phone numbers was moved to."""
+
     id: Optional[str] = None
     """Identifies the porting order that was split."""
 
 
 class DataPayloadWebhookPortingOrderSplitPayload(BaseModel):
+    """The webhook payload for the porting_order.split event"""
+
     from_: Optional[DataPayloadWebhookPortingOrderSplitPayloadFrom] = FieldInfo(alias="from", default=None)
     """The porting order that was split."""
 

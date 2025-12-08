@@ -9,4 +9,6 @@ __all__ = ["PushCredentialResponse"]
 
 
 class PushCredentialResponse(BaseModel):
+    """Success response with details about a push credential"""
+
     data: Optional[PushCredential] = None

@@ -8,6 +8,8 @@ __all__ = ["CallRecordingParam"]
 
 
 class CallRecordingParam(TypedDict, total=False):
+    """The call recording settings for a phone number."""
+
     inbound_call_recording_channels: Literal["single", "dual"]
     """
     When using 'dual' channels, final audio file will be stereo recorded with the

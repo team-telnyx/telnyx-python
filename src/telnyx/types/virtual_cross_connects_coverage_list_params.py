@@ -40,6 +40,11 @@ class VirtualCrossConnectsCoverageListParams(TypedDict, total=False):
 
 
 class Filter(TypedDict, total=False):
+    """Consolidated filter parameter (deepObject style).
+
+    Originally: filter[cloud_provider], filter[cloud_provider_region], filter[location.region], filter[location.site], filter[location.pop], filter[location.code]
+    """
+
     cloud_provider: Literal["aws", "azure", "gce"]
     """The Virtual Private Cloud provider."""
 
@@ -60,6 +65,8 @@ class Filter(TypedDict, total=False):
 
 
 class FiltersAvailableBandwidthContains(TypedDict, total=False):
+    """Available bandwidth filtering operations"""
+
     contains: int
     """Filter by available bandwidth containing the specified value"""
 
@@ -68,11 +75,21 @@ FiltersAvailableBandwidth: TypeAlias = Union[int, FiltersAvailableBandwidthConta
 
 
 class Filters(TypedDict, total=False):
+    """Consolidated filters parameter (deepObject style).
+
+    Originally: filters[available_bandwidth][contains]
+    """
+
     available_bandwidth: FiltersAvailableBandwidth
     """Filter by exact available bandwidth match"""
 
 
 class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[number], page[size]
+    """
+
     number: int
     """The page number to load"""
 

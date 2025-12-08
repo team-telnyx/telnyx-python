@@ -24,6 +24,11 @@ class DataSettingsMobileNetworkOperatorsPreference(BaseModel):
 
 
 class DataSettings(BaseModel):
+    """A JSON object representation of the operation.
+
+    The information present here will relate directly to the source of the OTA request.
+    """
+
     mobile_network_operators_preferences: Optional[List[DataSettingsMobileNetworkOperatorsPreference]] = None
     """
     A list of mobile network operators and the priority that should be applied when
@@ -32,6 +37,11 @@ class DataSettings(BaseModel):
 
 
 class Data(BaseModel):
+    """This object represents an Over the Air (OTA) update request.
+
+    It allows tracking the current status of a operation that apply settings in a particular SIM card. <br/><br/>
+    """
+
     id: Optional[str] = None
     """Identifies the resource."""
 

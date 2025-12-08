@@ -9,6 +9,8 @@ __all__ = ["DocServiceDocument", "Size"]
 
 
 class Size(BaseModel):
+    """Indicates the document's filesize"""
+
     amount: Optional[int] = None
     """The number of bytes"""
 

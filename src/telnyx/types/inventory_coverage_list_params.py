@@ -21,6 +21,11 @@ class InventoryCoverageListParams(TypedDict, total=False):
 
 
 class Filter(TypedDict, total=False):
+    """Consolidated filter parameter (deepObject style).
+
+    Originally: filter[npa], filter[nxx], filter[administrative_area], filter[phone_number_type], filter[country_code], filter[count], filter[features], filter[groupBy]
+    """
+
     administrative_area: str
     """Filter by administrative area"""
 

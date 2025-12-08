@@ -41,6 +41,11 @@ class UserAddressListParams(TypedDict, total=False):
 
 
 class FilterCustomerReference(TypedDict, total=False):
+    """Filter user addresses via the customer reference.
+
+    Supports both exact matching (eq) and partial matching (contains). Matching is not case-sensitive.
+    """
+
     contains: str
     """
     If present, user addresses with <code>customer_reference</code> containing the
@@ -55,6 +60,11 @@ class FilterCustomerReference(TypedDict, total=False):
 
 
 class FilterStreetAddress(TypedDict, total=False):
+    """Filter user addresses via street address.
+
+    Supports partial matching (contains). Matching is not case-sensitive.
+    """
+
     contains: str
     """
     If present, user addresses with <code>street_address</code> containing the given
@@ -64,6 +74,11 @@ class FilterStreetAddress(TypedDict, total=False):
 
 
 class Filter(TypedDict, total=False):
+    """Consolidated filter parameter (deepObject style).
+
+    Originally: filter[customer_reference][eq], filter[customer_reference][contains], filter[street_address][contains]
+    """
+
     customer_reference: FilterCustomerReference
     """Filter user addresses via the customer reference.
 
@@ -79,6 +94,11 @@ class Filter(TypedDict, total=False):
 
 
 class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[size], page[number]
+    """
+
     number: int
     """The page number to load"""
 

@@ -40,6 +40,11 @@ class TexmlApplicationListParams(TypedDict, total=False):
 
 
 class Filter(TypedDict, total=False):
+    """Consolidated filter parameter (deepObject style).
+
+    Originally: filter[outbound_voice_profile_id], filter[friendly_name]
+    """
+
     friendly_name: str
     """
     If present, applications with <code>friendly_name</code> containing the given
@@ -52,6 +57,11 @@ class Filter(TypedDict, total=False):
 
 
 class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[size], page[number]
+    """
+
     number: int
     """The page number to load"""
 

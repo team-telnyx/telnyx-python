@@ -10,6 +10,8 @@ __all__ = ["SubNumberOrdersReportCreateResponse", "Data", "DataFilters"]
 
 
 class DataFilters(BaseModel):
+    """The filters that were applied to generate this report"""
+
     country_code: Optional[str] = None
 
     created_at_gt: Optional[datetime] = None

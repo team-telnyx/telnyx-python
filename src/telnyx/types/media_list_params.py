@@ -18,5 +18,10 @@ class MediaListParams(TypedDict, total=False):
 
 
 class Filter(TypedDict, total=False):
+    """Consolidated filter parameter (deepObject style).
+
+    Originally: filter[content_type][]
+    """
+
     content_type: SequenceNotStr[str]
     """Filters files by given content types"""

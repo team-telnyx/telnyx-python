@@ -40,6 +40,11 @@ class NetworkCoverageListParams(TypedDict, total=False):
 
 
 class Filter(TypedDict, total=False):
+    """Consolidated filter parameter (deepObject style).
+
+    Originally: filter[location.region], filter[location.site], filter[location.pop], filter[location.code]
+    """
+
     location_code: Annotated[str, PropertyInfo(alias="location.code")]
     """The code of associated location to filter on."""
 
@@ -54,6 +59,8 @@ class Filter(TypedDict, total=False):
 
 
 class FiltersAvailableServicesContains(TypedDict, total=False):
+    """Available service filtering operations"""
+
     contains: AvailableService
     """Filter by available services containing the specified service"""
 
@@ -62,11 +69,21 @@ FiltersAvailableServices: TypeAlias = Union[AvailableService, FiltersAvailableSe
 
 
 class Filters(TypedDict, total=False):
+    """Consolidated filters parameter (deepObject style).
+
+    Originally: filters[available_services][contains]
+    """
+
     available_services: FiltersAvailableServices
     """Filter by exact available service match"""
 
 
 class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[number], page[size]
+    """
+
     number: int
     """The page number to load"""
 
