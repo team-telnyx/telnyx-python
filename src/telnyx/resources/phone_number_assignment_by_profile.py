@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Any, cast
-
 import httpx
 
 from ..types import (
@@ -92,25 +90,20 @@ class PhoneNumberAssignmentByProfileResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return cast(
-            PhoneNumberAssignmentByProfileAssignResponse,
-            self._post(
-                "/phoneNumberAssignmentByProfile",
-                body=maybe_transform(
-                    {
-                        "messaging_profile_id": messaging_profile_id,
-                        "campaign_id": campaign_id,
-                        "tcr_campaign_id": tcr_campaign_id,
-                    },
-                    phone_number_assignment_by_profile_assign_params.PhoneNumberAssignmentByProfileAssignParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-                ),
-                cast_to=cast(
-                    Any, PhoneNumberAssignmentByProfileAssignResponse
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._post(
+            "/phoneNumberAssignmentByProfile",
+            body=maybe_transform(
+                {
+                    "messaging_profile_id": messaging_profile_id,
+                    "campaign_id": campaign_id,
+                    "tcr_campaign_id": tcr_campaign_id,
+                },
+                phone_number_assignment_by_profile_assign_params.PhoneNumberAssignmentByProfileAssignParams,
             ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=PhoneNumberAssignmentByProfileAssignResponse,
         )
 
     def retrieve_phone_number_status(
@@ -254,25 +247,20 @@ class AsyncPhoneNumberAssignmentByProfileResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return cast(
-            PhoneNumberAssignmentByProfileAssignResponse,
-            await self._post(
-                "/phoneNumberAssignmentByProfile",
-                body=await async_maybe_transform(
-                    {
-                        "messaging_profile_id": messaging_profile_id,
-                        "campaign_id": campaign_id,
-                        "tcr_campaign_id": tcr_campaign_id,
-                    },
-                    phone_number_assignment_by_profile_assign_params.PhoneNumberAssignmentByProfileAssignParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-                ),
-                cast_to=cast(
-                    Any, PhoneNumberAssignmentByProfileAssignResponse
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._post(
+            "/phoneNumberAssignmentByProfile",
+            body=await async_maybe_transform(
+                {
+                    "messaging_profile_id": messaging_profile_id,
+                    "campaign_id": campaign_id,
+                    "tcr_campaign_id": tcr_campaign_id,
+                },
+                phone_number_assignment_by_profile_assign_params.PhoneNumberAssignmentByProfileAssignParams,
             ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=PhoneNumberAssignmentByProfileAssignResponse,
         )
 
     async def retrieve_phone_number_status(
