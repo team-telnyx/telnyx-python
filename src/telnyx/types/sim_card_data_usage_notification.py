@@ -9,12 +9,16 @@ __all__ = ["SimCardDataUsageNotification", "Threshold"]
 
 
 class Threshold(BaseModel):
+    """Data usage threshold that will trigger the notification."""
+
     amount: Optional[str] = None
 
     unit: Optional[Literal["MB", "GB"]] = None
 
 
 class SimCardDataUsageNotification(BaseModel):
+    """The SIM card individual data usage notification information."""
+
     id: Optional[str] = None
     """Identifies the resource."""
 

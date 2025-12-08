@@ -36,11 +36,15 @@ class PhoneNumberListParams(TypedDict, total=False):
 
 
 class FilterNumberType(TypedDict, total=False):
+    """Filter phone numbers by phone number type."""
+
     eq: Literal["local", "national", "toll_free", "mobile", "shared_cost"]
     """Filter phone numbers by phone number type."""
 
 
 class FilterVoiceConnectionName(TypedDict, total=False):
+    """Filter by voice connection name pattern matching."""
+
     contains: str
     """Filter contains connection name. Requires at least three characters."""
 
@@ -55,6 +59,11 @@ class FilterVoiceConnectionName(TypedDict, total=False):
 
 
 class Filter(TypedDict, total=False):
+    """Consolidated filter parameter (deepObject style).
+
+    Originally: filter[tag], filter[phone_number], filter[status], filter[country_iso_alpha2], filter[connection_id], filter[voice.connection_name], filter[voice.usage_payment_method], filter[billing_group_id], filter[emergency_address_id], filter[customer_reference], filter[number_type], filter[source]
+    """
+
     billing_group_id: str
     """Filter by the billing_group_id associated with phone numbers.
 
@@ -130,6 +139,11 @@ class Filter(TypedDict, total=False):
 
 
 class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[size], page[number]
+    """
+
     number: int
     """The page number to load"""
 

@@ -10,6 +10,8 @@ __all__ = ["ConferenceListParticipantsResponse", "Data", "DataConference"]
 
 
 class DataConference(BaseModel):
+    """Info about the conference that the participant is in"""
+
     id: Optional[str] = None
     """Uniquely identifies the conference"""
 

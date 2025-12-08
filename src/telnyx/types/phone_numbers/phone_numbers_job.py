@@ -21,6 +21,11 @@ class FailedOperation(BaseModel):
 
 
 class PendingOperation(BaseModel):
+    """The phone numbers pending confirmation on update results.
+
+    Entries in this list are transient, and will be moved to either successful_operations or failed_operations once the processing is done.
+    """
+
     id: Optional[str] = None
     """The phone number's ID"""
 
@@ -29,6 +34,8 @@ class PendingOperation(BaseModel):
 
 
 class PhoneNumber(BaseModel):
+    """The unique phone numbers given as arguments in the job creation."""
+
     id: Optional[str] = None
     """The phone number's ID"""
 
@@ -37,6 +44,8 @@ class PhoneNumber(BaseModel):
 
 
 class SuccessfulOperation(BaseModel):
+    """The phone numbers successfully updated."""
+
     id: Optional[str] = None
     """The phone number's ID"""
 

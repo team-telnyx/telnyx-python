@@ -42,6 +42,11 @@ class FilterLocationID(TypedDict, total=False):
 
 
 class FilterPhoneNumber(TypedDict, total=False):
+    """Phone number filter operations.
+
+    Use 'eq' for exact matches or 'contains' for partial matches.
+    """
+
     contains: str
     """The partial phone number to filter by. Requires 3-15 digits."""
 
@@ -55,6 +60,11 @@ class FilterStatus(TypedDict, total=False):
 
 
 class Filter(TypedDict, total=False):
+    """Filter parameter for releases (deepObject style).
+
+    Supports filtering by status, civic_address_id, location_id, and phone_number with eq/contains operations.
+    """
+
     civic_address_id: FilterCivicAddressID
 
     location_id: FilterLocationID
@@ -69,6 +79,11 @@ class Filter(TypedDict, total=False):
 
 
 class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[size], page[number]
+    """
+
     number: int
     """The page number to load"""
 

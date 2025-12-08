@@ -9,6 +9,8 @@ __all__ = ["CallRecording"]
 
 
 class CallRecording(BaseModel):
+    """The call recording settings for a phone number."""
+
     inbound_call_recording_channels: Optional[Literal["single", "dual"]] = None
     """
     When using 'dual' channels, final audio file will be stereo recorded with the

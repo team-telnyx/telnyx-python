@@ -10,6 +10,8 @@ __all__ = ["StreamingFailedWebhookEvent", "Data", "DataPayload", "DataPayloadStr
 
 
 class DataPayloadStreamParams(BaseModel):
+    """Streaming parameters as they were originally given to the Call Control API."""
+
     stream_url: Optional[str] = None
     """The destination WebSocket address where the stream is going to be delivered."""
 

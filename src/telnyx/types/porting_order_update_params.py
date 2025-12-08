@@ -66,6 +66,8 @@ class Messaging(TypedDict, total=False):
 
 
 class Requirement(TypedDict, total=False):
+    """Specifies a value for a requirement on the Porting Order."""
+
     field_value: Required[str]
     """
     identifies the document or provides the text value that satisfies this

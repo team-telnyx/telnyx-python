@@ -22,6 +22,8 @@ class JobCreateParams(TypedDict, total=False):
 
 
 class Hyperparameters(TypedDict, total=False):
+    """The hyperparameters used for the fine-tuning job."""
+
     n_epochs: int
     """The number of epochs to train the model for.
 

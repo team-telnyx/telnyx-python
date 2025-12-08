@@ -9,6 +9,8 @@ __all__ = ["SimCardOrder", "Cost", "OrderAddress"]
 
 
 class Cost(BaseModel):
+    """An object representing the total cost of the order."""
+
     amount: Optional[str] = None
     """A string representing the cost amount."""
 
@@ -17,6 +19,10 @@ class Cost(BaseModel):
 
 
 class OrderAddress(BaseModel):
+    """
+    An object representing the address information from when the order was submitted.
+    """
+
     id: Optional[str] = None
     """Uniquely identifies the address for the order."""
 

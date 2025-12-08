@@ -8,6 +8,8 @@ __all__ = ["ConsumedData"]
 
 
 class ConsumedData(BaseModel):
+    """Represents the amount of data consumed."""
+
     amount: Optional[str] = None
 
     unit: Optional[str] = None

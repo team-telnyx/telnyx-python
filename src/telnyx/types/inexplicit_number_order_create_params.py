@@ -31,6 +31,8 @@ class InexplicitNumberOrderCreateParams(TypedDict, total=False):
 
 
 class OrderingGroupPhoneNumber(TypedDict, total=False):
+    """Phone number search criteria"""
+
     contains: str
     """Filter for phone numbers that contain the digits specified"""
 

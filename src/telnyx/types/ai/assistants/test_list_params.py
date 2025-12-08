@@ -25,6 +25,11 @@ class TestListParams(TypedDict, total=False):
 
 
 class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[size], page[number]
+    """
+
     number: int
     """Page number to retrieve (1-based indexing)"""
 

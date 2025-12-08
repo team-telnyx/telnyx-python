@@ -22,6 +22,11 @@ class MobilePushCredentialListParams(TypedDict, total=False):
 
 
 class Filter(TypedDict, total=False):
+    """Consolidated filter parameter (deepObject style).
+
+    Originally: filter[type], filter[alias]
+    """
+
     alias: str
     """Unique mobile push credential alias"""
 
@@ -30,6 +35,11 @@ class Filter(TypedDict, total=False):
 
 
 class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[size], page[number]
+    """
+
     number: int
     """The page number to load."""
 

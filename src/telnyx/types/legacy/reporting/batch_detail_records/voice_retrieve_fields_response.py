@@ -10,6 +10,8 @@ __all__ = ["VoiceRetrieveFieldsResponse"]
 
 
 class VoiceRetrieveFieldsResponse(BaseModel):
+    """Available CDR report fields grouped by category"""
+
     billing: Optional[List[str]] = FieldInfo(alias="Billing", default=None)
     """Cost and billing related information"""
 

@@ -16,6 +16,8 @@ __all__ = ["VerificationRequestEgress"]
 
 
 class VerificationRequestEgress(BaseModel):
+    """A verification request as it comes out of the database"""
+
     id: str
 
     additional_information: str = FieldInfo(alias="additionalInformation")

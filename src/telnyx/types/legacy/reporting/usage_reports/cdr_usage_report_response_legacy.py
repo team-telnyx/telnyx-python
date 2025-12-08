@@ -9,6 +9,8 @@ __all__ = ["CdrUsageReportResponseLegacy"]
 
 
 class CdrUsageReportResponseLegacy(BaseModel):
+    """Legacy V2 CDR usage report response"""
+
     id: Optional[str] = None
     """Identifies the resource"""
 

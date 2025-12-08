@@ -28,6 +28,11 @@ class JobListParams(TypedDict, total=False):
 
 
 class Filter(TypedDict, total=False):
+    """Consolidated filter parameter (deepObject style).
+
+    Originally: filter[type], filter[status]
+    """
+
     status: Literal["pending", "in_progress", "completed", "failed"]
     """Identifies the status of the background job."""
 
@@ -36,6 +41,11 @@ class Filter(TypedDict, total=False):
 
 
 class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[size], page[number]
+    """
+
     number: int
     """The page number to load"""
 

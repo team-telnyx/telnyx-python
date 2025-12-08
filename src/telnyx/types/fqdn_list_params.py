@@ -23,6 +23,11 @@ class FqdnListParams(TypedDict, total=False):
 
 
 class Filter(TypedDict, total=False):
+    """Consolidated filter parameter (deepObject style).
+
+    Originally: filter[connection_id], filter[fqdn], filter[port], filter[dns_record_type]
+    """
+
     connection_id: str
     """ID of the FQDN connection to which the FQDN belongs."""
 
@@ -37,6 +42,11 @@ class Filter(TypedDict, total=False):
 
 
 class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[size], page[number]
+    """
+
     number: int
     """The page number to load"""
 

@@ -23,6 +23,8 @@ class ActivationRange(BaseModel):
 
 
 class ExtensionRange(BaseModel):
+    """Specifies the extension range for this porting phone number extension."""
+
     end_at: Optional[int] = None
     """
     Specifies the end of the extension range for this porting phone number

@@ -16,6 +16,11 @@ class CommentListParams(TypedDict, total=False):
 
 
 class Filter(TypedDict, total=False):
+    """Consolidated filter parameter (deepObject style).
+
+    Originally: filter[comment_record_type], filter[comment_record_id]
+    """
+
     comment_record_id: str
     """ID of the record the comments relate to"""
 

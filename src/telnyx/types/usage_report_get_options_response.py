@@ -8,6 +8,10 @@ __all__ = ["UsageReportGetOptionsResponse", "Data", "DataRecordType"]
 
 
 class DataRecordType(BaseModel):
+    """
+    An object following one of the schemas published in https://developers.telnyx.com/docs/api/v2/detail-records
+    """
+
     product_dimensions: Optional[List[str]] = None
     """Telnyx Product Dimensions"""
 
@@ -19,6 +23,10 @@ class DataRecordType(BaseModel):
 
 
 class Data(BaseModel):
+    """
+    An object following one of the schemas published in https://developers.telnyx.com/docs/api/v2/detail-records
+    """
+
     product: Optional[str] = None
     """Telnyx Product"""
 
@@ -33,5 +41,9 @@ class Data(BaseModel):
 
 
 class UsageReportGetOptionsResponse(BaseModel):
+    """
+    An object following one of the schemas published in https://developers.telnyx.com/docs/api/v2/detail-records
+    """
+
     data: Optional[List[Data]] = None
     """Collection of product description"""

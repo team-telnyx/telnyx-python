@@ -76,6 +76,11 @@ class FilterStatus(_FilterStatusReservedKeywords, total=False):
 
 
 class Filter(TypedDict, total=False):
+    """Consolidated filter parameter (deepObject style).
+
+    Originally: filter[phone_number][eq], filter[phone_number][in][], filter[status][eq], filter[status][in][], filter[created_at][lt], filter[created_at][gt]
+    """
+
     created_at: FilterCreatedAt
 
     phone_number: FilterPhoneNumber
@@ -84,6 +89,11 @@ class Filter(TypedDict, total=False):
 
 
 class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[size], page[number]
+    """
+
     number: int
     """The page number to load"""
 
@@ -92,6 +102,8 @@ class Page(TypedDict, total=False):
 
 
 class Sort(TypedDict, total=False):
+    """Consolidated sort parameter (deepObject style). Originally: sort[value]"""
+
     value: Literal["created_at", "-created_at"]
     """Specifies the sort order for results.
 

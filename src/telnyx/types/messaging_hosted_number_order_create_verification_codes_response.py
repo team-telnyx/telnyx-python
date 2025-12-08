@@ -9,6 +9,8 @@ __all__ = ["MessagingHostedNumberOrderCreateVerificationCodesResponse", "Data"]
 
 
 class Data(BaseModel):
+    """Verification code result response"""
+
     phone_number: str
     """Phone number for which the verification code was created"""
 

@@ -22,6 +22,11 @@ class IPListParams(TypedDict, total=False):
 
 
 class Filter(TypedDict, total=False):
+    """Consolidated filter parameter (deepObject style).
+
+    Originally: filter[connection_id], filter[ip_address], filter[port]
+    """
+
     connection_id: str
     """ID of the IP Connection to which this IP should be attached."""
 
@@ -33,6 +38,11 @@ class Filter(TypedDict, total=False):
 
 
 class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[size], page[number]
+    """
+
     number: int
     """The page number to load"""
 

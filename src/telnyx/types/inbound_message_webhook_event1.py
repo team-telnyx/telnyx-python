@@ -64,6 +64,8 @@ class DataPayloadCostBreakdownRate(BaseModel):
 
 
 class DataPayloadCostBreakdown(BaseModel):
+    """Detailed breakdown of the message cost components."""
+
     carrier_fee: Optional[DataPayloadCostBreakdownCarrierFee] = None
 
     rate: Optional[DataPayloadCostBreakdownRate] = None

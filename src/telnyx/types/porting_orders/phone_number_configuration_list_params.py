@@ -46,6 +46,11 @@ class FilterPortingOrder(TypedDict, total=False):
 
 
 class Filter(TypedDict, total=False):
+    """Consolidated filter parameter (deepObject style).
+
+    Originally: filter[porting_order.status][in][], filter[porting_phone_number][in][], filter[user_bundle_id][in][]
+    """
+
     porting_order: FilterPortingOrder
 
     porting_phone_number: SequenceNotStr[str]
@@ -56,6 +61,11 @@ class Filter(TypedDict, total=False):
 
 
 class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[size], page[number]
+    """
+
     number: int
     """The page number to load"""
 
@@ -64,6 +74,8 @@ class Page(TypedDict, total=False):
 
 
 class Sort(TypedDict, total=False):
+    """Consolidated sort parameter (deepObject style). Originally: sort[value]"""
+
     value: Literal["created_at", "-created_at"]
     """Specifies the sort order for results.
 

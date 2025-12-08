@@ -21,6 +21,8 @@ class FailedOperation(BaseModel):
 
 
 class SuccessfulOperation(BaseModel):
+    """The phone numbers successfully updated."""
+
     id: Optional[str] = None
     """The phone number's ID"""
 

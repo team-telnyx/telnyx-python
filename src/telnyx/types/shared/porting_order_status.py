@@ -10,6 +10,8 @@ __all__ = ["PortingOrderStatus"]
 
 
 class PortingOrderStatus(BaseModel):
+    """Porting order status"""
+
     details: Optional[List[PortingOrdersExceptionType]] = None
     """A list of 0 or more details about this porting order's status"""
 

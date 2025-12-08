@@ -27,6 +27,8 @@ class EventListParams(TypedDict, total=False):
 
 
 class FilterCreatedAt(TypedDict, total=False):
+    """Created at date range filtering operations"""
+
     gte: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """Filter by created at greater than or equal to."""
 
@@ -35,6 +37,11 @@ class FilterCreatedAt(TypedDict, total=False):
 
 
 class Filter(TypedDict, total=False):
+    """Consolidated filter parameter (deepObject style).
+
+    Originally: filter[type], filter[porting_order_id], filter[created_at][gte], filter[created_at][lte]
+    """
+
     created_at: FilterCreatedAt
     """Created at date range filtering operations"""
 
@@ -54,6 +61,11 @@ class Filter(TypedDict, total=False):
 
 
 class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[size], page[number]
+    """
+
     number: int
     """The page number to load"""
 

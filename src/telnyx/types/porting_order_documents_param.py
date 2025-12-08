@@ -9,6 +9,8 @@ __all__ = ["PortingOrderDocumentsParam"]
 
 
 class PortingOrderDocumentsParam(TypedDict, total=False):
+    """Can be specified directly or via the `requirement_group_id` parameter."""
+
     invoice: Optional[str]
     """Returned ID of the submitted Invoice via the Documents endpoint"""
 

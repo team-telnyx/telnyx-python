@@ -41,6 +41,11 @@ class FilterPhoneNumber(TypedDict, total=False):
 
 
 class Filter(TypedDict, total=False):
+    """Filter parameter for phone numbers (deepObject style).
+
+    Supports filtering by phone_number, civic_address_id, and location_id with eq/contains operations.
+    """
+
     civic_address_id: FilterCivicAddressID
 
     location_id: FilterLocationID
@@ -49,6 +54,11 @@ class Filter(TypedDict, total=False):
 
 
 class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[size], page[number]
+    """
+
     number: int
     """The page number to load"""
 

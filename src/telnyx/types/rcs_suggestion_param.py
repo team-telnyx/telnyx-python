@@ -21,6 +21,10 @@ __all__ = [
 
 
 class ActionCreateCalendarEventAction(TypedDict, total=False):
+    """
+    Opens the user's default calendar app and starts the new calendar event flow with the agent-specified event data pre-filled.
+    """
+
     description: str
     """Event description. Maximum 500 characters."""
 
@@ -33,11 +37,17 @@ class ActionCreateCalendarEventAction(TypedDict, total=False):
 
 
 class ActionDialAction(TypedDict, total=False):
+    """
+    Opens the user's default dialer app with the agent-specified phone number filled in.
+    """
+
     phone_number: Required[str]
     """Phone number in +E.164 format"""
 
 
 class ActionOpenURLAction(TypedDict, total=False):
+    """Opens the user's default web browser app to the specified URL."""
+
     application: Required[Literal["OPEN_URL_APPLICATION_UNSPECIFIED", "BROWSER", "WEBVIEW"]]
     """URL open application, browser or webview."""
 
@@ -58,6 +68,8 @@ class ActionViewLocationActionLatLong(TypedDict, total=False):
 
 
 class ActionViewLocationAction(TypedDict, total=False):
+    """Opens the user's default map app and selects the agent-specified location."""
+
     label: str
     """The label of the pin dropped"""
 
@@ -68,6 +80,8 @@ class ActionViewLocationAction(TypedDict, total=False):
 
 
 class Action(TypedDict, total=False):
+    """When tapped, initiates the corresponding native action on the device."""
+
     create_calendar_event_action: ActionCreateCalendarEventAction
     """
     Opens the user's default calendar app and starts the new calendar event flow

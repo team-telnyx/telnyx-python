@@ -49,6 +49,8 @@ class PortingOrderListParams(TypedDict, total=False):
 
 
 class FilterActivationSettingsFocDatetimeRequested(TypedDict, total=False):
+    """FOC datetime range filtering operations"""
+
     gt: str
     """Filter results by foc date later than this value"""
 
@@ -82,6 +84,8 @@ class FilterMisc(TypedDict, total=False):
 
 
 class FilterPhoneNumbersPhoneNumber(TypedDict, total=False):
+    """Phone number pattern filtering operations"""
+
     contains: str
     """Filter results by full or partial phone_number"""
 
@@ -98,6 +102,11 @@ class FilterPhoneNumbers(TypedDict, total=False):
 
 
 class Filter(TypedDict, total=False):
+    """Consolidated filter parameter (deepObject style).
+
+    Originally: filter[customer_reference], filter[customer_group_reference], filter[parent_support_key], filter[phone_numbers.country_code], filter[phone_numbers.carrier_name], filter[misc.type], filter[end_user.admin.entity_name], filter[end_user.admin.auth_person_name], filter[activation_settings.fast_port_eligible], filter[activation_settings.foc_datetime_requested][gt], filter[activation_settings.foc_datetime_requested][lt], filter[phone_numbers.phone_number][contains]
+    """
+
     activation_settings: FilterActivationSettings
 
     customer_group_reference: str
@@ -117,6 +126,11 @@ class Filter(TypedDict, total=False):
 
 
 class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[size], page[number]
+    """
+
     number: int
     """The page number to load"""
 
@@ -125,6 +139,8 @@ class Page(TypedDict, total=False):
 
 
 class Sort(TypedDict, total=False):
+    """Consolidated sort parameter (deepObject style). Originally: sort[value]"""
+
     value: Literal[
         "created_at",
         "-created_at",

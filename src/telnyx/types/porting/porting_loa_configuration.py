@@ -10,6 +10,8 @@ __all__ = ["PortingLoaConfiguration", "Address", "Contact", "Logo"]
 
 
 class Address(BaseModel):
+    """The address of the company."""
+
     city: Optional[str] = None
     """The locality of the company"""
 
@@ -30,6 +32,8 @@ class Address(BaseModel):
 
 
 class Contact(BaseModel):
+    """The contact information of the company."""
+
     email: Optional[str] = None
     """The email address of the contact"""
 
@@ -38,6 +42,8 @@ class Contact(BaseModel):
 
 
 class Logo(BaseModel):
+    """The logo to be used in the LOA."""
+
     content_type: Optional[Literal["image/png"]] = None
     """The content type of the logo."""
 

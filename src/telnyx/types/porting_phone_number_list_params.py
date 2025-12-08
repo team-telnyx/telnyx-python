@@ -22,6 +22,11 @@ class PortingPhoneNumberListParams(TypedDict, total=False):
 
 
 class Filter(TypedDict, total=False):
+    """Consolidated filter parameter (deepObject style).
+
+    Originally: filter[porting_order_status]
+    """
+
     porting_order_status: Literal[
         "draft", "in-process", "submitted", "exception", "foc-date-confirmed", "cancel-pending", "ported", "cancelled"
     ]
@@ -29,6 +34,11 @@ class Filter(TypedDict, total=False):
 
 
 class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[size], page[number]
+    """
+
     number: int
     """The page number to load"""
 

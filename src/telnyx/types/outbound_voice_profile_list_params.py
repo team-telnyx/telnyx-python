@@ -53,16 +53,28 @@ class OutboundVoiceProfileListParams(TypedDict, total=False):
 
 
 class FilterName(TypedDict, total=False):
+    """Name filtering operations"""
+
     contains: str
     """Optional filter on outbound voice profile name."""
 
 
 class Filter(TypedDict, total=False):
+    """Consolidated filter parameter (deepObject style).
+
+    Originally: filter[name][contains]
+    """
+
     name: FilterName
     """Name filtering operations"""
 
 
 class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[size], page[number]
+    """
+
     number: int
     """The page number to load."""
 

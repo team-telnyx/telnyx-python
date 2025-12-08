@@ -25,6 +25,8 @@ class NumberBlockOrderListParams(TypedDict, total=False):
 
 
 class FilterCreatedAt(TypedDict, total=False):
+    """Filter number block orders by date range."""
+
     gt: str
     """Filter number block orders later than this value."""
 
@@ -33,6 +35,11 @@ class FilterCreatedAt(TypedDict, total=False):
 
 
 class Filter(TypedDict, total=False):
+    """Consolidated filter parameter (deepObject style).
+
+    Originally: filter[status], filter[created_at], filter[phone_numbers.starting_number]
+    """
+
     created_at: FilterCreatedAt
     """Filter number block orders by date range."""
 
@@ -44,6 +51,11 @@ class Filter(TypedDict, total=False):
 
 
 class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[size], page[number]
+    """
+
     number: int
     """The page number to load"""
 

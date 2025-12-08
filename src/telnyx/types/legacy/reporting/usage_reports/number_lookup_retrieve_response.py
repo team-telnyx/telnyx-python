@@ -34,6 +34,8 @@ class DataResult(BaseModel):
 
 
 class Data(BaseModel):
+    """Telco data usage report response"""
+
     id: Optional[str] = None
     """Unique identifier for the report"""
 

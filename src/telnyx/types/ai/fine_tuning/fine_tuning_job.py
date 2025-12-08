@@ -9,6 +9,8 @@ __all__ = ["FineTuningJob", "Hyperparameters"]
 
 
 class Hyperparameters(BaseModel):
+    """The hyperparameters used for the fine-tuning job."""
+
     n_epochs: int
     """The number of epochs to train the model for.
 
@@ -17,6 +19,10 @@ class Hyperparameters(BaseModel):
 
 
 class FineTuningJob(BaseModel):
+    """
+    The `fine_tuning.job` object represents a fine-tuning job that has been created through the API.
+    """
+
     id: str
     """The name of the fine-tuned model that is being created."""
 

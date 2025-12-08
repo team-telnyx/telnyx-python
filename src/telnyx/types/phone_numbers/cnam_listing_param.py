@@ -8,6 +8,8 @@ __all__ = ["CnamListingParam"]
 
 
 class CnamListingParam(TypedDict, total=False):
+    """The CNAM listing settings for a phone number."""
+
     cnam_listing_details: str
     """The CNAM listing details for this number.
 

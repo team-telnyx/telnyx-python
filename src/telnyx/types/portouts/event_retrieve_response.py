@@ -17,6 +17,8 @@ __all__ = [
 
 
 class DataPayloadWebhookPortoutStatusChangedPayload(BaseModel):
+    """The webhook payload for the portout.status_changed event"""
+
     id: Optional[str] = None
     """Identifies the port out that was moved."""
 
@@ -49,6 +51,8 @@ class DataPayloadWebhookPortoutStatusChangedPayload(BaseModel):
 
 
 class DataPayloadWebhookPortoutNewCommentPayload(BaseModel):
+    """The webhook payload for the portout.new_comment event"""
+
     id: Optional[str] = None
     """Identifies the comment that was added to the port-out order."""
 
@@ -63,6 +67,8 @@ class DataPayloadWebhookPortoutNewCommentPayload(BaseModel):
 
 
 class DataPayloadWebhookPortoutFocDateChangedPayload(BaseModel):
+    """The webhook payload for the portout.foc_date_changed event"""
+
     id: Optional[str] = None
     """Identifies the port-out order that have the FOC date changed."""
 

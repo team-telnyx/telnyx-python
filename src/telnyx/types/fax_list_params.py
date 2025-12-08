@@ -28,6 +28,8 @@ class FaxListParams(TypedDict, total=False):
 
 
 class FilterCreatedAt(TypedDict, total=False):
+    """Date range filtering operations for fax creation timestamp"""
+
     gt: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """ISO 8601 date time for filtering faxes created after that date"""
 
@@ -42,16 +44,22 @@ class FilterCreatedAt(TypedDict, total=False):
 
 
 class FilterDirection(TypedDict, total=False):
+    """Direction filtering operations"""
+
     eq: str
     """The direction, inbound or outbound, for filtering faxes sent from this account"""
 
 
 class FilterFrom(TypedDict, total=False):
+    """From number filtering operations"""
+
     eq: str
     """The phone number, in E.164 format for filtering faxes sent from this number"""
 
 
 class FilterTo(TypedDict, total=False):
+    """To number filtering operations"""
+
     eq: str
     """The phone number, in E.164 format for filtering faxes sent to this number"""
 
@@ -66,6 +74,11 @@ _FilterReservedKeywords = TypedDict(
 
 
 class Filter(_FilterReservedKeywords, total=False):
+    """Consolidated filter parameter (deepObject style).
+
+    Originally: filter[created_at][gte], filter[created_at][gt], filter[created_at][lte], filter[created_at][lt], filter[direction][eq], filter[from][eq], filter[to][eq]
+    """
+
     created_at: FilterCreatedAt
     """Date range filtering operations for fax creation timestamp"""
 
@@ -77,6 +90,11 @@ class Filter(_FilterReservedKeywords, total=False):
 
 
 class Page(TypedDict, total=False):
+    """Consolidated pagination parameter (deepObject style).
+
+    Originally: page[size], page[number]
+    """
+
     number: int
     """Number of the page to be retrieved"""
 

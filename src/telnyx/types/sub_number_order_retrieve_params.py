@@ -16,5 +16,10 @@ class SubNumberOrderRetrieveParams(TypedDict, total=False):
 
 
 class Filter(TypedDict, total=False):
+    """Consolidated filter parameter (deepObject style).
+
+    Originally: filter[include_phone_numbers]
+    """
+
     include_phone_numbers: bool
     """Include the first 50 phone number objects in the results"""

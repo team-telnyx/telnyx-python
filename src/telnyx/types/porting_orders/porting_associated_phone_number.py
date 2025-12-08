@@ -10,6 +10,8 @@ __all__ = ["PortingAssociatedPhoneNumber", "PhoneNumberRange"]
 
 
 class PhoneNumberRange(BaseModel):
+    """Specifies the phone number range for this associated phone number."""
+
     end_at: Optional[str] = None
     """Specifies the end of the phone number range for this associated phone number."""
 

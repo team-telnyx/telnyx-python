@@ -8,6 +8,8 @@ __all__ = ["VersionConfigParam"]
 
 
 class VersionConfigParam(TypedDict, total=False):
+    """Configuration for a single version in canary deploy."""
+
     percentage: Required[float]
     """Percentage of traffic for this version [1-99]"""
 

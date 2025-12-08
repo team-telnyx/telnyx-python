@@ -9,6 +9,11 @@ __all__ = ["Filter"]
 
 
 class Filter(BaseModel):
+    """Query filter criteria.
+
+    Note: The first filter object must specify filter_type as 'and'. You cannot follow an 'or' with another 'and'.
+    """
+
     billing_group: Optional[str] = None
     """Billing group UUID to filter by"""
 

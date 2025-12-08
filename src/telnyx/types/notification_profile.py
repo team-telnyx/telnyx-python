@@ -9,6 +9,8 @@ __all__ = ["NotificationProfile"]
 
 
 class NotificationProfile(BaseModel):
+    """A Collection of Notification Channels"""
+
     id: Optional[str] = None
     """A UUID."""
 

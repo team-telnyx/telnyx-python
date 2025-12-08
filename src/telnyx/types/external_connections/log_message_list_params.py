@@ -23,6 +23,11 @@ class LogMessageListParams(TypedDict, total=False):
 
 
 class FilterTelephoneNumber(TypedDict, total=False):
+    """Telephone number filter operations for log messages.
+
+    Use 'eq' for exact matches or 'contains' for partial matches.
+    """
+
     contains: str
     """The partial phone number to filter log messages for. Requires 3-15 digits."""
 
@@ -34,6 +39,11 @@ class FilterTelephoneNumber(TypedDict, total=False):
 
 
 class Filter(TypedDict, total=False):
+    """Filter parameter for log messages (deepObject style).
+
+    Supports filtering by external_connection_id and telephone_number with eq/contains operations.
+    """
+
     external_connection_id: str
     """
     The external connection ID to filter by or "null" to filter for logs without an
@@ -48,6 +58,11 @@ class Filter(TypedDict, total=False):
 
 
 class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[size], page[number]
+    """
+
     number: int
     """The page number to load"""
 

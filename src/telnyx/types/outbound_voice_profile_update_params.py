@@ -79,6 +79,10 @@ class OutboundVoiceProfileUpdateParams(TypedDict, total=False):
 
 
 class CallingWindow(TypedDict, total=False):
+    """
+    (BETA) Specifies the time window and call limits for calls made using this outbound voice profile.
+    """
+
     calls_per_cld: int
     """
     (BETA) The maximum number of calls that can be initiated to a single called

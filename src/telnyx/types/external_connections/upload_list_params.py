@@ -55,6 +55,11 @@ class FilterStatus(TypedDict, total=False):
 
 
 class Filter(TypedDict, total=False):
+    """Filter parameter for uploads (deepObject style).
+
+    Supports filtering by status, civic_address_id, location_id, and phone_number with eq/contains operations.
+    """
+
     civic_address_id: FilterCivicAddressID
 
     location_id: FilterLocationID
@@ -65,6 +70,11 @@ class Filter(TypedDict, total=False):
 
 
 class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[size], page[number]
+    """
+
     number: int
     """The page number to load"""
 

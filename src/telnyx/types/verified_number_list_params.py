@@ -17,6 +17,11 @@ class VerifiedNumberListParams(TypedDict, total=False):
 
 
 class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Use page[size] and page[number] in the query string. Originally: page[size], page[number]
+    """
+
     number: int
 
     size: int

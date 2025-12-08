@@ -12,6 +12,8 @@ __all__ = ["ExportPortoutsCsvReport", "Filters"]
 
 
 class Filters(BaseModel):
+    """The filters to apply to the export port-out CSV report."""
+
     created_at_gt: Optional[datetime] = FieldInfo(alias="created_at__gt", default=None)
     """The date and time the port-out was created after."""
 
@@ -34,5 +36,7 @@ class Filters(BaseModel):
 
 
 class ExportPortoutsCsvReport(BaseModel):
+    """The parameters for generating a port-outs CSV report."""
+
     filters: Filters
     """The filters to apply to the export port-out CSV report."""

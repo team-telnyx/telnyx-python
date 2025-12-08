@@ -17,6 +17,11 @@ class RequirementGroupListParams(TypedDict, total=False):
 
 
 class Filter(TypedDict, total=False):
+    """Consolidated filter parameter (deepObject style).
+
+    Originally: filter[country_code], filter[phone_number_type], filter[action], filter[status], filter[customer_reference]
+    """
+
     action: Literal["ordering", "porting", "action"]
     """Filter requirement groups by action type"""
 

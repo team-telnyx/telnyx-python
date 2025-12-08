@@ -9,6 +9,8 @@ __all__ = ["PrivateWirelessGatewayStatus"]
 
 
 class PrivateWirelessGatewayStatus(BaseModel):
+    """The current status or failure details of the Private Wireless Gateway."""
+
     error_code: Optional[str] = None
     """
     This attribute is an [error code](https://developers.telnyx.com/api/errors)

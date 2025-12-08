@@ -41,6 +41,11 @@ _FilterReservedKeywords = TypedDict(
 
 
 class Filter(_FilterReservedKeywords, total=False):
+    """Consolidated filter parameter (deepObject style).
+
+    Originally: filter[conference_id], filter[created_at][gte], filter[created_at][lte], filter[call_leg_id], filter[call_session_id], filter[from], filter[to], filter[connection_id], filter[sip_call_id]
+    """
+
     call_leg_id: str
     """If present, recordings will be filtered to those with a matching call_leg_id."""
 
@@ -75,6 +80,11 @@ class Filter(_FilterReservedKeywords, total=False):
 
 
 class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[size], page[number]
+    """
+
     number: int
     """The page number to load."""
 

@@ -18,6 +18,10 @@ class ActionRequirementInitiateParams(TypedDict, total=False):
 
 
 class Params(TypedDict, total=False):
+    """
+    Required information for initiating the action requirement for AU ID verification.
+    """
+
     first_name: Required[str]
     """The first name of the person that will perform the verification flow."""
 

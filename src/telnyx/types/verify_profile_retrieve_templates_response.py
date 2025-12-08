@@ -9,4 +9,6 @@ __all__ = ["VerifyProfileRetrieveTemplatesResponse"]
 
 
 class VerifyProfileRetrieveTemplatesResponse(BaseModel):
+    """A list of Verify profile message templates"""
+
     data: List[VerifyProfileMessageTemplateResponse]

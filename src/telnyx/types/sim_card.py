@@ -10,12 +10,19 @@ __all__ = ["SimCard", "CurrentBillingPeriodConsumedData", "CurrentDeviceLocation
 
 
 class CurrentBillingPeriodConsumedData(BaseModel):
+    """The SIM card consumption so far in the current billing cycle."""
+
     amount: Optional[str] = None
 
     unit: Optional[str] = None
 
 
 class CurrentDeviceLocation(BaseModel):
+    """Current physical location data of a given SIM card.
+
+    Accuracy is given in meters.
+    """
+
     accuracy: Optional[int] = None
 
     accuracy_unit: Optional[str] = None
@@ -26,12 +33,19 @@ class CurrentDeviceLocation(BaseModel):
 
 
 class DataLimit(BaseModel):
+    """The SIM card individual data limit configuration."""
+
     amount: Optional[str] = None
 
     unit: Optional[Literal["MB", "GB"]] = None
 
 
 class PinPukCodes(BaseModel):
+    """PIN and PUK codes for the SIM card.
+
+    Only available when include_pin_puk_codes=true is set in the request.
+    """
+
     pin1: Optional[str] = None
     """The primary Personal Identification Number (PIN) for the SIM card.
 

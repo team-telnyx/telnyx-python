@@ -38,6 +38,11 @@ class SimCardListParams(TypedDict, total=False):
 
 
 class Filter(TypedDict, total=False):
+    """Consolidated filter parameter for SIM cards (deepObject style).
+
+    Originally: filter[tags], filter[iccid], filter[status]
+    """
+
     iccid: str
     """A search string to partially match for the SIM card's ICCID."""
 
@@ -59,6 +64,11 @@ class Filter(TypedDict, total=False):
 
 
 class Page(TypedDict, total=False):
+    """Consolidated pagination parameter (deepObject style).
+
+    Originally: page[number], page[size]
+    """
+
     number: int
     """The page number to load."""
 

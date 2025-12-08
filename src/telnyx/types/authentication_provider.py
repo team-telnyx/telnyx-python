@@ -10,6 +10,8 @@ __all__ = ["AuthenticationProvider", "Settings"]
 
 
 class Settings(BaseModel):
+    """The settings associated with the authentication provider."""
+
     assertion_consumer_service_url: Optional[str] = None
     """The Assertion Consumer Service URL for the service provider (Telnyx)."""
 

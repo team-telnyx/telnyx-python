@@ -35,6 +35,8 @@ class ActionStartNoiseSuppressionParams(TypedDict, total=False):
 
 
 class NoiseSuppressionEngineConfig(TypedDict, total=False):
+    """Configuration parameters for noise suppression engines."""
+
     attenuation_limit: int
     """The attenuation limit for noise suppression (0-100).
 

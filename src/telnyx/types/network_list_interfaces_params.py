@@ -22,6 +22,11 @@ class NetworkListInterfacesParams(TypedDict, total=False):
 
 
 class Filter(TypedDict, total=False):
+    """Consolidated filter parameter (deepObject style).
+
+    Originally: filter[name], filter[type], filter[status]
+    """
+
     name: str
     """The interface name to filter on."""
 
@@ -30,6 +35,11 @@ class Filter(TypedDict, total=False):
 
 
 class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[number], page[size]
+    """
+
     number: int
     """The page number to load"""
 
