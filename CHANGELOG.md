@@ -1,5 +1,26 @@
 # Changelog
 
+## 3.17.0 (2025-12-08)
+
+Full Changelog: [v3.16.0...v3.17.0](https://github.com/team-telnyx/telnyx-python/compare/v3.16.0...v3.17.0)
+
+### Features
+
+* Chat completions response schema update ([60e2df9](https://github.com/team-telnyx/telnyx-python/commit/60e2df9ec342dceae8728c1e3332ccbb1291d105))
+* ENGDESK-47706: Update TranscriptionEngineDeepgramConfig Schema ([a2e02c4](https://github.com/team-telnyx/telnyx-python/commit/a2e02c46bdfc0f1eab8cd1ec07599c12331f137e))
+* ENGDESK-47886: Fix API spec for emergency.json ([da08340](https://github.com/team-telnyx/telnyx-python/commit/da083404731cd6eacf4e1fbc2244d1325957da81))
+* Update default GATHER_USING_AI_MODEL ([24231bf](https://github.com/team-telnyx/telnyx-python/commit/24231bf8df309f1facc2ef9516595ac9ec22075e))
+
+
+### Bug Fixes
+
+* **api:** 10dlc prefixes ([0804bae](https://github.com/team-telnyx/telnyx-python/commit/0804baeff220e40a1587d268d169bafb166a7f4a))
+
+
+### Chores
+
+* add missing docstrings ([301071d](https://github.com/team-telnyx/telnyx-python/commit/301071ddd30601e464ce1a05b5c31235871aeada))
+
 ## 3.16.0 (2025-12-08)
 
 Full Changelog: [v3.15.0...v3.16.0](https://github.com/team-telnyx/telnyx-python/compare/v3.15.0...v3.16.0)
