@@ -26,6 +26,11 @@ class DetailStatus(BaseModel):
 
 class TestRunResponse(BaseModel):
     __test__ = False
+    """Response model containing test run execution details and results.
+
+    Provides comprehensive information about a test execution including
+    status, timing, logs, and detailed evaluation results.
+    """
     created_at: datetime
     """Timestamp when the test run was created and queued."""
 

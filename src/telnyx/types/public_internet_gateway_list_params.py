@@ -22,11 +22,21 @@ class PublicInternetGatewayListParams(TypedDict, total=False):
 
 
 class Filter(TypedDict, total=False):
+    """Consolidated filter parameter (deepObject style).
+
+    Originally: filter[network_id]
+    """
+
     network_id: str
     """The associated network id to filter on."""
 
 
 class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[number], page[size]
+    """
+
     number: int
     """The page number to load"""
 

@@ -22,11 +22,21 @@ class WireguardPeerListParams(TypedDict, total=False):
 
 
 class Filter(TypedDict, total=False):
+    """Consolidated filter parameter (deepObject style).
+
+    Originally: filter[wireguard_interface_id]
+    """
+
     wireguard_interface_id: str
     """The id of the associated WireGuard interface to filter on."""
 
 
 class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[number], page[size]
+    """
+
     number: int
     """The page number to load"""
 

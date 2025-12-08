@@ -6,6 +6,8 @@ __all__ = ["VersionConfig"]
 
 
 class VersionConfig(BaseModel):
+    """Configuration for a single version in canary deploy."""
+
     percentage: float
     """Percentage of traffic for this version [1-99]"""
 

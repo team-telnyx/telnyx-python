@@ -25,11 +25,21 @@ class PhoneNumberExtensionListParams(TypedDict, total=False):
 
 
 class Filter(TypedDict, total=False):
+    """Consolidated filter parameter (deepObject style).
+
+    Originally: filter[porting_phone_number_id]
+    """
+
     porting_phone_number_id: str
     """Filter results by porting phone number id"""
 
 
 class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[size], page[number]
+    """
+
     number: int
     """The page number to load"""
 
@@ -38,6 +48,8 @@ class Page(TypedDict, total=False):
 
 
 class Sort(TypedDict, total=False):
+    """Consolidated sort parameter (deepObject style). Originally: sort[value]"""
+
     value: Literal["-created_at", "created_at"]
     """Specifies the sort order for results.
 

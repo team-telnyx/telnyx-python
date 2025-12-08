@@ -20,6 +20,8 @@ __all__ = [
 
 
 class ContentMessageRichCardCarouselCard(BaseModel):
+    """Carousel of cards."""
+
     card_contents: List[RcsCardContent]
     """The list of contents for each card in the carousel.
 
@@ -31,6 +33,8 @@ class ContentMessageRichCardCarouselCard(BaseModel):
 
 
 class ContentMessageRichCardStandaloneCard(BaseModel):
+    """Standalone card"""
+
     card_content: RcsCardContent
 
     card_orientation: Literal["CARD_ORIENTATION_UNSPECIFIED", "HORIZONTAL", "VERTICAL"]
@@ -61,6 +65,8 @@ class ContentMessage(BaseModel):
 
 
 class Event(BaseModel):
+    """RCS Event to send to the recipient"""
+
     event_type: Optional[Literal["TYPE_UNSPECIFIED", "IS_TYPING", "READ"]] = None
 
 

@@ -19,11 +19,18 @@ class VerifyProfileListParams(TypedDict, total=False):
 
 
 class Filter(TypedDict, total=False):
+    """Consolidated filter parameter (deepObject style). Originally: filter[name]"""
+
     name: str
     """Optional filter for profile names."""
 
 
 class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[size], page[number]
+    """
+
     number: int
 
     size: int

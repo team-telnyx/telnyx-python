@@ -21,6 +21,13 @@ class Rubric(BaseModel):
 
 
 class AssistantTest(BaseModel):
+    """Response model containing complete assistant test information.
+
+    Returns all test configuration details including evaluation criteria,
+    scheduling, and metadata. Used when retrieving individual tests or
+    after creating/updating tests.
+    """
+
     created_at: datetime
     """Timestamp when the test was created."""
 

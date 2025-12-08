@@ -28,6 +28,11 @@ class ActionRequirementListParams(TypedDict, total=False):
 
 
 class Filter(TypedDict, total=False):
+    """Consolidated filter parameter (deepObject style).
+
+    Originally: filter[id][in][], filter[requirement_type_id], filter[action_type], filter[status]
+    """
+
     id: SequenceNotStr[str]
     """Filter action requirements by a list of IDs"""
 
@@ -42,6 +47,11 @@ class Filter(TypedDict, total=False):
 
 
 class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[size], page[number]
+    """
+
     number: int
     """The page number to load"""
 
@@ -50,6 +60,8 @@ class Page(TypedDict, total=False):
 
 
 class Sort(TypedDict, total=False):
+    """Consolidated sort parameter (deepObject style). Originally: sort[value]"""
+
     value: Literal["created_at", "-created_at", "updated_at", "-updated_at"]
     """Specifies the sort order for results.
 

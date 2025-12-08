@@ -10,6 +10,8 @@ __all__ = ["AutorespConfigListResponse"]
 
 
 class AutorespConfigListResponse(BaseModel):
+    """List of Auto-Response Settings"""
+
     data: List[AutoRespConfig]
 
     meta: PaginationMeta

@@ -11,6 +11,11 @@ __all__ = ["TestListResponse"]
 
 class TestListResponse(BaseModel):
     __test__ = False
+    """Paginated list of assistant tests with metadata.
+
+    Returns a subset of tests based on pagination parameters along with
+    metadata for implementing pagination controls in the UI.
+    """
     data: List[AssistantTest]
     """Array of assistant test objects for the current page."""
 

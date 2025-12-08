@@ -8,6 +8,8 @@ __all__ = ["CallForwardingParam"]
 
 
 class CallForwardingParam(TypedDict, total=False):
+    """The call forwarding settings for a phone number."""
+
     call_forwarding_enabled: bool
     """
     Indicates if call forwarding will be enabled for this number if forwards_to and

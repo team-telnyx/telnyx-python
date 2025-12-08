@@ -310,6 +310,10 @@ class CallDialParams(TypedDict, total=False):
 
 
 class AnsweringMachineDetectionConfig(TypedDict, total=False):
+    """
+    Optional configuration parameters to modify 'answering_machine_detection' performance.
+    """
+
     after_greeting_silence_millis: int
     """
     Silence duration threshold after a greeting message or voice for it be
@@ -354,6 +358,8 @@ class AnsweringMachineDetectionConfig(TypedDict, total=False):
 
 
 class ConferenceConfig(TypedDict, total=False):
+    """Optional configuration parameters to dial new participant into a conference."""
+
     id: str
     """Conference ID to be joined"""
 

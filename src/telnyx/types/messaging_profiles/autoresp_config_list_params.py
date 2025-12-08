@@ -24,12 +24,22 @@ class AutorespConfigListParams(TypedDict, total=False):
 
 
 class CreatedAt(TypedDict, total=False):
+    """Consolidated created_at parameter (deepObject style).
+
+    Originally: created_at[gte], created_at[lte]
+    """
+
     gte: str
 
     lte: str
 
 
 class UpdatedAt(TypedDict, total=False):
+    """Consolidated updated_at parameter (deepObject style).
+
+    Originally: updated_at[gte], updated_at[lte]
+    """
+
     gte: str
 
     lte: str

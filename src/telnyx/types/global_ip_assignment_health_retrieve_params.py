@@ -33,6 +33,8 @@ _FilterGlobalIPAssignmentIDInReservedKeywords = TypedDict(
 
 
 class FilterGlobalIPAssignmentIDIn(_FilterGlobalIPAssignmentIDInReservedKeywords, total=False):
+    """Filtering operations"""
+
     pass
 
 
@@ -48,6 +50,8 @@ _FilterGlobalIpidInReservedKeywords = TypedDict(
 
 
 class FilterGlobalIPIDIn(_FilterGlobalIpidInReservedKeywords, total=False):
+    """Filtering operations"""
+
     pass
 
 
@@ -55,6 +59,11 @@ FilterGlobalIPID: TypeAlias = Union[str, FilterGlobalIPIDIn]
 
 
 class Filter(TypedDict, total=False):
+    """Consolidated filter parameter (deepObject style).
+
+    Originally: filter[global_ip_id][in], filter[global_ip_assignment_id][in]
+    """
+
     global_ip_assignment_id: FilterGlobalIPAssignmentID
     """Filter by exact Global IP Assignment ID"""
 

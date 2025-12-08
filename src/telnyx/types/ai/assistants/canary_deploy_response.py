@@ -10,6 +10,8 @@ __all__ = ["CanaryDeployResponse"]
 
 
 class CanaryDeployResponse(BaseModel):
+    """Response model for canary deploy operations."""
+
     assistant_id: str
 
     created_at: datetime

@@ -22,6 +22,11 @@ class Status(BaseModel):
 
 
 class SimCardAction(BaseModel):
+    """This object represents a SIM card action.
+
+    It allows tracking the current status of an operation that impacts the SIM card.
+    """
+
     id: Optional[str] = None
     """Identifies the resource."""
 

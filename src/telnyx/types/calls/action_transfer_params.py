@@ -209,6 +209,10 @@ class ActionTransferParams(TypedDict, total=False):
 
 
 class AnsweringMachineDetectionConfig(TypedDict, total=False):
+    """
+    Optional configuration parameters to modify 'answering_machine_detection' performance.
+    """
+
     after_greeting_silence_millis: int
     """
     Silence duration threshold after a greeting message or voice for it be

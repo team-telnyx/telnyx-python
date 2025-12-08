@@ -30,6 +30,8 @@ class PortoutListParams(TypedDict, total=False):
 
 
 class FilterInsertedAt(TypedDict, total=False):
+    """Filter by inserted_at date range using nested operations"""
+
     gte: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """Filter by inserted_at date greater than or equal."""
 
@@ -38,6 +40,8 @@ class FilterInsertedAt(TypedDict, total=False):
 
 
 class FilterPortedOutAt(TypedDict, total=False):
+    """Filter by ported_out_at date range using nested operations"""
+
     gte: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """Filter by ported_out_at date greater than or equal."""
 
@@ -46,6 +50,11 @@ class FilterPortedOutAt(TypedDict, total=False):
 
 
 class Filter(TypedDict, total=False):
+    """Consolidated filter parameter (deepObject style).
+
+    Originally: filter[carrier_name], filter[country_code], filter[country_code_in], filter[foc_date], filter[inserted_at], filter[phone_number], filter[pon], filter[ported_out_at], filter[spid], filter[status], filter[status_in], filter[support_key]
+    """
+
     carrier_name: str
     """Filter by new carrier name."""
 
@@ -87,6 +96,11 @@ class Filter(TypedDict, total=False):
 
 
 class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[number], page[size]
+    """
+
     number: int
     """The page number to load"""
 

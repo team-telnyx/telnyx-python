@@ -9,11 +9,18 @@ __all__ = ["SimCardGroupAction", "Settings"]
 
 
 class Settings(BaseModel):
+    """A JSON object representation of the action params."""
+
     private_wireless_gateway_id: Optional[str] = None
     """The identification of the related Private Wireless Gateway resource."""
 
 
 class SimCardGroupAction(BaseModel):
+    """This object represents a SIM card group action request.
+
+    It allows tracking the current status of an operation that impacts the SIM card group and SIM card in it.
+    """
+
     id: Optional[str] = None
     """Identifies the resource."""
 

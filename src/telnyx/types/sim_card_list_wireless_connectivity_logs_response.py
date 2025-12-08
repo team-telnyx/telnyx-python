@@ -10,6 +10,10 @@ __all__ = ["SimCardListWirelessConnectivityLogsResponse", "Data"]
 
 
 class Data(BaseModel):
+    """
+    This object represents a wireless connectivity session log that happened through a SIM card. It aids in finding out potential problems when the SIM is not able to attach properly.
+    """
+
     id: Optional[int] = None
     """Uniquely identifies the session."""
 

@@ -9,5 +9,10 @@ __all__ = ["TestSuiteListResponse"]
 
 class TestSuiteListResponse(BaseModel):
     __test__ = False
+    """Response containing all available test suite names.
+
+    Returns a list of distinct test suite names that can be used for
+    filtering and organizing tests.
+    """
     data: List[str]
     """Array of unique test suite names available to the user."""

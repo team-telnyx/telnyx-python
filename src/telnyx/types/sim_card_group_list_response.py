@@ -10,6 +10,8 @@ __all__ = ["SimCardGroupListResponse", "Data", "DataDataLimit"]
 
 
 class DataDataLimit(BaseModel):
+    """Upper limit on the amount of data the SIM cards, within the group, can use."""
+
     amount: Optional[str] = None
 
     unit: Optional[str] = None

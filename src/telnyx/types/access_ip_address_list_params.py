@@ -27,6 +27,8 @@ class AccessIPAddressListParams(TypedDict, total=False):
 
 
 class FilterCreatedAtDateRangeFilter(TypedDict, total=False):
+    """Date range filtering operations"""
+
     gt: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """Filter for creation date-time greater than"""
 
@@ -44,6 +46,11 @@ FilterCreatedAt: TypeAlias = Union[Union[str, datetime], FilterCreatedAtDateRang
 
 
 class FilterTyped(TypedDict, total=False):
+    """Consolidated filter parameter (deepObject style).
+
+    Originally: filter[ip_source], filter[ip_address], filter[created_at]. Supports complex bracket operations for dynamic filtering.
+    """
+
     created_at: Annotated[FilterCreatedAt, PropertyInfo(format="iso8601")]
     """Filter by exact creation date-time"""
 
@@ -58,6 +65,11 @@ Filter: TypeAlias = Union[FilterTyped, Dict[str, object]]
 
 
 class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[number], page[size]
+    """
+
     number: int
 
     size: int

@@ -153,6 +153,11 @@ class Message(TypedDict, total=False):
 
 
 class ResponseFormat(TypedDict, total=False):
+    """Use this is you want to guarantee a JSON output without defining a schema.
+
+    For control over the schema, use `guided_json`.
+    """
+
     type: Required[Literal["text", "json_object"]]
 
 

@@ -13,6 +13,8 @@ __all__ = ["ExportPortoutsCsvReportParam", "Filters"]
 
 
 class Filters(TypedDict, total=False):
+    """The filters to apply to the export port-out CSV report."""
+
     created_at_gt: Annotated[Union[str, datetime], PropertyInfo(alias="created_at__gt", format="iso8601")]
     """The date and time the port-out was created after."""
 
@@ -36,5 +38,7 @@ class Filters(TypedDict, total=False):
 
 
 class ExportPortoutsCsvReportParam(TypedDict, total=False):
+    """The parameters for generating a port-outs CSV report."""
+
     filters: Required[Filters]
     """The filters to apply to the export port-out CSV report."""

@@ -10,6 +10,8 @@ __all__ = ["CustomerServiceRecord", "Result", "ResultAddress", "ResultAdmin"]
 
 
 class ResultAddress(BaseModel):
+    """The address of the customer service record"""
+
     administrative_area: Optional[str] = None
     """The state of the address"""
 
@@ -27,6 +29,8 @@ class ResultAddress(BaseModel):
 
 
 class ResultAdmin(BaseModel):
+    """The admin of the customer service record."""
+
     account_number: Optional[str] = None
     """The account number of the customer service record."""
 
@@ -41,6 +45,11 @@ class ResultAdmin(BaseModel):
 
 
 class Result(BaseModel):
+    """The result of the CSR request.
+
+    This field would be null in case of `pending` or `failed` status.
+    """
+
     address: Optional[ResultAddress] = None
     """The address of the customer service record"""
 

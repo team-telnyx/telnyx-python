@@ -61,6 +61,11 @@ class FilterFilename(TypedDict, total=False):
 
 
 class Filter(TypedDict, total=False):
+    """Consolidated filter parameter for documents (deepObject style).
+
+    Originally: filter[filename][contains], filter[customer_reference][eq], filter[customer_reference][in][], filter[created_at][gt], filter[created_at][lt]
+    """
+
     created_at: FilterCreatedAt
 
     customer_reference: FilterCustomerReference
@@ -69,6 +74,11 @@ class Filter(TypedDict, total=False):
 
 
 class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[size], page[number]
+    """
+
     number: int
     """The page number to load"""
 

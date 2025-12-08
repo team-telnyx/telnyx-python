@@ -18,6 +18,8 @@ __all__ = [
 
 
 class DataAttemptHTTPRequest(BaseModel):
+    """Request details."""
+
     headers: Optional[List[List[str]]] = None
     """List of headers, limited to 10kB."""
 
@@ -25,6 +27,8 @@ class DataAttemptHTTPRequest(BaseModel):
 
 
 class DataAttemptHTTPResponse(BaseModel):
+    """Response details, optional."""
+
     body: Optional[str] = None
     """Raw response body, limited to 10kB."""
 
@@ -35,6 +39,8 @@ class DataAttemptHTTPResponse(BaseModel):
 
 
 class DataAttemptHTTP(BaseModel):
+    """HTTP request and response information."""
+
     request: Optional[DataAttemptHTTPRequest] = None
     """Request details."""
 
@@ -43,6 +49,8 @@ class DataAttemptHTTP(BaseModel):
 
 
 class DataAttempt(BaseModel):
+    """Webhook delivery attempt details."""
+
     errors: Optional[List[int]] = None
     """Webhook delivery error codes."""
 
@@ -59,6 +67,8 @@ class DataAttempt(BaseModel):
 
 
 class DataWebhook(BaseModel):
+    """Original webhook JSON data. Payload fields vary according to event type."""
+
     id: Optional[str] = None
     """Identifies the type of resource."""
 
@@ -75,6 +85,8 @@ class DataWebhook(BaseModel):
 
 
 class Data(BaseModel):
+    """Record of all attempts to deliver a webhook."""
+
     id: Optional[str] = None
     """Uniquely identifies the webhook_delivery record."""
 

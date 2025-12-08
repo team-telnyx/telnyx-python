@@ -27,6 +27,11 @@ class ScheduledEventListParams(TypedDict, total=False):
 
 
 class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[size], page[number]
+    """
+
     number: int
 
     size: int

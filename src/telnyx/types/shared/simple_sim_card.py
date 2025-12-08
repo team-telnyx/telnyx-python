@@ -10,12 +10,16 @@ __all__ = ["SimpleSimCard", "CurrentBillingPeriodConsumedData", "DataLimit"]
 
 
 class CurrentBillingPeriodConsumedData(BaseModel):
+    """The SIM card consumption so far in the current billing cycle."""
+
     amount: Optional[str] = None
 
     unit: Optional[str] = None
 
 
 class DataLimit(BaseModel):
+    """The SIM card individual data limit configuration."""
+
     amount: Optional[str] = None
 
     unit: Optional[Literal["MB", "GB"]] = None

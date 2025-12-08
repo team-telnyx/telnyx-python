@@ -89,6 +89,10 @@ Tool: TypeAlias = Union[
 
 
 class AssistantParam(TypedDict, total=False):
+    """
+    Assistant configuration including choice of LLM, custom instructions, and tools.
+    """
+
     instructions: str
     """The system instructions that the voice assistant uses during the gather command"""
 

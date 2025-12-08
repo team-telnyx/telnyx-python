@@ -73,12 +73,22 @@ class FilterOrganizationName(TypedDict, total=False):
 
 
 class Filter(TypedDict, total=False):
+    """Consolidated filter parameter (deepObject style).
+
+    Originally: filter[email][contains], filter[email][eq], filter[organization_name][contains], filter[organization_name][eq]
+    """
+
     email: FilterEmail
 
     organization_name: FilterOrganizationName
 
 
 class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[number], page[size]
+    """
+
     number: int
     """The page number to load"""
 

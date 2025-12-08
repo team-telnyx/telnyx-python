@@ -10,6 +10,8 @@ __all__ = ["NotificationEventListResponse", "Data"]
 
 
 class Data(BaseModel):
+    """An object representing the available notifications."""
+
     id: Optional[str] = None
     """A UUID."""
 

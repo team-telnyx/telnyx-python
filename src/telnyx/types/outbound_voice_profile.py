@@ -12,6 +12,10 @@ __all__ = ["OutboundVoiceProfile", "CallingWindow"]
 
 
 class CallingWindow(BaseModel):
+    """
+    (BETA) Specifies the time window and call limits for calls made using this outbound voice profile. Note that all times are UTC in 24-hour clock time.
+    """
+
     calls_per_cld: Optional[int] = None
     """
     (BETA) The maximum number of calls that can be initiated to a single called

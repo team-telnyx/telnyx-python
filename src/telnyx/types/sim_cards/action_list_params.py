@@ -23,6 +23,11 @@ class ActionListParams(TypedDict, total=False):
 
 
 class Filter(TypedDict, total=False):
+    """Consolidated filter parameter for SIM card actions (deepObject style).
+
+    Originally: filter[sim_card_id], filter[status], filter[bulk_sim_card_action_id], filter[action_type]
+    """
+
     action_type: Literal[
         "enable", "enable_standby_sim_card", "disable", "set_standby", "remove_public_ip", "set_public_ip"
     ]
@@ -39,6 +44,11 @@ class Filter(TypedDict, total=False):
 
 
 class Page(TypedDict, total=False):
+    """Consolidated pagination parameter (deepObject style).
+
+    Originally: page[number], page[size]
+    """
+
     number: int
     """The page number to load."""
 

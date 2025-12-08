@@ -19,6 +19,8 @@ class Meta(BaseModel):
 
 
 class VerifiedNumberListResponse(BaseModel):
+    """A paginated list of Verified Numbers"""
+
     data: List[VerifiedNumber]
 
     meta: Meta

@@ -8,6 +8,10 @@ __all__ = ["PwgAssignedResourcesSummary"]
 
 
 class PwgAssignedResourcesSummary(BaseModel):
+    """
+    The summary of the resource that have been assigned to the Private Wireless Gateway.
+    """
+
     count: Optional[int] = None
     """The current count of a resource type assigned to the Private Wireless Gateway."""
 

@@ -8,5 +8,7 @@ __all__ = ["InterruptionSettingsParam"]
 
 
 class InterruptionSettingsParam(TypedDict, total=False):
+    """Settings for handling user interruptions during assistant speech"""
+
     enable: bool
     """When true, allows users to interrupt the assistant while speaking"""

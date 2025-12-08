@@ -10,4 +10,6 @@ __all__ = ["TfPhoneNumberParam"]
 
 
 class TfPhoneNumberParam(TypedDict, total=False):
+    """A phone number"""
+
     phone_number: Required[Annotated[str, PropertyInfo(alias="phoneNumber")]]

@@ -8,6 +8,14 @@ __all__ = ["NumberPoolSettingsParam"]
 
 
 class NumberPoolSettingsParam(TypedDict, total=False):
+    """
+    Number Pool allows you to send messages from a pool of numbers of different types, assigning
+    weights to each type. The pool consists of all the long code and toll free numbers
+    assigned to the messaging profile.
+
+    To disable this feature, set the object field to `null`.
+    """
+
     long_code_weight: Required[float]
     """
     Defines the probability weight for a Long Code number to be selected when

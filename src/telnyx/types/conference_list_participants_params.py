@@ -25,6 +25,11 @@ class ConferenceListParticipantsParams(TypedDict, total=False):
 
 
 class Filter(TypedDict, total=False):
+    """Consolidated filter parameter (deepObject style).
+
+    Originally: filter[muted], filter[on_hold], filter[whispering]
+    """
+
     muted: bool
     """If present, participants will be filtered to those who are/are not muted"""
 
@@ -38,6 +43,11 @@ class Filter(TypedDict, total=False):
 
 
 class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[after], page[before], page[limit], page[size], page[number]
+    """
+
     after: str
     """Opaque identifier of next page"""
 

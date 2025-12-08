@@ -17,6 +17,11 @@ class SubNumberOrderListParams(TypedDict, total=False):
 
 
 class Filter(TypedDict, total=False):
+    """Consolidated filter parameter (deepObject style).
+
+    Originally: filter[status], filter[order_request_id], filter[country_code], filter[phone_number_type], filter[phone_numbers_count]
+    """
+
     country_code: str
     """ISO alpha-2 country code."""
 

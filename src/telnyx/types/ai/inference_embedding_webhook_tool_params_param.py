@@ -11,6 +11,11 @@ __all__ = ["InferenceEmbeddingWebhookToolParamsParam", "BodyParameters", "Header
 
 
 class BodyParameters(TypedDict, total=False):
+    """The body parameters the webhook tool accepts, described as a JSON Schema object.
+
+    These parameters will be passed to the webhook as the body of the request. See the [JSON Schema reference](https://json-schema.org/understanding-json-schema) for documentation about the format
+    """
+
     properties: Dict[str, object]
     """The properties of the body parameters."""
 
@@ -35,6 +40,11 @@ class Header(TypedDict, total=False):
 
 
 class PathParameters(TypedDict, total=False):
+    """The path parameters the webhook tool accepts, described as a JSON Schema object.
+
+    These parameters will be passed to the webhook as the path of the request if the URL contains a placeholder for a value. See the [JSON Schema reference](https://json-schema.org/understanding-json-schema) for documentation about the format
+    """
+
     properties: Dict[str, object]
     """The properties of the path parameters."""
 
@@ -45,6 +55,11 @@ class PathParameters(TypedDict, total=False):
 
 
 class QueryParameters(TypedDict, total=False):
+    """The query parameters the webhook tool accepts, described as a JSON Schema object.
+
+    These parameters will be passed to the webhook as the query of the request. See the [JSON Schema reference](https://json-schema.org/understanding-json-schema) for documentation about the format
+    """
+
     properties: Dict[str, object]
     """The properties of the query parameters."""
 

@@ -29,6 +29,11 @@ class AuditEventListParams(TypedDict, total=False):
 
 
 class Filter(TypedDict, total=False):
+    """Consolidated filter parameter (deepObject style).
+
+    Originally: filter[created_before], filter[created_after]
+    """
+
     created_after: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """Filter for audit events created after a specific date."""
 
@@ -37,6 +42,11 @@ class Filter(TypedDict, total=False):
 
 
 class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[number], page[size]
+    """
+
     number: int
     """Page number to load."""
 

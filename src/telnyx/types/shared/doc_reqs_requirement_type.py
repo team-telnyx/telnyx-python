@@ -9,6 +9,8 @@ __all__ = ["DocReqsRequirementType", "AcceptanceCriteria"]
 
 
 class AcceptanceCriteria(BaseModel):
+    """Specifies objective criteria for acceptance"""
+
     acceptable_characters: Optional[str] = None
     """Specifies the allowed characters as a string"""
 

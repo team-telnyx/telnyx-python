@@ -25,6 +25,8 @@ class NumberReservationListParams(TypedDict, total=False):
 
 
 class FilterCreatedAt(TypedDict, total=False):
+    """Filter number reservations by date range."""
+
     gt: str
     """Filter number reservations later than this value."""
 
@@ -33,6 +35,11 @@ class FilterCreatedAt(TypedDict, total=False):
 
 
 class Filter(TypedDict, total=False):
+    """Consolidated filter parameter (deepObject style).
+
+    Originally: filter[status], filter[created_at], filter[phone_numbers.phone_number], filter[customer_reference]
+    """
+
     created_at: FilterCreatedAt
     """Filter number reservations by date range."""
 
@@ -47,6 +54,11 @@ class Filter(TypedDict, total=False):
 
 
 class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[size], page[number]
+    """
+
     number: int
     """The page number to load"""
 

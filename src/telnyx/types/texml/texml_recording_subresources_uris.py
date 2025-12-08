@@ -8,4 +8,6 @@ __all__ = ["TexmlRecordingSubresourcesUris"]
 
 
 class TexmlRecordingSubresourcesUris(BaseModel):
+    """Subresources details for a recording if available."""
+
     transcriptions: Optional[str] = None

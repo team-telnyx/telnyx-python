@@ -22,6 +22,11 @@ class ShortCodeListParams(TypedDict, total=False):
 
 
 class Filter(TypedDict, total=False):
+    """Consolidated filter parameter (deepObject style).
+
+    Originally: filter[messaging_profile_id]
+    """
+
     messaging_profile_id: str
     """Filter by Messaging Profile ID.
 
@@ -32,6 +37,11 @@ class Filter(TypedDict, total=False):
 
 
 class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[number], page[size]
+    """
+
     number: int
     """The page number to load"""
 

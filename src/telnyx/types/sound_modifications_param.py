@@ -8,6 +8,8 @@ __all__ = ["SoundModificationsParam"]
 
 
 class SoundModificationsParam(TypedDict, total=False):
+    """Use this field to modify sound effects, for example adjust the pitch."""
+
     octaves: float
     """Adjust the pitch in octaves, values should be between -1 and 1, default 0"""
 

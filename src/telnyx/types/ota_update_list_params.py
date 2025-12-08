@@ -22,6 +22,11 @@ class OtaUpdateListParams(TypedDict, total=False):
 
 
 class Filter(TypedDict, total=False):
+    """Consolidated filter parameter for OTA updates (deepObject style).
+
+    Originally: filter[status], filter[sim_card_id], filter[type]
+    """
+
     sim_card_id: str
     """The SIM card identification UUID."""
 
@@ -33,6 +38,11 @@ class Filter(TypedDict, total=False):
 
 
 class Page(TypedDict, total=False):
+    """Consolidated pagination parameter (deepObject style).
+
+    Originally: page[number], page[size]
+    """
+
     number: int
     """The page number to load."""
 

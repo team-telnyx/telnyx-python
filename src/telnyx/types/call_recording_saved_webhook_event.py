@@ -16,6 +16,11 @@ __all__ = [
 
 
 class DataPayloadPublicRecordingURLs(BaseModel):
+    """Recording URLs in requested format.
+
+    The URL is valid for as long as the file exists. For security purposes, this feature is activated on a per request basis.  Please contact customer support with your Account ID to request activation.
+    """
+
     mp3: Optional[str] = None
     """Recording URL in requested `mp3` format."""
 
@@ -24,6 +29,11 @@ class DataPayloadPublicRecordingURLs(BaseModel):
 
 
 class DataPayloadRecordingURLs(BaseModel):
+    """Recording URLs in requested format.
+
+    These URLs are valid for 10 minutes. After 10 minutes, you may retrieve recordings via API using Reports -> Call Recordings documentation, or via Mission Control under Reporting -> Recordings.
+    """
+
     mp3: Optional[str] = None
     """Recording URL in requested `mp3` format."""
 

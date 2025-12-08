@@ -10,6 +10,8 @@ __all__ = ["PortingOrderRetrieveRequirementsResponse", "Data", "DataRequirementT
 
 
 class DataRequirementType(BaseModel):
+    """Identifies the requirement type that meets this requirement"""
+
     id: Optional[str] = None
     """Identifies the requirement type"""
 

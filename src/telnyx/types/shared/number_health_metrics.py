@@ -6,6 +6,8 @@ __all__ = ["NumberHealthMetrics"]
 
 
 class NumberHealthMetrics(BaseModel):
+    """High level health metrics about the number and it's messaging sending patterns."""
+
     inbound_outbound_ratio: float
     """The ratio of messages received to the number of messages sent."""
 

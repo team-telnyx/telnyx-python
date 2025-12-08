@@ -16,6 +16,11 @@ class CallListParams(TypedDict, total=False):
 
 
 class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[after], page[before], page[limit], page[size], page[number]
+    """
+
     after: str
     """Opaque identifier of next page"""
 

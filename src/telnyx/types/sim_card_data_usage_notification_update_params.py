@@ -16,6 +16,8 @@ class SimCardDataUsageNotificationUpdateParams(TypedDict, total=False):
 
 
 class Threshold(TypedDict, total=False):
+    """Data usage threshold that will trigger the notification."""
+
     amount: str
 
     unit: Literal["MB", "GB"]

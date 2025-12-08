@@ -32,6 +32,8 @@ class SimCardUpdateParams(TypedDict, total=False):
 
 
 class DataLimit(TypedDict, total=False):
+    """The SIM card individual data limit configuration."""
+
     amount: str
 
     unit: Literal["MB", "GB"]

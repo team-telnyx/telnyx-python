@@ -9,6 +9,8 @@ __all__ = ["SimCardGroup", "DataLimit"]
 
 
 class DataLimit(BaseModel):
+    """Upper limit on the amount of data the SIM cards, within the group, can use."""
+
     amount: Optional[str] = None
 
     unit: Optional[str] = None

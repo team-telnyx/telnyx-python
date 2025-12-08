@@ -25,6 +25,8 @@ class LoaConfigurationUpdateParams(TypedDict, total=False):
 
 
 class Address(TypedDict, total=False):
+    """The address of the company."""
+
     city: Required[str]
     """The locality of the company"""
 
@@ -45,6 +47,8 @@ class Address(TypedDict, total=False):
 
 
 class Contact(TypedDict, total=False):
+    """The contact information of the company."""
+
     email: Required[str]
     """The email address of the contact"""
 
@@ -53,5 +57,7 @@ class Contact(TypedDict, total=False):
 
 
 class Logo(TypedDict, total=False):
+    """The logo of the LOA configuration"""
+
     document_id: Required[str]
     """The document identification"""

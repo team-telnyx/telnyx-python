@@ -8,6 +8,8 @@ __all__ = ["ToolTestResponse", "Data"]
 
 
 class Data(BaseModel):
+    """Response model for webhook tool test results"""
+
     content_type: str
 
     request: Dict[str, object]
@@ -20,5 +22,7 @@ class Data(BaseModel):
 
 
 class ToolTestResponse(BaseModel):
+    """Response model for webhook tool test results"""
+
     data: Data
     """Response model for webhook tool test results"""

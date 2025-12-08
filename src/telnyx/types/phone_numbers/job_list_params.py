@@ -25,11 +25,18 @@ class JobListParams(TypedDict, total=False):
 
 
 class Filter(TypedDict, total=False):
+    """Consolidated filter parameter (deepObject style). Originally: filter[type]"""
+
     type: Literal["update_emergency_settings", "delete_phone_numbers", "update_phone_numbers"]
     """Identifies the type of the background job."""
 
 
 class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[size], page[number]
+    """
+
     number: int
     """The page number to load"""
 

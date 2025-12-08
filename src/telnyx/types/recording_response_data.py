@@ -9,6 +9,8 @@ __all__ = ["RecordingResponseData", "DownloadURLs"]
 
 
 class DownloadURLs(BaseModel):
+    """Links to download the recording files."""
+
     mp3: Optional[str] = None
     """Link to download the recording in mp3 format."""
 

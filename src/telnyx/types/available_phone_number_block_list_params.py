@@ -17,6 +17,11 @@ class AvailablePhoneNumberBlockListParams(TypedDict, total=False):
 
 
 class Filter(TypedDict, total=False):
+    """Consolidated filter parameter (deepObject style).
+
+    Originally: filter[locality], filter[country_code], filter[national_destination_code], filter[phone_number_type]
+    """
+
     country_code: str
     """Filter phone numbers by country."""
 

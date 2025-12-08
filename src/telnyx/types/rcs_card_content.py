@@ -11,6 +11,8 @@ __all__ = ["RcsCardContent", "Media"]
 
 
 class Media(BaseModel):
+    """A media file within a rich card."""
+
     content_info: Optional[RcsContentInfo] = None
 
     height: Optional[Literal["HEIGHT_UNSPECIFIED", "SHORT", "MEDIUM", "TALL"]] = None

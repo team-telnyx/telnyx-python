@@ -17,5 +17,10 @@ class PortoutListRejectionCodesParams(TypedDict, total=False):
 
 
 class Filter(TypedDict, total=False):
+    """Consolidated filter parameter (deepObject style).
+
+    Originally: filter[code], filter[code][in]
+    """
+
     code: Union[int, Iterable[int]]
     """Filter rejections of a specific code"""

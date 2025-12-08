@@ -16,5 +16,10 @@ class NumberOrderPhoneNumberListParams(TypedDict, total=False):
 
 
 class Filter(TypedDict, total=False):
+    """Consolidated filter parameter (deepObject style).
+
+    Originally: filter[country_code]
+    """
+
     country_code: str
     """Country code of the order phone number."""
