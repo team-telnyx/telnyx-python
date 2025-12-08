@@ -28,7 +28,7 @@ class TestDynamicEmergencyAddresses:
         dynamic_emergency_address = client.dynamic_emergency_addresses.create(
             administrative_area="TX",
             country_code="US",
-            house_number="house_number",
+            house_number="600",
             locality="Austin",
             postal_code="78701",
             street_name="Congress",
@@ -41,7 +41,7 @@ class TestDynamicEmergencyAddresses:
         dynamic_emergency_address = client.dynamic_emergency_addresses.create(
             administrative_area="TX",
             country_code="US",
-            house_number="house_number",
+            house_number="600",
             locality="Austin",
             postal_code="78701",
             street_name="Congress",
@@ -59,7 +59,7 @@ class TestDynamicEmergencyAddresses:
         response = client.dynamic_emergency_addresses.with_raw_response.create(
             administrative_area="TX",
             country_code="US",
-            house_number="house_number",
+            house_number="600",
             locality="Austin",
             postal_code="78701",
             street_name="Congress",
@@ -76,7 +76,7 @@ class TestDynamicEmergencyAddresses:
         with client.dynamic_emergency_addresses.with_streaming_response.create(
             administrative_area="TX",
             country_code="US",
-            house_number="house_number",
+            house_number="600",
             locality="Austin",
             postal_code="78701",
             street_name="Congress",
@@ -228,7 +228,7 @@ class TestAsyncDynamicEmergencyAddresses:
         dynamic_emergency_address = await async_client.dynamic_emergency_addresses.create(
             administrative_area="TX",
             country_code="US",
-            house_number="house_number",
+            house_number="600",
             locality="Austin",
             postal_code="78701",
             street_name="Congress",
@@ -241,7 +241,7 @@ class TestAsyncDynamicEmergencyAddresses:
         dynamic_emergency_address = await async_client.dynamic_emergency_addresses.create(
             administrative_area="TX",
             country_code="US",
-            house_number="house_number",
+            house_number="600",
             locality="Austin",
             postal_code="78701",
             street_name="Congress",
@@ -259,7 +259,7 @@ class TestAsyncDynamicEmergencyAddresses:
         response = await async_client.dynamic_emergency_addresses.with_raw_response.create(
             administrative_area="TX",
             country_code="US",
-            house_number="house_number",
+            house_number="600",
             locality="Austin",
             postal_code="78701",
             street_name="Congress",
@@ -276,7 +276,7 @@ class TestAsyncDynamicEmergencyAddresses:
         async with async_client.dynamic_emergency_addresses.with_streaming_response.create(
             administrative_area="TX",
             country_code="US",
-            house_number="house_number",
+            house_number="600",
             locality="Austin",
             postal_code="78701",
             street_name="Congress",
