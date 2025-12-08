@@ -65,7 +65,7 @@ class OsrResource(SyncAPIResource):
         if not campaign_id:
             raise ValueError(f"Expected a non-empty value for `campaign_id` but received {campaign_id!r}")
         return self._get(
-            f"/campaign/{campaign_id}/osr/attributes",
+            f"/10dlc/campaign/{campaign_id}/osr/attributes",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -119,7 +119,7 @@ class AsyncOsrResource(AsyncAPIResource):
         if not campaign_id:
             raise ValueError(f"Expected a non-empty value for `campaign_id` but received {campaign_id!r}")
         return await self._get(
-            f"/campaign/{campaign_id}/osr/attributes",
+            f"/10dlc/campaign/{campaign_id}/osr/attributes",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

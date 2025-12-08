@@ -69,7 +69,7 @@ class ExternalVettingResource(SyncAPIResource):
         if not brand_id:
             raise ValueError(f"Expected a non-empty value for `brand_id` but received {brand_id!r}")
         return self._get(
-            f"/brand/{brand_id}/externalVetting",
+            f"/10dlc/brand/{brand_id}/externalVetting",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -115,7 +115,7 @@ class ExternalVettingResource(SyncAPIResource):
         if not brand_id:
             raise ValueError(f"Expected a non-empty value for `brand_id` but received {brand_id!r}")
         return self._put(
-            f"/brand/{brand_id}/externalVetting",
+            f"/10dlc/brand/{brand_id}/externalVetting",
             body=maybe_transform(
                 {
                     "evp_id": evp_id,
@@ -162,7 +162,7 @@ class ExternalVettingResource(SyncAPIResource):
         if not brand_id:
             raise ValueError(f"Expected a non-empty value for `brand_id` but received {brand_id!r}")
         return self._post(
-            f"/brand/{brand_id}/externalVetting",
+            f"/10dlc/brand/{brand_id}/externalVetting",
             body=maybe_transform(
                 {
                     "evp_id": evp_id,
@@ -223,7 +223,7 @@ class AsyncExternalVettingResource(AsyncAPIResource):
         if not brand_id:
             raise ValueError(f"Expected a non-empty value for `brand_id` but received {brand_id!r}")
         return await self._get(
-            f"/brand/{brand_id}/externalVetting",
+            f"/10dlc/brand/{brand_id}/externalVetting",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -269,7 +269,7 @@ class AsyncExternalVettingResource(AsyncAPIResource):
         if not brand_id:
             raise ValueError(f"Expected a non-empty value for `brand_id` but received {brand_id!r}")
         return await self._put(
-            f"/brand/{brand_id}/externalVetting",
+            f"/10dlc/brand/{brand_id}/externalVetting",
             body=await async_maybe_transform(
                 {
                     "evp_id": evp_id,
@@ -316,7 +316,7 @@ class AsyncExternalVettingResource(AsyncAPIResource):
         if not brand_id:
             raise ValueError(f"Expected a non-empty value for `brand_id` but received {brand_id!r}")
         return await self._post(
-            f"/brand/{brand_id}/externalVetting",
+            f"/10dlc/brand/{brand_id}/externalVetting",
             body=await async_maybe_transform(
                 {
                     "evp_id": evp_id,

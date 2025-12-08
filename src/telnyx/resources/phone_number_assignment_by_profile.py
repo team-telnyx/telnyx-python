@@ -91,7 +91,7 @@ class PhoneNumberAssignmentByProfileResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/phoneNumberAssignmentByProfile",
+            "/10dlc/phoneNumberAssignmentByProfile",
             body=maybe_transform(
                 {
                     "messaging_profile_id": messaging_profile_id,
@@ -135,7 +135,7 @@ class PhoneNumberAssignmentByProfileResource(SyncAPIResource):
         if not task_id:
             raise ValueError(f"Expected a non-empty value for `task_id` but received {task_id!r}")
         return self._get(
-            f"/phoneNumberAssignmentByProfile/{task_id}/phoneNumbers",
+            f"/10dlc/phoneNumberAssignmentByProfile/{task_id}/phoneNumbers",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -179,7 +179,7 @@ class PhoneNumberAssignmentByProfileResource(SyncAPIResource):
         if not task_id:
             raise ValueError(f"Expected a non-empty value for `task_id` but received {task_id!r}")
         return self._get(
-            f"/phoneNumberAssignmentByProfile/{task_id}",
+            f"/10dlc/phoneNumberAssignmentByProfile/{task_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -248,7 +248,7 @@ class AsyncPhoneNumberAssignmentByProfileResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/phoneNumberAssignmentByProfile",
+            "/10dlc/phoneNumberAssignmentByProfile",
             body=await async_maybe_transform(
                 {
                     "messaging_profile_id": messaging_profile_id,
@@ -292,7 +292,7 @@ class AsyncPhoneNumberAssignmentByProfileResource(AsyncAPIResource):
         if not task_id:
             raise ValueError(f"Expected a non-empty value for `task_id` but received {task_id!r}")
         return await self._get(
-            f"/phoneNumberAssignmentByProfile/{task_id}/phoneNumbers",
+            f"/10dlc/phoneNumberAssignmentByProfile/{task_id}/phoneNumbers",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -336,7 +336,7 @@ class AsyncPhoneNumberAssignmentByProfileResource(AsyncAPIResource):
         if not task_id:
             raise ValueError(f"Expected a non-empty value for `task_id` but received {task_id!r}")
         return await self._get(
-            f"/phoneNumberAssignmentByProfile/{task_id}",
+            f"/10dlc/phoneNumberAssignmentByProfile/{task_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

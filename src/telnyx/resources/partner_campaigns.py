@@ -76,7 +76,7 @@ class PartnerCampaignsResource(SyncAPIResource):
         if not campaign_id:
             raise ValueError(f"Expected a non-empty value for `campaign_id` but received {campaign_id!r}")
         return self._get(
-            f"/partner_campaigns/{campaign_id}",
+            f"/10dlc/partner_campaigns/{campaign_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -117,7 +117,7 @@ class PartnerCampaignsResource(SyncAPIResource):
         if not campaign_id:
             raise ValueError(f"Expected a non-empty value for `campaign_id` but received {campaign_id!r}")
         return self._patch(
-            f"/partner_campaigns/{campaign_id}",
+            f"/10dlc/partner_campaigns/{campaign_id}",
             body=maybe_transform(
                 {
                     "webhook_failover_url": webhook_failover_url,
@@ -183,7 +183,7 @@ class PartnerCampaignsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/partner_campaigns",
+            "/10dlc/partner_campaigns",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -235,7 +235,7 @@ class PartnerCampaignsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/partnerCampaign/sharedByMe",
+            "/10dlc/partnerCampaign/sharedByMe",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -280,7 +280,7 @@ class PartnerCampaignsResource(SyncAPIResource):
         if not campaign_id:
             raise ValueError(f"Expected a non-empty value for `campaign_id` but received {campaign_id!r}")
         return self._get(
-            f"/partnerCampaign/{campaign_id}/sharing",
+            f"/10dlc/partnerCampaign/{campaign_id}/sharing",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -334,7 +334,7 @@ class AsyncPartnerCampaignsResource(AsyncAPIResource):
         if not campaign_id:
             raise ValueError(f"Expected a non-empty value for `campaign_id` but received {campaign_id!r}")
         return await self._get(
-            f"/partner_campaigns/{campaign_id}",
+            f"/10dlc/partner_campaigns/{campaign_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -375,7 +375,7 @@ class AsyncPartnerCampaignsResource(AsyncAPIResource):
         if not campaign_id:
             raise ValueError(f"Expected a non-empty value for `campaign_id` but received {campaign_id!r}")
         return await self._patch(
-            f"/partner_campaigns/{campaign_id}",
+            f"/10dlc/partner_campaigns/{campaign_id}",
             body=await async_maybe_transform(
                 {
                     "webhook_failover_url": webhook_failover_url,
@@ -441,7 +441,7 @@ class AsyncPartnerCampaignsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/partner_campaigns",
+            "/10dlc/partner_campaigns",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -493,7 +493,7 @@ class AsyncPartnerCampaignsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/partnerCampaign/sharedByMe",
+            "/10dlc/partnerCampaign/sharedByMe",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -538,7 +538,7 @@ class AsyncPartnerCampaignsResource(AsyncAPIResource):
         if not campaign_id:
             raise ValueError(f"Expected a non-empty value for `campaign_id` but received {campaign_id!r}")
         return await self._get(
-            f"/partnerCampaign/{campaign_id}/sharing",
+            f"/10dlc/partnerCampaign/{campaign_id}/sharing",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
