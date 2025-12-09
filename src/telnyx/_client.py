@@ -23,7 +23,6 @@ from ._utils import is_given, get_async_library
 from ._version import __version__
 from .resources import (
     ips,
-    enum,
     list,
     seti,
     fqdns,
@@ -75,7 +74,6 @@ from .resources import (
     charges_breakdown,
     global_ip_latency,
     messaging_optouts,
-    partner_campaigns,
     requirement_types,
     room_compositions,
     room_participants,
@@ -101,7 +99,6 @@ from .resources import (
     porting_phone_numbers,
     telephony_credentials,
     dialogflow_connections,
-    phone_number_campaigns,
     sim_card_order_preview,
     virtual_cross_connects,
     available_phone_numbers,
@@ -135,7 +132,6 @@ from .resources import (
     messaging_numbers_bulk_updates,
     virtual_cross_connects_coverage,
     sim_card_data_usage_notifications,
-    phone_number_assignment_by_profile,
     phone_numbers_regulatory_requirements,
 )
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
@@ -146,7 +142,6 @@ from ._base_client import (
     AsyncAPIClient,
 )
 from .resources.ai import ai
-from .resources.brand import brand
 from .resources.calls import calls
 from .resources.faxes import faxes
 from .resources.rooms import rooms
@@ -158,7 +153,6 @@ from .resources.payment import payment
 from .resources.porting import porting
 from .resources.reports import reports
 from .resources.storage import storage
-from .resources.campaign import campaign
 from .resources.messages import messages
 from .resources.networks import networks
 from .resources.portouts import portouts
@@ -168,12 +162,12 @@ from .resources.messaging import messaging
 from .resources.sim_cards import sim_cards
 from .resources.recordings import recordings
 from .resources.conferences import conferences
+from .resources.number_10dlc import number_10dlc
 from .resources.phone_numbers import phone_numbers
 from .resources.verifications import verifications
 from .resources.bundle_pricing import bundle_pricing
 from .resources.porting_orders import porting_orders
 from .resources.sim_card_groups import sim_card_groups
-from .resources.campaign_builder import campaign_builder
 from .resources.managed_accounts import managed_accounts
 from .resources.operator_connect import operator_connect
 from .resources.verified_numbers import verified_numbers
@@ -207,14 +201,11 @@ class Telnyx(SyncAPIClient):
     available_phone_numbers: available_phone_numbers.AvailablePhoneNumbersResource
     balance: balance.BalanceResource
     billing_groups: billing_groups.BillingGroupsResource
-    brand: brand.BrandResource
     bulk_sim_card_actions: bulk_sim_card_actions.BulkSimCardActionsResource
     bundle_pricing: bundle_pricing.BundlePricingResource
     call_control_applications: call_control_applications.CallControlApplicationsResource
     call_events: call_events.CallEventsResource
     calls: calls.CallsResource
-    campaign: campaign.CampaignResource
-    campaign_builder: campaign_builder.CampaignBuilderResource
     channel_zones: channel_zones.ChannelZonesResource
     charges_breakdown: charges_breakdown.ChargesBreakdownResource
     charges_summary: charges_summary.ChargesSummaryResource
@@ -231,7 +222,6 @@ class Telnyx(SyncAPIClient):
     documents: documents.DocumentsResource
     dynamic_emergency_addresses: dynamic_emergency_addresses.DynamicEmergencyAddressesResource
     dynamic_emergency_endpoints: dynamic_emergency_endpoints.DynamicEmergencyEndpointsResource
-    enum: enum.EnumResource
     external_connections: external_connections.ExternalConnectionsResource
     fax_applications: fax_applications.FaxApplicationsResource
     faxes: faxes.FaxesResource
@@ -286,9 +276,7 @@ class Telnyx(SyncAPIClient):
     ota_updates: ota_updates.OtaUpdatesResource
     outbound_voice_profiles: outbound_voice_profiles.OutboundVoiceProfilesResource
     payment: payment.PaymentResource
-    phone_number_assignment_by_profile: phone_number_assignment_by_profile.PhoneNumberAssignmentByProfileResource
     phone_number_blocks: phone_number_blocks.PhoneNumberBlocksResource
-    phone_number_campaigns: phone_number_campaigns.PhoneNumberCampaignsResource
     phone_numbers: phone_numbers.PhoneNumbersResource
     phone_numbers_regulatory_requirements: (
         phone_numbers_regulatory_requirements.PhoneNumbersRegulatoryRequirementsResource
@@ -342,11 +330,11 @@ class Telnyx(SyncAPIClient):
     wireless: wireless.WirelessResource
     wireless_blocklist_values: wireless_blocklist_values.WirelessBlocklistValuesResource
     wireless_blocklists: wireless_blocklists.WirelessBlocklistsResource
-    partner_campaigns: partner_campaigns.PartnerCampaignsResource
     well_known: well_known.WellKnownResource
     inexplicit_number_orders: inexplicit_number_orders.InexplicitNumberOrdersResource
     mobile_phone_numbers: mobile_phone_numbers.MobilePhoneNumbersResource
     mobile_voice_connections: mobile_voice_connections.MobileVoiceConnectionsResource
+    number_10dlc: number_10dlc.Number10dlcResource
     with_raw_response: TelnyxWithRawResponse
     with_streaming_response: TelnyxWithStreamedResponse
 
@@ -430,14 +418,11 @@ class Telnyx(SyncAPIClient):
         self.available_phone_numbers = available_phone_numbers.AvailablePhoneNumbersResource(self)
         self.balance = balance.BalanceResource(self)
         self.billing_groups = billing_groups.BillingGroupsResource(self)
-        self.brand = brand.BrandResource(self)
         self.bulk_sim_card_actions = bulk_sim_card_actions.BulkSimCardActionsResource(self)
         self.bundle_pricing = bundle_pricing.BundlePricingResource(self)
         self.call_control_applications = call_control_applications.CallControlApplicationsResource(self)
         self.call_events = call_events.CallEventsResource(self)
         self.calls = calls.CallsResource(self)
-        self.campaign = campaign.CampaignResource(self)
-        self.campaign_builder = campaign_builder.CampaignBuilderResource(self)
         self.channel_zones = channel_zones.ChannelZonesResource(self)
         self.charges_breakdown = charges_breakdown.ChargesBreakdownResource(self)
         self.charges_summary = charges_summary.ChargesSummaryResource(self)
@@ -454,7 +439,6 @@ class Telnyx(SyncAPIClient):
         self.documents = documents.DocumentsResource(self)
         self.dynamic_emergency_addresses = dynamic_emergency_addresses.DynamicEmergencyAddressesResource(self)
         self.dynamic_emergency_endpoints = dynamic_emergency_endpoints.DynamicEmergencyEndpointsResource(self)
-        self.enum = enum.EnumResource(self)
         self.external_connections = external_connections.ExternalConnectionsResource(self)
         self.fax_applications = fax_applications.FaxApplicationsResource(self)
         self.faxes = faxes.FaxesResource(self)
@@ -509,11 +493,7 @@ class Telnyx(SyncAPIClient):
         self.ota_updates = ota_updates.OtaUpdatesResource(self)
         self.outbound_voice_profiles = outbound_voice_profiles.OutboundVoiceProfilesResource(self)
         self.payment = payment.PaymentResource(self)
-        self.phone_number_assignment_by_profile = (
-            phone_number_assignment_by_profile.PhoneNumberAssignmentByProfileResource(self)
-        )
         self.phone_number_blocks = phone_number_blocks.PhoneNumberBlocksResource(self)
-        self.phone_number_campaigns = phone_number_campaigns.PhoneNumberCampaignsResource(self)
         self.phone_numbers = phone_numbers.PhoneNumbersResource(self)
         self.phone_numbers_regulatory_requirements = (
             phone_numbers_regulatory_requirements.PhoneNumbersRegulatoryRequirementsResource(self)
@@ -571,11 +551,11 @@ class Telnyx(SyncAPIClient):
         self.wireless = wireless.WirelessResource(self)
         self.wireless_blocklist_values = wireless_blocklist_values.WirelessBlocklistValuesResource(self)
         self.wireless_blocklists = wireless_blocklists.WirelessBlocklistsResource(self)
-        self.partner_campaigns = partner_campaigns.PartnerCampaignsResource(self)
         self.well_known = well_known.WellKnownResource(self)
         self.inexplicit_number_orders = inexplicit_number_orders.InexplicitNumberOrdersResource(self)
         self.mobile_phone_numbers = mobile_phone_numbers.MobilePhoneNumbersResource(self)
         self.mobile_voice_connections = mobile_voice_connections.MobileVoiceConnectionsResource(self)
+        self.number_10dlc = number_10dlc.Number10dlcResource(self)
         self.with_raw_response = TelnyxWithRawResponse(self)
         self.with_streaming_response = TelnyxWithStreamedResponse(self)
 
@@ -706,14 +686,11 @@ class AsyncTelnyx(AsyncAPIClient):
     available_phone_numbers: available_phone_numbers.AsyncAvailablePhoneNumbersResource
     balance: balance.AsyncBalanceResource
     billing_groups: billing_groups.AsyncBillingGroupsResource
-    brand: brand.AsyncBrandResource
     bulk_sim_card_actions: bulk_sim_card_actions.AsyncBulkSimCardActionsResource
     bundle_pricing: bundle_pricing.AsyncBundlePricingResource
     call_control_applications: call_control_applications.AsyncCallControlApplicationsResource
     call_events: call_events.AsyncCallEventsResource
     calls: calls.AsyncCallsResource
-    campaign: campaign.AsyncCampaignResource
-    campaign_builder: campaign_builder.AsyncCampaignBuilderResource
     channel_zones: channel_zones.AsyncChannelZonesResource
     charges_breakdown: charges_breakdown.AsyncChargesBreakdownResource
     charges_summary: charges_summary.AsyncChargesSummaryResource
@@ -730,7 +707,6 @@ class AsyncTelnyx(AsyncAPIClient):
     documents: documents.AsyncDocumentsResource
     dynamic_emergency_addresses: dynamic_emergency_addresses.AsyncDynamicEmergencyAddressesResource
     dynamic_emergency_endpoints: dynamic_emergency_endpoints.AsyncDynamicEmergencyEndpointsResource
-    enum: enum.AsyncEnumResource
     external_connections: external_connections.AsyncExternalConnectionsResource
     fax_applications: fax_applications.AsyncFaxApplicationsResource
     faxes: faxes.AsyncFaxesResource
@@ -785,9 +761,7 @@ class AsyncTelnyx(AsyncAPIClient):
     ota_updates: ota_updates.AsyncOtaUpdatesResource
     outbound_voice_profiles: outbound_voice_profiles.AsyncOutboundVoiceProfilesResource
     payment: payment.AsyncPaymentResource
-    phone_number_assignment_by_profile: phone_number_assignment_by_profile.AsyncPhoneNumberAssignmentByProfileResource
     phone_number_blocks: phone_number_blocks.AsyncPhoneNumberBlocksResource
-    phone_number_campaigns: phone_number_campaigns.AsyncPhoneNumberCampaignsResource
     phone_numbers: phone_numbers.AsyncPhoneNumbersResource
     phone_numbers_regulatory_requirements: (
         phone_numbers_regulatory_requirements.AsyncPhoneNumbersRegulatoryRequirementsResource
@@ -841,11 +815,11 @@ class AsyncTelnyx(AsyncAPIClient):
     wireless: wireless.AsyncWirelessResource
     wireless_blocklist_values: wireless_blocklist_values.AsyncWirelessBlocklistValuesResource
     wireless_blocklists: wireless_blocklists.AsyncWirelessBlocklistsResource
-    partner_campaigns: partner_campaigns.AsyncPartnerCampaignsResource
     well_known: well_known.AsyncWellKnownResource
     inexplicit_number_orders: inexplicit_number_orders.AsyncInexplicitNumberOrdersResource
     mobile_phone_numbers: mobile_phone_numbers.AsyncMobilePhoneNumbersResource
     mobile_voice_connections: mobile_voice_connections.AsyncMobileVoiceConnectionsResource
+    number_10dlc: number_10dlc.AsyncNumber10dlcResource
     with_raw_response: AsyncTelnyxWithRawResponse
     with_streaming_response: AsyncTelnyxWithStreamedResponse
 
@@ -929,14 +903,11 @@ class AsyncTelnyx(AsyncAPIClient):
         self.available_phone_numbers = available_phone_numbers.AsyncAvailablePhoneNumbersResource(self)
         self.balance = balance.AsyncBalanceResource(self)
         self.billing_groups = billing_groups.AsyncBillingGroupsResource(self)
-        self.brand = brand.AsyncBrandResource(self)
         self.bulk_sim_card_actions = bulk_sim_card_actions.AsyncBulkSimCardActionsResource(self)
         self.bundle_pricing = bundle_pricing.AsyncBundlePricingResource(self)
         self.call_control_applications = call_control_applications.AsyncCallControlApplicationsResource(self)
         self.call_events = call_events.AsyncCallEventsResource(self)
         self.calls = calls.AsyncCallsResource(self)
-        self.campaign = campaign.AsyncCampaignResource(self)
-        self.campaign_builder = campaign_builder.AsyncCampaignBuilderResource(self)
         self.channel_zones = channel_zones.AsyncChannelZonesResource(self)
         self.charges_breakdown = charges_breakdown.AsyncChargesBreakdownResource(self)
         self.charges_summary = charges_summary.AsyncChargesSummaryResource(self)
@@ -953,7 +924,6 @@ class AsyncTelnyx(AsyncAPIClient):
         self.documents = documents.AsyncDocumentsResource(self)
         self.dynamic_emergency_addresses = dynamic_emergency_addresses.AsyncDynamicEmergencyAddressesResource(self)
         self.dynamic_emergency_endpoints = dynamic_emergency_endpoints.AsyncDynamicEmergencyEndpointsResource(self)
-        self.enum = enum.AsyncEnumResource(self)
         self.external_connections = external_connections.AsyncExternalConnectionsResource(self)
         self.fax_applications = fax_applications.AsyncFaxApplicationsResource(self)
         self.faxes = faxes.AsyncFaxesResource(self)
@@ -1014,11 +984,7 @@ class AsyncTelnyx(AsyncAPIClient):
         self.ota_updates = ota_updates.AsyncOtaUpdatesResource(self)
         self.outbound_voice_profiles = outbound_voice_profiles.AsyncOutboundVoiceProfilesResource(self)
         self.payment = payment.AsyncPaymentResource(self)
-        self.phone_number_assignment_by_profile = (
-            phone_number_assignment_by_profile.AsyncPhoneNumberAssignmentByProfileResource(self)
-        )
         self.phone_number_blocks = phone_number_blocks.AsyncPhoneNumberBlocksResource(self)
-        self.phone_number_campaigns = phone_number_campaigns.AsyncPhoneNumberCampaignsResource(self)
         self.phone_numbers = phone_numbers.AsyncPhoneNumbersResource(self)
         self.phone_numbers_regulatory_requirements = (
             phone_numbers_regulatory_requirements.AsyncPhoneNumbersRegulatoryRequirementsResource(self)
@@ -1076,11 +1042,11 @@ class AsyncTelnyx(AsyncAPIClient):
         self.wireless = wireless.AsyncWirelessResource(self)
         self.wireless_blocklist_values = wireless_blocklist_values.AsyncWirelessBlocklistValuesResource(self)
         self.wireless_blocklists = wireless_blocklists.AsyncWirelessBlocklistsResource(self)
-        self.partner_campaigns = partner_campaigns.AsyncPartnerCampaignsResource(self)
         self.well_known = well_known.AsyncWellKnownResource(self)
         self.inexplicit_number_orders = inexplicit_number_orders.AsyncInexplicitNumberOrdersResource(self)
         self.mobile_phone_numbers = mobile_phone_numbers.AsyncMobilePhoneNumbersResource(self)
         self.mobile_voice_connections = mobile_voice_connections.AsyncMobileVoiceConnectionsResource(self)
+        self.number_10dlc = number_10dlc.AsyncNumber10dlcResource(self)
         self.with_raw_response = AsyncTelnyxWithRawResponse(self)
         self.with_streaming_response = AsyncTelnyxWithStreamedResponse(self)
 
@@ -1219,7 +1185,6 @@ class TelnyxWithRawResponse:
         )
         self.balance = balance.BalanceResourceWithRawResponse(client.balance)
         self.billing_groups = billing_groups.BillingGroupsResourceWithRawResponse(client.billing_groups)
-        self.brand = brand.BrandResourceWithRawResponse(client.brand)
         self.bulk_sim_card_actions = bulk_sim_card_actions.BulkSimCardActionsResourceWithRawResponse(
             client.bulk_sim_card_actions
         )
@@ -1229,8 +1194,6 @@ class TelnyxWithRawResponse:
         )
         self.call_events = call_events.CallEventsResourceWithRawResponse(client.call_events)
         self.calls = calls.CallsResourceWithRawResponse(client.calls)
-        self.campaign = campaign.CampaignResourceWithRawResponse(client.campaign)
-        self.campaign_builder = campaign_builder.CampaignBuilderResourceWithRawResponse(client.campaign_builder)
         self.channel_zones = channel_zones.ChannelZonesResourceWithRawResponse(client.channel_zones)
         self.charges_breakdown = charges_breakdown.ChargesBreakdownResourceWithRawResponse(client.charges_breakdown)
         self.charges_summary = charges_summary.ChargesSummaryResourceWithRawResponse(client.charges_summary)
@@ -1259,7 +1222,6 @@ class TelnyxWithRawResponse:
         self.dynamic_emergency_endpoints = dynamic_emergency_endpoints.DynamicEmergencyEndpointsResourceWithRawResponse(
             client.dynamic_emergency_endpoints
         )
-        self.enum = enum.EnumResourceWithRawResponse(client.enum)
         self.external_connections = external_connections.ExternalConnectionsResourceWithRawResponse(
             client.external_connections
         )
@@ -1374,16 +1336,8 @@ class TelnyxWithRawResponse:
             client.outbound_voice_profiles
         )
         self.payment = payment.PaymentResourceWithRawResponse(client.payment)
-        self.phone_number_assignment_by_profile = (
-            phone_number_assignment_by_profile.PhoneNumberAssignmentByProfileResourceWithRawResponse(
-                client.phone_number_assignment_by_profile
-            )
-        )
         self.phone_number_blocks = phone_number_blocks.PhoneNumberBlocksResourceWithRawResponse(
             client.phone_number_blocks
-        )
-        self.phone_number_campaigns = phone_number_campaigns.PhoneNumberCampaignsResourceWithRawResponse(
-            client.phone_number_campaigns
         )
         self.phone_numbers = phone_numbers.PhoneNumbersResourceWithRawResponse(client.phone_numbers)
         self.phone_numbers_regulatory_requirements = (
@@ -1472,7 +1426,6 @@ class TelnyxWithRawResponse:
         self.wireless_blocklists = wireless_blocklists.WirelessBlocklistsResourceWithRawResponse(
             client.wireless_blocklists
         )
-        self.partner_campaigns = partner_campaigns.PartnerCampaignsResourceWithRawResponse(client.partner_campaigns)
         self.well_known = well_known.WellKnownResourceWithRawResponse(client.well_known)
         self.inexplicit_number_orders = inexplicit_number_orders.InexplicitNumberOrdersResourceWithRawResponse(
             client.inexplicit_number_orders
@@ -1483,6 +1436,7 @@ class TelnyxWithRawResponse:
         self.mobile_voice_connections = mobile_voice_connections.MobileVoiceConnectionsResourceWithRawResponse(
             client.mobile_voice_connections
         )
+        self.number_10dlc = number_10dlc.Number10dlcResourceWithRawResponse(client.number_10dlc)
 
 
 class AsyncTelnyxWithRawResponse:
@@ -1511,7 +1465,6 @@ class AsyncTelnyxWithRawResponse:
         )
         self.balance = balance.AsyncBalanceResourceWithRawResponse(client.balance)
         self.billing_groups = billing_groups.AsyncBillingGroupsResourceWithRawResponse(client.billing_groups)
-        self.brand = brand.AsyncBrandResourceWithRawResponse(client.brand)
         self.bulk_sim_card_actions = bulk_sim_card_actions.AsyncBulkSimCardActionsResourceWithRawResponse(
             client.bulk_sim_card_actions
         )
@@ -1521,8 +1474,6 @@ class AsyncTelnyxWithRawResponse:
         )
         self.call_events = call_events.AsyncCallEventsResourceWithRawResponse(client.call_events)
         self.calls = calls.AsyncCallsResourceWithRawResponse(client.calls)
-        self.campaign = campaign.AsyncCampaignResourceWithRawResponse(client.campaign)
-        self.campaign_builder = campaign_builder.AsyncCampaignBuilderResourceWithRawResponse(client.campaign_builder)
         self.channel_zones = channel_zones.AsyncChannelZonesResourceWithRawResponse(client.channel_zones)
         self.charges_breakdown = charges_breakdown.AsyncChargesBreakdownResourceWithRawResponse(
             client.charges_breakdown
@@ -1559,7 +1510,6 @@ class AsyncTelnyxWithRawResponse:
                 client.dynamic_emergency_endpoints
             )
         )
-        self.enum = enum.AsyncEnumResourceWithRawResponse(client.enum)
         self.external_connections = external_connections.AsyncExternalConnectionsResourceWithRawResponse(
             client.external_connections
         )
@@ -1688,16 +1638,8 @@ class AsyncTelnyxWithRawResponse:
             client.outbound_voice_profiles
         )
         self.payment = payment.AsyncPaymentResourceWithRawResponse(client.payment)
-        self.phone_number_assignment_by_profile = (
-            phone_number_assignment_by_profile.AsyncPhoneNumberAssignmentByProfileResourceWithRawResponse(
-                client.phone_number_assignment_by_profile
-            )
-        )
         self.phone_number_blocks = phone_number_blocks.AsyncPhoneNumberBlocksResourceWithRawResponse(
             client.phone_number_blocks
-        )
-        self.phone_number_campaigns = phone_number_campaigns.AsyncPhoneNumberCampaignsResourceWithRawResponse(
-            client.phone_number_campaigns
         )
         self.phone_numbers = phone_numbers.AsyncPhoneNumbersResourceWithRawResponse(client.phone_numbers)
         self.phone_numbers_regulatory_requirements = (
@@ -1802,9 +1744,6 @@ class AsyncTelnyxWithRawResponse:
         self.wireless_blocklists = wireless_blocklists.AsyncWirelessBlocklistsResourceWithRawResponse(
             client.wireless_blocklists
         )
-        self.partner_campaigns = partner_campaigns.AsyncPartnerCampaignsResourceWithRawResponse(
-            client.partner_campaigns
-        )
         self.well_known = well_known.AsyncWellKnownResourceWithRawResponse(client.well_known)
         self.inexplicit_number_orders = inexplicit_number_orders.AsyncInexplicitNumberOrdersResourceWithRawResponse(
             client.inexplicit_number_orders
@@ -1815,6 +1754,7 @@ class AsyncTelnyxWithRawResponse:
         self.mobile_voice_connections = mobile_voice_connections.AsyncMobileVoiceConnectionsResourceWithRawResponse(
             client.mobile_voice_connections
         )
+        self.number_10dlc = number_10dlc.AsyncNumber10dlcResourceWithRawResponse(client.number_10dlc)
 
 
 class TelnyxWithStreamedResponse:
@@ -1845,7 +1785,6 @@ class TelnyxWithStreamedResponse:
         )
         self.balance = balance.BalanceResourceWithStreamingResponse(client.balance)
         self.billing_groups = billing_groups.BillingGroupsResourceWithStreamingResponse(client.billing_groups)
-        self.brand = brand.BrandResourceWithStreamingResponse(client.brand)
         self.bulk_sim_card_actions = bulk_sim_card_actions.BulkSimCardActionsResourceWithStreamingResponse(
             client.bulk_sim_card_actions
         )
@@ -1855,8 +1794,6 @@ class TelnyxWithStreamedResponse:
         )
         self.call_events = call_events.CallEventsResourceWithStreamingResponse(client.call_events)
         self.calls = calls.CallsResourceWithStreamingResponse(client.calls)
-        self.campaign = campaign.CampaignResourceWithStreamingResponse(client.campaign)
-        self.campaign_builder = campaign_builder.CampaignBuilderResourceWithStreamingResponse(client.campaign_builder)
         self.channel_zones = channel_zones.ChannelZonesResourceWithStreamingResponse(client.channel_zones)
         self.charges_breakdown = charges_breakdown.ChargesBreakdownResourceWithStreamingResponse(
             client.charges_breakdown
@@ -1893,7 +1830,6 @@ class TelnyxWithStreamedResponse:
                 client.dynamic_emergency_endpoints
             )
         )
-        self.enum = enum.EnumResourceWithStreamingResponse(client.enum)
         self.external_connections = external_connections.ExternalConnectionsResourceWithStreamingResponse(
             client.external_connections
         )
@@ -2024,16 +1960,8 @@ class TelnyxWithStreamedResponse:
             client.outbound_voice_profiles
         )
         self.payment = payment.PaymentResourceWithStreamingResponse(client.payment)
-        self.phone_number_assignment_by_profile = (
-            phone_number_assignment_by_profile.PhoneNumberAssignmentByProfileResourceWithStreamingResponse(
-                client.phone_number_assignment_by_profile
-            )
-        )
         self.phone_number_blocks = phone_number_blocks.PhoneNumberBlocksResourceWithStreamingResponse(
             client.phone_number_blocks
-        )
-        self.phone_number_campaigns = phone_number_campaigns.PhoneNumberCampaignsResourceWithStreamingResponse(
-            client.phone_number_campaigns
         )
         self.phone_numbers = phone_numbers.PhoneNumbersResourceWithStreamingResponse(client.phone_numbers)
         self.phone_numbers_regulatory_requirements = (
@@ -2140,9 +2068,6 @@ class TelnyxWithStreamedResponse:
         self.wireless_blocklists = wireless_blocklists.WirelessBlocklistsResourceWithStreamingResponse(
             client.wireless_blocklists
         )
-        self.partner_campaigns = partner_campaigns.PartnerCampaignsResourceWithStreamingResponse(
-            client.partner_campaigns
-        )
         self.well_known = well_known.WellKnownResourceWithStreamingResponse(client.well_known)
         self.inexplicit_number_orders = inexplicit_number_orders.InexplicitNumberOrdersResourceWithStreamingResponse(
             client.inexplicit_number_orders
@@ -2153,6 +2078,7 @@ class TelnyxWithStreamedResponse:
         self.mobile_voice_connections = mobile_voice_connections.MobileVoiceConnectionsResourceWithStreamingResponse(
             client.mobile_voice_connections
         )
+        self.number_10dlc = number_10dlc.Number10dlcResourceWithStreamingResponse(client.number_10dlc)
 
 
 class AsyncTelnyxWithStreamedResponse:
@@ -2187,7 +2113,6 @@ class AsyncTelnyxWithStreamedResponse:
         )
         self.balance = balance.AsyncBalanceResourceWithStreamingResponse(client.balance)
         self.billing_groups = billing_groups.AsyncBillingGroupsResourceWithStreamingResponse(client.billing_groups)
-        self.brand = brand.AsyncBrandResourceWithStreamingResponse(client.brand)
         self.bulk_sim_card_actions = bulk_sim_card_actions.AsyncBulkSimCardActionsResourceWithStreamingResponse(
             client.bulk_sim_card_actions
         )
@@ -2199,10 +2124,6 @@ class AsyncTelnyxWithStreamedResponse:
         )
         self.call_events = call_events.AsyncCallEventsResourceWithStreamingResponse(client.call_events)
         self.calls = calls.AsyncCallsResourceWithStreamingResponse(client.calls)
-        self.campaign = campaign.AsyncCampaignResourceWithStreamingResponse(client.campaign)
-        self.campaign_builder = campaign_builder.AsyncCampaignBuilderResourceWithStreamingResponse(
-            client.campaign_builder
-        )
         self.channel_zones = channel_zones.AsyncChannelZonesResourceWithStreamingResponse(client.channel_zones)
         self.charges_breakdown = charges_breakdown.AsyncChargesBreakdownResourceWithStreamingResponse(
             client.charges_breakdown
@@ -2243,7 +2164,6 @@ class AsyncTelnyxWithStreamedResponse:
                 client.dynamic_emergency_endpoints
             )
         )
-        self.enum = enum.AsyncEnumResourceWithStreamingResponse(client.enum)
         self.external_connections = external_connections.AsyncExternalConnectionsResourceWithStreamingResponse(
             client.external_connections
         )
@@ -2392,16 +2312,8 @@ class AsyncTelnyxWithStreamedResponse:
             client.outbound_voice_profiles
         )
         self.payment = payment.AsyncPaymentResourceWithStreamingResponse(client.payment)
-        self.phone_number_assignment_by_profile = (
-            phone_number_assignment_by_profile.AsyncPhoneNumberAssignmentByProfileResourceWithStreamingResponse(
-                client.phone_number_assignment_by_profile
-            )
-        )
         self.phone_number_blocks = phone_number_blocks.AsyncPhoneNumberBlocksResourceWithStreamingResponse(
             client.phone_number_blocks
-        )
-        self.phone_number_campaigns = phone_number_campaigns.AsyncPhoneNumberCampaignsResourceWithStreamingResponse(
-            client.phone_number_campaigns
         )
         self.phone_numbers = phone_numbers.AsyncPhoneNumbersResourceWithStreamingResponse(client.phone_numbers)
         self.phone_numbers_regulatory_requirements = (
@@ -2520,9 +2432,6 @@ class AsyncTelnyxWithStreamedResponse:
         self.wireless_blocklists = wireless_blocklists.AsyncWirelessBlocklistsResourceWithStreamingResponse(
             client.wireless_blocklists
         )
-        self.partner_campaigns = partner_campaigns.AsyncPartnerCampaignsResourceWithStreamingResponse(
-            client.partner_campaigns
-        )
         self.well_known = well_known.AsyncWellKnownResourceWithStreamingResponse(client.well_known)
         self.inexplicit_number_orders = (
             inexplicit_number_orders.AsyncInexplicitNumberOrdersResourceWithStreamingResponse(
@@ -2537,6 +2446,7 @@ class AsyncTelnyxWithStreamedResponse:
                 client.mobile_voice_connections
             )
         )
+        self.number_10dlc = number_10dlc.AsyncNumber10dlcResourceWithStreamingResponse(client.number_10dlc)
 
 
 Client = Telnyx
