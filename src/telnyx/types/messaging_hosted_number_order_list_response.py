@@ -3,13 +3,22 @@
 from typing import List, Optional
 
 from .._models import BaseModel
-from .pagination_meta import PaginationMeta
 from .shared.messaging_hosted_number_order import MessagingHostedNumberOrder
 
-__all__ = ["MessagingHostedNumberOrderListResponse"]
+__all__ = ["MessagingHostedNumberOrderListResponse", "Meta"]
+
+
+class Meta(BaseModel):
+    page_number: int
+
+    page_size: int
+
+    total_pages: int
+
+    total_results: int
 
 
 class MessagingHostedNumberOrderListResponse(BaseModel):
     data: Optional[List[MessagingHostedNumberOrder]] = None
 
-    meta: Optional[PaginationMeta] = None
+    meta: Optional[Meta] = None

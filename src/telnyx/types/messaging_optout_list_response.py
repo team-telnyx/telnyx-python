@@ -6,9 +6,8 @@ from datetime import datetime
 from pydantic import Field as FieldInfo
 
 from .._models import BaseModel
-from .pagination_meta import PaginationMeta
 
-__all__ = ["MessagingOptoutListResponse", "Data"]
+__all__ = ["MessagingOptoutListResponse", "Data", "Meta"]
 
 
 class Data(BaseModel):
@@ -31,7 +30,17 @@ class Data(BaseModel):
     """Receiving address (+E.164 formatted phone number or short code)."""
 
 
+class Meta(BaseModel):
+    page_number: int
+
+    page_size: int
+
+    total_pages: int
+
+    total_results: int
+
+
 class MessagingOptoutListResponse(BaseModel):
     data: Optional[List[Data]] = None
 
-    meta: Optional[PaginationMeta] = None
+    meta: Optional[Meta] = None

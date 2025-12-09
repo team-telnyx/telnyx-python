@@ -1,17 +1,15 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
-
 from ..._models import BaseModel
 
 __all__ = ["VerifyMeta"]
 
 
 class VerifyMeta(BaseModel):
-    page_number: Optional[int] = None
+    page_number: int
 
-    page_size: Optional[int] = None
+    page_size: int
 
-    total_pages: Optional[int] = None
+    total_pages: int
 
-    total_results: Optional[int] = None
+    total_results: int

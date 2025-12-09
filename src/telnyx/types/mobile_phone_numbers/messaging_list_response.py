@@ -5,10 +5,9 @@ from datetime import datetime
 from typing_extensions import Literal
 
 from ..._models import BaseModel
-from ..pagination_meta import PaginationMeta
 from ..shared.messaging_feature_set import MessagingFeatureSet
 
-__all__ = ["MessagingListResponse", "Data", "DataFeatures"]
+__all__ = ["MessagingListResponse", "Data", "DataFeatures", "Meta"]
 
 
 class DataFeatures(BaseModel):
@@ -54,7 +53,17 @@ class Data(BaseModel):
     """ISO 8601 formatted date indicating when the resource was updated."""
 
 
+class Meta(BaseModel):
+    page_number: int
+
+    page_size: int
+
+    total_pages: int
+
+    total_results: int
+
+
 class MessagingListResponse(BaseModel):
     data: Optional[List[Data]] = None
 
-    meta: Optional[PaginationMeta] = None
+    meta: Optional[Meta] = None
