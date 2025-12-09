@@ -12,11 +12,8 @@ from .campaign_update_params import CampaignUpdateParams as CampaignUpdateParams
 from .brand_retrieve_response import BrandRetrieveResponse as BrandRetrieveResponse
 from .brand_get_feedback_response import BrandGetFeedbackResponse as BrandGetFeedbackResponse
 from .campaign_deactivate_response import CampaignDeactivateResponse as CampaignDeactivateResponse
-from .partner_campaign_list_params import PartnerCampaignListParams as PartnerCampaignListParams
 from .campaign_submit_appeal_params import CampaignSubmitAppealParams as CampaignSubmitAppealParams
 from .campaign_builder_submit_params import CampaignBuilderSubmitParams as CampaignBuilderSubmitParams
-from .partner_campaign_list_response import PartnerCampaignListResponse as PartnerCampaignListResponse
-from .partner_campaign_update_params import PartnerCampaignUpdateParams as PartnerCampaignUpdateParams
 from .campaign_submit_appeal_response import CampaignSubmitAppealResponse as CampaignSubmitAppealResponse
 from .campaign_accept_sharing_response import CampaignAcceptSharingResponse as CampaignAcceptSharingResponse
 from .phone_number_campaign_list_params import PhoneNumberCampaignListParams as PhoneNumberCampaignListParams
@@ -27,28 +24,4 @@ from .phone_number_campaign_update_params import PhoneNumberCampaignUpdateParams
 from .campaign_get_sharing_status_response import CampaignGetSharingStatusResponse as CampaignGetSharingStatusResponse
 from .campaign_get_operation_status_response import (
     CampaignGetOperationStatusResponse as CampaignGetOperationStatusResponse,
-)
-from .partner_campaign_get_shared_by_me_params import (
-    PartnerCampaignGetSharedByMeParams as PartnerCampaignGetSharedByMeParams,
-)
-from .partner_campaign_get_shared_by_me_response import (
-    PartnerCampaignGetSharedByMeResponse as PartnerCampaignGetSharedByMeResponse,
-)
-from .partner_campaign_get_sharing_status_response import (
-    PartnerCampaignGetSharingStatusResponse as PartnerCampaignGetSharingStatusResponse,
-)
-from .phone_number_assignment_by_profile_assign_params import (
-    PhoneNumberAssignmentByProfileAssignParams as PhoneNumberAssignmentByProfileAssignParams,
-)
-from .phone_number_assignment_by_profile_assign_response import (
-    PhoneNumberAssignmentByProfileAssignResponse as PhoneNumberAssignmentByProfileAssignResponse,
-)
-from .phone_number_assignment_by_profile_get_task_status_response import (
-    PhoneNumberAssignmentByProfileGetTaskStatusResponse as PhoneNumberAssignmentByProfileGetTaskStatusResponse,
-)
-from .phone_number_assignment_by_profile_get_phone_number_status_params import (
-    PhoneNumberAssignmentByProfileGetPhoneNumberStatusParams as PhoneNumberAssignmentByProfileGetPhoneNumberStatusParams,
-)
-from .phone_number_assignment_by_profile_get_phone_number_status_response import (
-    PhoneNumberAssignmentByProfileGetPhoneNumberStatusResponse as PhoneNumberAssignmentByProfileGetPhoneNumberStatusResponse,
 )

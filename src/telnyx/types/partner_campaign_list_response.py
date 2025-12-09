@@ -4,8 +4,8 @@ from typing import List, Optional
 
 from pydantic import Field as FieldInfo
 
-from ..._models import BaseModel
-from ..telnyx_downstream_campaign import TelnyxDownstreamCampaign
+from .._models import BaseModel
+from .telnyx_downstream_campaign import TelnyxDownstreamCampaign
 
 __all__ = ["PartnerCampaignListResponse"]
 

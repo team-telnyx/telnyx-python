@@ -4,12 +4,12 @@ from __future__ import annotations
 
 from typing_extensions import Annotated, TypedDict
 
-from ..._utils import PropertyInfo
+from .._utils import PropertyInfo
 
-__all__ = ["PhoneNumberAssignmentByProfileGetPhoneNumberStatusParams"]
+__all__ = ["PhoneNumberAssignmentByProfileRetrievePhoneNumberStatusParams"]
 
 
-class PhoneNumberAssignmentByProfileGetPhoneNumberStatusParams(TypedDict, total=False):
+class PhoneNumberAssignmentByProfileRetrievePhoneNumberStatusParams(TypedDict, total=False):
     page: int
 
     records_per_page: Annotated[int, PropertyInfo(alias="recordsPerPage")]

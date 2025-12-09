@@ -386,6 +386,7 @@ from .oauth_client_create_response import OAuthClientCreateResponse as OAuthClie
 from .oauth_client_update_response import OAuthClientUpdateResponse as OAuthClientUpdateResponse
 from .oauth_retrieve_jwks_response import OAuthRetrieveJwksResponse as OAuthRetrieveJwksResponse
 from .ota_update_retrieve_response import OtaUpdateRetrieveResponse as OtaUpdateRetrieveResponse
+from .partner_campaign_list_params import PartnerCampaignListParams as PartnerCampaignListParams
 from .phone_number_delete_response import PhoneNumberDeleteResponse as PhoneNumberDeleteResponse
 from .phone_number_update_response import PhoneNumberUpdateResponse as PhoneNumberUpdateResponse
 from .portability_check_run_params import PortabilityCheckRunParams as PortabilityCheckRunParams
@@ -475,6 +476,8 @@ from .number_block_order_list_params import NumberBlockOrderListParams as Number
 from .number_order_retrieve_response import NumberOrderRetrieveResponse as NumberOrderRetrieveResponse
 from .number_reservation_list_params import NumberReservationListParams as NumberReservationListParams
 from .oauth_client_retrieve_response import OAuthClientRetrieveResponse as OAuthClientRetrieveResponse
+from .partner_campaign_list_response import PartnerCampaignListResponse as PartnerCampaignListResponse
+from .partner_campaign_update_params import PartnerCampaignUpdateParams as PartnerCampaignUpdateParams
 from .phone_number_retrieve_response import PhoneNumberRetrieveResponse as PhoneNumberRetrieveResponse
 from .portability_check_run_response import PortabilityCheckRunResponse as PortabilityCheckRunResponse
 from .portout_update_status_response import PortoutUpdateStatusResponse as PortoutUpdateStatusResponse
@@ -1085,6 +1088,9 @@ from .messaging_profile_list_short_codes_params import (
 from .mobile_voice_connection_retrieve_response import (
     MobileVoiceConnectionRetrieveResponse as MobileVoiceConnectionRetrieveResponse,
 )
+from .partner_campaign_list_shared_by_me_params import (
+    PartnerCampaignListSharedByMeParams as PartnerCampaignListSharedByMeParams,
+)
 from .public_internet_gateway_retrieve_response import (
     PublicInternetGatewayRetrieveResponse as PublicInternetGatewayRetrieveResponse,
 )
@@ -1174,6 +1180,9 @@ from .messaging_profile_list_short_codes_response import (
 )
 from .number_order_phone_number_retrieve_response import (
     NumberOrderPhoneNumberRetrieveResponse as NumberOrderPhoneNumberRetrieveResponse,
+)
+from .partner_campaign_list_shared_by_me_response import (
+    PartnerCampaignListSharedByMeResponse as PartnerCampaignListSharedByMeResponse,
 )
 from .porting_order_retrieve_sub_request_response import (
     PortingOrderRetrieveSubRequestResponse as PortingOrderRetrieveSubRequestResponse,
@@ -1265,6 +1274,9 @@ from .call_recording_transcription_saved_webhook_event import (
 from .conference_participant_speak_ended_webhook_event import (
     ConferenceParticipantSpeakEndedWebhookEvent as ConferenceParticipantSpeakEndedWebhookEvent,
 )
+from .phone_number_assignment_by_profile_assign_params import (
+    PhoneNumberAssignmentByProfileAssignParams as PhoneNumberAssignmentByProfileAssignParams,
+)
 from .sim_card_data_usage_notification_create_response import (
     SimCardDataUsageNotificationCreateResponse as SimCardDataUsageNotificationCreateResponse,
 )
@@ -1280,6 +1292,9 @@ from .sub_number_order_update_requirement_group_params import (
 from .call_machine_premium_greeting_ended_webhook_event import (
     CallMachinePremiumGreetingEndedWebhookEvent as CallMachinePremiumGreetingEndedWebhookEvent,
 )
+from .partner_campaign_retrieve_sharing_status_response import (
+    PartnerCampaignRetrieveSharingStatusResponse as PartnerCampaignRetrieveSharingStatusResponse,
+)
 from .sim_card_list_wireless_connectivity_logs_response import (
     SimCardListWirelessConnectivityLogsResponse as SimCardListWirelessConnectivityLogsResponse,
 )
@@ -1294,6 +1309,9 @@ from .conference_participant_speak_started_webhook_event import (
 )
 from .managed_account_update_global_channel_limit_params import (
     ManagedAccountUpdateGlobalChannelLimitParams as ManagedAccountUpdateGlobalChannelLimitParams,
+)
+from .phone_number_assignment_by_profile_assign_response import (
+    PhoneNumberAssignmentByProfileAssignResponse as PhoneNumberAssignmentByProfileAssignResponse,
 )
 from .sim_card_data_usage_notification_retrieve_response import (
     SimCardDataUsageNotificationRetrieveResponse as SimCardDataUsageNotificationRetrieveResponse,
@@ -1358,6 +1376,9 @@ from .customer_service_record_verify_phone_number_coverage_params import (
 from .number_order_phone_number_update_requirement_group_response import (
     NumberOrderPhoneNumberUpdateRequirementGroupResponse as NumberOrderPhoneNumberUpdateRequirementGroupResponse,
 )
+from .phone_number_assignment_by_profile_retrieve_status_response import (
+    PhoneNumberAssignmentByProfileRetrieveStatusResponse as PhoneNumberAssignmentByProfileRetrieveStatusResponse,
+)
 from .customer_service_record_verify_phone_number_coverage_response import (
     CustomerServiceRecordVerifyPhoneNumberCoverageResponse as CustomerServiceRecordVerifyPhoneNumberCoverageResponse,
 )
@@ -1369,6 +1390,12 @@ from .messaging_hosted_number_order_create_verification_codes_response import (
 )
 from .managed_account_get_allocatable_global_outbound_channels_response import (
     ManagedAccountGetAllocatableGlobalOutboundChannelsResponse as ManagedAccountGetAllocatableGlobalOutboundChannelsResponse,
+)
+from .phone_number_assignment_by_profile_retrieve_phone_number_status_params import (
+    PhoneNumberAssignmentByProfileRetrievePhoneNumberStatusParams as PhoneNumberAssignmentByProfileRetrievePhoneNumberStatusParams,
+)
+from .phone_number_assignment_by_profile_retrieve_phone_number_status_response import (
+    PhoneNumberAssignmentByProfileRetrievePhoneNumberStatusResponse as PhoneNumberAssignmentByProfileRetrievePhoneNumberStatusResponse,
 )
 
 # Rebuild cyclical models only after all modules are imported.

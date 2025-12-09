@@ -4,12 +4,12 @@ from __future__ import annotations
 
 from typing_extensions import Annotated, TypedDict
 
-from ..._utils import PropertyInfo
+from .._utils import PropertyInfo
 
-__all__ = ["PartnerCampaignGetSharedByMeParams"]
+__all__ = ["PartnerCampaignListSharedByMeParams"]
 
 
-class PartnerCampaignGetSharedByMeParams(TypedDict, total=False):
+class PartnerCampaignListSharedByMeParams(TypedDict, total=False):
     page: int
     """The 1-indexed page number to get. The default value is `1`."""
 

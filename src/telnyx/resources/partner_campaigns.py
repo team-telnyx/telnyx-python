@@ -6,20 +6,26 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
-from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import (
+from ..types import (
+    partner_campaign_list_params,
+    partner_campaign_update_params,
+    partner_campaign_list_shared_by_me_params,
+)
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from .._utils import maybe_transform, async_maybe_transform
+from .._compat import cached_property
+from .._resource import SyncAPIResource, AsyncAPIResource
+from .._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._base_client import make_request_options
-from ...types.number_10dlc import partner_campaign_list_params, partner_campaign_update_params
-from ...types.telnyx_downstream_campaign import TelnyxDownstreamCampaign
-from ...types.number_10dlc.partner_campaign_list_response import PartnerCampaignListResponse
+from .._base_client import make_request_options
+from ..types.telnyx_downstream_campaign import TelnyxDownstreamCampaign
+from ..types.partner_campaign_list_response import PartnerCampaignListResponse
+from ..types.partner_campaign_list_shared_by_me_response import PartnerCampaignListSharedByMeResponse
+from ..types.partner_campaign_retrieve_sharing_status_response import PartnerCampaignRetrieveSharingStatusResponse
 
 __all__ = ["PartnerCampaignsResource", "AsyncPartnerCampaignsResource"]
 
@@ -195,6 +201,92 @@ class PartnerCampaignsResource(SyncAPIResource):
             cast_to=PartnerCampaignListResponse,
         )
 
+    def list_shared_by_me(
+        self,
+        *,
+        page: int | Omit = omit,
+        records_per_page: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> PartnerCampaignListSharedByMeResponse:
+        """
+        Get all partner campaigns you have shared to Telnyx in a paginated fashion
+
+        This endpoint is currently limited to only returning shared campaigns that
+        Telnyx has accepted. In other words, shared but pending campaigns are currently
+        omitted from the response from this endpoint.
+
+        Args:
+          page: The 1-indexed page number to get. The default value is `1`.
+
+          records_per_page: The amount of records per page, limited to between 1 and 500 inclusive. The
+              default value is `10`.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get(
+            "/10dlc/partnerCampaign/sharedByMe",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "page": page,
+                        "records_per_page": records_per_page,
+                    },
+                    partner_campaign_list_shared_by_me_params.PartnerCampaignListSharedByMeParams,
+                ),
+            ),
+            cast_to=PartnerCampaignListSharedByMeResponse,
+        )
+
+    def retrieve_sharing_status(
+        self,
+        campaign_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> PartnerCampaignRetrieveSharingStatusResponse:
+        """
+        Get Sharing Status
+
+        Args:
+          campaign_id: ID of the campaign in question
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not campaign_id:
+            raise ValueError(f"Expected a non-empty value for `campaign_id` but received {campaign_id!r}")
+        return self._get(
+            f"/10dlc/partnerCampaign/{campaign_id}/sharing",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=PartnerCampaignRetrieveSharingStatusResponse,
+        )
+
 
 class AsyncPartnerCampaignsResource(AsyncAPIResource):
     @cached_property
@@ -367,6 +459,92 @@ class AsyncPartnerCampaignsResource(AsyncAPIResource):
             cast_to=PartnerCampaignListResponse,
         )
 
+    async def list_shared_by_me(
+        self,
+        *,
+        page: int | Omit = omit,
+        records_per_page: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> PartnerCampaignListSharedByMeResponse:
+        """
+        Get all partner campaigns you have shared to Telnyx in a paginated fashion
+
+        This endpoint is currently limited to only returning shared campaigns that
+        Telnyx has accepted. In other words, shared but pending campaigns are currently
+        omitted from the response from this endpoint.
+
+        Args:
+          page: The 1-indexed page number to get. The default value is `1`.
+
+          records_per_page: The amount of records per page, limited to between 1 and 500 inclusive. The
+              default value is `10`.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._get(
+            "/10dlc/partnerCampaign/sharedByMe",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "page": page,
+                        "records_per_page": records_per_page,
+                    },
+                    partner_campaign_list_shared_by_me_params.PartnerCampaignListSharedByMeParams,
+                ),
+            ),
+            cast_to=PartnerCampaignListSharedByMeResponse,
+        )
+
+    async def retrieve_sharing_status(
+        self,
+        campaign_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> PartnerCampaignRetrieveSharingStatusResponse:
+        """
+        Get Sharing Status
+
+        Args:
+          campaign_id: ID of the campaign in question
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not campaign_id:
+            raise ValueError(f"Expected a non-empty value for `campaign_id` but received {campaign_id!r}")
+        return await self._get(
+            f"/10dlc/partnerCampaign/{campaign_id}/sharing",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=PartnerCampaignRetrieveSharingStatusResponse,
+        )
+
 
 class PartnerCampaignsResourceWithRawResponse:
     def __init__(self, partner_campaigns: PartnerCampaignsResource) -> None:
@@ -380,6 +558,12 @@ class PartnerCampaignsResourceWithRawResponse:
         )
         self.list = to_raw_response_wrapper(
             partner_campaigns.list,
+        )
+        self.list_shared_by_me = to_raw_response_wrapper(
+            partner_campaigns.list_shared_by_me,
+        )
+        self.retrieve_sharing_status = to_raw_response_wrapper(
+            partner_campaigns.retrieve_sharing_status,
         )
 
 
@@ -396,6 +580,12 @@ class AsyncPartnerCampaignsResourceWithRawResponse:
         self.list = async_to_raw_response_wrapper(
             partner_campaigns.list,
         )
+        self.list_shared_by_me = async_to_raw_response_wrapper(
+            partner_campaigns.list_shared_by_me,
+        )
+        self.retrieve_sharing_status = async_to_raw_response_wrapper(
+            partner_campaigns.retrieve_sharing_status,
+        )
 
 
 class PartnerCampaignsResourceWithStreamingResponse:
@@ -411,6 +601,12 @@ class PartnerCampaignsResourceWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             partner_campaigns.list,
         )
+        self.list_shared_by_me = to_streamed_response_wrapper(
+            partner_campaigns.list_shared_by_me,
+        )
+        self.retrieve_sharing_status = to_streamed_response_wrapper(
+            partner_campaigns.retrieve_sharing_status,
+        )
 
 
 class AsyncPartnerCampaignsResourceWithStreamingResponse:
@@ -425,4 +621,10 @@ class AsyncPartnerCampaignsResourceWithStreamingResponse:
         )
         self.list = async_to_streamed_response_wrapper(
             partner_campaigns.list,
+        )
+        self.list_shared_by_me = async_to_streamed_response_wrapper(
+            partner_campaigns.list_shared_by_me,
+        )
+        self.retrieve_sharing_status = async_to_streamed_response_wrapper(
+            partner_campaigns.retrieve_sharing_status,
         )
