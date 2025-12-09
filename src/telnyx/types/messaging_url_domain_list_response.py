@@ -3,9 +3,8 @@
 from typing import List, Optional
 
 from .._models import BaseModel
-from .pagination_meta import PaginationMeta
 
-__all__ = ["MessagingURLDomainListResponse", "Data"]
+__all__ = ["MessagingURLDomainListResponse", "Data", "Meta"]
 
 
 class Data(BaseModel):
@@ -18,7 +17,17 @@ class Data(BaseModel):
     use_case: Optional[str] = None
 
 
+class Meta(BaseModel):
+    page_number: int
+
+    page_size: int
+
+    total_pages: int
+
+    total_results: int
+
+
 class MessagingURLDomainListResponse(BaseModel):
     data: Optional[List[Data]] = None
 
-    meta: Optional[PaginationMeta] = None
+    meta: Optional[Meta] = None

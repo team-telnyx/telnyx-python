@@ -3,13 +3,22 @@
 from typing import List, Optional
 
 from .._models import BaseModel
-from .pagination_meta import PaginationMeta
 from .messaging_profile import MessagingProfile
 
-__all__ = ["MessagingProfileListResponse"]
+__all__ = ["MessagingProfileListResponse", "Meta"]
+
+
+class Meta(BaseModel):
+    page_number: int
+
+    page_size: int
+
+    total_pages: int
+
+    total_results: int
 
 
 class MessagingProfileListResponse(BaseModel):
     data: Optional[List[MessagingProfile]] = None
 
-    meta: Optional[PaginationMeta] = None
+    meta: Optional[Meta] = None

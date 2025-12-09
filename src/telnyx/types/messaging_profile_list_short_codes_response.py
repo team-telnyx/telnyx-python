@@ -3,13 +3,22 @@
 from typing import List, Optional
 
 from .._models import BaseModel
-from .pagination_meta import PaginationMeta
 from .shared.short_code import ShortCode
 
-__all__ = ["MessagingProfileListShortCodesResponse"]
+__all__ = ["MessagingProfileListShortCodesResponse", "Meta"]
+
+
+class Meta(BaseModel):
+    page_number: int
+
+    page_size: int
+
+    total_pages: int
+
+    total_results: int
 
 
 class MessagingProfileListShortCodesResponse(BaseModel):
     data: Optional[List[ShortCode]] = None
 
-    meta: Optional[PaginationMeta] = None
+    meta: Optional[Meta] = None

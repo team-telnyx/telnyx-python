@@ -3,10 +3,19 @@
 from typing import List
 
 from ..._models import BaseModel
-from ..pagination_meta import PaginationMeta
 from .auto_resp_config import AutoRespConfig
 
-__all__ = ["AutorespConfigListResponse"]
+__all__ = ["AutorespConfigListResponse", "Meta"]
+
+
+class Meta(BaseModel):
+    page_number: int
+
+    page_size: int
+
+    total_pages: int
+
+    total_results: int
 
 
 class AutorespConfigListResponse(BaseModel):
@@ -14,4 +23,4 @@ class AutorespConfigListResponse(BaseModel):
 
     data: List[AutoRespConfig]
 
-    meta: PaginationMeta
+    meta: Meta
