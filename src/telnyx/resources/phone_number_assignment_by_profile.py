@@ -4,29 +4,27 @@ from __future__ import annotations
 
 import httpx
 
-from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
-from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import (
+from ..types import (
+    phone_number_assignment_by_profile_assign_params,
+    phone_number_assignment_by_profile_retrieve_phone_number_status_params,
+)
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from .._utils import maybe_transform, async_maybe_transform
+from .._compat import cached_property
+from .._resource import SyncAPIResource, AsyncAPIResource
+from .._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._base_client import make_request_options
-from ...types.number_10dlc import (
-    phone_number_assignment_by_profile_assign_params,
-    phone_number_assignment_by_profile_get_phone_number_status_params,
+from .._base_client import make_request_options
+from ..types.phone_number_assignment_by_profile_assign_response import PhoneNumberAssignmentByProfileAssignResponse
+from ..types.phone_number_assignment_by_profile_retrieve_status_response import (
+    PhoneNumberAssignmentByProfileRetrieveStatusResponse,
 )
-from ...types.number_10dlc.phone_number_assignment_by_profile_assign_response import (
-    PhoneNumberAssignmentByProfileAssignResponse,
-)
-from ...types.number_10dlc.phone_number_assignment_by_profile_get_task_status_response import (
-    PhoneNumberAssignmentByProfileGetTaskStatusResponse,
-)
-from ...types.number_10dlc.phone_number_assignment_by_profile_get_phone_number_status_response import (
-    PhoneNumberAssignmentByProfileGetPhoneNumberStatusResponse,
+from ..types.phone_number_assignment_by_profile_retrieve_phone_number_status_response import (
+    PhoneNumberAssignmentByProfileRetrievePhoneNumberStatusResponse,
 )
 
 __all__ = ["PhoneNumberAssignmentByProfileResource", "AsyncPhoneNumberAssignmentByProfileResource"]
@@ -108,7 +106,7 @@ class PhoneNumberAssignmentByProfileResource(SyncAPIResource):
             cast_to=PhoneNumberAssignmentByProfileAssignResponse,
         )
 
-    def get_phone_number_status(
+    def retrieve_phone_number_status(
         self,
         task_id: str,
         *,
@@ -120,7 +118,7 @@ class PhoneNumberAssignmentByProfileResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PhoneNumberAssignmentByProfileGetPhoneNumberStatusResponse:
+    ) -> PhoneNumberAssignmentByProfileRetrievePhoneNumberStatusResponse:
         """
         Check the status of the individual phone number/campaign assignments associated
         with the supplied `taskId`.
@@ -148,13 +146,13 @@ class PhoneNumberAssignmentByProfileResource(SyncAPIResource):
                         "page": page,
                         "records_per_page": records_per_page,
                     },
-                    phone_number_assignment_by_profile_get_phone_number_status_params.PhoneNumberAssignmentByProfileGetPhoneNumberStatusParams,
+                    phone_number_assignment_by_profile_retrieve_phone_number_status_params.PhoneNumberAssignmentByProfileRetrievePhoneNumberStatusParams,
                 ),
             ),
-            cast_to=PhoneNumberAssignmentByProfileGetPhoneNumberStatusResponse,
+            cast_to=PhoneNumberAssignmentByProfileRetrievePhoneNumberStatusResponse,
         )
 
-    def get_task_status(
+    def retrieve_status(
         self,
         task_id: str,
         *,
@@ -164,7 +162,7 @@ class PhoneNumberAssignmentByProfileResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PhoneNumberAssignmentByProfileGetTaskStatusResponse:
+    ) -> PhoneNumberAssignmentByProfileRetrieveStatusResponse:
         """
         Check the status of the task associated with assigning all phone numbers on a
         messaging profile to a campaign by `taskId`.
@@ -185,7 +183,7 @@ class PhoneNumberAssignmentByProfileResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=PhoneNumberAssignmentByProfileGetTaskStatusResponse,
+            cast_to=PhoneNumberAssignmentByProfileRetrieveStatusResponse,
         )
 
 
@@ -265,7 +263,7 @@ class AsyncPhoneNumberAssignmentByProfileResource(AsyncAPIResource):
             cast_to=PhoneNumberAssignmentByProfileAssignResponse,
         )
 
-    async def get_phone_number_status(
+    async def retrieve_phone_number_status(
         self,
         task_id: str,
         *,
@@ -277,7 +275,7 @@ class AsyncPhoneNumberAssignmentByProfileResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PhoneNumberAssignmentByProfileGetPhoneNumberStatusResponse:
+    ) -> PhoneNumberAssignmentByProfileRetrievePhoneNumberStatusResponse:
         """
         Check the status of the individual phone number/campaign assignments associated
         with the supplied `taskId`.
@@ -305,13 +303,13 @@ class AsyncPhoneNumberAssignmentByProfileResource(AsyncAPIResource):
                         "page": page,
                         "records_per_page": records_per_page,
                     },
-                    phone_number_assignment_by_profile_get_phone_number_status_params.PhoneNumberAssignmentByProfileGetPhoneNumberStatusParams,
+                    phone_number_assignment_by_profile_retrieve_phone_number_status_params.PhoneNumberAssignmentByProfileRetrievePhoneNumberStatusParams,
                 ),
             ),
-            cast_to=PhoneNumberAssignmentByProfileGetPhoneNumberStatusResponse,
+            cast_to=PhoneNumberAssignmentByProfileRetrievePhoneNumberStatusResponse,
         )
 
-    async def get_task_status(
+    async def retrieve_status(
         self,
         task_id: str,
         *,
@@ -321,7 +319,7 @@ class AsyncPhoneNumberAssignmentByProfileResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PhoneNumberAssignmentByProfileGetTaskStatusResponse:
+    ) -> PhoneNumberAssignmentByProfileRetrieveStatusResponse:
         """
         Check the status of the task associated with assigning all phone numbers on a
         messaging profile to a campaign by `taskId`.
@@ -342,7 +340,7 @@ class AsyncPhoneNumberAssignmentByProfileResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=PhoneNumberAssignmentByProfileGetTaskStatusResponse,
+            cast_to=PhoneNumberAssignmentByProfileRetrieveStatusResponse,
         )
 
 
@@ -353,11 +351,11 @@ class PhoneNumberAssignmentByProfileResourceWithRawResponse:
         self.assign = to_raw_response_wrapper(
             phone_number_assignment_by_profile.assign,
         )
-        self.get_phone_number_status = to_raw_response_wrapper(
-            phone_number_assignment_by_profile.get_phone_number_status,
+        self.retrieve_phone_number_status = to_raw_response_wrapper(
+            phone_number_assignment_by_profile.retrieve_phone_number_status,
         )
-        self.get_task_status = to_raw_response_wrapper(
-            phone_number_assignment_by_profile.get_task_status,
+        self.retrieve_status = to_raw_response_wrapper(
+            phone_number_assignment_by_profile.retrieve_status,
         )
 
 
@@ -368,11 +366,11 @@ class AsyncPhoneNumberAssignmentByProfileResourceWithRawResponse:
         self.assign = async_to_raw_response_wrapper(
             phone_number_assignment_by_profile.assign,
         )
-        self.get_phone_number_status = async_to_raw_response_wrapper(
-            phone_number_assignment_by_profile.get_phone_number_status,
+        self.retrieve_phone_number_status = async_to_raw_response_wrapper(
+            phone_number_assignment_by_profile.retrieve_phone_number_status,
         )
-        self.get_task_status = async_to_raw_response_wrapper(
-            phone_number_assignment_by_profile.get_task_status,
+        self.retrieve_status = async_to_raw_response_wrapper(
+            phone_number_assignment_by_profile.retrieve_status,
         )
 
 
@@ -383,11 +381,11 @@ class PhoneNumberAssignmentByProfileResourceWithStreamingResponse:
         self.assign = to_streamed_response_wrapper(
             phone_number_assignment_by_profile.assign,
         )
-        self.get_phone_number_status = to_streamed_response_wrapper(
-            phone_number_assignment_by_profile.get_phone_number_status,
+        self.retrieve_phone_number_status = to_streamed_response_wrapper(
+            phone_number_assignment_by_profile.retrieve_phone_number_status,
         )
-        self.get_task_status = to_streamed_response_wrapper(
-            phone_number_assignment_by_profile.get_task_status,
+        self.retrieve_status = to_streamed_response_wrapper(
+            phone_number_assignment_by_profile.retrieve_status,
         )
 
 
@@ -398,9 +396,9 @@ class AsyncPhoneNumberAssignmentByProfileResourceWithStreamingResponse:
         self.assign = async_to_streamed_response_wrapper(
             phone_number_assignment_by_profile.assign,
         )
-        self.get_phone_number_status = async_to_streamed_response_wrapper(
-            phone_number_assignment_by_profile.get_phone_number_status,
+        self.retrieve_phone_number_status = async_to_streamed_response_wrapper(
+            phone_number_assignment_by_profile.retrieve_phone_number_status,
         )
-        self.get_task_status = async_to_streamed_response_wrapper(
-            phone_number_assignment_by_profile.get_task_status,
+        self.retrieve_status = async_to_streamed_response_wrapper(
+            phone_number_assignment_by_profile.retrieve_status,
         )

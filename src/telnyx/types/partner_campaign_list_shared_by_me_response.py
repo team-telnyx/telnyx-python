@@ -4,9 +4,9 @@ from typing import List, Optional
 
 from pydantic import Field as FieldInfo
 
-from ..._models import BaseModel
+from .._models import BaseModel
 
-__all__ = ["PartnerCampaignGetSharedByMeResponse", "Record"]
+__all__ = ["PartnerCampaignListSharedByMeResponse", "Record"]
 
 
 class Record(BaseModel):
@@ -41,7 +41,7 @@ class Record(BaseModel):
     """
 
 
-class PartnerCampaignGetSharedByMeResponse(BaseModel):
+class PartnerCampaignListSharedByMeResponse(BaseModel):
     page: Optional[int] = None
 
     records: Optional[List[Record]] = None

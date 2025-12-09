@@ -4,9 +4,9 @@ from typing import List
 
 from pydantic import Field as FieldInfo
 
-from ..._models import BaseModel
+from .._models import BaseModel
 
-__all__ = ["PhoneNumberAssignmentByProfileGetPhoneNumberStatusResponse", "Record"]
+__all__ = ["PhoneNumberAssignmentByProfileRetrievePhoneNumberStatusResponse", "Record"]
 
 
 class Record(BaseModel):
@@ -20,5 +20,5 @@ class Record(BaseModel):
     """The ID of the task associated with the phone number."""
 
 
-class PhoneNumberAssignmentByProfileGetPhoneNumberStatusResponse(BaseModel):
+class PhoneNumberAssignmentByProfileRetrievePhoneNumberStatusResponse(BaseModel):
     records: List[Record]

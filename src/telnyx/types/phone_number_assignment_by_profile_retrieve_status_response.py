@@ -6,12 +6,12 @@ from typing_extensions import Literal
 
 from pydantic import Field as FieldInfo
 
-from ..._models import BaseModel
+from .._models import BaseModel
 
-__all__ = ["PhoneNumberAssignmentByProfileGetTaskStatusResponse"]
+__all__ = ["PhoneNumberAssignmentByProfileRetrieveStatusResponse"]
 
 
-class PhoneNumberAssignmentByProfileGetTaskStatusResponse(BaseModel):
+class PhoneNumberAssignmentByProfileRetrieveStatusResponse(BaseModel):
     status: Literal["pending", "processing", "completed", "failed"]
     """An enumeration."""
 
