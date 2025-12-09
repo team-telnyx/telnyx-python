@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -14,7 +14,8 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._base_client import make_request_options
+from ...pagination import SyncDefaultPagination, AsyncDefaultPagination
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.portouts import event_list_params
 from ...types.portouts.event_list_response import EventListResponse
 from ...types.portouts.event_retrieve_response import EventRetrieveResponse
@@ -86,7 +87,7 @@ class EventsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> EventListResponse:
+    ) -> SyncDefaultPagination[EventListResponse]:
         """
         Returns a list of all port-out events.
 
@@ -106,8 +107,9 @@ class EventsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/portouts/events",
+            page=SyncDefaultPagination[EventListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -121,7 +123,7 @@ class EventsResource(SyncAPIResource):
                     event_list_params.EventListParams,
                 ),
             ),
-            cast_to=EventListResponse,
+            model=EventListResponse,
         )
 
     def republish(
@@ -212,7 +214,7 @@ class AsyncEventsResource(AsyncAPIResource):
             cast_to=EventRetrieveResponse,
         )
 
-    async def list(
+    def list(
         self,
         *,
         filter: event_list_params.Filter | Omit = omit,
@@ -223,7 +225,7 @@ class AsyncEventsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> EventListResponse:
+    ) -> AsyncPaginator[EventListResponse, AsyncDefaultPagination[EventListResponse]]:
         """
         Returns a list of all port-out events.
 
@@ -243,14 +245,15 @@ class AsyncEventsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/portouts/events",
+            page=AsyncDefaultPagination[EventListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "filter": filter,
                         "page": page,
@@ -258,7 +261,7 @@ class AsyncEventsResource(AsyncAPIResource):
                     event_list_params.EventListParams,
                 ),
             ),
-            cast_to=EventListResponse,
+            model=EventListResponse,
         )
 
     async def republish(

@@ -1,16 +1,15 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Optional
 from datetime import datetime
 from typing_extensions import Literal
 
 from ..._models import BaseModel
-from ..pagination_meta import PaginationMeta
 
-__all__ = ["ActionRequirementListResponse", "Data"]
+__all__ = ["ActionRequirementListResponse"]
 
 
-class Data(BaseModel):
+class ActionRequirementListResponse(BaseModel):
     id: Optional[str] = None
     """Identifies the action requirement"""
 
@@ -40,9 +39,3 @@ class Data(BaseModel):
 
     updated_at: Optional[datetime] = None
     """ISO 8601 formatted date-time indicating when the resource was updated"""
-
-
-class ActionRequirementListResponse(BaseModel):
-    data: Optional[List[Data]] = None
-
-    meta: Optional[PaginationMeta] = None

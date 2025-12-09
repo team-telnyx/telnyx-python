@@ -343,7 +343,7 @@ class ConversationsResource(SyncAPIResource):
         sent_at: Union[str, datetime] | Omit = omit,
         tool_call_id: str | Omit = omit,
         tool_calls: Iterable[Dict[str, object]] | Omit = omit,
-        tool_choice: Union[str, object] | Omit = omit,
+        tool_choice: Union[str, Dict[str, object]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -711,7 +711,7 @@ class AsyncConversationsResource(AsyncAPIResource):
         sent_at: Union[str, datetime] | Omit = omit,
         tool_call_id: str | Omit = omit,
         tool_calls: Iterable[Dict[str, object]] | Omit = omit,
-        tool_choice: Union[str, object] | Omit = omit,
+        tool_choice: Union[str, Dict[str, object]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

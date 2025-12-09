@@ -2,11 +2,12 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
+from typing_extensions import Annotated, TypedDict
 
 from .._types import SequenceNotStr
+from .._utils import PropertyInfo
 
-__all__ = ["ReportListWdrsParams", "Page"]
+__all__ = ["ReportListWdrsParams"]
 
 
 class ReportListWdrsParams(TypedDict, total=False):
@@ -25,11 +26,9 @@ class ReportListWdrsParams(TypedDict, total=False):
     mnc: str
     """Mobile network code"""
 
-    page: Page
-    """Consolidated page parameter (deepObject style).
+    page_number: Annotated[int, PropertyInfo(alias="page[number]")]
 
-    Originally: page[number], page[size]
-    """
+    page_size: Annotated[int, PropertyInfo(alias="page[size]")]
 
     phone_number: str
     """Phone number"""
@@ -51,16 +50,3 @@ class ReportListWdrsParams(TypedDict, total=False):
 
     start_date: str
     """Start date"""
-
-
-class Page(TypedDict, total=False):
-    """Consolidated page parameter (deepObject style).
-
-    Originally: page[number], page[size]
-    """
-
-    number: int
-    """Page number"""
-
-    size: int
-    """Size of the page"""

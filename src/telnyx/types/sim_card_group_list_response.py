@@ -1,15 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Optional
 
 from .._models import BaseModel
 from .consumed_data import ConsumedData
-from .pagination_meta import PaginationMeta
 
-__all__ = ["SimCardGroupListResponse", "Data", "DataDataLimit"]
+__all__ = ["SimCardGroupListResponse", "DataLimit"]
 
 
-class DataDataLimit(BaseModel):
+class DataLimit(BaseModel):
     """Upper limit on the amount of data the SIM cards, within the group, can use."""
 
     amount: Optional[str] = None
@@ -17,7 +16,7 @@ class DataDataLimit(BaseModel):
     unit: Optional[str] = None
 
 
-class Data(BaseModel):
+class SimCardGroupListResponse(BaseModel):
     id: Optional[str] = None
     """Identifies the resource."""
 
@@ -27,7 +26,7 @@ class Data(BaseModel):
     created_at: Optional[str] = None
     """ISO 8601 formatted date-time indicating when the resource was created."""
 
-    data_limit: Optional[DataDataLimit] = None
+    data_limit: Optional[DataLimit] = None
     """Upper limit on the amount of data the SIM cards, within the group, can use."""
 
     default: Optional[bool] = None
@@ -53,9 +52,3 @@ class Data(BaseModel):
 
     wireless_blocklist_id: Optional[str] = None
     """The identification of the related Wireless Blocklist resource."""
-
-
-class SimCardGroupListResponse(BaseModel):
-    data: Optional[List[Data]] = None
-
-    meta: Optional[PaginationMeta] = None

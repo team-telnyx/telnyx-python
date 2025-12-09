@@ -5,7 +5,7 @@ from typing import Optional
 from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
-from ..campaign_sharing_status import CampaignSharingStatus
+from .campaign_sharing_status import CampaignSharingStatus
 
 __all__ = ["CampaignGetSharingStatusResponse"]
 

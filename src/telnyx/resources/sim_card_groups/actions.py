@@ -16,13 +16,14 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._base_client import make_request_options
+from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.sim_card_groups import (
     action_list_params,
     action_set_wireless_blocklist_params,
     action_set_private_wireless_gateway_params,
 )
-from ...types.sim_card_groups.action_list_response import ActionListResponse
+from ...types.sim_card_groups.sim_card_group_action import SimCardGroupAction
 from ...types.sim_card_groups.action_retrieve_response import ActionRetrieveResponse
 from ...types.sim_card_groups.action_set_wireless_blocklist_response import ActionSetWirelessBlocklistResponse
 from ...types.sim_card_groups.action_remove_wireless_blocklist_response import ActionRemoveWirelessBlocklistResponse
@@ -110,7 +111,7 @@ class ActionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ActionListResponse:
+    ) -> SyncDefaultFlatPagination[SimCardGroupAction]:
         """This API allows listing a paginated collection a SIM card group actions.
 
         It
@@ -136,8 +137,9 @@ class ActionsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/sim_card_group_actions",
+            page=SyncDefaultFlatPagination[SimCardGroupAction],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -154,7 +156,7 @@ class ActionsResource(SyncAPIResource):
                     action_list_params.ActionListParams,
                 ),
             ),
-            cast_to=ActionListResponse,
+            model=SimCardGroupAction,
         )
 
     def remove_private_wireless_gateway(
@@ -369,7 +371,7 @@ class AsyncActionsResource(AsyncAPIResource):
             cast_to=ActionRetrieveResponse,
         )
 
-    async def list(
+    def list(
         self,
         *,
         filter_sim_card_group_id: str | Omit = omit,
@@ -389,7 +391,7 @@ class AsyncActionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ActionListResponse:
+    ) -> AsyncPaginator[SimCardGroupAction, AsyncDefaultFlatPagination[SimCardGroupAction]]:
         """This API allows listing a paginated collection a SIM card group actions.
 
         It
@@ -415,14 +417,15 @@ class AsyncActionsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/sim_card_group_actions",
+            page=AsyncDefaultFlatPagination[SimCardGroupAction],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "filter_sim_card_group_id": filter_sim_card_group_id,
                         "filter_status": filter_status,
@@ -433,7 +436,7 @@ class AsyncActionsResource(AsyncAPIResource):
                     action_list_params.ActionListParams,
                 ),
             ),
-            cast_to=ActionListResponse,
+            model=SimCardGroupAction,
         )
 
     async def remove_private_wireless_gateway(

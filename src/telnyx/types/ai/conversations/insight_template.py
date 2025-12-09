@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Union, Optional
+from typing import Dict, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -18,7 +18,7 @@ class InsightTemplate(BaseModel):
 
     insight_type: Optional[Literal["custom", "default"]] = None
 
-    json_schema: Union[str, object, None] = None
+    json_schema: Union[str, Dict[str, object], None] = None
     """If specified, the output will follow the JSON schema."""
 
     name: Optional[str] = None

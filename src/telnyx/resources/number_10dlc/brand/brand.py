@@ -6,7 +6,6 @@ from typing_extensions import Literal
 
 import httpx
 
-from ....types import Vertical, EntityType, StockExchange, AltBusinessIDType, BrandIdentityStatus
 from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
@@ -17,7 +16,8 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._base_client import make_request_options
+from ....pagination import SyncPerPagePaginationV2, AsyncPerPagePaginationV2
+from ...._base_client import AsyncPaginator, make_request_options
 from .external_vetting import (
     ExternalVettingResource,
     AsyncExternalVettingResource,
@@ -26,14 +26,23 @@ from .external_vetting import (
     ExternalVettingResourceWithStreamingResponse,
     AsyncExternalVettingResourceWithStreamingResponse,
 )
-from ....types.vertical import Vertical
-from ....types.entity_type import EntityType
-from ....types.number_10dlc import brand_list_params, brand_create_params, brand_update_params
-from ....types.telnyx_brand import TelnyxBrand
-from ....types.stock_exchange import StockExchange
-from ....types.alt_business_id_type import AltBusinessIDType
-from ....types.brand_identity_status import BrandIdentityStatus
+from ....types.number_10dlc import (
+    Vertical,
+    EntityType,
+    StockExchange,
+    AltBusinessIDType,
+    BrandIdentityStatus,
+    brand_list_params,
+    brand_create_params,
+    brand_update_params,
+)
+from ....types.number_10dlc.vertical import Vertical
+from ....types.number_10dlc.entity_type import EntityType
+from ....types.number_10dlc.telnyx_brand import TelnyxBrand
+from ....types.number_10dlc.stock_exchange import StockExchange
 from ....types.number_10dlc.brand_list_response import BrandListResponse
+from ....types.number_10dlc.alt_business_id_type import AltBusinessIDType
+from ....types.number_10dlc.brand_identity_status import BrandIdentityStatus
 from ....types.number_10dlc.brand_retrieve_response import BrandRetrieveResponse
 from ....types.number_10dlc.brand_get_feedback_response import BrandGetFeedbackResponse
 
@@ -408,7 +417,7 @@ class BrandResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> BrandListResponse:
+    ) -> SyncPerPagePaginationV2[BrandListResponse]:
         """
         This endpoint is used to list all brands associated with your organization.
 
@@ -430,8 +439,9 @@ class BrandResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/10dlc/brand",
+            page=SyncPerPagePaginationV2[BrandListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -452,7 +462,7 @@ class BrandResource(SyncAPIResource):
                     brand_list_params.BrandListParams,
                 ),
             ),
-            cast_to=BrandListResponse,
+            model=BrandListResponse,
         )
 
     def delete(
@@ -943,7 +953,7 @@ class AsyncBrandResource(AsyncAPIResource):
             cast_to=TelnyxBrand,
         )
 
-    async def list(
+    def list(
         self,
         *,
         brand_id: str | Omit = omit,
@@ -977,7 +987,7 @@ class AsyncBrandResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> BrandListResponse:
+    ) -> AsyncPaginator[BrandListResponse, AsyncPerPagePaginationV2[BrandListResponse]]:
         """
         This endpoint is used to list all brands associated with your organization.
 
@@ -999,14 +1009,15 @@ class AsyncBrandResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/10dlc/brand",
+            page=AsyncPerPagePaginationV2[BrandListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "brand_id": brand_id,
                         "country": country,
@@ -1021,7 +1032,7 @@ class AsyncBrandResource(AsyncAPIResource):
                     brand_list_params.BrandListParams,
                 ),
             ),
-            cast_to=BrandListResponse,
+            model=BrandListResponse,
         )
 
     async def delete(

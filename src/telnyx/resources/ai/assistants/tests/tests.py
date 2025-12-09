@@ -24,7 +24,8 @@ from ....._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ....._base_client import make_request_options
+from .....pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
+from ....._base_client import AsyncPaginator, make_request_options
 from .....types.ai.assistants import TelnyxConversationChannel, test_list_params, test_create_params, test_update_params
 from .test_suites.test_suites import (
     TestSuitesResource,
@@ -35,7 +36,6 @@ from .test_suites.test_suites import (
     AsyncTestSuitesResourceWithStreamingResponse,
 )
 from .....types.ai.assistants.assistant_test import AssistantTest
-from .....types.ai.assistants.test_list_response import TestListResponse
 from .....types.ai.assistants.telnyx_conversation_channel import TelnyxConversationChannel
 
 __all__ = ["TestsResource", "AsyncTestsResource"]
@@ -255,7 +255,8 @@ class TestsResource(SyncAPIResource):
         self,
         *,
         destination: str | Omit = omit,
-        page: test_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         telnyx_conversation_channel: str | Omit = omit,
         test_suite: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -264,16 +265,13 @@ class TestsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TestListResponse:
+    ) -> SyncDefaultFlatPagination[AssistantTest]:
         """
         Retrieves a paginated list of assistant tests with optional filtering
         capabilities
 
         Args:
           destination: Filter tests by destination (phone number, webhook URL, etc.)
-
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
 
           telnyx_conversation_channel: Filter tests by communication channel (e.g., 'web_chat', 'sms')
 
@@ -287,8 +285,9 @@ class TestsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/ai/assistants/tests",
+            page=SyncDefaultFlatPagination[AssistantTest],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -297,14 +296,15 @@ class TestsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "destination": destination,
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                         "telnyx_conversation_channel": telnyx_conversation_channel,
                         "test_suite": test_suite,
                     },
                     test_list_params.TestListParams,
                 ),
             ),
-            cast_to=TestListResponse,
+            model=AssistantTest,
         )
 
     def delete(
@@ -550,11 +550,12 @@ class AsyncTestsResource(AsyncAPIResource):
             cast_to=AssistantTest,
         )
 
-    async def list(
+    def list(
         self,
         *,
         destination: str | Omit = omit,
-        page: test_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         telnyx_conversation_channel: str | Omit = omit,
         test_suite: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -563,16 +564,13 @@ class AsyncTestsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TestListResponse:
+    ) -> AsyncPaginator[AssistantTest, AsyncDefaultFlatPagination[AssistantTest]]:
         """
         Retrieves a paginated list of assistant tests with optional filtering
         capabilities
 
         Args:
           destination: Filter tests by destination (phone number, webhook URL, etc.)
-
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
 
           telnyx_conversation_channel: Filter tests by communication channel (e.g., 'web_chat', 'sms')
 
@@ -586,24 +584,26 @@ class AsyncTestsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/ai/assistants/tests",
+            page=AsyncDefaultFlatPagination[AssistantTest],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "destination": destination,
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                         "telnyx_conversation_channel": telnyx_conversation_channel,
                         "test_suite": test_suite,
                     },
                     test_list_params.TestListParams,
                 ),
             ),
-            cast_to=TestListResponse,
+            model=AssistantTest,
         )
 
     async def delete(

@@ -2,11 +2,15 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Required, TypedDict
+from typing import Dict, Union
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 __all__ = ["AwsVoiceSettingsParam"]
 
 
-class AwsVoiceSettingsParam(TypedDict, total=False):
+class AwsVoiceSettingsParamTyped(TypedDict, total=False):
     type: Required[Literal["aws"]]
     """Voice settings provider type"""
+
+
+AwsVoiceSettingsParam: TypeAlias = Union[AwsVoiceSettingsParamTyped, Dict[str, object]]

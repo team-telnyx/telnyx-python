@@ -6,6 +6,7 @@ import httpx
 
 from ..types import (
     phone_number_assignment_by_profile_assign_params,
+    phone_number_assignment_by_profile_list_phone_number_status_params,
     phone_number_assignment_by_profile_retrieve_phone_number_status_params,
 )
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
@@ -22,6 +23,9 @@ from .._base_client import make_request_options
 from ..types.phone_number_assignment_by_profile_assign_response import PhoneNumberAssignmentByProfileAssignResponse
 from ..types.phone_number_assignment_by_profile_retrieve_status_response import (
     PhoneNumberAssignmentByProfileRetrieveStatusResponse,
+)
+from ..types.phone_number_assignment_by_profile_list_phone_number_status_response import (
+    PhoneNumberAssignmentByProfileListPhoneNumberStatusResponse,
 )
 from ..types.phone_number_assignment_by_profile_retrieve_phone_number_status_response import (
     PhoneNumberAssignmentByProfileRetrievePhoneNumberStatusResponse,
@@ -104,6 +108,52 @@ class PhoneNumberAssignmentByProfileResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=PhoneNumberAssignmentByProfileAssignResponse,
+        )
+
+    def list_phone_number_status(
+        self,
+        task_id: str,
+        *,
+        page: int | Omit = omit,
+        records_per_page: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> PhoneNumberAssignmentByProfileListPhoneNumberStatusResponse:
+        """
+        Check the status of the individual phone number/campaign assignments associated
+        with the supplied `taskId`.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not task_id:
+            raise ValueError(f"Expected a non-empty value for `task_id` but received {task_id!r}")
+        return self._get(
+            f"/10dlc/phoneNumberAssignmentByProfile/{task_id}/phoneNumbers",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "page": page,
+                        "records_per_page": records_per_page,
+                    },
+                    phone_number_assignment_by_profile_list_phone_number_status_params.PhoneNumberAssignmentByProfileListPhoneNumberStatusParams,
+                ),
+            ),
+            cast_to=PhoneNumberAssignmentByProfileListPhoneNumberStatusResponse,
         )
 
     def retrieve_phone_number_status(
@@ -263,6 +313,52 @@ class AsyncPhoneNumberAssignmentByProfileResource(AsyncAPIResource):
             cast_to=PhoneNumberAssignmentByProfileAssignResponse,
         )
 
+    async def list_phone_number_status(
+        self,
+        task_id: str,
+        *,
+        page: int | Omit = omit,
+        records_per_page: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> PhoneNumberAssignmentByProfileListPhoneNumberStatusResponse:
+        """
+        Check the status of the individual phone number/campaign assignments associated
+        with the supplied `taskId`.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not task_id:
+            raise ValueError(f"Expected a non-empty value for `task_id` but received {task_id!r}")
+        return await self._get(
+            f"/10dlc/phoneNumberAssignmentByProfile/{task_id}/phoneNumbers",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "page": page,
+                        "records_per_page": records_per_page,
+                    },
+                    phone_number_assignment_by_profile_list_phone_number_status_params.PhoneNumberAssignmentByProfileListPhoneNumberStatusParams,
+                ),
+            ),
+            cast_to=PhoneNumberAssignmentByProfileListPhoneNumberStatusResponse,
+        )
+
     async def retrieve_phone_number_status(
         self,
         task_id: str,
@@ -351,6 +447,9 @@ class PhoneNumberAssignmentByProfileResourceWithRawResponse:
         self.assign = to_raw_response_wrapper(
             phone_number_assignment_by_profile.assign,
         )
+        self.list_phone_number_status = to_raw_response_wrapper(
+            phone_number_assignment_by_profile.list_phone_number_status,
+        )
         self.retrieve_phone_number_status = to_raw_response_wrapper(
             phone_number_assignment_by_profile.retrieve_phone_number_status,
         )
@@ -365,6 +464,9 @@ class AsyncPhoneNumberAssignmentByProfileResourceWithRawResponse:
 
         self.assign = async_to_raw_response_wrapper(
             phone_number_assignment_by_profile.assign,
+        )
+        self.list_phone_number_status = async_to_raw_response_wrapper(
+            phone_number_assignment_by_profile.list_phone_number_status,
         )
         self.retrieve_phone_number_status = async_to_raw_response_wrapper(
             phone_number_assignment_by_profile.retrieve_phone_number_status,
@@ -381,6 +483,9 @@ class PhoneNumberAssignmentByProfileResourceWithStreamingResponse:
         self.assign = to_streamed_response_wrapper(
             phone_number_assignment_by_profile.assign,
         )
+        self.list_phone_number_status = to_streamed_response_wrapper(
+            phone_number_assignment_by_profile.list_phone_number_status,
+        )
         self.retrieve_phone_number_status = to_streamed_response_wrapper(
             phone_number_assignment_by_profile.retrieve_phone_number_status,
         )
@@ -395,6 +500,9 @@ class AsyncPhoneNumberAssignmentByProfileResourceWithStreamingResponse:
 
         self.assign = async_to_streamed_response_wrapper(
             phone_number_assignment_by_profile.assign,
+        )
+        self.list_phone_number_status = async_to_streamed_response_wrapper(
+            phone_number_assignment_by_profile.list_phone_number_status,
         )
         self.retrieve_phone_number_status = async_to_streamed_response_wrapper(
             phone_number_assignment_by_profile.retrieve_phone_number_status,
