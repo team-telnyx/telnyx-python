@@ -1,16 +1,15 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Optional
 from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
-from .pagination_meta import PaginationMeta
 
-__all__ = ["RoomRecordingListResponse", "Data"]
+__all__ = ["RoomRecordingListResponse"]
 
 
-class Data(BaseModel):
+class RoomRecordingListResponse(BaseModel):
     id: Optional[str] = None
     """A unique identifier for the room recording."""
 
@@ -57,9 +56,3 @@ class Data(BaseModel):
 
     updated_at: Optional[datetime] = None
     """ISO 8601 timestamp when the room recording was updated."""
-
-
-class RoomRecordingListResponse(BaseModel):
-    data: Optional[List[Data]] = None
-
-    meta: Optional[PaginationMeta] = None

@@ -4,7 +4,7 @@ from typing import Optional
 
 from .record import Record
 from .._models import BaseModel
-from .interface import Interface
+from .network_interface import NetworkInterface
 
 __all__ = ["WireguardInterfaceCreateResponse", "Data", "DataRegion"]
 
@@ -20,7 +20,7 @@ class DataRegion(BaseModel):
     """Identifies the type of the resource."""
 
 
-class Data(Record, Interface):
+class Data(Record, NetworkInterface):
     enable_sip_trunking: Optional[bool] = None
     """Enable SIP traffic forwarding over VPN interface."""
 
@@ -29,9 +29,6 @@ class Data(Record, Interface):
 
     public_key: Optional[str] = None
     """The Telnyx WireGuard peers `Peer.PublicKey`."""
-
-    record_type: Optional[str] = None  # type: ignore
-    """Identifies the type of the resource."""
 
     region: Optional[DataRegion] = None
 

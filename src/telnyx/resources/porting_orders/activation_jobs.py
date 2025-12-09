@@ -17,9 +17,10 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._base_client import make_request_options
+from ...pagination import SyncDefaultPagination, AsyncDefaultPagination
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.porting_orders import activation_job_list_params, activation_job_update_params
-from ...types.porting_orders.activation_job_list_response import ActivationJobListResponse
+from ...types.porting_orders_activation_job import PortingOrdersActivationJob
 from ...types.porting_orders.activation_job_update_response import ActivationJobUpdateResponse
 from ...types.porting_orders.activation_job_retrieve_response import ActivationJobRetrieveResponse
 
@@ -134,7 +135,7 @@ class ActivationJobsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ActivationJobListResponse:
+    ) -> SyncDefaultPagination[PortingOrdersActivationJob]:
         """
         Returns a list of your porting activation jobs.
 
@@ -152,8 +153,9 @@ class ActivationJobsResource(SyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/porting_orders/{id}/activation_jobs",
+            page=SyncDefaultPagination[PortingOrdersActivationJob],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -161,7 +163,7 @@ class ActivationJobsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform({"page": page}, activation_job_list_params.ActivationJobListParams),
             ),
-            cast_to=ActivationJobListResponse,
+            model=PortingOrdersActivationJob,
         )
 
 
@@ -264,7 +266,7 @@ class AsyncActivationJobsResource(AsyncAPIResource):
             cast_to=ActivationJobUpdateResponse,
         )
 
-    async def list(
+    def list(
         self,
         id: str,
         *,
@@ -275,7 +277,7 @@ class AsyncActivationJobsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ActivationJobListResponse:
+    ) -> AsyncPaginator[PortingOrdersActivationJob, AsyncDefaultPagination[PortingOrdersActivationJob]]:
         """
         Returns a list of your porting activation jobs.
 
@@ -293,16 +295,17 @@ class AsyncActivationJobsResource(AsyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/porting_orders/{id}/activation_jobs",
+            page=AsyncDefaultPagination[PortingOrdersActivationJob],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform({"page": page}, activation_job_list_params.ActivationJobListParams),
+                query=maybe_transform({"page": page}, activation_job_list_params.ActivationJobListParams),
             ),
-            cast_to=ActivationJobListResponse,
+            model=PortingOrdersActivationJob,
         )
 
 

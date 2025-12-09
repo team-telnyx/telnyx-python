@@ -3,7 +3,7 @@
 from typing import Dict
 from typing_extensions import TypeAlias
 
-from .campaign_sharing_status import CampaignSharingStatus
+from .number_10dlc.campaign_sharing_status import CampaignSharingStatus
 
 __all__ = ["PartnerCampaignRetrieveSharingStatusResponse"]
 

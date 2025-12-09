@@ -10,12 +10,13 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types import (
-    CustomerServiceRecordListResponse,
+    CustomerServiceRecord,
     CustomerServiceRecordCreateResponse,
     CustomerServiceRecordRetrieveResponse,
     CustomerServiceRecordVerifyPhoneNumberCoverageResponse,
 )
 from telnyx._utils import parse_datetime
+from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -126,7 +127,7 @@ class TestCustomerServiceRecords:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         customer_service_record = client.customer_service_records.list()
-        assert_matches_type(CustomerServiceRecordListResponse, customer_service_record, path=["response"])
+        assert_matches_type(SyncDefaultPagination[CustomerServiceRecord], customer_service_record, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -152,7 +153,7 @@ class TestCustomerServiceRecords:
             },
             sort={"value": "created_at"},
         )
-        assert_matches_type(CustomerServiceRecordListResponse, customer_service_record, path=["response"])
+        assert_matches_type(SyncDefaultPagination[CustomerServiceRecord], customer_service_record, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -162,7 +163,7 @@ class TestCustomerServiceRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         customer_service_record = response.parse()
-        assert_matches_type(CustomerServiceRecordListResponse, customer_service_record, path=["response"])
+        assert_matches_type(SyncDefaultPagination[CustomerServiceRecord], customer_service_record, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -172,7 +173,9 @@ class TestCustomerServiceRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             customer_service_record = response.parse()
-            assert_matches_type(CustomerServiceRecordListResponse, customer_service_record, path=["response"])
+            assert_matches_type(
+                SyncDefaultPagination[CustomerServiceRecord], customer_service_record, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True
 
@@ -325,7 +328,7 @@ class TestAsyncCustomerServiceRecords:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         customer_service_record = await async_client.customer_service_records.list()
-        assert_matches_type(CustomerServiceRecordListResponse, customer_service_record, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[CustomerServiceRecord], customer_service_record, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -351,7 +354,7 @@ class TestAsyncCustomerServiceRecords:
             },
             sort={"value": "created_at"},
         )
-        assert_matches_type(CustomerServiceRecordListResponse, customer_service_record, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[CustomerServiceRecord], customer_service_record, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -361,7 +364,7 @@ class TestAsyncCustomerServiceRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         customer_service_record = await response.parse()
-        assert_matches_type(CustomerServiceRecordListResponse, customer_service_record, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[CustomerServiceRecord], customer_service_record, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -371,7 +374,9 @@ class TestAsyncCustomerServiceRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             customer_service_record = await response.parse()
-            assert_matches_type(CustomerServiceRecordListResponse, customer_service_record, path=["response"])
+            assert_matches_type(
+                AsyncDefaultPagination[CustomerServiceRecord], customer_service_record, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True
 

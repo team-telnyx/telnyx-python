@@ -11,10 +11,10 @@ from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types import (
     TelnyxDownstreamCampaign,
-    PartnerCampaignListResponse,
     PartnerCampaignListSharedByMeResponse,
     PartnerCampaignRetrieveSharingStatusResponse,
 )
+from telnyx.pagination import SyncPerPagePaginationV2, AsyncPerPagePaginationV2
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -120,7 +120,7 @@ class TestPartnerCampaigns:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         partner_campaign = client.partner_campaigns.list()
-        assert_matches_type(PartnerCampaignListResponse, partner_campaign, path=["response"])
+        assert_matches_type(SyncPerPagePaginationV2[TelnyxDownstreamCampaign], partner_campaign, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -130,7 +130,7 @@ class TestPartnerCampaigns:
             records_per_page=0,
             sort="assignedPhoneNumbersCount",
         )
-        assert_matches_type(PartnerCampaignListResponse, partner_campaign, path=["response"])
+        assert_matches_type(SyncPerPagePaginationV2[TelnyxDownstreamCampaign], partner_campaign, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -140,7 +140,7 @@ class TestPartnerCampaigns:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         partner_campaign = response.parse()
-        assert_matches_type(PartnerCampaignListResponse, partner_campaign, path=["response"])
+        assert_matches_type(SyncPerPagePaginationV2[TelnyxDownstreamCampaign], partner_campaign, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -150,7 +150,7 @@ class TestPartnerCampaigns:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             partner_campaign = response.parse()
-            assert_matches_type(PartnerCampaignListResponse, partner_campaign, path=["response"])
+            assert_matches_type(SyncPerPagePaginationV2[TelnyxDownstreamCampaign], partner_campaign, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -158,7 +158,9 @@ class TestPartnerCampaigns:
     @parametrize
     def test_method_list_shared_by_me(self, client: Telnyx) -> None:
         partner_campaign = client.partner_campaigns.list_shared_by_me()
-        assert_matches_type(PartnerCampaignListSharedByMeResponse, partner_campaign, path=["response"])
+        assert_matches_type(
+            SyncPerPagePaginationV2[PartnerCampaignListSharedByMeResponse], partner_campaign, path=["response"]
+        )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -167,7 +169,9 @@ class TestPartnerCampaigns:
             page=0,
             records_per_page=0,
         )
-        assert_matches_type(PartnerCampaignListSharedByMeResponse, partner_campaign, path=["response"])
+        assert_matches_type(
+            SyncPerPagePaginationV2[PartnerCampaignListSharedByMeResponse], partner_campaign, path=["response"]
+        )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -177,7 +181,9 @@ class TestPartnerCampaigns:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         partner_campaign = response.parse()
-        assert_matches_type(PartnerCampaignListSharedByMeResponse, partner_campaign, path=["response"])
+        assert_matches_type(
+            SyncPerPagePaginationV2[PartnerCampaignListSharedByMeResponse], partner_campaign, path=["response"]
+        )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -187,7 +193,9 @@ class TestPartnerCampaigns:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             partner_campaign = response.parse()
-            assert_matches_type(PartnerCampaignListSharedByMeResponse, partner_campaign, path=["response"])
+            assert_matches_type(
+                SyncPerPagePaginationV2[PartnerCampaignListSharedByMeResponse], partner_campaign, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True
 
@@ -337,7 +345,7 @@ class TestAsyncPartnerCampaigns:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         partner_campaign = await async_client.partner_campaigns.list()
-        assert_matches_type(PartnerCampaignListResponse, partner_campaign, path=["response"])
+        assert_matches_type(AsyncPerPagePaginationV2[TelnyxDownstreamCampaign], partner_campaign, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -347,7 +355,7 @@ class TestAsyncPartnerCampaigns:
             records_per_page=0,
             sort="assignedPhoneNumbersCount",
         )
-        assert_matches_type(PartnerCampaignListResponse, partner_campaign, path=["response"])
+        assert_matches_type(AsyncPerPagePaginationV2[TelnyxDownstreamCampaign], partner_campaign, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -357,7 +365,7 @@ class TestAsyncPartnerCampaigns:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         partner_campaign = await response.parse()
-        assert_matches_type(PartnerCampaignListResponse, partner_campaign, path=["response"])
+        assert_matches_type(AsyncPerPagePaginationV2[TelnyxDownstreamCampaign], partner_campaign, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -367,7 +375,7 @@ class TestAsyncPartnerCampaigns:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             partner_campaign = await response.parse()
-            assert_matches_type(PartnerCampaignListResponse, partner_campaign, path=["response"])
+            assert_matches_type(AsyncPerPagePaginationV2[TelnyxDownstreamCampaign], partner_campaign, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -375,7 +383,9 @@ class TestAsyncPartnerCampaigns:
     @parametrize
     async def test_method_list_shared_by_me(self, async_client: AsyncTelnyx) -> None:
         partner_campaign = await async_client.partner_campaigns.list_shared_by_me()
-        assert_matches_type(PartnerCampaignListSharedByMeResponse, partner_campaign, path=["response"])
+        assert_matches_type(
+            AsyncPerPagePaginationV2[PartnerCampaignListSharedByMeResponse], partner_campaign, path=["response"]
+        )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -384,7 +394,9 @@ class TestAsyncPartnerCampaigns:
             page=0,
             records_per_page=0,
         )
-        assert_matches_type(PartnerCampaignListSharedByMeResponse, partner_campaign, path=["response"])
+        assert_matches_type(
+            AsyncPerPagePaginationV2[PartnerCampaignListSharedByMeResponse], partner_campaign, path=["response"]
+        )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -394,7 +406,9 @@ class TestAsyncPartnerCampaigns:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         partner_campaign = await response.parse()
-        assert_matches_type(PartnerCampaignListSharedByMeResponse, partner_campaign, path=["response"])
+        assert_matches_type(
+            AsyncPerPagePaginationV2[PartnerCampaignListSharedByMeResponse], partner_campaign, path=["response"]
+        )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -404,7 +418,9 @@ class TestAsyncPartnerCampaigns:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             partner_campaign = await response.parse()
-            assert_matches_type(PartnerCampaignListSharedByMeResponse, partner_campaign, path=["response"])
+            assert_matches_type(
+                AsyncPerPagePaginationV2[PartnerCampaignListSharedByMeResponse], partner_campaign, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True
 

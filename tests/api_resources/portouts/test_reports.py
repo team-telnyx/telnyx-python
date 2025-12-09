@@ -9,8 +9,9 @@ import pytest
 
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
+from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
 from telnyx.types.portouts import (
-    ReportListResponse,
+    PortoutReport,
     ReportCreateResponse,
     ReportRetrieveResponse,
 )
@@ -104,7 +105,7 @@ class TestReports:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         report = client.portouts.reports.list()
-        assert_matches_type(ReportListResponse, report, path=["response"])
+        assert_matches_type(SyncDefaultPagination[PortoutReport], report, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -119,7 +120,7 @@ class TestReports:
                 "size": 1,
             },
         )
-        assert_matches_type(ReportListResponse, report, path=["response"])
+        assert_matches_type(SyncDefaultPagination[PortoutReport], report, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -129,7 +130,7 @@ class TestReports:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         report = response.parse()
-        assert_matches_type(ReportListResponse, report, path=["response"])
+        assert_matches_type(SyncDefaultPagination[PortoutReport], report, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -139,7 +140,7 @@ class TestReports:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             report = response.parse()
-            assert_matches_type(ReportListResponse, report, path=["response"])
+            assert_matches_type(SyncDefaultPagination[PortoutReport], report, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -232,7 +233,7 @@ class TestAsyncReports:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         report = await async_client.portouts.reports.list()
-        assert_matches_type(ReportListResponse, report, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[PortoutReport], report, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -247,7 +248,7 @@ class TestAsyncReports:
                 "size": 1,
             },
         )
-        assert_matches_type(ReportListResponse, report, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[PortoutReport], report, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -257,7 +258,7 @@ class TestAsyncReports:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         report = await response.parse()
-        assert_matches_type(ReportListResponse, report, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[PortoutReport], report, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -267,6 +268,6 @@ class TestAsyncReports:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             report = await response.parse()
-            assert_matches_type(ReportListResponse, report, path=["response"])
+            assert_matches_type(AsyncDefaultPagination[PortoutReport], report, path=["response"])
 
         assert cast(Any, response.is_closed) is True

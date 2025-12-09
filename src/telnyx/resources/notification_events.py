@@ -6,7 +6,7 @@ import httpx
 
 from ..types import notification_event_list_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._utils import maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -15,7 +15,8 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import make_request_options
+from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
+from .._base_client import AsyncPaginator, make_request_options
 from ..types.notification_event_list_response import NotificationEventListResponse
 
 __all__ = ["NotificationEventsResource", "AsyncNotificationEventsResource"]
@@ -51,7 +52,7 @@ class NotificationEventsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NotificationEventListResponse:
+    ) -> SyncDefaultPagination[NotificationEventListResponse]:
         """
         Returns a list of your notifications events.
 
@@ -67,8 +68,9 @@ class NotificationEventsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/notification_events",
+            page=SyncDefaultPagination[NotificationEventListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -76,7 +78,7 @@ class NotificationEventsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform({"page": page}, notification_event_list_params.NotificationEventListParams),
             ),
-            cast_to=NotificationEventListResponse,
+            model=NotificationEventListResponse,
         )
 
 
@@ -100,7 +102,7 @@ class AsyncNotificationEventsResource(AsyncAPIResource):
         """
         return AsyncNotificationEventsResourceWithStreamingResponse(self)
 
-    async def list(
+    def list(
         self,
         *,
         page: notification_event_list_params.Page | Omit = omit,
@@ -110,7 +112,7 @@ class AsyncNotificationEventsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NotificationEventListResponse:
+    ) -> AsyncPaginator[NotificationEventListResponse, AsyncDefaultPagination[NotificationEventListResponse]]:
         """
         Returns a list of your notifications events.
 
@@ -126,18 +128,17 @@ class AsyncNotificationEventsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/notification_events",
+            page=AsyncDefaultPagination[NotificationEventListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
-                    {"page": page}, notification_event_list_params.NotificationEventListParams
-                ),
+                query=maybe_transform({"page": page}, notification_event_list_params.NotificationEventListParams),
             ),
-            cast_to=NotificationEventListResponse,
+            model=NotificationEventListResponse,
         )
 
 

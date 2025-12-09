@@ -26,7 +26,7 @@ from ...._response import (
 )
 from ...._base_client import make_request_options
 from ....types.number_10dlc import campaign_builder_submit_params
-from ....types.telnyx_campaign_csp import TelnyxCampaignCsp
+from ....types.number_10dlc.telnyx_campaign_csp import TelnyxCampaignCsp
 
 __all__ = ["CampaignBuilderResource", "AsyncCampaignBuilderResource"]
 
