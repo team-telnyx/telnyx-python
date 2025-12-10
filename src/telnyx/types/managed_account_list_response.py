@@ -1,14 +1,15 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import List, Optional
 from typing_extensions import Literal
 
 from .._models import BaseModel
+from .pagination_meta import PaginationMeta
 
-__all__ = ["ManagedAccountListResponse"]
+__all__ = ["ManagedAccountListResponse", "Data"]
 
 
-class ManagedAccountListResponse(BaseModel):
+class Data(BaseModel):
     id: str
     """Uniquely identifies the managed account."""
 
@@ -50,3 +51,9 @@ class ManagedAccountListResponse(BaseModel):
     through Telnyx support as changes require manual updates to the account ledger.
     Defaults to false.
     """
+
+
+class ManagedAccountListResponse(BaseModel):
+    data: Optional[List[Data]] = None
+
+    meta: Optional[PaginationMeta] = None

@@ -10,12 +10,11 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types import (
-    PrivateWirelessGateway,
+    PrivateWirelessGatewayListResponse,
     PrivateWirelessGatewayCreateResponse,
     PrivateWirelessGatewayDeleteResponse,
     PrivateWirelessGatewayRetrieveResponse,
 )
-from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -116,9 +115,7 @@ class TestPrivateWirelessGateways:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         private_wireless_gateway = client.private_wireless_gateways.list()
-        assert_matches_type(
-            SyncDefaultFlatPagination[PrivateWirelessGateway], private_wireless_gateway, path=["response"]
-        )
+        assert_matches_type(PrivateWirelessGatewayListResponse, private_wireless_gateway, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -132,9 +129,7 @@ class TestPrivateWirelessGateways:
             page_number=1,
             page_size=1,
         )
-        assert_matches_type(
-            SyncDefaultFlatPagination[PrivateWirelessGateway], private_wireless_gateway, path=["response"]
-        )
+        assert_matches_type(PrivateWirelessGatewayListResponse, private_wireless_gateway, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -144,9 +139,7 @@ class TestPrivateWirelessGateways:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         private_wireless_gateway = response.parse()
-        assert_matches_type(
-            SyncDefaultFlatPagination[PrivateWirelessGateway], private_wireless_gateway, path=["response"]
-        )
+        assert_matches_type(PrivateWirelessGatewayListResponse, private_wireless_gateway, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -156,9 +149,7 @@ class TestPrivateWirelessGateways:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             private_wireless_gateway = response.parse()
-            assert_matches_type(
-                SyncDefaultFlatPagination[PrivateWirelessGateway], private_wireless_gateway, path=["response"]
-            )
+            assert_matches_type(PrivateWirelessGatewayListResponse, private_wireless_gateway, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -303,9 +294,7 @@ class TestAsyncPrivateWirelessGateways:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         private_wireless_gateway = await async_client.private_wireless_gateways.list()
-        assert_matches_type(
-            AsyncDefaultFlatPagination[PrivateWirelessGateway], private_wireless_gateway, path=["response"]
-        )
+        assert_matches_type(PrivateWirelessGatewayListResponse, private_wireless_gateway, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -319,9 +308,7 @@ class TestAsyncPrivateWirelessGateways:
             page_number=1,
             page_size=1,
         )
-        assert_matches_type(
-            AsyncDefaultFlatPagination[PrivateWirelessGateway], private_wireless_gateway, path=["response"]
-        )
+        assert_matches_type(PrivateWirelessGatewayListResponse, private_wireless_gateway, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -331,9 +318,7 @@ class TestAsyncPrivateWirelessGateways:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         private_wireless_gateway = await response.parse()
-        assert_matches_type(
-            AsyncDefaultFlatPagination[PrivateWirelessGateway], private_wireless_gateway, path=["response"]
-        )
+        assert_matches_type(PrivateWirelessGatewayListResponse, private_wireless_gateway, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -343,9 +328,7 @@ class TestAsyncPrivateWirelessGateways:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             private_wireless_gateway = await response.parse()
-            assert_matches_type(
-                AsyncDefaultFlatPagination[PrivateWirelessGateway], private_wireless_gateway, path=["response"]
-            )
+            assert_matches_type(PrivateWirelessGatewayListResponse, private_wireless_gateway, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

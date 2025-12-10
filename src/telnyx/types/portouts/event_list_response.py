@@ -5,17 +5,19 @@ from datetime import datetime
 from typing_extensions import Literal, TypeAlias
 
 from ..._models import BaseModel
+from ..pagination_meta import PaginationMeta
 
 __all__ = [
     "EventListResponse",
-    "Payload",
-    "PayloadWebhookPortoutStatusChangedPayload",
-    "PayloadWebhookPortoutNewCommentPayload",
-    "PayloadWebhookPortoutFocDateChangedPayload",
+    "Data",
+    "DataPayload",
+    "DataPayloadWebhookPortoutStatusChangedPayload",
+    "DataPayloadWebhookPortoutNewCommentPayload",
+    "DataPayloadWebhookPortoutFocDateChangedPayload",
 ]
 
 
-class PayloadWebhookPortoutStatusChangedPayload(BaseModel):
+class DataPayloadWebhookPortoutStatusChangedPayload(BaseModel):
     """The webhook payload for the portout.status_changed event"""
 
     id: Optional[str] = None
@@ -49,7 +51,7 @@ class PayloadWebhookPortoutStatusChangedPayload(BaseModel):
     """Identifies the user that the port-out order belongs to."""
 
 
-class PayloadWebhookPortoutNewCommentPayload(BaseModel):
+class DataPayloadWebhookPortoutNewCommentPayload(BaseModel):
     """The webhook payload for the portout.new_comment event"""
 
     id: Optional[str] = None
@@ -65,7 +67,7 @@ class PayloadWebhookPortoutNewCommentPayload(BaseModel):
     """Identifies the user that added the comment."""
 
 
-class PayloadWebhookPortoutFocDateChangedPayload(BaseModel):
+class DataPayloadWebhookPortoutFocDateChangedPayload(BaseModel):
     """The webhook payload for the portout.foc_date_changed event"""
 
     id: Optional[str] = None
@@ -78,14 +80,14 @@ class PayloadWebhookPortoutFocDateChangedPayload(BaseModel):
     """Identifies the organization that port-out order belongs to."""
 
 
-Payload: TypeAlias = Union[
-    PayloadWebhookPortoutStatusChangedPayload,
-    PayloadWebhookPortoutNewCommentPayload,
-    PayloadWebhookPortoutFocDateChangedPayload,
+DataPayload: TypeAlias = Union[
+    DataPayloadWebhookPortoutStatusChangedPayload,
+    DataPayloadWebhookPortoutNewCommentPayload,
+    DataPayloadWebhookPortoutFocDateChangedPayload,
 ]
 
 
-class EventListResponse(BaseModel):
+class Data(BaseModel):
     id: Optional[str] = None
     """Uniquely identifies the event."""
 
@@ -98,7 +100,7 @@ class EventListResponse(BaseModel):
     event_type: Optional[Literal["portout.status_changed", "portout.foc_date_changed", "portout.new_comment"]] = None
     """Identifies the event type"""
 
-    payload: Optional[Payload] = None
+    payload: Optional[DataPayload] = None
     """The webhook payload for the portout.status_changed event"""
 
     payload_status: Optional[Literal["created", "completed"]] = None
@@ -112,3 +114,9 @@ class EventListResponse(BaseModel):
 
     updated_at: Optional[datetime] = None
     """ISO 8601 formatted date indicating when the resource was updated."""
+
+
+class EventListResponse(BaseModel):
+    data: Optional[List[Data]] = None
+
+    meta: Optional[PaginationMeta] = None

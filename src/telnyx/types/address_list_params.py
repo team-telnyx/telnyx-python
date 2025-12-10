@@ -10,7 +10,7 @@ __all__ = [
     "Filter",
     "FilterAddressBook",
     "FilterCustomerReference",
-    "FilterCustomerReferenceCustomerReferenceMatcher",
+    "FilterCustomerReferenceUnionMember1",
     "FilterStreetAddress",
     "Page",
 ]
@@ -58,7 +58,7 @@ class FilterAddressBook(TypedDict, total=False):
     """
 
 
-class FilterCustomerReferenceCustomerReferenceMatcher(TypedDict, total=False):
+class FilterCustomerReferenceUnionMember1(TypedDict, total=False):
     contains: str
     """Partial match for customer_reference. Matching is not case-sensitive."""
 
@@ -66,7 +66,7 @@ class FilterCustomerReferenceCustomerReferenceMatcher(TypedDict, total=False):
     """Exact match for customer_reference."""
 
 
-FilterCustomerReference: TypeAlias = Union[str, FilterCustomerReferenceCustomerReferenceMatcher]
+FilterCustomerReference: TypeAlias = Union[str, FilterCustomerReferenceUnionMember1]
 
 
 class FilterStreetAddress(TypedDict, total=False):

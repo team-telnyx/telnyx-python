@@ -20,7 +20,6 @@ from ._types import (
     not_given,
 )
 from ._utils import is_given, get_async_library
-from ._oauth2 import OAuth2ClientCredentials, make_oauth2
 from ._version import __version__
 from .resources import (
     ips,
@@ -136,7 +135,7 @@ from .resources import (
     phone_numbers_regulatory_requirements,
 )
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
-from ._exceptions import APIStatusError
+from ._exceptions import TelnyxError, APIStatusError
 from ._base_client import (
     DEFAULT_MAX_RETRIES,
     SyncAPIClient,
@@ -163,11 +162,11 @@ from .resources.messaging import messaging
 from .resources.sim_cards import sim_cards
 from .resources.recordings import recordings
 from .resources.conferences import conferences
+from .resources.number_10dlc import number_10dlc
 from .resources.phone_numbers import phone_numbers
 from .resources.verifications import verifications
 from .resources.bundle_pricing import bundle_pricing
 from .resources.porting_orders import porting_orders
-from .resources.messaging_10dlc import messaging_10dlc
 from .resources.sim_card_groups import sim_card_groups
 from .resources.managed_accounts import managed_accounts
 from .resources.operator_connect import operator_connect
@@ -335,23 +334,19 @@ class Telnyx(SyncAPIClient):
     inexplicit_number_orders: inexplicit_number_orders.InexplicitNumberOrdersResource
     mobile_phone_numbers: mobile_phone_numbers.MobilePhoneNumbersResource
     mobile_voice_connections: mobile_voice_connections.MobileVoiceConnectionsResource
-    messaging_10dlc: messaging_10dlc.Messaging10dlcResource
+    number_10dlc: number_10dlc.Number10dlcResource
     with_raw_response: TelnyxWithRawResponse
     with_streaming_response: TelnyxWithStreamedResponse
 
     # client options
-    api_key: str | None
+    api_key: str
     public_key: str | None
-    client_id: str | None
-    client_secret: str | None
 
     def __init__(
         self,
         *,
         api_key: str | None = None,
         public_key: str | None = None,
-        client_id: str | None = None,
-        client_secret: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
         max_retries: int = DEFAULT_MAX_RETRIES,
@@ -376,24 +371,18 @@ class Telnyx(SyncAPIClient):
         This automatically infers the following arguments from their corresponding environment variables if they are not provided:
         - `api_key` from `TELNYX_API_KEY`
         - `public_key` from `TELNYX_PUBLIC_KEY`
-        - `client_id` from `TELNYX_CLIENT_ID`
-        - `client_secret` from `TELNYX_CLIENT_SECRET`
         """
         if api_key is None:
             api_key = os.environ.get("TELNYX_API_KEY")
+        if api_key is None:
+            raise TelnyxError(
+                "The api_key client option must be set either by passing api_key to the client or by setting the TELNYX_API_KEY environment variable"
+            )
         self.api_key = api_key
 
         if public_key is None:
             public_key = os.environ.get("TELNYX_PUBLIC_KEY")
         self.public_key = public_key
-
-        if client_id is None:
-            client_id = os.environ.get("TELNYX_CLIENT_ID")
-        self.client_id = client_id
-
-        if client_secret is None:
-            client_secret = os.environ.get("TELNYX_CLIENT_SECRET")
-        self.client_secret = client_secret
 
         if base_url is None:
             base_url = os.environ.get("TELNYX_BASE_URL")
@@ -566,7 +555,7 @@ class Telnyx(SyncAPIClient):
         self.inexplicit_number_orders = inexplicit_number_orders.InexplicitNumberOrdersResource(self)
         self.mobile_phone_numbers = mobile_phone_numbers.MobilePhoneNumbersResource(self)
         self.mobile_voice_connections = mobile_voice_connections.MobileVoiceConnectionsResource(self)
-        self.messaging_10dlc = messaging_10dlc.Messaging10dlcResource(self)
+        self.number_10dlc = number_10dlc.Number10dlcResource(self)
         self.with_raw_response = TelnyxWithRawResponse(self)
         self.with_streaming_response = TelnyxWithStreamedResponse(self)
 
@@ -579,21 +568,7 @@ class Telnyx(SyncAPIClient):
     @override
     def auth_headers(self) -> dict[str, str]:
         api_key = self.api_key
-        if api_key is None:
-            return {}
         return {"Authorization": f"Bearer {api_key}"}
-
-    @property
-    @override
-    def custom_auth(self) -> httpx.Auth | None:
-        if self.client_id and self.client_secret:
-            return make_oauth2(
-                client_id=self.client_id,
-                client_secret=self.client_secret,
-                token_url=self._prepare_url("https://api.telnyx.com/v2/oauth/token"),
-                header="Authorization",
-            )
-        return None
 
     @property
     @override
@@ -604,22 +579,11 @@ class Telnyx(SyncAPIClient):
             **self._custom_headers,
         }
 
-    @override
-    def _should_retry(self, response: httpx.Response) -> bool:
-        # Retry on 401 if we are using OAuth2 and the token might be expired
-        if response.status_code == 401 and isinstance(self.custom_auth, OAuth2ClientCredentials):
-            if self.custom_auth.token_is_expired():
-                self.custom_auth.invalidate_token()
-                return True
-        return super()._should_retry(response)
-
     def copy(
         self,
         *,
         api_key: str | None = None,
         public_key: str | None = None,
-        client_id: str | None = None,
-        client_secret: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
         http_client: httpx.Client | None = None,
@@ -655,8 +619,6 @@ class Telnyx(SyncAPIClient):
         client = self.__class__(
             api_key=api_key or self.api_key,
             public_key=public_key or self.public_key,
-            client_id=client_id or self.client_id,
-            client_secret=client_secret or self.client_secret,
             base_url=base_url or self.base_url,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
             http_client=http_client,
@@ -857,23 +819,19 @@ class AsyncTelnyx(AsyncAPIClient):
     inexplicit_number_orders: inexplicit_number_orders.AsyncInexplicitNumberOrdersResource
     mobile_phone_numbers: mobile_phone_numbers.AsyncMobilePhoneNumbersResource
     mobile_voice_connections: mobile_voice_connections.AsyncMobileVoiceConnectionsResource
-    messaging_10dlc: messaging_10dlc.AsyncMessaging10dlcResource
+    number_10dlc: number_10dlc.AsyncNumber10dlcResource
     with_raw_response: AsyncTelnyxWithRawResponse
     with_streaming_response: AsyncTelnyxWithStreamedResponse
 
     # client options
-    api_key: str | None
+    api_key: str
     public_key: str | None
-    client_id: str | None
-    client_secret: str | None
 
     def __init__(
         self,
         *,
         api_key: str | None = None,
         public_key: str | None = None,
-        client_id: str | None = None,
-        client_secret: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
         max_retries: int = DEFAULT_MAX_RETRIES,
@@ -898,24 +856,18 @@ class AsyncTelnyx(AsyncAPIClient):
         This automatically infers the following arguments from their corresponding environment variables if they are not provided:
         - `api_key` from `TELNYX_API_KEY`
         - `public_key` from `TELNYX_PUBLIC_KEY`
-        - `client_id` from `TELNYX_CLIENT_ID`
-        - `client_secret` from `TELNYX_CLIENT_SECRET`
         """
         if api_key is None:
             api_key = os.environ.get("TELNYX_API_KEY")
+        if api_key is None:
+            raise TelnyxError(
+                "The api_key client option must be set either by passing api_key to the client or by setting the TELNYX_API_KEY environment variable"
+            )
         self.api_key = api_key
 
         if public_key is None:
             public_key = os.environ.get("TELNYX_PUBLIC_KEY")
         self.public_key = public_key
-
-        if client_id is None:
-            client_id = os.environ.get("TELNYX_CLIENT_ID")
-        self.client_id = client_id
-
-        if client_secret is None:
-            client_secret = os.environ.get("TELNYX_CLIENT_SECRET")
-        self.client_secret = client_secret
 
         if base_url is None:
             base_url = os.environ.get("TELNYX_BASE_URL")
@@ -1094,7 +1046,7 @@ class AsyncTelnyx(AsyncAPIClient):
         self.inexplicit_number_orders = inexplicit_number_orders.AsyncInexplicitNumberOrdersResource(self)
         self.mobile_phone_numbers = mobile_phone_numbers.AsyncMobilePhoneNumbersResource(self)
         self.mobile_voice_connections = mobile_voice_connections.AsyncMobileVoiceConnectionsResource(self)
-        self.messaging_10dlc = messaging_10dlc.AsyncMessaging10dlcResource(self)
+        self.number_10dlc = number_10dlc.AsyncNumber10dlcResource(self)
         self.with_raw_response = AsyncTelnyxWithRawResponse(self)
         self.with_streaming_response = AsyncTelnyxWithStreamedResponse(self)
 
@@ -1107,21 +1059,7 @@ class AsyncTelnyx(AsyncAPIClient):
     @override
     def auth_headers(self) -> dict[str, str]:
         api_key = self.api_key
-        if api_key is None:
-            return {}
         return {"Authorization": f"Bearer {api_key}"}
-
-    @property
-    @override
-    def custom_auth(self) -> httpx.Auth | None:
-        if self.client_id and self.client_secret:
-            return make_oauth2(
-                client_id=self.client_id,
-                client_secret=self.client_secret,
-                token_url=self._prepare_url("https://api.telnyx.com/v2/oauth/token"),
-                header="Authorization",
-            )
-        return None
 
     @property
     @override
@@ -1132,22 +1070,11 @@ class AsyncTelnyx(AsyncAPIClient):
             **self._custom_headers,
         }
 
-    @override
-    def _should_retry(self, response: httpx.Response) -> bool:
-        # Retry on 401 if we are using OAuth2 and the token might be expired
-        if response.status_code == 401 and isinstance(self.custom_auth, OAuth2ClientCredentials):
-            if self.custom_auth.token_is_expired():
-                self.custom_auth.invalidate_token()
-                return True
-        return super()._should_retry(response)
-
     def copy(
         self,
         *,
         api_key: str | None = None,
         public_key: str | None = None,
-        client_id: str | None = None,
-        client_secret: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
         http_client: httpx.AsyncClient | None = None,
@@ -1183,8 +1110,6 @@ class AsyncTelnyx(AsyncAPIClient):
         client = self.__class__(
             api_key=api_key or self.api_key,
             public_key=public_key or self.public_key,
-            client_id=client_id or self.client_id,
-            client_secret=client_secret or self.client_secret,
             base_url=base_url or self.base_url,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
             http_client=http_client,
@@ -1511,7 +1436,7 @@ class TelnyxWithRawResponse:
         self.mobile_voice_connections = mobile_voice_connections.MobileVoiceConnectionsResourceWithRawResponse(
             client.mobile_voice_connections
         )
-        self.messaging_10dlc = messaging_10dlc.Messaging10dlcResourceWithRawResponse(client.messaging_10dlc)
+        self.number_10dlc = number_10dlc.Number10dlcResourceWithRawResponse(client.number_10dlc)
 
 
 class AsyncTelnyxWithRawResponse:
@@ -1829,7 +1754,7 @@ class AsyncTelnyxWithRawResponse:
         self.mobile_voice_connections = mobile_voice_connections.AsyncMobileVoiceConnectionsResourceWithRawResponse(
             client.mobile_voice_connections
         )
-        self.messaging_10dlc = messaging_10dlc.AsyncMessaging10dlcResourceWithRawResponse(client.messaging_10dlc)
+        self.number_10dlc = number_10dlc.AsyncNumber10dlcResourceWithRawResponse(client.number_10dlc)
 
 
 class TelnyxWithStreamedResponse:
@@ -2153,7 +2078,7 @@ class TelnyxWithStreamedResponse:
         self.mobile_voice_connections = mobile_voice_connections.MobileVoiceConnectionsResourceWithStreamingResponse(
             client.mobile_voice_connections
         )
-        self.messaging_10dlc = messaging_10dlc.Messaging10dlcResourceWithStreamingResponse(client.messaging_10dlc)
+        self.number_10dlc = number_10dlc.Number10dlcResourceWithStreamingResponse(client.number_10dlc)
 
 
 class AsyncTelnyxWithStreamedResponse:
@@ -2521,7 +2446,7 @@ class AsyncTelnyxWithStreamedResponse:
                 client.mobile_voice_connections
             )
         )
-        self.messaging_10dlc = messaging_10dlc.AsyncMessaging10dlcResourceWithStreamingResponse(client.messaging_10dlc)
+        self.number_10dlc = number_10dlc.AsyncNumber10dlcResourceWithStreamingResponse(client.number_10dlc)
 
 
 Client = Telnyx

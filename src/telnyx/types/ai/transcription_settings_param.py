@@ -4,9 +4,27 @@ from __future__ import annotations
 
 from typing_extensions import Literal, TypedDict
 
-from .transcription_settings_config_param import TranscriptionSettingsConfigParam
+__all__ = ["TranscriptionSettingsParam", "Settings"]
 
-__all__ = ["TranscriptionSettingsParam"]
+
+class Settings(TypedDict, total=False):
+    eot_threshold: float
+    """Available only for deepgram/flux.
+
+    Confidence required to trigger an end of turn. Higher values = more reliable
+    turn detection but slightly increased latency.
+    """
+
+    eot_timeout_ms: int
+    """Available only for deepgram/flux.
+
+    Maximum milliseconds of silence before forcing an end of turn, regardless of
+    confidence.
+    """
+
+    numerals: bool
+
+    smart_format: bool
 
 
 class TranscriptionSettingsParam(TypedDict, total=False):
@@ -40,4 +58,4 @@ class TranscriptionSettingsParam(TypedDict, total=False):
     models
     """
 
-    settings: TranscriptionSettingsConfigParam
+    settings: Settings

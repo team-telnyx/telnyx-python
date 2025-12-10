@@ -17,8 +17,7 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
-from .._base_client import AsyncPaginator, make_request_options
+from .._base_client import make_request_options
 from ..types.invoice_list_response import InvoiceListResponse
 from ..types.invoice_retrieve_response import InvoiceRetrieveResponse
 
@@ -88,8 +87,7 @@ class InvoicesResource(SyncAPIResource):
     def list(
         self,
         *,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: invoice_list_params.Page | Omit = omit,
         sort: Literal["period_start", "-period_start"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -97,11 +95,14 @@ class InvoicesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[InvoiceListResponse]:
+    ) -> InvoiceListResponse:
         """
         Retrieve a paginated list of invoices.
 
         Args:
+          page: Consolidated page parameter (deepObject style). Originally: page[number],
+              page[size]
+
           sort: Specifies the sort order for results.
 
           extra_headers: Send extra headers
@@ -112,9 +113,8 @@ class InvoicesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return self._get(
             "/invoices",
-            page=SyncDefaultFlatPagination[InvoiceListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -122,14 +122,13 @@ class InvoicesResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "page_number": page_number,
-                        "page_size": page_size,
+                        "page": page,
                         "sort": sort,
                     },
                     invoice_list_params.InvoiceListParams,
                 ),
             ),
-            model=InvoiceListResponse,
+            cast_to=InvoiceListResponse,
         )
 
 
@@ -193,11 +192,10 @@ class AsyncInvoicesResource(AsyncAPIResource):
             cast_to=InvoiceRetrieveResponse,
         )
 
-    def list(
+    async def list(
         self,
         *,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: invoice_list_params.Page | Omit = omit,
         sort: Literal["period_start", "-period_start"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -205,11 +203,14 @@ class AsyncInvoicesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[InvoiceListResponse, AsyncDefaultFlatPagination[InvoiceListResponse]]:
+    ) -> InvoiceListResponse:
         """
         Retrieve a paginated list of invoices.
 
         Args:
+          page: Consolidated page parameter (deepObject style). Originally: page[number],
+              page[size]
+
           sort: Specifies the sort order for results.
 
           extra_headers: Send extra headers
@@ -220,24 +221,22 @@ class AsyncInvoicesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return await self._get(
             "/invoices",
-            page=AsyncDefaultFlatPagination[InvoiceListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
-                        "page_number": page_number,
-                        "page_size": page_size,
+                        "page": page,
                         "sort": sort,
                     },
                     invoice_list_params.InvoiceListParams,
                 ),
             ),
-            model=InvoiceListResponse,
+            cast_to=InvoiceListResponse,
         )
 
 

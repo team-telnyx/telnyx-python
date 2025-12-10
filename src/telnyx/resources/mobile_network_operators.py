@@ -6,7 +6,7 @@ import httpx
 
 from ..types import mobile_network_operator_list_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import maybe_transform
+from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -15,8 +15,7 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
-from .._base_client import AsyncPaginator, make_request_options
+from .._base_client import make_request_options
 from ..types.mobile_network_operator_list_response import MobileNetworkOperatorListResponse
 
 __all__ = ["MobileNetworkOperatorsResource", "AsyncMobileNetworkOperatorsResource"]
@@ -53,7 +52,7 @@ class MobileNetworkOperatorsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[MobileNetworkOperatorListResponse]:
+    ) -> MobileNetworkOperatorListResponse:
         """
         Telnyx has a set of GSM mobile operators partners that are available through our
         mobile network roaming. This resource is entirely managed by Telnyx and may
@@ -78,9 +77,8 @@ class MobileNetworkOperatorsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return self._get(
             "/mobile_network_operators",
-            page=SyncDefaultPagination[MobileNetworkOperatorListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -94,7 +92,7 @@ class MobileNetworkOperatorsResource(SyncAPIResource):
                     mobile_network_operator_list_params.MobileNetworkOperatorListParams,
                 ),
             ),
-            model=MobileNetworkOperatorListResponse,
+            cast_to=MobileNetworkOperatorListResponse,
         )
 
 
@@ -118,7 +116,7 @@ class AsyncMobileNetworkOperatorsResource(AsyncAPIResource):
         """
         return AsyncMobileNetworkOperatorsResourceWithStreamingResponse(self)
 
-    def list(
+    async def list(
         self,
         *,
         filter: mobile_network_operator_list_params.Filter | Omit = omit,
@@ -129,7 +127,7 @@ class AsyncMobileNetworkOperatorsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[MobileNetworkOperatorListResponse, AsyncDefaultPagination[MobileNetworkOperatorListResponse]]:
+    ) -> MobileNetworkOperatorListResponse:
         """
         Telnyx has a set of GSM mobile operators partners that are available through our
         mobile network roaming. This resource is entirely managed by Telnyx and may
@@ -154,15 +152,14 @@ class AsyncMobileNetworkOperatorsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return await self._get(
             "/mobile_network_operators",
-            page=AsyncDefaultPagination[MobileNetworkOperatorListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
                         "filter": filter,
                         "page": page,
@@ -170,7 +167,7 @@ class AsyncMobileNetworkOperatorsResource(AsyncAPIResource):
                     mobile_network_operator_list_params.MobileNetworkOperatorListParams,
                 ),
             ),
-            model=MobileNetworkOperatorListResponse,
+            cast_to=MobileNetworkOperatorListResponse,
         )
 
 

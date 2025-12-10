@@ -1,14 +1,16 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from typing import List
 from datetime import datetime
 
 from ..._models import BaseModel
-from ..messaging_10dlc.task_status import TaskStatus
+from ..task_status import TaskStatus
+from .assistants.tests.test_suites.meta import Meta
 
-__all__ = ["ClusterListResponse"]
+__all__ = ["ClusterListResponse", "Data"]
 
 
-class ClusterListResponse(BaseModel):
+class Data(BaseModel):
     bucket: str
 
     created_at: datetime
@@ -22,3 +24,9 @@ class ClusterListResponse(BaseModel):
     status: TaskStatus
 
     task_id: str
+
+
+class ClusterListResponse(BaseModel):
+    data: List[Data]
+
+    meta: Meta

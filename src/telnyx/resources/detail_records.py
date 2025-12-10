@@ -2,13 +2,11 @@
 
 from __future__ import annotations
 
-from typing import Any, cast
-
 import httpx
 
 from ..types import detail_record_list_params
 from .._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from .._utils import maybe_transform
+from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -17,8 +15,7 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
-from .._base_client import AsyncPaginator, make_request_options
+from .._base_client import make_request_options
 from ..types.detail_record_list_response import DetailRecordListResponse
 
 __all__ = ["DetailRecordsResource", "AsyncDetailRecordsResource"]
@@ -48,8 +45,7 @@ class DetailRecordsResource(SyncAPIResource):
         self,
         *,
         filter: detail_record_list_params.Filter | Omit = omit,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: detail_record_list_params.Page | Omit = omit,
         sort: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -57,7 +53,7 @@ class DetailRecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[DetailRecordListResponse]:
+    ) -> DetailRecordListResponse:
         """
         Search for any detail record across the Telnyx Platform
 
@@ -65,6 +61,9 @@ class DetailRecordsResource(SyncAPIResource):
           filter:
               Filter records on a given record attribute and value. <br/>Example:
               filter[status]=delivered. <br/>Required: filter[record_type] must be specified.
+
+          page: Consolidated page parameter (deepObject style). Originally: page[number],
+              page[size]
 
           sort: Specifies the sort order for results. <br/>Example: sort=-created_at
 
@@ -76,9 +75,8 @@ class DetailRecordsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return self._get(
             "/detail_records",
-            page=SyncDefaultFlatPagination[DetailRecordListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -87,16 +85,13 @@ class DetailRecordsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page_number": page_number,
-                        "page_size": page_size,
+                        "page": page,
                         "sort": sort,
                     },
                     detail_record_list_params.DetailRecordListParams,
                 ),
             ),
-            model=cast(
-                Any, DetailRecordListResponse
-            ),  # Union types cannot be passed in as arguments in the type system
+            cast_to=DetailRecordListResponse,
         )
 
 
@@ -120,12 +115,11 @@ class AsyncDetailRecordsResource(AsyncAPIResource):
         """
         return AsyncDetailRecordsResourceWithStreamingResponse(self)
 
-    def list(
+    async def list(
         self,
         *,
         filter: detail_record_list_params.Filter | Omit = omit,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: detail_record_list_params.Page | Omit = omit,
         sort: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -133,7 +127,7 @@ class AsyncDetailRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[DetailRecordListResponse, AsyncDefaultFlatPagination[DetailRecordListResponse]]:
+    ) -> DetailRecordListResponse:
         """
         Search for any detail record across the Telnyx Platform
 
@@ -141,6 +135,9 @@ class AsyncDetailRecordsResource(AsyncAPIResource):
           filter:
               Filter records on a given record attribute and value. <br/>Example:
               filter[status]=delivered. <br/>Required: filter[record_type] must be specified.
+
+          page: Consolidated page parameter (deepObject style). Originally: page[number],
+              page[size]
 
           sort: Specifies the sort order for results. <br/>Example: sort=-created_at
 
@@ -152,27 +149,23 @@ class AsyncDetailRecordsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return await self._get(
             "/detail_records",
-            page=AsyncDefaultFlatPagination[DetailRecordListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
                         "filter": filter,
-                        "page_number": page_number,
-                        "page_size": page_size,
+                        "page": page,
                         "sort": sort,
                     },
                     detail_record_list_params.DetailRecordListParams,
                 ),
             ),
-            model=cast(
-                Any, DetailRecordListResponse
-            ),  # Union types cannot be passed in as arguments in the type system
+            cast_to=DetailRecordListResponse,
         )
 
 

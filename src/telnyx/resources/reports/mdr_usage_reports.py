@@ -18,14 +18,13 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
-from ..._base_client import AsyncPaginator, make_request_options
+from ..._base_client import make_request_options
 from ...types.reports import (
     mdr_usage_report_list_params,
     mdr_usage_report_create_params,
     mdr_usage_report_fetch_sync_params,
 )
-from ...types.reports.mdr_usage_report import MdrUsageReport
+from ...types.reports.mdr_usage_report_list_response import MdrUsageReportListResponse
 from ...types.reports.mdr_usage_report_create_response import MdrUsageReportCreateResponse
 from ...types.reports.mdr_usage_report_delete_response import MdrUsageReportDeleteResponse
 from ...types.reports.mdr_usage_report_retrieve_response import MdrUsageReportRetrieveResponse
@@ -135,21 +134,23 @@ class MdrUsageReportsResource(SyncAPIResource):
     def list(
         self,
         *,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: mdr_usage_report_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[MdrUsageReport]:
+    ) -> MdrUsageReportListResponse:
         """Fetch all messaging usage reports.
 
         Usage reports are aggregated messaging data
         for specified time period and breakdown
 
         Args:
+          page: Consolidated page parameter (deepObject style). Originally: page[number],
+              page[size]
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -158,23 +159,16 @@ class MdrUsageReportsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return self._get(
             "/reports/mdr_usage_reports",
-            page=SyncDefaultFlatPagination[MdrUsageReport],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "page_number": page_number,
-                        "page_size": page_size,
-                    },
-                    mdr_usage_report_list_params.MdrUsageReportListParams,
-                ),
+                query=maybe_transform({"page": page}, mdr_usage_report_list_params.MdrUsageReportListParams),
             ),
-            model=MdrUsageReport,
+            cast_to=MdrUsageReportListResponse,
         )
 
     def delete(
@@ -358,24 +352,26 @@ class AsyncMdrUsageReportsResource(AsyncAPIResource):
             cast_to=MdrUsageReportRetrieveResponse,
         )
 
-    def list(
+    async def list(
         self,
         *,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: mdr_usage_report_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[MdrUsageReport, AsyncDefaultFlatPagination[MdrUsageReport]]:
+    ) -> MdrUsageReportListResponse:
         """Fetch all messaging usage reports.
 
         Usage reports are aggregated messaging data
         for specified time period and breakdown
 
         Args:
+          page: Consolidated page parameter (deepObject style). Originally: page[number],
+              page[size]
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -384,23 +380,18 @@ class AsyncMdrUsageReportsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return await self._get(
             "/reports/mdr_usage_reports",
-            page=AsyncDefaultFlatPagination[MdrUsageReport],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "page_number": page_number,
-                        "page_size": page_size,
-                    },
-                    mdr_usage_report_list_params.MdrUsageReportListParams,
+                query=await async_maybe_transform(
+                    {"page": page}, mdr_usage_report_list_params.MdrUsageReportListParams
                 ),
             ),
-            model=MdrUsageReport,
+            cast_to=MdrUsageReportListResponse,
         )
 
     async def delete(

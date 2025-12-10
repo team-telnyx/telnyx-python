@@ -2,10 +2,17 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
+from .record_param import RecordParam
 
 __all__ = ["GlobalIPAssignmentParam"]
 
 
-class GlobalIPAssignmentParam(TypedDict, total=False):
-    pass
+class GlobalIPAssignmentParam(RecordParam, total=False):
+    global_ip_id: str
+    """Global IP ID."""
+
+    is_in_maintenance: bool
+    """Enable/disable BGP announcement."""
+
+    wireguard_peer_id: str
+    """Wireguard peer ID."""

@@ -17,12 +17,8 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import (
-    SyncDefaultFlatPaginationForInexplicitNumberOrders,
-    AsyncDefaultFlatPaginationForInexplicitNumberOrders,
-)
-from .._base_client import AsyncPaginator, make_request_options
-from ..types.inexplicit_number_order_response import InexplicitNumberOrderResponse
+from .._base_client import make_request_options
+from ..types.inexplicit_number_order_list_response import InexplicitNumberOrderListResponse
 from ..types.inexplicit_number_order_create_response import InexplicitNumberOrderCreateResponse
 from ..types.inexplicit_number_order_retrieve_response import InexplicitNumberOrderRetrieveResponse
 
@@ -150,7 +146,7 @@ class InexplicitNumberOrdersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPaginationForInexplicitNumberOrders[InexplicitNumberOrderResponse]:
+    ) -> InexplicitNumberOrderListResponse:
         """
         Get a paginated list of inexplicit number orders.
 
@@ -167,9 +163,8 @@ class InexplicitNumberOrdersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return self._get(
             "/inexplicit_number_orders",
-            page=SyncDefaultFlatPaginationForInexplicitNumberOrders[InexplicitNumberOrderResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -183,7 +178,7 @@ class InexplicitNumberOrdersResource(SyncAPIResource):
                     inexplicit_number_order_list_params.InexplicitNumberOrderListParams,
                 ),
             ),
-            model=InexplicitNumberOrderResponse,
+            cast_to=InexplicitNumberOrderListResponse,
         )
 
 
@@ -297,7 +292,7 @@ class AsyncInexplicitNumberOrdersResource(AsyncAPIResource):
             cast_to=InexplicitNumberOrderRetrieveResponse,
         )
 
-    def list(
+    async def list(
         self,
         *,
         page_number: int | Omit = omit,
@@ -308,10 +303,7 @@ class AsyncInexplicitNumberOrdersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[
-        InexplicitNumberOrderResponse,
-        AsyncDefaultFlatPaginationForInexplicitNumberOrders[InexplicitNumberOrderResponse],
-    ]:
+    ) -> InexplicitNumberOrderListResponse:
         """
         Get a paginated list of inexplicit number orders.
 
@@ -328,15 +320,14 @@ class AsyncInexplicitNumberOrdersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return await self._get(
             "/inexplicit_number_orders",
-            page=AsyncDefaultFlatPaginationForInexplicitNumberOrders[InexplicitNumberOrderResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
                         "page_number": page_number,
                         "page_size": page_size,
@@ -344,7 +335,7 @@ class AsyncInexplicitNumberOrdersResource(AsyncAPIResource):
                     inexplicit_number_order_list_params.InexplicitNumberOrderListParams,
                 ),
             ),
-            model=InexplicitNumberOrderResponse,
+            cast_to=InexplicitNumberOrderListResponse,
         )
 
 

@@ -25,9 +25,7 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...pagination import SyncDefaultPagination, AsyncDefaultPagination
-from ...types.room import Room
-from ..._base_client import AsyncPaginator, make_request_options
+from ..._base_client import make_request_options
 from .sessions.sessions import (
     SessionsResource,
     AsyncSessionsResource,
@@ -36,6 +34,7 @@ from .sessions.sessions import (
     SessionsResourceWithStreamingResponse,
     AsyncSessionsResourceWithStreamingResponse,
 )
+from ...types.room_list_response import RoomListResponse
 from ...types.room_create_response import RoomCreateResponse
 from ...types.room_update_response import RoomUpdateResponse
 from ...types.room_retrieve_response import RoomRetrieveResponse
@@ -250,7 +249,7 @@ class RoomsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[Room]:
+    ) -> RoomListResponse:
         """
         View a list of rooms.
 
@@ -274,9 +273,8 @@ class RoomsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return self._get(
             "/rooms",
-            page=SyncDefaultPagination[Room],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -291,7 +289,7 @@ class RoomsResource(SyncAPIResource):
                     room_list_params.RoomListParams,
                 ),
             ),
-            model=Room,
+            cast_to=RoomListResponse,
         )
 
     def delete(
@@ -529,7 +527,7 @@ class AsyncRoomsResource(AsyncAPIResource):
             cast_to=RoomUpdateResponse,
         )
 
-    def list(
+    async def list(
         self,
         *,
         filter: room_list_params.Filter | Omit = omit,
@@ -541,7 +539,7 @@ class AsyncRoomsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[Room, AsyncDefaultPagination[Room]]:
+    ) -> RoomListResponse:
         """
         View a list of rooms.
 
@@ -565,15 +563,14 @@ class AsyncRoomsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return await self._get(
             "/rooms",
-            page=AsyncDefaultPagination[Room],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
                         "filter": filter,
                         "include_sessions": include_sessions,
@@ -582,7 +579,7 @@ class AsyncRoomsResource(AsyncAPIResource):
                     room_list_params.RoomListParams,
                 ),
             ),
-            model=Room,
+            cast_to=RoomListResponse,
         )
 
     async def delete(

@@ -19,9 +19,8 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
-from .._base_client import AsyncPaginator, make_request_options
-from ..types.customer_service_record import CustomerServiceRecord
+from .._base_client import make_request_options
+from ..types.customer_service_record_list_response import CustomerServiceRecordListResponse
 from ..types.customer_service_record_create_response import CustomerServiceRecordCreateResponse
 from ..types.customer_service_record_retrieve_response import CustomerServiceRecordRetrieveResponse
 from ..types.customer_service_record_verify_phone_number_coverage_response import (
@@ -143,7 +142,7 @@ class CustomerServiceRecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[CustomerServiceRecord]:
+    ) -> CustomerServiceRecordListResponse:
         """
         List customer service records.
 
@@ -166,9 +165,8 @@ class CustomerServiceRecordsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return self._get(
             "/customer_service_records",
-            page=SyncDefaultPagination[CustomerServiceRecord],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -183,7 +181,7 @@ class CustomerServiceRecordsResource(SyncAPIResource):
                     customer_service_record_list_params.CustomerServiceRecordListParams,
                 ),
             ),
-            model=CustomerServiceRecord,
+            cast_to=CustomerServiceRecordListResponse,
         )
 
     def verify_phone_number_coverage(
@@ -324,7 +322,7 @@ class AsyncCustomerServiceRecordsResource(AsyncAPIResource):
             cast_to=CustomerServiceRecordRetrieveResponse,
         )
 
-    def list(
+    async def list(
         self,
         *,
         filter: customer_service_record_list_params.Filter | Omit = omit,
@@ -336,7 +334,7 @@ class AsyncCustomerServiceRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[CustomerServiceRecord, AsyncDefaultPagination[CustomerServiceRecord]]:
+    ) -> CustomerServiceRecordListResponse:
         """
         List customer service records.
 
@@ -359,15 +357,14 @@ class AsyncCustomerServiceRecordsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return await self._get(
             "/customer_service_records",
-            page=AsyncDefaultPagination[CustomerServiceRecord],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
                         "filter": filter,
                         "page": page,
@@ -376,7 +373,7 @@ class AsyncCustomerServiceRecordsResource(AsyncAPIResource):
                     customer_service_record_list_params.CustomerServiceRecordListParams,
                 ),
             ),
-            model=CustomerServiceRecord,
+            cast_to=CustomerServiceRecordListResponse,
         )
 
     async def verify_phone_number_coverage(

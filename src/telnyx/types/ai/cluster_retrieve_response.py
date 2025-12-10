@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import List
 
 from ..._models import BaseModel
-from ..messaging_10dlc.task_status import TaskStatus
+from ..task_status import TaskStatus
 
 __all__ = ["ClusterRetrieveResponse", "Data"]
 

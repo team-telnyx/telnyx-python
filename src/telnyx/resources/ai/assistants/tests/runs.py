@@ -14,10 +14,10 @@ from ....._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .....pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
-from ....._base_client import AsyncPaginator, make_request_options
+from ....._base_client import make_request_options
 from .....types.ai.assistants.tests import run_list_params, run_trigger_params
 from .....types.ai.assistants.tests.test_run_response import TestRunResponse
+from .....types.ai.assistants.tests.test_suites.paginated_test_run_list import PaginatedTestRunList
 
 __all__ = ["RunsResource", "AsyncRunsResource"]
 
@@ -82,8 +82,7 @@ class RunsResource(SyncAPIResource):
         self,
         test_id: str,
         *,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: run_list_params.Page | Omit = omit,
         status: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -91,12 +90,15 @@ class RunsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[TestRunResponse]:
+    ) -> PaginatedTestRunList:
         """
         Retrieves paginated execution history for a specific assistant test with
         filtering options
 
         Args:
+          page: Consolidated page parameter (deepObject style). Originally: page[size],
+              page[number]
+
           status: Filter runs by execution status (pending, running, completed, failed, timeout)
 
           extra_headers: Send extra headers
@@ -109,9 +111,8 @@ class RunsResource(SyncAPIResource):
         """
         if not test_id:
             raise ValueError(f"Expected a non-empty value for `test_id` but received {test_id!r}")
-        return self._get_api_list(
+        return self._get(
             f"/ai/assistants/tests/{test_id}/runs",
-            page=SyncDefaultFlatPagination[TestRunResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -119,14 +120,13 @@ class RunsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "page_number": page_number,
-                        "page_size": page_size,
+                        "page": page,
                         "status": status,
                     },
                     run_list_params.RunListParams,
                 ),
             ),
-            model=TestRunResponse,
+            cast_to=PaginatedTestRunList,
         )
 
     def trigger(
@@ -227,12 +227,11 @@ class AsyncRunsResource(AsyncAPIResource):
             cast_to=TestRunResponse,
         )
 
-    def list(
+    async def list(
         self,
         test_id: str,
         *,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: run_list_params.Page | Omit = omit,
         status: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -240,12 +239,15 @@ class AsyncRunsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[TestRunResponse, AsyncDefaultFlatPagination[TestRunResponse]]:
+    ) -> PaginatedTestRunList:
         """
         Retrieves paginated execution history for a specific assistant test with
         filtering options
 
         Args:
+          page: Consolidated page parameter (deepObject style). Originally: page[size],
+              page[number]
+
           status: Filter runs by execution status (pending, running, completed, failed, timeout)
 
           extra_headers: Send extra headers
@@ -258,24 +260,22 @@ class AsyncRunsResource(AsyncAPIResource):
         """
         if not test_id:
             raise ValueError(f"Expected a non-empty value for `test_id` but received {test_id!r}")
-        return self._get_api_list(
+        return await self._get(
             f"/ai/assistants/tests/{test_id}/runs",
-            page=AsyncDefaultFlatPagination[TestRunResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
-                        "page_number": page_number,
-                        "page_size": page_size,
+                        "page": page,
                         "status": status,
                     },
                     run_list_params.RunListParams,
                 ),
             ),
-            model=TestRunResponse,
+            cast_to=PaginatedTestRunList,
         )
 
     async def trigger(

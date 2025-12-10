@@ -10,10 +10,9 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types import (
-    IntegrationSecret,
+    IntegrationSecretListResponse,
     IntegrationSecretCreateResponse,
 )
-from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -74,17 +73,19 @@ class TestIntegrationSecrets:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         integration_secret = client.integration_secrets.list()
-        assert_matches_type(SyncDefaultFlatPagination[IntegrationSecret], integration_secret, path=["response"])
+        assert_matches_type(IntegrationSecretListResponse, integration_secret, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         integration_secret = client.integration_secrets.list(
             filter={"type": "bearer"},
-            page_number=0,
-            page_size=0,
+            page={
+                "number": 1,
+                "size": 25,
+            },
         )
-        assert_matches_type(SyncDefaultFlatPagination[IntegrationSecret], integration_secret, path=["response"])
+        assert_matches_type(IntegrationSecretListResponse, integration_secret, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -94,7 +95,7 @@ class TestIntegrationSecrets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         integration_secret = response.parse()
-        assert_matches_type(SyncDefaultFlatPagination[IntegrationSecret], integration_secret, path=["response"])
+        assert_matches_type(IntegrationSecretListResponse, integration_secret, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -104,7 +105,7 @@ class TestIntegrationSecrets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             integration_secret = response.parse()
-            assert_matches_type(SyncDefaultFlatPagination[IntegrationSecret], integration_secret, path=["response"])
+            assert_matches_type(IntegrationSecretListResponse, integration_secret, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -209,17 +210,19 @@ class TestAsyncIntegrationSecrets:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         integration_secret = await async_client.integration_secrets.list()
-        assert_matches_type(AsyncDefaultFlatPagination[IntegrationSecret], integration_secret, path=["response"])
+        assert_matches_type(IntegrationSecretListResponse, integration_secret, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         integration_secret = await async_client.integration_secrets.list(
             filter={"type": "bearer"},
-            page_number=0,
-            page_size=0,
+            page={
+                "number": 1,
+                "size": 25,
+            },
         )
-        assert_matches_type(AsyncDefaultFlatPagination[IntegrationSecret], integration_secret, path=["response"])
+        assert_matches_type(IntegrationSecretListResponse, integration_secret, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -229,7 +232,7 @@ class TestAsyncIntegrationSecrets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         integration_secret = await response.parse()
-        assert_matches_type(AsyncDefaultFlatPagination[IntegrationSecret], integration_secret, path=["response"])
+        assert_matches_type(IntegrationSecretListResponse, integration_secret, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -239,7 +242,7 @@ class TestAsyncIntegrationSecrets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             integration_secret = await response.parse()
-            assert_matches_type(AsyncDefaultFlatPagination[IntegrationSecret], integration_secret, path=["response"])
+            assert_matches_type(IntegrationSecretListResponse, integration_secret, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

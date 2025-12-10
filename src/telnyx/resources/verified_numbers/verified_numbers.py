@@ -26,10 +26,9 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
-from ..._base_client import AsyncPaginator, make_request_options
-from ...types.verified_number import VerifiedNumber
+from ..._base_client import make_request_options
 from ...types.verified_number_data_wrapper import VerifiedNumberDataWrapper
+from ...types.verified_number_list_response import VerifiedNumberListResponse
 from ...types.verified_number_create_response import VerifiedNumberCreateResponse
 
 __all__ = ["VerifiedNumbersResource", "AsyncVerifiedNumbersResource"]
@@ -148,19 +147,21 @@ class VerifiedNumbersResource(SyncAPIResource):
     def list(
         self,
         *,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: verified_number_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[VerifiedNumber]:
+    ) -> VerifiedNumberListResponse:
         """
         Gets a paginated list of Verified Numbers.
 
         Args:
+          page: Consolidated page parameter (deepObject style). Use page[size] and page[number]
+              in the query string. Originally: page[size], page[number]
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -169,23 +170,16 @@ class VerifiedNumbersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return self._get(
             "/verified_numbers",
-            page=SyncDefaultFlatPagination[VerifiedNumber],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "page_number": page_number,
-                        "page_size": page_size,
-                    },
-                    verified_number_list_params.VerifiedNumberListParams,
-                ),
+                query=maybe_transform({"page": page}, verified_number_list_params.VerifiedNumberListParams),
             ),
-            model=VerifiedNumber,
+            cast_to=VerifiedNumberListResponse,
         )
 
     def delete(
@@ -334,22 +328,24 @@ class AsyncVerifiedNumbersResource(AsyncAPIResource):
             cast_to=VerifiedNumberDataWrapper,
         )
 
-    def list(
+    async def list(
         self,
         *,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: verified_number_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[VerifiedNumber, AsyncDefaultFlatPagination[VerifiedNumber]]:
+    ) -> VerifiedNumberListResponse:
         """
         Gets a paginated list of Verified Numbers.
 
         Args:
+          page: Consolidated page parameter (deepObject style). Use page[size] and page[number]
+              in the query string. Originally: page[size], page[number]
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -358,23 +354,16 @@ class AsyncVerifiedNumbersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return await self._get(
             "/verified_numbers",
-            page=AsyncDefaultFlatPagination[VerifiedNumber],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "page_number": page_number,
-                        "page_size": page_size,
-                    },
-                    verified_number_list_params.VerifiedNumberListParams,
-                ),
+                query=await async_maybe_transform({"page": page}, verified_number_list_params.VerifiedNumberListParams),
             ),
-            model=VerifiedNumber,
+            cast_to=VerifiedNumberListResponse,
         )
 
     async def delete(

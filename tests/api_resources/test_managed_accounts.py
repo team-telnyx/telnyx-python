@@ -17,7 +17,6 @@ from telnyx.types import (
     ManagedAccountUpdateGlobalChannelLimitResponse,
     ManagedAccountGetAllocatableGlobalOutboundChannelsResponse,
 )
-from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -168,7 +167,7 @@ class TestManagedAccounts:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         managed_account = client.managed_accounts.list()
-        assert_matches_type(SyncDefaultPagination[ManagedAccountListResponse], managed_account, path=["response"])
+        assert_matches_type(ManagedAccountListResponse, managed_account, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -191,7 +190,7 @@ class TestManagedAccounts:
             },
             sort="email",
         )
-        assert_matches_type(SyncDefaultPagination[ManagedAccountListResponse], managed_account, path=["response"])
+        assert_matches_type(ManagedAccountListResponse, managed_account, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -201,7 +200,7 @@ class TestManagedAccounts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         managed_account = response.parse()
-        assert_matches_type(SyncDefaultPagination[ManagedAccountListResponse], managed_account, path=["response"])
+        assert_matches_type(ManagedAccountListResponse, managed_account, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -211,7 +210,7 @@ class TestManagedAccounts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             managed_account = response.parse()
-            assert_matches_type(SyncDefaultPagination[ManagedAccountListResponse], managed_account, path=["response"])
+            assert_matches_type(ManagedAccountListResponse, managed_account, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -449,7 +448,7 @@ class TestAsyncManagedAccounts:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         managed_account = await async_client.managed_accounts.list()
-        assert_matches_type(AsyncDefaultPagination[ManagedAccountListResponse], managed_account, path=["response"])
+        assert_matches_type(ManagedAccountListResponse, managed_account, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -472,7 +471,7 @@ class TestAsyncManagedAccounts:
             },
             sort="email",
         )
-        assert_matches_type(AsyncDefaultPagination[ManagedAccountListResponse], managed_account, path=["response"])
+        assert_matches_type(ManagedAccountListResponse, managed_account, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -482,7 +481,7 @@ class TestAsyncManagedAccounts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         managed_account = await response.parse()
-        assert_matches_type(AsyncDefaultPagination[ManagedAccountListResponse], managed_account, path=["response"])
+        assert_matches_type(ManagedAccountListResponse, managed_account, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -492,7 +491,7 @@ class TestAsyncManagedAccounts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             managed_account = await response.parse()
-            assert_matches_type(AsyncDefaultPagination[ManagedAccountListResponse], managed_account, path=["response"])
+            assert_matches_type(ManagedAccountListResponse, managed_account, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
