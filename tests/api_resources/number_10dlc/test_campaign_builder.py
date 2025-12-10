@@ -9,7 +9,7 @@ import pytest
 
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
-from telnyx.types import TelnyxCampaignCsp
+from telnyx.types.number_10dlc import TelnyxCampaignCsp
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -19,8 +19,8 @@ class TestCampaignBuilder:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_method_campaign_builder(self, client: Telnyx) -> None:
-        campaign_builder = client.number_10dlc.campaign_builder.campaign_builder(
+    def test_method_submit(self, client: Telnyx) -> None:
+        campaign_builder = client.number_10dlc.campaign_builder.submit(
             brand_id="brandId",
             description="description",
             usecase="usecase",
@@ -29,8 +29,8 @@ class TestCampaignBuilder:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_method_campaign_builder_with_all_params(self, client: Telnyx) -> None:
-        campaign_builder = client.number_10dlc.campaign_builder.campaign_builder(
+    def test_method_submit_with_all_params(self, client: Telnyx) -> None:
+        campaign_builder = client.number_10dlc.campaign_builder.submit(
             brand_id="brandId",
             description="description",
             usecase="usecase",
@@ -71,8 +71,8 @@ class TestCampaignBuilder:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_raw_response_campaign_builder(self, client: Telnyx) -> None:
-        response = client.number_10dlc.campaign_builder.with_raw_response.campaign_builder(
+    def test_raw_response_submit(self, client: Telnyx) -> None:
+        response = client.number_10dlc.campaign_builder.with_raw_response.submit(
             brand_id="brandId",
             description="description",
             usecase="usecase",
@@ -85,8 +85,8 @@ class TestCampaignBuilder:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_streaming_response_campaign_builder(self, client: Telnyx) -> None:
-        with client.number_10dlc.campaign_builder.with_streaming_response.campaign_builder(
+    def test_streaming_response_submit(self, client: Telnyx) -> None:
+        with client.number_10dlc.campaign_builder.with_streaming_response.submit(
             brand_id="brandId",
             description="description",
             usecase="usecase",
@@ -107,8 +107,8 @@ class TestAsyncCampaignBuilder:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_method_campaign_builder(self, async_client: AsyncTelnyx) -> None:
-        campaign_builder = await async_client.number_10dlc.campaign_builder.campaign_builder(
+    async def test_method_submit(self, async_client: AsyncTelnyx) -> None:
+        campaign_builder = await async_client.number_10dlc.campaign_builder.submit(
             brand_id="brandId",
             description="description",
             usecase="usecase",
@@ -117,8 +117,8 @@ class TestAsyncCampaignBuilder:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_method_campaign_builder_with_all_params(self, async_client: AsyncTelnyx) -> None:
-        campaign_builder = await async_client.number_10dlc.campaign_builder.campaign_builder(
+    async def test_method_submit_with_all_params(self, async_client: AsyncTelnyx) -> None:
+        campaign_builder = await async_client.number_10dlc.campaign_builder.submit(
             brand_id="brandId",
             description="description",
             usecase="usecase",
@@ -159,8 +159,8 @@ class TestAsyncCampaignBuilder:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_raw_response_campaign_builder(self, async_client: AsyncTelnyx) -> None:
-        response = await async_client.number_10dlc.campaign_builder.with_raw_response.campaign_builder(
+    async def test_raw_response_submit(self, async_client: AsyncTelnyx) -> None:
+        response = await async_client.number_10dlc.campaign_builder.with_raw_response.submit(
             brand_id="brandId",
             description="description",
             usecase="usecase",
@@ -173,8 +173,8 @@ class TestAsyncCampaignBuilder:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_streaming_response_campaign_builder(self, async_client: AsyncTelnyx) -> None:
-        async with async_client.number_10dlc.campaign_builder.with_streaming_response.campaign_builder(
+    async def test_streaming_response_submit(self, async_client: AsyncTelnyx) -> None:
+        async with async_client.number_10dlc.campaign_builder.with_streaming_response.submit(
             brand_id="brandId",
             description="description",
             usecase="usecase",

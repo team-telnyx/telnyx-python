@@ -2,13 +2,11 @@
 
 from __future__ import annotations
 
-from typing_extensions import Annotated, TypedDict
-
-from ..._utils import PropertyInfo
+from typing_extensions import TypedDict
 
 __all__ = ["ActionAcceptSuggestionsParams"]
 
 
 class ActionAcceptSuggestionsParams(TypedDict, total=False):
-    body_id: Annotated[str, PropertyInfo(alias="id")]
+    id: str
     """The ID of the address."""

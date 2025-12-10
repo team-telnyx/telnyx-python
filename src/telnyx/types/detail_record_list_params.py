@@ -3,11 +3,12 @@
 from __future__ import annotations
 
 from typing import Dict, Union
-from typing_extensions import Literal, Required, TypeAlias, TypedDict
+from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
 from .._types import SequenceNotStr
+from .._utils import PropertyInfo
 
-__all__ = ["DetailRecordListParams", "Filter", "Page"]
+__all__ = ["DetailRecordListParams", "Filter"]
 
 
 class DetailRecordListParams(TypedDict, total=False):
@@ -18,11 +19,9 @@ class DetailRecordListParams(TypedDict, total=False):
     be specified.
     """
 
-    page: Page
-    """Consolidated page parameter (deepObject style).
+    page_number: Annotated[int, PropertyInfo(alias="page[number]")]
 
-    Originally: page[number], page[size]
-    """
+    page_size: Annotated[int, PropertyInfo(alias="page[size]")]
 
     sort: SequenceNotStr[str]
     """Specifies the sort order for results. <br/>Example: sort=-created_at"""
@@ -80,16 +79,3 @@ class FilterTyped(TypedDict, total=False):
 
 
 Filter: TypeAlias = Union[FilterTyped, Dict[str, object]]
-
-
-class Page(TypedDict, total=False):
-    """Consolidated page parameter (deepObject style).
-
-    Originally: page[number], page[size]
-    """
-
-    number: int
-    """Page number"""
-
-    size: int
-    """Page size"""

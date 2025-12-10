@@ -2,18 +2,8 @@
 
 from __future__ import annotations
 
-from .external_vetting_external_vetting_params import (
-    ExternalVettingExternalVettingParams as ExternalVettingExternalVettingParams,
-)
-from .external_vetting_external_vetting_response import (
-    ExternalVettingExternalVettingResponse as ExternalVettingExternalVettingResponse,
-)
-from .external_vetting_update_external_vetting_params import (
-    ExternalVettingUpdateExternalVettingParams as ExternalVettingUpdateExternalVettingParams,
-)
-from .external_vetting_update_external_vetting_response import (
-    ExternalVettingUpdateExternalVettingResponse as ExternalVettingUpdateExternalVettingResponse,
-)
-from .external_vetting_retrieve_external_vetting_response import (
-    ExternalVettingRetrieveExternalVettingResponse as ExternalVettingRetrieveExternalVettingResponse,
-)
+from .external_vetting_order_params import ExternalVettingOrderParams as ExternalVettingOrderParams
+from .external_vetting_list_response import ExternalVettingListResponse as ExternalVettingListResponse
+from .external_vetting_imports_params import ExternalVettingImportsParams as ExternalVettingImportsParams
+from .external_vetting_order_response import ExternalVettingOrderResponse as ExternalVettingOrderResponse
+from .external_vetting_imports_response import ExternalVettingImportsResponse as ExternalVettingImportsResponse

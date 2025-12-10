@@ -44,9 +44,9 @@ class ActionsResource(SyncAPIResource):
 
     def accept_suggestions(
         self,
-        path_id: str,
+        address_uuid: str,
         *,
-        body_id: str | Omit = omit,
+        id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -59,7 +59,7 @@ class ActionsResource(SyncAPIResource):
         and finishes the uploads of the numbers associated with it to Microsoft.
 
         Args:
-          body_id: The ID of the address.
+          id: The ID of the address.
 
           extra_headers: Send extra headers
 
@@ -69,11 +69,11 @@ class ActionsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not path_id:
-            raise ValueError(f"Expected a non-empty value for `path_id` but received {path_id!r}")
+        if not address_uuid:
+            raise ValueError(f"Expected a non-empty value for `address_uuid` but received {address_uuid!r}")
         return self._post(
-            f"/addresses/{path_id}/actions/accept_suggestions",
-            body=maybe_transform({"body_id": body_id}, action_accept_suggestions_params.ActionAcceptSuggestionsParams),
+            f"/addresses/{address_uuid}/actions/accept_suggestions",
+            body=maybe_transform({"id": id}, action_accept_suggestions_params.ActionAcceptSuggestionsParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -165,9 +165,9 @@ class AsyncActionsResource(AsyncAPIResource):
 
     async def accept_suggestions(
         self,
-        path_id: str,
+        address_uuid: str,
         *,
-        body_id: str | Omit = omit,
+        id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -180,7 +180,7 @@ class AsyncActionsResource(AsyncAPIResource):
         and finishes the uploads of the numbers associated with it to Microsoft.
 
         Args:
-          body_id: The ID of the address.
+          id: The ID of the address.
 
           extra_headers: Send extra headers
 
@@ -190,12 +190,12 @@ class AsyncActionsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not path_id:
-            raise ValueError(f"Expected a non-empty value for `path_id` but received {path_id!r}")
+        if not address_uuid:
+            raise ValueError(f"Expected a non-empty value for `address_uuid` but received {address_uuid!r}")
         return await self._post(
-            f"/addresses/{path_id}/actions/accept_suggestions",
+            f"/addresses/{address_uuid}/actions/accept_suggestions",
             body=await async_maybe_transform(
-                {"body_id": body_id}, action_accept_suggestions_params.ActionAcceptSuggestionsParams
+                {"id": id}, action_accept_suggestions_params.ActionAcceptSuggestionsParams
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout

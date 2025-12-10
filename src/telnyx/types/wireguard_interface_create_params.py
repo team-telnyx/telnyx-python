@@ -8,9 +8,6 @@ __all__ = ["WireguardInterfaceCreateParams"]
 
 
 class WireguardInterfaceCreateParams(TypedDict, total=False):
-    network_id: Required[str]
-    """The id of the network associated with the interface."""
-
     region_code: Required[str]
     """The region the interface should be deployed to."""
 
@@ -19,3 +16,6 @@ class WireguardInterfaceCreateParams(TypedDict, total=False):
 
     name: str
     """A user specified name for the interface."""
+
+    network_id: str
+    """The id of the network associated with the interface."""

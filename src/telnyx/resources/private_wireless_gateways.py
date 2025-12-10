@@ -15,8 +15,9 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import make_request_options
-from ..types.private_wireless_gateway_list_response import PrivateWirelessGatewayListResponse
+from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
+from .._base_client import AsyncPaginator, make_request_options
+from ..types.private_wireless_gateway import PrivateWirelessGateway
 from ..types.private_wireless_gateway_create_response import PrivateWirelessGatewayCreateResponse
 from ..types.private_wireless_gateway_delete_response import PrivateWirelessGatewayDeleteResponse
 from ..types.private_wireless_gateway_retrieve_response import PrivateWirelessGatewayRetrieveResponse
@@ -143,7 +144,7 @@ class PrivateWirelessGatewaysResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PrivateWirelessGatewayListResponse:
+    ) -> SyncDefaultFlatPagination[PrivateWirelessGateway]:
         """
         Get all Private Wireless Gateways belonging to the user.
 
@@ -170,8 +171,9 @@ class PrivateWirelessGatewaysResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/private_wireless_gateways",
+            page=SyncDefaultFlatPagination[PrivateWirelessGateway],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -190,7 +192,7 @@ class PrivateWirelessGatewaysResource(SyncAPIResource):
                     private_wireless_gateway_list_params.PrivateWirelessGatewayListParams,
                 ),
             ),
-            cast_to=PrivateWirelessGatewayListResponse,
+            model=PrivateWirelessGateway,
         )
 
     def delete(
@@ -330,7 +332,7 @@ class AsyncPrivateWirelessGatewaysResource(AsyncAPIResource):
             cast_to=PrivateWirelessGatewayRetrieveResponse,
         )
 
-    async def list(
+    def list(
         self,
         *,
         filter_created_at: str | Omit = omit,
@@ -346,7 +348,7 @@ class AsyncPrivateWirelessGatewaysResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PrivateWirelessGatewayListResponse:
+    ) -> AsyncPaginator[PrivateWirelessGateway, AsyncDefaultFlatPagination[PrivateWirelessGateway]]:
         """
         Get all Private Wireless Gateways belonging to the user.
 
@@ -373,14 +375,15 @@ class AsyncPrivateWirelessGatewaysResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/private_wireless_gateways",
+            page=AsyncDefaultFlatPagination[PrivateWirelessGateway],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "filter_created_at": filter_created_at,
                         "filter_ip_range": filter_ip_range,
@@ -393,7 +396,7 @@ class AsyncPrivateWirelessGatewaysResource(AsyncAPIResource):
                     private_wireless_gateway_list_params.PrivateWirelessGatewayListParams,
                 ),
             ),
-            cast_to=PrivateWirelessGatewayListResponse,
+            model=PrivateWirelessGateway,
         )
 
     async def delete(

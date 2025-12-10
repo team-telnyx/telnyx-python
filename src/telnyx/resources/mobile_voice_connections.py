@@ -22,8 +22,9 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import make_request_options
-from ..types.mobile_voice_connection_list_response import MobileVoiceConnectionListResponse
+from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
+from .._base_client import AsyncPaginator, make_request_options
+from ..types.mobile_voice_connection import MobileVoiceConnection
 from ..types.mobile_voice_connection_create_response import MobileVoiceConnectionCreateResponse
 from ..types.mobile_voice_connection_delete_response import MobileVoiceConnectionDeleteResponse
 from ..types.mobile_voice_connection_update_response import MobileVoiceConnectionUpdateResponse
@@ -207,7 +208,7 @@ class MobileVoiceConnectionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MobileVoiceConnectionListResponse:
+    ) -> SyncDefaultFlatPagination[MobileVoiceConnection]:
         """
         List Mobile Voice Connections
 
@@ -229,8 +230,9 @@ class MobileVoiceConnectionsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/v2/mobile_voice_connections",
+            page=SyncDefaultFlatPagination[MobileVoiceConnection],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -246,7 +248,7 @@ class MobileVoiceConnectionsResource(SyncAPIResource):
                     mobile_voice_connection_list_params.MobileVoiceConnectionListParams,
                 ),
             ),
-            cast_to=MobileVoiceConnectionListResponse,
+            model=MobileVoiceConnection,
         )
 
     def delete(
@@ -445,7 +447,7 @@ class AsyncMobileVoiceConnectionsResource(AsyncAPIResource):
             cast_to=MobileVoiceConnectionUpdateResponse,
         )
 
-    async def list(
+    def list(
         self,
         *,
         filter_connection_name_contains: str | Omit = omit,
@@ -458,7 +460,7 @@ class AsyncMobileVoiceConnectionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MobileVoiceConnectionListResponse:
+    ) -> AsyncPaginator[MobileVoiceConnection, AsyncDefaultFlatPagination[MobileVoiceConnection]]:
         """
         List Mobile Voice Connections
 
@@ -480,14 +482,15 @@ class AsyncMobileVoiceConnectionsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/v2/mobile_voice_connections",
+            page=AsyncDefaultFlatPagination[MobileVoiceConnection],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "filter_connection_name_contains": filter_connection_name_contains,
                         "page_number": page_number,
@@ -497,7 +500,7 @@ class AsyncMobileVoiceConnectionsResource(AsyncAPIResource):
                     mobile_voice_connection_list_params.MobileVoiceConnectionListParams,
                 ),
             ),
-            cast_to=MobileVoiceConnectionListResponse,
+            model=MobileVoiceConnection,
         )
 
     async def delete(

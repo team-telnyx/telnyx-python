@@ -25,14 +25,6 @@ from .brand.brand import (
     AsyncBrandResourceWithStreamingResponse,
 )
 from ..._base_client import make_request_options
-from .partner_campaign import (
-    PartnerCampaignResource,
-    AsyncPartnerCampaignResource,
-    PartnerCampaignResourceWithRawResponse,
-    AsyncPartnerCampaignResourceWithRawResponse,
-    PartnerCampaignResourceWithStreamingResponse,
-    AsyncPartnerCampaignResourceWithStreamingResponse,
-)
 from .campaign.campaign import (
     CampaignResource,
     AsyncCampaignResource,
@@ -40,14 +32,6 @@ from .campaign.campaign import (
     AsyncCampaignResourceWithRawResponse,
     CampaignResourceWithStreamingResponse,
     AsyncCampaignResourceWithStreamingResponse,
-)
-from .partner_campaigns import (
-    PartnerCampaignsResource,
-    AsyncPartnerCampaignsResource,
-    PartnerCampaignsResourceWithRawResponse,
-    AsyncPartnerCampaignsResourceWithRawResponse,
-    PartnerCampaignsResourceWithStreamingResponse,
-    AsyncPartnerCampaignsResourceWithStreamingResponse,
 )
 from .phone_number_campaigns import (
     PhoneNumberCampaignsResource,
@@ -65,15 +49,7 @@ from .campaign_builder.campaign_builder import (
     CampaignBuilderResourceWithStreamingResponse,
     AsyncCampaignBuilderResourceWithStreamingResponse,
 )
-from .phone_number_assignment_by_profile import (
-    PhoneNumberAssignmentByProfileResource,
-    AsyncPhoneNumberAssignmentByProfileResource,
-    PhoneNumberAssignmentByProfileResourceWithRawResponse,
-    AsyncPhoneNumberAssignmentByProfileResourceWithRawResponse,
-    PhoneNumberAssignmentByProfileResourceWithStreamingResponse,
-    AsyncPhoneNumberAssignmentByProfileResourceWithStreamingResponse,
-)
-from ...types.number_10dlc_retrieve_response import Number10dlcRetrieveResponse
+from ...types.number_10dlc_get_enum_response import Number10dlcGetEnumResponse
 
 __all__ = ["Number10dlcResource", "AsyncNumber10dlcResource"]
 
@@ -90,18 +66,6 @@ class Number10dlcResource(SyncAPIResource):
     @cached_property
     def campaign_builder(self) -> CampaignBuilderResource:
         return CampaignBuilderResource(self._client)
-
-    @cached_property
-    def partner_campaign(self) -> PartnerCampaignResource:
-        return PartnerCampaignResource(self._client)
-
-    @cached_property
-    def partner_campaigns(self) -> PartnerCampaignsResource:
-        return PartnerCampaignsResource(self._client)
-
-    @cached_property
-    def phone_number_assignment_by_profile(self) -> PhoneNumberAssignmentByProfileResource:
-        return PhoneNumberAssignmentByProfileResource(self._client)
 
     @cached_property
     def phone_number_campaigns(self) -> PhoneNumberCampaignsResource:
@@ -126,7 +90,7 @@ class Number10dlcResource(SyncAPIResource):
         """
         return Number10dlcResourceWithStreamingResponse(self)
 
-    def retrieve(
+    def get_enum(
         self,
         endpoint: Literal[
             "mno",
@@ -153,7 +117,7 @@ class Number10dlcResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Number10dlcRetrieveResponse:
+    ) -> Number10dlcGetEnumResponse:
         """
         Get Enum
 
@@ -169,14 +133,14 @@ class Number10dlcResource(SyncAPIResource):
         if not endpoint:
             raise ValueError(f"Expected a non-empty value for `endpoint` but received {endpoint!r}")
         return cast(
-            Number10dlcRetrieveResponse,
+            Number10dlcGetEnumResponse,
             self._get(
                 f"/10dlc/enum/{endpoint}",
                 options=make_request_options(
                     extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
                 ),
                 cast_to=cast(
-                    Any, Number10dlcRetrieveResponse
+                    Any, Number10dlcGetEnumResponse
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -194,18 +158,6 @@ class AsyncNumber10dlcResource(AsyncAPIResource):
     @cached_property
     def campaign_builder(self) -> AsyncCampaignBuilderResource:
         return AsyncCampaignBuilderResource(self._client)
-
-    @cached_property
-    def partner_campaign(self) -> AsyncPartnerCampaignResource:
-        return AsyncPartnerCampaignResource(self._client)
-
-    @cached_property
-    def partner_campaigns(self) -> AsyncPartnerCampaignsResource:
-        return AsyncPartnerCampaignsResource(self._client)
-
-    @cached_property
-    def phone_number_assignment_by_profile(self) -> AsyncPhoneNumberAssignmentByProfileResource:
-        return AsyncPhoneNumberAssignmentByProfileResource(self._client)
 
     @cached_property
     def phone_number_campaigns(self) -> AsyncPhoneNumberCampaignsResource:
@@ -230,7 +182,7 @@ class AsyncNumber10dlcResource(AsyncAPIResource):
         """
         return AsyncNumber10dlcResourceWithStreamingResponse(self)
 
-    async def retrieve(
+    async def get_enum(
         self,
         endpoint: Literal[
             "mno",
@@ -257,7 +209,7 @@ class AsyncNumber10dlcResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Number10dlcRetrieveResponse:
+    ) -> Number10dlcGetEnumResponse:
         """
         Get Enum
 
@@ -273,14 +225,14 @@ class AsyncNumber10dlcResource(AsyncAPIResource):
         if not endpoint:
             raise ValueError(f"Expected a non-empty value for `endpoint` but received {endpoint!r}")
         return cast(
-            Number10dlcRetrieveResponse,
+            Number10dlcGetEnumResponse,
             await self._get(
                 f"/10dlc/enum/{endpoint}",
                 options=make_request_options(
                     extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
                 ),
                 cast_to=cast(
-                    Any, Number10dlcRetrieveResponse
+                    Any, Number10dlcGetEnumResponse
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -290,8 +242,8 @@ class Number10dlcResourceWithRawResponse:
     def __init__(self, number_10dlc: Number10dlcResource) -> None:
         self._number_10dlc = number_10dlc
 
-        self.retrieve = to_raw_response_wrapper(
-            number_10dlc.retrieve,
+        self.get_enum = to_raw_response_wrapper(
+            number_10dlc.get_enum,
         )
 
     @cached_property
@@ -307,20 +259,6 @@ class Number10dlcResourceWithRawResponse:
         return CampaignBuilderResourceWithRawResponse(self._number_10dlc.campaign_builder)
 
     @cached_property
-    def partner_campaign(self) -> PartnerCampaignResourceWithRawResponse:
-        return PartnerCampaignResourceWithRawResponse(self._number_10dlc.partner_campaign)
-
-    @cached_property
-    def partner_campaigns(self) -> PartnerCampaignsResourceWithRawResponse:
-        return PartnerCampaignsResourceWithRawResponse(self._number_10dlc.partner_campaigns)
-
-    @cached_property
-    def phone_number_assignment_by_profile(self) -> PhoneNumberAssignmentByProfileResourceWithRawResponse:
-        return PhoneNumberAssignmentByProfileResourceWithRawResponse(
-            self._number_10dlc.phone_number_assignment_by_profile
-        )
-
-    @cached_property
     def phone_number_campaigns(self) -> PhoneNumberCampaignsResourceWithRawResponse:
         return PhoneNumberCampaignsResourceWithRawResponse(self._number_10dlc.phone_number_campaigns)
 
@@ -329,8 +267,8 @@ class AsyncNumber10dlcResourceWithRawResponse:
     def __init__(self, number_10dlc: AsyncNumber10dlcResource) -> None:
         self._number_10dlc = number_10dlc
 
-        self.retrieve = async_to_raw_response_wrapper(
-            number_10dlc.retrieve,
+        self.get_enum = async_to_raw_response_wrapper(
+            number_10dlc.get_enum,
         )
 
     @cached_property
@@ -346,20 +284,6 @@ class AsyncNumber10dlcResourceWithRawResponse:
         return AsyncCampaignBuilderResourceWithRawResponse(self._number_10dlc.campaign_builder)
 
     @cached_property
-    def partner_campaign(self) -> AsyncPartnerCampaignResourceWithRawResponse:
-        return AsyncPartnerCampaignResourceWithRawResponse(self._number_10dlc.partner_campaign)
-
-    @cached_property
-    def partner_campaigns(self) -> AsyncPartnerCampaignsResourceWithRawResponse:
-        return AsyncPartnerCampaignsResourceWithRawResponse(self._number_10dlc.partner_campaigns)
-
-    @cached_property
-    def phone_number_assignment_by_profile(self) -> AsyncPhoneNumberAssignmentByProfileResourceWithRawResponse:
-        return AsyncPhoneNumberAssignmentByProfileResourceWithRawResponse(
-            self._number_10dlc.phone_number_assignment_by_profile
-        )
-
-    @cached_property
     def phone_number_campaigns(self) -> AsyncPhoneNumberCampaignsResourceWithRawResponse:
         return AsyncPhoneNumberCampaignsResourceWithRawResponse(self._number_10dlc.phone_number_campaigns)
 
@@ -368,8 +292,8 @@ class Number10dlcResourceWithStreamingResponse:
     def __init__(self, number_10dlc: Number10dlcResource) -> None:
         self._number_10dlc = number_10dlc
 
-        self.retrieve = to_streamed_response_wrapper(
-            number_10dlc.retrieve,
+        self.get_enum = to_streamed_response_wrapper(
+            number_10dlc.get_enum,
         )
 
     @cached_property
@@ -385,20 +309,6 @@ class Number10dlcResourceWithStreamingResponse:
         return CampaignBuilderResourceWithStreamingResponse(self._number_10dlc.campaign_builder)
 
     @cached_property
-    def partner_campaign(self) -> PartnerCampaignResourceWithStreamingResponse:
-        return PartnerCampaignResourceWithStreamingResponse(self._number_10dlc.partner_campaign)
-
-    @cached_property
-    def partner_campaigns(self) -> PartnerCampaignsResourceWithStreamingResponse:
-        return PartnerCampaignsResourceWithStreamingResponse(self._number_10dlc.partner_campaigns)
-
-    @cached_property
-    def phone_number_assignment_by_profile(self) -> PhoneNumberAssignmentByProfileResourceWithStreamingResponse:
-        return PhoneNumberAssignmentByProfileResourceWithStreamingResponse(
-            self._number_10dlc.phone_number_assignment_by_profile
-        )
-
-    @cached_property
     def phone_number_campaigns(self) -> PhoneNumberCampaignsResourceWithStreamingResponse:
         return PhoneNumberCampaignsResourceWithStreamingResponse(self._number_10dlc.phone_number_campaigns)
 
@@ -407,8 +317,8 @@ class AsyncNumber10dlcResourceWithStreamingResponse:
     def __init__(self, number_10dlc: AsyncNumber10dlcResource) -> None:
         self._number_10dlc = number_10dlc
 
-        self.retrieve = async_to_streamed_response_wrapper(
-            number_10dlc.retrieve,
+        self.get_enum = async_to_streamed_response_wrapper(
+            number_10dlc.get_enum,
         )
 
     @cached_property
@@ -422,20 +332,6 @@ class AsyncNumber10dlcResourceWithStreamingResponse:
     @cached_property
     def campaign_builder(self) -> AsyncCampaignBuilderResourceWithStreamingResponse:
         return AsyncCampaignBuilderResourceWithStreamingResponse(self._number_10dlc.campaign_builder)
-
-    @cached_property
-    def partner_campaign(self) -> AsyncPartnerCampaignResourceWithStreamingResponse:
-        return AsyncPartnerCampaignResourceWithStreamingResponse(self._number_10dlc.partner_campaign)
-
-    @cached_property
-    def partner_campaigns(self) -> AsyncPartnerCampaignsResourceWithStreamingResponse:
-        return AsyncPartnerCampaignsResourceWithStreamingResponse(self._number_10dlc.partner_campaigns)
-
-    @cached_property
-    def phone_number_assignment_by_profile(self) -> AsyncPhoneNumberAssignmentByProfileResourceWithStreamingResponse:
-        return AsyncPhoneNumberAssignmentByProfileResourceWithStreamingResponse(
-            self._number_10dlc.phone_number_assignment_by_profile
-        )
 
     @cached_property
     def phone_number_campaigns(self) -> AsyncPhoneNumberCampaignsResourceWithStreamingResponse:

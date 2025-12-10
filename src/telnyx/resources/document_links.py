@@ -6,7 +6,7 @@ import httpx
 
 from ..types import document_link_list_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._utils import maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -15,7 +15,8 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import make_request_options
+from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
+from .._base_client import AsyncPaginator, make_request_options
 from ..types.document_link_list_response import DocumentLinkListResponse
 
 __all__ = ["DocumentLinksResource", "AsyncDocumentLinksResource"]
@@ -52,7 +53,7 @@ class DocumentLinksResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> DocumentLinkListResponse:
+    ) -> SyncDefaultPagination[DocumentLinkListResponse]:
         """
         List all documents links ordered by created_at descending.
 
@@ -72,8 +73,9 @@ class DocumentLinksResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/document_links",
+            page=SyncDefaultPagination[DocumentLinkListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -87,7 +89,7 @@ class DocumentLinksResource(SyncAPIResource):
                     document_link_list_params.DocumentLinkListParams,
                 ),
             ),
-            cast_to=DocumentLinkListResponse,
+            model=DocumentLinkListResponse,
         )
 
 
@@ -111,7 +113,7 @@ class AsyncDocumentLinksResource(AsyncAPIResource):
         """
         return AsyncDocumentLinksResourceWithStreamingResponse(self)
 
-    async def list(
+    def list(
         self,
         *,
         filter: document_link_list_params.Filter | Omit = omit,
@@ -122,7 +124,7 @@ class AsyncDocumentLinksResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> DocumentLinkListResponse:
+    ) -> AsyncPaginator[DocumentLinkListResponse, AsyncDefaultPagination[DocumentLinkListResponse]]:
         """
         List all documents links ordered by created_at descending.
 
@@ -142,14 +144,15 @@ class AsyncDocumentLinksResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/document_links",
+            page=AsyncDefaultPagination[DocumentLinkListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "filter": filter,
                         "page": page,
@@ -157,7 +160,7 @@ class AsyncDocumentLinksResource(AsyncAPIResource):
                     document_link_list_params.DocumentLinkListParams,
                 ),
             ),
-            cast_to=DocumentLinkListResponse,
+            model=DocumentLinkListResponse,
         )
 
 

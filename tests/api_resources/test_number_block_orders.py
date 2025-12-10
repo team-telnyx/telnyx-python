@@ -10,10 +10,11 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types import (
-    NumberBlockOrderListResponse,
+    NumberBlockOrder,
     NumberBlockOrderCreateResponse,
     NumberBlockOrderRetrieveResponse,
 )
+from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -116,7 +117,7 @@ class TestNumberBlockOrders:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         number_block_order = client.number_block_orders.list()
-        assert_matches_type(NumberBlockOrderListResponse, number_block_order, path=["response"])
+        assert_matches_type(SyncDefaultPagination[NumberBlockOrder], number_block_order, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -135,7 +136,7 @@ class TestNumberBlockOrders:
                 "size": 1,
             },
         )
-        assert_matches_type(NumberBlockOrderListResponse, number_block_order, path=["response"])
+        assert_matches_type(SyncDefaultPagination[NumberBlockOrder], number_block_order, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -145,7 +146,7 @@ class TestNumberBlockOrders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         number_block_order = response.parse()
-        assert_matches_type(NumberBlockOrderListResponse, number_block_order, path=["response"])
+        assert_matches_type(SyncDefaultPagination[NumberBlockOrder], number_block_order, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -155,7 +156,7 @@ class TestNumberBlockOrders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             number_block_order = response.parse()
-            assert_matches_type(NumberBlockOrderListResponse, number_block_order, path=["response"])
+            assert_matches_type(SyncDefaultPagination[NumberBlockOrder], number_block_order, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -260,7 +261,7 @@ class TestAsyncNumberBlockOrders:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         number_block_order = await async_client.number_block_orders.list()
-        assert_matches_type(NumberBlockOrderListResponse, number_block_order, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[NumberBlockOrder], number_block_order, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -279,7 +280,7 @@ class TestAsyncNumberBlockOrders:
                 "size": 1,
             },
         )
-        assert_matches_type(NumberBlockOrderListResponse, number_block_order, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[NumberBlockOrder], number_block_order, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -289,7 +290,7 @@ class TestAsyncNumberBlockOrders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         number_block_order = await response.parse()
-        assert_matches_type(NumberBlockOrderListResponse, number_block_order, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[NumberBlockOrder], number_block_order, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -299,6 +300,6 @@ class TestAsyncNumberBlockOrders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             number_block_order = await response.parse()
-            assert_matches_type(NumberBlockOrderListResponse, number_block_order, path=["response"])
+            assert_matches_type(AsyncDefaultPagination[NumberBlockOrder], number_block_order, path=["response"])
 
         assert cast(Any, response.is_closed) is True

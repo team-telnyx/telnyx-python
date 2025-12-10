@@ -8,10 +8,10 @@ __all__ = ["PaginationMetaReporting"]
 
 
 class PaginationMetaReporting(BaseModel):
-    page_number: Optional[int] = None
+    page_number: int
+
+    total_pages: int
 
     page_size: Optional[int] = None
-
-    total_pages: Optional[int] = None
 
     total_results: Optional[int] = None

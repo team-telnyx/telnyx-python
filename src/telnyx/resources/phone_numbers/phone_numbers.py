@@ -57,6 +57,7 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
+from ...pagination import SyncDefaultPagination, AsyncDefaultPagination
 from .csv_downloads import (
     CsvDownloadsResource,
     AsyncCsvDownloadsResource,
@@ -65,8 +66,8 @@ from .csv_downloads import (
     CsvDownloadsResourceWithStreamingResponse,
     AsyncCsvDownloadsResourceWithStreamingResponse,
 )
-from ..._base_client import make_request_options
-from ...types.phone_number_list_response import PhoneNumberListResponse
+from ..._base_client import AsyncPaginator, make_request_options
+from ...types.phone_number_detailed import PhoneNumberDetailed
 from ...types.phone_number_delete_response import PhoneNumberDeleteResponse
 from ...types.phone_number_update_response import PhoneNumberUpdateResponse
 from ...types.phone_number_retrieve_response import PhoneNumberRetrieveResponse
@@ -154,7 +155,7 @@ class PhoneNumbersResource(SyncAPIResource):
 
     def update(
         self,
-        id: str,
+        phone_number_id: str,
         *,
         billing_group_id: str | Omit = omit,
         connection_id: str | Omit = omit,
@@ -196,10 +197,10 @@ class PhoneNumbersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not phone_number_id:
+            raise ValueError(f"Expected a non-empty value for `phone_number_id` but received {phone_number_id!r}")
         return self._patch(
-            f"/phone_numbers/{id}",
+            f"/phone_numbers/{phone_number_id}",
             body=maybe_transform(
                 {
                     "billing_group_id": billing_group_id,
@@ -229,7 +230,7 @@ class PhoneNumbersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PhoneNumberListResponse:
+    ) -> SyncDefaultPagination[PhoneNumberDetailed]:
         """
         List phone numbers
 
@@ -255,8 +256,9 @@ class PhoneNumbersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/phone_numbers",
+            page=SyncDefaultPagination[PhoneNumberDetailed],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -271,7 +273,7 @@ class PhoneNumbersResource(SyncAPIResource):
                     phone_number_list_params.PhoneNumberListParams,
                 ),
             ),
-            cast_to=PhoneNumberListResponse,
+            model=PhoneNumberDetailed,
         )
 
     def delete(
@@ -321,7 +323,7 @@ class PhoneNumbersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PhoneNumberSlimListResponse:
+    ) -> SyncDefaultPagination[PhoneNumberSlimListResponse]:
         """
         List phone numbers, This endpoint is a lighter version of the /phone_numbers
         endpoint having higher performance and rate limit.
@@ -352,8 +354,9 @@ class PhoneNumbersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/phone_numbers/slim",
+            page=SyncDefaultPagination[PhoneNumberSlimListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -370,7 +373,7 @@ class PhoneNumbersResource(SyncAPIResource):
                     phone_number_slim_list_params.PhoneNumberSlimListParams,
                 ),
             ),
-            cast_to=PhoneNumberSlimListResponse,
+            model=PhoneNumberSlimListResponse,
         )
 
 
@@ -453,7 +456,7 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
 
     async def update(
         self,
-        id: str,
+        phone_number_id: str,
         *,
         billing_group_id: str | Omit = omit,
         connection_id: str | Omit = omit,
@@ -495,10 +498,10 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not phone_number_id:
+            raise ValueError(f"Expected a non-empty value for `phone_number_id` but received {phone_number_id!r}")
         return await self._patch(
-            f"/phone_numbers/{id}",
+            f"/phone_numbers/{phone_number_id}",
             body=await async_maybe_transform(
                 {
                     "billing_group_id": billing_group_id,
@@ -516,7 +519,7 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
             cast_to=PhoneNumberUpdateResponse,
         )
 
-    async def list(
+    def list(
         self,
         *,
         filter: phone_number_list_params.Filter | Omit = omit,
@@ -528,7 +531,7 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PhoneNumberListResponse:
+    ) -> AsyncPaginator[PhoneNumberDetailed, AsyncDefaultPagination[PhoneNumberDetailed]]:
         """
         List phone numbers
 
@@ -554,14 +557,15 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/phone_numbers",
+            page=AsyncDefaultPagination[PhoneNumberDetailed],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "filter": filter,
                         "page": page,
@@ -570,7 +574,7 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
                     phone_number_list_params.PhoneNumberListParams,
                 ),
             ),
-            cast_to=PhoneNumberListResponse,
+            model=PhoneNumberDetailed,
         )
 
     async def delete(
@@ -606,7 +610,7 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
             cast_to=PhoneNumberDeleteResponse,
         )
 
-    async def slim_list(
+    def slim_list(
         self,
         *,
         filter: phone_number_slim_list_params.Filter | Omit = omit,
@@ -620,7 +624,7 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PhoneNumberSlimListResponse:
+    ) -> AsyncPaginator[PhoneNumberSlimListResponse, AsyncDefaultPagination[PhoneNumberSlimListResponse]]:
         """
         List phone numbers, This endpoint is a lighter version of the /phone_numbers
         endpoint having higher performance and rate limit.
@@ -651,14 +655,15 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/phone_numbers/slim",
+            page=AsyncDefaultPagination[PhoneNumberSlimListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "filter": filter,
                         "include_connection": include_connection,
@@ -669,7 +674,7 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
                     phone_number_slim_list_params.PhoneNumberSlimListParams,
                 ),
             ),
-            cast_to=PhoneNumberSlimListResponse,
+            model=PhoneNumberSlimListResponse,
         )
 
 

@@ -2,16 +2,19 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import Required, Annotated, TypedDict
 
+from .._utils import PropertyInfo
 from .global_ip_assignment_param import GlobalIPAssignmentParam
 
-__all__ = ["GlobalIPAssignmentUpdateParams", "Body"]
+__all__ = ["GlobalIPAssignmentUpdateParams", "GlobalIPAssignmentUpdateRequest"]
 
 
 class GlobalIPAssignmentUpdateParams(TypedDict, total=False):
-    body: Required[Body]
+    global_ip_assignment_update_request: Required[
+        Annotated[GlobalIPAssignmentUpdateRequest, PropertyInfo(alias="globalIpAssignmentUpdateRequest")]
+    ]
 
 
-class Body(GlobalIPAssignmentParam, total=False):
+class GlobalIPAssignmentUpdateRequest(GlobalIPAssignmentParam, total=False):
     pass

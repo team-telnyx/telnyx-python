@@ -16,9 +16,10 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._base_client import make_request_options
+from ...pagination import SyncDefaultPagination, AsyncDefaultPagination
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.phone_numbers import csv_download_list_params, csv_download_create_params
-from ...types.phone_numbers.csv_download_list_response import CsvDownloadListResponse
+from ...types.phone_numbers.csv_download import CsvDownload
 from ...types.phone_numbers.csv_download_create_response import CsvDownloadCreateResponse
 from ...types.phone_numbers.csv_download_retrieve_response import CsvDownloadRetrieveResponse
 
@@ -140,7 +141,7 @@ class CsvDownloadsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CsvDownloadListResponse:
+    ) -> SyncDefaultPagination[CsvDownload]:
         """List CSV downloads
 
         Args:
@@ -157,8 +158,9 @@ class CsvDownloadsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/phone_numbers/csv_downloads",
+            page=SyncDefaultPagination[CsvDownload],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -166,7 +168,7 @@ class CsvDownloadsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform({"page": page}, csv_download_list_params.CsvDownloadListParams),
             ),
-            cast_to=CsvDownloadListResponse,
+            model=CsvDownload,
         )
 
 
@@ -275,7 +277,7 @@ class AsyncCsvDownloadsResource(AsyncAPIResource):
             cast_to=CsvDownloadRetrieveResponse,
         )
 
-    async def list(
+    def list(
         self,
         *,
         page: csv_download_list_params.Page | Omit = omit,
@@ -285,7 +287,7 @@ class AsyncCsvDownloadsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CsvDownloadListResponse:
+    ) -> AsyncPaginator[CsvDownload, AsyncDefaultPagination[CsvDownload]]:
         """List CSV downloads
 
         Args:
@@ -302,16 +304,17 @@ class AsyncCsvDownloadsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/phone_numbers/csv_downloads",
+            page=AsyncDefaultPagination[CsvDownload],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform({"page": page}, csv_download_list_params.CsvDownloadListParams),
+                query=maybe_transform({"page": page}, csv_download_list_params.CsvDownloadListParams),
             ),
-            cast_to=CsvDownloadListResponse,
+            model=CsvDownload,
         )
 
 

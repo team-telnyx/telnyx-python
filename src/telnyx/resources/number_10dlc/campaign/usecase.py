@@ -15,8 +15,8 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
-from ....types.number_10dlc.campaign import usecase_retrieve_cost_params
-from ....types.number_10dlc.campaign.usecase_retrieve_cost_response import UsecaseRetrieveCostResponse
+from ....types.number_10dlc.campaign import usecase_get_cost_params
+from ....types.number_10dlc.campaign.usecase_get_cost_response import UsecaseGetCostResponse
 
 __all__ = ["UsecaseResource", "AsyncUsecaseResource"]
 
@@ -41,7 +41,7 @@ class UsecaseResource(SyncAPIResource):
         """
         return UsecaseResourceWithStreamingResponse(self)
 
-    def retrieve_cost(
+    def get_cost(
         self,
         *,
         usecase: str,
@@ -51,7 +51,7 @@ class UsecaseResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> UsecaseRetrieveCostResponse:
+    ) -> UsecaseGetCostResponse:
         """
         Get Campaign Cost
 
@@ -71,9 +71,9 @@ class UsecaseResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"usecase": usecase}, usecase_retrieve_cost_params.UsecaseRetrieveCostParams),
+                query=maybe_transform({"usecase": usecase}, usecase_get_cost_params.UsecaseGetCostParams),
             ),
-            cast_to=UsecaseRetrieveCostResponse,
+            cast_to=UsecaseGetCostResponse,
         )
 
 
@@ -97,7 +97,7 @@ class AsyncUsecaseResource(AsyncAPIResource):
         """
         return AsyncUsecaseResourceWithStreamingResponse(self)
 
-    async def retrieve_cost(
+    async def get_cost(
         self,
         *,
         usecase: str,
@@ -107,7 +107,7 @@ class AsyncUsecaseResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> UsecaseRetrieveCostResponse:
+    ) -> UsecaseGetCostResponse:
         """
         Get Campaign Cost
 
@@ -127,11 +127,9 @@ class AsyncUsecaseResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
-                    {"usecase": usecase}, usecase_retrieve_cost_params.UsecaseRetrieveCostParams
-                ),
+                query=await async_maybe_transform({"usecase": usecase}, usecase_get_cost_params.UsecaseGetCostParams),
             ),
-            cast_to=UsecaseRetrieveCostResponse,
+            cast_to=UsecaseGetCostResponse,
         )
 
 
@@ -139,8 +137,8 @@ class UsecaseResourceWithRawResponse:
     def __init__(self, usecase: UsecaseResource) -> None:
         self._usecase = usecase
 
-        self.retrieve_cost = to_raw_response_wrapper(
-            usecase.retrieve_cost,
+        self.get_cost = to_raw_response_wrapper(
+            usecase.get_cost,
         )
 
 
@@ -148,8 +146,8 @@ class AsyncUsecaseResourceWithRawResponse:
     def __init__(self, usecase: AsyncUsecaseResource) -> None:
         self._usecase = usecase
 
-        self.retrieve_cost = async_to_raw_response_wrapper(
-            usecase.retrieve_cost,
+        self.get_cost = async_to_raw_response_wrapper(
+            usecase.get_cost,
         )
 
 
@@ -157,8 +155,8 @@ class UsecaseResourceWithStreamingResponse:
     def __init__(self, usecase: UsecaseResource) -> None:
         self._usecase = usecase
 
-        self.retrieve_cost = to_streamed_response_wrapper(
-            usecase.retrieve_cost,
+        self.get_cost = to_streamed_response_wrapper(
+            usecase.get_cost,
         )
 
 
@@ -166,6 +164,6 @@ class AsyncUsecaseResourceWithStreamingResponse:
     def __init__(self, usecase: AsyncUsecaseResource) -> None:
         self._usecase = usecase
 
-        self.retrieve_cost = async_to_streamed_response_wrapper(
-            usecase.retrieve_cost,
+        self.get_cost = async_to_streamed_response_wrapper(
+            usecase.get_cost,
         )

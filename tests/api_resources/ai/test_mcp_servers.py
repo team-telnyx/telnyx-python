@@ -16,6 +16,7 @@ from telnyx.types.ai import (
     McpServerUpdateResponse,
     McpServerRetrieveResponse,
 )
+from telnyx.pagination import SyncDefaultFlatPaginationTopLevelArray, AsyncDefaultFlatPaginationTopLevelArray
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -178,7 +179,9 @@ class TestMcpServers:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         mcp_server = client.ai.mcp_servers.list()
-        assert_matches_type(McpServerListResponse, mcp_server, path=["response"])
+        assert_matches_type(
+            SyncDefaultFlatPaginationTopLevelArray[McpServerListResponse], mcp_server, path=["response"]
+        )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -189,7 +192,9 @@ class TestMcpServers:
             type="type",
             url="url",
         )
-        assert_matches_type(McpServerListResponse, mcp_server, path=["response"])
+        assert_matches_type(
+            SyncDefaultFlatPaginationTopLevelArray[McpServerListResponse], mcp_server, path=["response"]
+        )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -199,7 +204,9 @@ class TestMcpServers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         mcp_server = response.parse()
-        assert_matches_type(McpServerListResponse, mcp_server, path=["response"])
+        assert_matches_type(
+            SyncDefaultFlatPaginationTopLevelArray[McpServerListResponse], mcp_server, path=["response"]
+        )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -209,7 +216,9 @@ class TestMcpServers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             mcp_server = response.parse()
-            assert_matches_type(McpServerListResponse, mcp_server, path=["response"])
+            assert_matches_type(
+                SyncDefaultFlatPaginationTopLevelArray[McpServerListResponse], mcp_server, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True
 
@@ -416,7 +425,9 @@ class TestAsyncMcpServers:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         mcp_server = await async_client.ai.mcp_servers.list()
-        assert_matches_type(McpServerListResponse, mcp_server, path=["response"])
+        assert_matches_type(
+            AsyncDefaultFlatPaginationTopLevelArray[McpServerListResponse], mcp_server, path=["response"]
+        )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -427,7 +438,9 @@ class TestAsyncMcpServers:
             type="type",
             url="url",
         )
-        assert_matches_type(McpServerListResponse, mcp_server, path=["response"])
+        assert_matches_type(
+            AsyncDefaultFlatPaginationTopLevelArray[McpServerListResponse], mcp_server, path=["response"]
+        )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -437,7 +450,9 @@ class TestAsyncMcpServers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         mcp_server = await response.parse()
-        assert_matches_type(McpServerListResponse, mcp_server, path=["response"])
+        assert_matches_type(
+            AsyncDefaultFlatPaginationTopLevelArray[McpServerListResponse], mcp_server, path=["response"]
+        )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -447,7 +462,9 @@ class TestAsyncMcpServers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             mcp_server = await response.parse()
-            assert_matches_type(McpServerListResponse, mcp_server, path=["response"])
+            assert_matches_type(
+                AsyncDefaultFlatPaginationTopLevelArray[McpServerListResponse], mcp_server, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True
 

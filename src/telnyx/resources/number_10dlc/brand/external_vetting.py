@@ -15,19 +15,10 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
-from ....types.number_10dlc.brand import (
-    external_vetting_external_vetting_params,
-    external_vetting_update_external_vetting_params,
-)
-from ....types.number_10dlc.brand.external_vetting_external_vetting_response import (
-    ExternalVettingExternalVettingResponse,
-)
-from ....types.number_10dlc.brand.external_vetting_update_external_vetting_response import (
-    ExternalVettingUpdateExternalVettingResponse,
-)
-from ....types.number_10dlc.brand.external_vetting_retrieve_external_vetting_response import (
-    ExternalVettingRetrieveExternalVettingResponse,
-)
+from ....types.number_10dlc.brand import external_vetting_order_params, external_vetting_imports_params
+from ....types.number_10dlc.brand.external_vetting_list_response import ExternalVettingListResponse
+from ....types.number_10dlc.brand.external_vetting_order_response import ExternalVettingOrderResponse
+from ....types.number_10dlc.brand.external_vetting_imports_response import ExternalVettingImportsResponse
 
 __all__ = ["ExternalVettingResource", "AsyncExternalVettingResource"]
 
@@ -52,53 +43,7 @@ class ExternalVettingResource(SyncAPIResource):
         """
         return ExternalVettingResourceWithStreamingResponse(self)
 
-    def external_vetting(
-        self,
-        brand_id: str,
-        *,
-        evp_id: str,
-        vetting_class: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ExternalVettingExternalVettingResponse:
-        """
-        Order new external vetting for a brand
-
-        Args:
-          evp_id: External vetting provider ID for the brand.
-
-          vetting_class: Identifies the vetting classification.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not brand_id:
-            raise ValueError(f"Expected a non-empty value for `brand_id` but received {brand_id!r}")
-        return self._post(
-            f"/10dlc/brand/{brand_id}/externalVetting",
-            body=maybe_transform(
-                {
-                    "evp_id": evp_id,
-                    "vetting_class": vetting_class,
-                },
-                external_vetting_external_vetting_params.ExternalVettingExternalVettingParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=ExternalVettingExternalVettingResponse,
-        )
-
-    def retrieve_external_vetting(
+    def list(
         self,
         brand_id: str,
         *,
@@ -108,7 +53,7 @@ class ExternalVettingResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ExternalVettingRetrieveExternalVettingResponse:
+    ) -> ExternalVettingListResponse:
         """
         Get list of valid external vetting record for a given brand
 
@@ -128,10 +73,10 @@ class ExternalVettingResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ExternalVettingRetrieveExternalVettingResponse,
+            cast_to=ExternalVettingListResponse,
         )
 
-    def update_external_vetting(
+    def imports(
         self,
         brand_id: str,
         *,
@@ -144,7 +89,7 @@ class ExternalVettingResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ExternalVettingUpdateExternalVettingResponse:
+    ) -> ExternalVettingImportsResponse:
         """
         This operation can be used to import an external vetting record from a
         TCR-approved vetting provider. If the vetting provider confirms validity of the
@@ -177,12 +122,58 @@ class ExternalVettingResource(SyncAPIResource):
                     "vetting_id": vetting_id,
                     "vetting_token": vetting_token,
                 },
-                external_vetting_update_external_vetting_params.ExternalVettingUpdateExternalVettingParams,
+                external_vetting_imports_params.ExternalVettingImportsParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ExternalVettingUpdateExternalVettingResponse,
+            cast_to=ExternalVettingImportsResponse,
+        )
+
+    def order(
+        self,
+        brand_id: str,
+        *,
+        evp_id: str,
+        vetting_class: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ExternalVettingOrderResponse:
+        """
+        Order new external vetting for a brand
+
+        Args:
+          evp_id: External vetting provider ID for the brand.
+
+          vetting_class: Identifies the vetting classification.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not brand_id:
+            raise ValueError(f"Expected a non-empty value for `brand_id` but received {brand_id!r}")
+        return self._post(
+            f"/10dlc/brand/{brand_id}/externalVetting",
+            body=maybe_transform(
+                {
+                    "evp_id": evp_id,
+                    "vetting_class": vetting_class,
+                },
+                external_vetting_order_params.ExternalVettingOrderParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ExternalVettingOrderResponse,
         )
 
 
@@ -206,53 +197,7 @@ class AsyncExternalVettingResource(AsyncAPIResource):
         """
         return AsyncExternalVettingResourceWithStreamingResponse(self)
 
-    async def external_vetting(
-        self,
-        brand_id: str,
-        *,
-        evp_id: str,
-        vetting_class: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ExternalVettingExternalVettingResponse:
-        """
-        Order new external vetting for a brand
-
-        Args:
-          evp_id: External vetting provider ID for the brand.
-
-          vetting_class: Identifies the vetting classification.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not brand_id:
-            raise ValueError(f"Expected a non-empty value for `brand_id` but received {brand_id!r}")
-        return await self._post(
-            f"/10dlc/brand/{brand_id}/externalVetting",
-            body=await async_maybe_transform(
-                {
-                    "evp_id": evp_id,
-                    "vetting_class": vetting_class,
-                },
-                external_vetting_external_vetting_params.ExternalVettingExternalVettingParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=ExternalVettingExternalVettingResponse,
-        )
-
-    async def retrieve_external_vetting(
+    async def list(
         self,
         brand_id: str,
         *,
@@ -262,7 +207,7 @@ class AsyncExternalVettingResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ExternalVettingRetrieveExternalVettingResponse:
+    ) -> ExternalVettingListResponse:
         """
         Get list of valid external vetting record for a given brand
 
@@ -282,10 +227,10 @@ class AsyncExternalVettingResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ExternalVettingRetrieveExternalVettingResponse,
+            cast_to=ExternalVettingListResponse,
         )
 
-    async def update_external_vetting(
+    async def imports(
         self,
         brand_id: str,
         *,
@@ -298,7 +243,7 @@ class AsyncExternalVettingResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ExternalVettingUpdateExternalVettingResponse:
+    ) -> ExternalVettingImportsResponse:
         """
         This operation can be used to import an external vetting record from a
         TCR-approved vetting provider. If the vetting provider confirms validity of the
@@ -331,12 +276,58 @@ class AsyncExternalVettingResource(AsyncAPIResource):
                     "vetting_id": vetting_id,
                     "vetting_token": vetting_token,
                 },
-                external_vetting_update_external_vetting_params.ExternalVettingUpdateExternalVettingParams,
+                external_vetting_imports_params.ExternalVettingImportsParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ExternalVettingUpdateExternalVettingResponse,
+            cast_to=ExternalVettingImportsResponse,
+        )
+
+    async def order(
+        self,
+        brand_id: str,
+        *,
+        evp_id: str,
+        vetting_class: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ExternalVettingOrderResponse:
+        """
+        Order new external vetting for a brand
+
+        Args:
+          evp_id: External vetting provider ID for the brand.
+
+          vetting_class: Identifies the vetting classification.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not brand_id:
+            raise ValueError(f"Expected a non-empty value for `brand_id` but received {brand_id!r}")
+        return await self._post(
+            f"/10dlc/brand/{brand_id}/externalVetting",
+            body=await async_maybe_transform(
+                {
+                    "evp_id": evp_id,
+                    "vetting_class": vetting_class,
+                },
+                external_vetting_order_params.ExternalVettingOrderParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ExternalVettingOrderResponse,
         )
 
 
@@ -344,14 +335,14 @@ class ExternalVettingResourceWithRawResponse:
     def __init__(self, external_vetting: ExternalVettingResource) -> None:
         self._external_vetting = external_vetting
 
-        self.external_vetting = to_raw_response_wrapper(
-            external_vetting.external_vetting,
+        self.list = to_raw_response_wrapper(
+            external_vetting.list,
         )
-        self.retrieve_external_vetting = to_raw_response_wrapper(
-            external_vetting.retrieve_external_vetting,
+        self.imports = to_raw_response_wrapper(
+            external_vetting.imports,
         )
-        self.update_external_vetting = to_raw_response_wrapper(
-            external_vetting.update_external_vetting,
+        self.order = to_raw_response_wrapper(
+            external_vetting.order,
         )
 
 
@@ -359,14 +350,14 @@ class AsyncExternalVettingResourceWithRawResponse:
     def __init__(self, external_vetting: AsyncExternalVettingResource) -> None:
         self._external_vetting = external_vetting
 
-        self.external_vetting = async_to_raw_response_wrapper(
-            external_vetting.external_vetting,
+        self.list = async_to_raw_response_wrapper(
+            external_vetting.list,
         )
-        self.retrieve_external_vetting = async_to_raw_response_wrapper(
-            external_vetting.retrieve_external_vetting,
+        self.imports = async_to_raw_response_wrapper(
+            external_vetting.imports,
         )
-        self.update_external_vetting = async_to_raw_response_wrapper(
-            external_vetting.update_external_vetting,
+        self.order = async_to_raw_response_wrapper(
+            external_vetting.order,
         )
 
 
@@ -374,14 +365,14 @@ class ExternalVettingResourceWithStreamingResponse:
     def __init__(self, external_vetting: ExternalVettingResource) -> None:
         self._external_vetting = external_vetting
 
-        self.external_vetting = to_streamed_response_wrapper(
-            external_vetting.external_vetting,
+        self.list = to_streamed_response_wrapper(
+            external_vetting.list,
         )
-        self.retrieve_external_vetting = to_streamed_response_wrapper(
-            external_vetting.retrieve_external_vetting,
+        self.imports = to_streamed_response_wrapper(
+            external_vetting.imports,
         )
-        self.update_external_vetting = to_streamed_response_wrapper(
-            external_vetting.update_external_vetting,
+        self.order = to_streamed_response_wrapper(
+            external_vetting.order,
         )
 
 
@@ -389,12 +380,12 @@ class AsyncExternalVettingResourceWithStreamingResponse:
     def __init__(self, external_vetting: AsyncExternalVettingResource) -> None:
         self._external_vetting = external_vetting
 
-        self.external_vetting = async_to_streamed_response_wrapper(
-            external_vetting.external_vetting,
+        self.list = async_to_streamed_response_wrapper(
+            external_vetting.list,
         )
-        self.retrieve_external_vetting = async_to_streamed_response_wrapper(
-            external_vetting.retrieve_external_vetting,
+        self.imports = async_to_streamed_response_wrapper(
+            external_vetting.imports,
         )
-        self.update_external_vetting = async_to_streamed_response_wrapper(
-            external_vetting.update_external_vetting,
+        self.order = async_to_streamed_response_wrapper(
+            external_vetting.order,
         )
