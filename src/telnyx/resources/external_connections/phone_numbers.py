@@ -14,11 +14,12 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._base_client import make_request_options
+from ...pagination import SyncDefaultPagination, AsyncDefaultPagination
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.external_connections import phone_number_list_params, phone_number_update_params
-from ...types.external_connections.phone_number_list_response import PhoneNumberListResponse
 from ...types.external_connections.phone_number_update_response import PhoneNumberUpdateResponse
 from ...types.external_connections.phone_number_retrieve_response import PhoneNumberRetrieveResponse
+from ...types.external_connections.external_connection_phone_number import ExternalConnectionPhoneNumber
 
 __all__ = ["PhoneNumbersResource", "AsyncPhoneNumbersResource"]
 
@@ -133,7 +134,7 @@ class PhoneNumbersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PhoneNumberListResponse:
+    ) -> SyncDefaultPagination[ExternalConnectionPhoneNumber]:
         """
         Returns a list of all active phone numbers associated with the given external
         connection.
@@ -155,8 +156,9 @@ class PhoneNumbersResource(SyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/external_connections/{id}/phone_numbers",
+            page=SyncDefaultPagination[ExternalConnectionPhoneNumber],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -170,7 +172,7 @@ class PhoneNumbersResource(SyncAPIResource):
                     phone_number_list_params.PhoneNumberListParams,
                 ),
             ),
-            cast_to=PhoneNumberListResponse,
+            model=ExternalConnectionPhoneNumber,
         )
 
 
@@ -274,7 +276,7 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
             cast_to=PhoneNumberUpdateResponse,
         )
 
-    async def list(
+    def list(
         self,
         id: str,
         *,
@@ -286,7 +288,7 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PhoneNumberListResponse:
+    ) -> AsyncPaginator[ExternalConnectionPhoneNumber, AsyncDefaultPagination[ExternalConnectionPhoneNumber]]:
         """
         Returns a list of all active phone numbers associated with the given external
         connection.
@@ -308,14 +310,15 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/external_connections/{id}/phone_numbers",
+            page=AsyncDefaultPagination[ExternalConnectionPhoneNumber],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "filter": filter,
                         "page": page,
@@ -323,7 +326,7 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
                     phone_number_list_params.PhoneNumberListParams,
                 ),
             ),
-            cast_to=PhoneNumberListResponse,
+            model=ExternalConnectionPhoneNumber,
         )
 
 

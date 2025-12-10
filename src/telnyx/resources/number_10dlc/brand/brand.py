@@ -6,15 +6,6 @@ from typing_extensions import Literal
 
 import httpx
 
-from .sms_otp import (
-    SMSOtpResource,
-    AsyncSMSOtpResource,
-    SMSOtpResourceWithRawResponse,
-    AsyncSMSOtpResourceWithRawResponse,
-    SMSOtpResourceWithStreamingResponse,
-    AsyncSMSOtpResourceWithStreamingResponse,
-)
-from ....types import Vertical, EntityType, StockExchange, AltBusinessIDType, BrandIdentityStatus
 from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
@@ -25,7 +16,8 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._base_client import make_request_options
+from ....pagination import SyncPerPagePaginationV2, AsyncPerPagePaginationV2
+from ...._base_client import AsyncPaginator, make_request_options
 from .external_vetting import (
     ExternalVettingResource,
     AsyncExternalVettingResource,
@@ -34,25 +26,32 @@ from .external_vetting import (
     ExternalVettingResourceWithStreamingResponse,
     AsyncExternalVettingResourceWithStreamingResponse,
 )
-from ....types.vertical import Vertical
-from ....types.entity_type import EntityType
-from ....types.number_10dlc import brand_list_params, brand_create_params, brand_update_params
-from ....types.telnyx_brand import TelnyxBrand
-from ....types.stock_exchange import StockExchange
-from ....types.alt_business_id_type import AltBusinessIDType
-from ....types.brand_identity_status import BrandIdentityStatus
+from ....types.number_10dlc import (
+    Vertical,
+    EntityType,
+    StockExchange,
+    AltBusinessIDType,
+    BrandIdentityStatus,
+    brand_list_params,
+    brand_create_params,
+    brand_update_params,
+    brand_retrieve_sms_otp_status_params,
+)
+from ....types.number_10dlc.vertical import Vertical
+from ....types.number_10dlc.entity_type import EntityType
+from ....types.number_10dlc.telnyx_brand import TelnyxBrand
+from ....types.number_10dlc.stock_exchange import StockExchange
 from ....types.number_10dlc.brand_list_response import BrandListResponse
+from ....types.number_10dlc.alt_business_id_type import AltBusinessIDType
+from ....types.number_10dlc.brand_identity_status import BrandIdentityStatus
 from ....types.number_10dlc.brand_retrieve_response import BrandRetrieveResponse
 from ....types.number_10dlc.brand_get_feedback_response import BrandGetFeedbackResponse
+from ....types.number_10dlc.brand_retrieve_sms_otp_status_response import BrandRetrieveSMSOtpStatusResponse
 
 __all__ = ["BrandResource", "AsyncBrandResource"]
 
 
 class BrandResource(SyncAPIResource):
-    @cached_property
-    def sms_otp(self) -> SMSOtpResource:
-        return SMSOtpResource(self._client)
-
     @cached_property
     def external_vetting(self) -> ExternalVettingResource:
         return ExternalVettingResource(self._client)
@@ -420,7 +419,7 @@ class BrandResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> BrandListResponse:
+    ) -> SyncPerPagePaginationV2[BrandListResponse]:
         """
         This endpoint is used to list all brands associated with your organization.
 
@@ -442,8 +441,9 @@ class BrandResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/10dlc/brand",
+            page=SyncPerPagePaginationV2[BrandListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -464,7 +464,7 @@ class BrandResource(SyncAPIResource):
                     brand_list_params.BrandListParams,
                 ),
             ),
-            cast_to=BrandListResponse,
+            model=BrandListResponse,
         )
 
     def delete(
@@ -584,6 +584,59 @@ class BrandResource(SyncAPIResource):
             cast_to=NoneType,
         )
 
+    def retrieve_sms_otp_status(
+        self,
+        reference_id: str,
+        *,
+        brand_id: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> BrandRetrieveSMSOtpStatusResponse:
+        """
+        Query the status of an SMS OTP (One-Time Password) for Sole Proprietor brand
+        verification.
+
+        This endpoint allows you to check the delivery and verification status of an OTP
+        sent during the Sole Proprietor brand verification process. You can query by
+        either:
+
+        - `referenceId` - The reference ID returned when the OTP was initially triggered
+        - `brandId` - Query parameter for portal users to look up OTP status by Brand ID
+
+        The response includes delivery status, verification dates, and detailed delivery
+        information.
+
+        Args:
+          brand_id: Filter by Brand ID for easier lookup in portal applications
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not reference_id:
+            raise ValueError(f"Expected a non-empty value for `reference_id` but received {reference_id!r}")
+        return self._get(
+            f"/10dlc/brand/smsOtp/{reference_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {"brand_id": brand_id}, brand_retrieve_sms_otp_status_params.BrandRetrieveSMSOtpStatusParams
+                ),
+            ),
+            cast_to=BrandRetrieveSMSOtpStatusResponse,
+        )
+
     def revet(
         self,
         brand_id: str,
@@ -622,10 +675,6 @@ class BrandResource(SyncAPIResource):
 
 
 class AsyncBrandResource(AsyncAPIResource):
-    @cached_property
-    def sms_otp(self) -> AsyncSMSOtpResource:
-        return AsyncSMSOtpResource(self._client)
-
     @cached_property
     def external_vetting(self) -> AsyncExternalVettingResource:
         return AsyncExternalVettingResource(self._client)
@@ -959,7 +1008,7 @@ class AsyncBrandResource(AsyncAPIResource):
             cast_to=TelnyxBrand,
         )
 
-    async def list(
+    def list(
         self,
         *,
         brand_id: str | Omit = omit,
@@ -993,7 +1042,7 @@ class AsyncBrandResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> BrandListResponse:
+    ) -> AsyncPaginator[BrandListResponse, AsyncPerPagePaginationV2[BrandListResponse]]:
         """
         This endpoint is used to list all brands associated with your organization.
 
@@ -1015,14 +1064,15 @@ class AsyncBrandResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/10dlc/brand",
+            page=AsyncPerPagePaginationV2[BrandListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "brand_id": brand_id,
                         "country": country,
@@ -1037,7 +1087,7 @@ class AsyncBrandResource(AsyncAPIResource):
                     brand_list_params.BrandListParams,
                 ),
             ),
-            cast_to=BrandListResponse,
+            model=BrandListResponse,
         )
 
     async def delete(
@@ -1157,6 +1207,59 @@ class AsyncBrandResource(AsyncAPIResource):
             cast_to=NoneType,
         )
 
+    async def retrieve_sms_otp_status(
+        self,
+        reference_id: str,
+        *,
+        brand_id: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> BrandRetrieveSMSOtpStatusResponse:
+        """
+        Query the status of an SMS OTP (One-Time Password) for Sole Proprietor brand
+        verification.
+
+        This endpoint allows you to check the delivery and verification status of an OTP
+        sent during the Sole Proprietor brand verification process. You can query by
+        either:
+
+        - `referenceId` - The reference ID returned when the OTP was initially triggered
+        - `brandId` - Query parameter for portal users to look up OTP status by Brand ID
+
+        The response includes delivery status, verification dates, and detailed delivery
+        information.
+
+        Args:
+          brand_id: Filter by Brand ID for easier lookup in portal applications
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not reference_id:
+            raise ValueError(f"Expected a non-empty value for `reference_id` but received {reference_id!r}")
+        return await self._get(
+            f"/10dlc/brand/smsOtp/{reference_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {"brand_id": brand_id}, brand_retrieve_sms_otp_status_params.BrandRetrieveSMSOtpStatusParams
+                ),
+            ),
+            cast_to=BrandRetrieveSMSOtpStatusResponse,
+        )
+
     async def revet(
         self,
         brand_id: str,
@@ -1219,13 +1322,12 @@ class BrandResourceWithRawResponse:
         self.resend_2fa_email = to_raw_response_wrapper(
             brand.resend_2fa_email,
         )
+        self.retrieve_sms_otp_status = to_raw_response_wrapper(
+            brand.retrieve_sms_otp_status,
+        )
         self.revet = to_raw_response_wrapper(
             brand.revet,
         )
-
-    @cached_property
-    def sms_otp(self) -> SMSOtpResourceWithRawResponse:
-        return SMSOtpResourceWithRawResponse(self._brand.sms_otp)
 
     @cached_property
     def external_vetting(self) -> ExternalVettingResourceWithRawResponse:
@@ -1257,13 +1359,12 @@ class AsyncBrandResourceWithRawResponse:
         self.resend_2fa_email = async_to_raw_response_wrapper(
             brand.resend_2fa_email,
         )
+        self.retrieve_sms_otp_status = async_to_raw_response_wrapper(
+            brand.retrieve_sms_otp_status,
+        )
         self.revet = async_to_raw_response_wrapper(
             brand.revet,
         )
-
-    @cached_property
-    def sms_otp(self) -> AsyncSMSOtpResourceWithRawResponse:
-        return AsyncSMSOtpResourceWithRawResponse(self._brand.sms_otp)
 
     @cached_property
     def external_vetting(self) -> AsyncExternalVettingResourceWithRawResponse:
@@ -1295,13 +1396,12 @@ class BrandResourceWithStreamingResponse:
         self.resend_2fa_email = to_streamed_response_wrapper(
             brand.resend_2fa_email,
         )
+        self.retrieve_sms_otp_status = to_streamed_response_wrapper(
+            brand.retrieve_sms_otp_status,
+        )
         self.revet = to_streamed_response_wrapper(
             brand.revet,
         )
-
-    @cached_property
-    def sms_otp(self) -> SMSOtpResourceWithStreamingResponse:
-        return SMSOtpResourceWithStreamingResponse(self._brand.sms_otp)
 
     @cached_property
     def external_vetting(self) -> ExternalVettingResourceWithStreamingResponse:
@@ -1333,13 +1433,12 @@ class AsyncBrandResourceWithStreamingResponse:
         self.resend_2fa_email = async_to_streamed_response_wrapper(
             brand.resend_2fa_email,
         )
+        self.retrieve_sms_otp_status = async_to_streamed_response_wrapper(
+            brand.retrieve_sms_otp_status,
+        )
         self.revet = async_to_streamed_response_wrapper(
             brand.revet,
         )
-
-    @cached_property
-    def sms_otp(self) -> AsyncSMSOtpResourceWithStreamingResponse:
-        return AsyncSMSOtpResourceWithStreamingResponse(self._brand.sms_otp)
 
     @cached_property
     def external_vetting(self) -> AsyncExternalVettingResourceWithStreamingResponse:

@@ -13,6 +13,7 @@ from telnyx.types import (
     ChannelZoneListResponse,
     ChannelZoneUpdateResponse,
 )
+from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -70,7 +71,7 @@ class TestChannelZones:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         channel_zone = client.channel_zones.list()
-        assert_matches_type(ChannelZoneListResponse, channel_zone, path=["response"])
+        assert_matches_type(SyncDefaultPagination[ChannelZoneListResponse], channel_zone, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -81,7 +82,7 @@ class TestChannelZones:
                 "size": 1,
             },
         )
-        assert_matches_type(ChannelZoneListResponse, channel_zone, path=["response"])
+        assert_matches_type(SyncDefaultPagination[ChannelZoneListResponse], channel_zone, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -91,7 +92,7 @@ class TestChannelZones:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         channel_zone = response.parse()
-        assert_matches_type(ChannelZoneListResponse, channel_zone, path=["response"])
+        assert_matches_type(SyncDefaultPagination[ChannelZoneListResponse], channel_zone, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -101,7 +102,7 @@ class TestChannelZones:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             channel_zone = response.parse()
-            assert_matches_type(ChannelZoneListResponse, channel_zone, path=["response"])
+            assert_matches_type(SyncDefaultPagination[ChannelZoneListResponse], channel_zone, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -161,7 +162,7 @@ class TestAsyncChannelZones:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         channel_zone = await async_client.channel_zones.list()
-        assert_matches_type(ChannelZoneListResponse, channel_zone, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[ChannelZoneListResponse], channel_zone, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -172,7 +173,7 @@ class TestAsyncChannelZones:
                 "size": 1,
             },
         )
-        assert_matches_type(ChannelZoneListResponse, channel_zone, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[ChannelZoneListResponse], channel_zone, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -182,7 +183,7 @@ class TestAsyncChannelZones:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         channel_zone = await response.parse()
-        assert_matches_type(ChannelZoneListResponse, channel_zone, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[ChannelZoneListResponse], channel_zone, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -192,6 +193,6 @@ class TestAsyncChannelZones:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             channel_zone = await response.parse()
-            assert_matches_type(ChannelZoneListResponse, channel_zone, path=["response"])
+            assert_matches_type(AsyncDefaultPagination[ChannelZoneListResponse], channel_zone, path=["response"])
 
         assert cast(Any, response.is_closed) is True

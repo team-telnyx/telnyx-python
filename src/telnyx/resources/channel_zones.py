@@ -15,7 +15,8 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import make_request_options
+from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
+from .._base_client import AsyncPaginator, make_request_options
 from ..types.channel_zone_list_response import ChannelZoneListResponse
 from ..types.channel_zone_update_response import ChannelZoneUpdateResponse
 
@@ -93,7 +94,7 @@ class ChannelZonesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ChannelZoneListResponse:
+    ) -> SyncDefaultPagination[ChannelZoneListResponse]:
         """Returns the non-US voice channels for your account.
 
         voice channels allow you to
@@ -114,8 +115,9 @@ class ChannelZonesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/channel_zones",
+            page=SyncDefaultPagination[ChannelZoneListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -123,7 +125,7 @@ class ChannelZonesResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform({"page": page}, channel_zone_list_params.ChannelZoneListParams),
             ),
-            cast_to=ChannelZoneListResponse,
+            model=ChannelZoneListResponse,
         )
 
 
@@ -190,7 +192,7 @@ class AsyncChannelZonesResource(AsyncAPIResource):
             cast_to=ChannelZoneUpdateResponse,
         )
 
-    async def list(
+    def list(
         self,
         *,
         page: channel_zone_list_params.Page | Omit = omit,
@@ -200,7 +202,7 @@ class AsyncChannelZonesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ChannelZoneListResponse:
+    ) -> AsyncPaginator[ChannelZoneListResponse, AsyncDefaultPagination[ChannelZoneListResponse]]:
         """Returns the non-US voice channels for your account.
 
         voice channels allow you to
@@ -221,16 +223,17 @@ class AsyncChannelZonesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/channel_zones",
+            page=AsyncDefaultPagination[ChannelZoneListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform({"page": page}, channel_zone_list_params.ChannelZoneListParams),
+                query=maybe_transform({"page": page}, channel_zone_list_params.ChannelZoneListParams),
             ),
-            cast_to=ChannelZoneListResponse,
+            model=ChannelZoneListResponse,
         )
 
 

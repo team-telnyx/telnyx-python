@@ -4,7 +4,7 @@ from typing import Optional
 
 from pydantic import Field as FieldInfo
 
-from ..telnyx_brand import TelnyxBrand
+from .telnyx_brand import TelnyxBrand
 
 __all__ = ["BrandRetrieveResponse"]
 

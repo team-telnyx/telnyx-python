@@ -6,7 +6,7 @@ import httpx
 
 from ..types import call_event_list_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._utils import maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -15,7 +15,8 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import make_request_options
+from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
+from .._base_client import AsyncPaginator, make_request_options
 from ..types.call_event_list_response import CallEventListResponse
 
 __all__ = ["CallEventsResource", "AsyncCallEventsResource"]
@@ -52,7 +53,7 @@ class CallEventsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CallEventListResponse:
+    ) -> SyncDefaultPagination[CallEventListResponse]:
         """Filters call events by given filter parameters.
 
         Events are ordered by
@@ -80,8 +81,9 @@ class CallEventsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/call_events",
+            page=SyncDefaultPagination[CallEventListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -95,7 +97,7 @@ class CallEventsResource(SyncAPIResource):
                     call_event_list_params.CallEventListParams,
                 ),
             ),
-            cast_to=CallEventListResponse,
+            model=CallEventListResponse,
         )
 
 
@@ -119,7 +121,7 @@ class AsyncCallEventsResource(AsyncAPIResource):
         """
         return AsyncCallEventsResourceWithStreamingResponse(self)
 
-    async def list(
+    def list(
         self,
         *,
         filter: call_event_list_params.Filter | Omit = omit,
@@ -130,7 +132,7 @@ class AsyncCallEventsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CallEventListResponse:
+    ) -> AsyncPaginator[CallEventListResponse, AsyncDefaultPagination[CallEventListResponse]]:
         """Filters call events by given filter parameters.
 
         Events are ordered by
@@ -158,14 +160,15 @@ class AsyncCallEventsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/call_events",
+            page=AsyncDefaultPagination[CallEventListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "filter": filter,
                         "page": page,
@@ -173,7 +176,7 @@ class AsyncCallEventsResource(AsyncAPIResource):
                     call_event_list_params.CallEventListParams,
                 ),
             ),
-            cast_to=CallEventListResponse,
+            model=CallEventListResponse,
         )
 
 

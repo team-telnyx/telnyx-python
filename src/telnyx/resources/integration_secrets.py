@@ -17,8 +17,9 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import make_request_options
-from ..types.integration_secret_list_response import IntegrationSecretListResponse
+from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
+from .._base_client import AsyncPaginator, make_request_options
+from ..types.integration_secret import IntegrationSecret
 from ..types.integration_secret_create_response import IntegrationSecretCreateResponse
 
 __all__ = ["IntegrationSecretsResource", "AsyncIntegrationSecretsResource"]
@@ -104,22 +105,20 @@ class IntegrationSecretsResource(SyncAPIResource):
         self,
         *,
         filter: integration_secret_list_params.Filter | Omit = omit,
-        page: integration_secret_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> IntegrationSecretListResponse:
+    ) -> SyncDefaultFlatPagination[IntegrationSecret]:
         """
         Retrieve a list of all integration secrets configured by the user.
 
         Args:
           filter: Consolidated filter parameter (deepObject style). Originally: filter[type]
-
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
 
           extra_headers: Send extra headers
 
@@ -129,8 +128,9 @@ class IntegrationSecretsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/integration_secrets",
+            page=SyncDefaultFlatPagination[IntegrationSecret],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -139,12 +139,13 @@ class IntegrationSecretsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                     },
                     integration_secret_list_params.IntegrationSecretListParams,
                 ),
             ),
-            cast_to=IntegrationSecretListResponse,
+            model=IntegrationSecret,
         )
 
     def delete(
@@ -258,26 +259,24 @@ class AsyncIntegrationSecretsResource(AsyncAPIResource):
             cast_to=IntegrationSecretCreateResponse,
         )
 
-    async def list(
+    def list(
         self,
         *,
         filter: integration_secret_list_params.Filter | Omit = omit,
-        page: integration_secret_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> IntegrationSecretListResponse:
+    ) -> AsyncPaginator[IntegrationSecret, AsyncDefaultFlatPagination[IntegrationSecret]]:
         """
         Retrieve a list of all integration secrets configured by the user.
 
         Args:
           filter: Consolidated filter parameter (deepObject style). Originally: filter[type]
-
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
 
           extra_headers: Send extra headers
 
@@ -287,22 +286,24 @@ class AsyncIntegrationSecretsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/integration_secrets",
+            page=AsyncDefaultFlatPagination[IntegrationSecret],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "filter": filter,
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                     },
                     integration_secret_list_params.IntegrationSecretListParams,
                 ),
             ),
-            cast_to=IntegrationSecretListResponse,
+            model=IntegrationSecret,
         )
 
     async def delete(

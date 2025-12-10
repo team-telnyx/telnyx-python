@@ -4,6 +4,7 @@ from typing import List, Optional
 from typing_extensions import Literal
 
 from .._models import BaseModel
+from .shared.available_phone_numbers_metadata import AvailablePhoneNumbersMetadata
 
 __all__ = [
     "AvailablePhoneNumberBlockListResponse",
@@ -11,7 +12,6 @@ __all__ = [
     "DataCostInformation",
     "DataFeature",
     "DataRegionInformation",
-    "Meta",
 ]
 
 
@@ -48,13 +48,7 @@ class Data(BaseModel):
     starting_number: Optional[str] = None
 
 
-class Meta(BaseModel):
-    best_effort_results: Optional[int] = None
-
-    total_results: Optional[int] = None
-
-
 class AvailablePhoneNumberBlockListResponse(BaseModel):
     data: Optional[List[Data]] = None
 
-    meta: Optional[Meta] = None
+    meta: Optional[AvailablePhoneNumbersMetadata] = None
