@@ -35,6 +35,8 @@ from ....types.number_10dlc import (
     brand_list_params,
     brand_create_params,
     brand_update_params,
+    brand_verify_sms_otp_params,
+    brand_trigger_sms_otp_params,
     brand_retrieve_sms_otp_status_params,
 )
 from ....types.number_10dlc.vertical import Vertical
@@ -46,6 +48,7 @@ from ....types.number_10dlc.alt_business_id_type import AltBusinessIDType
 from ....types.number_10dlc.brand_identity_status import BrandIdentityStatus
 from ....types.number_10dlc.brand_retrieve_response import BrandRetrieveResponse
 from ....types.number_10dlc.brand_get_feedback_response import BrandGetFeedbackResponse
+from ....types.number_10dlc.brand_trigger_sms_otp_response import BrandTriggerSMSOtpResponse
 from ....types.number_10dlc.brand_retrieve_sms_otp_status_response import BrandRetrieveSMSOtpStatusResponse
 
 __all__ = ["BrandResource", "AsyncBrandResource"]
@@ -673,6 +676,125 @@ class BrandResource(SyncAPIResource):
             cast_to=TelnyxBrand,
         )
 
+    def trigger_sms_otp(
+        self,
+        brand_id: str,
+        *,
+        pin_sms: str,
+        success_sms: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> BrandTriggerSMSOtpResponse:
+        """
+        Trigger or re-trigger an SMS OTP (One-Time Password) for Sole Proprietor brand
+        verification.
+
+        **Important Notes:**
+
+        - Only allowed for Sole Proprietor (`SOLE_PROPRIETOR`) brands
+        - Triggers generation of a one-time password sent to the `mobilePhone` number in
+          the brand's profile
+        - Campaigns cannot be created until OTP verification is complete
+        - US/CA numbers only for real OTPs; mock brands can use non-US/CA numbers for
+          testing
+        - Returns a `referenceId` that can be used to check OTP status via the GET
+          `/10dlc/brand/smsOtp/{referenceId}` endpoint
+
+        **Use Cases:**
+
+        - Initial OTP trigger after Sole Proprietor brand creation
+        - Re-triggering OTP if the user didn't receive or needs a new code
+
+        Args:
+          pin_sms: SMS message template to send the OTP. Must include `@OTP_PIN@` placeholder which
+              will be replaced with the actual PIN
+
+          success_sms: SMS message to send upon successful OTP verification
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not brand_id:
+            raise ValueError(f"Expected a non-empty value for `brand_id` but received {brand_id!r}")
+        return self._post(
+            f"/10dlc/brand/{brand_id}/smsOtp",
+            body=maybe_transform(
+                {
+                    "pin_sms": pin_sms,
+                    "success_sms": success_sms,
+                },
+                brand_trigger_sms_otp_params.BrandTriggerSMSOtpParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=BrandTriggerSMSOtpResponse,
+        )
+
+    def verify_sms_otp(
+        self,
+        brand_id: str,
+        *,
+        otp_pin: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> None:
+        """
+        Verify the SMS OTP (One-Time Password) for Sole Proprietor brand verification.
+
+        **Verification Flow:**
+
+        1. User receives OTP via SMS after triggering
+        2. User submits the OTP pin through this endpoint
+        3. Upon successful verification:
+           - A `BRAND_OTP_VERIFIED` webhook event is sent to the CSP
+           - The brand's `identityStatus` changes to `VERIFIED`
+           - Campaigns can now be created for this brand
+
+        **Error Handling:**
+
+        Provides proper error responses for:
+
+        - Invalid OTP pins
+        - Expired OTPs
+        - OTP verification failures
+
+        Args:
+          otp_pin: The OTP PIN received via SMS
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not brand_id:
+            raise ValueError(f"Expected a non-empty value for `brand_id` but received {brand_id!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        return self._put(
+            f"/10dlc/brand/{brand_id}/smsOtp",
+            body=maybe_transform({"otp_pin": otp_pin}, brand_verify_sms_otp_params.BrandVerifySMSOtpParams),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=NoneType,
+        )
+
 
 class AsyncBrandResource(AsyncAPIResource):
     @cached_property
@@ -1296,6 +1418,125 @@ class AsyncBrandResource(AsyncAPIResource):
             cast_to=TelnyxBrand,
         )
 
+    async def trigger_sms_otp(
+        self,
+        brand_id: str,
+        *,
+        pin_sms: str,
+        success_sms: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> BrandTriggerSMSOtpResponse:
+        """
+        Trigger or re-trigger an SMS OTP (One-Time Password) for Sole Proprietor brand
+        verification.
+
+        **Important Notes:**
+
+        - Only allowed for Sole Proprietor (`SOLE_PROPRIETOR`) brands
+        - Triggers generation of a one-time password sent to the `mobilePhone` number in
+          the brand's profile
+        - Campaigns cannot be created until OTP verification is complete
+        - US/CA numbers only for real OTPs; mock brands can use non-US/CA numbers for
+          testing
+        - Returns a `referenceId` that can be used to check OTP status via the GET
+          `/10dlc/brand/smsOtp/{referenceId}` endpoint
+
+        **Use Cases:**
+
+        - Initial OTP trigger after Sole Proprietor brand creation
+        - Re-triggering OTP if the user didn't receive or needs a new code
+
+        Args:
+          pin_sms: SMS message template to send the OTP. Must include `@OTP_PIN@` placeholder which
+              will be replaced with the actual PIN
+
+          success_sms: SMS message to send upon successful OTP verification
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not brand_id:
+            raise ValueError(f"Expected a non-empty value for `brand_id` but received {brand_id!r}")
+        return await self._post(
+            f"/10dlc/brand/{brand_id}/smsOtp",
+            body=await async_maybe_transform(
+                {
+                    "pin_sms": pin_sms,
+                    "success_sms": success_sms,
+                },
+                brand_trigger_sms_otp_params.BrandTriggerSMSOtpParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=BrandTriggerSMSOtpResponse,
+        )
+
+    async def verify_sms_otp(
+        self,
+        brand_id: str,
+        *,
+        otp_pin: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> None:
+        """
+        Verify the SMS OTP (One-Time Password) for Sole Proprietor brand verification.
+
+        **Verification Flow:**
+
+        1. User receives OTP via SMS after triggering
+        2. User submits the OTP pin through this endpoint
+        3. Upon successful verification:
+           - A `BRAND_OTP_VERIFIED` webhook event is sent to the CSP
+           - The brand's `identityStatus` changes to `VERIFIED`
+           - Campaigns can now be created for this brand
+
+        **Error Handling:**
+
+        Provides proper error responses for:
+
+        - Invalid OTP pins
+        - Expired OTPs
+        - OTP verification failures
+
+        Args:
+          otp_pin: The OTP PIN received via SMS
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not brand_id:
+            raise ValueError(f"Expected a non-empty value for `brand_id` but received {brand_id!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        return await self._put(
+            f"/10dlc/brand/{brand_id}/smsOtp",
+            body=await async_maybe_transform({"otp_pin": otp_pin}, brand_verify_sms_otp_params.BrandVerifySMSOtpParams),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=NoneType,
+        )
+
 
 class BrandResourceWithRawResponse:
     def __init__(self, brand: BrandResource) -> None:
@@ -1327,6 +1568,12 @@ class BrandResourceWithRawResponse:
         )
         self.revet = to_raw_response_wrapper(
             brand.revet,
+        )
+        self.trigger_sms_otp = to_raw_response_wrapper(
+            brand.trigger_sms_otp,
+        )
+        self.verify_sms_otp = to_raw_response_wrapper(
+            brand.verify_sms_otp,
         )
 
     @cached_property
@@ -1365,6 +1612,12 @@ class AsyncBrandResourceWithRawResponse:
         self.revet = async_to_raw_response_wrapper(
             brand.revet,
         )
+        self.trigger_sms_otp = async_to_raw_response_wrapper(
+            brand.trigger_sms_otp,
+        )
+        self.verify_sms_otp = async_to_raw_response_wrapper(
+            brand.verify_sms_otp,
+        )
 
     @cached_property
     def external_vetting(self) -> AsyncExternalVettingResourceWithRawResponse:
@@ -1402,6 +1655,12 @@ class BrandResourceWithStreamingResponse:
         self.revet = to_streamed_response_wrapper(
             brand.revet,
         )
+        self.trigger_sms_otp = to_streamed_response_wrapper(
+            brand.trigger_sms_otp,
+        )
+        self.verify_sms_otp = to_streamed_response_wrapper(
+            brand.verify_sms_otp,
+        )
 
     @cached_property
     def external_vetting(self) -> ExternalVettingResourceWithStreamingResponse:
@@ -1438,6 +1697,12 @@ class AsyncBrandResourceWithStreamingResponse:
         )
         self.revet = async_to_streamed_response_wrapper(
             brand.revet,
+        )
+        self.trigger_sms_otp = async_to_streamed_response_wrapper(
+            brand.trigger_sms_otp,
+        )
+        self.verify_sms_otp = async_to_streamed_response_wrapper(
+            brand.verify_sms_otp,
         )
 
     @cached_property

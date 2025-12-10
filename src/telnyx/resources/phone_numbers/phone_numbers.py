@@ -222,6 +222,7 @@ class PhoneNumbersResource(SyncAPIResource):
         self,
         *,
         filter: phone_number_list_params.Filter | Omit = omit,
+        handle_messaging_profile_error: Literal["true", "false"] | Omit = omit,
         page: phone_number_list_params.Page | Omit = omit,
         sort: Literal["purchased_at", "phone_number", "connection_name", "usage_payment_method"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -241,6 +242,13 @@ class PhoneNumbersResource(SyncAPIResource):
               filter[voice.usage_payment_method], filter[billing_group_id],
               filter[emergency_address_id], filter[customer_reference], filter[number_type],
               filter[source]
+
+          handle_messaging_profile_error: Although it is an infrequent occurrence, due to the highly distributed nature of
+              the Telnyx platform, it is possible that there will be an issue when loading in
+              Messaging Profile information. As such, when this parameter is set to `true` and
+              an error in fetching this information occurs, messaging profile related fields
+              will be omitted in the response and an error message will be included instead of
+              returning a 503 error.
 
           page: Consolidated page parameter (deepObject style). Originally: page[size],
               page[number]
@@ -267,6 +275,7 @@ class PhoneNumbersResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
+                        "handle_messaging_profile_error": handle_messaging_profile_error,
                         "page": page,
                         "sort": sort,
                     },
@@ -523,6 +532,7 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
         self,
         *,
         filter: phone_number_list_params.Filter | Omit = omit,
+        handle_messaging_profile_error: Literal["true", "false"] | Omit = omit,
         page: phone_number_list_params.Page | Omit = omit,
         sort: Literal["purchased_at", "phone_number", "connection_name", "usage_payment_method"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -542,6 +552,13 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
               filter[voice.usage_payment_method], filter[billing_group_id],
               filter[emergency_address_id], filter[customer_reference], filter[number_type],
               filter[source]
+
+          handle_messaging_profile_error: Although it is an infrequent occurrence, due to the highly distributed nature of
+              the Telnyx platform, it is possible that there will be an issue when loading in
+              Messaging Profile information. As such, when this parameter is set to `true` and
+              an error in fetching this information occurs, messaging profile related fields
+              will be omitted in the response and an error message will be included instead of
+              returning a 503 error.
 
           page: Consolidated page parameter (deepObject style). Originally: page[size],
               page[number]
@@ -568,6 +585,7 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
+                        "handle_messaging_profile_error": handle_messaging_profile_error,
                         "page": page,
                         "sort": sort,
                     },
