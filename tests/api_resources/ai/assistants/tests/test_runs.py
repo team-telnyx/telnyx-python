@@ -9,8 +9,8 @@ import pytest
 
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
-from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from telnyx.types.ai.assistants.tests import TestRunResponse
+from telnyx.types.ai.assistants.tests.test_suites import PaginatedTestRunList
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -76,18 +76,20 @@ class TestRuns:
         run = client.ai.assistants.tests.runs.list(
             test_id="test_id",
         )
-        assert_matches_type(SyncDefaultFlatPagination[TestRunResponse], run, path=["response"])
+        assert_matches_type(PaginatedTestRunList, run, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         run = client.ai.assistants.tests.runs.list(
             test_id="test_id",
-            page_number=0,
-            page_size=0,
+            page={
+                "number": 1,
+                "size": 1,
+            },
             status="status",
         )
-        assert_matches_type(SyncDefaultFlatPagination[TestRunResponse], run, path=["response"])
+        assert_matches_type(PaginatedTestRunList, run, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -99,7 +101,7 @@ class TestRuns:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         run = response.parse()
-        assert_matches_type(SyncDefaultFlatPagination[TestRunResponse], run, path=["response"])
+        assert_matches_type(PaginatedTestRunList, run, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -111,7 +113,7 @@ class TestRuns:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             run = response.parse()
-            assert_matches_type(SyncDefaultFlatPagination[TestRunResponse], run, path=["response"])
+            assert_matches_type(PaginatedTestRunList, run, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -238,18 +240,20 @@ class TestAsyncRuns:
         run = await async_client.ai.assistants.tests.runs.list(
             test_id="test_id",
         )
-        assert_matches_type(AsyncDefaultFlatPagination[TestRunResponse], run, path=["response"])
+        assert_matches_type(PaginatedTestRunList, run, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         run = await async_client.ai.assistants.tests.runs.list(
             test_id="test_id",
-            page_number=0,
-            page_size=0,
+            page={
+                "number": 1,
+                "size": 1,
+            },
             status="status",
         )
-        assert_matches_type(AsyncDefaultFlatPagination[TestRunResponse], run, path=["response"])
+        assert_matches_type(PaginatedTestRunList, run, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -261,7 +265,7 @@ class TestAsyncRuns:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         run = await response.parse()
-        assert_matches_type(AsyncDefaultFlatPagination[TestRunResponse], run, path=["response"])
+        assert_matches_type(PaginatedTestRunList, run, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -273,7 +277,7 @@ class TestAsyncRuns:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             run = await response.parse()
-            assert_matches_type(AsyncDefaultFlatPagination[TestRunResponse], run, path=["response"])
+            assert_matches_type(PaginatedTestRunList, run, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

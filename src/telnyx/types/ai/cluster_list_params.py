@@ -2,14 +2,25 @@
 
 from __future__ import annotations
 
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import TypedDict
 
-from ..._utils import PropertyInfo
-
-__all__ = ["ClusterListParams"]
+__all__ = ["ClusterListParams", "Page"]
 
 
 class ClusterListParams(TypedDict, total=False):
-    page_number: Annotated[int, PropertyInfo(alias="page[number]")]
+    page: Page
+    """Consolidated page parameter (deepObject style).
 
-    page_size: Annotated[int, PropertyInfo(alias="page[size]")]
+    Originally: page[number], page[size]
+    """
+
+
+class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[number], page[size]
+    """
+
+    number: int
+
+    size: int

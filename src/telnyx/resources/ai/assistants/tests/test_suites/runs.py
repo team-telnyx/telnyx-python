@@ -14,11 +14,10 @@ from ......_response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ......pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
-from ......_base_client import AsyncPaginator, make_request_options
+from ......_base_client import make_request_options
 from ......types.ai.assistants.tests.test_suites import run_list_params, run_trigger_params
-from ......types.ai.assistants.tests.test_run_response import TestRunResponse
 from ......types.ai.assistants.tests.test_suites.run_trigger_response import RunTriggerResponse
+from ......types.ai.assistants.tests.test_suites.paginated_test_run_list import PaginatedTestRunList
 
 __all__ = ["RunsResource", "AsyncRunsResource"]
 
@@ -47,8 +46,7 @@ class RunsResource(SyncAPIResource):
         self,
         suite_name: str,
         *,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: run_list_params.Page | Omit = omit,
         status: str | Omit = omit,
         test_suite_run_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -57,12 +55,15 @@ class RunsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[TestRunResponse]:
+    ) -> PaginatedTestRunList:
         """
         Retrieves paginated history of test runs for a specific test suite with
         filtering options
 
         Args:
+          page: Consolidated page parameter (deepObject style). Originally: page[size],
+              page[number]
+
           status: Filter runs by execution status (pending, running, completed, failed, timeout)
 
           test_suite_run_id: Filter runs by specific suite execution batch ID
@@ -77,9 +78,8 @@ class RunsResource(SyncAPIResource):
         """
         if not suite_name:
             raise ValueError(f"Expected a non-empty value for `suite_name` but received {suite_name!r}")
-        return self._get_api_list(
+        return self._get(
             f"/ai/assistants/tests/test-suites/{suite_name}/runs",
-            page=SyncDefaultFlatPagination[TestRunResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -87,15 +87,14 @@ class RunsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "page_number": page_number,
-                        "page_size": page_size,
+                        "page": page,
                         "status": status,
                         "test_suite_run_id": test_suite_run_id,
                     },
                     run_list_params.RunListParams,
                 ),
             ),
-            model=TestRunResponse,
+            cast_to=PaginatedTestRunList,
         )
 
     def trigger(
@@ -160,12 +159,11 @@ class AsyncRunsResource(AsyncAPIResource):
         """
         return AsyncRunsResourceWithStreamingResponse(self)
 
-    def list(
+    async def list(
         self,
         suite_name: str,
         *,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: run_list_params.Page | Omit = omit,
         status: str | Omit = omit,
         test_suite_run_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -174,12 +172,15 @@ class AsyncRunsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[TestRunResponse, AsyncDefaultFlatPagination[TestRunResponse]]:
+    ) -> PaginatedTestRunList:
         """
         Retrieves paginated history of test runs for a specific test suite with
         filtering options
 
         Args:
+          page: Consolidated page parameter (deepObject style). Originally: page[size],
+              page[number]
+
           status: Filter runs by execution status (pending, running, completed, failed, timeout)
 
           test_suite_run_id: Filter runs by specific suite execution batch ID
@@ -194,25 +195,23 @@ class AsyncRunsResource(AsyncAPIResource):
         """
         if not suite_name:
             raise ValueError(f"Expected a non-empty value for `suite_name` but received {suite_name!r}")
-        return self._get_api_list(
+        return await self._get(
             f"/ai/assistants/tests/test-suites/{suite_name}/runs",
-            page=AsyncDefaultFlatPagination[TestRunResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
-                        "page_number": page_number,
-                        "page_size": page_size,
+                        "page": page,
                         "status": status,
                         "test_suite_run_id": test_suite_run_id,
                     },
                     run_list_params.RunListParams,
                 ),
             ),
-            model=TestRunResponse,
+            cast_to=PaginatedTestRunList,
         )
 
     async def trigger(

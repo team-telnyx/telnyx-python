@@ -6,7 +6,7 @@ import httpx
 
 from ..types import messaging_optout_list_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import maybe_transform
+from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -15,8 +15,7 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
-from .._base_client import AsyncPaginator, make_request_options
+from .._base_client import make_request_options
 from ..types.messaging_optout_list_response import MessagingOptoutListResponse
 
 __all__ = ["MessagingOptoutsResource", "AsyncMessagingOptoutsResource"]
@@ -55,7 +54,7 @@ class MessagingOptoutsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[MessagingOptoutListResponse]:
+    ) -> MessagingOptoutListResponse:
         """
         Retrieve a list of opt-out blocks.
 
@@ -81,9 +80,8 @@ class MessagingOptoutsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return self._get(
             "/messaging_optouts",
-            page=SyncDefaultPagination[MessagingOptoutListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -99,7 +97,7 @@ class MessagingOptoutsResource(SyncAPIResource):
                     messaging_optout_list_params.MessagingOptoutListParams,
                 ),
             ),
-            model=MessagingOptoutListResponse,
+            cast_to=MessagingOptoutListResponse,
         )
 
 
@@ -123,7 +121,7 @@ class AsyncMessagingOptoutsResource(AsyncAPIResource):
         """
         return AsyncMessagingOptoutsResourceWithStreamingResponse(self)
 
-    def list(
+    async def list(
         self,
         *,
         created_at: messaging_optout_list_params.CreatedAt | Omit = omit,
@@ -136,7 +134,7 @@ class AsyncMessagingOptoutsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[MessagingOptoutListResponse, AsyncDefaultPagination[MessagingOptoutListResponse]]:
+    ) -> MessagingOptoutListResponse:
         """
         Retrieve a list of opt-out blocks.
 
@@ -162,15 +160,14 @@ class AsyncMessagingOptoutsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return await self._get(
             "/messaging_optouts",
-            page=AsyncDefaultPagination[MessagingOptoutListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
                         "created_at": created_at,
                         "filter": filter,
@@ -180,7 +177,7 @@ class AsyncMessagingOptoutsResource(AsyncAPIResource):
                     messaging_optout_list_params.MessagingOptoutListParams,
                 ),
             ),
-            model=MessagingOptoutListResponse,
+            cast_to=MessagingOptoutListResponse,
         )
 
 

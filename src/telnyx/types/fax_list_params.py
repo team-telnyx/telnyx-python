@@ -8,7 +8,7 @@ from typing_extensions import Annotated, TypedDict
 
 from .._utils import PropertyInfo
 
-__all__ = ["FaxListParams", "Filter", "FilterCreatedAt", "FilterDirection", "FilterFrom", "FilterTo"]
+__all__ = ["FaxListParams", "Filter", "FilterCreatedAt", "FilterDirection", "FilterFrom", "FilterTo", "Page"]
 
 
 class FaxListParams(TypedDict, total=False):
@@ -20,9 +20,11 @@ class FaxListParams(TypedDict, total=False):
     filter[from][eq], filter[to][eq]
     """
 
-    page_number: Annotated[int, PropertyInfo(alias="page[number]")]
+    page: Page
+    """Consolidated pagination parameter (deepObject style).
 
-    page_size: Annotated[int, PropertyInfo(alias="page[size]")]
+    Originally: page[size], page[number]
+    """
 
 
 class FilterCreatedAt(TypedDict, total=False):
@@ -85,3 +87,16 @@ class Filter(_FilterReservedKeywords, total=False):
 
     to: FilterTo
     """To number filtering operations"""
+
+
+class Page(TypedDict, total=False):
+    """Consolidated pagination parameter (deepObject style).
+
+    Originally: page[size], page[number]
+    """
+
+    number: int
+    """Number of the page to be retrieved"""
+
+    size: int
+    """Number of fax resources for the single page returned"""

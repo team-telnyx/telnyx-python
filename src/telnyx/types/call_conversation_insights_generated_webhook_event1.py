@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, List, Union, Optional
+from typing import List, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -13,7 +13,7 @@ class DataPayloadResult(BaseModel):
     insight_id: Optional[str] = None
     """ID that is unique to the insight result being generated for the call."""
 
-    result: Union[Dict[str, object], str, None] = None
+    result: Union[str, object, None] = None
     """The result of the insight."""
 
 

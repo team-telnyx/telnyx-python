@@ -4,7 +4,11 @@ from __future__ import annotations
 
 import httpx
 
-from ..types import global_ip_assignment_list_params, global_ip_assignment_update_params
+from ..types import (
+    global_ip_assignment_list_params,
+    global_ip_assignment_create_params,
+    global_ip_assignment_update_params,
+)
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
@@ -15,9 +19,8 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
-from .._base_client import AsyncPaginator, make_request_options
-from ..types.global_ip_assignment import GlobalIPAssignment
+from .._base_client import make_request_options
+from ..types.global_ip_assignment_list_response import GlobalIPAssignmentListResponse
 from ..types.global_ip_assignment_create_response import GlobalIPAssignmentCreateResponse
 from ..types.global_ip_assignment_delete_response import GlobalIPAssignmentDeleteResponse
 from ..types.global_ip_assignment_update_response import GlobalIPAssignmentUpdateResponse
@@ -49,6 +52,9 @@ class GlobalIPAssignmentsResource(SyncAPIResource):
     def create(
         self,
         *,
+        global_ip_id: str | Omit = omit,
+        is_in_maintenance: bool | Omit = omit,
+        wireguard_peer_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -56,9 +62,34 @@ class GlobalIPAssignmentsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GlobalIPAssignmentCreateResponse:
-        """Create a Global IP assignment."""
+        """
+        Create a Global IP assignment.
+
+        Args:
+          global_ip_id: Global IP ID.
+
+          is_in_maintenance: Enable/disable BGP announcement.
+
+          wireguard_peer_id: Wireguard peer ID.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
         return self._post(
             "/global_ip_assignments",
+            body=maybe_transform(
+                {
+                    "global_ip_id": global_ip_id,
+                    "is_in_maintenance": is_in_maintenance,
+                    "wireguard_peer_id": wireguard_peer_id,
+                },
+                global_ip_assignment_create_params.GlobalIPAssignmentCreateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -100,9 +131,9 @@ class GlobalIPAssignmentsResource(SyncAPIResource):
 
     def update(
         self,
-        global_ip_assignment_id: str,
+        id: str,
         *,
-        global_ip_assignment_update_request: global_ip_assignment_update_params.GlobalIPAssignmentUpdateRequest,
+        body: global_ip_assignment_update_params.Body,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -122,15 +153,11 @@ class GlobalIPAssignmentsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not global_ip_assignment_id:
-            raise ValueError(
-                f"Expected a non-empty value for `global_ip_assignment_id` but received {global_ip_assignment_id!r}"
-            )
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._patch(
-            f"/global_ip_assignments/{global_ip_assignment_id}",
-            body=maybe_transform(
-                global_ip_assignment_update_request, global_ip_assignment_update_params.GlobalIPAssignmentUpdateParams
-            ),
+            f"/global_ip_assignments/{id}",
+            body=maybe_transform(body, global_ip_assignment_update_params.GlobalIPAssignmentUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -147,7 +174,7 @@ class GlobalIPAssignmentsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[GlobalIPAssignment]:
+    ) -> GlobalIPAssignmentListResponse:
         """
         List all Global IP assignments.
 
@@ -163,9 +190,8 @@ class GlobalIPAssignmentsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return self._get(
             "/global_ip_assignments",
-            page=SyncDefaultPagination[GlobalIPAssignment],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -173,7 +199,7 @@ class GlobalIPAssignmentsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform({"page": page}, global_ip_assignment_list_params.GlobalIPAssignmentListParams),
             ),
-            model=GlobalIPAssignment,
+            cast_to=GlobalIPAssignmentListResponse,
         )
 
     def delete(
@@ -233,6 +259,9 @@ class AsyncGlobalIPAssignmentsResource(AsyncAPIResource):
     async def create(
         self,
         *,
+        global_ip_id: str | Omit = omit,
+        is_in_maintenance: bool | Omit = omit,
+        wireguard_peer_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -240,9 +269,34 @@ class AsyncGlobalIPAssignmentsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GlobalIPAssignmentCreateResponse:
-        """Create a Global IP assignment."""
+        """
+        Create a Global IP assignment.
+
+        Args:
+          global_ip_id: Global IP ID.
+
+          is_in_maintenance: Enable/disable BGP announcement.
+
+          wireguard_peer_id: Wireguard peer ID.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
         return await self._post(
             "/global_ip_assignments",
+            body=await async_maybe_transform(
+                {
+                    "global_ip_id": global_ip_id,
+                    "is_in_maintenance": is_in_maintenance,
+                    "wireguard_peer_id": wireguard_peer_id,
+                },
+                global_ip_assignment_create_params.GlobalIPAssignmentCreateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -284,9 +338,9 @@ class AsyncGlobalIPAssignmentsResource(AsyncAPIResource):
 
     async def update(
         self,
-        global_ip_assignment_id: str,
+        id: str,
         *,
-        global_ip_assignment_update_request: global_ip_assignment_update_params.GlobalIPAssignmentUpdateRequest,
+        body: global_ip_assignment_update_params.Body,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -306,22 +360,18 @@ class AsyncGlobalIPAssignmentsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not global_ip_assignment_id:
-            raise ValueError(
-                f"Expected a non-empty value for `global_ip_assignment_id` but received {global_ip_assignment_id!r}"
-            )
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._patch(
-            f"/global_ip_assignments/{global_ip_assignment_id}",
-            body=await async_maybe_transform(
-                global_ip_assignment_update_request, global_ip_assignment_update_params.GlobalIPAssignmentUpdateParams
-            ),
+            f"/global_ip_assignments/{id}",
+            body=await async_maybe_transform(body, global_ip_assignment_update_params.GlobalIPAssignmentUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=GlobalIPAssignmentUpdateResponse,
         )
 
-    def list(
+    async def list(
         self,
         *,
         page: global_ip_assignment_list_params.Page | Omit = omit,
@@ -331,7 +381,7 @@ class AsyncGlobalIPAssignmentsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[GlobalIPAssignment, AsyncDefaultPagination[GlobalIPAssignment]]:
+    ) -> GlobalIPAssignmentListResponse:
         """
         List all Global IP assignments.
 
@@ -347,17 +397,18 @@ class AsyncGlobalIPAssignmentsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return await self._get(
             "/global_ip_assignments",
-            page=AsyncDefaultPagination[GlobalIPAssignment],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"page": page}, global_ip_assignment_list_params.GlobalIPAssignmentListParams),
+                query=await async_maybe_transform(
+                    {"page": page}, global_ip_assignment_list_params.GlobalIPAssignmentListParams
+                ),
             ),
-            model=GlobalIPAssignment,
+            cast_to=GlobalIPAssignmentListResponse,
         )
 
     async def delete(

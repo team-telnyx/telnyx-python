@@ -1,15 +1,16 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import List, Optional
 
 from .record import Record
 from .._models import BaseModel
-from .network_interface import NetworkInterface
+from .interface import Interface
+from .pagination_meta import PaginationMeta
 
-__all__ = ["WireguardInterfaceListResponse", "WireguardInterfaceListResponseRegion"]
+__all__ = ["WireguardInterfaceListResponse", "Data", "DataRegion"]
 
 
-class WireguardInterfaceListResponseRegion(BaseModel):
+class DataRegion(BaseModel):
     code: Optional[str] = None
     """Region code of the interface."""
 
@@ -20,7 +21,7 @@ class WireguardInterfaceListResponseRegion(BaseModel):
     """Identifies the type of the resource."""
 
 
-class WireguardInterfaceListResponse(Record, NetworkInterface):
+class Data(Record, Interface):
     enable_sip_trunking: Optional[bool] = None
     """Enable SIP traffic forwarding over VPN interface."""
 
@@ -30,7 +31,16 @@ class WireguardInterfaceListResponse(Record, NetworkInterface):
     public_key: Optional[str] = None
     """The Telnyx WireGuard peers `Peer.PublicKey`."""
 
-    region: Optional[WireguardInterfaceListResponseRegion] = None
+    record_type: Optional[str] = None  # type: ignore
+    """Identifies the type of the resource."""
+
+    region: Optional[DataRegion] = None
 
     region_code: Optional[str] = None
     """The region interface is deployed to."""
+
+
+class WireguardInterfaceListResponse(BaseModel):
+    data: Optional[List[Data]] = None
+
+    meta: Optional[PaginationMeta] = None

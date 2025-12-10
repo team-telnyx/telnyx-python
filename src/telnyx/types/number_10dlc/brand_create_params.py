@@ -5,9 +5,9 @@ from __future__ import annotations
 from typing_extensions import Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
-from .vertical import Vertical
-from .entity_type import EntityType
-from .stock_exchange import StockExchange
+from ..vertical import Vertical
+from ..entity_type import EntityType
+from ..stock_exchange import StockExchange
 
 __all__ = ["BrandCreateParams"]
 

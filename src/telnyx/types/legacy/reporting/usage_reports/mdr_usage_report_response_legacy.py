@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, List, Optional
+from typing import List, Optional
 from datetime import datetime
 
 from ....._models import BaseModel
@@ -30,7 +30,7 @@ class MdrUsageReportResponseLegacy(BaseModel):
 
     report_url: Optional[str] = None
 
-    result: Optional[Dict[str, object]] = None
+    result: Optional[object] = None
 
     start_time: Optional[datetime] = None
 

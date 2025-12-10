@@ -10,7 +10,6 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types import OtaUpdateListResponse, OtaUpdateRetrieveResponse
-from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -64,7 +63,7 @@ class TestOtaUpdates:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         ota_update = client.ota_updates.list()
-        assert_matches_type(SyncDefaultPagination[OtaUpdateListResponse], ota_update, path=["response"])
+        assert_matches_type(OtaUpdateListResponse, ota_update, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -80,7 +79,7 @@ class TestOtaUpdates:
                 "size": 1,
             },
         )
-        assert_matches_type(SyncDefaultPagination[OtaUpdateListResponse], ota_update, path=["response"])
+        assert_matches_type(OtaUpdateListResponse, ota_update, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -90,7 +89,7 @@ class TestOtaUpdates:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ota_update = response.parse()
-        assert_matches_type(SyncDefaultPagination[OtaUpdateListResponse], ota_update, path=["response"])
+        assert_matches_type(OtaUpdateListResponse, ota_update, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -100,7 +99,7 @@ class TestOtaUpdates:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ota_update = response.parse()
-            assert_matches_type(SyncDefaultPagination[OtaUpdateListResponse], ota_update, path=["response"])
+            assert_matches_type(OtaUpdateListResponse, ota_update, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -156,7 +155,7 @@ class TestAsyncOtaUpdates:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         ota_update = await async_client.ota_updates.list()
-        assert_matches_type(AsyncDefaultPagination[OtaUpdateListResponse], ota_update, path=["response"])
+        assert_matches_type(OtaUpdateListResponse, ota_update, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -172,7 +171,7 @@ class TestAsyncOtaUpdates:
                 "size": 1,
             },
         )
-        assert_matches_type(AsyncDefaultPagination[OtaUpdateListResponse], ota_update, path=["response"])
+        assert_matches_type(OtaUpdateListResponse, ota_update, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -182,7 +181,7 @@ class TestAsyncOtaUpdates:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ota_update = await response.parse()
-        assert_matches_type(AsyncDefaultPagination[OtaUpdateListResponse], ota_update, path=["response"])
+        assert_matches_type(OtaUpdateListResponse, ota_update, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -192,6 +191,6 @@ class TestAsyncOtaUpdates:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ota_update = await response.parse()
-            assert_matches_type(AsyncDefaultPagination[OtaUpdateListResponse], ota_update, path=["response"])
+            assert_matches_type(OtaUpdateListResponse, ota_update, path=["response"])
 
         assert cast(Any, response.is_closed) is True

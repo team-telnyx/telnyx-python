@@ -19,7 +19,7 @@ class Data(BaseModel):
     imei: Optional[str] = None
     """IMEI of the device where the SIM card is being used in."""
 
-    device_model_name: Optional[str] = FieldInfo(alias="model_name", default=None)
+    api_model_name: Optional[str] = FieldInfo(alias="model_name", default=None)
     """Brand of the device where the SIM card is being used in."""
 
     operating_system: Optional[str] = None

@@ -649,14 +649,6 @@ from .messaging_optouts import (
     MessagingOptoutsResourceWithStreamingResponse,
     AsyncMessagingOptoutsResourceWithStreamingResponse,
 )
-from .partner_campaigns import (
-    PartnerCampaignsResource,
-    AsyncPartnerCampaignsResource,
-    PartnerCampaignsResourceWithRawResponse,
-    AsyncPartnerCampaignsResourceWithRawResponse,
-    PartnerCampaignsResourceWithStreamingResponse,
-    AsyncPartnerCampaignsResourceWithStreamingResponse,
-)
 from .requirement_types import (
     RequirementTypesResource,
     AsyncRequirementTypesResource,
@@ -1184,14 +1176,6 @@ from .sim_card_data_usage_notifications import (
     AsyncSimCardDataUsageNotificationsResourceWithRawResponse,
     SimCardDataUsageNotificationsResourceWithStreamingResponse,
     AsyncSimCardDataUsageNotificationsResourceWithStreamingResponse,
-)
-from .phone_number_assignment_by_profile import (
-    PhoneNumberAssignmentByProfileResource,
-    AsyncPhoneNumberAssignmentByProfileResource,
-    PhoneNumberAssignmentByProfileResourceWithRawResponse,
-    AsyncPhoneNumberAssignmentByProfileResourceWithRawResponse,
-    PhoneNumberAssignmentByProfileResourceWithStreamingResponse,
-    AsyncPhoneNumberAssignmentByProfileResourceWithStreamingResponse,
 )
 from .phone_numbers_regulatory_requirements import (
     PhoneNumbersRegulatoryRequirementsResource,
@@ -1751,12 +1735,6 @@ __all__ = [
     "AsyncPaymentResourceWithRawResponse",
     "PaymentResourceWithStreamingResponse",
     "AsyncPaymentResourceWithStreamingResponse",
-    "PhoneNumberAssignmentByProfileResource",
-    "AsyncPhoneNumberAssignmentByProfileResource",
-    "PhoneNumberAssignmentByProfileResourceWithRawResponse",
-    "AsyncPhoneNumberAssignmentByProfileResourceWithRawResponse",
-    "PhoneNumberAssignmentByProfileResourceWithStreamingResponse",
-    "AsyncPhoneNumberAssignmentByProfileResourceWithStreamingResponse",
     "PhoneNumberBlocksResource",
     "AsyncPhoneNumberBlocksResource",
     "PhoneNumberBlocksResourceWithRawResponse",
@@ -2069,12 +2047,6 @@ __all__ = [
     "AsyncWirelessBlocklistsResourceWithRawResponse",
     "WirelessBlocklistsResourceWithStreamingResponse",
     "AsyncWirelessBlocklistsResourceWithStreamingResponse",
-    "PartnerCampaignsResource",
-    "AsyncPartnerCampaignsResource",
-    "PartnerCampaignsResourceWithRawResponse",
-    "AsyncPartnerCampaignsResourceWithRawResponse",
-    "PartnerCampaignsResourceWithStreamingResponse",
-    "AsyncPartnerCampaignsResourceWithStreamingResponse",
     "WellKnownResource",
     "AsyncWellKnownResource",
     "WellKnownResourceWithRawResponse",

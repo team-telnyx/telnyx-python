@@ -10,13 +10,12 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types import (
-    TexmlApplication,
+    TexmlApplicationListResponse,
     TexmlApplicationCreateResponse,
     TexmlApplicationDeleteResponse,
     TexmlApplicationUpdateResponse,
     TexmlApplicationRetrieveResponse,
 )
-from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -218,7 +217,7 @@ class TestTexmlApplications:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         texml_application = client.texml_applications.list()
-        assert_matches_type(SyncDefaultPagination[TexmlApplication], texml_application, path=["response"])
+        assert_matches_type(TexmlApplicationListResponse, texml_application, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -234,7 +233,7 @@ class TestTexmlApplications:
             },
             sort="friendly_name",
         )
-        assert_matches_type(SyncDefaultPagination[TexmlApplication], texml_application, path=["response"])
+        assert_matches_type(TexmlApplicationListResponse, texml_application, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -244,7 +243,7 @@ class TestTexmlApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         texml_application = response.parse()
-        assert_matches_type(SyncDefaultPagination[TexmlApplication], texml_application, path=["response"])
+        assert_matches_type(TexmlApplicationListResponse, texml_application, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -254,7 +253,7 @@ class TestTexmlApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             texml_application = response.parse()
-            assert_matches_type(SyncDefaultPagination[TexmlApplication], texml_application, path=["response"])
+            assert_matches_type(TexmlApplicationListResponse, texml_application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -500,7 +499,7 @@ class TestAsyncTexmlApplications:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         texml_application = await async_client.texml_applications.list()
-        assert_matches_type(AsyncDefaultPagination[TexmlApplication], texml_application, path=["response"])
+        assert_matches_type(TexmlApplicationListResponse, texml_application, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -516,7 +515,7 @@ class TestAsyncTexmlApplications:
             },
             sort="friendly_name",
         )
-        assert_matches_type(AsyncDefaultPagination[TexmlApplication], texml_application, path=["response"])
+        assert_matches_type(TexmlApplicationListResponse, texml_application, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -526,7 +525,7 @@ class TestAsyncTexmlApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         texml_application = await response.parse()
-        assert_matches_type(AsyncDefaultPagination[TexmlApplication], texml_application, path=["response"])
+        assert_matches_type(TexmlApplicationListResponse, texml_application, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -536,7 +535,7 @@ class TestAsyncTexmlApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             texml_application = await response.parse()
-            assert_matches_type(AsyncDefaultPagination[TexmlApplication], texml_application, path=["response"])
+            assert_matches_type(TexmlApplicationListResponse, texml_application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

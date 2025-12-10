@@ -9,17 +9,19 @@ from .._models import BaseModel
 
 __all__ = [
     "DetailRecordListResponse",
-    "MessageDetailRecord",
-    "ConferenceDetailRecord",
-    "ConferenceParticipantDetailRecord",
-    "AmdDetailRecord",
-    "VerifyDetailRecord",
-    "SimCardUsageDetailRecord",
-    "MediaStorageDetailRecord",
+    "Data",
+    "DataMessageDetailRecord",
+    "DataConferenceDetailRecord",
+    "DataConferenceParticipantDetailRecord",
+    "DataAmdDetailRecord",
+    "DataVerifyDetailRecord",
+    "DataSimCardUsageDetailRecord",
+    "DataMediaStorageDetailRecord",
+    "Meta",
 ]
 
 
-class MessageDetailRecord(BaseModel):
+class DataMessageDetailRecord(BaseModel):
     record_type: str
     """Identifies the record schema"""
 
@@ -150,7 +152,7 @@ class MessageDetailRecord(BaseModel):
     """Unique identifier of the message"""
 
 
-class ConferenceDetailRecord(BaseModel):
+class DataConferenceDetailRecord(BaseModel):
     record_type: str
 
     id: Optional[str] = None
@@ -196,7 +198,7 @@ class ConferenceDetailRecord(BaseModel):
     """User id"""
 
 
-class ConferenceParticipantDetailRecord(BaseModel):
+class DataConferenceParticipantDetailRecord(BaseModel):
     record_type: str
 
     id: Optional[str] = None
@@ -250,7 +252,7 @@ class ConferenceParticipantDetailRecord(BaseModel):
     """User id"""
 
 
-class AmdDetailRecord(BaseModel):
+class DataAmdDetailRecord(BaseModel):
     record_type: str
 
     id: Optional[str] = None
@@ -301,7 +303,7 @@ class AmdDetailRecord(BaseModel):
     """User-provided tags"""
 
 
-class VerifyDetailRecord(BaseModel):
+class DataVerifyDetailRecord(BaseModel):
     record_type: str
 
     id: Optional[str] = None
@@ -353,7 +355,7 @@ class VerifyDetailRecord(BaseModel):
     """Currency amount for Verify Usage Fee"""
 
 
-class SimCardUsageDetailRecord(BaseModel):
+class DataSimCardUsageDetailRecord(BaseModel):
     record_type: str
 
     id: Optional[str] = None
@@ -413,7 +415,7 @@ class SimCardUsageDetailRecord(BaseModel):
     """Number of megabytes uploaded"""
 
 
-class MediaStorageDetailRecord(BaseModel):
+class DataMediaStorageDetailRecord(BaseModel):
     record_type: str
 
     id: Optional[str] = None
@@ -461,15 +463,31 @@ class MediaStorageDetailRecord(BaseModel):
     """Webhook id"""
 
 
-DetailRecordListResponse: TypeAlias = Annotated[
+Data: TypeAlias = Annotated[
     Union[
-        MessageDetailRecord,
-        ConferenceDetailRecord,
-        ConferenceParticipantDetailRecord,
-        AmdDetailRecord,
-        VerifyDetailRecord,
-        SimCardUsageDetailRecord,
-        MediaStorageDetailRecord,
+        DataMessageDetailRecord,
+        DataConferenceDetailRecord,
+        DataConferenceParticipantDetailRecord,
+        DataAmdDetailRecord,
+        DataVerifyDetailRecord,
+        DataSimCardUsageDetailRecord,
+        DataMediaStorageDetailRecord,
     ],
     PropertyInfo(discriminator="record_type"),
 ]
+
+
+class Meta(BaseModel):
+    page_number: Optional[int] = None
+
+    page_size: Optional[int] = None
+
+    total_pages: Optional[int] = None
+
+    total_results: Optional[int] = None
+
+
+class DetailRecordListResponse(BaseModel):
+    data: Optional[List[Data]] = None
+
+    meta: Optional[Meta] = None

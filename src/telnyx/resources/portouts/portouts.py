@@ -41,8 +41,7 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...pagination import SyncDefaultPagination, AsyncDefaultPagination
-from ..._base_client import AsyncPaginator, make_request_options
+from ..._base_client import make_request_options
 from .supporting_documents import (
     SupportingDocumentsResource,
     AsyncSupportingDocumentsResource,
@@ -51,7 +50,7 @@ from .supporting_documents import (
     SupportingDocumentsResourceWithStreamingResponse,
     AsyncSupportingDocumentsResourceWithStreamingResponse,
 )
-from ...types.portout_details import PortoutDetails
+from ...types.portout_list_response import PortoutListResponse
 from ...types.portout_retrieve_response import PortoutRetrieveResponse
 from ...types.portout_update_status_response import PortoutUpdateStatusResponse
 from ...types.portout_list_rejection_codes_response import PortoutListRejectionCodesResponse
@@ -139,7 +138,7 @@ class PortoutsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[PortoutDetails]:
+    ) -> PortoutListResponse:
         """
         Returns the portout requests according to filters
 
@@ -162,9 +161,8 @@ class PortoutsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return self._get(
             "/portouts",
-            page=SyncDefaultPagination[PortoutDetails],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -178,7 +176,7 @@ class PortoutsResource(SyncAPIResource):
                     portout_list_params.PortoutListParams,
                 ),
             ),
-            model=PortoutDetails,
+            cast_to=PortoutListResponse,
         )
 
     def list_rejection_codes(
@@ -344,7 +342,7 @@ class AsyncPortoutsResource(AsyncAPIResource):
             cast_to=PortoutRetrieveResponse,
         )
 
-    def list(
+    async def list(
         self,
         *,
         filter: portout_list_params.Filter | Omit = omit,
@@ -355,7 +353,7 @@ class AsyncPortoutsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[PortoutDetails, AsyncDefaultPagination[PortoutDetails]]:
+    ) -> PortoutListResponse:
         """
         Returns the portout requests according to filters
 
@@ -378,15 +376,14 @@ class AsyncPortoutsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return await self._get(
             "/portouts",
-            page=AsyncDefaultPagination[PortoutDetails],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
                         "filter": filter,
                         "page": page,
@@ -394,7 +391,7 @@ class AsyncPortoutsResource(AsyncAPIResource):
                     portout_list_params.PortoutListParams,
                 ),
             ),
-            model=PortoutDetails,
+            cast_to=PortoutListResponse,
         )
 
     async def list_rejection_codes(

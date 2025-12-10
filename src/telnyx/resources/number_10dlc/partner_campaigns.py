@@ -1,0 +1,428 @@
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+from __future__ import annotations
+
+from typing_extensions import Literal
+
+import httpx
+
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from ..._utils import maybe_transform, async_maybe_transform
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ..._base_client import make_request_options
+from ...types.number_10dlc import partner_campaign_list_params, partner_campaign_update_params
+from ...types.telnyx_downstream_campaign import TelnyxDownstreamCampaign
+from ...types.number_10dlc.partner_campaign_list_response import PartnerCampaignListResponse
+
+__all__ = ["PartnerCampaignsResource", "AsyncPartnerCampaignsResource"]
+
+
+class PartnerCampaignsResource(SyncAPIResource):
+    @cached_property
+    def with_raw_response(self) -> PartnerCampaignsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#accessing-raw-response-data-eg-headers
+        """
+        return PartnerCampaignsResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> PartnerCampaignsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
+        """
+        return PartnerCampaignsResourceWithStreamingResponse(self)
+
+    def retrieve(
+        self,
+        campaign_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TelnyxDownstreamCampaign:
+        """
+        Retrieve campaign details by `campaignId`.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not campaign_id:
+            raise ValueError(f"Expected a non-empty value for `campaign_id` but received {campaign_id!r}")
+        return self._get(
+            f"/10dlc/partner_campaigns/{campaign_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=TelnyxDownstreamCampaign,
+        )
+
+    def update(
+        self,
+        campaign_id: str,
+        *,
+        webhook_failover_url: str | Omit = omit,
+        webhook_url: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TelnyxDownstreamCampaign:
+        """Update campaign details by `campaignId`.
+
+        **Please note:** Only webhook urls are
+        editable.
+
+        Args:
+          webhook_failover_url: Webhook failover to which campaign status updates are sent.
+
+          webhook_url: Webhook to which campaign status updates are sent.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not campaign_id:
+            raise ValueError(f"Expected a non-empty value for `campaign_id` but received {campaign_id!r}")
+        return self._patch(
+            f"/10dlc/partner_campaigns/{campaign_id}",
+            body=maybe_transform(
+                {
+                    "webhook_failover_url": webhook_failover_url,
+                    "webhook_url": webhook_url,
+                },
+                partner_campaign_update_params.PartnerCampaignUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=TelnyxDownstreamCampaign,
+        )
+
+    def list(
+        self,
+        *,
+        page: int | Omit = omit,
+        records_per_page: int | Omit = omit,
+        sort: Literal[
+            "assignedPhoneNumbersCount",
+            "-assignedPhoneNumbersCount",
+            "brandDisplayName",
+            "-brandDisplayName",
+            "tcrBrandId",
+            "-tcrBranId",
+            "tcrCampaignId",
+            "-tcrCampaignId",
+            "createdAt",
+            "-createdAt",
+            "campaignStatus",
+            "-campaignStatus",
+        ]
+        | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> PartnerCampaignListResponse:
+        """
+        Retrieve all partner campaigns you have shared to Telnyx in a paginated fashion.
+
+        This endpoint is currently limited to only returning shared campaigns that
+        Telnyx has accepted. In other words, shared but pending campaigns are currently
+        omitted from the response from this endpoint.
+
+        Args:
+          page: The 1-indexed page number to get. The default value is `1`.
+
+          records_per_page: The amount of records per page, limited to between 1 and 500 inclusive. The
+              default value is `10`.
+
+          sort: Specifies the sort order for results. If not given, results are sorted by
+              createdAt in descending order.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get(
+            "/10dlc/partner_campaigns",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "page": page,
+                        "records_per_page": records_per_page,
+                        "sort": sort,
+                    },
+                    partner_campaign_list_params.PartnerCampaignListParams,
+                ),
+            ),
+            cast_to=PartnerCampaignListResponse,
+        )
+
+
+class AsyncPartnerCampaignsResource(AsyncAPIResource):
+    @cached_property
+    def with_raw_response(self) -> AsyncPartnerCampaignsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#accessing-raw-response-data-eg-headers
+        """
+        return AsyncPartnerCampaignsResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncPartnerCampaignsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
+        """
+        return AsyncPartnerCampaignsResourceWithStreamingResponse(self)
+
+    async def retrieve(
+        self,
+        campaign_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TelnyxDownstreamCampaign:
+        """
+        Retrieve campaign details by `campaignId`.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not campaign_id:
+            raise ValueError(f"Expected a non-empty value for `campaign_id` but received {campaign_id!r}")
+        return await self._get(
+            f"/10dlc/partner_campaigns/{campaign_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=TelnyxDownstreamCampaign,
+        )
+
+    async def update(
+        self,
+        campaign_id: str,
+        *,
+        webhook_failover_url: str | Omit = omit,
+        webhook_url: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TelnyxDownstreamCampaign:
+        """Update campaign details by `campaignId`.
+
+        **Please note:** Only webhook urls are
+        editable.
+
+        Args:
+          webhook_failover_url: Webhook failover to which campaign status updates are sent.
+
+          webhook_url: Webhook to which campaign status updates are sent.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not campaign_id:
+            raise ValueError(f"Expected a non-empty value for `campaign_id` but received {campaign_id!r}")
+        return await self._patch(
+            f"/10dlc/partner_campaigns/{campaign_id}",
+            body=await async_maybe_transform(
+                {
+                    "webhook_failover_url": webhook_failover_url,
+                    "webhook_url": webhook_url,
+                },
+                partner_campaign_update_params.PartnerCampaignUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=TelnyxDownstreamCampaign,
+        )
+
+    async def list(
+        self,
+        *,
+        page: int | Omit = omit,
+        records_per_page: int | Omit = omit,
+        sort: Literal[
+            "assignedPhoneNumbersCount",
+            "-assignedPhoneNumbersCount",
+            "brandDisplayName",
+            "-brandDisplayName",
+            "tcrBrandId",
+            "-tcrBranId",
+            "tcrCampaignId",
+            "-tcrCampaignId",
+            "createdAt",
+            "-createdAt",
+            "campaignStatus",
+            "-campaignStatus",
+        ]
+        | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> PartnerCampaignListResponse:
+        """
+        Retrieve all partner campaigns you have shared to Telnyx in a paginated fashion.
+
+        This endpoint is currently limited to only returning shared campaigns that
+        Telnyx has accepted. In other words, shared but pending campaigns are currently
+        omitted from the response from this endpoint.
+
+        Args:
+          page: The 1-indexed page number to get. The default value is `1`.
+
+          records_per_page: The amount of records per page, limited to between 1 and 500 inclusive. The
+              default value is `10`.
+
+          sort: Specifies the sort order for results. If not given, results are sorted by
+              createdAt in descending order.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._get(
+            "/10dlc/partner_campaigns",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "page": page,
+                        "records_per_page": records_per_page,
+                        "sort": sort,
+                    },
+                    partner_campaign_list_params.PartnerCampaignListParams,
+                ),
+            ),
+            cast_to=PartnerCampaignListResponse,
+        )
+
+
+class PartnerCampaignsResourceWithRawResponse:
+    def __init__(self, partner_campaigns: PartnerCampaignsResource) -> None:
+        self._partner_campaigns = partner_campaigns
+
+        self.retrieve = to_raw_response_wrapper(
+            partner_campaigns.retrieve,
+        )
+        self.update = to_raw_response_wrapper(
+            partner_campaigns.update,
+        )
+        self.list = to_raw_response_wrapper(
+            partner_campaigns.list,
+        )
+
+
+class AsyncPartnerCampaignsResourceWithRawResponse:
+    def __init__(self, partner_campaigns: AsyncPartnerCampaignsResource) -> None:
+        self._partner_campaigns = partner_campaigns
+
+        self.retrieve = async_to_raw_response_wrapper(
+            partner_campaigns.retrieve,
+        )
+        self.update = async_to_raw_response_wrapper(
+            partner_campaigns.update,
+        )
+        self.list = async_to_raw_response_wrapper(
+            partner_campaigns.list,
+        )
+
+
+class PartnerCampaignsResourceWithStreamingResponse:
+    def __init__(self, partner_campaigns: PartnerCampaignsResource) -> None:
+        self._partner_campaigns = partner_campaigns
+
+        self.retrieve = to_streamed_response_wrapper(
+            partner_campaigns.retrieve,
+        )
+        self.update = to_streamed_response_wrapper(
+            partner_campaigns.update,
+        )
+        self.list = to_streamed_response_wrapper(
+            partner_campaigns.list,
+        )
+
+
+class AsyncPartnerCampaignsResourceWithStreamingResponse:
+    def __init__(self, partner_campaigns: AsyncPartnerCampaignsResource) -> None:
+        self._partner_campaigns = partner_campaigns
+
+        self.retrieve = async_to_streamed_response_wrapper(
+            partner_campaigns.retrieve,
+        )
+        self.update = async_to_streamed_response_wrapper(
+            partner_campaigns.update,
+        )
+        self.list = async_to_streamed_response_wrapper(
+            partner_campaigns.list,
+        )

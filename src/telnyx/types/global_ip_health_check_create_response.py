@@ -18,6 +18,9 @@ class Data(Record):
     health_check_type: Optional[str] = None
     """The Global IP health check type."""
 
+    record_type: Optional[str] = None  # type: ignore
+    """Identifies the type of the resource."""
+
 
 class GlobalIPHealthCheckCreateResponse(BaseModel):
     data: Optional[Data] = None

@@ -14,8 +14,7 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...pagination import SyncDefaultPagination, AsyncDefaultPagination
-from ..._base_client import AsyncPaginator, make_request_options
+from ..._base_client import make_request_options
 from ...types.queues import call_list_params, call_update_params
 from ...types.queues.call_list_response import CallListResponse
 from ...types.queues.call_retrieve_response import CallRetrieveResponse
@@ -131,7 +130,7 @@ class CallsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[CallListResponse]:
+    ) -> CallListResponse:
         """
         Retrieve the list of calls in an existing queue
 
@@ -149,9 +148,8 @@ class CallsResource(SyncAPIResource):
         """
         if not queue_name:
             raise ValueError(f"Expected a non-empty value for `queue_name` but received {queue_name!r}")
-        return self._get_api_list(
+        return self._get(
             f"/queues/{queue_name}/calls",
-            page=SyncDefaultPagination[CallListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -159,7 +157,7 @@ class CallsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform({"page": page}, call_list_params.CallListParams),
             ),
-            model=CallListResponse,
+            cast_to=CallListResponse,
         )
 
     def remove(
@@ -301,7 +299,7 @@ class AsyncCallsResource(AsyncAPIResource):
             cast_to=NoneType,
         )
 
-    def list(
+    async def list(
         self,
         queue_name: str,
         *,
@@ -312,7 +310,7 @@ class AsyncCallsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[CallListResponse, AsyncDefaultPagination[CallListResponse]]:
+    ) -> CallListResponse:
         """
         Retrieve the list of calls in an existing queue
 
@@ -330,17 +328,16 @@ class AsyncCallsResource(AsyncAPIResource):
         """
         if not queue_name:
             raise ValueError(f"Expected a non-empty value for `queue_name` but received {queue_name!r}")
-        return self._get_api_list(
+        return await self._get(
             f"/queues/{queue_name}/calls",
-            page=AsyncDefaultPagination[CallListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"page": page}, call_list_params.CallListParams),
+                query=await async_maybe_transform({"page": page}, call_list_params.CallListParams),
             ),
-            model=CallListResponse,
+            cast_to=CallListResponse,
         )
 
     async def remove(

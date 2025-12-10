@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, List, Optional
+from typing import List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -45,7 +45,7 @@ class DataPayload(BaseModel):
     message_history: Optional[List[DataPayloadMessageHistory]] = None
     """The history of the messages exchanged during the AI gather"""
 
-    partial_results: Optional[Dict[str, object]] = None
+    partial_results: Optional[object] = None
     """
     The partial result of the AI gather, its type depends of the `parameters`
     provided in the command

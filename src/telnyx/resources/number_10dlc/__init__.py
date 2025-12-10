@@ -32,6 +32,22 @@ from .campaign_builder import (
     CampaignBuilderResourceWithStreamingResponse,
     AsyncCampaignBuilderResourceWithStreamingResponse,
 )
+from .partner_campaign import (
+    PartnerCampaignResource,
+    AsyncPartnerCampaignResource,
+    PartnerCampaignResourceWithRawResponse,
+    AsyncPartnerCampaignResourceWithRawResponse,
+    PartnerCampaignResourceWithStreamingResponse,
+    AsyncPartnerCampaignResourceWithStreamingResponse,
+)
+from .partner_campaigns import (
+    PartnerCampaignsResource,
+    AsyncPartnerCampaignsResource,
+    PartnerCampaignsResourceWithRawResponse,
+    AsyncPartnerCampaignsResourceWithRawResponse,
+    PartnerCampaignsResourceWithStreamingResponse,
+    AsyncPartnerCampaignsResourceWithStreamingResponse,
+)
 from .phone_number_campaigns import (
     PhoneNumberCampaignsResource,
     AsyncPhoneNumberCampaignsResource,
@@ -39,6 +55,14 @@ from .phone_number_campaigns import (
     AsyncPhoneNumberCampaignsResourceWithRawResponse,
     PhoneNumberCampaignsResourceWithStreamingResponse,
     AsyncPhoneNumberCampaignsResourceWithStreamingResponse,
+)
+from .phone_number_assignment_by_profile import (
+    PhoneNumberAssignmentByProfileResource,
+    AsyncPhoneNumberAssignmentByProfileResource,
+    PhoneNumberAssignmentByProfileResourceWithRawResponse,
+    AsyncPhoneNumberAssignmentByProfileResourceWithRawResponse,
+    PhoneNumberAssignmentByProfileResourceWithStreamingResponse,
+    AsyncPhoneNumberAssignmentByProfileResourceWithStreamingResponse,
 )
 
 __all__ = [
@@ -60,6 +84,24 @@ __all__ = [
     "AsyncCampaignBuilderResourceWithRawResponse",
     "CampaignBuilderResourceWithStreamingResponse",
     "AsyncCampaignBuilderResourceWithStreamingResponse",
+    "PartnerCampaignResource",
+    "AsyncPartnerCampaignResource",
+    "PartnerCampaignResourceWithRawResponse",
+    "AsyncPartnerCampaignResourceWithRawResponse",
+    "PartnerCampaignResourceWithStreamingResponse",
+    "AsyncPartnerCampaignResourceWithStreamingResponse",
+    "PartnerCampaignsResource",
+    "AsyncPartnerCampaignsResource",
+    "PartnerCampaignsResourceWithRawResponse",
+    "AsyncPartnerCampaignsResourceWithRawResponse",
+    "PartnerCampaignsResourceWithStreamingResponse",
+    "AsyncPartnerCampaignsResourceWithStreamingResponse",
+    "PhoneNumberAssignmentByProfileResource",
+    "AsyncPhoneNumberAssignmentByProfileResource",
+    "PhoneNumberAssignmentByProfileResourceWithRawResponse",
+    "AsyncPhoneNumberAssignmentByProfileResourceWithRawResponse",
+    "PhoneNumberAssignmentByProfileResourceWithStreamingResponse",
+    "AsyncPhoneNumberAssignmentByProfileResourceWithStreamingResponse",
     "PhoneNumberCampaignsResource",
     "AsyncPhoneNumberCampaignsResource",
     "PhoneNumberCampaignsResourceWithRawResponse",

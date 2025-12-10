@@ -8,7 +8,7 @@ from typing_extensions import Annotated, TypeAlias, TypedDict
 
 from .._utils import PropertyInfo
 
-__all__ = ["AccessIPAddressListParams", "Filter", "FilterCreatedAt", "FilterCreatedAtDateRangeFilter"]
+__all__ = ["AccessIPAddressListParams", "Filter", "FilterCreatedAt", "FilterCreatedAtDateRangeFilter", "Page"]
 
 
 class AccessIPAddressListParams(TypedDict, total=False):
@@ -19,9 +19,11 @@ class AccessIPAddressListParams(TypedDict, total=False):
     complex bracket operations for dynamic filtering.
     """
 
-    page_number: Annotated[int, PropertyInfo(alias="page[number]")]
+    page: Page
+    """Consolidated page parameter (deepObject style).
 
-    page_size: Annotated[int, PropertyInfo(alias="page[size]")]
+    Originally: page[number], page[size]
+    """
 
 
 class FilterCreatedAtDateRangeFilter(TypedDict, total=False):
@@ -60,3 +62,14 @@ class FilterTyped(TypedDict, total=False):
 
 
 Filter: TypeAlias = Union[FilterTyped, Dict[str, object]]
+
+
+class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[number], page[size]
+    """
+
+    number: int
+
+    size: int

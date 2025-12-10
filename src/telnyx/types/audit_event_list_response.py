@@ -8,10 +8,10 @@ from pydantic import Field as FieldInfo
 
 from .._models import BaseModel
 
-__all__ = ["AuditEventListResponse", "Change"]
+__all__ = ["AuditEventListResponse", "Data", "DataChange", "Meta"]
 
 
-class Change(BaseModel):
+class DataChange(BaseModel):
     """Details of the changes made to a resource."""
 
     field: Optional[str] = None
@@ -20,16 +20,14 @@ class Change(BaseModel):
     May use the dot notation to indicate nested fields.
     """
 
-    from_: Union[str, float, bool, Dict[str, object], List[Dict[str, object]], None] = FieldInfo(
-        alias="from", default=None
-    )
+    from_: Union[str, float, bool, Dict[str, object], List[object], None] = FieldInfo(alias="from", default=None)
     """The previous value of the field. Can be any JSON type."""
 
-    to: Union[str, float, bool, Dict[str, object], List[Dict[str, object]], None] = None
+    to: Union[str, float, bool, Dict[str, object], List[object], None] = None
     """The new value of the field. Can be any JSON type."""
 
 
-class AuditEventListResponse(BaseModel):
+class Data(BaseModel):
     id: Optional[str] = None
     """Unique identifier for the audit log entry."""
 
@@ -51,7 +49,7 @@ class AuditEventListResponse(BaseModel):
     change_type: Optional[str] = None
     """The type of change that occurred."""
 
-    changes: Optional[List[Change]] = None
+    changes: Optional[List[DataChange]] = None
     """Details of the changes made to the resource."""
 
     created_at: Optional[datetime] = None
@@ -68,3 +66,19 @@ class AuditEventListResponse(BaseModel):
 
     user_id: Optional[str] = None
     """Unique identifier for the user who made the change."""
+
+
+class Meta(BaseModel):
+    page_number: Optional[int] = None
+
+    page_size: Optional[int] = None
+
+    total_pages: Optional[int] = None
+
+    total_results: Optional[int] = None
+
+
+class AuditEventListResponse(BaseModel):
+    data: Optional[List[Data]] = None
+
+    meta: Optional[Meta] = None

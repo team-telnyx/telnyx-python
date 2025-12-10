@@ -6,7 +6,7 @@ import httpx
 
 from ..types import ota_update_list_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import maybe_transform
+from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -15,8 +15,7 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
-from .._base_client import AsyncPaginator, make_request_options
+from .._base_client import make_request_options
 from ..types.ota_update_list_response import OtaUpdateListResponse
 from ..types.ota_update_retrieve_response import OtaUpdateRetrieveResponse
 
@@ -87,7 +86,7 @@ class OtaUpdatesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[OtaUpdateListResponse]:
+    ) -> OtaUpdateListResponse:
         """
         List OTA updates
 
@@ -107,9 +106,8 @@ class OtaUpdatesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return self._get(
             "/ota_updates",
-            page=SyncDefaultPagination[OtaUpdateListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -123,7 +121,7 @@ class OtaUpdatesResource(SyncAPIResource):
                     ota_update_list_params.OtaUpdateListParams,
                 ),
             ),
-            model=OtaUpdateListResponse,
+            cast_to=OtaUpdateListResponse,
         )
 
 
@@ -180,7 +178,7 @@ class AsyncOtaUpdatesResource(AsyncAPIResource):
             cast_to=OtaUpdateRetrieveResponse,
         )
 
-    def list(
+    async def list(
         self,
         *,
         filter: ota_update_list_params.Filter | Omit = omit,
@@ -191,7 +189,7 @@ class AsyncOtaUpdatesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[OtaUpdateListResponse, AsyncDefaultPagination[OtaUpdateListResponse]]:
+    ) -> OtaUpdateListResponse:
         """
         List OTA updates
 
@@ -211,15 +209,14 @@ class AsyncOtaUpdatesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return await self._get(
             "/ota_updates",
-            page=AsyncDefaultPagination[OtaUpdateListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
                         "filter": filter,
                         "page": page,
@@ -227,7 +224,7 @@ class AsyncOtaUpdatesResource(AsyncAPIResource):
                     ota_update_list_params.OtaUpdateListParams,
                 ),
             ),
-            model=OtaUpdateListResponse,
+            cast_to=OtaUpdateListResponse,
         )
 
 

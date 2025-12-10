@@ -15,7 +15,6 @@ from telnyx.types import (
     WireguardInterfaceDeleteResponse,
     WireguardInterfaceRetrieveResponse,
 )
-from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -27,6 +26,7 @@ class TestWireguardInterfaces:
     @parametrize
     def test_method_create(self, client: Telnyx) -> None:
         wireguard_interface = client.wireguard_interfaces.create(
+            network_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
             region_code="ashburn-va",
         )
         assert_matches_type(WireguardInterfaceCreateResponse, wireguard_interface, path=["response"])
@@ -35,10 +35,10 @@ class TestWireguardInterfaces:
     @parametrize
     def test_method_create_with_all_params(self, client: Telnyx) -> None:
         wireguard_interface = client.wireguard_interfaces.create(
+            network_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
             region_code="ashburn-va",
             enable_sip_trunking=False,
             name="test interface",
-            network_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
         )
         assert_matches_type(WireguardInterfaceCreateResponse, wireguard_interface, path=["response"])
 
@@ -46,6 +46,7 @@ class TestWireguardInterfaces:
     @parametrize
     def test_raw_response_create(self, client: Telnyx) -> None:
         response = client.wireguard_interfaces.with_raw_response.create(
+            network_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
             region_code="ashburn-va",
         )
 
@@ -58,6 +59,7 @@ class TestWireguardInterfaces:
     @parametrize
     def test_streaming_response_create(self, client: Telnyx) -> None:
         with client.wireguard_interfaces.with_streaming_response.create(
+            network_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
             region_code="ashburn-va",
         ) as response:
             assert not response.is_closed
@@ -114,9 +116,7 @@ class TestWireguardInterfaces:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         wireguard_interface = client.wireguard_interfaces.list()
-        assert_matches_type(
-            SyncDefaultPagination[WireguardInterfaceListResponse], wireguard_interface, path=["response"]
-        )
+        assert_matches_type(WireguardInterfaceListResponse, wireguard_interface, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -128,9 +128,7 @@ class TestWireguardInterfaces:
                 "size": 1,
             },
         )
-        assert_matches_type(
-            SyncDefaultPagination[WireguardInterfaceListResponse], wireguard_interface, path=["response"]
-        )
+        assert_matches_type(WireguardInterfaceListResponse, wireguard_interface, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -140,9 +138,7 @@ class TestWireguardInterfaces:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         wireguard_interface = response.parse()
-        assert_matches_type(
-            SyncDefaultPagination[WireguardInterfaceListResponse], wireguard_interface, path=["response"]
-        )
+        assert_matches_type(WireguardInterfaceListResponse, wireguard_interface, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -152,9 +148,7 @@ class TestWireguardInterfaces:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             wireguard_interface = response.parse()
-            assert_matches_type(
-                SyncDefaultPagination[WireguardInterfaceListResponse], wireguard_interface, path=["response"]
-            )
+            assert_matches_type(WireguardInterfaceListResponse, wireguard_interface, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -210,6 +204,7 @@ class TestAsyncWireguardInterfaces:
     @parametrize
     async def test_method_create(self, async_client: AsyncTelnyx) -> None:
         wireguard_interface = await async_client.wireguard_interfaces.create(
+            network_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
             region_code="ashburn-va",
         )
         assert_matches_type(WireguardInterfaceCreateResponse, wireguard_interface, path=["response"])
@@ -218,10 +213,10 @@ class TestAsyncWireguardInterfaces:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncTelnyx) -> None:
         wireguard_interface = await async_client.wireguard_interfaces.create(
+            network_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
             region_code="ashburn-va",
             enable_sip_trunking=False,
             name="test interface",
-            network_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
         )
         assert_matches_type(WireguardInterfaceCreateResponse, wireguard_interface, path=["response"])
 
@@ -229,6 +224,7 @@ class TestAsyncWireguardInterfaces:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.wireguard_interfaces.with_raw_response.create(
+            network_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
             region_code="ashburn-va",
         )
 
@@ -241,6 +237,7 @@ class TestAsyncWireguardInterfaces:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncTelnyx) -> None:
         async with async_client.wireguard_interfaces.with_streaming_response.create(
+            network_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
             region_code="ashburn-va",
         ) as response:
             assert not response.is_closed
@@ -297,9 +294,7 @@ class TestAsyncWireguardInterfaces:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         wireguard_interface = await async_client.wireguard_interfaces.list()
-        assert_matches_type(
-            AsyncDefaultPagination[WireguardInterfaceListResponse], wireguard_interface, path=["response"]
-        )
+        assert_matches_type(WireguardInterfaceListResponse, wireguard_interface, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -311,9 +306,7 @@ class TestAsyncWireguardInterfaces:
                 "size": 1,
             },
         )
-        assert_matches_type(
-            AsyncDefaultPagination[WireguardInterfaceListResponse], wireguard_interface, path=["response"]
-        )
+        assert_matches_type(WireguardInterfaceListResponse, wireguard_interface, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -323,9 +316,7 @@ class TestAsyncWireguardInterfaces:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         wireguard_interface = await response.parse()
-        assert_matches_type(
-            AsyncDefaultPagination[WireguardInterfaceListResponse], wireguard_interface, path=["response"]
-        )
+        assert_matches_type(WireguardInterfaceListResponse, wireguard_interface, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -335,9 +326,7 @@ class TestAsyncWireguardInterfaces:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             wireguard_interface = await response.parse()
-            assert_matches_type(
-                AsyncDefaultPagination[WireguardInterfaceListResponse], wireguard_interface, path=["response"]
-            )
+            assert_matches_type(WireguardInterfaceListResponse, wireguard_interface, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

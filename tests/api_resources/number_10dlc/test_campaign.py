@@ -9,11 +9,10 @@ import pytest
 
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
-from telnyx.pagination import SyncPerPagePaginationV2, AsyncPerPagePaginationV2
+from telnyx.types import TelnyxCampaignCsp
 from telnyx.types.number_10dlc import (
-    TelnyxCampaignCsp,
     CampaignListResponse,
-    CampaignDeactivateResponse,
+    CampaignDeleteResponse,
     CampaignSubmitAppealResponse,
     CampaignAcceptSharingResponse,
     CampaignGetMnoMetadataResponse,
@@ -136,7 +135,7 @@ class TestCampaign:
         campaign = client.number_10dlc.campaign.list(
             brand_id="brandId",
         )
-        assert_matches_type(SyncPerPagePaginationV2[CampaignListResponse], campaign, path=["response"])
+        assert_matches_type(CampaignListResponse, campaign, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -147,7 +146,7 @@ class TestCampaign:
             records_per_page=0,
             sort="assignedPhoneNumbersCount",
         )
-        assert_matches_type(SyncPerPagePaginationV2[CampaignListResponse], campaign, path=["response"])
+        assert_matches_type(CampaignListResponse, campaign, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -159,7 +158,7 @@ class TestCampaign:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         campaign = response.parse()
-        assert_matches_type(SyncPerPagePaginationV2[CampaignListResponse], campaign, path=["response"])
+        assert_matches_type(CampaignListResponse, campaign, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -171,9 +170,51 @@ class TestCampaign:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             campaign = response.parse()
-            assert_matches_type(SyncPerPagePaginationV2[CampaignListResponse], campaign, path=["response"])
+            assert_matches_type(CampaignListResponse, campaign, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_method_delete(self, client: Telnyx) -> None:
+        campaign = client.number_10dlc.campaign.delete(
+            "campaignId",
+        )
+        assert_matches_type(CampaignDeleteResponse, campaign, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_raw_response_delete(self, client: Telnyx) -> None:
+        response = client.number_10dlc.campaign.with_raw_response.delete(
+            "campaignId",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        campaign = response.parse()
+        assert_matches_type(CampaignDeleteResponse, campaign, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_streaming_response_delete(self, client: Telnyx) -> None:
+        with client.number_10dlc.campaign.with_streaming_response.delete(
+            "campaignId",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            campaign = response.parse()
+            assert_matches_type(CampaignDeleteResponse, campaign, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_path_params_delete(self, client: Telnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `campaign_id` but received ''"):
+            client.number_10dlc.campaign.with_raw_response.delete(
+                "",
+            )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -214,48 +255,6 @@ class TestCampaign:
     def test_path_params_accept_sharing(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `campaign_id` but received ''"):
             client.number_10dlc.campaign.with_raw_response.accept_sharing(
-                "",
-            )
-
-    @pytest.mark.skip(reason="Prism tests are disabled")
-    @parametrize
-    def test_method_deactivate(self, client: Telnyx) -> None:
-        campaign = client.number_10dlc.campaign.deactivate(
-            "campaignId",
-        )
-        assert_matches_type(CampaignDeactivateResponse, campaign, path=["response"])
-
-    @pytest.mark.skip(reason="Prism tests are disabled")
-    @parametrize
-    def test_raw_response_deactivate(self, client: Telnyx) -> None:
-        response = client.number_10dlc.campaign.with_raw_response.deactivate(
-            "campaignId",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        campaign = response.parse()
-        assert_matches_type(CampaignDeactivateResponse, campaign, path=["response"])
-
-    @pytest.mark.skip(reason="Prism tests are disabled")
-    @parametrize
-    def test_streaming_response_deactivate(self, client: Telnyx) -> None:
-        with client.number_10dlc.campaign.with_streaming_response.deactivate(
-            "campaignId",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            campaign = response.parse()
-            assert_matches_type(CampaignDeactivateResponse, campaign, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip(reason="Prism tests are disabled")
-    @parametrize
-    def test_path_params_deactivate(self, client: Telnyx) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `campaign_id` but received ''"):
-            client.number_10dlc.campaign.with_raw_response.deactivate(
                 "",
             )
 
@@ -546,7 +545,7 @@ class TestAsyncCampaign:
         campaign = await async_client.number_10dlc.campaign.list(
             brand_id="brandId",
         )
-        assert_matches_type(AsyncPerPagePaginationV2[CampaignListResponse], campaign, path=["response"])
+        assert_matches_type(CampaignListResponse, campaign, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -557,7 +556,7 @@ class TestAsyncCampaign:
             records_per_page=0,
             sort="assignedPhoneNumbersCount",
         )
-        assert_matches_type(AsyncPerPagePaginationV2[CampaignListResponse], campaign, path=["response"])
+        assert_matches_type(CampaignListResponse, campaign, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -569,7 +568,7 @@ class TestAsyncCampaign:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         campaign = await response.parse()
-        assert_matches_type(AsyncPerPagePaginationV2[CampaignListResponse], campaign, path=["response"])
+        assert_matches_type(CampaignListResponse, campaign, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -581,9 +580,51 @@ class TestAsyncCampaign:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             campaign = await response.parse()
-            assert_matches_type(AsyncPerPagePaginationV2[CampaignListResponse], campaign, path=["response"])
+            assert_matches_type(CampaignListResponse, campaign, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_method_delete(self, async_client: AsyncTelnyx) -> None:
+        campaign = await async_client.number_10dlc.campaign.delete(
+            "campaignId",
+        )
+        assert_matches_type(CampaignDeleteResponse, campaign, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_raw_response_delete(self, async_client: AsyncTelnyx) -> None:
+        response = await async_client.number_10dlc.campaign.with_raw_response.delete(
+            "campaignId",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        campaign = await response.parse()
+        assert_matches_type(CampaignDeleteResponse, campaign, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_streaming_response_delete(self, async_client: AsyncTelnyx) -> None:
+        async with async_client.number_10dlc.campaign.with_streaming_response.delete(
+            "campaignId",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            campaign = await response.parse()
+            assert_matches_type(CampaignDeleteResponse, campaign, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_path_params_delete(self, async_client: AsyncTelnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `campaign_id` but received ''"):
+            await async_client.number_10dlc.campaign.with_raw_response.delete(
+                "",
+            )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -624,48 +665,6 @@ class TestAsyncCampaign:
     async def test_path_params_accept_sharing(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `campaign_id` but received ''"):
             await async_client.number_10dlc.campaign.with_raw_response.accept_sharing(
-                "",
-            )
-
-    @pytest.mark.skip(reason="Prism tests are disabled")
-    @parametrize
-    async def test_method_deactivate(self, async_client: AsyncTelnyx) -> None:
-        campaign = await async_client.number_10dlc.campaign.deactivate(
-            "campaignId",
-        )
-        assert_matches_type(CampaignDeactivateResponse, campaign, path=["response"])
-
-    @pytest.mark.skip(reason="Prism tests are disabled")
-    @parametrize
-    async def test_raw_response_deactivate(self, async_client: AsyncTelnyx) -> None:
-        response = await async_client.number_10dlc.campaign.with_raw_response.deactivate(
-            "campaignId",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        campaign = await response.parse()
-        assert_matches_type(CampaignDeactivateResponse, campaign, path=["response"])
-
-    @pytest.mark.skip(reason="Prism tests are disabled")
-    @parametrize
-    async def test_streaming_response_deactivate(self, async_client: AsyncTelnyx) -> None:
-        async with async_client.number_10dlc.campaign.with_streaming_response.deactivate(
-            "campaignId",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            campaign = await response.parse()
-            assert_matches_type(CampaignDeactivateResponse, campaign, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip(reason="Prism tests are disabled")
-    @parametrize
-    async def test_path_params_deactivate(self, async_client: AsyncTelnyx) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `campaign_id` but received ''"):
-            await async_client.number_10dlc.campaign.with_raw_response.deactivate(
                 "",
             )
 
