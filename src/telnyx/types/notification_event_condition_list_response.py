@@ -5,11 +5,12 @@ from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
+from .pagination_meta import PaginationMeta
 
-__all__ = ["NotificationEventConditionListResponse", "Parameter"]
+__all__ = ["NotificationEventConditionListResponse", "Data", "DataParameter"]
 
 
-class Parameter(BaseModel):
+class DataParameter(BaseModel):
     data_type: Optional[str] = None
 
     name: Optional[str] = None
@@ -17,7 +18,7 @@ class Parameter(BaseModel):
     optional: Optional[bool] = None
 
 
-class NotificationEventConditionListResponse(BaseModel):
+class Data(BaseModel):
     id: Optional[str] = None
     """A UUID."""
 
@@ -43,10 +44,16 @@ class NotificationEventConditionListResponse(BaseModel):
 
     notification_event_id: Optional[str] = None
 
-    parameters: Optional[List[Parameter]] = None
+    parameters: Optional[List[DataParameter]] = None
 
     supported_channels: Optional[List[str]] = None
     """Dictates the supported notification channel types that can be emitted."""
 
     updated_at: Optional[datetime] = None
     """ISO 8601 formatted date indicating when the resource was updated."""
+
+
+class NotificationEventConditionListResponse(BaseModel):
+    data: Optional[List[Data]] = None
+
+    meta: Optional[PaginationMeta] = None

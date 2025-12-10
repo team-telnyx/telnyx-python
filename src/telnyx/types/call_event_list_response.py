@@ -1,14 +1,15 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict
+from typing import List, Optional
 from typing_extensions import Literal
 
 from .._models import BaseModel
+from .pagination_meta import PaginationMeta
 
-__all__ = ["CallEventListResponse"]
+__all__ = ["CallEventListResponse", "Data"]
 
 
-class CallEventListResponse(BaseModel):
+class Data(BaseModel):
     call_leg_id: str
     """Uniquely identifies an individual call leg."""
 
@@ -21,7 +22,7 @@ class CallEventListResponse(BaseModel):
     event_timestamp: str
     """Event timestamp"""
 
-    metadata: Dict[str, object]
+    metadata: object
     """
     Event metadata, which includes raw event, and extra information based on event
     type
@@ -34,3 +35,9 @@ class CallEventListResponse(BaseModel):
 
     type: Literal["command", "webhook"]
     """Event type"""
+
+
+class CallEventListResponse(BaseModel):
+    data: Optional[List[Data]] = None
+
+    meta: Optional[PaginationMeta] = None

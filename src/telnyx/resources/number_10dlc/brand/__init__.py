@@ -8,6 +8,14 @@ from .brand import (
     BrandResourceWithStreamingResponse,
     AsyncBrandResourceWithStreamingResponse,
 )
+from .sms_otp import (
+    SMSOtpResource,
+    AsyncSMSOtpResource,
+    SMSOtpResourceWithRawResponse,
+    AsyncSMSOtpResourceWithRawResponse,
+    SMSOtpResourceWithStreamingResponse,
+    AsyncSMSOtpResourceWithStreamingResponse,
+)
 from .external_vetting import (
     ExternalVettingResource,
     AsyncExternalVettingResource,
@@ -18,6 +26,12 @@ from .external_vetting import (
 )
 
 __all__ = [
+    "SMSOtpResource",
+    "AsyncSMSOtpResource",
+    "SMSOtpResourceWithRawResponse",
+    "AsyncSMSOtpResourceWithRawResponse",
+    "SMSOtpResourceWithStreamingResponse",
+    "AsyncSMSOtpResourceWithStreamingResponse",
     "ExternalVettingResource",
     "AsyncExternalVettingResource",
     "ExternalVettingResourceWithRawResponse",

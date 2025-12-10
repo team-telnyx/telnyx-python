@@ -9,7 +9,7 @@ from typing_extensions import Annotated, TypedDict
 from ...._utils import PropertyInfo
 from .conversation_channel_type import ConversationChannelType
 
-__all__ = ["ScheduledEventListParams"]
+__all__ = ["ScheduledEventListParams", "Page"]
 
 
 class ScheduledEventListParams(TypedDict, total=False):
@@ -17,8 +17,21 @@ class ScheduledEventListParams(TypedDict, total=False):
 
     from_date: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
 
-    page_number: Annotated[int, PropertyInfo(alias="page[number]")]
+    page: Page
+    """Consolidated page parameter (deepObject style).
 
-    page_size: Annotated[int, PropertyInfo(alias="page[size]")]
+    Originally: page[size], page[number]
+    """
 
     to_date: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+
+
+class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[size], page[number]
+    """
+
+    number: int
+
+    size: int

@@ -17,9 +17,8 @@ from telnyx._response import (
     StreamedBinaryAPIResponse,
     AsyncStreamedBinaryAPIResponse,
 )
-from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
 from telnyx.types.porting import (
-    PortingLoaConfiguration,
+    LoaConfigurationListResponse,
     LoaConfigurationCreateResponse,
     LoaConfigurationUpdateResponse,
     LoaConfigurationRetrieveResponse,
@@ -293,7 +292,7 @@ class TestLoaConfigurations:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         loa_configuration = client.porting.loa_configurations.list()
-        assert_matches_type(SyncDefaultPagination[PortingLoaConfiguration], loa_configuration, path=["response"])
+        assert_matches_type(LoaConfigurationListResponse, loa_configuration, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -304,7 +303,7 @@ class TestLoaConfigurations:
                 "size": 1,
             },
         )
-        assert_matches_type(SyncDefaultPagination[PortingLoaConfiguration], loa_configuration, path=["response"])
+        assert_matches_type(LoaConfigurationListResponse, loa_configuration, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -314,7 +313,7 @@ class TestLoaConfigurations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         loa_configuration = response.parse()
-        assert_matches_type(SyncDefaultPagination[PortingLoaConfiguration], loa_configuration, path=["response"])
+        assert_matches_type(LoaConfigurationListResponse, loa_configuration, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -324,7 +323,7 @@ class TestLoaConfigurations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             loa_configuration = response.parse()
-            assert_matches_type(SyncDefaultPagination[PortingLoaConfiguration], loa_configuration, path=["response"])
+            assert_matches_type(LoaConfigurationListResponse, loa_configuration, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -809,7 +808,7 @@ class TestAsyncLoaConfigurations:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         loa_configuration = await async_client.porting.loa_configurations.list()
-        assert_matches_type(AsyncDefaultPagination[PortingLoaConfiguration], loa_configuration, path=["response"])
+        assert_matches_type(LoaConfigurationListResponse, loa_configuration, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -820,7 +819,7 @@ class TestAsyncLoaConfigurations:
                 "size": 1,
             },
         )
-        assert_matches_type(AsyncDefaultPagination[PortingLoaConfiguration], loa_configuration, path=["response"])
+        assert_matches_type(LoaConfigurationListResponse, loa_configuration, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -830,7 +829,7 @@ class TestAsyncLoaConfigurations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         loa_configuration = await response.parse()
-        assert_matches_type(AsyncDefaultPagination[PortingLoaConfiguration], loa_configuration, path=["response"])
+        assert_matches_type(LoaConfigurationListResponse, loa_configuration, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -840,7 +839,7 @@ class TestAsyncLoaConfigurations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             loa_configuration = await response.parse()
-            assert_matches_type(AsyncDefaultPagination[PortingLoaConfiguration], loa_configuration, path=["response"])
+            assert_matches_type(LoaConfigurationListResponse, loa_configuration, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

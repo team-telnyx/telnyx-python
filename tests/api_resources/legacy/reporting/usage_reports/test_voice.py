@@ -10,12 +10,11 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx._utils import parse_datetime
-from telnyx.pagination import SyncPerPagePagination, AsyncPerPagePagination
 from telnyx.types.legacy.reporting.usage_reports import (
+    VoiceListResponse,
     VoiceCreateResponse,
     VoiceDeleteResponse,
     VoiceRetrieveResponse,
-    CdrUsageReportResponseLegacy,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -121,7 +120,7 @@ class TestVoice:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         voice = client.legacy.reporting.usage_reports.voice.list()
-        assert_matches_type(SyncPerPagePagination[CdrUsageReportResponseLegacy], voice, path=["response"])
+        assert_matches_type(VoiceListResponse, voice, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -130,7 +129,7 @@ class TestVoice:
             page=1,
             per_page=1,
         )
-        assert_matches_type(SyncPerPagePagination[CdrUsageReportResponseLegacy], voice, path=["response"])
+        assert_matches_type(VoiceListResponse, voice, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -140,7 +139,7 @@ class TestVoice:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         voice = response.parse()
-        assert_matches_type(SyncPerPagePagination[CdrUsageReportResponseLegacy], voice, path=["response"])
+        assert_matches_type(VoiceListResponse, voice, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -150,7 +149,7 @@ class TestVoice:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             voice = response.parse()
-            assert_matches_type(SyncPerPagePagination[CdrUsageReportResponseLegacy], voice, path=["response"])
+            assert_matches_type(VoiceListResponse, voice, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -299,7 +298,7 @@ class TestAsyncVoice:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         voice = await async_client.legacy.reporting.usage_reports.voice.list()
-        assert_matches_type(AsyncPerPagePagination[CdrUsageReportResponseLegacy], voice, path=["response"])
+        assert_matches_type(VoiceListResponse, voice, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -308,7 +307,7 @@ class TestAsyncVoice:
             page=1,
             per_page=1,
         )
-        assert_matches_type(AsyncPerPagePagination[CdrUsageReportResponseLegacy], voice, path=["response"])
+        assert_matches_type(VoiceListResponse, voice, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -318,7 +317,7 @@ class TestAsyncVoice:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         voice = await response.parse()
-        assert_matches_type(AsyncPerPagePagination[CdrUsageReportResponseLegacy], voice, path=["response"])
+        assert_matches_type(VoiceListResponse, voice, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -328,7 +327,7 @@ class TestAsyncVoice:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             voice = await response.parse()
-            assert_matches_type(AsyncPerPagePagination[CdrUsageReportResponseLegacy], voice, path=["response"])
+            assert_matches_type(VoiceListResponse, voice, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -10,13 +10,12 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types import (
-    PhoneNumberDetailed,
+    PhoneNumberListResponse,
     PhoneNumberDeleteResponse,
     PhoneNumberUpdateResponse,
     PhoneNumberRetrieveResponse,
     PhoneNumberSlimListResponse,
 )
-from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -70,7 +69,7 @@ class TestPhoneNumbers:
     @parametrize
     def test_method_update(self, client: Telnyx) -> None:
         phone_number = client.phone_numbers.update(
-            phone_number_id="1293384261075731499",
+            id="1293384261075731499",
         )
         assert_matches_type(PhoneNumberUpdateResponse, phone_number, path=["response"])
 
@@ -78,7 +77,7 @@ class TestPhoneNumbers:
     @parametrize
     def test_method_update_with_all_params(self, client: Telnyx) -> None:
         phone_number = client.phone_numbers.update(
-            phone_number_id="1293384261075731499",
+            id="1293384261075731499",
             billing_group_id="dc8e4d67-33a0-4cbb-af74-7b58f05bd494",
             connection_id="dc8e4d67-33a0-4cbb-af74-7b58f05bd494",
             customer_reference="customer-reference",
@@ -92,7 +91,7 @@ class TestPhoneNumbers:
     @parametrize
     def test_raw_response_update(self, client: Telnyx) -> None:
         response = client.phone_numbers.with_raw_response.update(
-            phone_number_id="1293384261075731499",
+            id="1293384261075731499",
         )
 
         assert response.is_closed is True
@@ -104,7 +103,7 @@ class TestPhoneNumbers:
     @parametrize
     def test_streaming_response_update(self, client: Telnyx) -> None:
         with client.phone_numbers.with_streaming_response.update(
-            phone_number_id="1293384261075731499",
+            id="1293384261075731499",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -117,16 +116,16 @@ class TestPhoneNumbers:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_update(self, client: Telnyx) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `phone_number_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.phone_numbers.with_raw_response.update(
-                phone_number_id="",
+                id="",
             )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         phone_number = client.phone_numbers.list()
-        assert_matches_type(SyncDefaultPagination[PhoneNumberDetailed], phone_number, path=["response"])
+        assert_matches_type(PhoneNumberListResponse, phone_number, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -158,7 +157,7 @@ class TestPhoneNumbers:
             },
             sort="connection_name",
         )
-        assert_matches_type(SyncDefaultPagination[PhoneNumberDetailed], phone_number, path=["response"])
+        assert_matches_type(PhoneNumberListResponse, phone_number, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -168,7 +167,7 @@ class TestPhoneNumbers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         phone_number = response.parse()
-        assert_matches_type(SyncDefaultPagination[PhoneNumberDetailed], phone_number, path=["response"])
+        assert_matches_type(PhoneNumberListResponse, phone_number, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -178,7 +177,7 @@ class TestPhoneNumbers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             phone_number = response.parse()
-            assert_matches_type(SyncDefaultPagination[PhoneNumberDetailed], phone_number, path=["response"])
+            assert_matches_type(PhoneNumberListResponse, phone_number, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -228,7 +227,7 @@ class TestPhoneNumbers:
     @parametrize
     def test_method_slim_list(self, client: Telnyx) -> None:
         phone_number = client.phone_numbers.slim_list()
-        assert_matches_type(SyncDefaultPagination[PhoneNumberSlimListResponse], phone_number, path=["response"])
+        assert_matches_type(PhoneNumberSlimListResponse, phone_number, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -261,7 +260,7 @@ class TestPhoneNumbers:
             },
             sort="connection_name",
         )
-        assert_matches_type(SyncDefaultPagination[PhoneNumberSlimListResponse], phone_number, path=["response"])
+        assert_matches_type(PhoneNumberSlimListResponse, phone_number, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -271,7 +270,7 @@ class TestPhoneNumbers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         phone_number = response.parse()
-        assert_matches_type(SyncDefaultPagination[PhoneNumberSlimListResponse], phone_number, path=["response"])
+        assert_matches_type(PhoneNumberSlimListResponse, phone_number, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -281,7 +280,7 @@ class TestPhoneNumbers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             phone_number = response.parse()
-            assert_matches_type(SyncDefaultPagination[PhoneNumberSlimListResponse], phone_number, path=["response"])
+            assert_matches_type(PhoneNumberSlimListResponse, phone_number, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -337,7 +336,7 @@ class TestAsyncPhoneNumbers:
     @parametrize
     async def test_method_update(self, async_client: AsyncTelnyx) -> None:
         phone_number = await async_client.phone_numbers.update(
-            phone_number_id="1293384261075731499",
+            id="1293384261075731499",
         )
         assert_matches_type(PhoneNumberUpdateResponse, phone_number, path=["response"])
 
@@ -345,7 +344,7 @@ class TestAsyncPhoneNumbers:
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncTelnyx) -> None:
         phone_number = await async_client.phone_numbers.update(
-            phone_number_id="1293384261075731499",
+            id="1293384261075731499",
             billing_group_id="dc8e4d67-33a0-4cbb-af74-7b58f05bd494",
             connection_id="dc8e4d67-33a0-4cbb-af74-7b58f05bd494",
             customer_reference="customer-reference",
@@ -359,7 +358,7 @@ class TestAsyncPhoneNumbers:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.phone_numbers.with_raw_response.update(
-            phone_number_id="1293384261075731499",
+            id="1293384261075731499",
         )
 
         assert response.is_closed is True
@@ -371,7 +370,7 @@ class TestAsyncPhoneNumbers:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncTelnyx) -> None:
         async with async_client.phone_numbers.with_streaming_response.update(
-            phone_number_id="1293384261075731499",
+            id="1293384261075731499",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -384,16 +383,16 @@ class TestAsyncPhoneNumbers:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_update(self, async_client: AsyncTelnyx) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `phone_number_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.phone_numbers.with_raw_response.update(
-                phone_number_id="",
+                id="",
             )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         phone_number = await async_client.phone_numbers.list()
-        assert_matches_type(AsyncDefaultPagination[PhoneNumberDetailed], phone_number, path=["response"])
+        assert_matches_type(PhoneNumberListResponse, phone_number, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -425,7 +424,7 @@ class TestAsyncPhoneNumbers:
             },
             sort="connection_name",
         )
-        assert_matches_type(AsyncDefaultPagination[PhoneNumberDetailed], phone_number, path=["response"])
+        assert_matches_type(PhoneNumberListResponse, phone_number, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -435,7 +434,7 @@ class TestAsyncPhoneNumbers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         phone_number = await response.parse()
-        assert_matches_type(AsyncDefaultPagination[PhoneNumberDetailed], phone_number, path=["response"])
+        assert_matches_type(PhoneNumberListResponse, phone_number, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -445,7 +444,7 @@ class TestAsyncPhoneNumbers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             phone_number = await response.parse()
-            assert_matches_type(AsyncDefaultPagination[PhoneNumberDetailed], phone_number, path=["response"])
+            assert_matches_type(PhoneNumberListResponse, phone_number, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -495,7 +494,7 @@ class TestAsyncPhoneNumbers:
     @parametrize
     async def test_method_slim_list(self, async_client: AsyncTelnyx) -> None:
         phone_number = await async_client.phone_numbers.slim_list()
-        assert_matches_type(AsyncDefaultPagination[PhoneNumberSlimListResponse], phone_number, path=["response"])
+        assert_matches_type(PhoneNumberSlimListResponse, phone_number, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -528,7 +527,7 @@ class TestAsyncPhoneNumbers:
             },
             sort="connection_name",
         )
-        assert_matches_type(AsyncDefaultPagination[PhoneNumberSlimListResponse], phone_number, path=["response"])
+        assert_matches_type(PhoneNumberSlimListResponse, phone_number, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -538,7 +537,7 @@ class TestAsyncPhoneNumbers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         phone_number = await response.parse()
-        assert_matches_type(AsyncDefaultPagination[PhoneNumberSlimListResponse], phone_number, path=["response"])
+        assert_matches_type(PhoneNumberSlimListResponse, phone_number, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -548,6 +547,6 @@ class TestAsyncPhoneNumbers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             phone_number = await response.parse()
-            assert_matches_type(AsyncDefaultPagination[PhoneNumberSlimListResponse], phone_number, path=["response"])
+            assert_matches_type(PhoneNumberSlimListResponse, phone_number, path=["response"])
 
         assert cast(Any, response.is_closed) is True

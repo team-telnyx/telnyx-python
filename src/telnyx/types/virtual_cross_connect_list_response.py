@@ -1,17 +1,18 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import List, Optional
 from typing_extensions import Literal
 
 from .record import Record
 from .._models import BaseModel
-from .network_interface import NetworkInterface
-from .network_interface_region import NetworkInterfaceRegion
+from .interface import Interface
+from .region_in import RegionIn
+from .pagination_meta import PaginationMeta
 
-__all__ = ["VirtualCrossConnectListResponse", "VirtualCrossConnectListResponseRegion"]
+__all__ = ["VirtualCrossConnectListResponse", "Data", "DataRegion"]
 
 
-class VirtualCrossConnectListResponseRegion(BaseModel):
+class DataRegion(BaseModel):
     code: Optional[str] = None
     """Region code of the interface."""
 
@@ -22,7 +23,35 @@ class VirtualCrossConnectListResponseRegion(BaseModel):
     """Identifies the type of the resource."""
 
 
-class VirtualCrossConnectListResponse(Record, NetworkInterface, NetworkInterfaceRegion):
+class Data(Record, Interface, RegionIn):
+    bgp_asn: float
+    """The Border Gateway Protocol (BGP) Autonomous System Number (ASN).
+
+    If null, value will be assigned by Telnyx.
+    """
+
+    cloud_provider: Literal["aws", "azure", "gce"]
+    """
+    The Virtual Private Cloud with which you would like to establish a cross
+    connect.
+    """
+
+    cloud_provider_region: str
+    """
+    The region where your Virtual Private Cloud hosts are located.<br /><br />The
+    available regions can be found using the /virtual_cross_connect_regions
+    endpoint.
+    """
+
+    primary_cloud_account_id: str
+    """The identifier for your Virtual Private Cloud.
+
+    The number will be different based upon your Cloud provider.
+    """
+
+    region_code: str  # type: ignore
+    """The region interface is deployed to."""
+
     bandwidth_mbps: Optional[float] = None
     """
     The desired throughput in Megabits per Second (Mbps) for your Virtual Cross
@@ -30,33 +59,8 @@ class VirtualCrossConnectListResponse(Record, NetworkInterface, NetworkInterface
     /virtual_cross_connect_regions endpoint.
     """
 
-    bgp_asn: Optional[float] = None
-    """The Border Gateway Protocol (BGP) Autonomous System Number (ASN).
-
-    If null, value will be assigned by Telnyx.
-    """
-
-    cloud_provider: Optional[Literal["aws", "azure", "gce"]] = None
-    """
-    The Virtual Private Cloud with which you would like to establish a cross
-    connect.
-    """
-
-    cloud_provider_region: Optional[str] = None
-    """
-    The region where your Virtual Private Cloud hosts are located.<br /><br />The
-    available regions can be found using the /virtual_cross_connect_regions
-    endpoint.
-    """
-
     primary_bgp_key: Optional[str] = None
     """The authentication key for BGP peer configuration."""
-
-    primary_cloud_account_id: Optional[str] = None
-    """The identifier for your Virtual Private Cloud.
-
-    The number will be different based upon your Cloud provider.
-    """
 
     primary_cloud_ip: Optional[str] = None
     """
@@ -82,10 +86,10 @@ class VirtualCrossConnectListResponse(Record, NetworkInterface, NetworkInterface
     of your assigned IP once the connection has been accepted.
     """
 
-    region: Optional[VirtualCrossConnectListResponseRegion] = None
+    record_type: Optional[str] = None  # type: ignore
+    """Identifies the type of the resource."""
 
-    region_code: Optional[str] = None  # type: ignore
-    """The region interface is deployed to."""
+    region: Optional[DataRegion] = None
 
     secondary_bgp_key: Optional[str] = None
     """The authentication key for BGP peer configuration."""
@@ -120,3 +124,9 @@ class VirtualCrossConnectListResponse(Record, NetworkInterface, NetworkInterface
     you.<br /><br />This value should be null for GCE as Google will only inform you
     of your assigned IP once the connection has been accepted.
     """
+
+
+class VirtualCrossConnectListResponse(BaseModel):
+    data: Optional[List[Data]] = None
+
+    meta: Optional[PaginationMeta] = None

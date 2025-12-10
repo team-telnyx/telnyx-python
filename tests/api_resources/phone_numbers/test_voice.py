@@ -9,11 +9,10 @@ import pytest
 
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
-from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
 from telnyx.types.phone_numbers import (
+    VoiceListResponse,
     VoiceUpdateResponse,
     VoiceRetrieveResponse,
-    PhoneNumberWithVoiceSettings,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -142,7 +141,7 @@ class TestVoice:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         voice = client.phone_numbers.voice.list()
-        assert_matches_type(SyncDefaultPagination[PhoneNumberWithVoiceSettings], voice, path=["response"])
+        assert_matches_type(VoiceListResponse, voice, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -160,7 +159,7 @@ class TestVoice:
             },
             sort="connection_name",
         )
-        assert_matches_type(SyncDefaultPagination[PhoneNumberWithVoiceSettings], voice, path=["response"])
+        assert_matches_type(VoiceListResponse, voice, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -170,7 +169,7 @@ class TestVoice:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         voice = response.parse()
-        assert_matches_type(SyncDefaultPagination[PhoneNumberWithVoiceSettings], voice, path=["response"])
+        assert_matches_type(VoiceListResponse, voice, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -180,7 +179,7 @@ class TestVoice:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             voice = response.parse()
-            assert_matches_type(SyncDefaultPagination[PhoneNumberWithVoiceSettings], voice, path=["response"])
+            assert_matches_type(VoiceListResponse, voice, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -310,7 +309,7 @@ class TestAsyncVoice:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         voice = await async_client.phone_numbers.voice.list()
-        assert_matches_type(AsyncDefaultPagination[PhoneNumberWithVoiceSettings], voice, path=["response"])
+        assert_matches_type(VoiceListResponse, voice, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -328,7 +327,7 @@ class TestAsyncVoice:
             },
             sort="connection_name",
         )
-        assert_matches_type(AsyncDefaultPagination[PhoneNumberWithVoiceSettings], voice, path=["response"])
+        assert_matches_type(VoiceListResponse, voice, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -338,7 +337,7 @@ class TestAsyncVoice:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         voice = await response.parse()
-        assert_matches_type(AsyncDefaultPagination[PhoneNumberWithVoiceSettings], voice, path=["response"])
+        assert_matches_type(VoiceListResponse, voice, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -348,6 +347,6 @@ class TestAsyncVoice:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             voice = await response.parse()
-            assert_matches_type(AsyncDefaultPagination[PhoneNumberWithVoiceSettings], voice, path=["response"])
+            assert_matches_type(VoiceListResponse, voice, path=["response"])
 
         assert cast(Any, response.is_closed) is True

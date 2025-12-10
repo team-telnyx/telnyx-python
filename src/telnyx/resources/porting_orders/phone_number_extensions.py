@@ -16,10 +16,9 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...pagination import SyncDefaultPagination, AsyncDefaultPagination
-from ..._base_client import AsyncPaginator, make_request_options
+from ..._base_client import make_request_options
 from ...types.porting_orders import phone_number_extension_list_params, phone_number_extension_create_params
-from ...types.porting_orders.porting_phone_number_extension import PortingPhoneNumberExtension
+from ...types.porting_orders.phone_number_extension_list_response import PhoneNumberExtensionListResponse
 from ...types.porting_orders.phone_number_extension_create_response import PhoneNumberExtensionCreateResponse
 from ...types.porting_orders.phone_number_extension_delete_response import PhoneNumberExtensionDeleteResponse
 
@@ -110,7 +109,7 @@ class PhoneNumberExtensionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[PortingPhoneNumberExtension]:
+    ) -> PhoneNumberExtensionListResponse:
         """
         Returns a list of all phone number extensions of a porting order.
 
@@ -134,9 +133,8 @@ class PhoneNumberExtensionsResource(SyncAPIResource):
         """
         if not porting_order_id:
             raise ValueError(f"Expected a non-empty value for `porting_order_id` but received {porting_order_id!r}")
-        return self._get_api_list(
+        return self._get(
             f"/porting_orders/{porting_order_id}/phone_number_extensions",
-            page=SyncDefaultPagination[PortingPhoneNumberExtension],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -151,7 +149,7 @@ class PhoneNumberExtensionsResource(SyncAPIResource):
                     phone_number_extension_list_params.PhoneNumberExtensionListParams,
                 ),
             ),
-            model=PortingPhoneNumberExtension,
+            cast_to=PhoneNumberExtensionListResponse,
         )
 
     def delete(
@@ -262,7 +260,7 @@ class AsyncPhoneNumberExtensionsResource(AsyncAPIResource):
             cast_to=PhoneNumberExtensionCreateResponse,
         )
 
-    def list(
+    async def list(
         self,
         porting_order_id: str,
         *,
@@ -275,7 +273,7 @@ class AsyncPhoneNumberExtensionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[PortingPhoneNumberExtension, AsyncDefaultPagination[PortingPhoneNumberExtension]]:
+    ) -> PhoneNumberExtensionListResponse:
         """
         Returns a list of all phone number extensions of a porting order.
 
@@ -299,15 +297,14 @@ class AsyncPhoneNumberExtensionsResource(AsyncAPIResource):
         """
         if not porting_order_id:
             raise ValueError(f"Expected a non-empty value for `porting_order_id` but received {porting_order_id!r}")
-        return self._get_api_list(
+        return await self._get(
             f"/porting_orders/{porting_order_id}/phone_number_extensions",
-            page=AsyncDefaultPagination[PortingPhoneNumberExtension],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
                         "filter": filter,
                         "page": page,
@@ -316,7 +313,7 @@ class AsyncPhoneNumberExtensionsResource(AsyncAPIResource):
                     phone_number_extension_list_params.PhoneNumberExtensionListParams,
                 ),
             ),
-            model=PortingPhoneNumberExtension,
+            cast_to=PhoneNumberExtensionListResponse,
         )
 
     async def delete(

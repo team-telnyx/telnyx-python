@@ -1,15 +1,15 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
 
-__all__ = ["ReportListWdrsResponse", "Cost", "DownlinkData", "Rate", "UplinkData"]
+__all__ = ["ReportListWdrsResponse", "Data", "DataCost", "DataDownlinkData", "DataRate", "DataUplinkData", "Meta"]
 
 
-class Cost(BaseModel):
+class DataCost(BaseModel):
     amount: Optional[str] = None
     """Final cost. Cost is calculated as rate \\** unit"""
 
@@ -17,7 +17,7 @@ class Cost(BaseModel):
     """Currency of the rate and cost"""
 
 
-class DownlinkData(BaseModel):
+class DataDownlinkData(BaseModel):
     amount: Optional[float] = None
     """Downlink data"""
 
@@ -25,7 +25,7 @@ class DownlinkData(BaseModel):
     """Transmission unit"""
 
 
-class Rate(BaseModel):
+class DataRate(BaseModel):
     amount: Optional[str] = None
     """Rate from which cost is calculated"""
 
@@ -33,7 +33,7 @@ class Rate(BaseModel):
     """Currency of the rate and cost"""
 
 
-class UplinkData(BaseModel):
+class DataUplinkData(BaseModel):
     amount: Optional[float] = None
     """Uplink data"""
 
@@ -41,16 +41,16 @@ class UplinkData(BaseModel):
     """Transmission unit"""
 
 
-class ReportListWdrsResponse(BaseModel):
+class Data(BaseModel):
     id: Optional[str] = None
     """WDR id"""
 
-    cost: Optional[Cost] = None
+    cost: Optional[DataCost] = None
 
     created_at: Optional[datetime] = None
     """Record created time"""
 
-    downlink_data: Optional[DownlinkData] = None
+    downlink_data: Optional[DataDownlinkData] = None
 
     duration_seconds: Optional[float] = None
     """Session duration in seconds."""
@@ -67,7 +67,7 @@ class ReportListWdrsResponse(BaseModel):
     phone_number: Optional[str] = None
     """Phone number"""
 
-    rate: Optional[Rate] = None
+    rate: Optional[DataRate] = None
 
     record_type: Optional[str] = None
 
@@ -80,4 +80,20 @@ class ReportListWdrsResponse(BaseModel):
     sim_group_name: Optional[str] = None
     """Defined sim group name"""
 
-    uplink_data: Optional[UplinkData] = None
+    uplink_data: Optional[DataUplinkData] = None
+
+
+class Meta(BaseModel):
+    page_number: Optional[int] = None
+
+    page_size: Optional[int] = None
+
+    total_pages: Optional[int] = None
+
+    total_results: Optional[int] = None
+
+
+class ReportListWdrsResponse(BaseModel):
+    data: Optional[List[Data]] = None
+
+    meta: Optional[Meta] = None

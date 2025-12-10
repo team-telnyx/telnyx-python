@@ -10,13 +10,12 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types import (
-    SimCardDataUsageNotification,
+    SimCardDataUsageNotificationListResponse,
     SimCardDataUsageNotificationCreateResponse,
     SimCardDataUsageNotificationDeleteResponse,
     SimCardDataUsageNotificationUpdateResponse,
     SimCardDataUsageNotificationRetrieveResponse,
 )
-from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -133,7 +132,7 @@ class TestSimCardDataUsageNotifications:
     @parametrize
     def test_method_update(self, client: Telnyx) -> None:
         sim_card_data_usage_notification = client.sim_card_data_usage_notifications.update(
-            sim_card_data_usage_notification_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+            id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
         )
         assert_matches_type(
             SimCardDataUsageNotificationUpdateResponse, sim_card_data_usage_notification, path=["response"]
@@ -143,7 +142,7 @@ class TestSimCardDataUsageNotifications:
     @parametrize
     def test_method_update_with_all_params(self, client: Telnyx) -> None:
         sim_card_data_usage_notification = client.sim_card_data_usage_notifications.update(
-            sim_card_data_usage_notification_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+            id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
             sim_card_id="b34c1683-cd85-4493-b9a5-315eb4bc5e19",
             threshold={
                 "amount": "2048.0",
@@ -158,7 +157,7 @@ class TestSimCardDataUsageNotifications:
     @parametrize
     def test_raw_response_update(self, client: Telnyx) -> None:
         response = client.sim_card_data_usage_notifications.with_raw_response.update(
-            sim_card_data_usage_notification_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+            id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
         )
 
         assert response.is_closed is True
@@ -172,7 +171,7 @@ class TestSimCardDataUsageNotifications:
     @parametrize
     def test_streaming_response_update(self, client: Telnyx) -> None:
         with client.sim_card_data_usage_notifications.with_streaming_response.update(
-            sim_card_data_usage_notification_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+            id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -187,11 +186,9 @@ class TestSimCardDataUsageNotifications:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_update(self, client: Telnyx) -> None:
-        with pytest.raises(
-            ValueError, match=r"Expected a non-empty value for `sim_card_data_usage_notification_id` but received ''"
-        ):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.sim_card_data_usage_notifications.with_raw_response.update(
-                sim_card_data_usage_notification_id="",
+                id="",
             )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -199,7 +196,7 @@ class TestSimCardDataUsageNotifications:
     def test_method_list(self, client: Telnyx) -> None:
         sim_card_data_usage_notification = client.sim_card_data_usage_notifications.list()
         assert_matches_type(
-            SyncDefaultFlatPagination[SimCardDataUsageNotification], sim_card_data_usage_notification, path=["response"]
+            SimCardDataUsageNotificationListResponse, sim_card_data_usage_notification, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -211,7 +208,7 @@ class TestSimCardDataUsageNotifications:
             page_size=1,
         )
         assert_matches_type(
-            SyncDefaultFlatPagination[SimCardDataUsageNotification], sim_card_data_usage_notification, path=["response"]
+            SimCardDataUsageNotificationListResponse, sim_card_data_usage_notification, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -223,7 +220,7 @@ class TestSimCardDataUsageNotifications:
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         sim_card_data_usage_notification = response.parse()
         assert_matches_type(
-            SyncDefaultFlatPagination[SimCardDataUsageNotification], sim_card_data_usage_notification, path=["response"]
+            SimCardDataUsageNotificationListResponse, sim_card_data_usage_notification, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -235,9 +232,7 @@ class TestSimCardDataUsageNotifications:
 
             sim_card_data_usage_notification = response.parse()
             assert_matches_type(
-                SyncDefaultFlatPagination[SimCardDataUsageNotification],
-                sim_card_data_usage_notification,
-                path=["response"],
+                SimCardDataUsageNotificationListResponse, sim_card_data_usage_notification, path=["response"]
             )
 
         assert cast(Any, response.is_closed) is True
@@ -405,7 +400,7 @@ class TestAsyncSimCardDataUsageNotifications:
     @parametrize
     async def test_method_update(self, async_client: AsyncTelnyx) -> None:
         sim_card_data_usage_notification = await async_client.sim_card_data_usage_notifications.update(
-            sim_card_data_usage_notification_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+            id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
         )
         assert_matches_type(
             SimCardDataUsageNotificationUpdateResponse, sim_card_data_usage_notification, path=["response"]
@@ -415,7 +410,7 @@ class TestAsyncSimCardDataUsageNotifications:
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncTelnyx) -> None:
         sim_card_data_usage_notification = await async_client.sim_card_data_usage_notifications.update(
-            sim_card_data_usage_notification_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+            id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
             sim_card_id="b34c1683-cd85-4493-b9a5-315eb4bc5e19",
             threshold={
                 "amount": "2048.0",
@@ -430,7 +425,7 @@ class TestAsyncSimCardDataUsageNotifications:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.sim_card_data_usage_notifications.with_raw_response.update(
-            sim_card_data_usage_notification_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+            id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
         )
 
         assert response.is_closed is True
@@ -444,7 +439,7 @@ class TestAsyncSimCardDataUsageNotifications:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncTelnyx) -> None:
         async with async_client.sim_card_data_usage_notifications.with_streaming_response.update(
-            sim_card_data_usage_notification_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+            id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -459,11 +454,9 @@ class TestAsyncSimCardDataUsageNotifications:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_update(self, async_client: AsyncTelnyx) -> None:
-        with pytest.raises(
-            ValueError, match=r"Expected a non-empty value for `sim_card_data_usage_notification_id` but received ''"
-        ):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.sim_card_data_usage_notifications.with_raw_response.update(
-                sim_card_data_usage_notification_id="",
+                id="",
             )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -471,9 +464,7 @@ class TestAsyncSimCardDataUsageNotifications:
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         sim_card_data_usage_notification = await async_client.sim_card_data_usage_notifications.list()
         assert_matches_type(
-            AsyncDefaultFlatPagination[SimCardDataUsageNotification],
-            sim_card_data_usage_notification,
-            path=["response"],
+            SimCardDataUsageNotificationListResponse, sim_card_data_usage_notification, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -485,9 +476,7 @@ class TestAsyncSimCardDataUsageNotifications:
             page_size=1,
         )
         assert_matches_type(
-            AsyncDefaultFlatPagination[SimCardDataUsageNotification],
-            sim_card_data_usage_notification,
-            path=["response"],
+            SimCardDataUsageNotificationListResponse, sim_card_data_usage_notification, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -499,9 +488,7 @@ class TestAsyncSimCardDataUsageNotifications:
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         sim_card_data_usage_notification = await response.parse()
         assert_matches_type(
-            AsyncDefaultFlatPagination[SimCardDataUsageNotification],
-            sim_card_data_usage_notification,
-            path=["response"],
+            SimCardDataUsageNotificationListResponse, sim_card_data_usage_notification, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -513,9 +500,7 @@ class TestAsyncSimCardDataUsageNotifications:
 
             sim_card_data_usage_notification = await response.parse()
             assert_matches_type(
-                AsyncDefaultFlatPagination[SimCardDataUsageNotification],
-                sim_card_data_usage_notification,
-                path=["response"],
+                SimCardDataUsageNotificationListResponse, sim_card_data_usage_notification, path=["response"]
             )
 
         assert cast(Any, response.is_closed) is True

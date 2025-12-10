@@ -14,7 +14,7 @@ from .actions import (
     AsyncActionsResourceWithStreamingResponse,
 )
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform
+from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -23,9 +23,8 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...pagination import SyncDefaultPagination, AsyncDefaultPagination
-from ..._base_client import AsyncPaginator, make_request_options
-from ...types.recording_response_data import RecordingResponseData
+from ..._base_client import make_request_options
+from ...types.recording_list_response import RecordingListResponse
 from ...types.recording_delete_response import RecordingDeleteResponse
 from ...types.recording_retrieve_response import RecordingRetrieveResponse
 
@@ -100,7 +99,7 @@ class RecordingsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[RecordingResponseData]:
+    ) -> RecordingListResponse:
         """
         Returns a list of your call recordings.
 
@@ -122,9 +121,8 @@ class RecordingsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return self._get(
             "/recordings",
-            page=SyncDefaultPagination[RecordingResponseData],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -138,7 +136,7 @@ class RecordingsResource(SyncAPIResource):
                     recording_list_params.RecordingListParams,
                 ),
             ),
-            model=RecordingResponseData,
+            cast_to=RecordingListResponse,
         )
 
     def delete(
@@ -232,7 +230,7 @@ class AsyncRecordingsResource(AsyncAPIResource):
             cast_to=RecordingRetrieveResponse,
         )
 
-    def list(
+    async def list(
         self,
         *,
         filter: recording_list_params.Filter | Omit = omit,
@@ -243,7 +241,7 @@ class AsyncRecordingsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[RecordingResponseData, AsyncDefaultPagination[RecordingResponseData]]:
+    ) -> RecordingListResponse:
         """
         Returns a list of your call recordings.
 
@@ -265,15 +263,14 @@ class AsyncRecordingsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return await self._get(
             "/recordings",
-            page=AsyncDefaultPagination[RecordingResponseData],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
                         "filter": filter,
                         "page": page,
@@ -281,7 +278,7 @@ class AsyncRecordingsResource(AsyncAPIResource):
                     recording_list_params.RecordingListParams,
                 ),
             ),
-            model=RecordingResponseData,
+            cast_to=RecordingListResponse,
         )
 
     async def delete(

@@ -1,14 +1,15 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, Optional
+from typing import Dict, List, Optional
 from typing_extensions import Literal
 
 from .._models import BaseModel
+from .pagination_meta import PaginationMeta
 
-__all__ = ["PortingOrderRetrieveRequirementsResponse", "RequirementType"]
+__all__ = ["PortingOrderRetrieveRequirementsResponse", "Data", "DataRequirementType"]
 
 
-class RequirementType(BaseModel):
+class DataRequirementType(BaseModel):
     """Identifies the requirement type that meets this requirement"""
 
     id: Optional[str] = None
@@ -30,7 +31,7 @@ class RequirementType(BaseModel):
     """The type of the requirement type"""
 
 
-class PortingOrderRetrieveRequirementsResponse(BaseModel):
+class Data(BaseModel):
     field_type: Optional[Literal["document", "textual"]] = None
     """Type of value expected on field_value field"""
 
@@ -43,5 +44,11 @@ class PortingOrderRetrieveRequirementsResponse(BaseModel):
     requirement_status: Optional[str] = None
     """Status of the requirement"""
 
-    requirement_type: Optional[RequirementType] = None
+    requirement_type: Optional[DataRequirementType] = None
     """Identifies the requirement type that meets this requirement"""
+
+
+class PortingOrderRetrieveRequirementsResponse(BaseModel):
+    data: Optional[List[Data]] = None
+
+    meta: Optional[PaginationMeta] = None

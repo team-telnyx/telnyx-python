@@ -6,10 +6,10 @@ from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
 
-__all__ = ["CampaignGetMnoMetadataResponse", "MnoMetadataItem10999"]
+__all__ = ["CampaignGetMnoMetadataResponse", "_10999"]
 
 
-class MnoMetadataItem10999(BaseModel):
+class _10999(BaseModel):
     min_msg_samples: int = FieldInfo(alias="minMsgSamples")
 
     mno: str
@@ -32,7 +32,7 @@ class MnoMetadataItem10999(BaseModel):
 
 
 class CampaignGetMnoMetadataResponse(BaseModel):
-    mno_metadata_item_10999: Optional[MnoMetadataItem10999] = FieldInfo(alias="10999", default=None)
+    api_10999: Optional[_10999] = FieldInfo(alias="10999", default=None)
 
     if TYPE_CHECKING:
         # Some versions of Pydantic <2.8.0 have a bug and don’t allow assigning a

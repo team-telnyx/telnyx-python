@@ -8,7 +8,6 @@ from ..types import ip_list_params, ip_create_params, ip_update_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
-from ..types.ip import IP
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
     to_raw_response_wrapper,
@@ -16,8 +15,8 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
-from .._base_client import AsyncPaginator, make_request_options
+from .._base_client import make_request_options
+from ..types.ip_list_response import IPListResponse
 from ..types.ip_create_response import IPCreateResponse
 from ..types.ip_delete_response import IPDeleteResponse
 from ..types.ip_update_response import IPUpdateResponse
@@ -187,7 +186,7 @@ class IPsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[IP]:
+    ) -> IPListResponse:
         """
         Get all IPs belonging to the user that match the given filters.
 
@@ -207,9 +206,8 @@ class IPsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return self._get(
             "/ips",
-            page=SyncDefaultPagination[IP],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -223,7 +221,7 @@ class IPsResource(SyncAPIResource):
                     ip_list_params.IPListParams,
                 ),
             ),
-            model=IP,
+            cast_to=IPListResponse,
         )
 
     def delete(
@@ -410,7 +408,7 @@ class AsyncIPsResource(AsyncAPIResource):
             cast_to=IPUpdateResponse,
         )
 
-    def list(
+    async def list(
         self,
         *,
         filter: ip_list_params.Filter | Omit = omit,
@@ -421,7 +419,7 @@ class AsyncIPsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[IP, AsyncDefaultPagination[IP]]:
+    ) -> IPListResponse:
         """
         Get all IPs belonging to the user that match the given filters.
 
@@ -441,15 +439,14 @@ class AsyncIPsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return await self._get(
             "/ips",
-            page=AsyncDefaultPagination[IP],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
                         "filter": filter,
                         "page": page,
@@ -457,7 +454,7 @@ class AsyncIPsResource(AsyncAPIResource):
                     ip_list_params.IPListParams,
                 ),
             ),
-            model=IP,
+            cast_to=IPListResponse,
         )
 
     async def delete(

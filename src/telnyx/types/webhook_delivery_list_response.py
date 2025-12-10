@@ -1,22 +1,24 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, List, Optional
+from typing import List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
+from .storage.buckets.pagination_meta_simple import PaginationMetaSimple
 
 __all__ = [
     "WebhookDeliveryListResponse",
-    "Attempt",
-    "AttemptHTTP",
-    "AttemptHTTPRequest",
-    "AttemptHTTPResponse",
-    "Webhook",
+    "Data",
+    "DataAttempt",
+    "DataAttemptHTTP",
+    "DataAttemptHTTPRequest",
+    "DataAttemptHTTPResponse",
+    "DataWebhook",
 ]
 
 
-class AttemptHTTPRequest(BaseModel):
+class DataAttemptHTTPRequest(BaseModel):
     """Request details."""
 
     headers: Optional[List[List[str]]] = None
@@ -25,7 +27,7 @@ class AttemptHTTPRequest(BaseModel):
     url: Optional[str] = None
 
 
-class AttemptHTTPResponse(BaseModel):
+class DataAttemptHTTPResponse(BaseModel):
     """Response details, optional."""
 
     body: Optional[str] = None
@@ -37,17 +39,17 @@ class AttemptHTTPResponse(BaseModel):
     status: Optional[int] = None
 
 
-class AttemptHTTP(BaseModel):
+class DataAttemptHTTP(BaseModel):
     """HTTP request and response information."""
 
-    request: Optional[AttemptHTTPRequest] = None
+    request: Optional[DataAttemptHTTPRequest] = None
     """Request details."""
 
-    response: Optional[AttemptHTTPResponse] = None
+    response: Optional[DataAttemptHTTPResponse] = None
     """Response details, optional."""
 
 
-class Attempt(BaseModel):
+class DataAttempt(BaseModel):
     """Webhook delivery attempt details."""
 
     errors: Optional[List[int]] = None
@@ -56,7 +58,7 @@ class Attempt(BaseModel):
     finished_at: Optional[datetime] = None
     """ISO 8601 timestamp indicating when the attempt has finished."""
 
-    http: Optional[AttemptHTTP] = None
+    http: Optional[DataAttemptHTTP] = None
     """HTTP request and response information."""
 
     started_at: Optional[datetime] = None
@@ -65,7 +67,7 @@ class Attempt(BaseModel):
     status: Optional[Literal["delivered", "failed"]] = None
 
 
-class Webhook(BaseModel):
+class DataWebhook(BaseModel):
     """Original webhook JSON data. Payload fields vary according to event type."""
 
     id: Optional[str] = None
@@ -77,19 +79,19 @@ class Webhook(BaseModel):
     occurred_at: Optional[datetime] = None
     """ISO 8601 datetime of when the event occurred."""
 
-    payload: Optional[Dict[str, object]] = None
+    payload: Optional[object] = None
 
     record_type: Optional[Literal["event"]] = None
     """Identifies the type of the resource."""
 
 
-class WebhookDeliveryListResponse(BaseModel):
+class Data(BaseModel):
     """Record of all attempts to deliver a webhook."""
 
     id: Optional[str] = None
     """Uniquely identifies the webhook_delivery record."""
 
-    attempts: Optional[List[Attempt]] = None
+    attempts: Optional[List[DataAttempt]] = None
     """Detailed delivery attempts, ordered by most recent."""
 
     finished_at: Optional[datetime] = None
@@ -110,5 +112,11 @@ class WebhookDeliveryListResponse(BaseModel):
     user_id: Optional[str] = None
     """Uniquely identifies the user that owns the webhook_delivery record."""
 
-    webhook: Optional[Webhook] = None
+    webhook: Optional[DataWebhook] = None
     """Original webhook JSON data. Payload fields vary according to event type."""
+
+
+class WebhookDeliveryListResponse(BaseModel):
+    data: Optional[List[Data]] = None
+
+    meta: Optional[PaginationMetaSimple] = None

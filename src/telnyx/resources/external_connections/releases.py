@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform
+from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -14,8 +14,7 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...pagination import SyncDefaultPagination, AsyncDefaultPagination
-from ..._base_client import AsyncPaginator, make_request_options
+from ..._base_client import make_request_options
 from ...types.external_connections import release_list_params
 from ...types.external_connections.release_list_response import ReleaseListResponse
 from ...types.external_connections.release_retrieve_response import ReleaseRetrieveResponse
@@ -91,7 +90,7 @@ class ReleasesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[ReleaseListResponse]:
+    ) -> ReleaseListResponse:
         """Returns a list of your Releases for the given external connection.
 
         These are
@@ -115,9 +114,8 @@ class ReleasesResource(SyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return self._get_api_list(
+        return self._get(
             f"/external_connections/{id}/releases",
-            page=SyncDefaultPagination[ReleaseListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -131,7 +129,7 @@ class ReleasesResource(SyncAPIResource):
                     release_list_params.ReleaseListParams,
                 ),
             ),
-            model=ReleaseListResponse,
+            cast_to=ReleaseListResponse,
         )
 
 
@@ -191,7 +189,7 @@ class AsyncReleasesResource(AsyncAPIResource):
             cast_to=ReleaseRetrieveResponse,
         )
 
-    def list(
+    async def list(
         self,
         id: str,
         *,
@@ -203,7 +201,7 @@ class AsyncReleasesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[ReleaseListResponse, AsyncDefaultPagination[ReleaseListResponse]]:
+    ) -> ReleaseListResponse:
         """Returns a list of your Releases for the given external connection.
 
         These are
@@ -227,15 +225,14 @@ class AsyncReleasesResource(AsyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return self._get_api_list(
+        return await self._get(
             f"/external_connections/{id}/releases",
-            page=AsyncDefaultPagination[ReleaseListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
                         "filter": filter,
                         "page": page,
@@ -243,7 +240,7 @@ class AsyncReleasesResource(AsyncAPIResource):
                     release_list_params.ReleaseListParams,
                 ),
             ),
-            model=ReleaseListResponse,
+            cast_to=ReleaseListResponse,
         )
 
 

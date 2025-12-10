@@ -21,8 +21,7 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
-from .._base_client import AsyncPaginator, make_request_options
+from .._base_client import make_request_options
 from ..types.virtual_cross_connect_list_response import VirtualCrossConnectListResponse
 from ..types.virtual_cross_connect_create_response import VirtualCrossConnectCreateResponse
 from ..types.virtual_cross_connect_delete_response import VirtualCrossConnectDeleteResponse
@@ -55,15 +54,15 @@ class VirtualCrossConnectsResource(SyncAPIResource):
     def create(
         self,
         *,
+        bgp_asn: float,
+        cloud_provider: Literal["aws", "azure", "gce"],
+        cloud_provider_region: str,
+        network_id: str,
+        primary_cloud_account_id: str,
         region_code: str,
         bandwidth_mbps: float | Omit = omit,
-        bgp_asn: float | Omit = omit,
-        cloud_provider: Literal["aws", "azure", "gce"] | Omit = omit,
-        cloud_provider_region: str | Omit = omit,
         name: str | Omit = omit,
-        network_id: str | Omit = omit,
         primary_bgp_key: str | Omit = omit,
-        primary_cloud_account_id: str | Omit = omit,
         primary_cloud_ip: str | Omit = omit,
         primary_telnyx_ip: str | Omit = omit,
         secondary_bgp_key: str | Omit = omit,
@@ -86,12 +85,6 @@ class VirtualCrossConnectsResource(SyncAPIResource):
         created at the same time and they can not be independantly disabled.
 
         Args:
-          region_code: The region the interface should be deployed to.
-
-          bandwidth_mbps: The desired throughput in Megabits per Second (Mbps) for your Virtual Cross
-              Connect.<br /><br />The available bandwidths can be found using the
-              /virtual_cross_connect_regions endpoint.
-
           bgp_asn: The Border Gateway Protocol (BGP) Autonomous System Number (ASN). If null, value
               will be assigned by Telnyx.
 
@@ -102,14 +95,20 @@ class VirtualCrossConnectsResource(SyncAPIResource):
               available regions can be found using the /virtual_cross_connect_regions
               endpoint.
 
-          name: A user specified name for the interface.
-
           network_id: The id of the network associated with the interface.
-
-          primary_bgp_key: The authentication key for BGP peer configuration.
 
           primary_cloud_account_id: The identifier for your Virtual Private Cloud. The number will be different
               based upon your Cloud provider.
+
+          region_code: The region the interface should be deployed to.
+
+          bandwidth_mbps: The desired throughput in Megabits per Second (Mbps) for your Virtual Cross
+              Connect.<br /><br />The available bandwidths can be found using the
+              /virtual_cross_connect_regions endpoint.
+
+          name: A user specified name for the interface.
+
+          primary_bgp_key: The authentication key for BGP peer configuration.
 
           primary_cloud_ip: The IP address assigned for your side of the Virtual Cross
               Connect.<br /><br />If none is provided, one will be generated for
@@ -149,15 +148,15 @@ class VirtualCrossConnectsResource(SyncAPIResource):
             "/virtual_cross_connects",
             body=maybe_transform(
                 {
-                    "region_code": region_code,
-                    "bandwidth_mbps": bandwidth_mbps,
                     "bgp_asn": bgp_asn,
                     "cloud_provider": cloud_provider,
                     "cloud_provider_region": cloud_provider_region,
-                    "name": name,
                     "network_id": network_id,
-                    "primary_bgp_key": primary_bgp_key,
                     "primary_cloud_account_id": primary_cloud_account_id,
+                    "region_code": region_code,
+                    "bandwidth_mbps": bandwidth_mbps,
+                    "name": name,
+                    "primary_bgp_key": primary_bgp_key,
                     "primary_cloud_ip": primary_cloud_ip,
                     "primary_telnyx_ip": primary_telnyx_ip,
                     "secondary_bgp_key": secondary_bgp_key,
@@ -291,7 +290,7 @@ class VirtualCrossConnectsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[VirtualCrossConnectListResponse]:
+    ) -> VirtualCrossConnectListResponse:
         """
         List all Virtual Cross Connects.
 
@@ -309,9 +308,8 @@ class VirtualCrossConnectsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return self._get(
             "/virtual_cross_connects",
-            page=SyncDefaultPagination[VirtualCrossConnectListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -325,7 +323,7 @@ class VirtualCrossConnectsResource(SyncAPIResource):
                     virtual_cross_connect_list_params.VirtualCrossConnectListParams,
                 ),
             ),
-            model=VirtualCrossConnectListResponse,
+            cast_to=VirtualCrossConnectListResponse,
         )
 
     def delete(
@@ -385,15 +383,15 @@ class AsyncVirtualCrossConnectsResource(AsyncAPIResource):
     async def create(
         self,
         *,
+        bgp_asn: float,
+        cloud_provider: Literal["aws", "azure", "gce"],
+        cloud_provider_region: str,
+        network_id: str,
+        primary_cloud_account_id: str,
         region_code: str,
         bandwidth_mbps: float | Omit = omit,
-        bgp_asn: float | Omit = omit,
-        cloud_provider: Literal["aws", "azure", "gce"] | Omit = omit,
-        cloud_provider_region: str | Omit = omit,
         name: str | Omit = omit,
-        network_id: str | Omit = omit,
         primary_bgp_key: str | Omit = omit,
-        primary_cloud_account_id: str | Omit = omit,
         primary_cloud_ip: str | Omit = omit,
         primary_telnyx_ip: str | Omit = omit,
         secondary_bgp_key: str | Omit = omit,
@@ -416,12 +414,6 @@ class AsyncVirtualCrossConnectsResource(AsyncAPIResource):
         created at the same time and they can not be independantly disabled.
 
         Args:
-          region_code: The region the interface should be deployed to.
-
-          bandwidth_mbps: The desired throughput in Megabits per Second (Mbps) for your Virtual Cross
-              Connect.<br /><br />The available bandwidths can be found using the
-              /virtual_cross_connect_regions endpoint.
-
           bgp_asn: The Border Gateway Protocol (BGP) Autonomous System Number (ASN). If null, value
               will be assigned by Telnyx.
 
@@ -432,14 +424,20 @@ class AsyncVirtualCrossConnectsResource(AsyncAPIResource):
               available regions can be found using the /virtual_cross_connect_regions
               endpoint.
 
-          name: A user specified name for the interface.
-
           network_id: The id of the network associated with the interface.
-
-          primary_bgp_key: The authentication key for BGP peer configuration.
 
           primary_cloud_account_id: The identifier for your Virtual Private Cloud. The number will be different
               based upon your Cloud provider.
+
+          region_code: The region the interface should be deployed to.
+
+          bandwidth_mbps: The desired throughput in Megabits per Second (Mbps) for your Virtual Cross
+              Connect.<br /><br />The available bandwidths can be found using the
+              /virtual_cross_connect_regions endpoint.
+
+          name: A user specified name for the interface.
+
+          primary_bgp_key: The authentication key for BGP peer configuration.
 
           primary_cloud_ip: The IP address assigned for your side of the Virtual Cross
               Connect.<br /><br />If none is provided, one will be generated for
@@ -479,15 +477,15 @@ class AsyncVirtualCrossConnectsResource(AsyncAPIResource):
             "/virtual_cross_connects",
             body=await async_maybe_transform(
                 {
-                    "region_code": region_code,
-                    "bandwidth_mbps": bandwidth_mbps,
                     "bgp_asn": bgp_asn,
                     "cloud_provider": cloud_provider,
                     "cloud_provider_region": cloud_provider_region,
-                    "name": name,
                     "network_id": network_id,
-                    "primary_bgp_key": primary_bgp_key,
                     "primary_cloud_account_id": primary_cloud_account_id,
+                    "region_code": region_code,
+                    "bandwidth_mbps": bandwidth_mbps,
+                    "name": name,
+                    "primary_bgp_key": primary_bgp_key,
                     "primary_cloud_ip": primary_cloud_ip,
                     "primary_telnyx_ip": primary_telnyx_ip,
                     "secondary_bgp_key": secondary_bgp_key,
@@ -610,7 +608,7 @@ class AsyncVirtualCrossConnectsResource(AsyncAPIResource):
             cast_to=VirtualCrossConnectUpdateResponse,
         )
 
-    def list(
+    async def list(
         self,
         *,
         filter: virtual_cross_connect_list_params.Filter | Omit = omit,
@@ -621,7 +619,7 @@ class AsyncVirtualCrossConnectsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[VirtualCrossConnectListResponse, AsyncDefaultPagination[VirtualCrossConnectListResponse]]:
+    ) -> VirtualCrossConnectListResponse:
         """
         List all Virtual Cross Connects.
 
@@ -639,15 +637,14 @@ class AsyncVirtualCrossConnectsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return await self._get(
             "/virtual_cross_connects",
-            page=AsyncDefaultPagination[VirtualCrossConnectListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
                         "filter": filter,
                         "page": page,
@@ -655,7 +652,7 @@ class AsyncVirtualCrossConnectsResource(AsyncAPIResource):
                     virtual_cross_connect_list_params.VirtualCrossConnectListParams,
                 ),
             ),
-            model=VirtualCrossConnectListResponse,
+            cast_to=VirtualCrossConnectListResponse,
         )
 
     async def delete(
