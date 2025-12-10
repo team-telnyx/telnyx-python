@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import Any, cast
+
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
@@ -122,7 +124,7 @@ class EventsResource(SyncAPIResource):
                     event_list_params.EventListParams,
                 ),
             ),
-            model=EventListResponse,
+            model=cast(Any, EventListResponse),  # Union types cannot be passed in as arguments in the type system
         )
 
     def republish(
@@ -259,7 +261,7 @@ class AsyncEventsResource(AsyncAPIResource):
                     event_list_params.EventListParams,
                 ),
             ),
-            model=EventListResponse,
+            model=cast(Any, EventListResponse),  # Union types cannot be passed in as arguments in the type system
         )
 
     async def republish(
