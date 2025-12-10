@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Iterable
+from typing import Union, Iterable
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from ..ai.assistant_param import AssistantParam
@@ -17,7 +17,7 @@ __all__ = ["ActionGatherUsingAIParams", "MessageHistory", "VoiceSettings"]
 
 
 class ActionGatherUsingAIParams(TypedDict, total=False):
-    parameters: Required[Dict[str, object]]
+    parameters: Required[object]
     """
     The parameters described as a JSON Schema object that needs to be gathered by
     the voice assistant. See the

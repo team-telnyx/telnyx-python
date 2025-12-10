@@ -4,11 +4,12 @@ from typing import List, Optional
 from typing_extensions import Literal
 
 from .._models import BaseModel
+from .pagination_meta import PaginationMeta
 
-__all__ = ["ChannelZoneListResponse"]
+__all__ = ["ChannelZoneListResponse", "Data"]
 
 
-class ChannelZoneListResponse(BaseModel):
+class Data(BaseModel):
     id: str
 
     channels: int
@@ -28,3 +29,9 @@ class ChannelZoneListResponse(BaseModel):
 
     updated_at: Optional[str] = None
     """ISO 8601 formatted date of when the channel zone was updated"""
+
+
+class ChannelZoneListResponse(BaseModel):
+    data: Optional[List[Data]] = None
+
+    meta: Optional[PaginationMeta] = None

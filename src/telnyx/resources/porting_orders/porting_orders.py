@@ -48,8 +48,7 @@ from ..._response import (
     async_to_custom_raw_response_wrapper,
     async_to_custom_streamed_response_wrapper,
 )
-from ...pagination import SyncDefaultPagination, AsyncDefaultPagination
-from ..._base_client import AsyncPaginator, make_request_options
+from ..._base_client import make_request_options
 from .activation_jobs import (
     ActivationJobsResource,
     AsyncActivationJobsResource,
@@ -90,7 +89,6 @@ from .additional_documents import (
     AdditionalDocumentsResourceWithStreamingResponse,
     AsyncAdditionalDocumentsResourceWithStreamingResponse,
 )
-from ...types.porting_order import PortingOrder
 from .phone_number_extensions import (
     PhoneNumberExtensionsResource,
     AsyncPhoneNumberExtensionsResource,
@@ -116,6 +114,7 @@ from .phone_number_configurations import (
     AsyncPhoneNumberConfigurationsResourceWithStreamingResponse,
 )
 from ...types.porting_order_misc_param import PortingOrderMiscParam
+from ...types.porting_order_list_response import PortingOrderListResponse
 from ...types.porting_order_end_user_param import PortingOrderEndUserParam
 from ...types.porting_order_create_response import PortingOrderCreateResponse
 from ...types.porting_order_documents_param import PortingOrderDocumentsParam
@@ -374,7 +373,7 @@ class PortingOrdersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[PortingOrder]:
+    ) -> PortingOrderListResponse:
         """
         Returns a list of your porting order.
 
@@ -405,9 +404,8 @@ class PortingOrdersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return self._get(
             "/porting_orders",
-            page=SyncDefaultPagination[PortingOrder],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -423,7 +421,7 @@ class PortingOrdersResource(SyncAPIResource):
                     porting_order_list_params.PortingOrderListParams,
                 ),
             ),
-            model=PortingOrder,
+            cast_to=PortingOrderListResponse,
         )
 
     def delete(
@@ -570,7 +568,7 @@ class PortingOrdersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[PortingOrderRetrieveRequirementsResponse]:
+    ) -> PortingOrderRetrieveRequirementsResponse:
         """
         Returns a list of all requirements based on country/number type for this porting
         order.
@@ -589,9 +587,8 @@ class PortingOrdersResource(SyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return self._get_api_list(
+        return self._get(
             f"/porting_orders/{id}/requirements",
-            page=SyncDefaultPagination[PortingOrderRetrieveRequirementsResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -601,7 +598,7 @@ class PortingOrdersResource(SyncAPIResource):
                     {"page": page}, porting_order_retrieve_requirements_params.PortingOrderRetrieveRequirementsParams
                 ),
             ),
-            model=PortingOrderRetrieveRequirementsResponse,
+            cast_to=PortingOrderRetrieveRequirementsResponse,
         )
 
     def retrieve_sub_request(
@@ -868,7 +865,7 @@ class AsyncPortingOrdersResource(AsyncAPIResource):
             cast_to=PortingOrderUpdateResponse,
         )
 
-    def list(
+    async def list(
         self,
         *,
         filter: porting_order_list_params.Filter | Omit = omit,
@@ -881,7 +878,7 @@ class AsyncPortingOrdersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[PortingOrder, AsyncDefaultPagination[PortingOrder]]:
+    ) -> PortingOrderListResponse:
         """
         Returns a list of your porting order.
 
@@ -912,15 +909,14 @@ class AsyncPortingOrdersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return await self._get(
             "/porting_orders",
-            page=AsyncDefaultPagination[PortingOrder],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
                         "filter": filter,
                         "include_phone_numbers": include_phone_numbers,
@@ -930,7 +926,7 @@ class AsyncPortingOrdersResource(AsyncAPIResource):
                     porting_order_list_params.PortingOrderListParams,
                 ),
             ),
-            model=PortingOrder,
+            cast_to=PortingOrderListResponse,
         )
 
     async def delete(
@@ -1066,7 +1062,7 @@ class AsyncPortingOrdersResource(AsyncAPIResource):
             cast_to=AsyncBinaryAPIResponse,
         )
 
-    def retrieve_requirements(
+    async def retrieve_requirements(
         self,
         id: str,
         *,
@@ -1077,9 +1073,7 @@ class AsyncPortingOrdersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[
-        PortingOrderRetrieveRequirementsResponse, AsyncDefaultPagination[PortingOrderRetrieveRequirementsResponse]
-    ]:
+    ) -> PortingOrderRetrieveRequirementsResponse:
         """
         Returns a list of all requirements based on country/number type for this porting
         order.
@@ -1098,19 +1092,18 @@ class AsyncPortingOrdersResource(AsyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return self._get_api_list(
+        return await self._get(
             f"/porting_orders/{id}/requirements",
-            page=AsyncDefaultPagination[PortingOrderRetrieveRequirementsResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {"page": page}, porting_order_retrieve_requirements_params.PortingOrderRetrieveRequirementsParams
                 ),
             ),
-            model=PortingOrderRetrieveRequirementsResponse,
+            cast_to=PortingOrderRetrieveRequirementsResponse,
         )
 
     async def retrieve_sub_request(

@@ -9,9 +9,8 @@ import pytest
 
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
-from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
 from telnyx.types.sim_cards import (
-    SimCardAction,
+    ActionListResponse,
     ActionEnableResponse,
     ActionDisableResponse,
     ActionRetrieveResponse,
@@ -74,7 +73,7 @@ class TestActions:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         action = client.sim_cards.actions.list()
-        assert_matches_type(SyncDefaultPagination[SimCardAction], action, path=["response"])
+        assert_matches_type(ActionListResponse, action, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -91,7 +90,7 @@ class TestActions:
                 "size": 1,
             },
         )
-        assert_matches_type(SyncDefaultPagination[SimCardAction], action, path=["response"])
+        assert_matches_type(ActionListResponse, action, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -101,7 +100,7 @@ class TestActions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         action = response.parse()
-        assert_matches_type(SyncDefaultPagination[SimCardAction], action, path=["response"])
+        assert_matches_type(ActionListResponse, action, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -111,7 +110,7 @@ class TestActions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             action = response.parse()
-            assert_matches_type(SyncDefaultPagination[SimCardAction], action, path=["response"])
+            assert_matches_type(ActionListResponse, action, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -456,7 +455,7 @@ class TestAsyncActions:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         action = await async_client.sim_cards.actions.list()
-        assert_matches_type(AsyncDefaultPagination[SimCardAction], action, path=["response"])
+        assert_matches_type(ActionListResponse, action, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -473,7 +472,7 @@ class TestAsyncActions:
                 "size": 1,
             },
         )
-        assert_matches_type(AsyncDefaultPagination[SimCardAction], action, path=["response"])
+        assert_matches_type(ActionListResponse, action, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -483,7 +482,7 @@ class TestAsyncActions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         action = await response.parse()
-        assert_matches_type(AsyncDefaultPagination[SimCardAction], action, path=["response"])
+        assert_matches_type(ActionListResponse, action, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -493,7 +492,7 @@ class TestAsyncActions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             action = await response.parse()
-            assert_matches_type(AsyncDefaultPagination[SimCardAction], action, path=["response"])
+            assert_matches_type(ActionListResponse, action, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

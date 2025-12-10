@@ -15,8 +15,7 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
-from .._base_client import AsyncPaginator, make_request_options
+from .._base_client import make_request_options
 from ..types.wireguard_interface_list_response import WireguardInterfaceListResponse
 from ..types.wireguard_interface_create_response import WireguardInterfaceCreateResponse
 from ..types.wireguard_interface_delete_response import WireguardInterfaceDeleteResponse
@@ -48,10 +47,10 @@ class WireguardInterfacesResource(SyncAPIResource):
     def create(
         self,
         *,
+        network_id: str,
         region_code: str,
         enable_sip_trunking: bool | Omit = omit,
         name: str | Omit = omit,
-        network_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -65,13 +64,13 @@ class WireguardInterfacesResource(SyncAPIResource):
         can be created.
 
         Args:
+          network_id: The id of the network associated with the interface.
+
           region_code: The region the interface should be deployed to.
 
           enable_sip_trunking: Enable SIP traffic forwarding over VPN interface.
 
           name: A user specified name for the interface.
-
-          network_id: The id of the network associated with the interface.
 
           extra_headers: Send extra headers
 
@@ -85,10 +84,10 @@ class WireguardInterfacesResource(SyncAPIResource):
             "/wireguard_interfaces",
             body=maybe_transform(
                 {
+                    "network_id": network_id,
                     "region_code": region_code,
                     "enable_sip_trunking": enable_sip_trunking,
                     "name": name,
-                    "network_id": network_id,
                 },
                 wireguard_interface_create_params.WireguardInterfaceCreateParams,
             ),
@@ -142,7 +141,7 @@ class WireguardInterfacesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[WireguardInterfaceListResponse]:
+    ) -> WireguardInterfaceListResponse:
         """
         List all WireGuard Interfaces.
 
@@ -160,9 +159,8 @@ class WireguardInterfacesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return self._get(
             "/wireguard_interfaces",
-            page=SyncDefaultPagination[WireguardInterfaceListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -176,7 +174,7 @@ class WireguardInterfacesResource(SyncAPIResource):
                     wireguard_interface_list_params.WireguardInterfaceListParams,
                 ),
             ),
-            model=WireguardInterfaceListResponse,
+            cast_to=WireguardInterfaceListResponse,
         )
 
     def delete(
@@ -236,10 +234,10 @@ class AsyncWireguardInterfacesResource(AsyncAPIResource):
     async def create(
         self,
         *,
+        network_id: str,
         region_code: str,
         enable_sip_trunking: bool | Omit = omit,
         name: str | Omit = omit,
-        network_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -253,13 +251,13 @@ class AsyncWireguardInterfacesResource(AsyncAPIResource):
         can be created.
 
         Args:
+          network_id: The id of the network associated with the interface.
+
           region_code: The region the interface should be deployed to.
 
           enable_sip_trunking: Enable SIP traffic forwarding over VPN interface.
 
           name: A user specified name for the interface.
-
-          network_id: The id of the network associated with the interface.
 
           extra_headers: Send extra headers
 
@@ -273,10 +271,10 @@ class AsyncWireguardInterfacesResource(AsyncAPIResource):
             "/wireguard_interfaces",
             body=await async_maybe_transform(
                 {
+                    "network_id": network_id,
                     "region_code": region_code,
                     "enable_sip_trunking": enable_sip_trunking,
                     "name": name,
-                    "network_id": network_id,
                 },
                 wireguard_interface_create_params.WireguardInterfaceCreateParams,
             ),
@@ -319,7 +317,7 @@ class AsyncWireguardInterfacesResource(AsyncAPIResource):
             cast_to=WireguardInterfaceRetrieveResponse,
         )
 
-    def list(
+    async def list(
         self,
         *,
         filter: wireguard_interface_list_params.Filter | Omit = omit,
@@ -330,7 +328,7 @@ class AsyncWireguardInterfacesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[WireguardInterfaceListResponse, AsyncDefaultPagination[WireguardInterfaceListResponse]]:
+    ) -> WireguardInterfaceListResponse:
         """
         List all WireGuard Interfaces.
 
@@ -348,15 +346,14 @@ class AsyncWireguardInterfacesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return await self._get(
             "/wireguard_interfaces",
-            page=AsyncDefaultPagination[WireguardInterfaceListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
                         "filter": filter,
                         "page": page,
@@ -364,7 +361,7 @@ class AsyncWireguardInterfacesResource(AsyncAPIResource):
                     wireguard_interface_list_params.WireguardInterfaceListParams,
                 ),
             ),
-            model=WireguardInterfaceListResponse,
+            cast_to=WireguardInterfaceListResponse,
         )
 
     async def delete(

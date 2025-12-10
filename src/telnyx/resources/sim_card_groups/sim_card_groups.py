@@ -28,8 +28,7 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
-from ..._base_client import AsyncPaginator, make_request_options
+from ..._base_client import make_request_options
 from ...types.sim_card_group_list_response import SimCardGroupListResponse
 from ...types.sim_card_group_create_response import SimCardGroupCreateResponse
 from ...types.sim_card_group_delete_response import SimCardGroupDeleteResponse
@@ -208,7 +207,7 @@ class SimCardGroupsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[SimCardGroupListResponse]:
+    ) -> SimCardGroupListResponse:
         """
         Get all SIM card groups belonging to the user that match the given filters.
 
@@ -231,9 +230,8 @@ class SimCardGroupsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return self._get(
             "/sim_card_groups",
-            page=SyncDefaultFlatPagination[SimCardGroupListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -250,7 +248,7 @@ class SimCardGroupsResource(SyncAPIResource):
                     sim_card_group_list_params.SimCardGroupListParams,
                 ),
             ),
-            model=SimCardGroupListResponse,
+            cast_to=SimCardGroupListResponse,
         )
 
     def delete(
@@ -442,7 +440,7 @@ class AsyncSimCardGroupsResource(AsyncAPIResource):
             cast_to=SimCardGroupUpdateResponse,
         )
 
-    def list(
+    async def list(
         self,
         *,
         filter_name: str | Omit = omit,
@@ -456,7 +454,7 @@ class AsyncSimCardGroupsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[SimCardGroupListResponse, AsyncDefaultFlatPagination[SimCardGroupListResponse]]:
+    ) -> SimCardGroupListResponse:
         """
         Get all SIM card groups belonging to the user that match the given filters.
 
@@ -479,15 +477,14 @@ class AsyncSimCardGroupsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return await self._get(
             "/sim_card_groups",
-            page=AsyncDefaultFlatPagination[SimCardGroupListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
                         "filter_name": filter_name,
                         "filter_private_wireless_gateway_id": filter_private_wireless_gateway_id,
@@ -498,7 +495,7 @@ class AsyncSimCardGroupsResource(AsyncAPIResource):
                     sim_card_group_list_params.SimCardGroupListParams,
                 ),
             ),
-            model=SimCardGroupListResponse,
+            cast_to=SimCardGroupListResponse,
         )
 
     async def delete(

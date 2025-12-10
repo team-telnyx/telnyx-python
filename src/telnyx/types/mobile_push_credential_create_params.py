@@ -3,25 +3,12 @@
 from __future__ import annotations
 
 from typing import Dict, Union
-from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
-from .._utils import PropertyInfo
-
-__all__ = [
-    "MobilePushCredentialCreateParams",
-    "CreateMobilePushCredentialRequest",
-    "CreateMobilePushCredentialRequestIos",
-    "CreateMobilePushCredentialRequestAndroid",
-]
+__all__ = ["MobilePushCredentialCreateParams", "CreateIosPushCredentialRequest", "CreateAndroidPushCredentialRequest"]
 
 
-class MobilePushCredentialCreateParams(TypedDict, total=False):
-    create_mobile_push_credential_request: Required[
-        Annotated[CreateMobilePushCredentialRequest, PropertyInfo(alias="createMobilePushCredentialRequest")]
-    ]
-
-
-class CreateMobilePushCredentialRequestIos(TypedDict, total=False):
+class CreateIosPushCredentialRequest(TypedDict, total=False):
     alias: Required[str]
     """Alias to uniquely identify the credential"""
 
@@ -35,7 +22,7 @@ class CreateMobilePushCredentialRequestIos(TypedDict, total=False):
     """Type of mobile push credential. Should be <code>ios</code> here"""
 
 
-class CreateMobilePushCredentialRequestAndroid(TypedDict, total=False):
+class CreateAndroidPushCredentialRequest(TypedDict, total=False):
     alias: Required[str]
     """Alias to uniquely identify the credential"""
 
@@ -46,6 +33,4 @@ class CreateMobilePushCredentialRequestAndroid(TypedDict, total=False):
     """Type of mobile push credential. Should be <code>android</code> here"""
 
 
-CreateMobilePushCredentialRequest: TypeAlias = Union[
-    CreateMobilePushCredentialRequestIos, CreateMobilePushCredentialRequestAndroid
-]
+MobilePushCredentialCreateParams: TypeAlias = Union[CreateIosPushCredentialRequest, CreateAndroidPushCredentialRequest]

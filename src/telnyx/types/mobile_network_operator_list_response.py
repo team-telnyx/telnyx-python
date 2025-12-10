@@ -1,13 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import List, Optional
 
 from .._models import BaseModel
+from .pagination_meta import PaginationMeta
 
-__all__ = ["MobileNetworkOperatorListResponse"]
+__all__ = ["MobileNetworkOperatorListResponse", "Data"]
 
 
-class MobileNetworkOperatorListResponse(BaseModel):
+class Data(BaseModel):
     id: Optional[str] = None
     """Identifies the resource."""
 
@@ -48,3 +49,9 @@ class MobileNetworkOperatorListResponse(BaseModel):
     The TADIG code is a unique identifier for network operators in GSM mobile
     networks.
     """
+
+
+class MobileNetworkOperatorListResponse(BaseModel):
+    data: Optional[List[Data]] = None
+
+    meta: Optional[PaginationMeta] = None

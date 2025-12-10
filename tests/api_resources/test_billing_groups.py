@@ -10,13 +10,12 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types import (
-    BillingGroup,
+    BillingGroupListResponse,
     BillingGroupCreateResponse,
     BillingGroupDeleteResponse,
     BillingGroupUpdateResponse,
     BillingGroupRetrieveResponse,
 )
-from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -157,16 +156,18 @@ class TestBillingGroups:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         billing_group = client.billing_groups.list()
-        assert_matches_type(SyncDefaultFlatPagination[BillingGroup], billing_group, path=["response"])
+        assert_matches_type(BillingGroupListResponse, billing_group, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         billing_group = client.billing_groups.list(
-            page_number=0,
-            page_size=0,
+            page={
+                "number": 1,
+                "size": 1,
+            },
         )
-        assert_matches_type(SyncDefaultFlatPagination[BillingGroup], billing_group, path=["response"])
+        assert_matches_type(BillingGroupListResponse, billing_group, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -176,7 +177,7 @@ class TestBillingGroups:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         billing_group = response.parse()
-        assert_matches_type(SyncDefaultFlatPagination[BillingGroup], billing_group, path=["response"])
+        assert_matches_type(BillingGroupListResponse, billing_group, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -186,7 +187,7 @@ class TestBillingGroups:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             billing_group = response.parse()
-            assert_matches_type(SyncDefaultFlatPagination[BillingGroup], billing_group, path=["response"])
+            assert_matches_type(BillingGroupListResponse, billing_group, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -371,16 +372,18 @@ class TestAsyncBillingGroups:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         billing_group = await async_client.billing_groups.list()
-        assert_matches_type(AsyncDefaultFlatPagination[BillingGroup], billing_group, path=["response"])
+        assert_matches_type(BillingGroupListResponse, billing_group, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         billing_group = await async_client.billing_groups.list(
-            page_number=0,
-            page_size=0,
+            page={
+                "number": 1,
+                "size": 1,
+            },
         )
-        assert_matches_type(AsyncDefaultFlatPagination[BillingGroup], billing_group, path=["response"])
+        assert_matches_type(BillingGroupListResponse, billing_group, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -390,7 +393,7 @@ class TestAsyncBillingGroups:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         billing_group = await response.parse()
-        assert_matches_type(AsyncDefaultFlatPagination[BillingGroup], billing_group, path=["response"])
+        assert_matches_type(BillingGroupListResponse, billing_group, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -400,7 +403,7 @@ class TestAsyncBillingGroups:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             billing_group = await response.parse()
-            assert_matches_type(AsyncDefaultFlatPagination[BillingGroup], billing_group, path=["response"])
+            assert_matches_type(BillingGroupListResponse, billing_group, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

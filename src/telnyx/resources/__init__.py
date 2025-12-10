@@ -329,6 +329,14 @@ from .audit_events import (
     AuditEventsResourceWithStreamingResponse,
     AsyncAuditEventsResourceWithStreamingResponse,
 )
+from .number_10dlc import (
+    Number10dlcResource,
+    AsyncNumber10dlcResource,
+    Number10dlcResourceWithRawResponse,
+    AsyncNumber10dlcResourceWithRawResponse,
+    Number10dlcResourceWithStreamingResponse,
+    AsyncNumber10dlcResourceWithStreamingResponse,
+)
 from .oauth_grants import (
     OAuthGrantsResource,
     AsyncOAuthGrantsResource,
@@ -488,14 +496,6 @@ from .global_ip_usage import (
     AsyncGlobalIPUsageResourceWithRawResponse,
     GlobalIPUsageResourceWithStreamingResponse,
     AsyncGlobalIPUsageResourceWithStreamingResponse,
-)
-from .messaging_10dlc import (
-    Messaging10dlcResource,
-    AsyncMessaging10dlcResource,
-    Messaging10dlcResourceWithRawResponse,
-    AsyncMessaging10dlcResourceWithRawResponse,
-    Messaging10dlcResourceWithStreamingResponse,
-    AsyncMessaging10dlcResourceWithStreamingResponse,
 )
 from .room_recordings import (
     RoomRecordingsResource,
@@ -2072,10 +2072,10 @@ __all__ = [
     "AsyncMobileVoiceConnectionsResourceWithRawResponse",
     "MobileVoiceConnectionsResourceWithStreamingResponse",
     "AsyncMobileVoiceConnectionsResourceWithStreamingResponse",
-    "Messaging10dlcResource",
-    "AsyncMessaging10dlcResource",
-    "Messaging10dlcResourceWithRawResponse",
-    "AsyncMessaging10dlcResourceWithRawResponse",
-    "Messaging10dlcResourceWithStreamingResponse",
-    "AsyncMessaging10dlcResourceWithStreamingResponse",
+    "Number10dlcResource",
+    "AsyncNumber10dlcResource",
+    "Number10dlcResourceWithRawResponse",
+    "AsyncNumber10dlcResourceWithRawResponse",
+    "Number10dlcResourceWithStreamingResponse",
+    "AsyncNumber10dlcResourceWithStreamingResponse",
 ]

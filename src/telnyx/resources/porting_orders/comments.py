@@ -14,8 +14,7 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...pagination import SyncDefaultPagination, AsyncDefaultPagination
-from ..._base_client import AsyncPaginator, make_request_options
+from ..._base_client import make_request_options
 from ...types.porting_orders import comment_list_params, comment_create_params
 from ...types.porting_orders.comment_list_response import CommentListResponse
 from ...types.porting_orders.comment_create_response import CommentCreateResponse
@@ -89,7 +88,7 @@ class CommentsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[CommentListResponse]:
+    ) -> CommentListResponse:
         """
         Returns a list of all comments of a porting order.
 
@@ -107,9 +106,8 @@ class CommentsResource(SyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return self._get_api_list(
+        return self._get(
             f"/porting_orders/{id}/comments",
-            page=SyncDefaultPagination[CommentListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -117,7 +115,7 @@ class CommentsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform({"page": page}, comment_list_params.CommentListParams),
             ),
-            model=CommentListResponse,
+            cast_to=CommentListResponse,
         )
 
 
@@ -176,7 +174,7 @@ class AsyncCommentsResource(AsyncAPIResource):
             cast_to=CommentCreateResponse,
         )
 
-    def list(
+    async def list(
         self,
         id: str,
         *,
@@ -187,7 +185,7 @@ class AsyncCommentsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[CommentListResponse, AsyncDefaultPagination[CommentListResponse]]:
+    ) -> CommentListResponse:
         """
         Returns a list of all comments of a porting order.
 
@@ -205,17 +203,16 @@ class AsyncCommentsResource(AsyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return self._get_api_list(
+        return await self._get(
             f"/porting_orders/{id}/comments",
-            page=AsyncDefaultPagination[CommentListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"page": page}, comment_list_params.CommentListParams),
+                query=await async_maybe_transform({"page": page}, comment_list_params.CommentListParams),
             ),
-            model=CommentListResponse,
+            cast_to=CommentListResponse,
         )
 
 

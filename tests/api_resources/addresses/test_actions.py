@@ -24,7 +24,7 @@ class TestActions:
     @parametrize
     def test_method_accept_suggestions(self, client: Telnyx) -> None:
         action = client.addresses.actions.accept_suggestions(
-            address_uuid="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            path_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(ActionAcceptSuggestionsResponse, action, path=["response"])
 
@@ -32,8 +32,8 @@ class TestActions:
     @parametrize
     def test_method_accept_suggestions_with_all_params(self, client: Telnyx) -> None:
         action = client.addresses.actions.accept_suggestions(
-            address_uuid="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            id="id",
+            path_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            body_id="id",
         )
         assert_matches_type(ActionAcceptSuggestionsResponse, action, path=["response"])
 
@@ -41,7 +41,7 @@ class TestActions:
     @parametrize
     def test_raw_response_accept_suggestions(self, client: Telnyx) -> None:
         response = client.addresses.actions.with_raw_response.accept_suggestions(
-            address_uuid="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            path_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
 
         assert response.is_closed is True
@@ -53,7 +53,7 @@ class TestActions:
     @parametrize
     def test_streaming_response_accept_suggestions(self, client: Telnyx) -> None:
         with client.addresses.actions.with_streaming_response.accept_suggestions(
-            address_uuid="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            path_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -66,9 +66,9 @@ class TestActions:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_accept_suggestions(self, client: Telnyx) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `address_uuid` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_id` but received ''"):
             client.addresses.actions.with_raw_response.accept_suggestions(
-                address_uuid="",
+                path_id="",
             )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -134,7 +134,7 @@ class TestAsyncActions:
     @parametrize
     async def test_method_accept_suggestions(self, async_client: AsyncTelnyx) -> None:
         action = await async_client.addresses.actions.accept_suggestions(
-            address_uuid="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            path_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(ActionAcceptSuggestionsResponse, action, path=["response"])
 
@@ -142,8 +142,8 @@ class TestAsyncActions:
     @parametrize
     async def test_method_accept_suggestions_with_all_params(self, async_client: AsyncTelnyx) -> None:
         action = await async_client.addresses.actions.accept_suggestions(
-            address_uuid="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            id="id",
+            path_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            body_id="id",
         )
         assert_matches_type(ActionAcceptSuggestionsResponse, action, path=["response"])
 
@@ -151,7 +151,7 @@ class TestAsyncActions:
     @parametrize
     async def test_raw_response_accept_suggestions(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.addresses.actions.with_raw_response.accept_suggestions(
-            address_uuid="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            path_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
 
         assert response.is_closed is True
@@ -163,7 +163,7 @@ class TestAsyncActions:
     @parametrize
     async def test_streaming_response_accept_suggestions(self, async_client: AsyncTelnyx) -> None:
         async with async_client.addresses.actions.with_streaming_response.accept_suggestions(
-            address_uuid="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            path_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -176,9 +176,9 @@ class TestAsyncActions:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_accept_suggestions(self, async_client: AsyncTelnyx) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `address_uuid` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_id` but received ''"):
             await async_client.addresses.actions.with_raw_response.accept_suggestions(
-                address_uuid="",
+                path_id="",
             )
 
     @pytest.mark.skip(reason="Prism tests are disabled")

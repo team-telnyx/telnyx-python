@@ -22,10 +22,9 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
-from .._base_client import AsyncPaginator, make_request_options
-from ..types.call_control_application import CallControlApplication
+from .._base_client import make_request_options
 from ..types.call_control_application_inbound_param import CallControlApplicationInboundParam
+from ..types.call_control_application_list_response import CallControlApplicationListResponse
 from ..types.call_control_application_outbound_param import CallControlApplicationOutboundParam
 from ..types.call_control_application_create_response import CallControlApplicationCreateResponse
 from ..types.call_control_application_delete_response import CallControlApplicationDeleteResponse
@@ -321,7 +320,7 @@ class CallControlApplicationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[CallControlApplication]:
+    ) -> CallControlApplicationListResponse:
         """
         Return a list of call control applications.
 
@@ -359,9 +358,8 @@ class CallControlApplicationsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return self._get(
             "/call_control_applications",
-            page=SyncDefaultPagination[CallControlApplication],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -376,7 +374,7 @@ class CallControlApplicationsResource(SyncAPIResource):
                     call_control_application_list_params.CallControlApplicationListParams,
                 ),
             ),
-            model=CallControlApplication,
+            cast_to=CallControlApplicationListResponse,
         )
 
     def delete(
@@ -687,7 +685,7 @@ class AsyncCallControlApplicationsResource(AsyncAPIResource):
             cast_to=CallControlApplicationUpdateResponse,
         )
 
-    def list(
+    async def list(
         self,
         *,
         filter: call_control_application_list_params.Filter | Omit = omit,
@@ -699,7 +697,7 @@ class AsyncCallControlApplicationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[CallControlApplication, AsyncDefaultPagination[CallControlApplication]]:
+    ) -> CallControlApplicationListResponse:
         """
         Return a list of call control applications.
 
@@ -737,15 +735,14 @@ class AsyncCallControlApplicationsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return await self._get(
             "/call_control_applications",
-            page=AsyncDefaultPagination[CallControlApplication],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
                         "filter": filter,
                         "page": page,
@@ -754,7 +751,7 @@ class AsyncCallControlApplicationsResource(AsyncAPIResource):
                     call_control_application_list_params.CallControlApplicationListParams,
                 ),
             ),
-            model=CallControlApplication,
+            cast_to=CallControlApplicationListResponse,
         )
 
     async def delete(

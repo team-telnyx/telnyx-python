@@ -12,7 +12,7 @@ from respx import MockRouter
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types import (
-    DocServiceDocument,
+    DocumentListResponse,
     DocumentDeleteResponse,
     DocumentUpdateResponse,
     DocumentUploadResponse,
@@ -27,7 +27,6 @@ from telnyx._response import (
     StreamedBinaryAPIResponse,
     AsyncStreamedBinaryAPIResponse,
 )
-from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -81,7 +80,7 @@ class TestDocuments:
     @parametrize
     def test_method_update(self, client: Telnyx) -> None:
         document = client.documents.update(
-            document_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+            id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
         )
         assert_matches_type(DocumentUpdateResponse, document, path=["response"])
 
@@ -89,7 +88,7 @@ class TestDocuments:
     @parametrize
     def test_method_update_with_all_params(self, client: Telnyx) -> None:
         document = client.documents.update(
-            document_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+            id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
             customer_reference="MY REF 001",
             filename="test-document.pdf",
         )
@@ -99,7 +98,7 @@ class TestDocuments:
     @parametrize
     def test_raw_response_update(self, client: Telnyx) -> None:
         response = client.documents.with_raw_response.update(
-            document_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+            id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
         )
 
         assert response.is_closed is True
@@ -111,7 +110,7 @@ class TestDocuments:
     @parametrize
     def test_streaming_response_update(self, client: Telnyx) -> None:
         with client.documents.with_streaming_response.update(
-            document_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+            id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -124,16 +123,16 @@ class TestDocuments:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_update(self, client: Telnyx) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `document_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.documents.with_raw_response.update(
-                document_id="",
+                id="",
             )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         document = client.documents.list()
-        assert_matches_type(SyncDefaultPagination[DocServiceDocument], document, path=["response"])
+        assert_matches_type(DocumentListResponse, document, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -156,7 +155,7 @@ class TestDocuments:
             },
             sort=["filename"],
         )
-        assert_matches_type(SyncDefaultPagination[DocServiceDocument], document, path=["response"])
+        assert_matches_type(DocumentListResponse, document, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -166,7 +165,7 @@ class TestDocuments:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         document = response.parse()
-        assert_matches_type(SyncDefaultPagination[DocServiceDocument], document, path=["response"])
+        assert_matches_type(DocumentListResponse, document, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -176,7 +175,7 @@ class TestDocuments:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             document = response.parse()
-            assert_matches_type(SyncDefaultPagination[DocServiceDocument], document, path=["response"])
+            assert_matches_type(DocumentListResponse, document, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -322,29 +321,27 @@ class TestDocuments:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_method_upload(self, client: Telnyx) -> None:
+    def test_method_upload_overload_1(self, client: Telnyx) -> None:
         document = client.documents.upload(
-            document={"url": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"},
+            url="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
         )
         assert_matches_type(DocumentUploadResponse, document, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_method_upload_with_all_params(self, client: Telnyx) -> None:
+    def test_method_upload_with_all_params_overload_1(self, client: Telnyx) -> None:
         document = client.documents.upload(
-            document={
-                "url": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
-                "customer_reference": "MY REF 001",
-                "filename": "test-document.pdf",
-            },
+            url="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+            customer_reference="MY REF 001",
+            filename="test-document.pdf",
         )
         assert_matches_type(DocumentUploadResponse, document, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_raw_response_upload(self, client: Telnyx) -> None:
+    def test_raw_response_upload_overload_1(self, client: Telnyx) -> None:
         response = client.documents.with_raw_response.upload(
-            document={"url": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"},
+            url="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
         )
 
         assert response.is_closed is True
@@ -354,9 +351,9 @@ class TestDocuments:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_streaming_response_upload(self, client: Telnyx) -> None:
+    def test_streaming_response_upload_overload_1(self, client: Telnyx) -> None:
         with client.documents.with_streaming_response.upload(
-            document={"url": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"},
+            url="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -368,29 +365,71 @@ class TestDocuments:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_method_upload_json(self, client: Telnyx) -> None:
+    def test_method_upload_overload_2(self, client: Telnyx) -> None:
+        document = client.documents.upload(
+            file="ZXhhbXBsZSBvZiBlbmNvZGVkIGNvbnRlbnQ=",
+        )
+        assert_matches_type(DocumentUploadResponse, document, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_method_upload_with_all_params_overload_2(self, client: Telnyx) -> None:
+        document = client.documents.upload(
+            file="ZXhhbXBsZSBvZiBlbmNvZGVkIGNvbnRlbnQ=",
+            customer_reference="MY REF 001",
+            filename="test-document.pdf",
+        )
+        assert_matches_type(DocumentUploadResponse, document, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_raw_response_upload_overload_2(self, client: Telnyx) -> None:
+        response = client.documents.with_raw_response.upload(
+            file="ZXhhbXBsZSBvZiBlbmNvZGVkIGNvbnRlbnQ=",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        document = response.parse()
+        assert_matches_type(DocumentUploadResponse, document, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_streaming_response_upload_overload_2(self, client: Telnyx) -> None:
+        with client.documents.with_streaming_response.upload(
+            file="ZXhhbXBsZSBvZiBlbmNvZGVkIGNvbnRlbnQ=",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            document = response.parse()
+            assert_matches_type(DocumentUploadResponse, document, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_method_upload_json_overload_1(self, client: Telnyx) -> None:
         document = client.documents.upload_json(
-            document={"url": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"},
+            url="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
         )
         assert_matches_type(DocumentUploadJsonResponse, document, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_method_upload_json_with_all_params(self, client: Telnyx) -> None:
+    def test_method_upload_json_with_all_params_overload_1(self, client: Telnyx) -> None:
         document = client.documents.upload_json(
-            document={
-                "url": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
-                "customer_reference": "MY REF 001",
-                "filename": "test-document.pdf",
-            },
+            url="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+            customer_reference="MY REF 001",
+            filename="test-document.pdf",
         )
         assert_matches_type(DocumentUploadJsonResponse, document, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_raw_response_upload_json(self, client: Telnyx) -> None:
+    def test_raw_response_upload_json_overload_1(self, client: Telnyx) -> None:
         response = client.documents.with_raw_response.upload_json(
-            document={"url": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"},
+            url="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
         )
 
         assert response.is_closed is True
@@ -400,9 +439,53 @@ class TestDocuments:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_streaming_response_upload_json(self, client: Telnyx) -> None:
+    def test_streaming_response_upload_json_overload_1(self, client: Telnyx) -> None:
         with client.documents.with_streaming_response.upload_json(
-            document={"url": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"},
+            url="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            document = response.parse()
+            assert_matches_type(DocumentUploadJsonResponse, document, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_method_upload_json_overload_2(self, client: Telnyx) -> None:
+        document = client.documents.upload_json(
+            file="ZXhhbXBsZSBvZiBlbmNvZGVkIGNvbnRlbnQ=",
+        )
+        assert_matches_type(DocumentUploadJsonResponse, document, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_method_upload_json_with_all_params_overload_2(self, client: Telnyx) -> None:
+        document = client.documents.upload_json(
+            file="ZXhhbXBsZSBvZiBlbmNvZGVkIGNvbnRlbnQ=",
+            customer_reference="MY REF 001",
+            filename="test-document.pdf",
+        )
+        assert_matches_type(DocumentUploadJsonResponse, document, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_raw_response_upload_json_overload_2(self, client: Telnyx) -> None:
+        response = client.documents.with_raw_response.upload_json(
+            file="ZXhhbXBsZSBvZiBlbmNvZGVkIGNvbnRlbnQ=",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        document = response.parse()
+        assert_matches_type(DocumentUploadJsonResponse, document, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_streaming_response_upload_json_overload_2(self, client: Telnyx) -> None:
+        with client.documents.with_streaming_response.upload_json(
+            file="ZXhhbXBsZSBvZiBlbmNvZGVkIGNvbnRlbnQ=",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -464,7 +547,7 @@ class TestAsyncDocuments:
     @parametrize
     async def test_method_update(self, async_client: AsyncTelnyx) -> None:
         document = await async_client.documents.update(
-            document_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+            id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
         )
         assert_matches_type(DocumentUpdateResponse, document, path=["response"])
 
@@ -472,7 +555,7 @@ class TestAsyncDocuments:
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncTelnyx) -> None:
         document = await async_client.documents.update(
-            document_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+            id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
             customer_reference="MY REF 001",
             filename="test-document.pdf",
         )
@@ -482,7 +565,7 @@ class TestAsyncDocuments:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.documents.with_raw_response.update(
-            document_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+            id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
         )
 
         assert response.is_closed is True
@@ -494,7 +577,7 @@ class TestAsyncDocuments:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncTelnyx) -> None:
         async with async_client.documents.with_streaming_response.update(
-            document_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+            id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -507,16 +590,16 @@ class TestAsyncDocuments:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_update(self, async_client: AsyncTelnyx) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `document_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.documents.with_raw_response.update(
-                document_id="",
+                id="",
             )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         document = await async_client.documents.list()
-        assert_matches_type(AsyncDefaultPagination[DocServiceDocument], document, path=["response"])
+        assert_matches_type(DocumentListResponse, document, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -539,7 +622,7 @@ class TestAsyncDocuments:
             },
             sort=["filename"],
         )
-        assert_matches_type(AsyncDefaultPagination[DocServiceDocument], document, path=["response"])
+        assert_matches_type(DocumentListResponse, document, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -549,7 +632,7 @@ class TestAsyncDocuments:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         document = await response.parse()
-        assert_matches_type(AsyncDefaultPagination[DocServiceDocument], document, path=["response"])
+        assert_matches_type(DocumentListResponse, document, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -559,7 +642,7 @@ class TestAsyncDocuments:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             document = await response.parse()
-            assert_matches_type(AsyncDefaultPagination[DocServiceDocument], document, path=["response"])
+            assert_matches_type(DocumentListResponse, document, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -705,29 +788,27 @@ class TestAsyncDocuments:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_method_upload(self, async_client: AsyncTelnyx) -> None:
+    async def test_method_upload_overload_1(self, async_client: AsyncTelnyx) -> None:
         document = await async_client.documents.upload(
-            document={"url": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"},
+            url="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
         )
         assert_matches_type(DocumentUploadResponse, document, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_method_upload_with_all_params(self, async_client: AsyncTelnyx) -> None:
+    async def test_method_upload_with_all_params_overload_1(self, async_client: AsyncTelnyx) -> None:
         document = await async_client.documents.upload(
-            document={
-                "url": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
-                "customer_reference": "MY REF 001",
-                "filename": "test-document.pdf",
-            },
+            url="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+            customer_reference="MY REF 001",
+            filename="test-document.pdf",
         )
         assert_matches_type(DocumentUploadResponse, document, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_raw_response_upload(self, async_client: AsyncTelnyx) -> None:
+    async def test_raw_response_upload_overload_1(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.documents.with_raw_response.upload(
-            document={"url": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"},
+            url="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
         )
 
         assert response.is_closed is True
@@ -737,9 +818,9 @@ class TestAsyncDocuments:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_streaming_response_upload(self, async_client: AsyncTelnyx) -> None:
+    async def test_streaming_response_upload_overload_1(self, async_client: AsyncTelnyx) -> None:
         async with async_client.documents.with_streaming_response.upload(
-            document={"url": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"},
+            url="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -751,29 +832,71 @@ class TestAsyncDocuments:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_method_upload_json(self, async_client: AsyncTelnyx) -> None:
+    async def test_method_upload_overload_2(self, async_client: AsyncTelnyx) -> None:
+        document = await async_client.documents.upload(
+            file="ZXhhbXBsZSBvZiBlbmNvZGVkIGNvbnRlbnQ=",
+        )
+        assert_matches_type(DocumentUploadResponse, document, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_method_upload_with_all_params_overload_2(self, async_client: AsyncTelnyx) -> None:
+        document = await async_client.documents.upload(
+            file="ZXhhbXBsZSBvZiBlbmNvZGVkIGNvbnRlbnQ=",
+            customer_reference="MY REF 001",
+            filename="test-document.pdf",
+        )
+        assert_matches_type(DocumentUploadResponse, document, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_raw_response_upload_overload_2(self, async_client: AsyncTelnyx) -> None:
+        response = await async_client.documents.with_raw_response.upload(
+            file="ZXhhbXBsZSBvZiBlbmNvZGVkIGNvbnRlbnQ=",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        document = await response.parse()
+        assert_matches_type(DocumentUploadResponse, document, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_streaming_response_upload_overload_2(self, async_client: AsyncTelnyx) -> None:
+        async with async_client.documents.with_streaming_response.upload(
+            file="ZXhhbXBsZSBvZiBlbmNvZGVkIGNvbnRlbnQ=",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            document = await response.parse()
+            assert_matches_type(DocumentUploadResponse, document, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_method_upload_json_overload_1(self, async_client: AsyncTelnyx) -> None:
         document = await async_client.documents.upload_json(
-            document={"url": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"},
+            url="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
         )
         assert_matches_type(DocumentUploadJsonResponse, document, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_method_upload_json_with_all_params(self, async_client: AsyncTelnyx) -> None:
+    async def test_method_upload_json_with_all_params_overload_1(self, async_client: AsyncTelnyx) -> None:
         document = await async_client.documents.upload_json(
-            document={
-                "url": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
-                "customer_reference": "MY REF 001",
-                "filename": "test-document.pdf",
-            },
+            url="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+            customer_reference="MY REF 001",
+            filename="test-document.pdf",
         )
         assert_matches_type(DocumentUploadJsonResponse, document, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_raw_response_upload_json(self, async_client: AsyncTelnyx) -> None:
+    async def test_raw_response_upload_json_overload_1(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.documents.with_raw_response.upload_json(
-            document={"url": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"},
+            url="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
         )
 
         assert response.is_closed is True
@@ -783,9 +906,53 @@ class TestAsyncDocuments:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_streaming_response_upload_json(self, async_client: AsyncTelnyx) -> None:
+    async def test_streaming_response_upload_json_overload_1(self, async_client: AsyncTelnyx) -> None:
         async with async_client.documents.with_streaming_response.upload_json(
-            document={"url": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"},
+            url="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            document = await response.parse()
+            assert_matches_type(DocumentUploadJsonResponse, document, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_method_upload_json_overload_2(self, async_client: AsyncTelnyx) -> None:
+        document = await async_client.documents.upload_json(
+            file="ZXhhbXBsZSBvZiBlbmNvZGVkIGNvbnRlbnQ=",
+        )
+        assert_matches_type(DocumentUploadJsonResponse, document, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_method_upload_json_with_all_params_overload_2(self, async_client: AsyncTelnyx) -> None:
+        document = await async_client.documents.upload_json(
+            file="ZXhhbXBsZSBvZiBlbmNvZGVkIGNvbnRlbnQ=",
+            customer_reference="MY REF 001",
+            filename="test-document.pdf",
+        )
+        assert_matches_type(DocumentUploadJsonResponse, document, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_raw_response_upload_json_overload_2(self, async_client: AsyncTelnyx) -> None:
+        response = await async_client.documents.with_raw_response.upload_json(
+            file="ZXhhbXBsZSBvZiBlbmNvZGVkIGNvbnRlbnQ=",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        document = await response.parse()
+        assert_matches_type(DocumentUploadJsonResponse, document, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_streaming_response_upload_json_overload_2(self, async_client: AsyncTelnyx) -> None:
+        async with async_client.documents.with_streaming_response.upload_json(
+            file="ZXhhbXBsZSBvZiBlbmNvZGVkIGNvbnRlbnQ=",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

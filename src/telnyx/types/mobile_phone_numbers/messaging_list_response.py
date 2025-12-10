@@ -1,16 +1,16 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
 from ..._models import BaseModel
 from ..shared.messaging_feature_set import MessagingFeatureSet
 
-__all__ = ["MessagingListResponse", "Features"]
+__all__ = ["MessagingListResponse", "Data", "DataFeatures", "Meta"]
 
 
-class Features(BaseModel):
+class DataFeatures(BaseModel):
     sms: Optional[MessagingFeatureSet] = None
     """The set of features available for a specific messaging use case (SMS or MMS).
 
@@ -19,7 +19,7 @@ class Features(BaseModel):
     """
 
 
-class MessagingListResponse(BaseModel):
+class Data(BaseModel):
     id: Optional[str] = None
     """Identifies the type of resource."""
 
@@ -29,7 +29,7 @@ class MessagingListResponse(BaseModel):
     created_at: Optional[datetime] = None
     """ISO 8601 formatted date indicating when the resource was created."""
 
-    features: Optional[Features] = None
+    features: Optional[DataFeatures] = None
 
     messaging_product: Optional[str] = None
     """The messaging product that the number is registered to use"""
@@ -51,3 +51,19 @@ class MessagingListResponse(BaseModel):
 
     updated_at: Optional[datetime] = None
     """ISO 8601 formatted date indicating when the resource was updated."""
+
+
+class Meta(BaseModel):
+    page_number: int
+
+    page_size: int
+
+    total_pages: int
+
+    total_results: int
+
+
+class MessagingListResponse(BaseModel):
+    data: Optional[List[Data]] = None
+
+    meta: Optional[Meta] = None

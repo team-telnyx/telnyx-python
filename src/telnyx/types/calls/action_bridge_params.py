@@ -10,7 +10,7 @@ __all__ = ["ActionBridgeParams"]
 
 
 class ActionBridgeParams(TypedDict, total=False):
-    call_control_id_to_bridge_with: Required[Annotated[str, PropertyInfo(alias="call_control_id")]]
+    body_call_control_id: Required[Annotated[str, PropertyInfo(alias="call_control_id")]]
     """
     The Call Control ID of the call you want to bridge with, can't be used together
     with queue parameter or video_room_id parameter.

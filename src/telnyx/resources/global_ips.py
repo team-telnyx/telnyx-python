@@ -17,8 +17,7 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
-from .._base_client import AsyncPaginator, make_request_options
+from .._base_client import make_request_options
 from ..types.global_ip_list_response import GlobalIPListResponse
 from ..types.global_ip_create_response import GlobalIPCreateResponse
 from ..types.global_ip_delete_response import GlobalIPDeleteResponse
@@ -137,7 +136,7 @@ class GlobalIPsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[GlobalIPListResponse]:
+    ) -> GlobalIPListResponse:
         """
         List all Global IPs.
 
@@ -153,9 +152,8 @@ class GlobalIPsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return self._get(
             "/global_ips",
-            page=SyncDefaultPagination[GlobalIPListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -163,7 +161,7 @@ class GlobalIPsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform({"page": page}, global_ip_list_params.GlobalIPListParams),
             ),
-            model=GlobalIPListResponse,
+            cast_to=GlobalIPListResponse,
         )
 
     def delete(
@@ -300,7 +298,7 @@ class AsyncGlobalIPsResource(AsyncAPIResource):
             cast_to=GlobalIPRetrieveResponse,
         )
 
-    def list(
+    async def list(
         self,
         *,
         page: global_ip_list_params.Page | Omit = omit,
@@ -310,7 +308,7 @@ class AsyncGlobalIPsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[GlobalIPListResponse, AsyncDefaultPagination[GlobalIPListResponse]]:
+    ) -> GlobalIPListResponse:
         """
         List all Global IPs.
 
@@ -326,17 +324,16 @@ class AsyncGlobalIPsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return await self._get(
             "/global_ips",
-            page=AsyncDefaultPagination[GlobalIPListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"page": page}, global_ip_list_params.GlobalIPListParams),
+                query=await async_maybe_transform({"page": page}, global_ip_list_params.GlobalIPListParams),
             ),
-            model=GlobalIPListResponse,
+            cast_to=GlobalIPListResponse,
         )
 
     async def delete(

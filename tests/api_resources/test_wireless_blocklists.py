@@ -10,13 +10,12 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types import (
-    WirelessBlocklist,
+    WirelessBlocklistListResponse,
     WirelessBlocklistCreateResponse,
     WirelessBlocklistDeleteResponse,
     WirelessBlocklistUpdateResponse,
     WirelessBlocklistRetrieveResponse,
 )
-from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -148,7 +147,7 @@ class TestWirelessBlocklists:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         wireless_blocklist = client.wireless_blocklists.list()
-        assert_matches_type(SyncDefaultFlatPagination[WirelessBlocklist], wireless_blocklist, path=["response"])
+        assert_matches_type(WirelessBlocklistListResponse, wireless_blocklist, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -160,7 +159,7 @@ class TestWirelessBlocklists:
             page_number=1,
             page_size=1,
         )
-        assert_matches_type(SyncDefaultFlatPagination[WirelessBlocklist], wireless_blocklist, path=["response"])
+        assert_matches_type(WirelessBlocklistListResponse, wireless_blocklist, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -170,7 +169,7 @@ class TestWirelessBlocklists:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         wireless_blocklist = response.parse()
-        assert_matches_type(SyncDefaultFlatPagination[WirelessBlocklist], wireless_blocklist, path=["response"])
+        assert_matches_type(WirelessBlocklistListResponse, wireless_blocklist, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -180,7 +179,7 @@ class TestWirelessBlocklists:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             wireless_blocklist = response.parse()
-            assert_matches_type(SyncDefaultFlatPagination[WirelessBlocklist], wireless_blocklist, path=["response"])
+            assert_matches_type(WirelessBlocklistListResponse, wireless_blocklist, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -356,7 +355,7 @@ class TestAsyncWirelessBlocklists:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         wireless_blocklist = await async_client.wireless_blocklists.list()
-        assert_matches_type(AsyncDefaultFlatPagination[WirelessBlocklist], wireless_blocklist, path=["response"])
+        assert_matches_type(WirelessBlocklistListResponse, wireless_blocklist, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -368,7 +367,7 @@ class TestAsyncWirelessBlocklists:
             page_number=1,
             page_size=1,
         )
-        assert_matches_type(AsyncDefaultFlatPagination[WirelessBlocklist], wireless_blocklist, path=["response"])
+        assert_matches_type(WirelessBlocklistListResponse, wireless_blocklist, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -378,7 +377,7 @@ class TestAsyncWirelessBlocklists:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         wireless_blocklist = await response.parse()
-        assert_matches_type(AsyncDefaultFlatPagination[WirelessBlocklist], wireless_blocklist, path=["response"])
+        assert_matches_type(WirelessBlocklistListResponse, wireless_blocklist, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -388,7 +387,7 @@ class TestAsyncWirelessBlocklists:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             wireless_blocklist = await response.parse()
-            assert_matches_type(AsyncDefaultFlatPagination[WirelessBlocklist], wireless_blocklist, path=["response"])
+            assert_matches_type(WirelessBlocklistListResponse, wireless_blocklist, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
