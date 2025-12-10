@@ -52,7 +52,7 @@ class TestUserAddresses:
             neighborhood="Ciudad de los deportes",
             phone_number="+12125559000",
             postal_code="78701",
-            skip_address_verification="skip_address_verification",
+            skip_address_verification=True,
         )
         assert_matches_type(UserAddressCreateResponse, user_address, path=["response"])
 
@@ -217,7 +217,7 @@ class TestAsyncUserAddresses:
             neighborhood="Ciudad de los deportes",
             phone_number="+12125559000",
             postal_code="78701",
-            skip_address_verification="skip_address_verification",
+            skip_address_verification=True,
         )
         assert_matches_type(UserAddressCreateResponse, user_address, path=["response"])
 
