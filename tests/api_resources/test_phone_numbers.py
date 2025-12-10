@@ -152,6 +152,7 @@ class TestPhoneNumbers:
                 "voice_usage_payment_method": "channel",
                 "without_tags": "true",
             },
+            handle_messaging_profile_error="false",
             page={
                 "number": 1,
                 "size": 1,
@@ -419,6 +420,7 @@ class TestAsyncPhoneNumbers:
                 "voice_usage_payment_method": "channel",
                 "without_tags": "true",
             },
+            handle_messaging_profile_error="false",
             page={
                 "number": 1,
                 "size": 1,

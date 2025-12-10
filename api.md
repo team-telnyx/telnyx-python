@@ -4665,6 +4665,7 @@ from telnyx.types.number_10dlc import (
     BrandListResponse,
     BrandGetFeedbackResponse,
     BrandRetrieveSMSOtpStatusResponse,
+    BrandTriggerSMSOtpResponse,
 )
 ```
 
@@ -4679,6 +4680,8 @@ Methods:
 - <code title="post /10dlc/brand/{brandId}/2faEmail">client.number_10dlc.brand.<a href="./src/telnyx/resources/number_10dlc/brand/brand.py">resend_2fa_email</a>(brand_id) -> None</code>
 - <code title="get /10dlc/brand/smsOtp/{referenceId}">client.number_10dlc.brand.<a href="./src/telnyx/resources/number_10dlc/brand/brand.py">retrieve_sms_otp_status</a>(reference_id, \*\*<a href="src/telnyx/types/number_10dlc/brand_retrieve_sms_otp_status_params.py">params</a>) -> <a href="./src/telnyx/types/number_10dlc/brand_retrieve_sms_otp_status_response.py">BrandRetrieveSMSOtpStatusResponse</a></code>
 - <code title="put /10dlc/brand/{brandId}/revet">client.number_10dlc.brand.<a href="./src/telnyx/resources/number_10dlc/brand/brand.py">revet</a>(brand_id) -> <a href="./src/telnyx/types/number_10dlc/telnyx_brand.py">TelnyxBrand</a></code>
+- <code title="post /10dlc/brand/{brandId}/smsOtp">client.number_10dlc.brand.<a href="./src/telnyx/resources/number_10dlc/brand/brand.py">trigger_sms_otp</a>(brand_id, \*\*<a href="src/telnyx/types/number_10dlc/brand_trigger_sms_otp_params.py">params</a>) -> <a href="./src/telnyx/types/number_10dlc/brand_trigger_sms_otp_response.py">BrandTriggerSMSOtpResponse</a></code>
+- <code title="put /10dlc/brand/{brandId}/smsOtp">client.number_10dlc.brand.<a href="./src/telnyx/resources/number_10dlc/brand/brand.py">verify_sms_otp</a>(brand_id, \*\*<a href="src/telnyx/types/number_10dlc/brand_verify_sms_otp_params.py">params</a>) -> None</code>
 
 ### ExternalVetting
 

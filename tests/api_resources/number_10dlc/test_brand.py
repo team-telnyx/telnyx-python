@@ -15,6 +15,7 @@ from telnyx.types.number_10dlc import (
     BrandListResponse,
     BrandRetrieveResponse,
     BrandGetFeedbackResponse,
+    BrandTriggerSMSOtpResponse,
     BrandRetrieveSMSOtpStatusResponse,
 )
 
@@ -501,6 +502,102 @@ class TestBrand:
                 "",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_method_trigger_sms_otp(self, client: Telnyx) -> None:
+        brand = client.number_10dlc.brand.trigger_sms_otp(
+            brand_id="4b20019b-043a-78f8-0657-b3be3f4b4002",
+            pin_sms="Your PIN is @OTP_PIN@",
+            success_sms="Verification successful!",
+        )
+        assert_matches_type(BrandTriggerSMSOtpResponse, brand, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_raw_response_trigger_sms_otp(self, client: Telnyx) -> None:
+        response = client.number_10dlc.brand.with_raw_response.trigger_sms_otp(
+            brand_id="4b20019b-043a-78f8-0657-b3be3f4b4002",
+            pin_sms="Your PIN is @OTP_PIN@",
+            success_sms="Verification successful!",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        brand = response.parse()
+        assert_matches_type(BrandTriggerSMSOtpResponse, brand, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_streaming_response_trigger_sms_otp(self, client: Telnyx) -> None:
+        with client.number_10dlc.brand.with_streaming_response.trigger_sms_otp(
+            brand_id="4b20019b-043a-78f8-0657-b3be3f4b4002",
+            pin_sms="Your PIN is @OTP_PIN@",
+            success_sms="Verification successful!",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            brand = response.parse()
+            assert_matches_type(BrandTriggerSMSOtpResponse, brand, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_path_params_trigger_sms_otp(self, client: Telnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `brand_id` but received ''"):
+            client.number_10dlc.brand.with_raw_response.trigger_sms_otp(
+                brand_id="",
+                pin_sms="Your PIN is @OTP_PIN@",
+                success_sms="Verification successful!",
+            )
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_method_verify_sms_otp(self, client: Telnyx) -> None:
+        brand = client.number_10dlc.brand.verify_sms_otp(
+            brand_id="4b20019b-043a-78f8-0657-b3be3f4b4002",
+            otp_pin="123456",
+        )
+        assert brand is None
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_raw_response_verify_sms_otp(self, client: Telnyx) -> None:
+        response = client.number_10dlc.brand.with_raw_response.verify_sms_otp(
+            brand_id="4b20019b-043a-78f8-0657-b3be3f4b4002",
+            otp_pin="123456",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        brand = response.parse()
+        assert brand is None
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_streaming_response_verify_sms_otp(self, client: Telnyx) -> None:
+        with client.number_10dlc.brand.with_streaming_response.verify_sms_otp(
+            brand_id="4b20019b-043a-78f8-0657-b3be3f4b4002",
+            otp_pin="123456",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            brand = response.parse()
+            assert brand is None
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_path_params_verify_sms_otp(self, client: Telnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `brand_id` but received ''"):
+            client.number_10dlc.brand.with_raw_response.verify_sms_otp(
+                brand_id="",
+                otp_pin="123456",
+            )
+
 
 class TestAsyncBrand:
     parametrize = pytest.mark.parametrize(
@@ -982,4 +1079,100 @@ class TestAsyncBrand:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `brand_id` but received ''"):
             await async_client.number_10dlc.brand.with_raw_response.revet(
                 "",
+            )
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_method_trigger_sms_otp(self, async_client: AsyncTelnyx) -> None:
+        brand = await async_client.number_10dlc.brand.trigger_sms_otp(
+            brand_id="4b20019b-043a-78f8-0657-b3be3f4b4002",
+            pin_sms="Your PIN is @OTP_PIN@",
+            success_sms="Verification successful!",
+        )
+        assert_matches_type(BrandTriggerSMSOtpResponse, brand, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_raw_response_trigger_sms_otp(self, async_client: AsyncTelnyx) -> None:
+        response = await async_client.number_10dlc.brand.with_raw_response.trigger_sms_otp(
+            brand_id="4b20019b-043a-78f8-0657-b3be3f4b4002",
+            pin_sms="Your PIN is @OTP_PIN@",
+            success_sms="Verification successful!",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        brand = await response.parse()
+        assert_matches_type(BrandTriggerSMSOtpResponse, brand, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_streaming_response_trigger_sms_otp(self, async_client: AsyncTelnyx) -> None:
+        async with async_client.number_10dlc.brand.with_streaming_response.trigger_sms_otp(
+            brand_id="4b20019b-043a-78f8-0657-b3be3f4b4002",
+            pin_sms="Your PIN is @OTP_PIN@",
+            success_sms="Verification successful!",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            brand = await response.parse()
+            assert_matches_type(BrandTriggerSMSOtpResponse, brand, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_path_params_trigger_sms_otp(self, async_client: AsyncTelnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `brand_id` but received ''"):
+            await async_client.number_10dlc.brand.with_raw_response.trigger_sms_otp(
+                brand_id="",
+                pin_sms="Your PIN is @OTP_PIN@",
+                success_sms="Verification successful!",
+            )
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_method_verify_sms_otp(self, async_client: AsyncTelnyx) -> None:
+        brand = await async_client.number_10dlc.brand.verify_sms_otp(
+            brand_id="4b20019b-043a-78f8-0657-b3be3f4b4002",
+            otp_pin="123456",
+        )
+        assert brand is None
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_raw_response_verify_sms_otp(self, async_client: AsyncTelnyx) -> None:
+        response = await async_client.number_10dlc.brand.with_raw_response.verify_sms_otp(
+            brand_id="4b20019b-043a-78f8-0657-b3be3f4b4002",
+            otp_pin="123456",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        brand = await response.parse()
+        assert brand is None
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_streaming_response_verify_sms_otp(self, async_client: AsyncTelnyx) -> None:
+        async with async_client.number_10dlc.brand.with_streaming_response.verify_sms_otp(
+            brand_id="4b20019b-043a-78f8-0657-b3be3f4b4002",
+            otp_pin="123456",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            brand = await response.parse()
+            assert brand is None
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_path_params_verify_sms_otp(self, async_client: AsyncTelnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `brand_id` but received ''"):
+            await async_client.number_10dlc.brand.with_raw_response.verify_sms_otp(
+                brand_id="",
+                otp_pin="123456",
             )
