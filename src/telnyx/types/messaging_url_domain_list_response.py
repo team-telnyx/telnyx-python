@@ -1,13 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Optional
 
 from .._models import BaseModel
 
-__all__ = ["MessagingURLDomainListResponse", "Data", "Meta"]
+__all__ = ["MessagingURLDomainListResponse"]
 
 
-class Data(BaseModel):
+class MessagingURLDomainListResponse(BaseModel):
     id: Optional[str] = None
 
     record_type: Optional[str] = None
@@ -15,19 +15,3 @@ class Data(BaseModel):
     url_domain: Optional[str] = None
 
     use_case: Optional[str] = None
-
-
-class Meta(BaseModel):
-    page_number: int
-
-    page_size: int
-
-    total_pages: int
-
-    total_results: int
-
-
-class MessagingURLDomainListResponse(BaseModel):
-    data: Optional[List[Data]] = None
-
-    meta: Optional[Meta] = None

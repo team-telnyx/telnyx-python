@@ -10,11 +10,12 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types import (
+    VerifyProfile,
     MessageTemplate,
     VerifyProfileData,
-    VerifyProfileListResponse,
     VerifyProfileRetrieveTemplatesResponse,
 )
+from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -205,19 +206,17 @@ class TestVerifyProfiles:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         verify_profile = client.verify_profiles.list()
-        assert_matches_type(VerifyProfileListResponse, verify_profile, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[VerifyProfile], verify_profile, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         verify_profile = client.verify_profiles.list(
             filter={"name": "name"},
-            page={
-                "number": 0,
-                "size": 0,
-            },
+            page_number=0,
+            page_size=0,
         )
-        assert_matches_type(VerifyProfileListResponse, verify_profile, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[VerifyProfile], verify_profile, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -227,7 +226,7 @@ class TestVerifyProfiles:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         verify_profile = response.parse()
-        assert_matches_type(VerifyProfileListResponse, verify_profile, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[VerifyProfile], verify_profile, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -237,7 +236,7 @@ class TestVerifyProfiles:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             verify_profile = response.parse()
-            assert_matches_type(VerifyProfileListResponse, verify_profile, path=["response"])
+            assert_matches_type(SyncDefaultFlatPagination[VerifyProfile], verify_profile, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -580,19 +579,17 @@ class TestAsyncVerifyProfiles:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         verify_profile = await async_client.verify_profiles.list()
-        assert_matches_type(VerifyProfileListResponse, verify_profile, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[VerifyProfile], verify_profile, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         verify_profile = await async_client.verify_profiles.list(
             filter={"name": "name"},
-            page={
-                "number": 0,
-                "size": 0,
-            },
+            page_number=0,
+            page_size=0,
         )
-        assert_matches_type(VerifyProfileListResponse, verify_profile, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[VerifyProfile], verify_profile, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -602,7 +599,7 @@ class TestAsyncVerifyProfiles:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         verify_profile = await response.parse()
-        assert_matches_type(VerifyProfileListResponse, verify_profile, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[VerifyProfile], verify_profile, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -612,7 +609,7 @@ class TestAsyncVerifyProfiles:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             verify_profile = await response.parse()
-            assert_matches_type(VerifyProfileListResponse, verify_profile, path=["response"])
+            assert_matches_type(AsyncDefaultFlatPagination[VerifyProfile], verify_profile, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

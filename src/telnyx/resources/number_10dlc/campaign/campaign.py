@@ -32,11 +32,12 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._base_client import make_request_options
+from ....pagination import SyncPerPagePaginationV2, AsyncPerPagePaginationV2
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.number_10dlc import campaign_list_params, campaign_update_params, campaign_submit_appeal_params
-from ....types.telnyx_campaign_csp import TelnyxCampaignCsp
+from ....types.number_10dlc.telnyx_campaign_csp import TelnyxCampaignCsp
 from ....types.number_10dlc.campaign_list_response import CampaignListResponse
-from ....types.number_10dlc.campaign_delete_response import CampaignDeleteResponse
+from ....types.number_10dlc.campaign_deactivate_response import CampaignDeactivateResponse
 from ....types.number_10dlc.campaign_submit_appeal_response import CampaignSubmitAppealResponse
 from ....types.number_10dlc.campaign_accept_sharing_response import CampaignAcceptSharingResponse
 from ....types.number_10dlc.campaign_get_mno_metadata_response import CampaignGetMnoMetadataResponse
@@ -217,7 +218,7 @@ class CampaignResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CampaignListResponse:
+    ) -> SyncPerPagePaginationV2[CampaignListResponse]:
         """
         Retrieve a list of campaigns associated with a supplied `brandId`.
 
@@ -238,8 +239,9 @@ class CampaignResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/10dlc/campaign",
+            page=SyncPerPagePaginationV2[CampaignListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -255,41 +257,7 @@ class CampaignResource(SyncAPIResource):
                     campaign_list_params.CampaignListParams,
                 ),
             ),
-            cast_to=CampaignListResponse,
-        )
-
-    def delete(
-        self,
-        campaign_id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CampaignDeleteResponse:
-        """Terminate a campaign.
-
-        Note that once deactivated, a campaign cannot be restored.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not campaign_id:
-            raise ValueError(f"Expected a non-empty value for `campaign_id` but received {campaign_id!r}")
-        return self._delete(
-            f"/10dlc/campaign/{campaign_id}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=CampaignDeleteResponse,
+            model=CampaignListResponse,
         )
 
     def accept_sharing(
@@ -325,6 +293,40 @@ class CampaignResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=CampaignAcceptSharingResponse,
+        )
+
+    def deactivate(
+        self,
+        campaign_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> CampaignDeactivateResponse:
+        """Terminate a campaign.
+
+        Note that once deactivated, a campaign cannot be restored.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not campaign_id:
+            raise ValueError(f"Expected a non-empty value for `campaign_id` but received {campaign_id!r}")
+        return self._delete(
+            f"/10dlc/campaign/{campaign_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=CampaignDeactivateResponse,
         )
 
     def get_mno_metadata(
@@ -620,7 +622,7 @@ class AsyncCampaignResource(AsyncAPIResource):
             cast_to=TelnyxCampaignCsp,
         )
 
-    async def list(
+    def list(
         self,
         *,
         brand_id: str,
@@ -645,7 +647,7 @@ class AsyncCampaignResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CampaignListResponse:
+    ) -> AsyncPaginator[CampaignListResponse, AsyncPerPagePaginationV2[CampaignListResponse]]:
         """
         Retrieve a list of campaigns associated with a supplied `brandId`.
 
@@ -666,14 +668,15 @@ class AsyncCampaignResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/10dlc/campaign",
+            page=AsyncPerPagePaginationV2[CampaignListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "brand_id": brand_id,
                         "page": page,
@@ -683,41 +686,7 @@ class AsyncCampaignResource(AsyncAPIResource):
                     campaign_list_params.CampaignListParams,
                 ),
             ),
-            cast_to=CampaignListResponse,
-        )
-
-    async def delete(
-        self,
-        campaign_id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CampaignDeleteResponse:
-        """Terminate a campaign.
-
-        Note that once deactivated, a campaign cannot be restored.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not campaign_id:
-            raise ValueError(f"Expected a non-empty value for `campaign_id` but received {campaign_id!r}")
-        return await self._delete(
-            f"/10dlc/campaign/{campaign_id}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=CampaignDeleteResponse,
+            model=CampaignListResponse,
         )
 
     async def accept_sharing(
@@ -753,6 +722,40 @@ class AsyncCampaignResource(AsyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=CampaignAcceptSharingResponse,
+        )
+
+    async def deactivate(
+        self,
+        campaign_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> CampaignDeactivateResponse:
+        """Terminate a campaign.
+
+        Note that once deactivated, a campaign cannot be restored.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not campaign_id:
+            raise ValueError(f"Expected a non-empty value for `campaign_id` but received {campaign_id!r}")
+        return await self._delete(
+            f"/10dlc/campaign/{campaign_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=CampaignDeactivateResponse,
         )
 
     async def get_mno_metadata(
@@ -915,11 +918,11 @@ class CampaignResourceWithRawResponse:
         self.list = to_raw_response_wrapper(
             campaign.list,
         )
-        self.delete = to_raw_response_wrapper(
-            campaign.delete,
-        )
         self.accept_sharing = to_raw_response_wrapper(
             campaign.accept_sharing,
+        )
+        self.deactivate = to_raw_response_wrapper(
+            campaign.deactivate,
         )
         self.get_mno_metadata = to_raw_response_wrapper(
             campaign.get_mno_metadata,
@@ -956,11 +959,11 @@ class AsyncCampaignResourceWithRawResponse:
         self.list = async_to_raw_response_wrapper(
             campaign.list,
         )
-        self.delete = async_to_raw_response_wrapper(
-            campaign.delete,
-        )
         self.accept_sharing = async_to_raw_response_wrapper(
             campaign.accept_sharing,
+        )
+        self.deactivate = async_to_raw_response_wrapper(
+            campaign.deactivate,
         )
         self.get_mno_metadata = async_to_raw_response_wrapper(
             campaign.get_mno_metadata,
@@ -997,11 +1000,11 @@ class CampaignResourceWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             campaign.list,
         )
-        self.delete = to_streamed_response_wrapper(
-            campaign.delete,
-        )
         self.accept_sharing = to_streamed_response_wrapper(
             campaign.accept_sharing,
+        )
+        self.deactivate = to_streamed_response_wrapper(
+            campaign.deactivate,
         )
         self.get_mno_metadata = to_streamed_response_wrapper(
             campaign.get_mno_metadata,
@@ -1038,11 +1041,11 @@ class AsyncCampaignResourceWithStreamingResponse:
         self.list = async_to_streamed_response_wrapper(
             campaign.list,
         )
-        self.delete = async_to_streamed_response_wrapper(
-            campaign.delete,
-        )
         self.accept_sharing = async_to_streamed_response_wrapper(
             campaign.accept_sharing,
+        )
+        self.deactivate = async_to_streamed_response_wrapper(
+            campaign.deactivate,
         )
         self.get_mno_metadata = async_to_streamed_response_wrapper(
             campaign.get_mno_metadata,

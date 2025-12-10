@@ -25,14 +25,6 @@ from .brand.brand import (
     AsyncBrandResourceWithStreamingResponse,
 )
 from ..._base_client import make_request_options
-from .partner_campaign import (
-    PartnerCampaignResource,
-    AsyncPartnerCampaignResource,
-    PartnerCampaignResourceWithRawResponse,
-    AsyncPartnerCampaignResourceWithRawResponse,
-    PartnerCampaignResourceWithStreamingResponse,
-    AsyncPartnerCampaignResourceWithStreamingResponse,
-)
 from .campaign.campaign import (
     CampaignResource,
     AsyncCampaignResource,
@@ -40,14 +32,6 @@ from .campaign.campaign import (
     AsyncCampaignResourceWithRawResponse,
     CampaignResourceWithStreamingResponse,
     AsyncCampaignResourceWithStreamingResponse,
-)
-from .partner_campaigns import (
-    PartnerCampaignsResource,
-    AsyncPartnerCampaignsResource,
-    PartnerCampaignsResourceWithRawResponse,
-    AsyncPartnerCampaignsResourceWithRawResponse,
-    PartnerCampaignsResourceWithStreamingResponse,
-    AsyncPartnerCampaignsResourceWithStreamingResponse,
 )
 from .phone_number_campaigns import (
     PhoneNumberCampaignsResource,
@@ -64,14 +48,6 @@ from .campaign_builder.campaign_builder import (
     AsyncCampaignBuilderResourceWithRawResponse,
     CampaignBuilderResourceWithStreamingResponse,
     AsyncCampaignBuilderResourceWithStreamingResponse,
-)
-from .phone_number_assignment_by_profile import (
-    PhoneNumberAssignmentByProfileResource,
-    AsyncPhoneNumberAssignmentByProfileResource,
-    PhoneNumberAssignmentByProfileResourceWithRawResponse,
-    AsyncPhoneNumberAssignmentByProfileResourceWithRawResponse,
-    PhoneNumberAssignmentByProfileResourceWithStreamingResponse,
-    AsyncPhoneNumberAssignmentByProfileResourceWithStreamingResponse,
 )
 from ...types.number_10dlc_get_enum_response import Number10dlcGetEnumResponse
 
@@ -90,18 +66,6 @@ class Number10dlcResource(SyncAPIResource):
     @cached_property
     def campaign_builder(self) -> CampaignBuilderResource:
         return CampaignBuilderResource(self._client)
-
-    @cached_property
-    def partner_campaign(self) -> PartnerCampaignResource:
-        return PartnerCampaignResource(self._client)
-
-    @cached_property
-    def partner_campaigns(self) -> PartnerCampaignsResource:
-        return PartnerCampaignsResource(self._client)
-
-    @cached_property
-    def phone_number_assignment_by_profile(self) -> PhoneNumberAssignmentByProfileResource:
-        return PhoneNumberAssignmentByProfileResource(self._client)
 
     @cached_property
     def phone_number_campaigns(self) -> PhoneNumberCampaignsResource:
@@ -194,18 +158,6 @@ class AsyncNumber10dlcResource(AsyncAPIResource):
     @cached_property
     def campaign_builder(self) -> AsyncCampaignBuilderResource:
         return AsyncCampaignBuilderResource(self._client)
-
-    @cached_property
-    def partner_campaign(self) -> AsyncPartnerCampaignResource:
-        return AsyncPartnerCampaignResource(self._client)
-
-    @cached_property
-    def partner_campaigns(self) -> AsyncPartnerCampaignsResource:
-        return AsyncPartnerCampaignsResource(self._client)
-
-    @cached_property
-    def phone_number_assignment_by_profile(self) -> AsyncPhoneNumberAssignmentByProfileResource:
-        return AsyncPhoneNumberAssignmentByProfileResource(self._client)
 
     @cached_property
     def phone_number_campaigns(self) -> AsyncPhoneNumberCampaignsResource:
@@ -307,20 +259,6 @@ class Number10dlcResourceWithRawResponse:
         return CampaignBuilderResourceWithRawResponse(self._number_10dlc.campaign_builder)
 
     @cached_property
-    def partner_campaign(self) -> PartnerCampaignResourceWithRawResponse:
-        return PartnerCampaignResourceWithRawResponse(self._number_10dlc.partner_campaign)
-
-    @cached_property
-    def partner_campaigns(self) -> PartnerCampaignsResourceWithRawResponse:
-        return PartnerCampaignsResourceWithRawResponse(self._number_10dlc.partner_campaigns)
-
-    @cached_property
-    def phone_number_assignment_by_profile(self) -> PhoneNumberAssignmentByProfileResourceWithRawResponse:
-        return PhoneNumberAssignmentByProfileResourceWithRawResponse(
-            self._number_10dlc.phone_number_assignment_by_profile
-        )
-
-    @cached_property
     def phone_number_campaigns(self) -> PhoneNumberCampaignsResourceWithRawResponse:
         return PhoneNumberCampaignsResourceWithRawResponse(self._number_10dlc.phone_number_campaigns)
 
@@ -344,20 +282,6 @@ class AsyncNumber10dlcResourceWithRawResponse:
     @cached_property
     def campaign_builder(self) -> AsyncCampaignBuilderResourceWithRawResponse:
         return AsyncCampaignBuilderResourceWithRawResponse(self._number_10dlc.campaign_builder)
-
-    @cached_property
-    def partner_campaign(self) -> AsyncPartnerCampaignResourceWithRawResponse:
-        return AsyncPartnerCampaignResourceWithRawResponse(self._number_10dlc.partner_campaign)
-
-    @cached_property
-    def partner_campaigns(self) -> AsyncPartnerCampaignsResourceWithRawResponse:
-        return AsyncPartnerCampaignsResourceWithRawResponse(self._number_10dlc.partner_campaigns)
-
-    @cached_property
-    def phone_number_assignment_by_profile(self) -> AsyncPhoneNumberAssignmentByProfileResourceWithRawResponse:
-        return AsyncPhoneNumberAssignmentByProfileResourceWithRawResponse(
-            self._number_10dlc.phone_number_assignment_by_profile
-        )
 
     @cached_property
     def phone_number_campaigns(self) -> AsyncPhoneNumberCampaignsResourceWithRawResponse:
@@ -385,20 +309,6 @@ class Number10dlcResourceWithStreamingResponse:
         return CampaignBuilderResourceWithStreamingResponse(self._number_10dlc.campaign_builder)
 
     @cached_property
-    def partner_campaign(self) -> PartnerCampaignResourceWithStreamingResponse:
-        return PartnerCampaignResourceWithStreamingResponse(self._number_10dlc.partner_campaign)
-
-    @cached_property
-    def partner_campaigns(self) -> PartnerCampaignsResourceWithStreamingResponse:
-        return PartnerCampaignsResourceWithStreamingResponse(self._number_10dlc.partner_campaigns)
-
-    @cached_property
-    def phone_number_assignment_by_profile(self) -> PhoneNumberAssignmentByProfileResourceWithStreamingResponse:
-        return PhoneNumberAssignmentByProfileResourceWithStreamingResponse(
-            self._number_10dlc.phone_number_assignment_by_profile
-        )
-
-    @cached_property
     def phone_number_campaigns(self) -> PhoneNumberCampaignsResourceWithStreamingResponse:
         return PhoneNumberCampaignsResourceWithStreamingResponse(self._number_10dlc.phone_number_campaigns)
 
@@ -422,20 +332,6 @@ class AsyncNumber10dlcResourceWithStreamingResponse:
     @cached_property
     def campaign_builder(self) -> AsyncCampaignBuilderResourceWithStreamingResponse:
         return AsyncCampaignBuilderResourceWithStreamingResponse(self._number_10dlc.campaign_builder)
-
-    @cached_property
-    def partner_campaign(self) -> AsyncPartnerCampaignResourceWithStreamingResponse:
-        return AsyncPartnerCampaignResourceWithStreamingResponse(self._number_10dlc.partner_campaign)
-
-    @cached_property
-    def partner_campaigns(self) -> AsyncPartnerCampaignsResourceWithStreamingResponse:
-        return AsyncPartnerCampaignsResourceWithStreamingResponse(self._number_10dlc.partner_campaigns)
-
-    @cached_property
-    def phone_number_assignment_by_profile(self) -> AsyncPhoneNumberAssignmentByProfileResourceWithStreamingResponse:
-        return AsyncPhoneNumberAssignmentByProfileResourceWithStreamingResponse(
-            self._number_10dlc.phone_number_assignment_by_profile
-        )
 
     @cached_property
     def phone_number_campaigns(self) -> AsyncPhoneNumberCampaignsResourceWithStreamingResponse:

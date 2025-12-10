@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Union
+from typing import Dict, Union
 from typing_extensions import TypedDict
 
 __all__ = ["InsightUpdateParams"]
@@ -11,7 +11,7 @@ __all__ = ["InsightUpdateParams"]
 class InsightUpdateParams(TypedDict, total=False):
     instructions: str
 
-    json_schema: Union[str, object]
+    json_schema: Union[str, Dict[str, object]]
 
     name: str
 

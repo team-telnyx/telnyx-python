@@ -8,14 +8,14 @@ __all__ = ["PaginationMetaOAuth"]
 
 
 class PaginationMetaOAuth(BaseModel):
-    page_number: Optional[int] = None
+    page_number: int
     """Current page number"""
+
+    total_pages: int
+    """Total number of pages"""
 
     page_size: Optional[int] = None
     """Number of items per page"""
-
-    total_pages: Optional[int] = None
-    """Total number of pages"""
 
     total_results: Optional[int] = None
     """Total number of results"""

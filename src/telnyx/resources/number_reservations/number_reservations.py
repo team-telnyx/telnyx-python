@@ -25,9 +25,10 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._base_client import make_request_options
+from ...pagination import SyncDefaultPagination, AsyncDefaultPagination
+from ..._base_client import AsyncPaginator, make_request_options
+from ...types.number_reservation import NumberReservation
 from ...types.reserved_phone_number_param import ReservedPhoneNumberParam
-from ...types.number_reservation_list_response import NumberReservationListResponse
 from ...types.number_reservation_create_response import NumberReservationCreateResponse
 from ...types.number_reservation_retrieve_response import NumberReservationRetrieveResponse
 
@@ -145,7 +146,7 @@ class NumberReservationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NumberReservationListResponse:
+    ) -> SyncDefaultPagination[NumberReservation]:
         """
         Gets a paginated list of phone number reservations.
 
@@ -165,8 +166,9 @@ class NumberReservationsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/number_reservations",
+            page=SyncDefaultPagination[NumberReservation],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -180,7 +182,7 @@ class NumberReservationsResource(SyncAPIResource):
                     number_reservation_list_params.NumberReservationListParams,
                 ),
             ),
-            cast_to=NumberReservationListResponse,
+            model=NumberReservation,
         )
 
 
@@ -284,7 +286,7 @@ class AsyncNumberReservationsResource(AsyncAPIResource):
             cast_to=NumberReservationRetrieveResponse,
         )
 
-    async def list(
+    def list(
         self,
         *,
         filter: number_reservation_list_params.Filter | Omit = omit,
@@ -295,7 +297,7 @@ class AsyncNumberReservationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NumberReservationListResponse:
+    ) -> AsyncPaginator[NumberReservation, AsyncDefaultPagination[NumberReservation]]:
         """
         Gets a paginated list of phone number reservations.
 
@@ -315,14 +317,15 @@ class AsyncNumberReservationsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/number_reservations",
+            page=AsyncDefaultPagination[NumberReservation],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "filter": filter,
                         "page": page,
@@ -330,7 +333,7 @@ class AsyncNumberReservationsResource(AsyncAPIResource):
                     number_reservation_list_params.NumberReservationListParams,
                 ),
             ),
-            cast_to=NumberReservationListResponse,
+            model=NumberReservation,
         )
 
 

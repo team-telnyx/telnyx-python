@@ -5,11 +5,11 @@ from __future__ import annotations
 from typing_extensions import Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
-from ..vertical import Vertical
-from ..entity_type import EntityType
-from ..stock_exchange import StockExchange
-from ..alt_business_id_type import AltBusinessIDType
-from ..brand_identity_status import BrandIdentityStatus
+from .vertical import Vertical
+from .entity_type import EntityType
+from .stock_exchange import StockExchange
+from .alt_business_id_type import AltBusinessIDType
+from .brand_identity_status import BrandIdentityStatus
 
 __all__ = ["BrandUpdateParams"]
 

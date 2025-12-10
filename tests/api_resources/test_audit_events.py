@@ -11,6 +11,7 @@ from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types import AuditEventListResponse
 from telnyx._utils import parse_datetime
+from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -22,7 +23,7 @@ class TestAuditEvents:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         audit_event = client.audit_events.list()
-        assert_matches_type(AuditEventListResponse, audit_event, path=["response"])
+        assert_matches_type(SyncDefaultPagination[AuditEventListResponse], audit_event, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -38,7 +39,7 @@ class TestAuditEvents:
             },
             sort="desc",
         )
-        assert_matches_type(AuditEventListResponse, audit_event, path=["response"])
+        assert_matches_type(SyncDefaultPagination[AuditEventListResponse], audit_event, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -48,7 +49,7 @@ class TestAuditEvents:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         audit_event = response.parse()
-        assert_matches_type(AuditEventListResponse, audit_event, path=["response"])
+        assert_matches_type(SyncDefaultPagination[AuditEventListResponse], audit_event, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -58,7 +59,7 @@ class TestAuditEvents:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             audit_event = response.parse()
-            assert_matches_type(AuditEventListResponse, audit_event, path=["response"])
+            assert_matches_type(SyncDefaultPagination[AuditEventListResponse], audit_event, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -72,7 +73,7 @@ class TestAsyncAuditEvents:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         audit_event = await async_client.audit_events.list()
-        assert_matches_type(AuditEventListResponse, audit_event, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[AuditEventListResponse], audit_event, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -88,7 +89,7 @@ class TestAsyncAuditEvents:
             },
             sort="desc",
         )
-        assert_matches_type(AuditEventListResponse, audit_event, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[AuditEventListResponse], audit_event, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -98,7 +99,7 @@ class TestAsyncAuditEvents:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         audit_event = await response.parse()
-        assert_matches_type(AuditEventListResponse, audit_event, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[AuditEventListResponse], audit_event, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -108,6 +109,6 @@ class TestAsyncAuditEvents:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             audit_event = await response.parse()
-            assert_matches_type(AuditEventListResponse, audit_event, path=["response"])
+            assert_matches_type(AsyncDefaultPagination[AuditEventListResponse], audit_event, path=["response"])
 
         assert cast(Any, response.is_closed) is True

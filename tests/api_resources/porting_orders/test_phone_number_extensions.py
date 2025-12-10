@@ -9,8 +9,9 @@ import pytest
 
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
+from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
 from telnyx.types.porting_orders import (
-    PhoneNumberExtensionListResponse,
+    PortingPhoneNumberExtension,
     PhoneNumberExtensionCreateResponse,
     PhoneNumberExtensionDeleteResponse,
 )
@@ -113,7 +114,9 @@ class TestPhoneNumberExtensions:
         phone_number_extension = client.porting_orders.phone_number_extensions.list(
             porting_order_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(PhoneNumberExtensionListResponse, phone_number_extension, path=["response"])
+        assert_matches_type(
+            SyncDefaultPagination[PortingPhoneNumberExtension], phone_number_extension, path=["response"]
+        )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -127,7 +130,9 @@ class TestPhoneNumberExtensions:
             },
             sort={"value": "created_at"},
         )
-        assert_matches_type(PhoneNumberExtensionListResponse, phone_number_extension, path=["response"])
+        assert_matches_type(
+            SyncDefaultPagination[PortingPhoneNumberExtension], phone_number_extension, path=["response"]
+        )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -139,7 +144,9 @@ class TestPhoneNumberExtensions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         phone_number_extension = response.parse()
-        assert_matches_type(PhoneNumberExtensionListResponse, phone_number_extension, path=["response"])
+        assert_matches_type(
+            SyncDefaultPagination[PortingPhoneNumberExtension], phone_number_extension, path=["response"]
+        )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -151,7 +158,9 @@ class TestPhoneNumberExtensions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             phone_number_extension = response.parse()
-            assert_matches_type(PhoneNumberExtensionListResponse, phone_number_extension, path=["response"])
+            assert_matches_type(
+                SyncDefaultPagination[PortingPhoneNumberExtension], phone_number_extension, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True
 
@@ -313,7 +322,9 @@ class TestAsyncPhoneNumberExtensions:
         phone_number_extension = await async_client.porting_orders.phone_number_extensions.list(
             porting_order_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(PhoneNumberExtensionListResponse, phone_number_extension, path=["response"])
+        assert_matches_type(
+            AsyncDefaultPagination[PortingPhoneNumberExtension], phone_number_extension, path=["response"]
+        )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -327,7 +338,9 @@ class TestAsyncPhoneNumberExtensions:
             },
             sort={"value": "created_at"},
         )
-        assert_matches_type(PhoneNumberExtensionListResponse, phone_number_extension, path=["response"])
+        assert_matches_type(
+            AsyncDefaultPagination[PortingPhoneNumberExtension], phone_number_extension, path=["response"]
+        )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -339,7 +352,9 @@ class TestAsyncPhoneNumberExtensions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         phone_number_extension = await response.parse()
-        assert_matches_type(PhoneNumberExtensionListResponse, phone_number_extension, path=["response"])
+        assert_matches_type(
+            AsyncDefaultPagination[PortingPhoneNumberExtension], phone_number_extension, path=["response"]
+        )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -351,7 +366,9 @@ class TestAsyncPhoneNumberExtensions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             phone_number_extension = await response.parse()
-            assert_matches_type(PhoneNumberExtensionListResponse, phone_number_extension, path=["response"])
+            assert_matches_type(
+                AsyncDefaultPagination[PortingPhoneNumberExtension], phone_number_extension, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True
 
