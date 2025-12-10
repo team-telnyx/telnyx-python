@@ -2713,27 +2713,6 @@ Methods:
 - <code title="patch /payment/auto_recharge_prefs">client.payment.auto_recharge_prefs.<a href="./src/telnyx/resources/payment/auto_recharge_prefs.py">update</a>(\*\*<a href="src/telnyx/types/payment/auto_recharge_pref_update_params.py">params</a>) -> <a href="./src/telnyx/types/payment/auto_recharge_pref_update_response.py">AutoRechargePrefUpdateResponse</a></code>
 - <code title="get /payment/auto_recharge_prefs">client.payment.auto_recharge_prefs.<a href="./src/telnyx/resources/payment/auto_recharge_prefs.py">list</a>() -> <a href="./src/telnyx/types/payment/auto_recharge_pref_list_response.py">AutoRechargePrefListResponse</a></code>
 
-# PhoneNumberAssignmentByProfile
-
-Types:
-
-```python
-from telnyx.types import (
-    TaskStatus,
-    PhoneNumberAssignmentByProfileAssignResponse,
-    PhoneNumberAssignmentByProfileListPhoneNumberStatusResponse,
-    PhoneNumberAssignmentByProfileRetrievePhoneNumberStatusResponse,
-    PhoneNumberAssignmentByProfileRetrieveStatusResponse,
-)
-```
-
-Methods:
-
-- <code title="post /10dlc/phoneNumberAssignmentByProfile">client.phone_number_assignment_by_profile.<a href="./src/telnyx/resources/phone_number_assignment_by_profile.py">assign</a>(\*\*<a href="src/telnyx/types/phone_number_assignment_by_profile_assign_params.py">params</a>) -> <a href="./src/telnyx/types/phone_number_assignment_by_profile_assign_response.py">PhoneNumberAssignmentByProfileAssignResponse</a></code>
-- <code title="get /10dlc/phoneNumberAssignmentByProfile/{taskId}/phoneNumbers">client.phone_number_assignment_by_profile.<a href="./src/telnyx/resources/phone_number_assignment_by_profile.py">list_phone_number_status</a>(task_id, \*\*<a href="src/telnyx/types/phone_number_assignment_by_profile_list_phone_number_status_params.py">params</a>) -> <a href="./src/telnyx/types/phone_number_assignment_by_profile_list_phone_number_status_response.py">PhoneNumberAssignmentByProfileListPhoneNumberStatusResponse</a></code>
-- <code title="get /10dlc/phoneNumberAssignmentByProfile/{taskId}/phoneNumbers">client.phone_number_assignment_by_profile.<a href="./src/telnyx/resources/phone_number_assignment_by_profile.py">retrieve_phone_number_status</a>(task_id, \*\*<a href="src/telnyx/types/phone_number_assignment_by_profile_retrieve_phone_number_status_params.py">params</a>) -> <a href="./src/telnyx/types/phone_number_assignment_by_profile_retrieve_phone_number_status_response.py">PhoneNumberAssignmentByProfileRetrievePhoneNumberStatusResponse</a></code>
-- <code title="get /10dlc/phoneNumberAssignmentByProfile/{taskId}">client.phone_number_assignment_by_profile.<a href="./src/telnyx/resources/phone_number_assignment_by_profile.py">retrieve_status</a>(task_id) -> <a href="./src/telnyx/types/phone_number_assignment_by_profile_retrieve_status_response.py">PhoneNumberAssignmentByProfileRetrieveStatusResponse</a></code>
-
 # PhoneNumberBlocks
 
 ## Jobs
@@ -4530,26 +4509,6 @@ Methods:
 - <code title="get /wireless_blocklists">client.wireless_blocklists.<a href="./src/telnyx/resources/wireless_blocklists.py">list</a>(\*\*<a href="src/telnyx/types/wireless_blocklist_list_params.py">params</a>) -> <a href="./src/telnyx/types/wireless_blocklist.py">SyncDefaultFlatPagination[WirelessBlocklist]</a></code>
 - <code title="delete /wireless_blocklists/{id}">client.wireless_blocklists.<a href="./src/telnyx/resources/wireless_blocklists.py">delete</a>(id) -> <a href="./src/telnyx/types/wireless_blocklist_delete_response.py">WirelessBlocklistDeleteResponse</a></code>
 
-# PartnerCampaigns
-
-Types:
-
-```python
-from telnyx.types import (
-    TelnyxDownstreamCampaign,
-    PartnerCampaignListSharedByMeResponse,
-    PartnerCampaignRetrieveSharingStatusResponse,
-)
-```
-
-Methods:
-
-- <code title="get /10dlc/partner_campaigns/{campaignId}">client.partner_campaigns.<a href="./src/telnyx/resources/partner_campaigns.py">retrieve</a>(campaign_id) -> <a href="./src/telnyx/types/telnyx_downstream_campaign.py">TelnyxDownstreamCampaign</a></code>
-- <code title="patch /10dlc/partner_campaigns/{campaignId}">client.partner_campaigns.<a href="./src/telnyx/resources/partner_campaigns.py">update</a>(campaign_id, \*\*<a href="src/telnyx/types/partner_campaign_update_params.py">params</a>) -> <a href="./src/telnyx/types/telnyx_downstream_campaign.py">TelnyxDownstreamCampaign</a></code>
-- <code title="get /10dlc/partner_campaigns">client.partner_campaigns.<a href="./src/telnyx/resources/partner_campaigns.py">list</a>(\*\*<a href="src/telnyx/types/partner_campaign_list_params.py">params</a>) -> <a href="./src/telnyx/types/telnyx_downstream_campaign.py">SyncPerPagePaginationV2[TelnyxDownstreamCampaign]</a></code>
-- <code title="get /10dlc/partnerCampaign/sharedByMe">client.partner_campaigns.<a href="./src/telnyx/resources/partner_campaigns.py">list_shared_by_me</a>(\*\*<a href="src/telnyx/types/partner_campaign_list_shared_by_me_params.py">params</a>) -> <a href="./src/telnyx/types/partner_campaign_list_shared_by_me_response.py">SyncPerPagePaginationV2[PartnerCampaignListSharedByMeResponse]</a></code>
-- <code title="get /10dlc/partnerCampaign/{campaignId}/sharing">client.partner_campaigns.<a href="./src/telnyx/resources/partner_campaigns.py">retrieve_sharing_status</a>(campaign_id) -> <a href="./src/telnyx/types/partner_campaign_retrieve_sharing_status_response.py">PartnerCampaignRetrieveSharingStatusResponse</a></code>
-
 # WellKnown
 
 Types:
@@ -4637,24 +4596,24 @@ Methods:
 - <code title="get /v2/mobile_voice_connections">client.mobile_voice_connections.<a href="./src/telnyx/resources/mobile_voice_connections.py">list</a>(\*\*<a href="src/telnyx/types/mobile_voice_connection_list_params.py">params</a>) -> <a href="./src/telnyx/types/mobile_voice_connection.py">SyncDefaultFlatPagination[MobileVoiceConnection]</a></code>
 - <code title="delete /v2/mobile_voice_connections/{id}">client.mobile_voice_connections.<a href="./src/telnyx/resources/mobile_voice_connections.py">delete</a>(id) -> <a href="./src/telnyx/types/mobile_voice_connection_delete_response.py">MobileVoiceConnectionDeleteResponse</a></code>
 
-# Number10dlc
+# Messaging10dlc
 
 Types:
 
 ```python
-from telnyx.types import Number10dlcGetEnumResponse
+from telnyx.types import Messaging10dlcGetEnumResponse
 ```
 
 Methods:
 
-- <code title="get /10dlc/enum/{endpoint}">client.number_10dlc.<a href="./src/telnyx/resources/number_10dlc/number_10dlc.py">get_enum</a>(endpoint) -> <a href="./src/telnyx/types/number_10dlc_get_enum_response.py">Number10dlcGetEnumResponse</a></code>
+- <code title="get /10dlc/enum/{endpoint}">client.messaging_10dlc.<a href="./src/telnyx/resources/messaging_10dlc/messaging_10dlc.py">get_enum</a>(endpoint) -> <a href="./src/telnyx/types/messaging_10dlc_get_enum_response.py">Messaging10dlcGetEnumResponse</a></code>
 
 ## Brand
 
 Types:
 
 ```python
-from telnyx.types.number_10dlc import (
+from telnyx.types.messaging_10dlc import (
     AltBusinessIDType,
     BrandIdentityStatus,
     EntityType,
@@ -4669,21 +4628,21 @@ from telnyx.types.number_10dlc import (
 
 Methods:
 
-- <code title="post /10dlc/brand">client.number_10dlc.brand.<a href="./src/telnyx/resources/number_10dlc/brand/brand.py">create</a>(\*\*<a href="src/telnyx/types/number_10dlc/brand_create_params.py">params</a>) -> <a href="./src/telnyx/types/number_10dlc/telnyx_brand.py">TelnyxBrand</a></code>
-- <code title="get /10dlc/brand/{brandId}">client.number_10dlc.brand.<a href="./src/telnyx/resources/number_10dlc/brand/brand.py">retrieve</a>(brand_id) -> <a href="./src/telnyx/types/number_10dlc/brand_retrieve_response.py">BrandRetrieveResponse</a></code>
-- <code title="put /10dlc/brand/{brandId}">client.number_10dlc.brand.<a href="./src/telnyx/resources/number_10dlc/brand/brand.py">update</a>(brand_id, \*\*<a href="src/telnyx/types/number_10dlc/brand_update_params.py">params</a>) -> <a href="./src/telnyx/types/number_10dlc/telnyx_brand.py">TelnyxBrand</a></code>
-- <code title="get /10dlc/brand">client.number_10dlc.brand.<a href="./src/telnyx/resources/number_10dlc/brand/brand.py">list</a>(\*\*<a href="src/telnyx/types/number_10dlc/brand_list_params.py">params</a>) -> <a href="./src/telnyx/types/number_10dlc/brand_list_response.py">SyncPerPagePaginationV2[BrandListResponse]</a></code>
-- <code title="delete /10dlc/brand/{brandId}">client.number_10dlc.brand.<a href="./src/telnyx/resources/number_10dlc/brand/brand.py">delete</a>(brand_id) -> None</code>
-- <code title="get /10dlc/brand/feedback/{brandId}">client.number_10dlc.brand.<a href="./src/telnyx/resources/number_10dlc/brand/brand.py">get_feedback</a>(brand_id) -> <a href="./src/telnyx/types/number_10dlc/brand_get_feedback_response.py">BrandGetFeedbackResponse</a></code>
-- <code title="post /10dlc/brand/{brandId}/2faEmail">client.number_10dlc.brand.<a href="./src/telnyx/resources/number_10dlc/brand/brand.py">resend_2fa_email</a>(brand_id) -> None</code>
-- <code title="put /10dlc/brand/{brandId}/revet">client.number_10dlc.brand.<a href="./src/telnyx/resources/number_10dlc/brand/brand.py">revet</a>(brand_id) -> <a href="./src/telnyx/types/number_10dlc/telnyx_brand.py">TelnyxBrand</a></code>
+- <code title="post /10dlc/brand">client.messaging_10dlc.brand.<a href="./src/telnyx/resources/messaging_10dlc/brand/brand.py">create</a>(\*\*<a href="src/telnyx/types/messaging_10dlc/brand_create_params.py">params</a>) -> <a href="./src/telnyx/types/messaging_10dlc/telnyx_brand.py">TelnyxBrand</a></code>
+- <code title="get /10dlc/brand/{brandId}">client.messaging_10dlc.brand.<a href="./src/telnyx/resources/messaging_10dlc/brand/brand.py">retrieve</a>(brand_id) -> <a href="./src/telnyx/types/messaging_10dlc/brand_retrieve_response.py">BrandRetrieveResponse</a></code>
+- <code title="put /10dlc/brand/{brandId}">client.messaging_10dlc.brand.<a href="./src/telnyx/resources/messaging_10dlc/brand/brand.py">update</a>(brand_id, \*\*<a href="src/telnyx/types/messaging_10dlc/brand_update_params.py">params</a>) -> <a href="./src/telnyx/types/messaging_10dlc/telnyx_brand.py">TelnyxBrand</a></code>
+- <code title="get /10dlc/brand">client.messaging_10dlc.brand.<a href="./src/telnyx/resources/messaging_10dlc/brand/brand.py">list</a>(\*\*<a href="src/telnyx/types/messaging_10dlc/brand_list_params.py">params</a>) -> <a href="./src/telnyx/types/messaging_10dlc/brand_list_response.py">SyncPerPagePaginationV2[BrandListResponse]</a></code>
+- <code title="delete /10dlc/brand/{brandId}">client.messaging_10dlc.brand.<a href="./src/telnyx/resources/messaging_10dlc/brand/brand.py">delete</a>(brand_id) -> None</code>
+- <code title="get /10dlc/brand/feedback/{brandId}">client.messaging_10dlc.brand.<a href="./src/telnyx/resources/messaging_10dlc/brand/brand.py">get_feedback</a>(brand_id) -> <a href="./src/telnyx/types/messaging_10dlc/brand_get_feedback_response.py">BrandGetFeedbackResponse</a></code>
+- <code title="post /10dlc/brand/{brandId}/2faEmail">client.messaging_10dlc.brand.<a href="./src/telnyx/resources/messaging_10dlc/brand/brand.py">resend_2fa_email</a>(brand_id) -> None</code>
+- <code title="put /10dlc/brand/{brandId}/revet">client.messaging_10dlc.brand.<a href="./src/telnyx/resources/messaging_10dlc/brand/brand.py">revet</a>(brand_id) -> <a href="./src/telnyx/types/messaging_10dlc/telnyx_brand.py">TelnyxBrand</a></code>
 
 ### ExternalVetting
 
 Types:
 
 ```python
-from telnyx.types.number_10dlc.brand import (
+from telnyx.types.messaging_10dlc.brand import (
     ExternalVettingListResponse,
     ExternalVettingImportsResponse,
     ExternalVettingOrderResponse,
@@ -4692,16 +4651,16 @@ from telnyx.types.number_10dlc.brand import (
 
 Methods:
 
-- <code title="get /10dlc/brand/{brandId}/externalVetting">client.number_10dlc.brand.external_vetting.<a href="./src/telnyx/resources/number_10dlc/brand/external_vetting.py">list</a>(brand_id) -> <a href="./src/telnyx/types/number_10dlc/brand/external_vetting_list_response.py">ExternalVettingListResponse</a></code>
-- <code title="put /10dlc/brand/{brandId}/externalVetting">client.number_10dlc.brand.external_vetting.<a href="./src/telnyx/resources/number_10dlc/brand/external_vetting.py">imports</a>(brand_id, \*\*<a href="src/telnyx/types/number_10dlc/brand/external_vetting_imports_params.py">params</a>) -> <a href="./src/telnyx/types/number_10dlc/brand/external_vetting_imports_response.py">ExternalVettingImportsResponse</a></code>
-- <code title="post /10dlc/brand/{brandId}/externalVetting">client.number_10dlc.brand.external_vetting.<a href="./src/telnyx/resources/number_10dlc/brand/external_vetting.py">order</a>(brand_id, \*\*<a href="src/telnyx/types/number_10dlc/brand/external_vetting_order_params.py">params</a>) -> <a href="./src/telnyx/types/number_10dlc/brand/external_vetting_order_response.py">ExternalVettingOrderResponse</a></code>
+- <code title="get /10dlc/brand/{brandId}/externalVetting">client.messaging_10dlc.brand.external_vetting.<a href="./src/telnyx/resources/messaging_10dlc/brand/external_vetting.py">list</a>(brand_id) -> <a href="./src/telnyx/types/messaging_10dlc/brand/external_vetting_list_response.py">ExternalVettingListResponse</a></code>
+- <code title="put /10dlc/brand/{brandId}/externalVetting">client.messaging_10dlc.brand.external_vetting.<a href="./src/telnyx/resources/messaging_10dlc/brand/external_vetting.py">imports</a>(brand_id, \*\*<a href="src/telnyx/types/messaging_10dlc/brand/external_vetting_imports_params.py">params</a>) -> <a href="./src/telnyx/types/messaging_10dlc/brand/external_vetting_imports_response.py">ExternalVettingImportsResponse</a></code>
+- <code title="post /10dlc/brand/{brandId}/externalVetting">client.messaging_10dlc.brand.external_vetting.<a href="./src/telnyx/resources/messaging_10dlc/brand/external_vetting.py">order</a>(brand_id, \*\*<a href="src/telnyx/types/messaging_10dlc/brand/external_vetting_order_params.py">params</a>) -> <a href="./src/telnyx/types/messaging_10dlc/brand/external_vetting_order_response.py">ExternalVettingOrderResponse</a></code>
 
 ## Campaign
 
 Types:
 
 ```python
-from telnyx.types.number_10dlc import (
+from telnyx.types.messaging_10dlc import (
     CampaignSharingStatus,
     TelnyxCampaignCsp,
     CampaignListResponse,
@@ -4716,70 +4675,111 @@ from telnyx.types.number_10dlc import (
 
 Methods:
 
-- <code title="get /10dlc/campaign/{campaignId}">client.number_10dlc.campaign.<a href="./src/telnyx/resources/number_10dlc/campaign/campaign.py">retrieve</a>(campaign_id) -> <a href="./src/telnyx/types/number_10dlc/telnyx_campaign_csp.py">TelnyxCampaignCsp</a></code>
-- <code title="put /10dlc/campaign/{campaignId}">client.number_10dlc.campaign.<a href="./src/telnyx/resources/number_10dlc/campaign/campaign.py">update</a>(campaign_id, \*\*<a href="src/telnyx/types/number_10dlc/campaign_update_params.py">params</a>) -> <a href="./src/telnyx/types/number_10dlc/telnyx_campaign_csp.py">TelnyxCampaignCsp</a></code>
-- <code title="get /10dlc/campaign">client.number_10dlc.campaign.<a href="./src/telnyx/resources/number_10dlc/campaign/campaign.py">list</a>(\*\*<a href="src/telnyx/types/number_10dlc/campaign_list_params.py">params</a>) -> <a href="./src/telnyx/types/number_10dlc/campaign_list_response.py">SyncPerPagePaginationV2[CampaignListResponse]</a></code>
-- <code title="post /10dlc/campaign/acceptSharing/{campaignId}">client.number_10dlc.campaign.<a href="./src/telnyx/resources/number_10dlc/campaign/campaign.py">accept_sharing</a>(campaign_id) -> <a href="./src/telnyx/types/number_10dlc/campaign_accept_sharing_response.py">CampaignAcceptSharingResponse</a></code>
-- <code title="delete /10dlc/campaign/{campaignId}">client.number_10dlc.campaign.<a href="./src/telnyx/resources/number_10dlc/campaign/campaign.py">deactivate</a>(campaign_id) -> <a href="./src/telnyx/types/number_10dlc/campaign_deactivate_response.py">CampaignDeactivateResponse</a></code>
-- <code title="get /10dlc/campaign/{campaignId}/mnoMetadata">client.number_10dlc.campaign.<a href="./src/telnyx/resources/number_10dlc/campaign/campaign.py">get_mno_metadata</a>(campaign_id) -> <a href="./src/telnyx/types/number_10dlc/campaign_get_mno_metadata_response.py">CampaignGetMnoMetadataResponse</a></code>
-- <code title="get /10dlc/campaign/{campaignId}/operationStatus">client.number_10dlc.campaign.<a href="./src/telnyx/resources/number_10dlc/campaign/campaign.py">get_operation_status</a>(campaign_id) -> <a href="./src/telnyx/types/number_10dlc/campaign_get_operation_status_response.py">CampaignGetOperationStatusResponse</a></code>
-- <code title="get /10dlc/campaign/{campaignId}/sharing">client.number_10dlc.campaign.<a href="./src/telnyx/resources/number_10dlc/campaign/campaign.py">get_sharing_status</a>(campaign_id) -> <a href="./src/telnyx/types/number_10dlc/campaign_get_sharing_status_response.py">CampaignGetSharingStatusResponse</a></code>
-- <code title="post /10dlc/campaign/{campaignId}/appeal">client.number_10dlc.campaign.<a href="./src/telnyx/resources/number_10dlc/campaign/campaign.py">submit_appeal</a>(campaign_id, \*\*<a href="src/telnyx/types/number_10dlc/campaign_submit_appeal_params.py">params</a>) -> <a href="./src/telnyx/types/number_10dlc/campaign_submit_appeal_response.py">CampaignSubmitAppealResponse</a></code>
+- <code title="get /10dlc/campaign/{campaignId}">client.messaging_10dlc.campaign.<a href="./src/telnyx/resources/messaging_10dlc/campaign/campaign.py">retrieve</a>(campaign_id) -> <a href="./src/telnyx/types/messaging_10dlc/telnyx_campaign_csp.py">TelnyxCampaignCsp</a></code>
+- <code title="put /10dlc/campaign/{campaignId}">client.messaging_10dlc.campaign.<a href="./src/telnyx/resources/messaging_10dlc/campaign/campaign.py">update</a>(campaign_id, \*\*<a href="src/telnyx/types/messaging_10dlc/campaign_update_params.py">params</a>) -> <a href="./src/telnyx/types/messaging_10dlc/telnyx_campaign_csp.py">TelnyxCampaignCsp</a></code>
+- <code title="get /10dlc/campaign">client.messaging_10dlc.campaign.<a href="./src/telnyx/resources/messaging_10dlc/campaign/campaign.py">list</a>(\*\*<a href="src/telnyx/types/messaging_10dlc/campaign_list_params.py">params</a>) -> <a href="./src/telnyx/types/messaging_10dlc/campaign_list_response.py">SyncPerPagePaginationV2[CampaignListResponse]</a></code>
+- <code title="post /10dlc/campaign/acceptSharing/{campaignId}">client.messaging_10dlc.campaign.<a href="./src/telnyx/resources/messaging_10dlc/campaign/campaign.py">accept_sharing</a>(campaign_id) -> <a href="./src/telnyx/types/messaging_10dlc/campaign_accept_sharing_response.py">CampaignAcceptSharingResponse</a></code>
+- <code title="delete /10dlc/campaign/{campaignId}">client.messaging_10dlc.campaign.<a href="./src/telnyx/resources/messaging_10dlc/campaign/campaign.py">deactivate</a>(campaign_id) -> <a href="./src/telnyx/types/messaging_10dlc/campaign_deactivate_response.py">CampaignDeactivateResponse</a></code>
+- <code title="get /10dlc/campaign/{campaignId}/mnoMetadata">client.messaging_10dlc.campaign.<a href="./src/telnyx/resources/messaging_10dlc/campaign/campaign.py">get_mno_metadata</a>(campaign_id) -> <a href="./src/telnyx/types/messaging_10dlc/campaign_get_mno_metadata_response.py">CampaignGetMnoMetadataResponse</a></code>
+- <code title="get /10dlc/campaign/{campaignId}/operationStatus">client.messaging_10dlc.campaign.<a href="./src/telnyx/resources/messaging_10dlc/campaign/campaign.py">get_operation_status</a>(campaign_id) -> <a href="./src/telnyx/types/messaging_10dlc/campaign_get_operation_status_response.py">CampaignGetOperationStatusResponse</a></code>
+- <code title="get /10dlc/campaign/{campaignId}/sharing">client.messaging_10dlc.campaign.<a href="./src/telnyx/resources/messaging_10dlc/campaign/campaign.py">get_sharing_status</a>(campaign_id) -> <a href="./src/telnyx/types/messaging_10dlc/campaign_get_sharing_status_response.py">CampaignGetSharingStatusResponse</a></code>
+- <code title="post /10dlc/campaign/{campaignId}/appeal">client.messaging_10dlc.campaign.<a href="./src/telnyx/resources/messaging_10dlc/campaign/campaign.py">submit_appeal</a>(campaign_id, \*\*<a href="src/telnyx/types/messaging_10dlc/campaign_submit_appeal_params.py">params</a>) -> <a href="./src/telnyx/types/messaging_10dlc/campaign_submit_appeal_response.py">CampaignSubmitAppealResponse</a></code>
 
 ### Usecase
 
 Types:
 
 ```python
-from telnyx.types.number_10dlc.campaign import UsecaseGetCostResponse
+from telnyx.types.messaging_10dlc.campaign import UsecaseGetCostResponse
 ```
 
 Methods:
 
-- <code title="get /10dlc/campaign/usecase/cost">client.number_10dlc.campaign.usecase.<a href="./src/telnyx/resources/number_10dlc/campaign/usecase.py">get_cost</a>(\*\*<a href="src/telnyx/types/number_10dlc/campaign/usecase_get_cost_params.py">params</a>) -> <a href="./src/telnyx/types/number_10dlc/campaign/usecase_get_cost_response.py">UsecaseGetCostResponse</a></code>
+- <code title="get /10dlc/campaign/usecase/cost">client.messaging_10dlc.campaign.usecase.<a href="./src/telnyx/resources/messaging_10dlc/campaign/usecase.py">get_cost</a>(\*\*<a href="src/telnyx/types/messaging_10dlc/campaign/usecase_get_cost_params.py">params</a>) -> <a href="./src/telnyx/types/messaging_10dlc/campaign/usecase_get_cost_response.py">UsecaseGetCostResponse</a></code>
 
 ### Osr
 
 Types:
 
 ```python
-from telnyx.types.number_10dlc.campaign import OsrGetAttributesResponse
+from telnyx.types.messaging_10dlc.campaign import OsrGetAttributesResponse
 ```
 
 Methods:
 
-- <code title="get /10dlc/campaign/{campaignId}/osr/attributes">client.number_10dlc.campaign.osr.<a href="./src/telnyx/resources/number_10dlc/campaign/osr.py">get_attributes</a>(campaign_id) -> <a href="./src/telnyx/types/number_10dlc/campaign/osr_get_attributes_response.py">OsrGetAttributesResponse</a></code>
+- <code title="get /10dlc/campaign/{campaignId}/osr/attributes">client.messaging_10dlc.campaign.osr.<a href="./src/telnyx/resources/messaging_10dlc/campaign/osr.py">get_attributes</a>(campaign_id) -> <a href="./src/telnyx/types/messaging_10dlc/campaign/osr_get_attributes_response.py">OsrGetAttributesResponse</a></code>
 
 ## CampaignBuilder
 
 Methods:
 
-- <code title="post /10dlc/campaignBuilder">client.number_10dlc.campaign_builder.<a href="./src/telnyx/resources/number_10dlc/campaign_builder/campaign_builder.py">submit</a>(\*\*<a href="src/telnyx/types/number_10dlc/campaign_builder_submit_params.py">params</a>) -> <a href="./src/telnyx/types/number_10dlc/telnyx_campaign_csp.py">TelnyxCampaignCsp</a></code>
+- <code title="post /10dlc/campaignBuilder">client.messaging_10dlc.campaign_builder.<a href="./src/telnyx/resources/messaging_10dlc/campaign_builder/campaign_builder.py">submit</a>(\*\*<a href="src/telnyx/types/messaging_10dlc/campaign_builder_submit_params.py">params</a>) -> <a href="./src/telnyx/types/messaging_10dlc/telnyx_campaign_csp.py">TelnyxCampaignCsp</a></code>
 
 ### Brand
 
 Types:
 
 ```python
-from telnyx.types.number_10dlc.campaign_builder import BrandQualifyByUsecaseResponse
+from telnyx.types.messaging_10dlc.campaign_builder import BrandQualifyByUsecaseResponse
 ```
 
 Methods:
 
-- <code title="get /10dlc/campaignBuilder/brand/{brandId}/usecase/{usecase}">client.number_10dlc.campaign_builder.brand.<a href="./src/telnyx/resources/number_10dlc/campaign_builder/brand.py">qualify_by_usecase</a>(usecase, \*, brand_id) -> <a href="./src/telnyx/types/number_10dlc/campaign_builder/brand_qualify_by_usecase_response.py">BrandQualifyByUsecaseResponse</a></code>
+- <code title="get /10dlc/campaignBuilder/brand/{brandId}/usecase/{usecase}">client.messaging_10dlc.campaign_builder.brand.<a href="./src/telnyx/resources/messaging_10dlc/campaign_builder/brand.py">qualify_by_usecase</a>(usecase, \*, brand_id) -> <a href="./src/telnyx/types/messaging_10dlc/campaign_builder/brand_qualify_by_usecase_response.py">BrandQualifyByUsecaseResponse</a></code>
+
+## PartnerCampaigns
+
+Types:
+
+```python
+from telnyx.types.messaging_10dlc import (
+    TelnyxDownstreamCampaign,
+    PartnerCampaignListSharedByMeResponse,
+    PartnerCampaignRetrieveSharingStatusResponse,
+)
+```
+
+Methods:
+
+- <code title="get /10dlc/partner_campaigns/{campaignId}">client.messaging_10dlc.partner_campaigns.<a href="./src/telnyx/resources/messaging_10dlc/partner_campaigns.py">retrieve</a>(campaign_id) -> <a href="./src/telnyx/types/messaging_10dlc/telnyx_downstream_campaign.py">TelnyxDownstreamCampaign</a></code>
+- <code title="patch /10dlc/partner_campaigns/{campaignId}">client.messaging_10dlc.partner_campaigns.<a href="./src/telnyx/resources/messaging_10dlc/partner_campaigns.py">update</a>(campaign_id, \*\*<a href="src/telnyx/types/messaging_10dlc/partner_campaign_update_params.py">params</a>) -> <a href="./src/telnyx/types/messaging_10dlc/telnyx_downstream_campaign.py">TelnyxDownstreamCampaign</a></code>
+- <code title="get /10dlc/partner_campaigns">client.messaging_10dlc.partner_campaigns.<a href="./src/telnyx/resources/messaging_10dlc/partner_campaigns.py">list</a>(\*\*<a href="src/telnyx/types/messaging_10dlc/partner_campaign_list_params.py">params</a>) -> <a href="./src/telnyx/types/messaging_10dlc/telnyx_downstream_campaign.py">SyncPerPagePaginationV2[TelnyxDownstreamCampaign]</a></code>
+- <code title="get /10dlc/partnerCampaign/sharedByMe">client.messaging_10dlc.partner_campaigns.<a href="./src/telnyx/resources/messaging_10dlc/partner_campaigns.py">list_shared_by_me</a>(\*\*<a href="src/telnyx/types/messaging_10dlc/partner_campaign_list_shared_by_me_params.py">params</a>) -> <a href="./src/telnyx/types/messaging_10dlc/partner_campaign_list_shared_by_me_response.py">SyncPerPagePaginationV2[PartnerCampaignListSharedByMeResponse]</a></code>
+- <code title="get /10dlc/partnerCampaign/{campaignId}/sharing">client.messaging_10dlc.partner_campaigns.<a href="./src/telnyx/resources/messaging_10dlc/partner_campaigns.py">retrieve_sharing_status</a>(campaign_id) -> <a href="./src/telnyx/types/messaging_10dlc/partner_campaign_retrieve_sharing_status_response.py">PartnerCampaignRetrieveSharingStatusResponse</a></code>
 
 ## PhoneNumberCampaigns
 
 Types:
 
 ```python
-from telnyx.types.number_10dlc import PhoneNumberCampaign, PhoneNumberCampaignCreate
+from telnyx.types.messaging_10dlc import PhoneNumberCampaign, PhoneNumberCampaignCreate
 ```
 
 Methods:
 
-- <code title="post /10dlc/phone_number_campaigns">client.number_10dlc.phone_number_campaigns.<a href="./src/telnyx/resources/number_10dlc/phone_number_campaigns.py">create</a>(\*\*<a href="src/telnyx/types/number_10dlc/phone_number_campaign_create_params.py">params</a>) -> <a href="./src/telnyx/types/number_10dlc/phone_number_campaign.py">PhoneNumberCampaign</a></code>
-- <code title="get /10dlc/phone_number_campaigns/{phoneNumber}">client.number_10dlc.phone_number_campaigns.<a href="./src/telnyx/resources/number_10dlc/phone_number_campaigns.py">retrieve</a>(phone_number) -> <a href="./src/telnyx/types/number_10dlc/phone_number_campaign.py">PhoneNumberCampaign</a></code>
-- <code title="put /10dlc/phone_number_campaigns/{phoneNumber}">client.number_10dlc.phone_number_campaigns.<a href="./src/telnyx/resources/number_10dlc/phone_number_campaigns.py">update</a>(campaign_phone_number, \*\*<a href="src/telnyx/types/number_10dlc/phone_number_campaign_update_params.py">params</a>) -> <a href="./src/telnyx/types/number_10dlc/phone_number_campaign.py">PhoneNumberCampaign</a></code>
-- <code title="get /10dlc/phone_number_campaigns">client.number_10dlc.phone_number_campaigns.<a href="./src/telnyx/resources/number_10dlc/phone_number_campaigns.py">list</a>(\*\*<a href="src/telnyx/types/number_10dlc/phone_number_campaign_list_params.py">params</a>) -> <a href="./src/telnyx/types/number_10dlc/phone_number_campaign.py">SyncPerPagePaginationV2[PhoneNumberCampaign]</a></code>
-- <code title="delete /10dlc/phone_number_campaigns/{phoneNumber}">client.number_10dlc.phone_number_campaigns.<a href="./src/telnyx/resources/number_10dlc/phone_number_campaigns.py">delete</a>(phone_number) -> <a href="./src/telnyx/types/number_10dlc/phone_number_campaign.py">PhoneNumberCampaign</a></code>
+- <code title="post /10dlc/phone_number_campaigns">client.messaging_10dlc.phone_number_campaigns.<a href="./src/telnyx/resources/messaging_10dlc/phone_number_campaigns.py">create</a>(\*\*<a href="src/telnyx/types/messaging_10dlc/phone_number_campaign_create_params.py">params</a>) -> <a href="./src/telnyx/types/messaging_10dlc/phone_number_campaign.py">PhoneNumberCampaign</a></code>
+- <code title="get /10dlc/phone_number_campaigns/{phoneNumber}">client.messaging_10dlc.phone_number_campaigns.<a href="./src/telnyx/resources/messaging_10dlc/phone_number_campaigns.py">retrieve</a>(phone_number) -> <a href="./src/telnyx/types/messaging_10dlc/phone_number_campaign.py">PhoneNumberCampaign</a></code>
+- <code title="put /10dlc/phone_number_campaigns/{phoneNumber}">client.messaging_10dlc.phone_number_campaigns.<a href="./src/telnyx/resources/messaging_10dlc/phone_number_campaigns.py">update</a>(campaign_phone_number, \*\*<a href="src/telnyx/types/messaging_10dlc/phone_number_campaign_update_params.py">params</a>) -> <a href="./src/telnyx/types/messaging_10dlc/phone_number_campaign.py">PhoneNumberCampaign</a></code>
+- <code title="get /10dlc/phone_number_campaigns">client.messaging_10dlc.phone_number_campaigns.<a href="./src/telnyx/resources/messaging_10dlc/phone_number_campaigns.py">list</a>(\*\*<a href="src/telnyx/types/messaging_10dlc/phone_number_campaign_list_params.py">params</a>) -> <a href="./src/telnyx/types/messaging_10dlc/phone_number_campaign.py">SyncPerPagePaginationV2[PhoneNumberCampaign]</a></code>
+- <code title="delete /10dlc/phone_number_campaigns/{phoneNumber}">client.messaging_10dlc.phone_number_campaigns.<a href="./src/telnyx/resources/messaging_10dlc/phone_number_campaigns.py">delete</a>(phone_number) -> <a href="./src/telnyx/types/messaging_10dlc/phone_number_campaign.py">PhoneNumberCampaign</a></code>
+
+## PhoneNumberAssignmentByProfile
+
+Types:
+
+```python
+from telnyx.types.messaging_10dlc import (
+    TaskStatus,
+    PhoneNumberAssignmentByProfileAssignResponse,
+    PhoneNumberAssignmentByProfileListPhoneNumberStatusResponse,
+    PhoneNumberAssignmentByProfileRetrievePhoneNumberStatusResponse,
+    PhoneNumberAssignmentByProfileRetrieveStatusResponse,
+)
+```
+
+Methods:
+
+- <code title="post /10dlc/phoneNumberAssignmentByProfile">client.messaging_10dlc.phone_number_assignment_by_profile.<a href="./src/telnyx/resources/messaging_10dlc/phone_number_assignment_by_profile.py">assign</a>(\*\*<a href="src/telnyx/types/messaging_10dlc/phone_number_assignment_by_profile_assign_params.py">params</a>) -> <a href="./src/telnyx/types/messaging_10dlc/phone_number_assignment_by_profile_assign_response.py">PhoneNumberAssignmentByProfileAssignResponse</a></code>
+- <code title="get /10dlc/phoneNumberAssignmentByProfile/{taskId}/phoneNumbers">client.messaging_10dlc.phone_number_assignment_by_profile.<a href="./src/telnyx/resources/messaging_10dlc/phone_number_assignment_by_profile.py">list_phone_number_status</a>(task_id, \*\*<a href="src/telnyx/types/messaging_10dlc/phone_number_assignment_by_profile_list_phone_number_status_params.py">params</a>) -> <a href="./src/telnyx/types/messaging_10dlc/phone_number_assignment_by_profile_list_phone_number_status_response.py">PhoneNumberAssignmentByProfileListPhoneNumberStatusResponse</a></code>
+- <code title="get /10dlc/phoneNumberAssignmentByProfile/{taskId}/phoneNumbers">client.messaging_10dlc.phone_number_assignment_by_profile.<a href="./src/telnyx/resources/messaging_10dlc/phone_number_assignment_by_profile.py">retrieve_phone_number_status</a>(task_id, \*\*<a href="src/telnyx/types/messaging_10dlc/phone_number_assignment_by_profile_retrieve_phone_number_status_params.py">params</a>) -> <a href="./src/telnyx/types/messaging_10dlc/phone_number_assignment_by_profile_retrieve_phone_number_status_response.py">PhoneNumberAssignmentByProfileRetrievePhoneNumberStatusResponse</a></code>
+- <code title="get /10dlc/phoneNumberAssignmentByProfile/{taskId}">client.messaging_10dlc.phone_number_assignment_by_profile.<a href="./src/telnyx/resources/messaging_10dlc/phone_number_assignment_by_profile.py">retrieve_status</a>(task_id) -> <a href="./src/telnyx/types/messaging_10dlc/phone_number_assignment_by_profile_retrieve_status_response.py">PhoneNumberAssignmentByProfileRetrieveStatusResponse</a></code>
