@@ -18,7 +18,8 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._base_client import make_request_options
+from ...pagination import SyncDefaultFlatPaginationTopLevelArray, AsyncDefaultFlatPaginationTopLevelArray
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.ai.mcp_server_list_response import McpServerListResponse
 from ...types.ai.mcp_server_create_response import McpServerCreateResponse
 from ...types.ai.mcp_server_update_response import McpServerUpdateResponse
@@ -190,7 +191,7 @@ class McpServersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> McpServerListResponse:
+    ) -> SyncDefaultFlatPaginationTopLevelArray[McpServerListResponse]:
         """
         Retrieve a list of MCP servers.
 
@@ -203,8 +204,9 @@ class McpServersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/ai/mcp_servers",
+            page=SyncDefaultFlatPaginationTopLevelArray[McpServerListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -220,7 +222,7 @@ class McpServersResource(SyncAPIResource):
                     mcp_server_list_params.McpServerListParams,
                 ),
             ),
-            cast_to=McpServerListResponse,
+            model=McpServerListResponse,
         )
 
     def delete(
@@ -408,7 +410,7 @@ class AsyncMcpServersResource(AsyncAPIResource):
             cast_to=McpServerUpdateResponse,
         )
 
-    async def list(
+    def list(
         self,
         *,
         page_number: int | Omit = omit,
@@ -421,7 +423,7 @@ class AsyncMcpServersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> McpServerListResponse:
+    ) -> AsyncPaginator[McpServerListResponse, AsyncDefaultFlatPaginationTopLevelArray[McpServerListResponse]]:
         """
         Retrieve a list of MCP servers.
 
@@ -434,14 +436,15 @@ class AsyncMcpServersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/ai/mcp_servers",
+            page=AsyncDefaultFlatPaginationTopLevelArray[McpServerListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "page_number": page_number,
                         "page_size": page_size,
@@ -451,7 +454,7 @@ class AsyncMcpServersResource(AsyncAPIResource):
                     mcp_server_list_params.McpServerListParams,
                 ),
             ),
-            cast_to=McpServerListResponse,
+            model=McpServerListResponse,
         )
 
     async def delete(

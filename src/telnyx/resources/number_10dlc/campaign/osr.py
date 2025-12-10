@@ -14,7 +14,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
-from ....types.number_10dlc.campaign.osr_retrieve_attributes_response import OsrRetrieveAttributesResponse
+from ....types.number_10dlc.campaign.osr_get_attributes_response import OsrGetAttributesResponse
 
 __all__ = ["OsrResource", "AsyncOsrResource"]
 
@@ -39,7 +39,7 @@ class OsrResource(SyncAPIResource):
         """
         return OsrResourceWithStreamingResponse(self)
 
-    def retrieve_attributes(
+    def get_attributes(
         self,
         campaign_id: str,
         *,
@@ -49,7 +49,7 @@ class OsrResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> OsrRetrieveAttributesResponse:
+    ) -> OsrGetAttributesResponse:
         """
         Get My Osr Campaign Attributes
 
@@ -69,7 +69,7 @@ class OsrResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=OsrRetrieveAttributesResponse,
+            cast_to=OsrGetAttributesResponse,
         )
 
 
@@ -93,7 +93,7 @@ class AsyncOsrResource(AsyncAPIResource):
         """
         return AsyncOsrResourceWithStreamingResponse(self)
 
-    async def retrieve_attributes(
+    async def get_attributes(
         self,
         campaign_id: str,
         *,
@@ -103,7 +103,7 @@ class AsyncOsrResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> OsrRetrieveAttributesResponse:
+    ) -> OsrGetAttributesResponse:
         """
         Get My Osr Campaign Attributes
 
@@ -123,7 +123,7 @@ class AsyncOsrResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=OsrRetrieveAttributesResponse,
+            cast_to=OsrGetAttributesResponse,
         )
 
 
@@ -131,8 +131,8 @@ class OsrResourceWithRawResponse:
     def __init__(self, osr: OsrResource) -> None:
         self._osr = osr
 
-        self.retrieve_attributes = to_raw_response_wrapper(
-            osr.retrieve_attributes,
+        self.get_attributes = to_raw_response_wrapper(
+            osr.get_attributes,
         )
 
 
@@ -140,8 +140,8 @@ class AsyncOsrResourceWithRawResponse:
     def __init__(self, osr: AsyncOsrResource) -> None:
         self._osr = osr
 
-        self.retrieve_attributes = async_to_raw_response_wrapper(
-            osr.retrieve_attributes,
+        self.get_attributes = async_to_raw_response_wrapper(
+            osr.get_attributes,
         )
 
 
@@ -149,8 +149,8 @@ class OsrResourceWithStreamingResponse:
     def __init__(self, osr: OsrResource) -> None:
         self._osr = osr
 
-        self.retrieve_attributes = to_streamed_response_wrapper(
-            osr.retrieve_attributes,
+        self.get_attributes = to_streamed_response_wrapper(
+            osr.get_attributes,
         )
 
 
@@ -158,6 +158,6 @@ class AsyncOsrResourceWithStreamingResponse:
     def __init__(self, osr: AsyncOsrResource) -> None:
         self._osr = osr
 
-        self.retrieve_attributes = async_to_streamed_response_wrapper(
-            osr.retrieve_attributes,
+        self.get_attributes = async_to_streamed_response_wrapper(
+            osr.get_attributes,
         )

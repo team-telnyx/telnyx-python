@@ -14,7 +14,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
-from ....types.number_10dlc.campaign_builder.brand_retrieve_response import BrandRetrieveResponse
+from ....types.number_10dlc.campaign_builder.brand_qualify_by_usecase_response import BrandQualifyByUsecaseResponse
 
 __all__ = ["BrandResource", "AsyncBrandResource"]
 
@@ -39,7 +39,7 @@ class BrandResource(SyncAPIResource):
         """
         return BrandResourceWithStreamingResponse(self)
 
-    def retrieve(
+    def qualify_by_usecase(
         self,
         usecase: str,
         *,
@@ -50,7 +50,7 @@ class BrandResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> BrandRetrieveResponse:
+    ) -> BrandQualifyByUsecaseResponse:
         """
         This endpoint allows you to see whether or not the supplied brand is suitable
         for your desired campaign use case.
@@ -73,7 +73,7 @@ class BrandResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=BrandRetrieveResponse,
+            cast_to=BrandQualifyByUsecaseResponse,
         )
 
 
@@ -97,7 +97,7 @@ class AsyncBrandResource(AsyncAPIResource):
         """
         return AsyncBrandResourceWithStreamingResponse(self)
 
-    async def retrieve(
+    async def qualify_by_usecase(
         self,
         usecase: str,
         *,
@@ -108,7 +108,7 @@ class AsyncBrandResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> BrandRetrieveResponse:
+    ) -> BrandQualifyByUsecaseResponse:
         """
         This endpoint allows you to see whether or not the supplied brand is suitable
         for your desired campaign use case.
@@ -131,7 +131,7 @@ class AsyncBrandResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=BrandRetrieveResponse,
+            cast_to=BrandQualifyByUsecaseResponse,
         )
 
 
@@ -139,8 +139,8 @@ class BrandResourceWithRawResponse:
     def __init__(self, brand: BrandResource) -> None:
         self._brand = brand
 
-        self.retrieve = to_raw_response_wrapper(
-            brand.retrieve,
+        self.qualify_by_usecase = to_raw_response_wrapper(
+            brand.qualify_by_usecase,
         )
 
 
@@ -148,8 +148,8 @@ class AsyncBrandResourceWithRawResponse:
     def __init__(self, brand: AsyncBrandResource) -> None:
         self._brand = brand
 
-        self.retrieve = async_to_raw_response_wrapper(
-            brand.retrieve,
+        self.qualify_by_usecase = async_to_raw_response_wrapper(
+            brand.qualify_by_usecase,
         )
 
 
@@ -157,8 +157,8 @@ class BrandResourceWithStreamingResponse:
     def __init__(self, brand: BrandResource) -> None:
         self._brand = brand
 
-        self.retrieve = to_streamed_response_wrapper(
-            brand.retrieve,
+        self.qualify_by_usecase = to_streamed_response_wrapper(
+            brand.qualify_by_usecase,
         )
 
 
@@ -166,6 +166,6 @@ class AsyncBrandResourceWithStreamingResponse:
     def __init__(self, brand: AsyncBrandResource) -> None:
         self._brand = brand
 
-        self.retrieve = async_to_streamed_response_wrapper(
-            brand.retrieve,
+        self.qualify_by_usecase = async_to_streamed_response_wrapper(
+            brand.qualify_by_usecase,
         )

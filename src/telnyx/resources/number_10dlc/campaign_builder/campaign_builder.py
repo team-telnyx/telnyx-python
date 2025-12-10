@@ -25,8 +25,8 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
-from ....types.number_10dlc import campaign_builder_campaign_builder_params
-from ....types.telnyx_campaign_csp import TelnyxCampaignCsp
+from ....types.number_10dlc import campaign_builder_submit_params
+from ....types.number_10dlc.telnyx_campaign_csp import TelnyxCampaignCsp
 
 __all__ = ["CampaignBuilderResource", "AsyncCampaignBuilderResource"]
 
@@ -55,7 +55,7 @@ class CampaignBuilderResource(SyncAPIResource):
         """
         return CampaignBuilderResourceWithStreamingResponse(self)
 
-    def campaign_builder(
+    def submit(
         self,
         *,
         brand_id: str,
@@ -237,7 +237,7 @@ class CampaignBuilderResource(SyncAPIResource):
                     "webhook_failover_url": webhook_failover_url,
                     "webhook_url": webhook_url,
                 },
-                campaign_builder_campaign_builder_params.CampaignBuilderCampaignBuilderParams,
+                campaign_builder_submit_params.CampaignBuilderSubmitParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -270,7 +270,7 @@ class AsyncCampaignBuilderResource(AsyncAPIResource):
         """
         return AsyncCampaignBuilderResourceWithStreamingResponse(self)
 
-    async def campaign_builder(
+    async def submit(
         self,
         *,
         brand_id: str,
@@ -452,7 +452,7 @@ class AsyncCampaignBuilderResource(AsyncAPIResource):
                     "webhook_failover_url": webhook_failover_url,
                     "webhook_url": webhook_url,
                 },
-                campaign_builder_campaign_builder_params.CampaignBuilderCampaignBuilderParams,
+                campaign_builder_submit_params.CampaignBuilderSubmitParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -465,8 +465,8 @@ class CampaignBuilderResourceWithRawResponse:
     def __init__(self, campaign_builder: CampaignBuilderResource) -> None:
         self._campaign_builder = campaign_builder
 
-        self.campaign_builder = to_raw_response_wrapper(
-            campaign_builder.campaign_builder,
+        self.submit = to_raw_response_wrapper(
+            campaign_builder.submit,
         )
 
     @cached_property
@@ -478,8 +478,8 @@ class AsyncCampaignBuilderResourceWithRawResponse:
     def __init__(self, campaign_builder: AsyncCampaignBuilderResource) -> None:
         self._campaign_builder = campaign_builder
 
-        self.campaign_builder = async_to_raw_response_wrapper(
-            campaign_builder.campaign_builder,
+        self.submit = async_to_raw_response_wrapper(
+            campaign_builder.submit,
         )
 
     @cached_property
@@ -491,8 +491,8 @@ class CampaignBuilderResourceWithStreamingResponse:
     def __init__(self, campaign_builder: CampaignBuilderResource) -> None:
         self._campaign_builder = campaign_builder
 
-        self.campaign_builder = to_streamed_response_wrapper(
-            campaign_builder.campaign_builder,
+        self.submit = to_streamed_response_wrapper(
+            campaign_builder.submit,
         )
 
     @cached_property
@@ -504,8 +504,8 @@ class AsyncCampaignBuilderResourceWithStreamingResponse:
     def __init__(self, campaign_builder: AsyncCampaignBuilderResource) -> None:
         self._campaign_builder = campaign_builder
 
-        self.campaign_builder = async_to_streamed_response_wrapper(
-            campaign_builder.campaign_builder,
+        self.submit = async_to_streamed_response_wrapper(
+            campaign_builder.submit,
         )
 
     @cached_property

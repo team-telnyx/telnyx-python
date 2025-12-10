@@ -32,15 +32,17 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._base_client import make_request_options
-from ....types.number_10dlc import campaign_list_params, campaign_appeal_params, campaign_update_params
-from ....types.telnyx_campaign_csp import TelnyxCampaignCsp
+from ....pagination import SyncPerPagePaginationV2, AsyncPerPagePaginationV2
+from ...._base_client import AsyncPaginator, make_request_options
+from ....types.number_10dlc import campaign_list_params, campaign_update_params, campaign_submit_appeal_params
+from ....types.number_10dlc.telnyx_campaign_csp import TelnyxCampaignCsp
 from ....types.number_10dlc.campaign_list_response import CampaignListResponse
-from ....types.number_10dlc.campaign_appeal_response import CampaignAppealResponse
-from ....types.number_10dlc.campaign_delete_response import CampaignDeleteResponse
-from ....types.number_10dlc.campaign_retrieve_sharing_response import CampaignRetrieveSharingResponse
-from ....types.number_10dlc.campaign_retrieve_mno_metadata_response import CampaignRetrieveMnoMetadataResponse
-from ....types.number_10dlc.campaign_retrieve_operation_status_response import CampaignRetrieveOperationStatusResponse
+from ....types.number_10dlc.campaign_deactivate_response import CampaignDeactivateResponse
+from ....types.number_10dlc.campaign_submit_appeal_response import CampaignSubmitAppealResponse
+from ....types.number_10dlc.campaign_accept_sharing_response import CampaignAcceptSharingResponse
+from ....types.number_10dlc.campaign_get_mno_metadata_response import CampaignGetMnoMetadataResponse
+from ....types.number_10dlc.campaign_get_sharing_status_response import CampaignGetSharingStatusResponse
+from ....types.number_10dlc.campaign_get_operation_status_response import CampaignGetOperationStatusResponse
 
 __all__ = ["CampaignResource", "AsyncCampaignResource"]
 
@@ -216,7 +218,7 @@ class CampaignResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CampaignListResponse:
+    ) -> SyncPerPagePaginationV2[CampaignListResponse]:
         """
         Retrieve a list of campaigns associated with a supplied `brandId`.
 
@@ -237,8 +239,9 @@ class CampaignResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/10dlc/campaign",
+            page=SyncPerPagePaginationV2[CampaignListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -254,10 +257,10 @@ class CampaignResource(SyncAPIResource):
                     campaign_list_params.CampaignListParams,
                 ),
             ),
-            cast_to=CampaignListResponse,
+            model=CampaignListResponse,
         )
 
-    def delete(
+    def accept_sharing(
         self,
         campaign_id: str,
         *,
@@ -267,7 +270,42 @@ class CampaignResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CampaignDeleteResponse:
+    ) -> CampaignAcceptSharingResponse:
+        """
+        Manually accept a campaign shared with Telnyx
+
+        Args:
+          campaign_id: TCR's ID for the campaign to import
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not campaign_id:
+            raise ValueError(f"Expected a non-empty value for `campaign_id` but received {campaign_id!r}")
+        return self._post(
+            f"/10dlc/campaign/acceptSharing/{campaign_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=CampaignAcceptSharingResponse,
+        )
+
+    def deactivate(
+        self,
+        campaign_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> CampaignDeactivateResponse:
         """Terminate a campaign.
 
         Note that once deactivated, a campaign cannot be restored.
@@ -288,10 +326,113 @@ class CampaignResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CampaignDeleteResponse,
+            cast_to=CampaignDeactivateResponse,
         )
 
-    def appeal(
+    def get_mno_metadata(
+        self,
+        campaign_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> CampaignGetMnoMetadataResponse:
+        """
+        Get the campaign metadata for each MNO it was submitted to.
+
+        Args:
+          campaign_id: ID of the campaign in question
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not campaign_id:
+            raise ValueError(f"Expected a non-empty value for `campaign_id` but received {campaign_id!r}")
+        return self._get(
+            f"/10dlc/campaign/{campaign_id}/mnoMetadata",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=CampaignGetMnoMetadataResponse,
+        )
+
+    def get_operation_status(
+        self,
+        campaign_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> CampaignGetOperationStatusResponse:
+        """
+        Retrieve campaign's operation status at MNO level.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not campaign_id:
+            raise ValueError(f"Expected a non-empty value for `campaign_id` but received {campaign_id!r}")
+        return self._get(
+            f"/10dlc/campaign/{campaign_id}/operationStatus",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=CampaignGetOperationStatusResponse,
+        )
+
+    def get_sharing_status(
+        self,
+        campaign_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> CampaignGetSharingStatusResponse:
+        """
+        Get Sharing Status
+
+        Args:
+          campaign_id: ID of the campaign in question
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not campaign_id:
+            raise ValueError(f"Expected a non-empty value for `campaign_id` but received {campaign_id!r}")
+        return self._get(
+            f"/10dlc/campaign/{campaign_id}/sharing",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=CampaignGetSharingStatusResponse,
+        )
+
+    def submit_appeal(
         self,
         campaign_id: str,
         *,
@@ -302,7 +443,7 @@ class CampaignResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CampaignAppealResponse:
+    ) -> CampaignSubmitAppealResponse:
         """
         Submits an appeal for rejected native campaigns in TELNYX_FAILED or MNO_REJECTED
         status. The appeal is recorded for manual compliance team review and the
@@ -325,114 +466,13 @@ class CampaignResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `campaign_id` but received {campaign_id!r}")
         return self._post(
             f"/10dlc/campaign/{campaign_id}/appeal",
-            body=maybe_transform({"appeal_reason": appeal_reason}, campaign_appeal_params.CampaignAppealParams),
+            body=maybe_transform(
+                {"appeal_reason": appeal_reason}, campaign_submit_appeal_params.CampaignSubmitAppealParams
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CampaignAppealResponse,
-        )
-
-    def retrieve_mno_metadata(
-        self,
-        campaign_id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CampaignRetrieveMnoMetadataResponse:
-        """
-        Get the campaign metadata for each MNO it was submitted to.
-
-        Args:
-          campaign_id: ID of the campaign in question
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not campaign_id:
-            raise ValueError(f"Expected a non-empty value for `campaign_id` but received {campaign_id!r}")
-        return self._get(
-            f"/10dlc/campaign/{campaign_id}/mnoMetadata",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=CampaignRetrieveMnoMetadataResponse,
-        )
-
-    def retrieve_operation_status(
-        self,
-        campaign_id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CampaignRetrieveOperationStatusResponse:
-        """
-        Retrieve campaign's operation status at MNO level.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not campaign_id:
-            raise ValueError(f"Expected a non-empty value for `campaign_id` but received {campaign_id!r}")
-        return self._get(
-            f"/10dlc/campaign/{campaign_id}/operationStatus",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=CampaignRetrieveOperationStatusResponse,
-        )
-
-    def retrieve_sharing(
-        self,
-        campaign_id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CampaignRetrieveSharingResponse:
-        """
-        Get Sharing Status
-
-        Args:
-          campaign_id: ID of the campaign in question
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not campaign_id:
-            raise ValueError(f"Expected a non-empty value for `campaign_id` but received {campaign_id!r}")
-        return self._get(
-            f"/10dlc/campaign/{campaign_id}/sharing",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=CampaignRetrieveSharingResponse,
+            cast_to=CampaignSubmitAppealResponse,
         )
 
 
@@ -582,7 +622,7 @@ class AsyncCampaignResource(AsyncAPIResource):
             cast_to=TelnyxCampaignCsp,
         )
 
-    async def list(
+    def list(
         self,
         *,
         brand_id: str,
@@ -607,7 +647,7 @@ class AsyncCampaignResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CampaignListResponse:
+    ) -> AsyncPaginator[CampaignListResponse, AsyncPerPagePaginationV2[CampaignListResponse]]:
         """
         Retrieve a list of campaigns associated with a supplied `brandId`.
 
@@ -628,14 +668,15 @@ class AsyncCampaignResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/10dlc/campaign",
+            page=AsyncPerPagePaginationV2[CampaignListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "brand_id": brand_id,
                         "page": page,
@@ -645,10 +686,10 @@ class AsyncCampaignResource(AsyncAPIResource):
                     campaign_list_params.CampaignListParams,
                 ),
             ),
-            cast_to=CampaignListResponse,
+            model=CampaignListResponse,
         )
 
-    async def delete(
+    async def accept_sharing(
         self,
         campaign_id: str,
         *,
@@ -658,7 +699,42 @@ class AsyncCampaignResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CampaignDeleteResponse:
+    ) -> CampaignAcceptSharingResponse:
+        """
+        Manually accept a campaign shared with Telnyx
+
+        Args:
+          campaign_id: TCR's ID for the campaign to import
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not campaign_id:
+            raise ValueError(f"Expected a non-empty value for `campaign_id` but received {campaign_id!r}")
+        return await self._post(
+            f"/10dlc/campaign/acceptSharing/{campaign_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=CampaignAcceptSharingResponse,
+        )
+
+    async def deactivate(
+        self,
+        campaign_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> CampaignDeactivateResponse:
         """Terminate a campaign.
 
         Note that once deactivated, a campaign cannot be restored.
@@ -679,10 +755,113 @@ class AsyncCampaignResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CampaignDeleteResponse,
+            cast_to=CampaignDeactivateResponse,
         )
 
-    async def appeal(
+    async def get_mno_metadata(
+        self,
+        campaign_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> CampaignGetMnoMetadataResponse:
+        """
+        Get the campaign metadata for each MNO it was submitted to.
+
+        Args:
+          campaign_id: ID of the campaign in question
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not campaign_id:
+            raise ValueError(f"Expected a non-empty value for `campaign_id` but received {campaign_id!r}")
+        return await self._get(
+            f"/10dlc/campaign/{campaign_id}/mnoMetadata",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=CampaignGetMnoMetadataResponse,
+        )
+
+    async def get_operation_status(
+        self,
+        campaign_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> CampaignGetOperationStatusResponse:
+        """
+        Retrieve campaign's operation status at MNO level.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not campaign_id:
+            raise ValueError(f"Expected a non-empty value for `campaign_id` but received {campaign_id!r}")
+        return await self._get(
+            f"/10dlc/campaign/{campaign_id}/operationStatus",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=CampaignGetOperationStatusResponse,
+        )
+
+    async def get_sharing_status(
+        self,
+        campaign_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> CampaignGetSharingStatusResponse:
+        """
+        Get Sharing Status
+
+        Args:
+          campaign_id: ID of the campaign in question
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not campaign_id:
+            raise ValueError(f"Expected a non-empty value for `campaign_id` but received {campaign_id!r}")
+        return await self._get(
+            f"/10dlc/campaign/{campaign_id}/sharing",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=CampaignGetSharingStatusResponse,
+        )
+
+    async def submit_appeal(
         self,
         campaign_id: str,
         *,
@@ -693,7 +872,7 @@ class AsyncCampaignResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CampaignAppealResponse:
+    ) -> CampaignSubmitAppealResponse:
         """
         Submits an appeal for rejected native campaigns in TELNYX_FAILED or MNO_REJECTED
         status. The appeal is recorded for manual compliance team review and the
@@ -717,115 +896,12 @@ class AsyncCampaignResource(AsyncAPIResource):
         return await self._post(
             f"/10dlc/campaign/{campaign_id}/appeal",
             body=await async_maybe_transform(
-                {"appeal_reason": appeal_reason}, campaign_appeal_params.CampaignAppealParams
+                {"appeal_reason": appeal_reason}, campaign_submit_appeal_params.CampaignSubmitAppealParams
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CampaignAppealResponse,
-        )
-
-    async def retrieve_mno_metadata(
-        self,
-        campaign_id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CampaignRetrieveMnoMetadataResponse:
-        """
-        Get the campaign metadata for each MNO it was submitted to.
-
-        Args:
-          campaign_id: ID of the campaign in question
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not campaign_id:
-            raise ValueError(f"Expected a non-empty value for `campaign_id` but received {campaign_id!r}")
-        return await self._get(
-            f"/10dlc/campaign/{campaign_id}/mnoMetadata",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=CampaignRetrieveMnoMetadataResponse,
-        )
-
-    async def retrieve_operation_status(
-        self,
-        campaign_id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CampaignRetrieveOperationStatusResponse:
-        """
-        Retrieve campaign's operation status at MNO level.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not campaign_id:
-            raise ValueError(f"Expected a non-empty value for `campaign_id` but received {campaign_id!r}")
-        return await self._get(
-            f"/10dlc/campaign/{campaign_id}/operationStatus",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=CampaignRetrieveOperationStatusResponse,
-        )
-
-    async def retrieve_sharing(
-        self,
-        campaign_id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CampaignRetrieveSharingResponse:
-        """
-        Get Sharing Status
-
-        Args:
-          campaign_id: ID of the campaign in question
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not campaign_id:
-            raise ValueError(f"Expected a non-empty value for `campaign_id` but received {campaign_id!r}")
-        return await self._get(
-            f"/10dlc/campaign/{campaign_id}/sharing",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=CampaignRetrieveSharingResponse,
+            cast_to=CampaignSubmitAppealResponse,
         )
 
 
@@ -842,20 +918,23 @@ class CampaignResourceWithRawResponse:
         self.list = to_raw_response_wrapper(
             campaign.list,
         )
-        self.delete = to_raw_response_wrapper(
-            campaign.delete,
+        self.accept_sharing = to_raw_response_wrapper(
+            campaign.accept_sharing,
         )
-        self.appeal = to_raw_response_wrapper(
-            campaign.appeal,
+        self.deactivate = to_raw_response_wrapper(
+            campaign.deactivate,
         )
-        self.retrieve_mno_metadata = to_raw_response_wrapper(
-            campaign.retrieve_mno_metadata,
+        self.get_mno_metadata = to_raw_response_wrapper(
+            campaign.get_mno_metadata,
         )
-        self.retrieve_operation_status = to_raw_response_wrapper(
-            campaign.retrieve_operation_status,
+        self.get_operation_status = to_raw_response_wrapper(
+            campaign.get_operation_status,
         )
-        self.retrieve_sharing = to_raw_response_wrapper(
-            campaign.retrieve_sharing,
+        self.get_sharing_status = to_raw_response_wrapper(
+            campaign.get_sharing_status,
+        )
+        self.submit_appeal = to_raw_response_wrapper(
+            campaign.submit_appeal,
         )
 
     @cached_property
@@ -880,20 +959,23 @@ class AsyncCampaignResourceWithRawResponse:
         self.list = async_to_raw_response_wrapper(
             campaign.list,
         )
-        self.delete = async_to_raw_response_wrapper(
-            campaign.delete,
+        self.accept_sharing = async_to_raw_response_wrapper(
+            campaign.accept_sharing,
         )
-        self.appeal = async_to_raw_response_wrapper(
-            campaign.appeal,
+        self.deactivate = async_to_raw_response_wrapper(
+            campaign.deactivate,
         )
-        self.retrieve_mno_metadata = async_to_raw_response_wrapper(
-            campaign.retrieve_mno_metadata,
+        self.get_mno_metadata = async_to_raw_response_wrapper(
+            campaign.get_mno_metadata,
         )
-        self.retrieve_operation_status = async_to_raw_response_wrapper(
-            campaign.retrieve_operation_status,
+        self.get_operation_status = async_to_raw_response_wrapper(
+            campaign.get_operation_status,
         )
-        self.retrieve_sharing = async_to_raw_response_wrapper(
-            campaign.retrieve_sharing,
+        self.get_sharing_status = async_to_raw_response_wrapper(
+            campaign.get_sharing_status,
+        )
+        self.submit_appeal = async_to_raw_response_wrapper(
+            campaign.submit_appeal,
         )
 
     @cached_property
@@ -918,20 +1000,23 @@ class CampaignResourceWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             campaign.list,
         )
-        self.delete = to_streamed_response_wrapper(
-            campaign.delete,
+        self.accept_sharing = to_streamed_response_wrapper(
+            campaign.accept_sharing,
         )
-        self.appeal = to_streamed_response_wrapper(
-            campaign.appeal,
+        self.deactivate = to_streamed_response_wrapper(
+            campaign.deactivate,
         )
-        self.retrieve_mno_metadata = to_streamed_response_wrapper(
-            campaign.retrieve_mno_metadata,
+        self.get_mno_metadata = to_streamed_response_wrapper(
+            campaign.get_mno_metadata,
         )
-        self.retrieve_operation_status = to_streamed_response_wrapper(
-            campaign.retrieve_operation_status,
+        self.get_operation_status = to_streamed_response_wrapper(
+            campaign.get_operation_status,
         )
-        self.retrieve_sharing = to_streamed_response_wrapper(
-            campaign.retrieve_sharing,
+        self.get_sharing_status = to_streamed_response_wrapper(
+            campaign.get_sharing_status,
+        )
+        self.submit_appeal = to_streamed_response_wrapper(
+            campaign.submit_appeal,
         )
 
     @cached_property
@@ -956,20 +1041,23 @@ class AsyncCampaignResourceWithStreamingResponse:
         self.list = async_to_streamed_response_wrapper(
             campaign.list,
         )
-        self.delete = async_to_streamed_response_wrapper(
-            campaign.delete,
+        self.accept_sharing = async_to_streamed_response_wrapper(
+            campaign.accept_sharing,
         )
-        self.appeal = async_to_streamed_response_wrapper(
-            campaign.appeal,
+        self.deactivate = async_to_streamed_response_wrapper(
+            campaign.deactivate,
         )
-        self.retrieve_mno_metadata = async_to_streamed_response_wrapper(
-            campaign.retrieve_mno_metadata,
+        self.get_mno_metadata = async_to_streamed_response_wrapper(
+            campaign.get_mno_metadata,
         )
-        self.retrieve_operation_status = async_to_streamed_response_wrapper(
-            campaign.retrieve_operation_status,
+        self.get_operation_status = async_to_streamed_response_wrapper(
+            campaign.get_operation_status,
         )
-        self.retrieve_sharing = async_to_streamed_response_wrapper(
-            campaign.retrieve_sharing,
+        self.get_sharing_status = async_to_streamed_response_wrapper(
+            campaign.get_sharing_status,
+        )
+        self.submit_appeal = async_to_streamed_response_wrapper(
+            campaign.submit_appeal,
         )
 
     @cached_property

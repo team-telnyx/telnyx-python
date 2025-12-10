@@ -7,27 +7,25 @@ from typing_extensions import Literal, TypeAlias
 from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
-from ..pagination_meta import PaginationMeta
 from ..shared.porting_order_status import PortingOrderStatus
 
 __all__ = [
     "EventListResponse",
-    "Data",
-    "DataPayload",
-    "DataPayloadWebhookPortingOrderDeletedPayload",
-    "DataPayloadWebhookPortingOrderMessagingChangedPayload",
-    "DataPayloadWebhookPortingOrderMessagingChangedPayloadMessaging",
-    "DataPayloadWebhookPortingOrderStatusChangedPayload",
-    "DataPayloadWebhookPortingOrderNewCommentPayload",
-    "DataPayloadWebhookPortingOrderNewCommentPayloadComment",
-    "DataPayloadWebhookPortingOrderSplitPayload",
-    "DataPayloadWebhookPortingOrderSplitPayloadFrom",
-    "DataPayloadWebhookPortingOrderSplitPayloadPortingPhoneNumber",
-    "DataPayloadWebhookPortingOrderSplitPayloadTo",
+    "Payload",
+    "PayloadWebhookPortingOrderDeletedPayload",
+    "PayloadWebhookPortingOrderMessagingChangedPayload",
+    "PayloadWebhookPortingOrderMessagingChangedPayloadMessaging",
+    "PayloadWebhookPortingOrderStatusChangedPayload",
+    "PayloadWebhookPortingOrderNewCommentPayload",
+    "PayloadWebhookPortingOrderNewCommentPayloadComment",
+    "PayloadWebhookPortingOrderSplitPayload",
+    "PayloadWebhookPortingOrderSplitPayloadFrom",
+    "PayloadWebhookPortingOrderSplitPayloadPortingPhoneNumber",
+    "PayloadWebhookPortingOrderSplitPayloadTo",
 ]
 
 
-class DataPayloadWebhookPortingOrderDeletedPayload(BaseModel):
+class PayloadWebhookPortingOrderDeletedPayload(BaseModel):
     """The webhook payload for the porting_order.deleted event"""
 
     id: Optional[str] = None
@@ -40,7 +38,7 @@ class DataPayloadWebhookPortingOrderDeletedPayload(BaseModel):
     """ISO 8601 formatted date indicating when the porting order was deleted."""
 
 
-class DataPayloadWebhookPortingOrderMessagingChangedPayloadMessaging(BaseModel):
+class PayloadWebhookPortingOrderMessagingChangedPayloadMessaging(BaseModel):
     """The messaging portability status of the porting order."""
 
     enable_messaging: Optional[bool] = None
@@ -62,7 +60,7 @@ class DataPayloadWebhookPortingOrderMessagingChangedPayloadMessaging(BaseModel):
     """Indicates the messaging port status of the porting order."""
 
 
-class DataPayloadWebhookPortingOrderMessagingChangedPayload(BaseModel):
+class PayloadWebhookPortingOrderMessagingChangedPayload(BaseModel):
     """The webhook payload for the porting_order.messaging_changed event"""
 
     id: Optional[str] = None
@@ -71,14 +69,14 @@ class DataPayloadWebhookPortingOrderMessagingChangedPayload(BaseModel):
     customer_reference: Optional[str] = None
     """Identifies the customer reference associated with the porting order."""
 
-    messaging: Optional[DataPayloadWebhookPortingOrderMessagingChangedPayloadMessaging] = None
+    messaging: Optional[PayloadWebhookPortingOrderMessagingChangedPayloadMessaging] = None
     """The messaging portability status of the porting order."""
 
     support_key: Optional[str] = None
     """Identifies the support key associated with the porting order."""
 
 
-class DataPayloadWebhookPortingOrderStatusChangedPayload(BaseModel):
+class PayloadWebhookPortingOrderStatusChangedPayload(BaseModel):
     """The webhook payload for the porting_order.status_changed event"""
 
     id: Optional[str] = None
@@ -100,7 +98,7 @@ class DataPayloadWebhookPortingOrderStatusChangedPayload(BaseModel):
     """The URL to send the webhook to."""
 
 
-class DataPayloadWebhookPortingOrderNewCommentPayloadComment(BaseModel):
+class PayloadWebhookPortingOrderNewCommentPayloadComment(BaseModel):
     """The comment that was added to the porting order."""
 
     id: Optional[str] = None
@@ -119,10 +117,10 @@ class DataPayloadWebhookPortingOrderNewCommentPayloadComment(BaseModel):
     """Identifies the type of the user that created the comment."""
 
 
-class DataPayloadWebhookPortingOrderNewCommentPayload(BaseModel):
+class PayloadWebhookPortingOrderNewCommentPayload(BaseModel):
     """The webhook payload for the porting_order.new_comment event"""
 
-    comment: Optional[DataPayloadWebhookPortingOrderNewCommentPayloadComment] = None
+    comment: Optional[PayloadWebhookPortingOrderNewCommentPayloadComment] = None
     """The comment that was added to the porting order."""
 
     porting_order_id: Optional[str] = None
@@ -132,48 +130,48 @@ class DataPayloadWebhookPortingOrderNewCommentPayload(BaseModel):
     """Identifies the support key associated with the porting order."""
 
 
-class DataPayloadWebhookPortingOrderSplitPayloadFrom(BaseModel):
+class PayloadWebhookPortingOrderSplitPayloadFrom(BaseModel):
     """The porting order that was split."""
 
     id: Optional[str] = None
     """Identifies the porting order that was split."""
 
 
-class DataPayloadWebhookPortingOrderSplitPayloadPortingPhoneNumber(BaseModel):
+class PayloadWebhookPortingOrderSplitPayloadPortingPhoneNumber(BaseModel):
     id: Optional[str] = None
     """Identifies the porting phone number that was moved."""
 
 
-class DataPayloadWebhookPortingOrderSplitPayloadTo(BaseModel):
+class PayloadWebhookPortingOrderSplitPayloadTo(BaseModel):
     """The new porting order that the phone numbers was moved to."""
 
     id: Optional[str] = None
     """Identifies the porting order that was split."""
 
 
-class DataPayloadWebhookPortingOrderSplitPayload(BaseModel):
+class PayloadWebhookPortingOrderSplitPayload(BaseModel):
     """The webhook payload for the porting_order.split event"""
 
-    from_: Optional[DataPayloadWebhookPortingOrderSplitPayloadFrom] = FieldInfo(alias="from", default=None)
+    from_: Optional[PayloadWebhookPortingOrderSplitPayloadFrom] = FieldInfo(alias="from", default=None)
     """The porting order that was split."""
 
-    porting_phone_numbers: Optional[List[DataPayloadWebhookPortingOrderSplitPayloadPortingPhoneNumber]] = None
+    porting_phone_numbers: Optional[List[PayloadWebhookPortingOrderSplitPayloadPortingPhoneNumber]] = None
     """The list of porting phone numbers that were moved to the new porting order."""
 
-    to: Optional[DataPayloadWebhookPortingOrderSplitPayloadTo] = None
+    to: Optional[PayloadWebhookPortingOrderSplitPayloadTo] = None
     """The new porting order that the phone numbers was moved to."""
 
 
-DataPayload: TypeAlias = Union[
-    DataPayloadWebhookPortingOrderDeletedPayload,
-    DataPayloadWebhookPortingOrderMessagingChangedPayload,
-    DataPayloadWebhookPortingOrderStatusChangedPayload,
-    DataPayloadWebhookPortingOrderNewCommentPayload,
-    DataPayloadWebhookPortingOrderSplitPayload,
+Payload: TypeAlias = Union[
+    PayloadWebhookPortingOrderDeletedPayload,
+    PayloadWebhookPortingOrderMessagingChangedPayload,
+    PayloadWebhookPortingOrderStatusChangedPayload,
+    PayloadWebhookPortingOrderNewCommentPayload,
+    PayloadWebhookPortingOrderSplitPayload,
 ]
 
 
-class Data(BaseModel):
+class EventListResponse(BaseModel):
     id: Optional[str] = None
     """Uniquely identifies the event."""
 
@@ -196,7 +194,7 @@ class Data(BaseModel):
     ] = None
     """Identifies the event type"""
 
-    payload: Optional[DataPayload] = None
+    payload: Optional[Payload] = None
     """The webhook payload for the porting_order.deleted event"""
 
     payload_status: Optional[Literal["created", "completed"]] = None
@@ -210,9 +208,3 @@ class Data(BaseModel):
 
     updated_at: Optional[datetime] = None
     """ISO 8601 formatted date indicating when the resource was updated."""
-
-
-class EventListResponse(BaseModel):
-    data: Optional[List[Data]] = None
-
-    meta: Optional[PaginationMeta] = None

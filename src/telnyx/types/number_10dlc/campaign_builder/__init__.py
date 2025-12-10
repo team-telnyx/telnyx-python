@@ -2,4 +2,4 @@
 
 from __future__ import annotations
 
-from .brand_retrieve_response import BrandRetrieveResponse as BrandRetrieveResponse
+from .brand_qualify_by_usecase_response import BrandQualifyByUsecaseResponse as BrandQualifyByUsecaseResponse

@@ -7,11 +7,21 @@ from typing_extensions import Required, Annotated, TypeAlias, TypedDict
 
 from .._types import Base64FileInput
 from .._utils import PropertyInfo
+from .._models import set_pydantic_config
 
-__all__ = ["DocumentUploadParams", "DocServiceDocumentUploadURL", "DocServiceDocumentUploadInline"]
+__all__ = [
+    "DocumentUploadParams",
+    "Document",
+    "DocumentDocServiceDocumentUploadURL",
+    "DocumentDocServiceDocumentUploadInline",
+]
 
 
-class DocServiceDocumentUploadURL(TypedDict, total=False):
+class DocumentUploadParams(TypedDict, total=False):
+    document: Required[Document]
+
+
+class DocumentDocServiceDocumentUploadURL(TypedDict, total=False):
     url: Required[str]
     """
     If the file is already hosted publicly, you can provide a URL and have the
@@ -25,7 +35,7 @@ class DocServiceDocumentUploadURL(TypedDict, total=False):
     """The filename of the document."""
 
 
-class DocServiceDocumentUploadInline(TypedDict, total=False):
+class DocumentDocServiceDocumentUploadInline(TypedDict, total=False):
     file: Required[Annotated[Union[str, Base64FileInput], PropertyInfo(format="base64")]]
     """The Base64 encoded contents of the file you are uploading."""
 
@@ -36,4 +46,6 @@ class DocServiceDocumentUploadInline(TypedDict, total=False):
     """The filename of the document."""
 
 
-DocumentUploadParams: TypeAlias = Union[DocServiceDocumentUploadURL, DocServiceDocumentUploadInline]
+set_pydantic_config(DocumentDocServiceDocumentUploadInline, {"arbitrary_types_allowed": True})
+
+Document: TypeAlias = Union[DocumentDocServiceDocumentUploadURL, DocumentDocServiceDocumentUploadInline]

@@ -1,16 +1,15 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Optional
 from datetime import datetime
 from typing_extensions import Literal
 
 from ..._models import BaseModel
-from ..pagination_meta import PaginationMeta
 
-__all__ = ["CommentListResponse", "Data"]
+__all__ = ["CommentListResponse"]
 
 
-class Data(BaseModel):
+class CommentListResponse(BaseModel):
     id: Optional[str] = None
 
     body: Optional[str] = None
@@ -26,9 +25,3 @@ class Data(BaseModel):
 
     user_type: Optional[Literal["admin", "user", "system"]] = None
     """Indicates whether this comment was created by a Telnyx Admin, user, or system"""
-
-
-class CommentListResponse(BaseModel):
-    data: Optional[List[Data]] = None
-
-    meta: Optional[PaginationMeta] = None

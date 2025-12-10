@@ -9,6 +9,7 @@ import pytest
 
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
+from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
 from telnyx.types.porting_orders import (
     CommentListResponse,
     CommentCreateResponse,
@@ -77,7 +78,7 @@ class TestComments:
         comment = client.porting_orders.comments.list(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(CommentListResponse, comment, path=["response"])
+        assert_matches_type(SyncDefaultPagination[CommentListResponse], comment, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -89,7 +90,7 @@ class TestComments:
                 "size": 1,
             },
         )
-        assert_matches_type(CommentListResponse, comment, path=["response"])
+        assert_matches_type(SyncDefaultPagination[CommentListResponse], comment, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -101,7 +102,7 @@ class TestComments:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         comment = response.parse()
-        assert_matches_type(CommentListResponse, comment, path=["response"])
+        assert_matches_type(SyncDefaultPagination[CommentListResponse], comment, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -113,7 +114,7 @@ class TestComments:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             comment = response.parse()
-            assert_matches_type(CommentListResponse, comment, path=["response"])
+            assert_matches_type(SyncDefaultPagination[CommentListResponse], comment, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -188,7 +189,7 @@ class TestAsyncComments:
         comment = await async_client.porting_orders.comments.list(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(CommentListResponse, comment, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[CommentListResponse], comment, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -200,7 +201,7 @@ class TestAsyncComments:
                 "size": 1,
             },
         )
-        assert_matches_type(CommentListResponse, comment, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[CommentListResponse], comment, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -212,7 +213,7 @@ class TestAsyncComments:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         comment = await response.parse()
-        assert_matches_type(CommentListResponse, comment, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[CommentListResponse], comment, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -224,7 +225,7 @@ class TestAsyncComments:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             comment = await response.parse()
-            assert_matches_type(CommentListResponse, comment, path=["response"])
+            assert_matches_type(AsyncDefaultPagination[CommentListResponse], comment, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -20,6 +20,7 @@ from ._types import (
     not_given,
 )
 from ._utils import is_given, get_async_library
+from ._oauth2 import OAuth2ClientCredentials, make_oauth2
 from ._version import __version__
 from .resources import (
     ips,
@@ -74,6 +75,7 @@ from .resources import (
     charges_breakdown,
     global_ip_latency,
     messaging_optouts,
+    partner_campaigns,
     requirement_types,
     room_compositions,
     room_participants,
@@ -132,10 +134,11 @@ from .resources import (
     messaging_numbers_bulk_updates,
     virtual_cross_connects_coverage,
     sim_card_data_usage_notifications,
+    phone_number_assignment_by_profile,
     phone_numbers_regulatory_requirements,
 )
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
-from ._exceptions import TelnyxError, APIStatusError
+from ._exceptions import APIStatusError
 from ._base_client import (
     DEFAULT_MAX_RETRIES,
     SyncAPIClient,
@@ -276,6 +279,7 @@ class Telnyx(SyncAPIClient):
     ota_updates: ota_updates.OtaUpdatesResource
     outbound_voice_profiles: outbound_voice_profiles.OutboundVoiceProfilesResource
     payment: payment.PaymentResource
+    phone_number_assignment_by_profile: phone_number_assignment_by_profile.PhoneNumberAssignmentByProfileResource
     phone_number_blocks: phone_number_blocks.PhoneNumberBlocksResource
     phone_numbers: phone_numbers.PhoneNumbersResource
     phone_numbers_regulatory_requirements: (
@@ -330,6 +334,7 @@ class Telnyx(SyncAPIClient):
     wireless: wireless.WirelessResource
     wireless_blocklist_values: wireless_blocklist_values.WirelessBlocklistValuesResource
     wireless_blocklists: wireless_blocklists.WirelessBlocklistsResource
+    partner_campaigns: partner_campaigns.PartnerCampaignsResource
     well_known: well_known.WellKnownResource
     inexplicit_number_orders: inexplicit_number_orders.InexplicitNumberOrdersResource
     mobile_phone_numbers: mobile_phone_numbers.MobilePhoneNumbersResource
@@ -339,14 +344,18 @@ class Telnyx(SyncAPIClient):
     with_streaming_response: TelnyxWithStreamedResponse
 
     # client options
-    api_key: str
+    api_key: str | None
     public_key: str | None
+    client_id: str | None
+    client_secret: str | None
 
     def __init__(
         self,
         *,
         api_key: str | None = None,
         public_key: str | None = None,
+        client_id: str | None = None,
+        client_secret: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
         max_retries: int = DEFAULT_MAX_RETRIES,
@@ -371,18 +380,24 @@ class Telnyx(SyncAPIClient):
         This automatically infers the following arguments from their corresponding environment variables if they are not provided:
         - `api_key` from `TELNYX_API_KEY`
         - `public_key` from `TELNYX_PUBLIC_KEY`
+        - `client_id` from `TELNYX_CLIENT_ID`
+        - `client_secret` from `TELNYX_CLIENT_SECRET`
         """
         if api_key is None:
             api_key = os.environ.get("TELNYX_API_KEY")
-        if api_key is None:
-            raise TelnyxError(
-                "The api_key client option must be set either by passing api_key to the client or by setting the TELNYX_API_KEY environment variable"
-            )
         self.api_key = api_key
 
         if public_key is None:
             public_key = os.environ.get("TELNYX_PUBLIC_KEY")
         self.public_key = public_key
+
+        if client_id is None:
+            client_id = os.environ.get("TELNYX_CLIENT_ID")
+        self.client_id = client_id
+
+        if client_secret is None:
+            client_secret = os.environ.get("TELNYX_CLIENT_SECRET")
+        self.client_secret = client_secret
 
         if base_url is None:
             base_url = os.environ.get("TELNYX_BASE_URL")
@@ -493,6 +508,9 @@ class Telnyx(SyncAPIClient):
         self.ota_updates = ota_updates.OtaUpdatesResource(self)
         self.outbound_voice_profiles = outbound_voice_profiles.OutboundVoiceProfilesResource(self)
         self.payment = payment.PaymentResource(self)
+        self.phone_number_assignment_by_profile = (
+            phone_number_assignment_by_profile.PhoneNumberAssignmentByProfileResource(self)
+        )
         self.phone_number_blocks = phone_number_blocks.PhoneNumberBlocksResource(self)
         self.phone_numbers = phone_numbers.PhoneNumbersResource(self)
         self.phone_numbers_regulatory_requirements = (
@@ -551,6 +569,7 @@ class Telnyx(SyncAPIClient):
         self.wireless = wireless.WirelessResource(self)
         self.wireless_blocklist_values = wireless_blocklist_values.WirelessBlocklistValuesResource(self)
         self.wireless_blocklists = wireless_blocklists.WirelessBlocklistsResource(self)
+        self.partner_campaigns = partner_campaigns.PartnerCampaignsResource(self)
         self.well_known = well_known.WellKnownResource(self)
         self.inexplicit_number_orders = inexplicit_number_orders.InexplicitNumberOrdersResource(self)
         self.mobile_phone_numbers = mobile_phone_numbers.MobilePhoneNumbersResource(self)
@@ -568,7 +587,21 @@ class Telnyx(SyncAPIClient):
     @override
     def auth_headers(self) -> dict[str, str]:
         api_key = self.api_key
+        if api_key is None:
+            return {}
         return {"Authorization": f"Bearer {api_key}"}
+
+    @property
+    @override
+    def custom_auth(self) -> httpx.Auth | None:
+        if self.client_id and self.client_secret:
+            return make_oauth2(
+                client_id=self.client_id,
+                client_secret=self.client_secret,
+                token_url=self._prepare_url("https://api.telnyx.com/v2/oauth/token"),
+                header="Authorization",
+            )
+        return None
 
     @property
     @override
@@ -579,11 +612,22 @@ class Telnyx(SyncAPIClient):
             **self._custom_headers,
         }
 
+    @override
+    def _should_retry(self, response: httpx.Response) -> bool:
+        # Retry on 401 if we are using OAuth2 and the token might be expired
+        if response.status_code == 401 and isinstance(self.custom_auth, OAuth2ClientCredentials):
+            if self.custom_auth.token_is_expired():
+                self.custom_auth.invalidate_token()
+                return True
+        return super()._should_retry(response)
+
     def copy(
         self,
         *,
         api_key: str | None = None,
         public_key: str | None = None,
+        client_id: str | None = None,
+        client_secret: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
         http_client: httpx.Client | None = None,
@@ -619,6 +663,8 @@ class Telnyx(SyncAPIClient):
         client = self.__class__(
             api_key=api_key or self.api_key,
             public_key=public_key or self.public_key,
+            client_id=client_id or self.client_id,
+            client_secret=client_secret or self.client_secret,
             base_url=base_url or self.base_url,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
             http_client=http_client,
@@ -761,6 +807,7 @@ class AsyncTelnyx(AsyncAPIClient):
     ota_updates: ota_updates.AsyncOtaUpdatesResource
     outbound_voice_profiles: outbound_voice_profiles.AsyncOutboundVoiceProfilesResource
     payment: payment.AsyncPaymentResource
+    phone_number_assignment_by_profile: phone_number_assignment_by_profile.AsyncPhoneNumberAssignmentByProfileResource
     phone_number_blocks: phone_number_blocks.AsyncPhoneNumberBlocksResource
     phone_numbers: phone_numbers.AsyncPhoneNumbersResource
     phone_numbers_regulatory_requirements: (
@@ -815,6 +862,7 @@ class AsyncTelnyx(AsyncAPIClient):
     wireless: wireless.AsyncWirelessResource
     wireless_blocklist_values: wireless_blocklist_values.AsyncWirelessBlocklistValuesResource
     wireless_blocklists: wireless_blocklists.AsyncWirelessBlocklistsResource
+    partner_campaigns: partner_campaigns.AsyncPartnerCampaignsResource
     well_known: well_known.AsyncWellKnownResource
     inexplicit_number_orders: inexplicit_number_orders.AsyncInexplicitNumberOrdersResource
     mobile_phone_numbers: mobile_phone_numbers.AsyncMobilePhoneNumbersResource
@@ -824,14 +872,18 @@ class AsyncTelnyx(AsyncAPIClient):
     with_streaming_response: AsyncTelnyxWithStreamedResponse
 
     # client options
-    api_key: str
+    api_key: str | None
     public_key: str | None
+    client_id: str | None
+    client_secret: str | None
 
     def __init__(
         self,
         *,
         api_key: str | None = None,
         public_key: str | None = None,
+        client_id: str | None = None,
+        client_secret: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
         max_retries: int = DEFAULT_MAX_RETRIES,
@@ -856,18 +908,24 @@ class AsyncTelnyx(AsyncAPIClient):
         This automatically infers the following arguments from their corresponding environment variables if they are not provided:
         - `api_key` from `TELNYX_API_KEY`
         - `public_key` from `TELNYX_PUBLIC_KEY`
+        - `client_id` from `TELNYX_CLIENT_ID`
+        - `client_secret` from `TELNYX_CLIENT_SECRET`
         """
         if api_key is None:
             api_key = os.environ.get("TELNYX_API_KEY")
-        if api_key is None:
-            raise TelnyxError(
-                "The api_key client option must be set either by passing api_key to the client or by setting the TELNYX_API_KEY environment variable"
-            )
         self.api_key = api_key
 
         if public_key is None:
             public_key = os.environ.get("TELNYX_PUBLIC_KEY")
         self.public_key = public_key
+
+        if client_id is None:
+            client_id = os.environ.get("TELNYX_CLIENT_ID")
+        self.client_id = client_id
+
+        if client_secret is None:
+            client_secret = os.environ.get("TELNYX_CLIENT_SECRET")
+        self.client_secret = client_secret
 
         if base_url is None:
             base_url = os.environ.get("TELNYX_BASE_URL")
@@ -984,6 +1042,9 @@ class AsyncTelnyx(AsyncAPIClient):
         self.ota_updates = ota_updates.AsyncOtaUpdatesResource(self)
         self.outbound_voice_profiles = outbound_voice_profiles.AsyncOutboundVoiceProfilesResource(self)
         self.payment = payment.AsyncPaymentResource(self)
+        self.phone_number_assignment_by_profile = (
+            phone_number_assignment_by_profile.AsyncPhoneNumberAssignmentByProfileResource(self)
+        )
         self.phone_number_blocks = phone_number_blocks.AsyncPhoneNumberBlocksResource(self)
         self.phone_numbers = phone_numbers.AsyncPhoneNumbersResource(self)
         self.phone_numbers_regulatory_requirements = (
@@ -1042,6 +1103,7 @@ class AsyncTelnyx(AsyncAPIClient):
         self.wireless = wireless.AsyncWirelessResource(self)
         self.wireless_blocklist_values = wireless_blocklist_values.AsyncWirelessBlocklistValuesResource(self)
         self.wireless_blocklists = wireless_blocklists.AsyncWirelessBlocklistsResource(self)
+        self.partner_campaigns = partner_campaigns.AsyncPartnerCampaignsResource(self)
         self.well_known = well_known.AsyncWellKnownResource(self)
         self.inexplicit_number_orders = inexplicit_number_orders.AsyncInexplicitNumberOrdersResource(self)
         self.mobile_phone_numbers = mobile_phone_numbers.AsyncMobilePhoneNumbersResource(self)
@@ -1059,7 +1121,21 @@ class AsyncTelnyx(AsyncAPIClient):
     @override
     def auth_headers(self) -> dict[str, str]:
         api_key = self.api_key
+        if api_key is None:
+            return {}
         return {"Authorization": f"Bearer {api_key}"}
+
+    @property
+    @override
+    def custom_auth(self) -> httpx.Auth | None:
+        if self.client_id and self.client_secret:
+            return make_oauth2(
+                client_id=self.client_id,
+                client_secret=self.client_secret,
+                token_url=self._prepare_url("https://api.telnyx.com/v2/oauth/token"),
+                header="Authorization",
+            )
+        return None
 
     @property
     @override
@@ -1070,11 +1146,22 @@ class AsyncTelnyx(AsyncAPIClient):
             **self._custom_headers,
         }
 
+    @override
+    def _should_retry(self, response: httpx.Response) -> bool:
+        # Retry on 401 if we are using OAuth2 and the token might be expired
+        if response.status_code == 401 and isinstance(self.custom_auth, OAuth2ClientCredentials):
+            if self.custom_auth.token_is_expired():
+                self.custom_auth.invalidate_token()
+                return True
+        return super()._should_retry(response)
+
     def copy(
         self,
         *,
         api_key: str | None = None,
         public_key: str | None = None,
+        client_id: str | None = None,
+        client_secret: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
         http_client: httpx.AsyncClient | None = None,
@@ -1110,6 +1197,8 @@ class AsyncTelnyx(AsyncAPIClient):
         client = self.__class__(
             api_key=api_key or self.api_key,
             public_key=public_key or self.public_key,
+            client_id=client_id or self.client_id,
+            client_secret=client_secret or self.client_secret,
             base_url=base_url or self.base_url,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
             http_client=http_client,
@@ -1336,6 +1425,11 @@ class TelnyxWithRawResponse:
             client.outbound_voice_profiles
         )
         self.payment = payment.PaymentResourceWithRawResponse(client.payment)
+        self.phone_number_assignment_by_profile = (
+            phone_number_assignment_by_profile.PhoneNumberAssignmentByProfileResourceWithRawResponse(
+                client.phone_number_assignment_by_profile
+            )
+        )
         self.phone_number_blocks = phone_number_blocks.PhoneNumberBlocksResourceWithRawResponse(
             client.phone_number_blocks
         )
@@ -1426,6 +1520,7 @@ class TelnyxWithRawResponse:
         self.wireless_blocklists = wireless_blocklists.WirelessBlocklistsResourceWithRawResponse(
             client.wireless_blocklists
         )
+        self.partner_campaigns = partner_campaigns.PartnerCampaignsResourceWithRawResponse(client.partner_campaigns)
         self.well_known = well_known.WellKnownResourceWithRawResponse(client.well_known)
         self.inexplicit_number_orders = inexplicit_number_orders.InexplicitNumberOrdersResourceWithRawResponse(
             client.inexplicit_number_orders
@@ -1638,6 +1733,11 @@ class AsyncTelnyxWithRawResponse:
             client.outbound_voice_profiles
         )
         self.payment = payment.AsyncPaymentResourceWithRawResponse(client.payment)
+        self.phone_number_assignment_by_profile = (
+            phone_number_assignment_by_profile.AsyncPhoneNumberAssignmentByProfileResourceWithRawResponse(
+                client.phone_number_assignment_by_profile
+            )
+        )
         self.phone_number_blocks = phone_number_blocks.AsyncPhoneNumberBlocksResourceWithRawResponse(
             client.phone_number_blocks
         )
@@ -1743,6 +1843,9 @@ class AsyncTelnyxWithRawResponse:
         )
         self.wireless_blocklists = wireless_blocklists.AsyncWirelessBlocklistsResourceWithRawResponse(
             client.wireless_blocklists
+        )
+        self.partner_campaigns = partner_campaigns.AsyncPartnerCampaignsResourceWithRawResponse(
+            client.partner_campaigns
         )
         self.well_known = well_known.AsyncWellKnownResourceWithRawResponse(client.well_known)
         self.inexplicit_number_orders = inexplicit_number_orders.AsyncInexplicitNumberOrdersResourceWithRawResponse(
@@ -1960,6 +2063,11 @@ class TelnyxWithStreamedResponse:
             client.outbound_voice_profiles
         )
         self.payment = payment.PaymentResourceWithStreamingResponse(client.payment)
+        self.phone_number_assignment_by_profile = (
+            phone_number_assignment_by_profile.PhoneNumberAssignmentByProfileResourceWithStreamingResponse(
+                client.phone_number_assignment_by_profile
+            )
+        )
         self.phone_number_blocks = phone_number_blocks.PhoneNumberBlocksResourceWithStreamingResponse(
             client.phone_number_blocks
         )
@@ -2067,6 +2175,9 @@ class TelnyxWithStreamedResponse:
         )
         self.wireless_blocklists = wireless_blocklists.WirelessBlocklistsResourceWithStreamingResponse(
             client.wireless_blocklists
+        )
+        self.partner_campaigns = partner_campaigns.PartnerCampaignsResourceWithStreamingResponse(
+            client.partner_campaigns
         )
         self.well_known = well_known.WellKnownResourceWithStreamingResponse(client.well_known)
         self.inexplicit_number_orders = inexplicit_number_orders.InexplicitNumberOrdersResourceWithStreamingResponse(
@@ -2312,6 +2423,11 @@ class AsyncTelnyxWithStreamedResponse:
             client.outbound_voice_profiles
         )
         self.payment = payment.AsyncPaymentResourceWithStreamingResponse(client.payment)
+        self.phone_number_assignment_by_profile = (
+            phone_number_assignment_by_profile.AsyncPhoneNumberAssignmentByProfileResourceWithStreamingResponse(
+                client.phone_number_assignment_by_profile
+            )
+        )
         self.phone_number_blocks = phone_number_blocks.AsyncPhoneNumberBlocksResourceWithStreamingResponse(
             client.phone_number_blocks
         )
@@ -2431,6 +2547,9 @@ class AsyncTelnyxWithStreamedResponse:
         )
         self.wireless_blocklists = wireless_blocklists.AsyncWirelessBlocklistsResourceWithStreamingResponse(
             client.wireless_blocklists
+        )
+        self.partner_campaigns = partner_campaigns.AsyncPartnerCampaignsResourceWithStreamingResponse(
+            client.partner_campaigns
         )
         self.well_known = well_known.AsyncWellKnownResourceWithStreamingResponse(client.well_known)
         self.inexplicit_number_orders = (
