@@ -1230,9 +1230,6 @@ from .porting_order_retrieve_allowed_foc_windows_response import (
 from .call_ai_gather_message_history_updated_webhook_event import (
     CallAIGatherMessageHistoryUpdatedWebhookEvent as CallAIGatherMessageHistoryUpdatedWebhookEvent,
 )
-from .customer_service_record_status_changed_webhook_event import (
-    CustomerServiceRecordStatusChangedWebhookEvent as CustomerServiceRecordStatusChangedWebhookEvent,
-)
 from .managed_account_update_global_channel_limit_response import (
     ManagedAccountUpdateGlobalChannelLimitResponse as ManagedAccountUpdateGlobalChannelLimitResponse,
 )
