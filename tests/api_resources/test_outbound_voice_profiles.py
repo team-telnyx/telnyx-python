@@ -46,8 +46,8 @@ class TestOutboundVoiceProfiles:
             },
             calling_window={
                 "calls_per_cld": 5,
-                "end_time": "18:11:19.117Z",
-                "start_time": "18:11:19.117Z",
+                "end_time": "20:00:00.00Z",
+                "start_time": "08:00:00.00Z",
             },
             concurrent_call_limit=10,
             daily_spend_limit="100.00",
@@ -154,8 +154,8 @@ class TestOutboundVoiceProfiles:
             },
             calling_window={
                 "calls_per_cld": 5,
-                "end_time": "18:11:19.117Z",
-                "start_time": "18:11:19.117Z",
+                "end_time": "20:00:00.00Z",
+                "start_time": "08:00:00.00Z",
             },
             concurrent_call_limit=10,
             daily_spend_limit="100.00",
@@ -318,8 +318,8 @@ class TestAsyncOutboundVoiceProfiles:
             },
             calling_window={
                 "calls_per_cld": 5,
-                "end_time": "18:11:19.117Z",
-                "start_time": "18:11:19.117Z",
+                "end_time": "20:00:00.00Z",
+                "start_time": "08:00:00.00Z",
             },
             concurrent_call_limit=10,
             daily_spend_limit="100.00",
@@ -426,8 +426,8 @@ class TestAsyncOutboundVoiceProfiles:
             },
             calling_window={
                 "calls_per_cld": 5,
-                "end_time": "18:11:19.117Z",
-                "start_time": "18:11:19.117Z",
+                "end_time": "20:00:00.00Z",
+                "start_time": "08:00:00.00Z",
             },
             concurrent_call_limit=10,
             daily_spend_limit="100.00",
