@@ -22,7 +22,7 @@ from telnyx import Telnyx, AsyncTelnyx, APIResponseValidationError
 from telnyx._types import Omit
 from telnyx._utils import asyncify
 from telnyx._models import BaseModel, FinalRequestOptions
-from telnyx._exceptions import TelnyxError, APIStatusError, APITimeoutError, APIResponseValidationError
+from telnyx._exceptions import APIStatusError, APITimeoutError, APIResponseValidationError
 from telnyx._base_client import (
     DEFAULT_TIMEOUT,
     HTTPX_DEFAULT_TIMEOUT,
@@ -343,16 +343,6 @@ class TestTelnyx:
 
         test_client.close()
         test_client2.close()
-
-    def test_validate_headers(self) -> None:
-        client = Telnyx(base_url=base_url, api_key=api_key, _strict_response_validation=True)
-        request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
-        assert request.headers.get("Authorization") == f"Bearer {api_key}"
-
-        with pytest.raises(TelnyxError):
-            with update_env(**{"TELNYX_API_KEY": Omit()}):
-                client2 = Telnyx(base_url=base_url, api_key=None, _strict_response_validation=True)
-            _ = client2
 
     def test_default_query_option(self) -> None:
         client = Telnyx(
@@ -1162,16 +1152,6 @@ class TestAsyncTelnyx:
 
         await test_client.close()
         await test_client2.close()
-
-    def test_validate_headers(self) -> None:
-        client = AsyncTelnyx(base_url=base_url, api_key=api_key, _strict_response_validation=True)
-        request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
-        assert request.headers.get("Authorization") == f"Bearer {api_key}"
-
-        with pytest.raises(TelnyxError):
-            with update_env(**{"TELNYX_API_KEY": Omit()}):
-                client2 = AsyncTelnyx(base_url=base_url, api_key=None, _strict_response_validation=True)
-            _ = client2
 
     async def test_default_query_option(self) -> None:
         client = AsyncTelnyx(

@@ -34,7 +34,7 @@ class TestAccounts:
     def test_method_retrieve_recordings_json_with_all_params(self, client: Telnyx) -> None:
         account = client.texml.accounts.retrieve_recordings_json(
             account_sid="account_sid",
-            date_created=parse_datetime("2019-12-27T18:11:19.117Z"),
+            date_created=parse_datetime("2023-05-22T00:00:00Z"),
             page=0,
             page_size=0,
         )
@@ -145,7 +145,7 @@ class TestAsyncAccounts:
     async def test_method_retrieve_recordings_json_with_all_params(self, async_client: AsyncTelnyx) -> None:
         account = await async_client.texml.accounts.retrieve_recordings_json(
             account_sid="account_sid",
-            date_created=parse_datetime("2019-12-27T18:11:19.117Z"),
+            date_created=parse_datetime("2023-05-22T00:00:00Z"),
             page=0,
             page_size=0,
         )

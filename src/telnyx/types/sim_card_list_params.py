@@ -30,7 +30,7 @@ class SimCardListParams(TypedDict, total=False):
     Originally: page[number], page[size]
     """
 
-    sort: Literal["current_billing_period_consumed_data.amount"]
+    sort: Literal["current_billing_period_consumed_data.amount", "-current_billing_period_consumed_data.amount"]
     """Sorts SIM cards by the given field.
 
     Defaults to ascending order unless field is prefixed with a minus sign.

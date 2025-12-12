@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, strip_not_given, async_maybe_transform
+from ..._utils import maybe_transform, strip_not_given
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -14,9 +14,10 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._base_client import make_request_options
+from ...pagination import SyncDefaultPagination, AsyncDefaultPagination
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.bundle_pricing import billing_bundle_list_params
-from ...types.bundle_pricing.billing_bundle_list_response import BillingBundleListResponse
+from ...types.bundle_pricing.billing_bundle_summary import BillingBundleSummary
 from ...types.bundle_pricing.billing_bundle_retrieve_response import BillingBundleRetrieveResponse
 
 __all__ = ["BillingBundlesResource", "AsyncBillingBundlesResource"]
@@ -93,7 +94,7 @@ class BillingBundlesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> BillingBundleListResponse:
+    ) -> SyncDefaultPagination[BillingBundleSummary]:
         """
         Get all allowed bundles.
 
@@ -116,8 +117,9 @@ class BillingBundlesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         extra_headers = {**strip_not_given({"authorization_bearer": authorization_bearer}), **(extra_headers or {})}
-        return self._get(
+        return self._get_api_list(
             "/bundle_pricing/billing_bundles",
+            page=SyncDefaultPagination[BillingBundleSummary],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -131,7 +133,7 @@ class BillingBundlesResource(SyncAPIResource):
                     billing_bundle_list_params.BillingBundleListParams,
                 ),
             ),
-            cast_to=BillingBundleListResponse,
+            model=BillingBundleSummary,
         )
 
 
@@ -194,7 +196,7 @@ class AsyncBillingBundlesResource(AsyncAPIResource):
             cast_to=BillingBundleRetrieveResponse,
         )
 
-    async def list(
+    def list(
         self,
         *,
         filter: billing_bundle_list_params.Filter | Omit = omit,
@@ -206,7 +208,7 @@ class AsyncBillingBundlesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> BillingBundleListResponse:
+    ) -> AsyncPaginator[BillingBundleSummary, AsyncDefaultPagination[BillingBundleSummary]]:
         """
         Get all allowed bundles.
 
@@ -229,14 +231,15 @@ class AsyncBillingBundlesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         extra_headers = {**strip_not_given({"authorization_bearer": authorization_bearer}), **(extra_headers or {})}
-        return await self._get(
+        return self._get_api_list(
             "/bundle_pricing/billing_bundles",
+            page=AsyncDefaultPagination[BillingBundleSummary],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "filter": filter,
                         "page": page,
@@ -244,7 +247,7 @@ class AsyncBillingBundlesResource(AsyncAPIResource):
                     billing_bundle_list_params.BillingBundleListParams,
                 ),
             ),
-            cast_to=BillingBundleListResponse,
+            model=BillingBundleSummary,
         )
 
 

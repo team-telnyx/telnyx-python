@@ -5,12 +5,11 @@ from typing_extensions import Literal
 
 from .._models import BaseModel
 from .anchorsite_override import AnchorsiteOverride
-from .shared.connections_pagination_meta import ConnectionsPaginationMeta
 
-__all__ = ["ConnectionListResponse", "Data"]
+__all__ = ["ConnectionListResponse"]
 
 
-class Data(BaseModel):
+class ConnectionListResponse(BaseModel):
     id: Optional[str] = None
     """Identifies the specific resource."""
 
@@ -52,9 +51,3 @@ class Data(BaseModel):
 
     webhook_event_url: Optional[str] = None
     """The URL where webhooks related to this connection will be sent."""
-
-
-class ConnectionListResponse(BaseModel):
-    data: Optional[List[Data]] = None
-
-    meta: Optional[ConnectionsPaginationMeta] = None

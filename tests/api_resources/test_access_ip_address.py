@@ -9,11 +9,9 @@ import pytest
 
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
-from telnyx.types import (
-    AccessIPAddressResponse,
-    AccessIPAddressListResponse,
-)
+from telnyx.types import AccessIPAddressResponse
 from telnyx._utils import parse_datetime
+from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -110,7 +108,7 @@ class TestAccessIPAddress:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         access_ip_address = client.access_ip_address.list()
-        assert_matches_type(AccessIPAddressListResponse, access_ip_address, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[AccessIPAddressResponse], access_ip_address, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -121,12 +119,10 @@ class TestAccessIPAddress:
                 "ip_address": "ip_address",
                 "ip_source": "ip_source",
             },
-            page={
-                "number": 0,
-                "size": 250,
-            },
+            page_number=0,
+            page_size=0,
         )
-        assert_matches_type(AccessIPAddressListResponse, access_ip_address, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[AccessIPAddressResponse], access_ip_address, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -136,7 +132,7 @@ class TestAccessIPAddress:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         access_ip_address = response.parse()
-        assert_matches_type(AccessIPAddressListResponse, access_ip_address, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[AccessIPAddressResponse], access_ip_address, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -146,7 +142,9 @@ class TestAccessIPAddress:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             access_ip_address = response.parse()
-            assert_matches_type(AccessIPAddressListResponse, access_ip_address, path=["response"])
+            assert_matches_type(
+                SyncDefaultFlatPagination[AccessIPAddressResponse], access_ip_address, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True
 
@@ -287,7 +285,7 @@ class TestAsyncAccessIPAddress:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         access_ip_address = await async_client.access_ip_address.list()
-        assert_matches_type(AccessIPAddressListResponse, access_ip_address, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[AccessIPAddressResponse], access_ip_address, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -298,12 +296,10 @@ class TestAsyncAccessIPAddress:
                 "ip_address": "ip_address",
                 "ip_source": "ip_source",
             },
-            page={
-                "number": 0,
-                "size": 250,
-            },
+            page_number=0,
+            page_size=0,
         )
-        assert_matches_type(AccessIPAddressListResponse, access_ip_address, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[AccessIPAddressResponse], access_ip_address, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -313,7 +309,7 @@ class TestAsyncAccessIPAddress:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         access_ip_address = await response.parse()
-        assert_matches_type(AccessIPAddressListResponse, access_ip_address, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[AccessIPAddressResponse], access_ip_address, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -323,7 +319,9 @@ class TestAsyncAccessIPAddress:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             access_ip_address = await response.parse()
-            assert_matches_type(AccessIPAddressListResponse, access_ip_address, path=["response"])
+            assert_matches_type(
+                AsyncDefaultFlatPagination[AccessIPAddressResponse], access_ip_address, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True
 

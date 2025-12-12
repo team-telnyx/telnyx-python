@@ -9,13 +9,13 @@ import pytest
 
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
+from telnyx.types import RoomSession
 from telnyx._utils import parse_date
+from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
 from telnyx.types.rooms import (
-    SessionList0Response,
-    SessionList1Response,
     SessionRetrieveResponse,
-    SessionRetrieveParticipantsResponse,
 )
+from telnyx.types.shared import RoomParticipant
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -78,7 +78,7 @@ class TestSessions:
     @parametrize
     def test_method_list_0(self, client: Telnyx) -> None:
         session = client.rooms.sessions.list_0()
-        assert_matches_type(SessionList0Response, session, path=["response"])
+        assert_matches_type(SyncDefaultPagination[RoomSession], session, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -109,7 +109,7 @@ class TestSessions:
                 "size": 1,
             },
         )
-        assert_matches_type(SessionList0Response, session, path=["response"])
+        assert_matches_type(SyncDefaultPagination[RoomSession], session, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -119,7 +119,7 @@ class TestSessions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         session = response.parse()
-        assert_matches_type(SessionList0Response, session, path=["response"])
+        assert_matches_type(SyncDefaultPagination[RoomSession], session, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -129,7 +129,7 @@ class TestSessions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             session = response.parse()
-            assert_matches_type(SessionList0Response, session, path=["response"])
+            assert_matches_type(SyncDefaultPagination[RoomSession], session, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -139,7 +139,7 @@ class TestSessions:
         session = client.rooms.sessions.list_1(
             room_id="0ccc7b54-4df3-4bca-a65a-3da1ecc777f0",
         )
-        assert_matches_type(SessionList1Response, session, path=["response"])
+        assert_matches_type(SyncDefaultPagination[RoomSession], session, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -170,7 +170,7 @@ class TestSessions:
                 "size": 1,
             },
         )
-        assert_matches_type(SessionList1Response, session, path=["response"])
+        assert_matches_type(SyncDefaultPagination[RoomSession], session, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -182,7 +182,7 @@ class TestSessions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         session = response.parse()
-        assert_matches_type(SessionList1Response, session, path=["response"])
+        assert_matches_type(SyncDefaultPagination[RoomSession], session, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -194,7 +194,7 @@ class TestSessions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             session = response.parse()
-            assert_matches_type(SessionList1Response, session, path=["response"])
+            assert_matches_type(SyncDefaultPagination[RoomSession], session, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -212,7 +212,7 @@ class TestSessions:
         session = client.rooms.sessions.retrieve_participants(
             room_session_id="0ccc7b54-4df3-4bca-a65a-3da1ecc777f0",
         )
-        assert_matches_type(SessionRetrieveParticipantsResponse, session, path=["response"])
+        assert_matches_type(SyncDefaultPagination[RoomParticipant], session, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -242,7 +242,7 @@ class TestSessions:
                 "size": 1,
             },
         )
-        assert_matches_type(SessionRetrieveParticipantsResponse, session, path=["response"])
+        assert_matches_type(SyncDefaultPagination[RoomParticipant], session, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -254,7 +254,7 @@ class TestSessions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         session = response.parse()
-        assert_matches_type(SessionRetrieveParticipantsResponse, session, path=["response"])
+        assert_matches_type(SyncDefaultPagination[RoomParticipant], session, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -266,7 +266,7 @@ class TestSessions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             session = response.parse()
-            assert_matches_type(SessionRetrieveParticipantsResponse, session, path=["response"])
+            assert_matches_type(SyncDefaultPagination[RoomParticipant], session, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -339,7 +339,7 @@ class TestAsyncSessions:
     @parametrize
     async def test_method_list_0(self, async_client: AsyncTelnyx) -> None:
         session = await async_client.rooms.sessions.list_0()
-        assert_matches_type(SessionList0Response, session, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[RoomSession], session, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -370,7 +370,7 @@ class TestAsyncSessions:
                 "size": 1,
             },
         )
-        assert_matches_type(SessionList0Response, session, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[RoomSession], session, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -380,7 +380,7 @@ class TestAsyncSessions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         session = await response.parse()
-        assert_matches_type(SessionList0Response, session, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[RoomSession], session, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -390,7 +390,7 @@ class TestAsyncSessions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             session = await response.parse()
-            assert_matches_type(SessionList0Response, session, path=["response"])
+            assert_matches_type(AsyncDefaultPagination[RoomSession], session, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -400,7 +400,7 @@ class TestAsyncSessions:
         session = await async_client.rooms.sessions.list_1(
             room_id="0ccc7b54-4df3-4bca-a65a-3da1ecc777f0",
         )
-        assert_matches_type(SessionList1Response, session, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[RoomSession], session, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -431,7 +431,7 @@ class TestAsyncSessions:
                 "size": 1,
             },
         )
-        assert_matches_type(SessionList1Response, session, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[RoomSession], session, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -443,7 +443,7 @@ class TestAsyncSessions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         session = await response.parse()
-        assert_matches_type(SessionList1Response, session, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[RoomSession], session, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -455,7 +455,7 @@ class TestAsyncSessions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             session = await response.parse()
-            assert_matches_type(SessionList1Response, session, path=["response"])
+            assert_matches_type(AsyncDefaultPagination[RoomSession], session, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -473,7 +473,7 @@ class TestAsyncSessions:
         session = await async_client.rooms.sessions.retrieve_participants(
             room_session_id="0ccc7b54-4df3-4bca-a65a-3da1ecc777f0",
         )
-        assert_matches_type(SessionRetrieveParticipantsResponse, session, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[RoomParticipant], session, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -503,7 +503,7 @@ class TestAsyncSessions:
                 "size": 1,
             },
         )
-        assert_matches_type(SessionRetrieveParticipantsResponse, session, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[RoomParticipant], session, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -515,7 +515,7 @@ class TestAsyncSessions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         session = await response.parse()
-        assert_matches_type(SessionRetrieveParticipantsResponse, session, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[RoomParticipant], session, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -527,7 +527,7 @@ class TestAsyncSessions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             session = await response.parse()
-            assert_matches_type(SessionRetrieveParticipantsResponse, session, path=["response"])
+            assert_matches_type(AsyncDefaultPagination[RoomParticipant], session, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

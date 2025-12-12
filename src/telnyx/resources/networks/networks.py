@@ -15,7 +15,8 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._base_client import make_request_options
+from ...pagination import SyncDefaultPagination, AsyncDefaultPagination
+from ..._base_client import AsyncPaginator, make_request_options
 from .default_gateway import (
     DefaultGatewayResource,
     AsyncDefaultGatewayResource,
@@ -127,7 +128,7 @@ class NetworksResource(SyncAPIResource):
 
     def update(
         self,
-        id: str,
+        network_id: str,
         *,
         name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -151,10 +152,10 @@ class NetworksResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not network_id:
+            raise ValueError(f"Expected a non-empty value for `network_id` but received {network_id!r}")
         return self._patch(
-            f"/networks/{id}",
+            f"/networks/{network_id}",
             body=maybe_transform({"name": name}, network_update_params.NetworkUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -173,7 +174,7 @@ class NetworksResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NetworkListResponse:
+    ) -> SyncDefaultPagination[NetworkListResponse]:
         """
         List all Networks.
 
@@ -191,8 +192,9 @@ class NetworksResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/networks",
+            page=SyncDefaultPagination[NetworkListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -206,7 +208,7 @@ class NetworksResource(SyncAPIResource):
                     network_list_params.NetworkListParams,
                 ),
             ),
-            cast_to=NetworkListResponse,
+            model=NetworkListResponse,
         )
 
     def delete(
@@ -254,7 +256,7 @@ class NetworksResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NetworkListInterfacesResponse:
+    ) -> SyncDefaultPagination[NetworkListInterfacesResponse]:
         """
         List all Interfaces for a Network.
 
@@ -275,8 +277,9 @@ class NetworksResource(SyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/networks/{id}/network_interfaces",
+            page=SyncDefaultPagination[NetworkListInterfacesResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -290,7 +293,7 @@ class NetworksResource(SyncAPIResource):
                     network_list_interfaces_params.NetworkListInterfacesParams,
                 ),
             ),
-            cast_to=NetworkListInterfacesResponse,
+            model=NetworkListInterfacesResponse,
         )
 
 
@@ -387,7 +390,7 @@ class AsyncNetworksResource(AsyncAPIResource):
 
     async def update(
         self,
-        id: str,
+        network_id: str,
         *,
         name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -411,10 +414,10 @@ class AsyncNetworksResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not network_id:
+            raise ValueError(f"Expected a non-empty value for `network_id` but received {network_id!r}")
         return await self._patch(
-            f"/networks/{id}",
+            f"/networks/{network_id}",
             body=await async_maybe_transform({"name": name}, network_update_params.NetworkUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -422,7 +425,7 @@ class AsyncNetworksResource(AsyncAPIResource):
             cast_to=NetworkUpdateResponse,
         )
 
-    async def list(
+    def list(
         self,
         *,
         filter: network_list_params.Filter | Omit = omit,
@@ -433,7 +436,7 @@ class AsyncNetworksResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NetworkListResponse:
+    ) -> AsyncPaginator[NetworkListResponse, AsyncDefaultPagination[NetworkListResponse]]:
         """
         List all Networks.
 
@@ -451,14 +454,15 @@ class AsyncNetworksResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/networks",
+            page=AsyncDefaultPagination[NetworkListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "filter": filter,
                         "page": page,
@@ -466,7 +470,7 @@ class AsyncNetworksResource(AsyncAPIResource):
                     network_list_params.NetworkListParams,
                 ),
             ),
-            cast_to=NetworkListResponse,
+            model=NetworkListResponse,
         )
 
     async def delete(
@@ -502,7 +506,7 @@ class AsyncNetworksResource(AsyncAPIResource):
             cast_to=NetworkDeleteResponse,
         )
 
-    async def list_interfaces(
+    def list_interfaces(
         self,
         id: str,
         *,
@@ -514,7 +518,7 @@ class AsyncNetworksResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NetworkListInterfacesResponse:
+    ) -> AsyncPaginator[NetworkListInterfacesResponse, AsyncDefaultPagination[NetworkListInterfacesResponse]]:
         """
         List all Interfaces for a Network.
 
@@ -535,14 +539,15 @@ class AsyncNetworksResource(AsyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/networks/{id}/network_interfaces",
+            page=AsyncDefaultPagination[NetworkListInterfacesResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "filter": filter,
                         "page": page,
@@ -550,7 +555,7 @@ class AsyncNetworksResource(AsyncAPIResource):
                     network_list_interfaces_params.NetworkListInterfacesParams,
                 ),
             ),
-            cast_to=NetworkListInterfacesResponse,
+            model=NetworkListInterfacesResponse,
         )
 
 

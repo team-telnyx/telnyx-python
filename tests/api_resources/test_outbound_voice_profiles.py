@@ -10,12 +10,13 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types import (
-    OutboundVoiceProfileListResponse,
+    OutboundVoiceProfile,
     OutboundVoiceProfileCreateResponse,
     OutboundVoiceProfileDeleteResponse,
     OutboundVoiceProfileUpdateResponse,
     OutboundVoiceProfileRetrieveResponse,
 )
+from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -45,8 +46,8 @@ class TestOutboundVoiceProfiles:
             },
             calling_window={
                 "calls_per_cld": 5,
-                "end_time": "18:11:19.117Z",
-                "start_time": "18:11:19.117Z",
+                "end_time": "20:00:00.00Z",
+                "start_time": "08:00:00.00Z",
             },
             concurrent_call_limit=10,
             daily_spend_limit="100.00",
@@ -153,8 +154,8 @@ class TestOutboundVoiceProfiles:
             },
             calling_window={
                 "calls_per_cld": 5,
-                "end_time": "18:11:19.117Z",
-                "start_time": "18:11:19.117Z",
+                "end_time": "20:00:00.00Z",
+                "start_time": "08:00:00.00Z",
             },
             concurrent_call_limit=10,
             daily_spend_limit="100.00",
@@ -210,7 +211,7 @@ class TestOutboundVoiceProfiles:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         outbound_voice_profile = client.outbound_voice_profiles.list()
-        assert_matches_type(OutboundVoiceProfileListResponse, outbound_voice_profile, path=["response"])
+        assert_matches_type(SyncDefaultPagination[OutboundVoiceProfile], outbound_voice_profile, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -223,7 +224,7 @@ class TestOutboundVoiceProfiles:
             },
             sort="name",
         )
-        assert_matches_type(OutboundVoiceProfileListResponse, outbound_voice_profile, path=["response"])
+        assert_matches_type(SyncDefaultPagination[OutboundVoiceProfile], outbound_voice_profile, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -233,7 +234,7 @@ class TestOutboundVoiceProfiles:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         outbound_voice_profile = response.parse()
-        assert_matches_type(OutboundVoiceProfileListResponse, outbound_voice_profile, path=["response"])
+        assert_matches_type(SyncDefaultPagination[OutboundVoiceProfile], outbound_voice_profile, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -243,7 +244,7 @@ class TestOutboundVoiceProfiles:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             outbound_voice_profile = response.parse()
-            assert_matches_type(OutboundVoiceProfileListResponse, outbound_voice_profile, path=["response"])
+            assert_matches_type(SyncDefaultPagination[OutboundVoiceProfile], outbound_voice_profile, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -317,8 +318,8 @@ class TestAsyncOutboundVoiceProfiles:
             },
             calling_window={
                 "calls_per_cld": 5,
-                "end_time": "18:11:19.117Z",
-                "start_time": "18:11:19.117Z",
+                "end_time": "20:00:00.00Z",
+                "start_time": "08:00:00.00Z",
             },
             concurrent_call_limit=10,
             daily_spend_limit="100.00",
@@ -425,8 +426,8 @@ class TestAsyncOutboundVoiceProfiles:
             },
             calling_window={
                 "calls_per_cld": 5,
-                "end_time": "18:11:19.117Z",
-                "start_time": "18:11:19.117Z",
+                "end_time": "20:00:00.00Z",
+                "start_time": "08:00:00.00Z",
             },
             concurrent_call_limit=10,
             daily_spend_limit="100.00",
@@ -482,7 +483,7 @@ class TestAsyncOutboundVoiceProfiles:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         outbound_voice_profile = await async_client.outbound_voice_profiles.list()
-        assert_matches_type(OutboundVoiceProfileListResponse, outbound_voice_profile, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[OutboundVoiceProfile], outbound_voice_profile, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -495,7 +496,7 @@ class TestAsyncOutboundVoiceProfiles:
             },
             sort="name",
         )
-        assert_matches_type(OutboundVoiceProfileListResponse, outbound_voice_profile, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[OutboundVoiceProfile], outbound_voice_profile, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -505,7 +506,7 @@ class TestAsyncOutboundVoiceProfiles:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         outbound_voice_profile = await response.parse()
-        assert_matches_type(OutboundVoiceProfileListResponse, outbound_voice_profile, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[OutboundVoiceProfile], outbound_voice_profile, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -515,7 +516,7 @@ class TestAsyncOutboundVoiceProfiles:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             outbound_voice_profile = await response.parse()
-            assert_matches_type(OutboundVoiceProfileListResponse, outbound_voice_profile, path=["response"])
+            assert_matches_type(AsyncDefaultPagination[OutboundVoiceProfile], outbound_voice_profile, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

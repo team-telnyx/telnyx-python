@@ -1,8 +1,9 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Dict, List, Union, Optional
-from typing_extensions import Literal, TypeAlias
+from typing_extensions import Literal, Annotated, TypeAlias
 
+from ..._utils import PropertyInfo
 from ..._models import BaseModel
 from .hangup_tool import HangupTool
 from .webhook_tool import WebhookTool
@@ -11,19 +12,19 @@ from .retrieval_tool import RetrievalTool
 
 __all__ = [
     "AssistantTool",
-    "HandoffTool",
-    "HandoffToolHandoff",
-    "HandoffToolHandoffAIAssistant",
-    "SipReferTool",
-    "SipReferToolRefer",
-    "SipReferToolReferTarget",
-    "SipReferToolReferCustomHeader",
-    "SipReferToolReferSipHeader",
-    "DtmfTool",
+    "Handoff",
+    "HandoffHandoff",
+    "HandoffHandoffAIAssistant",
+    "Refer",
+    "ReferRefer",
+    "ReferReferTarget",
+    "ReferReferCustomHeader",
+    "ReferReferSipHeader",
+    "SendDtmf",
 ]
 
 
-class HandoffToolHandoffAIAssistant(BaseModel):
+class HandoffHandoffAIAssistant(BaseModel):
     id: str
     """The ID of the assistant to hand off to."""
 
@@ -31,8 +32,8 @@ class HandoffToolHandoffAIAssistant(BaseModel):
     """Helpful name for giving context on when to handoff to the assistant."""
 
 
-class HandoffToolHandoff(BaseModel):
-    ai_assistants: List[HandoffToolHandoffAIAssistant]
+class HandoffHandoff(BaseModel):
+    ai_assistants: List[HandoffHandoffAIAssistant]
     """List of possible assistants that can receive a handoff."""
 
     voice_mode: Optional[Literal["unified", "distinct"]] = None
@@ -44,17 +45,17 @@ class HandoffToolHandoff(BaseModel):
     """
 
 
-class HandoffTool(BaseModel):
+class Handoff(BaseModel):
     """
     The handoff tool allows the assistant to hand off control of the conversation to another AI assistant. By default, this will happen transparently to the end user.
     """
 
-    handoff: HandoffToolHandoff
+    handoff: HandoffHandoff
 
     type: Literal["handoff"]
 
 
-class SipReferToolReferTarget(BaseModel):
+class ReferReferTarget(BaseModel):
     name: str
     """The name of the target."""
 
@@ -68,7 +69,7 @@ class SipReferToolReferTarget(BaseModel):
     """SIP Authentication username used for SIP challenges."""
 
 
-class SipReferToolReferCustomHeader(BaseModel):
+class ReferReferCustomHeader(BaseModel):
     name: Optional[str] = None
 
     value: Optional[str] = None
@@ -80,7 +81,7 @@ class SipReferToolReferCustomHeader(BaseModel):
     """
 
 
-class SipReferToolReferSipHeader(BaseModel):
+class ReferReferSipHeader(BaseModel):
     name: Optional[Literal["User-to-User", "Diversion"]] = None
 
     value: Optional[str] = None
@@ -92,35 +93,36 @@ class SipReferToolReferSipHeader(BaseModel):
     """
 
 
-class SipReferToolRefer(BaseModel):
-    targets: List[SipReferToolReferTarget]
+class ReferRefer(BaseModel):
+    targets: List[ReferReferTarget]
     """The different possible targets of the SIP refer.
 
     The assistant will be able to choose one of the targets to refer the call to.
     """
 
-    custom_headers: Optional[List[SipReferToolReferCustomHeader]] = None
+    custom_headers: Optional[List[ReferReferCustomHeader]] = None
     """Custom headers to be added to the SIP REFER."""
 
-    sip_headers: Optional[List[SipReferToolReferSipHeader]] = None
+    sip_headers: Optional[List[ReferReferSipHeader]] = None
     """SIP headers to be added to the SIP REFER.
 
     Currently only User-to-User and Diversion headers are supported.
     """
 
 
-class SipReferTool(BaseModel):
-    refer: SipReferToolRefer
+class Refer(BaseModel):
+    refer: ReferRefer
 
     type: Literal["refer"]
 
 
-class DtmfTool(BaseModel):
+class SendDtmf(BaseModel):
     send_dtmf: Dict[str, object]
 
     type: Literal["send_dtmf"]
 
 
-AssistantTool: TypeAlias = Union[
-    WebhookTool, RetrievalTool, HandoffTool, HangupTool, TransferTool, SipReferTool, DtmfTool
+AssistantTool: TypeAlias = Annotated[
+    Union[WebhookTool, RetrievalTool, Handoff, HangupTool, TransferTool, Refer, SendDtmf],
+    PropertyInfo(discriminator="type"),
 ]

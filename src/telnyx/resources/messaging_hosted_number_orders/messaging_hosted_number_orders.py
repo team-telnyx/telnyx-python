@@ -32,8 +32,9 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._base_client import make_request_options
-from ...types.messaging_hosted_number_order_list_response import MessagingHostedNumberOrderListResponse
+from ...pagination import SyncDefaultPagination, AsyncDefaultPagination
+from ..._base_client import AsyncPaginator, make_request_options
+from ...types.shared.messaging_hosted_number_order import MessagingHostedNumberOrder
 from ...types.messaging_hosted_number_order_create_response import MessagingHostedNumberOrderCreateResponse
 from ...types.messaging_hosted_number_order_delete_response import MessagingHostedNumberOrderDeleteResponse
 from ...types.messaging_hosted_number_order_retrieve_response import MessagingHostedNumberOrderRetrieveResponse
@@ -161,7 +162,7 @@ class MessagingHostedNumberOrdersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MessagingHostedNumberOrderListResponse:
+    ) -> SyncDefaultPagination[MessagingHostedNumberOrder]:
         """
         List messaging hosted number orders
 
@@ -177,8 +178,9 @@ class MessagingHostedNumberOrdersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/messaging_hosted_number_orders",
+            page=SyncDefaultPagination[MessagingHostedNumberOrder],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -188,7 +190,7 @@ class MessagingHostedNumberOrdersResource(SyncAPIResource):
                     {"page": page}, messaging_hosted_number_order_list_params.MessagingHostedNumberOrderListParams
                 ),
             ),
-            cast_to=MessagingHostedNumberOrderListResponse,
+            model=MessagingHostedNumberOrder,
         )
 
     def delete(
@@ -447,7 +449,7 @@ class AsyncMessagingHostedNumberOrdersResource(AsyncAPIResource):
             cast_to=MessagingHostedNumberOrderRetrieveResponse,
         )
 
-    async def list(
+    def list(
         self,
         *,
         page: messaging_hosted_number_order_list_params.Page | Omit = omit,
@@ -457,7 +459,7 @@ class AsyncMessagingHostedNumberOrdersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MessagingHostedNumberOrderListResponse:
+    ) -> AsyncPaginator[MessagingHostedNumberOrder, AsyncDefaultPagination[MessagingHostedNumberOrder]]:
         """
         List messaging hosted number orders
 
@@ -473,18 +475,19 @@ class AsyncMessagingHostedNumberOrdersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/messaging_hosted_number_orders",
+            page=AsyncDefaultPagination[MessagingHostedNumberOrder],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {"page": page}, messaging_hosted_number_order_list_params.MessagingHostedNumberOrderListParams
                 ),
             ),
-            cast_to=MessagingHostedNumberOrderListResponse,
+            model=MessagingHostedNumberOrder,
         )
 
     async def delete(

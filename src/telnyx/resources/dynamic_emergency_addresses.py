@@ -17,8 +17,9 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import make_request_options
-from ..types.dynamic_emergency_address_list_response import DynamicEmergencyAddressListResponse
+from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
+from .._base_client import AsyncPaginator, make_request_options
+from ..types.dynamic_emergency_address import DynamicEmergencyAddress
 from ..types.dynamic_emergency_address_create_response import DynamicEmergencyAddressCreateResponse
 from ..types.dynamic_emergency_address_delete_response import DynamicEmergencyAddressDeleteResponse
 from ..types.dynamic_emergency_address_retrieve_response import DynamicEmergencyAddressRetrieveResponse
@@ -147,7 +148,7 @@ class DynamicEmergencyAddressesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> DynamicEmergencyAddressListResponse:
+    ) -> SyncDefaultPagination[DynamicEmergencyAddress]:
         """
         Returns the dynamic emergency addresses according to filters
 
@@ -166,8 +167,9 @@ class DynamicEmergencyAddressesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/dynamic_emergency_addresses",
+            page=SyncDefaultPagination[DynamicEmergencyAddress],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -181,7 +183,7 @@ class DynamicEmergencyAddressesResource(SyncAPIResource):
                     dynamic_emergency_address_list_params.DynamicEmergencyAddressListParams,
                 ),
             ),
-            cast_to=DynamicEmergencyAddressListResponse,
+            model=DynamicEmergencyAddress,
         )
 
     def delete(
@@ -328,7 +330,7 @@ class AsyncDynamicEmergencyAddressesResource(AsyncAPIResource):
             cast_to=DynamicEmergencyAddressRetrieveResponse,
         )
 
-    async def list(
+    def list(
         self,
         *,
         filter: dynamic_emergency_address_list_params.Filter | Omit = omit,
@@ -339,7 +341,7 @@ class AsyncDynamicEmergencyAddressesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> DynamicEmergencyAddressListResponse:
+    ) -> AsyncPaginator[DynamicEmergencyAddress, AsyncDefaultPagination[DynamicEmergencyAddress]]:
         """
         Returns the dynamic emergency addresses according to filters
 
@@ -358,14 +360,15 @@ class AsyncDynamicEmergencyAddressesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/dynamic_emergency_addresses",
+            page=AsyncDefaultPagination[DynamicEmergencyAddress],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "filter": filter,
                         "page": page,
@@ -373,7 +376,7 @@ class AsyncDynamicEmergencyAddressesResource(AsyncAPIResource):
                     dynamic_emergency_address_list_params.DynamicEmergencyAddressListParams,
                 ),
             ),
-            cast_to=DynamicEmergencyAddressListResponse,
+            model=DynamicEmergencyAddress,
         )
 
     async def delete(

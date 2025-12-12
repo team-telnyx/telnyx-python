@@ -9,8 +9,9 @@ import pytest
 
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
-from telnyx.types import FaxListResponse, FaxCreateResponse, FaxRetrieveResponse
+from telnyx.types import Fax, FaxCreateResponse, FaxRetrieveResponse
 from telnyx._utils import parse_datetime
+from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -125,7 +126,7 @@ class TestFaxes:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         fax = client.faxes.list()
-        assert_matches_type(FaxListResponse, fax, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[Fax], fax, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -142,12 +143,10 @@ class TestFaxes:
                 "from": {"eq": "+13127367276"},
                 "to": {"eq": "+13127367276"},
             },
-            page={
-                "number": 2,
-                "size": 2,
-            },
+            page_number=0,
+            page_size=0,
         )
-        assert_matches_type(FaxListResponse, fax, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[Fax], fax, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -157,7 +156,7 @@ class TestFaxes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         fax = response.parse()
-        assert_matches_type(FaxListResponse, fax, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[Fax], fax, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -167,7 +166,7 @@ class TestFaxes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             fax = response.parse()
-            assert_matches_type(FaxListResponse, fax, path=["response"])
+            assert_matches_type(SyncDefaultFlatPagination[Fax], fax, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -326,7 +325,7 @@ class TestAsyncFaxes:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         fax = await async_client.faxes.list()
-        assert_matches_type(FaxListResponse, fax, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[Fax], fax, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -343,12 +342,10 @@ class TestAsyncFaxes:
                 "from": {"eq": "+13127367276"},
                 "to": {"eq": "+13127367276"},
             },
-            page={
-                "number": 2,
-                "size": 2,
-            },
+            page_number=0,
+            page_size=0,
         )
-        assert_matches_type(FaxListResponse, fax, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[Fax], fax, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -358,7 +355,7 @@ class TestAsyncFaxes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         fax = await response.parse()
-        assert_matches_type(FaxListResponse, fax, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[Fax], fax, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -368,7 +365,7 @@ class TestAsyncFaxes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             fax = await response.parse()
-            assert_matches_type(FaxListResponse, fax, path=["response"])
+            assert_matches_type(AsyncDefaultFlatPagination[Fax], fax, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

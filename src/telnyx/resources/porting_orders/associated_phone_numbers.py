@@ -16,9 +16,10 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._base_client import make_request_options
+from ...pagination import SyncDefaultPagination, AsyncDefaultPagination
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.porting_orders import associated_phone_number_list_params, associated_phone_number_create_params
-from ...types.porting_orders.associated_phone_number_list_response import AssociatedPhoneNumberListResponse
+from ...types.porting_orders.porting_associated_phone_number import PortingAssociatedPhoneNumber
 from ...types.porting_orders.associated_phone_number_create_response import AssociatedPhoneNumberCreateResponse
 from ...types.porting_orders.associated_phone_number_delete_response import AssociatedPhoneNumberDeleteResponse
 
@@ -105,7 +106,7 @@ class AssociatedPhoneNumbersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AssociatedPhoneNumberListResponse:
+    ) -> SyncDefaultPagination[PortingAssociatedPhoneNumber]:
         """Returns a list of all associated phone numbers for a porting order.
 
         Associated
@@ -132,8 +133,9 @@ class AssociatedPhoneNumbersResource(SyncAPIResource):
         """
         if not porting_order_id:
             raise ValueError(f"Expected a non-empty value for `porting_order_id` but received {porting_order_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/porting_orders/{porting_order_id}/associated_phone_numbers",
+            page=SyncDefaultPagination[PortingAssociatedPhoneNumber],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -148,7 +150,7 @@ class AssociatedPhoneNumbersResource(SyncAPIResource):
                     associated_phone_number_list_params.AssociatedPhoneNumberListParams,
                 ),
             ),
-            cast_to=AssociatedPhoneNumberListResponse,
+            model=PortingAssociatedPhoneNumber,
         )
 
     def delete(
@@ -255,7 +257,7 @@ class AsyncAssociatedPhoneNumbersResource(AsyncAPIResource):
             cast_to=AssociatedPhoneNumberCreateResponse,
         )
 
-    async def list(
+    def list(
         self,
         porting_order_id: str,
         *,
@@ -268,7 +270,7 @@ class AsyncAssociatedPhoneNumbersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AssociatedPhoneNumberListResponse:
+    ) -> AsyncPaginator[PortingAssociatedPhoneNumber, AsyncDefaultPagination[PortingAssociatedPhoneNumber]]:
         """Returns a list of all associated phone numbers for a porting order.
 
         Associated
@@ -295,14 +297,15 @@ class AsyncAssociatedPhoneNumbersResource(AsyncAPIResource):
         """
         if not porting_order_id:
             raise ValueError(f"Expected a non-empty value for `porting_order_id` but received {porting_order_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/porting_orders/{porting_order_id}/associated_phone_numbers",
+            page=AsyncDefaultPagination[PortingAssociatedPhoneNumber],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "filter": filter,
                         "page": page,
@@ -311,7 +314,7 @@ class AsyncAssociatedPhoneNumbersResource(AsyncAPIResource):
                     associated_phone_number_list_params.AssociatedPhoneNumberListParams,
                 ),
             ),
-            cast_to=AssociatedPhoneNumberListResponse,
+            model=PortingAssociatedPhoneNumber,
         )
 
     async def delete(

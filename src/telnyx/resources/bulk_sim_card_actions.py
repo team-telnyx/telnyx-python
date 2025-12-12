@@ -8,7 +8,7 @@ import httpx
 
 from ..types import bulk_sim_card_action_list_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._utils import maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -17,7 +17,8 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import make_request_options
+from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
+from .._base_client import AsyncPaginator, make_request_options
 from ..types.bulk_sim_card_action_list_response import BulkSimCardActionListResponse
 from ..types.bulk_sim_card_action_retrieve_response import BulkSimCardActionRetrieveResponse
 
@@ -91,7 +92,7 @@ class BulkSimCardActionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> BulkSimCardActionListResponse:
+    ) -> SyncDefaultFlatPagination[BulkSimCardActionListResponse]:
         """This API lists a paginated collection of bulk SIM card actions.
 
         A bulk SIM card
@@ -112,8 +113,9 @@ class BulkSimCardActionsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/bulk_sim_card_actions",
+            page=SyncDefaultFlatPagination[BulkSimCardActionListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -128,7 +130,7 @@ class BulkSimCardActionsResource(SyncAPIResource):
                     bulk_sim_card_action_list_params.BulkSimCardActionListParams,
                 ),
             ),
-            cast_to=BulkSimCardActionListResponse,
+            model=BulkSimCardActionListResponse,
         )
 
 
@@ -187,7 +189,7 @@ class AsyncBulkSimCardActionsResource(AsyncAPIResource):
             cast_to=BulkSimCardActionRetrieveResponse,
         )
 
-    async def list(
+    def list(
         self,
         *,
         filter_action_type: Literal["bulk_set_public_ips"] | Omit = omit,
@@ -199,7 +201,7 @@ class AsyncBulkSimCardActionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> BulkSimCardActionListResponse:
+    ) -> AsyncPaginator[BulkSimCardActionListResponse, AsyncDefaultFlatPagination[BulkSimCardActionListResponse]]:
         """This API lists a paginated collection of bulk SIM card actions.
 
         A bulk SIM card
@@ -220,14 +222,15 @@ class AsyncBulkSimCardActionsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/bulk_sim_card_actions",
+            page=AsyncDefaultFlatPagination[BulkSimCardActionListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "filter_action_type": filter_action_type,
                         "page_number": page_number,
@@ -236,7 +239,7 @@ class AsyncBulkSimCardActionsResource(AsyncAPIResource):
                     bulk_sim_card_action_list_params.BulkSimCardActionListParams,
                 ),
             ),
-            cast_to=BulkSimCardActionListResponse,
+            model=BulkSimCardActionListResponse,
         )
 
 

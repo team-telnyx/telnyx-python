@@ -16,9 +16,10 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._base_client import make_request_options
+from ...pagination import SyncDefaultPagination, AsyncDefaultPagination
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.porting_orders import phone_number_block_list_params, phone_number_block_create_params
-from ...types.porting_orders.phone_number_block_list_response import PhoneNumberBlockListResponse
+from ...types.porting_orders.porting_phone_number_block import PortingPhoneNumberBlock
 from ...types.porting_orders.phone_number_block_create_response import PhoneNumberBlockCreateResponse
 from ...types.porting_orders.phone_number_block_delete_response import PhoneNumberBlockDeleteResponse
 
@@ -104,7 +105,7 @@ class PhoneNumberBlocksResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PhoneNumberBlockListResponse:
+    ) -> SyncDefaultPagination[PortingPhoneNumberBlock]:
         """
         Returns a list of all phone number blocks of a porting order.
 
@@ -129,8 +130,9 @@ class PhoneNumberBlocksResource(SyncAPIResource):
         """
         if not porting_order_id:
             raise ValueError(f"Expected a non-empty value for `porting_order_id` but received {porting_order_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/porting_orders/{porting_order_id}/phone_number_blocks",
+            page=SyncDefaultPagination[PortingPhoneNumberBlock],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -145,7 +147,7 @@ class PhoneNumberBlocksResource(SyncAPIResource):
                     phone_number_block_list_params.PhoneNumberBlockListParams,
                 ),
             ),
-            cast_to=PhoneNumberBlockListResponse,
+            model=PortingPhoneNumberBlock,
         )
 
     def delete(
@@ -251,7 +253,7 @@ class AsyncPhoneNumberBlocksResource(AsyncAPIResource):
             cast_to=PhoneNumberBlockCreateResponse,
         )
 
-    async def list(
+    def list(
         self,
         porting_order_id: str,
         *,
@@ -264,7 +266,7 @@ class AsyncPhoneNumberBlocksResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PhoneNumberBlockListResponse:
+    ) -> AsyncPaginator[PortingPhoneNumberBlock, AsyncDefaultPagination[PortingPhoneNumberBlock]]:
         """
         Returns a list of all phone number blocks of a porting order.
 
@@ -289,14 +291,15 @@ class AsyncPhoneNumberBlocksResource(AsyncAPIResource):
         """
         if not porting_order_id:
             raise ValueError(f"Expected a non-empty value for `porting_order_id` but received {porting_order_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/porting_orders/{porting_order_id}/phone_number_blocks",
+            page=AsyncDefaultPagination[PortingPhoneNumberBlock],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "filter": filter,
                         "page": page,
@@ -305,7 +308,7 @@ class AsyncPhoneNumberBlocksResource(AsyncAPIResource):
                     phone_number_block_list_params.PhoneNumberBlockListParams,
                 ),
             ),
-            cast_to=PhoneNumberBlockListResponse,
+            model=PortingPhoneNumberBlock,
         )
 
     async def delete(

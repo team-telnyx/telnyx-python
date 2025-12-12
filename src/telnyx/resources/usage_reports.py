@@ -17,7 +17,8 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import make_request_options
+from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
+from .._base_client import AsyncPaginator, make_request_options
 from ..types.usage_report_list_response import UsageReportListResponse
 from ..types.usage_report_get_options_response import UsageReportGetOptionsResponse
 
@@ -55,7 +56,8 @@ class UsageReportsResource(SyncAPIResource):
         filter: str | Omit = omit,
         format: Literal["csv", "json"] | Omit = omit,
         managed_accounts: bool | Omit = omit,
-        page: usage_report_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         sort: SequenceNotStr[str] | Omit = omit,
         start_date: str | Omit = omit,
         authorization_bearer: str | Omit = omit,
@@ -65,7 +67,7 @@ class UsageReportsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> UsageReportListResponse:
+    ) -> SyncDefaultFlatPagination[UsageReportListResponse]:
         """
         Get Telnyx usage data by product, broken out by the specified dimensions
 
@@ -90,9 +92,6 @@ class UsageReportsResource(SyncAPIResource):
           managed_accounts: Return the aggregations for all Managed Accounts under the user making the
               request.
 
-          page: Consolidated page parameter (deepObject style). Originally: page[number],
-              page[size]
-
           sort: Specifies the sort order for results
 
           start_date: The start date for the time range you are interested in. The maximum time range
@@ -109,8 +108,9 @@ class UsageReportsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         extra_headers = {**strip_not_given({"authorization_bearer": authorization_bearer}), **(extra_headers or {})}
-        return self._get(
+        return self._get_api_list(
             "/usage_reports",
+            page=SyncDefaultFlatPagination[UsageReportListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -126,14 +126,15 @@ class UsageReportsResource(SyncAPIResource):
                         "filter": filter,
                         "format": format,
                         "managed_accounts": managed_accounts,
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                         "sort": sort,
                         "start_date": start_date,
                     },
                     usage_report_list_params.UsageReportListParams,
                 ),
             ),
-            cast_to=UsageReportListResponse,
+            model=UsageReportListResponse,
         )
 
     def get_options(
@@ -202,7 +203,7 @@ class AsyncUsageReportsResource(AsyncAPIResource):
         """
         return AsyncUsageReportsResourceWithStreamingResponse(self)
 
-    async def list(
+    def list(
         self,
         *,
         dimensions: SequenceNotStr[str],
@@ -213,7 +214,8 @@ class AsyncUsageReportsResource(AsyncAPIResource):
         filter: str | Omit = omit,
         format: Literal["csv", "json"] | Omit = omit,
         managed_accounts: bool | Omit = omit,
-        page: usage_report_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         sort: SequenceNotStr[str] | Omit = omit,
         start_date: str | Omit = omit,
         authorization_bearer: str | Omit = omit,
@@ -223,7 +225,7 @@ class AsyncUsageReportsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> UsageReportListResponse:
+    ) -> AsyncPaginator[UsageReportListResponse, AsyncDefaultFlatPagination[UsageReportListResponse]]:
         """
         Get Telnyx usage data by product, broken out by the specified dimensions
 
@@ -248,9 +250,6 @@ class AsyncUsageReportsResource(AsyncAPIResource):
           managed_accounts: Return the aggregations for all Managed Accounts under the user making the
               request.
 
-          page: Consolidated page parameter (deepObject style). Originally: page[number],
-              page[size]
-
           sort: Specifies the sort order for results
 
           start_date: The start date for the time range you are interested in. The maximum time range
@@ -267,14 +266,15 @@ class AsyncUsageReportsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         extra_headers = {**strip_not_given({"authorization_bearer": authorization_bearer}), **(extra_headers or {})}
-        return await self._get(
+        return self._get_api_list(
             "/usage_reports",
+            page=AsyncDefaultFlatPagination[UsageReportListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "dimensions": dimensions,
                         "metrics": metrics,
@@ -284,14 +284,15 @@ class AsyncUsageReportsResource(AsyncAPIResource):
                         "filter": filter,
                         "format": format,
                         "managed_accounts": managed_accounts,
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                         "sort": sort,
                         "start_date": start_date,
                     },
                     usage_report_list_params.UsageReportListParams,
                 ),
             ),
-            cast_to=UsageReportListResponse,
+            model=UsageReportListResponse,
         )
 
     async def get_options(

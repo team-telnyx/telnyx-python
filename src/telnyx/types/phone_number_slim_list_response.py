@@ -1,15 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Optional
 from typing_extensions import Literal
 
 from .._models import BaseModel
-from .pagination_meta import PaginationMeta
 
-__all__ = ["PhoneNumberSlimListResponse", "Data"]
+__all__ = ["PhoneNumberSlimListResponse"]
 
 
-class Data(BaseModel):
+class PhoneNumberSlimListResponse(BaseModel):
     id: Optional[str] = None
     """Identifies the resource."""
 
@@ -117,9 +116,3 @@ class Data(BaseModel):
 
     t38_fax_gateway_enabled: Optional[bool] = None
     """Indicates whether T38 Fax Gateway for inbound calls to this number."""
-
-
-class PhoneNumberSlimListResponse(BaseModel):
-    data: Optional[List[Data]] = None
-
-    meta: Optional[PaginationMeta] = None

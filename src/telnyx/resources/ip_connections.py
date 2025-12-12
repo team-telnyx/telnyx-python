@@ -25,13 +25,14 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import make_request_options
+from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
+from .._base_client import AsyncPaginator, make_request_options
 from ..types.dtmf_type import DtmfType
+from ..types.ip_connection import IPConnection
 from ..types.encrypted_media import EncryptedMedia
 from ..types.inbound_ip_param import InboundIPParam
 from ..types.outbound_ip_param import OutboundIPParam
 from ..types.anchorsite_override import AnchorsiteOverride
-from ..types.ip_connection_list_response import IPConnectionListResponse
 from ..types.ip_connection_create_response import IPConnectionCreateResponse
 from ..types.ip_connection_delete_response import IPConnectionDeleteResponse
 from ..types.ip_connection_update_response import IPConnectionUpdateResponse
@@ -347,7 +348,7 @@ class IPConnectionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> IPConnectionListResponse:
+    ) -> SyncDefaultPagination[IPConnection]:
         """
         Returns a list of your IP connections.
 
@@ -383,8 +384,9 @@ class IPConnectionsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/ip_connections",
+            page=SyncDefaultPagination[IPConnection],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -399,7 +401,7 @@ class IPConnectionsResource(SyncAPIResource):
                     ip_connection_list_params.IPConnectionListParams,
                 ),
             ),
-            cast_to=IPConnectionListResponse,
+            model=IPConnection,
         )
 
     def delete(
@@ -730,7 +732,7 @@ class AsyncIPConnectionsResource(AsyncAPIResource):
             cast_to=IPConnectionUpdateResponse,
         )
 
-    async def list(
+    def list(
         self,
         *,
         filter: ip_connection_list_params.Filter | Omit = omit,
@@ -742,7 +744,7 @@ class AsyncIPConnectionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> IPConnectionListResponse:
+    ) -> AsyncPaginator[IPConnection, AsyncDefaultPagination[IPConnection]]:
         """
         Returns a list of your IP connections.
 
@@ -778,14 +780,15 @@ class AsyncIPConnectionsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/ip_connections",
+            page=AsyncDefaultPagination[IPConnection],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "filter": filter,
                         "page": page,
@@ -794,7 +797,7 @@ class AsyncIPConnectionsResource(AsyncAPIResource):
                     ip_connection_list_params.IPConnectionListParams,
                 ),
             ),
-            cast_to=IPConnectionListResponse,
+            model=IPConnection,
         )
 
     async def delete(

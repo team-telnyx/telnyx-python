@@ -17,8 +17,9 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import make_request_options
-from ..types.notification_setting_list_response import NotificationSettingListResponse
+from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
+from .._base_client import AsyncPaginator, make_request_options
+from ..types.notification_setting import NotificationSetting
 from ..types.notification_setting_create_response import NotificationSettingCreateResponse
 from ..types.notification_setting_delete_response import NotificationSettingDeleteResponse
 from ..types.notification_setting_retrieve_response import NotificationSettingRetrieveResponse
@@ -139,7 +140,7 @@ class NotificationSettingsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NotificationSettingListResponse:
+    ) -> SyncDefaultPagination[NotificationSetting]:
         """
         List notification settings.
 
@@ -161,8 +162,9 @@ class NotificationSettingsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/notification_settings",
+            page=SyncDefaultPagination[NotificationSetting],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -176,7 +178,7 @@ class NotificationSettingsResource(SyncAPIResource):
                     notification_setting_list_params.NotificationSettingListParams,
                 ),
             ),
-            cast_to=NotificationSettingListResponse,
+            model=NotificationSetting,
         )
 
     def delete(
@@ -315,7 +317,7 @@ class AsyncNotificationSettingsResource(AsyncAPIResource):
             cast_to=NotificationSettingRetrieveResponse,
         )
 
-    async def list(
+    def list(
         self,
         *,
         filter: notification_setting_list_params.Filter | Omit = omit,
@@ -326,7 +328,7 @@ class AsyncNotificationSettingsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NotificationSettingListResponse:
+    ) -> AsyncPaginator[NotificationSetting, AsyncDefaultPagination[NotificationSetting]]:
         """
         List notification settings.
 
@@ -348,14 +350,15 @@ class AsyncNotificationSettingsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/notification_settings",
+            page=AsyncDefaultPagination[NotificationSetting],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "filter": filter,
                         "page": page,
@@ -363,7 +366,7 @@ class AsyncNotificationSettingsResource(AsyncAPIResource):
                     notification_setting_list_params.NotificationSettingListParams,
                 ),
             ),
-            cast_to=NotificationSettingListResponse,
+            model=NotificationSetting,
         )
 
     async def delete(

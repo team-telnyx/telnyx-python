@@ -64,7 +64,7 @@ class UserAddressCreateParams(TypedDict, total=False):
     postal_code: str
     """The postal code of the user address."""
 
-    skip_address_verification: str
+    skip_address_verification: bool
     """
     An optional boolean value specifying if verification of the address should be
     skipped or not. UserAddresses are generally used for shipping addresses, and

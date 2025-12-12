@@ -9,8 +9,9 @@ import pytest
 
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
+from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
 from telnyx.types.porting_orders import (
-    PhoneNumberBlockListResponse,
+    PortingPhoneNumberBlock,
     PhoneNumberBlockCreateResponse,
     PhoneNumberBlockDeleteResponse,
 )
@@ -109,7 +110,7 @@ class TestPhoneNumberBlocks:
         phone_number_block = client.porting_orders.phone_number_blocks.list(
             porting_order_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(PhoneNumberBlockListResponse, phone_number_block, path=["response"])
+        assert_matches_type(SyncDefaultPagination[PortingPhoneNumberBlock], phone_number_block, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -130,7 +131,7 @@ class TestPhoneNumberBlocks:
             },
             sort={"value": "created_at"},
         )
-        assert_matches_type(PhoneNumberBlockListResponse, phone_number_block, path=["response"])
+        assert_matches_type(SyncDefaultPagination[PortingPhoneNumberBlock], phone_number_block, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -142,7 +143,7 @@ class TestPhoneNumberBlocks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         phone_number_block = response.parse()
-        assert_matches_type(PhoneNumberBlockListResponse, phone_number_block, path=["response"])
+        assert_matches_type(SyncDefaultPagination[PortingPhoneNumberBlock], phone_number_block, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -154,7 +155,7 @@ class TestPhoneNumberBlocks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             phone_number_block = response.parse()
-            assert_matches_type(PhoneNumberBlockListResponse, phone_number_block, path=["response"])
+            assert_matches_type(SyncDefaultPagination[PortingPhoneNumberBlock], phone_number_block, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -312,7 +313,7 @@ class TestAsyncPhoneNumberBlocks:
         phone_number_block = await async_client.porting_orders.phone_number_blocks.list(
             porting_order_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(PhoneNumberBlockListResponse, phone_number_block, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[PortingPhoneNumberBlock], phone_number_block, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -333,7 +334,7 @@ class TestAsyncPhoneNumberBlocks:
             },
             sort={"value": "created_at"},
         )
-        assert_matches_type(PhoneNumberBlockListResponse, phone_number_block, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[PortingPhoneNumberBlock], phone_number_block, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -345,7 +346,7 @@ class TestAsyncPhoneNumberBlocks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         phone_number_block = await response.parse()
-        assert_matches_type(PhoneNumberBlockListResponse, phone_number_block, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[PortingPhoneNumberBlock], phone_number_block, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -357,7 +358,7 @@ class TestAsyncPhoneNumberBlocks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             phone_number_block = await response.parse()
-            assert_matches_type(PhoneNumberBlockListResponse, phone_number_block, path=["response"])
+            assert_matches_type(AsyncDefaultPagination[PortingPhoneNumberBlock], phone_number_block, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

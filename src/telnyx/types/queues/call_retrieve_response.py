@@ -47,6 +47,9 @@ class Data(BaseModel):
     wait_time_secs: int
     """The time the call has been waiting in the queue, given in seconds"""
 
+    is_alive: Optional[bool] = None
+    """Indicates whether the call is still active in the queue."""
+
 
 class CallRetrieveResponse(BaseModel):
     data: Optional[Data] = None

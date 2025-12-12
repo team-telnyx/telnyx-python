@@ -540,8 +540,8 @@ class TestAssistants:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_method_import(self, client: Telnyx) -> None:
-        assistant = client.ai.assistants.import_(
+    def test_method_imports(self, client: Telnyx) -> None:
+        assistant = client.ai.assistants.imports(
             api_key_ref="api_key_ref",
             provider="elevenlabs",
         )
@@ -549,8 +549,8 @@ class TestAssistants:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_raw_response_import(self, client: Telnyx) -> None:
-        response = client.ai.assistants.with_raw_response.import_(
+    def test_raw_response_imports(self, client: Telnyx) -> None:
+        response = client.ai.assistants.with_raw_response.imports(
             api_key_ref="api_key_ref",
             provider="elevenlabs",
         )
@@ -562,8 +562,8 @@ class TestAssistants:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_streaming_response_import(self, client: Telnyx) -> None:
-        with client.ai.assistants.with_streaming_response.import_(
+    def test_streaming_response_imports(self, client: Telnyx) -> None:
+        with client.ai.assistants.with_streaming_response.imports(
             api_key_ref="api_key_ref",
             provider="elevenlabs",
         ) as response:
@@ -1165,8 +1165,8 @@ class TestAsyncAssistants:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_method_import(self, async_client: AsyncTelnyx) -> None:
-        assistant = await async_client.ai.assistants.import_(
+    async def test_method_imports(self, async_client: AsyncTelnyx) -> None:
+        assistant = await async_client.ai.assistants.imports(
             api_key_ref="api_key_ref",
             provider="elevenlabs",
         )
@@ -1174,8 +1174,8 @@ class TestAsyncAssistants:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_raw_response_import(self, async_client: AsyncTelnyx) -> None:
-        response = await async_client.ai.assistants.with_raw_response.import_(
+    async def test_raw_response_imports(self, async_client: AsyncTelnyx) -> None:
+        response = await async_client.ai.assistants.with_raw_response.imports(
             api_key_ref="api_key_ref",
             provider="elevenlabs",
         )
@@ -1187,8 +1187,8 @@ class TestAsyncAssistants:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_streaming_response_import(self, async_client: AsyncTelnyx) -> None:
-        async with async_client.ai.assistants.with_streaming_response.import_(
+    async def test_streaming_response_imports(self, async_client: AsyncTelnyx) -> None:
+        async with async_client.ai.assistants.with_streaming_response.imports(
             api_key_ref="api_key_ref",
             provider="elevenlabs",
         ) as response:

@@ -150,7 +150,7 @@ class TestCalls:
     def test_method_calls(self, client: Telnyx) -> None:
         call = client.texml.accounts.calls.calls(
             account_sid="account_sid",
-            application_sid="ApplicationSid",
+            application_sid="example-app-sid",
             from_="+13120001234",
             to="+13121230000",
         )
@@ -161,7 +161,7 @@ class TestCalls:
     def test_method_calls_with_all_params(self, client: Telnyx) -> None:
         call = client.texml.accounts.calls.calls(
             account_sid="account_sid",
-            application_sid="ApplicationSid",
+            application_sid="example-app-sid",
             from_="+13120001234",
             to="+13121230000",
             async_amd=True,
@@ -209,7 +209,7 @@ class TestCalls:
     def test_raw_response_calls(self, client: Telnyx) -> None:
         response = client.texml.accounts.calls.with_raw_response.calls(
             account_sid="account_sid",
-            application_sid="ApplicationSid",
+            application_sid="example-app-sid",
             from_="+13120001234",
             to="+13121230000",
         )
@@ -224,7 +224,7 @@ class TestCalls:
     def test_streaming_response_calls(self, client: Telnyx) -> None:
         with client.texml.accounts.calls.with_streaming_response.calls(
             account_sid="account_sid",
-            application_sid="ApplicationSid",
+            application_sid="example-app-sid",
             from_="+13120001234",
             to="+13121230000",
         ) as response:
@@ -242,7 +242,7 @@ class TestCalls:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_sid` but received ''"):
             client.texml.accounts.calls.with_raw_response.calls(
                 account_sid="",
-                application_sid="ApplicationSid",
+                application_sid="example-app-sid",
                 from_="+13120001234",
                 to="+13121230000",
             )
@@ -579,7 +579,7 @@ class TestAsyncCalls:
     async def test_method_calls(self, async_client: AsyncTelnyx) -> None:
         call = await async_client.texml.accounts.calls.calls(
             account_sid="account_sid",
-            application_sid="ApplicationSid",
+            application_sid="example-app-sid",
             from_="+13120001234",
             to="+13121230000",
         )
@@ -590,7 +590,7 @@ class TestAsyncCalls:
     async def test_method_calls_with_all_params(self, async_client: AsyncTelnyx) -> None:
         call = await async_client.texml.accounts.calls.calls(
             account_sid="account_sid",
-            application_sid="ApplicationSid",
+            application_sid="example-app-sid",
             from_="+13120001234",
             to="+13121230000",
             async_amd=True,
@@ -638,7 +638,7 @@ class TestAsyncCalls:
     async def test_raw_response_calls(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.texml.accounts.calls.with_raw_response.calls(
             account_sid="account_sid",
-            application_sid="ApplicationSid",
+            application_sid="example-app-sid",
             from_="+13120001234",
             to="+13121230000",
         )
@@ -653,7 +653,7 @@ class TestAsyncCalls:
     async def test_streaming_response_calls(self, async_client: AsyncTelnyx) -> None:
         async with async_client.texml.accounts.calls.with_streaming_response.calls(
             account_sid="account_sid",
-            application_sid="ApplicationSid",
+            application_sid="example-app-sid",
             from_="+13120001234",
             to="+13121230000",
         ) as response:
@@ -671,7 +671,7 @@ class TestAsyncCalls:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_sid` but received ''"):
             await async_client.texml.accounts.calls.with_raw_response.calls(
                 account_sid="",
-                application_sid="ApplicationSid",
+                application_sid="example-app-sid",
                 from_="+13120001234",
                 to="+13121230000",
             )

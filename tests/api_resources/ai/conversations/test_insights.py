@@ -9,8 +9,9 @@ import pytest
 
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
+from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from telnyx.types.ai.conversations import (
-    InsightListResponse,
+    InsightTemplate,
     InsightTemplateDetail,
 )
 
@@ -168,18 +169,16 @@ class TestInsights:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         insight = client.ai.conversations.insights.list()
-        assert_matches_type(InsightListResponse, insight, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[InsightTemplate], insight, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         insight = client.ai.conversations.insights.list(
-            page={
-                "number": 1,
-                "size": 0,
-            },
+            page_number=0,
+            page_size=0,
         )
-        assert_matches_type(InsightListResponse, insight, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[InsightTemplate], insight, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -189,7 +188,7 @@ class TestInsights:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         insight = response.parse()
-        assert_matches_type(InsightListResponse, insight, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[InsightTemplate], insight, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -199,7 +198,7 @@ class TestInsights:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             insight = response.parse()
-            assert_matches_type(InsightListResponse, insight, path=["response"])
+            assert_matches_type(SyncDefaultFlatPagination[InsightTemplate], insight, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -399,18 +398,16 @@ class TestAsyncInsights:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         insight = await async_client.ai.conversations.insights.list()
-        assert_matches_type(InsightListResponse, insight, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[InsightTemplate], insight, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         insight = await async_client.ai.conversations.insights.list(
-            page={
-                "number": 1,
-                "size": 0,
-            },
+            page_number=0,
+            page_size=0,
         )
-        assert_matches_type(InsightListResponse, insight, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[InsightTemplate], insight, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -420,7 +417,7 @@ class TestAsyncInsights:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         insight = await response.parse()
-        assert_matches_type(InsightListResponse, insight, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[InsightTemplate], insight, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -430,7 +427,7 @@ class TestAsyncInsights:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             insight = await response.parse()
-            assert_matches_type(InsightListResponse, insight, path=["response"])
+            assert_matches_type(AsyncDefaultFlatPagination[InsightTemplate], insight, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

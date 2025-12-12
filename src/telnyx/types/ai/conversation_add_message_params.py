@@ -27,4 +27,4 @@ class ConversationAddMessageParams(TypedDict, total=False):
 
     tool_calls: Iterable[Dict[str, object]]
 
-    tool_choice: Union[str, object]
+    tool_choice: Union[str, Dict[str, object]]

@@ -14,14 +14,15 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._base_client import make_request_options
+from ...pagination import SyncDefaultPagination, AsyncDefaultPagination
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.sim_cards import (
     action_list_params,
     action_set_public_ip_params,
     action_bulk_set_public_ips_params,
     action_validate_registration_codes_params,
 )
-from ...types.sim_cards.action_list_response import ActionListResponse
+from ...types.sim_cards.sim_card_action import SimCardAction
 from ...types.sim_cards.action_enable_response import ActionEnableResponse
 from ...types.sim_cards.action_disable_response import ActionDisableResponse
 from ...types.sim_cards.action_retrieve_response import ActionRetrieveResponse
@@ -99,7 +100,7 @@ class ActionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ActionListResponse:
+    ) -> SyncDefaultPagination[SimCardAction]:
         """This API lists a paginated collection of SIM card actions.
 
         It enables exploring
@@ -121,8 +122,9 @@ class ActionsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/sim_card_actions",
+            page=SyncDefaultPagination[SimCardAction],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -136,7 +138,7 @@ class ActionsResource(SyncAPIResource):
                     action_list_params.ActionListParams,
                 ),
             ),
-            cast_to=ActionListResponse,
+            model=SimCardAction,
         )
 
     def bulk_set_public_ips(
@@ -471,7 +473,7 @@ class AsyncActionsResource(AsyncAPIResource):
             cast_to=ActionRetrieveResponse,
         )
 
-    async def list(
+    def list(
         self,
         *,
         filter: action_list_params.Filter | Omit = omit,
@@ -482,7 +484,7 @@ class AsyncActionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ActionListResponse:
+    ) -> AsyncPaginator[SimCardAction, AsyncDefaultPagination[SimCardAction]]:
         """This API lists a paginated collection of SIM card actions.
 
         It enables exploring
@@ -504,14 +506,15 @@ class AsyncActionsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/sim_card_actions",
+            page=AsyncDefaultPagination[SimCardAction],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "filter": filter,
                         "page": page,
@@ -519,7 +522,7 @@ class AsyncActionsResource(AsyncAPIResource):
                     action_list_params.ActionListParams,
                 ),
             ),
-            cast_to=ActionListResponse,
+            model=SimCardAction,
         )
 
     async def bulk_set_public_ips(

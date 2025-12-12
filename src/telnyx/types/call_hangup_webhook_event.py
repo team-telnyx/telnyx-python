@@ -104,13 +104,14 @@ class DataPayload(BaseModel):
             "time_limit",
             "user_busy",
             "not_found",
+            "no_answer",
             "unspecified",
         ]
     ] = None
     """
     The reason the call was ended (`call_rejected`, `normal_clearing`,
-    `originator_cancel`, `timeout`, `time_limit`, `user_busy`, `not_found` or
-    `unspecified`).
+    `originator_cancel`, `timeout`, `time_limit`, `user_busy`, `not_found`,
+    `no_answer` or `unspecified`).
     """
 
     hangup_source: Optional[Literal["caller", "callee", "unknown"]] = None

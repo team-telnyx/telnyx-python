@@ -19,8 +19,9 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import make_request_options
-from ..types.notification_profile_list_response import NotificationProfileListResponse
+from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
+from .._base_client import AsyncPaginator, make_request_options
+from ..types.notification_profile import NotificationProfile
 from ..types.notification_profile_create_response import NotificationProfileCreateResponse
 from ..types.notification_profile_delete_response import NotificationProfileDeleteResponse
 from ..types.notification_profile_update_response import NotificationProfileUpdateResponse
@@ -118,7 +119,7 @@ class NotificationProfilesResource(SyncAPIResource):
 
     def update(
         self,
-        id: str,
+        notification_profile_id: str,
         *,
         name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -142,10 +143,12 @@ class NotificationProfilesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not notification_profile_id:
+            raise ValueError(
+                f"Expected a non-empty value for `notification_profile_id` but received {notification_profile_id!r}"
+            )
         return self._patch(
-            f"/notification_profiles/{id}",
+            f"/notification_profiles/{notification_profile_id}",
             body=maybe_transform({"name": name}, notification_profile_update_params.NotificationProfileUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -163,7 +166,7 @@ class NotificationProfilesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NotificationProfileListResponse:
+    ) -> SyncDefaultPagination[NotificationProfile]:
         """
         Returns a list of your notifications profiles.
 
@@ -179,8 +182,9 @@ class NotificationProfilesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/notification_profiles",
+            page=SyncDefaultPagination[NotificationProfile],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -188,7 +192,7 @@ class NotificationProfilesResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform({"page": page}, notification_profile_list_params.NotificationProfileListParams),
             ),
-            cast_to=NotificationProfileListResponse,
+            model=NotificationProfile,
         )
 
     def delete(
@@ -316,7 +320,7 @@ class AsyncNotificationProfilesResource(AsyncAPIResource):
 
     async def update(
         self,
-        id: str,
+        notification_profile_id: str,
         *,
         name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -340,10 +344,12 @@ class AsyncNotificationProfilesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not notification_profile_id:
+            raise ValueError(
+                f"Expected a non-empty value for `notification_profile_id` but received {notification_profile_id!r}"
+            )
         return await self._patch(
-            f"/notification_profiles/{id}",
+            f"/notification_profiles/{notification_profile_id}",
             body=await async_maybe_transform(
                 {"name": name}, notification_profile_update_params.NotificationProfileUpdateParams
             ),
@@ -353,7 +359,7 @@ class AsyncNotificationProfilesResource(AsyncAPIResource):
             cast_to=NotificationProfileUpdateResponse,
         )
 
-    async def list(
+    def list(
         self,
         *,
         page: notification_profile_list_params.Page | Omit = omit,
@@ -363,7 +369,7 @@ class AsyncNotificationProfilesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NotificationProfileListResponse:
+    ) -> AsyncPaginator[NotificationProfile, AsyncDefaultPagination[NotificationProfile]]:
         """
         Returns a list of your notifications profiles.
 
@@ -379,18 +385,17 @@ class AsyncNotificationProfilesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/notification_profiles",
+            page=AsyncDefaultPagination[NotificationProfile],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
-                    {"page": page}, notification_profile_list_params.NotificationProfileListParams
-                ),
+                query=maybe_transform({"page": page}, notification_profile_list_params.NotificationProfileListParams),
             ),
-            cast_to=NotificationProfileListResponse,
+            model=NotificationProfile,
         )
 
     async def delete(

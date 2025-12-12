@@ -15,9 +15,9 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import make_request_options
+from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
+from .._base_client import AsyncPaginator, make_request_options
 from ..types.access_ip_address_response import AccessIPAddressResponse
-from ..types.access_ip_address_list_response import AccessIPAddressListResponse
 
 __all__ = ["AccessIPAddressResource", "AsyncAccessIPAddressResource"]
 
@@ -120,14 +120,15 @@ class AccessIPAddressResource(SyncAPIResource):
         self,
         *,
         filter: access_ip_address_list_params.Filter | Omit = omit,
-        page: access_ip_address_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AccessIPAddressListResponse:
+    ) -> SyncDefaultFlatPagination[AccessIPAddressResponse]:
         """
         List all Access IP Addresses
 
@@ -135,9 +136,6 @@ class AccessIPAddressResource(SyncAPIResource):
           filter: Consolidated filter parameter (deepObject style). Originally: filter[ip_source],
               filter[ip_address], filter[created_at]. Supports complex bracket operations for
               dynamic filtering.
-
-          page: Consolidated page parameter (deepObject style). Originally: page[number],
-              page[size]
 
           extra_headers: Send extra headers
 
@@ -147,8 +145,9 @@ class AccessIPAddressResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/access_ip_address",
+            page=SyncDefaultFlatPagination[AccessIPAddressResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -157,12 +156,13 @@ class AccessIPAddressResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                     },
                     access_ip_address_list_params.AccessIPAddressListParams,
                 ),
             ),
-            cast_to=AccessIPAddressListResponse,
+            model=AccessIPAddressResponse,
         )
 
     def delete(
@@ -295,18 +295,19 @@ class AsyncAccessIPAddressResource(AsyncAPIResource):
             cast_to=AccessIPAddressResponse,
         )
 
-    async def list(
+    def list(
         self,
         *,
         filter: access_ip_address_list_params.Filter | Omit = omit,
-        page: access_ip_address_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AccessIPAddressListResponse:
+    ) -> AsyncPaginator[AccessIPAddressResponse, AsyncDefaultFlatPagination[AccessIPAddressResponse]]:
         """
         List all Access IP Addresses
 
@@ -314,9 +315,6 @@ class AsyncAccessIPAddressResource(AsyncAPIResource):
           filter: Consolidated filter parameter (deepObject style). Originally: filter[ip_source],
               filter[ip_address], filter[created_at]. Supports complex bracket operations for
               dynamic filtering.
-
-          page: Consolidated page parameter (deepObject style). Originally: page[number],
-              page[size]
 
           extra_headers: Send extra headers
 
@@ -326,22 +324,24 @@ class AsyncAccessIPAddressResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/access_ip_address",
+            page=AsyncDefaultFlatPagination[AccessIPAddressResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "filter": filter,
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                     },
                     access_ip_address_list_params.AccessIPAddressListParams,
                 ),
             ),
-            cast_to=AccessIPAddressListResponse,
+            model=AccessIPAddressResponse,
         )
 
     async def delete(

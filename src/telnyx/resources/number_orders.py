@@ -17,7 +17,8 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import make_request_options
+from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
+from .._base_client import AsyncPaginator, make_request_options
 from ..types.number_order_list_response import NumberOrderListResponse
 from ..types.number_order_create_response import NumberOrderCreateResponse
 from ..types.number_order_update_response import NumberOrderUpdateResponse
@@ -188,7 +189,7 @@ class NumberOrdersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NumberOrderListResponse:
+    ) -> SyncDefaultPagination[NumberOrderListResponse]:
         """
         Get a paginated list of number orders.
 
@@ -208,8 +209,9 @@ class NumberOrdersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/number_orders",
+            page=SyncDefaultPagination[NumberOrderListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -223,7 +225,7 @@ class NumberOrdersResource(SyncAPIResource):
                     number_order_list_params.NumberOrderListParams,
                 ),
             ),
-            cast_to=NumberOrderListResponse,
+            model=NumberOrderListResponse,
         )
 
 
@@ -377,7 +379,7 @@ class AsyncNumberOrdersResource(AsyncAPIResource):
             cast_to=NumberOrderUpdateResponse,
         )
 
-    async def list(
+    def list(
         self,
         *,
         filter: number_order_list_params.Filter | Omit = omit,
@@ -388,7 +390,7 @@ class AsyncNumberOrdersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NumberOrderListResponse:
+    ) -> AsyncPaginator[NumberOrderListResponse, AsyncDefaultPagination[NumberOrderListResponse]]:
         """
         Get a paginated list of number orders.
 
@@ -408,14 +410,15 @@ class AsyncNumberOrdersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/number_orders",
+            page=AsyncDefaultPagination[NumberOrderListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "filter": filter,
                         "page": page,
@@ -423,7 +426,7 @@ class AsyncNumberOrdersResource(AsyncAPIResource):
                     number_order_list_params.NumberOrderListParams,
                 ),
             ),
-            cast_to=NumberOrderListResponse,
+            model=NumberOrderListResponse,
         )
 
 

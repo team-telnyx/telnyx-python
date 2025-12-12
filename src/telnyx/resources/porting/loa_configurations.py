@@ -22,14 +22,15 @@ from ..._response import (
     async_to_custom_raw_response_wrapper,
     async_to_custom_streamed_response_wrapper,
 )
-from ..._base_client import make_request_options
+from ...pagination import SyncDefaultPagination, AsyncDefaultPagination
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.porting import (
     loa_configuration_list_params,
     loa_configuration_create_params,
     loa_configuration_update_params,
     loa_configuration_preview_0_params,
 )
-from ...types.porting.loa_configuration_list_response import LoaConfigurationListResponse
+from ...types.porting.porting_loa_configuration import PortingLoaConfiguration
 from ...types.porting.loa_configuration_create_response import LoaConfigurationCreateResponse
 from ...types.porting.loa_configuration_update_response import LoaConfigurationUpdateResponse
 from ...types.porting.loa_configuration_retrieve_response import LoaConfigurationRetrieveResponse
@@ -213,7 +214,7 @@ class LoaConfigurationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> LoaConfigurationListResponse:
+    ) -> SyncDefaultPagination[PortingLoaConfiguration]:
         """
         List the LOA configurations.
 
@@ -229,8 +230,9 @@ class LoaConfigurationsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/porting/loa_configurations",
+            page=SyncDefaultPagination[PortingLoaConfiguration],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -238,7 +240,7 @@ class LoaConfigurationsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform({"page": page}, loa_configuration_list_params.LoaConfigurationListParams),
             ),
-            cast_to=LoaConfigurationListResponse,
+            model=PortingLoaConfiguration,
         )
 
     def delete(
@@ -533,7 +535,7 @@ class AsyncLoaConfigurationsResource(AsyncAPIResource):
             cast_to=LoaConfigurationUpdateResponse,
         )
 
-    async def list(
+    def list(
         self,
         *,
         page: loa_configuration_list_params.Page | Omit = omit,
@@ -543,7 +545,7 @@ class AsyncLoaConfigurationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> LoaConfigurationListResponse:
+    ) -> AsyncPaginator[PortingLoaConfiguration, AsyncDefaultPagination[PortingLoaConfiguration]]:
         """
         List the LOA configurations.
 
@@ -559,18 +561,17 @@ class AsyncLoaConfigurationsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/porting/loa_configurations",
+            page=AsyncDefaultPagination[PortingLoaConfiguration],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
-                    {"page": page}, loa_configuration_list_params.LoaConfigurationListParams
-                ),
+                query=maybe_transform({"page": page}, loa_configuration_list_params.LoaConfigurationListParams),
             ),
-            cast_to=LoaConfigurationListResponse,
+            model=PortingLoaConfiguration,
         )
 
     async def delete(

@@ -9,8 +9,9 @@ import pytest
 
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
+from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
 from telnyx.types.external_connections import (
-    UploadListResponse,
+    Upload,
     UploadRetryResponse,
     UploadCreateResponse,
     UploadRetrieveResponse,
@@ -141,7 +142,7 @@ class TestUploads:
         upload = client.external_connections.uploads.list(
             id="id",
         )
-        assert_matches_type(UploadListResponse, upload, path=["response"])
+        assert_matches_type(SyncDefaultPagination[Upload], upload, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -162,7 +163,7 @@ class TestUploads:
                 "size": 1,
             },
         )
-        assert_matches_type(UploadListResponse, upload, path=["response"])
+        assert_matches_type(SyncDefaultPagination[Upload], upload, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -174,7 +175,7 @@ class TestUploads:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         upload = response.parse()
-        assert_matches_type(UploadListResponse, upload, path=["response"])
+        assert_matches_type(SyncDefaultPagination[Upload], upload, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -186,7 +187,7 @@ class TestUploads:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             upload = response.parse()
-            assert_matches_type(UploadListResponse, upload, path=["response"])
+            assert_matches_type(SyncDefaultPagination[Upload], upload, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -457,7 +458,7 @@ class TestAsyncUploads:
         upload = await async_client.external_connections.uploads.list(
             id="id",
         )
-        assert_matches_type(UploadListResponse, upload, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[Upload], upload, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -478,7 +479,7 @@ class TestAsyncUploads:
                 "size": 1,
             },
         )
-        assert_matches_type(UploadListResponse, upload, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[Upload], upload, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -490,7 +491,7 @@ class TestAsyncUploads:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         upload = await response.parse()
-        assert_matches_type(UploadListResponse, upload, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[Upload], upload, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -502,7 +503,7 @@ class TestAsyncUploads:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             upload = await response.parse()
-            assert_matches_type(UploadListResponse, upload, path=["response"])
+            assert_matches_type(AsyncDefaultPagination[Upload], upload, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

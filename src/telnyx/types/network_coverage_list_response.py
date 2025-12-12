@@ -3,13 +3,12 @@
 from typing import List, Optional
 
 from .._models import BaseModel
-from .pagination_meta import PaginationMeta
 from .available_service import AvailableService
 
-__all__ = ["NetworkCoverageListResponse", "Data", "DataLocation"]
+__all__ = ["NetworkCoverageListResponse", "Location"]
 
 
-class DataLocation(BaseModel):
+class Location(BaseModel):
     code: Optional[str] = None
     """Location code."""
 
@@ -26,17 +25,11 @@ class DataLocation(BaseModel):
     """Site of location."""
 
 
-class Data(BaseModel):
+class NetworkCoverageListResponse(BaseModel):
     available_services: Optional[List[AvailableService]] = None
     """List of interface types supported in this region."""
 
-    location: Optional[DataLocation] = None
+    location: Optional[Location] = None
 
     record_type: Optional[str] = None
     """Identifies the type of the resource."""
-
-
-class NetworkCoverageListResponse(BaseModel):
-    data: Optional[List[Data]] = None
-
-    meta: Optional[PaginationMeta] = None

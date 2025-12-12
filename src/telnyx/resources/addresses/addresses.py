@@ -25,8 +25,9 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._base_client import make_request_options
-from ...types.address_list_response import AddressListResponse
+from ...pagination import SyncDefaultPagination, AsyncDefaultPagination
+from ..._base_client import AsyncPaginator, make_request_options
+from ...types.address import Address
 from ...types.address_create_response import AddressCreateResponse
 from ...types.address_delete_response import AddressDeleteResponse
 from ...types.address_retrieve_response import AddressRetrieveResponse
@@ -212,7 +213,7 @@ class AddressesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AddressListResponse:
+    ) -> SyncDefaultPagination[Address]:
         """
         Returns a list of your addresses.
 
@@ -249,8 +250,9 @@ class AddressesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/addresses",
+            page=SyncDefaultPagination[Address],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -265,7 +267,7 @@ class AddressesResource(SyncAPIResource):
                     address_list_params.AddressListParams,
                 ),
             ),
-            cast_to=AddressListResponse,
+            model=Address,
         )
 
     def delete(
@@ -468,7 +470,7 @@ class AsyncAddressesResource(AsyncAPIResource):
             cast_to=AddressRetrieveResponse,
         )
 
-    async def list(
+    def list(
         self,
         *,
         filter: address_list_params.Filter | Omit = omit,
@@ -480,7 +482,7 @@ class AsyncAddressesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AddressListResponse:
+    ) -> AsyncPaginator[Address, AsyncDefaultPagination[Address]]:
         """
         Returns a list of your addresses.
 
@@ -517,14 +519,15 @@ class AsyncAddressesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/addresses",
+            page=AsyncDefaultPagination[Address],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "filter": filter,
                         "page": page,
@@ -533,7 +536,7 @@ class AsyncAddressesResource(AsyncAPIResource):
                     address_list_params.AddressListParams,
                 ),
             ),
-            cast_to=AddressListResponse,
+            model=Address,
         )
 
     async def delete(

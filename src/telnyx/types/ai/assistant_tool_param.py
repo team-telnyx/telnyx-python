@@ -12,19 +12,19 @@ from .retrieval_tool_param import RetrievalToolParam
 
 __all__ = [
     "AssistantToolParam",
-    "HandoffTool",
-    "HandoffToolHandoff",
-    "HandoffToolHandoffAIAssistant",
-    "SipReferTool",
-    "SipReferToolRefer",
-    "SipReferToolReferTarget",
-    "SipReferToolReferCustomHeader",
-    "SipReferToolReferSipHeader",
-    "DtmfTool",
+    "Handoff",
+    "HandoffHandoff",
+    "HandoffHandoffAIAssistant",
+    "Refer",
+    "ReferRefer",
+    "ReferReferTarget",
+    "ReferReferCustomHeader",
+    "ReferReferSipHeader",
+    "SendDtmf",
 ]
 
 
-class HandoffToolHandoffAIAssistant(TypedDict, total=False):
+class HandoffHandoffAIAssistant(TypedDict, total=False):
     id: Required[str]
     """The ID of the assistant to hand off to."""
 
@@ -32,8 +32,8 @@ class HandoffToolHandoffAIAssistant(TypedDict, total=False):
     """Helpful name for giving context on when to handoff to the assistant."""
 
 
-class HandoffToolHandoff(TypedDict, total=False):
-    ai_assistants: Required[Iterable[HandoffToolHandoffAIAssistant]]
+class HandoffHandoff(TypedDict, total=False):
+    ai_assistants: Required[Iterable[HandoffHandoffAIAssistant]]
     """List of possible assistants that can receive a handoff."""
 
     voice_mode: Literal["unified", "distinct"]
@@ -45,17 +45,17 @@ class HandoffToolHandoff(TypedDict, total=False):
     """
 
 
-class HandoffTool(TypedDict, total=False):
+class Handoff(TypedDict, total=False):
     """
     The handoff tool allows the assistant to hand off control of the conversation to another AI assistant. By default, this will happen transparently to the end user.
     """
 
-    handoff: Required[HandoffToolHandoff]
+    handoff: Required[HandoffHandoff]
 
     type: Required[Literal["handoff"]]
 
 
-class SipReferToolReferTarget(TypedDict, total=False):
+class ReferReferTarget(TypedDict, total=False):
     name: Required[str]
     """The name of the target."""
 
@@ -69,7 +69,7 @@ class SipReferToolReferTarget(TypedDict, total=False):
     """SIP Authentication username used for SIP challenges."""
 
 
-class SipReferToolReferCustomHeader(TypedDict, total=False):
+class ReferReferCustomHeader(TypedDict, total=False):
     name: str
 
     value: str
@@ -81,7 +81,7 @@ class SipReferToolReferCustomHeader(TypedDict, total=False):
     """
 
 
-class SipReferToolReferSipHeader(TypedDict, total=False):
+class ReferReferSipHeader(TypedDict, total=False):
     name: Literal["User-to-User", "Diversion"]
 
     value: str
@@ -93,35 +93,35 @@ class SipReferToolReferSipHeader(TypedDict, total=False):
     """
 
 
-class SipReferToolRefer(TypedDict, total=False):
-    targets: Required[Iterable[SipReferToolReferTarget]]
+class ReferRefer(TypedDict, total=False):
+    targets: Required[Iterable[ReferReferTarget]]
     """The different possible targets of the SIP refer.
 
     The assistant will be able to choose one of the targets to refer the call to.
     """
 
-    custom_headers: Iterable[SipReferToolReferCustomHeader]
+    custom_headers: Iterable[ReferReferCustomHeader]
     """Custom headers to be added to the SIP REFER."""
 
-    sip_headers: Iterable[SipReferToolReferSipHeader]
+    sip_headers: Iterable[ReferReferSipHeader]
     """SIP headers to be added to the SIP REFER.
 
     Currently only User-to-User and Diversion headers are supported.
     """
 
 
-class SipReferTool(TypedDict, total=False):
-    refer: Required[SipReferToolRefer]
+class Refer(TypedDict, total=False):
+    refer: Required[ReferRefer]
 
     type: Required[Literal["refer"]]
 
 
-class DtmfTool(TypedDict, total=False):
+class SendDtmf(TypedDict, total=False):
     send_dtmf: Required[Dict[str, object]]
 
     type: Required[Literal["send_dtmf"]]
 
 
 AssistantToolParam: TypeAlias = Union[
-    WebhookToolParam, RetrievalToolParam, HandoffTool, HangupToolParam, TransferToolParam, SipReferTool, DtmfTool
+    WebhookToolParam, RetrievalToolParam, Handoff, HangupToolParam, TransferToolParam, Refer, SendDtmf
 ]
