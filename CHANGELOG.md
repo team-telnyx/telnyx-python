@@ -1,5 +1,39 @@
 # Changelog
 
+## 4.0.0 (2025-12-12)
+
+Full Changelog: [v3.17.0...v4.0.0](https://github.com/team-telnyx/telnyx-python/compare/v3.17.0...v4.0.0)
+
+### ⚠ BREAKING CHANGES
+
+* Resolved all codegen errors
+
+### Features
+
+* [PORT-4538] Fix ambiguous oneOf instances on porting service and documents ([590e706](https://github.com/team-telnyx/telnyx-python/commit/590e7067ff51d2b3815ea019438eb2c38f9c72fb))
+* **api:** join all 10dlc operations into messaging_10dlc group ([c600cff](https://github.com/team-telnyx/telnyx-python/commit/c600cff7ccc52f41c695eb4241428e981d8c5744))
+* **api:** manual updates ([6821aca](https://github.com/team-telnyx/telnyx-python/commit/6821aca282284f7a2cfc2d1c4ca9113057f211fd))
+* **api:** messaging_10dlc group with all their endpoints ([0ed622e](https://github.com/team-telnyx/telnyx-python/commit/0ed622e0765cc44e3f4219cf18c5d8fd81bc5184))
+* **api:** reverted previous commit ([f0fdff6](https://github.com/team-telnyx/telnyx-python/commit/f0fdff6c41921c34fb9a56c70ab55240d901f000))
+* DOTCOM-5179. Fix Redocly errors in outbound-voice-profiles.json ([e64e8f9](https://github.com/team-telnyx/telnyx-python/commit/e64e8f9b76b38e3c5e204dedc13193791e99f745))
+* Engdesk 47920/wireless cleanup ([8b5a65d](https://github.com/team-telnyx/telnyx-python/commit/8b5a65d81d894eed9ec78b2672a8c6618c3f5121))
+* ENGDESK-47883: Fix all lint errors in telapps owned APIs ([dbdb567](https://github.com/team-telnyx/telnyx-python/commit/dbdb56771461d526c8a582aea43ab3979362c3e4))
+* ENGDESK-47914 - fix warnings in numbers.json file ([ab80c9d](https://github.com/team-telnyx/telnyx-python/commit/ab80c9dd1d9ad47a5ba2776704b72d413ef85e93))
+* ENGDESK-47935: Fixed unnecessary `RegionIn` schema ([46c1a8d](https://github.com/team-telnyx/telnyx-python/commit/46c1a8da131cf9b83da89d6c75110b4f768af904))
+* hotfix: restore 10dlc prefixes ([21299b3](https://github.com/team-telnyx/telnyx-python/commit/21299b3b84632cbeee9195666ee43dd9c943af78))
+* messaging meta object with required fields ([5cbe6fd](https://github.com/team-telnyx/telnyx-python/commit/5cbe6fde3a728db63e7394d0ae24f538316cde3e))
+* MSG-6140: Add SMS OTP endpoints for Sole Prop brands ([26f930e](https://github.com/team-telnyx/telnyx-python/commit/26f930e9d1299259efa05ed1fae198e1241b7c2d))
+* MSG-6145: OTP status endpoint ([d0d0abc](https://github.com/team-telnyx/telnyx-python/commit/d0d0abcb7392ba486425415c85426098a7faa1f6))
+* port-4551: remove CustomerServiceRecordStatusChanged webhook doc ([ef2ac27](https://github.com/team-telnyx/telnyx-python/commit/ef2ac27966ce401a97001ab59fb1cef923d49f35))
+* PORT-4553: Add a discriminator to portout webhook ([a746e1d](https://github.com/team-telnyx/telnyx-python/commit/a746e1d887e40a5ed3bb7da448f1f79f243d8306))
+* PORTAL-5787 - document query parameter to handle messaging service error ([807ac22](https://github.com/team-telnyx/telnyx-python/commit/807ac2259e91d2cccb92fa03861ba475d5e3d8af))
+* TBS-3422: Fix redocly errors ([08c8ca9](https://github.com/team-telnyx/telnyx-python/commit/08c8ca90fe2ca711d605b755e480b028b35043ff))
+
+
+### Chores
+
+* Resolved all codegen errors ([017a063](https://github.com/team-telnyx/telnyx-python/commit/017a06353a9284c358fdf6fce0f62152a6f78c19))
+
 ## 3.17.0 (2025-12-08)
 
 Full Changelog: [v3.16.0...v3.17.0](https://github.com/team-telnyx/telnyx-python/compare/v3.16.0...v3.17.0)
