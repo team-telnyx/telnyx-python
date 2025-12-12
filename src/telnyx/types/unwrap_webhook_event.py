@@ -65,7 +65,6 @@ from .call_machine_premium_detection_ended_webhook_event import CallMachinePremi
 from .conference_participant_speak_started_webhook_event import ConferenceParticipantSpeakStartedWebhookEvent
 from .conference_participant_playback_ended_webhook_event import ConferenceParticipantPlaybackEndedWebhookEvent
 from .call_ai_gather_message_history_updated_webhook_event import CallAIGatherMessageHistoryUpdatedWebhookEvent
-from .customer_service_record_status_changed_webhook_event import CustomerServiceRecordStatusChangedWebhookEvent
 from .conference_participant_playback_started_webhook_event import ConferenceParticipantPlaybackStartedWebhookEvent
 
 __all__ = ["UnwrapWebhookEvent"]
@@ -74,7 +73,6 @@ UnwrapWebhookEvent: TypeAlias = Union[
     CallAIGatherEndedWebhookEvent,
     CallAIGatherMessageHistoryUpdatedWebhookEvent,
     CallAIGatherPartialResultsWebhookEvent,
-    CustomerServiceRecordStatusChangedWebhookEvent,
     CallAnsweredWebhookEvent,
     CallBridgedWebhookEvent,
     CallConversationEndedWebhookEvent,
