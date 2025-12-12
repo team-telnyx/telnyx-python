@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Optional
 from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["VerifiedNumberCreateParams"]
@@ -14,7 +13,7 @@ class VerifiedNumberCreateParams(TypedDict, total=False):
     verification_method: Required[Literal["sms", "call"]]
     """Verification method."""
 
-    extension: Optional[str]
+    extension: str
     """Optional DTMF extension sequence to dial after the call is answered.
 
     This parameter enables verification of phone numbers behind IVR systems that
