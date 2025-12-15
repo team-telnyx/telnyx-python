@@ -64,7 +64,7 @@ class AutorespConfigsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AutoRespConfigResponse:
         """
-        Create auto-response setting
+        Create Auto-Reponse Setting
 
         Args:
           extra_headers: Send extra headers
@@ -307,7 +307,7 @@ class AsyncAutorespConfigsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AutoRespConfigResponse:
         """
-        Create auto-response setting
+        Create Auto-Reponse Setting
 
         Args:
           extra_headers: Send extra headers

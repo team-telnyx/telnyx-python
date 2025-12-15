@@ -238,7 +238,7 @@ class MessagingHostedNumberOrdersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessagingHostedNumberOrderCheckEligibilityResponse:
         """
-        Check hosted messaging eligibility
+        Check eligibility of phone numbers for hosted messaging
 
         Args:
           phone_numbers: List of phone numbers to check eligibility
@@ -535,7 +535,7 @@ class AsyncMessagingHostedNumberOrdersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessagingHostedNumberOrderCheckEligibilityResponse:
         """
-        Check hosted messaging eligibility
+        Check eligibility of phone numbers for hosted messaging
 
         Args:
           phone_numbers: List of phone numbers to check eligibility

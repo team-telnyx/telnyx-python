@@ -165,21 +165,6 @@ class CallCallsParams(TypedDict, total=False):
     status_callback_method: Annotated[Literal["GET", "POST"], PropertyInfo(alias="StatusCallbackMethod")]
     """HTTP request type used for `StatusCallback`."""
 
-    supervise_call_sid: Annotated[str, PropertyInfo(alias="SuperviseCallSid")]
-    """The call control ID of the existing call to supervise.
-
-    When provided, the created leg will be added to the specified call in
-    supervising mode. Status callbacks and action callbacks will NOT be sent for the
-    supervising leg.
-    """
-
-    supervising_role: Annotated[Literal["barge", "whisper", "monitor"], PropertyInfo(alias="SupervisingRole")]
-    """The supervising role for the new leg.
-
-    Determines the audio behavior: barge (hear both sides), whisper (only hear
-    supervisor), monitor (hear both sides but supervisor muted). Default: barge
-    """
-
     trim: Annotated[Literal["trim-silence", "do-not-trim"], PropertyInfo(alias="Trim")]
     """Whether to trim any leading and trailing silence from the recording.
 

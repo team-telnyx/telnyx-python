@@ -62,6 +62,7 @@ from .settings_param import SettingsParam as SettingsParam
 from .sim_card_group import SimCardGroup as SimCardGroup
 from .sim_card_order import SimCardOrder as SimCardOrder
 from .verify_profile import VerifyProfile as VerifyProfile
+from .whatsapp_media import WhatsappMedia as WhatsappMedia
 from .access_ip_range import AccessIPRange as AccessIPRange
 from .encrypted_media import EncryptedMedia as EncryptedMedia
 from .fax_application import FaxApplication as FaxApplication
@@ -159,6 +160,7 @@ from .texml_secrets_params import TexmlSecretsParams as TexmlSecretsParams
 from .unwrap_webhook_event import UnwrapWebhookEvent as UnwrapWebhookEvent
 from .usage_payment_method import UsagePaymentMethod as UsagePaymentMethod
 from .user_tag_list_params import UserTagListParams as UserTagListParams
+from .whatsapp_media_param import WhatsappMediaParam as WhatsappMediaParam
 from .wireguard_peer_patch import WireguardPeerPatch as WireguardPeerPatch
 from .address_create_params import AddressCreateParams as AddressCreateParams
 from .ai_summarize_response import AISummarizeResponse as AISummarizeResponse
