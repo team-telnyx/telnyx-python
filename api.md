@@ -2348,12 +2348,14 @@ from telnyx.types import (
     RcsContentInfo,
     RcsSuggestion,
     MesssageRcsResponse,
+    MesssageWhatsappResponse,
 )
 ```
 
 Methods:
 
 - <code title="post /messsages/rcs">client.messsages.<a href="./src/telnyx/resources/messsages.py">rcs</a>(\*\*<a href="src/telnyx/types/messsage_rcs_params.py">params</a>) -> <a href="./src/telnyx/types/messsage_rcs_response.py">MesssageRcsResponse</a></code>
+- <code title="post /messsages/whatsapp">client.messsages.<a href="./src/telnyx/resources/messsages.py">whatsapp</a>(\*\*<a href="src/telnyx/types/messsage_whatsapp_params.py">params</a>) -> <a href="./src/telnyx/types/messsage_whatsapp_response.py">MesssageWhatsappResponse</a></code>
 
 # MobileNetworkOperators
 
