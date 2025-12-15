@@ -250,6 +250,7 @@ from .document_update_response import DocumentUpdateResponse as DocumentUpdateRe
 from .document_upload_response import DocumentUploadResponse as DocumentUploadResponse
 from .fax_failed_webhook_event import FaxFailedWebhookEvent as FaxFailedWebhookEvent
 from .fax_queued_webhook_event import FaxQueuedWebhookEvent as FaxQueuedWebhookEvent
+from .messsage_whatsapp_params import MesssageWhatsappParams as MesssageWhatsappParams
 from .network_interface_region import NetworkInterfaceRegion as NetworkInterfaceRegion
 from .number_order_list_params import NumberOrderListParams as NumberOrderListParams
 from .oauth_client_list_params import OAuthClientListParams as OAuthClientListParams
@@ -303,6 +304,7 @@ from .document_retrieve_response import DocumentRetrieveResponse as DocumentRetr
 from .dynamic_emergency_endpoint import DynamicEmergencyEndpoint as DynamicEmergencyEndpoint
 from .global_ip_assignment_param import GlobalIPAssignmentParam as GlobalIPAssignmentParam
 from .list_retrieve_all_response import ListRetrieveAllResponse as ListRetrieveAllResponse
+from .messsage_whatsapp_response import MesssageWhatsappResponse as MesssageWhatsappResponse
 from .number_order_create_params import NumberOrderCreateParams as NumberOrderCreateParams
 from .number_order_list_response import NumberOrderListResponse as NumberOrderListResponse
 from .number_order_update_params import NumberOrderUpdateParams as NumberOrderUpdateParams
