@@ -55,7 +55,7 @@ class MessagingNumbersBulkUpdatesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessagingNumbersBulkUpdateCreateResponse:
         """
-        Bulk update phone number profiles
+        Update the messaging profile of multiple phone numbers
 
         Args:
           messaging_profile_id:
@@ -158,7 +158,7 @@ class AsyncMessagingNumbersBulkUpdatesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessagingNumbersBulkUpdateCreateResponse:
         """
-        Bulk update phone number profiles
+        Update the messaging profile of multiple phone numbers
 
         Args:
           messaging_profile_id:

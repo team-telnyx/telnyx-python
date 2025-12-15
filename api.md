@@ -2347,6 +2347,7 @@ from telnyx.types import (
     RcsCardContent,
     RcsContentInfo,
     RcsSuggestion,
+    WhatsappMedia,
     MesssageRcsResponse,
     MesssageWhatsappResponse,
 )

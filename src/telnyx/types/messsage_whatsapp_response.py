@@ -7,20 +7,18 @@ from typing_extensions import Literal
 from pydantic import Field as FieldInfo
 
 from .._models import BaseModel
+from .whatsapp_media import WhatsappMedia
 
 __all__ = [
     "MesssageWhatsappResponse",
     "Data",
     "DataBody",
-    "DataBodyAudio",
     "DataBodyContact",
     "DataBodyContactAddress",
     "DataBodyContactEmail",
     "DataBodyContactOrg",
     "DataBodyContactPhone",
     "DataBodyContactURL",
-    "DataBodyDocument",
-    "DataBodyImage",
     "DataBodyInteractive",
     "DataBodyInteractiveAction",
     "DataBodyInteractiveActionButton",
@@ -29,8 +27,6 @@ __all__ = [
     "DataBodyInteractiveActionCardAction",
     "DataBodyInteractiveActionCardBody",
     "DataBodyInteractiveActionCardHeader",
-    "DataBodyInteractiveActionCardHeaderImage",
-    "DataBodyInteractiveActionCardHeaderVideo",
     "DataBodyInteractiveActionParameters",
     "DataBodyInteractiveActionSection",
     "DataBodyInteractiveActionSectionProductItem",
@@ -38,30 +34,11 @@ __all__ = [
     "DataBodyInteractiveBody",
     "DataBodyInteractiveFooter",
     "DataBodyInteractiveHeader",
-    "DataBodyInteractiveHeaderDocument",
-    "DataBodyInteractiveHeaderImage",
-    "DataBodyInteractiveHeaderVideo",
     "DataBodyLocation",
     "DataBodyReaction",
-    "DataBodySticker",
-    "DataBodyVideo",
     "DataFrom",
     "DataTo",
 ]
-
-
-class DataBodyAudio(BaseModel):
-    caption: Optional[str] = None
-    """media caption"""
-
-    filename: Optional[str] = None
-    """file name with extension"""
-
-    link: Optional[str] = None
-    """media URL"""
-
-    voice: Optional[bool] = None
-    """true if voice message"""
 
 
 class DataBodyContactAddress(BaseModel):
@@ -124,34 +101,6 @@ class DataBodyContact(BaseModel):
     urls: Optional[List[DataBodyContactURL]] = None
 
 
-class DataBodyDocument(BaseModel):
-    caption: Optional[str] = None
-    """media caption"""
-
-    filename: Optional[str] = None
-    """file name with extension"""
-
-    link: Optional[str] = None
-    """media URL"""
-
-    voice: Optional[bool] = None
-    """true if voice message"""
-
-
-class DataBodyImage(BaseModel):
-    caption: Optional[str] = None
-    """media caption"""
-
-    filename: Optional[str] = None
-    """file name with extension"""
-
-    link: Optional[str] = None
-    """media URL"""
-
-    voice: Optional[bool] = None
-    """true if voice message"""
-
-
 class DataBodyInteractiveActionButtonReply(BaseModel):
     id: Optional[str] = None
     """unique identifier for each button, 256 character maximum"""
@@ -179,40 +128,12 @@ class DataBodyInteractiveActionCardBody(BaseModel):
     """160 character maximum, up to 2 line breaks"""
 
 
-class DataBodyInteractiveActionCardHeaderImage(BaseModel):
-    caption: Optional[str] = None
-    """media caption"""
-
-    filename: Optional[str] = None
-    """file name with extension"""
-
-    link: Optional[str] = None
-    """media URL"""
-
-    voice: Optional[bool] = None
-    """true if voice message"""
-
-
-class DataBodyInteractiveActionCardHeaderVideo(BaseModel):
-    caption: Optional[str] = None
-    """media caption"""
-
-    filename: Optional[str] = None
-    """file name with extension"""
-
-    link: Optional[str] = None
-    """media URL"""
-
-    voice: Optional[bool] = None
-    """true if voice message"""
-
-
 class DataBodyInteractiveActionCardHeader(BaseModel):
-    image: Optional[DataBodyInteractiveActionCardHeaderImage] = None
+    image: Optional[WhatsappMedia] = None
 
     type: Optional[Literal["image", "video"]] = None
 
-    video: Optional[DataBodyInteractiveActionCardHeaderVideo] = None
+    video: Optional[WhatsappMedia] = None
 
 
 class DataBodyInteractiveActionCard(BaseModel):
@@ -290,59 +211,17 @@ class DataBodyInteractiveFooter(BaseModel):
     """footer text, 60 character maximum"""
 
 
-class DataBodyInteractiveHeaderDocument(BaseModel):
-    caption: Optional[str] = None
-    """media caption"""
-
-    filename: Optional[str] = None
-    """file name with extension"""
-
-    link: Optional[str] = None
-    """media URL"""
-
-    voice: Optional[bool] = None
-    """true if voice message"""
-
-
-class DataBodyInteractiveHeaderImage(BaseModel):
-    caption: Optional[str] = None
-    """media caption"""
-
-    filename: Optional[str] = None
-    """file name with extension"""
-
-    link: Optional[str] = None
-    """media URL"""
-
-    voice: Optional[bool] = None
-    """true if voice message"""
-
-
-class DataBodyInteractiveHeaderVideo(BaseModel):
-    caption: Optional[str] = None
-    """media caption"""
-
-    filename: Optional[str] = None
-    """file name with extension"""
-
-    link: Optional[str] = None
-    """media URL"""
-
-    voice: Optional[bool] = None
-    """true if voice message"""
-
-
 class DataBodyInteractiveHeader(BaseModel):
-    document: Optional[DataBodyInteractiveHeaderDocument] = None
+    document: Optional[WhatsappMedia] = None
 
-    image: Optional[DataBodyInteractiveHeaderImage] = None
+    image: Optional[WhatsappMedia] = None
 
     sub_text: Optional[str] = None
 
     text: Optional[str] = None
     """header text, 60 character maximum"""
 
-    video: Optional[DataBodyInteractiveHeaderVideo] = None
+    video: Optional[WhatsappMedia] = None
 
 
 class DataBodyInteractive(BaseModel):
@@ -373,45 +252,17 @@ class DataBodyReaction(BaseModel):
     message_id: Optional[str] = None
 
 
-class DataBodySticker(BaseModel):
-    caption: Optional[str] = None
-    """media caption"""
-
-    filename: Optional[str] = None
-    """file name with extension"""
-
-    link: Optional[str] = None
-    """media URL"""
-
-    voice: Optional[bool] = None
-    """true if voice message"""
-
-
-class DataBodyVideo(BaseModel):
-    caption: Optional[str] = None
-    """media caption"""
-
-    filename: Optional[str] = None
-    """file name with extension"""
-
-    link: Optional[str] = None
-    """media URL"""
-
-    voice: Optional[bool] = None
-    """true if voice message"""
-
-
 class DataBody(BaseModel):
-    audio: Optional[DataBodyAudio] = None
+    audio: Optional[WhatsappMedia] = None
 
     biz_opaque_callback_data: Optional[str] = None
     """custom data to return with status update"""
 
     contacts: Optional[List[DataBodyContact]] = None
 
-    document: Optional[DataBodyDocument] = None
+    document: Optional[WhatsappMedia] = None
 
-    image: Optional[DataBodyImage] = None
+    image: Optional[WhatsappMedia] = None
 
     interactive: Optional[DataBodyInteractive] = None
 
@@ -419,7 +270,7 @@ class DataBody(BaseModel):
 
     reaction: Optional[DataBodyReaction] = None
 
-    sticker: Optional[DataBodySticker] = None
+    sticker: Optional[WhatsappMedia] = None
 
     type: Optional[
         Literal[
@@ -436,7 +287,7 @@ class DataBody(BaseModel):
         ]
     ] = None
 
-    video: Optional[DataBodyVideo] = None
+    video: Optional[WhatsappMedia] = None
 
 
 class DataFrom(BaseModel):
