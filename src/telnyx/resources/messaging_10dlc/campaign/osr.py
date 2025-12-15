@@ -51,7 +51,7 @@ class OsrResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OsrGetAttributesResponse:
         """
-        Get My Osr Campaign Attributes
+        Get OSR campaign attributes
 
         Args:
           extra_headers: Send extra headers
@@ -105,7 +105,7 @@ class AsyncOsrResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OsrGetAttributesResponse:
         """
-        Get My Osr Campaign Attributes
+        Get OSR campaign attributes
 
         Args:
           extra_headers: Send extra headers
