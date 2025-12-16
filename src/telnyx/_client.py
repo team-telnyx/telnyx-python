@@ -35,7 +35,6 @@ from .resources import (
     invoices,
     webhooks,
     documents,
-    messsages,
     user_tags,
     global_ips,
     well_known,
@@ -257,7 +256,6 @@ class Telnyx(SyncAPIClient):
     messaging_profiles: messaging_profiles.MessagingProfilesResource
     messaging_tollfree: messaging_tollfree.MessagingTollfreeResource
     messaging_url_domains: messaging_url_domains.MessagingURLDomainsResource
-    messsages: messsages.MesssagesResource
     mobile_network_operators: mobile_network_operators.MobileNetworkOperatorsResource
     mobile_push_credentials: mobile_push_credentials.MobilePushCredentialsResource
     network_coverage: network_coverage.NetworkCoverageResource
@@ -484,7 +482,6 @@ class Telnyx(SyncAPIClient):
         self.messaging_profiles = messaging_profiles.MessagingProfilesResource(self)
         self.messaging_tollfree = messaging_tollfree.MessagingTollfreeResource(self)
         self.messaging_url_domains = messaging_url_domains.MessagingURLDomainsResource(self)
-        self.messsages = messsages.MesssagesResource(self)
         self.mobile_network_operators = mobile_network_operators.MobileNetworkOperatorsResource(self)
         self.mobile_push_credentials = mobile_push_credentials.MobilePushCredentialsResource(self)
         self.network_coverage = network_coverage.NetworkCoverageResource(self)
@@ -779,7 +776,6 @@ class AsyncTelnyx(AsyncAPIClient):
     messaging_profiles: messaging_profiles.AsyncMessagingProfilesResource
     messaging_tollfree: messaging_tollfree.AsyncMessagingTollfreeResource
     messaging_url_domains: messaging_url_domains.AsyncMessagingURLDomainsResource
-    messsages: messsages.AsyncMesssagesResource
     mobile_network_operators: mobile_network_operators.AsyncMobileNetworkOperatorsResource
     mobile_push_credentials: mobile_push_credentials.AsyncMobilePushCredentialsResource
     network_coverage: network_coverage.AsyncNetworkCoverageResource
@@ -1010,7 +1006,6 @@ class AsyncTelnyx(AsyncAPIClient):
         self.messaging_profiles = messaging_profiles.AsyncMessagingProfilesResource(self)
         self.messaging_tollfree = messaging_tollfree.AsyncMessagingTollfreeResource(self)
         self.messaging_url_domains = messaging_url_domains.AsyncMessagingURLDomainsResource(self)
-        self.messsages = messsages.AsyncMesssagesResource(self)
         self.mobile_network_operators = mobile_network_operators.AsyncMobileNetworkOperatorsResource(self)
         self.mobile_push_credentials = mobile_push_credentials.AsyncMobilePushCredentialsResource(self)
         self.network_coverage = network_coverage.AsyncNetworkCoverageResource(self)
@@ -1367,7 +1362,6 @@ class TelnyxWithRawResponse:
         self.messaging_url_domains = messaging_url_domains.MessagingURLDomainsResourceWithRawResponse(
             client.messaging_url_domains
         )
-        self.messsages = messsages.MesssagesResourceWithRawResponse(client.messsages)
         self.mobile_network_operators = mobile_network_operators.MobileNetworkOperatorsResourceWithRawResponse(
             client.mobile_network_operators
         )
@@ -1667,7 +1661,6 @@ class AsyncTelnyxWithRawResponse:
         self.messaging_url_domains = messaging_url_domains.AsyncMessagingURLDomainsResourceWithRawResponse(
             client.messaging_url_domains
         )
-        self.messsages = messsages.AsyncMesssagesResourceWithRawResponse(client.messsages)
         self.mobile_network_operators = mobile_network_operators.AsyncMobileNetworkOperatorsResourceWithRawResponse(
             client.mobile_network_operators
         )
@@ -1989,7 +1982,6 @@ class TelnyxWithStreamedResponse:
         self.messaging_url_domains = messaging_url_domains.MessagingURLDomainsResourceWithStreamingResponse(
             client.messaging_url_domains
         )
-        self.messsages = messsages.MesssagesResourceWithStreamingResponse(client.messsages)
         self.mobile_network_operators = mobile_network_operators.MobileNetworkOperatorsResourceWithStreamingResponse(
             client.mobile_network_operators
         )
@@ -2333,7 +2325,6 @@ class AsyncTelnyxWithStreamedResponse:
         self.messaging_url_domains = messaging_url_domains.AsyncMessagingURLDomainsResourceWithStreamingResponse(
             client.messaging_url_domains
         )
-        self.messsages = messsages.AsyncMesssagesResourceWithStreamingResponse(client.messsages)
         self.mobile_network_operators = (
             mobile_network_operators.AsyncMobileNetworkOperatorsResourceWithStreamingResponse(
                 client.mobile_network_operators

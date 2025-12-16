@@ -233,14 +233,6 @@ from .messaging import (
     MessagingResourceWithStreamingResponse,
     AsyncMessagingResourceWithStreamingResponse,
 )
-from .messsages import (
-    MesssagesResource,
-    AsyncMesssagesResource,
-    MesssagesResourceWithRawResponse,
-    AsyncMesssagesResourceWithRawResponse,
-    MesssagesResourceWithStreamingResponse,
-    AsyncMesssagesResourceWithStreamingResponse,
-)
 from .sim_cards import (
     SimCardsResource,
     AsyncSimCardsResource,
@@ -1615,12 +1607,6 @@ __all__ = [
     "AsyncMessagingURLDomainsResourceWithRawResponse",
     "MessagingURLDomainsResourceWithStreamingResponse",
     "AsyncMessagingURLDomainsResourceWithStreamingResponse",
-    "MesssagesResource",
-    "AsyncMesssagesResource",
-    "MesssagesResourceWithRawResponse",
-    "AsyncMesssagesResourceWithRawResponse",
-    "MesssagesResourceWithStreamingResponse",
-    "AsyncMesssagesResourceWithStreamingResponse",
     "MobileNetworkOperatorsResource",
     "AsyncMobileNetworkOperatorsResource",
     "MobileNetworkOperatorsResourceWithRawResponse",

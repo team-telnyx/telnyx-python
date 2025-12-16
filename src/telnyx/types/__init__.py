@@ -57,12 +57,10 @@ from .outbound_fqdn import OutboundFqdn as OutboundFqdn
 from .porting_order import PortingOrder as PortingOrder
 from .ip_list_params import IPListParams as IPListParams
 from .media_resource import MediaResource as MediaResource
-from .rcs_suggestion import RcsSuggestion as RcsSuggestion
 from .settings_param import SettingsParam as SettingsParam
 from .sim_card_group import SimCardGroup as SimCardGroup
 from .sim_card_order import SimCardOrder as SimCardOrder
 from .verify_profile import VerifyProfile as VerifyProfile
-from .whatsapp_media import WhatsappMedia as WhatsappMedia
 from .access_ip_range import AccessIPRange as AccessIPRange
 from .encrypted_media import EncryptedMedia as EncryptedMedia
 from .fax_application import FaxApplication as FaxApplication
@@ -81,8 +79,6 @@ from .interface_status import InterfaceStatus as InterfaceStatus
 from .ip_create_params import IPCreateParams as IPCreateParams
 from .ip_update_params import IPUpdateParams as IPUpdateParams
 from .message_template import MessageTemplate as MessageTemplate
-from .rcs_card_content import RcsCardContent as RcsCardContent
-from .rcs_content_info import RcsContentInfo as RcsContentInfo
 from .room_composition import RoomComposition as RoomComposition
 from .room_list_params import RoomListParams as RoomListParams
 from .sip_header_param import SipHeaderParam as SipHeaderParam
@@ -94,7 +90,6 @@ from .media_list_params import MediaListParams as MediaListParams
 from .messaging_profile import MessagingProfile as MessagingProfile
 from .network_interface import NetworkInterface as NetworkInterface
 from .outbound_ip_param import OutboundIPParam as OutboundIPParam
-from .rcs_agent_message import RcsAgentMessage as RcsAgentMessage
 from .requirement_group import RequirementGroup as RequirementGroup
 from .texml_application import TexmlApplication as TexmlApplication
 from .call_dial_response import CallDialResponse as CallDialResponse
@@ -129,7 +124,6 @@ from .media_list_response import MediaListResponse as MediaListResponse
 from .media_update_params import MediaUpdateParams as MediaUpdateParams
 from .media_upload_params import MediaUploadParams as MediaUploadParams
 from .message_send_params import MessageSendParams as MessageSendParams
-from .messsage_rcs_params import MesssageRcsParams as MesssageRcsParams
 from .mobile_phone_number import MobilePhoneNumber as MobilePhoneNumber
 from .network_list_params import NetworkListParams as NetworkListParams
 from .oauth_grants_params import OAuthGrantsParams as OAuthGrantsParams
@@ -149,7 +143,6 @@ from .notification_profile import NotificationProfile as NotificationProfile
 from .notification_setting import NotificationSetting as NotificationSetting
 from .number_pool_settings import NumberPoolSettings as NumberPoolSettings
 from .oauth_token_response import OAuthTokenResponse as OAuthTokenResponse
-from .rcs_suggestion_param import RcsSuggestionParam as RcsSuggestionParam
 from .region_list_response import RegionListResponse as RegionListResponse
 from .room_create_response import RoomCreateResponse as RoomCreateResponse
 from .room_retrieve_params import RoomRetrieveParams as RoomRetrieveParams
@@ -160,7 +153,6 @@ from .texml_secrets_params import TexmlSecretsParams as TexmlSecretsParams
 from .unwrap_webhook_event import UnwrapWebhookEvent as UnwrapWebhookEvent
 from .usage_payment_method import UsagePaymentMethod as UsagePaymentMethod
 from .user_tag_list_params import UserTagListParams as UserTagListParams
-from .whatsapp_media_param import WhatsappMediaParam as WhatsappMediaParam
 from .wireguard_peer_patch import WireguardPeerPatch as WireguardPeerPatch
 from .address_create_params import AddressCreateParams as AddressCreateParams
 from .ai_summarize_response import AISummarizeResponse as AISummarizeResponse
@@ -174,7 +166,6 @@ from .invoice_list_response import InvoiceListResponse as InvoiceListResponse
 from .media_update_response import MediaUpdateResponse as MediaUpdateResponse
 from .media_upload_response import MediaUploadResponse as MediaUploadResponse
 from .message_send_response import MessageSendResponse as MessageSendResponse
-from .messsage_rcs_response import MesssageRcsResponse as MesssageRcsResponse
 from .network_create_params import NetworkCreateParams as NetworkCreateParams
 from .network_list_response import NetworkListResponse as NetworkListResponse
 from .network_update_params import NetworkUpdateParams as NetworkUpdateParams
@@ -198,8 +189,6 @@ from .gcs_configuration_data import GcsConfigurationData as GcsConfigurationData
 from .ota_update_list_params import OtaUpdateListParams as OtaUpdateListParams
 from .outbound_voice_profile import OutboundVoiceProfile as OutboundVoiceProfile
 from .porting_order_end_user import PortingOrderEndUser as PortingOrderEndUser
-from .rcs_card_content_param import RcsCardContentParam as RcsCardContentParam
-from .rcs_content_info_param import RcsContentInfoParam as RcsContentInfoParam
 from .room_retrieve_response import RoomRetrieveResponse as RoomRetrieveResponse
 from .short_code_list_params import ShortCodeListParams as ShortCodeListParams
 from .sim_card_delete_params import SimCardDeleteParams as SimCardDeleteParams
@@ -233,7 +222,6 @@ from .outbound_call_recording import OutboundCallRecording as OutboundCallRecord
 from .porting_order_documents import PortingOrderDocuments as PortingOrderDocuments
 from .porting_order_messaging import PortingOrderMessaging as PortingOrderMessaging
 from .queue_retrieve_response import QueueRetrieveResponse as QueueRetrieveResponse
-from .rcs_agent_message_param import RcsAgentMessageParam as RcsAgentMessageParam
 from .recording_response_data import RecordingResponseData as RecordingResponseData
 from .recording_transcription import RecordingTranscription as RecordingTranscription
 from .report_list_mdrs_params import ReportListMdrsParams as ReportListMdrsParams
@@ -252,7 +240,6 @@ from .document_update_response import DocumentUpdateResponse as DocumentUpdateRe
 from .document_upload_response import DocumentUploadResponse as DocumentUploadResponse
 from .fax_failed_webhook_event import FaxFailedWebhookEvent as FaxFailedWebhookEvent
 from .fax_queued_webhook_event import FaxQueuedWebhookEvent as FaxQueuedWebhookEvent
-from .messsage_whatsapp_params import MesssageWhatsappParams as MesssageWhatsappParams
 from .network_interface_region import NetworkInterfaceRegion as NetworkInterfaceRegion
 from .number_order_list_params import NumberOrderListParams as NumberOrderListParams
 from .oauth_client_list_params import OAuthClientListParams as OAuthClientListParams
@@ -306,7 +293,6 @@ from .document_retrieve_response import DocumentRetrieveResponse as DocumentRetr
 from .dynamic_emergency_endpoint import DynamicEmergencyEndpoint as DynamicEmergencyEndpoint
 from .global_ip_assignment_param import GlobalIPAssignmentParam as GlobalIPAssignmentParam
 from .list_retrieve_all_response import ListRetrieveAllResponse as ListRetrieveAllResponse
-from .messsage_whatsapp_response import MesssageWhatsappResponse as MesssageWhatsappResponse
 from .number_order_create_params import NumberOrderCreateParams as NumberOrderCreateParams
 from .number_order_list_response import NumberOrderListResponse as NumberOrderListResponse
 from .number_order_update_params import NumberOrderUpdateParams as NumberOrderUpdateParams
