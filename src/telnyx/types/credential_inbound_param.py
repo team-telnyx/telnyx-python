@@ -51,6 +51,9 @@ class CredentialInboundParam(TypedDict, total=False):
     transport.
     """
 
+    simultaneous_ringing: Literal["disabled", "enabled"]
+    """When enabled, allows multiple devices to ring simultaneously on incoming calls."""
+
     sip_compact_headers_enabled: bool
     """Defaults to true."""
 
