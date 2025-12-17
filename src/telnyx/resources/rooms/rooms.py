@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Optional
-
 import httpx
 
 from ...types import room_list_params, room_create_params, room_update_params, room_retrieve_params
@@ -77,9 +75,9 @@ class RoomsResource(SyncAPIResource):
         enable_recording: bool | Omit = omit,
         max_participants: int | Omit = omit,
         unique_name: str | Omit = omit,
-        webhook_event_failover_url: Optional[str] | Omit = omit,
+        webhook_event_failover_url: str | Omit = omit,
         webhook_event_url: str | Omit = omit,
-        webhook_timeout_secs: Optional[int] | Omit = omit,
+        webhook_timeout_secs: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -180,9 +178,9 @@ class RoomsResource(SyncAPIResource):
         enable_recording: bool | Omit = omit,
         max_participants: int | Omit = omit,
         unique_name: str | Omit = omit,
-        webhook_event_failover_url: Optional[str] | Omit = omit,
+        webhook_event_failover_url: str | Omit = omit,
         webhook_event_url: str | Omit = omit,
-        webhook_timeout_secs: Optional[int] | Omit = omit,
+        webhook_timeout_secs: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -366,9 +364,9 @@ class AsyncRoomsResource(AsyncAPIResource):
         enable_recording: bool | Omit = omit,
         max_participants: int | Omit = omit,
         unique_name: str | Omit = omit,
-        webhook_event_failover_url: Optional[str] | Omit = omit,
+        webhook_event_failover_url: str | Omit = omit,
         webhook_event_url: str | Omit = omit,
-        webhook_timeout_secs: Optional[int] | Omit = omit,
+        webhook_timeout_secs: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -471,9 +469,9 @@ class AsyncRoomsResource(AsyncAPIResource):
         enable_recording: bool | Omit = omit,
         max_participants: int | Omit = omit,
         unique_name: str | Omit = omit,
-        webhook_event_failover_url: Optional[str] | Omit = omit,
+        webhook_event_failover_url: str | Omit = omit,
         webhook_event_url: str | Omit = omit,
-        webhook_timeout_secs: Optional[int] | Omit = omit,
+        webhook_timeout_secs: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

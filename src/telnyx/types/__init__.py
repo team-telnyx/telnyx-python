@@ -57,6 +57,7 @@ from .outbound_fqdn import OutboundFqdn as OutboundFqdn
 from .porting_order import PortingOrder as PortingOrder
 from .ip_list_params import IPListParams as IPListParams
 from .media_resource import MediaResource as MediaResource
+from .rcs_suggestion import RcsSuggestion as RcsSuggestion
 from .settings_param import SettingsParam as SettingsParam
 from .sim_card_group import SimCardGroup as SimCardGroup
 from .sim_card_order import SimCardOrder as SimCardOrder
@@ -79,6 +80,8 @@ from .interface_status import InterfaceStatus as InterfaceStatus
 from .ip_create_params import IPCreateParams as IPCreateParams
 from .ip_update_params import IPUpdateParams as IPUpdateParams
 from .message_template import MessageTemplate as MessageTemplate
+from .rcs_card_content import RcsCardContent as RcsCardContent
+from .rcs_content_info import RcsContentInfo as RcsContentInfo
 from .room_composition import RoomComposition as RoomComposition
 from .room_list_params import RoomListParams as RoomListParams
 from .sip_header_param import SipHeaderParam as SipHeaderParam
@@ -90,6 +93,7 @@ from .media_list_params import MediaListParams as MediaListParams
 from .messaging_profile import MessagingProfile as MessagingProfile
 from .network_interface import NetworkInterface as NetworkInterface
 from .outbound_ip_param import OutboundIPParam as OutboundIPParam
+from .rcs_agent_message import RcsAgentMessage as RcsAgentMessage
 from .requirement_group import RequirementGroup as RequirementGroup
 from .texml_application import TexmlApplication as TexmlApplication
 from .call_dial_response import CallDialResponse as CallDialResponse
@@ -143,6 +147,7 @@ from .notification_profile import NotificationProfile as NotificationProfile
 from .notification_setting import NotificationSetting as NotificationSetting
 from .number_pool_settings import NumberPoolSettings as NumberPoolSettings
 from .oauth_token_response import OAuthTokenResponse as OAuthTokenResponse
+from .rcs_suggestion_param import RcsSuggestionParam as RcsSuggestionParam
 from .region_list_response import RegionListResponse as RegionListResponse
 from .room_create_response import RoomCreateResponse as RoomCreateResponse
 from .room_retrieve_params import RoomRetrieveParams as RoomRetrieveParams
@@ -189,6 +194,8 @@ from .gcs_configuration_data import GcsConfigurationData as GcsConfigurationData
 from .ota_update_list_params import OtaUpdateListParams as OtaUpdateListParams
 from .outbound_voice_profile import OutboundVoiceProfile as OutboundVoiceProfile
 from .porting_order_end_user import PortingOrderEndUser as PortingOrderEndUser
+from .rcs_card_content_param import RcsCardContentParam as RcsCardContentParam
+from .rcs_content_info_param import RcsContentInfoParam as RcsContentInfoParam
 from .room_retrieve_response import RoomRetrieveResponse as RoomRetrieveResponse
 from .short_code_list_params import ShortCodeListParams as ShortCodeListParams
 from .sim_card_delete_params import SimCardDeleteParams as SimCardDeleteParams
@@ -222,6 +229,7 @@ from .outbound_call_recording import OutboundCallRecording as OutboundCallRecord
 from .porting_order_documents import PortingOrderDocuments as PortingOrderDocuments
 from .porting_order_messaging import PortingOrderMessaging as PortingOrderMessaging
 from .queue_retrieve_response import QueueRetrieveResponse as QueueRetrieveResponse
+from .rcs_agent_message_param import RcsAgentMessageParam as RcsAgentMessageParam
 from .recording_response_data import RecordingResponseData as RecordingResponseData
 from .recording_transcription import RecordingTranscription as RecordingTranscription
 from .report_list_mdrs_params import ReportListMdrsParams as ReportListMdrsParams
@@ -346,6 +354,7 @@ from .connection_retrieve_response import ConnectionRetrieveResponse as Connecti
 from .create_verification_response import CreateVerificationResponse as CreateVerificationResponse
 from .custom_storage_configuration import CustomStorageConfiguration as CustomStorageConfiguration
 from .gcs_configuration_data_param import GcsConfigurationDataParam as GcsConfigurationDataParam
+from .message_send_whatsapp_params import MessageSendWhatsappParams as MessageSendWhatsappParams
 from .messaging_optout_list_params import MessagingOptoutListParams as MessagingOptoutListParams
 from .network_coverage_list_params import NetworkCoverageListParams as NetworkCoverageListParams
 from .number_order_create_response import NumberOrderCreateResponse as NumberOrderCreateResponse
@@ -428,6 +437,7 @@ from .integration_secret_list_params import IntegrationSecretListParams as Integ
 from .inventory_coverage_list_params import InventoryCoverageListParams as InventoryCoverageListParams
 from .list_retrieve_by_zone_response import ListRetrieveByZoneResponse as ListRetrieveByZoneResponse
 from .message_send_short_code_params import MessageSendShortCodeParams as MessageSendShortCodeParams
+from .message_send_whatsapp_response import MessageSendWhatsappResponse as MessageSendWhatsappResponse
 from .messaging_optout_list_response import MessagingOptoutListResponse as MessagingOptoutListResponse
 from .network_coverage_list_response import NetworkCoverageListResponse as NetworkCoverageListResponse
 from .network_list_interfaces_params import NetworkListInterfacesParams as NetworkListInterfacesParams

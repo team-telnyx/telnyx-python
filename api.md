@@ -2107,11 +2107,6 @@ Types:
 from telnyx.types import (
     MessagingError,
     OutboundMessagePayload,
-    RcsAgentMessage,
-    RcsCardContent,
-    RcsContentInfo,
-    RcsSuggestion,
-    WhatsappMedia,
     MessageRetrieveResponse,
     MessageCancelScheduledResponse,
     MessageScheduleResponse,
@@ -2120,6 +2115,7 @@ from telnyx.types import (
     MessageSendLongCodeResponse,
     MessageSendNumberPoolResponse,
     MessageSendShortCodeResponse,
+    MessageSendWhatsappResponse,
 )
 ```
 
@@ -2133,18 +2129,20 @@ Methods:
 - <code title="post /messages/long_code">client.messages.<a href="./src/telnyx/resources/messages/messages.py">send_long_code</a>(\*\*<a href="src/telnyx/types/message_send_long_code_params.py">params</a>) -> <a href="./src/telnyx/types/message_send_long_code_response.py">MessageSendLongCodeResponse</a></code>
 - <code title="post /messages/number_pool">client.messages.<a href="./src/telnyx/resources/messages/messages.py">send_number_pool</a>(\*\*<a href="src/telnyx/types/message_send_number_pool_params.py">params</a>) -> <a href="./src/telnyx/types/message_send_number_pool_response.py">MessageSendNumberPoolResponse</a></code>
 - <code title="post /messages/short_code">client.messages.<a href="./src/telnyx/resources/messages/messages.py">send_short_code</a>(\*\*<a href="src/telnyx/types/message_send_short_code_params.py">params</a>) -> <a href="./src/telnyx/types/message_send_short_code_response.py">MessageSendShortCodeResponse</a></code>
+- <code title="post /messages/whatsapp">client.messages.<a href="./src/telnyx/resources/messages/messages.py">send_whatsapp</a>(\*\*<a href="src/telnyx/types/message_send_whatsapp_params.py">params</a>) -> <a href="./src/telnyx/types/message_send_whatsapp_response.py">MessageSendWhatsappResponse</a></code>
 
 ## Rcs
 
 Types:
 
 ```python
-from telnyx.types.messages import RcGenerateDeeplinkResponse
+from telnyx.types.messages import RcGenerateDeeplinkResponse, RcSendResponse
 ```
 
 Methods:
 
 - <code title="get /messages/rcs/deeplinks/{agent_id}">client.messages.rcs.<a href="./src/telnyx/resources/messages/rcs.py">generate_deeplink</a>(agent_id, \*\*<a href="src/telnyx/types/messages/rc_generate_deeplink_params.py">params</a>) -> <a href="./src/telnyx/types/messages/rc_generate_deeplink_response.py">RcGenerateDeeplinkResponse</a></code>
+- <code title="post /messages/rcs">client.messages.rcs.<a href="./src/telnyx/resources/messages/rcs.py">send</a>(\*\*<a href="src/telnyx/types/messages/rc_send_params.py">params</a>) -> <a href="./src/telnyx/types/messages/rc_send_response.py">RcSendResponse</a></code>
 
 # Messaging
 
@@ -2341,6 +2339,14 @@ from telnyx.types import MessagingURLDomainListResponse
 Methods:
 
 - <code title="get /messaging_url_domains">client.messaging_url_domains.<a href="./src/telnyx/resources/messaging_url_domains.py">list</a>(\*\*<a href="src/telnyx/types/messaging_url_domain_list_params.py">params</a>) -> <a href="./src/telnyx/types/messaging_url_domain_list_response.py">SyncDefaultPagination[MessagingURLDomainListResponse]</a></code>
+
+# Messsages
+
+Types:
+
+```python
+from telnyx.types import RcsAgentMessage, RcsCardContent, RcsContentInfo, RcsSuggestion
+```
 
 # MobileNetworkOperators
 
