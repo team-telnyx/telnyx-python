@@ -2107,6 +2107,11 @@ Types:
 from telnyx.types import (
     MessagingError,
     OutboundMessagePayload,
+    RcsAgentMessage,
+    RcsCardContent,
+    RcsContentInfo,
+    RcsSuggestion,
+    WhatsappMedia,
     MessageRetrieveResponse,
     MessageCancelScheduledResponse,
     MessageScheduleResponse,
@@ -2339,14 +2344,6 @@ from telnyx.types import MessagingURLDomainListResponse
 Methods:
 
 - <code title="get /messaging_url_domains">client.messaging_url_domains.<a href="./src/telnyx/resources/messaging_url_domains.py">list</a>(\*\*<a href="src/telnyx/types/messaging_url_domain_list_params.py">params</a>) -> <a href="./src/telnyx/types/messaging_url_domain_list_response.py">SyncDefaultPagination[MessagingURLDomainListResponse]</a></code>
-
-# Messsages
-
-Types:
-
-```python
-from telnyx.types import RcsAgentMessage, RcsCardContent, RcsContentInfo, RcsSuggestion
-```
 
 # MobileNetworkOperators
 

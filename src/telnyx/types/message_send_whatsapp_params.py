@@ -6,19 +6,17 @@ from typing import Iterable
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from .._utils import PropertyInfo
+from .whatsapp_media_param import WhatsappMediaParam
 
 __all__ = [
     "MessageSendWhatsappParams",
     "WhatsappMessage",
-    "WhatsappMessageAudio",
     "WhatsappMessageContact",
     "WhatsappMessageContactAddress",
     "WhatsappMessageContactEmail",
     "WhatsappMessageContactOrg",
     "WhatsappMessageContactPhone",
     "WhatsappMessageContactURL",
-    "WhatsappMessageDocument",
-    "WhatsappMessageImage",
     "WhatsappMessageInteractive",
     "WhatsappMessageInteractiveAction",
     "WhatsappMessageInteractiveActionButton",
@@ -27,8 +25,6 @@ __all__ = [
     "WhatsappMessageInteractiveActionCardAction",
     "WhatsappMessageInteractiveActionCardBody",
     "WhatsappMessageInteractiveActionCardHeader",
-    "WhatsappMessageInteractiveActionCardHeaderImage",
-    "WhatsappMessageInteractiveActionCardHeaderVideo",
     "WhatsappMessageInteractiveActionParameters",
     "WhatsappMessageInteractiveActionSection",
     "WhatsappMessageInteractiveActionSectionProductItem",
@@ -36,13 +32,8 @@ __all__ = [
     "WhatsappMessageInteractiveBody",
     "WhatsappMessageInteractiveFooter",
     "WhatsappMessageInteractiveHeader",
-    "WhatsappMessageInteractiveHeaderDocument",
-    "WhatsappMessageInteractiveHeaderImage",
-    "WhatsappMessageInteractiveHeaderVideo",
     "WhatsappMessageLocation",
     "WhatsappMessageReaction",
-    "WhatsappMessageSticker",
-    "WhatsappMessageVideo",
 ]
 
 
@@ -60,20 +51,6 @@ class MessageSendWhatsappParams(TypedDict, total=False):
 
     webhook_url: str
     """The URL where webhooks related to this message will be sent."""
-
-
-class WhatsappMessageAudio(TypedDict, total=False):
-    caption: str
-    """media caption"""
-
-    filename: str
-    """file name with extension"""
-
-    link: str
-    """media URL"""
-
-    voice: bool
-    """true if voice message"""
 
 
 class WhatsappMessageContactAddress(TypedDict, total=False):
@@ -136,34 +113,6 @@ class WhatsappMessageContact(TypedDict, total=False):
     urls: Iterable[WhatsappMessageContactURL]
 
 
-class WhatsappMessageDocument(TypedDict, total=False):
-    caption: str
-    """media caption"""
-
-    filename: str
-    """file name with extension"""
-
-    link: str
-    """media URL"""
-
-    voice: bool
-    """true if voice message"""
-
-
-class WhatsappMessageImage(TypedDict, total=False):
-    caption: str
-    """media caption"""
-
-    filename: str
-    """file name with extension"""
-
-    link: str
-    """media URL"""
-
-    voice: bool
-    """true if voice message"""
-
-
 class WhatsappMessageInteractiveActionButtonReply(TypedDict, total=False):
     id: str
     """unique identifier for each button, 256 character maximum"""
@@ -191,40 +140,12 @@ class WhatsappMessageInteractiveActionCardBody(TypedDict, total=False):
     """160 character maximum, up to 2 line breaks"""
 
 
-class WhatsappMessageInteractiveActionCardHeaderImage(TypedDict, total=False):
-    caption: str
-    """media caption"""
-
-    filename: str
-    """file name with extension"""
-
-    link: str
-    """media URL"""
-
-    voice: bool
-    """true if voice message"""
-
-
-class WhatsappMessageInteractiveActionCardHeaderVideo(TypedDict, total=False):
-    caption: str
-    """media caption"""
-
-    filename: str
-    """file name with extension"""
-
-    link: str
-    """media URL"""
-
-    voice: bool
-    """true if voice message"""
-
-
 class WhatsappMessageInteractiveActionCardHeader(TypedDict, total=False):
-    image: WhatsappMessageInteractiveActionCardHeaderImage
+    image: WhatsappMediaParam
 
     type: Literal["image", "video"]
 
-    video: WhatsappMessageInteractiveActionCardHeaderVideo
+    video: WhatsappMediaParam
 
 
 class WhatsappMessageInteractiveActionCard(TypedDict, total=False):
@@ -302,59 +223,17 @@ class WhatsappMessageInteractiveFooter(TypedDict, total=False):
     """footer text, 60 character maximum"""
 
 
-class WhatsappMessageInteractiveHeaderDocument(TypedDict, total=False):
-    caption: str
-    """media caption"""
-
-    filename: str
-    """file name with extension"""
-
-    link: str
-    """media URL"""
-
-    voice: bool
-    """true if voice message"""
-
-
-class WhatsappMessageInteractiveHeaderImage(TypedDict, total=False):
-    caption: str
-    """media caption"""
-
-    filename: str
-    """file name with extension"""
-
-    link: str
-    """media URL"""
-
-    voice: bool
-    """true if voice message"""
-
-
-class WhatsappMessageInteractiveHeaderVideo(TypedDict, total=False):
-    caption: str
-    """media caption"""
-
-    filename: str
-    """file name with extension"""
-
-    link: str
-    """media URL"""
-
-    voice: bool
-    """true if voice message"""
-
-
 class WhatsappMessageInteractiveHeader(TypedDict, total=False):
-    document: WhatsappMessageInteractiveHeaderDocument
+    document: WhatsappMediaParam
 
-    image: WhatsappMessageInteractiveHeaderImage
+    image: WhatsappMediaParam
 
     sub_text: str
 
     text: str
     """header text, 60 character maximum"""
 
-    video: WhatsappMessageInteractiveHeaderVideo
+    video: WhatsappMediaParam
 
 
 class WhatsappMessageInteractive(TypedDict, total=False):
@@ -385,45 +264,17 @@ class WhatsappMessageReaction(TypedDict, total=False):
     message_id: str
 
 
-class WhatsappMessageSticker(TypedDict, total=False):
-    caption: str
-    """media caption"""
-
-    filename: str
-    """file name with extension"""
-
-    link: str
-    """media URL"""
-
-    voice: bool
-    """true if voice message"""
-
-
-class WhatsappMessageVideo(TypedDict, total=False):
-    caption: str
-    """media caption"""
-
-    filename: str
-    """file name with extension"""
-
-    link: str
-    """media URL"""
-
-    voice: bool
-    """true if voice message"""
-
-
 class WhatsappMessage(TypedDict, total=False):
-    audio: WhatsappMessageAudio
+    audio: WhatsappMediaParam
 
     biz_opaque_callback_data: str
     """custom data to return with status update"""
 
     contacts: Iterable[WhatsappMessageContact]
 
-    document: WhatsappMessageDocument
+    document: WhatsappMediaParam
 
-    image: WhatsappMessageImage
+    image: WhatsappMediaParam
 
     interactive: WhatsappMessageInteractive
 
@@ -431,10 +282,10 @@ class WhatsappMessage(TypedDict, total=False):
 
     reaction: WhatsappMessageReaction
 
-    sticker: WhatsappMessageSticker
+    sticker: WhatsappMediaParam
 
     type: Literal[
         "audio", "document", "image", "sticker", "video", "interactive", "location", "template", "reaction", "contacts"
     ]
 
-    video: WhatsappMessageVideo
+    video: WhatsappMediaParam
