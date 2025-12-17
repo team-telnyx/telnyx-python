@@ -188,7 +188,7 @@ class PhoneNumberCampaignsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncPerPagePaginationV2[PhoneNumberCampaign]:
         """
-        Retrieve All Phone Number Campaigns
+        List phone number campaigns
 
         Args:
           filter:
@@ -423,7 +423,7 @@ class AsyncPhoneNumberCampaignsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[PhoneNumberCampaign, AsyncPerPagePaginationV2[PhoneNumberCampaign]]:
         """
-        Retrieve All Phone Number Campaigns
+        List phone number campaigns
 
         Args:
           filter:

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
+from typing import Dict
 from typing_extensions import TypedDict
 
 from .video_region_param import VideoRegionParam
@@ -11,23 +11,23 @@ __all__ = ["RoomCompositionCreateParams"]
 
 
 class RoomCompositionCreateParams(TypedDict, total=False):
-    format: Optional[str]
+    format: str
     """The desired format of the room composition."""
 
-    resolution: Optional[str]
+    resolution: str
     """
     The desired resolution (width/height in pixels) of the resulting video of the
     room composition. Both width and height are required to be between 16 and 1280;
     and width _ height should not exceed 1280 _ 720
     """
 
-    session_id: Optional[str]
+    session_id: str
     """id of the room session associated with the room composition."""
 
     video_layout: Dict[str, VideoRegionParam]
     """Describes the video layout of the room composition in terms of regions."""
 
-    webhook_event_failover_url: Optional[str]
+    webhook_event_failover_url: str
     """
     The failover URL where webhooks related to this room composition will be sent if
     sending to the primary URL fails. Must include a scheme, such as 'https'.
@@ -39,5 +39,5 @@ class RoomCompositionCreateParams(TypedDict, total=False):
     Must include a scheme, such as 'https'.
     """
 
-    webhook_timeout_secs: Optional[int]
+    webhook_timeout_secs: int
     """Specifies how many seconds to wait before timing out a webhook."""

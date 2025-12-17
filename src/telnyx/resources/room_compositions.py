@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
+from typing import Dict
 
 import httpx
 
@@ -50,13 +50,13 @@ class RoomCompositionsResource(SyncAPIResource):
     def create(
         self,
         *,
-        format: Optional[str] | Omit = omit,
-        resolution: Optional[str] | Omit = omit,
-        session_id: Optional[str] | Omit = omit,
+        format: str | Omit = omit,
+        resolution: str | Omit = omit,
+        session_id: str | Omit = omit,
         video_layout: Dict[str, VideoRegionParam] | Omit = omit,
-        webhook_event_failover_url: Optional[str] | Omit = omit,
+        webhook_event_failover_url: str | Omit = omit,
         webhook_event_url: str | Omit = omit,
-        webhook_timeout_secs: Optional[int] | Omit = omit,
+        webhook_timeout_secs: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -260,13 +260,13 @@ class AsyncRoomCompositionsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        format: Optional[str] | Omit = omit,
-        resolution: Optional[str] | Omit = omit,
-        session_id: Optional[str] | Omit = omit,
+        format: str | Omit = omit,
+        resolution: str | Omit = omit,
+        session_id: str | Omit = omit,
         video_layout: Dict[str, VideoRegionParam] | Omit = omit,
-        webhook_event_failover_url: Optional[str] | Omit = omit,
+        webhook_event_failover_url: str | Omit = omit,
         webhook_event_url: str | Omit = omit,
-        webhook_timeout_secs: Optional[int] | Omit = omit,
+        webhook_timeout_secs: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

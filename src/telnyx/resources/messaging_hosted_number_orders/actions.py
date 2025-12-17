@@ -57,7 +57,7 @@ class ActionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionUploadFileResponse:
         """
-        Upload file required for a messaging hosted number order
+        Upload hosted number document
 
         Args:
           bill: Must be the last month's bill with proof of ownership of all of the numbers in
@@ -131,7 +131,7 @@ class AsyncActionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionUploadFileResponse:
         """
-        Upload file required for a messaging hosted number order
+        Upload hosted number document
 
         Args:
           bill: Must be the last month's bill with proof of ownership of all of the numbers in
