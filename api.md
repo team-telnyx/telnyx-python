@@ -4776,3 +4776,9 @@ Methods:
 - <code title="get /10dlc/phoneNumberAssignmentByProfile/{taskId}/phoneNumbers">client.messaging_10dlc.phone_number_assignment_by_profile.<a href="./src/telnyx/resources/messaging_10dlc/phone_number_assignment_by_profile.py">list_phone_number_status</a>(task_id, \*\*<a href="src/telnyx/types/messaging_10dlc/phone_number_assignment_by_profile_list_phone_number_status_params.py">params</a>) -> <a href="./src/telnyx/types/messaging_10dlc/phone_number_assignment_by_profile_list_phone_number_status_response.py">PhoneNumberAssignmentByProfileListPhoneNumberStatusResponse</a></code>
 - <code title="get /10dlc/phoneNumberAssignmentByProfile/{taskId}/phoneNumbers">client.messaging_10dlc.phone_number_assignment_by_profile.<a href="./src/telnyx/resources/messaging_10dlc/phone_number_assignment_by_profile.py">retrieve_phone_number_status</a>(task_id, \*\*<a href="src/telnyx/types/messaging_10dlc/phone_number_assignment_by_profile_retrieve_phone_number_status_params.py">params</a>) -> <a href="./src/telnyx/types/messaging_10dlc/phone_number_assignment_by_profile_retrieve_phone_number_status_response.py">PhoneNumberAssignmentByProfileRetrievePhoneNumberStatusResponse</a></code>
 - <code title="get /10dlc/phoneNumberAssignmentByProfile/{taskId}">client.messaging_10dlc.phone_number_assignment_by_profile.<a href="./src/telnyx/resources/messaging_10dlc/phone_number_assignment_by_profile.py">retrieve_status</a>(task_id) -> <a href="./src/telnyx/types/messaging_10dlc/phone_number_assignment_by_profile_retrieve_status_response.py">PhoneNumberAssignmentByProfileRetrieveStatusResponse</a></code>
+
+# SpeechToText
+
+Methods:
+
+- <code title="get /speech-to-text/transcription">client.speech_to_text.<a href="./src/telnyx/resources/speech_to_text.py">transcribe</a>(\*\*<a href="src/telnyx/types/speech_to_text_transcribe_params.py">params</a>) -> None</code>
