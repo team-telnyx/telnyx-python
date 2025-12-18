@@ -88,6 +88,7 @@ if TYPE_CHECKING:
         document_links,
         ip_connections,
         porting_orders,
+        speech_to_text,
         text_to_speech,
         user_addresses,
         advanced_orders,
@@ -219,6 +220,7 @@ if TYPE_CHECKING:
     from .resources.detail_records import DetailRecordsResource, AsyncDetailRecordsResource
     from .resources.document_links import DocumentLinksResource, AsyncDocumentLinksResource
     from .resources.ip_connections import IPConnectionsResource, AsyncIPConnectionsResource
+    from .resources.speech_to_text import SpeechToTextResource, AsyncSpeechToTextResource
     from .resources.text_to_speech import TextToSpeechResource, AsyncTextToSpeechResource
     from .resources.user_addresses import UserAddressesResource, AsyncUserAddressesResource
     from .resources.actions.actions import ActionsResource, AsyncActionsResource
@@ -1377,6 +1379,12 @@ class Telnyx(SyncAPIClient):
         return Messaging10dlcResource(self)
 
     @cached_property
+    def speech_to_text(self) -> SpeechToTextResource:
+        from .resources.speech_to_text import SpeechToTextResource
+
+        return SpeechToTextResource(self)
+
+    @cached_property
     def with_raw_response(self) -> TelnyxWithRawResponse:
         return TelnyxWithRawResponse(self)
 
@@ -2483,6 +2491,12 @@ class AsyncTelnyx(AsyncAPIClient):
         return AsyncMessaging10dlcResource(self)
 
     @cached_property
+    def speech_to_text(self) -> AsyncSpeechToTextResource:
+        from .resources.speech_to_text import AsyncSpeechToTextResource
+
+        return AsyncSpeechToTextResource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncTelnyxWithRawResponse:
         return AsyncTelnyxWithRawResponse(self)
 
@@ -3544,6 +3558,12 @@ class TelnyxWithRawResponse:
 
         return Messaging10dlcResourceWithRawResponse(self._client.messaging_10dlc)
 
+    @cached_property
+    def speech_to_text(self) -> speech_to_text.SpeechToTextResourceWithRawResponse:
+        from .resources.speech_to_text import SpeechToTextResourceWithRawResponse
+
+        return SpeechToTextResourceWithRawResponse(self._client.speech_to_text)
+
 
 class AsyncTelnyxWithRawResponse:
     _client: AsyncTelnyx
@@ -4474,6 +4494,12 @@ class AsyncTelnyxWithRawResponse:
         from .resources.messaging_10dlc import AsyncMessaging10dlcResourceWithRawResponse
 
         return AsyncMessaging10dlcResourceWithRawResponse(self._client.messaging_10dlc)
+
+    @cached_property
+    def speech_to_text(self) -> speech_to_text.AsyncSpeechToTextResourceWithRawResponse:
+        from .resources.speech_to_text import AsyncSpeechToTextResourceWithRawResponse
+
+        return AsyncSpeechToTextResourceWithRawResponse(self._client.speech_to_text)
 
 
 class TelnyxWithStreamedResponse:
@@ -5407,6 +5433,12 @@ class TelnyxWithStreamedResponse:
         from .resources.messaging_10dlc import Messaging10dlcResourceWithStreamingResponse
 
         return Messaging10dlcResourceWithStreamingResponse(self._client.messaging_10dlc)
+
+    @cached_property
+    def speech_to_text(self) -> speech_to_text.SpeechToTextResourceWithStreamingResponse:
+        from .resources.speech_to_text import SpeechToTextResourceWithStreamingResponse
+
+        return SpeechToTextResourceWithStreamingResponse(self._client.speech_to_text)
 
 
 class AsyncTelnyxWithStreamedResponse:
@@ -6382,6 +6414,12 @@ class AsyncTelnyxWithStreamedResponse:
         from .resources.messaging_10dlc import AsyncMessaging10dlcResourceWithStreamingResponse
 
         return AsyncMessaging10dlcResourceWithStreamingResponse(self._client.messaging_10dlc)
+
+    @cached_property
+    def speech_to_text(self) -> speech_to_text.AsyncSpeechToTextResourceWithStreamingResponse:
+        from .resources.speech_to_text import AsyncSpeechToTextResourceWithStreamingResponse
+
+        return AsyncSpeechToTextResourceWithStreamingResponse(self._client.speech_to_text)
 
 
 Client = Telnyx
