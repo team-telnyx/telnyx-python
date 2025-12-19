@@ -10,12 +10,13 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types import (
-    IPListResponse,
+    IP,
     IPCreateResponse,
     IPDeleteResponse,
     IPUpdateResponse,
     IPRetrieveResponse,
 )
+from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -170,7 +171,7 @@ class TestIPs:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         ip = client.ips.list()
-        assert_matches_type(IPListResponse, ip, path=["response"])
+        assert_matches_type(SyncDefaultPagination[IP], ip, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -186,7 +187,7 @@ class TestIPs:
                 "size": 1,
             },
         )
-        assert_matches_type(IPListResponse, ip, path=["response"])
+        assert_matches_type(SyncDefaultPagination[IP], ip, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -196,7 +197,7 @@ class TestIPs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ip = response.parse()
-        assert_matches_type(IPListResponse, ip, path=["response"])
+        assert_matches_type(SyncDefaultPagination[IP], ip, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -206,7 +207,7 @@ class TestIPs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ip = response.parse()
-            assert_matches_type(IPListResponse, ip, path=["response"])
+            assert_matches_type(SyncDefaultPagination[IP], ip, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -405,7 +406,7 @@ class TestAsyncIPs:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         ip = await async_client.ips.list()
-        assert_matches_type(IPListResponse, ip, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[IP], ip, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -421,7 +422,7 @@ class TestAsyncIPs:
                 "size": 1,
             },
         )
-        assert_matches_type(IPListResponse, ip, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[IP], ip, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -431,7 +432,7 @@ class TestAsyncIPs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ip = await response.parse()
-        assert_matches_type(IPListResponse, ip, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[IP], ip, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -441,7 +442,7 @@ class TestAsyncIPs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ip = await response.parse()
-            assert_matches_type(IPListResponse, ip, path=["response"])
+            assert_matches_type(AsyncDefaultPagination[IP], ip, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

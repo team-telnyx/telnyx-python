@@ -16,9 +16,10 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._base_client import make_request_options
+from ...pagination import SyncDefaultPagination, AsyncDefaultPagination
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.bundle_pricing import user_bundle_list_params, user_bundle_create_params, user_bundle_list_unused_params
-from ...types.bundle_pricing.user_bundle_list_response import UserBundleListResponse
+from ...types.bundle_pricing.user_bundle import UserBundle
 from ...types.bundle_pricing.user_bundle_create_response import UserBundleCreateResponse
 from ...types.bundle_pricing.user_bundle_retrieve_response import UserBundleRetrieveResponse
 from ...types.bundle_pricing.user_bundle_deactivate_response import UserBundleDeactivateResponse
@@ -145,7 +146,7 @@ class UserBundlesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> UserBundleListResponse:
+    ) -> SyncDefaultPagination[UserBundle]:
         """
         Get a paginated list of user bundles.
 
@@ -168,8 +169,9 @@ class UserBundlesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         extra_headers = {**strip_not_given({"authorization_bearer": authorization_bearer}), **(extra_headers or {})}
-        return self._get(
+        return self._get_api_list(
             "/bundle_pricing/user_bundles",
+            page=SyncDefaultPagination[UserBundle],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -183,7 +185,7 @@ class UserBundlesResource(SyncAPIResource):
                     user_bundle_list_params.UserBundleListParams,
                 ),
             ),
-            cast_to=UserBundleListResponse,
+            model=UserBundle,
         )
 
     def deactivate(
@@ -413,7 +415,7 @@ class AsyncUserBundlesResource(AsyncAPIResource):
             cast_to=UserBundleRetrieveResponse,
         )
 
-    async def list(
+    def list(
         self,
         *,
         filter: user_bundle_list_params.Filter | Omit = omit,
@@ -425,7 +427,7 @@ class AsyncUserBundlesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> UserBundleListResponse:
+    ) -> AsyncPaginator[UserBundle, AsyncDefaultPagination[UserBundle]]:
         """
         Get a paginated list of user bundles.
 
@@ -448,14 +450,15 @@ class AsyncUserBundlesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         extra_headers = {**strip_not_given({"authorization_bearer": authorization_bearer}), **(extra_headers or {})}
-        return await self._get(
+        return self._get_api_list(
             "/bundle_pricing/user_bundles",
+            page=AsyncDefaultPagination[UserBundle],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "filter": filter,
                         "page": page,
@@ -463,7 +466,7 @@ class AsyncUserBundlesResource(AsyncAPIResource):
                     user_bundle_list_params.UserBundleListParams,
                 ),
             ),
-            cast_to=UserBundleListResponse,
+            model=UserBundle,
         )
 
     async def deactivate(

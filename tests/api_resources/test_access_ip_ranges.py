@@ -9,11 +9,9 @@ import pytest
 
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
-from telnyx.types import (
-    AccessIPRange,
-    AccessIPRangeListResponse,
-)
+from telnyx.types import AccessIPRange
 from telnyx._utils import parse_datetime
+from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -68,7 +66,7 @@ class TestAccessIPRanges:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         access_ip_range = client.access_ip_ranges.list()
-        assert_matches_type(AccessIPRangeListResponse, access_ip_range, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[AccessIPRange], access_ip_range, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -78,12 +76,10 @@ class TestAccessIPRanges:
                 "cidr_block": "string",
                 "created_at": parse_datetime("2019-12-27T18:11:19.117Z"),
             },
-            page={
-                "number": 0,
-                "size": 250,
-            },
+            page_number=0,
+            page_size=0,
         )
-        assert_matches_type(AccessIPRangeListResponse, access_ip_range, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[AccessIPRange], access_ip_range, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -93,7 +89,7 @@ class TestAccessIPRanges:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         access_ip_range = response.parse()
-        assert_matches_type(AccessIPRangeListResponse, access_ip_range, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[AccessIPRange], access_ip_range, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -103,7 +99,7 @@ class TestAccessIPRanges:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             access_ip_range = response.parse()
-            assert_matches_type(AccessIPRangeListResponse, access_ip_range, path=["response"])
+            assert_matches_type(SyncDefaultFlatPagination[AccessIPRange], access_ip_range, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -202,7 +198,7 @@ class TestAsyncAccessIPRanges:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         access_ip_range = await async_client.access_ip_ranges.list()
-        assert_matches_type(AccessIPRangeListResponse, access_ip_range, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[AccessIPRange], access_ip_range, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -212,12 +208,10 @@ class TestAsyncAccessIPRanges:
                 "cidr_block": "string",
                 "created_at": parse_datetime("2019-12-27T18:11:19.117Z"),
             },
-            page={
-                "number": 0,
-                "size": 250,
-            },
+            page_number=0,
+            page_size=0,
         )
-        assert_matches_type(AccessIPRangeListResponse, access_ip_range, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[AccessIPRange], access_ip_range, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -227,7 +221,7 @@ class TestAsyncAccessIPRanges:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         access_ip_range = await response.parse()
-        assert_matches_type(AccessIPRangeListResponse, access_ip_range, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[AccessIPRange], access_ip_range, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -237,7 +231,7 @@ class TestAsyncAccessIPRanges:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             access_ip_range = await response.parse()
-            assert_matches_type(AccessIPRangeListResponse, access_ip_range, path=["response"])
+            assert_matches_type(AsyncDefaultFlatPagination[AccessIPRange], access_ip_range, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

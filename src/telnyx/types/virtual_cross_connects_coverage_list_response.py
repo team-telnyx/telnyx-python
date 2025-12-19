@@ -4,12 +4,11 @@ from typing import List, Optional
 from typing_extensions import Literal
 
 from .._models import BaseModel
-from .pagination_meta import PaginationMeta
 
-__all__ = ["VirtualCrossConnectsCoverageListResponse", "Data", "DataLocation"]
+__all__ = ["VirtualCrossConnectsCoverageListResponse", "Location"]
 
 
-class DataLocation(BaseModel):
+class Location(BaseModel):
     code: Optional[str] = None
     """Location code."""
 
@@ -26,7 +25,7 @@ class DataLocation(BaseModel):
     """Site of location."""
 
 
-class Data(BaseModel):
+class VirtualCrossConnectsCoverageListResponse(BaseModel):
     available_bandwidth: Optional[List[float]] = None
     """
     The available throughput in Megabits per Second (Mbps) for your Virtual Cross
@@ -46,13 +45,7 @@ class Data(BaseModel):
     AWS but Frankfurt for Azure
     """
 
-    location: Optional[DataLocation] = None
+    location: Optional[Location] = None
 
     record_type: Optional[str] = None
     """Identifies the type of the resource."""
-
-
-class VirtualCrossConnectsCoverageListResponse(BaseModel):
-    data: Optional[List[Data]] = None
-
-    meta: Optional[PaginationMeta] = None

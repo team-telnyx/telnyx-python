@@ -6,7 +6,7 @@ import httpx
 
 from ..types import network_coverage_list_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._utils import maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -15,7 +15,8 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import make_request_options
+from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
+from .._base_client import AsyncPaginator, make_request_options
 from ..types.network_coverage_list_response import NetworkCoverageListResponse
 
 __all__ = ["NetworkCoverageResource", "AsyncNetworkCoverageResource"]
@@ -53,7 +54,7 @@ class NetworkCoverageResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NetworkCoverageListResponse:
+    ) -> SyncDefaultPagination[NetworkCoverageListResponse]:
         """
         List all locations and the interfaces that region supports
 
@@ -78,8 +79,9 @@ class NetworkCoverageResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/network_coverage",
+            page=SyncDefaultPagination[NetworkCoverageListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -94,7 +96,7 @@ class NetworkCoverageResource(SyncAPIResource):
                     network_coverage_list_params.NetworkCoverageListParams,
                 ),
             ),
-            cast_to=NetworkCoverageListResponse,
+            model=NetworkCoverageListResponse,
         )
 
 
@@ -118,7 +120,7 @@ class AsyncNetworkCoverageResource(AsyncAPIResource):
         """
         return AsyncNetworkCoverageResourceWithStreamingResponse(self)
 
-    async def list(
+    def list(
         self,
         *,
         filter: network_coverage_list_params.Filter | Omit = omit,
@@ -130,7 +132,7 @@ class AsyncNetworkCoverageResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NetworkCoverageListResponse:
+    ) -> AsyncPaginator[NetworkCoverageListResponse, AsyncDefaultPagination[NetworkCoverageListResponse]]:
         """
         List all locations and the interfaces that region supports
 
@@ -155,14 +157,15 @@ class AsyncNetworkCoverageResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/network_coverage",
+            page=AsyncDefaultPagination[NetworkCoverageListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "filter": filter,
                         "filters": filters,
@@ -171,7 +174,7 @@ class AsyncNetworkCoverageResource(AsyncAPIResource):
                     network_coverage_list_params.NetworkCoverageListParams,
                 ),
             ),
-            cast_to=NetworkCoverageListResponse,
+            model=NetworkCoverageListResponse,
         )
 
 

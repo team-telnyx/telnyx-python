@@ -6,7 +6,7 @@ import httpx
 
 from ..types import messaging_url_domain_list_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._utils import maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -15,7 +15,8 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import make_request_options
+from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
+from .._base_client import AsyncPaginator, make_request_options
 from ..types.messaging_url_domain_list_response import MessagingURLDomainListResponse
 
 __all__ = ["MessagingURLDomainsResource", "AsyncMessagingURLDomainsResource"]
@@ -51,7 +52,7 @@ class MessagingURLDomainsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MessagingURLDomainListResponse:
+    ) -> SyncDefaultPagination[MessagingURLDomainListResponse]:
         """
         List messaging URL domains
 
@@ -67,8 +68,9 @@ class MessagingURLDomainsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/messaging_url_domains",
+            page=SyncDefaultPagination[MessagingURLDomainListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -76,7 +78,7 @@ class MessagingURLDomainsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform({"page": page}, messaging_url_domain_list_params.MessagingURLDomainListParams),
             ),
-            cast_to=MessagingURLDomainListResponse,
+            model=MessagingURLDomainListResponse,
         )
 
 
@@ -100,7 +102,7 @@ class AsyncMessagingURLDomainsResource(AsyncAPIResource):
         """
         return AsyncMessagingURLDomainsResourceWithStreamingResponse(self)
 
-    async def list(
+    def list(
         self,
         *,
         page: messaging_url_domain_list_params.Page | Omit = omit,
@@ -110,7 +112,7 @@ class AsyncMessagingURLDomainsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MessagingURLDomainListResponse:
+    ) -> AsyncPaginator[MessagingURLDomainListResponse, AsyncDefaultPagination[MessagingURLDomainListResponse]]:
         """
         List messaging URL domains
 
@@ -126,18 +128,17 @@ class AsyncMessagingURLDomainsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/messaging_url_domains",
+            page=AsyncDefaultPagination[MessagingURLDomainListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
-                    {"page": page}, messaging_url_domain_list_params.MessagingURLDomainListParams
-                ),
+                query=maybe_transform({"page": page}, messaging_url_domain_list_params.MessagingURLDomainListParams),
             ),
-            cast_to=MessagingURLDomainListResponse,
+            model=MessagingURLDomainListResponse,
         )
 
 

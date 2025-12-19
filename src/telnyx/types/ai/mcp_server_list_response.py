@@ -2,14 +2,13 @@
 
 from typing import List, Optional
 from datetime import datetime
-from typing_extensions import TypeAlias
 
 from ..._models import BaseModel
 
-__all__ = ["McpServerListResponse", "McpServerListResponseItem"]
+__all__ = ["McpServerListResponse"]
 
 
-class McpServerListResponseItem(BaseModel):
+class McpServerListResponse(BaseModel):
     id: str
 
     created_at: datetime
@@ -23,6 +22,3 @@ class McpServerListResponseItem(BaseModel):
     allowed_tools: Optional[List[str]] = None
 
     api_key_ref: Optional[str] = None
-
-
-McpServerListResponse: TypeAlias = List[McpServerListResponseItem]

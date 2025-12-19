@@ -16,9 +16,10 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._base_client import make_request_options
+from ...pagination import SyncDefaultPagination, AsyncDefaultPagination
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.portouts import report_list_params, report_create_params
-from ...types.portouts.report_list_response import ReportListResponse
+from ...types.portouts.portout_report import PortoutReport
 from ...types.portouts.report_create_response import ReportCreateResponse
 from ...types.portouts.report_retrieve_response import ReportRetrieveResponse
 from ...types.portouts.export_portouts_csv_report_param import ExportPortoutsCsvReportParam
@@ -133,7 +134,7 @@ class ReportsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ReportListResponse:
+    ) -> SyncDefaultPagination[PortoutReport]:
         """
         List the reports generated about port-out operations.
 
@@ -153,8 +154,9 @@ class ReportsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/portouts/reports",
+            page=SyncDefaultPagination[PortoutReport],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -168,7 +170,7 @@ class ReportsResource(SyncAPIResource):
                     report_list_params.ReportListParams,
                 ),
             ),
-            cast_to=ReportListResponse,
+            model=PortoutReport,
         )
 
 
@@ -268,7 +270,7 @@ class AsyncReportsResource(AsyncAPIResource):
             cast_to=ReportRetrieveResponse,
         )
 
-    async def list(
+    def list(
         self,
         *,
         filter: report_list_params.Filter | Omit = omit,
@@ -279,7 +281,7 @@ class AsyncReportsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ReportListResponse:
+    ) -> AsyncPaginator[PortoutReport, AsyncDefaultPagination[PortoutReport]]:
         """
         List the reports generated about port-out operations.
 
@@ -299,14 +301,15 @@ class AsyncReportsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/portouts/reports",
+            page=AsyncDefaultPagination[PortoutReport],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "filter": filter,
                         "page": page,
@@ -314,7 +317,7 @@ class AsyncReportsResource(AsyncAPIResource):
                     report_list_params.ReportListParams,
                 ),
             ),
-            cast_to=ReportListResponse,
+            model=PortoutReport,
         )
 
 

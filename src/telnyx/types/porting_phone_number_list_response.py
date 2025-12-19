@@ -1,15 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Optional
 from typing_extensions import Literal
 
 from .._models import BaseModel
-from .pagination_meta import PaginationMeta
 
-__all__ = ["PortingPhoneNumberListResponse", "Data"]
+__all__ = ["PortingPhoneNumberListResponse"]
 
 
-class Data(BaseModel):
+class PortingPhoneNumberListResponse(BaseModel):
     activation_status: Optional[
         Literal[
             "New",
@@ -68,9 +67,3 @@ class Data(BaseModel):
 
     support_key: Optional[str] = None
     """A key to reference this porting order when contacting Telnyx customer support"""
-
-
-class PortingPhoneNumberListResponse(BaseModel):
-    data: Optional[List[Data]] = None
-
-    meta: Optional[PaginationMeta] = None

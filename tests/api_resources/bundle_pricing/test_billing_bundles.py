@@ -9,10 +9,8 @@ import pytest
 
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
-from telnyx.types.bundle_pricing import (
-    BillingBundleListResponse,
-    BillingBundleRetrieveResponse,
-)
+from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
+from telnyx.types.bundle_pricing import BillingBundleSummary, BillingBundleRetrieveResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -75,7 +73,7 @@ class TestBillingBundles:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         billing_bundle = client.bundle_pricing.billing_bundles.list()
-        assert_matches_type(BillingBundleListResponse, billing_bundle, path=["response"])
+        assert_matches_type(SyncDefaultPagination[BillingBundleSummary], billing_bundle, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -91,7 +89,7 @@ class TestBillingBundles:
             },
             authorization_bearer="authorization_bearer",
         )
-        assert_matches_type(BillingBundleListResponse, billing_bundle, path=["response"])
+        assert_matches_type(SyncDefaultPagination[BillingBundleSummary], billing_bundle, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -101,7 +99,7 @@ class TestBillingBundles:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         billing_bundle = response.parse()
-        assert_matches_type(BillingBundleListResponse, billing_bundle, path=["response"])
+        assert_matches_type(SyncDefaultPagination[BillingBundleSummary], billing_bundle, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -111,7 +109,7 @@ class TestBillingBundles:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             billing_bundle = response.parse()
-            assert_matches_type(BillingBundleListResponse, billing_bundle, path=["response"])
+            assert_matches_type(SyncDefaultPagination[BillingBundleSummary], billing_bundle, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -176,7 +174,7 @@ class TestAsyncBillingBundles:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         billing_bundle = await async_client.bundle_pricing.billing_bundles.list()
-        assert_matches_type(BillingBundleListResponse, billing_bundle, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[BillingBundleSummary], billing_bundle, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -192,7 +190,7 @@ class TestAsyncBillingBundles:
             },
             authorization_bearer="authorization_bearer",
         )
-        assert_matches_type(BillingBundleListResponse, billing_bundle, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[BillingBundleSummary], billing_bundle, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -202,7 +200,7 @@ class TestAsyncBillingBundles:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         billing_bundle = await response.parse()
-        assert_matches_type(BillingBundleListResponse, billing_bundle, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[BillingBundleSummary], billing_bundle, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -212,6 +210,6 @@ class TestAsyncBillingBundles:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             billing_bundle = await response.parse()
-            assert_matches_type(BillingBundleListResponse, billing_bundle, path=["response"])
+            assert_matches_type(AsyncDefaultPagination[BillingBundleSummary], billing_bundle, path=["response"])
 
         assert cast(Any, response.is_closed) is True

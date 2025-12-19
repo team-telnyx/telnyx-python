@@ -10,12 +10,13 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types import (
-    CredentialConnectionListResponse,
+    CredentialConnection,
     CredentialConnectionCreateResponse,
     CredentialConnectionDeleteResponse,
     CredentialConnectionUpdateResponse,
     CredentialConnectionRetrieveResponse,
 )
+from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -57,6 +58,7 @@ class TestCredentialConnections:
                 "isup_headers_enabled": True,
                 "prack_enabled": True,
                 "shaken_stir_enabled": True,
+                "simultaneous_ringing": "disabled",
                 "sip_compact_headers_enabled": True,
                 "timeout_1xx_secs": 10,
                 "timeout_2xx_secs": 20,
@@ -191,6 +193,7 @@ class TestCredentialConnections:
                 "isup_headers_enabled": True,
                 "prack_enabled": True,
                 "shaken_stir_enabled": True,
+                "simultaneous_ringing": "disabled",
                 "sip_compact_headers_enabled": True,
                 "timeout_1xx_secs": 10,
                 "timeout_2xx_secs": 20,
@@ -262,7 +265,7 @@ class TestCredentialConnections:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         credential_connection = client.credential_connections.list()
-        assert_matches_type(CredentialConnectionListResponse, credential_connection, path=["response"])
+        assert_matches_type(SyncDefaultPagination[CredentialConnection], credential_connection, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -279,7 +282,7 @@ class TestCredentialConnections:
             },
             sort="connection_name",
         )
-        assert_matches_type(CredentialConnectionListResponse, credential_connection, path=["response"])
+        assert_matches_type(SyncDefaultPagination[CredentialConnection], credential_connection, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -289,7 +292,7 @@ class TestCredentialConnections:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         credential_connection = response.parse()
-        assert_matches_type(CredentialConnectionListResponse, credential_connection, path=["response"])
+        assert_matches_type(SyncDefaultPagination[CredentialConnection], credential_connection, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -299,7 +302,7 @@ class TestCredentialConnections:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             credential_connection = response.parse()
-            assert_matches_type(CredentialConnectionListResponse, credential_connection, path=["response"])
+            assert_matches_type(SyncDefaultPagination[CredentialConnection], credential_connection, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -385,6 +388,7 @@ class TestAsyncCredentialConnections:
                 "isup_headers_enabled": True,
                 "prack_enabled": True,
                 "shaken_stir_enabled": True,
+                "simultaneous_ringing": "disabled",
                 "sip_compact_headers_enabled": True,
                 "timeout_1xx_secs": 10,
                 "timeout_2xx_secs": 20,
@@ -519,6 +523,7 @@ class TestAsyncCredentialConnections:
                 "isup_headers_enabled": True,
                 "prack_enabled": True,
                 "shaken_stir_enabled": True,
+                "simultaneous_ringing": "disabled",
                 "sip_compact_headers_enabled": True,
                 "timeout_1xx_secs": 10,
                 "timeout_2xx_secs": 20,
@@ -590,7 +595,7 @@ class TestAsyncCredentialConnections:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         credential_connection = await async_client.credential_connections.list()
-        assert_matches_type(CredentialConnectionListResponse, credential_connection, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[CredentialConnection], credential_connection, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -607,7 +612,7 @@ class TestAsyncCredentialConnections:
             },
             sort="connection_name",
         )
-        assert_matches_type(CredentialConnectionListResponse, credential_connection, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[CredentialConnection], credential_connection, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -617,7 +622,7 @@ class TestAsyncCredentialConnections:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         credential_connection = await response.parse()
-        assert_matches_type(CredentialConnectionListResponse, credential_connection, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[CredentialConnection], credential_connection, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -627,7 +632,7 @@ class TestAsyncCredentialConnections:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             credential_connection = await response.parse()
-            assert_matches_type(CredentialConnectionListResponse, credential_connection, path=["response"])
+            assert_matches_type(AsyncDefaultPagination[CredentialConnection], credential_connection, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

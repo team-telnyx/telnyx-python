@@ -23,9 +23,10 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import make_request_options
+from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
+from .._base_client import AsyncPaginator, make_request_options
+from ..types.fax_application import FaxApplication
 from ..types.anchorsite_override import AnchorsiteOverride
-from ..types.fax_application_list_response import FaxApplicationListResponse
 from ..types.fax_application_create_response import FaxApplicationCreateResponse
 from ..types.fax_application_delete_response import FaxApplicationDeleteResponse
 from ..types.fax_application_update_response import FaxApplicationUpdateResponse
@@ -254,7 +255,7 @@ class FaxApplicationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> FaxApplicationListResponse:
+    ) -> SyncDefaultPagination[FaxApplication]:
         """
         This endpoint returns a list of your Fax Applications inside the 'data'
         attribute of the response. You can adjust which applications are listed by using
@@ -292,8 +293,9 @@ class FaxApplicationsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/fax_applications",
+            page=SyncDefaultPagination[FaxApplication],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -308,7 +310,7 @@ class FaxApplicationsResource(SyncAPIResource):
                     fax_application_list_params.FaxApplicationListParams,
                 ),
             ),
-            cast_to=FaxApplicationListResponse,
+            model=FaxApplication,
         )
 
     def delete(
@@ -555,7 +557,7 @@ class AsyncFaxApplicationsResource(AsyncAPIResource):
             cast_to=FaxApplicationUpdateResponse,
         )
 
-    async def list(
+    def list(
         self,
         *,
         filter: fax_application_list_params.Filter | Omit = omit,
@@ -567,7 +569,7 @@ class AsyncFaxApplicationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> FaxApplicationListResponse:
+    ) -> AsyncPaginator[FaxApplication, AsyncDefaultPagination[FaxApplication]]:
         """
         This endpoint returns a list of your Fax Applications inside the 'data'
         attribute of the response. You can adjust which applications are listed by using
@@ -605,14 +607,15 @@ class AsyncFaxApplicationsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/fax_applications",
+            page=AsyncDefaultPagination[FaxApplication],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "filter": filter,
                         "page": page,
@@ -621,7 +624,7 @@ class AsyncFaxApplicationsResource(AsyncAPIResource):
                     fax_application_list_params.FaxApplicationListParams,
                 ),
             ),
-            cast_to=FaxApplicationListResponse,
+            model=FaxApplication,
         )
 
     async def delete(

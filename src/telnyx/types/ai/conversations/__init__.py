@@ -5,7 +5,6 @@ from __future__ import annotations
 from .insight_template import InsightTemplate as InsightTemplate
 from .insight_list_params import InsightListParams as InsightListParams
 from .insight_create_params import InsightCreateParams as InsightCreateParams
-from .insight_list_response import InsightListResponse as InsightListResponse
 from .insight_update_params import InsightUpdateParams as InsightUpdateParams
 from .message_list_response import MessageListResponse as MessageListResponse
 from .insight_template_group import InsightTemplateGroup as InsightTemplateGroup
@@ -15,7 +14,4 @@ from .insight_template_group_detail import InsightTemplateGroupDetail as Insight
 from .insight_group_insight_groups_params import InsightGroupInsightGroupsParams as InsightGroupInsightGroupsParams
 from .insight_group_retrieve_insight_groups_params import (
     InsightGroupRetrieveInsightGroupsParams as InsightGroupRetrieveInsightGroupsParams,
-)
-from .insight_group_retrieve_insight_groups_response import (
-    InsightGroupRetrieveInsightGroupsResponse as InsightGroupRetrieveInsightGroupsResponse,
 )

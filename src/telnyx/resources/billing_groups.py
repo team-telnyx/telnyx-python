@@ -15,8 +15,9 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import make_request_options
-from ..types.billing_group_list_response import BillingGroupListResponse
+from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
+from .._base_client import AsyncPaginator, make_request_options
+from ..types.billing_group import BillingGroup
 from ..types.billing_group_create_response import BillingGroupCreateResponse
 from ..types.billing_group_delete_response import BillingGroupDeleteResponse
 from ..types.billing_group_update_response import BillingGroupUpdateResponse
@@ -152,21 +153,19 @@ class BillingGroupsResource(SyncAPIResource):
     def list(
         self,
         *,
-        page: billing_group_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> BillingGroupListResponse:
+    ) -> SyncDefaultFlatPagination[BillingGroup]:
         """
         List all billing groups
 
         Args:
-          page: Consolidated page parameter (deepObject style). Originally: page[number],
-              page[size]
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -175,16 +174,23 @@ class BillingGroupsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/billing_groups",
+            page=SyncDefaultFlatPagination[BillingGroup],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"page": page}, billing_group_list_params.BillingGroupListParams),
+                query=maybe_transform(
+                    {
+                        "page_number": page_number,
+                        "page_size": page_size,
+                    },
+                    billing_group_list_params.BillingGroupListParams,
+                ),
             ),
-            cast_to=BillingGroupListResponse,
+            model=BillingGroup,
         )
 
     def delete(
@@ -345,24 +351,22 @@ class AsyncBillingGroupsResource(AsyncAPIResource):
             cast_to=BillingGroupUpdateResponse,
         )
 
-    async def list(
+    def list(
         self,
         *,
-        page: billing_group_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> BillingGroupListResponse:
+    ) -> AsyncPaginator[BillingGroup, AsyncDefaultFlatPagination[BillingGroup]]:
         """
         List all billing groups
 
         Args:
-          page: Consolidated page parameter (deepObject style). Originally: page[number],
-              page[size]
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -371,16 +375,23 @@ class AsyncBillingGroupsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/billing_groups",
+            page=AsyncDefaultFlatPagination[BillingGroup],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform({"page": page}, billing_group_list_params.BillingGroupListParams),
+                query=maybe_transform(
+                    {
+                        "page_number": page_number,
+                        "page_size": page_size,
+                    },
+                    billing_group_list_params.BillingGroupListParams,
+                ),
             ),
-            cast_to=BillingGroupListResponse,
+            model=BillingGroup,
         )
 
     async def delete(

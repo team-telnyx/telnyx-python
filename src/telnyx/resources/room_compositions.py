@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
+from typing import Dict
 
 import httpx
 
@@ -17,9 +17,10 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import make_request_options
+from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
+from .._base_client import AsyncPaginator, make_request_options
+from ..types.room_composition import RoomComposition
 from ..types.video_region_param import VideoRegionParam
-from ..types.room_composition_list_response import RoomCompositionListResponse
 from ..types.room_composition_create_response import RoomCompositionCreateResponse
 from ..types.room_composition_retrieve_response import RoomCompositionRetrieveResponse
 
@@ -49,13 +50,13 @@ class RoomCompositionsResource(SyncAPIResource):
     def create(
         self,
         *,
-        format: Optional[str] | Omit = omit,
-        resolution: Optional[str] | Omit = omit,
-        session_id: Optional[str] | Omit = omit,
+        format: str | Omit = omit,
+        resolution: str | Omit = omit,
+        session_id: str | Omit = omit,
         video_layout: Dict[str, VideoRegionParam] | Omit = omit,
-        webhook_event_failover_url: Optional[str] | Omit = omit,
+        webhook_event_failover_url: str | Omit = omit,
         webhook_event_url: str | Omit = omit,
-        webhook_timeout_secs: Optional[int] | Omit = omit,
+        webhook_timeout_secs: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -159,7 +160,7 @@ class RoomCompositionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RoomCompositionListResponse:
+    ) -> SyncDefaultPagination[RoomComposition]:
         """
         View a list of room compositions.
 
@@ -180,8 +181,9 @@ class RoomCompositionsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/room_compositions",
+            page=SyncDefaultPagination[RoomComposition],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -195,7 +197,7 @@ class RoomCompositionsResource(SyncAPIResource):
                     room_composition_list_params.RoomCompositionListParams,
                 ),
             ),
-            cast_to=RoomCompositionListResponse,
+            model=RoomComposition,
         )
 
     def delete(
@@ -258,13 +260,13 @@ class AsyncRoomCompositionsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        format: Optional[str] | Omit = omit,
-        resolution: Optional[str] | Omit = omit,
-        session_id: Optional[str] | Omit = omit,
+        format: str | Omit = omit,
+        resolution: str | Omit = omit,
+        session_id: str | Omit = omit,
         video_layout: Dict[str, VideoRegionParam] | Omit = omit,
-        webhook_event_failover_url: Optional[str] | Omit = omit,
+        webhook_event_failover_url: str | Omit = omit,
         webhook_event_url: str | Omit = omit,
-        webhook_timeout_secs: Optional[int] | Omit = omit,
+        webhook_timeout_secs: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -357,7 +359,7 @@ class AsyncRoomCompositionsResource(AsyncAPIResource):
             cast_to=RoomCompositionRetrieveResponse,
         )
 
-    async def list(
+    def list(
         self,
         *,
         filter: room_composition_list_params.Filter | Omit = omit,
@@ -368,7 +370,7 @@ class AsyncRoomCompositionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RoomCompositionListResponse:
+    ) -> AsyncPaginator[RoomComposition, AsyncDefaultPagination[RoomComposition]]:
         """
         View a list of room compositions.
 
@@ -389,14 +391,15 @@ class AsyncRoomCompositionsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/room_compositions",
+            page=AsyncDefaultPagination[RoomComposition],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "filter": filter,
                         "page": page,
@@ -404,7 +407,7 @@ class AsyncRoomCompositionsResource(AsyncAPIResource):
                     room_composition_list_params.RoomCompositionListParams,
                 ),
             ),
-            cast_to=RoomCompositionListResponse,
+            model=RoomComposition,
         )
 
     async def delete(

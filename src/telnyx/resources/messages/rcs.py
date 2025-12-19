@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing_extensions import Literal
+
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
@@ -15,7 +17,9 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._base_client import make_request_options
-from ...types.messages import rc_generate_deeplink_params
+from ...types.messages import rc_send_params, rc_generate_deeplink_params
+from ...types.rcs_agent_message_param import RcsAgentMessageParam
+from ...types.messages.rc_send_response import RcSendResponse
 from ...types.messages.rc_generate_deeplink_response import RcGenerateDeeplinkResponse
 
 __all__ = ["RcsResource", "AsyncRcsResource"]
@@ -91,6 +95,67 @@ class RcsResource(SyncAPIResource):
             cast_to=RcGenerateDeeplinkResponse,
         )
 
+    def send(
+        self,
+        *,
+        agent_id: str,
+        agent_message: RcsAgentMessageParam,
+        messaging_profile_id: str,
+        to: str,
+        mms_fallback: rc_send_params.MmsFallback | Omit = omit,
+        sms_fallback: rc_send_params.SMSFallback | Omit = omit,
+        type: Literal["RCS"] | Omit = omit,
+        webhook_url: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> RcSendResponse:
+        """
+        Send an RCS message
+
+        Args:
+          agent_id: RCS Agent ID
+
+          messaging_profile_id: A valid messaging profile ID
+
+          to: Phone number in +E.164 format
+
+          type: Message type - must be set to "RCS"
+
+          webhook_url: The URL where webhooks related to this message will be sent.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._post(
+            "/messages/rcs",
+            body=maybe_transform(
+                {
+                    "agent_id": agent_id,
+                    "agent_message": agent_message,
+                    "messaging_profile_id": messaging_profile_id,
+                    "to": to,
+                    "mms_fallback": mms_fallback,
+                    "sms_fallback": sms_fallback,
+                    "type": type,
+                    "webhook_url": webhook_url,
+                },
+                rc_send_params.RcSendParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=RcSendResponse,
+        )
+
 
 class AsyncRcsResource(AsyncAPIResource):
     @cached_property
@@ -162,6 +227,67 @@ class AsyncRcsResource(AsyncAPIResource):
             cast_to=RcGenerateDeeplinkResponse,
         )
 
+    async def send(
+        self,
+        *,
+        agent_id: str,
+        agent_message: RcsAgentMessageParam,
+        messaging_profile_id: str,
+        to: str,
+        mms_fallback: rc_send_params.MmsFallback | Omit = omit,
+        sms_fallback: rc_send_params.SMSFallback | Omit = omit,
+        type: Literal["RCS"] | Omit = omit,
+        webhook_url: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> RcSendResponse:
+        """
+        Send an RCS message
+
+        Args:
+          agent_id: RCS Agent ID
+
+          messaging_profile_id: A valid messaging profile ID
+
+          to: Phone number in +E.164 format
+
+          type: Message type - must be set to "RCS"
+
+          webhook_url: The URL where webhooks related to this message will be sent.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._post(
+            "/messages/rcs",
+            body=await async_maybe_transform(
+                {
+                    "agent_id": agent_id,
+                    "agent_message": agent_message,
+                    "messaging_profile_id": messaging_profile_id,
+                    "to": to,
+                    "mms_fallback": mms_fallback,
+                    "sms_fallback": sms_fallback,
+                    "type": type,
+                    "webhook_url": webhook_url,
+                },
+                rc_send_params.RcSendParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=RcSendResponse,
+        )
+
 
 class RcsResourceWithRawResponse:
     def __init__(self, rcs: RcsResource) -> None:
@@ -169,6 +295,9 @@ class RcsResourceWithRawResponse:
 
         self.generate_deeplink = to_raw_response_wrapper(
             rcs.generate_deeplink,
+        )
+        self.send = to_raw_response_wrapper(
+            rcs.send,
         )
 
 
@@ -179,6 +308,9 @@ class AsyncRcsResourceWithRawResponse:
         self.generate_deeplink = async_to_raw_response_wrapper(
             rcs.generate_deeplink,
         )
+        self.send = async_to_raw_response_wrapper(
+            rcs.send,
+        )
 
 
 class RcsResourceWithStreamingResponse:
@@ -188,6 +320,9 @@ class RcsResourceWithStreamingResponse:
         self.generate_deeplink = to_streamed_response_wrapper(
             rcs.generate_deeplink,
         )
+        self.send = to_streamed_response_wrapper(
+            rcs.send,
+        )
 
 
 class AsyncRcsResourceWithStreamingResponse:
@@ -196,4 +331,7 @@ class AsyncRcsResourceWithStreamingResponse:
 
         self.generate_deeplink = async_to_streamed_response_wrapper(
             rcs.generate_deeplink,
+        )
+        self.send = async_to_streamed_response_wrapper(
+            rcs.send,
         )

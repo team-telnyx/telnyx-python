@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Optional
 from typing_extensions import TypedDict
 
 from .._types import SequenceNotStr
@@ -11,17 +10,17 @@ __all__ = ["VideoRegionParam"]
 
 
 class VideoRegionParam(TypedDict, total=False):
-    height: Optional[int]
+    height: int
     """Height of the video region"""
 
-    max_columns: Optional[int]
+    max_columns: int
     """Maximum number of columns of the region's placement grid.
 
     By default, the region has as many columns as needed to layout all the specified
     video sources.
     """
 
-    max_rows: Optional[int]
+    max_rows: int
     """Maximum number of rows of the region's placement grid.
 
     By default, the region has as many rows as needed to layout all the specified
@@ -34,22 +33,22 @@ class VideoRegionParam(TypedDict, total=False):
     Can be "\\**" to specify all video recordings in the session
     """
 
-    width: Optional[int]
+    width: int
     """Width of the video region"""
 
-    x_pos: Optional[int]
+    x_pos: int
     """
     X axis value (in pixels) of the region's upper left corner relative to the upper
     left corner of the whole room composition viewport.
     """
 
-    y_pos: Optional[int]
+    y_pos: int
     """
     Y axis value (in pixels) of the region's upper left corner relative to the upper
     left corner of the whole room composition viewport.
     """
 
-    z_pos: Optional[int]
+    z_pos: int
     """
     Regions with higher z_pos values are stacked on top of regions with lower z_pos
     values

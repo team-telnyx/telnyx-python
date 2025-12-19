@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Optional
-
 import httpx
 
 from ...types import room_list_params, room_create_params, room_update_params, room_retrieve_params
@@ -25,7 +23,9 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._base_client import make_request_options
+from ...pagination import SyncDefaultPagination, AsyncDefaultPagination
+from ...types.room import Room
+from ..._base_client import AsyncPaginator, make_request_options
 from .sessions.sessions import (
     SessionsResource,
     AsyncSessionsResource,
@@ -34,7 +34,6 @@ from .sessions.sessions import (
     SessionsResourceWithStreamingResponse,
     AsyncSessionsResourceWithStreamingResponse,
 )
-from ...types.room_list_response import RoomListResponse
 from ...types.room_create_response import RoomCreateResponse
 from ...types.room_update_response import RoomUpdateResponse
 from ...types.room_retrieve_response import RoomRetrieveResponse
@@ -76,9 +75,9 @@ class RoomsResource(SyncAPIResource):
         enable_recording: bool | Omit = omit,
         max_participants: int | Omit = omit,
         unique_name: str | Omit = omit,
-        webhook_event_failover_url: Optional[str] | Omit = omit,
+        webhook_event_failover_url: str | Omit = omit,
         webhook_event_url: str | Omit = omit,
-        webhook_timeout_secs: Optional[int] | Omit = omit,
+        webhook_timeout_secs: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -179,9 +178,9 @@ class RoomsResource(SyncAPIResource):
         enable_recording: bool | Omit = omit,
         max_participants: int | Omit = omit,
         unique_name: str | Omit = omit,
-        webhook_event_failover_url: Optional[str] | Omit = omit,
+        webhook_event_failover_url: str | Omit = omit,
         webhook_event_url: str | Omit = omit,
-        webhook_timeout_secs: Optional[int] | Omit = omit,
+        webhook_timeout_secs: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -249,7 +248,7 @@ class RoomsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RoomListResponse:
+    ) -> SyncDefaultPagination[Room]:
         """
         View a list of rooms.
 
@@ -273,8 +272,9 @@ class RoomsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/rooms",
+            page=SyncDefaultPagination[Room],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -289,7 +289,7 @@ class RoomsResource(SyncAPIResource):
                     room_list_params.RoomListParams,
                 ),
             ),
-            cast_to=RoomListResponse,
+            model=Room,
         )
 
     def delete(
@@ -364,9 +364,9 @@ class AsyncRoomsResource(AsyncAPIResource):
         enable_recording: bool | Omit = omit,
         max_participants: int | Omit = omit,
         unique_name: str | Omit = omit,
-        webhook_event_failover_url: Optional[str] | Omit = omit,
+        webhook_event_failover_url: str | Omit = omit,
         webhook_event_url: str | Omit = omit,
-        webhook_timeout_secs: Optional[int] | Omit = omit,
+        webhook_timeout_secs: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -469,9 +469,9 @@ class AsyncRoomsResource(AsyncAPIResource):
         enable_recording: bool | Omit = omit,
         max_participants: int | Omit = omit,
         unique_name: str | Omit = omit,
-        webhook_event_failover_url: Optional[str] | Omit = omit,
+        webhook_event_failover_url: str | Omit = omit,
         webhook_event_url: str | Omit = omit,
-        webhook_timeout_secs: Optional[int] | Omit = omit,
+        webhook_timeout_secs: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -527,7 +527,7 @@ class AsyncRoomsResource(AsyncAPIResource):
             cast_to=RoomUpdateResponse,
         )
 
-    async def list(
+    def list(
         self,
         *,
         filter: room_list_params.Filter | Omit = omit,
@@ -539,7 +539,7 @@ class AsyncRoomsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RoomListResponse:
+    ) -> AsyncPaginator[Room, AsyncDefaultPagination[Room]]:
         """
         View a list of rooms.
 
@@ -563,14 +563,15 @@ class AsyncRoomsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/rooms",
+            page=AsyncDefaultPagination[Room],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "filter": filter,
                         "include_sessions": include_sessions,
@@ -579,7 +580,7 @@ class AsyncRoomsResource(AsyncAPIResource):
                     room_list_params.RoomListParams,
                 ),
             ),
-            cast_to=RoomListResponse,
+            model=Room,
         )
 
     async def delete(

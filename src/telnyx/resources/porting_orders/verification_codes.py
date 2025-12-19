@@ -17,7 +17,8 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._base_client import make_request_options
+from ...pagination import SyncDefaultPagination, AsyncDefaultPagination
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.porting_orders import (
     verification_code_list_params,
     verification_code_send_params,
@@ -62,7 +63,7 @@ class VerificationCodesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> VerificationCodeListResponse:
+    ) -> SyncDefaultPagination[VerificationCodeListResponse]:
         """
         Returns a list of verification codes for a porting order.
 
@@ -84,8 +85,9 @@ class VerificationCodesResource(SyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/porting_orders/{id}/verification_codes",
+            page=SyncDefaultPagination[VerificationCodeListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -100,7 +102,7 @@ class VerificationCodesResource(SyncAPIResource):
                     verification_code_list_params.VerificationCodeListParams,
                 ),
             ),
-            cast_to=VerificationCodeListResponse,
+            model=VerificationCodeListResponse,
         )
 
     def send(
@@ -204,7 +206,7 @@ class AsyncVerificationCodesResource(AsyncAPIResource):
         """
         return AsyncVerificationCodesResourceWithStreamingResponse(self)
 
-    async def list(
+    def list(
         self,
         id: str,
         *,
@@ -217,7 +219,7 @@ class AsyncVerificationCodesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> VerificationCodeListResponse:
+    ) -> AsyncPaginator[VerificationCodeListResponse, AsyncDefaultPagination[VerificationCodeListResponse]]:
         """
         Returns a list of verification codes for a porting order.
 
@@ -239,14 +241,15 @@ class AsyncVerificationCodesResource(AsyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/porting_orders/{id}/verification_codes",
+            page=AsyncDefaultPagination[VerificationCodeListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "filter": filter,
                         "page": page,
@@ -255,7 +258,7 @@ class AsyncVerificationCodesResource(AsyncAPIResource):
                     verification_code_list_params.VerificationCodeListParams,
                 ),
             ),
-            cast_to=VerificationCodeListResponse,
+            model=VerificationCodeListResponse,
         )
 
     async def send(

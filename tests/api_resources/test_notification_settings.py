@@ -10,11 +10,12 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types import (
-    NotificationSettingListResponse,
+    NotificationSetting,
     NotificationSettingCreateResponse,
     NotificationSettingDeleteResponse,
     NotificationSettingRetrieveResponse,
 )
+from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -112,7 +113,7 @@ class TestNotificationSettings:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         notification_setting = client.notification_settings.list()
-        assert_matches_type(NotificationSettingListResponse, notification_setting, path=["response"])
+        assert_matches_type(SyncDefaultPagination[NotificationSetting], notification_setting, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -131,7 +132,7 @@ class TestNotificationSettings:
                 "size": 1,
             },
         )
-        assert_matches_type(NotificationSettingListResponse, notification_setting, path=["response"])
+        assert_matches_type(SyncDefaultPagination[NotificationSetting], notification_setting, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -141,7 +142,7 @@ class TestNotificationSettings:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         notification_setting = response.parse()
-        assert_matches_type(NotificationSettingListResponse, notification_setting, path=["response"])
+        assert_matches_type(SyncDefaultPagination[NotificationSetting], notification_setting, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -151,7 +152,7 @@ class TestNotificationSettings:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             notification_setting = response.parse()
-            assert_matches_type(NotificationSettingListResponse, notification_setting, path=["response"])
+            assert_matches_type(SyncDefaultPagination[NotificationSetting], notification_setting, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -293,7 +294,7 @@ class TestAsyncNotificationSettings:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         notification_setting = await async_client.notification_settings.list()
-        assert_matches_type(NotificationSettingListResponse, notification_setting, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[NotificationSetting], notification_setting, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -312,7 +313,7 @@ class TestAsyncNotificationSettings:
                 "size": 1,
             },
         )
-        assert_matches_type(NotificationSettingListResponse, notification_setting, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[NotificationSetting], notification_setting, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -322,7 +323,7 @@ class TestAsyncNotificationSettings:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         notification_setting = await response.parse()
-        assert_matches_type(NotificationSettingListResponse, notification_setting, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[NotificationSetting], notification_setting, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -332,7 +333,7 @@ class TestAsyncNotificationSettings:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             notification_setting = await response.parse()
-            assert_matches_type(NotificationSettingListResponse, notification_setting, path=["response"])
+            assert_matches_type(AsyncDefaultPagination[NotificationSetting], notification_setting, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

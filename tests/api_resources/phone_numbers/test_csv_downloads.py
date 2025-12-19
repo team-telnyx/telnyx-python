@@ -9,8 +9,9 @@ import pytest
 
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
+from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
 from telnyx.types.phone_numbers import (
-    CsvDownloadListResponse,
+    CsvDownload,
     CsvDownloadCreateResponse,
     CsvDownloadRetrieveResponse,
 )
@@ -120,7 +121,7 @@ class TestCsvDownloads:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         csv_download = client.phone_numbers.csv_downloads.list()
-        assert_matches_type(CsvDownloadListResponse, csv_download, path=["response"])
+        assert_matches_type(SyncDefaultPagination[CsvDownload], csv_download, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -131,7 +132,7 @@ class TestCsvDownloads:
                 "size": 1,
             },
         )
-        assert_matches_type(CsvDownloadListResponse, csv_download, path=["response"])
+        assert_matches_type(SyncDefaultPagination[CsvDownload], csv_download, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -141,7 +142,7 @@ class TestCsvDownloads:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         csv_download = response.parse()
-        assert_matches_type(CsvDownloadListResponse, csv_download, path=["response"])
+        assert_matches_type(SyncDefaultPagination[CsvDownload], csv_download, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -151,7 +152,7 @@ class TestCsvDownloads:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             csv_download = response.parse()
-            assert_matches_type(CsvDownloadListResponse, csv_download, path=["response"])
+            assert_matches_type(SyncDefaultPagination[CsvDownload], csv_download, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -260,7 +261,7 @@ class TestAsyncCsvDownloads:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         csv_download = await async_client.phone_numbers.csv_downloads.list()
-        assert_matches_type(CsvDownloadListResponse, csv_download, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[CsvDownload], csv_download, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -271,7 +272,7 @@ class TestAsyncCsvDownloads:
                 "size": 1,
             },
         )
-        assert_matches_type(CsvDownloadListResponse, csv_download, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[CsvDownload], csv_download, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -281,7 +282,7 @@ class TestAsyncCsvDownloads:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         csv_download = await response.parse()
-        assert_matches_type(CsvDownloadListResponse, csv_download, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[CsvDownload], csv_download, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -291,6 +292,6 @@ class TestAsyncCsvDownloads:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             csv_download = await response.parse()
-            assert_matches_type(CsvDownloadListResponse, csv_download, path=["response"])
+            assert_matches_type(AsyncDefaultPagination[CsvDownload], csv_download, path=["response"])
 
         assert cast(Any, response.is_closed) is True

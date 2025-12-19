@@ -22,9 +22,6 @@ class Data(Record, WireguardPeerPatch):
     within Telnyx. If you lose your Private Key, it can not be recovered.
     """
 
-    record_type: Optional[str] = None  # type: ignore
-    """Identifies the type of the resource."""
-
     wireguard_interface_id: Optional[str] = None
     """The id of the wireguard interface associated with the peer."""
 

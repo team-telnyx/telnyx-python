@@ -8,6 +8,14 @@ from .calls import (
     CallsResourceWithStreamingResponse,
     AsyncCallsResourceWithStreamingResponse,
 )
+from .queues import (
+    QueuesResource,
+    AsyncQueuesResource,
+    QueuesResourceWithRawResponse,
+    AsyncQueuesResourceWithRawResponse,
+    QueuesResourceWithStreamingResponse,
+    AsyncQueuesResourceWithStreamingResponse,
+)
 from .accounts import (
     AccountsResource,
     AsyncAccountsResource,
@@ -66,6 +74,12 @@ __all__ = [
     "AsyncTranscriptionsResourceWithRawResponse",
     "TranscriptionsResourceWithStreamingResponse",
     "AsyncTranscriptionsResourceWithStreamingResponse",
+    "QueuesResource",
+    "AsyncQueuesResource",
+    "QueuesResourceWithRawResponse",
+    "AsyncQueuesResourceWithRawResponse",
+    "QueuesResourceWithStreamingResponse",
+    "AsyncQueuesResourceWithStreamingResponse",
     "AccountsResource",
     "AsyncAccountsResource",
     "AccountsResourceWithRawResponse",

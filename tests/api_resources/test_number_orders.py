@@ -15,6 +15,7 @@ from telnyx.types import (
     NumberOrderUpdateResponse,
     NumberOrderRetrieveResponse,
 )
+from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -176,7 +177,7 @@ class TestNumberOrders:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         number_order = client.number_orders.list()
-        assert_matches_type(NumberOrderListResponse, number_order, path=["response"])
+        assert_matches_type(SyncDefaultPagination[NumberOrderListResponse], number_order, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -197,7 +198,7 @@ class TestNumberOrders:
                 "size": 1,
             },
         )
-        assert_matches_type(NumberOrderListResponse, number_order, path=["response"])
+        assert_matches_type(SyncDefaultPagination[NumberOrderListResponse], number_order, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -207,7 +208,7 @@ class TestNumberOrders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         number_order = response.parse()
-        assert_matches_type(NumberOrderListResponse, number_order, path=["response"])
+        assert_matches_type(SyncDefaultPagination[NumberOrderListResponse], number_order, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -217,7 +218,7 @@ class TestNumberOrders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             number_order = response.parse()
-            assert_matches_type(NumberOrderListResponse, number_order, path=["response"])
+            assert_matches_type(SyncDefaultPagination[NumberOrderListResponse], number_order, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -381,7 +382,7 @@ class TestAsyncNumberOrders:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         number_order = await async_client.number_orders.list()
-        assert_matches_type(NumberOrderListResponse, number_order, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[NumberOrderListResponse], number_order, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -402,7 +403,7 @@ class TestAsyncNumberOrders:
                 "size": 1,
             },
         )
-        assert_matches_type(NumberOrderListResponse, number_order, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[NumberOrderListResponse], number_order, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -412,7 +413,7 @@ class TestAsyncNumberOrders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         number_order = await response.parse()
-        assert_matches_type(NumberOrderListResponse, number_order, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[NumberOrderListResponse], number_order, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -422,6 +423,6 @@ class TestAsyncNumberOrders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             number_order = await response.parse()
-            assert_matches_type(NumberOrderListResponse, number_order, path=["response"])
+            assert_matches_type(AsyncDefaultPagination[NumberOrderListResponse], number_order, path=["response"])
 
         assert cast(Any, response.is_closed) is True

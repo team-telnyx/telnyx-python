@@ -6,7 +6,7 @@ import httpx
 
 from ..types import oauth_grant_list_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._utils import maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -15,8 +15,9 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import make_request_options
-from ..types.oauth_grant_list_response import OAuthGrantListResponse
+from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
+from .._base_client import AsyncPaginator, make_request_options
+from ..types.oauth_grant import OAuthGrant
 from ..types.oauth_grant_delete_response import OAuthGrantDeleteResponse
 from ..types.oauth_grant_retrieve_response import OAuthGrantRetrieveResponse
 
@@ -87,7 +88,7 @@ class OAuthGrantsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> OAuthGrantListResponse:
+    ) -> SyncDefaultFlatPagination[OAuthGrant]:
         """
         Retrieve a paginated list of OAuth grants for the authenticated user
 
@@ -104,8 +105,9 @@ class OAuthGrantsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/oauth_grants",
+            page=SyncDefaultFlatPagination[OAuthGrant],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -119,7 +121,7 @@ class OAuthGrantsResource(SyncAPIResource):
                     oauth_grant_list_params.OAuthGrantListParams,
                 ),
             ),
-            cast_to=OAuthGrantListResponse,
+            model=OAuthGrant,
         )
 
     def delete(
@@ -209,7 +211,7 @@ class AsyncOAuthGrantsResource(AsyncAPIResource):
             cast_to=OAuthGrantRetrieveResponse,
         )
 
-    async def list(
+    def list(
         self,
         *,
         page_number: int | Omit = omit,
@@ -220,7 +222,7 @@ class AsyncOAuthGrantsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> OAuthGrantListResponse:
+    ) -> AsyncPaginator[OAuthGrant, AsyncDefaultFlatPagination[OAuthGrant]]:
         """
         Retrieve a paginated list of OAuth grants for the authenticated user
 
@@ -237,14 +239,15 @@ class AsyncOAuthGrantsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/oauth_grants",
+            page=AsyncDefaultFlatPagination[OAuthGrant],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "page_number": page_number,
                         "page_size": page_size,
@@ -252,7 +255,7 @@ class AsyncOAuthGrantsResource(AsyncAPIResource):
                     oauth_grant_list_params.OAuthGrantListParams,
                 ),
             ),
-            cast_to=OAuthGrantListResponse,
+            model=OAuthGrant,
         )
 
     async def delete(

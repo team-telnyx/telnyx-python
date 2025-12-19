@@ -17,7 +17,8 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._base_client import make_request_options
+from ....pagination import SyncDefaultPaginationForMessagingTollfree, AsyncDefaultPaginationForMessagingTollfree
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.messaging_tollfree.verification import (
     Volume,
     UseCaseCategories,
@@ -30,7 +31,6 @@ from ....types.messaging_tollfree.verification import (
 from ....types.messaging_tollfree.verification.volume import Volume
 from ....types.messaging_tollfree.verification.url_param import URLParam
 from ....types.messaging_tollfree.verification.use_case_categories import UseCaseCategories
-from ....types.messaging_tollfree.verification.request_list_response import RequestListResponse
 from ....types.messaging_tollfree.verification.tf_phone_number_param import TfPhoneNumberParam
 from ....types.messaging_tollfree.verification.tf_verification_status import TfVerificationStatus
 from ....types.messaging_tollfree.verification.verification_request_egress import VerificationRequestEgress
@@ -459,7 +459,7 @@ class RequestsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RequestListResponse:
+    ) -> SyncDefaultPaginationForMessagingTollfree[VerificationRequestStatus]:
         """
         Get a list of previously-submitted tollfree verification requests
 
@@ -478,8 +478,9 @@ class RequestsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/messaging_tollfree/verification/requests",
+            page=SyncDefaultPaginationForMessagingTollfree[VerificationRequestStatus],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -497,7 +498,7 @@ class RequestsResource(SyncAPIResource):
                     request_list_params.RequestListParams,
                 ),
             ),
-            cast_to=RequestListResponse,
+            model=VerificationRequestStatus,
         )
 
     def delete(
@@ -945,7 +946,7 @@ class AsyncRequestsResource(AsyncAPIResource):
             cast_to=VerificationRequestEgress,
         )
 
-    async def list(
+    def list(
         self,
         *,
         page: int,
@@ -960,7 +961,9 @@ class AsyncRequestsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RequestListResponse:
+    ) -> AsyncPaginator[
+        VerificationRequestStatus, AsyncDefaultPaginationForMessagingTollfree[VerificationRequestStatus]
+    ]:
         """
         Get a list of previously-submitted tollfree verification requests
 
@@ -979,14 +982,15 @@ class AsyncRequestsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/messaging_tollfree/verification/requests",
+            page=AsyncDefaultPaginationForMessagingTollfree[VerificationRequestStatus],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "page": page,
                         "page_size": page_size,
@@ -998,7 +1002,7 @@ class AsyncRequestsResource(AsyncAPIResource):
                     request_list_params.RequestListParams,
                 ),
             ),
-            cast_to=RequestListResponse,
+            model=VerificationRequestStatus,
         )
 
     async def delete(

@@ -13,13 +13,13 @@ __all__ = [
     "DataGlobalIP",
     "DataMeanLatency",
     "DataPercentileLatency",
-    "DataPercentileLatency_0",
-    "DataPercentileLatency_100",
-    "DataPercentileLatency_25",
-    "DataPercentileLatency_50",
-    "DataPercentileLatency_75",
-    "DataPercentileLatency_90",
-    "DataPercentileLatency_99",
+    "P0",
+    "P100",
+    "P25",
+    "P50",
+    "P75",
+    "P90",
+    "P99",
     "DataProberLocation",
 ]
 
@@ -40,7 +40,7 @@ class DataMeanLatency(BaseModel):
     """The unit of the average latency."""
 
 
-class DataPercentileLatency_0(BaseModel):
+class P0(BaseModel):
     amount: Optional[float] = None
     """The minimum latency."""
 
@@ -48,7 +48,7 @@ class DataPercentileLatency_0(BaseModel):
     """The unit of the minimum latency."""
 
 
-class DataPercentileLatency_100(BaseModel):
+class P100(BaseModel):
     amount: Optional[float] = None
     """The maximum latency."""
 
@@ -56,7 +56,7 @@ class DataPercentileLatency_100(BaseModel):
     """The unit of the maximum latency."""
 
 
-class DataPercentileLatency_25(BaseModel):
+class P25(BaseModel):
     amount: Optional[float] = None
     """The 25th percentile latency."""
 
@@ -64,7 +64,7 @@ class DataPercentileLatency_25(BaseModel):
     """The unit of the 25th percentile latency."""
 
 
-class DataPercentileLatency_50(BaseModel):
+class P50(BaseModel):
     amount: Optional[float] = None
     """The 50th percentile latency."""
 
@@ -72,7 +72,7 @@ class DataPercentileLatency_50(BaseModel):
     """The unit of the 50th percentile latency."""
 
 
-class DataPercentileLatency_75(BaseModel):
+class P75(BaseModel):
     amount: Optional[float] = None
     """The 75th percentile latency."""
 
@@ -80,7 +80,7 @@ class DataPercentileLatency_75(BaseModel):
     """The unit of the 75th percentile latency."""
 
 
-class DataPercentileLatency_90(BaseModel):
+class P90(BaseModel):
     amount: Optional[float] = None
     """The 90th percentile latency."""
 
@@ -88,7 +88,7 @@ class DataPercentileLatency_90(BaseModel):
     """The unit of the 90th percentile latency."""
 
 
-class DataPercentileLatency_99(BaseModel):
+class P99(BaseModel):
     amount: Optional[float] = None
     """The 99th percentile latency."""
 
@@ -97,19 +97,19 @@ class DataPercentileLatency_99(BaseModel):
 
 
 class DataPercentileLatency(BaseModel):
-    p0: Optional[DataPercentileLatency_0] = FieldInfo(alias="0", default=None)
+    p0: Optional[P0] = FieldInfo(alias="0", default=None)
 
-    p100: Optional[DataPercentileLatency_100] = FieldInfo(alias="100", default=None)
+    p100: Optional[P100] = FieldInfo(alias="100", default=None)
 
-    p25: Optional[DataPercentileLatency_25] = FieldInfo(alias="25", default=None)
+    p25: Optional[P25] = FieldInfo(alias="25", default=None)
 
-    p50: Optional[DataPercentileLatency_50] = FieldInfo(alias="50", default=None)
+    p50: Optional[P50] = FieldInfo(alias="50", default=None)
 
-    p75: Optional[DataPercentileLatency_75] = FieldInfo(alias="75", default=None)
+    p75: Optional[P75] = FieldInfo(alias="75", default=None)
 
-    p90: Optional[DataPercentileLatency_90] = FieldInfo(alias="90", default=None)
+    p90: Optional[P90] = FieldInfo(alias="90", default=None)
 
-    p99: Optional[DataPercentileLatency_99] = FieldInfo(alias="99", default=None)
+    p99: Optional[P99] = FieldInfo(alias="99", default=None)
 
 
 class DataProberLocation(BaseModel):

@@ -113,7 +113,7 @@ class TestParticipants:
             end_conference_on_exit=False,
             hold=True,
             hold_method="POST",
-            hold_url="HoldUrl",
+            hold_url="https://www.example.com/hold-music.xml",
             muted=True,
             wait_url="https://www.example.com/wait_music.mp3",
         )
@@ -502,7 +502,7 @@ class TestAsyncParticipants:
             end_conference_on_exit=False,
             hold=True,
             hold_method="POST",
-            hold_url="HoldUrl",
+            hold_url="https://www.example.com/hold-music.xml",
             muted=True,
             wait_url="https://www.example.com/wait_music.mp3",
         )

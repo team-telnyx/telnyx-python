@@ -2,11 +2,12 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from .._types import SequenceNotStr
+from .._utils import PropertyInfo
 
-__all__ = ["UsageReportListParams", "Page"]
+__all__ = ["UsageReportListParams"]
 
 
 class UsageReportListParams(TypedDict, total=False):
@@ -46,11 +47,9 @@ class UsageReportListParams(TypedDict, total=False):
     request.
     """
 
-    page: Page
-    """Consolidated page parameter (deepObject style).
+    page_number: Annotated[int, PropertyInfo(alias="page[number]")]
 
-    Originally: page[number], page[size]
-    """
+    page_size: Annotated[int, PropertyInfo(alias="page[size]")]
 
     sort: SequenceNotStr[str]
     """Specifies the sort order for results"""
@@ -63,14 +62,3 @@ class UsageReportListParams(TypedDict, total=False):
 
     authorization_bearer: str
     """Authenticates the request with your Telnyx API V2 KEY"""
-
-
-class Page(TypedDict, total=False):
-    """Consolidated page parameter (deepObject style).
-
-    Originally: page[number], page[size]
-    """
-
-    number: int
-
-    size: int

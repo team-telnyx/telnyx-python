@@ -19,8 +19,9 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import make_request_options
-from ..types.sim_card_data_usage_notification_list_response import SimCardDataUsageNotificationListResponse
+from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
+from .._base_client import AsyncPaginator, make_request_options
+from ..types.sim_card_data_usage_notification import SimCardDataUsageNotification
 from ..types.sim_card_data_usage_notification_create_response import SimCardDataUsageNotificationCreateResponse
 from ..types.sim_card_data_usage_notification_delete_response import SimCardDataUsageNotificationDeleteResponse
 from ..types.sim_card_data_usage_notification_update_response import SimCardDataUsageNotificationUpdateResponse
@@ -127,7 +128,7 @@ class SimCardDataUsageNotificationsResource(SyncAPIResource):
 
     def update(
         self,
-        id: str,
+        sim_card_data_usage_notification_id: str,
         *,
         sim_card_id: str | Omit = omit,
         threshold: sim_card_data_usage_notification_update_params.Threshold | Omit = omit,
@@ -154,10 +155,12 @@ class SimCardDataUsageNotificationsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not sim_card_data_usage_notification_id:
+            raise ValueError(
+                f"Expected a non-empty value for `sim_card_data_usage_notification_id` but received {sim_card_data_usage_notification_id!r}"
+            )
         return self._patch(
-            f"/sim_card_data_usage_notifications/{id}",
+            f"/sim_card_data_usage_notifications/{sim_card_data_usage_notification_id}",
             body=maybe_transform(
                 {
                     "sim_card_id": sim_card_id,
@@ -183,7 +186,7 @@ class SimCardDataUsageNotificationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SimCardDataUsageNotificationListResponse:
+    ) -> SyncDefaultFlatPagination[SimCardDataUsageNotification]:
         """Lists a paginated collection of SIM card data usage notifications.
 
         It enables
@@ -204,8 +207,9 @@ class SimCardDataUsageNotificationsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/sim_card_data_usage_notifications",
+            page=SyncDefaultFlatPagination[SimCardDataUsageNotification],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -220,7 +224,7 @@ class SimCardDataUsageNotificationsResource(SyncAPIResource):
                     sim_card_data_usage_notification_list_params.SimCardDataUsageNotificationListParams,
                 ),
             ),
-            cast_to=SimCardDataUsageNotificationListResponse,
+            model=SimCardDataUsageNotification,
         )
 
     def delete(
@@ -355,7 +359,7 @@ class AsyncSimCardDataUsageNotificationsResource(AsyncAPIResource):
 
     async def update(
         self,
-        id: str,
+        sim_card_data_usage_notification_id: str,
         *,
         sim_card_id: str | Omit = omit,
         threshold: sim_card_data_usage_notification_update_params.Threshold | Omit = omit,
@@ -382,10 +386,12 @@ class AsyncSimCardDataUsageNotificationsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not sim_card_data_usage_notification_id:
+            raise ValueError(
+                f"Expected a non-empty value for `sim_card_data_usage_notification_id` but received {sim_card_data_usage_notification_id!r}"
+            )
         return await self._patch(
-            f"/sim_card_data_usage_notifications/{id}",
+            f"/sim_card_data_usage_notifications/{sim_card_data_usage_notification_id}",
             body=await async_maybe_transform(
                 {
                     "sim_card_id": sim_card_id,
@@ -399,7 +405,7 @@ class AsyncSimCardDataUsageNotificationsResource(AsyncAPIResource):
             cast_to=SimCardDataUsageNotificationUpdateResponse,
         )
 
-    async def list(
+    def list(
         self,
         *,
         filter_sim_card_id: str | Omit = omit,
@@ -411,7 +417,7 @@ class AsyncSimCardDataUsageNotificationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SimCardDataUsageNotificationListResponse:
+    ) -> AsyncPaginator[SimCardDataUsageNotification, AsyncDefaultFlatPagination[SimCardDataUsageNotification]]:
         """Lists a paginated collection of SIM card data usage notifications.
 
         It enables
@@ -432,14 +438,15 @@ class AsyncSimCardDataUsageNotificationsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/sim_card_data_usage_notifications",
+            page=AsyncDefaultFlatPagination[SimCardDataUsageNotification],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "filter_sim_card_id": filter_sim_card_id,
                         "page_number": page_number,
@@ -448,7 +455,7 @@ class AsyncSimCardDataUsageNotificationsResource(AsyncAPIResource):
                     sim_card_data_usage_notification_list_params.SimCardDataUsageNotificationListParams,
                 ),
             ),
-            cast_to=SimCardDataUsageNotificationListResponse,
+            model=SimCardDataUsageNotification,
         )
 
     async def delete(

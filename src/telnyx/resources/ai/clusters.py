@@ -23,7 +23,8 @@ from ..._response import (
     async_to_custom_raw_response_wrapper,
     async_to_custom_streamed_response_wrapper,
 )
-from ..._base_client import make_request_options
+from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.ai.cluster_list_response import ClusterListResponse
 from ...types.ai.cluster_compute_response import ClusterComputeResponse
 from ...types.ai.cluster_retrieve_response import ClusterRetrieveResponse
@@ -104,22 +105,19 @@ class ClustersResource(SyncAPIResource):
     def list(
         self,
         *,
-        page: cluster_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ClusterListResponse:
-        """List all clusters
+    ) -> SyncDefaultFlatPagination[ClusterListResponse]:
+        """
+        List all clusters
 
         Args:
-          page: Consolidated page parameter (deepObject style).
-
-        Originally: page[number],
-              page[size]
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -128,16 +126,23 @@ class ClustersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/ai/clusters",
+            page=SyncDefaultFlatPagination[ClusterListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"page": page}, cluster_list_params.ClusterListParams),
+                query=maybe_transform(
+                    {
+                        "page_number": page_number,
+                        "page_size": page_size,
+                    },
+                    cluster_list_params.ClusterListParams,
+                ),
             ),
-            cast_to=ClusterListResponse,
+            model=ClusterListResponse,
         )
 
     def delete(
@@ -345,25 +350,22 @@ class AsyncClustersResource(AsyncAPIResource):
             cast_to=ClusterRetrieveResponse,
         )
 
-    async def list(
+    def list(
         self,
         *,
-        page: cluster_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ClusterListResponse:
-        """List all clusters
+    ) -> AsyncPaginator[ClusterListResponse, AsyncDefaultFlatPagination[ClusterListResponse]]:
+        """
+        List all clusters
 
         Args:
-          page: Consolidated page parameter (deepObject style).
-
-        Originally: page[number],
-              page[size]
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -372,16 +374,23 @@ class AsyncClustersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/ai/clusters",
+            page=AsyncDefaultFlatPagination[ClusterListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform({"page": page}, cluster_list_params.ClusterListParams),
+                query=maybe_transform(
+                    {
+                        "page_number": page_number,
+                        "page_size": page_size,
+                    },
+                    cluster_list_params.ClusterListParams,
+                ),
             ),
-            cast_to=ClusterListResponse,
+            model=ClusterListResponse,
         )
 
     async def delete(

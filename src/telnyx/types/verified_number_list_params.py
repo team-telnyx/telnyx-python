@@ -2,26 +2,14 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
+from typing_extensions import Annotated, TypedDict
 
-__all__ = ["VerifiedNumberListParams", "Page"]
+from .._utils import PropertyInfo
+
+__all__ = ["VerifiedNumberListParams"]
 
 
 class VerifiedNumberListParams(TypedDict, total=False):
-    page: Page
-    """Consolidated page parameter (deepObject style).
+    page_number: Annotated[int, PropertyInfo(alias="page[number]")]
 
-    Use page[size] and page[number] in the query string. Originally: page[size],
-    page[number]
-    """
-
-
-class Page(TypedDict, total=False):
-    """Consolidated page parameter (deepObject style).
-
-    Use page[size] and page[number] in the query string. Originally: page[size], page[number]
-    """
-
-    number: int
-
-    size: int
+    page_size: Annotated[int, PropertyInfo(alias="page[size]")]

@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Optional
 from typing_extensions import TypedDict
 
 __all__ = ["RoomCreateParams"]
@@ -22,7 +21,7 @@ class RoomCreateParams(TypedDict, total=False):
     unique_name: str
     """The unique (within the Telnyx account scope) name of the room."""
 
-    webhook_event_failover_url: Optional[str]
+    webhook_event_failover_url: str
     """
     The failover URL where webhooks related to this room will be sent if sending to
     the primary URL fails. Must include a scheme, such as 'https'.
@@ -34,5 +33,5 @@ class RoomCreateParams(TypedDict, total=False):
     Must include a scheme, such as 'https'.
     """
 
-    webhook_timeout_secs: Optional[int]
+    webhook_timeout_secs: int
     """Specifies how many seconds to wait before timing out a webhook."""

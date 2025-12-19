@@ -17,8 +17,9 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import make_request_options
-from ..types.wireless_blocklist_list_response import WirelessBlocklistListResponse
+from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
+from .._base_client import AsyncPaginator, make_request_options
+from ..types.wireless_blocklist import WirelessBlocklist
 from ..types.wireless_blocklist_create_response import WirelessBlocklistCreateResponse
 from ..types.wireless_blocklist_delete_response import WirelessBlocklistDeleteResponse
 from ..types.wireless_blocklist_update_response import WirelessBlocklistUpdateResponse
@@ -188,7 +189,7 @@ class WirelessBlocklistsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> WirelessBlocklistListResponse:
+    ) -> SyncDefaultFlatPagination[WirelessBlocklist]:
         """
         Get all Wireless Blocklists belonging to the user.
 
@@ -211,8 +212,9 @@ class WirelessBlocklistsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/wireless_blocklists",
+            page=SyncDefaultFlatPagination[WirelessBlocklist],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -229,7 +231,7 @@ class WirelessBlocklistsResource(SyncAPIResource):
                     wireless_blocklist_list_params.WirelessBlocklistListParams,
                 ),
             ),
-            cast_to=WirelessBlocklistListResponse,
+            model=WirelessBlocklist,
         )
 
     def delete(
@@ -413,7 +415,7 @@ class AsyncWirelessBlocklistsResource(AsyncAPIResource):
             cast_to=WirelessBlocklistUpdateResponse,
         )
 
-    async def list(
+    def list(
         self,
         *,
         filter_name: str | Omit = omit,
@@ -427,7 +429,7 @@ class AsyncWirelessBlocklistsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> WirelessBlocklistListResponse:
+    ) -> AsyncPaginator[WirelessBlocklist, AsyncDefaultFlatPagination[WirelessBlocklist]]:
         """
         Get all Wireless Blocklists belonging to the user.
 
@@ -450,14 +452,15 @@ class AsyncWirelessBlocklistsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/wireless_blocklists",
+            page=AsyncDefaultFlatPagination[WirelessBlocklist],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "filter_name": filter_name,
                         "filter_type": filter_type,
@@ -468,7 +471,7 @@ class AsyncWirelessBlocklistsResource(AsyncAPIResource):
                     wireless_blocklist_list_params.WirelessBlocklistListParams,
                 ),
             ),
-            cast_to=WirelessBlocklistListResponse,
+            model=WirelessBlocklist,
         )
 
     async def delete(

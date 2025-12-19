@@ -2,14 +2,11 @@
 
 from __future__ import annotations
 
-from typing import Dict
-from typing_extensions import Literal, overload
-
 import httpx
 
 from ..types import mobile_push_credential_list_params, mobile_push_credential_create_params
 from .._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from .._utils import required_args, maybe_transform, async_maybe_transform
+from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -18,9 +15,10 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import make_request_options
+from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
+from .._base_client import AsyncPaginator, make_request_options
+from ..types.push_credential import PushCredential
 from ..types.push_credential_response import PushCredentialResponse
-from ..types.mobile_push_credential_list_response import MobilePushCredentialListResponse
 
 __all__ = ["MobilePushCredentialsResource", "AsyncMobilePushCredentialsResource"]
 
@@ -45,14 +43,10 @@ class MobilePushCredentialsResource(SyncAPIResource):
         """
         return MobilePushCredentialsResourceWithStreamingResponse(self)
 
-    @overload
     def create(
         self,
         *,
-        alias: str,
-        certificate: str,
-        private_key: str,
-        type: Literal["ios"],
+        create_mobile_push_credential_request: mobile_push_credential_create_params.CreateMobilePushCredentialRequest,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -64,14 +58,6 @@ class MobilePushCredentialsResource(SyncAPIResource):
         Creates a new mobile push credential
 
         Args:
-          alias: Alias to uniquely identify the credential
-
-          certificate: Certificate as received from APNs
-
-          private_key: Corresponding private key to the certificate as received from APNs
-
-          type: Type of mobile push credential. Should be <code>ios</code> here
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -80,68 +66,10 @@ class MobilePushCredentialsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        ...
-
-    @overload
-    def create(
-        self,
-        *,
-        alias: str,
-        project_account_json_file: Dict[str, object],
-        type: Literal["android"],
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PushCredentialResponse:
-        """
-        Creates a new mobile push credential
-
-        Args:
-          alias: Alias to uniquely identify the credential
-
-          project_account_json_file: Private key file in JSON format
-
-          type: Type of mobile push credential. Should be <code>android</code> here
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @required_args(["alias", "certificate", "private_key", "type"], ["alias", "project_account_json_file", "type"])
-    def create(
-        self,
-        *,
-        alias: str,
-        certificate: str | Omit = omit,
-        private_key: str | Omit = omit,
-        type: Literal["ios"] | Literal["android"],
-        project_account_json_file: Dict[str, object] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PushCredentialResponse:
         return self._post(
             "/mobile_push_credentials",
             body=maybe_transform(
-                {
-                    "alias": alias,
-                    "certificate": certificate,
-                    "private_key": private_key,
-                    "type": type,
-                    "project_account_json_file": project_account_json_file,
-                },
+                create_mobile_push_credential_request,
                 mobile_push_credential_create_params.MobilePushCredentialCreateParams,
             ),
             options=make_request_options(
@@ -194,7 +122,7 @@ class MobilePushCredentialsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MobilePushCredentialListResponse:
+    ) -> SyncDefaultPagination[PushCredential]:
         """
         List mobile push credentials
 
@@ -213,8 +141,9 @@ class MobilePushCredentialsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/mobile_push_credentials",
+            page=SyncDefaultPagination[PushCredential],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -228,7 +157,7 @@ class MobilePushCredentialsResource(SyncAPIResource):
                     mobile_push_credential_list_params.MobilePushCredentialListParams,
                 ),
             ),
-            cast_to=MobilePushCredentialListResponse,
+            model=PushCredential,
         )
 
     def delete(
@@ -286,14 +215,10 @@ class AsyncMobilePushCredentialsResource(AsyncAPIResource):
         """
         return AsyncMobilePushCredentialsResourceWithStreamingResponse(self)
 
-    @overload
     async def create(
         self,
         *,
-        alias: str,
-        certificate: str,
-        private_key: str,
-        type: Literal["ios"],
+        create_mobile_push_credential_request: mobile_push_credential_create_params.CreateMobilePushCredentialRequest,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -305,14 +230,6 @@ class AsyncMobilePushCredentialsResource(AsyncAPIResource):
         Creates a new mobile push credential
 
         Args:
-          alias: Alias to uniquely identify the credential
-
-          certificate: Certificate as received from APNs
-
-          private_key: Corresponding private key to the certificate as received from APNs
-
-          type: Type of mobile push credential. Should be <code>ios</code> here
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -321,68 +238,10 @@ class AsyncMobilePushCredentialsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        ...
-
-    @overload
-    async def create(
-        self,
-        *,
-        alias: str,
-        project_account_json_file: Dict[str, object],
-        type: Literal["android"],
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PushCredentialResponse:
-        """
-        Creates a new mobile push credential
-
-        Args:
-          alias: Alias to uniquely identify the credential
-
-          project_account_json_file: Private key file in JSON format
-
-          type: Type of mobile push credential. Should be <code>android</code> here
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @required_args(["alias", "certificate", "private_key", "type"], ["alias", "project_account_json_file", "type"])
-    async def create(
-        self,
-        *,
-        alias: str,
-        certificate: str | Omit = omit,
-        private_key: str | Omit = omit,
-        type: Literal["ios"] | Literal["android"],
-        project_account_json_file: Dict[str, object] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PushCredentialResponse:
         return await self._post(
             "/mobile_push_credentials",
             body=await async_maybe_transform(
-                {
-                    "alias": alias,
-                    "certificate": certificate,
-                    "private_key": private_key,
-                    "type": type,
-                    "project_account_json_file": project_account_json_file,
-                },
+                create_mobile_push_credential_request,
                 mobile_push_credential_create_params.MobilePushCredentialCreateParams,
             ),
             options=make_request_options(
@@ -424,7 +283,7 @@ class AsyncMobilePushCredentialsResource(AsyncAPIResource):
             cast_to=PushCredentialResponse,
         )
 
-    async def list(
+    def list(
         self,
         *,
         filter: mobile_push_credential_list_params.Filter | Omit = omit,
@@ -435,7 +294,7 @@ class AsyncMobilePushCredentialsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MobilePushCredentialListResponse:
+    ) -> AsyncPaginator[PushCredential, AsyncDefaultPagination[PushCredential]]:
         """
         List mobile push credentials
 
@@ -454,14 +313,15 @@ class AsyncMobilePushCredentialsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/mobile_push_credentials",
+            page=AsyncDefaultPagination[PushCredential],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "filter": filter,
                         "page": page,
@@ -469,7 +329,7 @@ class AsyncMobilePushCredentialsResource(AsyncAPIResource):
                     mobile_push_credential_list_params.MobilePushCredentialListParams,
                 ),
             ),
-            cast_to=MobilePushCredentialListResponse,
+            model=PushCredential,
         )
 
     async def delete(

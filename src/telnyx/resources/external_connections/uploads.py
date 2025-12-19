@@ -17,9 +17,10 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._base_client import make_request_options
+from ...pagination import SyncDefaultPagination, AsyncDefaultPagination
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.external_connections import upload_list_params, upload_create_params
-from ...types.external_connections.upload_list_response import UploadListResponse
+from ...types.external_connections.upload import Upload
 from ...types.external_connections.upload_retry_response import UploadRetryResponse
 from ...types.external_connections.upload_create_response import UploadCreateResponse
 from ...types.external_connections.upload_retrieve_response import UploadRetrieveResponse
@@ -154,7 +155,7 @@ class UploadsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> UploadListResponse:
+    ) -> SyncDefaultPagination[Upload]:
         """
         Returns a list of your Upload requests for the given external connection.
 
@@ -175,8 +176,9 @@ class UploadsResource(SyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/external_connections/{id}/uploads",
+            page=SyncDefaultPagination[Upload],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -190,7 +192,7 @@ class UploadsResource(SyncAPIResource):
                     upload_list_params.UploadListParams,
                 ),
             ),
-            cast_to=UploadListResponse,
+            model=Upload,
         )
 
     def pending_count(
@@ -414,7 +416,7 @@ class AsyncUploadsResource(AsyncAPIResource):
             cast_to=UploadRetrieveResponse,
         )
 
-    async def list(
+    def list(
         self,
         id: str,
         *,
@@ -426,7 +428,7 @@ class AsyncUploadsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> UploadListResponse:
+    ) -> AsyncPaginator[Upload, AsyncDefaultPagination[Upload]]:
         """
         Returns a list of your Upload requests for the given external connection.
 
@@ -447,14 +449,15 @@ class AsyncUploadsResource(AsyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/external_connections/{id}/uploads",
+            page=AsyncDefaultPagination[Upload],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "filter": filter,
                         "page": page,
@@ -462,7 +465,7 @@ class AsyncUploadsResource(AsyncAPIResource):
                     upload_list_params.UploadListParams,
                 ),
             ),
-            cast_to=UploadListResponse,
+            model=Upload,
         )
 
     async def pending_count(

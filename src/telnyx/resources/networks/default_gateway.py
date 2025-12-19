@@ -45,7 +45,7 @@ class DefaultGatewayResource(SyncAPIResource):
 
     def create(
         self,
-        id: str,
+        network_identifier: str,
         *,
         wireguard_peer_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -69,10 +69,10 @@ class DefaultGatewayResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not network_identifier:
+            raise ValueError(f"Expected a non-empty value for `network_identifier` but received {network_identifier!r}")
         return self._post(
-            f"/networks/{id}/default_gateway",
+            f"/networks/{network_identifier}/default_gateway",
             body=maybe_transform(
                 {"wireguard_peer_id": wireguard_peer_id}, default_gateway_create_params.DefaultGatewayCreateParams
             ),
@@ -171,7 +171,7 @@ class AsyncDefaultGatewayResource(AsyncAPIResource):
 
     async def create(
         self,
-        id: str,
+        network_identifier: str,
         *,
         wireguard_peer_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -195,10 +195,10 @@ class AsyncDefaultGatewayResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not network_identifier:
+            raise ValueError(f"Expected a non-empty value for `network_identifier` but received {network_identifier!r}")
         return await self._post(
-            f"/networks/{id}/default_gateway",
+            f"/networks/{network_identifier}/default_gateway",
             body=await async_maybe_transform(
                 {"wireguard_peer_id": wireguard_peer_id}, default_gateway_create_params.DefaultGatewayCreateParams
             ),

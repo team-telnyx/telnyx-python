@@ -15,9 +15,9 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import make_request_options
+from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
+from .._base_client import AsyncPaginator, make_request_options
 from ..types.access_ip_range import AccessIPRange
-from ..types.access_ip_range_list_response import AccessIPRangeListResponse
 
 __all__ = ["AccessIPRangesResource", "AsyncAccessIPRangesResource"]
 
@@ -85,14 +85,15 @@ class AccessIPRangesResource(SyncAPIResource):
         self,
         *,
         filter: access_ip_range_list_params.Filter | Omit = omit,
-        page: access_ip_range_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AccessIPRangeListResponse:
+    ) -> SyncDefaultFlatPagination[AccessIPRange]:
         """
         List all Access IP Ranges
 
@@ -103,9 +104,6 @@ class AccessIPRangesResource(SyncAPIResource):
               filter[cidr_block][endswith], filter[cidr_block][contains], filter[created_at].
               Supports complex bracket operations for dynamic filtering.
 
-          page: Consolidated page parameter (deepObject style). Originally: page[number],
-              page[size]
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -114,8 +112,9 @@ class AccessIPRangesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/access_ip_ranges",
+            page=SyncDefaultFlatPagination[AccessIPRange],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -124,12 +123,13 @@ class AccessIPRangesResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                     },
                     access_ip_range_list_params.AccessIPRangeListParams,
                 ),
             ),
-            cast_to=AccessIPRangeListResponse,
+            model=AccessIPRange,
         )
 
     def delete(
@@ -225,18 +225,19 @@ class AsyncAccessIPRangesResource(AsyncAPIResource):
             cast_to=AccessIPRange,
         )
 
-    async def list(
+    def list(
         self,
         *,
         filter: access_ip_range_list_params.Filter | Omit = omit,
-        page: access_ip_range_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AccessIPRangeListResponse:
+    ) -> AsyncPaginator[AccessIPRange, AsyncDefaultFlatPagination[AccessIPRange]]:
         """
         List all Access IP Ranges
 
@@ -247,9 +248,6 @@ class AsyncAccessIPRangesResource(AsyncAPIResource):
               filter[cidr_block][endswith], filter[cidr_block][contains], filter[created_at].
               Supports complex bracket operations for dynamic filtering.
 
-          page: Consolidated page parameter (deepObject style). Originally: page[number],
-              page[size]
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -258,22 +256,24 @@ class AsyncAccessIPRangesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/access_ip_ranges",
+            page=AsyncDefaultFlatPagination[AccessIPRange],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "filter": filter,
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                     },
                     access_ip_range_list_params.AccessIPRangeListParams,
                 ),
             ),
-            cast_to=AccessIPRangeListResponse,
+            model=AccessIPRange,
         )
 
     async def delete(

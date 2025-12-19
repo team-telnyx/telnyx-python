@@ -1,16 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Optional
 
 from .record import Record
-from .._models import BaseModel
-from .pagination_meta import PaginationMeta
 from .wireguard_peer_patch import WireguardPeerPatch
 
-__all__ = ["WireguardPeerListResponse", "Data"]
+__all__ = ["WireguardPeerListResponse"]
 
 
-class Data(Record, WireguardPeerPatch):
+class WireguardPeerListResponse(Record, WireguardPeerPatch):
     last_seen: Optional[str] = None
     """ISO 8601 formatted date-time indicating when peer sent traffic last time."""
 
@@ -23,14 +21,5 @@ class Data(Record, WireguardPeerPatch):
     within Telnyx. If you lose your Private Key, it can not be recovered.
     """
 
-    record_type: Optional[str] = None  # type: ignore
-    """Identifies the type of the resource."""
-
     wireguard_interface_id: Optional[str] = None
     """The id of the wireguard interface associated with the peer."""
-
-
-class WireguardPeerListResponse(BaseModel):
-    data: Optional[List[Data]] = None
-
-    meta: Optional[PaginationMeta] = None

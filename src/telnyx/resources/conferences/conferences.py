@@ -30,8 +30,9 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._base_client import make_request_options
-from ...types.conference_list_response import ConferenceListResponse
+from ...pagination import SyncDefaultPagination, AsyncDefaultPagination
+from ..._base_client import AsyncPaginator, make_request_options
+from ...types.conference import Conference
 from ...types.conference_create_response import ConferenceCreateResponse
 from ...types.conference_retrieve_response import ConferenceRetrieveResponse
 from ...types.conference_list_participants_response import ConferenceListParticipantsResponse
@@ -227,7 +228,7 @@ class ConferencesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ConferenceListResponse:
+    ) -> SyncDefaultPagination[Conference]:
         """Lists conferences.
 
         Conferences are created on demand, and will expire after all
@@ -256,8 +257,9 @@ class ConferencesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/conferences",
+            page=SyncDefaultPagination[Conference],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -272,7 +274,7 @@ class ConferencesResource(SyncAPIResource):
                     conference_list_params.ConferenceListParams,
                 ),
             ),
-            cast_to=ConferenceListResponse,
+            model=Conference,
         )
 
     def list_participants(
@@ -288,7 +290,7 @@ class ConferencesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ConferenceListParticipantsResponse:
+    ) -> SyncDefaultPagination[ConferenceListParticipantsResponse]:
         """
         Lists conference participants
 
@@ -311,8 +313,9 @@ class ConferencesResource(SyncAPIResource):
         """
         if not conference_id:
             raise ValueError(f"Expected a non-empty value for `conference_id` but received {conference_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/conferences/{conference_id}/participants",
+            page=SyncDefaultPagination[ConferenceListParticipantsResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -327,7 +330,7 @@ class ConferencesResource(SyncAPIResource):
                     conference_list_participants_params.ConferenceListParticipantsParams,
                 ),
             ),
-            cast_to=ConferenceListParticipantsResponse,
+            model=ConferenceListParticipantsResponse,
         )
 
 
@@ -509,7 +512,7 @@ class AsyncConferencesResource(AsyncAPIResource):
             cast_to=ConferenceRetrieveResponse,
         )
 
-    async def list(
+    def list(
         self,
         *,
         filter: conference_list_params.Filter | Omit = omit,
@@ -521,7 +524,7 @@ class AsyncConferencesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ConferenceListResponse:
+    ) -> AsyncPaginator[Conference, AsyncDefaultPagination[Conference]]:
         """Lists conferences.
 
         Conferences are created on demand, and will expire after all
@@ -550,14 +553,15 @@ class AsyncConferencesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/conferences",
+            page=AsyncDefaultPagination[Conference],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "filter": filter,
                         "page": page,
@@ -566,10 +570,10 @@ class AsyncConferencesResource(AsyncAPIResource):
                     conference_list_params.ConferenceListParams,
                 ),
             ),
-            cast_to=ConferenceListResponse,
+            model=Conference,
         )
 
-    async def list_participants(
+    def list_participants(
         self,
         conference_id: str,
         *,
@@ -582,7 +586,7 @@ class AsyncConferencesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ConferenceListParticipantsResponse:
+    ) -> AsyncPaginator[ConferenceListParticipantsResponse, AsyncDefaultPagination[ConferenceListParticipantsResponse]]:
         """
         Lists conference participants
 
@@ -605,14 +609,15 @@ class AsyncConferencesResource(AsyncAPIResource):
         """
         if not conference_id:
             raise ValueError(f"Expected a non-empty value for `conference_id` but received {conference_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/conferences/{conference_id}/participants",
+            page=AsyncDefaultPagination[ConferenceListParticipantsResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "filter": filter,
                         "page": page,
@@ -621,7 +626,7 @@ class AsyncConferencesResource(AsyncAPIResource):
                     conference_list_participants_params.ConferenceListParticipantsParams,
                 ),
             ),
-            cast_to=ConferenceListParticipantsResponse,
+            model=ConferenceListParticipantsResponse,
         )
 
 

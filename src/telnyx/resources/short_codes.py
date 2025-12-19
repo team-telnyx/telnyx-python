@@ -15,8 +15,9 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import make_request_options
-from ..types.short_code_list_response import ShortCodeListResponse
+from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
+from .._base_client import AsyncPaginator, make_request_options
+from ..types.shared.short_code import ShortCode
 from ..types.short_code_update_response import ShortCodeUpdateResponse
 from ..types.short_code_retrieve_response import ShortCodeRetrieveResponse
 
@@ -134,7 +135,7 @@ class ShortCodesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ShortCodeListResponse:
+    ) -> SyncDefaultPagination[ShortCode]:
         """
         List short codes
 
@@ -154,8 +155,9 @@ class ShortCodesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/short_codes",
+            page=SyncDefaultPagination[ShortCode],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -169,7 +171,7 @@ class ShortCodesResource(SyncAPIResource):
                     short_code_list_params.ShortCodeListParams,
                 ),
             ),
-            cast_to=ShortCodeListResponse,
+            model=ShortCode,
         )
 
 
@@ -273,7 +275,7 @@ class AsyncShortCodesResource(AsyncAPIResource):
             cast_to=ShortCodeUpdateResponse,
         )
 
-    async def list(
+    def list(
         self,
         *,
         filter: short_code_list_params.Filter | Omit = omit,
@@ -284,7 +286,7 @@ class AsyncShortCodesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ShortCodeListResponse:
+    ) -> AsyncPaginator[ShortCode, AsyncDefaultPagination[ShortCode]]:
         """
         List short codes
 
@@ -304,14 +306,15 @@ class AsyncShortCodesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/short_codes",
+            page=AsyncDefaultPagination[ShortCode],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "filter": filter,
                         "page": page,
@@ -319,7 +322,7 @@ class AsyncShortCodesResource(AsyncAPIResource):
                     short_code_list_params.ShortCodeListParams,
                 ),
             ),
-            cast_to=ShortCodeListResponse,
+            model=ShortCode,
         )
 
 

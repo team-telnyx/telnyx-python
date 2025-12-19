@@ -17,6 +17,7 @@ from telnyx.types import (
     NetworkRetrieveResponse,
     NetworkListInterfacesResponse,
 )
+from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -104,7 +105,7 @@ class TestNetworks:
     @parametrize
     def test_method_update(self, client: Telnyx) -> None:
         network = client.networks.update(
-            id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+            network_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
             name="test network",
         )
         assert_matches_type(NetworkUpdateResponse, network, path=["response"])
@@ -113,7 +114,7 @@ class TestNetworks:
     @parametrize
     def test_raw_response_update(self, client: Telnyx) -> None:
         response = client.networks.with_raw_response.update(
-            id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+            network_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
             name="test network",
         )
 
@@ -126,7 +127,7 @@ class TestNetworks:
     @parametrize
     def test_streaming_response_update(self, client: Telnyx) -> None:
         with client.networks.with_streaming_response.update(
-            id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+            network_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
             name="test network",
         ) as response:
             assert not response.is_closed
@@ -140,9 +141,9 @@ class TestNetworks:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_update(self, client: Telnyx) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `network_id` but received ''"):
             client.networks.with_raw_response.update(
-                id="",
+                network_id="",
                 name="test network",
             )
 
@@ -150,7 +151,7 @@ class TestNetworks:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         network = client.networks.list()
-        assert_matches_type(NetworkListResponse, network, path=["response"])
+        assert_matches_type(SyncDefaultPagination[NetworkListResponse], network, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -162,7 +163,7 @@ class TestNetworks:
                 "size": 1,
             },
         )
-        assert_matches_type(NetworkListResponse, network, path=["response"])
+        assert_matches_type(SyncDefaultPagination[NetworkListResponse], network, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -172,7 +173,7 @@ class TestNetworks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         network = response.parse()
-        assert_matches_type(NetworkListResponse, network, path=["response"])
+        assert_matches_type(SyncDefaultPagination[NetworkListResponse], network, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -182,7 +183,7 @@ class TestNetworks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             network = response.parse()
-            assert_matches_type(NetworkListResponse, network, path=["response"])
+            assert_matches_type(SyncDefaultPagination[NetworkListResponse], network, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -234,7 +235,7 @@ class TestNetworks:
         network = client.networks.list_interfaces(
             id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
         )
-        assert_matches_type(NetworkListInterfacesResponse, network, path=["response"])
+        assert_matches_type(SyncDefaultPagination[NetworkListInterfacesResponse], network, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -250,7 +251,7 @@ class TestNetworks:
                 "size": 1,
             },
         )
-        assert_matches_type(NetworkListInterfacesResponse, network, path=["response"])
+        assert_matches_type(SyncDefaultPagination[NetworkListInterfacesResponse], network, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -262,7 +263,7 @@ class TestNetworks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         network = response.parse()
-        assert_matches_type(NetworkListInterfacesResponse, network, path=["response"])
+        assert_matches_type(SyncDefaultPagination[NetworkListInterfacesResponse], network, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -274,7 +275,7 @@ class TestNetworks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             network = response.parse()
-            assert_matches_type(NetworkListInterfacesResponse, network, path=["response"])
+            assert_matches_type(SyncDefaultPagination[NetworkListInterfacesResponse], network, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -372,7 +373,7 @@ class TestAsyncNetworks:
     @parametrize
     async def test_method_update(self, async_client: AsyncTelnyx) -> None:
         network = await async_client.networks.update(
-            id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+            network_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
             name="test network",
         )
         assert_matches_type(NetworkUpdateResponse, network, path=["response"])
@@ -381,7 +382,7 @@ class TestAsyncNetworks:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.networks.with_raw_response.update(
-            id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+            network_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
             name="test network",
         )
 
@@ -394,7 +395,7 @@ class TestAsyncNetworks:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncTelnyx) -> None:
         async with async_client.networks.with_streaming_response.update(
-            id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+            network_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
             name="test network",
         ) as response:
             assert not response.is_closed
@@ -408,9 +409,9 @@ class TestAsyncNetworks:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_update(self, async_client: AsyncTelnyx) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `network_id` but received ''"):
             await async_client.networks.with_raw_response.update(
-                id="",
+                network_id="",
                 name="test network",
             )
 
@@ -418,7 +419,7 @@ class TestAsyncNetworks:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         network = await async_client.networks.list()
-        assert_matches_type(NetworkListResponse, network, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[NetworkListResponse], network, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -430,7 +431,7 @@ class TestAsyncNetworks:
                 "size": 1,
             },
         )
-        assert_matches_type(NetworkListResponse, network, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[NetworkListResponse], network, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -440,7 +441,7 @@ class TestAsyncNetworks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         network = await response.parse()
-        assert_matches_type(NetworkListResponse, network, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[NetworkListResponse], network, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -450,7 +451,7 @@ class TestAsyncNetworks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             network = await response.parse()
-            assert_matches_type(NetworkListResponse, network, path=["response"])
+            assert_matches_type(AsyncDefaultPagination[NetworkListResponse], network, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -502,7 +503,7 @@ class TestAsyncNetworks:
         network = await async_client.networks.list_interfaces(
             id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
         )
-        assert_matches_type(NetworkListInterfacesResponse, network, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[NetworkListInterfacesResponse], network, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -518,7 +519,7 @@ class TestAsyncNetworks:
                 "size": 1,
             },
         )
-        assert_matches_type(NetworkListInterfacesResponse, network, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[NetworkListInterfacesResponse], network, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -530,7 +531,7 @@ class TestAsyncNetworks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         network = await response.parse()
-        assert_matches_type(NetworkListInterfacesResponse, network, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[NetworkListInterfacesResponse], network, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -542,7 +543,7 @@ class TestAsyncNetworks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             network = await response.parse()
-            assert_matches_type(NetworkListInterfacesResponse, network, path=["response"])
+            assert_matches_type(AsyncDefaultPagination[NetworkListInterfacesResponse], network, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

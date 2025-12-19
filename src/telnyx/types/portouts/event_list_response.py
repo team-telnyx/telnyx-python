@@ -5,19 +5,19 @@ from datetime import datetime
 from typing_extensions import Literal, TypeAlias
 
 from ..._models import BaseModel
-from ..pagination_meta import PaginationMeta
 
 __all__ = [
     "EventListResponse",
-    "Data",
-    "DataPayload",
-    "DataPayloadWebhookPortoutStatusChangedPayload",
-    "DataPayloadWebhookPortoutNewCommentPayload",
-    "DataPayloadWebhookPortoutFocDateChangedPayload",
+    "WebhookPortoutStatusChanged",
+    "WebhookPortoutStatusChangedPayload",
+    "WebhookPortoutNewComment",
+    "WebhookPortoutNewCommentPayload",
+    "WebhookPortoutFocDateChanged",
+    "WebhookPortoutFocDateChangedPayload",
 ]
 
 
-class DataPayloadWebhookPortoutStatusChangedPayload(BaseModel):
+class WebhookPortoutStatusChangedPayload(BaseModel):
     """The webhook payload for the portout.status_changed event"""
 
     id: Optional[str] = None
@@ -51,43 +51,7 @@ class DataPayloadWebhookPortoutStatusChangedPayload(BaseModel):
     """Identifies the user that the port-out order belongs to."""
 
 
-class DataPayloadWebhookPortoutNewCommentPayload(BaseModel):
-    """The webhook payload for the portout.new_comment event"""
-
-    id: Optional[str] = None
-    """Identifies the comment that was added to the port-out order."""
-
-    comment: Optional[str] = None
-    """The body of the comment."""
-
-    portout_id: Optional[str] = None
-    """Identifies the port-out order that the comment was added to."""
-
-    user_id: Optional[str] = None
-    """Identifies the user that added the comment."""
-
-
-class DataPayloadWebhookPortoutFocDateChangedPayload(BaseModel):
-    """The webhook payload for the portout.foc_date_changed event"""
-
-    id: Optional[str] = None
-    """Identifies the port-out order that have the FOC date changed."""
-
-    foc_date: Optional[datetime] = None
-    """ISO 8601 formatted date indicating the new FOC date."""
-
-    user_id: Optional[str] = None
-    """Identifies the organization that port-out order belongs to."""
-
-
-DataPayload: TypeAlias = Union[
-    DataPayloadWebhookPortoutStatusChangedPayload,
-    DataPayloadWebhookPortoutNewCommentPayload,
-    DataPayloadWebhookPortoutFocDateChangedPayload,
-]
-
-
-class Data(BaseModel):
+class WebhookPortoutStatusChanged(BaseModel):
     id: Optional[str] = None
     """Uniquely identifies the event."""
 
@@ -100,7 +64,7 @@ class Data(BaseModel):
     event_type: Optional[Literal["portout.status_changed", "portout.foc_date_changed", "portout.new_comment"]] = None
     """Identifies the event type"""
 
-    payload: Optional[DataPayload] = None
+    payload: Optional[WebhookPortoutStatusChangedPayload] = None
     """The webhook payload for the portout.status_changed event"""
 
     payload_status: Optional[Literal["created", "completed"]] = None
@@ -116,7 +80,93 @@ class Data(BaseModel):
     """ISO 8601 formatted date indicating when the resource was updated."""
 
 
-class EventListResponse(BaseModel):
-    data: Optional[List[Data]] = None
+class WebhookPortoutNewCommentPayload(BaseModel):
+    """The webhook payload for the portout.new_comment event"""
 
-    meta: Optional[PaginationMeta] = None
+    id: Optional[str] = None
+    """Identifies the comment that was added to the port-out order."""
+
+    comment: Optional[str] = None
+    """The body of the comment."""
+
+    portout_id: Optional[str] = None
+    """Identifies the port-out order that the comment was added to."""
+
+    user_id: Optional[str] = None
+    """Identifies the user that added the comment."""
+
+
+class WebhookPortoutNewComment(BaseModel):
+    id: Optional[str] = None
+    """Uniquely identifies the event."""
+
+    available_notification_methods: Optional[List[Literal["email", "webhook"]]] = None
+    """Indicates the notification methods used."""
+
+    created_at: Optional[datetime] = None
+    """ISO 8601 formatted date indicating when the resource was created."""
+
+    event_type: Optional[Literal["portout.status_changed", "portout.foc_date_changed", "portout.new_comment"]] = None
+    """Identifies the event type"""
+
+    payload: Optional[WebhookPortoutNewCommentPayload] = None
+    """The webhook payload for the portout.new_comment event"""
+
+    payload_status: Optional[Literal["created", "completed"]] = None
+    """The status of the payload generation."""
+
+    portout_id: Optional[str] = None
+    """Identifies the port-out order associated with the event."""
+
+    record_type: Optional[str] = None
+    """Identifies the type of the resource."""
+
+    updated_at: Optional[datetime] = None
+    """ISO 8601 formatted date indicating when the resource was updated."""
+
+
+class WebhookPortoutFocDateChangedPayload(BaseModel):
+    """The webhook payload for the portout.foc_date_changed event"""
+
+    id: Optional[str] = None
+    """Identifies the port-out order that have the FOC date changed."""
+
+    foc_date: Optional[datetime] = None
+    """ISO 8601 formatted date indicating the new FOC date."""
+
+    user_id: Optional[str] = None
+    """Identifies the organization that port-out order belongs to."""
+
+
+class WebhookPortoutFocDateChanged(BaseModel):
+    id: Optional[str] = None
+    """Uniquely identifies the event."""
+
+    available_notification_methods: Optional[List[Literal["email", "webhook"]]] = None
+    """Indicates the notification methods used."""
+
+    created_at: Optional[datetime] = None
+    """ISO 8601 formatted date indicating when the resource was created."""
+
+    event_type: Optional[Literal["portout.status_changed", "portout.foc_date_changed", "portout.new_comment"]] = None
+    """Identifies the event type"""
+
+    payload: Optional[WebhookPortoutFocDateChangedPayload] = None
+    """The webhook payload for the portout.foc_date_changed event"""
+
+    payload_status: Optional[Literal["created", "completed"]] = None
+    """The status of the payload generation."""
+
+    portout_id: Optional[str] = None
+    """Identifies the port-out order associated with the event."""
+
+    record_type: Optional[str] = None
+    """Identifies the type of the resource."""
+
+    updated_at: Optional[datetime] = None
+    """ISO 8601 formatted date indicating when the resource was updated."""
+
+
+EventListResponse: TypeAlias = Union[
+    WebhookPortoutStatusChanged, WebhookPortoutNewComment, WebhookPortoutFocDateChanged
+]

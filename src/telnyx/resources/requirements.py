@@ -9,7 +9,7 @@ import httpx
 
 from ..types import requirement_list_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._utils import maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -18,7 +18,8 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import make_request_options
+from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
+from .._base_client import AsyncPaginator, make_request_options
 from ..types.requirement_list_response import RequirementListResponse
 from ..types.requirement_retrieve_response import RequirementRetrieveResponse
 
@@ -102,7 +103,7 @@ class RequirementsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RequirementListResponse:
+    ) -> SyncDefaultPagination[RequirementListResponse]:
         """
         List all requirements with filtering, sorting, and pagination
 
@@ -126,8 +127,9 @@ class RequirementsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/requirements",
+            page=SyncDefaultPagination[RequirementListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -142,7 +144,7 @@ class RequirementsResource(SyncAPIResource):
                     requirement_list_params.RequirementListParams,
                 ),
             ),
-            cast_to=RequirementListResponse,
+            model=RequirementListResponse,
         )
 
 
@@ -199,7 +201,7 @@ class AsyncRequirementsResource(AsyncAPIResource):
             cast_to=RequirementRetrieveResponse,
         )
 
-    async def list(
+    def list(
         self,
         *,
         filter: requirement_list_params.Filter | Omit = omit,
@@ -223,7 +225,7 @@ class AsyncRequirementsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RequirementListResponse:
+    ) -> AsyncPaginator[RequirementListResponse, AsyncDefaultPagination[RequirementListResponse]]:
         """
         List all requirements with filtering, sorting, and pagination
 
@@ -247,14 +249,15 @@ class AsyncRequirementsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/requirements",
+            page=AsyncDefaultPagination[RequirementListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "filter": filter,
                         "page": page,
@@ -263,7 +266,7 @@ class AsyncRequirementsResource(AsyncAPIResource):
                     requirement_list_params.RequirementListParams,
                 ),
             ),
-            cast_to=RequirementListResponse,
+            model=RequirementListResponse,
         )
 
 

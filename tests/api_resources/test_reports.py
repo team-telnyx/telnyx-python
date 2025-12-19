@@ -13,6 +13,7 @@ from telnyx.types import (
     ReportListMdrsResponse,
     ReportListWdrsResponse,
 )
+from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -68,7 +69,7 @@ class TestReports:
     @parametrize
     def test_method_list_wdrs(self, client: Telnyx) -> None:
         report = client.reports.list_wdrs()
-        assert_matches_type(ReportListWdrsResponse, report, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[ReportListWdrsResponse], report, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -79,10 +80,8 @@ class TestReports:
             imsi="123456",
             mcc="204",
             mnc="01",
-            page={
-                "number": 0,
-                "size": 0,
-            },
+            page_number=0,
+            page_size=0,
             phone_number="+12345678910",
             sim_card_id="877f80a6-e5b2-4687-9a04-88076265720f",
             sim_group_id="f05a189f-7c46-4531-ac56-1460dc465a42",
@@ -90,7 +89,7 @@ class TestReports:
             sort=["created_at"],
             start_date="2021-05-01T00:00:00Z",
         )
-        assert_matches_type(ReportListWdrsResponse, report, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[ReportListWdrsResponse], report, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -100,7 +99,7 @@ class TestReports:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         report = response.parse()
-        assert_matches_type(ReportListWdrsResponse, report, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[ReportListWdrsResponse], report, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -110,7 +109,7 @@ class TestReports:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             report = response.parse()
-            assert_matches_type(ReportListWdrsResponse, report, path=["response"])
+            assert_matches_type(SyncDefaultFlatPagination[ReportListWdrsResponse], report, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -168,7 +167,7 @@ class TestAsyncReports:
     @parametrize
     async def test_method_list_wdrs(self, async_client: AsyncTelnyx) -> None:
         report = await async_client.reports.list_wdrs()
-        assert_matches_type(ReportListWdrsResponse, report, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[ReportListWdrsResponse], report, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -179,10 +178,8 @@ class TestAsyncReports:
             imsi="123456",
             mcc="204",
             mnc="01",
-            page={
-                "number": 0,
-                "size": 0,
-            },
+            page_number=0,
+            page_size=0,
             phone_number="+12345678910",
             sim_card_id="877f80a6-e5b2-4687-9a04-88076265720f",
             sim_group_id="f05a189f-7c46-4531-ac56-1460dc465a42",
@@ -190,7 +187,7 @@ class TestAsyncReports:
             sort=["created_at"],
             start_date="2021-05-01T00:00:00Z",
         )
-        assert_matches_type(ReportListWdrsResponse, report, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[ReportListWdrsResponse], report, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -200,7 +197,7 @@ class TestAsyncReports:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         report = await response.parse()
-        assert_matches_type(ReportListWdrsResponse, report, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[ReportListWdrsResponse], report, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -210,6 +207,6 @@ class TestAsyncReports:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             report = await response.parse()
-            assert_matches_type(ReportListWdrsResponse, report, path=["response"])
+            assert_matches_type(AsyncDefaultFlatPagination[ReportListWdrsResponse], report, path=["response"])
 
         assert cast(Any, response.is_closed) is True

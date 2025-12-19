@@ -50,6 +50,9 @@ class CredentialInbound(BaseModel):
     transport.
     """
 
+    simultaneous_ringing: Optional[Literal["disabled", "enabled"]] = None
+    """When enabled, allows multiple devices to ring simultaneously on incoming calls."""
+
     sip_compact_headers_enabled: Optional[bool] = None
     """Defaults to true."""
 

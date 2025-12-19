@@ -255,6 +255,8 @@ class CallsResource(SyncAPIResource):
         status_callback: str | Omit = omit,
         status_callback_event: Literal["initiated", "ringing", "answered", "completed"] | Omit = omit,
         status_callback_method: Literal["GET", "POST"] | Omit = omit,
+        supervise_call_sid: str | Omit = omit,
+        supervising_role: Literal["barge", "whisper", "monitor"] | Omit = omit,
         trim: Literal["trim-silence", "do-not-trim"] | Omit = omit,
         url: str | Omit = omit,
         url_method: Literal["GET", "POST"] | Omit = omit,
@@ -354,6 +356,14 @@ class CallsResource(SyncAPIResource):
 
           status_callback_method: HTTP request type used for `StatusCallback`.
 
+          supervise_call_sid: The call control ID of the existing call to supervise. When provided, the
+              created leg will be added to the specified call in supervising mode. Status
+              callbacks and action callbacks will NOT be sent for the supervising leg.
+
+          supervising_role: The supervising role for the new leg. Determines the audio behavior: barge (hear
+              both sides), whisper (only hear supervisor), monitor (hear both sides but
+              supervisor muted). Default: barge
+
           trim: Whether to trim any leading and trailing silence from the recording. Defaults to
               `trim-silence`.
 
@@ -408,6 +418,8 @@ class CallsResource(SyncAPIResource):
                     "status_callback": status_callback,
                     "status_callback_event": status_callback_event,
                     "status_callback_method": status_callback_method,
+                    "supervise_call_sid": supervise_call_sid,
+                    "supervising_role": supervising_role,
                     "trim": trim,
                     "url": url,
                     "url_method": url_method,
@@ -857,6 +869,8 @@ class AsyncCallsResource(AsyncAPIResource):
         status_callback: str | Omit = omit,
         status_callback_event: Literal["initiated", "ringing", "answered", "completed"] | Omit = omit,
         status_callback_method: Literal["GET", "POST"] | Omit = omit,
+        supervise_call_sid: str | Omit = omit,
+        supervising_role: Literal["barge", "whisper", "monitor"] | Omit = omit,
         trim: Literal["trim-silence", "do-not-trim"] | Omit = omit,
         url: str | Omit = omit,
         url_method: Literal["GET", "POST"] | Omit = omit,
@@ -956,6 +970,14 @@ class AsyncCallsResource(AsyncAPIResource):
 
           status_callback_method: HTTP request type used for `StatusCallback`.
 
+          supervise_call_sid: The call control ID of the existing call to supervise. When provided, the
+              created leg will be added to the specified call in supervising mode. Status
+              callbacks and action callbacks will NOT be sent for the supervising leg.
+
+          supervising_role: The supervising role for the new leg. Determines the audio behavior: barge (hear
+              both sides), whisper (only hear supervisor), monitor (hear both sides but
+              supervisor muted). Default: barge
+
           trim: Whether to trim any leading and trailing silence from the recording. Defaults to
               `trim-silence`.
 
@@ -1010,6 +1032,8 @@ class AsyncCallsResource(AsyncAPIResource):
                     "status_callback": status_callback,
                     "status_callback_event": status_callback_event,
                     "status_callback_method": status_callback_method,
+                    "supervise_call_sid": supervise_call_sid,
+                    "supervising_role": supervising_role,
                     "trim": trim,
                     "url": url,
                     "url_method": url_method,

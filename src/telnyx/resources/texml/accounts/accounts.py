@@ -7,6 +7,14 @@ from datetime import datetime
 
 import httpx
 
+from .queues import (
+    QueuesResource,
+    AsyncQueuesResource,
+    QueuesResourceWithRawResponse,
+    AsyncQueuesResourceWithRawResponse,
+    QueuesResourceWithStreamingResponse,
+    AsyncQueuesResourceWithStreamingResponse,
+)
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
@@ -73,6 +81,10 @@ class AccountsResource(SyncAPIResource):
     @cached_property
     def transcriptions(self) -> TranscriptionsResource:
         return TranscriptionsResource(self._client)
+
+    @cached_property
+    def queues(self) -> QueuesResource:
+        return QueuesResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AccountsResourceWithRawResponse:
@@ -215,6 +227,10 @@ class AsyncAccountsResource(AsyncAPIResource):
     @cached_property
     def transcriptions(self) -> AsyncTranscriptionsResource:
         return AsyncTranscriptionsResource(self._client)
+
+    @cached_property
+    def queues(self) -> AsyncQueuesResource:
+        return AsyncQueuesResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncAccountsResourceWithRawResponse:
@@ -368,6 +384,10 @@ class AccountsResourceWithRawResponse:
     def transcriptions(self) -> TranscriptionsResourceWithRawResponse:
         return TranscriptionsResourceWithRawResponse(self._accounts.transcriptions)
 
+    @cached_property
+    def queues(self) -> QueuesResourceWithRawResponse:
+        return QueuesResourceWithRawResponse(self._accounts.queues)
+
 
 class AsyncAccountsResourceWithRawResponse:
     def __init__(self, accounts: AsyncAccountsResource) -> None:
@@ -395,6 +415,10 @@ class AsyncAccountsResourceWithRawResponse:
     @cached_property
     def transcriptions(self) -> AsyncTranscriptionsResourceWithRawResponse:
         return AsyncTranscriptionsResourceWithRawResponse(self._accounts.transcriptions)
+
+    @cached_property
+    def queues(self) -> AsyncQueuesResourceWithRawResponse:
+        return AsyncQueuesResourceWithRawResponse(self._accounts.queues)
 
 
 class AccountsResourceWithStreamingResponse:
@@ -424,6 +448,10 @@ class AccountsResourceWithStreamingResponse:
     def transcriptions(self) -> TranscriptionsResourceWithStreamingResponse:
         return TranscriptionsResourceWithStreamingResponse(self._accounts.transcriptions)
 
+    @cached_property
+    def queues(self) -> QueuesResourceWithStreamingResponse:
+        return QueuesResourceWithStreamingResponse(self._accounts.queues)
+
 
 class AsyncAccountsResourceWithStreamingResponse:
     def __init__(self, accounts: AsyncAccountsResource) -> None:
@@ -451,3 +479,7 @@ class AsyncAccountsResourceWithStreamingResponse:
     @cached_property
     def transcriptions(self) -> AsyncTranscriptionsResourceWithStreamingResponse:
         return AsyncTranscriptionsResourceWithStreamingResponse(self._accounts.transcriptions)
+
+    @cached_property
+    def queues(self) -> AsyncQueuesResourceWithStreamingResponse:
+        return AsyncQueuesResourceWithStreamingResponse(self._accounts.queues)

@@ -15,7 +15,8 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import make_request_options
+from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
+from .._base_client import AsyncPaginator, make_request_options
 from ..types.wireguard_peer_list_response import WireguardPeerListResponse
 from ..types.wireguard_peer_create_response import WireguardPeerCreateResponse
 from ..types.wireguard_peer_delete_response import WireguardPeerDeleteResponse
@@ -173,7 +174,7 @@ class WireguardPeersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> WireguardPeerListResponse:
+    ) -> SyncDefaultPagination[WireguardPeerListResponse]:
         """
         List all WireGuard peers.
 
@@ -193,8 +194,9 @@ class WireguardPeersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/wireguard_peers",
+            page=SyncDefaultPagination[WireguardPeerListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -208,7 +210,7 @@ class WireguardPeersResource(SyncAPIResource):
                     wireguard_peer_list_params.WireguardPeerListParams,
                 ),
             ),
-            cast_to=WireguardPeerListResponse,
+            model=WireguardPeerListResponse,
         )
 
     def delete(
@@ -418,7 +420,7 @@ class AsyncWireguardPeersResource(AsyncAPIResource):
             cast_to=WireguardPeerUpdateResponse,
         )
 
-    async def list(
+    def list(
         self,
         *,
         filter: wireguard_peer_list_params.Filter | Omit = omit,
@@ -429,7 +431,7 @@ class AsyncWireguardPeersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> WireguardPeerListResponse:
+    ) -> AsyncPaginator[WireguardPeerListResponse, AsyncDefaultPagination[WireguardPeerListResponse]]:
         """
         List all WireGuard peers.
 
@@ -449,14 +451,15 @@ class AsyncWireguardPeersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/wireguard_peers",
+            page=AsyncDefaultPagination[WireguardPeerListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "filter": filter,
                         "page": page,
@@ -464,7 +467,7 @@ class AsyncWireguardPeersResource(AsyncAPIResource):
                     wireguard_peer_list_params.WireguardPeerListParams,
                 ),
             ),
-            cast_to=WireguardPeerListResponse,
+            model=WireguardPeerListResponse,
         )
 
     async def delete(
