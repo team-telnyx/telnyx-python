@@ -4160,6 +4160,25 @@ Methods:
 - <code title="delete /texml/Accounts/{account_sid}/Transcriptions/{recording_transcription_sid}.json">client.texml.accounts.transcriptions.json.<a href="./src/telnyx/resources/texml/accounts/transcriptions/json.py">delete_recording_transcription_sid_json</a>(recording_transcription_sid, \*, account_sid) -> None</code>
 - <code title="get /texml/Accounts/{account_sid}/Transcriptions/{recording_transcription_sid}.json">client.texml.accounts.transcriptions.json.<a href="./src/telnyx/resources/texml/accounts/transcriptions/json.py">retrieve_recording_transcription_sid_json</a>(recording_transcription_sid, \*, account_sid) -> <a href="./src/telnyx/types/texml/accounts/transcriptions/json_retrieve_recording_transcription_sid_json_response.py">JsonRetrieveRecordingTranscriptionSidJsonResponse</a></code>
 
+### Queues
+
+Types:
+
+```python
+from telnyx.types.texml.accounts import (
+    QueueCreateResponse,
+    QueueRetrieveResponse,
+    QueueUpdateResponse,
+)
+```
+
+Methods:
+
+- <code title="post /texml/Accounts/{account_sid}/Queues">client.texml.accounts.queues.<a href="./src/telnyx/resources/texml/accounts/queues.py">create</a>(account_sid, \*\*<a href="src/telnyx/types/texml/accounts/queue_create_params.py">params</a>) -> <a href="./src/telnyx/types/texml/accounts/queue_create_response.py">QueueCreateResponse</a></code>
+- <code title="get /texml/Accounts/{account_sid}/Queues/{queue_sid}">client.texml.accounts.queues.<a href="./src/telnyx/resources/texml/accounts/queues.py">retrieve</a>(queue_sid, \*, account_sid) -> <a href="./src/telnyx/types/texml/accounts/queue_retrieve_response.py">QueueRetrieveResponse</a></code>
+- <code title="post /texml/Accounts/{account_sid}/Queues/{queue_sid}">client.texml.accounts.queues.<a href="./src/telnyx/resources/texml/accounts/queues.py">update</a>(queue_sid, \*, account_sid, \*\*<a href="src/telnyx/types/texml/accounts/queue_update_params.py">params</a>) -> <a href="./src/telnyx/types/texml/accounts/queue_update_response.py">QueueUpdateResponse</a></code>
+- <code title="delete /texml/Accounts/{account_sid}/Queues/{queue_sid}">client.texml.accounts.queues.<a href="./src/telnyx/resources/texml/accounts/queues.py">delete</a>(queue_sid, \*, account_sid) -> None</code>
+
 ## Calls
 
 Types:
