@@ -67,6 +67,11 @@ class TestFqdnConnections:
             },
             ios_push_credential_id="ec0c8e5d-439e-4620-a0c1-9d9c8d02a836",
             microsoft_teams_sbc=True,
+            noise_suppression="both",
+            noise_suppression_details={
+                "attenuation_limit": 80,
+                "engine": "deep_filter_net",
+            },
             onnet_t38_passthrough_enabled=True,
             outbound={
                 "ani_override": "+1234567890",
@@ -210,6 +215,11 @@ class TestFqdnConnections:
                 "timeout_2xx_secs": 10,
             },
             ios_push_credential_id="ec0c8e5d-439e-4620-a0c1-9d9c8d02a836",
+            noise_suppression="both",
+            noise_suppression_details={
+                "attenuation_limit": 80,
+                "engine": "deep_filter_net",
+            },
             onnet_t38_passthrough_enabled=True,
             outbound={
                 "ani_override": "ani_override",
@@ -412,6 +422,11 @@ class TestAsyncFqdnConnections:
             },
             ios_push_credential_id="ec0c8e5d-439e-4620-a0c1-9d9c8d02a836",
             microsoft_teams_sbc=True,
+            noise_suppression="both",
+            noise_suppression_details={
+                "attenuation_limit": 80,
+                "engine": "deep_filter_net",
+            },
             onnet_t38_passthrough_enabled=True,
             outbound={
                 "ani_override": "+1234567890",
@@ -555,6 +570,11 @@ class TestAsyncFqdnConnections:
                 "timeout_2xx_secs": 10,
             },
             ios_push_credential_id="ec0c8e5d-439e-4620-a0c1-9d9c8d02a836",
+            noise_suppression="both",
+            noise_suppression_details={
+                "attenuation_limit": 80,
+                "engine": "deep_filter_net",
+            },
             onnet_t38_passthrough_enabled=True,
             outbound={
                 "ani_override": "ani_override",

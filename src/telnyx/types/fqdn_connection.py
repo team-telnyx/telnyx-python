@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Optional
+from typing_extensions import Literal
 
 from .._models import BaseModel
 from .dtmf_type import DtmfType
@@ -12,7 +13,41 @@ from .anchorsite_override import AnchorsiteOverride
 from .webhook_api_version import WebhookAPIVersion
 from .connection_rtcp_settings import ConnectionRtcpSettings
 
-__all__ = ["FqdnConnection"]
+__all__ = ["FqdnConnection", "NoiseSuppressionDetails"]
+
+
+class NoiseSuppressionDetails(BaseModel):
+    """Configuration options for noise suppression.
+
+    These settings are stored regardless of the noise_suppression value, but only take effect when noise_suppression is not 'disabled'. If you disable noise suppression and later re-enable it, the previously configured settings will be used.
+    """
+
+    attenuation_limit: Optional[int] = None
+    """The attenuation limit value for the selected engine.
+
+    Default values vary by engine: 0 for 'denoiser', 80 for 'deep_filter_net',
+    'deep_filter_net_large', and all Krisp engines ('krisp_viva_tel',
+    'krisp_viva_tel_lite', 'krisp_viva_promodel', 'krisp_viva_ss').
+    """
+
+    engine: Optional[
+        Literal[
+            "denoiser",
+            "deep_filter_net",
+            "deep_filter_net_large",
+            "krisp_viva_tel",
+            "krisp_viva_tel_lite",
+            "krisp_viva_promodel",
+            "krisp_viva_ss",
+        ]
+    ] = None
+    """The noise suppression engine to use.
+
+    'denoiser' is the default engine. 'deep_filter_net' and 'deep_filter_net_large'
+    are alternative engines with different performance characteristics. Krisp
+    engines ('krisp_viva_tel', 'krisp_viva_tel_lite', 'krisp_viva_promodel',
+    'krisp_viva_ss') provide advanced noise suppression capabilities.
+    """
 
 
 class FqdnConnection(BaseModel):
@@ -81,8 +116,22 @@ class FqdnConnection(BaseModel):
     microsoft_teams_sbc: Optional[bool] = None
     """The connection is enabled for Microsoft Teams Direct Routing."""
 
-    noise_suppression: Optional[bool] = None
-    """Indicates whether noise suppression is enabled."""
+    noise_suppression: Optional[Literal["inbound", "outbound", "both", "disabled"]] = None
+    """Controls when noise suppression is applied to calls.
+
+    When set to 'inbound', noise suppression is applied to incoming audio. When set
+    to 'outbound', it's applied to outgoing audio. When set to 'both', it's applied
+    in both directions. When set to 'disabled', noise suppression is turned off.
+    """
+
+    noise_suppression_details: Optional[NoiseSuppressionDetails] = None
+    """Configuration options for noise suppression.
+
+    These settings are stored regardless of the noise_suppression value, but only
+    take effect when noise_suppression is not 'disabled'. If you disable noise
+    suppression and later re-enable it, the previously configured settings will be
+    used.
+    """
 
     onnet_t38_passthrough_enabled: Optional[bool] = None
     """

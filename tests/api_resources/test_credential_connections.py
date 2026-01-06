@@ -64,6 +64,11 @@ class TestCredentialConnections:
                 "timeout_2xx_secs": 20,
             },
             ios_push_credential_id="ec0c8e5d-439e-4620-a0c1-9d9c8d02a836",
+            noise_suppression="both",
+            noise_suppression_details={
+                "attenuation_limit": 80,
+                "engine": "deep_filter_net",
+            },
             onnet_t38_passthrough_enabled=True,
             outbound={
                 "ani_override": "always",
@@ -199,6 +204,11 @@ class TestCredentialConnections:
                 "timeout_2xx_secs": 20,
             },
             ios_push_credential_id="ec0c8e5d-439e-4620-a0c1-9d9c8d02a836",
+            noise_suppression="both",
+            noise_suppression_details={
+                "attenuation_limit": 80,
+                "engine": "deep_filter_net",
+            },
             onnet_t38_passthrough_enabled=True,
             outbound={
                 "ani_override": "always",
@@ -394,6 +404,11 @@ class TestAsyncCredentialConnections:
                 "timeout_2xx_secs": 20,
             },
             ios_push_credential_id="ec0c8e5d-439e-4620-a0c1-9d9c8d02a836",
+            noise_suppression="both",
+            noise_suppression_details={
+                "attenuation_limit": 80,
+                "engine": "deep_filter_net",
+            },
             onnet_t38_passthrough_enabled=True,
             outbound={
                 "ani_override": "always",
@@ -529,6 +544,11 @@ class TestAsyncCredentialConnections:
                 "timeout_2xx_secs": 20,
             },
             ios_push_credential_id="ec0c8e5d-439e-4620-a0c1-9d9c8d02a836",
+            noise_suppression="both",
+            noise_suppression_details={
+                "attenuation_limit": 80,
+                "engine": "deep_filter_net",
+            },
             onnet_t38_passthrough_enabled=True,
             outbound={
                 "ani_override": "always",

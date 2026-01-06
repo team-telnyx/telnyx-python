@@ -76,6 +76,8 @@ class IPConnectionsResource(SyncAPIResource):
         encrypted_media: Optional[EncryptedMedia] | Omit = omit,
         inbound: ip_connection_create_params.Inbound | Omit = omit,
         ios_push_credential_id: Optional[str] | Omit = omit,
+        noise_suppression: Literal["inbound", "outbound", "both", "disabled"] | Omit = omit,
+        noise_suppression_details: ip_connection_create_params.NoiseSuppressionDetails | Omit = omit,
         onnet_t38_passthrough_enabled: bool | Omit = omit,
         outbound: OutboundIPParam | Omit = omit,
         rtcp_settings: ConnectionRtcpSettingsParam | Omit = omit,
@@ -121,6 +123,16 @@ class IPConnectionsResource(SyncAPIResource):
 
           ios_push_credential_id: The uuid of the push credential for Ios
 
+          noise_suppression: Controls when noise suppression is applied to calls. When set to 'inbound',
+              noise suppression is applied to incoming audio. When set to 'outbound', it's
+              applied to outgoing audio. When set to 'both', it's applied in both directions.
+              When set to 'disabled', noise suppression is turned off.
+
+          noise_suppression_details: Configuration options for noise suppression. These settings are stored
+              regardless of the noise_suppression value, but only take effect when
+              noise_suppression is not 'disabled'. If you disable noise suppression and later
+              re-enable it, the previously configured settings will be used.
+
           onnet_t38_passthrough_enabled: Enable on-net T38 if you prefer the sender and receiver negotiating T38 directly
               if both are on the Telnyx network. If this is disabled, Telnyx will be able to
               use T38 on just one leg of the call depending on each leg's settings.
@@ -163,6 +175,8 @@ class IPConnectionsResource(SyncAPIResource):
                     "encrypted_media": encrypted_media,
                     "inbound": inbound,
                     "ios_push_credential_id": ios_push_credential_id,
+                    "noise_suppression": noise_suppression,
+                    "noise_suppression_details": noise_suppression_details,
                     "onnet_t38_passthrough_enabled": onnet_t38_passthrough_enabled,
                     "outbound": outbound,
                     "rtcp_settings": rtcp_settings,
@@ -229,6 +243,8 @@ class IPConnectionsResource(SyncAPIResource):
         encrypted_media: Optional[EncryptedMedia] | Omit = omit,
         inbound: InboundIPParam | Omit = omit,
         ios_push_credential_id: Optional[str] | Omit = omit,
+        noise_suppression: Literal["inbound", "outbound", "both", "disabled"] | Omit = omit,
+        noise_suppression_details: ip_connection_update_params.NoiseSuppressionDetails | Omit = omit,
         onnet_t38_passthrough_enabled: bool | Omit = omit,
         outbound: OutboundIPParam | Omit = omit,
         rtcp_settings: ConnectionRtcpSettingsParam | Omit = omit,
@@ -274,6 +290,16 @@ class IPConnectionsResource(SyncAPIResource):
 
           ios_push_credential_id: The uuid of the push credential for Ios
 
+          noise_suppression: Controls when noise suppression is applied to calls. When set to 'inbound',
+              noise suppression is applied to incoming audio. When set to 'outbound', it's
+              applied to outgoing audio. When set to 'both', it's applied in both directions.
+              When set to 'disabled', noise suppression is turned off.
+
+          noise_suppression_details: Configuration options for noise suppression. These settings are stored
+              regardless of the noise_suppression value, but only take effect when
+              noise_suppression is not 'disabled'. If you disable noise suppression and later
+              re-enable it, the previously configured settings will be used.
+
           onnet_t38_passthrough_enabled: Enable on-net T38 if you prefer the sender and receiver negotiating T38 directly
               if both are on the Telnyx network. If this is disabled, Telnyx will be able to
               use T38 on just one leg of the call depending on each leg's settings.
@@ -318,6 +344,8 @@ class IPConnectionsResource(SyncAPIResource):
                     "encrypted_media": encrypted_media,
                     "inbound": inbound,
                     "ios_push_credential_id": ios_push_credential_id,
+                    "noise_suppression": noise_suppression,
+                    "noise_suppression_details": noise_suppression_details,
                     "onnet_t38_passthrough_enabled": onnet_t38_passthrough_enabled,
                     "outbound": outbound,
                     "rtcp_settings": rtcp_settings,
@@ -472,6 +500,8 @@ class AsyncIPConnectionsResource(AsyncAPIResource):
         encrypted_media: Optional[EncryptedMedia] | Omit = omit,
         inbound: ip_connection_create_params.Inbound | Omit = omit,
         ios_push_credential_id: Optional[str] | Omit = omit,
+        noise_suppression: Literal["inbound", "outbound", "both", "disabled"] | Omit = omit,
+        noise_suppression_details: ip_connection_create_params.NoiseSuppressionDetails | Omit = omit,
         onnet_t38_passthrough_enabled: bool | Omit = omit,
         outbound: OutboundIPParam | Omit = omit,
         rtcp_settings: ConnectionRtcpSettingsParam | Omit = omit,
@@ -517,6 +547,16 @@ class AsyncIPConnectionsResource(AsyncAPIResource):
 
           ios_push_credential_id: The uuid of the push credential for Ios
 
+          noise_suppression: Controls when noise suppression is applied to calls. When set to 'inbound',
+              noise suppression is applied to incoming audio. When set to 'outbound', it's
+              applied to outgoing audio. When set to 'both', it's applied in both directions.
+              When set to 'disabled', noise suppression is turned off.
+
+          noise_suppression_details: Configuration options for noise suppression. These settings are stored
+              regardless of the noise_suppression value, but only take effect when
+              noise_suppression is not 'disabled'. If you disable noise suppression and later
+              re-enable it, the previously configured settings will be used.
+
           onnet_t38_passthrough_enabled: Enable on-net T38 if you prefer the sender and receiver negotiating T38 directly
               if both are on the Telnyx network. If this is disabled, Telnyx will be able to
               use T38 on just one leg of the call depending on each leg's settings.
@@ -559,6 +599,8 @@ class AsyncIPConnectionsResource(AsyncAPIResource):
                     "encrypted_media": encrypted_media,
                     "inbound": inbound,
                     "ios_push_credential_id": ios_push_credential_id,
+                    "noise_suppression": noise_suppression,
+                    "noise_suppression_details": noise_suppression_details,
                     "onnet_t38_passthrough_enabled": onnet_t38_passthrough_enabled,
                     "outbound": outbound,
                     "rtcp_settings": rtcp_settings,
@@ -625,6 +667,8 @@ class AsyncIPConnectionsResource(AsyncAPIResource):
         encrypted_media: Optional[EncryptedMedia] | Omit = omit,
         inbound: InboundIPParam | Omit = omit,
         ios_push_credential_id: Optional[str] | Omit = omit,
+        noise_suppression: Literal["inbound", "outbound", "both", "disabled"] | Omit = omit,
+        noise_suppression_details: ip_connection_update_params.NoiseSuppressionDetails | Omit = omit,
         onnet_t38_passthrough_enabled: bool | Omit = omit,
         outbound: OutboundIPParam | Omit = omit,
         rtcp_settings: ConnectionRtcpSettingsParam | Omit = omit,
@@ -670,6 +714,16 @@ class AsyncIPConnectionsResource(AsyncAPIResource):
 
           ios_push_credential_id: The uuid of the push credential for Ios
 
+          noise_suppression: Controls when noise suppression is applied to calls. When set to 'inbound',
+              noise suppression is applied to incoming audio. When set to 'outbound', it's
+              applied to outgoing audio. When set to 'both', it's applied in both directions.
+              When set to 'disabled', noise suppression is turned off.
+
+          noise_suppression_details: Configuration options for noise suppression. These settings are stored
+              regardless of the noise_suppression value, but only take effect when
+              noise_suppression is not 'disabled'. If you disable noise suppression and later
+              re-enable it, the previously configured settings will be used.
+
           onnet_t38_passthrough_enabled: Enable on-net T38 if you prefer the sender and receiver negotiating T38 directly
               if both are on the Telnyx network. If this is disabled, Telnyx will be able to
               use T38 on just one leg of the call depending on each leg's settings.
@@ -714,6 +768,8 @@ class AsyncIPConnectionsResource(AsyncAPIResource):
                     "encrypted_media": encrypted_media,
                     "inbound": inbound,
                     "ios_push_credential_id": ios_push_credential_id,
+                    "noise_suppression": noise_suppression,
+                    "noise_suppression_details": noise_suppression_details,
                     "onnet_t38_passthrough_enabled": onnet_t38_passthrough_enabled,
                     "outbound": outbound,
                     "rtcp_settings": rtcp_settings,
