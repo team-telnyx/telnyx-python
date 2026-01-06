@@ -61,6 +61,11 @@ class TestIPConnections:
                 "timeout_2xx_secs": 20,
             },
             ios_push_credential_id="ec0c8e5d-439e-4620-a0c1-9d9c8d02a836",
+            noise_suppression="both",
+            noise_suppression_details={
+                "attenuation_limit": 80,
+                "engine": "deep_filter_net",
+            },
             onnet_t38_passthrough_enabled=False,
             outbound={
                 "ani_override": "string",
@@ -197,6 +202,11 @@ class TestIPConnections:
                 "timeout_2xx_secs": 20,
             },
             ios_push_credential_id="ec0c8e5d-439e-4620-a0c1-9d9c8d02a836",
+            noise_suppression="both",
+            noise_suppression_details={
+                "attenuation_limit": 80,
+                "engine": "deep_filter_net",
+            },
             onnet_t38_passthrough_enabled=False,
             outbound={
                 "ani_override": "string",
@@ -390,6 +400,11 @@ class TestAsyncIPConnections:
                 "timeout_2xx_secs": 20,
             },
             ios_push_credential_id="ec0c8e5d-439e-4620-a0c1-9d9c8d02a836",
+            noise_suppression="both",
+            noise_suppression_details={
+                "attenuation_limit": 80,
+                "engine": "deep_filter_net",
+            },
             onnet_t38_passthrough_enabled=False,
             outbound={
                 "ani_override": "string",
@@ -526,6 +541,11 @@ class TestAsyncIPConnections:
                 "timeout_2xx_secs": 20,
             },
             ios_push_credential_id="ec0c8e5d-439e-4620-a0c1-9d9c8d02a836",
+            noise_suppression="both",
+            noise_suppression_details={
+                "attenuation_limit": 80,
+                "engine": "deep_filter_net",
+            },
             onnet_t38_passthrough_enabled=False,
             outbound={
                 "ani_override": "string",

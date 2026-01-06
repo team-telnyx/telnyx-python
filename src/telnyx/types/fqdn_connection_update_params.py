@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Optional
-from typing_extensions import TypedDict
+from typing_extensions import Literal, TypedDict
 
 from .._types import SequenceNotStr
 from .dtmf_type import DtmfType
@@ -15,7 +15,7 @@ from .outbound_fqdn_param import OutboundFqdnParam
 from .webhook_api_version import WebhookAPIVersion
 from .connection_rtcp_settings_param import ConnectionRtcpSettingsParam
 
-__all__ = ["FqdnConnectionUpdateParams"]
+__all__ = ["FqdnConnectionUpdateParams", "NoiseSuppressionDetails"]
 
 
 class FqdnConnectionUpdateParams(TypedDict, total=False):
@@ -69,6 +69,23 @@ class FqdnConnectionUpdateParams(TypedDict, total=False):
     ios_push_credential_id: Optional[str]
     """The uuid of the push credential for Ios"""
 
+    noise_suppression: Literal["inbound", "outbound", "both", "disabled"]
+    """Controls when noise suppression is applied to calls.
+
+    When set to 'inbound', noise suppression is applied to incoming audio. When set
+    to 'outbound', it's applied to outgoing audio. When set to 'both', it's applied
+    in both directions. When set to 'disabled', noise suppression is turned off.
+    """
+
+    noise_suppression_details: NoiseSuppressionDetails
+    """Configuration options for noise suppression.
+
+    These settings are stored regardless of the noise_suppression value, but only
+    take effect when noise_suppression is not 'disabled'. If you disable noise
+    suppression and later re-enable it, the previously configured settings will be
+    used.
+    """
+
     onnet_t38_passthrough_enabled: bool
     """
     Enable on-net T38 if you prefer that the sender and receiver negotiate T38
@@ -106,3 +123,35 @@ class FqdnConnectionUpdateParams(TypedDict, total=False):
 
     webhook_timeout_secs: Optional[int]
     """Specifies how many seconds to wait before timing out a webhook."""
+
+
+class NoiseSuppressionDetails(TypedDict, total=False):
+    """Configuration options for noise suppression.
+
+    These settings are stored regardless of the noise_suppression value, but only take effect when noise_suppression is not 'disabled'. If you disable noise suppression and later re-enable it, the previously configured settings will be used.
+    """
+
+    attenuation_limit: int
+    """The attenuation limit value for the selected engine.
+
+    Default values vary by engine: 0 for 'denoiser', 80 for 'deep_filter_net',
+    'deep_filter_net_large', and all Krisp engines ('krisp_viva_tel',
+    'krisp_viva_tel_lite', 'krisp_viva_promodel', 'krisp_viva_ss').
+    """
+
+    engine: Literal[
+        "denoiser",
+        "deep_filter_net",
+        "deep_filter_net_large",
+        "krisp_viva_tel",
+        "krisp_viva_tel_lite",
+        "krisp_viva_promodel",
+        "krisp_viva_ss",
+    ]
+    """The noise suppression engine to use.
+
+    'denoiser' is the default engine. 'deep_filter_net' and 'deep_filter_net_large'
+    are alternative engines with different performance characteristics. Krisp
+    engines ('krisp_viva_tel', 'krisp_viva_tel_lite', 'krisp_viva_promodel',
+    'krisp_viva_ss') provide advanced noise suppression capabilities.
+    """
