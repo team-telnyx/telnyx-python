@@ -115,7 +115,7 @@ class CampaignBuilderResource(SyncAPIResource):
 
           description: Summary description of this campaign.
 
-          usecase: Campaign usecase. Must be of defined valid types. Use `/registry/enum/usecase`
+          usecase: Campaign usecase. Must be of defined valid types. Use `/10dlc/enum/usecase`
               operation to retrieve usecases available for given brand.
 
           age_gated: Age gated message content in campaign.
@@ -177,7 +177,7 @@ class CampaignBuilderResource(SyncAPIResource):
           subscriber_optout: Does campaign support subscriber opt-out keyword(s)?
 
           sub_usecases: Campaign sub-usecases. Must be of defined valid sub-usecase types. Use
-              `/registry/enum/usecase` operation to retrieve list of valid sub-usecases
+              `/10dlc/enum/usecase` operation to retrieve list of valid sub-usecases
 
           tag: Tags to be set on the Campaign.
 
@@ -330,7 +330,7 @@ class AsyncCampaignBuilderResource(AsyncAPIResource):
 
           description: Summary description of this campaign.
 
-          usecase: Campaign usecase. Must be of defined valid types. Use `/registry/enum/usecase`
+          usecase: Campaign usecase. Must be of defined valid types. Use `/10dlc/enum/usecase`
               operation to retrieve usecases available for given brand.
 
           age_gated: Age gated message content in campaign.
@@ -392,7 +392,7 @@ class AsyncCampaignBuilderResource(AsyncAPIResource):
           subscriber_optout: Does campaign support subscriber opt-out keyword(s)?
 
           sub_usecases: Campaign sub-usecases. Must be of defined valid sub-usecase types. Use
-              `/registry/enum/usecase` operation to retrieve list of valid sub-usecases
+              `/10dlc/enum/usecase` operation to retrieve list of valid sub-usecases
 
           tag: Tags to be set on the Campaign.
 

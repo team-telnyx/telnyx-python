@@ -26,8 +26,8 @@ class PartnerCampaignListSharedByMeResponse(BaseModel):
     usecase: str
     """Campaign usecase.
 
-    Must be of defined valid types. Use `/registry/enum/usecase` operation to
-    retrieve usecases available for given brand.
+    Must be of defined valid types. Use `/10dlc/enum/usecase` operation to retrieve
+    usecases available for given brand.
     """
 
     create_date: Optional[str] = FieldInfo(alias="createDate", default=None)

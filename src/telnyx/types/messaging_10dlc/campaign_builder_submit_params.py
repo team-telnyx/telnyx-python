@@ -21,8 +21,8 @@ class CampaignBuilderSubmitParams(TypedDict, total=False):
     usecase: Required[str]
     """Campaign usecase.
 
-    Must be of defined valid types. Use `/registry/enum/usecase` operation to
-    retrieve usecases available for given brand.
+    Must be of defined valid types. Use `/10dlc/enum/usecase` operation to retrieve
+    usecases available for given brand.
     """
 
     age_gated: Annotated[bool, PropertyInfo(alias="ageGated")]
@@ -126,8 +126,8 @@ class CampaignBuilderSubmitParams(TypedDict, total=False):
     sub_usecases: Annotated[SequenceNotStr[str], PropertyInfo(alias="subUsecases")]
     """Campaign sub-usecases.
 
-    Must be of defined valid sub-usecase types. Use `/registry/enum/usecase`
-    operation to retrieve list of valid sub-usecases
+    Must be of defined valid sub-usecase types. Use `/10dlc/enum/usecase` operation
+    to retrieve list of valid sub-usecases
     """
 
     tag: SequenceNotStr[str]

@@ -178,8 +178,8 @@ class CampaignListResponse(BaseModel):
     sub_usecases: Optional[List[str]] = FieldInfo(alias="subUsecases", default=None)
     """Campaign sub-usecases.
 
-    Must be of defined valid sub-usecase types. Use `/registry/enum/usecase`
-    operation to retrieve list of valid sub-usecases
+    Must be of defined valid sub-usecase types. Use `/10dlc/enum/usecase` operation
+    to retrieve list of valid sub-usecases
     """
 
     tcr_brand_id: Optional[str] = FieldInfo(alias="tcrBrandId", default=None)
@@ -197,8 +197,8 @@ class CampaignListResponse(BaseModel):
     usecase: Optional[str] = None
     """Campaign usecase.
 
-    Must be of defined valid types. Use `/registry/enum/usecase` operation to
-    retrieve usecases available for given brand.
+    Must be of defined valid types. Use `/10dlc/enum/usecase` operation to retrieve
+    usecases available for given brand.
     """
 
     vertical: Optional[str] = None

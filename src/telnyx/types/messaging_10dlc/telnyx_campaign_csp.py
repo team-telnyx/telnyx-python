@@ -36,8 +36,8 @@ class TelnyxCampaignCsp(BaseModel):
     sub_usecases: List[str] = FieldInfo(alias="subUsecases")
     """Campaign sub-usecases.
 
-    Must be of defined valid sub-usecase types. Use `/registry/enum/usecase`
-    operation to retrieve list of valid sub-usecases
+    Must be of defined valid sub-usecase types. Use `/10dlc/enum/usecase` operation
+    to retrieve list of valid sub-usecases
     """
 
     terms_and_conditions: bool = FieldInfo(alias="termsAndConditions")
@@ -46,8 +46,8 @@ class TelnyxCampaignCsp(BaseModel):
     usecase: str
     """Campaign usecase.
 
-    Must be of defined valid types. Use `/registry/enum/usecase` operation to
-    retrieve usecases available for given brand.
+    Must be of defined valid types. Use `/10dlc/enum/usecase` operation to retrieve
+    usecases available for given brand.
     """
 
     age_gated: Optional[bool] = FieldInfo(alias="ageGated", default=None)
