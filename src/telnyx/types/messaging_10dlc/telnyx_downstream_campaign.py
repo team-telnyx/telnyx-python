@@ -131,8 +131,8 @@ class TelnyxDownstreamCampaign(BaseModel):
     sub_usecases: Optional[List[str]] = FieldInfo(alias="subUsecases", default=None)
     """Campaign sub-usecases.
 
-    Must be of defined valid sub-usecase types. Use `/registry/enum/usecase`
-    operation to retrieve list of valid sub-usecases
+    Must be of defined valid sub-usecase types. Use `/10dlc/enum/usecase` operation
+    to retrieve list of valid sub-usecases
     """
 
     terms_and_conditions: Optional[bool] = FieldInfo(alias="termsAndConditions", default=None)
@@ -147,8 +147,8 @@ class TelnyxDownstreamCampaign(BaseModel):
     usecase: Optional[str] = None
     """Campaign usecase.
 
-    Must be of defined valid types. Use `/registry/enum/usecase` operation to
-    retrieve usecases available for given brand.
+    Must be of defined valid types. Use `/10dlc/enum/usecase` operation to retrieve
+    usecases available for given brand.
     """
 
     webhook_failover_url: Optional[str] = FieldInfo(alias="webhookFailoverURL", default=None)
