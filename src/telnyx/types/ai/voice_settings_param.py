@@ -73,6 +73,40 @@ class VoiceSettingsParam(TypedDict, total=False):
     in the portal, customers can preview it before saving.
     """
 
+    similarity_boost: float
+    """
+    Determines how closely the AI should adhere to the original voice when
+    attempting to replicate it. Only applicable when using ElevenLabs.
+    """
+
+    speed: float
+    """Adjusts speech velocity.
+
+    1.0 is default speed; values less than 1.0 slow speech; values greater than 1.0
+    accelerate it. Only applicable when using ElevenLabs.
+    """
+
+    style: float
+    """Determines the style exaggeration of the voice.
+
+    Amplifies speaker style but consumes additional resources when set above 0. Only
+    applicable when using ElevenLabs.
+    """
+
+    temperature: float
+    """Determines how stable the voice is and the randomness between each generation.
+
+    Lower values create a broader emotional range; higher values produce more
+    consistent, monotonous output. Only applicable when using ElevenLabs.
+    """
+
+    use_speaker_boost: bool
+    """Amplifies similarity to the original speaker voice.
+
+    Increases computational load and latency slightly. Only applicable when using
+    ElevenLabs.
+    """
+
     voice_speed: float
     """The speed of the voice in the range [0.25, 2.0].
 

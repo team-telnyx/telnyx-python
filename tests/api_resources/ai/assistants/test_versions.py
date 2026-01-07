@@ -114,7 +114,13 @@ class TestVersions:
             privacy_settings={"data_retention": True},
             telephony_settings={
                 "default_texml_app_id": "default_texml_app_id",
+                "noise_suppression": "deepfilternet",
+                "noise_suppression_config": {
+                    "attenuation_limit": 0,
+                    "mode": "advanced",
+                },
                 "supports_unauthenticated_web_calls": True,
+                "time_limit_secs": 30,
             },
             tools=[
                 {
@@ -156,6 +162,7 @@ class TestVersions:
                 "model": "deepgram/flux",
                 "region": "region",
                 "settings": {
+                    "eager_eot_threshold": 0.3,
                     "eot_threshold": 0,
                     "eot_timeout_ms": 0,
                     "numerals": True,
@@ -169,6 +176,11 @@ class TestVersions:
                     "type": "predefined_media",
                     "value": "silence",
                 },
+                "similarity_boost": 0,
+                "speed": 0,
+                "style": 0,
+                "temperature": 0,
+                "use_speaker_boost": True,
                 "voice_speed": 0,
             },
         )
@@ -463,7 +475,13 @@ class TestAsyncVersions:
             privacy_settings={"data_retention": True},
             telephony_settings={
                 "default_texml_app_id": "default_texml_app_id",
+                "noise_suppression": "deepfilternet",
+                "noise_suppression_config": {
+                    "attenuation_limit": 0,
+                    "mode": "advanced",
+                },
                 "supports_unauthenticated_web_calls": True,
+                "time_limit_secs": 30,
             },
             tools=[
                 {
@@ -505,6 +523,7 @@ class TestAsyncVersions:
                 "model": "deepgram/flux",
                 "region": "region",
                 "settings": {
+                    "eager_eot_threshold": 0.3,
                     "eot_threshold": 0,
                     "eot_timeout_ms": 0,
                     "numerals": True,
@@ -518,6 +537,11 @@ class TestAsyncVersions:
                     "type": "predefined_media",
                     "value": "silence",
                 },
+                "similarity_boost": 0,
+                "speed": 0,
+                "style": 0,
+                "temperature": 0,
+                "use_speaker_boost": True,
                 "voice_speed": 0,
             },
         )
