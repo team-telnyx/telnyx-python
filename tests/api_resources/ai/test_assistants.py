@@ -54,7 +54,13 @@ class TestAssistants:
             privacy_settings={"data_retention": True},
             telephony_settings={
                 "default_texml_app_id": "default_texml_app_id",
+                "noise_suppression": "deepfilternet",
+                "noise_suppression_config": {
+                    "attenuation_limit": 0,
+                    "mode": "advanced",
+                },
                 "supports_unauthenticated_web_calls": True,
+                "time_limit_secs": 30,
             },
             tools=[
                 {
@@ -96,6 +102,7 @@ class TestAssistants:
                 "model": "deepgram/flux",
                 "region": "region",
                 "settings": {
+                    "eager_eot_threshold": 0.3,
                     "eot_threshold": 0,
                     "eot_timeout_ms": 0,
                     "numerals": True,
@@ -109,6 +116,11 @@ class TestAssistants:
                     "type": "predefined_media",
                     "value": "silence",
                 },
+                "similarity_boost": 0,
+                "speed": 0,
+                "style": 0,
+                "temperature": 0,
+                "use_speaker_boost": True,
                 "voice_speed": 0,
             },
         )
@@ -229,7 +241,13 @@ class TestAssistants:
             promote_to_main=True,
             telephony_settings={
                 "default_texml_app_id": "default_texml_app_id",
+                "noise_suppression": "deepfilternet",
+                "noise_suppression_config": {
+                    "attenuation_limit": 0,
+                    "mode": "advanced",
+                },
                 "supports_unauthenticated_web_calls": True,
+                "time_limit_secs": 30,
             },
             tools=[
                 {
@@ -271,6 +289,7 @@ class TestAssistants:
                 "model": "deepgram/flux",
                 "region": "region",
                 "settings": {
+                    "eager_eot_threshold": 0.3,
                     "eot_threshold": 0,
                     "eot_timeout_ms": 0,
                     "numerals": True,
@@ -284,6 +303,11 @@ class TestAssistants:
                     "type": "predefined_media",
                     "value": "silence",
                 },
+                "similarity_boost": 0,
+                "speed": 0,
+                "style": 0,
+                "temperature": 0,
+                "use_speaker_boost": True,
                 "voice_speed": 0,
             },
         )
@@ -679,7 +703,13 @@ class TestAsyncAssistants:
             privacy_settings={"data_retention": True},
             telephony_settings={
                 "default_texml_app_id": "default_texml_app_id",
+                "noise_suppression": "deepfilternet",
+                "noise_suppression_config": {
+                    "attenuation_limit": 0,
+                    "mode": "advanced",
+                },
                 "supports_unauthenticated_web_calls": True,
+                "time_limit_secs": 30,
             },
             tools=[
                 {
@@ -721,6 +751,7 @@ class TestAsyncAssistants:
                 "model": "deepgram/flux",
                 "region": "region",
                 "settings": {
+                    "eager_eot_threshold": 0.3,
                     "eot_threshold": 0,
                     "eot_timeout_ms": 0,
                     "numerals": True,
@@ -734,6 +765,11 @@ class TestAsyncAssistants:
                     "type": "predefined_media",
                     "value": "silence",
                 },
+                "similarity_boost": 0,
+                "speed": 0,
+                "style": 0,
+                "temperature": 0,
+                "use_speaker_boost": True,
                 "voice_speed": 0,
             },
         )
@@ -854,7 +890,13 @@ class TestAsyncAssistants:
             promote_to_main=True,
             telephony_settings={
                 "default_texml_app_id": "default_texml_app_id",
+                "noise_suppression": "deepfilternet",
+                "noise_suppression_config": {
+                    "attenuation_limit": 0,
+                    "mode": "advanced",
+                },
                 "supports_unauthenticated_web_calls": True,
+                "time_limit_secs": 30,
             },
             tools=[
                 {
@@ -896,6 +938,7 @@ class TestAsyncAssistants:
                 "model": "deepgram/flux",
                 "region": "region",
                 "settings": {
+                    "eager_eot_threshold": 0.3,
                     "eot_threshold": 0,
                     "eot_timeout_ms": 0,
                     "numerals": True,
@@ -909,6 +952,11 @@ class TestAsyncAssistants:
                     "type": "predefined_media",
                     "value": "silence",
                 },
+                "similarity_boost": 0,
+                "speed": 0,
+                "style": 0,
+                "temperature": 0,
+                "use_speaker_boost": True,
                 "voice_speed": 0,
             },
         )

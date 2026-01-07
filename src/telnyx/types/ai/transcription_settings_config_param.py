@@ -8,6 +8,14 @@ __all__ = ["TranscriptionSettingsConfigParam"]
 
 
 class TranscriptionSettingsConfigParam(TypedDict, total=False):
+    eager_eot_threshold: float
+    """Available only for deepgram/flux.
+
+    Confidence threshold for eager end of turn detection. Must be lower than or
+    equal to eot_threshold. Setting this equal to eot_threshold effectively disables
+    eager end of turn.
+    """
+
     eot_threshold: float
     """Available only for deepgram/flux.
 
