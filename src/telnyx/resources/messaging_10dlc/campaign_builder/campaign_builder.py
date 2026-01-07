@@ -102,13 +102,13 @@ class CampaignBuilderResource(SyncAPIResource):
     ) -> TelnyxCampaignCsp:
         """
         Before creating a campaign, use the
-        [Qualify By Usecase endpoint](https://developers.telnyx.com/api/messaging/10dlc/get-usecase-qualification)
+        [Qualify By Usecase endpoint](https://developers.telnyx.com/api-reference/campaign/qualify-by-usecase)
         to ensure that the brand you want to assign a new campaign to is qualified for
         the desired use case of that campaign. **Please note:** After campaign creation,
         you'll only be able to edit the campaign's sample messages. Creating a campaign
         will entail an upfront, non-refundable three month's cost that will depend on
         the campaign's use case
-        ([see 10DLC Costs section for details](https://developers.telnyx.com/docs/messaging/10dlc/concepts#10dlc-costs)).
+        ([see 10DLC Costs section for details](https://developers.telnyx.com/api-reference/campaign/get-campaign-cost)).
 
         Args:
           brand_id: Alphanumeric identifier of the brand associated with this campaign.
@@ -317,13 +317,13 @@ class AsyncCampaignBuilderResource(AsyncAPIResource):
     ) -> TelnyxCampaignCsp:
         """
         Before creating a campaign, use the
-        [Qualify By Usecase endpoint](https://developers.telnyx.com/api/messaging/10dlc/get-usecase-qualification)
+        [Qualify By Usecase endpoint](https://developers.telnyx.com/api-reference/campaign/qualify-by-usecase)
         to ensure that the brand you want to assign a new campaign to is qualified for
         the desired use case of that campaign. **Please note:** After campaign creation,
         you'll only be able to edit the campaign's sample messages. Creating a campaign
         will entail an upfront, non-refundable three month's cost that will depend on
         the campaign's use case
-        ([see 10DLC Costs section for details](https://developers.telnyx.com/docs/messaging/10dlc/concepts#10dlc-costs)).
+        ([see 10DLC Costs section for details](https://developers.telnyx.com/api-reference/campaign/get-campaign-cost)).
 
         Args:
           brand_id: Alphanumeric identifier of the brand associated with this campaign.
