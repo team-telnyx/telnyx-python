@@ -596,10 +596,10 @@ class AssistantsResource(SyncAPIResource):
         assistant_id: str,
         *,
         from_: str,
-        text: str,
         to: str,
         conversation_metadata: Dict[str, Union[str, int, bool]] | Omit = omit,
         should_create_conversation: bool | Omit = omit,
+        text: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -637,10 +637,10 @@ class AssistantsResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "from_": from_,
-                    "text": text,
                     "to": to,
                     "conversation_metadata": conversation_metadata,
                     "should_create_conversation": should_create_conversation,
+                    "text": text,
                 },
                 assistant_send_sms_params.AssistantSendSMSParams,
             ),
@@ -1164,10 +1164,10 @@ class AsyncAssistantsResource(AsyncAPIResource):
         assistant_id: str,
         *,
         from_: str,
-        text: str,
         to: str,
         conversation_metadata: Dict[str, Union[str, int, bool]] | Omit = omit,
         should_create_conversation: bool | Omit = omit,
+        text: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1205,10 +1205,10 @@ class AsyncAssistantsResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "from_": from_,
-                    "text": text,
                     "to": to,
                     "conversation_metadata": conversation_metadata,
                     "should_create_conversation": should_create_conversation,
+                    "text": text,
                 },
                 assistant_send_sms_params.AssistantSendSMSParams,
             ),

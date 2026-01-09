@@ -605,7 +605,6 @@ class TestAssistants:
         assistant = client.ai.assistants.send_sms(
             assistant_id="assistant_id",
             from_="from",
-            text="text",
             to="to",
         )
         assert_matches_type(AssistantSendSMSResponse, assistant, path=["response"])
@@ -616,10 +615,10 @@ class TestAssistants:
         assistant = client.ai.assistants.send_sms(
             assistant_id="assistant_id",
             from_="from",
-            text="text",
             to="to",
             conversation_metadata={"foo": "string"},
             should_create_conversation=True,
+            text="text",
         )
         assert_matches_type(AssistantSendSMSResponse, assistant, path=["response"])
 
@@ -629,7 +628,6 @@ class TestAssistants:
         response = client.ai.assistants.with_raw_response.send_sms(
             assistant_id="assistant_id",
             from_="from",
-            text="text",
             to="to",
         )
 
@@ -644,7 +642,6 @@ class TestAssistants:
         with client.ai.assistants.with_streaming_response.send_sms(
             assistant_id="assistant_id",
             from_="from",
-            text="text",
             to="to",
         ) as response:
             assert not response.is_closed
@@ -662,7 +659,6 @@ class TestAssistants:
             client.ai.assistants.with_raw_response.send_sms(
                 assistant_id="",
                 from_="from",
-                text="text",
                 to="to",
             )
 
@@ -1254,7 +1250,6 @@ class TestAsyncAssistants:
         assistant = await async_client.ai.assistants.send_sms(
             assistant_id="assistant_id",
             from_="from",
-            text="text",
             to="to",
         )
         assert_matches_type(AssistantSendSMSResponse, assistant, path=["response"])
@@ -1265,10 +1260,10 @@ class TestAsyncAssistants:
         assistant = await async_client.ai.assistants.send_sms(
             assistant_id="assistant_id",
             from_="from",
-            text="text",
             to="to",
             conversation_metadata={"foo": "string"},
             should_create_conversation=True,
+            text="text",
         )
         assert_matches_type(AssistantSendSMSResponse, assistant, path=["response"])
 
@@ -1278,7 +1273,6 @@ class TestAsyncAssistants:
         response = await async_client.ai.assistants.with_raw_response.send_sms(
             assistant_id="assistant_id",
             from_="from",
-            text="text",
             to="to",
         )
 
@@ -1293,7 +1287,6 @@ class TestAsyncAssistants:
         async with async_client.ai.assistants.with_streaming_response.send_sms(
             assistant_id="assistant_id",
             from_="from",
-            text="text",
             to="to",
         ) as response:
             assert not response.is_closed
@@ -1311,6 +1304,5 @@ class TestAsyncAssistants:
             await async_client.ai.assistants.with_raw_response.send_sms(
                 assistant_id="",
                 from_="from",
-                text="text",
                 to="to",
             )

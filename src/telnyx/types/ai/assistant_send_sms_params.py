@@ -13,10 +13,10 @@ __all__ = ["AssistantSendSMSParams"]
 class AssistantSendSMSParams(TypedDict, total=False):
     from_: Required[Annotated[str, PropertyInfo(alias="from")]]
 
-    text: Required[str]
-
     to: Required[str]
 
     conversation_metadata: Dict[str, Union[str, int, bool]]
 
     should_create_conversation: bool
+
+    text: str
