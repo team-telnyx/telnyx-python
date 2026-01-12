@@ -10,8 +10,8 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx._utils import parse_datetime
+from telnyx.pagination import SyncDefaultPaginationForMessagingTollfree, AsyncDefaultPaginationForMessagingTollfree
 from telnyx.types.messaging_tollfree.verification import (
-    RequestListResponse,
     VerificationRequestEgress,
     VerificationRequestStatus,
 )
@@ -383,7 +383,9 @@ class TestRequests:
             page=1,
             page_size=1,
         )
-        assert_matches_type(RequestListResponse, request, path=["response"])
+        assert_matches_type(
+            SyncDefaultPaginationForMessagingTollfree[VerificationRequestStatus], request, path=["response"]
+        )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -396,7 +398,9 @@ class TestRequests:
             phone_number="phone_number",
             status="Verified",
         )
-        assert_matches_type(RequestListResponse, request, path=["response"])
+        assert_matches_type(
+            SyncDefaultPaginationForMessagingTollfree[VerificationRequestStatus], request, path=["response"]
+        )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -409,7 +413,9 @@ class TestRequests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         request = response.parse()
-        assert_matches_type(RequestListResponse, request, path=["response"])
+        assert_matches_type(
+            SyncDefaultPaginationForMessagingTollfree[VerificationRequestStatus], request, path=["response"]
+        )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -422,7 +428,9 @@ class TestRequests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             request = response.parse()
-            assert_matches_type(RequestListResponse, request, path=["response"])
+            assert_matches_type(
+                SyncDefaultPaginationForMessagingTollfree[VerificationRequestStatus], request, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True
 
@@ -835,7 +843,9 @@ class TestAsyncRequests:
             page=1,
             page_size=1,
         )
-        assert_matches_type(RequestListResponse, request, path=["response"])
+        assert_matches_type(
+            AsyncDefaultPaginationForMessagingTollfree[VerificationRequestStatus], request, path=["response"]
+        )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -848,7 +858,9 @@ class TestAsyncRequests:
             phone_number="phone_number",
             status="Verified",
         )
-        assert_matches_type(RequestListResponse, request, path=["response"])
+        assert_matches_type(
+            AsyncDefaultPaginationForMessagingTollfree[VerificationRequestStatus], request, path=["response"]
+        )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -861,7 +873,9 @@ class TestAsyncRequests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         request = await response.parse()
-        assert_matches_type(RequestListResponse, request, path=["response"])
+        assert_matches_type(
+            AsyncDefaultPaginationForMessagingTollfree[VerificationRequestStatus], request, path=["response"]
+        )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -874,7 +888,9 @@ class TestAsyncRequests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             request = await response.parse()
-            assert_matches_type(RequestListResponse, request, path=["response"])
+            assert_matches_type(
+                AsyncDefaultPaginationForMessagingTollfree[VerificationRequestStatus], request, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True
 

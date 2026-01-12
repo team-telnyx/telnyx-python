@@ -29,8 +29,8 @@ from ...._compat import cached_property
 from ....types.ai import (
     assistant_chat_params,
     assistant_create_params,
-    assistant_import_params,
     assistant_update_params,
+    assistant_imports_params,
     assistant_retrieve_params,
     assistant_send_sms_params,
 )
@@ -543,7 +543,7 @@ class AssistantsResource(SyncAPIResource):
             cast_to=str,
         )
 
-    def import_(
+    def imports(
         self,
         *,
         api_key_ref: str,
@@ -583,7 +583,7 @@ class AssistantsResource(SyncAPIResource):
                     "api_key_ref": api_key_ref,
                     "provider": provider,
                 },
-                assistant_import_params.AssistantImportParams,
+                assistant_imports_params.AssistantImportsParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -596,10 +596,10 @@ class AssistantsResource(SyncAPIResource):
         assistant_id: str,
         *,
         from_: str,
-        text: str,
         to: str,
         conversation_metadata: Dict[str, Union[str, int, bool]] | Omit = omit,
         should_create_conversation: bool | Omit = omit,
+        text: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -637,10 +637,10 @@ class AssistantsResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "from_": from_,
-                    "text": text,
                     "to": to,
                     "conversation_metadata": conversation_metadata,
                     "should_create_conversation": should_create_conversation,
+                    "text": text,
                 },
                 assistant_send_sms_params.AssistantSendSMSParams,
             ),
@@ -1111,7 +1111,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
             cast_to=str,
         )
 
-    async def import_(
+    async def imports(
         self,
         *,
         api_key_ref: str,
@@ -1151,7 +1151,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
                     "api_key_ref": api_key_ref,
                     "provider": provider,
                 },
-                assistant_import_params.AssistantImportParams,
+                assistant_imports_params.AssistantImportsParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -1164,10 +1164,10 @@ class AsyncAssistantsResource(AsyncAPIResource):
         assistant_id: str,
         *,
         from_: str,
-        text: str,
         to: str,
         conversation_metadata: Dict[str, Union[str, int, bool]] | Omit = omit,
         should_create_conversation: bool | Omit = omit,
+        text: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1205,10 +1205,10 @@ class AsyncAssistantsResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "from_": from_,
-                    "text": text,
                     "to": to,
                     "conversation_metadata": conversation_metadata,
                     "should_create_conversation": should_create_conversation,
+                    "text": text,
                 },
                 assistant_send_sms_params.AssistantSendSMSParams,
             ),
@@ -1247,8 +1247,8 @@ class AssistantsResourceWithRawResponse:
         self.get_texml = to_raw_response_wrapper(
             assistants.get_texml,
         )
-        self.import_ = to_raw_response_wrapper(
-            assistants.import_,
+        self.imports = to_raw_response_wrapper(
+            assistants.imports,
         )
         self.send_sms = to_raw_response_wrapper(
             assistants.send_sms,
@@ -1303,8 +1303,8 @@ class AsyncAssistantsResourceWithRawResponse:
         self.get_texml = async_to_raw_response_wrapper(
             assistants.get_texml,
         )
-        self.import_ = async_to_raw_response_wrapper(
-            assistants.import_,
+        self.imports = async_to_raw_response_wrapper(
+            assistants.imports,
         )
         self.send_sms = async_to_raw_response_wrapper(
             assistants.send_sms,
@@ -1359,8 +1359,8 @@ class AssistantsResourceWithStreamingResponse:
         self.get_texml = to_streamed_response_wrapper(
             assistants.get_texml,
         )
-        self.import_ = to_streamed_response_wrapper(
-            assistants.import_,
+        self.imports = to_streamed_response_wrapper(
+            assistants.imports,
         )
         self.send_sms = to_streamed_response_wrapper(
             assistants.send_sms,
@@ -1415,8 +1415,8 @@ class AsyncAssistantsResourceWithStreamingResponse:
         self.get_texml = async_to_streamed_response_wrapper(
             assistants.get_texml,
         )
-        self.import_ = async_to_streamed_response_wrapper(
-            assistants.import_,
+        self.imports = async_to_streamed_response_wrapper(
+            assistants.imports,
         )
         self.send_sms = async_to_streamed_response_wrapper(
             assistants.send_sms,

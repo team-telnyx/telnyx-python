@@ -16,14 +16,6 @@ from .ips import (
     IPsResourceWithStreamingResponse,
     AsyncIPsResourceWithStreamingResponse,
 )
-from .enum import (
-    EnumResource,
-    AsyncEnumResource,
-    EnumResourceWithRawResponse,
-    AsyncEnumResourceWithRawResponse,
-    EnumResourceWithStreamingResponse,
-    AsyncEnumResourceWithStreamingResponse,
-)
 from .list import (
     ListResource,
     AsyncListResource,
@@ -39,14 +31,6 @@ from .seti import (
     AsyncSetiResourceWithRawResponse,
     SetiResourceWithStreamingResponse,
     AsyncSetiResourceWithStreamingResponse,
-)
-from .brand import (
-    BrandResource,
-    AsyncBrandResource,
-    BrandResourceWithRawResponse,
-    AsyncBrandResourceWithRawResponse,
-    BrandResourceWithStreamingResponse,
-    AsyncBrandResourceWithStreamingResponse,
 )
 from .calls import (
     CallsResource,
@@ -176,14 +160,6 @@ from .storage import (
     StorageResourceWithStreamingResponse,
     AsyncStorageResourceWithStreamingResponse,
 )
-from .campaign import (
-    CampaignResource,
-    AsyncCampaignResource,
-    CampaignResourceWithRawResponse,
-    AsyncCampaignResourceWithRawResponse,
-    CampaignResourceWithStreamingResponse,
-    AsyncCampaignResourceWithStreamingResponse,
-)
 from .comments import (
     CommentsResource,
     AsyncCommentsResource,
@@ -256,14 +232,6 @@ from .messaging import (
     AsyncMessagingResourceWithRawResponse,
     MessagingResourceWithStreamingResponse,
     AsyncMessagingResourceWithStreamingResponse,
-)
-from .messsages import (
-    MesssagesResource,
-    AsyncMesssagesResource,
-    MesssagesResourceWithRawResponse,
-    AsyncMesssagesResourceWithRawResponse,
-    MesssagesResourceWithStreamingResponse,
-    AsyncMesssagesResourceWithStreamingResponse,
 )
 from .sim_cards import (
     SimCardsResource,
@@ -473,6 +441,14 @@ from .porting_orders import (
     PortingOrdersResourceWithStreamingResponse,
     AsyncPortingOrdersResourceWithStreamingResponse,
 )
+from .speech_to_text import (
+    SpeechToTextResource,
+    AsyncSpeechToTextResource,
+    SpeechToTextResourceWithRawResponse,
+    AsyncSpeechToTextResourceWithRawResponse,
+    SpeechToTextResourceWithStreamingResponse,
+    AsyncSpeechToTextResourceWithStreamingResponse,
+)
 from .text_to_speech import (
     TextToSpeechResource,
     AsyncTextToSpeechResource,
@@ -512,6 +488,14 @@ from .global_ip_usage import (
     AsyncGlobalIPUsageResourceWithRawResponse,
     GlobalIPUsageResourceWithStreamingResponse,
     AsyncGlobalIPUsageResourceWithStreamingResponse,
+)
+from .messaging_10dlc import (
+    Messaging10dlcResource,
+    AsyncMessaging10dlcResource,
+    Messaging10dlcResourceWithRawResponse,
+    AsyncMessaging10dlcResourceWithRawResponse,
+    Messaging10dlcResourceWithStreamingResponse,
+    AsyncMessaging10dlcResourceWithStreamingResponse,
 )
 from .room_recordings import (
     RoomRecordingsResource,
@@ -560,14 +544,6 @@ from .access_ip_ranges import (
     AsyncAccessIPRangesResourceWithRawResponse,
     AccessIPRangesResourceWithStreamingResponse,
     AsyncAccessIPRangesResourceWithStreamingResponse,
-)
-from .campaign_builder import (
-    CampaignBuilderResource,
-    AsyncCampaignBuilderResource,
-    CampaignBuilderResourceWithRawResponse,
-    AsyncCampaignBuilderResourceWithRawResponse,
-    CampaignBuilderResourceWithStreamingResponse,
-    AsyncCampaignBuilderResourceWithStreamingResponse,
 )
 from .country_coverage import (
     CountryCoverageResource,
@@ -672,14 +648,6 @@ from .messaging_optouts import (
     AsyncMessagingOptoutsResourceWithRawResponse,
     MessagingOptoutsResourceWithStreamingResponse,
     AsyncMessagingOptoutsResourceWithStreamingResponse,
-)
-from .partner_campaigns import (
-    PartnerCampaignsResource,
-    AsyncPartnerCampaignsResource,
-    PartnerCampaignsResourceWithRawResponse,
-    AsyncPartnerCampaignsResourceWithRawResponse,
-    PartnerCampaignsResourceWithStreamingResponse,
-    AsyncPartnerCampaignsResourceWithStreamingResponse,
 )
 from .requirement_types import (
     RequirementTypesResource,
@@ -936,14 +904,6 @@ from .dialogflow_connections import (
     AsyncDialogflowConnectionsResourceWithRawResponse,
     DialogflowConnectionsResourceWithStreamingResponse,
     AsyncDialogflowConnectionsResourceWithStreamingResponse,
-)
-from .phone_number_campaigns import (
-    PhoneNumberCampaignsResource,
-    AsyncPhoneNumberCampaignsResource,
-    PhoneNumberCampaignsResourceWithRawResponse,
-    AsyncPhoneNumberCampaignsResourceWithRawResponse,
-    PhoneNumberCampaignsResourceWithStreamingResponse,
-    AsyncPhoneNumberCampaignsResourceWithStreamingResponse,
 )
 from .sim_card_order_preview import (
     SimCardOrderPreviewResource,
@@ -1217,14 +1177,6 @@ from .sim_card_data_usage_notifications import (
     SimCardDataUsageNotificationsResourceWithStreamingResponse,
     AsyncSimCardDataUsageNotificationsResourceWithStreamingResponse,
 )
-from .phone_number_assignment_by_profile import (
-    PhoneNumberAssignmentByProfileResource,
-    AsyncPhoneNumberAssignmentByProfileResource,
-    PhoneNumberAssignmentByProfileResourceWithRawResponse,
-    AsyncPhoneNumberAssignmentByProfileResourceWithRawResponse,
-    PhoneNumberAssignmentByProfileResourceWithStreamingResponse,
-    AsyncPhoneNumberAssignmentByProfileResourceWithStreamingResponse,
-)
 from .phone_numbers_regulatory_requirements import (
     PhoneNumbersRegulatoryRequirementsResource,
     AsyncPhoneNumbersRegulatoryRequirementsResource,
@@ -1334,12 +1286,6 @@ __all__ = [
     "AsyncBillingGroupsResourceWithRawResponse",
     "BillingGroupsResourceWithStreamingResponse",
     "AsyncBillingGroupsResourceWithStreamingResponse",
-    "BrandResource",
-    "AsyncBrandResource",
-    "BrandResourceWithRawResponse",
-    "AsyncBrandResourceWithRawResponse",
-    "BrandResourceWithStreamingResponse",
-    "AsyncBrandResourceWithStreamingResponse",
     "BulkSimCardActionsResource",
     "AsyncBulkSimCardActionsResource",
     "BulkSimCardActionsResourceWithRawResponse",
@@ -1370,18 +1316,6 @@ __all__ = [
     "AsyncCallsResourceWithRawResponse",
     "CallsResourceWithStreamingResponse",
     "AsyncCallsResourceWithStreamingResponse",
-    "CampaignResource",
-    "AsyncCampaignResource",
-    "CampaignResourceWithRawResponse",
-    "AsyncCampaignResourceWithRawResponse",
-    "CampaignResourceWithStreamingResponse",
-    "AsyncCampaignResourceWithStreamingResponse",
-    "CampaignBuilderResource",
-    "AsyncCampaignBuilderResource",
-    "CampaignBuilderResourceWithRawResponse",
-    "AsyncCampaignBuilderResourceWithRawResponse",
-    "CampaignBuilderResourceWithStreamingResponse",
-    "AsyncCampaignBuilderResourceWithStreamingResponse",
     "ChannelZonesResource",
     "AsyncChannelZonesResource",
     "ChannelZonesResourceWithRawResponse",
@@ -1478,12 +1412,6 @@ __all__ = [
     "AsyncDynamicEmergencyEndpointsResourceWithRawResponse",
     "DynamicEmergencyEndpointsResourceWithStreamingResponse",
     "AsyncDynamicEmergencyEndpointsResourceWithStreamingResponse",
-    "EnumResource",
-    "AsyncEnumResource",
-    "EnumResourceWithRawResponse",
-    "AsyncEnumResourceWithRawResponse",
-    "EnumResourceWithStreamingResponse",
-    "AsyncEnumResourceWithStreamingResponse",
     "ExternalConnectionsResource",
     "AsyncExternalConnectionsResource",
     "ExternalConnectionsResourceWithRawResponse",
@@ -1688,12 +1616,6 @@ __all__ = [
     "AsyncMessagingURLDomainsResourceWithRawResponse",
     "MessagingURLDomainsResourceWithStreamingResponse",
     "AsyncMessagingURLDomainsResourceWithStreamingResponse",
-    "MesssagesResource",
-    "AsyncMesssagesResource",
-    "MesssagesResourceWithRawResponse",
-    "AsyncMesssagesResourceWithRawResponse",
-    "MesssagesResourceWithStreamingResponse",
-    "AsyncMesssagesResourceWithStreamingResponse",
     "MobileNetworkOperatorsResource",
     "AsyncMobileNetworkOperatorsResource",
     "MobileNetworkOperatorsResourceWithRawResponse",
@@ -1808,24 +1730,12 @@ __all__ = [
     "AsyncPaymentResourceWithRawResponse",
     "PaymentResourceWithStreamingResponse",
     "AsyncPaymentResourceWithStreamingResponse",
-    "PhoneNumberAssignmentByProfileResource",
-    "AsyncPhoneNumberAssignmentByProfileResource",
-    "PhoneNumberAssignmentByProfileResourceWithRawResponse",
-    "AsyncPhoneNumberAssignmentByProfileResourceWithRawResponse",
-    "PhoneNumberAssignmentByProfileResourceWithStreamingResponse",
-    "AsyncPhoneNumberAssignmentByProfileResourceWithStreamingResponse",
     "PhoneNumberBlocksResource",
     "AsyncPhoneNumberBlocksResource",
     "PhoneNumberBlocksResourceWithRawResponse",
     "AsyncPhoneNumberBlocksResourceWithRawResponse",
     "PhoneNumberBlocksResourceWithStreamingResponse",
     "AsyncPhoneNumberBlocksResourceWithStreamingResponse",
-    "PhoneNumberCampaignsResource",
-    "AsyncPhoneNumberCampaignsResource",
-    "PhoneNumberCampaignsResourceWithRawResponse",
-    "AsyncPhoneNumberCampaignsResourceWithRawResponse",
-    "PhoneNumberCampaignsResourceWithStreamingResponse",
-    "AsyncPhoneNumberCampaignsResourceWithStreamingResponse",
     "PhoneNumbersResource",
     "AsyncPhoneNumbersResource",
     "PhoneNumbersResourceWithRawResponse",
@@ -2132,12 +2042,6 @@ __all__ = [
     "AsyncWirelessBlocklistsResourceWithRawResponse",
     "WirelessBlocklistsResourceWithStreamingResponse",
     "AsyncWirelessBlocklistsResourceWithStreamingResponse",
-    "PartnerCampaignsResource",
-    "AsyncPartnerCampaignsResource",
-    "PartnerCampaignsResourceWithRawResponse",
-    "AsyncPartnerCampaignsResourceWithRawResponse",
-    "PartnerCampaignsResourceWithStreamingResponse",
-    "AsyncPartnerCampaignsResourceWithStreamingResponse",
     "WellKnownResource",
     "AsyncWellKnownResource",
     "WellKnownResourceWithRawResponse",
@@ -2162,4 +2066,16 @@ __all__ = [
     "AsyncMobileVoiceConnectionsResourceWithRawResponse",
     "MobileVoiceConnectionsResourceWithStreamingResponse",
     "AsyncMobileVoiceConnectionsResourceWithStreamingResponse",
+    "Messaging10dlcResource",
+    "AsyncMessaging10dlcResource",
+    "Messaging10dlcResourceWithRawResponse",
+    "AsyncMessaging10dlcResourceWithRawResponse",
+    "Messaging10dlcResourceWithStreamingResponse",
+    "AsyncMessaging10dlcResourceWithStreamingResponse",
+    "SpeechToTextResource",
+    "AsyncSpeechToTextResource",
+    "SpeechToTextResourceWithRawResponse",
+    "AsyncSpeechToTextResourceWithRawResponse",
+    "SpeechToTextResourceWithStreamingResponse",
+    "AsyncSpeechToTextResourceWithStreamingResponse",
 ]

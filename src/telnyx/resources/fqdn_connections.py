@@ -27,15 +27,16 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import make_request_options
+from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
+from .._base_client import AsyncPaginator, make_request_options
 from ..types.dtmf_type import DtmfType
 from ..types.encrypted_media import EncryptedMedia
+from ..types.fqdn_connection import FqdnConnection
 from ..types.inbound_fqdn_param import InboundFqdnParam
 from ..types.transport_protocol import TransportProtocol
 from ..types.anchorsite_override import AnchorsiteOverride
 from ..types.outbound_fqdn_param import OutboundFqdnParam
 from ..types.webhook_api_version import WebhookAPIVersion
-from ..types.fqdn_connection_list_response import FqdnConnectionListResponse
 from ..types.connection_rtcp_settings_param import ConnectionRtcpSettingsParam
 from ..types.fqdn_connection_create_response import FqdnConnectionCreateResponse
 from ..types.fqdn_connection_delete_response import FqdnConnectionDeleteResponse
@@ -80,6 +81,8 @@ class FqdnConnectionsResource(SyncAPIResource):
         inbound: InboundFqdnParam | Omit = omit,
         ios_push_credential_id: Optional[str] | Omit = omit,
         microsoft_teams_sbc: bool | Omit = omit,
+        noise_suppression: Literal["inbound", "outbound", "both", "disabled"] | Omit = omit,
+        noise_suppression_details: fqdn_connection_create_params.NoiseSuppressionDetails | Omit = omit,
         onnet_t38_passthrough_enabled: bool | Omit = omit,
         outbound: OutboundFqdnParam | Omit = omit,
         rtcp_settings: ConnectionRtcpSettingsParam | Omit = omit,
@@ -130,6 +133,16 @@ class FqdnConnectionsResource(SyncAPIResource):
           microsoft_teams_sbc: When enabled, the connection will be created for Microsoft Teams Direct Routing.
               A \\**.mstsbc.telnyx.tech FQDN will be created for the connection automatically.
 
+          noise_suppression: Controls when noise suppression is applied to calls. When set to 'inbound',
+              noise suppression is applied to incoming audio. When set to 'outbound', it's
+              applied to outgoing audio. When set to 'both', it's applied in both directions.
+              When set to 'disabled', noise suppression is turned off.
+
+          noise_suppression_details: Configuration options for noise suppression. These settings are stored
+              regardless of the noise_suppression value, but only take effect when
+              noise_suppression is not 'disabled'. If you disable noise suppression and later
+              re-enable it, the previously configured settings will be used.
+
           onnet_t38_passthrough_enabled: Enable on-net T38 if you prefer the sender and receiver negotiating T38 directly
               if both are on the Telnyx network. If this is disabled, Telnyx will be able to
               use T38 on just one leg of the call depending on each leg's settings.
@@ -173,6 +186,8 @@ class FqdnConnectionsResource(SyncAPIResource):
                     "inbound": inbound,
                     "ios_push_credential_id": ios_push_credential_id,
                     "microsoft_teams_sbc": microsoft_teams_sbc,
+                    "noise_suppression": noise_suppression,
+                    "noise_suppression_details": noise_suppression_details,
                     "onnet_t38_passthrough_enabled": onnet_t38_passthrough_enabled,
                     "outbound": outbound,
                     "rtcp_settings": rtcp_settings,
@@ -239,6 +254,8 @@ class FqdnConnectionsResource(SyncAPIResource):
         encrypted_media: Optional[EncryptedMedia] | Omit = omit,
         inbound: InboundFqdnParam | Omit = omit,
         ios_push_credential_id: Optional[str] | Omit = omit,
+        noise_suppression: Literal["inbound", "outbound", "both", "disabled"] | Omit = omit,
+        noise_suppression_details: fqdn_connection_update_params.NoiseSuppressionDetails | Omit = omit,
         onnet_t38_passthrough_enabled: bool | Omit = omit,
         outbound: OutboundFqdnParam | Omit = omit,
         rtcp_settings: ConnectionRtcpSettingsParam | Omit = omit,
@@ -286,6 +303,16 @@ class FqdnConnectionsResource(SyncAPIResource):
 
           ios_push_credential_id: The uuid of the push credential for Ios
 
+          noise_suppression: Controls when noise suppression is applied to calls. When set to 'inbound',
+              noise suppression is applied to incoming audio. When set to 'outbound', it's
+              applied to outgoing audio. When set to 'both', it's applied in both directions.
+              When set to 'disabled', noise suppression is turned off.
+
+          noise_suppression_details: Configuration options for noise suppression. These settings are stored
+              regardless of the noise_suppression value, but only take effect when
+              noise_suppression is not 'disabled'. If you disable noise suppression and later
+              re-enable it, the previously configured settings will be used.
+
           onnet_t38_passthrough_enabled: Enable on-net T38 if you prefer that the sender and receiver negotiate T38
               directly when both are on the Telnyx network. If this is disabled, Telnyx will
               be able to use T38 on just one leg of the call according to each leg's settings.
@@ -330,6 +357,8 @@ class FqdnConnectionsResource(SyncAPIResource):
                     "encrypted_media": encrypted_media,
                     "inbound": inbound,
                     "ios_push_credential_id": ios_push_credential_id,
+                    "noise_suppression": noise_suppression,
+                    "noise_suppression_details": noise_suppression_details,
                     "onnet_t38_passthrough_enabled": onnet_t38_passthrough_enabled,
                     "outbound": outbound,
                     "rtcp_settings": rtcp_settings,
@@ -360,7 +389,7 @@ class FqdnConnectionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> FqdnConnectionListResponse:
+    ) -> SyncDefaultPagination[FqdnConnection]:
         """
         Returns a list of your FQDN connections.
 
@@ -396,8 +425,9 @@ class FqdnConnectionsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/fqdn_connections",
+            page=SyncDefaultPagination[FqdnConnection],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -412,7 +442,7 @@ class FqdnConnectionsResource(SyncAPIResource):
                     fqdn_connection_list_params.FqdnConnectionListParams,
                 ),
             ),
-            cast_to=FqdnConnectionListResponse,
+            model=FqdnConnection,
         )
 
     def delete(
@@ -484,6 +514,8 @@ class AsyncFqdnConnectionsResource(AsyncAPIResource):
         inbound: InboundFqdnParam | Omit = omit,
         ios_push_credential_id: Optional[str] | Omit = omit,
         microsoft_teams_sbc: bool | Omit = omit,
+        noise_suppression: Literal["inbound", "outbound", "both", "disabled"] | Omit = omit,
+        noise_suppression_details: fqdn_connection_create_params.NoiseSuppressionDetails | Omit = omit,
         onnet_t38_passthrough_enabled: bool | Omit = omit,
         outbound: OutboundFqdnParam | Omit = omit,
         rtcp_settings: ConnectionRtcpSettingsParam | Omit = omit,
@@ -534,6 +566,16 @@ class AsyncFqdnConnectionsResource(AsyncAPIResource):
           microsoft_teams_sbc: When enabled, the connection will be created for Microsoft Teams Direct Routing.
               A \\**.mstsbc.telnyx.tech FQDN will be created for the connection automatically.
 
+          noise_suppression: Controls when noise suppression is applied to calls. When set to 'inbound',
+              noise suppression is applied to incoming audio. When set to 'outbound', it's
+              applied to outgoing audio. When set to 'both', it's applied in both directions.
+              When set to 'disabled', noise suppression is turned off.
+
+          noise_suppression_details: Configuration options for noise suppression. These settings are stored
+              regardless of the noise_suppression value, but only take effect when
+              noise_suppression is not 'disabled'. If you disable noise suppression and later
+              re-enable it, the previously configured settings will be used.
+
           onnet_t38_passthrough_enabled: Enable on-net T38 if you prefer the sender and receiver negotiating T38 directly
               if both are on the Telnyx network. If this is disabled, Telnyx will be able to
               use T38 on just one leg of the call depending on each leg's settings.
@@ -577,6 +619,8 @@ class AsyncFqdnConnectionsResource(AsyncAPIResource):
                     "inbound": inbound,
                     "ios_push_credential_id": ios_push_credential_id,
                     "microsoft_teams_sbc": microsoft_teams_sbc,
+                    "noise_suppression": noise_suppression,
+                    "noise_suppression_details": noise_suppression_details,
                     "onnet_t38_passthrough_enabled": onnet_t38_passthrough_enabled,
                     "outbound": outbound,
                     "rtcp_settings": rtcp_settings,
@@ -643,6 +687,8 @@ class AsyncFqdnConnectionsResource(AsyncAPIResource):
         encrypted_media: Optional[EncryptedMedia] | Omit = omit,
         inbound: InboundFqdnParam | Omit = omit,
         ios_push_credential_id: Optional[str] | Omit = omit,
+        noise_suppression: Literal["inbound", "outbound", "both", "disabled"] | Omit = omit,
+        noise_suppression_details: fqdn_connection_update_params.NoiseSuppressionDetails | Omit = omit,
         onnet_t38_passthrough_enabled: bool | Omit = omit,
         outbound: OutboundFqdnParam | Omit = omit,
         rtcp_settings: ConnectionRtcpSettingsParam | Omit = omit,
@@ -690,6 +736,16 @@ class AsyncFqdnConnectionsResource(AsyncAPIResource):
 
           ios_push_credential_id: The uuid of the push credential for Ios
 
+          noise_suppression: Controls when noise suppression is applied to calls. When set to 'inbound',
+              noise suppression is applied to incoming audio. When set to 'outbound', it's
+              applied to outgoing audio. When set to 'both', it's applied in both directions.
+              When set to 'disabled', noise suppression is turned off.
+
+          noise_suppression_details: Configuration options for noise suppression. These settings are stored
+              regardless of the noise_suppression value, but only take effect when
+              noise_suppression is not 'disabled'. If you disable noise suppression and later
+              re-enable it, the previously configured settings will be used.
+
           onnet_t38_passthrough_enabled: Enable on-net T38 if you prefer that the sender and receiver negotiate T38
               directly when both are on the Telnyx network. If this is disabled, Telnyx will
               be able to use T38 on just one leg of the call according to each leg's settings.
@@ -734,6 +790,8 @@ class AsyncFqdnConnectionsResource(AsyncAPIResource):
                     "encrypted_media": encrypted_media,
                     "inbound": inbound,
                     "ios_push_credential_id": ios_push_credential_id,
+                    "noise_suppression": noise_suppression,
+                    "noise_suppression_details": noise_suppression_details,
                     "onnet_t38_passthrough_enabled": onnet_t38_passthrough_enabled,
                     "outbound": outbound,
                     "rtcp_settings": rtcp_settings,
@@ -752,7 +810,7 @@ class AsyncFqdnConnectionsResource(AsyncAPIResource):
             cast_to=FqdnConnectionUpdateResponse,
         )
 
-    async def list(
+    def list(
         self,
         *,
         filter: fqdn_connection_list_params.Filter | Omit = omit,
@@ -764,7 +822,7 @@ class AsyncFqdnConnectionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> FqdnConnectionListResponse:
+    ) -> AsyncPaginator[FqdnConnection, AsyncDefaultPagination[FqdnConnection]]:
         """
         Returns a list of your FQDN connections.
 
@@ -800,14 +858,15 @@ class AsyncFqdnConnectionsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/fqdn_connections",
+            page=AsyncDefaultPagination[FqdnConnection],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "filter": filter,
                         "page": page,
@@ -816,7 +875,7 @@ class AsyncFqdnConnectionsResource(AsyncAPIResource):
                     fqdn_connection_list_params.FqdnConnectionListParams,
                 ),
             ),
-            cast_to=FqdnConnectionListResponse,
+            model=FqdnConnection,
         )
 
     async def delete(

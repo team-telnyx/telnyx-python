@@ -19,6 +19,7 @@ from .rcs import (
 from ...types import (
     message_send_params,
     message_schedule_params,
+    message_send_whatsapp_params,
     message_send_group_mms_params,
     message_send_long_code_params,
     message_send_short_code_params,
@@ -38,6 +39,7 @@ from ..._base_client import make_request_options
 from ...types.message_send_response import MessageSendResponse
 from ...types.message_retrieve_response import MessageRetrieveResponse
 from ...types.message_schedule_response import MessageScheduleResponse
+from ...types.message_send_whatsapp_response import MessageSendWhatsappResponse
 from ...types.message_send_group_mms_response import MessageSendGroupMmsResponse
 from ...types.message_send_long_code_response import MessageSendLongCodeResponse
 from ...types.message_send_short_code_response import MessageSendShortCodeResponse
@@ -667,6 +669,59 @@ class MessagesResource(SyncAPIResource):
             cast_to=MessageSendShortCodeResponse,
         )
 
+    def send_whatsapp(
+        self,
+        *,
+        from_: str,
+        to: str,
+        whatsapp_message: message_send_whatsapp_params.WhatsappMessage,
+        type: Literal["WHATSAPP"] | Omit = omit,
+        webhook_url: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> MessageSendWhatsappResponse:
+        """
+        Send a Whatsapp message
+
+        Args:
+          from_: Phone number in +E.164 format associated with Whatsapp account
+
+          to: Phone number in +E.164 format
+
+          type: Message type - must be set to "WHATSAPP"
+
+          webhook_url: The URL where webhooks related to this message will be sent.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._post(
+            "/messages/whatsapp",
+            body=maybe_transform(
+                {
+                    "from_": from_,
+                    "to": to,
+                    "whatsapp_message": whatsapp_message,
+                    "type": type,
+                    "webhook_url": webhook_url,
+                },
+                message_send_whatsapp_params.MessageSendWhatsappParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=MessageSendWhatsappResponse,
+        )
+
 
 class AsyncMessagesResource(AsyncAPIResource):
     @cached_property
@@ -1288,6 +1343,59 @@ class AsyncMessagesResource(AsyncAPIResource):
             cast_to=MessageSendShortCodeResponse,
         )
 
+    async def send_whatsapp(
+        self,
+        *,
+        from_: str,
+        to: str,
+        whatsapp_message: message_send_whatsapp_params.WhatsappMessage,
+        type: Literal["WHATSAPP"] | Omit = omit,
+        webhook_url: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> MessageSendWhatsappResponse:
+        """
+        Send a Whatsapp message
+
+        Args:
+          from_: Phone number in +E.164 format associated with Whatsapp account
+
+          to: Phone number in +E.164 format
+
+          type: Message type - must be set to "WHATSAPP"
+
+          webhook_url: The URL where webhooks related to this message will be sent.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._post(
+            "/messages/whatsapp",
+            body=await async_maybe_transform(
+                {
+                    "from_": from_,
+                    "to": to,
+                    "whatsapp_message": whatsapp_message,
+                    "type": type,
+                    "webhook_url": webhook_url,
+                },
+                message_send_whatsapp_params.MessageSendWhatsappParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=MessageSendWhatsappResponse,
+        )
+
 
 class MessagesResourceWithRawResponse:
     def __init__(self, messages: MessagesResource) -> None:
@@ -1316,6 +1424,9 @@ class MessagesResourceWithRawResponse:
         )
         self.send_short_code = to_raw_response_wrapper(
             messages.send_short_code,
+        )
+        self.send_whatsapp = to_raw_response_wrapper(
+            messages.send_whatsapp,
         )
 
     @cached_property
@@ -1351,6 +1462,9 @@ class AsyncMessagesResourceWithRawResponse:
         self.send_short_code = async_to_raw_response_wrapper(
             messages.send_short_code,
         )
+        self.send_whatsapp = async_to_raw_response_wrapper(
+            messages.send_whatsapp,
+        )
 
     @cached_property
     def rcs(self) -> AsyncRcsResourceWithRawResponse:
@@ -1385,6 +1499,9 @@ class MessagesResourceWithStreamingResponse:
         self.send_short_code = to_streamed_response_wrapper(
             messages.send_short_code,
         )
+        self.send_whatsapp = to_streamed_response_wrapper(
+            messages.send_whatsapp,
+        )
 
     @cached_property
     def rcs(self) -> RcsResourceWithStreamingResponse:
@@ -1418,6 +1535,9 @@ class AsyncMessagesResourceWithStreamingResponse:
         )
         self.send_short_code = async_to_streamed_response_wrapper(
             messages.send_short_code,
+        )
+        self.send_whatsapp = async_to_streamed_response_wrapper(
+            messages.send_whatsapp,
         )
 
     @cached_property

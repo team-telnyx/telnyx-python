@@ -8,13 +8,13 @@ from typing_extensions import Literal, Required, TypeAlias, TypedDict
 __all__ = [
     "VoiceSettingsParam",
     "BackgroundAudio",
-    "BackgroundAudioUnionMember0",
-    "BackgroundAudioUnionMember1",
-    "BackgroundAudioUnionMember2",
+    "BackgroundAudioPredefinedMedia",
+    "BackgroundAudioMediaURL",
+    "BackgroundAudioMediaName",
 ]
 
 
-class BackgroundAudioUnionMember0(TypedDict, total=False):
+class BackgroundAudioPredefinedMedia(TypedDict, total=False):
     type: Required[Literal["predefined_media"]]
     """Select from predefined media options."""
 
@@ -22,7 +22,7 @@ class BackgroundAudioUnionMember0(TypedDict, total=False):
     """The predefined media to use. `silence` disables background audio."""
 
 
-class BackgroundAudioUnionMember1(TypedDict, total=False):
+class BackgroundAudioMediaURL(TypedDict, total=False):
     type: Required[Literal["media_url"]]
     """Provide a direct URL to an MP3 file. The audio will loop during the call."""
 
@@ -30,7 +30,7 @@ class BackgroundAudioUnionMember1(TypedDict, total=False):
     """HTTPS URL to an MP3 file."""
 
 
-class BackgroundAudioUnionMember2(TypedDict, total=False):
+class BackgroundAudioMediaName(TypedDict, total=False):
     type: Required[Literal["media_name"]]
     """Reference a previously uploaded media by its name from Telnyx Media Storage."""
 
@@ -42,9 +42,7 @@ class BackgroundAudioUnionMember2(TypedDict, total=False):
     """
 
 
-BackgroundAudio: TypeAlias = Union[
-    BackgroundAudioUnionMember0, BackgroundAudioUnionMember1, BackgroundAudioUnionMember2
-]
+BackgroundAudio: TypeAlias = Union[BackgroundAudioPredefinedMedia, BackgroundAudioMediaURL, BackgroundAudioMediaName]
 
 
 class VoiceSettingsParam(TypedDict, total=False):
@@ -73,6 +71,40 @@ class VoiceSettingsParam(TypedDict, total=False):
 
     Use a predefined media bed, or supply a looped MP3 URL. If a media URL is chosen
     in the portal, customers can preview it before saving.
+    """
+
+    similarity_boost: float
+    """
+    Determines how closely the AI should adhere to the original voice when
+    attempting to replicate it. Only applicable when using ElevenLabs.
+    """
+
+    speed: float
+    """Adjusts speech velocity.
+
+    1.0 is default speed; values less than 1.0 slow speech; values greater than 1.0
+    accelerate it. Only applicable when using ElevenLabs.
+    """
+
+    style: float
+    """Determines the style exaggeration of the voice.
+
+    Amplifies speaker style but consumes additional resources when set above 0. Only
+    applicable when using ElevenLabs.
+    """
+
+    temperature: float
+    """Determines how stable the voice is and the randomness between each generation.
+
+    Lower values create a broader emotional range; higher values produce more
+    consistent, monotonous output. Only applicable when using ElevenLabs.
+    """
+
+    use_speaker_boost: bool
+    """Amplifies similarity to the original speaker voice.
+
+    Increases computational load and latency slightly. Only applicable when using
+    ElevenLabs.
     """
 
     voice_speed: float

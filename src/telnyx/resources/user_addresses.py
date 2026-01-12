@@ -17,8 +17,9 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import make_request_options
-from ..types.user_address_list_response import UserAddressListResponse
+from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
+from .._base_client import AsyncPaginator, make_request_options
+from ..types.user_address import UserAddress
 from ..types.user_address_create_response import UserAddressCreateResponse
 from ..types.user_address_retrieve_response import UserAddressRetrieveResponse
 
@@ -61,7 +62,7 @@ class UserAddressesResource(SyncAPIResource):
         neighborhood: str | Omit = omit,
         phone_number: str | Omit = omit,
         postal_code: str | Omit = omit,
-        skip_address_verification: str | Omit = omit,
+        skip_address_verification: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -196,7 +197,7 @@ class UserAddressesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> UserAddressListResponse:
+    ) -> SyncDefaultPagination[UserAddress]:
         """
         Returns a list of your user addresses.
 
@@ -232,8 +233,9 @@ class UserAddressesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/user_addresses",
+            page=SyncDefaultPagination[UserAddress],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -248,7 +250,7 @@ class UserAddressesResource(SyncAPIResource):
                     user_address_list_params.UserAddressListParams,
                 ),
             ),
-            cast_to=UserAddressListResponse,
+            model=UserAddress,
         )
 
 
@@ -288,7 +290,7 @@ class AsyncUserAddressesResource(AsyncAPIResource):
         neighborhood: str | Omit = omit,
         phone_number: str | Omit = omit,
         postal_code: str | Omit = omit,
-        skip_address_verification: str | Omit = omit,
+        skip_address_verification: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -411,7 +413,7 @@ class AsyncUserAddressesResource(AsyncAPIResource):
             cast_to=UserAddressRetrieveResponse,
         )
 
-    async def list(
+    def list(
         self,
         *,
         filter: user_address_list_params.Filter | Omit = omit,
@@ -423,7 +425,7 @@ class AsyncUserAddressesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> UserAddressListResponse:
+    ) -> AsyncPaginator[UserAddress, AsyncDefaultPagination[UserAddress]]:
         """
         Returns a list of your user addresses.
 
@@ -459,14 +461,15 @@ class AsyncUserAddressesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/user_addresses",
+            page=AsyncDefaultPagination[UserAddress],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "filter": filter,
                         "page": page,
@@ -475,7 +478,7 @@ class AsyncUserAddressesResource(AsyncAPIResource):
                     user_address_list_params.UserAddressListParams,
                 ),
             ),
-            cast_to=UserAddressListResponse,
+            model=UserAddress,
         )
 
 

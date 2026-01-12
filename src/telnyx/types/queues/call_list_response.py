@@ -1,17 +1,16 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Optional
 from typing_extensions import Literal
 
 from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
-from ..pagination_meta import PaginationMeta
 
-__all__ = ["CallListResponse", "Data"]
+__all__ = ["CallListResponse"]
 
 
-class Data(BaseModel):
+class CallListResponse(BaseModel):
     call_control_id: str
     """Unique identifier and token for controlling the call."""
 
@@ -48,8 +47,5 @@ class Data(BaseModel):
     wait_time_secs: int
     """The time the call has been waiting in the queue, given in seconds"""
 
-
-class CallListResponse(BaseModel):
-    data: Optional[List[Data]] = None
-
-    meta: Optional[PaginationMeta] = None
+    is_alive: Optional[bool] = None
+    """Indicates whether the call is still active in the queue."""

@@ -16,10 +16,11 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._base_client import make_request_options
+from ....pagination import SyncDefaultPagination, AsyncDefaultPagination
+from ...._base_client import AsyncPaginator, make_request_options
+from ....types.rcs_agent import RcsAgent
 from ....types.messaging.rcs import agent_list_params, agent_update_params
 from ....types.rcs_agent_response import RcsAgentResponse
-from ....types.messaging.rcs.agent_list_response import AgentListResponse
 
 __all__ = ["AgentsResource", "AsyncAgentsResource"]
 
@@ -137,7 +138,7 @@ class AgentsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AgentListResponse:
+    ) -> SyncDefaultPagination[RcsAgent]:
         """
         List all RCS agents
 
@@ -153,8 +154,9 @@ class AgentsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/messaging/rcs/agents",
+            page=SyncDefaultPagination[RcsAgent],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -162,7 +164,7 @@ class AgentsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform({"page": page}, agent_list_params.AgentListParams),
             ),
-            cast_to=AgentListResponse,
+            model=RcsAgent,
         )
 
 
@@ -269,7 +271,7 @@ class AsyncAgentsResource(AsyncAPIResource):
             cast_to=RcsAgentResponse,
         )
 
-    async def list(
+    def list(
         self,
         *,
         page: agent_list_params.Page | Omit = omit,
@@ -279,7 +281,7 @@ class AsyncAgentsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AgentListResponse:
+    ) -> AsyncPaginator[RcsAgent, AsyncDefaultPagination[RcsAgent]]:
         """
         List all RCS agents
 
@@ -295,16 +297,17 @@ class AsyncAgentsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/messaging/rcs/agents",
+            page=AsyncDefaultPagination[RcsAgent],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform({"page": page}, agent_list_params.AgentListParams),
+                query=maybe_transform({"page": page}, agent_list_params.AgentListParams),
             ),
-            cast_to=AgentListResponse,
+            model=RcsAgent,
         )
 
 

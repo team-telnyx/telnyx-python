@@ -3,8 +3,8 @@
 from typing import List
 
 from ..._models import BaseModel
-from ..pagination_meta import PaginationMeta
 from .auto_resp_config import AutoRespConfig
+from ..shared.messaging_pagination_meta import MessagingPaginationMeta
 
 __all__ = ["AutorespConfigListResponse"]
 
@@ -14,4 +14,4 @@ class AutorespConfigListResponse(BaseModel):
 
     data: List[AutoRespConfig]
 
-    meta: PaginationMeta
+    meta: MessagingPaginationMeta

@@ -10,14 +10,14 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types import (
-    MessagingProfileListResponse,
+    MessagingProfile,
     MessagingProfileCreateResponse,
     MessagingProfileDeleteResponse,
     MessagingProfileUpdateResponse,
     MessagingProfileRetrieveResponse,
-    MessagingProfileListShortCodesResponse,
-    MessagingProfileListPhoneNumbersResponse,
 )
+from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
+from telnyx.types.shared import ShortCode, PhoneNumberWithMessagingSettings
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -131,7 +131,7 @@ class TestMessagingProfiles:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_retrieve(self, client: Telnyx) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `messaging_profile_id` but received ''"):
             client.messaging_profiles.with_raw_response.retrieve(
                 "",
             )
@@ -140,7 +140,7 @@ class TestMessagingProfiles:
     @parametrize
     def test_method_update(self, client: Telnyx) -> None:
         messaging_profile = client.messaging_profiles.update(
-            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            messaging_profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(MessagingProfileUpdateResponse, messaging_profile, path=["response"])
 
@@ -148,7 +148,7 @@ class TestMessagingProfiles:
     @parametrize
     def test_method_update_with_all_params(self, client: Telnyx) -> None:
         messaging_profile = client.messaging_profiles.update(
-            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            messaging_profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             alpha_sender="sqF",
             daily_spend_limit="269125115713",
             daily_spend_limit_enabled=True,
@@ -182,7 +182,7 @@ class TestMessagingProfiles:
     @parametrize
     def test_raw_response_update(self, client: Telnyx) -> None:
         response = client.messaging_profiles.with_raw_response.update(
-            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            messaging_profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
 
         assert response.is_closed is True
@@ -194,7 +194,7 @@ class TestMessagingProfiles:
     @parametrize
     def test_streaming_response_update(self, client: Telnyx) -> None:
         with client.messaging_profiles.with_streaming_response.update(
-            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            messaging_profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -207,16 +207,16 @@ class TestMessagingProfiles:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_update(self, client: Telnyx) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `messaging_profile_id` but received ''"):
             client.messaging_profiles.with_raw_response.update(
-                id="",
+                messaging_profile_id="",
             )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         messaging_profile = client.messaging_profiles.list()
-        assert_matches_type(MessagingProfileListResponse, messaging_profile, path=["response"])
+        assert_matches_type(SyncDefaultPagination[MessagingProfile], messaging_profile, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -228,7 +228,7 @@ class TestMessagingProfiles:
                 "size": 1,
             },
         )
-        assert_matches_type(MessagingProfileListResponse, messaging_profile, path=["response"])
+        assert_matches_type(SyncDefaultPagination[MessagingProfile], messaging_profile, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -238,7 +238,7 @@ class TestMessagingProfiles:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         messaging_profile = response.parse()
-        assert_matches_type(MessagingProfileListResponse, messaging_profile, path=["response"])
+        assert_matches_type(SyncDefaultPagination[MessagingProfile], messaging_profile, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -248,7 +248,7 @@ class TestMessagingProfiles:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             messaging_profile = response.parse()
-            assert_matches_type(MessagingProfileListResponse, messaging_profile, path=["response"])
+            assert_matches_type(SyncDefaultPagination[MessagingProfile], messaging_profile, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -289,7 +289,7 @@ class TestMessagingProfiles:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_delete(self, client: Telnyx) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `messaging_profile_id` but received ''"):
             client.messaging_profiles.with_raw_response.delete(
                 "",
             )
@@ -298,108 +298,116 @@ class TestMessagingProfiles:
     @parametrize
     def test_method_list_phone_numbers(self, client: Telnyx) -> None:
         messaging_profile = client.messaging_profiles.list_phone_numbers(
-            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            messaging_profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(MessagingProfileListPhoneNumbersResponse, messaging_profile, path=["response"])
+        assert_matches_type(
+            SyncDefaultPagination[PhoneNumberWithMessagingSettings], messaging_profile, path=["response"]
+        )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_phone_numbers_with_all_params(self, client: Telnyx) -> None:
         messaging_profile = client.messaging_profiles.list_phone_numbers(
-            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            messaging_profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             page={
                 "number": 1,
                 "size": 1,
             },
         )
-        assert_matches_type(MessagingProfileListPhoneNumbersResponse, messaging_profile, path=["response"])
+        assert_matches_type(
+            SyncDefaultPagination[PhoneNumberWithMessagingSettings], messaging_profile, path=["response"]
+        )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list_phone_numbers(self, client: Telnyx) -> None:
         response = client.messaging_profiles.with_raw_response.list_phone_numbers(
-            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            messaging_profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         messaging_profile = response.parse()
-        assert_matches_type(MessagingProfileListPhoneNumbersResponse, messaging_profile, path=["response"])
+        assert_matches_type(
+            SyncDefaultPagination[PhoneNumberWithMessagingSettings], messaging_profile, path=["response"]
+        )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list_phone_numbers(self, client: Telnyx) -> None:
         with client.messaging_profiles.with_streaming_response.list_phone_numbers(
-            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            messaging_profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             messaging_profile = response.parse()
-            assert_matches_type(MessagingProfileListPhoneNumbersResponse, messaging_profile, path=["response"])
+            assert_matches_type(
+                SyncDefaultPagination[PhoneNumberWithMessagingSettings], messaging_profile, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_list_phone_numbers(self, client: Telnyx) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `messaging_profile_id` but received ''"):
             client.messaging_profiles.with_raw_response.list_phone_numbers(
-                id="",
+                messaging_profile_id="",
             )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_short_codes(self, client: Telnyx) -> None:
         messaging_profile = client.messaging_profiles.list_short_codes(
-            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            messaging_profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(MessagingProfileListShortCodesResponse, messaging_profile, path=["response"])
+        assert_matches_type(SyncDefaultPagination[ShortCode], messaging_profile, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_short_codes_with_all_params(self, client: Telnyx) -> None:
         messaging_profile = client.messaging_profiles.list_short_codes(
-            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            messaging_profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             page={
                 "number": 1,
                 "size": 1,
             },
         )
-        assert_matches_type(MessagingProfileListShortCodesResponse, messaging_profile, path=["response"])
+        assert_matches_type(SyncDefaultPagination[ShortCode], messaging_profile, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list_short_codes(self, client: Telnyx) -> None:
         response = client.messaging_profiles.with_raw_response.list_short_codes(
-            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            messaging_profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         messaging_profile = response.parse()
-        assert_matches_type(MessagingProfileListShortCodesResponse, messaging_profile, path=["response"])
+        assert_matches_type(SyncDefaultPagination[ShortCode], messaging_profile, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list_short_codes(self, client: Telnyx) -> None:
         with client.messaging_profiles.with_streaming_response.list_short_codes(
-            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            messaging_profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             messaging_profile = response.parse()
-            assert_matches_type(MessagingProfileListShortCodesResponse, messaging_profile, path=["response"])
+            assert_matches_type(SyncDefaultPagination[ShortCode], messaging_profile, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_list_short_codes(self, client: Telnyx) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `messaging_profile_id` but received ''"):
             client.messaging_profiles.with_raw_response.list_short_codes(
-                id="",
+                messaging_profile_id="",
             )
 
 
@@ -514,7 +522,7 @@ class TestAsyncMessagingProfiles:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncTelnyx) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `messaging_profile_id` but received ''"):
             await async_client.messaging_profiles.with_raw_response.retrieve(
                 "",
             )
@@ -523,7 +531,7 @@ class TestAsyncMessagingProfiles:
     @parametrize
     async def test_method_update(self, async_client: AsyncTelnyx) -> None:
         messaging_profile = await async_client.messaging_profiles.update(
-            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            messaging_profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(MessagingProfileUpdateResponse, messaging_profile, path=["response"])
 
@@ -531,7 +539,7 @@ class TestAsyncMessagingProfiles:
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncTelnyx) -> None:
         messaging_profile = await async_client.messaging_profiles.update(
-            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            messaging_profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             alpha_sender="sqF",
             daily_spend_limit="269125115713",
             daily_spend_limit_enabled=True,
@@ -565,7 +573,7 @@ class TestAsyncMessagingProfiles:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.messaging_profiles.with_raw_response.update(
-            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            messaging_profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
 
         assert response.is_closed is True
@@ -577,7 +585,7 @@ class TestAsyncMessagingProfiles:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncTelnyx) -> None:
         async with async_client.messaging_profiles.with_streaming_response.update(
-            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            messaging_profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -590,16 +598,16 @@ class TestAsyncMessagingProfiles:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_update(self, async_client: AsyncTelnyx) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `messaging_profile_id` but received ''"):
             await async_client.messaging_profiles.with_raw_response.update(
-                id="",
+                messaging_profile_id="",
             )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         messaging_profile = await async_client.messaging_profiles.list()
-        assert_matches_type(MessagingProfileListResponse, messaging_profile, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[MessagingProfile], messaging_profile, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -611,7 +619,7 @@ class TestAsyncMessagingProfiles:
                 "size": 1,
             },
         )
-        assert_matches_type(MessagingProfileListResponse, messaging_profile, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[MessagingProfile], messaging_profile, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -621,7 +629,7 @@ class TestAsyncMessagingProfiles:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         messaging_profile = await response.parse()
-        assert_matches_type(MessagingProfileListResponse, messaging_profile, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[MessagingProfile], messaging_profile, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -631,7 +639,7 @@ class TestAsyncMessagingProfiles:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             messaging_profile = await response.parse()
-            assert_matches_type(MessagingProfileListResponse, messaging_profile, path=["response"])
+            assert_matches_type(AsyncDefaultPagination[MessagingProfile], messaging_profile, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -672,7 +680,7 @@ class TestAsyncMessagingProfiles:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncTelnyx) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `messaging_profile_id` but received ''"):
             await async_client.messaging_profiles.with_raw_response.delete(
                 "",
             )
@@ -681,106 +689,114 @@ class TestAsyncMessagingProfiles:
     @parametrize
     async def test_method_list_phone_numbers(self, async_client: AsyncTelnyx) -> None:
         messaging_profile = await async_client.messaging_profiles.list_phone_numbers(
-            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            messaging_profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(MessagingProfileListPhoneNumbersResponse, messaging_profile, path=["response"])
+        assert_matches_type(
+            AsyncDefaultPagination[PhoneNumberWithMessagingSettings], messaging_profile, path=["response"]
+        )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_phone_numbers_with_all_params(self, async_client: AsyncTelnyx) -> None:
         messaging_profile = await async_client.messaging_profiles.list_phone_numbers(
-            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            messaging_profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             page={
                 "number": 1,
                 "size": 1,
             },
         )
-        assert_matches_type(MessagingProfileListPhoneNumbersResponse, messaging_profile, path=["response"])
+        assert_matches_type(
+            AsyncDefaultPagination[PhoneNumberWithMessagingSettings], messaging_profile, path=["response"]
+        )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list_phone_numbers(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.messaging_profiles.with_raw_response.list_phone_numbers(
-            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            messaging_profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         messaging_profile = await response.parse()
-        assert_matches_type(MessagingProfileListPhoneNumbersResponse, messaging_profile, path=["response"])
+        assert_matches_type(
+            AsyncDefaultPagination[PhoneNumberWithMessagingSettings], messaging_profile, path=["response"]
+        )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list_phone_numbers(self, async_client: AsyncTelnyx) -> None:
         async with async_client.messaging_profiles.with_streaming_response.list_phone_numbers(
-            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            messaging_profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             messaging_profile = await response.parse()
-            assert_matches_type(MessagingProfileListPhoneNumbersResponse, messaging_profile, path=["response"])
+            assert_matches_type(
+                AsyncDefaultPagination[PhoneNumberWithMessagingSettings], messaging_profile, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_list_phone_numbers(self, async_client: AsyncTelnyx) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `messaging_profile_id` but received ''"):
             await async_client.messaging_profiles.with_raw_response.list_phone_numbers(
-                id="",
+                messaging_profile_id="",
             )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_short_codes(self, async_client: AsyncTelnyx) -> None:
         messaging_profile = await async_client.messaging_profiles.list_short_codes(
-            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            messaging_profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(MessagingProfileListShortCodesResponse, messaging_profile, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[ShortCode], messaging_profile, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_short_codes_with_all_params(self, async_client: AsyncTelnyx) -> None:
         messaging_profile = await async_client.messaging_profiles.list_short_codes(
-            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            messaging_profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             page={
                 "number": 1,
                 "size": 1,
             },
         )
-        assert_matches_type(MessagingProfileListShortCodesResponse, messaging_profile, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[ShortCode], messaging_profile, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list_short_codes(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.messaging_profiles.with_raw_response.list_short_codes(
-            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            messaging_profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         messaging_profile = await response.parse()
-        assert_matches_type(MessagingProfileListShortCodesResponse, messaging_profile, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[ShortCode], messaging_profile, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list_short_codes(self, async_client: AsyncTelnyx) -> None:
         async with async_client.messaging_profiles.with_streaming_response.list_short_codes(
-            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            messaging_profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             messaging_profile = await response.parse()
-            assert_matches_type(MessagingProfileListShortCodesResponse, messaging_profile, path=["response"])
+            assert_matches_type(AsyncDefaultPagination[ShortCode], messaging_profile, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_list_short_codes(self, async_client: AsyncTelnyx) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `messaging_profile_id` but received ''"):
             await async_client.messaging_profiles.with_raw_response.list_short_codes(
-                id="",
+                messaging_profile_id="",
             )

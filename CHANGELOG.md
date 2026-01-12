@@ -1,5 +1,68 @@
 # Changelog
 
+## 4.0.0 (2026-01-09)
+
+Full Changelog: [v3.17.0...v4.0.0](https://github.com/team-telnyx/telnyx-python/compare/v3.17.0...v4.0.0)
+
+### ⚠ BREAKING CHANGES
+
+* Resolved all codegen errors
+
+### Features
+
+* [PORT-4538] Fix ambiguous oneOf instances on porting service and documents ([590e706](https://github.com/team-telnyx/telnyx-python/commit/590e7067ff51d2b3815ea019438eb2c38f9c72fb))
+* Add AI assistant voice settings, telephony config, and tools updates ([be8d467](https://github.com/team-telnyx/telnyx-python/commit/be8d467516a1afaccfef5560439a3a6e7bfded3e))
+* **api:** join all 10dlc operations into messaging_10dlc group ([c600cff](https://github.com/team-telnyx/telnyx-python/commit/c600cff7ccc52f41c695eb4241428e981d8c5744))
+* **api:** manual updates ([c0aefc7](https://github.com/team-telnyx/telnyx-python/commit/c0aefc75736d4bdc6cfacdeb2e1e58146edbb72a))
+* **api:** manual updates ([073b654](https://github.com/team-telnyx/telnyx-python/commit/073b65440f8c80d5c54ec64677af99a567fc738a))
+* **api:** manual updates ([6821aca](https://github.com/team-telnyx/telnyx-python/commit/6821aca282284f7a2cfc2d1c4ca9113057f211fd))
+* **api:** messaging_10dlc group with all their endpoints ([0ed622e](https://github.com/team-telnyx/telnyx-python/commit/0ed622e0765cc44e3f4219cf18c5d8fd81bc5184))
+* **api:** reverted previous commit ([f0fdff6](https://github.com/team-telnyx/telnyx-python/commit/f0fdff6c41921c34fb9a56c70ab55240d901f000))
+* Document supervising leg of call ([89c9c3d](https://github.com/team-telnyx/telnyx-python/commit/89c9c3deb8336674f4f7d585bbd2dfbb642214bb))
+* DOTCOM-5179. Fix Redocly errors in outbound-voice-profiles.json ([e64e8f9](https://github.com/team-telnyx/telnyx-python/commit/e64e8f9b76b38e3c5e204dedc13193791e99f745))
+* Draft. DOTCOM-5184. Fix 44 errors in the spec as reported by Redocly on video ([76c2bed](https://github.com/team-telnyx/telnyx-python/commit/76c2bedd1ef690cdb959936b5a7642240bd25b6f))
+* Engdesk 47920/wireless cleanup ([8b5a65d](https://github.com/team-telnyx/telnyx-python/commit/8b5a65d81d894eed9ec78b2672a8c6618c3f5121))
+* ENGDESK-47883: Fix all lint errors in telapps owned APIs ([dbdb567](https://github.com/team-telnyx/telnyx-python/commit/dbdb56771461d526c8a582aea43ab3979362c3e4))
+* ENGDESK-47914 - fix warnings in numbers.json file ([ab80c9d](https://github.com/team-telnyx/telnyx-python/commit/ab80c9dd1d9ad47a5ba2776704b72d413ef85e93))
+* ENGDESK-47935: Fixed unnecessary `RegionIn` schema ([46c1a8d](https://github.com/team-telnyx/telnyx-python/commit/46c1a8da131cf9b83da89d6c75110b4f768af904))
+* ENGDESK-48016 - document simultaneous ringing for CredentialConnections ([52e209d](https://github.com/team-telnyx/telnyx-python/commit/52e209dc2312da39ab08f34340789433e7b7c632))
+* ENGDESK-48254: Release noise suppression details docs to prod ([74341c7](https://github.com/team-telnyx/telnyx-python/commit/74341c73134986c1403914879b24c5f0fcb56f9c))
+* Fix campaign usecase endpoint: /registry/enum/usecase → /10dlc/enum/usecase ([d68b8cc](https://github.com/team-telnyx/telnyx-python/commit/d68b8cc79a4eb4f2a52840a48da9d6434f67a953))
+* hotfix: restore 10dlc prefixes ([21299b3](https://github.com/team-telnyx/telnyx-python/commit/21299b3b84632cbeee9195666ee43dd9c943af78))
+* Improve messaging API naming and navigation ([ad2e6c6](https://github.com/team-telnyx/telnyx-python/commit/ad2e6c671cb54d88fa9e94499ff7648d1060d394))
+* messaging meta object with required fields ([5cbe6fd](https://github.com/team-telnyx/telnyx-python/commit/5cbe6fde3a728db63e7394d0ae24f538316cde3e))
+* Msg 6152 ([6e9ae3e](https://github.com/team-telnyx/telnyx-python/commit/6e9ae3e1a7b976396bf4dbfc7b256ace837d5fce))
+* MSG-6140: Add SMS OTP endpoints for Sole Prop brands ([26f930e](https://github.com/team-telnyx/telnyx-python/commit/26f930e9d1299259efa05ed1fae198e1241b7c2d))
+* MSG-6145: OTP status endpoint ([d0d0abc](https://github.com/team-telnyx/telnyx-python/commit/d0d0abcb7392ba486425415c85426098a7faa1f6))
+* port-4551: remove CustomerServiceRecordStatusChanged webhook doc ([ef2ac27](https://github.com/team-telnyx/telnyx-python/commit/ef2ac27966ce401a97001ab59fb1cef923d49f35))
+* PORT-4553: Add a discriminator to portout webhook ([a746e1d](https://github.com/team-telnyx/telnyx-python/commit/a746e1d887e40a5ed3bb7da448f1f79f243d8306))
+* PORTAL-5787 - document query parameter to handle messaging service error ([807ac22](https://github.com/team-telnyx/telnyx-python/commit/807ac2259e91d2cccb92fa03861ba475d5e3d8af))
+* TBS-3422: Fix redocly errors ([08c8ca9](https://github.com/team-telnyx/telnyx-python/commit/08c8ca90fe2ca711d605b755e480b028b35043ff))
+* TELAPPS-47889 Add texml queue endpoint ([907e417](https://github.com/team-telnyx/telnyx-python/commit/907e41726ef144aab5b65d5f91fd69ef9f457d54))
+* TELAPPS-5428 Add speech-to-text WS endpoint ([83c36ec](https://github.com/team-telnyx/telnyx-python/commit/83c36ec50e1a2abbb6c970c918334d3535ea582a))
+
+
+### Bug Fixes
+
+* correct broken hyperlinks in Submit Campaign endpoint description ([49f784b](https://github.com/team-telnyx/telnyx-python/commit/49f784b16b4177b44cb419f8e81c4f26511ba73c))
+* make text field optional in AssistantSmsChatReq schema ([a5acf52](https://github.com/team-telnyx/telnyx-python/commit/a5acf52fce641d4ce4c5a01551ca69d63c62a177))
+* **stainless:** fixes the messsages typo ([0dee0a1](https://github.com/team-telnyx/telnyx-python/commit/0dee0a119d0713a69de22fa99911e0c75e5d1021))
+* use async_to_httpx_files in patch method ([eb0dd4b](https://github.com/team-telnyx/telnyx-python/commit/eb0dd4b950ed4e6e1ac987320a711b11b0813648))
+
+
+### Chores
+
+* **internal:** add `--fix` argument to lint script ([047839e](https://github.com/team-telnyx/telnyx-python/commit/047839e2958162d4136fbdd218b011634285bcf0))
+* **internal:** add missing files argument to base client ([ee23a70](https://github.com/team-telnyx/telnyx-python/commit/ee23a707200a50394c3e587c59d88ab0b9c56326))
+* **internal:** codegen related update ([0420502](https://github.com/team-telnyx/telnyx-python/commit/042050269eac59c78892838743b4d72845f299e5))
+* Resolved all codegen errors ([017a063](https://github.com/team-telnyx/telnyx-python/commit/017a06353a9284c358fdf6fce0f62152a6f78c19))
+* speedup initial import ([f805b1e](https://github.com/team-telnyx/telnyx-python/commit/f805b1e23abc2b964acb70f49f3b60c03c5864de))
+
+
+### Documentation
+
+* prominently feature MCP server setup in root SDK readmes ([5f7e635](https://github.com/team-telnyx/telnyx-python/commit/5f7e6358b1c2612157fc28f8efd865c2e071339c))
+
 ## 3.17.0 (2025-12-08)
 
 Full Changelog: [v3.16.0...v3.17.0](https://github.com/team-telnyx/telnyx-python/compare/v3.16.0...v3.17.0)

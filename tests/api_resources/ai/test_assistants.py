@@ -54,7 +54,13 @@ class TestAssistants:
             privacy_settings={"data_retention": True},
             telephony_settings={
                 "default_texml_app_id": "default_texml_app_id",
+                "noise_suppression": "deepfilternet",
+                "noise_suppression_config": {
+                    "attenuation_limit": 0,
+                    "mode": "advanced",
+                },
                 "supports_unauthenticated_web_calls": True,
+                "time_limit_secs": 30,
             },
             tools=[
                 {
@@ -96,6 +102,7 @@ class TestAssistants:
                 "model": "deepgram/flux",
                 "region": "region",
                 "settings": {
+                    "eager_eot_threshold": 0.3,
                     "eot_threshold": 0,
                     "eot_timeout_ms": 0,
                     "numerals": True,
@@ -109,6 +116,11 @@ class TestAssistants:
                     "type": "predefined_media",
                     "value": "silence",
                 },
+                "similarity_boost": 0,
+                "speed": 0,
+                "style": 0,
+                "temperature": 0,
+                "use_speaker_boost": True,
                 "voice_speed": 0,
             },
         )
@@ -229,7 +241,13 @@ class TestAssistants:
             promote_to_main=True,
             telephony_settings={
                 "default_texml_app_id": "default_texml_app_id",
+                "noise_suppression": "deepfilternet",
+                "noise_suppression_config": {
+                    "attenuation_limit": 0,
+                    "mode": "advanced",
+                },
                 "supports_unauthenticated_web_calls": True,
+                "time_limit_secs": 30,
             },
             tools=[
                 {
@@ -271,6 +289,7 @@ class TestAssistants:
                 "model": "deepgram/flux",
                 "region": "region",
                 "settings": {
+                    "eager_eot_threshold": 0.3,
                     "eot_threshold": 0,
                     "eot_timeout_ms": 0,
                     "numerals": True,
@@ -284,6 +303,11 @@ class TestAssistants:
                     "type": "predefined_media",
                     "value": "silence",
                 },
+                "similarity_boost": 0,
+                "speed": 0,
+                "style": 0,
+                "temperature": 0,
+                "use_speaker_boost": True,
                 "voice_speed": 0,
             },
         )
@@ -540,8 +564,8 @@ class TestAssistants:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_method_import(self, client: Telnyx) -> None:
-        assistant = client.ai.assistants.import_(
+    def test_method_imports(self, client: Telnyx) -> None:
+        assistant = client.ai.assistants.imports(
             api_key_ref="api_key_ref",
             provider="elevenlabs",
         )
@@ -549,8 +573,8 @@ class TestAssistants:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_raw_response_import(self, client: Telnyx) -> None:
-        response = client.ai.assistants.with_raw_response.import_(
+    def test_raw_response_imports(self, client: Telnyx) -> None:
+        response = client.ai.assistants.with_raw_response.imports(
             api_key_ref="api_key_ref",
             provider="elevenlabs",
         )
@@ -562,8 +586,8 @@ class TestAssistants:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_streaming_response_import(self, client: Telnyx) -> None:
-        with client.ai.assistants.with_streaming_response.import_(
+    def test_streaming_response_imports(self, client: Telnyx) -> None:
+        with client.ai.assistants.with_streaming_response.imports(
             api_key_ref="api_key_ref",
             provider="elevenlabs",
         ) as response:
@@ -581,7 +605,6 @@ class TestAssistants:
         assistant = client.ai.assistants.send_sms(
             assistant_id="assistant_id",
             from_="from",
-            text="text",
             to="to",
         )
         assert_matches_type(AssistantSendSMSResponse, assistant, path=["response"])
@@ -592,10 +615,10 @@ class TestAssistants:
         assistant = client.ai.assistants.send_sms(
             assistant_id="assistant_id",
             from_="from",
-            text="text",
             to="to",
             conversation_metadata={"foo": "string"},
             should_create_conversation=True,
+            text="text",
         )
         assert_matches_type(AssistantSendSMSResponse, assistant, path=["response"])
 
@@ -605,7 +628,6 @@ class TestAssistants:
         response = client.ai.assistants.with_raw_response.send_sms(
             assistant_id="assistant_id",
             from_="from",
-            text="text",
             to="to",
         )
 
@@ -620,7 +642,6 @@ class TestAssistants:
         with client.ai.assistants.with_streaming_response.send_sms(
             assistant_id="assistant_id",
             from_="from",
-            text="text",
             to="to",
         ) as response:
             assert not response.is_closed
@@ -638,7 +659,6 @@ class TestAssistants:
             client.ai.assistants.with_raw_response.send_sms(
                 assistant_id="",
                 from_="from",
-                text="text",
                 to="to",
             )
 
@@ -679,7 +699,13 @@ class TestAsyncAssistants:
             privacy_settings={"data_retention": True},
             telephony_settings={
                 "default_texml_app_id": "default_texml_app_id",
+                "noise_suppression": "deepfilternet",
+                "noise_suppression_config": {
+                    "attenuation_limit": 0,
+                    "mode": "advanced",
+                },
                 "supports_unauthenticated_web_calls": True,
+                "time_limit_secs": 30,
             },
             tools=[
                 {
@@ -721,6 +747,7 @@ class TestAsyncAssistants:
                 "model": "deepgram/flux",
                 "region": "region",
                 "settings": {
+                    "eager_eot_threshold": 0.3,
                     "eot_threshold": 0,
                     "eot_timeout_ms": 0,
                     "numerals": True,
@@ -734,6 +761,11 @@ class TestAsyncAssistants:
                     "type": "predefined_media",
                     "value": "silence",
                 },
+                "similarity_boost": 0,
+                "speed": 0,
+                "style": 0,
+                "temperature": 0,
+                "use_speaker_boost": True,
                 "voice_speed": 0,
             },
         )
@@ -854,7 +886,13 @@ class TestAsyncAssistants:
             promote_to_main=True,
             telephony_settings={
                 "default_texml_app_id": "default_texml_app_id",
+                "noise_suppression": "deepfilternet",
+                "noise_suppression_config": {
+                    "attenuation_limit": 0,
+                    "mode": "advanced",
+                },
                 "supports_unauthenticated_web_calls": True,
+                "time_limit_secs": 30,
             },
             tools=[
                 {
@@ -896,6 +934,7 @@ class TestAsyncAssistants:
                 "model": "deepgram/flux",
                 "region": "region",
                 "settings": {
+                    "eager_eot_threshold": 0.3,
                     "eot_threshold": 0,
                     "eot_timeout_ms": 0,
                     "numerals": True,
@@ -909,6 +948,11 @@ class TestAsyncAssistants:
                     "type": "predefined_media",
                     "value": "silence",
                 },
+                "similarity_boost": 0,
+                "speed": 0,
+                "style": 0,
+                "temperature": 0,
+                "use_speaker_boost": True,
                 "voice_speed": 0,
             },
         )
@@ -1165,8 +1209,8 @@ class TestAsyncAssistants:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_method_import(self, async_client: AsyncTelnyx) -> None:
-        assistant = await async_client.ai.assistants.import_(
+    async def test_method_imports(self, async_client: AsyncTelnyx) -> None:
+        assistant = await async_client.ai.assistants.imports(
             api_key_ref="api_key_ref",
             provider="elevenlabs",
         )
@@ -1174,8 +1218,8 @@ class TestAsyncAssistants:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_raw_response_import(self, async_client: AsyncTelnyx) -> None:
-        response = await async_client.ai.assistants.with_raw_response.import_(
+    async def test_raw_response_imports(self, async_client: AsyncTelnyx) -> None:
+        response = await async_client.ai.assistants.with_raw_response.imports(
             api_key_ref="api_key_ref",
             provider="elevenlabs",
         )
@@ -1187,8 +1231,8 @@ class TestAsyncAssistants:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_streaming_response_import(self, async_client: AsyncTelnyx) -> None:
-        async with async_client.ai.assistants.with_streaming_response.import_(
+    async def test_streaming_response_imports(self, async_client: AsyncTelnyx) -> None:
+        async with async_client.ai.assistants.with_streaming_response.imports(
             api_key_ref="api_key_ref",
             provider="elevenlabs",
         ) as response:
@@ -1206,7 +1250,6 @@ class TestAsyncAssistants:
         assistant = await async_client.ai.assistants.send_sms(
             assistant_id="assistant_id",
             from_="from",
-            text="text",
             to="to",
         )
         assert_matches_type(AssistantSendSMSResponse, assistant, path=["response"])
@@ -1217,10 +1260,10 @@ class TestAsyncAssistants:
         assistant = await async_client.ai.assistants.send_sms(
             assistant_id="assistant_id",
             from_="from",
-            text="text",
             to="to",
             conversation_metadata={"foo": "string"},
             should_create_conversation=True,
+            text="text",
         )
         assert_matches_type(AssistantSendSMSResponse, assistant, path=["response"])
 
@@ -1230,7 +1273,6 @@ class TestAsyncAssistants:
         response = await async_client.ai.assistants.with_raw_response.send_sms(
             assistant_id="assistant_id",
             from_="from",
-            text="text",
             to="to",
         )
 
@@ -1245,7 +1287,6 @@ class TestAsyncAssistants:
         async with async_client.ai.assistants.with_streaming_response.send_sms(
             assistant_id="assistant_id",
             from_="from",
-            text="text",
             to="to",
         ) as response:
             assert not response.is_closed
@@ -1263,6 +1304,5 @@ class TestAsyncAssistants:
             await async_client.ai.assistants.with_raw_response.send_sms(
                 assistant_id="",
                 from_="from",
-                text="text",
                 to="to",
             )

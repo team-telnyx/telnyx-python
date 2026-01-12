@@ -5,9 +5,14 @@ from __future__ import annotations
 from .call_calls_params import CallCallsParams as CallCallsParams
 from .call_update_params import CallUpdateParams as CallUpdateParams
 from .call_calls_response import CallCallsResponse as CallCallsResponse
+from .queue_create_params import QueueCreateParams as QueueCreateParams
+from .queue_update_params import QueueUpdateParams as QueueUpdateParams
 from .call_update_response import CallUpdateResponse as CallUpdateResponse
+from .queue_create_response import QueueCreateResponse as QueueCreateResponse
+from .queue_update_response import QueueUpdateResponse as QueueUpdateResponse
 from .call_retrieve_response import CallRetrieveResponse as CallRetrieveResponse
 from .call_siprec_json_params import CallSiprecJsonParams as CallSiprecJsonParams
+from .queue_retrieve_response import QueueRetrieveResponse as QueueRetrieveResponse
 from .call_streams_json_params import CallStreamsJsonParams as CallStreamsJsonParams
 from .conference_update_params import ConferenceUpdateParams as ConferenceUpdateParams
 from .call_siprec_json_response import CallSiprecJsonResponse as CallSiprecJsonResponse

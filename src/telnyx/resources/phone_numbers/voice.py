@@ -16,18 +16,19 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._base_client import make_request_options
+from ...pagination import SyncDefaultPagination, AsyncDefaultPagination
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.phone_numbers import (
     voice_list_params,
     voice_update_params,
 )
 from ...types.phone_numbers.cnam_listing_param import CnamListingParam
-from ...types.phone_numbers.voice_list_response import VoiceListResponse
 from ...types.phone_numbers.call_recording_param import CallRecordingParam
 from ...types.phone_numbers.media_features_param import MediaFeaturesParam
 from ...types.phone_numbers.call_forwarding_param import CallForwardingParam
 from ...types.phone_numbers.voice_update_response import VoiceUpdateResponse
 from ...types.phone_numbers.voice_retrieve_response import VoiceRetrieveResponse
+from ...types.phone_numbers.phone_number_with_voice_settings import PhoneNumberWithVoiceSettings
 
 __all__ = ["VoiceResource", "AsyncVoiceResource"]
 
@@ -176,7 +177,7 @@ class VoiceResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> VoiceListResponse:
+    ) -> SyncDefaultPagination[PhoneNumberWithVoiceSettings]:
         """
         List phone numbers with voice settings
 
@@ -200,8 +201,9 @@ class VoiceResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/phone_numbers/voice",
+            page=SyncDefaultPagination[PhoneNumberWithVoiceSettings],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -216,7 +218,7 @@ class VoiceResource(SyncAPIResource):
                     voice_list_params.VoiceListParams,
                 ),
             ),
-            cast_to=VoiceListResponse,
+            model=PhoneNumberWithVoiceSettings,
         )
 
 
@@ -352,7 +354,7 @@ class AsyncVoiceResource(AsyncAPIResource):
             cast_to=VoiceUpdateResponse,
         )
 
-    async def list(
+    def list(
         self,
         *,
         filter: voice_list_params.Filter | Omit = omit,
@@ -364,7 +366,7 @@ class AsyncVoiceResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> VoiceListResponse:
+    ) -> AsyncPaginator[PhoneNumberWithVoiceSettings, AsyncDefaultPagination[PhoneNumberWithVoiceSettings]]:
         """
         List phone numbers with voice settings
 
@@ -388,14 +390,15 @@ class AsyncVoiceResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/phone_numbers/voice",
+            page=AsyncDefaultPagination[PhoneNumberWithVoiceSettings],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "filter": filter,
                         "page": page,
@@ -404,7 +407,7 @@ class AsyncVoiceResource(AsyncAPIResource):
                     voice_list_params.VoiceListParams,
                 ),
             ),
-            cast_to=VoiceListResponse,
+            model=PhoneNumberWithVoiceSettings,
         )
 
 

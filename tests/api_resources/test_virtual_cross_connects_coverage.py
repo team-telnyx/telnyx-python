@@ -10,6 +10,7 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types import VirtualCrossConnectsCoverageListResponse
+from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -22,7 +23,9 @@ class TestVirtualCrossConnectsCoverage:
     def test_method_list(self, client: Telnyx) -> None:
         virtual_cross_connects_coverage = client.virtual_cross_connects_coverage.list()
         assert_matches_type(
-            VirtualCrossConnectsCoverageListResponse, virtual_cross_connects_coverage, path=["response"]
+            SyncDefaultPagination[VirtualCrossConnectsCoverageListResponse],
+            virtual_cross_connects_coverage,
+            path=["response"],
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -44,7 +47,9 @@ class TestVirtualCrossConnectsCoverage:
             },
         )
         assert_matches_type(
-            VirtualCrossConnectsCoverageListResponse, virtual_cross_connects_coverage, path=["response"]
+            SyncDefaultPagination[VirtualCrossConnectsCoverageListResponse],
+            virtual_cross_connects_coverage,
+            path=["response"],
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -56,7 +61,9 @@ class TestVirtualCrossConnectsCoverage:
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         virtual_cross_connects_coverage = response.parse()
         assert_matches_type(
-            VirtualCrossConnectsCoverageListResponse, virtual_cross_connects_coverage, path=["response"]
+            SyncDefaultPagination[VirtualCrossConnectsCoverageListResponse],
+            virtual_cross_connects_coverage,
+            path=["response"],
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -68,7 +75,9 @@ class TestVirtualCrossConnectsCoverage:
 
             virtual_cross_connects_coverage = response.parse()
             assert_matches_type(
-                VirtualCrossConnectsCoverageListResponse, virtual_cross_connects_coverage, path=["response"]
+                SyncDefaultPagination[VirtualCrossConnectsCoverageListResponse],
+                virtual_cross_connects_coverage,
+                path=["response"],
             )
 
         assert cast(Any, response.is_closed) is True
@@ -84,7 +93,9 @@ class TestAsyncVirtualCrossConnectsCoverage:
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         virtual_cross_connects_coverage = await async_client.virtual_cross_connects_coverage.list()
         assert_matches_type(
-            VirtualCrossConnectsCoverageListResponse, virtual_cross_connects_coverage, path=["response"]
+            AsyncDefaultPagination[VirtualCrossConnectsCoverageListResponse],
+            virtual_cross_connects_coverage,
+            path=["response"],
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -106,7 +117,9 @@ class TestAsyncVirtualCrossConnectsCoverage:
             },
         )
         assert_matches_type(
-            VirtualCrossConnectsCoverageListResponse, virtual_cross_connects_coverage, path=["response"]
+            AsyncDefaultPagination[VirtualCrossConnectsCoverageListResponse],
+            virtual_cross_connects_coverage,
+            path=["response"],
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -118,7 +131,9 @@ class TestAsyncVirtualCrossConnectsCoverage:
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         virtual_cross_connects_coverage = await response.parse()
         assert_matches_type(
-            VirtualCrossConnectsCoverageListResponse, virtual_cross_connects_coverage, path=["response"]
+            AsyncDefaultPagination[VirtualCrossConnectsCoverageListResponse],
+            virtual_cross_connects_coverage,
+            path=["response"],
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -130,7 +145,9 @@ class TestAsyncVirtualCrossConnectsCoverage:
 
             virtual_cross_connects_coverage = await response.parse()
             assert_matches_type(
-                VirtualCrossConnectsCoverageListResponse, virtual_cross_connects_coverage, path=["response"]
+                AsyncDefaultPagination[VirtualCrossConnectsCoverageListResponse],
+                virtual_cross_connects_coverage,
+                path=["response"],
             )
 
         assert cast(Any, response.is_closed) is True

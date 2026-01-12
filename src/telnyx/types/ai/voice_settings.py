@@ -1,20 +1,21 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Union, Optional
-from typing_extensions import Literal, TypeAlias
+from typing_extensions import Literal, Annotated, TypeAlias
 
+from ..._utils import PropertyInfo
 from ..._models import BaseModel
 
 __all__ = [
     "VoiceSettings",
     "BackgroundAudio",
-    "BackgroundAudioUnionMember0",
-    "BackgroundAudioUnionMember1",
-    "BackgroundAudioUnionMember2",
+    "BackgroundAudioPredefinedMedia",
+    "BackgroundAudioMediaURL",
+    "BackgroundAudioMediaName",
 ]
 
 
-class BackgroundAudioUnionMember0(BaseModel):
+class BackgroundAudioPredefinedMedia(BaseModel):
     type: Literal["predefined_media"]
     """Select from predefined media options."""
 
@@ -22,7 +23,7 @@ class BackgroundAudioUnionMember0(BaseModel):
     """The predefined media to use. `silence` disables background audio."""
 
 
-class BackgroundAudioUnionMember1(BaseModel):
+class BackgroundAudioMediaURL(BaseModel):
     type: Literal["media_url"]
     """Provide a direct URL to an MP3 file. The audio will loop during the call."""
 
@@ -30,7 +31,7 @@ class BackgroundAudioUnionMember1(BaseModel):
     """HTTPS URL to an MP3 file."""
 
 
-class BackgroundAudioUnionMember2(BaseModel):
+class BackgroundAudioMediaName(BaseModel):
     type: Literal["media_name"]
     """Reference a previously uploaded media by its name from Telnyx Media Storage."""
 
@@ -42,8 +43,9 @@ class BackgroundAudioUnionMember2(BaseModel):
     """
 
 
-BackgroundAudio: TypeAlias = Union[
-    BackgroundAudioUnionMember0, BackgroundAudioUnionMember1, BackgroundAudioUnionMember2
+BackgroundAudio: TypeAlias = Annotated[
+    Union[BackgroundAudioPredefinedMedia, BackgroundAudioMediaURL, BackgroundAudioMediaName],
+    PropertyInfo(discriminator="type"),
 ]
 
 
@@ -73,6 +75,40 @@ class VoiceSettings(BaseModel):
 
     Use a predefined media bed, or supply a looped MP3 URL. If a media URL is chosen
     in the portal, customers can preview it before saving.
+    """
+
+    similarity_boost: Optional[float] = None
+    """
+    Determines how closely the AI should adhere to the original voice when
+    attempting to replicate it. Only applicable when using ElevenLabs.
+    """
+
+    speed: Optional[float] = None
+    """Adjusts speech velocity.
+
+    1.0 is default speed; values less than 1.0 slow speech; values greater than 1.0
+    accelerate it. Only applicable when using ElevenLabs.
+    """
+
+    style: Optional[float] = None
+    """Determines the style exaggeration of the voice.
+
+    Amplifies speaker style but consumes additional resources when set above 0. Only
+    applicable when using ElevenLabs.
+    """
+
+    temperature: Optional[float] = None
+    """Determines how stable the voice is and the randomness between each generation.
+
+    Lower values create a broader emotional range; higher values produce more
+    consistent, monotonous output. Only applicable when using ElevenLabs.
+    """
+
+    use_speaker_boost: Optional[bool] = None
+    """Amplifies similarity to the original speaker voice.
+
+    Increases computational load and latency slightly. Only applicable when using
+    ElevenLabs.
     """
 
     voice_speed: Optional[float] = None

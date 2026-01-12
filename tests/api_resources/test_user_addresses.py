@@ -10,10 +10,11 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types import (
-    UserAddressListResponse,
+    UserAddress,
     UserAddressCreateResponse,
     UserAddressRetrieveResponse,
 )
+from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -51,7 +52,7 @@ class TestUserAddresses:
             neighborhood="Ciudad de los deportes",
             phone_number="+12125559000",
             postal_code="78701",
-            skip_address_verification="skip_address_verification",
+            skip_address_verification=True,
         )
         assert_matches_type(UserAddressCreateResponse, user_address, path=["response"])
 
@@ -137,7 +138,7 @@ class TestUserAddresses:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         user_address = client.user_addresses.list()
-        assert_matches_type(UserAddressListResponse, user_address, path=["response"])
+        assert_matches_type(SyncDefaultPagination[UserAddress], user_address, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -156,7 +157,7 @@ class TestUserAddresses:
             },
             sort="street_address",
         )
-        assert_matches_type(UserAddressListResponse, user_address, path=["response"])
+        assert_matches_type(SyncDefaultPagination[UserAddress], user_address, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -166,7 +167,7 @@ class TestUserAddresses:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         user_address = response.parse()
-        assert_matches_type(UserAddressListResponse, user_address, path=["response"])
+        assert_matches_type(SyncDefaultPagination[UserAddress], user_address, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -176,7 +177,7 @@ class TestUserAddresses:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             user_address = response.parse()
-            assert_matches_type(UserAddressListResponse, user_address, path=["response"])
+            assert_matches_type(SyncDefaultPagination[UserAddress], user_address, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -216,7 +217,7 @@ class TestAsyncUserAddresses:
             neighborhood="Ciudad de los deportes",
             phone_number="+12125559000",
             postal_code="78701",
-            skip_address_verification="skip_address_verification",
+            skip_address_verification=True,
         )
         assert_matches_type(UserAddressCreateResponse, user_address, path=["response"])
 
@@ -302,7 +303,7 @@ class TestAsyncUserAddresses:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         user_address = await async_client.user_addresses.list()
-        assert_matches_type(UserAddressListResponse, user_address, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[UserAddress], user_address, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -321,7 +322,7 @@ class TestAsyncUserAddresses:
             },
             sort="street_address",
         )
-        assert_matches_type(UserAddressListResponse, user_address, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[UserAddress], user_address, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -331,7 +332,7 @@ class TestAsyncUserAddresses:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         user_address = await response.parse()
-        assert_matches_type(UserAddressListResponse, user_address, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[UserAddress], user_address, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -341,6 +342,6 @@ class TestAsyncUserAddresses:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             user_address = await response.parse()
-            assert_matches_type(UserAddressListResponse, user_address, path=["response"])
+            assert_matches_type(AsyncDefaultPagination[UserAddress], user_address, path=["response"])
 
         assert cast(Any, response.is_closed) is True

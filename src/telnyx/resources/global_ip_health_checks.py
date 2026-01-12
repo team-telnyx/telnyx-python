@@ -17,7 +17,8 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import make_request_options
+from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
+from .._base_client import AsyncPaginator, make_request_options
 from ..types.global_ip_health_check_list_response import GlobalIPHealthCheckListResponse
 from ..types.global_ip_health_check_create_response import GlobalIPHealthCheckCreateResponse
 from ..types.global_ip_health_check_delete_response import GlobalIPHealthCheckDeleteResponse
@@ -136,7 +137,7 @@ class GlobalIPHealthChecksResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> GlobalIPHealthCheckListResponse:
+    ) -> SyncDefaultPagination[GlobalIPHealthCheckListResponse]:
         """
         List all Global IP health checks.
 
@@ -152,8 +153,9 @@ class GlobalIPHealthChecksResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/global_ip_health_checks",
+            page=SyncDefaultPagination[GlobalIPHealthCheckListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -161,7 +163,7 @@ class GlobalIPHealthChecksResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform({"page": page}, global_ip_health_check_list_params.GlobalIPHealthCheckListParams),
             ),
-            cast_to=GlobalIPHealthCheckListResponse,
+            model=GlobalIPHealthCheckListResponse,
         )
 
     def delete(
@@ -298,7 +300,7 @@ class AsyncGlobalIPHealthChecksResource(AsyncAPIResource):
             cast_to=GlobalIPHealthCheckRetrieveResponse,
         )
 
-    async def list(
+    def list(
         self,
         *,
         page: global_ip_health_check_list_params.Page | Omit = omit,
@@ -308,7 +310,7 @@ class AsyncGlobalIPHealthChecksResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> GlobalIPHealthCheckListResponse:
+    ) -> AsyncPaginator[GlobalIPHealthCheckListResponse, AsyncDefaultPagination[GlobalIPHealthCheckListResponse]]:
         """
         List all Global IP health checks.
 
@@ -324,18 +326,17 @@ class AsyncGlobalIPHealthChecksResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/global_ip_health_checks",
+            page=AsyncDefaultPagination[GlobalIPHealthCheckListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
-                    {"page": page}, global_ip_health_check_list_params.GlobalIPHealthCheckListParams
-                ),
+                query=maybe_transform({"page": page}, global_ip_health_check_list_params.GlobalIPHealthCheckListParams),
             ),
-            cast_to=GlobalIPHealthCheckListResponse,
+            model=GlobalIPHealthCheckListResponse,
         )
 
     async def delete(

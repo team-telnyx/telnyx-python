@@ -25,13 +25,14 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import make_request_options
+from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
+from .._base_client import AsyncPaginator, make_request_options
 from ..types.dtmf_type import DtmfType
+from ..types.ip_connection import IPConnection
 from ..types.encrypted_media import EncryptedMedia
 from ..types.inbound_ip_param import InboundIPParam
 from ..types.outbound_ip_param import OutboundIPParam
 from ..types.anchorsite_override import AnchorsiteOverride
-from ..types.ip_connection_list_response import IPConnectionListResponse
 from ..types.ip_connection_create_response import IPConnectionCreateResponse
 from ..types.ip_connection_delete_response import IPConnectionDeleteResponse
 from ..types.ip_connection_update_response import IPConnectionUpdateResponse
@@ -75,6 +76,8 @@ class IPConnectionsResource(SyncAPIResource):
         encrypted_media: Optional[EncryptedMedia] | Omit = omit,
         inbound: ip_connection_create_params.Inbound | Omit = omit,
         ios_push_credential_id: Optional[str] | Omit = omit,
+        noise_suppression: Literal["inbound", "outbound", "both", "disabled"] | Omit = omit,
+        noise_suppression_details: ip_connection_create_params.NoiseSuppressionDetails | Omit = omit,
         onnet_t38_passthrough_enabled: bool | Omit = omit,
         outbound: OutboundIPParam | Omit = omit,
         rtcp_settings: ConnectionRtcpSettingsParam | Omit = omit,
@@ -120,6 +123,16 @@ class IPConnectionsResource(SyncAPIResource):
 
           ios_push_credential_id: The uuid of the push credential for Ios
 
+          noise_suppression: Controls when noise suppression is applied to calls. When set to 'inbound',
+              noise suppression is applied to incoming audio. When set to 'outbound', it's
+              applied to outgoing audio. When set to 'both', it's applied in both directions.
+              When set to 'disabled', noise suppression is turned off.
+
+          noise_suppression_details: Configuration options for noise suppression. These settings are stored
+              regardless of the noise_suppression value, but only take effect when
+              noise_suppression is not 'disabled'. If you disable noise suppression and later
+              re-enable it, the previously configured settings will be used.
+
           onnet_t38_passthrough_enabled: Enable on-net T38 if you prefer the sender and receiver negotiating T38 directly
               if both are on the Telnyx network. If this is disabled, Telnyx will be able to
               use T38 on just one leg of the call depending on each leg's settings.
@@ -162,6 +175,8 @@ class IPConnectionsResource(SyncAPIResource):
                     "encrypted_media": encrypted_media,
                     "inbound": inbound,
                     "ios_push_credential_id": ios_push_credential_id,
+                    "noise_suppression": noise_suppression,
+                    "noise_suppression_details": noise_suppression_details,
                     "onnet_t38_passthrough_enabled": onnet_t38_passthrough_enabled,
                     "outbound": outbound,
                     "rtcp_settings": rtcp_settings,
@@ -228,6 +243,8 @@ class IPConnectionsResource(SyncAPIResource):
         encrypted_media: Optional[EncryptedMedia] | Omit = omit,
         inbound: InboundIPParam | Omit = omit,
         ios_push_credential_id: Optional[str] | Omit = omit,
+        noise_suppression: Literal["inbound", "outbound", "both", "disabled"] | Omit = omit,
+        noise_suppression_details: ip_connection_update_params.NoiseSuppressionDetails | Omit = omit,
         onnet_t38_passthrough_enabled: bool | Omit = omit,
         outbound: OutboundIPParam | Omit = omit,
         rtcp_settings: ConnectionRtcpSettingsParam | Omit = omit,
@@ -273,6 +290,16 @@ class IPConnectionsResource(SyncAPIResource):
 
           ios_push_credential_id: The uuid of the push credential for Ios
 
+          noise_suppression: Controls when noise suppression is applied to calls. When set to 'inbound',
+              noise suppression is applied to incoming audio. When set to 'outbound', it's
+              applied to outgoing audio. When set to 'both', it's applied in both directions.
+              When set to 'disabled', noise suppression is turned off.
+
+          noise_suppression_details: Configuration options for noise suppression. These settings are stored
+              regardless of the noise_suppression value, but only take effect when
+              noise_suppression is not 'disabled'. If you disable noise suppression and later
+              re-enable it, the previously configured settings will be used.
+
           onnet_t38_passthrough_enabled: Enable on-net T38 if you prefer the sender and receiver negotiating T38 directly
               if both are on the Telnyx network. If this is disabled, Telnyx will be able to
               use T38 on just one leg of the call depending on each leg's settings.
@@ -317,6 +344,8 @@ class IPConnectionsResource(SyncAPIResource):
                     "encrypted_media": encrypted_media,
                     "inbound": inbound,
                     "ios_push_credential_id": ios_push_credential_id,
+                    "noise_suppression": noise_suppression,
+                    "noise_suppression_details": noise_suppression_details,
                     "onnet_t38_passthrough_enabled": onnet_t38_passthrough_enabled,
                     "outbound": outbound,
                     "rtcp_settings": rtcp_settings,
@@ -347,7 +376,7 @@ class IPConnectionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> IPConnectionListResponse:
+    ) -> SyncDefaultPagination[IPConnection]:
         """
         Returns a list of your IP connections.
 
@@ -383,8 +412,9 @@ class IPConnectionsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/ip_connections",
+            page=SyncDefaultPagination[IPConnection],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -399,7 +429,7 @@ class IPConnectionsResource(SyncAPIResource):
                     ip_connection_list_params.IPConnectionListParams,
                 ),
             ),
-            cast_to=IPConnectionListResponse,
+            model=IPConnection,
         )
 
     def delete(
@@ -470,6 +500,8 @@ class AsyncIPConnectionsResource(AsyncAPIResource):
         encrypted_media: Optional[EncryptedMedia] | Omit = omit,
         inbound: ip_connection_create_params.Inbound | Omit = omit,
         ios_push_credential_id: Optional[str] | Omit = omit,
+        noise_suppression: Literal["inbound", "outbound", "both", "disabled"] | Omit = omit,
+        noise_suppression_details: ip_connection_create_params.NoiseSuppressionDetails | Omit = omit,
         onnet_t38_passthrough_enabled: bool | Omit = omit,
         outbound: OutboundIPParam | Omit = omit,
         rtcp_settings: ConnectionRtcpSettingsParam | Omit = omit,
@@ -515,6 +547,16 @@ class AsyncIPConnectionsResource(AsyncAPIResource):
 
           ios_push_credential_id: The uuid of the push credential for Ios
 
+          noise_suppression: Controls when noise suppression is applied to calls. When set to 'inbound',
+              noise suppression is applied to incoming audio. When set to 'outbound', it's
+              applied to outgoing audio. When set to 'both', it's applied in both directions.
+              When set to 'disabled', noise suppression is turned off.
+
+          noise_suppression_details: Configuration options for noise suppression. These settings are stored
+              regardless of the noise_suppression value, but only take effect when
+              noise_suppression is not 'disabled'. If you disable noise suppression and later
+              re-enable it, the previously configured settings will be used.
+
           onnet_t38_passthrough_enabled: Enable on-net T38 if you prefer the sender and receiver negotiating T38 directly
               if both are on the Telnyx network. If this is disabled, Telnyx will be able to
               use T38 on just one leg of the call depending on each leg's settings.
@@ -557,6 +599,8 @@ class AsyncIPConnectionsResource(AsyncAPIResource):
                     "encrypted_media": encrypted_media,
                     "inbound": inbound,
                     "ios_push_credential_id": ios_push_credential_id,
+                    "noise_suppression": noise_suppression,
+                    "noise_suppression_details": noise_suppression_details,
                     "onnet_t38_passthrough_enabled": onnet_t38_passthrough_enabled,
                     "outbound": outbound,
                     "rtcp_settings": rtcp_settings,
@@ -623,6 +667,8 @@ class AsyncIPConnectionsResource(AsyncAPIResource):
         encrypted_media: Optional[EncryptedMedia] | Omit = omit,
         inbound: InboundIPParam | Omit = omit,
         ios_push_credential_id: Optional[str] | Omit = omit,
+        noise_suppression: Literal["inbound", "outbound", "both", "disabled"] | Omit = omit,
+        noise_suppression_details: ip_connection_update_params.NoiseSuppressionDetails | Omit = omit,
         onnet_t38_passthrough_enabled: bool | Omit = omit,
         outbound: OutboundIPParam | Omit = omit,
         rtcp_settings: ConnectionRtcpSettingsParam | Omit = omit,
@@ -668,6 +714,16 @@ class AsyncIPConnectionsResource(AsyncAPIResource):
 
           ios_push_credential_id: The uuid of the push credential for Ios
 
+          noise_suppression: Controls when noise suppression is applied to calls. When set to 'inbound',
+              noise suppression is applied to incoming audio. When set to 'outbound', it's
+              applied to outgoing audio. When set to 'both', it's applied in both directions.
+              When set to 'disabled', noise suppression is turned off.
+
+          noise_suppression_details: Configuration options for noise suppression. These settings are stored
+              regardless of the noise_suppression value, but only take effect when
+              noise_suppression is not 'disabled'. If you disable noise suppression and later
+              re-enable it, the previously configured settings will be used.
+
           onnet_t38_passthrough_enabled: Enable on-net T38 if you prefer the sender and receiver negotiating T38 directly
               if both are on the Telnyx network. If this is disabled, Telnyx will be able to
               use T38 on just one leg of the call depending on each leg's settings.
@@ -712,6 +768,8 @@ class AsyncIPConnectionsResource(AsyncAPIResource):
                     "encrypted_media": encrypted_media,
                     "inbound": inbound,
                     "ios_push_credential_id": ios_push_credential_id,
+                    "noise_suppression": noise_suppression,
+                    "noise_suppression_details": noise_suppression_details,
                     "onnet_t38_passthrough_enabled": onnet_t38_passthrough_enabled,
                     "outbound": outbound,
                     "rtcp_settings": rtcp_settings,
@@ -730,7 +788,7 @@ class AsyncIPConnectionsResource(AsyncAPIResource):
             cast_to=IPConnectionUpdateResponse,
         )
 
-    async def list(
+    def list(
         self,
         *,
         filter: ip_connection_list_params.Filter | Omit = omit,
@@ -742,7 +800,7 @@ class AsyncIPConnectionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> IPConnectionListResponse:
+    ) -> AsyncPaginator[IPConnection, AsyncDefaultPagination[IPConnection]]:
         """
         Returns a list of your IP connections.
 
@@ -778,14 +836,15 @@ class AsyncIPConnectionsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/ip_connections",
+            page=AsyncDefaultPagination[IPConnection],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "filter": filter,
                         "page": page,
@@ -794,7 +853,7 @@ class AsyncIPConnectionsResource(AsyncAPIResource):
                     ip_connection_list_params.IPConnectionListParams,
                 ),
             ),
-            cast_to=IPConnectionListResponse,
+            model=IPConnection,
         )
 
     async def delete(
