@@ -10,6 +10,7 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types.texml.accounts import (
+    QueueListResponse,
     QueueCreateResponse,
     QueueUpdateResponse,
     QueueRetrieveResponse,
@@ -185,6 +186,61 @@ class TestQueues:
             client.texml.accounts.queues.with_raw_response.update(
                 queue_sid="",
                 account_sid="account_sid",
+            )
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_method_list(self, client: Telnyx) -> None:
+        queue = client.texml.accounts.queues.list(
+            account_sid="account_sid",
+        )
+        assert_matches_type(QueueListResponse, queue, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_method_list_with_all_params(self, client: Telnyx) -> None:
+        queue = client.texml.accounts.queues.list(
+            account_sid="account_sid",
+            date_created="DateCreated",
+            date_updated="DateUpdated",
+            page=0,
+            page_size=0,
+            page_token="PageToken",
+        )
+        assert_matches_type(QueueListResponse, queue, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_raw_response_list(self, client: Telnyx) -> None:
+        response = client.texml.accounts.queues.with_raw_response.list(
+            account_sid="account_sid",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        queue = response.parse()
+        assert_matches_type(QueueListResponse, queue, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_streaming_response_list(self, client: Telnyx) -> None:
+        with client.texml.accounts.queues.with_streaming_response.list(
+            account_sid="account_sid",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            queue = response.parse()
+            assert_matches_type(QueueListResponse, queue, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_path_params_list(self, client: Telnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_sid` but received ''"):
+            client.texml.accounts.queues.with_raw_response.list(
+                account_sid="",
             )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -409,6 +465,61 @@ class TestAsyncQueues:
             await async_client.texml.accounts.queues.with_raw_response.update(
                 queue_sid="",
                 account_sid="account_sid",
+            )
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_method_list(self, async_client: AsyncTelnyx) -> None:
+        queue = await async_client.texml.accounts.queues.list(
+            account_sid="account_sid",
+        )
+        assert_matches_type(QueueListResponse, queue, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
+        queue = await async_client.texml.accounts.queues.list(
+            account_sid="account_sid",
+            date_created="DateCreated",
+            date_updated="DateUpdated",
+            page=0,
+            page_size=0,
+            page_token="PageToken",
+        )
+        assert_matches_type(QueueListResponse, queue, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_raw_response_list(self, async_client: AsyncTelnyx) -> None:
+        response = await async_client.texml.accounts.queues.with_raw_response.list(
+            account_sid="account_sid",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        queue = await response.parse()
+        assert_matches_type(QueueListResponse, queue, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_streaming_response_list(self, async_client: AsyncTelnyx) -> None:
+        async with async_client.texml.accounts.queues.with_streaming_response.list(
+            account_sid="account_sid",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            queue = await response.parse()
+            assert_matches_type(QueueListResponse, queue, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_path_params_list(self, async_client: AsyncTelnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_sid` but received ''"):
+            await async_client.texml.accounts.queues.with_raw_response.list(
+                account_sid="",
             )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
