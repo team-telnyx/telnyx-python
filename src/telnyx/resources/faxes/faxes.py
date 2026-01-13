@@ -65,6 +65,7 @@ class FaxesResource(SyncAPIResource):
         connection_id: str,
         from_: str,
         to: str,
+        black_threshold: int | Omit = omit,
         client_state: str | Omit = omit,
         from_display_name: str | Omit = omit,
         media_name: str | Omit = omit,
@@ -103,6 +104,9 @@ class FaxesResource(SyncAPIResource):
           from_: The phone number, in E.164 format, the fax will be sent from.
 
           to: The phone number, in E.164 format, the fax will be sent to or SIP URI
+
+          black_threshold: The black threshold percentage for monochrome faxes. Only applicable if
+              `monochrome` is set to `true`.
 
           client_state: Use this field to add state to every subsequent webhook. It must be a valid
               Base-64 encoded string.
@@ -151,6 +155,7 @@ class FaxesResource(SyncAPIResource):
                 "connection_id": connection_id,
                 "from_": from_,
                 "to": to,
+                "black_threshold": black_threshold,
                 "client_state": client_state,
                 "from_display_name": from_display_name,
                 "media_name": media_name,
@@ -328,6 +333,7 @@ class AsyncFaxesResource(AsyncAPIResource):
         connection_id: str,
         from_: str,
         to: str,
+        black_threshold: int | Omit = omit,
         client_state: str | Omit = omit,
         from_display_name: str | Omit = omit,
         media_name: str | Omit = omit,
@@ -366,6 +372,9 @@ class AsyncFaxesResource(AsyncAPIResource):
           from_: The phone number, in E.164 format, the fax will be sent from.
 
           to: The phone number, in E.164 format, the fax will be sent to or SIP URI
+
+          black_threshold: The black threshold percentage for monochrome faxes. Only applicable if
+              `monochrome` is set to `true`.
 
           client_state: Use this field to add state to every subsequent webhook. It must be a valid
               Base-64 encoded string.
@@ -414,6 +423,7 @@ class AsyncFaxesResource(AsyncAPIResource):
                 "connection_id": connection_id,
                 "from_": from_,
                 "to": to,
+                "black_threshold": black_threshold,
                 "client_state": client_state,
                 "from_display_name": from_display_name,
                 "media_name": media_name,

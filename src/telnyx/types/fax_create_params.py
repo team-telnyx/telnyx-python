@@ -19,6 +19,12 @@ class FaxCreateParams(TypedDict, total=False):
     to: Required[str]
     """The phone number, in E.164 format, the fax will be sent to or SIP URI"""
 
+    black_threshold: int
+    """The black threshold percentage for monochrome faxes.
+
+    Only applicable if `monochrome` is set to `true`.
+    """
+
     client_state: str
     """Use this field to add state to every subsequent webhook.
 
