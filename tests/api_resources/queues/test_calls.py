@@ -9,7 +9,7 @@ import pytest
 
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
-from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
+from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from telnyx.types.queues import CallListResponse, CallRetrieveResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -138,7 +138,7 @@ class TestCalls:
         call = client.queues.calls.list(
             queue_name="queue_name",
         )
-        assert_matches_type(SyncDefaultPagination[CallListResponse], call, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[CallListResponse], call, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -149,11 +149,11 @@ class TestCalls:
                 "after": "after",
                 "before": "before",
                 "limit": 1,
-                "number": 1,
-                "size": 1,
             },
+            page_number=0,
+            page_size=0,
         )
-        assert_matches_type(SyncDefaultPagination[CallListResponse], call, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[CallListResponse], call, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -165,7 +165,7 @@ class TestCalls:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         call = response.parse()
-        assert_matches_type(SyncDefaultPagination[CallListResponse], call, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[CallListResponse], call, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -177,7 +177,7 @@ class TestCalls:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             call = response.parse()
-            assert_matches_type(SyncDefaultPagination[CallListResponse], call, path=["response"])
+            assert_matches_type(SyncDefaultFlatPagination[CallListResponse], call, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -367,7 +367,7 @@ class TestAsyncCalls:
         call = await async_client.queues.calls.list(
             queue_name="queue_name",
         )
-        assert_matches_type(AsyncDefaultPagination[CallListResponse], call, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[CallListResponse], call, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -378,11 +378,11 @@ class TestAsyncCalls:
                 "after": "after",
                 "before": "before",
                 "limit": 1,
-                "number": 1,
-                "size": 1,
             },
+            page_number=0,
+            page_size=0,
         )
-        assert_matches_type(AsyncDefaultPagination[CallListResponse], call, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[CallListResponse], call, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -394,7 +394,7 @@ class TestAsyncCalls:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         call = await response.parse()
-        assert_matches_type(AsyncDefaultPagination[CallListResponse], call, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[CallListResponse], call, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -406,7 +406,7 @@ class TestAsyncCalls:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             call = await response.parse()
-            assert_matches_type(AsyncDefaultPagination[CallListResponse], call, path=["response"])
+            assert_matches_type(AsyncDefaultFlatPagination[CallListResponse], call, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

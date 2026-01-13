@@ -15,7 +15,7 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
+from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.call_event_list_response import CallEventListResponse
 
@@ -47,13 +47,15 @@ class CallEventsResource(SyncAPIResource):
         *,
         filter: call_event_list_params.Filter | Omit = omit,
         page: call_event_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[CallEventListResponse]:
+    ) -> SyncDefaultFlatPagination[CallEventListResponse]:
         """Filters call events by given filter parameters.
 
         Events are ordered by
@@ -83,7 +85,7 @@ class CallEventsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/call_events",
-            page=SyncDefaultPagination[CallEventListResponse],
+            page=SyncDefaultFlatPagination[CallEventListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -93,6 +95,8 @@ class CallEventsResource(SyncAPIResource):
                     {
                         "filter": filter,
                         "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                     },
                     call_event_list_params.CallEventListParams,
                 ),
@@ -126,13 +130,15 @@ class AsyncCallEventsResource(AsyncAPIResource):
         *,
         filter: call_event_list_params.Filter | Omit = omit,
         page: call_event_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[CallEventListResponse, AsyncDefaultPagination[CallEventListResponse]]:
+    ) -> AsyncPaginator[CallEventListResponse, AsyncDefaultFlatPagination[CallEventListResponse]]:
         """Filters call events by given filter parameters.
 
         Events are ordered by
@@ -162,7 +168,7 @@ class AsyncCallEventsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/call_events",
-            page=AsyncDefaultPagination[CallEventListResponse],
+            page=AsyncDefaultFlatPagination[CallEventListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -172,6 +178,8 @@ class AsyncCallEventsResource(AsyncAPIResource):
                     {
                         "filter": filter,
                         "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                     },
                     call_event_list_params.CallEventListParams,
                 ),

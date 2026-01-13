@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
+from typing_extensions import Annotated, TypedDict
+
+from ..._utils import PropertyInfo
 
 __all__ = ["CallListParams", "Page"]
 
@@ -13,6 +15,10 @@ class CallListParams(TypedDict, total=False):
 
     Originally: page[after], page[before], page[limit], page[size], page[number]
     """
+
+    page_number: Annotated[int, PropertyInfo(alias="page[number]")]
+
+    page_size: Annotated[int, PropertyInfo(alias="page[size]")]
 
 
 class Page(TypedDict, total=False):
@@ -29,9 +35,3 @@ class Page(TypedDict, total=False):
 
     limit: int
     """Limit of records per single page"""
-
-    number: int
-    """The page number to load"""
-
-    size: int
-    """The size of the page"""
