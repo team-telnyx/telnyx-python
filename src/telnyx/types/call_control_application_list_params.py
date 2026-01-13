@@ -26,6 +26,10 @@ class CallControlApplicationListParams(TypedDict, total=False):
     Originally: page[after], page[before], page[limit], page[size], page[number]
     """
 
+    page_number: Annotated[int, PropertyInfo(alias="page[number]")]
+
+    page_size: Annotated[int, PropertyInfo(alias="page[size]")]
+
     sort: Literal["created_at", "connection_name", "active"]
     """Specifies the sort order for results.
 
@@ -147,9 +151,3 @@ class Page(TypedDict, total=False):
 
     limit: int
     """Limit of records per single page"""
-
-    number: int
-    """The page number to load"""
-
-    size: int
-    """The size of the page"""

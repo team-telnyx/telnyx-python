@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, TypedDict
+from typing_extensions import Literal, Annotated, TypedDict
+
+from .._utils import PropertyInfo
 
 __all__ = ["ConferenceListParticipantsParams", "Filter", "Page"]
 
@@ -19,6 +21,10 @@ class ConferenceListParticipantsParams(TypedDict, total=False):
 
     Originally: page[after], page[before], page[limit], page[size], page[number]
     """
+
+    page_number: Annotated[int, PropertyInfo(alias="page[number]")]
+
+    page_size: Annotated[int, PropertyInfo(alias="page[size]")]
 
     region: Literal["Australia", "Europe", "Middle East", "US"]
     """Region where the conference data is located"""
@@ -56,9 +62,3 @@ class Page(TypedDict, total=False):
 
     limit: int
     """Limit of records per single page"""
-
-    number: int
-    """The page number to load"""
-
-    size: int
-    """The size of the page"""
