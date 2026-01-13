@@ -1,5 +1,15 @@
 # Changelog
 
+## 4.1.0 (2026-01-13)
+
+Full Changelog: [v4.0.0...v4.1.0](https://github.com/team-telnyx/telnyx-python/compare/v4.0.0...v4.1.0)
+
+### Features
+
+* **api:** manual updates ([f9dfa86](https://github.com/team-telnyx/telnyx-python/commit/f9dfa862cf2106360a8c2ae21164b77813d1e291))
+* TELAPPS Add GET /texml/Accounts/{account_sid}/Queues endpoint ([9ab3ad6](https://github.com/team-telnyx/telnyx-python/commit/9ab3ad6a79870b258f8e1144915b3617963c7317))
+* TELAPPS-ENGDESK-47967 Add black_threshold parameter to send_fax request ([0e558ed](https://github.com/team-telnyx/telnyx-python/commit/0e558ed2ecf10a49f21e3419537d6f04f0340b5c))
+
 ## 4.0.0 (2026-01-09)
 
 Full Changelog: [v3.17.0...v4.0.0](https://github.com/team-telnyx/telnyx-python/compare/v3.17.0...v4.0.0)
