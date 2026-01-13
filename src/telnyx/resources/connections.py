@@ -17,7 +17,12 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
+from ..pagination import (
+    SyncDefaultPagination,
+    AsyncDefaultPagination,
+    SyncDefaultFlatPagination,
+    AsyncDefaultFlatPagination,
+)
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.connection_list_response import ConnectionListResponse
 from ..types.connection_retrieve_response import ConnectionRetrieveResponse
@@ -154,13 +159,15 @@ class ConnectionsResource(SyncAPIResource):
         connection_id: str,
         *,
         page: connection_list_active_calls_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[ConnectionListActiveCallsResponse]:
+    ) -> SyncDefaultFlatPagination[ConnectionListActiveCallsResponse]:
         """Lists all active calls for given connection.
 
         Acceptable connections are either
@@ -183,14 +190,19 @@ class ConnectionsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `connection_id` but received {connection_id!r}")
         return self._get_api_list(
             f"/connections/{connection_id}/active_calls",
-            page=SyncDefaultPagination[ConnectionListActiveCallsResponse],
+            page=SyncDefaultFlatPagination[ConnectionListActiveCallsResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform(
-                    {"page": page}, connection_list_active_calls_params.ConnectionListActiveCallsParams
+                    {
+                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
+                    },
+                    connection_list_active_calls_params.ConnectionListActiveCallsParams,
                 ),
             ),
             model=ConnectionListActiveCallsResponse,
@@ -325,13 +337,17 @@ class AsyncConnectionsResource(AsyncAPIResource):
         connection_id: str,
         *,
         page: connection_list_active_calls_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[ConnectionListActiveCallsResponse, AsyncDefaultPagination[ConnectionListActiveCallsResponse]]:
+    ) -> AsyncPaginator[
+        ConnectionListActiveCallsResponse, AsyncDefaultFlatPagination[ConnectionListActiveCallsResponse]
+    ]:
         """Lists all active calls for given connection.
 
         Acceptable connections are either
@@ -354,14 +370,19 @@ class AsyncConnectionsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `connection_id` but received {connection_id!r}")
         return self._get_api_list(
             f"/connections/{connection_id}/active_calls",
-            page=AsyncDefaultPagination[ConnectionListActiveCallsResponse],
+            page=AsyncDefaultFlatPagination[ConnectionListActiveCallsResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform(
-                    {"page": page}, connection_list_active_calls_params.ConnectionListActiveCallsParams
+                    {
+                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
+                    },
+                    connection_list_active_calls_params.ConnectionListActiveCallsParams,
                 ),
             ),
             model=ConnectionListActiveCallsResponse,

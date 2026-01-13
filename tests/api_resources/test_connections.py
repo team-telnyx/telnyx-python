@@ -14,7 +14,12 @@ from telnyx.types import (
     ConnectionRetrieveResponse,
     ConnectionListActiveCallsResponse,
 )
-from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
+from telnyx.pagination import (
+    SyncDefaultPagination,
+    AsyncDefaultPagination,
+    SyncDefaultFlatPagination,
+    AsyncDefaultFlatPagination,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -115,7 +120,7 @@ class TestConnections:
         connection = client.connections.list_active_calls(
             connection_id="1293384261075731461",
         )
-        assert_matches_type(SyncDefaultPagination[ConnectionListActiveCallsResponse], connection, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[ConnectionListActiveCallsResponse], connection, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -126,11 +131,11 @@ class TestConnections:
                 "after": "after",
                 "before": "before",
                 "limit": 1,
-                "number": 1,
-                "size": 1,
             },
+            page_number=0,
+            page_size=0,
         )
-        assert_matches_type(SyncDefaultPagination[ConnectionListActiveCallsResponse], connection, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[ConnectionListActiveCallsResponse], connection, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -142,7 +147,7 @@ class TestConnections:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         connection = response.parse()
-        assert_matches_type(SyncDefaultPagination[ConnectionListActiveCallsResponse], connection, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[ConnectionListActiveCallsResponse], connection, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -154,7 +159,9 @@ class TestConnections:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             connection = response.parse()
-            assert_matches_type(SyncDefaultPagination[ConnectionListActiveCallsResponse], connection, path=["response"])
+            assert_matches_type(
+                SyncDefaultFlatPagination[ConnectionListActiveCallsResponse], connection, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True
 
@@ -265,7 +272,9 @@ class TestAsyncConnections:
         connection = await async_client.connections.list_active_calls(
             connection_id="1293384261075731461",
         )
-        assert_matches_type(AsyncDefaultPagination[ConnectionListActiveCallsResponse], connection, path=["response"])
+        assert_matches_type(
+            AsyncDefaultFlatPagination[ConnectionListActiveCallsResponse], connection, path=["response"]
+        )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -276,11 +285,13 @@ class TestAsyncConnections:
                 "after": "after",
                 "before": "before",
                 "limit": 1,
-                "number": 1,
-                "size": 1,
             },
+            page_number=0,
+            page_size=0,
         )
-        assert_matches_type(AsyncDefaultPagination[ConnectionListActiveCallsResponse], connection, path=["response"])
+        assert_matches_type(
+            AsyncDefaultFlatPagination[ConnectionListActiveCallsResponse], connection, path=["response"]
+        )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -292,7 +303,9 @@ class TestAsyncConnections:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         connection = await response.parse()
-        assert_matches_type(AsyncDefaultPagination[ConnectionListActiveCallsResponse], connection, path=["response"])
+        assert_matches_type(
+            AsyncDefaultFlatPagination[ConnectionListActiveCallsResponse], connection, path=["response"]
+        )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -305,7 +318,7 @@ class TestAsyncConnections:
 
             connection = await response.parse()
             assert_matches_type(
-                AsyncDefaultPagination[ConnectionListActiveCallsResponse], connection, path=["response"]
+                AsyncDefaultFlatPagination[ConnectionListActiveCallsResponse], connection, path=["response"]
             )
 
         assert cast(Any, response.is_closed) is True

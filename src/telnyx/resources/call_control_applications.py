@@ -22,7 +22,7 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
+from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.call_control_application import CallControlApplication
 from ..types.call_control_application_inbound_param import CallControlApplicationInboundParam
@@ -314,6 +314,8 @@ class CallControlApplicationsResource(SyncAPIResource):
         *,
         filter: call_control_application_list_params.Filter | Omit = omit,
         page: call_control_application_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         sort: Literal["created_at", "connection_name", "active"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -321,7 +323,7 @@ class CallControlApplicationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[CallControlApplication]:
+    ) -> SyncDefaultFlatPagination[CallControlApplication]:
         """
         Return a list of call control applications.
 
@@ -361,7 +363,7 @@ class CallControlApplicationsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/call_control_applications",
-            page=SyncDefaultPagination[CallControlApplication],
+            page=SyncDefaultFlatPagination[CallControlApplication],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -371,6 +373,8 @@ class CallControlApplicationsResource(SyncAPIResource):
                     {
                         "filter": filter,
                         "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                         "sort": sort,
                     },
                     call_control_application_list_params.CallControlApplicationListParams,
@@ -692,6 +696,8 @@ class AsyncCallControlApplicationsResource(AsyncAPIResource):
         *,
         filter: call_control_application_list_params.Filter | Omit = omit,
         page: call_control_application_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         sort: Literal["created_at", "connection_name", "active"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -699,7 +705,7 @@ class AsyncCallControlApplicationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[CallControlApplication, AsyncDefaultPagination[CallControlApplication]]:
+    ) -> AsyncPaginator[CallControlApplication, AsyncDefaultFlatPagination[CallControlApplication]]:
         """
         Return a list of call control applications.
 
@@ -739,7 +745,7 @@ class AsyncCallControlApplicationsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/call_control_applications",
-            page=AsyncDefaultPagination[CallControlApplication],
+            page=AsyncDefaultFlatPagination[CallControlApplication],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -749,6 +755,8 @@ class AsyncCallControlApplicationsResource(AsyncAPIResource):
                     {
                         "filter": filter,
                         "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                         "sort": sort,
                     },
                     call_control_application_list_params.CallControlApplicationListParams,

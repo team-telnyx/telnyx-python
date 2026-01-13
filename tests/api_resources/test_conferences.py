@@ -15,7 +15,7 @@ from telnyx.types import (
     ConferenceRetrieveResponse,
     ConferenceListParticipantsResponse,
 )
-from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
+from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -134,7 +134,7 @@ class TestConferences:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         conference = client.conferences.list()
-        assert_matches_type(SyncDefaultPagination[Conference], conference, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[Conference], conference, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -165,12 +165,12 @@ class TestConferences:
                 "after": "after",
                 "before": "before",
                 "limit": 1,
-                "number": 1,
-                "size": 1,
             },
+            page_number=0,
+            page_size=0,
             region="Australia",
         )
-        assert_matches_type(SyncDefaultPagination[Conference], conference, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[Conference], conference, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -180,7 +180,7 @@ class TestConferences:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         conference = response.parse()
-        assert_matches_type(SyncDefaultPagination[Conference], conference, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[Conference], conference, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -190,7 +190,7 @@ class TestConferences:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             conference = response.parse()
-            assert_matches_type(SyncDefaultPagination[Conference], conference, path=["response"])
+            assert_matches_type(SyncDefaultFlatPagination[Conference], conference, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -200,7 +200,9 @@ class TestConferences:
         conference = client.conferences.list_participants(
             conference_id="conference_id",
         )
-        assert_matches_type(SyncDefaultPagination[ConferenceListParticipantsResponse], conference, path=["response"])
+        assert_matches_type(
+            SyncDefaultFlatPagination[ConferenceListParticipantsResponse], conference, path=["response"]
+        )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -216,12 +218,14 @@ class TestConferences:
                 "after": "after",
                 "before": "before",
                 "limit": 1,
-                "number": 1,
-                "size": 1,
             },
+            page_number=0,
+            page_size=0,
             region="Australia",
         )
-        assert_matches_type(SyncDefaultPagination[ConferenceListParticipantsResponse], conference, path=["response"])
+        assert_matches_type(
+            SyncDefaultFlatPagination[ConferenceListParticipantsResponse], conference, path=["response"]
+        )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -233,7 +237,9 @@ class TestConferences:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         conference = response.parse()
-        assert_matches_type(SyncDefaultPagination[ConferenceListParticipantsResponse], conference, path=["response"])
+        assert_matches_type(
+            SyncDefaultFlatPagination[ConferenceListParticipantsResponse], conference, path=["response"]
+        )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -246,7 +252,7 @@ class TestConferences:
 
             conference = response.parse()
             assert_matches_type(
-                SyncDefaultPagination[ConferenceListParticipantsResponse], conference, path=["response"]
+                SyncDefaultFlatPagination[ConferenceListParticipantsResponse], conference, path=["response"]
             )
 
         assert cast(Any, response.is_closed) is True
@@ -376,7 +382,7 @@ class TestAsyncConferences:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         conference = await async_client.conferences.list()
-        assert_matches_type(AsyncDefaultPagination[Conference], conference, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[Conference], conference, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -407,12 +413,12 @@ class TestAsyncConferences:
                 "after": "after",
                 "before": "before",
                 "limit": 1,
-                "number": 1,
-                "size": 1,
             },
+            page_number=0,
+            page_size=0,
             region="Australia",
         )
-        assert_matches_type(AsyncDefaultPagination[Conference], conference, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[Conference], conference, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -422,7 +428,7 @@ class TestAsyncConferences:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         conference = await response.parse()
-        assert_matches_type(AsyncDefaultPagination[Conference], conference, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[Conference], conference, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -432,7 +438,7 @@ class TestAsyncConferences:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             conference = await response.parse()
-            assert_matches_type(AsyncDefaultPagination[Conference], conference, path=["response"])
+            assert_matches_type(AsyncDefaultFlatPagination[Conference], conference, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -442,7 +448,9 @@ class TestAsyncConferences:
         conference = await async_client.conferences.list_participants(
             conference_id="conference_id",
         )
-        assert_matches_type(AsyncDefaultPagination[ConferenceListParticipantsResponse], conference, path=["response"])
+        assert_matches_type(
+            AsyncDefaultFlatPagination[ConferenceListParticipantsResponse], conference, path=["response"]
+        )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -458,12 +466,14 @@ class TestAsyncConferences:
                 "after": "after",
                 "before": "before",
                 "limit": 1,
-                "number": 1,
-                "size": 1,
             },
+            page_number=0,
+            page_size=0,
             region="Australia",
         )
-        assert_matches_type(AsyncDefaultPagination[ConferenceListParticipantsResponse], conference, path=["response"])
+        assert_matches_type(
+            AsyncDefaultFlatPagination[ConferenceListParticipantsResponse], conference, path=["response"]
+        )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -475,7 +485,9 @@ class TestAsyncConferences:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         conference = await response.parse()
-        assert_matches_type(AsyncDefaultPagination[ConferenceListParticipantsResponse], conference, path=["response"])
+        assert_matches_type(
+            AsyncDefaultFlatPagination[ConferenceListParticipantsResponse], conference, path=["response"]
+        )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -488,7 +500,7 @@ class TestAsyncConferences:
 
             conference = await response.parse()
             assert_matches_type(
-                AsyncDefaultPagination[ConferenceListParticipantsResponse], conference, path=["response"]
+                AsyncDefaultFlatPagination[ConferenceListParticipantsResponse], conference, path=["response"]
             )
 
         assert cast(Any, response.is_closed) is True
