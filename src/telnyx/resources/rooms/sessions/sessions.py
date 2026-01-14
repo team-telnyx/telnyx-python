@@ -22,7 +22,7 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ....pagination import SyncDefaultPagination, AsyncDefaultPagination
+from ....pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from ....types.rooms import (
     session_list_0_params,
     session_list_1_params,
@@ -108,14 +108,15 @@ class SessionsResource(SyncAPIResource):
         *,
         filter: session_list_0_params.Filter | Omit = omit,
         include_participants: bool | Omit = omit,
-        page: session_list_0_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[RoomSession]:
+    ) -> SyncDefaultFlatPagination[RoomSession]:
         """
         View a list of room sessions.
 
@@ -130,9 +131,6 @@ class SessionsResource(SyncAPIResource):
 
           include_participants: To decide if room participants should be included in the response.
 
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -143,7 +141,7 @@ class SessionsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/room_sessions",
-            page=SyncDefaultPagination[RoomSession],
+            page=SyncDefaultFlatPagination[RoomSession],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -153,7 +151,8 @@ class SessionsResource(SyncAPIResource):
                     {
                         "filter": filter,
                         "include_participants": include_participants,
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                     },
                     session_list_0_params.SessionList0Params,
                 ),
@@ -167,14 +166,15 @@ class SessionsResource(SyncAPIResource):
         *,
         filter: session_list_1_params.Filter | Omit = omit,
         include_participants: bool | Omit = omit,
-        page: session_list_1_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[RoomSession]:
+    ) -> SyncDefaultFlatPagination[RoomSession]:
         """
         View a list of room sessions.
 
@@ -189,9 +189,6 @@ class SessionsResource(SyncAPIResource):
 
           include_participants: To decide if room participants should be included in the response.
 
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -204,7 +201,7 @@ class SessionsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `room_id` but received {room_id!r}")
         return self._get_api_list(
             f"/rooms/{room_id}/sessions",
-            page=SyncDefaultPagination[RoomSession],
+            page=SyncDefaultFlatPagination[RoomSession],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -214,7 +211,8 @@ class SessionsResource(SyncAPIResource):
                     {
                         "filter": filter,
                         "include_participants": include_participants,
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                     },
                     session_list_1_params.SessionList1Params,
                 ),
@@ -227,14 +225,15 @@ class SessionsResource(SyncAPIResource):
         room_session_id: str,
         *,
         filter: session_retrieve_participants_params.Filter | Omit = omit,
-        page: session_retrieve_participants_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[RoomParticipant]:
+    ) -> SyncDefaultFlatPagination[RoomParticipant]:
         """
         View a list of room participants.
 
@@ -246,9 +245,6 @@ class SessionsResource(SyncAPIResource):
               filter[date_updated_at][gte], filter[date_updated_at][lte],
               filter[date_left_at][eq], filter[date_left_at][gte], filter[date_left_at][lte],
               filter[context]
-
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
 
           extra_headers: Send extra headers
 
@@ -262,7 +258,7 @@ class SessionsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `room_session_id` but received {room_session_id!r}")
         return self._get_api_list(
             f"/room_sessions/{room_session_id}/participants",
-            page=SyncDefaultPagination[RoomParticipant],
+            page=SyncDefaultFlatPagination[RoomParticipant],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -271,7 +267,8 @@ class SessionsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                     },
                     session_retrieve_participants_params.SessionRetrieveParticipantsParams,
                 ),
@@ -351,14 +348,15 @@ class AsyncSessionsResource(AsyncAPIResource):
         *,
         filter: session_list_0_params.Filter | Omit = omit,
         include_participants: bool | Omit = omit,
-        page: session_list_0_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[RoomSession, AsyncDefaultPagination[RoomSession]]:
+    ) -> AsyncPaginator[RoomSession, AsyncDefaultFlatPagination[RoomSession]]:
         """
         View a list of room sessions.
 
@@ -373,9 +371,6 @@ class AsyncSessionsResource(AsyncAPIResource):
 
           include_participants: To decide if room participants should be included in the response.
 
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -386,7 +381,7 @@ class AsyncSessionsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/room_sessions",
-            page=AsyncDefaultPagination[RoomSession],
+            page=AsyncDefaultFlatPagination[RoomSession],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -396,7 +391,8 @@ class AsyncSessionsResource(AsyncAPIResource):
                     {
                         "filter": filter,
                         "include_participants": include_participants,
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                     },
                     session_list_0_params.SessionList0Params,
                 ),
@@ -410,14 +406,15 @@ class AsyncSessionsResource(AsyncAPIResource):
         *,
         filter: session_list_1_params.Filter | Omit = omit,
         include_participants: bool | Omit = omit,
-        page: session_list_1_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[RoomSession, AsyncDefaultPagination[RoomSession]]:
+    ) -> AsyncPaginator[RoomSession, AsyncDefaultFlatPagination[RoomSession]]:
         """
         View a list of room sessions.
 
@@ -432,9 +429,6 @@ class AsyncSessionsResource(AsyncAPIResource):
 
           include_participants: To decide if room participants should be included in the response.
 
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -447,7 +441,7 @@ class AsyncSessionsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `room_id` but received {room_id!r}")
         return self._get_api_list(
             f"/rooms/{room_id}/sessions",
-            page=AsyncDefaultPagination[RoomSession],
+            page=AsyncDefaultFlatPagination[RoomSession],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -457,7 +451,8 @@ class AsyncSessionsResource(AsyncAPIResource):
                     {
                         "filter": filter,
                         "include_participants": include_participants,
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                     },
                     session_list_1_params.SessionList1Params,
                 ),
@@ -470,14 +465,15 @@ class AsyncSessionsResource(AsyncAPIResource):
         room_session_id: str,
         *,
         filter: session_retrieve_participants_params.Filter | Omit = omit,
-        page: session_retrieve_participants_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[RoomParticipant, AsyncDefaultPagination[RoomParticipant]]:
+    ) -> AsyncPaginator[RoomParticipant, AsyncDefaultFlatPagination[RoomParticipant]]:
         """
         View a list of room participants.
 
@@ -489,9 +485,6 @@ class AsyncSessionsResource(AsyncAPIResource):
               filter[date_updated_at][gte], filter[date_updated_at][lte],
               filter[date_left_at][eq], filter[date_left_at][gte], filter[date_left_at][lte],
               filter[context]
-
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
 
           extra_headers: Send extra headers
 
@@ -505,7 +498,7 @@ class AsyncSessionsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `room_session_id` but received {room_session_id!r}")
         return self._get_api_list(
             f"/room_sessions/{room_session_id}/participants",
-            page=AsyncDefaultPagination[RoomParticipant],
+            page=AsyncDefaultFlatPagination[RoomParticipant],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -514,7 +507,8 @@ class AsyncSessionsResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                     },
                     session_retrieve_participants_params.SessionRetrieveParticipantsParams,
                 ),

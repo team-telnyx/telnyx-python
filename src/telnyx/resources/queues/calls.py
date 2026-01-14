@@ -124,7 +124,6 @@ class CallsResource(SyncAPIResource):
         self,
         queue_name: str,
         *,
-        page: call_list_params.Page | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -138,9 +137,6 @@ class CallsResource(SyncAPIResource):
         Retrieve the list of calls in an existing queue
 
         Args:
-          page: Consolidated page parameter (deepObject style). Originally: page[after],
-              page[before], page[limit], page[size], page[number]
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -161,7 +157,6 @@ class CallsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "page": page,
                         "page_number": page_number,
                         "page_size": page_size,
                     },
@@ -314,7 +309,6 @@ class AsyncCallsResource(AsyncAPIResource):
         self,
         queue_name: str,
         *,
-        page: call_list_params.Page | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -328,9 +322,6 @@ class AsyncCallsResource(AsyncAPIResource):
         Retrieve the list of calls in an existing queue
 
         Args:
-          page: Consolidated page parameter (deepObject style). Originally: page[after],
-              page[before], page[limit], page[size], page[number]
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -351,7 +342,6 @@ class AsyncCallsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "page": page,
                         "page_number": page_number,
                         "page_size": page_size,
                     },

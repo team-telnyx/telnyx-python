@@ -16,7 +16,7 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...pagination import SyncDefaultPagination, AsyncDefaultPagination
+from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.porting_orders import phone_number_configuration_list_params, phone_number_configuration_create_params
 from ...types.porting_orders.phone_number_configuration_list_response import PhoneNumberConfigurationListResponse
@@ -85,7 +85,8 @@ class PhoneNumberConfigurationsResource(SyncAPIResource):
         self,
         *,
         filter: phone_number_configuration_list_params.Filter | Omit = omit,
-        page: phone_number_configuration_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         sort: phone_number_configuration_list_params.Sort | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -93,7 +94,7 @@ class PhoneNumberConfigurationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[PhoneNumberConfigurationListResponse]:
+    ) -> SyncDefaultFlatPagination[PhoneNumberConfigurationListResponse]:
         """
         Returns a list of phone number configurations paginated.
 
@@ -102,9 +103,6 @@ class PhoneNumberConfigurationsResource(SyncAPIResource):
               Consolidated filter parameter (deepObject style). Originally:
               filter[porting_order.status][in][], filter[porting_phone_number][in][],
               filter[user_bundle_id][in][]
-
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
 
           sort: Consolidated sort parameter (deepObject style). Originally: sort[value]
 
@@ -118,7 +116,7 @@ class PhoneNumberConfigurationsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/porting_orders/phone_number_configurations",
-            page=SyncDefaultPagination[PhoneNumberConfigurationListResponse],
+            page=SyncDefaultFlatPagination[PhoneNumberConfigurationListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -127,7 +125,8 @@ class PhoneNumberConfigurationsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                         "sort": sort,
                     },
                     phone_number_configuration_list_params.PhoneNumberConfigurationListParams,
@@ -197,7 +196,8 @@ class AsyncPhoneNumberConfigurationsResource(AsyncAPIResource):
         self,
         *,
         filter: phone_number_configuration_list_params.Filter | Omit = omit,
-        page: phone_number_configuration_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         sort: phone_number_configuration_list_params.Sort | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -206,7 +206,7 @@ class AsyncPhoneNumberConfigurationsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[
-        PhoneNumberConfigurationListResponse, AsyncDefaultPagination[PhoneNumberConfigurationListResponse]
+        PhoneNumberConfigurationListResponse, AsyncDefaultFlatPagination[PhoneNumberConfigurationListResponse]
     ]:
         """
         Returns a list of phone number configurations paginated.
@@ -216,9 +216,6 @@ class AsyncPhoneNumberConfigurationsResource(AsyncAPIResource):
               Consolidated filter parameter (deepObject style). Originally:
               filter[porting_order.status][in][], filter[porting_phone_number][in][],
               filter[user_bundle_id][in][]
-
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
 
           sort: Consolidated sort parameter (deepObject style). Originally: sort[value]
 
@@ -232,7 +229,7 @@ class AsyncPhoneNumberConfigurationsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/porting_orders/phone_number_configurations",
-            page=AsyncDefaultPagination[PhoneNumberConfigurationListResponse],
+            page=AsyncDefaultFlatPagination[PhoneNumberConfigurationListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -241,7 +238,8 @@ class AsyncPhoneNumberConfigurationsResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                         "sort": sort,
                     },
                     phone_number_configuration_list_params.PhoneNumberConfigurationListParams,

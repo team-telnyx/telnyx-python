@@ -8,7 +8,7 @@ from typing_extensions import Literal, Annotated, TypedDict
 from .._types import SequenceNotStr
 from .._utils import PropertyInfo
 
-__all__ = ["SimCardListParams", "Filter", "Page"]
+__all__ = ["SimCardListParams", "Filter"]
 
 
 class SimCardListParams(TypedDict, total=False):
@@ -24,11 +24,9 @@ class SimCardListParams(TypedDict, total=False):
     include_sim_card_group: bool
     """It includes the associated SIM card group object in the response when present."""
 
-    page: Page
-    """Consolidated pagination parameter (deepObject style).
+    page_number: Annotated[int, PropertyInfo(alias="page[number]")]
 
-    Originally: page[number], page[size]
-    """
+    page_size: Annotated[int, PropertyInfo(alias="page[size]")]
 
     sort: Literal["current_billing_period_consumed_data.amount", "-current_billing_period_consumed_data.amount"]
     """Sorts SIM cards by the given field.
@@ -61,16 +59,3 @@ class Filter(TypedDict, total=False):
     </ul>
     Searching for <code>['customers', 'test']</code> returns only the first because it's the only one with both tags.<br/> Searching for <code>test</code> returns the first two SIMs, because both of them have such tag.<br/> Searching for <code>customers</code> returns the first and last SIMs.<br/>
     """
-
-
-class Page(TypedDict, total=False):
-    """Consolidated pagination parameter (deepObject style).
-
-    Originally: page[number], page[size]
-    """
-
-    number: int
-    """The page number to load."""
-
-    size: int
-    """The size of the page."""

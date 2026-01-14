@@ -145,11 +145,6 @@ class TestCalls:
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         call = client.queues.calls.list(
             queue_name="queue_name",
-            page={
-                "after": "after",
-                "before": "before",
-                "limit": 1,
-            },
             page_number=0,
             page_size=0,
         )
@@ -374,11 +369,6 @@ class TestAsyncCalls:
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         call = await async_client.queues.calls.list(
             queue_name="queue_name",
-            page={
-                "after": "after",
-                "before": "before",
-                "limit": 1,
-            },
             page_number=0,
             page_size=0,
         )

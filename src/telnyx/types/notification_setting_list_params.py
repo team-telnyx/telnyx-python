@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, TypedDict
+from typing_extensions import Literal, Annotated, TypedDict
+
+from .._utils import PropertyInfo
 
 __all__ = [
     "NotificationSettingListParams",
@@ -13,7 +15,6 @@ __all__ = [
     "FilterNotificationEventConditionID",
     "FilterNotificationProfileID",
     "FilterStatus",
-    "Page",
 ]
 
 
@@ -26,11 +27,9 @@ class NotificationSettingListParams(TypedDict, total=False):
     filter[notification_event_condition_id][eq], filter[status][eq]
     """
 
-    page: Page
-    """Consolidated page parameter (deepObject style).
+    page_number: Annotated[int, PropertyInfo(alias="page[number]")]
 
-    Originally: page[number], page[size]
-    """
+    page_size: Annotated[int, PropertyInfo(alias="page[size]")]
 
 
 class FilterAssociatedRecordType(TypedDict, total=False):
@@ -89,16 +88,3 @@ class Filter(TypedDict, total=False):
     notification_profile_id: FilterNotificationProfileID
 
     status: FilterStatus
-
-
-class Page(TypedDict, total=False):
-    """Consolidated page parameter (deepObject style).
-
-    Originally: page[number], page[size]
-    """
-
-    number: int
-    """The page number to load"""
-
-    size: int
-    """The size of the page"""

@@ -17,7 +17,7 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...pagination import SyncDefaultPagination, AsyncDefaultPagination
+from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.phone_numbers import (
     job_list_params,
@@ -92,7 +92,8 @@ class JobsResource(SyncAPIResource):
         self,
         *,
         filter: job_list_params.Filter | Omit = omit,
-        page: job_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         sort: Literal["created_at"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -100,15 +101,12 @@ class JobsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[PhoneNumbersJob]:
+    ) -> SyncDefaultFlatPagination[PhoneNumbersJob]:
         """
         Lists the phone numbers jobs
 
         Args:
           filter: Consolidated filter parameter (deepObject style). Originally: filter[type]
-
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
 
           sort: Specifies the sort order for results. If not given, results are sorted by
               created_at in descending order.
@@ -123,7 +121,7 @@ class JobsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/phone_numbers/jobs",
-            page=SyncDefaultPagination[PhoneNumbersJob],
+            page=SyncDefaultFlatPagination[PhoneNumbersJob],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -132,7 +130,8 @@ class JobsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                         "sort": sort,
                     },
                     job_list_params.JobListParams,
@@ -382,7 +381,8 @@ class AsyncJobsResource(AsyncAPIResource):
         self,
         *,
         filter: job_list_params.Filter | Omit = omit,
-        page: job_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         sort: Literal["created_at"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -390,15 +390,12 @@ class AsyncJobsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[PhoneNumbersJob, AsyncDefaultPagination[PhoneNumbersJob]]:
+    ) -> AsyncPaginator[PhoneNumbersJob, AsyncDefaultFlatPagination[PhoneNumbersJob]]:
         """
         Lists the phone numbers jobs
 
         Args:
           filter: Consolidated filter parameter (deepObject style). Originally: filter[type]
-
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
 
           sort: Specifies the sort order for results. If not given, results are sorted by
               created_at in descending order.
@@ -413,7 +410,7 @@ class AsyncJobsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/phone_numbers/jobs",
-            page=AsyncDefaultPagination[PhoneNumbersJob],
+            page=AsyncDefaultFlatPagination[PhoneNumbersJob],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -422,7 +419,8 @@ class AsyncJobsResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                         "sort": sort,
                     },
                     job_list_params.JobListParams,

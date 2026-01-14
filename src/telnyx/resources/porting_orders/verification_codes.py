@@ -17,7 +17,7 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...pagination import SyncDefaultPagination, AsyncDefaultPagination
+from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.porting_orders import (
     verification_code_list_params,
@@ -55,7 +55,8 @@ class VerificationCodesResource(SyncAPIResource):
         id: str,
         *,
         filter: verification_code_list_params.Filter | Omit = omit,
-        page: verification_code_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         sort: verification_code_list_params.Sort | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -63,15 +64,12 @@ class VerificationCodesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[VerificationCodeListResponse]:
+    ) -> SyncDefaultFlatPagination[VerificationCodeListResponse]:
         """
         Returns a list of verification codes for a porting order.
 
         Args:
           filter: Consolidated filter parameter (deepObject style). Originally: filter[verified]
-
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
 
           sort: Consolidated sort parameter (deepObject style). Originally: sort[value]
 
@@ -87,7 +85,7 @@ class VerificationCodesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
             f"/porting_orders/{id}/verification_codes",
-            page=SyncDefaultPagination[VerificationCodeListResponse],
+            page=SyncDefaultFlatPagination[VerificationCodeListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -96,7 +94,8 @@ class VerificationCodesResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                         "sort": sort,
                     },
                     verification_code_list_params.VerificationCodeListParams,
@@ -211,7 +210,8 @@ class AsyncVerificationCodesResource(AsyncAPIResource):
         id: str,
         *,
         filter: verification_code_list_params.Filter | Omit = omit,
-        page: verification_code_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         sort: verification_code_list_params.Sort | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -219,15 +219,12 @@ class AsyncVerificationCodesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[VerificationCodeListResponse, AsyncDefaultPagination[VerificationCodeListResponse]]:
+    ) -> AsyncPaginator[VerificationCodeListResponse, AsyncDefaultFlatPagination[VerificationCodeListResponse]]:
         """
         Returns a list of verification codes for a porting order.
 
         Args:
           filter: Consolidated filter parameter (deepObject style). Originally: filter[verified]
-
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
 
           sort: Consolidated sort parameter (deepObject style). Originally: sort[value]
 
@@ -243,7 +240,7 @@ class AsyncVerificationCodesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
             f"/porting_orders/{id}/verification_codes",
-            page=AsyncDefaultPagination[VerificationCodeListResponse],
+            page=AsyncDefaultFlatPagination[VerificationCodeListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -252,7 +249,8 @@ class AsyncVerificationCodesResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                         "sort": sort,
                     },
                     verification_code_list_params.VerificationCodeListParams,

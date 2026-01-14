@@ -8,7 +8,7 @@ from typing_extensions import Annotated, TypedDict
 
 from .._utils import PropertyInfo
 
-__all__ = ["MessagingOptoutListParams", "CreatedAt", "Filter", "Page"]
+__all__ = ["MessagingOptoutListParams", "CreatedAt", "Filter"]
 
 
 class MessagingOptoutListParams(TypedDict, total=False):
@@ -24,11 +24,9 @@ class MessagingOptoutListParams(TypedDict, total=False):
     Originally: filter[messaging_profile_id], filter[from]
     """
 
-    page: Page
-    """Consolidated page parameter (deepObject style).
+    page_number: Annotated[int, PropertyInfo(alias="page[number]")]
 
-    Originally: page[number], page[size]
-    """
+    page_size: Annotated[int, PropertyInfo(alias="page[size]")]
 
     redaction_enabled: str
     """If receiving address (+E.164 formatted phone number) should be redacted"""
@@ -64,16 +62,3 @@ class Filter(_FilterReservedKeywords, total=False):
 
     messaging_profile_id: str
     """The ID of the messaging profile to retrieve opt-outs for"""
-
-
-class Page(TypedDict, total=False):
-    """Consolidated page parameter (deepObject style).
-
-    Originally: page[number], page[size]
-    """
-
-    number: int
-    """The page number to load"""
-
-    size: int
-    """The size of the page"""

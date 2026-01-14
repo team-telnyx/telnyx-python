@@ -8,7 +8,7 @@ from typing_extensions import Literal, Annotated, TypedDict
 from .._types import SequenceNotStr
 from .._utils import PropertyInfo
 
-__all__ = ["PhoneNumberSlimListParams", "Filter", "FilterNumberType", "FilterVoiceConnectionName", "Page"]
+__all__ = ["PhoneNumberSlimListParams", "Filter", "FilterNumberType", "FilterVoiceConnectionName"]
 
 
 class PhoneNumberSlimListParams(TypedDict, total=False):
@@ -28,11 +28,9 @@ class PhoneNumberSlimListParams(TypedDict, total=False):
     include_tags: bool
     """Include the tags associated with the phone number."""
 
-    page: Page
-    """Consolidated page parameter (deepObject style).
+    page_number: Annotated[int, PropertyInfo(alias="page[number]")]
 
-    Originally: page[size], page[number]
-    """
+    page_size: Annotated[int, PropertyInfo(alias="page[size]")]
 
     sort: Literal["purchased_at", "phone_number", "connection_name", "usage_payment_method"]
     """Specifies the sort order for results.
@@ -150,16 +148,3 @@ class Filter(TypedDict, total=False):
         Literal["pay-per-minute", "channel"], PropertyInfo(alias="voice.usage_payment_method")
     ]
     """Filter by usage_payment_method."""
-
-
-class Page(TypedDict, total=False):
-    """Consolidated page parameter (deepObject style).
-
-    Originally: page[size], page[number]
-    """
-
-    number: int
-    """The page number to load"""
-
-    size: int
-    """The size of the page"""

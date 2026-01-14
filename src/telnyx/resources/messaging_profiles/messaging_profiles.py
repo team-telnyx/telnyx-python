@@ -24,7 +24,7 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...pagination import SyncDefaultPagination, AsyncDefaultPagination
+from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from ..._base_client import AsyncPaginator, make_request_options
 from .autoresp_configs import (
     AutorespConfigsResource,
@@ -335,22 +335,20 @@ class MessagingProfilesResource(SyncAPIResource):
         self,
         *,
         filter: messaging_profile_list_params.Filter | Omit = omit,
-        page: messaging_profile_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[MessagingProfile]:
+    ) -> SyncDefaultFlatPagination[MessagingProfile]:
         """
         List messaging profiles
 
         Args:
           filter: Consolidated filter parameter (deepObject style). Originally: filter[name]
-
-          page: Consolidated page parameter (deepObject style). Originally: page[number],
-              page[size]
 
           extra_headers: Send extra headers
 
@@ -362,7 +360,7 @@ class MessagingProfilesResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/messaging_profiles",
-            page=SyncDefaultPagination[MessagingProfile],
+            page=SyncDefaultFlatPagination[MessagingProfile],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -371,7 +369,8 @@ class MessagingProfilesResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                     },
                     messaging_profile_list_params.MessagingProfileListParams,
                 ),
@@ -418,21 +417,19 @@ class MessagingProfilesResource(SyncAPIResource):
         self,
         messaging_profile_id: str,
         *,
-        page: messaging_profile_list_phone_numbers_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[PhoneNumberWithMessagingSettings]:
+    ) -> SyncDefaultFlatPagination[PhoneNumberWithMessagingSettings]:
         """
         List phone numbers associated with a messaging profile
 
         Args:
-          page: Consolidated page parameter (deepObject style). Originally: page[number],
-              page[size]
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -447,14 +444,18 @@ class MessagingProfilesResource(SyncAPIResource):
             )
         return self._get_api_list(
             f"/messaging_profiles/{messaging_profile_id}/phone_numbers",
-            page=SyncDefaultPagination[PhoneNumberWithMessagingSettings],
+            page=SyncDefaultFlatPagination[PhoneNumberWithMessagingSettings],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform(
-                    {"page": page}, messaging_profile_list_phone_numbers_params.MessagingProfileListPhoneNumbersParams
+                    {
+                        "page_number": page_number,
+                        "page_size": page_size,
+                    },
+                    messaging_profile_list_phone_numbers_params.MessagingProfileListPhoneNumbersParams,
                 ),
             ),
             model=PhoneNumberWithMessagingSettings,
@@ -464,21 +465,19 @@ class MessagingProfilesResource(SyncAPIResource):
         self,
         messaging_profile_id: str,
         *,
-        page: messaging_profile_list_short_codes_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[ShortCode]:
+    ) -> SyncDefaultFlatPagination[ShortCode]:
         """
         List short codes associated with a messaging profile
 
         Args:
-          page: Consolidated page parameter (deepObject style). Originally: page[number],
-              page[size]
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -493,14 +492,18 @@ class MessagingProfilesResource(SyncAPIResource):
             )
         return self._get_api_list(
             f"/messaging_profiles/{messaging_profile_id}/short_codes",
-            page=SyncDefaultPagination[ShortCode],
+            page=SyncDefaultFlatPagination[ShortCode],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform(
-                    {"page": page}, messaging_profile_list_short_codes_params.MessagingProfileListShortCodesParams
+                    {
+                        "page_number": page_number,
+                        "page_size": page_size,
+                    },
+                    messaging_profile_list_short_codes_params.MessagingProfileListShortCodesParams,
                 ),
             ),
             model=ShortCode,
@@ -795,22 +798,20 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
         self,
         *,
         filter: messaging_profile_list_params.Filter | Omit = omit,
-        page: messaging_profile_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[MessagingProfile, AsyncDefaultPagination[MessagingProfile]]:
+    ) -> AsyncPaginator[MessagingProfile, AsyncDefaultFlatPagination[MessagingProfile]]:
         """
         List messaging profiles
 
         Args:
           filter: Consolidated filter parameter (deepObject style). Originally: filter[name]
-
-          page: Consolidated page parameter (deepObject style). Originally: page[number],
-              page[size]
 
           extra_headers: Send extra headers
 
@@ -822,7 +823,7 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/messaging_profiles",
-            page=AsyncDefaultPagination[MessagingProfile],
+            page=AsyncDefaultFlatPagination[MessagingProfile],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -831,7 +832,8 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                     },
                     messaging_profile_list_params.MessagingProfileListParams,
                 ),
@@ -878,21 +880,19 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
         self,
         messaging_profile_id: str,
         *,
-        page: messaging_profile_list_phone_numbers_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[PhoneNumberWithMessagingSettings, AsyncDefaultPagination[PhoneNumberWithMessagingSettings]]:
+    ) -> AsyncPaginator[PhoneNumberWithMessagingSettings, AsyncDefaultFlatPagination[PhoneNumberWithMessagingSettings]]:
         """
         List phone numbers associated with a messaging profile
 
         Args:
-          page: Consolidated page parameter (deepObject style). Originally: page[number],
-              page[size]
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -907,14 +907,18 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
             )
         return self._get_api_list(
             f"/messaging_profiles/{messaging_profile_id}/phone_numbers",
-            page=AsyncDefaultPagination[PhoneNumberWithMessagingSettings],
+            page=AsyncDefaultFlatPagination[PhoneNumberWithMessagingSettings],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform(
-                    {"page": page}, messaging_profile_list_phone_numbers_params.MessagingProfileListPhoneNumbersParams
+                    {
+                        "page_number": page_number,
+                        "page_size": page_size,
+                    },
+                    messaging_profile_list_phone_numbers_params.MessagingProfileListPhoneNumbersParams,
                 ),
             ),
             model=PhoneNumberWithMessagingSettings,
@@ -924,21 +928,19 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
         self,
         messaging_profile_id: str,
         *,
-        page: messaging_profile_list_short_codes_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[ShortCode, AsyncDefaultPagination[ShortCode]]:
+    ) -> AsyncPaginator[ShortCode, AsyncDefaultFlatPagination[ShortCode]]:
         """
         List short codes associated with a messaging profile
 
         Args:
-          page: Consolidated page parameter (deepObject style). Originally: page[number],
-              page[size]
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -953,14 +955,18 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
             )
         return self._get_api_list(
             f"/messaging_profiles/{messaging_profile_id}/short_codes",
-            page=AsyncDefaultPagination[ShortCode],
+            page=AsyncDefaultFlatPagination[ShortCode],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform(
-                    {"page": page}, messaging_profile_list_short_codes_params.MessagingProfileListShortCodesParams
+                    {
+                        "page_number": page_number,
+                        "page_size": page_size,
+                    },
+                    messaging_profile_list_short_codes_params.MessagingProfileListShortCodesParams,
                 ),
             ),
             model=ShortCode,

@@ -46,7 +46,6 @@ class CallEventsResource(SyncAPIResource):
         self,
         *,
         filter: call_event_list_params.Filter | Omit = omit,
-        page: call_event_list_params.Page | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -72,9 +71,6 @@ class CallEventsResource(SyncAPIResource):
               filter[product], filter[failed], filter[from], filter[to], filter[name],
               filter[type], filter[occurred_at][eq/gt/gte/lt/lte], filter[status]
 
-          page: Consolidated page parameter (deepObject style). Originally: page[after],
-              page[before], page[limit], page[size], page[number]
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -94,7 +90,6 @@ class CallEventsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page": page,
                         "page_number": page_number,
                         "page_size": page_size,
                     },
@@ -129,7 +124,6 @@ class AsyncCallEventsResource(AsyncAPIResource):
         self,
         *,
         filter: call_event_list_params.Filter | Omit = omit,
-        page: call_event_list_params.Page | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -155,9 +149,6 @@ class AsyncCallEventsResource(AsyncAPIResource):
               filter[product], filter[failed], filter[from], filter[to], filter[name],
               filter[type], filter[occurred_at][eq/gt/gte/lt/lte], filter[status]
 
-          page: Consolidated page parameter (deepObject style). Originally: page[after],
-              page[before], page[limit], page[size], page[number]
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -177,7 +168,6 @@ class AsyncCallEventsResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page": page,
                         "page_number": page_number,
                         "page_size": page_size,
                     },
