@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.3.0 (2026-01-14)
+
+Full Changelog: [v4.2.0...v4.3.0](https://github.com/team-telnyx/telnyx-python/compare/v4.2.0...v4.3.0)
+
+### Features
+
+* **api:** fix default pagination by correctly using nested params ([ba89736](https://github.com/team-telnyx/telnyx-python/commit/ba89736a2e3293d9e50fa80932d7cbf9507bfc4f))
+
 ## 4.2.0 (2026-01-14)
 
 Full Changelog: [v4.1.0...v4.2.0](https://github.com/team-telnyx/telnyx-python/compare/v4.1.0...v4.2.0)
