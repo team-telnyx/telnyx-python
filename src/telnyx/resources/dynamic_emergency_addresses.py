@@ -17,7 +17,7 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
+from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.dynamic_emergency_address import DynamicEmergencyAddress
 from ..types.dynamic_emergency_address_create_response import DynamicEmergencyAddressCreateResponse
@@ -141,23 +141,21 @@ class DynamicEmergencyAddressesResource(SyncAPIResource):
         self,
         *,
         filter: dynamic_emergency_address_list_params.Filter | Omit = omit,
-        page: dynamic_emergency_address_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[DynamicEmergencyAddress]:
+    ) -> SyncDefaultFlatPagination[DynamicEmergencyAddress]:
         """
         Returns the dynamic emergency addresses according to filters
 
         Args:
           filter: Consolidated filter parameter (deepObject style). Originally: filter[status],
               filter[country_code]
-
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
 
           extra_headers: Send extra headers
 
@@ -169,7 +167,7 @@ class DynamicEmergencyAddressesResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/dynamic_emergency_addresses",
-            page=SyncDefaultPagination[DynamicEmergencyAddress],
+            page=SyncDefaultFlatPagination[DynamicEmergencyAddress],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -178,7 +176,8 @@ class DynamicEmergencyAddressesResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                     },
                     dynamic_emergency_address_list_params.DynamicEmergencyAddressListParams,
                 ),
@@ -334,23 +333,21 @@ class AsyncDynamicEmergencyAddressesResource(AsyncAPIResource):
         self,
         *,
         filter: dynamic_emergency_address_list_params.Filter | Omit = omit,
-        page: dynamic_emergency_address_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[DynamicEmergencyAddress, AsyncDefaultPagination[DynamicEmergencyAddress]]:
+    ) -> AsyncPaginator[DynamicEmergencyAddress, AsyncDefaultFlatPagination[DynamicEmergencyAddress]]:
         """
         Returns the dynamic emergency addresses according to filters
 
         Args:
           filter: Consolidated filter parameter (deepObject style). Originally: filter[status],
               filter[country_code]
-
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
 
           extra_headers: Send extra headers
 
@@ -362,7 +359,7 @@ class AsyncDynamicEmergencyAddressesResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/dynamic_emergency_addresses",
-            page=AsyncDefaultPagination[DynamicEmergencyAddress],
+            page=AsyncDefaultFlatPagination[DynamicEmergencyAddress],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -371,7 +368,8 @@ class AsyncDynamicEmergencyAddressesResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                     },
                     dynamic_emergency_address_list_params.DynamicEmergencyAddressListParams,
                 ),

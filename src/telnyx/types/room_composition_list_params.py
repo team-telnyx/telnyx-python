@@ -8,7 +8,7 @@ from typing_extensions import Literal, Annotated, TypedDict
 
 from .._utils import PropertyInfo
 
-__all__ = ["RoomCompositionListParams", "Filter", "FilterDateCreatedAt", "Page"]
+__all__ = ["RoomCompositionListParams", "Filter", "FilterDateCreatedAt"]
 
 
 class RoomCompositionListParams(TypedDict, total=False):
@@ -19,11 +19,9 @@ class RoomCompositionListParams(TypedDict, total=False):
     filter[date_created_at][lte], filter[session_id], filter[status]
     """
 
-    page: Page
-    """Consolidated page parameter (deepObject style).
+    page_number: Annotated[int, PropertyInfo(alias="page[number]")]
 
-    Originally: page[size], page[number]
-    """
+    page_size: Annotated[int, PropertyInfo(alias="page[size]")]
 
 
 class FilterDateCreatedAt(TypedDict, total=False):
@@ -50,16 +48,3 @@ class Filter(TypedDict, total=False):
 
     status: Literal["completed", "processing", "enqueued"]
     """The status for filtering room compositions."""
-
-
-class Page(TypedDict, total=False):
-    """Consolidated page parameter (deepObject style).
-
-    Originally: page[size], page[number]
-    """
-
-    number: int
-    """The page number to load."""
-
-    size: int
-    """The size of the page."""

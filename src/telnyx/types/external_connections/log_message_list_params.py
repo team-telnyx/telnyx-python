@@ -2,9 +2,11 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
+from typing_extensions import Annotated, TypedDict
 
-__all__ = ["LogMessageListParams", "Filter", "FilterTelephoneNumber", "Page"]
+from ..._utils import PropertyInfo
+
+__all__ = ["LogMessageListParams", "Filter", "FilterTelephoneNumber"]
 
 
 class LogMessageListParams(TypedDict, total=False):
@@ -15,11 +17,9 @@ class LogMessageListParams(TypedDict, total=False):
     eq/contains operations.
     """
 
-    page: Page
-    """Consolidated page parameter (deepObject style).
+    page_number: Annotated[int, PropertyInfo(alias="page[number]")]
 
-    Originally: page[size], page[number]
-    """
+    page_size: Annotated[int, PropertyInfo(alias="page[size]")]
 
 
 class FilterTelephoneNumber(TypedDict, total=False):
@@ -55,16 +55,3 @@ class Filter(TypedDict, total=False):
 
     Use 'eq' for exact matches or 'contains' for partial matches.
     """
-
-
-class Page(TypedDict, total=False):
-    """Consolidated page parameter (deepObject style).
-
-    Originally: page[size], page[number]
-    """
-
-    number: int
-    """The page number to load"""
-
-    size: int
-    """The size of the page"""

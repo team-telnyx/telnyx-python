@@ -17,7 +17,7 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...pagination import SyncDefaultPagination, AsyncDefaultPagination
+from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.porting_orders import activation_job_list_params, activation_job_update_params
 from ...types.porting_orders_activation_job import PortingOrdersActivationJob
@@ -128,21 +128,19 @@ class ActivationJobsResource(SyncAPIResource):
         self,
         id: str,
         *,
-        page: activation_job_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[PortingOrdersActivationJob]:
+    ) -> SyncDefaultFlatPagination[PortingOrdersActivationJob]:
         """
         Returns a list of your porting activation jobs.
 
         Args:
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -155,13 +153,19 @@ class ActivationJobsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
             f"/porting_orders/{id}/activation_jobs",
-            page=SyncDefaultPagination[PortingOrdersActivationJob],
+            page=SyncDefaultFlatPagination[PortingOrdersActivationJob],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"page": page}, activation_job_list_params.ActivationJobListParams),
+                query=maybe_transform(
+                    {
+                        "page_number": page_number,
+                        "page_size": page_size,
+                    },
+                    activation_job_list_params.ActivationJobListParams,
+                ),
             ),
             model=PortingOrdersActivationJob,
         )
@@ -270,21 +274,19 @@ class AsyncActivationJobsResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        page: activation_job_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[PortingOrdersActivationJob, AsyncDefaultPagination[PortingOrdersActivationJob]]:
+    ) -> AsyncPaginator[PortingOrdersActivationJob, AsyncDefaultFlatPagination[PortingOrdersActivationJob]]:
         """
         Returns a list of your porting activation jobs.
 
         Args:
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -297,13 +299,19 @@ class AsyncActivationJobsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
             f"/porting_orders/{id}/activation_jobs",
-            page=AsyncDefaultPagination[PortingOrdersActivationJob],
+            page=AsyncDefaultFlatPagination[PortingOrdersActivationJob],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"page": page}, activation_job_list_params.ActivationJobListParams),
+                query=maybe_transform(
+                    {
+                        "page_number": page_number,
+                        "page_size": page_size,
+                    },
+                    activation_job_list_params.ActivationJobListParams,
+                ),
             ),
             model=PortingOrdersActivationJob,
         )

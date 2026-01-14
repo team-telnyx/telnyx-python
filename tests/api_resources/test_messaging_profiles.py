@@ -16,7 +16,7 @@ from telnyx.types import (
     MessagingProfileUpdateResponse,
     MessagingProfileRetrieveResponse,
 )
-from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
+from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from telnyx.types.shared import ShortCode, PhoneNumberWithMessagingSettings
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -216,19 +216,17 @@ class TestMessagingProfiles:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         messaging_profile = client.messaging_profiles.list()
-        assert_matches_type(SyncDefaultPagination[MessagingProfile], messaging_profile, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[MessagingProfile], messaging_profile, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         messaging_profile = client.messaging_profiles.list(
             filter={"name": "name"},
-            page={
-                "number": 1,
-                "size": 1,
-            },
+            page_number=0,
+            page_size=0,
         )
-        assert_matches_type(SyncDefaultPagination[MessagingProfile], messaging_profile, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[MessagingProfile], messaging_profile, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -238,7 +236,7 @@ class TestMessagingProfiles:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         messaging_profile = response.parse()
-        assert_matches_type(SyncDefaultPagination[MessagingProfile], messaging_profile, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[MessagingProfile], messaging_profile, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -248,7 +246,7 @@ class TestMessagingProfiles:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             messaging_profile = response.parse()
-            assert_matches_type(SyncDefaultPagination[MessagingProfile], messaging_profile, path=["response"])
+            assert_matches_type(SyncDefaultFlatPagination[MessagingProfile], messaging_profile, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -301,7 +299,7 @@ class TestMessagingProfiles:
             messaging_profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(
-            SyncDefaultPagination[PhoneNumberWithMessagingSettings], messaging_profile, path=["response"]
+            SyncDefaultFlatPagination[PhoneNumberWithMessagingSettings], messaging_profile, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -309,13 +307,11 @@ class TestMessagingProfiles:
     def test_method_list_phone_numbers_with_all_params(self, client: Telnyx) -> None:
         messaging_profile = client.messaging_profiles.list_phone_numbers(
             messaging_profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            page={
-                "number": 1,
-                "size": 1,
-            },
+            page_number=0,
+            page_size=0,
         )
         assert_matches_type(
-            SyncDefaultPagination[PhoneNumberWithMessagingSettings], messaging_profile, path=["response"]
+            SyncDefaultFlatPagination[PhoneNumberWithMessagingSettings], messaging_profile, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -329,7 +325,7 @@ class TestMessagingProfiles:
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         messaging_profile = response.parse()
         assert_matches_type(
-            SyncDefaultPagination[PhoneNumberWithMessagingSettings], messaging_profile, path=["response"]
+            SyncDefaultFlatPagination[PhoneNumberWithMessagingSettings], messaging_profile, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -343,7 +339,7 @@ class TestMessagingProfiles:
 
             messaging_profile = response.parse()
             assert_matches_type(
-                SyncDefaultPagination[PhoneNumberWithMessagingSettings], messaging_profile, path=["response"]
+                SyncDefaultFlatPagination[PhoneNumberWithMessagingSettings], messaging_profile, path=["response"]
             )
 
         assert cast(Any, response.is_closed) is True
@@ -362,19 +358,17 @@ class TestMessagingProfiles:
         messaging_profile = client.messaging_profiles.list_short_codes(
             messaging_profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(SyncDefaultPagination[ShortCode], messaging_profile, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[ShortCode], messaging_profile, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_short_codes_with_all_params(self, client: Telnyx) -> None:
         messaging_profile = client.messaging_profiles.list_short_codes(
             messaging_profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            page={
-                "number": 1,
-                "size": 1,
-            },
+            page_number=0,
+            page_size=0,
         )
-        assert_matches_type(SyncDefaultPagination[ShortCode], messaging_profile, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[ShortCode], messaging_profile, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -386,7 +380,7 @@ class TestMessagingProfiles:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         messaging_profile = response.parse()
-        assert_matches_type(SyncDefaultPagination[ShortCode], messaging_profile, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[ShortCode], messaging_profile, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -398,7 +392,7 @@ class TestMessagingProfiles:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             messaging_profile = response.parse()
-            assert_matches_type(SyncDefaultPagination[ShortCode], messaging_profile, path=["response"])
+            assert_matches_type(SyncDefaultFlatPagination[ShortCode], messaging_profile, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -607,19 +601,17 @@ class TestAsyncMessagingProfiles:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         messaging_profile = await async_client.messaging_profiles.list()
-        assert_matches_type(AsyncDefaultPagination[MessagingProfile], messaging_profile, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[MessagingProfile], messaging_profile, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         messaging_profile = await async_client.messaging_profiles.list(
             filter={"name": "name"},
-            page={
-                "number": 1,
-                "size": 1,
-            },
+            page_number=0,
+            page_size=0,
         )
-        assert_matches_type(AsyncDefaultPagination[MessagingProfile], messaging_profile, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[MessagingProfile], messaging_profile, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -629,7 +621,7 @@ class TestAsyncMessagingProfiles:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         messaging_profile = await response.parse()
-        assert_matches_type(AsyncDefaultPagination[MessagingProfile], messaging_profile, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[MessagingProfile], messaging_profile, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -639,7 +631,7 @@ class TestAsyncMessagingProfiles:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             messaging_profile = await response.parse()
-            assert_matches_type(AsyncDefaultPagination[MessagingProfile], messaging_profile, path=["response"])
+            assert_matches_type(AsyncDefaultFlatPagination[MessagingProfile], messaging_profile, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -692,7 +684,7 @@ class TestAsyncMessagingProfiles:
             messaging_profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(
-            AsyncDefaultPagination[PhoneNumberWithMessagingSettings], messaging_profile, path=["response"]
+            AsyncDefaultFlatPagination[PhoneNumberWithMessagingSettings], messaging_profile, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -700,13 +692,11 @@ class TestAsyncMessagingProfiles:
     async def test_method_list_phone_numbers_with_all_params(self, async_client: AsyncTelnyx) -> None:
         messaging_profile = await async_client.messaging_profiles.list_phone_numbers(
             messaging_profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            page={
-                "number": 1,
-                "size": 1,
-            },
+            page_number=0,
+            page_size=0,
         )
         assert_matches_type(
-            AsyncDefaultPagination[PhoneNumberWithMessagingSettings], messaging_profile, path=["response"]
+            AsyncDefaultFlatPagination[PhoneNumberWithMessagingSettings], messaging_profile, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -720,7 +710,7 @@ class TestAsyncMessagingProfiles:
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         messaging_profile = await response.parse()
         assert_matches_type(
-            AsyncDefaultPagination[PhoneNumberWithMessagingSettings], messaging_profile, path=["response"]
+            AsyncDefaultFlatPagination[PhoneNumberWithMessagingSettings], messaging_profile, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -734,7 +724,7 @@ class TestAsyncMessagingProfiles:
 
             messaging_profile = await response.parse()
             assert_matches_type(
-                AsyncDefaultPagination[PhoneNumberWithMessagingSettings], messaging_profile, path=["response"]
+                AsyncDefaultFlatPagination[PhoneNumberWithMessagingSettings], messaging_profile, path=["response"]
             )
 
         assert cast(Any, response.is_closed) is True
@@ -753,19 +743,17 @@ class TestAsyncMessagingProfiles:
         messaging_profile = await async_client.messaging_profiles.list_short_codes(
             messaging_profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(AsyncDefaultPagination[ShortCode], messaging_profile, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[ShortCode], messaging_profile, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_short_codes_with_all_params(self, async_client: AsyncTelnyx) -> None:
         messaging_profile = await async_client.messaging_profiles.list_short_codes(
             messaging_profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            page={
-                "number": 1,
-                "size": 1,
-            },
+            page_number=0,
+            page_size=0,
         )
-        assert_matches_type(AsyncDefaultPagination[ShortCode], messaging_profile, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[ShortCode], messaging_profile, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -777,7 +765,7 @@ class TestAsyncMessagingProfiles:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         messaging_profile = await response.parse()
-        assert_matches_type(AsyncDefaultPagination[ShortCode], messaging_profile, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[ShortCode], messaging_profile, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -789,7 +777,7 @@ class TestAsyncMessagingProfiles:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             messaging_profile = await response.parse()
-            assert_matches_type(AsyncDefaultPagination[ShortCode], messaging_profile, path=["response"])
+            assert_matches_type(AsyncDefaultFlatPagination[ShortCode], messaging_profile, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
