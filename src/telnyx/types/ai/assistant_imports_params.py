@@ -4,6 +4,8 @@ from __future__ import annotations
 
 from typing_extensions import Literal, Required, TypedDict
 
+from ..._types import SequenceNotStr
+
 __all__ = ["AssistantImportsParams"]
 
 
@@ -17,3 +19,9 @@ class AssistantImportsParams(TypedDict, total=False):
 
     provider: Required[Literal["elevenlabs", "vapi", "retell"]]
     """The external provider to import assistants from."""
+
+    import_ids: SequenceNotStr[str]
+    """Optional list of assistant IDs to import from the external provider.
+
+    If not provided, all assistants will be imported.
+    """
