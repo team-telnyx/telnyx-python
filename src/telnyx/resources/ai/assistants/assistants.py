@@ -23,7 +23,7 @@ from .versions import (
     VersionsResourceWithStreamingResponse,
     AsyncVersionsResourceWithStreamingResponse,
 )
-from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ....types.ai import (
@@ -142,6 +142,7 @@ class AssistantsResource(SyncAPIResource):
         tools: Iterable[AssistantToolParam] | Omit = omit,
         transcription: TranscriptionSettingsParam | Omit = omit,
         voice_settings: VoiceSettingsParam | Omit = omit,
+        widget_settings: assistant_create_params.WidgetSettings | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -180,6 +181,8 @@ class AssistantsResource(SyncAPIResource):
           tools: The tools that the assistant can use. These may be templated with
               [dynamic variables](https://developers.telnyx.com/docs/inference/ai-assistants/dynamic-variables)
 
+          widget_settings: Configuration settings for the assistant's web widget.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -208,6 +211,7 @@ class AssistantsResource(SyncAPIResource):
                     "tools": tools,
                     "transcription": transcription,
                     "voice_settings": voice_settings,
+                    "widget_settings": widget_settings,
                 },
                 assistant_create_params.AssistantCreateParams,
             ),
@@ -287,6 +291,7 @@ class AssistantsResource(SyncAPIResource):
         tools: Iterable[AssistantToolParam] | Omit = omit,
         transcription: TranscriptionSettingsParam | Omit = omit,
         voice_settings: VoiceSettingsParam | Omit = omit,
+        widget_settings: assistant_update_params.WidgetSettings | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -328,6 +333,8 @@ class AssistantsResource(SyncAPIResource):
           tools: The tools that the assistant can use. These may be templated with
               [dynamic variables](https://developers.telnyx.com/docs/inference/ai-assistants/dynamic-variables)
 
+          widget_settings: Configuration settings for the assistant's web widget.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -359,6 +366,7 @@ class AssistantsResource(SyncAPIResource):
                     "tools": tools,
                     "transcription": transcription,
                     "voice_settings": voice_settings,
+                    "widget_settings": widget_settings,
                 },
                 assistant_update_params.AssistantUpdateParams,
             ),
@@ -548,6 +556,7 @@ class AssistantsResource(SyncAPIResource):
         *,
         api_key_ref: str,
         provider: Literal["elevenlabs", "vapi", "retell"],
+        import_ids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -568,6 +577,9 @@ class AssistantsResource(SyncAPIResource):
 
           provider: The external provider to import assistants from.
 
+          import_ids: Optional list of assistant IDs to import from the external provider. If not
+              provided, all assistants will be imported.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -582,6 +594,7 @@ class AssistantsResource(SyncAPIResource):
                 {
                     "api_key_ref": api_key_ref,
                     "provider": provider,
+                    "import_ids": import_ids,
                 },
                 assistant_imports_params.AssistantImportsParams,
             ),
@@ -710,6 +723,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
         tools: Iterable[AssistantToolParam] | Omit = omit,
         transcription: TranscriptionSettingsParam | Omit = omit,
         voice_settings: VoiceSettingsParam | Omit = omit,
+        widget_settings: assistant_create_params.WidgetSettings | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -748,6 +762,8 @@ class AsyncAssistantsResource(AsyncAPIResource):
           tools: The tools that the assistant can use. These may be templated with
               [dynamic variables](https://developers.telnyx.com/docs/inference/ai-assistants/dynamic-variables)
 
+          widget_settings: Configuration settings for the assistant's web widget.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -776,6 +792,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
                     "tools": tools,
                     "transcription": transcription,
                     "voice_settings": voice_settings,
+                    "widget_settings": widget_settings,
                 },
                 assistant_create_params.AssistantCreateParams,
             ),
@@ -855,6 +872,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
         tools: Iterable[AssistantToolParam] | Omit = omit,
         transcription: TranscriptionSettingsParam | Omit = omit,
         voice_settings: VoiceSettingsParam | Omit = omit,
+        widget_settings: assistant_update_params.WidgetSettings | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -896,6 +914,8 @@ class AsyncAssistantsResource(AsyncAPIResource):
           tools: The tools that the assistant can use. These may be templated with
               [dynamic variables](https://developers.telnyx.com/docs/inference/ai-assistants/dynamic-variables)
 
+          widget_settings: Configuration settings for the assistant's web widget.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -927,6 +947,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
                     "tools": tools,
                     "transcription": transcription,
                     "voice_settings": voice_settings,
+                    "widget_settings": widget_settings,
                 },
                 assistant_update_params.AssistantUpdateParams,
             ),
@@ -1116,6 +1137,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
         *,
         api_key_ref: str,
         provider: Literal["elevenlabs", "vapi", "retell"],
+        import_ids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1136,6 +1158,9 @@ class AsyncAssistantsResource(AsyncAPIResource):
 
           provider: The external provider to import assistants from.
 
+          import_ids: Optional list of assistant IDs to import from the external provider. If not
+              provided, all assistants will be imported.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1150,6 +1175,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
                 {
                     "api_key_ref": api_key_ref,
                     "provider": provider,
+                    "import_ids": import_ids,
                 },
                 assistant_imports_params.AssistantImportsParams,
             ),

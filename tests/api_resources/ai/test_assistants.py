@@ -123,6 +123,22 @@ class TestAssistants:
                 "use_speaker_boost": True,
                 "voice_speed": 0,
             },
+            widget_settings={
+                "agent_thinking_text": "agent_thinking_text",
+                "audio_visualizer_config": {
+                    "color": "verdant",
+                    "preset": "preset",
+                },
+                "default_state": "expanded",
+                "give_feedback_url": "give_feedback_url",
+                "logo_icon_url": "logo_icon_url",
+                "position": "fixed",
+                "report_issue_url": "report_issue_url",
+                "speak_to_interrupt_text": "speak_to_interrupt_text",
+                "start_call_text": "start_call_text",
+                "theme": "light",
+                "view_history_url": "view_history_url",
+            },
         )
         assert_matches_type(InferenceEmbedding, assistant, path=["response"])
 
@@ -309,6 +325,22 @@ class TestAssistants:
                 "temperature": 0,
                 "use_speaker_boost": True,
                 "voice_speed": 0,
+            },
+            widget_settings={
+                "agent_thinking_text": "agent_thinking_text",
+                "audio_visualizer_config": {
+                    "color": "verdant",
+                    "preset": "preset",
+                },
+                "default_state": "expanded",
+                "give_feedback_url": "give_feedback_url",
+                "logo_icon_url": "logo_icon_url",
+                "position": "fixed",
+                "report_issue_url": "report_issue_url",
+                "speak_to_interrupt_text": "speak_to_interrupt_text",
+                "start_call_text": "start_call_text",
+                "theme": "light",
+                "view_history_url": "view_history_url",
             },
         )
         assert_matches_type(InferenceEmbedding, assistant, path=["response"])
@@ -573,6 +605,16 @@ class TestAssistants:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
+    def test_method_imports_with_all_params(self, client: Telnyx) -> None:
+        assistant = client.ai.assistants.imports(
+            api_key_ref="api_key_ref",
+            provider="elevenlabs",
+            import_ids=["string"],
+        )
+        assert_matches_type(AssistantsList, assistant, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
     def test_raw_response_imports(self, client: Telnyx) -> None:
         response = client.ai.assistants.with_raw_response.imports(
             api_key_ref="api_key_ref",
@@ -768,6 +810,22 @@ class TestAsyncAssistants:
                 "use_speaker_boost": True,
                 "voice_speed": 0,
             },
+            widget_settings={
+                "agent_thinking_text": "agent_thinking_text",
+                "audio_visualizer_config": {
+                    "color": "verdant",
+                    "preset": "preset",
+                },
+                "default_state": "expanded",
+                "give_feedback_url": "give_feedback_url",
+                "logo_icon_url": "logo_icon_url",
+                "position": "fixed",
+                "report_issue_url": "report_issue_url",
+                "speak_to_interrupt_text": "speak_to_interrupt_text",
+                "start_call_text": "start_call_text",
+                "theme": "light",
+                "view_history_url": "view_history_url",
+            },
         )
         assert_matches_type(InferenceEmbedding, assistant, path=["response"])
 
@@ -954,6 +1012,22 @@ class TestAsyncAssistants:
                 "temperature": 0,
                 "use_speaker_boost": True,
                 "voice_speed": 0,
+            },
+            widget_settings={
+                "agent_thinking_text": "agent_thinking_text",
+                "audio_visualizer_config": {
+                    "color": "verdant",
+                    "preset": "preset",
+                },
+                "default_state": "expanded",
+                "give_feedback_url": "give_feedback_url",
+                "logo_icon_url": "logo_icon_url",
+                "position": "fixed",
+                "report_issue_url": "report_issue_url",
+                "speak_to_interrupt_text": "speak_to_interrupt_text",
+                "start_call_text": "start_call_text",
+                "theme": "light",
+                "view_history_url": "view_history_url",
             },
         )
         assert_matches_type(InferenceEmbedding, assistant, path=["response"])
@@ -1213,6 +1287,16 @@ class TestAsyncAssistants:
         assistant = await async_client.ai.assistants.imports(
             api_key_ref="api_key_ref",
             provider="elevenlabs",
+        )
+        assert_matches_type(AssistantsList, assistant, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_method_imports_with_all_params(self, async_client: AsyncTelnyx) -> None:
+        assistant = await async_client.ai.assistants.imports(
+            api_key_ref="api_key_ref",
+            provider="elevenlabs",
+            import_ids=["string"],
         )
         assert_matches_type(AssistantsList, assistant, path=["response"])
 
