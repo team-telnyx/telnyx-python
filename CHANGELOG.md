@@ -1,5 +1,14 @@
 # Changelog
 
+## 4.2.0 (2026-01-14)
+
+Full Changelog: [v4.1.0...v4.2.0](https://github.com/team-telnyx/telnyx-python/compare/v4.1.0...v4.2.0)
+
+### Features
+
+* **api:** manual updates ([df8edd8](https://github.com/team-telnyx/telnyx-python/commit/df8edd8bb2b972dc4ecd7d92a679992c12536518))
+* **client:** add support for binary request streaming ([91f7381](https://github.com/team-telnyx/telnyx-python/commit/91f738118fcc24c00b4e90db69441124df526b04))
+
 ## 4.1.0 (2026-01-13)
 
 Full Changelog: [v4.0.0...v4.1.0](https://github.com/team-telnyx/telnyx-python/compare/v4.0.0...v4.1.0)
