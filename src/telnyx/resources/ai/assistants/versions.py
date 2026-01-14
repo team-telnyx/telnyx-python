@@ -116,6 +116,7 @@ class VersionsResource(SyncAPIResource):
         tools: Iterable[AssistantToolParam] | Omit = omit,
         transcription: TranscriptionSettingsParam | Omit = omit,
         voice_settings: VoiceSettingsParam | Omit = omit,
+        widget_settings: version_update_params.WidgetSettings | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -156,6 +157,8 @@ class VersionsResource(SyncAPIResource):
           tools: The tools that the assistant can use. These may be templated with
               [dynamic variables](https://developers.telnyx.com/docs/inference/ai-assistants/dynamic-variables)
 
+          widget_settings: Configuration settings for the assistant's web widget.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -188,6 +191,7 @@ class VersionsResource(SyncAPIResource):
                     "tools": tools,
                     "transcription": transcription,
                     "voice_settings": voice_settings,
+                    "widget_settings": widget_settings,
                 },
                 version_update_params.VersionUpdateParams,
             ),
@@ -393,6 +397,7 @@ class AsyncVersionsResource(AsyncAPIResource):
         tools: Iterable[AssistantToolParam] | Omit = omit,
         transcription: TranscriptionSettingsParam | Omit = omit,
         voice_settings: VoiceSettingsParam | Omit = omit,
+        widget_settings: version_update_params.WidgetSettings | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -433,6 +438,8 @@ class AsyncVersionsResource(AsyncAPIResource):
           tools: The tools that the assistant can use. These may be templated with
               [dynamic variables](https://developers.telnyx.com/docs/inference/ai-assistants/dynamic-variables)
 
+          widget_settings: Configuration settings for the assistant's web widget.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -465,6 +472,7 @@ class AsyncVersionsResource(AsyncAPIResource):
                     "tools": tools,
                     "transcription": transcription,
                     "voice_settings": voice_settings,
+                    "widget_settings": widget_settings,
                 },
                 version_update_params.VersionUpdateParams,
             ),
