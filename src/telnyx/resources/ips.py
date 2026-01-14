@@ -16,7 +16,7 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
+from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.ip_create_response import IPCreateResponse
 from ..types.ip_delete_response import IPDeleteResponse
@@ -180,14 +180,15 @@ class IPsResource(SyncAPIResource):
         self,
         *,
         filter: ip_list_params.Filter | Omit = omit,
-        page: ip_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[IP]:
+    ) -> SyncDefaultFlatPagination[IP]:
         """
         Get all IPs belonging to the user that match the given filters.
 
@@ -195,9 +196,6 @@ class IPsResource(SyncAPIResource):
           filter:
               Consolidated filter parameter (deepObject style). Originally:
               filter[connection_id], filter[ip_address], filter[port]
-
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
 
           extra_headers: Send extra headers
 
@@ -209,7 +207,7 @@ class IPsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/ips",
-            page=SyncDefaultPagination[IP],
+            page=SyncDefaultFlatPagination[IP],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -218,7 +216,8 @@ class IPsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                     },
                     ip_list_params.IPListParams,
                 ),
@@ -414,14 +413,15 @@ class AsyncIPsResource(AsyncAPIResource):
         self,
         *,
         filter: ip_list_params.Filter | Omit = omit,
-        page: ip_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[IP, AsyncDefaultPagination[IP]]:
+    ) -> AsyncPaginator[IP, AsyncDefaultFlatPagination[IP]]:
         """
         Get all IPs belonging to the user that match the given filters.
 
@@ -429,9 +429,6 @@ class AsyncIPsResource(AsyncAPIResource):
           filter:
               Consolidated filter parameter (deepObject style). Originally:
               filter[connection_id], filter[ip_address], filter[port]
-
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
 
           extra_headers: Send extra headers
 
@@ -443,7 +440,7 @@ class AsyncIPsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/ips",
-            page=AsyncDefaultPagination[IP],
+            page=AsyncDefaultFlatPagination[IP],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -452,7 +449,8 @@ class AsyncIPsResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                     },
                     ip_list_params.IPListParams,
                 ),

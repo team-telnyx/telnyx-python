@@ -18,7 +18,7 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
+from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.requirement_list_response import RequirementListResponse
 from ..types.requirement_retrieve_response import RequirementRetrieveResponse
@@ -83,7 +83,8 @@ class RequirementsResource(SyncAPIResource):
         self,
         *,
         filter: requirement_list_params.Filter | Omit = omit,
-        page: requirement_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         sort: List[
             Literal[
                 "created_at",
@@ -103,7 +104,7 @@ class RequirementsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[RequirementListResponse]:
+    ) -> SyncDefaultFlatPagination[RequirementListResponse]:
         """
         List all requirements with filtering, sorting, and pagination
 
@@ -111,9 +112,6 @@ class RequirementsResource(SyncAPIResource):
           filter:
               Consolidated filter parameter for requirements (deepObject style). Originally:
               filter[country_code], filter[phone_number_type], filter[action]
-
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
 
           sort:
               Consolidated sort parameter for requirements (deepObject style). Originally:
@@ -129,7 +127,7 @@ class RequirementsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/requirements",
-            page=SyncDefaultPagination[RequirementListResponse],
+            page=SyncDefaultFlatPagination[RequirementListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -138,7 +136,8 @@ class RequirementsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                         "sort": sort,
                     },
                     requirement_list_params.RequirementListParams,
@@ -205,7 +204,8 @@ class AsyncRequirementsResource(AsyncAPIResource):
         self,
         *,
         filter: requirement_list_params.Filter | Omit = omit,
-        page: requirement_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         sort: List[
             Literal[
                 "created_at",
@@ -225,7 +225,7 @@ class AsyncRequirementsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[RequirementListResponse, AsyncDefaultPagination[RequirementListResponse]]:
+    ) -> AsyncPaginator[RequirementListResponse, AsyncDefaultFlatPagination[RequirementListResponse]]:
         """
         List all requirements with filtering, sorting, and pagination
 
@@ -233,9 +233,6 @@ class AsyncRequirementsResource(AsyncAPIResource):
           filter:
               Consolidated filter parameter for requirements (deepObject style). Originally:
               filter[country_code], filter[phone_number_type], filter[action]
-
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
 
           sort:
               Consolidated sort parameter for requirements (deepObject style). Originally:
@@ -251,7 +248,7 @@ class AsyncRequirementsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/requirements",
-            page=AsyncDefaultPagination[RequirementListResponse],
+            page=AsyncDefaultFlatPagination[RequirementListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -260,7 +257,8 @@ class AsyncRequirementsResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                         "sort": sort,
                     },
                     requirement_list_params.RequirementListParams,

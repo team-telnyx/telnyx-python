@@ -23,7 +23,7 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
+from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.fax_application import FaxApplication
 from ..types.anchorsite_override import AnchorsiteOverride
@@ -247,7 +247,8 @@ class FaxApplicationsResource(SyncAPIResource):
         self,
         *,
         filter: fax_application_list_params.Filter | Omit = omit,
-        page: fax_application_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         sort: Literal["created_at", "application_name", "active"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -255,7 +256,7 @@ class FaxApplicationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[FaxApplication]:
+    ) -> SyncDefaultFlatPagination[FaxApplication]:
         """
         This endpoint returns a list of your Fax Applications inside the 'data'
         attribute of the response. You can adjust which applications are listed by using
@@ -266,9 +267,6 @@ class FaxApplicationsResource(SyncAPIResource):
           filter:
               Consolidated filter parameter (deepObject style). Originally:
               filter[application_name][contains], filter[outbound_voice_profile_id]
-
-          page: Consolidated page parameter (deepObject style). Originally: page[number],
-              page[size]
 
           sort: Specifies the sort order for results. By default sorting direction is ascending.
               To have the results sorted in descending order add the <code> -</code>
@@ -295,7 +293,7 @@ class FaxApplicationsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/fax_applications",
-            page=SyncDefaultPagination[FaxApplication],
+            page=SyncDefaultFlatPagination[FaxApplication],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -304,7 +302,8 @@ class FaxApplicationsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                         "sort": sort,
                     },
                     fax_application_list_params.FaxApplicationListParams,
@@ -561,7 +560,8 @@ class AsyncFaxApplicationsResource(AsyncAPIResource):
         self,
         *,
         filter: fax_application_list_params.Filter | Omit = omit,
-        page: fax_application_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         sort: Literal["created_at", "application_name", "active"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -569,7 +569,7 @@ class AsyncFaxApplicationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[FaxApplication, AsyncDefaultPagination[FaxApplication]]:
+    ) -> AsyncPaginator[FaxApplication, AsyncDefaultFlatPagination[FaxApplication]]:
         """
         This endpoint returns a list of your Fax Applications inside the 'data'
         attribute of the response. You can adjust which applications are listed by using
@@ -580,9 +580,6 @@ class AsyncFaxApplicationsResource(AsyncAPIResource):
           filter:
               Consolidated filter parameter (deepObject style). Originally:
               filter[application_name][contains], filter[outbound_voice_profile_id]
-
-          page: Consolidated page parameter (deepObject style). Originally: page[number],
-              page[size]
 
           sort: Specifies the sort order for results. By default sorting direction is ascending.
               To have the results sorted in descending order add the <code> -</code>
@@ -609,7 +606,7 @@ class AsyncFaxApplicationsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/fax_applications",
-            page=AsyncDefaultPagination[FaxApplication],
+            page=AsyncDefaultFlatPagination[FaxApplication],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -618,7 +615,8 @@ class AsyncFaxApplicationsResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                         "sort": sort,
                     },
                     fax_application_list_params.FaxApplicationListParams,

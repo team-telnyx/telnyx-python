@@ -26,7 +26,7 @@ from .._response import (
     async_to_custom_raw_response_wrapper,
     async_to_custom_streamed_response_wrapper,
 )
-from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
+from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.doc_service_document import DocServiceDocument
 from ..types.document_delete_response import DocumentDeleteResponse
@@ -142,7 +142,8 @@ class DocumentsResource(SyncAPIResource):
         self,
         *,
         filter: document_list_params.Filter | Omit = omit,
-        page: document_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         sort: List[Literal["filename", "created_at", "updated_at", "-filename", "-created_at", "-updated_at"]]
         | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -151,7 +152,7 @@ class DocumentsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[DocServiceDocument]:
+    ) -> SyncDefaultFlatPagination[DocServiceDocument]:
         """
         List all documents ordered by created_at descending.
 
@@ -160,9 +161,6 @@ class DocumentsResource(SyncAPIResource):
               Consolidated filter parameter for documents (deepObject style). Originally:
               filter[filename][contains], filter[customer_reference][eq],
               filter[customer_reference][in][], filter[created_at][gt], filter[created_at][lt]
-
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
 
           sort: Consolidated sort parameter for documents (deepObject style). Originally: sort[]
 
@@ -176,7 +174,7 @@ class DocumentsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/documents",
-            page=SyncDefaultPagination[DocServiceDocument],
+            page=SyncDefaultFlatPagination[DocServiceDocument],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -185,7 +183,8 @@ class DocumentsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                         "sort": sort,
                     },
                     document_list_params.DocumentListParams,
@@ -467,7 +466,8 @@ class AsyncDocumentsResource(AsyncAPIResource):
         self,
         *,
         filter: document_list_params.Filter | Omit = omit,
-        page: document_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         sort: List[Literal["filename", "created_at", "updated_at", "-filename", "-created_at", "-updated_at"]]
         | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -476,7 +476,7 @@ class AsyncDocumentsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[DocServiceDocument, AsyncDefaultPagination[DocServiceDocument]]:
+    ) -> AsyncPaginator[DocServiceDocument, AsyncDefaultFlatPagination[DocServiceDocument]]:
         """
         List all documents ordered by created_at descending.
 
@@ -485,9 +485,6 @@ class AsyncDocumentsResource(AsyncAPIResource):
               Consolidated filter parameter for documents (deepObject style). Originally:
               filter[filename][contains], filter[customer_reference][eq],
               filter[customer_reference][in][], filter[created_at][gt], filter[created_at][lt]
-
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
 
           sort: Consolidated sort parameter for documents (deepObject style). Originally: sort[]
 
@@ -501,7 +498,7 @@ class AsyncDocumentsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/documents",
-            page=AsyncDefaultPagination[DocServiceDocument],
+            page=AsyncDefaultFlatPagination[DocServiceDocument],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -510,7 +507,8 @@ class AsyncDocumentsResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                         "sort": sort,
                     },
                     document_list_params.DocumentListParams,

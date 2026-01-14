@@ -1,13 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, List, Optional
+from typing import Dict, Optional
 
 from ...._models import BaseModel
 
-__all__ = ["QueueListResponse", "Queue"]
+__all__ = ["QueueListResponse"]
 
 
-class Queue(BaseModel):
+class QueueListResponse(BaseModel):
     account_sid: Optional[str] = None
     """The id of the account the resource belongs to."""
 
@@ -34,32 +34,3 @@ class Queue(BaseModel):
 
     uri: Optional[str] = None
     """The relative URI for this queue."""
-
-
-class QueueListResponse(BaseModel):
-    end: Optional[int] = None
-    """The number of the last element on the page, zero-indexed."""
-
-    first_page_uri: Optional[str] = None
-    """
-    /v2/texml/Accounts/61bf923e-5e4d-4595-a110-56190ea18a1b/Queues.json?Page=0&PageSize=1
-    """
-
-    next_page_uri: Optional[str] = None
-    """
-    /v2/texml/Accounts/61bf923e-5e4d-4595-a110-56190ea18a1b/Queues.json?Page=1&PageSize=1&PageToken=MTY4AjgyNDkwNzIxMQ
-    """
-
-    page: Optional[int] = None
-    """Current page number, zero-indexed."""
-
-    page_size: Optional[int] = None
-    """The number of items on the page"""
-
-    queues: Optional[List[Queue]] = None
-
-    start: Optional[int] = None
-    """The number of the first element on the page, zero-indexed."""
-
-    uri: Optional[str] = None
-    """The URI of the current page."""

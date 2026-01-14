@@ -17,7 +17,7 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
+from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from ..types.fqdn import Fqdn
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.fqdn_create_response import FqdnCreateResponse
@@ -196,14 +196,15 @@ class FqdnsResource(SyncAPIResource):
         self,
         *,
         filter: fqdn_list_params.Filter | Omit = omit,
-        page: fqdn_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[Fqdn]:
+    ) -> SyncDefaultFlatPagination[Fqdn]:
         """
         Get all FQDNs belonging to the user that match the given filters.
 
@@ -211,9 +212,6 @@ class FqdnsResource(SyncAPIResource):
           filter:
               Consolidated filter parameter (deepObject style). Originally:
               filter[connection_id], filter[fqdn], filter[port], filter[dns_record_type]
-
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
 
           extra_headers: Send extra headers
 
@@ -225,7 +223,7 @@ class FqdnsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/fqdns",
-            page=SyncDefaultPagination[Fqdn],
+            page=SyncDefaultFlatPagination[Fqdn],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -234,7 +232,8 @@ class FqdnsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                     },
                     fqdn_list_params.FqdnListParams,
                 ),
@@ -444,14 +443,15 @@ class AsyncFqdnsResource(AsyncAPIResource):
         self,
         *,
         filter: fqdn_list_params.Filter | Omit = omit,
-        page: fqdn_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[Fqdn, AsyncDefaultPagination[Fqdn]]:
+    ) -> AsyncPaginator[Fqdn, AsyncDefaultFlatPagination[Fqdn]]:
         """
         Get all FQDNs belonging to the user that match the given filters.
 
@@ -459,9 +459,6 @@ class AsyncFqdnsResource(AsyncAPIResource):
           filter:
               Consolidated filter parameter (deepObject style). Originally:
               filter[connection_id], filter[fqdn], filter[port], filter[dns_record_type]
-
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
 
           extra_headers: Send extra headers
 
@@ -473,7 +470,7 @@ class AsyncFqdnsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/fqdns",
-            page=AsyncDefaultPagination[Fqdn],
+            page=AsyncDefaultFlatPagination[Fqdn],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -482,7 +479,8 @@ class AsyncFqdnsResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                     },
                     fqdn_list_params.FqdnListParams,
                 ),

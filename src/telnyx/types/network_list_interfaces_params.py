@@ -2,9 +2,11 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
+from typing_extensions import Annotated, TypedDict
 
-__all__ = ["NetworkListInterfacesParams", "Filter", "Page"]
+from .._utils import PropertyInfo
+
+__all__ = ["NetworkListInterfacesParams", "Filter"]
 
 
 class NetworkListInterfacesParams(TypedDict, total=False):
@@ -14,11 +16,9 @@ class NetworkListInterfacesParams(TypedDict, total=False):
     Originally: filter[name], filter[type], filter[status]
     """
 
-    page: Page
-    """Consolidated page parameter (deepObject style).
+    page_number: Annotated[int, PropertyInfo(alias="page[number]")]
 
-    Originally: page[number], page[size]
-    """
+    page_size: Annotated[int, PropertyInfo(alias="page[size]")]
 
 
 class Filter(TypedDict, total=False):
@@ -32,16 +32,3 @@ class Filter(TypedDict, total=False):
 
     type: str
     """The interface type to filter on."""
-
-
-class Page(TypedDict, total=False):
-    """Consolidated page parameter (deepObject style).
-
-    Originally: page[number], page[size]
-    """
-
-    number: int
-    """The page number to load"""
-
-    size: int
-    """The size of the page"""

@@ -16,7 +16,7 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...pagination import SyncDefaultPagination, AsyncDefaultPagination
+from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.phone_numbers import csv_download_list_params, csv_download_create_params
 from ...types.phone_numbers.csv_download import CsvDownload
@@ -134,22 +134,19 @@ class CsvDownloadsResource(SyncAPIResource):
     def list(
         self,
         *,
-        page: csv_download_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[CsvDownload]:
-        """List CSV downloads
+    ) -> SyncDefaultFlatPagination[CsvDownload]:
+        """
+        List CSV downloads
 
         Args:
-          page: Consolidated page parameter (deepObject style).
-
-        Originally: page[size],
-              page[number]
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -160,13 +157,19 @@ class CsvDownloadsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/phone_numbers/csv_downloads",
-            page=SyncDefaultPagination[CsvDownload],
+            page=SyncDefaultFlatPagination[CsvDownload],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"page": page}, csv_download_list_params.CsvDownloadListParams),
+                query=maybe_transform(
+                    {
+                        "page_number": page_number,
+                        "page_size": page_size,
+                    },
+                    csv_download_list_params.CsvDownloadListParams,
+                ),
             ),
             model=CsvDownload,
         )
@@ -280,22 +283,19 @@ class AsyncCsvDownloadsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        page: csv_download_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[CsvDownload, AsyncDefaultPagination[CsvDownload]]:
-        """List CSV downloads
+    ) -> AsyncPaginator[CsvDownload, AsyncDefaultFlatPagination[CsvDownload]]:
+        """
+        List CSV downloads
 
         Args:
-          page: Consolidated page parameter (deepObject style).
-
-        Originally: page[size],
-              page[number]
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -306,13 +306,19 @@ class AsyncCsvDownloadsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/phone_numbers/csv_downloads",
-            page=AsyncDefaultPagination[CsvDownload],
+            page=AsyncDefaultFlatPagination[CsvDownload],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"page": page}, csv_download_list_params.CsvDownloadListParams),
+                query=maybe_transform(
+                    {
+                        "page_number": page_number,
+                        "page_size": page_size,
+                    },
+                    csv_download_list_params.CsvDownloadListParams,
+                ),
             ),
             model=CsvDownload,
         )

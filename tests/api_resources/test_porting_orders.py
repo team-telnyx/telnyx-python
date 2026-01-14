@@ -28,7 +28,7 @@ from telnyx._response import (
     StreamedBinaryAPIResponse,
     AsyncStreamedBinaryAPIResponse,
 )
-from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
+from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -236,7 +236,7 @@ class TestPortingOrders:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         porting_order = client.porting_orders.list()
-        assert_matches_type(SyncDefaultPagination[PortingOrder], porting_order, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[PortingOrder], porting_order, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -267,13 +267,11 @@ class TestPortingOrders:
                 },
             },
             include_phone_numbers=True,
-            page={
-                "number": 1,
-                "size": 1,
-            },
+            page_number=0,
+            page_size=0,
             sort={"value": "created_at"},
         )
-        assert_matches_type(SyncDefaultPagination[PortingOrder], porting_order, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[PortingOrder], porting_order, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -283,7 +281,7 @@ class TestPortingOrders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         porting_order = response.parse()
-        assert_matches_type(SyncDefaultPagination[PortingOrder], porting_order, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[PortingOrder], porting_order, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -293,7 +291,7 @@ class TestPortingOrders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             porting_order = response.parse()
-            assert_matches_type(SyncDefaultPagination[PortingOrder], porting_order, path=["response"])
+            assert_matches_type(SyncDefaultFlatPagination[PortingOrder], porting_order, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -487,7 +485,7 @@ class TestPortingOrders:
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(
-            SyncDefaultPagination[PortingOrderRetrieveRequirementsResponse], porting_order, path=["response"]
+            SyncDefaultFlatPagination[PortingOrderRetrieveRequirementsResponse], porting_order, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -495,13 +493,11 @@ class TestPortingOrders:
     def test_method_retrieve_requirements_with_all_params(self, client: Telnyx) -> None:
         porting_order = client.porting_orders.retrieve_requirements(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            page={
-                "number": 1,
-                "size": 1,
-            },
+            page_number=0,
+            page_size=0,
         )
         assert_matches_type(
-            SyncDefaultPagination[PortingOrderRetrieveRequirementsResponse], porting_order, path=["response"]
+            SyncDefaultFlatPagination[PortingOrderRetrieveRequirementsResponse], porting_order, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -515,7 +511,7 @@ class TestPortingOrders:
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         porting_order = response.parse()
         assert_matches_type(
-            SyncDefaultPagination[PortingOrderRetrieveRequirementsResponse], porting_order, path=["response"]
+            SyncDefaultFlatPagination[PortingOrderRetrieveRequirementsResponse], porting_order, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -529,7 +525,7 @@ class TestPortingOrders:
 
             porting_order = response.parse()
             assert_matches_type(
-                SyncDefaultPagination[PortingOrderRetrieveRequirementsResponse], porting_order, path=["response"]
+                SyncDefaultFlatPagination[PortingOrderRetrieveRequirementsResponse], porting_order, path=["response"]
             )
 
         assert cast(Any, response.is_closed) is True
@@ -790,7 +786,7 @@ class TestAsyncPortingOrders:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         porting_order = await async_client.porting_orders.list()
-        assert_matches_type(AsyncDefaultPagination[PortingOrder], porting_order, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[PortingOrder], porting_order, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -821,13 +817,11 @@ class TestAsyncPortingOrders:
                 },
             },
             include_phone_numbers=True,
-            page={
-                "number": 1,
-                "size": 1,
-            },
+            page_number=0,
+            page_size=0,
             sort={"value": "created_at"},
         )
-        assert_matches_type(AsyncDefaultPagination[PortingOrder], porting_order, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[PortingOrder], porting_order, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -837,7 +831,7 @@ class TestAsyncPortingOrders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         porting_order = await response.parse()
-        assert_matches_type(AsyncDefaultPagination[PortingOrder], porting_order, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[PortingOrder], porting_order, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -847,7 +841,7 @@ class TestAsyncPortingOrders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             porting_order = await response.parse()
-            assert_matches_type(AsyncDefaultPagination[PortingOrder], porting_order, path=["response"])
+            assert_matches_type(AsyncDefaultFlatPagination[PortingOrder], porting_order, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1045,7 +1039,7 @@ class TestAsyncPortingOrders:
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(
-            AsyncDefaultPagination[PortingOrderRetrieveRequirementsResponse], porting_order, path=["response"]
+            AsyncDefaultFlatPagination[PortingOrderRetrieveRequirementsResponse], porting_order, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -1053,13 +1047,11 @@ class TestAsyncPortingOrders:
     async def test_method_retrieve_requirements_with_all_params(self, async_client: AsyncTelnyx) -> None:
         porting_order = await async_client.porting_orders.retrieve_requirements(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            page={
-                "number": 1,
-                "size": 1,
-            },
+            page_number=0,
+            page_size=0,
         )
         assert_matches_type(
-            AsyncDefaultPagination[PortingOrderRetrieveRequirementsResponse], porting_order, path=["response"]
+            AsyncDefaultFlatPagination[PortingOrderRetrieveRequirementsResponse], porting_order, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -1073,7 +1065,7 @@ class TestAsyncPortingOrders:
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         porting_order = await response.parse()
         assert_matches_type(
-            AsyncDefaultPagination[PortingOrderRetrieveRequirementsResponse], porting_order, path=["response"]
+            AsyncDefaultFlatPagination[PortingOrderRetrieveRequirementsResponse], porting_order, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -1087,7 +1079,7 @@ class TestAsyncPortingOrders:
 
             porting_order = await response.parse()
             assert_matches_type(
-                AsyncDefaultPagination[PortingOrderRetrieveRequirementsResponse], porting_order, path=["response"]
+                AsyncDefaultFlatPagination[PortingOrderRetrieveRequirementsResponse], porting_order, path=["response"]
             )
 
         assert cast(Any, response.is_closed) is True

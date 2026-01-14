@@ -2,11 +2,12 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, TypedDict
+from typing_extensions import Literal, Annotated, TypedDict
 
 from ..._types import SequenceNotStr
+from ..._utils import PropertyInfo
 
-__all__ = ["ActionRequirementListParams", "Filter", "Page", "Sort"]
+__all__ = ["ActionRequirementListParams", "Filter", "Sort"]
 
 
 class ActionRequirementListParams(TypedDict, total=False):
@@ -17,11 +18,9 @@ class ActionRequirementListParams(TypedDict, total=False):
     filter[status]
     """
 
-    page: Page
-    """Consolidated page parameter (deepObject style).
+    page_number: Annotated[int, PropertyInfo(alias="page[number]")]
 
-    Originally: page[size], page[number]
-    """
+    page_size: Annotated[int, PropertyInfo(alias="page[size]")]
 
     sort: Sort
     """Consolidated sort parameter (deepObject style). Originally: sort[value]"""
@@ -44,19 +43,6 @@ class Filter(TypedDict, total=False):
 
     status: Literal["created", "pending", "completed", "cancelled", "failed"]
     """Filter action requirements by status"""
-
-
-class Page(TypedDict, total=False):
-    """Consolidated page parameter (deepObject style).
-
-    Originally: page[size], page[number]
-    """
-
-    number: int
-    """The page number to load"""
-
-    size: int
-    """The size of the page"""
 
 
 class Sort(TypedDict, total=False):
