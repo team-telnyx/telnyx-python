@@ -52,6 +52,14 @@ class MessagingProfileUpdateParams(TypedDict, total=False):
     To disable this feature, set the object field to `null`.
     """
 
+    smart_encoding: bool
+    """Enables automatic character encoding optimization for SMS messages.
+
+    When enabled, the system automatically selects the most efficient encoding
+    (GSM-7 or UCS-2) based on message content to maximize character limits and
+    minimize costs.
+    """
+
     url_shortener_settings: Optional[URLShortenerSettingsParam]
     """
     The URL shortener feature allows automatic replacement of URLs that were

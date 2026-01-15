@@ -54,6 +54,7 @@ class TestMessagingProfiles:
                 "geomatch": False,
                 "sticky_sender": False,
             },
+            smart_encoding=True,
             url_shortener_settings={
                 "domain": "example.ex",
                 "prefix": "",
@@ -164,6 +165,7 @@ class TestMessagingProfiles:
                 "geomatch": False,
                 "sticky_sender": True,
             },
+            smart_encoding=True,
             url_shortener_settings={
                 "domain": "example.ex",
                 "prefix": "cmpny",
@@ -439,6 +441,7 @@ class TestAsyncMessagingProfiles:
                 "geomatch": False,
                 "sticky_sender": False,
             },
+            smart_encoding=True,
             url_shortener_settings={
                 "domain": "example.ex",
                 "prefix": "",
@@ -549,6 +552,7 @@ class TestAsyncMessagingProfiles:
                 "geomatch": False,
                 "sticky_sender": True,
             },
+            smart_encoding=True,
             url_shortener_settings={
                 "domain": "example.ex",
                 "prefix": "cmpny",
