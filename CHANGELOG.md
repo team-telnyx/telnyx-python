@@ -1,5 +1,16 @@
 # Changelog
 
+## 4.4.0 (2026-01-15)
+
+Full Changelog: [v4.3.0...v4.4.0](https://github.com/team-telnyx/telnyx-python/compare/v4.3.0...v4.4.0)
+
+### Features
+
+* jira-engdesk-48800 add organizations-related docs to the external api… ([9eceebd](https://github.com/team-telnyx/telnyx-python/commit/9eceebd7f791041be7960e60fcf9292d0549b581))
+* MSG-6148: adding the new campaignVerifyAuthorizationToken field and missing GET OTP endpoint ([7710ded](https://github.com/team-telnyx/telnyx-python/commit/7710ded31f326d513b3d3feb7d92f9881141d88c))
+* MSG-6228: MSG-6228: Add smart_encoding option for SMS character encoding optimization ([f595692](https://github.com/team-telnyx/telnyx-python/commit/f595692cc8bf5400884284ec02802998c05e914a))
+* TELAPPS-ENGDESK-48790 Remove duplicated webhooks ([4e874c3](https://github.com/team-telnyx/telnyx-python/commit/4e874c34c79dd57bbe43cfffa96738a0e6040fa4))
+
 ## 4.3.0 (2026-01-14)
 
 Full Changelog: [v4.2.0...v4.3.0](https://github.com/team-telnyx/telnyx-python/compare/v4.2.0...v4.3.0)
