@@ -369,6 +369,14 @@ from .oauth_clients import (
     OAuthClientsResourceWithStreamingResponse,
     AsyncOAuthClientsResourceWithStreamingResponse,
 )
+from .organizations import (
+    OrganizationsResource,
+    AsyncOrganizationsResource,
+    OrganizationsResourceWithRawResponse,
+    AsyncOrganizationsResourceWithRawResponse,
+    OrganizationsResourceWithStreamingResponse,
+    AsyncOrganizationsResourceWithStreamingResponse,
+)
 from .phone_numbers import (
     PhoneNumbersResource,
     AsyncPhoneNumbersResource,
@@ -2078,4 +2086,10 @@ __all__ = [
     "AsyncSpeechToTextResourceWithRawResponse",
     "SpeechToTextResourceWithStreamingResponse",
     "AsyncSpeechToTextResourceWithStreamingResponse",
+    "OrganizationsResource",
+    "AsyncOrganizationsResource",
+    "OrganizationsResourceWithRawResponse",
+    "AsyncOrganizationsResourceWithRawResponse",
+    "OrganizationsResourceWithStreamingResponse",
+    "AsyncOrganizationsResourceWithStreamingResponse",
 ]

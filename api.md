@@ -4797,3 +4797,35 @@ Methods:
 Methods:
 
 - <code title="get /speech-to-text/transcription">client.speech_to_text.<a href="./src/telnyx/resources/speech_to_text.py">transcribe</a>(\*\*<a href="src/telnyx/types/speech_to_text_transcribe_params.py">params</a>) -> None</code>
+
+# Organizations
+
+## Users
+
+Types:
+
+```python
+from telnyx.types.organizations import (
+    UserRetrieveResponse,
+    UserListResponse,
+    UserGetGroupsReportResponse,
+)
+```
+
+Methods:
+
+- <code title="get /organizations/users/{id}">client.organizations.users.<a href="./src/telnyx/resources/organizations/users/users.py">retrieve</a>(id, \*\*<a href="src/telnyx/types/organizations/user_retrieve_params.py">params</a>) -> <a href="./src/telnyx/types/organizations/user_retrieve_response.py">UserRetrieveResponse</a></code>
+- <code title="get /organizations/users">client.organizations.users.<a href="./src/telnyx/resources/organizations/users/users.py">list</a>(\*\*<a href="src/telnyx/types/organizations/user_list_params.py">params</a>) -> <a href="./src/telnyx/types/organizations/user_list_response.py">SyncDefaultFlatPagination[UserListResponse]</a></code>
+- <code title="get /organizations/users/users_groups_report">client.organizations.users.<a href="./src/telnyx/resources/organizations/users/users.py">get_groups_report</a>() -> <a href="./src/telnyx/types/organizations/user_get_groups_report_response.py">UserGetGroupsReportResponse</a></code>
+
+### Actions
+
+Types:
+
+```python
+from telnyx.types.organizations.users import ActionRemoveResponse
+```
+
+Methods:
+
+- <code title="post /organizations/users/{id}/actions/remove">client.organizations.users.actions.<a href="./src/telnyx/resources/organizations/users/actions.py">remove</a>(id) -> <a href="./src/telnyx/types/organizations/users/action_remove_response.py">ActionRemoveResponse</a></code>
