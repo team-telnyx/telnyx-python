@@ -413,16 +413,7 @@ class TestBrand:
     @parametrize
     def test_method_retrieve_sms_otp_status(self, client: Telnyx) -> None:
         brand = client.messaging_10dlc.brand.retrieve_sms_otp_status(
-            reference_id="OTP4B2001",
-        )
-        assert_matches_type(BrandRetrieveSMSOtpStatusResponse, brand, path=["response"])
-
-    @pytest.mark.skip(reason="Prism tests are disabled")
-    @parametrize
-    def test_method_retrieve_sms_otp_status_with_all_params(self, client: Telnyx) -> None:
-        brand = client.messaging_10dlc.brand.retrieve_sms_otp_status(
-            reference_id="OTP4B2001",
-            brand_id="B123ABC",
+            "4b20019b-043a-78f8-0657-b3be3f4b4002",
         )
         assert_matches_type(BrandRetrieveSMSOtpStatusResponse, brand, path=["response"])
 
@@ -430,7 +421,7 @@ class TestBrand:
     @parametrize
     def test_raw_response_retrieve_sms_otp_status(self, client: Telnyx) -> None:
         response = client.messaging_10dlc.brand.with_raw_response.retrieve_sms_otp_status(
-            reference_id="OTP4B2001",
+            "4b20019b-043a-78f8-0657-b3be3f4b4002",
         )
 
         assert response.is_closed is True
@@ -442,7 +433,7 @@ class TestBrand:
     @parametrize
     def test_streaming_response_retrieve_sms_otp_status(self, client: Telnyx) -> None:
         with client.messaging_10dlc.brand.with_streaming_response.retrieve_sms_otp_status(
-            reference_id="OTP4B2001",
+            "4b20019b-043a-78f8-0657-b3be3f4b4002",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -455,9 +446,9 @@ class TestBrand:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_retrieve_sms_otp_status(self, client: Telnyx) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `reference_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `brand_id` but received ''"):
             client.messaging_10dlc.brand.with_raw_response.retrieve_sms_otp_status(
-                reference_id="",
+                "",
             )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -992,16 +983,7 @@ class TestAsyncBrand:
     @parametrize
     async def test_method_retrieve_sms_otp_status(self, async_client: AsyncTelnyx) -> None:
         brand = await async_client.messaging_10dlc.brand.retrieve_sms_otp_status(
-            reference_id="OTP4B2001",
-        )
-        assert_matches_type(BrandRetrieveSMSOtpStatusResponse, brand, path=["response"])
-
-    @pytest.mark.skip(reason="Prism tests are disabled")
-    @parametrize
-    async def test_method_retrieve_sms_otp_status_with_all_params(self, async_client: AsyncTelnyx) -> None:
-        brand = await async_client.messaging_10dlc.brand.retrieve_sms_otp_status(
-            reference_id="OTP4B2001",
-            brand_id="B123ABC",
+            "4b20019b-043a-78f8-0657-b3be3f4b4002",
         )
         assert_matches_type(BrandRetrieveSMSOtpStatusResponse, brand, path=["response"])
 
@@ -1009,7 +991,7 @@ class TestAsyncBrand:
     @parametrize
     async def test_raw_response_retrieve_sms_otp_status(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.messaging_10dlc.brand.with_raw_response.retrieve_sms_otp_status(
-            reference_id="OTP4B2001",
+            "4b20019b-043a-78f8-0657-b3be3f4b4002",
         )
 
         assert response.is_closed is True
@@ -1021,7 +1003,7 @@ class TestAsyncBrand:
     @parametrize
     async def test_streaming_response_retrieve_sms_otp_status(self, async_client: AsyncTelnyx) -> None:
         async with async_client.messaging_10dlc.brand.with_streaming_response.retrieve_sms_otp_status(
-            reference_id="OTP4B2001",
+            "4b20019b-043a-78f8-0657-b3be3f4b4002",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1034,9 +1016,9 @@ class TestAsyncBrand:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_retrieve_sms_otp_status(self, async_client: AsyncTelnyx) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `reference_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `brand_id` but received ''"):
             await async_client.messaging_10dlc.brand.with_raw_response.retrieve_sms_otp_status(
-                reference_id="",
+                "",
             )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
