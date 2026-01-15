@@ -87,6 +87,7 @@ class RequestsResource(SyncAPIResource):
         business_registration_country: Optional[str] | Omit = omit,
         business_registration_number: Optional[str] | Omit = omit,
         business_registration_type: Optional[str] | Omit = omit,
+        campaign_verify_authorization_token: Optional[str] | Omit = omit,
         doing_business_as: Optional[str] | Omit = omit,
         entity_type: Optional[TollFreeVerificationEntityType] | Omit = omit,
         help_message_response: Optional[str] | Omit = omit,
@@ -162,6 +163,10 @@ class RequestsResource(SyncAPIResource):
 
           business_registration_type: Type of business registration being provided. Required from January 2026.
 
+          campaign_verify_authorization_token: Campaign Verify Authorization Token required for Political use case submissions
+              starting February 17, 2026. This token is validated by Zipwhip and must be
+              provided for all Political use case verifications after the deadline.
+
           doing_business_as: Doing Business As (DBA) name if different from legal name
 
           entity_type: Business entity classification
@@ -216,6 +221,7 @@ class RequestsResource(SyncAPIResource):
                     "business_registration_country": business_registration_country,
                     "business_registration_number": business_registration_number,
                     "business_registration_type": business_registration_type,
+                    "campaign_verify_authorization_token": campaign_verify_authorization_token,
                     "doing_business_as": doing_business_as,
                     "entity_type": entity_type,
                     "help_message_response": help_message_response,
@@ -294,6 +300,7 @@ class RequestsResource(SyncAPIResource):
         business_registration_country: Optional[str] | Omit = omit,
         business_registration_number: Optional[str] | Omit = omit,
         business_registration_type: Optional[str] | Omit = omit,
+        campaign_verify_authorization_token: Optional[str] | Omit = omit,
         doing_business_as: Optional[str] | Omit = omit,
         entity_type: Optional[TollFreeVerificationEntityType] | Omit = omit,
         help_message_response: Optional[str] | Omit = omit,
@@ -371,6 +378,10 @@ class RequestsResource(SyncAPIResource):
 
           business_registration_type: Type of business registration being provided. Required from January 2026.
 
+          campaign_verify_authorization_token: Campaign Verify Authorization Token required for Political use case submissions
+              starting February 17, 2026. This token is validated by Zipwhip and must be
+              provided for all Political use case verifications after the deadline.
+
           doing_business_as: Doing Business As (DBA) name if different from legal name
 
           entity_type: Business entity classification
@@ -427,6 +438,7 @@ class RequestsResource(SyncAPIResource):
                     "business_registration_country": business_registration_country,
                     "business_registration_number": business_registration_number,
                     "business_registration_type": business_registration_type,
+                    "campaign_verify_authorization_token": campaign_verify_authorization_token,
                     "doing_business_as": doing_business_as,
                     "entity_type": entity_type,
                     "help_message_response": help_message_response,
@@ -589,6 +601,7 @@ class AsyncRequestsResource(AsyncAPIResource):
         business_registration_country: Optional[str] | Omit = omit,
         business_registration_number: Optional[str] | Omit = omit,
         business_registration_type: Optional[str] | Omit = omit,
+        campaign_verify_authorization_token: Optional[str] | Omit = omit,
         doing_business_as: Optional[str] | Omit = omit,
         entity_type: Optional[TollFreeVerificationEntityType] | Omit = omit,
         help_message_response: Optional[str] | Omit = omit,
@@ -664,6 +677,10 @@ class AsyncRequestsResource(AsyncAPIResource):
 
           business_registration_type: Type of business registration being provided. Required from January 2026.
 
+          campaign_verify_authorization_token: Campaign Verify Authorization Token required for Political use case submissions
+              starting February 17, 2026. This token is validated by Zipwhip and must be
+              provided for all Political use case verifications after the deadline.
+
           doing_business_as: Doing Business As (DBA) name if different from legal name
 
           entity_type: Business entity classification
@@ -718,6 +735,7 @@ class AsyncRequestsResource(AsyncAPIResource):
                     "business_registration_country": business_registration_country,
                     "business_registration_number": business_registration_number,
                     "business_registration_type": business_registration_type,
+                    "campaign_verify_authorization_token": campaign_verify_authorization_token,
                     "doing_business_as": doing_business_as,
                     "entity_type": entity_type,
                     "help_message_response": help_message_response,
@@ -796,6 +814,7 @@ class AsyncRequestsResource(AsyncAPIResource):
         business_registration_country: Optional[str] | Omit = omit,
         business_registration_number: Optional[str] | Omit = omit,
         business_registration_type: Optional[str] | Omit = omit,
+        campaign_verify_authorization_token: Optional[str] | Omit = omit,
         doing_business_as: Optional[str] | Omit = omit,
         entity_type: Optional[TollFreeVerificationEntityType] | Omit = omit,
         help_message_response: Optional[str] | Omit = omit,
@@ -873,6 +892,10 @@ class AsyncRequestsResource(AsyncAPIResource):
 
           business_registration_type: Type of business registration being provided. Required from January 2026.
 
+          campaign_verify_authorization_token: Campaign Verify Authorization Token required for Political use case submissions
+              starting February 17, 2026. This token is validated by Zipwhip and must be
+              provided for all Political use case verifications after the deadline.
+
           doing_business_as: Doing Business As (DBA) name if different from legal name
 
           entity_type: Business entity classification
@@ -929,6 +952,7 @@ class AsyncRequestsResource(AsyncAPIResource):
                     "business_registration_country": business_registration_country,
                     "business_registration_number": business_registration_number,
                     "business_registration_type": business_registration_type,
+                    "campaign_verify_authorization_token": campaign_verify_authorization_token,
                     "doing_business_as": doing_business_as,
                     "entity_type": entity_type,
                     "help_message_response": help_message_response,

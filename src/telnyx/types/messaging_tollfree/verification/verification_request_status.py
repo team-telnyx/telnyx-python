@@ -74,6 +74,14 @@ class VerificationRequestStatus(BaseModel):
 
     business_registration_type: Optional[str] = FieldInfo(alias="businessRegistrationType", default=None)
 
+    campaign_verify_authorization_token: Optional[str] = FieldInfo(
+        alias="campaignVerifyAuthorizationToken", default=None
+    )
+    """
+    Campaign Verify Authorization Token required for Political use case submissions
+    starting February 17, 2026
+    """
+
     created_at: Optional[datetime] = FieldInfo(alias="createdAt", default=None)
 
     doing_business_as: Optional[str] = FieldInfo(alias="doingBusinessAs", default=None)

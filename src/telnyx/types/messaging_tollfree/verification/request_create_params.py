@@ -110,6 +110,15 @@ class RequestCreateParams(TypedDict, total=False):
     business_registration_type: Annotated[Optional[str], PropertyInfo(alias="businessRegistrationType")]
     """Type of business registration being provided. Required from January 2026."""
 
+    campaign_verify_authorization_token: Annotated[
+        Optional[str], PropertyInfo(alias="campaignVerifyAuthorizationToken")
+    ]
+    """
+    Campaign Verify Authorization Token required for Political use case submissions
+    starting February 17, 2026. This token is validated by Zipwhip and must be
+    provided for all Political use case verifications after the deadline.
+    """
+
     doing_business_as: Annotated[Optional[str], PropertyInfo(alias="doingBusinessAs")]
     """Doing Business As (DBA) name if different from legal name"""
 

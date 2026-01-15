@@ -37,7 +37,6 @@ from ....types.messaging_10dlc import (
     brand_update_params,
     brand_verify_sms_otp_params,
     brand_trigger_sms_otp_params,
-    brand_retrieve_sms_otp_status_params,
 )
 from ....types.messaging_10dlc.vertical import Vertical
 from ....types.messaging_10dlc.entity_type import EntityType
@@ -589,9 +588,8 @@ class BrandResource(SyncAPIResource):
 
     def retrieve_sms_otp_status(
         self,
-        reference_id: str,
+        brand_id: str,
         *,
-        brand_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -601,21 +599,19 @@ class BrandResource(SyncAPIResource):
     ) -> BrandRetrieveSMSOtpStatusResponse:
         """
         Query the status of an SMS OTP (One-Time Password) for Sole Proprietor brand
-        verification.
+        verification using the Brand ID.
 
         This endpoint allows you to check the delivery and verification status of an OTP
-        sent during the Sole Proprietor brand verification process. You can query by
-        either:
-
-        - `referenceId` - The reference ID returned when the OTP was initially triggered
-        - `brandId` - Query parameter for portal users to look up OTP status by Brand ID
+        sent during the Sole Proprietor brand verification process by looking it up with
+        the brand ID.
 
         The response includes delivery status, verification dates, and detailed delivery
         information.
 
-        Args:
-          brand_id: Filter by Brand ID for easier lookup in portal applications
+        **Note:** This is an alternative to the `/10dlc/brand/smsOtp/{referenceId}`
+        endpoint when you have the Brand ID but not the reference ID.
 
+        Args:
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -624,18 +620,12 @@ class BrandResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not reference_id:
-            raise ValueError(f"Expected a non-empty value for `reference_id` but received {reference_id!r}")
+        if not brand_id:
+            raise ValueError(f"Expected a non-empty value for `brand_id` but received {brand_id!r}")
         return self._get(
-            f"/10dlc/brand/smsOtp/{reference_id}",
+            f"/10dlc/brand/{brand_id}/smsOtp",
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {"brand_id": brand_id}, brand_retrieve_sms_otp_status_params.BrandRetrieveSMSOtpStatusParams
-                ),
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=BrandRetrieveSMSOtpStatusResponse,
         )
@@ -1331,9 +1321,8 @@ class AsyncBrandResource(AsyncAPIResource):
 
     async def retrieve_sms_otp_status(
         self,
-        reference_id: str,
+        brand_id: str,
         *,
-        brand_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1343,21 +1332,19 @@ class AsyncBrandResource(AsyncAPIResource):
     ) -> BrandRetrieveSMSOtpStatusResponse:
         """
         Query the status of an SMS OTP (One-Time Password) for Sole Proprietor brand
-        verification.
+        verification using the Brand ID.
 
         This endpoint allows you to check the delivery and verification status of an OTP
-        sent during the Sole Proprietor brand verification process. You can query by
-        either:
-
-        - `referenceId` - The reference ID returned when the OTP was initially triggered
-        - `brandId` - Query parameter for portal users to look up OTP status by Brand ID
+        sent during the Sole Proprietor brand verification process by looking it up with
+        the brand ID.
 
         The response includes delivery status, verification dates, and detailed delivery
         information.
 
-        Args:
-          brand_id: Filter by Brand ID for easier lookup in portal applications
+        **Note:** This is an alternative to the `/10dlc/brand/smsOtp/{referenceId}`
+        endpoint when you have the Brand ID but not the reference ID.
 
+        Args:
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1366,18 +1353,12 @@ class AsyncBrandResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not reference_id:
-            raise ValueError(f"Expected a non-empty value for `reference_id` but received {reference_id!r}")
+        if not brand_id:
+            raise ValueError(f"Expected a non-empty value for `brand_id` but received {brand_id!r}")
         return await self._get(
-            f"/10dlc/brand/smsOtp/{reference_id}",
+            f"/10dlc/brand/{brand_id}/smsOtp",
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {"brand_id": brand_id}, brand_retrieve_sms_otp_status_params.BrandRetrieveSMSOtpStatusParams
-                ),
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=BrandRetrieveSMSOtpStatusResponse,
         )
