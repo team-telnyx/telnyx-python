@@ -79,6 +79,7 @@ if TYPE_CHECKING:
         number_lookup,
         number_orders,
         oauth_clients,
+        organizations,
         phone_numbers,
         usage_reports,
         verifications,
@@ -339,6 +340,7 @@ if TYPE_CHECKING:
         GlobalIPAssignmentsUsageResource,
         AsyncGlobalIPAssignmentsUsageResource,
     )
+    from .resources.organizations.organizations import OrganizationsResource, AsyncOrganizationsResource
     from .resources.phone_numbers.phone_numbers import PhoneNumbersResource, AsyncPhoneNumbersResource
     from .resources.verifications.verifications import VerificationsResource, AsyncVerificationsResource
     from .resources.global_ip_health_check_types import (
@@ -1383,6 +1385,12 @@ class Telnyx(SyncAPIClient):
         from .resources.speech_to_text import SpeechToTextResource
 
         return SpeechToTextResource(self)
+
+    @cached_property
+    def organizations(self) -> OrganizationsResource:
+        from .resources.organizations import OrganizationsResource
+
+        return OrganizationsResource(self)
 
     @cached_property
     def with_raw_response(self) -> TelnyxWithRawResponse:
@@ -2497,6 +2505,12 @@ class AsyncTelnyx(AsyncAPIClient):
         return AsyncSpeechToTextResource(self)
 
     @cached_property
+    def organizations(self) -> AsyncOrganizationsResource:
+        from .resources.organizations import AsyncOrganizationsResource
+
+        return AsyncOrganizationsResource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncTelnyxWithRawResponse:
         return AsyncTelnyxWithRawResponse(self)
 
@@ -3564,6 +3578,12 @@ class TelnyxWithRawResponse:
 
         return SpeechToTextResourceWithRawResponse(self._client.speech_to_text)
 
+    @cached_property
+    def organizations(self) -> organizations.OrganizationsResourceWithRawResponse:
+        from .resources.organizations import OrganizationsResourceWithRawResponse
+
+        return OrganizationsResourceWithRawResponse(self._client.organizations)
+
 
 class AsyncTelnyxWithRawResponse:
     _client: AsyncTelnyx
@@ -4500,6 +4520,12 @@ class AsyncTelnyxWithRawResponse:
         from .resources.speech_to_text import AsyncSpeechToTextResourceWithRawResponse
 
         return AsyncSpeechToTextResourceWithRawResponse(self._client.speech_to_text)
+
+    @cached_property
+    def organizations(self) -> organizations.AsyncOrganizationsResourceWithRawResponse:
+        from .resources.organizations import AsyncOrganizationsResourceWithRawResponse
+
+        return AsyncOrganizationsResourceWithRawResponse(self._client.organizations)
 
 
 class TelnyxWithStreamedResponse:
@@ -5439,6 +5465,12 @@ class TelnyxWithStreamedResponse:
         from .resources.speech_to_text import SpeechToTextResourceWithStreamingResponse
 
         return SpeechToTextResourceWithStreamingResponse(self._client.speech_to_text)
+
+    @cached_property
+    def organizations(self) -> organizations.OrganizationsResourceWithStreamingResponse:
+        from .resources.organizations import OrganizationsResourceWithStreamingResponse
+
+        return OrganizationsResourceWithStreamingResponse(self._client.organizations)
 
 
 class AsyncTelnyxWithStreamedResponse:
@@ -6420,6 +6452,12 @@ class AsyncTelnyxWithStreamedResponse:
         from .resources.speech_to_text import AsyncSpeechToTextResourceWithStreamingResponse
 
         return AsyncSpeechToTextResourceWithStreamingResponse(self._client.speech_to_text)
+
+    @cached_property
+    def organizations(self) -> organizations.AsyncOrganizationsResourceWithStreamingResponse:
+        from .resources.organizations import AsyncOrganizationsResourceWithStreamingResponse
+
+        return AsyncOrganizationsResourceWithStreamingResponse(self._client.organizations)
 
 
 Client = Telnyx
