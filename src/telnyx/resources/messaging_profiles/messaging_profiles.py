@@ -84,6 +84,7 @@ class MessagingProfilesResource(SyncAPIResource):
         mms_transcoding: bool | Omit = omit,
         mobile_only: bool | Omit = omit,
         number_pool_settings: Optional[NumberPoolSettingsParam] | Omit = omit,
+        smart_encoding: bool | Omit = omit,
         url_shortener_settings: Optional[URLShortenerSettingsParam] | Omit = omit,
         webhook_api_version: Literal["1", "2", "2010-04-01"] | Omit = omit,
         webhook_failover_url: Optional[str] | Omit = omit,
@@ -127,6 +128,10 @@ class MessagingProfilesResource(SyncAPIResource):
 
               To disable this feature, set the object field to `null`.
 
+          smart_encoding: Enables automatic character encoding optimization for SMS messages. When
+              enabled, the system automatically selects the most efficient encoding (GSM-7 or
+              UCS-2) based on message content to maximize character limits and minimize costs.
+
           url_shortener_settings: The URL shortener feature allows automatic replacement of URLs that were
               generated using a public URL shortener service. Some examples include bit.do,
               bit.ly, goo.gl, ht.ly, is.gd, ow.ly, rebrand.ly, t.co, tiny.cc, and tinyurl.com.
@@ -165,6 +170,7 @@ class MessagingProfilesResource(SyncAPIResource):
                     "mms_transcoding": mms_transcoding,
                     "mobile_only": mobile_only,
                     "number_pool_settings": number_pool_settings,
+                    "smart_encoding": smart_encoding,
                     "url_shortener_settings": url_shortener_settings,
                     "webhook_api_version": webhook_api_version,
                     "webhook_failover_url": webhook_failover_url,
@@ -226,6 +232,7 @@ class MessagingProfilesResource(SyncAPIResource):
         mobile_only: bool | Omit = omit,
         name: str | Omit = omit,
         number_pool_settings: Optional[NumberPoolSettingsParam] | Omit = omit,
+        smart_encoding: bool | Omit = omit,
         url_shortener_settings: Optional[URLShortenerSettingsParam] | Omit = omit,
         v1_secret: str | Omit = omit,
         webhook_api_version: Literal["1", "2", "2010-04-01"] | Omit = omit,
@@ -266,6 +273,10 @@ class MessagingProfilesResource(SyncAPIResource):
               and toll free numbers assigned to the messaging profile.
 
               To disable this feature, set the object field to `null`.
+
+          smart_encoding: Enables automatic character encoding optimization for SMS messages. When
+              enabled, the system automatically selects the most efficient encoding (GSM-7 or
+              UCS-2) based on message content to maximize character limits and minimize costs.
 
           url_shortener_settings: The URL shortener feature allows automatic replacement of URLs that were
               generated using a public URL shortener service. Some examples include bit.do,
@@ -316,6 +327,7 @@ class MessagingProfilesResource(SyncAPIResource):
                     "mobile_only": mobile_only,
                     "name": name,
                     "number_pool_settings": number_pool_settings,
+                    "smart_encoding": smart_encoding,
                     "url_shortener_settings": url_shortener_settings,
                     "v1_secret": v1_secret,
                     "webhook_api_version": webhook_api_version,
@@ -547,6 +559,7 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
         mms_transcoding: bool | Omit = omit,
         mobile_only: bool | Omit = omit,
         number_pool_settings: Optional[NumberPoolSettingsParam] | Omit = omit,
+        smart_encoding: bool | Omit = omit,
         url_shortener_settings: Optional[URLShortenerSettingsParam] | Omit = omit,
         webhook_api_version: Literal["1", "2", "2010-04-01"] | Omit = omit,
         webhook_failover_url: Optional[str] | Omit = omit,
@@ -590,6 +603,10 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
 
               To disable this feature, set the object field to `null`.
 
+          smart_encoding: Enables automatic character encoding optimization for SMS messages. When
+              enabled, the system automatically selects the most efficient encoding (GSM-7 or
+              UCS-2) based on message content to maximize character limits and minimize costs.
+
           url_shortener_settings: The URL shortener feature allows automatic replacement of URLs that were
               generated using a public URL shortener service. Some examples include bit.do,
               bit.ly, goo.gl, ht.ly, is.gd, ow.ly, rebrand.ly, t.co, tiny.cc, and tinyurl.com.
@@ -628,6 +645,7 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
                     "mms_transcoding": mms_transcoding,
                     "mobile_only": mobile_only,
                     "number_pool_settings": number_pool_settings,
+                    "smart_encoding": smart_encoding,
                     "url_shortener_settings": url_shortener_settings,
                     "webhook_api_version": webhook_api_version,
                     "webhook_failover_url": webhook_failover_url,
@@ -689,6 +707,7 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
         mobile_only: bool | Omit = omit,
         name: str | Omit = omit,
         number_pool_settings: Optional[NumberPoolSettingsParam] | Omit = omit,
+        smart_encoding: bool | Omit = omit,
         url_shortener_settings: Optional[URLShortenerSettingsParam] | Omit = omit,
         v1_secret: str | Omit = omit,
         webhook_api_version: Literal["1", "2", "2010-04-01"] | Omit = omit,
@@ -729,6 +748,10 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
               and toll free numbers assigned to the messaging profile.
 
               To disable this feature, set the object field to `null`.
+
+          smart_encoding: Enables automatic character encoding optimization for SMS messages. When
+              enabled, the system automatically selects the most efficient encoding (GSM-7 or
+              UCS-2) based on message content to maximize character limits and minimize costs.
 
           url_shortener_settings: The URL shortener feature allows automatic replacement of URLs that were
               generated using a public URL shortener service. Some examples include bit.do,
@@ -779,6 +802,7 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
                     "mobile_only": mobile_only,
                     "name": name,
                     "number_pool_settings": number_pool_settings,
+                    "smart_encoding": smart_encoding,
                     "url_shortener_settings": url_shortener_settings,
                     "v1_secret": v1_secret,
                     "webhook_api_version": webhook_api_version,
