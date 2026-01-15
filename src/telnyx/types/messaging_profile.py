@@ -72,6 +72,14 @@ class MessagingProfile(BaseModel):
     compliance purposes.
     """
 
+    smart_encoding: Optional[bool] = None
+    """Enables automatic character encoding optimization for SMS messages.
+
+    When enabled, the system automatically selects the most efficient encoding
+    (GSM-7 or UCS-2) based on message content to maximize character limits and
+    minimize costs.
+    """
+
     updated_at: Optional[datetime] = None
     """ISO 8601 formatted date indicating when the resource was updated."""
 
