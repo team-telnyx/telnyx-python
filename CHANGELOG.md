@@ -1,5 +1,23 @@
 # Changelog
 
+## 4.6.0 (2026-01-16)
+
+Full Changelog: [v4.5.0...v4.6.0](https://github.com/team-telnyx/telnyx-python/compare/v4.5.0...v4.6.0)
+
+### Features
+
+* TELAPPS-5507: Add Krisp engine description for noise suppression ([f7d0db4](https://github.com/team-telnyx/telnyx-python/commit/f7d0db479b7268a01e96ac036894e9602ab92c6d))
+
+
+### Bug Fixes
+
+* update broken MDR report link in GetMessage endpoint ([e9185ec](https://github.com/team-telnyx/telnyx-python/commit/e9185ecd8b217d9330b14238b24697385e599f1d))
+
+
+### Chores
+
+* **internal:** update `actions/checkout` version ([85dbcce](https://github.com/team-telnyx/telnyx-python/commit/85dbccea6453952a190906d8693094614fdf8dd2))
+
 ## 4.5.0 (2026-01-16)
 
 Full Changelog: [v4.4.0...v4.5.0](https://github.com/team-telnyx/telnyx-python/compare/v4.4.0...v4.5.0)
