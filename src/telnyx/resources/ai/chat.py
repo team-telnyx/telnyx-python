@@ -137,7 +137,7 @@ class ChatResource(SyncAPIResource):
           tools: The `function` tool type follows the same schema as the
               [OpenAI Chat Completions API](https://platform.openai.com/docs/api-reference/chat).
               The `retrieval` tool type is unique to Telnyx. You may pass a list of
-              [embedded storage buckets](https://developers.telnyx.com/api/inference/inference-embedding/post-embedding)
+              [embedded storage buckets](https://developers.telnyx.com/api-reference/embeddings/embed-documents)
               for retrieval-augmented generation.
 
           top_logprobs: This is used with `logprobs`. An integer between 0 and 20 specifying the number
@@ -309,7 +309,7 @@ class AsyncChatResource(AsyncAPIResource):
           tools: The `function` tool type follows the same schema as the
               [OpenAI Chat Completions API](https://platform.openai.com/docs/api-reference/chat).
               The `retrieval` tool type is unique to Telnyx. You may pass a list of
-              [embedded storage buckets](https://developers.telnyx.com/api/inference/inference-embedding/post-embedding)
+              [embedded storage buckets](https://developers.telnyx.com/api-reference/embeddings/embed-documents)
               for retrieval-augmented generation.
 
           top_logprobs: This is used with `logprobs`. An integer between 0 and 20 specifying the number
