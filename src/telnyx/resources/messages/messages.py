@@ -88,7 +88,7 @@ class MessagesResource(SyncAPIResource):
         Note: This API endpoint can only retrieve messages that are no older than 10
         days since their creation. If you require messages older than this, please
         generate an
-        [MDR report.](https://developers.telnyx.com/api/v1/mission-control/add-mdr-request)
+        [MDR report.](https://developers.telnyx.com/api-reference/mdr-usage-reports/create-mdr-usage-report)
 
         Args:
           extra_headers: Send extra headers
@@ -762,7 +762,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         Note: This API endpoint can only retrieve messages that are no older than 10
         days since their creation. If you require messages older than this, please
         generate an
-        [MDR report.](https://developers.telnyx.com/api/v1/mission-control/add-mdr-request)
+        [MDR report.](https://developers.telnyx.com/api-reference/mdr-usage-reports/create-mdr-usage-report)
 
         Args:
           extra_headers: Send extra headers
