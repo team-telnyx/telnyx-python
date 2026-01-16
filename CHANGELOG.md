@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.5.0 (2026-01-16)
+
+Full Changelog: [v4.4.0...v4.5.0](https://github.com/team-telnyx/telnyx-python/compare/v4.4.0...v4.5.0)
+
+### Features
+
+* fix links ([579f761](https://github.com/team-telnyx/telnyx-python/commit/579f76147909d1bf544b12647f587755016bc964))
+
 ## 4.4.0 (2026-01-15)
 
 Full Changelog: [v4.3.0...v4.4.0](https://github.com/team-telnyx/telnyx-python/compare/v4.3.0...v4.4.0)
