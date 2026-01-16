@@ -13,7 +13,7 @@ class InferenceEmbeddingBucketIDsParam(TypedDict, total=False):
     bucket_ids: Required[SequenceNotStr[str]]
     """
     List of
-    [embedded storage buckets](https://developers.telnyx.com/api/inference/inference-embedding/post-embedding)
+    [embedded storage buckets](https://developers.telnyx.com/api-reference/embeddings/embed-documents)
     to use for retrieval-augmented generation.
     """
 
