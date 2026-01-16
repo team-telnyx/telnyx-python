@@ -11,7 +11,7 @@ class InferenceEmbeddingBucketIDs(BaseModel):
     bucket_ids: List[str]
     """
     List of
-    [embedded storage buckets](https://developers.telnyx.com/api/inference/inference-embedding/post-embedding)
+    [embedded storage buckets](https://developers.telnyx.com/api-reference/embeddings/embed-documents)
     to use for retrieval-augmented generation.
     """
 
