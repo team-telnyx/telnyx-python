@@ -54,7 +54,7 @@ class ActionsResource(SyncAPIResource):
         integration with Microsoft Teams for the current user. This will create new
         external connections on the user's account if needed, and/or report the
         integration results as
-        [log messages](https://developers.telnyx.com/api/external-voice-integrations/list-external-connection-log-messages).
+        [log messages](https://developers.telnyx.com/api-reference/external-connections/list-all-log-messages#list-all-log-messages).
         """
         return self._post(
             "/operator_connect/actions/refresh",
@@ -100,7 +100,7 @@ class AsyncActionsResource(AsyncAPIResource):
         integration with Microsoft Teams for the current user. This will create new
         external connections on the user's account if needed, and/or report the
         integration results as
-        [log messages](https://developers.telnyx.com/api/external-voice-integrations/list-external-connection-log-messages).
+        [log messages](https://developers.telnyx.com/api-reference/external-connections/list-all-log-messages#list-all-log-messages).
         """
         return await self._post(
             "/operator_connect/actions/refresh",
