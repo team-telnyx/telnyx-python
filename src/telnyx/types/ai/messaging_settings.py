@@ -8,6 +8,12 @@ __all__ = ["MessagingSettings"]
 
 
 class MessagingSettings(BaseModel):
+    conversation_inactivity_minutes: Optional[int] = None
+    """
+    If more than this many minutes have passed since the last message, the assistant
+    will start a new conversation instead of continuing the existing one.
+    """
+
     default_messaging_profile_id: Optional[str] = None
     """Default Messaging Profile used for messaging exchanges with your assistant.
 

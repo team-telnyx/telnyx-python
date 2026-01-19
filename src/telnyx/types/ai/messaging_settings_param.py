@@ -8,6 +8,12 @@ __all__ = ["MessagingSettingsParam"]
 
 
 class MessagingSettingsParam(TypedDict, total=False):
+    conversation_inactivity_minutes: int
+    """
+    If more than this many minutes have passed since the last message, the assistant
+    will start a new conversation instead of continuing the existing one.
+    """
+
     default_messaging_profile_id: str
     """Default Messaging Profile used for messaging exchanges with your assistant.
 
