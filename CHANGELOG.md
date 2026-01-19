@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.8.1 (2026-01-19)
+
+Full Changelog: [v4.8.0...v4.8.1](https://github.com/team-telnyx/telnyx-python/compare/v4.8.0...v4.8.1)
+
+### Bug Fixes
+
+* correct broken link to List SIM Card Actions endpoint in SIM car… ([168bb8f](https://github.com/team-telnyx/telnyx-python/commit/168bb8fd212ffb8bdef2e86d105f68705b7e450a))
+
 ## 4.8.0 (2026-01-19)
 
 Full Changelog: [v4.7.0...v4.8.0](https://github.com/team-telnyx/telnyx-python/compare/v4.7.0...v4.8.0)
