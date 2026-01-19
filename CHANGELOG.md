@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.8.0 (2026-01-19)
+
+Full Changelog: [v4.7.0...v4.8.0](https://github.com/team-telnyx/telnyx-python/compare/v4.7.0...v4.8.0)
+
+### Features
+
+* Add AI Assistant spec updates for FE tickets ([e210abe](https://github.com/team-telnyx/telnyx-python/commit/e210abe5e60b6f55e90c08e29c3f9a110ed3063a))
+
 ## 4.7.0 (2026-01-19)
 
 Full Changelog: [v4.6.0...v4.7.0](https://github.com/team-telnyx/telnyx-python/compare/v4.6.0...v4.7.0)
