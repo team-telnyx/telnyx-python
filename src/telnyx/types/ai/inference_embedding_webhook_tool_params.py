@@ -3,6 +3,8 @@
 from typing import Dict, List, Optional
 from typing_extensions import Literal
 
+from pydantic import Field as FieldInfo
+
 from ..._models import BaseModel
 
 __all__ = ["InferenceEmbeddingWebhookToolParams", "BodyParameters", "Header", "PathParameters", "QueryParameters"]
@@ -83,6 +85,12 @@ class InferenceEmbeddingWebhookToolParams(BaseModel):
     the `id` attribute.
     """
 
+    async_: Optional[bool] = FieldInfo(alias="async", default=None)
+    """
+    If async, the assistant will move forward without waiting for your server to
+    respond.
+    """
+
     body_parameters: Optional[BodyParameters] = None
     """The body parameters the webhook tool accepts, described as a JSON Schema object.
 
@@ -113,4 +121,10 @@ class InferenceEmbeddingWebhookToolParams(BaseModel):
     These parameters will be passed to the webhook as the query of the request. See
     the [JSON Schema reference](https://json-schema.org/understanding-json-schema)
     for documentation about the format
+    """
+
+    timeout_ms: Optional[int] = None
+    """The maximum number of milliseconds to wait for the webhook to respond.
+
+    Only applicable when async is false.
     """

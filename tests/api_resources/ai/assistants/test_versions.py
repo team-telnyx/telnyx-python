@@ -106,6 +106,7 @@ class TestVersions:
             instructions="instructions",
             llm_api_key_ref="llm_api_key_ref",
             messaging_settings={
+                "conversation_inactivity_minutes": 1,
                 "default_messaging_profile_id": "default_messaging_profile_id",
                 "delivery_status_webhook_url": "delivery_status_webhook_url",
             },
@@ -114,13 +115,24 @@ class TestVersions:
             privacy_settings={"data_retention": True},
             telephony_settings={
                 "default_texml_app_id": "default_texml_app_id",
-                "noise_suppression": "deepfilternet",
+                "noise_suppression": "krisp",
                 "noise_suppression_config": {
                     "attenuation_limit": 0,
                     "mode": "advanced",
                 },
                 "supports_unauthenticated_web_calls": True,
                 "time_limit_secs": 30,
+                "user_idle_timeout_secs": 30,
+                "voicemail_detection": {
+                    "on_voicemail_detected": {
+                        "action": "stop_assistant",
+                        "voicemail_message": {
+                            "message": "message",
+                            "prompt": "prompt",
+                            "type": "prompt",
+                        },
+                    }
+                },
             },
             tools=[
                 {
@@ -129,6 +141,7 @@ class TestVersions:
                         "description": "description",
                         "name": "name",
                         "url": "https://example.com/api/v1/function",
+                        "async": True,
                         "body_parameters": {
                             "properties": {
                                 "age": "bar",
@@ -154,6 +167,7 @@ class TestVersions:
                             "required": ["page"],
                             "type": "object",
                         },
+                        "timeout_ms": 500,
                     },
                 }
             ],
@@ -483,6 +497,7 @@ class TestAsyncVersions:
             instructions="instructions",
             llm_api_key_ref="llm_api_key_ref",
             messaging_settings={
+                "conversation_inactivity_minutes": 1,
                 "default_messaging_profile_id": "default_messaging_profile_id",
                 "delivery_status_webhook_url": "delivery_status_webhook_url",
             },
@@ -491,13 +506,24 @@ class TestAsyncVersions:
             privacy_settings={"data_retention": True},
             telephony_settings={
                 "default_texml_app_id": "default_texml_app_id",
-                "noise_suppression": "deepfilternet",
+                "noise_suppression": "krisp",
                 "noise_suppression_config": {
                     "attenuation_limit": 0,
                     "mode": "advanced",
                 },
                 "supports_unauthenticated_web_calls": True,
                 "time_limit_secs": 30,
+                "user_idle_timeout_secs": 30,
+                "voicemail_detection": {
+                    "on_voicemail_detected": {
+                        "action": "stop_assistant",
+                        "voicemail_message": {
+                            "message": "message",
+                            "prompt": "prompt",
+                            "type": "prompt",
+                        },
+                    }
+                },
             },
             tools=[
                 {
@@ -506,6 +532,7 @@ class TestAsyncVersions:
                         "description": "description",
                         "name": "name",
                         "url": "https://example.com/api/v1/function",
+                        "async": True,
                         "body_parameters": {
                             "properties": {
                                 "age": "bar",
@@ -531,6 +558,7 @@ class TestAsyncVersions:
                             "required": ["page"],
                             "type": "object",
                         },
+                        "timeout_ms": 500,
                     },
                 }
             ],
