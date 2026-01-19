@@ -69,7 +69,16 @@ class QueryParameters(TypedDict, total=False):
     type: Literal["object"]
 
 
-class InferenceEmbeddingWebhookToolParamsParam(TypedDict, total=False):
+_InferenceEmbeddingWebhookToolParamsParamReservedKeywords = TypedDict(
+    "_InferenceEmbeddingWebhookToolParamsParamReservedKeywords",
+    {
+        "async": bool,
+    },
+    total=False,
+)
+
+
+class InferenceEmbeddingWebhookToolParamsParam(_InferenceEmbeddingWebhookToolParamsParamReservedKeywords, total=False):
     description: Required[str]
     """The description of the tool."""
 
@@ -115,4 +124,10 @@ class InferenceEmbeddingWebhookToolParamsParam(TypedDict, total=False):
     These parameters will be passed to the webhook as the query of the request. See
     the [JSON Schema reference](https://json-schema.org/understanding-json-schema)
     for documentation about the format
+    """
+
+    timeout_ms: int
+    """The maximum number of milliseconds to wait for the webhook to respond.
+
+    Only applicable when async is false.
     """
