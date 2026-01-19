@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.7.0 (2026-01-19)
+
+Full Changelog: [v4.6.0...v4.7.0](https://github.com/team-telnyx/telnyx-python/compare/v4.6.0...v4.7.0)
+
+### Features
+
+* fix-external-connection-link ([7eec114](https://github.com/team-telnyx/telnyx-python/commit/7eec1140a41b8c4e0c47c93403d406f5dc7c3324))
+
 ## 4.6.0 (2026-01-16)
 
 Full Changelog: [v4.5.0...v4.6.0](https://github.com/team-telnyx/telnyx-python/compare/v4.5.0...v4.6.0)
