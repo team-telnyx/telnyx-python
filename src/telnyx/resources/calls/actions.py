@@ -62,6 +62,7 @@ from ...types.calls import (
     action_stop_noise_suppression_params,
     action_switch_supervisor_role_params,
     action_start_noise_suppression_params,
+    action_add_ai_assistant_messages_params,
 )
 from ..._base_client import make_request_options
 from ...types.stream_codec import StreamCodec
@@ -115,6 +116,7 @@ from ...types.calls.action_update_client_state_response import ActionUpdateClien
 from ...types.calls.action_stop_noise_suppression_response import ActionStopNoiseSuppressionResponse
 from ...types.calls.action_switch_supervisor_role_response import ActionSwitchSupervisorRoleResponse
 from ...types.calls.action_start_noise_suppression_response import ActionStartNoiseSuppressionResponse
+from ...types.calls.action_add_ai_assistant_messages_response import ActionAddAIAssistantMessagesResponse
 
 __all__ = ["ActionsResource", "AsyncActionsResource"]
 
@@ -138,6 +140,58 @@ class ActionsResource(SyncAPIResource):
         For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
         return ActionsResourceWithStreamingResponse(self)
+
+    def add_ai_assistant_messages(
+        self,
+        call_control_id: str,
+        *,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
+        messages: Iterable[action_add_ai_assistant_messages_params.Message] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ActionAddAIAssistantMessagesResponse:
+        """
+        Add messages to the conversation started by an AI assistant on the call.
+
+        Args:
+          client_state: Use this field to add state to every subsequent webhook. It must be a valid
+              Base-64 encoded string.
+
+          command_id: Use this field to avoid duplicate commands. Telnyx will ignore any command with
+              the same `command_id` for the same `call_control_id`.
+
+          messages: The messages to add to the conversation.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not call_control_id:
+            raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
+        return self._post(
+            f"/calls/{call_control_id}/actions/ai_assistant_add_messages",
+            body=maybe_transform(
+                {
+                    "client_state": client_state,
+                    "command_id": command_id,
+                    "messages": messages,
+                },
+                action_add_ai_assistant_messages_params.ActionAddAIAssistantMessagesParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ActionAddAIAssistantMessagesResponse,
+        )
 
     def answer(
         self,
@@ -3398,6 +3452,58 @@ class AsyncActionsResource(AsyncAPIResource):
         """
         return AsyncActionsResourceWithStreamingResponse(self)
 
+    async def add_ai_assistant_messages(
+        self,
+        call_control_id: str,
+        *,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
+        messages: Iterable[action_add_ai_assistant_messages_params.Message] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ActionAddAIAssistantMessagesResponse:
+        """
+        Add messages to the conversation started by an AI assistant on the call.
+
+        Args:
+          client_state: Use this field to add state to every subsequent webhook. It must be a valid
+              Base-64 encoded string.
+
+          command_id: Use this field to avoid duplicate commands. Telnyx will ignore any command with
+              the same `command_id` for the same `call_control_id`.
+
+          messages: The messages to add to the conversation.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not call_control_id:
+            raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
+        return await self._post(
+            f"/calls/{call_control_id}/actions/ai_assistant_add_messages",
+            body=await async_maybe_transform(
+                {
+                    "client_state": client_state,
+                    "command_id": command_id,
+                    "messages": messages,
+                },
+                action_add_ai_assistant_messages_params.ActionAddAIAssistantMessagesParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ActionAddAIAssistantMessagesResponse,
+        )
+
     async def answer(
         self,
         call_control_id: str,
@@ -6643,6 +6749,9 @@ class ActionsResourceWithRawResponse:
     def __init__(self, actions: ActionsResource) -> None:
         self._actions = actions
 
+        self.add_ai_assistant_messages = to_raw_response_wrapper(
+            actions.add_ai_assistant_messages,
+        )
         self.answer = to_raw_response_wrapper(
             actions.answer,
         )
@@ -6757,6 +6866,9 @@ class AsyncActionsResourceWithRawResponse:
     def __init__(self, actions: AsyncActionsResource) -> None:
         self._actions = actions
 
+        self.add_ai_assistant_messages = async_to_raw_response_wrapper(
+            actions.add_ai_assistant_messages,
+        )
         self.answer = async_to_raw_response_wrapper(
             actions.answer,
         )
@@ -6871,6 +6983,9 @@ class ActionsResourceWithStreamingResponse:
     def __init__(self, actions: ActionsResource) -> None:
         self._actions = actions
 
+        self.add_ai_assistant_messages = to_streamed_response_wrapper(
+            actions.add_ai_assistant_messages,
+        )
         self.answer = to_streamed_response_wrapper(
             actions.answer,
         )
@@ -6985,6 +7100,9 @@ class AsyncActionsResourceWithStreamingResponse:
     def __init__(self, actions: AsyncActionsResource) -> None:
         self._actions = actions
 
+        self.add_ai_assistant_messages = async_to_streamed_response_wrapper(
+            actions.add_ai_assistant_messages,
+        )
         self.answer = async_to_streamed_response_wrapper(
             actions.answer,
         )
