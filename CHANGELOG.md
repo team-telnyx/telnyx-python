@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.10.0 (2026-01-20)
+
+Full Changelog: [v4.9.0...v4.10.0](https://github.com/team-telnyx/telnyx-python/compare/v4.9.0...v4.10.0)
+
+### Features
+
+* Add Post /v2/calls/:call_control_id/actions/ai_assistant_add_messages ([cb893ca](https://github.com/team-telnyx/telnyx-python/commit/cb893ca5364798b32c17e817a11d90b73c26c48b))
+
 ## 4.9.0 (2026-01-20)
 
 Full Changelog: [v4.8.1...v4.9.0](https://github.com/team-telnyx/telnyx-python/compare/v4.8.1...v4.9.0)
