@@ -1125,6 +1125,7 @@ from telnyx.types.calls import (
     TranscriptionEngineGoogleConfig,
     TranscriptionEngineTelnyxConfig,
     TranscriptionStartRequest,
+    ActionAddAIAssistantMessagesResponse,
     ActionAnswerResponse,
     ActionBridgeResponse,
     ActionEnqueueResponse,
@@ -1166,6 +1167,7 @@ from telnyx.types.calls import (
 
 Methods:
 
+- <code title="post /calls/{call_control_id}/actions/ai_assistant_add_messages">client.calls.actions.<a href="./src/telnyx/resources/calls/actions.py">add_ai_assistant_messages</a>(call_control_id, \*\*<a href="src/telnyx/types/calls/action_add_ai_assistant_messages_params.py">params</a>) -> <a href="./src/telnyx/types/calls/action_add_ai_assistant_messages_response.py">ActionAddAIAssistantMessagesResponse</a></code>
 - <code title="post /calls/{call_control_id}/actions/answer">client.calls.actions.<a href="./src/telnyx/resources/calls/actions.py">answer</a>(call_control_id, \*\*<a href="src/telnyx/types/calls/action_answer_params.py">params</a>) -> <a href="./src/telnyx/types/calls/action_answer_response.py">ActionAnswerResponse</a></code>
 - <code title="post /calls/{call_control_id}/actions/bridge">client.calls.actions.<a href="./src/telnyx/resources/calls/actions.py">bridge</a>(call_control_id_to_bridge, \*\*<a href="src/telnyx/types/calls/action_bridge_params.py">params</a>) -> <a href="./src/telnyx/types/calls/action_bridge_response.py">ActionBridgeResponse</a></code>
 - <code title="post /calls/{call_control_id}/actions/enqueue">client.calls.actions.<a href="./src/telnyx/resources/calls/actions.py">enqueue</a>(call_control_id, \*\*<a href="src/telnyx/types/calls/action_enqueue_params.py">params</a>) -> <a href="./src/telnyx/types/calls/action_enqueue_response.py">ActionEnqueueResponse</a></code>

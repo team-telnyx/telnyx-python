@@ -91,6 +91,9 @@ from .action_stop_noise_suppression_response import (
 from .action_switch_supervisor_role_response import (
     ActionSwitchSupervisorRoleResponse as ActionSwitchSupervisorRoleResponse,
 )
+from .action_add_ai_assistant_messages_params import (
+    ActionAddAIAssistantMessagesParams as ActionAddAIAssistantMessagesParams,
+)
 from .action_start_noise_suppression_response import (
     ActionStartNoiseSuppressionResponse as ActionStartNoiseSuppressionResponse,
 )
@@ -102,4 +105,7 @@ from .transcription_engine_google_config_param import (
 )
 from .transcription_engine_telnyx_config_param import (
     TranscriptionEngineTelnyxConfigParam as TranscriptionEngineTelnyxConfigParam,
+)
+from .action_add_ai_assistant_messages_response import (
+    ActionAddAIAssistantMessagesResponse as ActionAddAIAssistantMessagesResponse,
 )
