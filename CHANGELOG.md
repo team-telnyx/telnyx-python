@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.9.0 (2026-01-20)
+
+Full Changelog: [v4.8.1...v4.9.0](https://github.com/team-telnyx/telnyx-python/compare/v4.8.1...v4.9.0)
+
+### Features
+
+* Update voicemail_detection description with AMD enablement info ([31dee4b](https://github.com/team-telnyx/telnyx-python/commit/31dee4b086e6c800792c81e8100cef33e685864b))
+
 ## 4.8.1 (2026-01-19)
 
 Full Changelog: [v4.8.0...v4.8.1](https://github.com/team-telnyx/telnyx-python/compare/v4.8.0...v4.8.1)
