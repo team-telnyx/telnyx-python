@@ -67,7 +67,7 @@ class VoicemailDetectionOnVoicemailDetected(TypedDict, total=False):
 
 class VoicemailDetection(TypedDict, total=False):
     """
-    Configuration for voicemail detection (AMD - Answering Machine Detection) on outgoing calls.
+    Configuration for voicemail detection (AMD - Answering Machine Detection) on outgoing calls. These settings only apply if AMD is enabled on the Dial command. See [TeXML Dial documentation](https://developers.telnyx.com/api-reference/texml-rest-commands/initiate-an-outbound-call) for enabling AMD. Recommended settings: MachineDetection=Enable, AsyncAmd=true, DetectionMode=Premium.
     """
 
     on_voicemail_detected: VoicemailDetectionOnVoicemailDetected
@@ -119,5 +119,9 @@ class TelephonySettingsParam(TypedDict, total=False):
     voicemail_detection: VoicemailDetection
     """
     Configuration for voicemail detection (AMD - Answering Machine Detection) on
-    outgoing calls.
+    outgoing calls. These settings only apply if AMD is enabled on the Dial command.
+    See
+    [TeXML Dial documentation](https://developers.telnyx.com/api-reference/texml-rest-commands/initiate-an-outbound-call)
+    for enabling AMD. Recommended settings: MachineDetection=Enable, AsyncAmd=true,
+    DetectionMode=Premium.
     """
