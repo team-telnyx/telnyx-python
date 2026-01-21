@@ -3,12 +3,12 @@
 from typing_extensions import Literal
 
 from ..._models import BaseModel
-from .inference_embedding_bucket_ids import InferenceEmbeddingBucketIDs
+from .bucket_ids import BucketIDs
 
 __all__ = ["RetrievalTool"]
 
 
 class RetrievalTool(BaseModel):
-    retrieval: InferenceEmbeddingBucketIDs
+    retrieval: BucketIDs
 
     type: Literal["retrieval"]

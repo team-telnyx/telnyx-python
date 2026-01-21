@@ -4,6 +4,7 @@
 from telnyx.types import (
     APIError,
     AvailablePhoneNumbersMetadata,
+    ConnectionNoiseSuppressionDetails,
     ConnectionsPaginationMeta,
     DocReqsRequirementType,
     HostedNumber,
@@ -512,8 +513,6 @@ from telnyx.types.ai import (
     HangupToolParams,
     ImportMetadata,
     InferenceEmbedding,
-    InferenceEmbeddingBucketIDs,
-    InferenceEmbeddingTransferToolParams,
     InferenceEmbeddingWebhookToolParams,
     InsightSettings,
     MessagingSettings,
@@ -525,6 +524,7 @@ from telnyx.types.ai import (
     TransferTool,
     VoiceSettings,
     WebhookTool,
+    WidgetSettings,
     AssistantDeleteResponse,
     AssistantChatResponse,
     AssistantGetTexmlResponse,
@@ -4808,6 +4808,7 @@ Types:
 
 ```python
 from telnyx.types.organizations import (
+    UserGroupReference,
     UserRetrieveResponse,
     UserListResponse,
     UserGetGroupsReportResponse,

@@ -4,10 +4,10 @@ from typing import List, Optional
 
 from ..._models import BaseModel
 
-__all__ = ["InferenceEmbeddingBucketIDs"]
+__all__ = ["BucketIDs"]
 
 
-class InferenceEmbeddingBucketIDs(BaseModel):
+class BucketIDs(BaseModel):
     bucket_ids: List[str]
     """
     List of

@@ -7,10 +7,17 @@ from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
 
-__all__ = ["InferenceEmbeddingWebhookToolParams", "BodyParameters", "Header", "PathParameters", "QueryParameters"]
+__all__ = [
+    "InferenceEmbeddingWebhookToolParams",
+    "Webhook",
+    "WebhookBodyParameters",
+    "WebhookHeader",
+    "WebhookPathParameters",
+    "WebhookQueryParameters",
+]
 
 
-class BodyParameters(BaseModel):
+class WebhookBodyParameters(BaseModel):
     """The body parameters the webhook tool accepts, described as a JSON Schema object.
 
     These parameters will be passed to the webhook as the body of the request. See the [JSON Schema reference](https://json-schema.org/understanding-json-schema) for documentation about the format
@@ -25,7 +32,7 @@ class BodyParameters(BaseModel):
     type: Optional[Literal["object"]] = None
 
 
-class Header(BaseModel):
+class WebhookHeader(BaseModel):
     name: Optional[str] = None
 
     value: Optional[str] = None
@@ -39,7 +46,7 @@ class Header(BaseModel):
     """
 
 
-class PathParameters(BaseModel):
+class WebhookPathParameters(BaseModel):
     """The path parameters the webhook tool accepts, described as a JSON Schema object.
 
     These parameters will be passed to the webhook as the path of the request if the URL contains a placeholder for a value. See the [JSON Schema reference](https://json-schema.org/understanding-json-schema) for documentation about the format
@@ -54,7 +61,7 @@ class PathParameters(BaseModel):
     type: Optional[Literal["object"]] = None
 
 
-class QueryParameters(BaseModel):
+class WebhookQueryParameters(BaseModel):
     """The query parameters the webhook tool accepts, described as a JSON Schema object.
 
     These parameters will be passed to the webhook as the query of the request. See the [JSON Schema reference](https://json-schema.org/understanding-json-schema) for documentation about the format
@@ -69,7 +76,7 @@ class QueryParameters(BaseModel):
     type: Optional[Literal["object"]] = None
 
 
-class InferenceEmbeddingWebhookToolParams(BaseModel):
+class Webhook(BaseModel):
     description: str
     """The description of the tool."""
 
@@ -91,7 +98,7 @@ class InferenceEmbeddingWebhookToolParams(BaseModel):
     respond.
     """
 
-    body_parameters: Optional[BodyParameters] = None
+    body_parameters: Optional[WebhookBodyParameters] = None
     """The body parameters the webhook tool accepts, described as a JSON Schema object.
 
     These parameters will be passed to the webhook as the body of the request. See
@@ -99,13 +106,13 @@ class InferenceEmbeddingWebhookToolParams(BaseModel):
     for documentation about the format
     """
 
-    headers: Optional[List[Header]] = None
+    headers: Optional[List[WebhookHeader]] = None
     """The headers to be sent to the external tool."""
 
     method: Optional[Literal["GET", "POST", "PUT", "DELETE", "PATCH"]] = None
     """The HTTP method to be used when calling the external tool."""
 
-    path_parameters: Optional[PathParameters] = None
+    path_parameters: Optional[WebhookPathParameters] = None
     """The path parameters the webhook tool accepts, described as a JSON Schema object.
 
     These parameters will be passed to the webhook as the path of the request if the
@@ -114,7 +121,7 @@ class InferenceEmbeddingWebhookToolParams(BaseModel):
     documentation about the format
     """
 
-    query_parameters: Optional[QueryParameters] = None
+    query_parameters: Optional[WebhookQueryParameters] = None
     """The query parameters the webhook tool accepts, described as a JSON Schema
     object.
 
@@ -128,3 +135,9 @@ class InferenceEmbeddingWebhookToolParams(BaseModel):
 
     Only applicable when async is false.
     """
+
+
+class InferenceEmbeddingWebhookToolParams(BaseModel):
+    type: Literal["webhook"]
+
+    webhook: Webhook

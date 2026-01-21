@@ -6,15 +6,18 @@ from typing import Dict, Union, Iterable
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from .hangup_tool_param import HangupToolParam
-from .webhook_tool_param import WebhookToolParam
-from .transfer_tool_param import TransferToolParam
 from .retrieval_tool_param import RetrievalToolParam
+from .inference_embedding_webhook_tool_params_param import InferenceEmbeddingWebhookToolParamsParam
 
 __all__ = [
     "AssistantToolParam",
     "Handoff",
     "HandoffHandoff",
     "HandoffHandoffAIAssistant",
+    "Transfer",
+    "TransferTransfer",
+    "TransferTransferTarget",
+    "TransferTransferCustomHeader",
     "Refer",
     "ReferRefer",
     "ReferReferTarget",
@@ -54,6 +57,58 @@ class Handoff(TypedDict, total=False):
     handoff: Required[HandoffHandoff]
 
     type: Required[Literal["handoff"]]
+
+
+class TransferTransferTarget(TypedDict, total=False):
+    name: str
+    """The name of the target."""
+
+    to: str
+    """The destination number or SIP URI of the call."""
+
+
+class TransferTransferCustomHeader(TypedDict, total=False):
+    name: str
+
+    value: str
+    """The value of the header.
+
+    Note that we support mustache templating for the value. For example you can use
+    `{{#integration_secret}}test-secret{{/integration_secret}}` to pass the value of
+    the integration secret.
+    """
+
+
+_TransferTransferReservedKeywords = TypedDict(
+    "_TransferTransferReservedKeywords",
+    {
+        "from": str,
+    },
+    total=False,
+)
+
+
+class TransferTransfer(_TransferTransferReservedKeywords, total=False):
+    targets: Required[Iterable[TransferTransferTarget]]
+    """The different possible targets of the transfer.
+
+    The assistant will be able to choose one of the targets to transfer the call to.
+    """
+
+    custom_headers: Iterable[TransferTransferCustomHeader]
+    """Custom headers to be added to the SIP INVITE for the transfer command."""
+
+    warm_transfer_instructions: str
+    """
+    Natural language instructions for your agent for how to provide context for the
+    transfer recipient.
+    """
+
+
+class Transfer(TypedDict, total=False):
+    transfer: Required[TransferTransfer]
+
+    type: Required[Literal["transfer"]]
 
 
 class ReferReferTarget(TypedDict, total=False):
@@ -134,5 +189,12 @@ class SendMessage(TypedDict, total=False):
 
 
 AssistantToolParam: TypeAlias = Union[
-    WebhookToolParam, RetrievalToolParam, Handoff, HangupToolParam, TransferToolParam, Refer, SendDtmf, SendMessage
+    InferenceEmbeddingWebhookToolParamsParam,
+    RetrievalToolParam,
+    Handoff,
+    HangupToolParam,
+    Transfer,
+    Refer,
+    SendDtmf,
+    SendMessage,
 ]

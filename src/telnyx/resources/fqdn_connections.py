@@ -42,6 +42,7 @@ from ..types.fqdn_connection_create_response import FqdnConnectionCreateResponse
 from ..types.fqdn_connection_delete_response import FqdnConnectionDeleteResponse
 from ..types.fqdn_connection_update_response import FqdnConnectionUpdateResponse
 from ..types.fqdn_connection_retrieve_response import FqdnConnectionRetrieveResponse
+from ..types.shared_params.connection_noise_suppression_details import ConnectionNoiseSuppressionDetails
 
 __all__ = ["FqdnConnectionsResource", "AsyncFqdnConnectionsResource"]
 
@@ -82,7 +83,7 @@ class FqdnConnectionsResource(SyncAPIResource):
         ios_push_credential_id: Optional[str] | Omit = omit,
         microsoft_teams_sbc: bool | Omit = omit,
         noise_suppression: Literal["inbound", "outbound", "both", "disabled"] | Omit = omit,
-        noise_suppression_details: fqdn_connection_create_params.NoiseSuppressionDetails | Omit = omit,
+        noise_suppression_details: ConnectionNoiseSuppressionDetails | Omit = omit,
         onnet_t38_passthrough_enabled: bool | Omit = omit,
         outbound: OutboundFqdnParam | Omit = omit,
         rtcp_settings: ConnectionRtcpSettingsParam | Omit = omit,
@@ -255,7 +256,7 @@ class FqdnConnectionsResource(SyncAPIResource):
         inbound: InboundFqdnParam | Omit = omit,
         ios_push_credential_id: Optional[str] | Omit = omit,
         noise_suppression: Literal["inbound", "outbound", "both", "disabled"] | Omit = omit,
-        noise_suppression_details: fqdn_connection_update_params.NoiseSuppressionDetails | Omit = omit,
+        noise_suppression_details: ConnectionNoiseSuppressionDetails | Omit = omit,
         onnet_t38_passthrough_enabled: bool | Omit = omit,
         outbound: OutboundFqdnParam | Omit = omit,
         rtcp_settings: ConnectionRtcpSettingsParam | Omit = omit,
@@ -514,7 +515,7 @@ class AsyncFqdnConnectionsResource(AsyncAPIResource):
         ios_push_credential_id: Optional[str] | Omit = omit,
         microsoft_teams_sbc: bool | Omit = omit,
         noise_suppression: Literal["inbound", "outbound", "both", "disabled"] | Omit = omit,
-        noise_suppression_details: fqdn_connection_create_params.NoiseSuppressionDetails | Omit = omit,
+        noise_suppression_details: ConnectionNoiseSuppressionDetails | Omit = omit,
         onnet_t38_passthrough_enabled: bool | Omit = omit,
         outbound: OutboundFqdnParam | Omit = omit,
         rtcp_settings: ConnectionRtcpSettingsParam | Omit = omit,
@@ -687,7 +688,7 @@ class AsyncFqdnConnectionsResource(AsyncAPIResource):
         inbound: InboundFqdnParam | Omit = omit,
         ios_push_credential_id: Optional[str] | Omit = omit,
         noise_suppression: Literal["inbound", "outbound", "both", "disabled"] | Omit = omit,
-        noise_suppression_details: fqdn_connection_update_params.NoiseSuppressionDetails | Omit = omit,
+        noise_suppression_details: ConnectionNoiseSuppressionDetails | Omit = omit,
         onnet_t38_passthrough_enabled: bool | Omit = omit,
         outbound: OutboundFqdnParam | Omit = omit,
         rtcp_settings: ConnectionRtcpSettingsParam | Omit = omit,
