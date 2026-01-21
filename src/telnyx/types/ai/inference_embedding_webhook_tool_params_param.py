@@ -7,10 +7,17 @@ from typing_extensions import Literal, Required, TypedDict
 
 from ..._types import SequenceNotStr
 
-__all__ = ["InferenceEmbeddingWebhookToolParamsParam", "BodyParameters", "Header", "PathParameters", "QueryParameters"]
+__all__ = [
+    "InferenceEmbeddingWebhookToolParamsParam",
+    "Webhook",
+    "WebhookBodyParameters",
+    "WebhookHeader",
+    "WebhookPathParameters",
+    "WebhookQueryParameters",
+]
 
 
-class BodyParameters(TypedDict, total=False):
+class WebhookBodyParameters(TypedDict, total=False):
     """The body parameters the webhook tool accepts, described as a JSON Schema object.
 
     These parameters will be passed to the webhook as the body of the request. See the [JSON Schema reference](https://json-schema.org/understanding-json-schema) for documentation about the format
@@ -25,7 +32,7 @@ class BodyParameters(TypedDict, total=False):
     type: Literal["object"]
 
 
-class Header(TypedDict, total=False):
+class WebhookHeader(TypedDict, total=False):
     name: str
 
     value: str
@@ -39,7 +46,7 @@ class Header(TypedDict, total=False):
     """
 
 
-class PathParameters(TypedDict, total=False):
+class WebhookPathParameters(TypedDict, total=False):
     """The path parameters the webhook tool accepts, described as a JSON Schema object.
 
     These parameters will be passed to the webhook as the path of the request if the URL contains a placeholder for a value. See the [JSON Schema reference](https://json-schema.org/understanding-json-schema) for documentation about the format
@@ -54,7 +61,7 @@ class PathParameters(TypedDict, total=False):
     type: Literal["object"]
 
 
-class QueryParameters(TypedDict, total=False):
+class WebhookQueryParameters(TypedDict, total=False):
     """The query parameters the webhook tool accepts, described as a JSON Schema object.
 
     These parameters will be passed to the webhook as the query of the request. See the [JSON Schema reference](https://json-schema.org/understanding-json-schema) for documentation about the format
@@ -69,8 +76,8 @@ class QueryParameters(TypedDict, total=False):
     type: Literal["object"]
 
 
-_InferenceEmbeddingWebhookToolParamsParamReservedKeywords = TypedDict(
-    "_InferenceEmbeddingWebhookToolParamsParamReservedKeywords",
+_WebhookReservedKeywords = TypedDict(
+    "_WebhookReservedKeywords",
     {
         "async": bool,
     },
@@ -78,7 +85,7 @@ _InferenceEmbeddingWebhookToolParamsParamReservedKeywords = TypedDict(
 )
 
 
-class InferenceEmbeddingWebhookToolParamsParam(_InferenceEmbeddingWebhookToolParamsParamReservedKeywords, total=False):
+class Webhook(_WebhookReservedKeywords, total=False):
     description: Required[str]
     """The description of the tool."""
 
@@ -94,7 +101,7 @@ class InferenceEmbeddingWebhookToolParamsParam(_InferenceEmbeddingWebhookToolPar
     the `id` attribute.
     """
 
-    body_parameters: BodyParameters
+    body_parameters: WebhookBodyParameters
     """The body parameters the webhook tool accepts, described as a JSON Schema object.
 
     These parameters will be passed to the webhook as the body of the request. See
@@ -102,13 +109,13 @@ class InferenceEmbeddingWebhookToolParamsParam(_InferenceEmbeddingWebhookToolPar
     for documentation about the format
     """
 
-    headers: Iterable[Header]
+    headers: Iterable[WebhookHeader]
     """The headers to be sent to the external tool."""
 
     method: Literal["GET", "POST", "PUT", "DELETE", "PATCH"]
     """The HTTP method to be used when calling the external tool."""
 
-    path_parameters: PathParameters
+    path_parameters: WebhookPathParameters
     """The path parameters the webhook tool accepts, described as a JSON Schema object.
 
     These parameters will be passed to the webhook as the path of the request if the
@@ -117,7 +124,7 @@ class InferenceEmbeddingWebhookToolParamsParam(_InferenceEmbeddingWebhookToolPar
     documentation about the format
     """
 
-    query_parameters: QueryParameters
+    query_parameters: WebhookQueryParameters
     """The query parameters the webhook tool accepts, described as a JSON Schema
     object.
 
@@ -131,3 +138,9 @@ class InferenceEmbeddingWebhookToolParamsParam(_InferenceEmbeddingWebhookToolPar
 
     Only applicable when async is false.
     """
+
+
+class InferenceEmbeddingWebhookToolParamsParam(TypedDict, total=False):
+    type: Required[Literal["webhook"]]
+
+    webhook: Required[Webhook]
