@@ -3,18 +3,23 @@
 from typing import Dict, List, Union, Optional
 from typing_extensions import Literal, Annotated, TypeAlias
 
+from pydantic import Field as FieldInfo
+
 from ..._utils import PropertyInfo
 from ..._models import BaseModel
 from .hangup_tool import HangupTool
-from .webhook_tool import WebhookTool
-from .transfer_tool import TransferTool
 from .retrieval_tool import RetrievalTool
+from .inference_embedding_webhook_tool_params import InferenceEmbeddingWebhookToolParams
 
 __all__ = [
     "AssistantTool",
     "Handoff",
     "HandoffHandoff",
     "HandoffHandoffAIAssistant",
+    "Transfer",
+    "TransferTransfer",
+    "TransferTransferTarget",
+    "TransferTransferCustomHeader",
     "Refer",
     "ReferRefer",
     "ReferReferTarget",
@@ -54,6 +59,52 @@ class Handoff(BaseModel):
     handoff: HandoffHandoff
 
     type: Literal["handoff"]
+
+
+class TransferTransferTarget(BaseModel):
+    name: Optional[str] = None
+    """The name of the target."""
+
+    to: Optional[str] = None
+    """The destination number or SIP URI of the call."""
+
+
+class TransferTransferCustomHeader(BaseModel):
+    name: Optional[str] = None
+
+    value: Optional[str] = None
+    """The value of the header.
+
+    Note that we support mustache templating for the value. For example you can use
+    `{{#integration_secret}}test-secret{{/integration_secret}}` to pass the value of
+    the integration secret.
+    """
+
+
+class TransferTransfer(BaseModel):
+    from_: str = FieldInfo(alias="from")
+    """Number or SIP URI placing the call."""
+
+    targets: List[TransferTransferTarget]
+    """The different possible targets of the transfer.
+
+    The assistant will be able to choose one of the targets to transfer the call to.
+    """
+
+    custom_headers: Optional[List[TransferTransferCustomHeader]] = None
+    """Custom headers to be added to the SIP INVITE for the transfer command."""
+
+    warm_transfer_instructions: Optional[str] = None
+    """
+    Natural language instructions for your agent for how to provide context for the
+    transfer recipient.
+    """
+
+
+class Transfer(BaseModel):
+    transfer: TransferTransfer
+
+    type: Literal["transfer"]
 
 
 class ReferReferTarget(BaseModel):
@@ -134,6 +185,8 @@ class SendMessage(BaseModel):
 
 
 AssistantTool: TypeAlias = Annotated[
-    Union[WebhookTool, RetrievalTool, Handoff, HangupTool, TransferTool, Refer, SendDtmf, SendMessage],
+    Union[
+        InferenceEmbeddingWebhookToolParams, RetrievalTool, Handoff, HangupTool, Transfer, Refer, SendDtmf, SendMessage
+    ],
     PropertyInfo(discriminator="type"),
 ]

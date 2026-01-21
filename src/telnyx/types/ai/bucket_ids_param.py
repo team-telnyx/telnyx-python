@@ -6,10 +6,10 @@ from typing_extensions import Required, TypedDict
 
 from ..._types import SequenceNotStr
 
-__all__ = ["InferenceEmbeddingBucketIDsParam"]
+__all__ = ["BucketIDsParam"]
 
 
-class InferenceEmbeddingBucketIDsParam(TypedDict, total=False):
+class BucketIDsParam(TypedDict, total=False):
     bucket_ids: Required[SequenceNotStr[str]]
     """
     List of

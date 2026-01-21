@@ -2,19 +2,20 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Iterable, Optional
-from typing_extensions import Literal, TypedDict
+from typing import Dict, List, Iterable
+from typing_extensions import TypedDict
 
 from .enabled_features import EnabledFeatures
 from .assistant_tool_param import AssistantToolParam
 from .voice_settings_param import VoiceSettingsParam
+from .widget_settings_param import WidgetSettingsParam
 from .insight_settings_param import InsightSettingsParam
 from .privacy_settings_param import PrivacySettingsParam
 from .messaging_settings_param import MessagingSettingsParam
 from .telephony_settings_param import TelephonySettingsParam
 from .transcription_settings_param import TranscriptionSettingsParam
 
-__all__ = ["AssistantUpdateParams", "WidgetSettings", "WidgetSettingsAudioVisualizerConfig"]
+__all__ = ["AssistantUpdateParams"]
 
 
 class AssistantUpdateParams(TypedDict, total=False):
@@ -94,49 +95,5 @@ class AssistantUpdateParams(TypedDict, total=False):
 
     voice_settings: VoiceSettingsParam
 
-    widget_settings: WidgetSettings
+    widget_settings: WidgetSettingsParam
     """Configuration settings for the assistant's web widget."""
-
-
-class WidgetSettingsAudioVisualizerConfig(TypedDict, total=False):
-    color: Literal["verdant", "twilight", "bloom", "mystic", "flare", "glacier"]
-    """The color theme for the audio visualizer."""
-
-    preset: str
-    """The preset style for the audio visualizer."""
-
-
-class WidgetSettings(TypedDict, total=False):
-    """Configuration settings for the assistant's web widget."""
-
-    agent_thinking_text: str
-    """Text displayed while the agent is processing."""
-
-    audio_visualizer_config: WidgetSettingsAudioVisualizerConfig
-
-    default_state: Literal["expanded", "collapsed"]
-    """The default state of the widget."""
-
-    give_feedback_url: Optional[str]
-    """URL for users to give feedback."""
-
-    logo_icon_url: Optional[str]
-    """URL to a custom logo icon for the widget."""
-
-    position: Literal["fixed", "static"]
-    """The positioning style for the widget."""
-
-    report_issue_url: Optional[str]
-    """URL for users to report issues."""
-
-    speak_to_interrupt_text: str
-    """Text prompting users to speak to interrupt."""
-
-    start_call_text: str
-    """Custom text displayed on the start call button."""
-
-    theme: Literal["light", "dark"]
-    """The visual theme for the widget."""
-
-    view_history_url: Optional[str]
-    """URL to view conversation history."""

@@ -2,16 +2,17 @@
 
 from __future__ import annotations
 
+from .bucket_ids import BucketIDs as BucketIDs
 from .hangup_tool import HangupTool as HangupTool
 from .conversation import Conversation as Conversation
-from .webhook_tool import WebhookTool as WebhookTool
-from .transfer_tool import TransferTool as TransferTool
 from .assistant_tool import AssistantTool as AssistantTool
 from .retrieval_tool import RetrievalTool as RetrievalTool
 from .voice_settings import VoiceSettings as VoiceSettings
 from .assistant_param import AssistantParam as AssistantParam
 from .assistants_list import AssistantsList as AssistantsList
 from .import_metadata import ImportMetadata as ImportMetadata
+from .widget_settings import WidgetSettings as WidgetSettings
+from .bucket_ids_param import BucketIDsParam as BucketIDsParam
 from .enabled_features import EnabledFeatures as EnabledFeatures
 from .insight_settings import InsightSettings as InsightSettings
 from .privacy_settings import PrivacySettings as PrivacySettings
@@ -32,6 +33,7 @@ from .voice_settings_param import VoiceSettingsParam as VoiceSettingsParam
 from .assistant_chat_params import AssistantChatParams as AssistantChatParams
 from .cluster_list_response import ClusterListResponse as ClusterListResponse
 from .embedding_list_params import EmbeddingListParams as EmbeddingListParams
+from .widget_settings_param import WidgetSettingsParam as WidgetSettingsParam
 from .background_task_status import BackgroundTaskStatus as BackgroundTaskStatus
 from .cluster_compute_params import ClusterComputeParams as ClusterComputeParams
 from .insight_settings_param import InsightSettingsParam as InsightSettingsParam
@@ -76,24 +78,16 @@ from .chat_create_completion_params import ChatCreateCompletionParams as ChatCre
 from .integration_retrieve_response import IntegrationRetrieveResponse as IntegrationRetrieveResponse
 from .transcription_settings_config import TranscriptionSettingsConfig as TranscriptionSettingsConfig
 from .conversation_retrieve_response import ConversationRetrieveResponse as ConversationRetrieveResponse
-from .inference_embedding_bucket_ids import InferenceEmbeddingBucketIDs as InferenceEmbeddingBucketIDs
 from .chat_create_completion_response import ChatCreateCompletionResponse as ChatCreateCompletionResponse
 from .conversation_add_message_params import ConversationAddMessageParams as ConversationAddMessageParams
 from .embedding_similarity_search_params import EmbeddingSimilaritySearchParams as EmbeddingSimilaritySearchParams
 from .transcription_settings_config_param import TranscriptionSettingsConfigParam as TranscriptionSettingsConfigParam
 from .embedding_similarity_search_response import EmbeddingSimilaritySearchResponse as EmbeddingSimilaritySearchResponse
-from .inference_embedding_bucket_ids_param import InferenceEmbeddingBucketIDsParam as InferenceEmbeddingBucketIDsParam
 from .inference_embedding_webhook_tool_params import (
     InferenceEmbeddingWebhookToolParams as InferenceEmbeddingWebhookToolParams,
 )
-from .inference_embedding_transfer_tool_params import (
-    InferenceEmbeddingTransferToolParams as InferenceEmbeddingTransferToolParams,
-)
 from .inference_embedding_webhook_tool_params_param import (
     InferenceEmbeddingWebhookToolParamsParam as InferenceEmbeddingWebhookToolParamsParam,
-)
-from .inference_embedding_transfer_tool_params_param import (
-    InferenceEmbeddingTransferToolParamsParam as InferenceEmbeddingTransferToolParamsParam,
 )
 from .conversation_retrieve_conversations_insights_response import (
     ConversationRetrieveConversationsInsightsResponse as ConversationRetrieveConversationsInsightsResponse,

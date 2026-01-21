@@ -5,10 +5,10 @@ from __future__ import annotations
 from typing import Union, Iterable
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
+from ..._types import SequenceNotStr
 from .hangup_tool_param import HangupToolParam
 from .webhook_tool_param import WebhookToolParam
 from .transfer_tool_param import TransferToolParam
-from .retrieval_tool_param import RetrievalToolParam
 
 __all__ = [
     "AssistantParam",
@@ -17,6 +17,8 @@ __all__ = [
     "ToolBookAppointmentToolBookAppointment",
     "ToolCheckAvailabilityTool",
     "ToolCheckAvailabilityToolCheckAvailability",
+    "ToolCallControlRetrievalTool",
+    "ToolCallControlRetrievalToolRetrieval",
 ]
 
 
@@ -78,13 +80,26 @@ class ToolCheckAvailabilityTool(TypedDict, total=False):
     type: Required[Literal["check_availability"]]
 
 
+class ToolCallControlRetrievalToolRetrieval(TypedDict, total=False):
+    bucket_ids: Required[SequenceNotStr[str]]
+
+    max_num_results: int
+    """The maximum number of results to retrieve as context for the language model."""
+
+
+class ToolCallControlRetrievalTool(TypedDict, total=False):
+    retrieval: Required[ToolCallControlRetrievalToolRetrieval]
+
+    type: Required[Literal["retrieval"]]
+
+
 Tool: TypeAlias = Union[
     ToolBookAppointmentTool,
     ToolCheckAvailabilityTool,
     WebhookToolParam,
     HangupToolParam,
     TransferToolParam,
-    RetrievalToolParam,
+    ToolCallControlRetrievalTool,
 ]
 
 
