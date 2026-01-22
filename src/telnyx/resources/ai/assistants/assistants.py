@@ -71,7 +71,6 @@ from ....types.ai.enabled_features import EnabledFeatures
 from ....types.ai.inference_embedding import InferenceEmbedding
 from ....types.ai.assistant_tool_param import AssistantToolParam
 from ....types.ai.voice_settings_param import VoiceSettingsParam
-from ....types.ai.widget_settings_param import WidgetSettingsParam
 from ....types.ai.insight_settings_param import InsightSettingsParam
 from ....types.ai.privacy_settings_param import PrivacySettingsParam
 from ....types.ai.assistant_chat_response import AssistantChatResponse
@@ -143,7 +142,7 @@ class AssistantsResource(SyncAPIResource):
         tools: Iterable[AssistantToolParam] | Omit = omit,
         transcription: TranscriptionSettingsParam | Omit = omit,
         voice_settings: VoiceSettingsParam | Omit = omit,
-        widget_settings: WidgetSettingsParam | Omit = omit,
+        widget_settings: assistant_create_params.WidgetSettings | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -295,7 +294,7 @@ class AssistantsResource(SyncAPIResource):
         tools: Iterable[AssistantToolParam] | Omit = omit,
         transcription: TranscriptionSettingsParam | Omit = omit,
         voice_settings: VoiceSettingsParam | Omit = omit,
-        widget_settings: WidgetSettingsParam | Omit = omit,
+        widget_settings: assistant_update_params.WidgetSettings | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -730,7 +729,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
         tools: Iterable[AssistantToolParam] | Omit = omit,
         transcription: TranscriptionSettingsParam | Omit = omit,
         voice_settings: VoiceSettingsParam | Omit = omit,
-        widget_settings: WidgetSettingsParam | Omit = omit,
+        widget_settings: assistant_create_params.WidgetSettings | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -882,7 +881,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
         tools: Iterable[AssistantToolParam] | Omit = omit,
         transcription: TranscriptionSettingsParam | Omit = omit,
         voice_settings: VoiceSettingsParam | Omit = omit,
-        widget_settings: WidgetSettingsParam | Omit = omit,
+        widget_settings: assistant_update_params.WidgetSettings | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

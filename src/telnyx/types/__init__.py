@@ -28,7 +28,6 @@ from .shared import (
     PortingOrdersExceptionType as PortingOrdersExceptionType,
     AvailablePhoneNumbersMetadata as AvailablePhoneNumbersMetadata,
     PhoneNumberWithMessagingSettings as PhoneNumberWithMessagingSettings,
-    ConnectionNoiseSuppressionDetails as ConnectionNoiseSuppressionDetails,
     SubNumberOrderRegulatoryRequirementWithValue as SubNumberOrderRegulatoryRequirementWithValue,
 )
 from .address import Address as Address

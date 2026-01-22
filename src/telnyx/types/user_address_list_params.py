@@ -2,11 +2,9 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Annotated, TypedDict
+from typing_extensions import Literal, TypedDict
 
-from .._utils import PropertyInfo
-
-__all__ = ["UserAddressListParams", "Filter", "FilterCustomerReference", "FilterStreetAddress"]
+__all__ = ["UserAddressListParams", "Filter", "FilterCustomerReference", "FilterStreetAddress", "Page"]
 
 
 class UserAddressListParams(TypedDict, total=False):
@@ -17,9 +15,11 @@ class UserAddressListParams(TypedDict, total=False):
     filter[customer_reference][contains], filter[street_address][contains]
     """
 
-    page_number: Annotated[int, PropertyInfo(alias="page[number]")]
+    page: Page
+    """Consolidated page parameter (deepObject style).
 
-    page_size: Annotated[int, PropertyInfo(alias="page[size]")]
+    Originally: page[size], page[number]
+    """
 
     sort: Literal["created_at", "first_name", "last_name", "business_name", "street_address"]
     """Specifies the sort order for results.
@@ -91,3 +91,16 @@ class Filter(TypedDict, total=False):
 
     Supports partial matching (contains). Matching is not case-sensitive.
     """
+
+
+class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[size], page[number]
+    """
+
+    number: int
+    """The page number to load"""
+
+    size: int
+    """The size of the page"""

@@ -2,11 +2,9 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Annotated, TypedDict
+from typing_extensions import Literal, TypedDict
 
-from .._utils import PropertyInfo
-
-__all__ = ["PortingPhoneNumberListParams", "Filter"]
+__all__ = ["PortingPhoneNumberListParams", "Filter", "Page"]
 
 
 class PortingPhoneNumberListParams(TypedDict, total=False):
@@ -16,9 +14,11 @@ class PortingPhoneNumberListParams(TypedDict, total=False):
     Originally: filter[porting_order_status]
     """
 
-    page_number: Annotated[int, PropertyInfo(alias="page[number]")]
+    page: Page
+    """Consolidated page parameter (deepObject style).
 
-    page_size: Annotated[int, PropertyInfo(alias="page[size]")]
+    Originally: page[size], page[number]
+    """
 
 
 class Filter(TypedDict, total=False):
@@ -31,3 +31,16 @@ class Filter(TypedDict, total=False):
         "draft", "in-process", "submitted", "exception", "foc-date-confirmed", "cancel-pending", "ported", "cancelled"
     ]
     """Filter results by porting order status"""
+
+
+class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[size], page[number]
+    """
+
+    number: int
+    """The page number to load"""
+
+    size: int
+    """The size of the page"""

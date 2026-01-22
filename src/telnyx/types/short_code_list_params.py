@@ -2,11 +2,9 @@
 
 from __future__ import annotations
 
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import TypedDict
 
-from .._utils import PropertyInfo
-
-__all__ = ["ShortCodeListParams", "Filter"]
+__all__ = ["ShortCodeListParams", "Filter", "Page"]
 
 
 class ShortCodeListParams(TypedDict, total=False):
@@ -16,9 +14,11 @@ class ShortCodeListParams(TypedDict, total=False):
     Originally: filter[messaging_profile_id]
     """
 
-    page_number: Annotated[int, PropertyInfo(alias="page[number]")]
+    page: Page
+    """Consolidated page parameter (deepObject style).
 
-    page_size: Annotated[int, PropertyInfo(alias="page[size]")]
+    Originally: page[number], page[size]
+    """
 
 
 class Filter(TypedDict, total=False):
@@ -34,3 +34,16 @@ class Filter(TypedDict, total=False):
     the `/messaging_profiles/{id}/short_codes` endpoint when querying about an
     extant profile.
     """
+
+
+class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[number], page[size]
+    """
+
+    number: int
+    """The page number to load"""
+
+    size: int
+    """The size of the page"""

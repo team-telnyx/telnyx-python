@@ -14,7 +14,7 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
+from ...pagination import SyncDefaultPagination, AsyncDefaultPagination
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.sim_cards import (
     action_list_params,
@@ -93,15 +93,14 @@ class ActionsResource(SyncAPIResource):
         self,
         *,
         filter: action_list_params.Filter | Omit = omit,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: action_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[SimCardAction]:
+    ) -> SyncDefaultPagination[SimCardAction]:
         """This API lists a paginated collection of SIM card actions.
 
         It enables exploring
@@ -111,6 +110,9 @@ class ActionsResource(SyncAPIResource):
           filter: Consolidated filter parameter for SIM card actions (deepObject style).
               Originally: filter[sim_card_id], filter[status],
               filter[bulk_sim_card_action_id], filter[action_type]
+
+          page: Consolidated pagination parameter (deepObject style). Originally: page[number],
+              page[size]
 
           extra_headers: Send extra headers
 
@@ -122,7 +124,7 @@ class ActionsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/sim_card_actions",
-            page=SyncDefaultFlatPagination[SimCardAction],
+            page=SyncDefaultPagination[SimCardAction],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -131,8 +133,7 @@ class ActionsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page_number": page_number,
-                        "page_size": page_size,
+                        "page": page,
                     },
                     action_list_params.ActionListParams,
                 ),
@@ -476,15 +477,14 @@ class AsyncActionsResource(AsyncAPIResource):
         self,
         *,
         filter: action_list_params.Filter | Omit = omit,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: action_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[SimCardAction, AsyncDefaultFlatPagination[SimCardAction]]:
+    ) -> AsyncPaginator[SimCardAction, AsyncDefaultPagination[SimCardAction]]:
         """This API lists a paginated collection of SIM card actions.
 
         It enables exploring
@@ -494,6 +494,9 @@ class AsyncActionsResource(AsyncAPIResource):
           filter: Consolidated filter parameter for SIM card actions (deepObject style).
               Originally: filter[sim_card_id], filter[status],
               filter[bulk_sim_card_action_id], filter[action_type]
+
+          page: Consolidated pagination parameter (deepObject style). Originally: page[number],
+              page[size]
 
           extra_headers: Send extra headers
 
@@ -505,7 +508,7 @@ class AsyncActionsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/sim_card_actions",
-            page=AsyncDefaultFlatPagination[SimCardAction],
+            page=AsyncDefaultPagination[SimCardAction],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -514,8 +517,7 @@ class AsyncActionsResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page_number": page_number,
-                        "page_size": page_size,
+                        "page": page,
                     },
                     action_list_params.ActionListParams,
                 ),

@@ -25,7 +25,7 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
+from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.dtmf_type import DtmfType
 from ..types.ip_connection import IPConnection
@@ -38,7 +38,6 @@ from ..types.ip_connection_delete_response import IPConnectionDeleteResponse
 from ..types.ip_connection_update_response import IPConnectionUpdateResponse
 from ..types.connection_rtcp_settings_param import ConnectionRtcpSettingsParam
 from ..types.ip_connection_retrieve_response import IPConnectionRetrieveResponse
-from ..types.shared_params.connection_noise_suppression_details import ConnectionNoiseSuppressionDetails
 
 __all__ = ["IPConnectionsResource", "AsyncIPConnectionsResource"]
 
@@ -78,7 +77,7 @@ class IPConnectionsResource(SyncAPIResource):
         inbound: ip_connection_create_params.Inbound | Omit = omit,
         ios_push_credential_id: Optional[str] | Omit = omit,
         noise_suppression: Literal["inbound", "outbound", "both", "disabled"] | Omit = omit,
-        noise_suppression_details: ConnectionNoiseSuppressionDetails | Omit = omit,
+        noise_suppression_details: ip_connection_create_params.NoiseSuppressionDetails | Omit = omit,
         onnet_t38_passthrough_enabled: bool | Omit = omit,
         outbound: OutboundIPParam | Omit = omit,
         rtcp_settings: ConnectionRtcpSettingsParam | Omit = omit,
@@ -245,7 +244,7 @@ class IPConnectionsResource(SyncAPIResource):
         inbound: InboundIPParam | Omit = omit,
         ios_push_credential_id: Optional[str] | Omit = omit,
         noise_suppression: Literal["inbound", "outbound", "both", "disabled"] | Omit = omit,
-        noise_suppression_details: ConnectionNoiseSuppressionDetails | Omit = omit,
+        noise_suppression_details: ip_connection_update_params.NoiseSuppressionDetails | Omit = omit,
         onnet_t38_passthrough_enabled: bool | Omit = omit,
         outbound: OutboundIPParam | Omit = omit,
         rtcp_settings: ConnectionRtcpSettingsParam | Omit = omit,
@@ -369,8 +368,7 @@ class IPConnectionsResource(SyncAPIResource):
         self,
         *,
         filter: ip_connection_list_params.Filter | Omit = omit,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: ip_connection_list_params.Page | Omit = omit,
         sort: Literal["created_at", "connection_name", "active"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -378,7 +376,7 @@ class IPConnectionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[IPConnection]:
+    ) -> SyncDefaultPagination[IPConnection]:
         """
         Returns a list of your IP connections.
 
@@ -387,6 +385,9 @@ class IPConnectionsResource(SyncAPIResource):
               Consolidated filter parameter (deepObject style). Originally:
               filter[connection_name], filter[fqdn], filter[outbound_voice_profile_id],
               filter[outbound.outbound_voice_profile_id]
+
+          page: Consolidated page parameter (deepObject style). Originally: page[size],
+              page[number]
 
           sort: Specifies the sort order for results. By default sorting direction is ascending.
               To have the results sorted in descending order add the <code> -</code>
@@ -413,7 +414,7 @@ class IPConnectionsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/ip_connections",
-            page=SyncDefaultFlatPagination[IPConnection],
+            page=SyncDefaultPagination[IPConnection],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -422,8 +423,7 @@ class IPConnectionsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page_number": page_number,
-                        "page_size": page_size,
+                        "page": page,
                         "sort": sort,
                     },
                     ip_connection_list_params.IPConnectionListParams,
@@ -501,7 +501,7 @@ class AsyncIPConnectionsResource(AsyncAPIResource):
         inbound: ip_connection_create_params.Inbound | Omit = omit,
         ios_push_credential_id: Optional[str] | Omit = omit,
         noise_suppression: Literal["inbound", "outbound", "both", "disabled"] | Omit = omit,
-        noise_suppression_details: ConnectionNoiseSuppressionDetails | Omit = omit,
+        noise_suppression_details: ip_connection_create_params.NoiseSuppressionDetails | Omit = omit,
         onnet_t38_passthrough_enabled: bool | Omit = omit,
         outbound: OutboundIPParam | Omit = omit,
         rtcp_settings: ConnectionRtcpSettingsParam | Omit = omit,
@@ -668,7 +668,7 @@ class AsyncIPConnectionsResource(AsyncAPIResource):
         inbound: InboundIPParam | Omit = omit,
         ios_push_credential_id: Optional[str] | Omit = omit,
         noise_suppression: Literal["inbound", "outbound", "both", "disabled"] | Omit = omit,
-        noise_suppression_details: ConnectionNoiseSuppressionDetails | Omit = omit,
+        noise_suppression_details: ip_connection_update_params.NoiseSuppressionDetails | Omit = omit,
         onnet_t38_passthrough_enabled: bool | Omit = omit,
         outbound: OutboundIPParam | Omit = omit,
         rtcp_settings: ConnectionRtcpSettingsParam | Omit = omit,
@@ -792,8 +792,7 @@ class AsyncIPConnectionsResource(AsyncAPIResource):
         self,
         *,
         filter: ip_connection_list_params.Filter | Omit = omit,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: ip_connection_list_params.Page | Omit = omit,
         sort: Literal["created_at", "connection_name", "active"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -801,7 +800,7 @@ class AsyncIPConnectionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[IPConnection, AsyncDefaultFlatPagination[IPConnection]]:
+    ) -> AsyncPaginator[IPConnection, AsyncDefaultPagination[IPConnection]]:
         """
         Returns a list of your IP connections.
 
@@ -810,6 +809,9 @@ class AsyncIPConnectionsResource(AsyncAPIResource):
               Consolidated filter parameter (deepObject style). Originally:
               filter[connection_name], filter[fqdn], filter[outbound_voice_profile_id],
               filter[outbound.outbound_voice_profile_id]
+
+          page: Consolidated page parameter (deepObject style). Originally: page[size],
+              page[number]
 
           sort: Specifies the sort order for results. By default sorting direction is ascending.
               To have the results sorted in descending order add the <code> -</code>
@@ -836,7 +838,7 @@ class AsyncIPConnectionsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/ip_connections",
-            page=AsyncDefaultFlatPagination[IPConnection],
+            page=AsyncDefaultPagination[IPConnection],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -845,8 +847,7 @@ class AsyncIPConnectionsResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page_number": page_number,
-                        "page_size": page_size,
+                        "page": page,
                         "sort": sort,
                     },
                     ip_connection_list_params.IPConnectionListParams,

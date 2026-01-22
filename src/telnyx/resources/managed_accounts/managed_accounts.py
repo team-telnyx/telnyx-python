@@ -30,7 +30,7 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
+from ...pagination import SyncDefaultPagination, AsyncDefaultPagination
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.managed_account_list_response import ManagedAccountListResponse
 from ...types.managed_account_create_response import ManagedAccountCreateResponse
@@ -218,8 +218,7 @@ class ManagedAccountsResource(SyncAPIResource):
         *,
         filter: managed_account_list_params.Filter | Omit = omit,
         include_cancelled_accounts: bool | Omit = omit,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: managed_account_list_params.Page | Omit = omit,
         sort: Literal["created_at", "email"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -227,7 +226,7 @@ class ManagedAccountsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[ManagedAccountListResponse]:
+    ) -> SyncDefaultPagination[ManagedAccountListResponse]:
         """Lists the accounts managed by the current user.
 
         Users need to be explictly
@@ -240,6 +239,9 @@ class ManagedAccountsResource(SyncAPIResource):
               filter[organization_name][eq]
 
           include_cancelled_accounts: Specifies if cancelled accounts should be included in the results.
+
+          page: Consolidated page parameter (deepObject style). Originally: page[number],
+              page[size]
 
           sort: Specifies the sort order for results. By default sorting direction is ascending.
               To have the results sorted in descending order add the <code> -</code>
@@ -266,7 +268,7 @@ class ManagedAccountsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/managed_accounts",
-            page=SyncDefaultFlatPagination[ManagedAccountListResponse],
+            page=SyncDefaultPagination[ManagedAccountListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -276,8 +278,7 @@ class ManagedAccountsResource(SyncAPIResource):
                     {
                         "filter": filter,
                         "include_cancelled_accounts": include_cancelled_accounts,
-                        "page_number": page_number,
-                        "page_size": page_size,
+                        "page": page,
                         "sort": sort,
                     },
                     managed_account_list_params.ManagedAccountListParams,
@@ -527,8 +528,7 @@ class AsyncManagedAccountsResource(AsyncAPIResource):
         *,
         filter: managed_account_list_params.Filter | Omit = omit,
         include_cancelled_accounts: bool | Omit = omit,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: managed_account_list_params.Page | Omit = omit,
         sort: Literal["created_at", "email"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -536,7 +536,7 @@ class AsyncManagedAccountsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[ManagedAccountListResponse, AsyncDefaultFlatPagination[ManagedAccountListResponse]]:
+    ) -> AsyncPaginator[ManagedAccountListResponse, AsyncDefaultPagination[ManagedAccountListResponse]]:
         """Lists the accounts managed by the current user.
 
         Users need to be explictly
@@ -549,6 +549,9 @@ class AsyncManagedAccountsResource(AsyncAPIResource):
               filter[organization_name][eq]
 
           include_cancelled_accounts: Specifies if cancelled accounts should be included in the results.
+
+          page: Consolidated page parameter (deepObject style). Originally: page[number],
+              page[size]
 
           sort: Specifies the sort order for results. By default sorting direction is ascending.
               To have the results sorted in descending order add the <code> -</code>
@@ -575,7 +578,7 @@ class AsyncManagedAccountsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/managed_accounts",
-            page=AsyncDefaultFlatPagination[ManagedAccountListResponse],
+            page=AsyncDefaultPagination[ManagedAccountListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -585,8 +588,7 @@ class AsyncManagedAccountsResource(AsyncAPIResource):
                     {
                         "filter": filter,
                         "include_cancelled_accounts": include_cancelled_accounts,
-                        "page_number": page_number,
-                        "page_size": page_size,
+                        "page": page,
                         "sort": sort,
                     },
                     managed_account_list_params.ManagedAccountListParams,

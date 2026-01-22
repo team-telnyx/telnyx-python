@@ -14,6 +14,7 @@ __all__ = [
     "Filters",
     "FiltersAvailableServices",
     "FiltersAvailableServicesContains",
+    "Page",
 ]
 
 
@@ -31,9 +32,11 @@ class NetworkCoverageListParams(TypedDict, total=False):
     Originally: filters[available_services][contains]
     """
 
-    page_number: Annotated[int, PropertyInfo(alias="page[number]")]
+    page: Page
+    """Consolidated page parameter (deepObject style).
 
-    page_size: Annotated[int, PropertyInfo(alias="page[size]")]
+    Originally: page[number], page[size]
+    """
 
 
 class Filter(TypedDict, total=False):
@@ -73,3 +76,16 @@ class Filters(TypedDict, total=False):
 
     available_services: FiltersAvailableServices
     """Filter by exact available service match"""
+
+
+class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[number], page[size]
+    """
+
+    number: int
+    """The page number to load"""
+
+    size: int
+    """The size of the page"""

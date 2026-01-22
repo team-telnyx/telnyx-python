@@ -15,7 +15,7 @@ from telnyx.types import (
     PublicInternetGatewayDeleteResponse,
     PublicInternetGatewayRetrieveResponse,
 )
-from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
+from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -108,7 +108,7 @@ class TestPublicInternetGateways:
     def test_method_list(self, client: Telnyx) -> None:
         public_internet_gateway = client.public_internet_gateways.list()
         assert_matches_type(
-            SyncDefaultFlatPagination[PublicInternetGatewayListResponse], public_internet_gateway, path=["response"]
+            SyncDefaultPagination[PublicInternetGatewayListResponse], public_internet_gateway, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -116,11 +116,13 @@ class TestPublicInternetGateways:
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         public_internet_gateway = client.public_internet_gateways.list(
             filter={"network_id": "6a09cdc3-8948-47f0-aa62-74ac943d6c58"},
-            page_number=0,
-            page_size=0,
+            page={
+                "number": 1,
+                "size": 1,
+            },
         )
         assert_matches_type(
-            SyncDefaultFlatPagination[PublicInternetGatewayListResponse], public_internet_gateway, path=["response"]
+            SyncDefaultPagination[PublicInternetGatewayListResponse], public_internet_gateway, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -132,7 +134,7 @@ class TestPublicInternetGateways:
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         public_internet_gateway = response.parse()
         assert_matches_type(
-            SyncDefaultFlatPagination[PublicInternetGatewayListResponse], public_internet_gateway, path=["response"]
+            SyncDefaultPagination[PublicInternetGatewayListResponse], public_internet_gateway, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -144,7 +146,7 @@ class TestPublicInternetGateways:
 
             public_internet_gateway = response.parse()
             assert_matches_type(
-                SyncDefaultFlatPagination[PublicInternetGatewayListResponse], public_internet_gateway, path=["response"]
+                SyncDefaultPagination[PublicInternetGatewayListResponse], public_internet_gateway, path=["response"]
             )
 
         assert cast(Any, response.is_closed) is True
@@ -282,7 +284,7 @@ class TestAsyncPublicInternetGateways:
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         public_internet_gateway = await async_client.public_internet_gateways.list()
         assert_matches_type(
-            AsyncDefaultFlatPagination[PublicInternetGatewayListResponse], public_internet_gateway, path=["response"]
+            AsyncDefaultPagination[PublicInternetGatewayListResponse], public_internet_gateway, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -290,11 +292,13 @@ class TestAsyncPublicInternetGateways:
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         public_internet_gateway = await async_client.public_internet_gateways.list(
             filter={"network_id": "6a09cdc3-8948-47f0-aa62-74ac943d6c58"},
-            page_number=0,
-            page_size=0,
+            page={
+                "number": 1,
+                "size": 1,
+            },
         )
         assert_matches_type(
-            AsyncDefaultFlatPagination[PublicInternetGatewayListResponse], public_internet_gateway, path=["response"]
+            AsyncDefaultPagination[PublicInternetGatewayListResponse], public_internet_gateway, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -306,7 +310,7 @@ class TestAsyncPublicInternetGateways:
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         public_internet_gateway = await response.parse()
         assert_matches_type(
-            AsyncDefaultFlatPagination[PublicInternetGatewayListResponse], public_internet_gateway, path=["response"]
+            AsyncDefaultPagination[PublicInternetGatewayListResponse], public_internet_gateway, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -318,9 +322,7 @@ class TestAsyncPublicInternetGateways:
 
             public_internet_gateway = await response.parse()
             assert_matches_type(
-                AsyncDefaultFlatPagination[PublicInternetGatewayListResponse],
-                public_internet_gateway,
-                path=["response"],
+                AsyncDefaultPagination[PublicInternetGatewayListResponse], public_internet_gateway, path=["response"]
             )
 
         assert cast(Any, response.is_closed) is True

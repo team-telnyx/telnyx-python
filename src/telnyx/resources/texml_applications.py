@@ -23,7 +23,7 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
+from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.dtmf_type import DtmfType
 from ..types.texml_application import TexmlApplication
@@ -292,8 +292,7 @@ class TexmlApplicationsResource(SyncAPIResource):
         self,
         *,
         filter: texml_application_list_params.Filter | Omit = omit,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: texml_application_list_params.Page | Omit = omit,
         sort: Literal["created_at", "friendly_name", "active"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -301,7 +300,7 @@ class TexmlApplicationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[TexmlApplication]:
+    ) -> SyncDefaultPagination[TexmlApplication]:
         """
         Returns a list of your TeXML Applications.
 
@@ -309,6 +308,9 @@ class TexmlApplicationsResource(SyncAPIResource):
           filter:
               Consolidated filter parameter (deepObject style). Originally:
               filter[outbound_voice_profile_id], filter[friendly_name]
+
+          page: Consolidated page parameter (deepObject style). Originally: page[size],
+              page[number]
 
           sort: Specifies the sort order for results. By default sorting direction is ascending.
               To have the results sorted in descending order add the <code> -</code>
@@ -335,7 +337,7 @@ class TexmlApplicationsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/texml_applications",
-            page=SyncDefaultFlatPagination[TexmlApplication],
+            page=SyncDefaultPagination[TexmlApplication],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -344,8 +346,7 @@ class TexmlApplicationsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page_number": page_number,
-                        "page_size": page_size,
+                        "page": page,
                         "sort": sort,
                     },
                     texml_application_list_params.TexmlApplicationListParams,
@@ -644,8 +645,7 @@ class AsyncTexmlApplicationsResource(AsyncAPIResource):
         self,
         *,
         filter: texml_application_list_params.Filter | Omit = omit,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: texml_application_list_params.Page | Omit = omit,
         sort: Literal["created_at", "friendly_name", "active"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -653,7 +653,7 @@ class AsyncTexmlApplicationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[TexmlApplication, AsyncDefaultFlatPagination[TexmlApplication]]:
+    ) -> AsyncPaginator[TexmlApplication, AsyncDefaultPagination[TexmlApplication]]:
         """
         Returns a list of your TeXML Applications.
 
@@ -661,6 +661,9 @@ class AsyncTexmlApplicationsResource(AsyncAPIResource):
           filter:
               Consolidated filter parameter (deepObject style). Originally:
               filter[outbound_voice_profile_id], filter[friendly_name]
+
+          page: Consolidated page parameter (deepObject style). Originally: page[size],
+              page[number]
 
           sort: Specifies the sort order for results. By default sorting direction is ascending.
               To have the results sorted in descending order add the <code> -</code>
@@ -687,7 +690,7 @@ class AsyncTexmlApplicationsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/texml_applications",
-            page=AsyncDefaultFlatPagination[TexmlApplication],
+            page=AsyncDefaultPagination[TexmlApplication],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -696,8 +699,7 @@ class AsyncTexmlApplicationsResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page_number": page_number,
-                        "page_size": page_size,
+                        "page": page,
                         "sort": sort,
                     },
                     texml_application_list_params.TexmlApplicationListParams,

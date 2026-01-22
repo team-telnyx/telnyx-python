@@ -10,7 +10,7 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types import NetworkCoverageListResponse
-from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
+from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -22,7 +22,7 @@ class TestNetworkCoverage:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         network_coverage = client.network_coverage.list()
-        assert_matches_type(SyncDefaultFlatPagination[NetworkCoverageListResponse], network_coverage, path=["response"])
+        assert_matches_type(SyncDefaultPagination[NetworkCoverageListResponse], network_coverage, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -35,10 +35,12 @@ class TestNetworkCoverage:
                 "location_site": "SJC",
             },
             filters={"available_services": "cloud_vpn"},
-            page_number=0,
-            page_size=0,
+            page={
+                "number": 1,
+                "size": 1,
+            },
         )
-        assert_matches_type(SyncDefaultFlatPagination[NetworkCoverageListResponse], network_coverage, path=["response"])
+        assert_matches_type(SyncDefaultPagination[NetworkCoverageListResponse], network_coverage, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -48,7 +50,7 @@ class TestNetworkCoverage:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         network_coverage = response.parse()
-        assert_matches_type(SyncDefaultFlatPagination[NetworkCoverageListResponse], network_coverage, path=["response"])
+        assert_matches_type(SyncDefaultPagination[NetworkCoverageListResponse], network_coverage, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -58,9 +60,7 @@ class TestNetworkCoverage:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             network_coverage = response.parse()
-            assert_matches_type(
-                SyncDefaultFlatPagination[NetworkCoverageListResponse], network_coverage, path=["response"]
-            )
+            assert_matches_type(SyncDefaultPagination[NetworkCoverageListResponse], network_coverage, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -74,9 +74,7 @@ class TestAsyncNetworkCoverage:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         network_coverage = await async_client.network_coverage.list()
-        assert_matches_type(
-            AsyncDefaultFlatPagination[NetworkCoverageListResponse], network_coverage, path=["response"]
-        )
+        assert_matches_type(AsyncDefaultPagination[NetworkCoverageListResponse], network_coverage, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -89,12 +87,12 @@ class TestAsyncNetworkCoverage:
                 "location_site": "SJC",
             },
             filters={"available_services": "cloud_vpn"},
-            page_number=0,
-            page_size=0,
+            page={
+                "number": 1,
+                "size": 1,
+            },
         )
-        assert_matches_type(
-            AsyncDefaultFlatPagination[NetworkCoverageListResponse], network_coverage, path=["response"]
-        )
+        assert_matches_type(AsyncDefaultPagination[NetworkCoverageListResponse], network_coverage, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -104,9 +102,7 @@ class TestAsyncNetworkCoverage:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         network_coverage = await response.parse()
-        assert_matches_type(
-            AsyncDefaultFlatPagination[NetworkCoverageListResponse], network_coverage, path=["response"]
-        )
+        assert_matches_type(AsyncDefaultPagination[NetworkCoverageListResponse], network_coverage, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -117,7 +113,7 @@ class TestAsyncNetworkCoverage:
 
             network_coverage = await response.parse()
             assert_matches_type(
-                AsyncDefaultFlatPagination[NetworkCoverageListResponse], network_coverage, path=["response"]
+                AsyncDefaultPagination[NetworkCoverageListResponse], network_coverage, path=["response"]
             )
 
         assert cast(Any, response.is_closed) is True
