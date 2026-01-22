@@ -1,5 +1,15 @@
 # Changelog
 
+## 4.11.0 (2026-01-22)
+
+Full Changelog: [v4.10.0...v4.11.0](https://github.com/team-telnyx/telnyx-python/compare/v4.10.0...v4.11.0)
+
+### Features
+
+* **api:** manual updates ([4522d2b](https://github.com/team-telnyx/telnyx-python/commit/4522d2b957f637e457bb31c2fadc0d83a70e5970))
+* Deploy dev/mc vady wip ([23e5b7f](https://github.com/team-telnyx/telnyx-python/commit/23e5b7f49c0f6477eef4b43a6e2a93eed38a75b7))
+* fix-redocly-lint-issues ([c67752d](https://github.com/team-telnyx/telnyx-python/commit/c67752d26d3002c3a01c7a0d9d9d373924cdd9b0))
+
 ## 4.10.0 (2026-01-20)
 
 Full Changelog: [v4.9.0...v4.10.0](https://github.com/team-telnyx/telnyx-python/compare/v4.9.0...v4.10.0)
