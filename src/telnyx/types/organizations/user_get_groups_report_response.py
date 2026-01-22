@@ -4,18 +4,9 @@ from typing import List, Optional
 from typing_extensions import Literal
 
 from ..._models import BaseModel
+from .user_group_reference import UserGroupReference
 
-__all__ = ["UserGetGroupsReportResponse", "Data", "DataGroup"]
-
-
-class DataGroup(BaseModel):
-    """A reference to a group that a user belongs to."""
-
-    id: str
-    """The unique identifier of the group."""
-
-    name: str
-    """The name of the group."""
+__all__ = ["UserGetGroupsReportResponse", "Data"]
 
 
 class Data(BaseModel):
@@ -30,7 +21,7 @@ class Data(BaseModel):
     email: str
     """The email address of the user."""
 
-    groups: List[DataGroup]
+    groups: List[UserGroupReference]
     """The groups the user belongs to."""
 
     record_type: str

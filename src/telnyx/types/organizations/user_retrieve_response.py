@@ -4,18 +4,9 @@ from typing import List, Optional
 from typing_extensions import Literal
 
 from ..._models import BaseModel
+from .user_group_reference import UserGroupReference
 
-__all__ = ["UserRetrieveResponse", "Data", "DataGroup"]
-
-
-class DataGroup(BaseModel):
-    """A reference to a group that a user belongs to."""
-
-    id: str
-    """The unique identifier of the group."""
-
-    name: str
-    """The name of the group."""
+__all__ = ["UserRetrieveResponse", "Data"]
 
 
 class Data(BaseModel):
@@ -28,7 +19,7 @@ class Data(BaseModel):
     email: Optional[str] = None
     """The email address of the user."""
 
-    groups: Optional[List[DataGroup]] = None
+    groups: Optional[List[UserGroupReference]] = None
     """The groups the user belongs to.
 
     Only included when include_groups parameter is true.
