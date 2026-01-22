@@ -16,7 +16,7 @@ from telnyx.types import (
     GlobalIPAssignmentUpdateResponse,
     GlobalIPAssignmentRetrieveResponse,
 )
-from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
+from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -155,16 +155,18 @@ class TestGlobalIPAssignments:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         global_ip_assignment = client.global_ip_assignments.list()
-        assert_matches_type(SyncDefaultFlatPagination[GlobalIPAssignment], global_ip_assignment, path=["response"])
+        assert_matches_type(SyncDefaultPagination[GlobalIPAssignment], global_ip_assignment, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         global_ip_assignment = client.global_ip_assignments.list(
-            page_number=0,
-            page_size=0,
+            page={
+                "number": 1,
+                "size": 1,
+            },
         )
-        assert_matches_type(SyncDefaultFlatPagination[GlobalIPAssignment], global_ip_assignment, path=["response"])
+        assert_matches_type(SyncDefaultPagination[GlobalIPAssignment], global_ip_assignment, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -174,7 +176,7 @@ class TestGlobalIPAssignments:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         global_ip_assignment = response.parse()
-        assert_matches_type(SyncDefaultFlatPagination[GlobalIPAssignment], global_ip_assignment, path=["response"])
+        assert_matches_type(SyncDefaultPagination[GlobalIPAssignment], global_ip_assignment, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -184,7 +186,7 @@ class TestGlobalIPAssignments:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             global_ip_assignment = response.parse()
-            assert_matches_type(SyncDefaultFlatPagination[GlobalIPAssignment], global_ip_assignment, path=["response"])
+            assert_matches_type(SyncDefaultPagination[GlobalIPAssignment], global_ip_assignment, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -367,16 +369,18 @@ class TestAsyncGlobalIPAssignments:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         global_ip_assignment = await async_client.global_ip_assignments.list()
-        assert_matches_type(AsyncDefaultFlatPagination[GlobalIPAssignment], global_ip_assignment, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[GlobalIPAssignment], global_ip_assignment, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         global_ip_assignment = await async_client.global_ip_assignments.list(
-            page_number=0,
-            page_size=0,
+            page={
+                "number": 1,
+                "size": 1,
+            },
         )
-        assert_matches_type(AsyncDefaultFlatPagination[GlobalIPAssignment], global_ip_assignment, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[GlobalIPAssignment], global_ip_assignment, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -386,7 +390,7 @@ class TestAsyncGlobalIPAssignments:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         global_ip_assignment = await response.parse()
-        assert_matches_type(AsyncDefaultFlatPagination[GlobalIPAssignment], global_ip_assignment, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[GlobalIPAssignment], global_ip_assignment, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -396,7 +400,7 @@ class TestAsyncGlobalIPAssignments:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             global_ip_assignment = await response.parse()
-            assert_matches_type(AsyncDefaultFlatPagination[GlobalIPAssignment], global_ip_assignment, path=["response"])
+            assert_matches_type(AsyncDefaultPagination[GlobalIPAssignment], global_ip_assignment, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

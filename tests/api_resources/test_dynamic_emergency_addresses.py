@@ -15,7 +15,7 @@ from telnyx.types import (
     DynamicEmergencyAddressDeleteResponse,
     DynamicEmergencyAddressRetrieveResponse,
 )
-from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
+from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -137,7 +137,7 @@ class TestDynamicEmergencyAddresses:
     def test_method_list(self, client: Telnyx) -> None:
         dynamic_emergency_address = client.dynamic_emergency_addresses.list()
         assert_matches_type(
-            SyncDefaultFlatPagination[DynamicEmergencyAddress], dynamic_emergency_address, path=["response"]
+            SyncDefaultPagination[DynamicEmergencyAddress], dynamic_emergency_address, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -148,11 +148,13 @@ class TestDynamicEmergencyAddresses:
                 "country_code": "country_code",
                 "status": "pending",
             },
-            page_number=0,
-            page_size=0,
+            page={
+                "number": 1,
+                "size": 1,
+            },
         )
         assert_matches_type(
-            SyncDefaultFlatPagination[DynamicEmergencyAddress], dynamic_emergency_address, path=["response"]
+            SyncDefaultPagination[DynamicEmergencyAddress], dynamic_emergency_address, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -164,7 +166,7 @@ class TestDynamicEmergencyAddresses:
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dynamic_emergency_address = response.parse()
         assert_matches_type(
-            SyncDefaultFlatPagination[DynamicEmergencyAddress], dynamic_emergency_address, path=["response"]
+            SyncDefaultPagination[DynamicEmergencyAddress], dynamic_emergency_address, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -176,7 +178,7 @@ class TestDynamicEmergencyAddresses:
 
             dynamic_emergency_address = response.parse()
             assert_matches_type(
-                SyncDefaultFlatPagination[DynamicEmergencyAddress], dynamic_emergency_address, path=["response"]
+                SyncDefaultPagination[DynamicEmergencyAddress], dynamic_emergency_address, path=["response"]
             )
 
         assert cast(Any, response.is_closed) is True
@@ -343,7 +345,7 @@ class TestAsyncDynamicEmergencyAddresses:
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         dynamic_emergency_address = await async_client.dynamic_emergency_addresses.list()
         assert_matches_type(
-            AsyncDefaultFlatPagination[DynamicEmergencyAddress], dynamic_emergency_address, path=["response"]
+            AsyncDefaultPagination[DynamicEmergencyAddress], dynamic_emergency_address, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -354,11 +356,13 @@ class TestAsyncDynamicEmergencyAddresses:
                 "country_code": "country_code",
                 "status": "pending",
             },
-            page_number=0,
-            page_size=0,
+            page={
+                "number": 1,
+                "size": 1,
+            },
         )
         assert_matches_type(
-            AsyncDefaultFlatPagination[DynamicEmergencyAddress], dynamic_emergency_address, path=["response"]
+            AsyncDefaultPagination[DynamicEmergencyAddress], dynamic_emergency_address, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -370,7 +374,7 @@ class TestAsyncDynamicEmergencyAddresses:
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dynamic_emergency_address = await response.parse()
         assert_matches_type(
-            AsyncDefaultFlatPagination[DynamicEmergencyAddress], dynamic_emergency_address, path=["response"]
+            AsyncDefaultPagination[DynamicEmergencyAddress], dynamic_emergency_address, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -382,7 +386,7 @@ class TestAsyncDynamicEmergencyAddresses:
 
             dynamic_emergency_address = await response.parse()
             assert_matches_type(
-                AsyncDefaultFlatPagination[DynamicEmergencyAddress], dynamic_emergency_address, path=["response"]
+                AsyncDefaultPagination[DynamicEmergencyAddress], dynamic_emergency_address, path=["response"]
             )
 
         assert cast(Any, response.is_closed) is True

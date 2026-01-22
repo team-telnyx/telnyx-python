@@ -19,7 +19,7 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
+from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.customer_service_record import CustomerServiceRecord
 from ..types.customer_service_record_create_response import CustomerServiceRecordCreateResponse
@@ -135,8 +135,7 @@ class CustomerServiceRecordsResource(SyncAPIResource):
         self,
         *,
         filter: customer_service_record_list_params.Filter | Omit = omit,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: customer_service_record_list_params.Page | Omit = omit,
         sort: customer_service_record_list_params.Sort | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -144,7 +143,7 @@ class CustomerServiceRecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[CustomerServiceRecord]:
+    ) -> SyncDefaultPagination[CustomerServiceRecord]:
         """
         List customer service records.
 
@@ -153,6 +152,9 @@ class CustomerServiceRecordsResource(SyncAPIResource):
               Consolidated filter parameter (deepObject style). Originally:
               filter[phone_number][eq], filter[phone_number][in][], filter[status][eq],
               filter[status][in][], filter[created_at][lt], filter[created_at][gt]
+
+          page: Consolidated page parameter (deepObject style). Originally: page[size],
+              page[number]
 
           sort: Consolidated sort parameter (deepObject style). Originally: sort[value]
 
@@ -166,7 +168,7 @@ class CustomerServiceRecordsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/customer_service_records",
-            page=SyncDefaultFlatPagination[CustomerServiceRecord],
+            page=SyncDefaultPagination[CustomerServiceRecord],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -175,8 +177,7 @@ class CustomerServiceRecordsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page_number": page_number,
-                        "page_size": page_size,
+                        "page": page,
                         "sort": sort,
                     },
                     customer_service_record_list_params.CustomerServiceRecordListParams,
@@ -327,8 +328,7 @@ class AsyncCustomerServiceRecordsResource(AsyncAPIResource):
         self,
         *,
         filter: customer_service_record_list_params.Filter | Omit = omit,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: customer_service_record_list_params.Page | Omit = omit,
         sort: customer_service_record_list_params.Sort | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -336,7 +336,7 @@ class AsyncCustomerServiceRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[CustomerServiceRecord, AsyncDefaultFlatPagination[CustomerServiceRecord]]:
+    ) -> AsyncPaginator[CustomerServiceRecord, AsyncDefaultPagination[CustomerServiceRecord]]:
         """
         List customer service records.
 
@@ -345,6 +345,9 @@ class AsyncCustomerServiceRecordsResource(AsyncAPIResource):
               Consolidated filter parameter (deepObject style). Originally:
               filter[phone_number][eq], filter[phone_number][in][], filter[status][eq],
               filter[status][in][], filter[created_at][lt], filter[created_at][gt]
+
+          page: Consolidated page parameter (deepObject style). Originally: page[size],
+              page[number]
 
           sort: Consolidated sort parameter (deepObject style). Originally: sort[value]
 
@@ -358,7 +361,7 @@ class AsyncCustomerServiceRecordsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/customer_service_records",
-            page=AsyncDefaultFlatPagination[CustomerServiceRecord],
+            page=AsyncDefaultPagination[CustomerServiceRecord],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -367,8 +370,7 @@ class AsyncCustomerServiceRecordsResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page_number": page_number,
-                        "page_size": page_size,
+                        "page": page,
                         "sort": sort,
                     },
                     customer_service_record_list_params.CustomerServiceRecordListParams,

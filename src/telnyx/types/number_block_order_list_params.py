@@ -6,7 +6,7 @@ from typing_extensions import Annotated, TypedDict
 
 from .._utils import PropertyInfo
 
-__all__ = ["NumberBlockOrderListParams", "Filter", "FilterCreatedAt"]
+__all__ = ["NumberBlockOrderListParams", "Filter", "FilterCreatedAt", "Page"]
 
 
 class NumberBlockOrderListParams(TypedDict, total=False):
@@ -17,9 +17,11 @@ class NumberBlockOrderListParams(TypedDict, total=False):
     filter[phone_numbers.starting_number]
     """
 
-    page_number: Annotated[int, PropertyInfo(alias="page[number]")]
+    page: Page
+    """Consolidated page parameter (deepObject style).
 
-    page_size: Annotated[int, PropertyInfo(alias="page[size]")]
+    Originally: page[size], page[number]
+    """
 
 
 class FilterCreatedAt(TypedDict, total=False):
@@ -46,3 +48,16 @@ class Filter(TypedDict, total=False):
 
     status: str
     """Filter number block orders by status."""
+
+
+class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[size], page[number]
+    """
+
+    number: int
+    """The page number to load"""
+
+    size: int
+    """The size of the page"""

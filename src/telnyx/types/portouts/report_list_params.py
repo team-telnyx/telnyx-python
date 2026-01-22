@@ -2,11 +2,9 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Annotated, TypedDict
+from typing_extensions import Literal, TypedDict
 
-from ..._utils import PropertyInfo
-
-__all__ = ["ReportListParams", "Filter"]
+__all__ = ["ReportListParams", "Filter", "Page"]
 
 
 class ReportListParams(TypedDict, total=False):
@@ -16,9 +14,11 @@ class ReportListParams(TypedDict, total=False):
     Originally: filter[report_type], filter[status]
     """
 
-    page_number: Annotated[int, PropertyInfo(alias="page[number]")]
+    page: Page
+    """Consolidated page parameter (deepObject style).
 
-    page_size: Annotated[int, PropertyInfo(alias="page[size]")]
+    Originally: page[number], page[size]
+    """
 
 
 class Filter(TypedDict, total=False):
@@ -32,3 +32,16 @@ class Filter(TypedDict, total=False):
 
     status: Literal["pending", "completed"]
     """Filter reports of a specific status"""
+
+
+class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[number], page[size]
+    """
+
+    number: int
+    """The page number to load"""
+
+    size: int
+    """The size of the page"""

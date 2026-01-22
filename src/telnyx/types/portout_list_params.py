@@ -9,7 +9,7 @@ from typing_extensions import Literal, Annotated, TypedDict
 from .._types import SequenceNotStr
 from .._utils import PropertyInfo
 
-__all__ = ["PortoutListParams", "Filter", "FilterInsertedAt", "FilterPortedOutAt"]
+__all__ = ["PortoutListParams", "Filter", "FilterInsertedAt", "FilterPortedOutAt", "Page"]
 
 
 class PortoutListParams(TypedDict, total=False):
@@ -22,9 +22,11 @@ class PortoutListParams(TypedDict, total=False):
     filter[support_key]
     """
 
-    page_number: Annotated[int, PropertyInfo(alias="page[number]")]
+    page: Page
+    """Consolidated page parameter (deepObject style).
 
-    page_size: Annotated[int, PropertyInfo(alias="page[size]")]
+    Originally: page[number], page[size]
+    """
 
 
 class FilterInsertedAt(TypedDict, total=False):
@@ -91,3 +93,16 @@ class Filter(TypedDict, total=False):
 
     support_key: str
     """Filter by the portout's support_key"""
+
+
+class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[number], page[size]
+    """
+
+    number: int
+    """The page number to load"""
+
+    size: int
+    """The size of the page"""

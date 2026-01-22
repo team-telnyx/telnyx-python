@@ -48,7 +48,7 @@ from ..._response import (
     async_to_custom_raw_response_wrapper,
     async_to_custom_streamed_response_wrapper,
 )
-from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
+from ...pagination import SyncDefaultPagination, AsyncDefaultPagination
 from ..._base_client import AsyncPaginator, make_request_options
 from .activation_jobs import (
     ActivationJobsResource,
@@ -366,8 +366,7 @@ class PortingOrdersResource(SyncAPIResource):
         *,
         filter: porting_order_list_params.Filter | Omit = omit,
         include_phone_numbers: bool | Omit = omit,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: porting_order_list_params.Page | Omit = omit,
         sort: porting_order_list_params.Sort | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -375,7 +374,7 @@ class PortingOrdersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[PortingOrder]:
+    ) -> SyncDefaultPagination[PortingOrder]:
         """
         Returns a list of your porting order.
 
@@ -393,6 +392,9 @@ class PortingOrdersResource(SyncAPIResource):
 
           include_phone_numbers: Include the first 50 phone number objects in the results
 
+          page: Consolidated page parameter (deepObject style). Originally: page[size],
+              page[number]
+
           sort: Consolidated sort parameter (deepObject style). Originally: sort[value]
 
           extra_headers: Send extra headers
@@ -405,7 +407,7 @@ class PortingOrdersResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/porting_orders",
-            page=SyncDefaultFlatPagination[PortingOrder],
+            page=SyncDefaultPagination[PortingOrder],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -415,8 +417,7 @@ class PortingOrdersResource(SyncAPIResource):
                     {
                         "filter": filter,
                         "include_phone_numbers": include_phone_numbers,
-                        "page_number": page_number,
-                        "page_size": page_size,
+                        "page": page,
                         "sort": sort,
                     },
                     porting_order_list_params.PortingOrderListParams,
@@ -562,20 +563,22 @@ class PortingOrdersResource(SyncAPIResource):
         self,
         id: str,
         *,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: porting_order_retrieve_requirements_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[PortingOrderRetrieveRequirementsResponse]:
+    ) -> SyncDefaultPagination[PortingOrderRetrieveRequirementsResponse]:
         """
         Returns a list of all requirements based on country/number type for this porting
         order.
 
         Args:
+          page: Consolidated page parameter (deepObject style). Originally: page[size],
+              page[number]
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -588,18 +591,14 @@ class PortingOrdersResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
             f"/porting_orders/{id}/requirements",
-            page=SyncDefaultFlatPagination[PortingOrderRetrieveRequirementsResponse],
+            page=SyncDefaultPagination[PortingOrderRetrieveRequirementsResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform(
-                    {
-                        "page_number": page_number,
-                        "page_size": page_size,
-                    },
-                    porting_order_retrieve_requirements_params.PortingOrderRetrieveRequirementsParams,
+                    {"page": page}, porting_order_retrieve_requirements_params.PortingOrderRetrieveRequirementsParams
                 ),
             ),
             model=PortingOrderRetrieveRequirementsResponse,
@@ -874,8 +873,7 @@ class AsyncPortingOrdersResource(AsyncAPIResource):
         *,
         filter: porting_order_list_params.Filter | Omit = omit,
         include_phone_numbers: bool | Omit = omit,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: porting_order_list_params.Page | Omit = omit,
         sort: porting_order_list_params.Sort | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -883,7 +881,7 @@ class AsyncPortingOrdersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[PortingOrder, AsyncDefaultFlatPagination[PortingOrder]]:
+    ) -> AsyncPaginator[PortingOrder, AsyncDefaultPagination[PortingOrder]]:
         """
         Returns a list of your porting order.
 
@@ -901,6 +899,9 @@ class AsyncPortingOrdersResource(AsyncAPIResource):
 
           include_phone_numbers: Include the first 50 phone number objects in the results
 
+          page: Consolidated page parameter (deepObject style). Originally: page[size],
+              page[number]
+
           sort: Consolidated sort parameter (deepObject style). Originally: sort[value]
 
           extra_headers: Send extra headers
@@ -913,7 +914,7 @@ class AsyncPortingOrdersResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/porting_orders",
-            page=AsyncDefaultFlatPagination[PortingOrder],
+            page=AsyncDefaultPagination[PortingOrder],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -923,8 +924,7 @@ class AsyncPortingOrdersResource(AsyncAPIResource):
                     {
                         "filter": filter,
                         "include_phone_numbers": include_phone_numbers,
-                        "page_number": page_number,
-                        "page_size": page_size,
+                        "page": page,
                         "sort": sort,
                     },
                     porting_order_list_params.PortingOrderListParams,
@@ -1070,8 +1070,7 @@ class AsyncPortingOrdersResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: porting_order_retrieve_requirements_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1079,13 +1078,16 @@ class AsyncPortingOrdersResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[
-        PortingOrderRetrieveRequirementsResponse, AsyncDefaultFlatPagination[PortingOrderRetrieveRequirementsResponse]
+        PortingOrderRetrieveRequirementsResponse, AsyncDefaultPagination[PortingOrderRetrieveRequirementsResponse]
     ]:
         """
         Returns a list of all requirements based on country/number type for this porting
         order.
 
         Args:
+          page: Consolidated page parameter (deepObject style). Originally: page[size],
+              page[number]
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1098,18 +1100,14 @@ class AsyncPortingOrdersResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
             f"/porting_orders/{id}/requirements",
-            page=AsyncDefaultFlatPagination[PortingOrderRetrieveRequirementsResponse],
+            page=AsyncDefaultPagination[PortingOrderRetrieveRequirementsResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform(
-                    {
-                        "page_number": page_number,
-                        "page_size": page_size,
-                    },
-                    porting_order_retrieve_requirements_params.PortingOrderRetrieveRequirementsParams,
+                    {"page": page}, porting_order_retrieve_requirements_params.PortingOrderRetrieveRequirementsParams
                 ),
             ),
             model=PortingOrderRetrieveRequirementsResponse,

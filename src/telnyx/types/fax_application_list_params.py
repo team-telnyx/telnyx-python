@@ -2,11 +2,9 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Annotated, TypedDict
+from typing_extensions import Literal, TypedDict
 
-from .._utils import PropertyInfo
-
-__all__ = ["FaxApplicationListParams", "Filter", "FilterApplicationName"]
+__all__ = ["FaxApplicationListParams", "Filter", "FilterApplicationName", "Page"]
 
 
 class FaxApplicationListParams(TypedDict, total=False):
@@ -17,9 +15,11 @@ class FaxApplicationListParams(TypedDict, total=False):
     filter[outbound_voice_profile_id]
     """
 
-    page_number: Annotated[int, PropertyInfo(alias="page[number]")]
+    page: Page
+    """Consolidated page parameter (deepObject style).
 
-    page_size: Annotated[int, PropertyInfo(alias="page[size]")]
+    Originally: page[number], page[size]
+    """
 
     sort: Literal["created_at", "application_name", "active"]
     """Specifies the sort order for results.
@@ -62,3 +62,16 @@ class Filter(TypedDict, total=False):
 
     outbound_voice_profile_id: str
     """Identifies the associated outbound voice profile."""
+
+
+class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[number], page[size]
+    """
+
+    number: int
+    """The page number to load"""
+
+    size: int
+    """The size of the page"""

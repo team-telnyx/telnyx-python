@@ -2,11 +2,9 @@
 
 from __future__ import annotations
 
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import TypedDict
 
-from .._utils import PropertyInfo
-
-__all__ = ["NumberOrderListParams", "Filter", "FilterCreatedAt"]
+__all__ = ["NumberOrderListParams", "Filter", "FilterCreatedAt", "Page"]
 
 
 class NumberOrderListParams(TypedDict, total=False):
@@ -17,9 +15,11 @@ class NumberOrderListParams(TypedDict, total=False):
     filter[customer_reference], filter[requirements_met]
     """
 
-    page_number: Annotated[int, PropertyInfo(alias="page[number]")]
+    page: Page
+    """Consolidated page parameter (deepObject style).
 
-    page_size: Annotated[int, PropertyInfo(alias="page[size]")]
+    Originally: page[size], page[number]
+    """
 
 
 class FilterCreatedAt(TypedDict, total=False):
@@ -52,3 +52,16 @@ class Filter(TypedDict, total=False):
 
     status: str
     """Filter number orders by status."""
+
+
+class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[size], page[number]
+    """
+
+    number: int
+    """The page number to load"""
+
+    size: int
+    """The size of the page"""

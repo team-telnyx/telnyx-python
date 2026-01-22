@@ -33,7 +33,7 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
+from ...pagination import SyncDefaultPagination, AsyncDefaultPagination
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.dtmf_type import DtmfType
 from ...types.encrypted_media import EncryptedMedia
@@ -46,7 +46,6 @@ from ...types.credential_connection_create_response import CredentialConnectionC
 from ...types.credential_connection_delete_response import CredentialConnectionDeleteResponse
 from ...types.credential_connection_update_response import CredentialConnectionUpdateResponse
 from ...types.credential_connection_retrieve_response import CredentialConnectionRetrieveResponse
-from ...types.shared_params.connection_noise_suppression_details import ConnectionNoiseSuppressionDetails
 
 __all__ = ["CredentialConnectionsResource", "AsyncCredentialConnectionsResource"]
 
@@ -92,7 +91,7 @@ class CredentialConnectionsResource(SyncAPIResource):
         inbound: CredentialInboundParam | Omit = omit,
         ios_push_credential_id: Optional[str] | Omit = omit,
         noise_suppression: Literal["inbound", "outbound", "both", "disabled"] | Omit = omit,
-        noise_suppression_details: ConnectionNoiseSuppressionDetails | Omit = omit,
+        noise_suppression_details: credential_connection_create_params.NoiseSuppressionDetails | Omit = omit,
         onnet_t38_passthrough_enabled: bool | Omit = omit,
         outbound: CredentialOutboundParam | Omit = omit,
         rtcp_settings: ConnectionRtcpSettingsParam | Omit = omit,
@@ -274,7 +273,7 @@ class CredentialConnectionsResource(SyncAPIResource):
         inbound: CredentialInboundParam | Omit = omit,
         ios_push_credential_id: Optional[str] | Omit = omit,
         noise_suppression: Literal["inbound", "outbound", "both", "disabled"] | Omit = omit,
-        noise_suppression_details: ConnectionNoiseSuppressionDetails | Omit = omit,
+        noise_suppression_details: credential_connection_update_params.NoiseSuppressionDetails | Omit = omit,
         onnet_t38_passthrough_enabled: bool | Omit = omit,
         outbound: CredentialOutboundParam | Omit = omit,
         password: str | Omit = omit,
@@ -413,8 +412,7 @@ class CredentialConnectionsResource(SyncAPIResource):
         self,
         *,
         filter: credential_connection_list_params.Filter | Omit = omit,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: credential_connection_list_params.Page | Omit = omit,
         sort: Literal["created_at", "connection_name", "active"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -422,7 +420,7 @@ class CredentialConnectionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[CredentialConnection]:
+    ) -> SyncDefaultPagination[CredentialConnection]:
         """
         Returns a list of your credential connections.
 
@@ -431,6 +429,9 @@ class CredentialConnectionsResource(SyncAPIResource):
               Consolidated filter parameter (deepObject style). Originally:
               filter[connection_name], filter[fqdn], filter[outbound_voice_profile_id],
               filter[outbound.outbound_voice_profile_id]
+
+          page: Consolidated page parameter (deepObject style). Originally: page[size],
+              page[number]
 
           sort: Specifies the sort order for results. By default sorting direction is ascending.
               To have the results sorted in descending order add the <code> -</code>
@@ -457,7 +458,7 @@ class CredentialConnectionsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/credential_connections",
-            page=SyncDefaultFlatPagination[CredentialConnection],
+            page=SyncDefaultPagination[CredentialConnection],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -466,8 +467,7 @@ class CredentialConnectionsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page_number": page_number,
-                        "page_size": page_size,
+                        "page": page,
                         "sort": sort,
                     },
                     credential_connection_list_params.CredentialConnectionListParams,
@@ -551,7 +551,7 @@ class AsyncCredentialConnectionsResource(AsyncAPIResource):
         inbound: CredentialInboundParam | Omit = omit,
         ios_push_credential_id: Optional[str] | Omit = omit,
         noise_suppression: Literal["inbound", "outbound", "both", "disabled"] | Omit = omit,
-        noise_suppression_details: ConnectionNoiseSuppressionDetails | Omit = omit,
+        noise_suppression_details: credential_connection_create_params.NoiseSuppressionDetails | Omit = omit,
         onnet_t38_passthrough_enabled: bool | Omit = omit,
         outbound: CredentialOutboundParam | Omit = omit,
         rtcp_settings: ConnectionRtcpSettingsParam | Omit = omit,
@@ -733,7 +733,7 @@ class AsyncCredentialConnectionsResource(AsyncAPIResource):
         inbound: CredentialInboundParam | Omit = omit,
         ios_push_credential_id: Optional[str] | Omit = omit,
         noise_suppression: Literal["inbound", "outbound", "both", "disabled"] | Omit = omit,
-        noise_suppression_details: ConnectionNoiseSuppressionDetails | Omit = omit,
+        noise_suppression_details: credential_connection_update_params.NoiseSuppressionDetails | Omit = omit,
         onnet_t38_passthrough_enabled: bool | Omit = omit,
         outbound: CredentialOutboundParam | Omit = omit,
         password: str | Omit = omit,
@@ -872,8 +872,7 @@ class AsyncCredentialConnectionsResource(AsyncAPIResource):
         self,
         *,
         filter: credential_connection_list_params.Filter | Omit = omit,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: credential_connection_list_params.Page | Omit = omit,
         sort: Literal["created_at", "connection_name", "active"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -881,7 +880,7 @@ class AsyncCredentialConnectionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[CredentialConnection, AsyncDefaultFlatPagination[CredentialConnection]]:
+    ) -> AsyncPaginator[CredentialConnection, AsyncDefaultPagination[CredentialConnection]]:
         """
         Returns a list of your credential connections.
 
@@ -890,6 +889,9 @@ class AsyncCredentialConnectionsResource(AsyncAPIResource):
               Consolidated filter parameter (deepObject style). Originally:
               filter[connection_name], filter[fqdn], filter[outbound_voice_profile_id],
               filter[outbound.outbound_voice_profile_id]
+
+          page: Consolidated page parameter (deepObject style). Originally: page[size],
+              page[number]
 
           sort: Specifies the sort order for results. By default sorting direction is ascending.
               To have the results sorted in descending order add the <code> -</code>
@@ -916,7 +918,7 @@ class AsyncCredentialConnectionsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/credential_connections",
-            page=AsyncDefaultFlatPagination[CredentialConnection],
+            page=AsyncDefaultPagination[CredentialConnection],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -925,8 +927,7 @@ class AsyncCredentialConnectionsResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page_number": page_number,
-                        "page_size": page_size,
+                        "page": page,
                         "sort": sort,
                     },
                     credential_connection_list_params.CredentialConnectionListParams,

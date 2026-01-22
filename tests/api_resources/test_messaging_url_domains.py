@@ -10,7 +10,7 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types import MessagingURLDomainListResponse
-from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
+from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -23,18 +23,20 @@ class TestMessagingURLDomains:
     def test_method_list(self, client: Telnyx) -> None:
         messaging_url_domain = client.messaging_url_domains.list()
         assert_matches_type(
-            SyncDefaultFlatPagination[MessagingURLDomainListResponse], messaging_url_domain, path=["response"]
+            SyncDefaultPagination[MessagingURLDomainListResponse], messaging_url_domain, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         messaging_url_domain = client.messaging_url_domains.list(
-            page_number=0,
-            page_size=0,
+            page={
+                "number": 1,
+                "size": 1,
+            },
         )
         assert_matches_type(
-            SyncDefaultFlatPagination[MessagingURLDomainListResponse], messaging_url_domain, path=["response"]
+            SyncDefaultPagination[MessagingURLDomainListResponse], messaging_url_domain, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -46,7 +48,7 @@ class TestMessagingURLDomains:
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         messaging_url_domain = response.parse()
         assert_matches_type(
-            SyncDefaultFlatPagination[MessagingURLDomainListResponse], messaging_url_domain, path=["response"]
+            SyncDefaultPagination[MessagingURLDomainListResponse], messaging_url_domain, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -58,7 +60,7 @@ class TestMessagingURLDomains:
 
             messaging_url_domain = response.parse()
             assert_matches_type(
-                SyncDefaultFlatPagination[MessagingURLDomainListResponse], messaging_url_domain, path=["response"]
+                SyncDefaultPagination[MessagingURLDomainListResponse], messaging_url_domain, path=["response"]
             )
 
         assert cast(Any, response.is_closed) is True
@@ -74,18 +76,20 @@ class TestAsyncMessagingURLDomains:
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         messaging_url_domain = await async_client.messaging_url_domains.list()
         assert_matches_type(
-            AsyncDefaultFlatPagination[MessagingURLDomainListResponse], messaging_url_domain, path=["response"]
+            AsyncDefaultPagination[MessagingURLDomainListResponse], messaging_url_domain, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         messaging_url_domain = await async_client.messaging_url_domains.list(
-            page_number=0,
-            page_size=0,
+            page={
+                "number": 1,
+                "size": 1,
+            },
         )
         assert_matches_type(
-            AsyncDefaultFlatPagination[MessagingURLDomainListResponse], messaging_url_domain, path=["response"]
+            AsyncDefaultPagination[MessagingURLDomainListResponse], messaging_url_domain, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -97,7 +101,7 @@ class TestAsyncMessagingURLDomains:
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         messaging_url_domain = await response.parse()
         assert_matches_type(
-            AsyncDefaultFlatPagination[MessagingURLDomainListResponse], messaging_url_domain, path=["response"]
+            AsyncDefaultPagination[MessagingURLDomainListResponse], messaging_url_domain, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -109,7 +113,7 @@ class TestAsyncMessagingURLDomains:
 
             messaging_url_domain = await response.parse()
             assert_matches_type(
-                AsyncDefaultFlatPagination[MessagingURLDomainListResponse], messaging_url_domain, path=["response"]
+                AsyncDefaultPagination[MessagingURLDomainListResponse], messaging_url_domain, path=["response"]
             )
 
         assert cast(Any, response.is_closed) is True

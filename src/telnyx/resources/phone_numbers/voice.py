@@ -16,7 +16,7 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
+from ...pagination import SyncDefaultPagination, AsyncDefaultPagination
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.phone_numbers import (
     voice_list_params,
@@ -169,8 +169,7 @@ class VoiceResource(SyncAPIResource):
         self,
         *,
         filter: voice_list_params.Filter | Omit = omit,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: voice_list_params.Page | Omit = omit,
         sort: Literal["purchased_at", "phone_number", "connection_name", "usage_payment_method"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -178,7 +177,7 @@ class VoiceResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[PhoneNumberWithVoiceSettings]:
+    ) -> SyncDefaultPagination[PhoneNumberWithVoiceSettings]:
         """
         List phone numbers with voice settings
 
@@ -187,6 +186,9 @@ class VoiceResource(SyncAPIResource):
               Consolidated filter parameter (deepObject style). Originally:
               filter[phone_number], filter[connection_name], filter[customer_reference],
               filter[voice.usage_payment_method]
+
+          page: Consolidated page parameter (deepObject style). Originally: page[size],
+              page[number]
 
           sort: Specifies the sort order for results. If not given, results are sorted by
               created_at in descending order.
@@ -201,7 +203,7 @@ class VoiceResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/phone_numbers/voice",
-            page=SyncDefaultFlatPagination[PhoneNumberWithVoiceSettings],
+            page=SyncDefaultPagination[PhoneNumberWithVoiceSettings],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -210,8 +212,7 @@ class VoiceResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page_number": page_number,
-                        "page_size": page_size,
+                        "page": page,
                         "sort": sort,
                     },
                     voice_list_params.VoiceListParams,
@@ -357,8 +358,7 @@ class AsyncVoiceResource(AsyncAPIResource):
         self,
         *,
         filter: voice_list_params.Filter | Omit = omit,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: voice_list_params.Page | Omit = omit,
         sort: Literal["purchased_at", "phone_number", "connection_name", "usage_payment_method"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -366,7 +366,7 @@ class AsyncVoiceResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[PhoneNumberWithVoiceSettings, AsyncDefaultFlatPagination[PhoneNumberWithVoiceSettings]]:
+    ) -> AsyncPaginator[PhoneNumberWithVoiceSettings, AsyncDefaultPagination[PhoneNumberWithVoiceSettings]]:
         """
         List phone numbers with voice settings
 
@@ -375,6 +375,9 @@ class AsyncVoiceResource(AsyncAPIResource):
               Consolidated filter parameter (deepObject style). Originally:
               filter[phone_number], filter[connection_name], filter[customer_reference],
               filter[voice.usage_payment_method]
+
+          page: Consolidated page parameter (deepObject style). Originally: page[size],
+              page[number]
 
           sort: Specifies the sort order for results. If not given, results are sorted by
               created_at in descending order.
@@ -389,7 +392,7 @@ class AsyncVoiceResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/phone_numbers/voice",
-            page=AsyncDefaultFlatPagination[PhoneNumberWithVoiceSettings],
+            page=AsyncDefaultPagination[PhoneNumberWithVoiceSettings],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -398,8 +401,7 @@ class AsyncVoiceResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page_number": page_number,
-                        "page_size": page_size,
+                        "page": page,
                         "sort": sort,
                     },
                     voice_list_params.VoiceListParams,
