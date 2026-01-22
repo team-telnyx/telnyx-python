@@ -11,6 +11,7 @@ from .voice_settings import VoiceSettings as VoiceSettings
 from .assistant_param import AssistantParam as AssistantParam
 from .assistants_list import AssistantsList as AssistantsList
 from .import_metadata import ImportMetadata as ImportMetadata
+from .widget_settings import WidgetSettings as WidgetSettings
 from .bucket_ids_param import BucketIDsParam as BucketIDsParam
 from .enabled_features import EnabledFeatures as EnabledFeatures
 from .insight_settings import InsightSettings as InsightSettings
@@ -32,6 +33,7 @@ from .voice_settings_param import VoiceSettingsParam as VoiceSettingsParam
 from .assistant_chat_params import AssistantChatParams as AssistantChatParams
 from .cluster_list_response import ClusterListResponse as ClusterListResponse
 from .embedding_list_params import EmbeddingListParams as EmbeddingListParams
+from .widget_settings_param import WidgetSettingsParam as WidgetSettingsParam
 from .background_task_status import BackgroundTaskStatus as BackgroundTaskStatus
 from .cluster_compute_params import ClusterComputeParams as ClusterComputeParams
 from .insight_settings_param import InsightSettingsParam as InsightSettingsParam
@@ -42,6 +44,7 @@ from .assistant_chat_response import AssistantChatResponse as AssistantChatRespo
 from .assistant_create_params import AssistantCreateParams as AssistantCreateParams
 from .assistant_update_params import AssistantUpdateParams as AssistantUpdateParams
 from .audio_transcribe_params import AudioTranscribeParams as AudioTranscribeParams
+from .audio_visualizer_config import AudioVisualizerConfig as AudioVisualizerConfig
 from .cluster_retrieve_params import ClusterRetrieveParams as ClusterRetrieveParams
 from .embedding_create_params import EmbeddingCreateParams as EmbeddingCreateParams
 from .embedding_list_response import EmbeddingListResponse as EmbeddingListResponse
@@ -72,6 +75,7 @@ from .assistant_get_texml_response import AssistantGetTexmlResponse as Assistant
 from .conversation_update_response import ConversationUpdateResponse as ConversationUpdateResponse
 from .mcp_server_retrieve_response import McpServerRetrieveResponse as McpServerRetrieveResponse
 from .transcription_settings_param import TranscriptionSettingsParam as TranscriptionSettingsParam
+from .audio_visualizer_config_param import AudioVisualizerConfigParam as AudioVisualizerConfigParam
 from .chat_create_completion_params import ChatCreateCompletionParams as ChatCreateCompletionParams
 from .integration_retrieve_response import IntegrationRetrieveResponse as IntegrationRetrieveResponse
 from .transcription_settings_config import TranscriptionSettingsConfig as TranscriptionSettingsConfig
