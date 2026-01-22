@@ -9,7 +9,6 @@ import pytest
 
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
-from telnyx.pagination import SyncDefaultPaginationForQueues, AsyncDefaultPaginationForQueues
 from telnyx.types.texml.accounts import (
     QueueListResponse,
     QueueCreateResponse,
@@ -195,7 +194,7 @@ class TestQueues:
         queue = client.texml.accounts.queues.list(
             account_sid="account_sid",
         )
-        assert_matches_type(SyncDefaultPaginationForQueues[QueueListResponse], queue, path=["response"])
+        assert_matches_type(QueueListResponse, queue, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -208,7 +207,7 @@ class TestQueues:
             page_size=0,
             page_token="PageToken",
         )
-        assert_matches_type(SyncDefaultPaginationForQueues[QueueListResponse], queue, path=["response"])
+        assert_matches_type(QueueListResponse, queue, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -220,7 +219,7 @@ class TestQueues:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         queue = response.parse()
-        assert_matches_type(SyncDefaultPaginationForQueues[QueueListResponse], queue, path=["response"])
+        assert_matches_type(QueueListResponse, queue, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -232,7 +231,7 @@ class TestQueues:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             queue = response.parse()
-            assert_matches_type(SyncDefaultPaginationForQueues[QueueListResponse], queue, path=["response"])
+            assert_matches_type(QueueListResponse, queue, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -474,7 +473,7 @@ class TestAsyncQueues:
         queue = await async_client.texml.accounts.queues.list(
             account_sid="account_sid",
         )
-        assert_matches_type(AsyncDefaultPaginationForQueues[QueueListResponse], queue, path=["response"])
+        assert_matches_type(QueueListResponse, queue, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -487,7 +486,7 @@ class TestAsyncQueues:
             page_size=0,
             page_token="PageToken",
         )
-        assert_matches_type(AsyncDefaultPaginationForQueues[QueueListResponse], queue, path=["response"])
+        assert_matches_type(QueueListResponse, queue, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -499,7 +498,7 @@ class TestAsyncQueues:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         queue = await response.parse()
-        assert_matches_type(AsyncDefaultPaginationForQueues[QueueListResponse], queue, path=["response"])
+        assert_matches_type(QueueListResponse, queue, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -511,7 +510,7 @@ class TestAsyncQueues:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             queue = await response.parse()
-            assert_matches_type(AsyncDefaultPaginationForQueues[QueueListResponse], queue, path=["response"])
+            assert_matches_type(QueueListResponse, queue, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -15,7 +15,7 @@ from telnyx.types import (
     AddressDeleteResponse,
     AddressRetrieveResponse,
 )
-from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
+from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -140,7 +140,7 @@ class TestAddresses:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         address = client.addresses.list()
-        assert_matches_type(SyncDefaultFlatPagination[Address], address, path=["response"])
+        assert_matches_type(SyncDefaultPagination[Address], address, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -152,11 +152,13 @@ class TestAddresses:
                 "street_address": {"contains": "contains"},
                 "used_as_emergency": "used_as_emergency",
             },
-            page_number=0,
-            page_size=0,
+            page={
+                "number": 1,
+                "size": 1,
+            },
             sort="street_address",
         )
-        assert_matches_type(SyncDefaultFlatPagination[Address], address, path=["response"])
+        assert_matches_type(SyncDefaultPagination[Address], address, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -166,7 +168,7 @@ class TestAddresses:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         address = response.parse()
-        assert_matches_type(SyncDefaultFlatPagination[Address], address, path=["response"])
+        assert_matches_type(SyncDefaultPagination[Address], address, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -176,7 +178,7 @@ class TestAddresses:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             address = response.parse()
-            assert_matches_type(SyncDefaultFlatPagination[Address], address, path=["response"])
+            assert_matches_type(SyncDefaultPagination[Address], address, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -345,7 +347,7 @@ class TestAsyncAddresses:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         address = await async_client.addresses.list()
-        assert_matches_type(AsyncDefaultFlatPagination[Address], address, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[Address], address, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -357,11 +359,13 @@ class TestAsyncAddresses:
                 "street_address": {"contains": "contains"},
                 "used_as_emergency": "used_as_emergency",
             },
-            page_number=0,
-            page_size=0,
+            page={
+                "number": 1,
+                "size": 1,
+            },
             sort="street_address",
         )
-        assert_matches_type(AsyncDefaultFlatPagination[Address], address, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[Address], address, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -371,7 +375,7 @@ class TestAsyncAddresses:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         address = await response.parse()
-        assert_matches_type(AsyncDefaultFlatPagination[Address], address, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[Address], address, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -381,7 +385,7 @@ class TestAsyncAddresses:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             address = await response.parse()
-            assert_matches_type(AsyncDefaultFlatPagination[Address], address, path=["response"])
+            assert_matches_type(AsyncDefaultPagination[Address], address, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

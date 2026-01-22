@@ -15,7 +15,7 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
+from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.room_recording_list_response import RoomRecordingListResponse
 from ..types.room_recording_retrieve_response import RoomRecordingRetrieveResponse
@@ -81,15 +81,14 @@ class RoomRecordingsResource(SyncAPIResource):
         self,
         *,
         filter: room_recording_list_params.Filter | Omit = omit,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: room_recording_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[RoomRecordingListResponse]:
+    ) -> SyncDefaultPagination[RoomRecordingListResponse]:
         """
         View a list of room recordings.
 
@@ -102,6 +101,9 @@ class RoomRecordingsResource(SyncAPIResource):
               filter[participant_id], filter[session_id], filter[status], filter[type],
               filter[duration_secs]
 
+          page: Consolidated page parameter (deepObject style). Originally: page[size],
+              page[number]
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -112,7 +114,7 @@ class RoomRecordingsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/room_recordings",
-            page=SyncDefaultFlatPagination[RoomRecordingListResponse],
+            page=SyncDefaultPagination[RoomRecordingListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -121,8 +123,7 @@ class RoomRecordingsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page_number": page_number,
-                        "page_size": page_size,
+                        "page": page,
                     },
                     room_recording_list_params.RoomRecordingListParams,
                 ),
@@ -168,8 +169,7 @@ class RoomRecordingsResource(SyncAPIResource):
         self,
         *,
         filter: room_recording_delete_bulk_params.Filter | Omit = omit,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: room_recording_delete_bulk_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -189,6 +189,9 @@ class RoomRecordingsResource(SyncAPIResource):
               filter[participant_id], filter[session_id], filter[status], filter[type],
               filter[duration_secs]
 
+          page: Consolidated page parameter (deepObject style). Originally: page[size],
+              page[number]
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -207,8 +210,7 @@ class RoomRecordingsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page_number": page_number,
-                        "page_size": page_size,
+                        "page": page,
                     },
                     room_recording_delete_bulk_params.RoomRecordingDeleteBulkParams,
                 ),
@@ -274,15 +276,14 @@ class AsyncRoomRecordingsResource(AsyncAPIResource):
         self,
         *,
         filter: room_recording_list_params.Filter | Omit = omit,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: room_recording_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[RoomRecordingListResponse, AsyncDefaultFlatPagination[RoomRecordingListResponse]]:
+    ) -> AsyncPaginator[RoomRecordingListResponse, AsyncDefaultPagination[RoomRecordingListResponse]]:
         """
         View a list of room recordings.
 
@@ -295,6 +296,9 @@ class AsyncRoomRecordingsResource(AsyncAPIResource):
               filter[participant_id], filter[session_id], filter[status], filter[type],
               filter[duration_secs]
 
+          page: Consolidated page parameter (deepObject style). Originally: page[size],
+              page[number]
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -305,7 +309,7 @@ class AsyncRoomRecordingsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/room_recordings",
-            page=AsyncDefaultFlatPagination[RoomRecordingListResponse],
+            page=AsyncDefaultPagination[RoomRecordingListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -314,8 +318,7 @@ class AsyncRoomRecordingsResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page_number": page_number,
-                        "page_size": page_size,
+                        "page": page,
                     },
                     room_recording_list_params.RoomRecordingListParams,
                 ),
@@ -361,8 +364,7 @@ class AsyncRoomRecordingsResource(AsyncAPIResource):
         self,
         *,
         filter: room_recording_delete_bulk_params.Filter | Omit = omit,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: room_recording_delete_bulk_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -382,6 +384,9 @@ class AsyncRoomRecordingsResource(AsyncAPIResource):
               filter[participant_id], filter[session_id], filter[status], filter[type],
               filter[duration_secs]
 
+          page: Consolidated page parameter (deepObject style). Originally: page[size],
+              page[number]
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -400,8 +405,7 @@ class AsyncRoomRecordingsResource(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {
                         "filter": filter,
-                        "page_number": page_number,
-                        "page_size": page_size,
+                        "page": page,
                     },
                     room_recording_delete_bulk_params.RoomRecordingDeleteBulkParams,
                 ),

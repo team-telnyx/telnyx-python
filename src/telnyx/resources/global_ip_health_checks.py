@@ -17,7 +17,7 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
+from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.global_ip_health_check_list_response import GlobalIPHealthCheckListResponse
 from ..types.global_ip_health_check_create_response import GlobalIPHealthCheckCreateResponse
@@ -130,19 +130,21 @@ class GlobalIPHealthChecksResource(SyncAPIResource):
     def list(
         self,
         *,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: global_ip_health_check_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[GlobalIPHealthCheckListResponse]:
+    ) -> SyncDefaultPagination[GlobalIPHealthCheckListResponse]:
         """
         List all Global IP health checks.
 
         Args:
+          page: Consolidated page parameter (deepObject style). Originally: page[number],
+              page[size]
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -153,19 +155,13 @@ class GlobalIPHealthChecksResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/global_ip_health_checks",
-            page=SyncDefaultFlatPagination[GlobalIPHealthCheckListResponse],
+            page=SyncDefaultPagination[GlobalIPHealthCheckListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "page_number": page_number,
-                        "page_size": page_size,
-                    },
-                    global_ip_health_check_list_params.GlobalIPHealthCheckListParams,
-                ),
+                query=maybe_transform({"page": page}, global_ip_health_check_list_params.GlobalIPHealthCheckListParams),
             ),
             model=GlobalIPHealthCheckListResponse,
         )
@@ -307,19 +303,21 @@ class AsyncGlobalIPHealthChecksResource(AsyncAPIResource):
     def list(
         self,
         *,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: global_ip_health_check_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[GlobalIPHealthCheckListResponse, AsyncDefaultFlatPagination[GlobalIPHealthCheckListResponse]]:
+    ) -> AsyncPaginator[GlobalIPHealthCheckListResponse, AsyncDefaultPagination[GlobalIPHealthCheckListResponse]]:
         """
         List all Global IP health checks.
 
         Args:
+          page: Consolidated page parameter (deepObject style). Originally: page[number],
+              page[size]
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -330,19 +328,13 @@ class AsyncGlobalIPHealthChecksResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/global_ip_health_checks",
-            page=AsyncDefaultFlatPagination[GlobalIPHealthCheckListResponse],
+            page=AsyncDefaultPagination[GlobalIPHealthCheckListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "page_number": page_number,
-                        "page_size": page_size,
-                    },
-                    global_ip_health_check_list_params.GlobalIPHealthCheckListParams,
-                ),
+                query=maybe_transform({"page": page}, global_ip_health_check_list_params.GlobalIPHealthCheckListParams),
             ),
             model=GlobalIPHealthCheckListResponse,
         )

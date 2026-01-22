@@ -18,7 +18,12 @@ from telnyx.types import (
     SimCardGetActivationCodeResponse,
     SimCardListWirelessConnectivityLogsResponse,
 )
-from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
+from telnyx.pagination import (
+    SyncDefaultPagination,
+    AsyncDefaultPagination,
+    SyncDefaultFlatPagination,
+    AsyncDefaultFlatPagination,
+)
 from telnyx.types.shared import SimpleSimCard
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -141,7 +146,7 @@ class TestSimCards:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         sim_card = client.sim_cards.list()
-        assert_matches_type(SyncDefaultFlatPagination[SimpleSimCard], sim_card, path=["response"])
+        assert_matches_type(SyncDefaultPagination[SimpleSimCard], sim_card, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -149,16 +154,19 @@ class TestSimCards:
         sim_card = client.sim_cards.list(
             filter={
                 "iccid": "89310410106543789301",
+                "msisdn": "+13109976224",
                 "status": ["enabled"],
                 "tags": ["personal", "customers", "active-customers"],
             },
             filter_sim_card_group_id="47a1c2b0-cc7b-4ab1-bb98-b33fb0fc61b9",
             include_sim_card_group=True,
-            page_number=0,
-            page_size=0,
+            page={
+                "number": 1,
+                "size": 1,
+            },
             sort="current_billing_period_consumed_data.amount",
         )
-        assert_matches_type(SyncDefaultFlatPagination[SimpleSimCard], sim_card, path=["response"])
+        assert_matches_type(SyncDefaultPagination[SimpleSimCard], sim_card, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -168,7 +176,7 @@ class TestSimCards:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         sim_card = response.parse()
-        assert_matches_type(SyncDefaultFlatPagination[SimpleSimCard], sim_card, path=["response"])
+        assert_matches_type(SyncDefaultPagination[SimpleSimCard], sim_card, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -178,7 +186,7 @@ class TestSimCards:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             sim_card = response.parse()
-            assert_matches_type(SyncDefaultFlatPagination[SimpleSimCard], sim_card, path=["response"])
+            assert_matches_type(SyncDefaultPagination[SimpleSimCard], sim_card, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -539,7 +547,7 @@ class TestAsyncSimCards:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         sim_card = await async_client.sim_cards.list()
-        assert_matches_type(AsyncDefaultFlatPagination[SimpleSimCard], sim_card, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[SimpleSimCard], sim_card, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -547,16 +555,19 @@ class TestAsyncSimCards:
         sim_card = await async_client.sim_cards.list(
             filter={
                 "iccid": "89310410106543789301",
+                "msisdn": "+13109976224",
                 "status": ["enabled"],
                 "tags": ["personal", "customers", "active-customers"],
             },
             filter_sim_card_group_id="47a1c2b0-cc7b-4ab1-bb98-b33fb0fc61b9",
             include_sim_card_group=True,
-            page_number=0,
-            page_size=0,
+            page={
+                "number": 1,
+                "size": 1,
+            },
             sort="current_billing_period_consumed_data.amount",
         )
-        assert_matches_type(AsyncDefaultFlatPagination[SimpleSimCard], sim_card, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[SimpleSimCard], sim_card, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -566,7 +577,7 @@ class TestAsyncSimCards:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         sim_card = await response.parse()
-        assert_matches_type(AsyncDefaultFlatPagination[SimpleSimCard], sim_card, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[SimpleSimCard], sim_card, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -576,7 +587,7 @@ class TestAsyncSimCards:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             sim_card = await response.parse()
-            assert_matches_type(AsyncDefaultFlatPagination[SimpleSimCard], sim_card, path=["response"])
+            assert_matches_type(AsyncDefaultPagination[SimpleSimCard], sim_card, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

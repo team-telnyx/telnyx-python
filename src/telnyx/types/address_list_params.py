@@ -3,9 +3,7 @@
 from __future__ import annotations
 
 from typing import Union
-from typing_extensions import Literal, Annotated, TypeAlias, TypedDict
-
-from .._utils import PropertyInfo
+from typing_extensions import Literal, TypeAlias, TypedDict
 
 __all__ = [
     "AddressListParams",
@@ -14,6 +12,7 @@ __all__ = [
     "FilterCustomerReference",
     "FilterCustomerReferenceCustomerReferenceMatcher",
     "FilterStreetAddress",
+    "Page",
 ]
 
 
@@ -26,9 +25,11 @@ class AddressListParams(TypedDict, total=False):
     filter[street_address][contains], filter[address_book][eq]
     """
 
-    page_number: Annotated[int, PropertyInfo(alias="page[number]")]
+    page: Page
+    """Consolidated page parameter (deepObject style).
 
-    page_size: Annotated[int, PropertyInfo(alias="page[size]")]
+    Originally: page[number], page[size]
+    """
 
     sort: Literal["created_at", "first_name", "last_name", "business_name", "street_address"]
     """Specifies the sort order for results.
@@ -100,3 +101,16 @@ class Filter(TypedDict, total=False):
     only addresses not used as the emergency address from phone-numbers will be
     returned.
     """
+
+
+class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[number], page[size]
+    """
+
+    number: int
+    """The page number to load"""
+
+    size: int
+    """The size of the page"""

@@ -3,11 +3,9 @@
 from __future__ import annotations
 
 from typing import List
-from typing_extensions import Literal, Annotated, TypedDict
+from typing_extensions import Literal, TypedDict
 
-from .._utils import PropertyInfo
-
-__all__ = ["RequirementListParams", "Filter"]
+__all__ = ["RequirementListParams", "Filter", "Page"]
 
 
 class RequirementListParams(TypedDict, total=False):
@@ -17,9 +15,11 @@ class RequirementListParams(TypedDict, total=False):
     Originally: filter[country_code], filter[phone_number_type], filter[action]
     """
 
-    page_number: Annotated[int, PropertyInfo(alias="page[number]")]
+    page: Page
+    """Consolidated page parameter (deepObject style).
 
-    page_size: Annotated[int, PropertyInfo(alias="page[size]")]
+    Originally: page[size], page[number]
+    """
 
     sort: List[
         Literal[
@@ -56,3 +56,16 @@ class Filter(TypedDict, total=False):
 
     phone_number_type: Literal["local", "national", "toll_free"]
     """Filters results to those applying to a specific phone_number_type"""
+
+
+class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[size], page[number]
+    """
+
+    number: int
+    """The page number to load"""
+
+    size: int
+    """The size of the page"""

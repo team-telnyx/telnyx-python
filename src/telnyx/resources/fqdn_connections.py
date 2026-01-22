@@ -27,7 +27,7 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
+from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.dtmf_type import DtmfType
 from ..types.encrypted_media import EncryptedMedia
@@ -42,7 +42,6 @@ from ..types.fqdn_connection_create_response import FqdnConnectionCreateResponse
 from ..types.fqdn_connection_delete_response import FqdnConnectionDeleteResponse
 from ..types.fqdn_connection_update_response import FqdnConnectionUpdateResponse
 from ..types.fqdn_connection_retrieve_response import FqdnConnectionRetrieveResponse
-from ..types.shared_params.connection_noise_suppression_details import ConnectionNoiseSuppressionDetails
 
 __all__ = ["FqdnConnectionsResource", "AsyncFqdnConnectionsResource"]
 
@@ -83,7 +82,7 @@ class FqdnConnectionsResource(SyncAPIResource):
         ios_push_credential_id: Optional[str] | Omit = omit,
         microsoft_teams_sbc: bool | Omit = omit,
         noise_suppression: Literal["inbound", "outbound", "both", "disabled"] | Omit = omit,
-        noise_suppression_details: ConnectionNoiseSuppressionDetails | Omit = omit,
+        noise_suppression_details: fqdn_connection_create_params.NoiseSuppressionDetails | Omit = omit,
         onnet_t38_passthrough_enabled: bool | Omit = omit,
         outbound: OutboundFqdnParam | Omit = omit,
         rtcp_settings: ConnectionRtcpSettingsParam | Omit = omit,
@@ -256,7 +255,7 @@ class FqdnConnectionsResource(SyncAPIResource):
         inbound: InboundFqdnParam | Omit = omit,
         ios_push_credential_id: Optional[str] | Omit = omit,
         noise_suppression: Literal["inbound", "outbound", "both", "disabled"] | Omit = omit,
-        noise_suppression_details: ConnectionNoiseSuppressionDetails | Omit = omit,
+        noise_suppression_details: fqdn_connection_update_params.NoiseSuppressionDetails | Omit = omit,
         onnet_t38_passthrough_enabled: bool | Omit = omit,
         outbound: OutboundFqdnParam | Omit = omit,
         rtcp_settings: ConnectionRtcpSettingsParam | Omit = omit,
@@ -382,8 +381,7 @@ class FqdnConnectionsResource(SyncAPIResource):
         self,
         *,
         filter: fqdn_connection_list_params.Filter | Omit = omit,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: fqdn_connection_list_params.Page | Omit = omit,
         sort: Literal["created_at", "connection_name", "active"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -391,7 +389,7 @@ class FqdnConnectionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[FqdnConnection]:
+    ) -> SyncDefaultPagination[FqdnConnection]:
         """
         Returns a list of your FQDN connections.
 
@@ -400,6 +398,9 @@ class FqdnConnectionsResource(SyncAPIResource):
               Consolidated filter parameter (deepObject style). Originally:
               filter[connection_name], filter[fqdn], filter[outbound_voice_profile_id],
               filter[outbound.outbound_voice_profile_id]
+
+          page: Consolidated page parameter (deepObject style). Originally: page[size],
+              page[number]
 
           sort: Specifies the sort order for results. By default sorting direction is ascending.
               To have the results sorted in descending order add the <code> -</code>
@@ -426,7 +427,7 @@ class FqdnConnectionsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/fqdn_connections",
-            page=SyncDefaultFlatPagination[FqdnConnection],
+            page=SyncDefaultPagination[FqdnConnection],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -435,8 +436,7 @@ class FqdnConnectionsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page_number": page_number,
-                        "page_size": page_size,
+                        "page": page,
                         "sort": sort,
                     },
                     fqdn_connection_list_params.FqdnConnectionListParams,
@@ -515,7 +515,7 @@ class AsyncFqdnConnectionsResource(AsyncAPIResource):
         ios_push_credential_id: Optional[str] | Omit = omit,
         microsoft_teams_sbc: bool | Omit = omit,
         noise_suppression: Literal["inbound", "outbound", "both", "disabled"] | Omit = omit,
-        noise_suppression_details: ConnectionNoiseSuppressionDetails | Omit = omit,
+        noise_suppression_details: fqdn_connection_create_params.NoiseSuppressionDetails | Omit = omit,
         onnet_t38_passthrough_enabled: bool | Omit = omit,
         outbound: OutboundFqdnParam | Omit = omit,
         rtcp_settings: ConnectionRtcpSettingsParam | Omit = omit,
@@ -688,7 +688,7 @@ class AsyncFqdnConnectionsResource(AsyncAPIResource):
         inbound: InboundFqdnParam | Omit = omit,
         ios_push_credential_id: Optional[str] | Omit = omit,
         noise_suppression: Literal["inbound", "outbound", "both", "disabled"] | Omit = omit,
-        noise_suppression_details: ConnectionNoiseSuppressionDetails | Omit = omit,
+        noise_suppression_details: fqdn_connection_update_params.NoiseSuppressionDetails | Omit = omit,
         onnet_t38_passthrough_enabled: bool | Omit = omit,
         outbound: OutboundFqdnParam | Omit = omit,
         rtcp_settings: ConnectionRtcpSettingsParam | Omit = omit,
@@ -814,8 +814,7 @@ class AsyncFqdnConnectionsResource(AsyncAPIResource):
         self,
         *,
         filter: fqdn_connection_list_params.Filter | Omit = omit,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: fqdn_connection_list_params.Page | Omit = omit,
         sort: Literal["created_at", "connection_name", "active"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -823,7 +822,7 @@ class AsyncFqdnConnectionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[FqdnConnection, AsyncDefaultFlatPagination[FqdnConnection]]:
+    ) -> AsyncPaginator[FqdnConnection, AsyncDefaultPagination[FqdnConnection]]:
         """
         Returns a list of your FQDN connections.
 
@@ -832,6 +831,9 @@ class AsyncFqdnConnectionsResource(AsyncAPIResource):
               Consolidated filter parameter (deepObject style). Originally:
               filter[connection_name], filter[fqdn], filter[outbound_voice_profile_id],
               filter[outbound.outbound_voice_profile_id]
+
+          page: Consolidated page parameter (deepObject style). Originally: page[size],
+              page[number]
 
           sort: Specifies the sort order for results. By default sorting direction is ascending.
               To have the results sorted in descending order add the <code> -</code>
@@ -858,7 +860,7 @@ class AsyncFqdnConnectionsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/fqdn_connections",
-            page=AsyncDefaultFlatPagination[FqdnConnection],
+            page=AsyncDefaultPagination[FqdnConnection],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -867,8 +869,7 @@ class AsyncFqdnConnectionsResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page_number": page_number,
-                        "page_size": page_size,
+                        "page": page,
                         "sort": sort,
                     },
                     fqdn_connection_list_params.FqdnConnectionListParams,

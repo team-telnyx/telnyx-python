@@ -10,7 +10,7 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types import RequirementListResponse, RequirementRetrieveResponse
-from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
+from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -64,7 +64,7 @@ class TestRequirements:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         requirement = client.requirements.list()
-        assert_matches_type(SyncDefaultFlatPagination[RequirementListResponse], requirement, path=["response"])
+        assert_matches_type(SyncDefaultPagination[RequirementListResponse], requirement, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -75,11 +75,13 @@ class TestRequirements:
                 "country_code": "US",
                 "phone_number_type": "local",
             },
-            page_number=0,
-            page_size=0,
+            page={
+                "number": 1,
+                "size": 1,
+            },
             sort=["country_code"],
         )
-        assert_matches_type(SyncDefaultFlatPagination[RequirementListResponse], requirement, path=["response"])
+        assert_matches_type(SyncDefaultPagination[RequirementListResponse], requirement, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -89,7 +91,7 @@ class TestRequirements:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         requirement = response.parse()
-        assert_matches_type(SyncDefaultFlatPagination[RequirementListResponse], requirement, path=["response"])
+        assert_matches_type(SyncDefaultPagination[RequirementListResponse], requirement, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -99,7 +101,7 @@ class TestRequirements:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             requirement = response.parse()
-            assert_matches_type(SyncDefaultFlatPagination[RequirementListResponse], requirement, path=["response"])
+            assert_matches_type(SyncDefaultPagination[RequirementListResponse], requirement, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -155,7 +157,7 @@ class TestAsyncRequirements:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         requirement = await async_client.requirements.list()
-        assert_matches_type(AsyncDefaultFlatPagination[RequirementListResponse], requirement, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[RequirementListResponse], requirement, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -166,11 +168,13 @@ class TestAsyncRequirements:
                 "country_code": "US",
                 "phone_number_type": "local",
             },
-            page_number=0,
-            page_size=0,
+            page={
+                "number": 1,
+                "size": 1,
+            },
             sort=["country_code"],
         )
-        assert_matches_type(AsyncDefaultFlatPagination[RequirementListResponse], requirement, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[RequirementListResponse], requirement, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -180,7 +184,7 @@ class TestAsyncRequirements:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         requirement = await response.parse()
-        assert_matches_type(AsyncDefaultFlatPagination[RequirementListResponse], requirement, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[RequirementListResponse], requirement, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -190,6 +194,6 @@ class TestAsyncRequirements:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             requirement = await response.parse()
-            assert_matches_type(AsyncDefaultFlatPagination[RequirementListResponse], requirement, path=["response"])
+            assert_matches_type(AsyncDefaultPagination[RequirementListResponse], requirement, path=["response"])
 
         assert cast(Any, response.is_closed) is True

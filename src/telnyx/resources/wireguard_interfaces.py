@@ -15,7 +15,7 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
+from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.wireguard_interface_list_response import WireguardInterfaceListResponse
 from ..types.wireguard_interface_create_response import WireguardInterfaceCreateResponse
@@ -135,20 +135,22 @@ class WireguardInterfacesResource(SyncAPIResource):
         self,
         *,
         filter: wireguard_interface_list_params.Filter | Omit = omit,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: wireguard_interface_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[WireguardInterfaceListResponse]:
+    ) -> SyncDefaultPagination[WireguardInterfaceListResponse]:
         """
         List all WireGuard Interfaces.
 
         Args:
           filter: Consolidated filter parameter (deepObject style). Originally: filter[network_id]
+
+          page: Consolidated page parameter (deepObject style). Originally: page[number],
+              page[size]
 
           extra_headers: Send extra headers
 
@@ -160,7 +162,7 @@ class WireguardInterfacesResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/wireguard_interfaces",
-            page=SyncDefaultFlatPagination[WireguardInterfaceListResponse],
+            page=SyncDefaultPagination[WireguardInterfaceListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -169,8 +171,7 @@ class WireguardInterfacesResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page_number": page_number,
-                        "page_size": page_size,
+                        "page": page,
                     },
                     wireguard_interface_list_params.WireguardInterfaceListParams,
                 ),
@@ -322,20 +323,22 @@ class AsyncWireguardInterfacesResource(AsyncAPIResource):
         self,
         *,
         filter: wireguard_interface_list_params.Filter | Omit = omit,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: wireguard_interface_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[WireguardInterfaceListResponse, AsyncDefaultFlatPagination[WireguardInterfaceListResponse]]:
+    ) -> AsyncPaginator[WireguardInterfaceListResponse, AsyncDefaultPagination[WireguardInterfaceListResponse]]:
         """
         List all WireGuard Interfaces.
 
         Args:
           filter: Consolidated filter parameter (deepObject style). Originally: filter[network_id]
+
+          page: Consolidated page parameter (deepObject style). Originally: page[number],
+              page[size]
 
           extra_headers: Send extra headers
 
@@ -347,7 +350,7 @@ class AsyncWireguardInterfacesResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/wireguard_interfaces",
-            page=AsyncDefaultFlatPagination[WireguardInterfaceListResponse],
+            page=AsyncDefaultPagination[WireguardInterfaceListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -356,8 +359,7 @@ class AsyncWireguardInterfacesResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page_number": page_number,
-                        "page_size": page_size,
+                        "page": page,
                     },
                     wireguard_interface_list_params.WireguardInterfaceListParams,
                 ),

@@ -39,7 +39,7 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
+from ...pagination import SyncDefaultPagination, AsyncDefaultPagination
 from .log_messages import (
     LogMessagesResource,
     AsyncLogMessagesResource,
@@ -286,15 +286,14 @@ class ExternalConnectionsResource(SyncAPIResource):
         self,
         *,
         filter: external_connection_list_params.Filter | Omit = omit,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: external_connection_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[ExternalConnection]:
+    ) -> SyncDefaultPagination[ExternalConnection]:
         """
         This endpoint returns a list of your External Connections inside the 'data'
         attribute of the response. External Connections are used by Telnyx customers to
@@ -304,6 +303,9 @@ class ExternalConnectionsResource(SyncAPIResource):
         Args:
           filter: Filter parameter for external connections (deepObject style). Supports filtering
               by connection_name, external_sip_connection, id, created_at, and phone_number.
+
+          page: Consolidated page parameter (deepObject style). Originally: page[size],
+              page[number]
 
           extra_headers: Send extra headers
 
@@ -315,7 +317,7 @@ class ExternalConnectionsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/external_connections",
-            page=SyncDefaultFlatPagination[ExternalConnection],
+            page=SyncDefaultPagination[ExternalConnection],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -324,8 +326,7 @@ class ExternalConnectionsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page_number": page_number,
-                        "page_size": page_size,
+                        "page": page,
                     },
                     external_connection_list_params.ExternalConnectionListParams,
                 ),
@@ -625,15 +626,14 @@ class AsyncExternalConnectionsResource(AsyncAPIResource):
         self,
         *,
         filter: external_connection_list_params.Filter | Omit = omit,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: external_connection_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[ExternalConnection, AsyncDefaultFlatPagination[ExternalConnection]]:
+    ) -> AsyncPaginator[ExternalConnection, AsyncDefaultPagination[ExternalConnection]]:
         """
         This endpoint returns a list of your External Connections inside the 'data'
         attribute of the response. External Connections are used by Telnyx customers to
@@ -643,6 +643,9 @@ class AsyncExternalConnectionsResource(AsyncAPIResource):
         Args:
           filter: Filter parameter for external connections (deepObject style). Supports filtering
               by connection_name, external_sip_connection, id, created_at, and phone_number.
+
+          page: Consolidated page parameter (deepObject style). Originally: page[size],
+              page[number]
 
           extra_headers: Send extra headers
 
@@ -654,7 +657,7 @@ class AsyncExternalConnectionsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/external_connections",
-            page=AsyncDefaultFlatPagination[ExternalConnection],
+            page=AsyncDefaultPagination[ExternalConnection],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -663,8 +666,7 @@ class AsyncExternalConnectionsResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page_number": page_number,
-                        "page_size": page_size,
+                        "page": page,
                     },
                     external_connection_list_params.ExternalConnectionListParams,
                 ),

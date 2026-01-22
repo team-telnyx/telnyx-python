@@ -220,6 +220,7 @@ class ConferencesResource(SyncAPIResource):
         self,
         *,
         filter: conference_list_params.Filter | Omit = omit,
+        page: conference_list_params.Page | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         region: Literal["Australia", "Europe", "Middle East", "US"] | Omit = omit,
@@ -245,6 +246,9 @@ class ConferencesResource(SyncAPIResource):
               filter[product], filter[failed], filter[from], filter[to], filter[name],
               filter[type], filter[occurred_at][eq/gt/gte/lt/lte], filter[status]
 
+          page: Consolidated page parameter (deepObject style). Originally: page[after],
+              page[before], page[limit], page[size], page[number]
+
           region: Region where the conference data is located
 
           extra_headers: Send extra headers
@@ -266,6 +270,7 @@ class ConferencesResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
+                        "page": page,
                         "page_number": page_number,
                         "page_size": page_size,
                         "region": region,
@@ -281,6 +286,7 @@ class ConferencesResource(SyncAPIResource):
         conference_id: str,
         *,
         filter: conference_list_participants_params.Filter | Omit = omit,
+        page: conference_list_participants_params.Page | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         region: Literal["Australia", "Europe", "Middle East", "US"] | Omit = omit,
@@ -297,6 +303,9 @@ class ConferencesResource(SyncAPIResource):
         Args:
           filter: Consolidated filter parameter (deepObject style). Originally: filter[muted],
               filter[on_hold], filter[whispering]
+
+          page: Consolidated page parameter (deepObject style). Originally: page[after],
+              page[before], page[limit], page[size], page[number]
 
           region: Region where the conference data is located
 
@@ -321,6 +330,7 @@ class ConferencesResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
+                        "page": page,
                         "page_number": page_number,
                         "page_size": page_size,
                         "region": region,
@@ -514,6 +524,7 @@ class AsyncConferencesResource(AsyncAPIResource):
         self,
         *,
         filter: conference_list_params.Filter | Omit = omit,
+        page: conference_list_params.Page | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         region: Literal["Australia", "Europe", "Middle East", "US"] | Omit = omit,
@@ -539,6 +550,9 @@ class AsyncConferencesResource(AsyncAPIResource):
               filter[product], filter[failed], filter[from], filter[to], filter[name],
               filter[type], filter[occurred_at][eq/gt/gte/lt/lte], filter[status]
 
+          page: Consolidated page parameter (deepObject style). Originally: page[after],
+              page[before], page[limit], page[size], page[number]
+
           region: Region where the conference data is located
 
           extra_headers: Send extra headers
@@ -560,6 +574,7 @@ class AsyncConferencesResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
+                        "page": page,
                         "page_number": page_number,
                         "page_size": page_size,
                         "region": region,
@@ -575,6 +590,7 @@ class AsyncConferencesResource(AsyncAPIResource):
         conference_id: str,
         *,
         filter: conference_list_participants_params.Filter | Omit = omit,
+        page: conference_list_participants_params.Page | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         region: Literal["Australia", "Europe", "Middle East", "US"] | Omit = omit,
@@ -593,6 +609,9 @@ class AsyncConferencesResource(AsyncAPIResource):
         Args:
           filter: Consolidated filter parameter (deepObject style). Originally: filter[muted],
               filter[on_hold], filter[whispering]
+
+          page: Consolidated page parameter (deepObject style). Originally: page[after],
+              page[before], page[limit], page[size], page[number]
 
           region: Region where the conference data is located
 
@@ -617,6 +636,7 @@ class AsyncConferencesResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
+                        "page": page,
                         "page_number": page_number,
                         "page_size": page_size,
                         "region": region,

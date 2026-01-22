@@ -8,7 +8,7 @@ from typing_extensions import Literal, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
 
-__all__ = ["EventListParams", "Filter", "FilterCreatedAt"]
+__all__ = ["EventListParams", "Filter", "FilterCreatedAt", "Page"]
 
 
 class EventListParams(TypedDict, total=False):
@@ -19,9 +19,11 @@ class EventListParams(TypedDict, total=False):
     filter[created_at][lte]
     """
 
-    page_number: Annotated[int, PropertyInfo(alias="page[number]")]
+    page: Page
+    """Consolidated page parameter (deepObject style).
 
-    page_size: Annotated[int, PropertyInfo(alias="page[size]")]
+    Originally: page[size], page[number]
+    """
 
 
 class FilterCreatedAt(TypedDict, total=False):
@@ -56,3 +58,16 @@ class Filter(TypedDict, total=False):
         "porting_order.split",
     ]
     """Filter by event type."""
+
+
+class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[size], page[number]
+    """
+
+    number: int
+    """The page number to load"""
+
+    size: int
+    """The size of the page"""
