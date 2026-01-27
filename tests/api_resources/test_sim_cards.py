@@ -154,7 +154,6 @@ class TestSimCards:
         sim_card = client.sim_cards.list(
             filter={
                 "iccid": "89310410106543789301",
-                "msisdn": "+13109976224",
                 "status": ["enabled"],
                 "tags": ["personal", "customers", "active-customers"],
             },
@@ -555,7 +554,6 @@ class TestAsyncSimCards:
         sim_card = await async_client.sim_cards.list(
             filter={
                 "iccid": "89310410106543789301",
-                "msisdn": "+13109976224",
                 "status": ["enabled"],
                 "tags": ["personal", "customers", "active-customers"],
             },
