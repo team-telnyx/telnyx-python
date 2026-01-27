@@ -1,5 +1,18 @@
 # Changelog
 
+## 4.12.0 (2026-01-27)
+
+Full Changelog: [v4.11.0...v4.12.0](https://github.com/team-telnyx/telnyx-python/compare/v4.11.0...v4.12.0)
+
+### Features
+
+* jira-engdesk-49089 add new connection jitter buffer related fields ([f5a8a17](https://github.com/team-telnyx/telnyx-python/commit/f5a8a17fc671831cd4d6648288c8734042fba6ba))
+
+
+### Chores
+
+* **ci:** upgrade `actions/github-script` ([f8a8baf](https://github.com/team-telnyx/telnyx-python/commit/f8a8baf0206485144e314e48a8b116d484170d13))
+
 ## 4.11.0 (2026-01-22)
 
 Full Changelog: [v4.10.0...v4.11.0](https://github.com/team-telnyx/telnyx-python/compare/v4.10.0...v4.11.0)
