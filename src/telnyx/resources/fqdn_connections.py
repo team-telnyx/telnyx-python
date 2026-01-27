@@ -81,6 +81,7 @@ class FqdnConnectionsResource(SyncAPIResource):
         encrypted_media: Optional[EncryptedMedia] | Omit = omit,
         inbound: InboundFqdnParam | Omit = omit,
         ios_push_credential_id: Optional[str] | Omit = omit,
+        jitter_buffer: fqdn_connection_create_params.JitterBuffer | Omit = omit,
         microsoft_teams_sbc: bool | Omit = omit,
         noise_suppression: Literal["inbound", "outbound", "both", "disabled"] | Omit = omit,
         noise_suppression_details: ConnectionNoiseSuppressionDetails | Omit = omit,
@@ -130,6 +131,12 @@ class FqdnConnectionsResource(SyncAPIResource):
               TLS.
 
           ios_push_credential_id: The uuid of the push credential for Ios
+
+          jitter_buffer: Configuration options for Jitter Buffer. Enables Jitter Buffer for RTP streams
+              of SIP Trunking calls. The feature is off unless enabled. You may define min and
+              max values in msec for customized buffering behaviors. Larger values add latency
+              but tolerate more jitter, while smaller values reduce latency but are more
+              sensitive to jitter and reordering.
 
           microsoft_teams_sbc: When enabled, the connection will be created for Microsoft Teams Direct Routing.
               A \\**.mstsbc.telnyx.tech FQDN will be created for the connection automatically.
@@ -186,6 +193,7 @@ class FqdnConnectionsResource(SyncAPIResource):
                     "encrypted_media": encrypted_media,
                     "inbound": inbound,
                     "ios_push_credential_id": ios_push_credential_id,
+                    "jitter_buffer": jitter_buffer,
                     "microsoft_teams_sbc": microsoft_teams_sbc,
                     "noise_suppression": noise_suppression,
                     "noise_suppression_details": noise_suppression_details,
@@ -255,6 +263,7 @@ class FqdnConnectionsResource(SyncAPIResource):
         encrypted_media: Optional[EncryptedMedia] | Omit = omit,
         inbound: InboundFqdnParam | Omit = omit,
         ios_push_credential_id: Optional[str] | Omit = omit,
+        jitter_buffer: fqdn_connection_update_params.JitterBuffer | Omit = omit,
         noise_suppression: Literal["inbound", "outbound", "both", "disabled"] | Omit = omit,
         noise_suppression_details: ConnectionNoiseSuppressionDetails | Omit = omit,
         onnet_t38_passthrough_enabled: bool | Omit = omit,
@@ -303,6 +312,12 @@ class FqdnConnectionsResource(SyncAPIResource):
               TLS.
 
           ios_push_credential_id: The uuid of the push credential for Ios
+
+          jitter_buffer: Configuration options for Jitter Buffer. Enables Jitter Buffer for RTP streams
+              of SIP Trunking calls. The feature is off unless enabled. You may define min and
+              max values in msec for customized buffering behaviors. Larger values add latency
+              but tolerate more jitter, while smaller values reduce latency but are more
+              sensitive to jitter and reordering.
 
           noise_suppression: Controls when noise suppression is applied to calls. When set to 'inbound',
               noise suppression is applied to incoming audio. When set to 'outbound', it's
@@ -358,6 +373,7 @@ class FqdnConnectionsResource(SyncAPIResource):
                     "encrypted_media": encrypted_media,
                     "inbound": inbound,
                     "ios_push_credential_id": ios_push_credential_id,
+                    "jitter_buffer": jitter_buffer,
                     "noise_suppression": noise_suppression,
                     "noise_suppression_details": noise_suppression_details,
                     "onnet_t38_passthrough_enabled": onnet_t38_passthrough_enabled,
@@ -514,6 +530,7 @@ class AsyncFqdnConnectionsResource(AsyncAPIResource):
         encrypted_media: Optional[EncryptedMedia] | Omit = omit,
         inbound: InboundFqdnParam | Omit = omit,
         ios_push_credential_id: Optional[str] | Omit = omit,
+        jitter_buffer: fqdn_connection_create_params.JitterBuffer | Omit = omit,
         microsoft_teams_sbc: bool | Omit = omit,
         noise_suppression: Literal["inbound", "outbound", "both", "disabled"] | Omit = omit,
         noise_suppression_details: ConnectionNoiseSuppressionDetails | Omit = omit,
@@ -563,6 +580,12 @@ class AsyncFqdnConnectionsResource(AsyncAPIResource):
               TLS.
 
           ios_push_credential_id: The uuid of the push credential for Ios
+
+          jitter_buffer: Configuration options for Jitter Buffer. Enables Jitter Buffer for RTP streams
+              of SIP Trunking calls. The feature is off unless enabled. You may define min and
+              max values in msec for customized buffering behaviors. Larger values add latency
+              but tolerate more jitter, while smaller values reduce latency but are more
+              sensitive to jitter and reordering.
 
           microsoft_teams_sbc: When enabled, the connection will be created for Microsoft Teams Direct Routing.
               A \\**.mstsbc.telnyx.tech FQDN will be created for the connection automatically.
@@ -619,6 +642,7 @@ class AsyncFqdnConnectionsResource(AsyncAPIResource):
                     "encrypted_media": encrypted_media,
                     "inbound": inbound,
                     "ios_push_credential_id": ios_push_credential_id,
+                    "jitter_buffer": jitter_buffer,
                     "microsoft_teams_sbc": microsoft_teams_sbc,
                     "noise_suppression": noise_suppression,
                     "noise_suppression_details": noise_suppression_details,
@@ -688,6 +712,7 @@ class AsyncFqdnConnectionsResource(AsyncAPIResource):
         encrypted_media: Optional[EncryptedMedia] | Omit = omit,
         inbound: InboundFqdnParam | Omit = omit,
         ios_push_credential_id: Optional[str] | Omit = omit,
+        jitter_buffer: fqdn_connection_update_params.JitterBuffer | Omit = omit,
         noise_suppression: Literal["inbound", "outbound", "both", "disabled"] | Omit = omit,
         noise_suppression_details: ConnectionNoiseSuppressionDetails | Omit = omit,
         onnet_t38_passthrough_enabled: bool | Omit = omit,
@@ -736,6 +761,12 @@ class AsyncFqdnConnectionsResource(AsyncAPIResource):
               TLS.
 
           ios_push_credential_id: The uuid of the push credential for Ios
+
+          jitter_buffer: Configuration options for Jitter Buffer. Enables Jitter Buffer for RTP streams
+              of SIP Trunking calls. The feature is off unless enabled. You may define min and
+              max values in msec for customized buffering behaviors. Larger values add latency
+              but tolerate more jitter, while smaller values reduce latency but are more
+              sensitive to jitter and reordering.
 
           noise_suppression: Controls when noise suppression is applied to calls. When set to 'inbound',
               noise suppression is applied to incoming audio. When set to 'outbound', it's
@@ -791,6 +822,7 @@ class AsyncFqdnConnectionsResource(AsyncAPIResource):
                     "encrypted_media": encrypted_media,
                     "inbound": inbound,
                     "ios_push_credential_id": ios_push_credential_id,
+                    "jitter_buffer": jitter_buffer,
                     "noise_suppression": noise_suppression,
                     "noise_suppression_details": noise_suppression_details,
                     "onnet_t38_passthrough_enabled": onnet_t38_passthrough_enabled,

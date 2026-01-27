@@ -91,6 +91,7 @@ class CredentialConnectionsResource(SyncAPIResource):
         encrypted_media: Optional[EncryptedMedia] | Omit = omit,
         inbound: CredentialInboundParam | Omit = omit,
         ios_push_credential_id: Optional[str] | Omit = omit,
+        jitter_buffer: credential_connection_create_params.JitterBuffer | Omit = omit,
         noise_suppression: Literal["inbound", "outbound", "both", "disabled"] | Omit = omit,
         noise_suppression_details: ConnectionNoiseSuppressionDetails | Omit = omit,
         onnet_t38_passthrough_enabled: bool | Omit = omit,
@@ -145,6 +146,12 @@ class CredentialConnectionsResource(SyncAPIResource):
               TLS.
 
           ios_push_credential_id: The uuid of the push credential for Ios
+
+          jitter_buffer: Configuration options for Jitter Buffer. Enables Jitter Buffer for RTP streams
+              of SIP Trunking calls. The feature is off unless enabled. You may define min and
+              max values in msec for customized buffering behaviors. Larger values add latency
+              but tolerate more jitter, while smaller values reduce latency but are more
+              sensitive to jitter and reordering.
 
           noise_suppression: Controls when noise suppression is applied to calls. When set to 'inbound',
               noise suppression is applied to incoming audio. When set to 'outbound', it's
@@ -205,6 +212,7 @@ class CredentialConnectionsResource(SyncAPIResource):
                     "encrypted_media": encrypted_media,
                     "inbound": inbound,
                     "ios_push_credential_id": ios_push_credential_id,
+                    "jitter_buffer": jitter_buffer,
                     "noise_suppression": noise_suppression,
                     "noise_suppression_details": noise_suppression_details,
                     "onnet_t38_passthrough_enabled": onnet_t38_passthrough_enabled,
@@ -273,6 +281,7 @@ class CredentialConnectionsResource(SyncAPIResource):
         encrypted_media: Optional[EncryptedMedia] | Omit = omit,
         inbound: CredentialInboundParam | Omit = omit,
         ios_push_credential_id: Optional[str] | Omit = omit,
+        jitter_buffer: credential_connection_update_params.JitterBuffer | Omit = omit,
         noise_suppression: Literal["inbound", "outbound", "both", "disabled"] | Omit = omit,
         noise_suppression_details: ConnectionNoiseSuppressionDetails | Omit = omit,
         onnet_t38_passthrough_enabled: bool | Omit = omit,
@@ -323,6 +332,12 @@ class CredentialConnectionsResource(SyncAPIResource):
               TLS.
 
           ios_push_credential_id: The uuid of the push credential for Ios
+
+          jitter_buffer: Configuration options for Jitter Buffer. Enables Jitter Buffer for RTP streams
+              of SIP Trunking calls. The feature is off unless enabled. You may define min and
+              max values in msec for customized buffering behaviors. Larger values add latency
+              but tolerate more jitter, while smaller values reduce latency but are more
+              sensitive to jitter and reordering.
 
           noise_suppression: Controls when noise suppression is applied to calls. When set to 'inbound',
               noise suppression is applied to incoming audio. When set to 'outbound', it's
@@ -387,6 +402,7 @@ class CredentialConnectionsResource(SyncAPIResource):
                     "encrypted_media": encrypted_media,
                     "inbound": inbound,
                     "ios_push_credential_id": ios_push_credential_id,
+                    "jitter_buffer": jitter_buffer,
                     "noise_suppression": noise_suppression,
                     "noise_suppression_details": noise_suppression_details,
                     "onnet_t38_passthrough_enabled": onnet_t38_passthrough_enabled,
@@ -551,6 +567,7 @@ class AsyncCredentialConnectionsResource(AsyncAPIResource):
         encrypted_media: Optional[EncryptedMedia] | Omit = omit,
         inbound: CredentialInboundParam | Omit = omit,
         ios_push_credential_id: Optional[str] | Omit = omit,
+        jitter_buffer: credential_connection_create_params.JitterBuffer | Omit = omit,
         noise_suppression: Literal["inbound", "outbound", "both", "disabled"] | Omit = omit,
         noise_suppression_details: ConnectionNoiseSuppressionDetails | Omit = omit,
         onnet_t38_passthrough_enabled: bool | Omit = omit,
@@ -605,6 +622,12 @@ class AsyncCredentialConnectionsResource(AsyncAPIResource):
               TLS.
 
           ios_push_credential_id: The uuid of the push credential for Ios
+
+          jitter_buffer: Configuration options for Jitter Buffer. Enables Jitter Buffer for RTP streams
+              of SIP Trunking calls. The feature is off unless enabled. You may define min and
+              max values in msec for customized buffering behaviors. Larger values add latency
+              but tolerate more jitter, while smaller values reduce latency but are more
+              sensitive to jitter and reordering.
 
           noise_suppression: Controls when noise suppression is applied to calls. When set to 'inbound',
               noise suppression is applied to incoming audio. When set to 'outbound', it's
@@ -665,6 +688,7 @@ class AsyncCredentialConnectionsResource(AsyncAPIResource):
                     "encrypted_media": encrypted_media,
                     "inbound": inbound,
                     "ios_push_credential_id": ios_push_credential_id,
+                    "jitter_buffer": jitter_buffer,
                     "noise_suppression": noise_suppression,
                     "noise_suppression_details": noise_suppression_details,
                     "onnet_t38_passthrough_enabled": onnet_t38_passthrough_enabled,
@@ -733,6 +757,7 @@ class AsyncCredentialConnectionsResource(AsyncAPIResource):
         encrypted_media: Optional[EncryptedMedia] | Omit = omit,
         inbound: CredentialInboundParam | Omit = omit,
         ios_push_credential_id: Optional[str] | Omit = omit,
+        jitter_buffer: credential_connection_update_params.JitterBuffer | Omit = omit,
         noise_suppression: Literal["inbound", "outbound", "both", "disabled"] | Omit = omit,
         noise_suppression_details: ConnectionNoiseSuppressionDetails | Omit = omit,
         onnet_t38_passthrough_enabled: bool | Omit = omit,
@@ -783,6 +808,12 @@ class AsyncCredentialConnectionsResource(AsyncAPIResource):
               TLS.
 
           ios_push_credential_id: The uuid of the push credential for Ios
+
+          jitter_buffer: Configuration options for Jitter Buffer. Enables Jitter Buffer for RTP streams
+              of SIP Trunking calls. The feature is off unless enabled. You may define min and
+              max values in msec for customized buffering behaviors. Larger values add latency
+              but tolerate more jitter, while smaller values reduce latency but are more
+              sensitive to jitter and reordering.
 
           noise_suppression: Controls when noise suppression is applied to calls. When set to 'inbound',
               noise suppression is applied to incoming audio. When set to 'outbound', it's
@@ -847,6 +878,7 @@ class AsyncCredentialConnectionsResource(AsyncAPIResource):
                     "encrypted_media": encrypted_media,
                     "inbound": inbound,
                     "ios_push_credential_id": ios_push_credential_id,
+                    "jitter_buffer": jitter_buffer,
                     "noise_suppression": noise_suppression,
                     "noise_suppression_details": noise_suppression_details,
                     "onnet_t38_passthrough_enabled": onnet_t38_passthrough_enabled,
