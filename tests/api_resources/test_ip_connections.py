@@ -61,6 +61,11 @@ class TestIPConnections:
                 "timeout_2xx_secs": 20,
             },
             ios_push_credential_id="ec0c8e5d-439e-4620-a0c1-9d9c8d02a836",
+            jitter_buffer={
+                "enable_jitter_buffer": True,
+                "jitterbuffer_msec_max": 200,
+                "jitterbuffer_msec_min": 60,
+            },
             noise_suppression="both",
             noise_suppression_details={
                 "attenuation_limit": 80,
@@ -202,6 +207,11 @@ class TestIPConnections:
                 "timeout_2xx_secs": 20,
             },
             ios_push_credential_id="ec0c8e5d-439e-4620-a0c1-9d9c8d02a836",
+            jitter_buffer={
+                "enable_jitter_buffer": True,
+                "jitterbuffer_msec_max": 200,
+                "jitterbuffer_msec_min": 60,
+            },
             noise_suppression="both",
             noise_suppression_details={
                 "attenuation_limit": 80,
@@ -400,6 +410,11 @@ class TestAsyncIPConnections:
                 "timeout_2xx_secs": 20,
             },
             ios_push_credential_id="ec0c8e5d-439e-4620-a0c1-9d9c8d02a836",
+            jitter_buffer={
+                "enable_jitter_buffer": True,
+                "jitterbuffer_msec_max": 200,
+                "jitterbuffer_msec_min": 60,
+            },
             noise_suppression="both",
             noise_suppression_details={
                 "attenuation_limit": 80,
@@ -541,6 +556,11 @@ class TestAsyncIPConnections:
                 "timeout_2xx_secs": 20,
             },
             ios_push_credential_id="ec0c8e5d-439e-4620-a0c1-9d9c8d02a836",
+            jitter_buffer={
+                "enable_jitter_buffer": True,
+                "jitterbuffer_msec_max": 200,
+                "jitterbuffer_msec_min": 60,
+            },
             noise_suppression="both",
             noise_suppression_details={
                 "attenuation_limit": 80,
