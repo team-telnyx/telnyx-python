@@ -15,7 +15,7 @@ class SimCardListParams(TypedDict, total=False):
     filter: Filter
     """Consolidated filter parameter for SIM cards (deepObject style).
 
-    Originally: filter[iccid], filter[msisdn], filter[status], filter[tags]
+    Originally: filter[tags], filter[iccid], filter[status]
     """
 
     filter_sim_card_group_id: Annotated[str, PropertyInfo(alias="filter[sim_card_group_id]")]
@@ -40,14 +40,11 @@ class SimCardListParams(TypedDict, total=False):
 class Filter(TypedDict, total=False):
     """Consolidated filter parameter for SIM cards (deepObject style).
 
-    Originally: filter[iccid], filter[msisdn], filter[status], filter[tags]
+    Originally: filter[tags], filter[iccid], filter[status]
     """
 
     iccid: str
     """A search string to partially match for the SIM card's ICCID."""
-
-    msisdn: str
-    """A search string to match for the SIM card's MSISDN."""
 
     status: List[Literal["enabled", "disabled", "standby", "data_limit_exceeded", "unauthorized_imei"]]
     """Filter by a SIM card's status."""
