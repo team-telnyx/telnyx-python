@@ -12,7 +12,32 @@ from .credential_outbound import CredentialOutbound
 from .connection_rtcp_settings import ConnectionRtcpSettings
 from .shared.connection_noise_suppression_details import ConnectionNoiseSuppressionDetails
 
-__all__ = ["CredentialConnection"]
+__all__ = ["CredentialConnection", "JitterBuffer"]
+
+
+class JitterBuffer(BaseModel):
+    """Configuration options for Jitter Buffer.
+
+    Enables Jitter Buffer for RTP streams of SIP Trunking calls. The feature is off unless enabled. You may define min and max values in msec for customized buffering behaviors. Larger values add latency but tolerate more jitter, while smaller values reduce latency but are more sensitive to jitter and reordering.
+    """
+
+    enable_jitter_buffer: Optional[bool] = None
+    """Enables Jitter Buffer for RTP streams of SIP Trunking calls.
+
+    The feature is off unless enabled.
+    """
+
+    jitterbuffer_msec_max: Optional[int] = None
+    """The maximum jitter buffer size in milliseconds.
+
+    Must be between 40 and 400. Has no effect if enable_jitter_buffer is not true.
+    """
+
+    jitterbuffer_msec_min: Optional[int] = None
+    """The minimum jitter buffer size in milliseconds.
+
+    Must be between 40 and 400. Has no effect if enable_jitter_buffer is not true.
+    """
 
 
 class CredentialConnection(BaseModel):
@@ -28,6 +53,9 @@ class CredentialConnection(BaseModel):
     round-trip time to the user's connection. Telnyx calculates this time using ICMP
     ping messages. This can be disabled by specifying a site to handle all media.
     """
+
+    android_push_credential_id: Optional[str] = None
+    """The uuid of the push credential for Android"""
 
     call_cost_in_webhooks: Optional[bool] = None
     """Specifies if call cost webhooks should be sent for this connection."""
@@ -64,6 +92,18 @@ class CredentialConnection(BaseModel):
     """
 
     inbound: Optional[CredentialInbound] = None
+
+    ios_push_credential_id: Optional[str] = None
+    """The uuid of the push credential for Ios"""
+
+    jitter_buffer: Optional[JitterBuffer] = None
+    """Configuration options for Jitter Buffer.
+
+    Enables Jitter Buffer for RTP streams of SIP Trunking calls. The feature is off
+    unless enabled. You may define min and max values in msec for customized
+    buffering behaviors. Larger values add latency but tolerate more jitter, while
+    smaller values reduce latency but are more sensitive to jitter and reordering.
+    """
 
     noise_suppression: Optional[Literal["inbound", "outbound", "both", "disabled"]] = None
     """Controls when noise suppression is applied to calls.

@@ -16,7 +16,7 @@ from .webhook_api_version import WebhookAPIVersion
 from .connection_rtcp_settings_param import ConnectionRtcpSettingsParam
 from .shared_params.connection_noise_suppression_details import ConnectionNoiseSuppressionDetails
 
-__all__ = ["FqdnConnectionCreateParams"]
+__all__ = ["FqdnConnectionCreateParams", "JitterBuffer"]
 
 
 class FqdnConnectionCreateParams(TypedDict, total=False):
@@ -69,6 +69,15 @@ class FqdnConnectionCreateParams(TypedDict, total=False):
 
     ios_push_credential_id: Optional[str]
     """The uuid of the push credential for Ios"""
+
+    jitter_buffer: JitterBuffer
+    """Configuration options for Jitter Buffer.
+
+    Enables Jitter Buffer for RTP streams of SIP Trunking calls. The feature is off
+    unless enabled. You may define min and max values in msec for customized
+    buffering behaviors. Larger values add latency but tolerate more jitter, while
+    smaller values reduce latency but are more sensitive to jitter and reordering.
+    """
 
     microsoft_teams_sbc: bool
     """When enabled, the connection will be created for Microsoft Teams Direct Routing.
@@ -130,3 +139,28 @@ class FqdnConnectionCreateParams(TypedDict, total=False):
 
     webhook_timeout_secs: Optional[int]
     """Specifies how many seconds to wait before timing out a webhook."""
+
+
+class JitterBuffer(TypedDict, total=False):
+    """Configuration options for Jitter Buffer.
+
+    Enables Jitter Buffer for RTP streams of SIP Trunking calls. The feature is off unless enabled. You may define min and max values in msec for customized buffering behaviors. Larger values add latency but tolerate more jitter, while smaller values reduce latency but are more sensitive to jitter and reordering.
+    """
+
+    enable_jitter_buffer: bool
+    """Enables Jitter Buffer for RTP streams of SIP Trunking calls.
+
+    The feature is off unless enabled.
+    """
+
+    jitterbuffer_msec_max: int
+    """The maximum jitter buffer size in milliseconds.
+
+    Must be between 40 and 400. Has no effect if enable_jitter_buffer is not true.
+    """
+
+    jitterbuffer_msec_min: int
+    """The minimum jitter buffer size in milliseconds.
+
+    Must be between 40 and 400. Has no effect if enable_jitter_buffer is not true.
+    """

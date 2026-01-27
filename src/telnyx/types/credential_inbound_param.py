@@ -30,6 +30,13 @@ class CredentialInboundParam(TypedDict, total=False):
     H.264 codecs are available only when using TCP or TLS transport for SIP.
     """
 
+    default_routing_method: Literal["sequential", "round-robin"]
+    """
+    Default routing method to be used when a number is associated with the
+    connection. Must be one of the routing method types or left blank, other values
+    are not allowed.
+    """
+
     dnis_number_format: Literal["+e164", "e164", "national", "sip_username"]
 
     generate_ringback_tone: bool
