@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.13.0 (2026-01-28)
+
+Full Changelog: [v4.12.0...v4.13.0](https://github.com/team-telnyx/telnyx-python/compare/v4.12.0...v4.13.0)
+
+### Features
+
+* Deploy dev/mc vady wip ([b023c72](https://github.com/team-telnyx/telnyx-python/commit/b023c7267115f3eefbaf5f7b5ed04f5c79c21145))
+
 ## 4.12.0 (2026-01-27)
 
 Full Changelog: [v4.11.0...v4.12.0](https://github.com/team-telnyx/telnyx-python/compare/v4.11.0...v4.12.0)
