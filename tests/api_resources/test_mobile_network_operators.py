@@ -10,7 +10,7 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types import MobileNetworkOperatorListResponse
-from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
+from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -23,7 +23,7 @@ class TestMobileNetworkOperators:
     def test_method_list(self, client: Telnyx) -> None:
         mobile_network_operator = client.mobile_network_operators.list()
         assert_matches_type(
-            SyncDefaultPagination[MobileNetworkOperatorListResponse], mobile_network_operator, path=["response"]
+            SyncDefaultFlatPagination[MobileNetworkOperatorListResponse], mobile_network_operator, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -42,13 +42,11 @@ class TestMobileNetworkOperators:
                 "network_preferences_enabled": True,
                 "tadig": "USACG",
             },
-            page={
-                "number": 1,
-                "size": 1,
-            },
+            page_number=0,
+            page_size=0,
         )
         assert_matches_type(
-            SyncDefaultPagination[MobileNetworkOperatorListResponse], mobile_network_operator, path=["response"]
+            SyncDefaultFlatPagination[MobileNetworkOperatorListResponse], mobile_network_operator, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -60,7 +58,7 @@ class TestMobileNetworkOperators:
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         mobile_network_operator = response.parse()
         assert_matches_type(
-            SyncDefaultPagination[MobileNetworkOperatorListResponse], mobile_network_operator, path=["response"]
+            SyncDefaultFlatPagination[MobileNetworkOperatorListResponse], mobile_network_operator, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -72,7 +70,7 @@ class TestMobileNetworkOperators:
 
             mobile_network_operator = response.parse()
             assert_matches_type(
-                SyncDefaultPagination[MobileNetworkOperatorListResponse], mobile_network_operator, path=["response"]
+                SyncDefaultFlatPagination[MobileNetworkOperatorListResponse], mobile_network_operator, path=["response"]
             )
 
         assert cast(Any, response.is_closed) is True
@@ -88,7 +86,7 @@ class TestAsyncMobileNetworkOperators:
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         mobile_network_operator = await async_client.mobile_network_operators.list()
         assert_matches_type(
-            AsyncDefaultPagination[MobileNetworkOperatorListResponse], mobile_network_operator, path=["response"]
+            AsyncDefaultFlatPagination[MobileNetworkOperatorListResponse], mobile_network_operator, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -107,13 +105,11 @@ class TestAsyncMobileNetworkOperators:
                 "network_preferences_enabled": True,
                 "tadig": "USACG",
             },
-            page={
-                "number": 1,
-                "size": 1,
-            },
+            page_number=0,
+            page_size=0,
         )
         assert_matches_type(
-            AsyncDefaultPagination[MobileNetworkOperatorListResponse], mobile_network_operator, path=["response"]
+            AsyncDefaultFlatPagination[MobileNetworkOperatorListResponse], mobile_network_operator, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -125,7 +121,7 @@ class TestAsyncMobileNetworkOperators:
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         mobile_network_operator = await response.parse()
         assert_matches_type(
-            AsyncDefaultPagination[MobileNetworkOperatorListResponse], mobile_network_operator, path=["response"]
+            AsyncDefaultFlatPagination[MobileNetworkOperatorListResponse], mobile_network_operator, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -137,7 +133,9 @@ class TestAsyncMobileNetworkOperators:
 
             mobile_network_operator = await response.parse()
             assert_matches_type(
-                AsyncDefaultPagination[MobileNetworkOperatorListResponse], mobile_network_operator, path=["response"]
+                AsyncDefaultFlatPagination[MobileNetworkOperatorListResponse],
+                mobile_network_operator,
+                path=["response"],
             )
 
         assert cast(Any, response.is_closed) is True

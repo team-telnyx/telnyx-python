@@ -14,7 +14,7 @@ from telnyx.types import (
     RecordingDeleteResponse,
     RecordingRetrieveResponse,
 )
-from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
+from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -68,7 +68,7 @@ class TestRecordings:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         recording = client.recordings.list()
-        assert_matches_type(SyncDefaultPagination[RecordingResponseData], recording, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[RecordingResponseData], recording, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -87,12 +87,10 @@ class TestRecordings:
                 "sip_call_id": "428c31b6-7af4-4bcb-b7f5-5013ef9657c1",
                 "to": "1234567890",
             },
-            page={
-                "number": 1,
-                "size": 1,
-            },
+            page_number=0,
+            page_size=0,
         )
-        assert_matches_type(SyncDefaultPagination[RecordingResponseData], recording, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[RecordingResponseData], recording, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -102,7 +100,7 @@ class TestRecordings:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         recording = response.parse()
-        assert_matches_type(SyncDefaultPagination[RecordingResponseData], recording, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[RecordingResponseData], recording, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -112,7 +110,7 @@ class TestRecordings:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             recording = response.parse()
-            assert_matches_type(SyncDefaultPagination[RecordingResponseData], recording, path=["response"])
+            assert_matches_type(SyncDefaultFlatPagination[RecordingResponseData], recording, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -210,7 +208,7 @@ class TestAsyncRecordings:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         recording = await async_client.recordings.list()
-        assert_matches_type(AsyncDefaultPagination[RecordingResponseData], recording, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[RecordingResponseData], recording, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -229,12 +227,10 @@ class TestAsyncRecordings:
                 "sip_call_id": "428c31b6-7af4-4bcb-b7f5-5013ef9657c1",
                 "to": "1234567890",
             },
-            page={
-                "number": 1,
-                "size": 1,
-            },
+            page_number=0,
+            page_size=0,
         )
-        assert_matches_type(AsyncDefaultPagination[RecordingResponseData], recording, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[RecordingResponseData], recording, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -244,7 +240,7 @@ class TestAsyncRecordings:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         recording = await response.parse()
-        assert_matches_type(AsyncDefaultPagination[RecordingResponseData], recording, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[RecordingResponseData], recording, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -254,7 +250,7 @@ class TestAsyncRecordings:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             recording = await response.parse()
-            assert_matches_type(AsyncDefaultPagination[RecordingResponseData], recording, path=["response"])
+            assert_matches_type(AsyncDefaultFlatPagination[RecordingResponseData], recording, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

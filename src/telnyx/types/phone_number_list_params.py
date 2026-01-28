@@ -8,7 +8,7 @@ from typing_extensions import Literal, Annotated, TypedDict
 from .._types import SequenceNotStr
 from .._utils import PropertyInfo
 
-__all__ = ["PhoneNumberListParams", "Filter", "FilterNumberType", "FilterVoiceConnectionName", "Page"]
+__all__ = ["PhoneNumberListParams", "Filter", "FilterNumberType", "FilterVoiceConnectionName"]
 
 
 class PhoneNumberListParams(TypedDict, total=False):
@@ -32,11 +32,9 @@ class PhoneNumberListParams(TypedDict, total=False):
     returning a 503 error.
     """
 
-    page: Page
-    """Consolidated page parameter (deepObject style).
+    page_number: Annotated[int, PropertyInfo(alias="page[number]")]
 
-    Originally: page[size], page[number]
-    """
+    page_size: Annotated[int, PropertyInfo(alias="page[size]")]
 
     sort: Literal["purchased_at", "phone_number", "connection_name", "usage_payment_method"]
     """Specifies the sort order for results.
@@ -146,16 +144,3 @@ class Filter(TypedDict, total=False):
 
     All other values are ignored.
     """
-
-
-class Page(TypedDict, total=False):
-    """Consolidated page parameter (deepObject style).
-
-    Originally: page[size], page[number]
-    """
-
-    number: int
-    """The page number to load"""
-
-    size: int
-    """The size of the page"""

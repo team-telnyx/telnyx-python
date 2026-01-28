@@ -15,7 +15,7 @@ from telnyx.types import (
     DynamicEmergencyEndpointDeleteResponse,
     DynamicEmergencyEndpointRetrieveResponse,
 )
-from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
+from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -110,7 +110,7 @@ class TestDynamicEmergencyEndpoints:
     def test_method_list(self, client: Telnyx) -> None:
         dynamic_emergency_endpoint = client.dynamic_emergency_endpoints.list()
         assert_matches_type(
-            SyncDefaultPagination[DynamicEmergencyEndpoint], dynamic_emergency_endpoint, path=["response"]
+            SyncDefaultFlatPagination[DynamicEmergencyEndpoint], dynamic_emergency_endpoint, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -121,13 +121,11 @@ class TestDynamicEmergencyEndpoints:
                 "country_code": "country_code",
                 "status": "pending",
             },
-            page={
-                "number": 1,
-                "size": 1,
-            },
+            page_number=0,
+            page_size=0,
         )
         assert_matches_type(
-            SyncDefaultPagination[DynamicEmergencyEndpoint], dynamic_emergency_endpoint, path=["response"]
+            SyncDefaultFlatPagination[DynamicEmergencyEndpoint], dynamic_emergency_endpoint, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -139,7 +137,7 @@ class TestDynamicEmergencyEndpoints:
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dynamic_emergency_endpoint = response.parse()
         assert_matches_type(
-            SyncDefaultPagination[DynamicEmergencyEndpoint], dynamic_emergency_endpoint, path=["response"]
+            SyncDefaultFlatPagination[DynamicEmergencyEndpoint], dynamic_emergency_endpoint, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -151,7 +149,7 @@ class TestDynamicEmergencyEndpoints:
 
             dynamic_emergency_endpoint = response.parse()
             assert_matches_type(
-                SyncDefaultPagination[DynamicEmergencyEndpoint], dynamic_emergency_endpoint, path=["response"]
+                SyncDefaultFlatPagination[DynamicEmergencyEndpoint], dynamic_emergency_endpoint, path=["response"]
             )
 
         assert cast(Any, response.is_closed) is True
@@ -291,7 +289,7 @@ class TestAsyncDynamicEmergencyEndpoints:
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         dynamic_emergency_endpoint = await async_client.dynamic_emergency_endpoints.list()
         assert_matches_type(
-            AsyncDefaultPagination[DynamicEmergencyEndpoint], dynamic_emergency_endpoint, path=["response"]
+            AsyncDefaultFlatPagination[DynamicEmergencyEndpoint], dynamic_emergency_endpoint, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -302,13 +300,11 @@ class TestAsyncDynamicEmergencyEndpoints:
                 "country_code": "country_code",
                 "status": "pending",
             },
-            page={
-                "number": 1,
-                "size": 1,
-            },
+            page_number=0,
+            page_size=0,
         )
         assert_matches_type(
-            AsyncDefaultPagination[DynamicEmergencyEndpoint], dynamic_emergency_endpoint, path=["response"]
+            AsyncDefaultFlatPagination[DynamicEmergencyEndpoint], dynamic_emergency_endpoint, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -320,7 +316,7 @@ class TestAsyncDynamicEmergencyEndpoints:
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dynamic_emergency_endpoint = await response.parse()
         assert_matches_type(
-            AsyncDefaultPagination[DynamicEmergencyEndpoint], dynamic_emergency_endpoint, path=["response"]
+            AsyncDefaultFlatPagination[DynamicEmergencyEndpoint], dynamic_emergency_endpoint, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -332,7 +328,7 @@ class TestAsyncDynamicEmergencyEndpoints:
 
             dynamic_emergency_endpoint = await response.parse()
             assert_matches_type(
-                AsyncDefaultPagination[DynamicEmergencyEndpoint], dynamic_emergency_endpoint, path=["response"]
+                AsyncDefaultFlatPagination[DynamicEmergencyEndpoint], dynamic_emergency_endpoint, path=["response"]
             )
 
         assert cast(Any, response.is_closed) is True

@@ -25,7 +25,7 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
+from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.service_plan import ServicePlan
 from ..types.traffic_type import TrafficType
@@ -288,7 +288,8 @@ class OutboundVoiceProfilesResource(SyncAPIResource):
         self,
         *,
         filter: outbound_voice_profile_list_params.Filter | Omit = omit,
-        page: outbound_voice_profile_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         sort: Literal[
             "enabled",
             "-enabled",
@@ -310,7 +311,7 @@ class OutboundVoiceProfilesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[OutboundVoiceProfile]:
+    ) -> SyncDefaultFlatPagination[OutboundVoiceProfile]:
         """
         Get all outbound voice profiles belonging to the user that match the given
         filters.
@@ -319,9 +320,6 @@ class OutboundVoiceProfilesResource(SyncAPIResource):
           filter:
               Consolidated filter parameter (deepObject style). Originally:
               filter[name][contains]
-
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
 
           sort: Specifies the sort order for results. By default sorting direction is ascending.
               To have the results sorted in descending order add the <code>-</code>
@@ -348,7 +346,7 @@ class OutboundVoiceProfilesResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/outbound_voice_profiles",
-            page=SyncDefaultPagination[OutboundVoiceProfile],
+            page=SyncDefaultFlatPagination[OutboundVoiceProfile],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -357,7 +355,8 @@ class OutboundVoiceProfilesResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                         "sort": sort,
                     },
                     outbound_voice_profile_list_params.OutboundVoiceProfileListParams,
@@ -648,7 +647,8 @@ class AsyncOutboundVoiceProfilesResource(AsyncAPIResource):
         self,
         *,
         filter: outbound_voice_profile_list_params.Filter | Omit = omit,
-        page: outbound_voice_profile_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         sort: Literal[
             "enabled",
             "-enabled",
@@ -670,7 +670,7 @@ class AsyncOutboundVoiceProfilesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[OutboundVoiceProfile, AsyncDefaultPagination[OutboundVoiceProfile]]:
+    ) -> AsyncPaginator[OutboundVoiceProfile, AsyncDefaultFlatPagination[OutboundVoiceProfile]]:
         """
         Get all outbound voice profiles belonging to the user that match the given
         filters.
@@ -679,9 +679,6 @@ class AsyncOutboundVoiceProfilesResource(AsyncAPIResource):
           filter:
               Consolidated filter parameter (deepObject style). Originally:
               filter[name][contains]
-
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
 
           sort: Specifies the sort order for results. By default sorting direction is ascending.
               To have the results sorted in descending order add the <code>-</code>
@@ -708,7 +705,7 @@ class AsyncOutboundVoiceProfilesResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/outbound_voice_profiles",
-            page=AsyncDefaultPagination[OutboundVoiceProfile],
+            page=AsyncDefaultFlatPagination[OutboundVoiceProfile],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -717,7 +714,8 @@ class AsyncOutboundVoiceProfilesResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                         "sort": sort,
                     },
                     outbound_voice_profile_list_params.OutboundVoiceProfileListParams,

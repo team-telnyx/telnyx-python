@@ -16,7 +16,7 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ....pagination import SyncDefaultPagination, AsyncDefaultPagination
+from ....pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.rcs_agent import RcsAgent
 from ....types.messaging.rcs import agent_list_params, agent_update_params
@@ -131,21 +131,19 @@ class AgentsResource(SyncAPIResource):
     def list(
         self,
         *,
-        page: agent_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[RcsAgent]:
+    ) -> SyncDefaultFlatPagination[RcsAgent]:
         """
         List all RCS agents
 
         Args:
-          page: Consolidated page parameter (deepObject style). Originally: page[number],
-              page[size]
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -156,13 +154,19 @@ class AgentsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/messaging/rcs/agents",
-            page=SyncDefaultPagination[RcsAgent],
+            page=SyncDefaultFlatPagination[RcsAgent],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"page": page}, agent_list_params.AgentListParams),
+                query=maybe_transform(
+                    {
+                        "page_number": page_number,
+                        "page_size": page_size,
+                    },
+                    agent_list_params.AgentListParams,
+                ),
             ),
             model=RcsAgent,
         )
@@ -274,21 +278,19 @@ class AsyncAgentsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        page: agent_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[RcsAgent, AsyncDefaultPagination[RcsAgent]]:
+    ) -> AsyncPaginator[RcsAgent, AsyncDefaultFlatPagination[RcsAgent]]:
         """
         List all RCS agents
 
         Args:
-          page: Consolidated page parameter (deepObject style). Originally: page[number],
-              page[size]
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -299,13 +301,19 @@ class AsyncAgentsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/messaging/rcs/agents",
-            page=AsyncDefaultPagination[RcsAgent],
+            page=AsyncDefaultFlatPagination[RcsAgent],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"page": page}, agent_list_params.AgentListParams),
+                query=maybe_transform(
+                    {
+                        "page_number": page_number,
+                        "page_size": page_size,
+                    },
+                    agent_list_params.AgentListParams,
+                ),
             ),
             model=RcsAgent,
         )

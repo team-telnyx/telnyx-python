@@ -2,11 +2,12 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
+from typing_extensions import Annotated, TypedDict
 
 from ..._types import SequenceNotStr
+from ..._utils import PropertyInfo
 
-__all__ = ["UserBundleListParams", "Filter", "Page"]
+__all__ = ["UserBundleListParams", "Filter"]
 
 
 class UserBundleListParams(TypedDict, total=False):
@@ -17,11 +18,9 @@ class UserBundleListParams(TypedDict, total=False):
     or filter[resource]=+15617819942
     """
 
-    page: Page
-    """Consolidated page parameter (deepObject style).
+    page_number: Annotated[int, PropertyInfo(alias="page[number]")]
 
-    Originally: page[size], page[number]
-    """
+    page_size: Annotated[int, PropertyInfo(alias="page[size]")]
 
     authorization_bearer: str
     """Authenticates the request with your Telnyx API V2 KEY"""
@@ -38,16 +37,3 @@ class Filter(TypedDict, total=False):
 
     resource: SequenceNotStr[str]
     """Filter by resource."""
-
-
-class Page(TypedDict, total=False):
-    """Consolidated page parameter (deepObject style).
-
-    Originally: page[size], page[number]
-    """
-
-    number: int
-    """The page number to load."""
-
-    size: int
-    """The size of the page."""
