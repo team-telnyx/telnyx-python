@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.13.1 (2026-01-28)
+
+Full Changelog: [v4.13.0...v4.13.1](https://github.com/team-telnyx/telnyx-python/compare/v4.13.0...v4.13.1)
+
+### Bug Fixes
+
+* **docs:** fix mcp installation instructions for remote servers ([833be2a](https://github.com/team-telnyx/telnyx-python/commit/833be2a4f55f23cd36d1c9760cdcc12c7e3d6dc5))
+
 ## 4.13.0 (2026-01-28)
 
 Full Changelog: [v4.12.0...v4.13.0](https://github.com/team-telnyx/telnyx-python/compare/v4.12.0...v4.13.0)
