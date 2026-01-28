@@ -8,7 +8,7 @@ from typing_extensions import Annotated, TypedDict
 
 from .._utils import PropertyInfo
 
-__all__ = ["RoomRecordingDeleteBulkParams", "Filter", "FilterDateEndedAt", "FilterDateStartedAt", "Page"]
+__all__ = ["RoomRecordingDeleteBulkParams", "Filter", "FilterDateEndedAt", "FilterDateStartedAt"]
 
 
 class RoomRecordingDeleteBulkParams(TypedDict, total=False):
@@ -22,11 +22,9 @@ class RoomRecordingDeleteBulkParams(TypedDict, total=False):
     filter[duration_secs]
     """
 
-    page: Page
-    """Consolidated page parameter (deepObject style).
+    page_number: Annotated[int, PropertyInfo(alias="page[number]")]
 
-    Originally: page[size], page[number]
-    """
+    page_size: Annotated[int, PropertyInfo(alias="page[size]")]
 
 
 class FilterDateEndedAt(TypedDict, total=False):
@@ -78,16 +76,3 @@ class Filter(TypedDict, total=False):
 
     type: str
     """type for filtering room recordings."""
-
-
-class Page(TypedDict, total=False):
-    """Consolidated page parameter (deepObject style).
-
-    Originally: page[size], page[number]
-    """
-
-    number: int
-    """The page number to load."""
-
-    size: int
-    """The size of the page."""

@@ -17,7 +17,7 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
+from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.room_composition import RoomComposition
 from ..types.video_region_param import VideoRegionParam
@@ -153,14 +153,15 @@ class RoomCompositionsResource(SyncAPIResource):
         self,
         *,
         filter: room_composition_list_params.Filter | Omit = omit,
-        page: room_composition_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[RoomComposition]:
+    ) -> SyncDefaultFlatPagination[RoomComposition]:
         """
         View a list of room compositions.
 
@@ -169,9 +170,6 @@ class RoomCompositionsResource(SyncAPIResource):
               Consolidated filter parameter (deepObject style). Originally:
               filter[date_created_at][eq], filter[date_created_at][gte],
               filter[date_created_at][lte], filter[session_id], filter[status]
-
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
 
           extra_headers: Send extra headers
 
@@ -183,7 +181,7 @@ class RoomCompositionsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/room_compositions",
-            page=SyncDefaultPagination[RoomComposition],
+            page=SyncDefaultFlatPagination[RoomComposition],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -192,7 +190,8 @@ class RoomCompositionsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                     },
                     room_composition_list_params.RoomCompositionListParams,
                 ),
@@ -363,14 +362,15 @@ class AsyncRoomCompositionsResource(AsyncAPIResource):
         self,
         *,
         filter: room_composition_list_params.Filter | Omit = omit,
-        page: room_composition_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[RoomComposition, AsyncDefaultPagination[RoomComposition]]:
+    ) -> AsyncPaginator[RoomComposition, AsyncDefaultFlatPagination[RoomComposition]]:
         """
         View a list of room compositions.
 
@@ -379,9 +379,6 @@ class AsyncRoomCompositionsResource(AsyncAPIResource):
               Consolidated filter parameter (deepObject style). Originally:
               filter[date_created_at][eq], filter[date_created_at][gte],
               filter[date_created_at][lte], filter[session_id], filter[status]
-
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
 
           extra_headers: Send extra headers
 
@@ -393,7 +390,7 @@ class AsyncRoomCompositionsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/room_compositions",
-            page=AsyncDefaultPagination[RoomComposition],
+            page=AsyncDefaultFlatPagination[RoomComposition],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -402,7 +399,8 @@ class AsyncRoomCompositionsResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                     },
                     room_composition_list_params.RoomCompositionListParams,
                 ),

@@ -15,7 +15,7 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
+from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.wireguard_peer_list_response import WireguardPeerListResponse
 from ..types.wireguard_peer_create_response import WireguardPeerCreateResponse
@@ -167,14 +167,15 @@ class WireguardPeersResource(SyncAPIResource):
         self,
         *,
         filter: wireguard_peer_list_params.Filter | Omit = omit,
-        page: wireguard_peer_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[WireguardPeerListResponse]:
+    ) -> SyncDefaultFlatPagination[WireguardPeerListResponse]:
         """
         List all WireGuard peers.
 
@@ -182,9 +183,6 @@ class WireguardPeersResource(SyncAPIResource):
           filter:
               Consolidated filter parameter (deepObject style). Originally:
               filter[wireguard_interface_id]
-
-          page: Consolidated page parameter (deepObject style). Originally: page[number],
-              page[size]
 
           extra_headers: Send extra headers
 
@@ -196,7 +194,7 @@ class WireguardPeersResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/wireguard_peers",
-            page=SyncDefaultPagination[WireguardPeerListResponse],
+            page=SyncDefaultFlatPagination[WireguardPeerListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -205,7 +203,8 @@ class WireguardPeersResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                     },
                     wireguard_peer_list_params.WireguardPeerListParams,
                 ),
@@ -424,14 +423,15 @@ class AsyncWireguardPeersResource(AsyncAPIResource):
         self,
         *,
         filter: wireguard_peer_list_params.Filter | Omit = omit,
-        page: wireguard_peer_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[WireguardPeerListResponse, AsyncDefaultPagination[WireguardPeerListResponse]]:
+    ) -> AsyncPaginator[WireguardPeerListResponse, AsyncDefaultFlatPagination[WireguardPeerListResponse]]:
         """
         List all WireGuard peers.
 
@@ -439,9 +439,6 @@ class AsyncWireguardPeersResource(AsyncAPIResource):
           filter:
               Consolidated filter parameter (deepObject style). Originally:
               filter[wireguard_interface_id]
-
-          page: Consolidated page parameter (deepObject style). Originally: page[number],
-              page[size]
 
           extra_headers: Send extra headers
 
@@ -453,7 +450,7 @@ class AsyncWireguardPeersResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/wireguard_peers",
-            page=AsyncDefaultPagination[WireguardPeerListResponse],
+            page=AsyncDefaultFlatPagination[WireguardPeerListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -462,7 +459,8 @@ class AsyncWireguardPeersResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                     },
                     wireguard_peer_list_params.WireguardPeerListParams,
                 ),

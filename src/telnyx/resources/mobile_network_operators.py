@@ -15,7 +15,7 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
+from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.mobile_network_operator_list_response import MobileNetworkOperatorListResponse
 
@@ -46,14 +46,15 @@ class MobileNetworkOperatorsResource(SyncAPIResource):
         self,
         *,
         filter: mobile_network_operator_list_params.Filter | Omit = omit,
-        page: mobile_network_operator_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[MobileNetworkOperatorListResponse]:
+    ) -> SyncDefaultFlatPagination[MobileNetworkOperatorListResponse]:
         """
         Telnyx has a set of GSM mobile operators partners that are available through our
         mobile network roaming. This resource is entirely managed by Telnyx and may
@@ -67,9 +68,6 @@ class MobileNetworkOperatorsResource(SyncAPIResource):
               filter[name][ends_with], filter[country_code], filter[mcc], filter[mnc],
               filter[tadig], filter[network_preferences_enabled]
 
-          page: Consolidated pagination parameter (deepObject style). Originally: page[number],
-              page[size]
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -80,7 +78,7 @@ class MobileNetworkOperatorsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/mobile_network_operators",
-            page=SyncDefaultPagination[MobileNetworkOperatorListResponse],
+            page=SyncDefaultFlatPagination[MobileNetworkOperatorListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -89,7 +87,8 @@ class MobileNetworkOperatorsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                     },
                     mobile_network_operator_list_params.MobileNetworkOperatorListParams,
                 ),
@@ -122,14 +121,17 @@ class AsyncMobileNetworkOperatorsResource(AsyncAPIResource):
         self,
         *,
         filter: mobile_network_operator_list_params.Filter | Omit = omit,
-        page: mobile_network_operator_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[MobileNetworkOperatorListResponse, AsyncDefaultPagination[MobileNetworkOperatorListResponse]]:
+    ) -> AsyncPaginator[
+        MobileNetworkOperatorListResponse, AsyncDefaultFlatPagination[MobileNetworkOperatorListResponse]
+    ]:
         """
         Telnyx has a set of GSM mobile operators partners that are available through our
         mobile network roaming. This resource is entirely managed by Telnyx and may
@@ -143,9 +145,6 @@ class AsyncMobileNetworkOperatorsResource(AsyncAPIResource):
               filter[name][ends_with], filter[country_code], filter[mcc], filter[mnc],
               filter[tadig], filter[network_preferences_enabled]
 
-          page: Consolidated pagination parameter (deepObject style). Originally: page[number],
-              page[size]
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -156,7 +155,7 @@ class AsyncMobileNetworkOperatorsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/mobile_network_operators",
-            page=AsyncDefaultPagination[MobileNetworkOperatorListResponse],
+            page=AsyncDefaultFlatPagination[MobileNetworkOperatorListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -165,7 +164,8 @@ class AsyncMobileNetworkOperatorsResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                     },
                     mobile_network_operator_list_params.MobileNetworkOperatorListParams,
                 ),

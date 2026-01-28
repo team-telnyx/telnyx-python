@@ -8,7 +8,7 @@ from typing_extensions import Literal, Annotated, TypedDict
 
 from .._utils import PropertyInfo
 
-__all__ = ["AuditEventListParams", "Filter", "Page"]
+__all__ = ["AuditEventListParams", "Filter"]
 
 
 class AuditEventListParams(TypedDict, total=False):
@@ -18,11 +18,9 @@ class AuditEventListParams(TypedDict, total=False):
     Originally: filter[created_before], filter[created_after]
     """
 
-    page: Page
-    """Consolidated page parameter (deepObject style).
+    page_number: Annotated[int, PropertyInfo(alias="page[number]")]
 
-    Originally: page[number], page[size]
-    """
+    page_size: Annotated[int, PropertyInfo(alias="page[size]")]
 
     sort: Literal["asc", "desc"]
     """Set the order of the results by the creation date."""
@@ -39,16 +37,3 @@ class Filter(TypedDict, total=False):
 
     created_before: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """Filter for audit events created before a specific date."""
-
-
-class Page(TypedDict, total=False):
-    """Consolidated page parameter (deepObject style).
-
-    Originally: page[number], page[size]
-    """
-
-    number: int
-    """Page number to load."""
-
-    size: int
-    """Number of items per page."""

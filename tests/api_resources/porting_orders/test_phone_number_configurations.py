@@ -9,7 +9,7 @@ import pytest
 
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
-from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
+from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from telnyx.types.porting_orders import (
     PhoneNumberConfigurationListResponse,
     PhoneNumberConfigurationCreateResponse,
@@ -67,7 +67,9 @@ class TestPhoneNumberConfigurations:
     def test_method_list(self, client: Telnyx) -> None:
         phone_number_configuration = client.porting_orders.phone_number_configurations.list()
         assert_matches_type(
-            SyncDefaultPagination[PhoneNumberConfigurationListResponse], phone_number_configuration, path=["response"]
+            SyncDefaultFlatPagination[PhoneNumberConfigurationListResponse],
+            phone_number_configuration,
+            path=["response"],
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -79,14 +81,14 @@ class TestPhoneNumberConfigurations:
                 "porting_phone_number": ["5d6f7ede-1961-4717-bfb5-db392c5efc2d"],
                 "user_bundle_id": ["5d6f7ede-1961-4717-bfb5-db392c5efc2d"],
             },
-            page={
-                "number": 1,
-                "size": 1,
-            },
+            page_number=0,
+            page_size=0,
             sort={"value": "created_at"},
         )
         assert_matches_type(
-            SyncDefaultPagination[PhoneNumberConfigurationListResponse], phone_number_configuration, path=["response"]
+            SyncDefaultFlatPagination[PhoneNumberConfigurationListResponse],
+            phone_number_configuration,
+            path=["response"],
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -98,7 +100,9 @@ class TestPhoneNumberConfigurations:
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         phone_number_configuration = response.parse()
         assert_matches_type(
-            SyncDefaultPagination[PhoneNumberConfigurationListResponse], phone_number_configuration, path=["response"]
+            SyncDefaultFlatPagination[PhoneNumberConfigurationListResponse],
+            phone_number_configuration,
+            path=["response"],
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -110,7 +114,7 @@ class TestPhoneNumberConfigurations:
 
             phone_number_configuration = response.parse()
             assert_matches_type(
-                SyncDefaultPagination[PhoneNumberConfigurationListResponse],
+                SyncDefaultFlatPagination[PhoneNumberConfigurationListResponse],
                 phone_number_configuration,
                 path=["response"],
             )
@@ -169,7 +173,9 @@ class TestAsyncPhoneNumberConfigurations:
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         phone_number_configuration = await async_client.porting_orders.phone_number_configurations.list()
         assert_matches_type(
-            AsyncDefaultPagination[PhoneNumberConfigurationListResponse], phone_number_configuration, path=["response"]
+            AsyncDefaultFlatPagination[PhoneNumberConfigurationListResponse],
+            phone_number_configuration,
+            path=["response"],
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -181,14 +187,14 @@ class TestAsyncPhoneNumberConfigurations:
                 "porting_phone_number": ["5d6f7ede-1961-4717-bfb5-db392c5efc2d"],
                 "user_bundle_id": ["5d6f7ede-1961-4717-bfb5-db392c5efc2d"],
             },
-            page={
-                "number": 1,
-                "size": 1,
-            },
+            page_number=0,
+            page_size=0,
             sort={"value": "created_at"},
         )
         assert_matches_type(
-            AsyncDefaultPagination[PhoneNumberConfigurationListResponse], phone_number_configuration, path=["response"]
+            AsyncDefaultFlatPagination[PhoneNumberConfigurationListResponse],
+            phone_number_configuration,
+            path=["response"],
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -200,7 +206,9 @@ class TestAsyncPhoneNumberConfigurations:
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         phone_number_configuration = await response.parse()
         assert_matches_type(
-            AsyncDefaultPagination[PhoneNumberConfigurationListResponse], phone_number_configuration, path=["response"]
+            AsyncDefaultFlatPagination[PhoneNumberConfigurationListResponse],
+            phone_number_configuration,
+            path=["response"],
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -212,7 +220,7 @@ class TestAsyncPhoneNumberConfigurations:
 
             phone_number_configuration = await response.parse()
             assert_matches_type(
-                AsyncDefaultPagination[PhoneNumberConfigurationListResponse],
+                AsyncDefaultFlatPagination[PhoneNumberConfigurationListResponse],
                 phone_number_configuration,
                 path=["response"],
             )

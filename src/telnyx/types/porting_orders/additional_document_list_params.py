@@ -3,9 +3,11 @@
 from __future__ import annotations
 
 from typing import List
-from typing_extensions import Literal, TypedDict
+from typing_extensions import Literal, Annotated, TypedDict
 
-__all__ = ["AdditionalDocumentListParams", "Filter", "Page", "Sort"]
+from ..._utils import PropertyInfo
+
+__all__ = ["AdditionalDocumentListParams", "Filter", "Sort"]
 
 
 class AdditionalDocumentListParams(TypedDict, total=False):
@@ -15,11 +17,9 @@ class AdditionalDocumentListParams(TypedDict, total=False):
     Originally: filter[document_type]
     """
 
-    page: Page
-    """Consolidated page parameter (deepObject style).
+    page_number: Annotated[int, PropertyInfo(alias="page[number]")]
 
-    Originally: page[size], page[number]
-    """
+    page_size: Annotated[int, PropertyInfo(alias="page[size]")]
 
     sort: Sort
     """Consolidated sort parameter (deepObject style). Originally: sort[value]"""
@@ -33,19 +33,6 @@ class Filter(TypedDict, total=False):
 
     document_type: List[Literal["loa", "invoice", "csr", "other"]]
     """Filter additional documents by a list of document types"""
-
-
-class Page(TypedDict, total=False):
-    """Consolidated page parameter (deepObject style).
-
-    Originally: page[size], page[number]
-    """
-
-    number: int
-    """The page number to load"""
-
-    size: int
-    """The size of the page"""
 
 
 class Sort(TypedDict, total=False):

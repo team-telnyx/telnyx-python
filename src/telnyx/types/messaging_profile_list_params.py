@@ -2,20 +2,20 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
+from typing_extensions import Annotated, TypedDict
 
-__all__ = ["MessagingProfileListParams", "Filter", "Page"]
+from .._utils import PropertyInfo
+
+__all__ = ["MessagingProfileListParams", "Filter"]
 
 
 class MessagingProfileListParams(TypedDict, total=False):
     filter: Filter
     """Consolidated filter parameter (deepObject style). Originally: filter[name]"""
 
-    page: Page
-    """Consolidated page parameter (deepObject style).
+    page_number: Annotated[int, PropertyInfo(alias="page[number]")]
 
-    Originally: page[number], page[size]
-    """
+    page_size: Annotated[int, PropertyInfo(alias="page[size]")]
 
 
 class Filter(TypedDict, total=False):
@@ -23,16 +23,3 @@ class Filter(TypedDict, total=False):
 
     name: str
     """Filter by name"""
-
-
-class Page(TypedDict, total=False):
-    """Consolidated page parameter (deepObject style).
-
-    Originally: page[number], page[size]
-    """
-
-    number: int
-    """The page number to load"""
-
-    size: int
-    """The size of the page"""

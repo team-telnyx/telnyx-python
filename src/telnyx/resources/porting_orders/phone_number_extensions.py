@@ -16,7 +16,7 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...pagination import SyncDefaultPagination, AsyncDefaultPagination
+from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.porting_orders import phone_number_extension_list_params, phone_number_extension_create_params
 from ...types.porting_orders.porting_phone_number_extension import PortingPhoneNumberExtension
@@ -102,7 +102,8 @@ class PhoneNumberExtensionsResource(SyncAPIResource):
         porting_order_id: str,
         *,
         filter: phone_number_extension_list_params.Filter | Omit = omit,
-        page: phone_number_extension_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         sort: phone_number_extension_list_params.Sort | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -110,7 +111,7 @@ class PhoneNumberExtensionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[PortingPhoneNumberExtension]:
+    ) -> SyncDefaultFlatPagination[PortingPhoneNumberExtension]:
         """
         Returns a list of all phone number extensions of a porting order.
 
@@ -118,9 +119,6 @@ class PhoneNumberExtensionsResource(SyncAPIResource):
           filter:
               Consolidated filter parameter (deepObject style). Originally:
               filter[porting_phone_number_id]
-
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
 
           sort: Consolidated sort parameter (deepObject style). Originally: sort[value]
 
@@ -136,7 +134,7 @@ class PhoneNumberExtensionsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `porting_order_id` but received {porting_order_id!r}")
         return self._get_api_list(
             f"/porting_orders/{porting_order_id}/phone_number_extensions",
-            page=SyncDefaultPagination[PortingPhoneNumberExtension],
+            page=SyncDefaultFlatPagination[PortingPhoneNumberExtension],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -145,7 +143,8 @@ class PhoneNumberExtensionsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                         "sort": sort,
                     },
                     phone_number_extension_list_params.PhoneNumberExtensionListParams,
@@ -267,7 +266,8 @@ class AsyncPhoneNumberExtensionsResource(AsyncAPIResource):
         porting_order_id: str,
         *,
         filter: phone_number_extension_list_params.Filter | Omit = omit,
-        page: phone_number_extension_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         sort: phone_number_extension_list_params.Sort | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -275,7 +275,7 @@ class AsyncPhoneNumberExtensionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[PortingPhoneNumberExtension, AsyncDefaultPagination[PortingPhoneNumberExtension]]:
+    ) -> AsyncPaginator[PortingPhoneNumberExtension, AsyncDefaultFlatPagination[PortingPhoneNumberExtension]]:
         """
         Returns a list of all phone number extensions of a porting order.
 
@@ -283,9 +283,6 @@ class AsyncPhoneNumberExtensionsResource(AsyncAPIResource):
           filter:
               Consolidated filter parameter (deepObject style). Originally:
               filter[porting_phone_number_id]
-
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
 
           sort: Consolidated sort parameter (deepObject style). Originally: sort[value]
 
@@ -301,7 +298,7 @@ class AsyncPhoneNumberExtensionsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `porting_order_id` but received {porting_order_id!r}")
         return self._get_api_list(
             f"/porting_orders/{porting_order_id}/phone_number_extensions",
-            page=AsyncDefaultPagination[PortingPhoneNumberExtension],
+            page=AsyncDefaultFlatPagination[PortingPhoneNumberExtension],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -310,7 +307,8 @@ class AsyncPhoneNumberExtensionsResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                         "sort": sort,
                     },
                     phone_number_extension_list_params.PhoneNumberExtensionListParams,

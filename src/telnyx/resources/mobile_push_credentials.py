@@ -15,7 +15,7 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
+from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.push_credential import PushCredential
 from ..types.push_credential_response import PushCredentialResponse
@@ -115,23 +115,21 @@ class MobilePushCredentialsResource(SyncAPIResource):
         self,
         *,
         filter: mobile_push_credential_list_params.Filter | Omit = omit,
-        page: mobile_push_credential_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[PushCredential]:
+    ) -> SyncDefaultFlatPagination[PushCredential]:
         """
         List mobile push credentials
 
         Args:
           filter: Consolidated filter parameter (deepObject style). Originally: filter[type],
               filter[alias]
-
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
 
           extra_headers: Send extra headers
 
@@ -143,7 +141,7 @@ class MobilePushCredentialsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/mobile_push_credentials",
-            page=SyncDefaultPagination[PushCredential],
+            page=SyncDefaultFlatPagination[PushCredential],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -152,7 +150,8 @@ class MobilePushCredentialsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                     },
                     mobile_push_credential_list_params.MobilePushCredentialListParams,
                 ),
@@ -287,23 +286,21 @@ class AsyncMobilePushCredentialsResource(AsyncAPIResource):
         self,
         *,
         filter: mobile_push_credential_list_params.Filter | Omit = omit,
-        page: mobile_push_credential_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[PushCredential, AsyncDefaultPagination[PushCredential]]:
+    ) -> AsyncPaginator[PushCredential, AsyncDefaultFlatPagination[PushCredential]]:
         """
         List mobile push credentials
 
         Args:
           filter: Consolidated filter parameter (deepObject style). Originally: filter[type],
               filter[alias]
-
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
 
           extra_headers: Send extra headers
 
@@ -315,7 +312,7 @@ class AsyncMobilePushCredentialsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/mobile_push_credentials",
-            page=AsyncDefaultPagination[PushCredential],
+            page=AsyncDefaultFlatPagination[PushCredential],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -324,7 +321,8 @@ class AsyncMobilePushCredentialsResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                     },
                     mobile_push_credential_list_params.MobilePushCredentialListParams,
                 ),

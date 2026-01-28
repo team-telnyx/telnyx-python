@@ -17,12 +17,7 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import (
-    SyncDefaultPagination,
-    AsyncDefaultPagination,
-    SyncDefaultFlatPagination,
-    AsyncDefaultFlatPagination,
-)
+from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.connection_list_response import ConnectionListResponse
 from ..types.connection_retrieve_response import ConnectionRetrieveResponse
@@ -90,7 +85,8 @@ class ConnectionsResource(SyncAPIResource):
         self,
         *,
         filter: connection_list_params.Filter | Omit = omit,
-        page: connection_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         sort: Literal["created_at", "connection_name", "active"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -98,7 +94,7 @@ class ConnectionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[ConnectionListResponse]:
+    ) -> SyncDefaultFlatPagination[ConnectionListResponse]:
         """
         Returns a list of your connections irrespective of type.
 
@@ -107,9 +103,6 @@ class ConnectionsResource(SyncAPIResource):
               Consolidated filter parameter (deepObject style). Originally:
               filter[connection_name], filter[fqdn], filter[outbound_voice_profile_id],
               filter[outbound.outbound_voice_profile_id]
-
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
 
           sort: Specifies the sort order for results. By default sorting direction is ascending.
               To have the results sorted in descending order add the <code> -</code>
@@ -136,7 +129,7 @@ class ConnectionsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/connections",
-            page=SyncDefaultPagination[ConnectionListResponse],
+            page=SyncDefaultFlatPagination[ConnectionListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -145,7 +138,8 @@ class ConnectionsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                         "sort": sort,
                     },
                     connection_list_params.ConnectionListParams,
@@ -158,7 +152,6 @@ class ConnectionsResource(SyncAPIResource):
         self,
         connection_id: str,
         *,
-        page: connection_list_active_calls_params.Page | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -175,9 +168,6 @@ class ConnectionsResource(SyncAPIResource):
         Returned results are cursor paginated.
 
         Args:
-          page: Consolidated page parameter (deepObject style). Originally: page[after],
-              page[before], page[limit], page[size], page[number]
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -198,7 +188,6 @@ class ConnectionsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "page": page,
                         "page_number": page_number,
                         "page_size": page_size,
                     },
@@ -268,7 +257,8 @@ class AsyncConnectionsResource(AsyncAPIResource):
         self,
         *,
         filter: connection_list_params.Filter | Omit = omit,
-        page: connection_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         sort: Literal["created_at", "connection_name", "active"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -276,7 +266,7 @@ class AsyncConnectionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[ConnectionListResponse, AsyncDefaultPagination[ConnectionListResponse]]:
+    ) -> AsyncPaginator[ConnectionListResponse, AsyncDefaultFlatPagination[ConnectionListResponse]]:
         """
         Returns a list of your connections irrespective of type.
 
@@ -285,9 +275,6 @@ class AsyncConnectionsResource(AsyncAPIResource):
               Consolidated filter parameter (deepObject style). Originally:
               filter[connection_name], filter[fqdn], filter[outbound_voice_profile_id],
               filter[outbound.outbound_voice_profile_id]
-
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
 
           sort: Specifies the sort order for results. By default sorting direction is ascending.
               To have the results sorted in descending order add the <code> -</code>
@@ -314,7 +301,7 @@ class AsyncConnectionsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/connections",
-            page=AsyncDefaultPagination[ConnectionListResponse],
+            page=AsyncDefaultFlatPagination[ConnectionListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -323,7 +310,8 @@ class AsyncConnectionsResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                         "sort": sort,
                     },
                     connection_list_params.ConnectionListParams,
@@ -336,7 +324,6 @@ class AsyncConnectionsResource(AsyncAPIResource):
         self,
         connection_id: str,
         *,
-        page: connection_list_active_calls_params.Page | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -355,9 +342,6 @@ class AsyncConnectionsResource(AsyncAPIResource):
         Returned results are cursor paginated.
 
         Args:
-          page: Consolidated page parameter (deepObject style). Originally: page[after],
-              page[before], page[limit], page[size], page[number]
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -378,7 +362,6 @@ class AsyncConnectionsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "page": page,
                         "page_number": page_number,
                         "page_size": page_size,
                     },

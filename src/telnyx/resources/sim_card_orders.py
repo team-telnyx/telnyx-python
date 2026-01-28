@@ -15,7 +15,7 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
+from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.sim_card_order import SimCardOrder
 from ..types.sim_card_order_create_response import SimCardOrderCreateResponse
@@ -124,14 +124,15 @@ class SimCardOrdersResource(SyncAPIResource):
         self,
         *,
         filter: sim_card_order_list_params.Filter | Omit = omit,
-        page: sim_card_order_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[SimCardOrder]:
+    ) -> SyncDefaultFlatPagination[SimCardOrder]:
         """
         Get all SIM card orders according to filters.
 
@@ -143,9 +144,6 @@ class SimCardOrdersResource(SyncAPIResource):
               filter[address.locality], filter[address.administrative_area],
               filter[address.country_code], filter[address.postal_code]
 
-          page: Consolidated pagination parameter (deepObject style). Originally: page[number],
-              page[size]
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -156,7 +154,7 @@ class SimCardOrdersResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/sim_card_orders",
-            page=SyncDefaultPagination[SimCardOrder],
+            page=SyncDefaultFlatPagination[SimCardOrder],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -165,7 +163,8 @@ class SimCardOrdersResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                     },
                     sim_card_order_list_params.SimCardOrderListParams,
                 ),
@@ -274,14 +273,15 @@ class AsyncSimCardOrdersResource(AsyncAPIResource):
         self,
         *,
         filter: sim_card_order_list_params.Filter | Omit = omit,
-        page: sim_card_order_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[SimCardOrder, AsyncDefaultPagination[SimCardOrder]]:
+    ) -> AsyncPaginator[SimCardOrder, AsyncDefaultFlatPagination[SimCardOrder]]:
         """
         Get all SIM card orders according to filters.
 
@@ -293,9 +293,6 @@ class AsyncSimCardOrdersResource(AsyncAPIResource):
               filter[address.locality], filter[address.administrative_area],
               filter[address.country_code], filter[address.postal_code]
 
-          page: Consolidated pagination parameter (deepObject style). Originally: page[number],
-              page[size]
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -306,7 +303,7 @@ class AsyncSimCardOrdersResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/sim_card_orders",
-            page=AsyncDefaultPagination[SimCardOrder],
+            page=AsyncDefaultFlatPagination[SimCardOrder],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -315,7 +312,8 @@ class AsyncSimCardOrdersResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                     },
                     sim_card_order_list_params.SimCardOrderListParams,
                 ),
