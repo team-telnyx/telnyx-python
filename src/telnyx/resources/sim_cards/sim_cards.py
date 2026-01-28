@@ -32,12 +32,7 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...pagination import (
-    SyncDefaultPagination,
-    AsyncDefaultPagination,
-    SyncDefaultFlatPagination,
-    AsyncDefaultFlatPagination,
-)
+from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.shared.simple_sim_card import SimpleSimCard
 from ...types.sim_card_delete_response import SimCardDeleteResponse
@@ -190,7 +185,8 @@ class SimCardsResource(SyncAPIResource):
         filter: sim_card_list_params.Filter | Omit = omit,
         filter_sim_card_group_id: str | Omit = omit,
         include_sim_card_group: bool | Omit = omit,
-        page: sim_card_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         sort: Literal["current_billing_period_consumed_data.amount", "-current_billing_period_consumed_data.amount"]
         | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -199,7 +195,7 @@ class SimCardsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[SimpleSimCard]:
+    ) -> SyncDefaultFlatPagination[SimpleSimCard]:
         """
         Get all SIM cards belonging to the user that match the given filters.
 
@@ -211,9 +207,6 @@ class SimCardsResource(SyncAPIResource):
           filter_sim_card_group_id: A valid SIM card group ID.
 
           include_sim_card_group: It includes the associated SIM card group object in the response when present.
-
-          page: Consolidated pagination parameter (deepObject style). Originally: page[number],
-              page[size]
 
           sort: Sorts SIM cards by the given field. Defaults to ascending order unless field is
               prefixed with a minus sign.
@@ -228,7 +221,7 @@ class SimCardsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/sim_cards",
-            page=SyncDefaultPagination[SimpleSimCard],
+            page=SyncDefaultFlatPagination[SimpleSimCard],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -239,7 +232,8 @@ class SimCardsResource(SyncAPIResource):
                         "filter": filter,
                         "filter_sim_card_group_id": filter_sim_card_group_id,
                         "include_sim_card_group": include_sim_card_group,
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                         "sort": sort,
                     },
                     sim_card_list_params.SimCardListParams,
@@ -586,7 +580,8 @@ class AsyncSimCardsResource(AsyncAPIResource):
         filter: sim_card_list_params.Filter | Omit = omit,
         filter_sim_card_group_id: str | Omit = omit,
         include_sim_card_group: bool | Omit = omit,
-        page: sim_card_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         sort: Literal["current_billing_period_consumed_data.amount", "-current_billing_period_consumed_data.amount"]
         | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -595,7 +590,7 @@ class AsyncSimCardsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[SimpleSimCard, AsyncDefaultPagination[SimpleSimCard]]:
+    ) -> AsyncPaginator[SimpleSimCard, AsyncDefaultFlatPagination[SimpleSimCard]]:
         """
         Get all SIM cards belonging to the user that match the given filters.
 
@@ -607,9 +602,6 @@ class AsyncSimCardsResource(AsyncAPIResource):
           filter_sim_card_group_id: A valid SIM card group ID.
 
           include_sim_card_group: It includes the associated SIM card group object in the response when present.
-
-          page: Consolidated pagination parameter (deepObject style). Originally: page[number],
-              page[size]
 
           sort: Sorts SIM cards by the given field. Defaults to ascending order unless field is
               prefixed with a minus sign.
@@ -624,7 +616,7 @@ class AsyncSimCardsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/sim_cards",
-            page=AsyncDefaultPagination[SimpleSimCard],
+            page=AsyncDefaultFlatPagination[SimpleSimCard],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -635,7 +627,8 @@ class AsyncSimCardsResource(AsyncAPIResource):
                         "filter": filter,
                         "filter_sim_card_group_id": filter_sim_card_group_id,
                         "include_sim_card_group": include_sim_card_group,
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                         "sort": sort,
                     },
                     sim_card_list_params.SimCardListParams,

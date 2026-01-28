@@ -17,7 +17,7 @@ from telnyx.types import (
     MessagingHostedNumberOrderCheckEligibilityResponse,
     MessagingHostedNumberOrderCreateVerificationCodesResponse,
 )
-from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
+from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from telnyx.types.shared import MessagingHostedNumberOrder
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -118,20 +118,18 @@ class TestMessagingHostedNumberOrders:
     def test_method_list(self, client: Telnyx) -> None:
         messaging_hosted_number_order = client.messaging_hosted_number_orders.list()
         assert_matches_type(
-            SyncDefaultPagination[MessagingHostedNumberOrder], messaging_hosted_number_order, path=["response"]
+            SyncDefaultFlatPagination[MessagingHostedNumberOrder], messaging_hosted_number_order, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         messaging_hosted_number_order = client.messaging_hosted_number_orders.list(
-            page={
-                "number": 1,
-                "size": 1,
-            },
+            page_number=0,
+            page_size=0,
         )
         assert_matches_type(
-            SyncDefaultPagination[MessagingHostedNumberOrder], messaging_hosted_number_order, path=["response"]
+            SyncDefaultFlatPagination[MessagingHostedNumberOrder], messaging_hosted_number_order, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -143,7 +141,7 @@ class TestMessagingHostedNumberOrders:
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         messaging_hosted_number_order = response.parse()
         assert_matches_type(
-            SyncDefaultPagination[MessagingHostedNumberOrder], messaging_hosted_number_order, path=["response"]
+            SyncDefaultFlatPagination[MessagingHostedNumberOrder], messaging_hosted_number_order, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -155,7 +153,7 @@ class TestMessagingHostedNumberOrders:
 
             messaging_hosted_number_order = response.parse()
             assert_matches_type(
-                SyncDefaultPagination[MessagingHostedNumberOrder], messaging_hosted_number_order, path=["response"]
+                SyncDefaultFlatPagination[MessagingHostedNumberOrder], messaging_hosted_number_order, path=["response"]
             )
 
         assert cast(Any, response.is_closed) is True
@@ -472,20 +470,18 @@ class TestAsyncMessagingHostedNumberOrders:
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         messaging_hosted_number_order = await async_client.messaging_hosted_number_orders.list()
         assert_matches_type(
-            AsyncDefaultPagination[MessagingHostedNumberOrder], messaging_hosted_number_order, path=["response"]
+            AsyncDefaultFlatPagination[MessagingHostedNumberOrder], messaging_hosted_number_order, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         messaging_hosted_number_order = await async_client.messaging_hosted_number_orders.list(
-            page={
-                "number": 1,
-                "size": 1,
-            },
+            page_number=0,
+            page_size=0,
         )
         assert_matches_type(
-            AsyncDefaultPagination[MessagingHostedNumberOrder], messaging_hosted_number_order, path=["response"]
+            AsyncDefaultFlatPagination[MessagingHostedNumberOrder], messaging_hosted_number_order, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -497,7 +493,7 @@ class TestAsyncMessagingHostedNumberOrders:
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         messaging_hosted_number_order = await response.parse()
         assert_matches_type(
-            AsyncDefaultPagination[MessagingHostedNumberOrder], messaging_hosted_number_order, path=["response"]
+            AsyncDefaultFlatPagination[MessagingHostedNumberOrder], messaging_hosted_number_order, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -509,7 +505,7 @@ class TestAsyncMessagingHostedNumberOrders:
 
             messaging_hosted_number_order = await response.parse()
             assert_matches_type(
-                AsyncDefaultPagination[MessagingHostedNumberOrder], messaging_hosted_number_order, path=["response"]
+                AsyncDefaultFlatPagination[MessagingHostedNumberOrder], messaging_hosted_number_order, path=["response"]
             )
 
         assert cast(Any, response.is_closed) is True

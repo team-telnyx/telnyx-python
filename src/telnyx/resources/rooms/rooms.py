@@ -23,7 +23,7 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...pagination import SyncDefaultPagination, AsyncDefaultPagination
+from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from ...types.room import Room
 from ..._base_client import AsyncPaginator, make_request_options
 from .sessions.sessions import (
@@ -241,14 +241,15 @@ class RoomsResource(SyncAPIResource):
         *,
         filter: room_list_params.Filter | Omit = omit,
         include_sessions: bool | Omit = omit,
-        page: room_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[Room]:
+    ) -> SyncDefaultFlatPagination[Room]:
         """
         View a list of rooms.
 
@@ -261,9 +262,6 @@ class RoomsResource(SyncAPIResource):
 
           include_sessions: To decide if room sessions should be included in the response.
 
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -274,7 +272,7 @@ class RoomsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/rooms",
-            page=SyncDefaultPagination[Room],
+            page=SyncDefaultFlatPagination[Room],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -284,7 +282,8 @@ class RoomsResource(SyncAPIResource):
                     {
                         "filter": filter,
                         "include_sessions": include_sessions,
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                     },
                     room_list_params.RoomListParams,
                 ),
@@ -532,14 +531,15 @@ class AsyncRoomsResource(AsyncAPIResource):
         *,
         filter: room_list_params.Filter | Omit = omit,
         include_sessions: bool | Omit = omit,
-        page: room_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[Room, AsyncDefaultPagination[Room]]:
+    ) -> AsyncPaginator[Room, AsyncDefaultFlatPagination[Room]]:
         """
         View a list of rooms.
 
@@ -552,9 +552,6 @@ class AsyncRoomsResource(AsyncAPIResource):
 
           include_sessions: To decide if room sessions should be included in the response.
 
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -565,7 +562,7 @@ class AsyncRoomsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/rooms",
-            page=AsyncDefaultPagination[Room],
+            page=AsyncDefaultFlatPagination[Room],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -575,7 +572,8 @@ class AsyncRoomsResource(AsyncAPIResource):
                     {
                         "filter": filter,
                         "include_sessions": include_sessions,
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                     },
                     room_list_params.RoomListParams,
                 ),
