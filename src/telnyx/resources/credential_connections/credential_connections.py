@@ -33,7 +33,7 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...pagination import SyncDefaultPagination, AsyncDefaultPagination
+from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.dtmf_type import DtmfType
 from ...types.encrypted_media import EncryptedMedia
@@ -429,7 +429,8 @@ class CredentialConnectionsResource(SyncAPIResource):
         self,
         *,
         filter: credential_connection_list_params.Filter | Omit = omit,
-        page: credential_connection_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         sort: Literal["created_at", "connection_name", "active"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -437,7 +438,7 @@ class CredentialConnectionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[CredentialConnection]:
+    ) -> SyncDefaultFlatPagination[CredentialConnection]:
         """
         Returns a list of your credential connections.
 
@@ -446,9 +447,6 @@ class CredentialConnectionsResource(SyncAPIResource):
               Consolidated filter parameter (deepObject style). Originally:
               filter[connection_name], filter[fqdn], filter[outbound_voice_profile_id],
               filter[outbound.outbound_voice_profile_id]
-
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
 
           sort: Specifies the sort order for results. By default sorting direction is ascending.
               To have the results sorted in descending order add the <code> -</code>
@@ -475,7 +473,7 @@ class CredentialConnectionsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/credential_connections",
-            page=SyncDefaultPagination[CredentialConnection],
+            page=SyncDefaultFlatPagination[CredentialConnection],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -484,7 +482,8 @@ class CredentialConnectionsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                         "sort": sort,
                     },
                     credential_connection_list_params.CredentialConnectionListParams,
@@ -905,7 +904,8 @@ class AsyncCredentialConnectionsResource(AsyncAPIResource):
         self,
         *,
         filter: credential_connection_list_params.Filter | Omit = omit,
-        page: credential_connection_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         sort: Literal["created_at", "connection_name", "active"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -913,7 +913,7 @@ class AsyncCredentialConnectionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[CredentialConnection, AsyncDefaultPagination[CredentialConnection]]:
+    ) -> AsyncPaginator[CredentialConnection, AsyncDefaultFlatPagination[CredentialConnection]]:
         """
         Returns a list of your credential connections.
 
@@ -922,9 +922,6 @@ class AsyncCredentialConnectionsResource(AsyncAPIResource):
               Consolidated filter parameter (deepObject style). Originally:
               filter[connection_name], filter[fqdn], filter[outbound_voice_profile_id],
               filter[outbound.outbound_voice_profile_id]
-
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
 
           sort: Specifies the sort order for results. By default sorting direction is ascending.
               To have the results sorted in descending order add the <code> -</code>
@@ -951,7 +948,7 @@ class AsyncCredentialConnectionsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/credential_connections",
-            page=AsyncDefaultPagination[CredentialConnection],
+            page=AsyncDefaultFlatPagination[CredentialConnection],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -960,7 +957,8 @@ class AsyncCredentialConnectionsResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                         "sort": sort,
                     },
                     credential_connection_list_params.CredentialConnectionListParams,

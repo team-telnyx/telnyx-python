@@ -2,9 +2,11 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, TypedDict
+from typing_extensions import Literal, Annotated, TypedDict
 
-__all__ = ["AssociatedPhoneNumberListParams", "Filter", "Page", "Sort"]
+from ..._utils import PropertyInfo
+
+__all__ = ["AssociatedPhoneNumberListParams", "Filter", "Sort"]
 
 
 class AssociatedPhoneNumberListParams(TypedDict, total=False):
@@ -14,11 +16,9 @@ class AssociatedPhoneNumberListParams(TypedDict, total=False):
     Originally: filter[phone_number], filter[action]
     """
 
-    page: Page
-    """Consolidated page parameter (deepObject style).
+    page_number: Annotated[int, PropertyInfo(alias="page[number]")]
 
-    Originally: page[size], page[number]
-    """
+    page_size: Annotated[int, PropertyInfo(alias="page[size]")]
 
     sort: Sort
     """Consolidated sort parameter (deepObject style). Originally: sort[value]"""
@@ -35,19 +35,6 @@ class Filter(TypedDict, total=False):
 
     phone_number: str
     """Filter results by a phone number. It should be in E.164 format."""
-
-
-class Page(TypedDict, total=False):
-    """Consolidated page parameter (deepObject style).
-
-    Originally: page[size], page[number]
-    """
-
-    number: int
-    """The page number to load"""
-
-    size: int
-    """The size of the page"""
 
 
 class Sort(TypedDict, total=False):

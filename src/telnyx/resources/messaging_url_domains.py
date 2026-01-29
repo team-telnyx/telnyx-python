@@ -15,7 +15,7 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
+from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.messaging_url_domain_list_response import MessagingURLDomainListResponse
 
@@ -45,21 +45,19 @@ class MessagingURLDomainsResource(SyncAPIResource):
     def list(
         self,
         *,
-        page: messaging_url_domain_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[MessagingURLDomainListResponse]:
+    ) -> SyncDefaultFlatPagination[MessagingURLDomainListResponse]:
         """
         List messaging URL domains
 
         Args:
-          page: Consolidated page parameter (deepObject style). Originally: page[number],
-              page[size]
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -70,13 +68,19 @@ class MessagingURLDomainsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/messaging_url_domains",
-            page=SyncDefaultPagination[MessagingURLDomainListResponse],
+            page=SyncDefaultFlatPagination[MessagingURLDomainListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"page": page}, messaging_url_domain_list_params.MessagingURLDomainListParams),
+                query=maybe_transform(
+                    {
+                        "page_number": page_number,
+                        "page_size": page_size,
+                    },
+                    messaging_url_domain_list_params.MessagingURLDomainListParams,
+                ),
             ),
             model=MessagingURLDomainListResponse,
         )
@@ -105,21 +109,19 @@ class AsyncMessagingURLDomainsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        page: messaging_url_domain_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[MessagingURLDomainListResponse, AsyncDefaultPagination[MessagingURLDomainListResponse]]:
+    ) -> AsyncPaginator[MessagingURLDomainListResponse, AsyncDefaultFlatPagination[MessagingURLDomainListResponse]]:
         """
         List messaging URL domains
 
         Args:
-          page: Consolidated page parameter (deepObject style). Originally: page[number],
-              page[size]
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -130,13 +132,19 @@ class AsyncMessagingURLDomainsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/messaging_url_domains",
-            page=AsyncDefaultPagination[MessagingURLDomainListResponse],
+            page=AsyncDefaultFlatPagination[MessagingURLDomainListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"page": page}, messaging_url_domain_list_params.MessagingURLDomainListParams),
+                query=maybe_transform(
+                    {
+                        "page_number": page_number,
+                        "page_size": page_size,
+                    },
+                    messaging_url_domain_list_params.MessagingURLDomainListParams,
+                ),
             ),
             model=MessagingURLDomainListResponse,
         )

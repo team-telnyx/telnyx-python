@@ -14,7 +14,6 @@ __all__ = [
     "FilterDateJoinedAt",
     "FilterDateLeftAt",
     "FilterDateUpdatedAt",
-    "Page",
 ]
 
 
@@ -29,11 +28,9 @@ class SessionRetrieveParticipantsParams(TypedDict, total=False):
     filter[context]
     """
 
-    page: Page
-    """Consolidated page parameter (deepObject style).
+    page_number: Annotated[int, PropertyInfo(alias="page[number]")]
 
-    Originally: page[size], page[number]
-    """
+    page_size: Annotated[int, PropertyInfo(alias="page[size]")]
 
 
 class FilterDateJoinedAt(TypedDict, total=False):
@@ -88,16 +85,3 @@ class Filter(TypedDict, total=False):
     date_left_at: FilterDateLeftAt
 
     date_updated_at: FilterDateUpdatedAt
-
-
-class Page(TypedDict, total=False):
-    """Consolidated page parameter (deepObject style).
-
-    Originally: page[size], page[number]
-    """
-
-    number: int
-    """The page number to load."""
-
-    size: int
-    """The size of the page."""

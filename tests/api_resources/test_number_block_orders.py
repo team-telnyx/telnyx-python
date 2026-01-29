@@ -14,7 +14,7 @@ from telnyx.types import (
     NumberBlockOrderCreateResponse,
     NumberBlockOrderRetrieveResponse,
 )
-from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
+from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -117,7 +117,7 @@ class TestNumberBlockOrders:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         number_block_order = client.number_block_orders.list()
-        assert_matches_type(SyncDefaultPagination[NumberBlockOrder], number_block_order, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[NumberBlockOrder], number_block_order, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -131,12 +131,10 @@ class TestNumberBlockOrders:
                 "phone_numbers_starting_number": "+19705555000",
                 "status": "pending",
             },
-            page={
-                "number": 1,
-                "size": 1,
-            },
+            page_number=0,
+            page_size=0,
         )
-        assert_matches_type(SyncDefaultPagination[NumberBlockOrder], number_block_order, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[NumberBlockOrder], number_block_order, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -146,7 +144,7 @@ class TestNumberBlockOrders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         number_block_order = response.parse()
-        assert_matches_type(SyncDefaultPagination[NumberBlockOrder], number_block_order, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[NumberBlockOrder], number_block_order, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -156,7 +154,7 @@ class TestNumberBlockOrders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             number_block_order = response.parse()
-            assert_matches_type(SyncDefaultPagination[NumberBlockOrder], number_block_order, path=["response"])
+            assert_matches_type(SyncDefaultFlatPagination[NumberBlockOrder], number_block_order, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -261,7 +259,7 @@ class TestAsyncNumberBlockOrders:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         number_block_order = await async_client.number_block_orders.list()
-        assert_matches_type(AsyncDefaultPagination[NumberBlockOrder], number_block_order, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[NumberBlockOrder], number_block_order, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -275,12 +273,10 @@ class TestAsyncNumberBlockOrders:
                 "phone_numbers_starting_number": "+19705555000",
                 "status": "pending",
             },
-            page={
-                "number": 1,
-                "size": 1,
-            },
+            page_number=0,
+            page_size=0,
         )
-        assert_matches_type(AsyncDefaultPagination[NumberBlockOrder], number_block_order, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[NumberBlockOrder], number_block_order, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -290,7 +286,7 @@ class TestAsyncNumberBlockOrders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         number_block_order = await response.parse()
-        assert_matches_type(AsyncDefaultPagination[NumberBlockOrder], number_block_order, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[NumberBlockOrder], number_block_order, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -300,6 +296,6 @@ class TestAsyncNumberBlockOrders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             number_block_order = await response.parse()
-            assert_matches_type(AsyncDefaultPagination[NumberBlockOrder], number_block_order, path=["response"])
+            assert_matches_type(AsyncDefaultFlatPagination[NumberBlockOrder], number_block_order, path=["response"])
 
         assert cast(Any, response.is_closed) is True

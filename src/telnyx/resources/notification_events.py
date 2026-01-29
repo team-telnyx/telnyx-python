@@ -15,7 +15,7 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
+from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.notification_event_list_response import NotificationEventListResponse
 
@@ -45,21 +45,19 @@ class NotificationEventsResource(SyncAPIResource):
     def list(
         self,
         *,
-        page: notification_event_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[NotificationEventListResponse]:
+    ) -> SyncDefaultFlatPagination[NotificationEventListResponse]:
         """
         Returns a list of your notifications events.
 
         Args:
-          page: Consolidated page parameter (deepObject style). Originally: page[number],
-              page[size]
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -70,13 +68,19 @@ class NotificationEventsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/notification_events",
-            page=SyncDefaultPagination[NotificationEventListResponse],
+            page=SyncDefaultFlatPagination[NotificationEventListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"page": page}, notification_event_list_params.NotificationEventListParams),
+                query=maybe_transform(
+                    {
+                        "page_number": page_number,
+                        "page_size": page_size,
+                    },
+                    notification_event_list_params.NotificationEventListParams,
+                ),
             ),
             model=NotificationEventListResponse,
         )
@@ -105,21 +109,19 @@ class AsyncNotificationEventsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        page: notification_event_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[NotificationEventListResponse, AsyncDefaultPagination[NotificationEventListResponse]]:
+    ) -> AsyncPaginator[NotificationEventListResponse, AsyncDefaultFlatPagination[NotificationEventListResponse]]:
         """
         Returns a list of your notifications events.
 
         Args:
-          page: Consolidated page parameter (deepObject style). Originally: page[number],
-              page[size]
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -130,13 +132,19 @@ class AsyncNotificationEventsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/notification_events",
-            page=AsyncDefaultPagination[NotificationEventListResponse],
+            page=AsyncDefaultFlatPagination[NotificationEventListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"page": page}, notification_event_list_params.NotificationEventListParams),
+                query=maybe_transform(
+                    {
+                        "page_number": page_number,
+                        "page_size": page_size,
+                    },
+                    notification_event_list_params.NotificationEventListParams,
+                ),
             ),
             model=NotificationEventListResponse,
         )
