@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, TypedDict
+from typing_extensions import Literal, Annotated, TypedDict
+
+from .._utils import PropertyInfo
 
 __all__ = [
     "WebhookDeliveryListParams",
@@ -12,7 +14,6 @@ __all__ = [
     "FilterStartedAt",
     "FilterStatus",
     "FilterWebhook",
-    "Page",
 ]
 
 
@@ -25,11 +26,9 @@ class WebhookDeliveryListParams(TypedDict, total=False):
     filter[finished_at][gte], filter[finished_at][lte]
     """
 
-    page: Page
-    """Consolidated page parameter (deepObject style).
+    page_number: Annotated[int, PropertyInfo(alias="page[number]")]
 
-    Originally: page[number], page[size]
-    """
+    page_size: Annotated[int, PropertyInfo(alias="page[size]")]
 
 
 class FilterAttempts(TypedDict, total=False):
@@ -101,16 +100,3 @@ class Filter(TypedDict, total=False):
     status: FilterStatus
 
     webhook: FilterWebhook
-
-
-class Page(TypedDict, total=False):
-    """Consolidated page parameter (deepObject style).
-
-    Originally: page[number], page[size]
-    """
-
-    number: int
-    """The page number to load"""
-
-    size: int
-    """The size of the page"""

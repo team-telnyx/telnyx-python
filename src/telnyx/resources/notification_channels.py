@@ -21,7 +21,7 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
+from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.notification_channel import NotificationChannel
 from ..types.notification_channel_create_response import NotificationChannelCreateResponse
@@ -188,14 +188,15 @@ class NotificationChannelsResource(SyncAPIResource):
         self,
         *,
         filter: notification_channel_list_params.Filter | Omit = omit,
-        page: notification_channel_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[NotificationChannel]:
+    ) -> SyncDefaultFlatPagination[NotificationChannel]:
         """
         List notification channels.
 
@@ -205,9 +206,6 @@ class NotificationChannelsResource(SyncAPIResource):
               filter[associated_record_type][eq], filter[channel_type_id][eq],
               filter[notification_profile_id][eq], filter[notification_channel][eq],
               filter[notification_event_condition_id][eq], filter[status][eq]
-
-          page: Consolidated page parameter (deepObject style). Originally: page[number],
-              page[size]
 
           extra_headers: Send extra headers
 
@@ -219,7 +217,7 @@ class NotificationChannelsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/notification_channels",
-            page=SyncDefaultPagination[NotificationChannel],
+            page=SyncDefaultFlatPagination[NotificationChannel],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -228,7 +226,8 @@ class NotificationChannelsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                     },
                     notification_channel_list_params.NotificationChannelListParams,
                 ),
@@ -426,14 +425,15 @@ class AsyncNotificationChannelsResource(AsyncAPIResource):
         self,
         *,
         filter: notification_channel_list_params.Filter | Omit = omit,
-        page: notification_channel_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[NotificationChannel, AsyncDefaultPagination[NotificationChannel]]:
+    ) -> AsyncPaginator[NotificationChannel, AsyncDefaultFlatPagination[NotificationChannel]]:
         """
         List notification channels.
 
@@ -443,9 +443,6 @@ class AsyncNotificationChannelsResource(AsyncAPIResource):
               filter[associated_record_type][eq], filter[channel_type_id][eq],
               filter[notification_profile_id][eq], filter[notification_channel][eq],
               filter[notification_event_condition_id][eq], filter[status][eq]
-
-          page: Consolidated page parameter (deepObject style). Originally: page[number],
-              page[size]
 
           extra_headers: Send extra headers
 
@@ -457,7 +454,7 @@ class AsyncNotificationChannelsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/notification_channels",
-            page=AsyncDefaultPagination[NotificationChannel],
+            page=AsyncDefaultFlatPagination[NotificationChannel],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -466,7 +463,8 @@ class AsyncNotificationChannelsResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                     },
                     notification_channel_list_params.NotificationChannelListParams,
                 ),

@@ -9,7 +9,7 @@ import pytest
 
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
-from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
+from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from telnyx.types.shared import PhoneNumberWithMessagingSettings
 from telnyx.types.phone_numbers import (
     MessagingUpdateResponse,
@@ -120,18 +120,16 @@ class TestMessaging:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         messaging = client.phone_numbers.messaging.list()
-        assert_matches_type(SyncDefaultPagination[PhoneNumberWithMessagingSettings], messaging, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[PhoneNumberWithMessagingSettings], messaging, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         messaging = client.phone_numbers.messaging.list(
-            page={
-                "number": 1,
-                "size": 1,
-            },
+            page_number=0,
+            page_size=0,
         )
-        assert_matches_type(SyncDefaultPagination[PhoneNumberWithMessagingSettings], messaging, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[PhoneNumberWithMessagingSettings], messaging, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -141,7 +139,7 @@ class TestMessaging:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         messaging = response.parse()
-        assert_matches_type(SyncDefaultPagination[PhoneNumberWithMessagingSettings], messaging, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[PhoneNumberWithMessagingSettings], messaging, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -151,7 +149,9 @@ class TestMessaging:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             messaging = response.parse()
-            assert_matches_type(SyncDefaultPagination[PhoneNumberWithMessagingSettings], messaging, path=["response"])
+            assert_matches_type(
+                SyncDefaultFlatPagination[PhoneNumberWithMessagingSettings], messaging, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True
 
@@ -259,18 +259,16 @@ class TestAsyncMessaging:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         messaging = await async_client.phone_numbers.messaging.list()
-        assert_matches_type(AsyncDefaultPagination[PhoneNumberWithMessagingSettings], messaging, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[PhoneNumberWithMessagingSettings], messaging, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         messaging = await async_client.phone_numbers.messaging.list(
-            page={
-                "number": 1,
-                "size": 1,
-            },
+            page_number=0,
+            page_size=0,
         )
-        assert_matches_type(AsyncDefaultPagination[PhoneNumberWithMessagingSettings], messaging, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[PhoneNumberWithMessagingSettings], messaging, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -280,7 +278,7 @@ class TestAsyncMessaging:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         messaging = await response.parse()
-        assert_matches_type(AsyncDefaultPagination[PhoneNumberWithMessagingSettings], messaging, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[PhoneNumberWithMessagingSettings], messaging, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -290,6 +288,8 @@ class TestAsyncMessaging:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             messaging = await response.parse()
-            assert_matches_type(AsyncDefaultPagination[PhoneNumberWithMessagingSettings], messaging, path=["response"])
+            assert_matches_type(
+                AsyncDefaultFlatPagination[PhoneNumberWithMessagingSettings], messaging, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True

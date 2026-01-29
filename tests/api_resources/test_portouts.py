@@ -16,7 +16,7 @@ from telnyx.types import (
     PortoutListRejectionCodesResponse,
 )
 from telnyx._utils import parse_datetime
-from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
+from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -70,7 +70,7 @@ class TestPortouts:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         portout = client.portouts.list()
-        assert_matches_type(SyncDefaultPagination[PortoutDetails], portout, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[PortoutDetails], portout, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -96,12 +96,10 @@ class TestPortouts:
                 "status_in": ["pending"],
                 "support_key": "PO_abc123",
             },
-            page={
-                "number": 1,
-                "size": 1,
-            },
+            page_number=0,
+            page_size=0,
         )
-        assert_matches_type(SyncDefaultPagination[PortoutDetails], portout, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[PortoutDetails], portout, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -111,7 +109,7 @@ class TestPortouts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         portout = response.parse()
-        assert_matches_type(SyncDefaultPagination[PortoutDetails], portout, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[PortoutDetails], portout, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -121,7 +119,7 @@ class TestPortouts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             portout = response.parse()
-            assert_matches_type(SyncDefaultPagination[PortoutDetails], portout, path=["response"])
+            assert_matches_type(SyncDefaultFlatPagination[PortoutDetails], portout, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -289,7 +287,7 @@ class TestAsyncPortouts:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         portout = await async_client.portouts.list()
-        assert_matches_type(AsyncDefaultPagination[PortoutDetails], portout, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[PortoutDetails], portout, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -315,12 +313,10 @@ class TestAsyncPortouts:
                 "status_in": ["pending"],
                 "support_key": "PO_abc123",
             },
-            page={
-                "number": 1,
-                "size": 1,
-            },
+            page_number=0,
+            page_size=0,
         )
-        assert_matches_type(AsyncDefaultPagination[PortoutDetails], portout, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[PortoutDetails], portout, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -330,7 +326,7 @@ class TestAsyncPortouts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         portout = await response.parse()
-        assert_matches_type(AsyncDefaultPagination[PortoutDetails], portout, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[PortoutDetails], portout, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -340,7 +336,7 @@ class TestAsyncPortouts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             portout = await response.parse()
-            assert_matches_type(AsyncDefaultPagination[PortoutDetails], portout, path=["response"])
+            assert_matches_type(AsyncDefaultFlatPagination[PortoutDetails], portout, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

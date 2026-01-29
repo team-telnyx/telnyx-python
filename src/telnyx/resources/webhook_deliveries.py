@@ -15,7 +15,7 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
+from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.webhook_delivery_list_response import WebhookDeliveryListResponse
 from ..types.webhook_delivery_retrieve_response import WebhookDeliveryRetrieveResponse
@@ -81,14 +81,15 @@ class WebhookDeliveriesResource(SyncAPIResource):
         self,
         *,
         filter: webhook_delivery_list_params.Filter | Omit = omit,
-        page: webhook_delivery_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[WebhookDeliveryListResponse]:
+    ) -> SyncDefaultFlatPagination[WebhookDeliveryListResponse]:
         """
         Lists webhook_deliveries for the authenticated user
 
@@ -98,9 +99,6 @@ class WebhookDeliveriesResource(SyncAPIResource):
               filter[status][eq], filter[event_type], filter[webhook][contains],
               filter[attempts][contains], filter[started_at][gte], filter[started_at][lte],
               filter[finished_at][gte], filter[finished_at][lte]
-
-          page: Consolidated page parameter (deepObject style). Originally: page[number],
-              page[size]
 
           extra_headers: Send extra headers
 
@@ -112,7 +110,7 @@ class WebhookDeliveriesResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/webhook_deliveries",
-            page=SyncDefaultPagination[WebhookDeliveryListResponse],
+            page=SyncDefaultFlatPagination[WebhookDeliveryListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -121,7 +119,8 @@ class WebhookDeliveriesResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                     },
                     webhook_delivery_list_params.WebhookDeliveryListParams,
                 ),
@@ -188,14 +187,15 @@ class AsyncWebhookDeliveriesResource(AsyncAPIResource):
         self,
         *,
         filter: webhook_delivery_list_params.Filter | Omit = omit,
-        page: webhook_delivery_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[WebhookDeliveryListResponse, AsyncDefaultPagination[WebhookDeliveryListResponse]]:
+    ) -> AsyncPaginator[WebhookDeliveryListResponse, AsyncDefaultFlatPagination[WebhookDeliveryListResponse]]:
         """
         Lists webhook_deliveries for the authenticated user
 
@@ -205,9 +205,6 @@ class AsyncWebhookDeliveriesResource(AsyncAPIResource):
               filter[status][eq], filter[event_type], filter[webhook][contains],
               filter[attempts][contains], filter[started_at][gte], filter[started_at][lte],
               filter[finished_at][gte], filter[finished_at][lte]
-
-          page: Consolidated page parameter (deepObject style). Originally: page[number],
-              page[size]
 
           extra_headers: Send extra headers
 
@@ -219,7 +216,7 @@ class AsyncWebhookDeliveriesResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/webhook_deliveries",
-            page=AsyncDefaultPagination[WebhookDeliveryListResponse],
+            page=AsyncDefaultFlatPagination[WebhookDeliveryListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -228,7 +225,8 @@ class AsyncWebhookDeliveriesResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                     },
                     webhook_delivery_list_params.WebhookDeliveryListParams,
                 ),

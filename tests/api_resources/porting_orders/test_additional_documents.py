@@ -9,7 +9,7 @@ import pytest
 
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
-from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
+from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from telnyx.types.porting_orders import (
     AdditionalDocumentListResponse,
     AdditionalDocumentCreateResponse,
@@ -88,7 +88,7 @@ class TestAdditionalDocuments:
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(
-            SyncDefaultPagination[AdditionalDocumentListResponse], additional_document, path=["response"]
+            SyncDefaultFlatPagination[AdditionalDocumentListResponse], additional_document, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -97,14 +97,12 @@ class TestAdditionalDocuments:
         additional_document = client.porting_orders.additional_documents.list(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             filter={"document_type": ["loa"]},
-            page={
-                "number": 1,
-                "size": 1,
-            },
+            page_number=0,
+            page_size=0,
             sort={"value": "created_at"},
         )
         assert_matches_type(
-            SyncDefaultPagination[AdditionalDocumentListResponse], additional_document, path=["response"]
+            SyncDefaultFlatPagination[AdditionalDocumentListResponse], additional_document, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -118,7 +116,7 @@ class TestAdditionalDocuments:
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         additional_document = response.parse()
         assert_matches_type(
-            SyncDefaultPagination[AdditionalDocumentListResponse], additional_document, path=["response"]
+            SyncDefaultFlatPagination[AdditionalDocumentListResponse], additional_document, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -132,7 +130,7 @@ class TestAdditionalDocuments:
 
             additional_document = response.parse()
             assert_matches_type(
-                SyncDefaultPagination[AdditionalDocumentListResponse], additional_document, path=["response"]
+                SyncDefaultFlatPagination[AdditionalDocumentListResponse], additional_document, path=["response"]
             )
 
         assert cast(Any, response.is_closed) is True
@@ -272,7 +270,7 @@ class TestAsyncAdditionalDocuments:
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(
-            AsyncDefaultPagination[AdditionalDocumentListResponse], additional_document, path=["response"]
+            AsyncDefaultFlatPagination[AdditionalDocumentListResponse], additional_document, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -281,14 +279,12 @@ class TestAsyncAdditionalDocuments:
         additional_document = await async_client.porting_orders.additional_documents.list(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             filter={"document_type": ["loa"]},
-            page={
-                "number": 1,
-                "size": 1,
-            },
+            page_number=0,
+            page_size=0,
             sort={"value": "created_at"},
         )
         assert_matches_type(
-            AsyncDefaultPagination[AdditionalDocumentListResponse], additional_document, path=["response"]
+            AsyncDefaultFlatPagination[AdditionalDocumentListResponse], additional_document, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -302,7 +298,7 @@ class TestAsyncAdditionalDocuments:
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         additional_document = await response.parse()
         assert_matches_type(
-            AsyncDefaultPagination[AdditionalDocumentListResponse], additional_document, path=["response"]
+            AsyncDefaultFlatPagination[AdditionalDocumentListResponse], additional_document, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -316,7 +312,7 @@ class TestAsyncAdditionalDocuments:
 
             additional_document = await response.parse()
             assert_matches_type(
-                AsyncDefaultPagination[AdditionalDocumentListResponse], additional_document, path=["response"]
+                AsyncDefaultFlatPagination[AdditionalDocumentListResponse], additional_document, path=["response"]
             )
 
         assert cast(Any, response.is_closed) is True

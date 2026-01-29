@@ -15,7 +15,7 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
+from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.messaging_optout_list_response import MessagingOptoutListResponse
 
@@ -47,7 +47,8 @@ class MessagingOptoutsResource(SyncAPIResource):
         *,
         created_at: messaging_optout_list_params.CreatedAt | Omit = omit,
         filter: messaging_optout_list_params.Filter | Omit = omit,
-        page: messaging_optout_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         redaction_enabled: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -55,7 +56,7 @@ class MessagingOptoutsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[MessagingOptoutListResponse]:
+    ) -> SyncDefaultFlatPagination[MessagingOptoutListResponse]:
         """
         Retrieve a list of opt-out blocks.
 
@@ -67,9 +68,6 @@ class MessagingOptoutsResource(SyncAPIResource):
           filter:
               Consolidated filter parameter (deepObject style). Originally:
               filter[messaging_profile_id], filter[from]
-
-          page: Consolidated page parameter (deepObject style). Originally: page[number],
-              page[size]
 
           redaction_enabled: If receiving address (+E.164 formatted phone number) should be redacted
 
@@ -83,7 +81,7 @@ class MessagingOptoutsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/messaging_optouts",
-            page=SyncDefaultPagination[MessagingOptoutListResponse],
+            page=SyncDefaultFlatPagination[MessagingOptoutListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -93,7 +91,8 @@ class MessagingOptoutsResource(SyncAPIResource):
                     {
                         "created_at": created_at,
                         "filter": filter,
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                         "redaction_enabled": redaction_enabled,
                     },
                     messaging_optout_list_params.MessagingOptoutListParams,
@@ -128,7 +127,8 @@ class AsyncMessagingOptoutsResource(AsyncAPIResource):
         *,
         created_at: messaging_optout_list_params.CreatedAt | Omit = omit,
         filter: messaging_optout_list_params.Filter | Omit = omit,
-        page: messaging_optout_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         redaction_enabled: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -136,7 +136,7 @@ class AsyncMessagingOptoutsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[MessagingOptoutListResponse, AsyncDefaultPagination[MessagingOptoutListResponse]]:
+    ) -> AsyncPaginator[MessagingOptoutListResponse, AsyncDefaultFlatPagination[MessagingOptoutListResponse]]:
         """
         Retrieve a list of opt-out blocks.
 
@@ -148,9 +148,6 @@ class AsyncMessagingOptoutsResource(AsyncAPIResource):
           filter:
               Consolidated filter parameter (deepObject style). Originally:
               filter[messaging_profile_id], filter[from]
-
-          page: Consolidated page parameter (deepObject style). Originally: page[number],
-              page[size]
 
           redaction_enabled: If receiving address (+E.164 formatted phone number) should be redacted
 
@@ -164,7 +161,7 @@ class AsyncMessagingOptoutsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/messaging_optouts",
-            page=AsyncDefaultPagination[MessagingOptoutListResponse],
+            page=AsyncDefaultFlatPagination[MessagingOptoutListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -174,7 +171,8 @@ class AsyncMessagingOptoutsResource(AsyncAPIResource):
                     {
                         "created_at": created_at,
                         "filter": filter,
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                         "redaction_enabled": redaction_enabled,
                     },
                     messaging_optout_list_params.MessagingOptoutListParams,

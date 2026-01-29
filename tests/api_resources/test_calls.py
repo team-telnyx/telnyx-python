@@ -131,7 +131,7 @@ class TestCalls:
             stream_url="wss://www.example.com/websocket",
             supervise_call_control_id="v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg",
             supervisor_role="barge",
-            time_limit_secs=60,
+            time_limit_secs=600,
             timeout_secs=60,
             transcription=True,
             transcription_config={
@@ -352,7 +352,7 @@ class TestAsyncCalls:
             stream_url="wss://www.example.com/websocket",
             supervise_call_control_id="v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg",
             supervisor_role="barge",
-            time_limit_secs=60,
+            time_limit_secs=600,
             timeout_secs=60,
             transcription=True,
             transcription_config={

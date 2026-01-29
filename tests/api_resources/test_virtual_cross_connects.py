@@ -16,7 +16,7 @@ from telnyx.types import (
     VirtualCrossConnectUpdateResponse,
     VirtualCrossConnectRetrieveResponse,
 )
-from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
+from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -183,7 +183,7 @@ class TestVirtualCrossConnects:
     def test_method_list(self, client: Telnyx) -> None:
         virtual_cross_connect = client.virtual_cross_connects.list()
         assert_matches_type(
-            SyncDefaultPagination[VirtualCrossConnectListResponse], virtual_cross_connect, path=["response"]
+            SyncDefaultFlatPagination[VirtualCrossConnectListResponse], virtual_cross_connect, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -191,13 +191,11 @@ class TestVirtualCrossConnects:
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         virtual_cross_connect = client.virtual_cross_connects.list(
             filter={"network_id": "6a09cdc3-8948-47f0-aa62-74ac943d6c58"},
-            page={
-                "number": 1,
-                "size": 1,
-            },
+            page_number=0,
+            page_size=0,
         )
         assert_matches_type(
-            SyncDefaultPagination[VirtualCrossConnectListResponse], virtual_cross_connect, path=["response"]
+            SyncDefaultFlatPagination[VirtualCrossConnectListResponse], virtual_cross_connect, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -209,7 +207,7 @@ class TestVirtualCrossConnects:
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         virtual_cross_connect = response.parse()
         assert_matches_type(
-            SyncDefaultPagination[VirtualCrossConnectListResponse], virtual_cross_connect, path=["response"]
+            SyncDefaultFlatPagination[VirtualCrossConnectListResponse], virtual_cross_connect, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -221,7 +219,7 @@ class TestVirtualCrossConnects:
 
             virtual_cross_connect = response.parse()
             assert_matches_type(
-                SyncDefaultPagination[VirtualCrossConnectListResponse], virtual_cross_connect, path=["response"]
+                SyncDefaultFlatPagination[VirtualCrossConnectListResponse], virtual_cross_connect, path=["response"]
             )
 
         assert cast(Any, response.is_closed) is True
@@ -433,7 +431,7 @@ class TestAsyncVirtualCrossConnects:
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         virtual_cross_connect = await async_client.virtual_cross_connects.list()
         assert_matches_type(
-            AsyncDefaultPagination[VirtualCrossConnectListResponse], virtual_cross_connect, path=["response"]
+            AsyncDefaultFlatPagination[VirtualCrossConnectListResponse], virtual_cross_connect, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -441,13 +439,11 @@ class TestAsyncVirtualCrossConnects:
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         virtual_cross_connect = await async_client.virtual_cross_connects.list(
             filter={"network_id": "6a09cdc3-8948-47f0-aa62-74ac943d6c58"},
-            page={
-                "number": 1,
-                "size": 1,
-            },
+            page_number=0,
+            page_size=0,
         )
         assert_matches_type(
-            AsyncDefaultPagination[VirtualCrossConnectListResponse], virtual_cross_connect, path=["response"]
+            AsyncDefaultFlatPagination[VirtualCrossConnectListResponse], virtual_cross_connect, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -459,7 +455,7 @@ class TestAsyncVirtualCrossConnects:
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         virtual_cross_connect = await response.parse()
         assert_matches_type(
-            AsyncDefaultPagination[VirtualCrossConnectListResponse], virtual_cross_connect, path=["response"]
+            AsyncDefaultFlatPagination[VirtualCrossConnectListResponse], virtual_cross_connect, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -471,7 +467,7 @@ class TestAsyncVirtualCrossConnects:
 
             virtual_cross_connect = await response.parse()
             assert_matches_type(
-                AsyncDefaultPagination[VirtualCrossConnectListResponse], virtual_cross_connect, path=["response"]
+                AsyncDefaultFlatPagination[VirtualCrossConnectListResponse], virtual_cross_connect, path=["response"]
             )
 
         assert cast(Any, response.is_closed) is True
