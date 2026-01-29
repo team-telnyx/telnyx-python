@@ -17,7 +17,7 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
+from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.audit_event_list_response import AuditEventListResponse
 
@@ -48,8 +48,7 @@ class AuditEventsResource(SyncAPIResource):
         self,
         *,
         filter: audit_event_list_params.Filter | Omit = omit,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: audit_event_list_params.Page | Omit = omit,
         sort: Literal["asc", "desc"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -57,7 +56,7 @@ class AuditEventsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[AuditEventListResponse]:
+    ) -> SyncDefaultPagination[AuditEventListResponse]:
         """Retrieve a list of audit log entries.
 
         Audit logs are a best-effort, eventually
@@ -67,6 +66,9 @@ class AuditEventsResource(SyncAPIResource):
           filter:
               Consolidated filter parameter (deepObject style). Originally:
               filter[created_before], filter[created_after]
+
+          page: Consolidated page parameter (deepObject style). Originally: page[number],
+              page[size]
 
           sort: Set the order of the results by the creation date.
 
@@ -80,7 +82,7 @@ class AuditEventsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/audit_events",
-            page=SyncDefaultFlatPagination[AuditEventListResponse],
+            page=SyncDefaultPagination[AuditEventListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -89,8 +91,7 @@ class AuditEventsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page_number": page_number,
-                        "page_size": page_size,
+                        "page": page,
                         "sort": sort,
                     },
                     audit_event_list_params.AuditEventListParams,
@@ -124,8 +125,7 @@ class AsyncAuditEventsResource(AsyncAPIResource):
         self,
         *,
         filter: audit_event_list_params.Filter | Omit = omit,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: audit_event_list_params.Page | Omit = omit,
         sort: Literal["asc", "desc"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -133,7 +133,7 @@ class AsyncAuditEventsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[AuditEventListResponse, AsyncDefaultFlatPagination[AuditEventListResponse]]:
+    ) -> AsyncPaginator[AuditEventListResponse, AsyncDefaultPagination[AuditEventListResponse]]:
         """Retrieve a list of audit log entries.
 
         Audit logs are a best-effort, eventually
@@ -143,6 +143,9 @@ class AsyncAuditEventsResource(AsyncAPIResource):
           filter:
               Consolidated filter parameter (deepObject style). Originally:
               filter[created_before], filter[created_after]
+
+          page: Consolidated page parameter (deepObject style). Originally: page[number],
+              page[size]
 
           sort: Set the order of the results by the creation date.
 
@@ -156,7 +159,7 @@ class AsyncAuditEventsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/audit_events",
-            page=AsyncDefaultFlatPagination[AuditEventListResponse],
+            page=AsyncDefaultPagination[AuditEventListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -165,8 +168,7 @@ class AsyncAuditEventsResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page_number": page_number,
-                        "page_size": page_size,
+                        "page": page,
                         "sort": sort,
                     },
                     audit_event_list_params.AuditEventListParams,

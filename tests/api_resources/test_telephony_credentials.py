@@ -16,7 +16,7 @@ from telnyx.types import (
     TelephonyCredentialUpdateResponse,
     TelephonyCredentialRetrieveResponse,
 )
-from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
+from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -169,7 +169,7 @@ class TestTelephonyCredentials:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         telephony_credential = client.telephony_credentials.list()
-        assert_matches_type(SyncDefaultFlatPagination[TelephonyCredential], telephony_credential, path=["response"])
+        assert_matches_type(SyncDefaultPagination[TelephonyCredential], telephony_credential, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -182,10 +182,12 @@ class TestTelephonyCredentials:
                 "status": "status",
                 "tag": "tag",
             },
-            page_number=0,
-            page_size=0,
+            page={
+                "number": 1,
+                "size": 1,
+            },
         )
-        assert_matches_type(SyncDefaultFlatPagination[TelephonyCredential], telephony_credential, path=["response"])
+        assert_matches_type(SyncDefaultPagination[TelephonyCredential], telephony_credential, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -195,7 +197,7 @@ class TestTelephonyCredentials:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         telephony_credential = response.parse()
-        assert_matches_type(SyncDefaultFlatPagination[TelephonyCredential], telephony_credential, path=["response"])
+        assert_matches_type(SyncDefaultPagination[TelephonyCredential], telephony_credential, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -205,7 +207,7 @@ class TestTelephonyCredentials:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             telephony_credential = response.parse()
-            assert_matches_type(SyncDefaultFlatPagination[TelephonyCredential], telephony_credential, path=["response"])
+            assert_matches_type(SyncDefaultPagination[TelephonyCredential], telephony_credential, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -444,7 +446,7 @@ class TestAsyncTelephonyCredentials:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         telephony_credential = await async_client.telephony_credentials.list()
-        assert_matches_type(AsyncDefaultFlatPagination[TelephonyCredential], telephony_credential, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[TelephonyCredential], telephony_credential, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -457,10 +459,12 @@ class TestAsyncTelephonyCredentials:
                 "status": "status",
                 "tag": "tag",
             },
-            page_number=0,
-            page_size=0,
+            page={
+                "number": 1,
+                "size": 1,
+            },
         )
-        assert_matches_type(AsyncDefaultFlatPagination[TelephonyCredential], telephony_credential, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[TelephonyCredential], telephony_credential, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -470,7 +474,7 @@ class TestAsyncTelephonyCredentials:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         telephony_credential = await response.parse()
-        assert_matches_type(AsyncDefaultFlatPagination[TelephonyCredential], telephony_credential, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[TelephonyCredential], telephony_credential, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -480,9 +484,7 @@ class TestAsyncTelephonyCredentials:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             telephony_credential = await response.parse()
-            assert_matches_type(
-                AsyncDefaultFlatPagination[TelephonyCredential], telephony_credential, path=["response"]
-            )
+            assert_matches_type(AsyncDefaultPagination[TelephonyCredential], telephony_credential, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -9,7 +9,15 @@ from typing_extensions import Literal, Annotated, TypedDict
 from .._types import SequenceNotStr
 from .._utils import PropertyInfo
 
-__all__ = ["CustomerServiceRecordListParams", "Filter", "FilterCreatedAt", "FilterPhoneNumber", "FilterStatus", "Sort"]
+__all__ = [
+    "CustomerServiceRecordListParams",
+    "Filter",
+    "FilterCreatedAt",
+    "FilterPhoneNumber",
+    "FilterStatus",
+    "Page",
+    "Sort",
+]
 
 
 class CustomerServiceRecordListParams(TypedDict, total=False):
@@ -21,9 +29,11 @@ class CustomerServiceRecordListParams(TypedDict, total=False):
     filter[created_at][gt]
     """
 
-    page_number: Annotated[int, PropertyInfo(alias="page[number]")]
+    page: Page
+    """Consolidated page parameter (deepObject style).
 
-    page_size: Annotated[int, PropertyInfo(alias="page[size]")]
+    Originally: page[size], page[number]
+    """
 
     sort: Sort
     """Consolidated sort parameter (deepObject style). Originally: sort[value]"""
@@ -76,6 +86,19 @@ class Filter(TypedDict, total=False):
     phone_number: FilterPhoneNumber
 
     status: FilterStatus
+
+
+class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[size], page[number]
+    """
+
+    number: int
+    """The page number to load"""
+
+    size: int
+    """The size of the page"""
 
 
 class Sort(TypedDict, total=False):

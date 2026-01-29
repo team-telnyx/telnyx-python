@@ -2,11 +2,9 @@
 
 from __future__ import annotations
 
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import TypedDict
 
-from .._utils import PropertyInfo
-
-__all__ = ["IPListParams", "Filter"]
+__all__ = ["IPListParams", "Filter", "Page"]
 
 
 class IPListParams(TypedDict, total=False):
@@ -16,9 +14,11 @@ class IPListParams(TypedDict, total=False):
     Originally: filter[connection_id], filter[ip_address], filter[port]
     """
 
-    page_number: Annotated[int, PropertyInfo(alias="page[number]")]
+    page: Page
+    """Consolidated page parameter (deepObject style).
 
-    page_size: Annotated[int, PropertyInfo(alias="page[size]")]
+    Originally: page[size], page[number]
+    """
 
 
 class Filter(TypedDict, total=False):
@@ -35,3 +35,16 @@ class Filter(TypedDict, total=False):
 
     port: int
     """Port to use when connecting to this IP."""
+
+
+class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[size], page[number]
+    """
+
+    number: int
+    """The page number to load"""
+
+    size: int
+    """The size of the page"""

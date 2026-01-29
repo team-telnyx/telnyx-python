@@ -15,7 +15,7 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
+from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.document_link_list_response import DocumentLinkListResponse
 
@@ -46,15 +46,14 @@ class DocumentLinksResource(SyncAPIResource):
         self,
         *,
         filter: document_link_list_params.Filter | Omit = omit,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: document_link_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[DocumentLinkListResponse]:
+    ) -> SyncDefaultPagination[DocumentLinkListResponse]:
         """
         List all documents links ordered by created_at descending.
 
@@ -62,6 +61,9 @@ class DocumentLinksResource(SyncAPIResource):
           filter:
               Consolidated filter parameter for document links (deepObject style). Originally:
               filter[linked_record_type], filter[linked_resource_id]
+
+          page: Consolidated page parameter (deepObject style). Originally: page[size],
+              page[number]
 
           extra_headers: Send extra headers
 
@@ -73,7 +75,7 @@ class DocumentLinksResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/document_links",
-            page=SyncDefaultFlatPagination[DocumentLinkListResponse],
+            page=SyncDefaultPagination[DocumentLinkListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -82,8 +84,7 @@ class DocumentLinksResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page_number": page_number,
-                        "page_size": page_size,
+                        "page": page,
                     },
                     document_link_list_params.DocumentLinkListParams,
                 ),
@@ -116,15 +117,14 @@ class AsyncDocumentLinksResource(AsyncAPIResource):
         self,
         *,
         filter: document_link_list_params.Filter | Omit = omit,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: document_link_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[DocumentLinkListResponse, AsyncDefaultFlatPagination[DocumentLinkListResponse]]:
+    ) -> AsyncPaginator[DocumentLinkListResponse, AsyncDefaultPagination[DocumentLinkListResponse]]:
         """
         List all documents links ordered by created_at descending.
 
@@ -132,6 +132,9 @@ class AsyncDocumentLinksResource(AsyncAPIResource):
           filter:
               Consolidated filter parameter for document links (deepObject style). Originally:
               filter[linked_record_type], filter[linked_resource_id]
+
+          page: Consolidated page parameter (deepObject style). Originally: page[size],
+              page[number]
 
           extra_headers: Send extra headers
 
@@ -143,7 +146,7 @@ class AsyncDocumentLinksResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/document_links",
-            page=AsyncDefaultFlatPagination[DocumentLinkListResponse],
+            page=AsyncDefaultPagination[DocumentLinkListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -152,8 +155,7 @@ class AsyncDocumentLinksResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page_number": page_number,
-                        "page_size": page_size,
+                        "page": page,
                     },
                     document_link_list_params.DocumentLinkListParams,
                 ),

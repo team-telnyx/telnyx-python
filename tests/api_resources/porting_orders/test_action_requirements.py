@@ -9,7 +9,7 @@ import pytest
 
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
-from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
+from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
 from telnyx.types.porting_orders import (
     ActionRequirementListResponse,
     ActionRequirementInitiateResponse,
@@ -27,9 +27,7 @@ class TestActionRequirements:
         action_requirement = client.porting_orders.action_requirements.list(
             porting_order_id="porting_order_id",
         )
-        assert_matches_type(
-            SyncDefaultFlatPagination[ActionRequirementListResponse], action_requirement, path=["response"]
-        )
+        assert_matches_type(SyncDefaultPagination[ActionRequirementListResponse], action_requirement, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -42,13 +40,13 @@ class TestActionRequirements:
                 "requirement_type_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 "status": "created",
             },
-            page_number=0,
-            page_size=0,
+            page={
+                "number": 1,
+                "size": 1,
+            },
             sort={"value": "created_at"},
         )
-        assert_matches_type(
-            SyncDefaultFlatPagination[ActionRequirementListResponse], action_requirement, path=["response"]
-        )
+        assert_matches_type(SyncDefaultPagination[ActionRequirementListResponse], action_requirement, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -60,9 +58,7 @@ class TestActionRequirements:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         action_requirement = response.parse()
-        assert_matches_type(
-            SyncDefaultFlatPagination[ActionRequirementListResponse], action_requirement, path=["response"]
-        )
+        assert_matches_type(SyncDefaultPagination[ActionRequirementListResponse], action_requirement, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -75,7 +71,7 @@ class TestActionRequirements:
 
             action_requirement = response.parse()
             assert_matches_type(
-                SyncDefaultFlatPagination[ActionRequirementListResponse], action_requirement, path=["response"]
+                SyncDefaultPagination[ActionRequirementListResponse], action_requirement, path=["response"]
             )
 
         assert cast(Any, response.is_closed) is True
@@ -173,7 +169,7 @@ class TestAsyncActionRequirements:
             porting_order_id="porting_order_id",
         )
         assert_matches_type(
-            AsyncDefaultFlatPagination[ActionRequirementListResponse], action_requirement, path=["response"]
+            AsyncDefaultPagination[ActionRequirementListResponse], action_requirement, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -187,12 +183,14 @@ class TestAsyncActionRequirements:
                 "requirement_type_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 "status": "created",
             },
-            page_number=0,
-            page_size=0,
+            page={
+                "number": 1,
+                "size": 1,
+            },
             sort={"value": "created_at"},
         )
         assert_matches_type(
-            AsyncDefaultFlatPagination[ActionRequirementListResponse], action_requirement, path=["response"]
+            AsyncDefaultPagination[ActionRequirementListResponse], action_requirement, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -206,7 +204,7 @@ class TestAsyncActionRequirements:
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         action_requirement = await response.parse()
         assert_matches_type(
-            AsyncDefaultFlatPagination[ActionRequirementListResponse], action_requirement, path=["response"]
+            AsyncDefaultPagination[ActionRequirementListResponse], action_requirement, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -220,7 +218,7 @@ class TestAsyncActionRequirements:
 
             action_requirement = await response.parse()
             assert_matches_type(
-                AsyncDefaultFlatPagination[ActionRequirementListResponse], action_requirement, path=["response"]
+                AsyncDefaultPagination[ActionRequirementListResponse], action_requirement, path=["response"]
             )
 
         assert cast(Any, response.is_closed) is True

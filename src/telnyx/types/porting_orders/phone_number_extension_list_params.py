@@ -2,11 +2,9 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Annotated, TypedDict
+from typing_extensions import Literal, TypedDict
 
-from ..._utils import PropertyInfo
-
-__all__ = ["PhoneNumberExtensionListParams", "Filter", "Sort"]
+__all__ = ["PhoneNumberExtensionListParams", "Filter", "Page", "Sort"]
 
 
 class PhoneNumberExtensionListParams(TypedDict, total=False):
@@ -16,9 +14,11 @@ class PhoneNumberExtensionListParams(TypedDict, total=False):
     Originally: filter[porting_phone_number_id]
     """
 
-    page_number: Annotated[int, PropertyInfo(alias="page[number]")]
+    page: Page
+    """Consolidated page parameter (deepObject style).
 
-    page_size: Annotated[int, PropertyInfo(alias="page[size]")]
+    Originally: page[size], page[number]
+    """
 
     sort: Sort
     """Consolidated sort parameter (deepObject style). Originally: sort[value]"""
@@ -32,6 +32,19 @@ class Filter(TypedDict, total=False):
 
     porting_phone_number_id: str
     """Filter results by porting phone number id"""
+
+
+class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[size], page[number]
+    """
+
+    number: int
+    """The page number to load"""
+
+    size: int
+    """The size of the page"""
 
 
 class Sort(TypedDict, total=False):
