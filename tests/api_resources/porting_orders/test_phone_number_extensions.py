@@ -9,7 +9,7 @@ import pytest
 
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
-from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
+from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from telnyx.types.porting_orders import (
     PortingPhoneNumberExtension,
     PhoneNumberExtensionCreateResponse,
@@ -115,7 +115,7 @@ class TestPhoneNumberExtensions:
             porting_order_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(
-            SyncDefaultPagination[PortingPhoneNumberExtension], phone_number_extension, path=["response"]
+            SyncDefaultFlatPagination[PortingPhoneNumberExtension], phone_number_extension, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -124,14 +124,12 @@ class TestPhoneNumberExtensions:
         phone_number_extension = client.porting_orders.phone_number_extensions.list(
             porting_order_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             filter={"porting_phone_number_id": "04f8f1b9-310c-4a3c-963e-7dfc54765140"},
-            page={
-                "number": 1,
-                "size": 1,
-            },
+            page_number=0,
+            page_size=0,
             sort={"value": "created_at"},
         )
         assert_matches_type(
-            SyncDefaultPagination[PortingPhoneNumberExtension], phone_number_extension, path=["response"]
+            SyncDefaultFlatPagination[PortingPhoneNumberExtension], phone_number_extension, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -145,7 +143,7 @@ class TestPhoneNumberExtensions:
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         phone_number_extension = response.parse()
         assert_matches_type(
-            SyncDefaultPagination[PortingPhoneNumberExtension], phone_number_extension, path=["response"]
+            SyncDefaultFlatPagination[PortingPhoneNumberExtension], phone_number_extension, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -159,7 +157,7 @@ class TestPhoneNumberExtensions:
 
             phone_number_extension = response.parse()
             assert_matches_type(
-                SyncDefaultPagination[PortingPhoneNumberExtension], phone_number_extension, path=["response"]
+                SyncDefaultFlatPagination[PortingPhoneNumberExtension], phone_number_extension, path=["response"]
             )
 
         assert cast(Any, response.is_closed) is True
@@ -323,7 +321,7 @@ class TestAsyncPhoneNumberExtensions:
             porting_order_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(
-            AsyncDefaultPagination[PortingPhoneNumberExtension], phone_number_extension, path=["response"]
+            AsyncDefaultFlatPagination[PortingPhoneNumberExtension], phone_number_extension, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -332,14 +330,12 @@ class TestAsyncPhoneNumberExtensions:
         phone_number_extension = await async_client.porting_orders.phone_number_extensions.list(
             porting_order_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             filter={"porting_phone_number_id": "04f8f1b9-310c-4a3c-963e-7dfc54765140"},
-            page={
-                "number": 1,
-                "size": 1,
-            },
+            page_number=0,
+            page_size=0,
             sort={"value": "created_at"},
         )
         assert_matches_type(
-            AsyncDefaultPagination[PortingPhoneNumberExtension], phone_number_extension, path=["response"]
+            AsyncDefaultFlatPagination[PortingPhoneNumberExtension], phone_number_extension, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -353,7 +349,7 @@ class TestAsyncPhoneNumberExtensions:
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         phone_number_extension = await response.parse()
         assert_matches_type(
-            AsyncDefaultPagination[PortingPhoneNumberExtension], phone_number_extension, path=["response"]
+            AsyncDefaultFlatPagination[PortingPhoneNumberExtension], phone_number_extension, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -367,7 +363,7 @@ class TestAsyncPhoneNumberExtensions:
 
             phone_number_extension = await response.parse()
             assert_matches_type(
-                AsyncDefaultPagination[PortingPhoneNumberExtension], phone_number_extension, path=["response"]
+                AsyncDefaultFlatPagination[PortingPhoneNumberExtension], phone_number_extension, path=["response"]
             )
 
         assert cast(Any, response.is_closed) is True

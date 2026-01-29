@@ -14,7 +14,7 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...pagination import SyncDefaultPagination, AsyncDefaultPagination
+from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.bundle_pricing import billing_bundle_list_params
 from ...types.bundle_pricing.billing_bundle_summary import BillingBundleSummary
@@ -86,7 +86,8 @@ class BillingBundlesResource(SyncAPIResource):
         self,
         *,
         filter: billing_bundle_list_params.Filter | Omit = omit,
-        page: billing_bundle_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         authorization_bearer: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -94,7 +95,7 @@ class BillingBundlesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[BillingBundleSummary]:
+    ) -> SyncDefaultFlatPagination[BillingBundleSummary]:
         """
         Get all allowed bundles.
 
@@ -102,9 +103,6 @@ class BillingBundlesResource(SyncAPIResource):
           filter: Consolidated filter parameter (deepObject style). Supports filtering by
               country_iso and resource. Examples: filter[country_iso]=US or
               filter[resource]=+15617819942
-
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
 
           authorization_bearer: Authenticates the request with your Telnyx API V2 KEY
 
@@ -119,7 +117,7 @@ class BillingBundlesResource(SyncAPIResource):
         extra_headers = {**strip_not_given({"authorization_bearer": authorization_bearer}), **(extra_headers or {})}
         return self._get_api_list(
             "/bundle_pricing/billing_bundles",
-            page=SyncDefaultPagination[BillingBundleSummary],
+            page=SyncDefaultFlatPagination[BillingBundleSummary],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -128,7 +126,8 @@ class BillingBundlesResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                     },
                     billing_bundle_list_params.BillingBundleListParams,
                 ),
@@ -200,7 +199,8 @@ class AsyncBillingBundlesResource(AsyncAPIResource):
         self,
         *,
         filter: billing_bundle_list_params.Filter | Omit = omit,
-        page: billing_bundle_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         authorization_bearer: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -208,7 +208,7 @@ class AsyncBillingBundlesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[BillingBundleSummary, AsyncDefaultPagination[BillingBundleSummary]]:
+    ) -> AsyncPaginator[BillingBundleSummary, AsyncDefaultFlatPagination[BillingBundleSummary]]:
         """
         Get all allowed bundles.
 
@@ -216,9 +216,6 @@ class AsyncBillingBundlesResource(AsyncAPIResource):
           filter: Consolidated filter parameter (deepObject style). Supports filtering by
               country_iso and resource. Examples: filter[country_iso]=US or
               filter[resource]=+15617819942
-
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
 
           authorization_bearer: Authenticates the request with your Telnyx API V2 KEY
 
@@ -233,7 +230,7 @@ class AsyncBillingBundlesResource(AsyncAPIResource):
         extra_headers = {**strip_not_given({"authorization_bearer": authorization_bearer}), **(extra_headers or {})}
         return self._get_api_list(
             "/bundle_pricing/billing_bundles",
-            page=AsyncDefaultPagination[BillingBundleSummary],
+            page=AsyncDefaultFlatPagination[BillingBundleSummary],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -242,7 +239,8 @@ class AsyncBillingBundlesResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                     },
                     billing_bundle_list_params.BillingBundleListParams,
                 ),

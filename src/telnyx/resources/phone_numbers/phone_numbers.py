@@ -57,7 +57,7 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...pagination import SyncDefaultPagination, AsyncDefaultPagination
+from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from .csv_downloads import (
     CsvDownloadsResource,
     AsyncCsvDownloadsResource,
@@ -223,7 +223,8 @@ class PhoneNumbersResource(SyncAPIResource):
         *,
         filter: phone_number_list_params.Filter | Omit = omit,
         handle_messaging_profile_error: Literal["true", "false"] | Omit = omit,
-        page: phone_number_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         sort: Literal["purchased_at", "phone_number", "connection_name", "usage_payment_method"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -231,7 +232,7 @@ class PhoneNumbersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[PhoneNumberDetailed]:
+    ) -> SyncDefaultFlatPagination[PhoneNumberDetailed]:
         """
         List phone numbers
 
@@ -250,9 +251,6 @@ class PhoneNumbersResource(SyncAPIResource):
               will be omitted in the response and an error message will be included instead of
               returning a 503 error.
 
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
-
           sort: Specifies the sort order for results. If not given, results are sorted by
               created_at in descending order.
 
@@ -266,7 +264,7 @@ class PhoneNumbersResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/phone_numbers",
-            page=SyncDefaultPagination[PhoneNumberDetailed],
+            page=SyncDefaultFlatPagination[PhoneNumberDetailed],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -276,7 +274,8 @@ class PhoneNumbersResource(SyncAPIResource):
                     {
                         "filter": filter,
                         "handle_messaging_profile_error": handle_messaging_profile_error,
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                         "sort": sort,
                     },
                     phone_number_list_params.PhoneNumberListParams,
@@ -324,7 +323,8 @@ class PhoneNumbersResource(SyncAPIResource):
         filter: phone_number_slim_list_params.Filter | Omit = omit,
         include_connection: bool | Omit = omit,
         include_tags: bool | Omit = omit,
-        page: phone_number_slim_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         sort: Literal["purchased_at", "phone_number", "connection_name", "usage_payment_method"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -332,7 +332,7 @@ class PhoneNumbersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultPagination[PhoneNumberSlimListResponse]:
+    ) -> SyncDefaultFlatPagination[PhoneNumberSlimListResponse]:
         """
         List phone numbers, This endpoint is a lighter version of the /phone_numbers
         endpoint having higher performance and rate limit.
@@ -349,9 +349,6 @@ class PhoneNumbersResource(SyncAPIResource):
 
           include_tags: Include the tags associated with the phone number.
 
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
-
           sort: Specifies the sort order for results. If not given, results are sorted by
               created_at in descending order.
 
@@ -365,7 +362,7 @@ class PhoneNumbersResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/phone_numbers/slim",
-            page=SyncDefaultPagination[PhoneNumberSlimListResponse],
+            page=SyncDefaultFlatPagination[PhoneNumberSlimListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -376,7 +373,8 @@ class PhoneNumbersResource(SyncAPIResource):
                         "filter": filter,
                         "include_connection": include_connection,
                         "include_tags": include_tags,
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                         "sort": sort,
                     },
                     phone_number_slim_list_params.PhoneNumberSlimListParams,
@@ -533,7 +531,8 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
         *,
         filter: phone_number_list_params.Filter | Omit = omit,
         handle_messaging_profile_error: Literal["true", "false"] | Omit = omit,
-        page: phone_number_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         sort: Literal["purchased_at", "phone_number", "connection_name", "usage_payment_method"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -541,7 +540,7 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[PhoneNumberDetailed, AsyncDefaultPagination[PhoneNumberDetailed]]:
+    ) -> AsyncPaginator[PhoneNumberDetailed, AsyncDefaultFlatPagination[PhoneNumberDetailed]]:
         """
         List phone numbers
 
@@ -560,9 +559,6 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
               will be omitted in the response and an error message will be included instead of
               returning a 503 error.
 
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
-
           sort: Specifies the sort order for results. If not given, results are sorted by
               created_at in descending order.
 
@@ -576,7 +572,7 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/phone_numbers",
-            page=AsyncDefaultPagination[PhoneNumberDetailed],
+            page=AsyncDefaultFlatPagination[PhoneNumberDetailed],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -586,7 +582,8 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
                     {
                         "filter": filter,
                         "handle_messaging_profile_error": handle_messaging_profile_error,
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                         "sort": sort,
                     },
                     phone_number_list_params.PhoneNumberListParams,
@@ -634,7 +631,8 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
         filter: phone_number_slim_list_params.Filter | Omit = omit,
         include_connection: bool | Omit = omit,
         include_tags: bool | Omit = omit,
-        page: phone_number_slim_list_params.Page | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
         sort: Literal["purchased_at", "phone_number", "connection_name", "usage_payment_method"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -642,7 +640,7 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[PhoneNumberSlimListResponse, AsyncDefaultPagination[PhoneNumberSlimListResponse]]:
+    ) -> AsyncPaginator[PhoneNumberSlimListResponse, AsyncDefaultFlatPagination[PhoneNumberSlimListResponse]]:
         """
         List phone numbers, This endpoint is a lighter version of the /phone_numbers
         endpoint having higher performance and rate limit.
@@ -659,9 +657,6 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
 
           include_tags: Include the tags associated with the phone number.
 
-          page: Consolidated page parameter (deepObject style). Originally: page[size],
-              page[number]
-
           sort: Specifies the sort order for results. If not given, results are sorted by
               created_at in descending order.
 
@@ -675,7 +670,7 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/phone_numbers/slim",
-            page=AsyncDefaultPagination[PhoneNumberSlimListResponse],
+            page=AsyncDefaultFlatPagination[PhoneNumberSlimListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -686,7 +681,8 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
                         "filter": filter,
                         "include_connection": include_connection,
                         "include_tags": include_tags,
-                        "page": page,
+                        "page_number": page_number,
+                        "page_size": page_size,
                         "sort": sort,
                     },
                     phone_number_slim_list_params.PhoneNumberSlimListParams,
