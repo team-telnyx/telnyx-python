@@ -11,6 +11,9 @@ from ._models import BaseModel
 from ._base_client import BasePage, PageInfo, BaseSyncPage, BaseAsyncPage
 
 __all__ = [
+    "DefaultPaginationMeta",
+    "SyncDefaultPagination",
+    "AsyncDefaultPagination",
     "DefaultFlatPaginationMeta",
     "SyncDefaultFlatPagination",
     "AsyncDefaultFlatPagination",
@@ -21,8 +24,6 @@ __all__ = [
     "AsyncDefaultPaginationForLogMessages",
     "SyncDefaultPaginationForMessagingTollfree",
     "AsyncDefaultPaginationForMessagingTollfree",
-    "SyncDefaultPaginationForQueues",
-    "AsyncDefaultPaginationForQueues",
     "DefaultFlatPaginationForInexplicitNumberOrdersMeta",
     "SyncDefaultFlatPaginationForInexplicitNumberOrders",
     "AsyncDefaultFlatPaginationForInexplicitNumberOrders",
@@ -36,6 +37,72 @@ __all__ = [
 _BaseModelT = TypeVar("_BaseModelT", bound=BaseModel)
 
 _T = TypeVar("_T")
+
+
+class DefaultPaginationMeta(BaseModel):
+    page_number: int
+
+    total_pages: int
+
+
+class SyncDefaultPagination(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
+    data: List[_T]
+    meta: Optional[DefaultPaginationMeta] = None
+
+    @override
+    def _get_page_items(self) -> List[_T]:
+        data = self.data
+        if not data:
+            return []
+        return data
+
+    @override
+    def next_page_info(self) -> Optional[PageInfo]:
+        current_page = None
+        if self.meta is not None:
+            if self.meta.page_number is not None:  # pyright: ignore[reportUnnecessaryComparison]
+                current_page = self.meta.page_number
+        if current_page is None:
+            current_page = 1
+
+        total_pages = None
+        if self.meta is not None:
+            if self.meta.total_pages is not None:  # pyright: ignore[reportUnnecessaryComparison]
+                total_pages = self.meta.total_pages
+        if total_pages is not None and current_page >= total_pages:
+            return None
+
+        return PageInfo(params={"number": current_page + 1})
+
+
+class AsyncDefaultPagination(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
+    data: List[_T]
+    meta: Optional[DefaultPaginationMeta] = None
+
+    @override
+    def _get_page_items(self) -> List[_T]:
+        data = self.data
+        if not data:
+            return []
+        return data
+
+    @override
+    def next_page_info(self) -> Optional[PageInfo]:
+        current_page = None
+        if self.meta is not None:
+            if self.meta.page_number is not None:  # pyright: ignore[reportUnnecessaryComparison]
+                current_page = self.meta.page_number
+        if current_page is None:
+            current_page = 1
+
+        total_pages = None
+        if self.meta is not None:
+            if self.meta.total_pages is not None:  # pyright: ignore[reportUnnecessaryComparison]
+                total_pages = self.meta.total_pages
+        if total_pages is not None and current_page >= total_pages:
+            return None
+
+        return PageInfo(params={"number": current_page + 1})
 
 
 class DefaultFlatPaginationMeta(BaseModel):
@@ -189,7 +256,7 @@ class SyncDefaultPaginationForLogMessages(BaseSyncPage[_T], BasePage[_T], Generi
         if total_pages is not None and current_page >= total_pages:
             return None
 
-        return PageInfo(params={"page[number]": current_page + 1})
+        return PageInfo(params={"number": current_page + 1})
 
 
 class AsyncDefaultPaginationForLogMessages(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
@@ -219,7 +286,7 @@ class AsyncDefaultPaginationForLogMessages(BaseAsyncPage[_T], BasePage[_T], Gene
         if total_pages is not None and current_page >= total_pages:
             return None
 
-        return PageInfo(params={"page[number]": current_page + 1})
+        return PageInfo(params={"number": current_page + 1})
 
 
 class SyncDefaultPaginationForMessagingTollfree(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
@@ -264,40 +331,6 @@ class AsyncDefaultPaginationForMessagingTollfree(BaseAsyncPage[_T], BasePage[_T]
             return None
 
         return PageInfo(params={"page": last_page + 1})
-
-
-class SyncDefaultPaginationForQueues(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
-    queues: List[_T]
-
-    @override
-    def _get_page_items(self) -> List[_T]:
-        queues = self.queues
-        if not queues:
-            return []
-        return queues
-
-    @override
-    def next_page_info(self) -> Optional[PageInfo]:
-        last_page = cast("int | None", self._options.params.get("Page")) or 1
-
-        return PageInfo(params={"Page": last_page + 1})
-
-
-class AsyncDefaultPaginationForQueues(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
-    queues: List[_T]
-
-    @override
-    def _get_page_items(self) -> List[_T]:
-        queues = self.queues
-        if not queues:
-            return []
-        return queues
-
-    @override
-    def next_page_info(self) -> Optional[PageInfo]:
-        last_page = cast("int | None", self._options.params.get("Page")) or 1
-
-        return PageInfo(params={"Page": last_page + 1})
 
 
 class DefaultFlatPaginationForInexplicitNumberOrdersMeta(BaseModel):

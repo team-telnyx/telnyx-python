@@ -13,7 +13,7 @@ from telnyx.types import (
     PushCredential,
     PushCredentialResponse,
 )
-from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
+from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -116,7 +116,7 @@ class TestMobilePushCredentials:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         mobile_push_credential = client.mobile_push_credentials.list()
-        assert_matches_type(SyncDefaultFlatPagination[PushCredential], mobile_push_credential, path=["response"])
+        assert_matches_type(SyncDefaultPagination[PushCredential], mobile_push_credential, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -126,10 +126,12 @@ class TestMobilePushCredentials:
                 "alias": "LucyCredential",
                 "type": "ios",
             },
-            page_number=0,
-            page_size=0,
+            page={
+                "number": 1,
+                "size": 1,
+            },
         )
-        assert_matches_type(SyncDefaultFlatPagination[PushCredential], mobile_push_credential, path=["response"])
+        assert_matches_type(SyncDefaultPagination[PushCredential], mobile_push_credential, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -139,7 +141,7 @@ class TestMobilePushCredentials:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         mobile_push_credential = response.parse()
-        assert_matches_type(SyncDefaultFlatPagination[PushCredential], mobile_push_credential, path=["response"])
+        assert_matches_type(SyncDefaultPagination[PushCredential], mobile_push_credential, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -149,7 +151,7 @@ class TestMobilePushCredentials:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             mobile_push_credential = response.parse()
-            assert_matches_type(SyncDefaultFlatPagination[PushCredential], mobile_push_credential, path=["response"])
+            assert_matches_type(SyncDefaultPagination[PushCredential], mobile_push_credential, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -296,7 +298,7 @@ class TestAsyncMobilePushCredentials:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         mobile_push_credential = await async_client.mobile_push_credentials.list()
-        assert_matches_type(AsyncDefaultFlatPagination[PushCredential], mobile_push_credential, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[PushCredential], mobile_push_credential, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -306,10 +308,12 @@ class TestAsyncMobilePushCredentials:
                 "alias": "LucyCredential",
                 "type": "ios",
             },
-            page_number=0,
-            page_size=0,
+            page={
+                "number": 1,
+                "size": 1,
+            },
         )
-        assert_matches_type(AsyncDefaultFlatPagination[PushCredential], mobile_push_credential, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[PushCredential], mobile_push_credential, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -319,7 +323,7 @@ class TestAsyncMobilePushCredentials:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         mobile_push_credential = await response.parse()
-        assert_matches_type(AsyncDefaultFlatPagination[PushCredential], mobile_push_credential, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[PushCredential], mobile_push_credential, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -329,7 +333,7 @@ class TestAsyncMobilePushCredentials:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             mobile_push_credential = await response.parse()
-            assert_matches_type(AsyncDefaultFlatPagination[PushCredential], mobile_push_credential, path=["response"])
+            assert_matches_type(AsyncDefaultPagination[PushCredential], mobile_push_credential, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

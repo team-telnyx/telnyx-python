@@ -81,8 +81,10 @@ class TestLogMessages:
                     "eq": "+1234567890",
                 },
             },
-            page_number=0,
-            page_size=0,
+            page={
+                "number": 1,
+                "size": 1,
+            },
         )
         assert_matches_type(SyncDefaultPaginationForLogMessages[LogMessageListResponse], log_message, path=["response"])
 
@@ -219,8 +221,10 @@ class TestAsyncLogMessages:
                     "eq": "+1234567890",
                 },
             },
-            page_number=0,
-            page_size=0,
+            page={
+                "number": 1,
+                "size": 1,
+            },
         )
         assert_matches_type(
             AsyncDefaultPaginationForLogMessages[LogMessageListResponse], log_message, path=["response"]

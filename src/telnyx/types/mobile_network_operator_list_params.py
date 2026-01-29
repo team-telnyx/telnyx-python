@@ -2,11 +2,9 @@
 
 from __future__ import annotations
 
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import TypedDict
 
-from .._utils import PropertyInfo
-
-__all__ = ["MobileNetworkOperatorListParams", "Filter", "FilterName"]
+__all__ = ["MobileNetworkOperatorListParams", "Filter", "FilterName", "Page"]
 
 
 class MobileNetworkOperatorListParams(TypedDict, total=False):
@@ -18,9 +16,11 @@ class MobileNetworkOperatorListParams(TypedDict, total=False):
     filter[tadig], filter[network_preferences_enabled]
     """
 
-    page_number: Annotated[int, PropertyInfo(alias="page[number]")]
+    page: Page
+    """Consolidated pagination parameter (deepObject style).
 
-    page_size: Annotated[int, PropertyInfo(alias="page[size]")]
+    Originally: page[number], page[size]
+    """
 
 
 class FilterName(TypedDict, total=False):
@@ -59,3 +59,16 @@ class Filter(TypedDict, total=False):
 
     tadig: str
     """Filter by exact TADIG."""
+
+
+class Page(TypedDict, total=False):
+    """Consolidated pagination parameter (deepObject style).
+
+    Originally: page[number], page[size]
+    """
+
+    number: int
+    """The page number to load."""
+
+    size: int
+    """The size of the page."""

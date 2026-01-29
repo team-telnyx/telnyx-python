@@ -17,7 +17,7 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
+from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.number_order_list_response import NumberOrderListResponse
 from ..types.number_order_create_response import NumberOrderCreateResponse
@@ -182,15 +182,14 @@ class NumberOrdersResource(SyncAPIResource):
         self,
         *,
         filter: number_order_list_params.Filter | Omit = omit,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: number_order_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[NumberOrderListResponse]:
+    ) -> SyncDefaultPagination[NumberOrderListResponse]:
         """
         Get a paginated list of number orders.
 
@@ -198,6 +197,9 @@ class NumberOrdersResource(SyncAPIResource):
           filter: Consolidated filter parameter (deepObject style). Originally: filter[status],
               filter[created_at], filter[phone_numbers_count], filter[customer_reference],
               filter[requirements_met]
+
+          page: Consolidated page parameter (deepObject style). Originally: page[size],
+              page[number]
 
           extra_headers: Send extra headers
 
@@ -209,7 +211,7 @@ class NumberOrdersResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/number_orders",
-            page=SyncDefaultFlatPagination[NumberOrderListResponse],
+            page=SyncDefaultPagination[NumberOrderListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -218,8 +220,7 @@ class NumberOrdersResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page_number": page_number,
-                        "page_size": page_size,
+                        "page": page,
                     },
                     number_order_list_params.NumberOrderListParams,
                 ),
@@ -382,15 +383,14 @@ class AsyncNumberOrdersResource(AsyncAPIResource):
         self,
         *,
         filter: number_order_list_params.Filter | Omit = omit,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: number_order_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[NumberOrderListResponse, AsyncDefaultFlatPagination[NumberOrderListResponse]]:
+    ) -> AsyncPaginator[NumberOrderListResponse, AsyncDefaultPagination[NumberOrderListResponse]]:
         """
         Get a paginated list of number orders.
 
@@ -398,6 +398,9 @@ class AsyncNumberOrdersResource(AsyncAPIResource):
           filter: Consolidated filter parameter (deepObject style). Originally: filter[status],
               filter[created_at], filter[phone_numbers_count], filter[customer_reference],
               filter[requirements_met]
+
+          page: Consolidated page parameter (deepObject style). Originally: page[size],
+              page[number]
 
           extra_headers: Send extra headers
 
@@ -409,7 +412,7 @@ class AsyncNumberOrdersResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/number_orders",
-            page=AsyncDefaultFlatPagination[NumberOrderListResponse],
+            page=AsyncDefaultPagination[NumberOrderListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -418,8 +421,7 @@ class AsyncNumberOrdersResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page_number": page_number,
-                        "page_size": page_size,
+                        "page": page,
                     },
                     number_order_list_params.NumberOrderListParams,
                 ),

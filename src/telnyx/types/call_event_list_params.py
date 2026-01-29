@@ -6,7 +6,7 @@ from typing_extensions import Literal, Annotated, TypedDict
 
 from .._utils import PropertyInfo
 
-__all__ = ["CallEventListParams", "Filter", "FilterApplicationName", "FilterOccurredAt"]
+__all__ = ["CallEventListParams", "Filter", "FilterApplicationName", "FilterOccurredAt", "Page"]
 
 
 class CallEventListParams(TypedDict, total=False):
@@ -18,6 +18,12 @@ class CallEventListParams(TypedDict, total=False):
     filter[application_session_id], filter[connection_id], filter[product],
     filter[failed], filter[from], filter[to], filter[name], filter[type],
     filter[occurred_at][eq/gt/gte/lt/lte], filter[status]
+    """
+
+    page: Page
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[after], page[before], page[limit], page[size], page[number]
     """
 
     page_number: Annotated[int, PropertyInfo(alias="page[number]")]
@@ -111,3 +117,19 @@ class Filter(_FilterReservedKeywords, total=False):
 
     type: Literal["command", "webhook"]
     """Event type"""
+
+
+class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[after], page[before], page[limit], page[size], page[number]
+    """
+
+    after: str
+    """Opaque identifier of next page"""
+
+    before: str
+    """Opaque identifier of previous page"""
+
+    limit: int
+    """Limit of records per single page"""

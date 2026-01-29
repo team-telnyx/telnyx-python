@@ -8,7 +8,7 @@ from typing_extensions import Annotated, TypedDict
 
 from .._utils import PropertyInfo
 
-__all__ = ["RoomListParams", "Filter", "FilterDateCreatedAt", "FilterDateUpdatedAt"]
+__all__ = ["RoomListParams", "Filter", "FilterDateCreatedAt", "FilterDateUpdatedAt", "Page"]
 
 
 class RoomListParams(TypedDict, total=False):
@@ -23,9 +23,11 @@ class RoomListParams(TypedDict, total=False):
     include_sessions: bool
     """To decide if room sessions should be included in the response."""
 
-    page_number: Annotated[int, PropertyInfo(alias="page[number]")]
+    page: Page
+    """Consolidated page parameter (deepObject style).
 
-    page_size: Annotated[int, PropertyInfo(alias="page[size]")]
+    Originally: page[size], page[number]
+    """
 
 
 class FilterDateCreatedAt(TypedDict, total=False):
@@ -62,3 +64,16 @@ class Filter(TypedDict, total=False):
 
     unique_name: str
     """Unique_name for filtering rooms."""
+
+
+class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[size], page[number]
+    """
+
+    number: int
+    """The page number to load."""
+
+    size: int
+    """The size of the page."""

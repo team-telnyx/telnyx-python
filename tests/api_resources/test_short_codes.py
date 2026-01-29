@@ -13,7 +13,7 @@ from telnyx.types import (
     ShortCodeUpdateResponse,
     ShortCodeRetrieveResponse,
 )
-from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
+from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
 from telnyx.types.shared import ShortCode
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -124,17 +124,19 @@ class TestShortCodes:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         short_code = client.short_codes.list()
-        assert_matches_type(SyncDefaultFlatPagination[ShortCode], short_code, path=["response"])
+        assert_matches_type(SyncDefaultPagination[ShortCode], short_code, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         short_code = client.short_codes.list(
             filter={"messaging_profile_id": "messaging_profile_id"},
-            page_number=0,
-            page_size=0,
+            page={
+                "number": 1,
+                "size": 1,
+            },
         )
-        assert_matches_type(SyncDefaultFlatPagination[ShortCode], short_code, path=["response"])
+        assert_matches_type(SyncDefaultPagination[ShortCode], short_code, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -144,7 +146,7 @@ class TestShortCodes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         short_code = response.parse()
-        assert_matches_type(SyncDefaultFlatPagination[ShortCode], short_code, path=["response"])
+        assert_matches_type(SyncDefaultPagination[ShortCode], short_code, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -154,7 +156,7 @@ class TestShortCodes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             short_code = response.parse()
-            assert_matches_type(SyncDefaultFlatPagination[ShortCode], short_code, path=["response"])
+            assert_matches_type(SyncDefaultPagination[ShortCode], short_code, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -266,17 +268,19 @@ class TestAsyncShortCodes:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         short_code = await async_client.short_codes.list()
-        assert_matches_type(AsyncDefaultFlatPagination[ShortCode], short_code, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[ShortCode], short_code, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         short_code = await async_client.short_codes.list(
             filter={"messaging_profile_id": "messaging_profile_id"},
-            page_number=0,
-            page_size=0,
+            page={
+                "number": 1,
+                "size": 1,
+            },
         )
-        assert_matches_type(AsyncDefaultFlatPagination[ShortCode], short_code, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[ShortCode], short_code, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -286,7 +290,7 @@ class TestAsyncShortCodes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         short_code = await response.parse()
-        assert_matches_type(AsyncDefaultFlatPagination[ShortCode], short_code, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[ShortCode], short_code, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -296,6 +300,6 @@ class TestAsyncShortCodes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             short_code = await response.parse()
-            assert_matches_type(AsyncDefaultFlatPagination[ShortCode], short_code, path=["response"])
+            assert_matches_type(AsyncDefaultPagination[ShortCode], short_code, path=["response"])
 
         assert cast(Any, response.is_closed) is True

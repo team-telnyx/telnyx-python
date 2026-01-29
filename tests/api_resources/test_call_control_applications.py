@@ -246,6 +246,11 @@ class TestCallControlApplications:
                 "to": "+12025550142",
                 "type": "webhook",
             },
+            page={
+                "after": "after",
+                "before": "before",
+                "limit": 1,
+            },
             page_number=0,
             page_size=0,
             sort="connection_name",
@@ -549,6 +554,11 @@ class TestAsyncCallControlApplications:
                 "status": "init",
                 "to": "+12025550142",
                 "type": "webhook",
+            },
+            page={
+                "after": "after",
+                "before": "before",
+                "limit": 1,
             },
             page_number=0,
             page_size=0,

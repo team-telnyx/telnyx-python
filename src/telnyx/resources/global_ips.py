@@ -17,7 +17,7 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
+from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.global_ip_list_response import GlobalIPListResponse
 from ..types.global_ip_create_response import GlobalIPCreateResponse
@@ -130,19 +130,21 @@ class GlobalIPsResource(SyncAPIResource):
     def list(
         self,
         *,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: global_ip_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[GlobalIPListResponse]:
+    ) -> SyncDefaultPagination[GlobalIPListResponse]:
         """
         List all Global IPs.
 
         Args:
+          page: Consolidated page parameter (deepObject style). Originally: page[number],
+              page[size]
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -153,19 +155,13 @@ class GlobalIPsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/global_ips",
-            page=SyncDefaultFlatPagination[GlobalIPListResponse],
+            page=SyncDefaultPagination[GlobalIPListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "page_number": page_number,
-                        "page_size": page_size,
-                    },
-                    global_ip_list_params.GlobalIPListParams,
-                ),
+                query=maybe_transform({"page": page}, global_ip_list_params.GlobalIPListParams),
             ),
             model=GlobalIPListResponse,
         )
@@ -307,19 +303,21 @@ class AsyncGlobalIPsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: global_ip_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[GlobalIPListResponse, AsyncDefaultFlatPagination[GlobalIPListResponse]]:
+    ) -> AsyncPaginator[GlobalIPListResponse, AsyncDefaultPagination[GlobalIPListResponse]]:
         """
         List all Global IPs.
 
         Args:
+          page: Consolidated page parameter (deepObject style). Originally: page[number],
+              page[size]
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -330,19 +328,13 @@ class AsyncGlobalIPsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/global_ips",
-            page=AsyncDefaultFlatPagination[GlobalIPListResponse],
+            page=AsyncDefaultPagination[GlobalIPListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "page_number": page_number,
-                        "page_size": page_size,
-                    },
-                    global_ip_list_params.GlobalIPListParams,
-                ),
+                query=maybe_transform({"page": page}, global_ip_list_params.GlobalIPListParams),
             ),
             model=GlobalIPListResponse,
         )

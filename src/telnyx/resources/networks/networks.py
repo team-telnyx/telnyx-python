@@ -15,7 +15,7 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
+from ...pagination import SyncDefaultPagination, AsyncDefaultPagination
 from ..._base_client import AsyncPaginator, make_request_options
 from .default_gateway import (
     DefaultGatewayResource,
@@ -167,20 +167,22 @@ class NetworksResource(SyncAPIResource):
         self,
         *,
         filter: network_list_params.Filter | Omit = omit,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: network_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[NetworkListResponse]:
+    ) -> SyncDefaultPagination[NetworkListResponse]:
         """
         List all Networks.
 
         Args:
           filter: Consolidated filter parameter (deepObject style). Originally: filter[name]
+
+          page: Consolidated page parameter (deepObject style). Originally: page[number],
+              page[size]
 
           extra_headers: Send extra headers
 
@@ -192,7 +194,7 @@ class NetworksResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/networks",
-            page=SyncDefaultFlatPagination[NetworkListResponse],
+            page=SyncDefaultPagination[NetworkListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -201,8 +203,7 @@ class NetworksResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page_number": page_number,
-                        "page_size": page_size,
+                        "page": page,
                     },
                     network_list_params.NetworkListParams,
                 ),
@@ -248,21 +249,23 @@ class NetworksResource(SyncAPIResource):
         id: str,
         *,
         filter: network_list_interfaces_params.Filter | Omit = omit,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: network_list_interfaces_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[NetworkListInterfacesResponse]:
+    ) -> SyncDefaultPagination[NetworkListInterfacesResponse]:
         """
         List all Interfaces for a Network.
 
         Args:
           filter: Consolidated filter parameter (deepObject style). Originally: filter[name],
               filter[type], filter[status]
+
+          page: Consolidated page parameter (deepObject style). Originally: page[number],
+              page[size]
 
           extra_headers: Send extra headers
 
@@ -276,7 +279,7 @@ class NetworksResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
             f"/networks/{id}/network_interfaces",
-            page=SyncDefaultFlatPagination[NetworkListInterfacesResponse],
+            page=SyncDefaultPagination[NetworkListInterfacesResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -285,8 +288,7 @@ class NetworksResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page_number": page_number,
-                        "page_size": page_size,
+                        "page": page,
                     },
                     network_list_interfaces_params.NetworkListInterfacesParams,
                 ),
@@ -427,20 +429,22 @@ class AsyncNetworksResource(AsyncAPIResource):
         self,
         *,
         filter: network_list_params.Filter | Omit = omit,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: network_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[NetworkListResponse, AsyncDefaultFlatPagination[NetworkListResponse]]:
+    ) -> AsyncPaginator[NetworkListResponse, AsyncDefaultPagination[NetworkListResponse]]:
         """
         List all Networks.
 
         Args:
           filter: Consolidated filter parameter (deepObject style). Originally: filter[name]
+
+          page: Consolidated page parameter (deepObject style). Originally: page[number],
+              page[size]
 
           extra_headers: Send extra headers
 
@@ -452,7 +456,7 @@ class AsyncNetworksResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/networks",
-            page=AsyncDefaultFlatPagination[NetworkListResponse],
+            page=AsyncDefaultPagination[NetworkListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -461,8 +465,7 @@ class AsyncNetworksResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page_number": page_number,
-                        "page_size": page_size,
+                        "page": page,
                     },
                     network_list_params.NetworkListParams,
                 ),
@@ -508,21 +511,23 @@ class AsyncNetworksResource(AsyncAPIResource):
         id: str,
         *,
         filter: network_list_interfaces_params.Filter | Omit = omit,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: network_list_interfaces_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[NetworkListInterfacesResponse, AsyncDefaultFlatPagination[NetworkListInterfacesResponse]]:
+    ) -> AsyncPaginator[NetworkListInterfacesResponse, AsyncDefaultPagination[NetworkListInterfacesResponse]]:
         """
         List all Interfaces for a Network.
 
         Args:
           filter: Consolidated filter parameter (deepObject style). Originally: filter[name],
               filter[type], filter[status]
+
+          page: Consolidated page parameter (deepObject style). Originally: page[number],
+              page[size]
 
           extra_headers: Send extra headers
 
@@ -536,7 +541,7 @@ class AsyncNetworksResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
             f"/networks/{id}/network_interfaces",
-            page=AsyncDefaultFlatPagination[NetworkListInterfacesResponse],
+            page=AsyncDefaultPagination[NetworkListInterfacesResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -545,8 +550,7 @@ class AsyncNetworksResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page_number": page_number,
-                        "page_size": page_size,
+                        "page": page,
                     },
                     network_list_interfaces_params.NetworkListInterfacesParams,
                 ),

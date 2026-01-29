@@ -2,11 +2,9 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Annotated, TypedDict
+from typing_extensions import Literal, TypedDict
 
-from .._utils import PropertyInfo
-
-__all__ = ["OtaUpdateListParams", "Filter"]
+__all__ = ["OtaUpdateListParams", "Filter", "Page"]
 
 
 class OtaUpdateListParams(TypedDict, total=False):
@@ -16,9 +14,11 @@ class OtaUpdateListParams(TypedDict, total=False):
     Originally: filter[status], filter[sim_card_id], filter[type]
     """
 
-    page_number: Annotated[int, PropertyInfo(alias="page[number]")]
+    page: Page
+    """Consolidated pagination parameter (deepObject style).
 
-    page_size: Annotated[int, PropertyInfo(alias="page[size]")]
+    Originally: page[number], page[size]
+    """
 
 
 class Filter(TypedDict, total=False):
@@ -35,3 +35,16 @@ class Filter(TypedDict, total=False):
 
     type: Literal["sim_card_network_preferences"]
     """Filter by type."""
+
+
+class Page(TypedDict, total=False):
+    """Consolidated pagination parameter (deepObject style).
+
+    Originally: page[number], page[size]
+    """
+
+    number: int
+    """The page number to load."""
+
+    size: int
+    """The size of the page."""

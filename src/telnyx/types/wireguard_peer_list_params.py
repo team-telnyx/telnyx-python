@@ -2,11 +2,9 @@
 
 from __future__ import annotations
 
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import TypedDict
 
-from .._utils import PropertyInfo
-
-__all__ = ["WireguardPeerListParams", "Filter"]
+__all__ = ["WireguardPeerListParams", "Filter", "Page"]
 
 
 class WireguardPeerListParams(TypedDict, total=False):
@@ -16,9 +14,11 @@ class WireguardPeerListParams(TypedDict, total=False):
     Originally: filter[wireguard_interface_id]
     """
 
-    page_number: Annotated[int, PropertyInfo(alias="page[number]")]
+    page: Page
+    """Consolidated page parameter (deepObject style).
 
-    page_size: Annotated[int, PropertyInfo(alias="page[size]")]
+    Originally: page[number], page[size]
+    """
 
 
 class Filter(TypedDict, total=False):
@@ -29,3 +29,16 @@ class Filter(TypedDict, total=False):
 
     wireguard_interface_id: str
     """The id of the associated WireGuard interface to filter on."""
+
+
+class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[number], page[size]
+    """
+
+    number: int
+    """The page number to load"""
+
+    size: int
+    """The size of the page"""

@@ -4,16 +4,9 @@ from typing import Optional
 from typing_extensions import Literal
 
 from ..._models import BaseModel
+from .audio_visualizer_config import AudioVisualizerConfig
 
-__all__ = ["WidgetSettings", "AudioVisualizerConfig"]
-
-
-class AudioVisualizerConfig(BaseModel):
-    color: Optional[Literal["verdant", "twilight", "bloom", "mystic", "flare", "glacier"]] = None
-    """The color theme for the audio visualizer."""
-
-    preset: Optional[str] = None
-    """The preset style for the audio visualizer."""
+__all__ = ["WidgetSettings"]
 
 
 class WidgetSettings(BaseModel):

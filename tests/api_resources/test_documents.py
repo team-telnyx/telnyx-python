@@ -27,7 +27,7 @@ from telnyx._response import (
     StreamedBinaryAPIResponse,
     AsyncStreamedBinaryAPIResponse,
 )
-from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
+from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -133,7 +133,7 @@ class TestDocuments:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         document = client.documents.list()
-        assert_matches_type(SyncDefaultFlatPagination[DocServiceDocument], document, path=["response"])
+        assert_matches_type(SyncDefaultPagination[DocServiceDocument], document, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -150,11 +150,13 @@ class TestDocuments:
                 },
                 "filename": {"contains": "invoice"},
             },
-            page_number=0,
-            page_size=0,
+            page={
+                "number": 1,
+                "size": 1,
+            },
             sort=["filename"],
         )
-        assert_matches_type(SyncDefaultFlatPagination[DocServiceDocument], document, path=["response"])
+        assert_matches_type(SyncDefaultPagination[DocServiceDocument], document, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -164,7 +166,7 @@ class TestDocuments:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         document = response.parse()
-        assert_matches_type(SyncDefaultFlatPagination[DocServiceDocument], document, path=["response"])
+        assert_matches_type(SyncDefaultPagination[DocServiceDocument], document, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -174,7 +176,7 @@ class TestDocuments:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             document = response.parse()
-            assert_matches_type(SyncDefaultFlatPagination[DocServiceDocument], document, path=["response"])
+            assert_matches_type(SyncDefaultPagination[DocServiceDocument], document, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -516,7 +518,7 @@ class TestAsyncDocuments:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         document = await async_client.documents.list()
-        assert_matches_type(AsyncDefaultFlatPagination[DocServiceDocument], document, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[DocServiceDocument], document, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -533,11 +535,13 @@ class TestAsyncDocuments:
                 },
                 "filename": {"contains": "invoice"},
             },
-            page_number=0,
-            page_size=0,
+            page={
+                "number": 1,
+                "size": 1,
+            },
             sort=["filename"],
         )
-        assert_matches_type(AsyncDefaultFlatPagination[DocServiceDocument], document, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[DocServiceDocument], document, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -547,7 +551,7 @@ class TestAsyncDocuments:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         document = await response.parse()
-        assert_matches_type(AsyncDefaultFlatPagination[DocServiceDocument], document, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[DocServiceDocument], document, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -557,7 +561,7 @@ class TestAsyncDocuments:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             document = await response.parse()
-            assert_matches_type(AsyncDefaultFlatPagination[DocServiceDocument], document, path=["response"])
+            assert_matches_type(AsyncDefaultPagination[DocServiceDocument], document, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

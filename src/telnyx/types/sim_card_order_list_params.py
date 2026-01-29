@@ -8,7 +8,7 @@ from typing_extensions import Annotated, TypedDict
 
 from .._utils import PropertyInfo
 
-__all__ = ["SimCardOrderListParams", "Filter"]
+__all__ = ["SimCardOrderListParams", "Filter", "Page"]
 
 
 class SimCardOrderListParams(TypedDict, total=False):
@@ -22,9 +22,11 @@ class SimCardOrderListParams(TypedDict, total=False):
     filter[address.country_code], filter[address.postal_code]
     """
 
-    page_number: Annotated[int, PropertyInfo(alias="page[number]")]
+    page: Page
+    """Consolidated pagination parameter (deepObject style).
 
-    page_size: Annotated[int, PropertyInfo(alias="page[size]")]
+    Originally: page[number], page[size]
+    """
 
 
 class Filter(TypedDict, total=False):
@@ -80,3 +82,16 @@ class Filter(TypedDict, total=False):
     Filter by ISO 8601 formatted date-time string matching resource last update
     date-time.
     """
+
+
+class Page(TypedDict, total=False):
+    """Consolidated pagination parameter (deepObject style).
+
+    Originally: page[number], page[size]
+    """
+
+    number: int
+    """The page number to load."""
+
+    size: int
+    """The size of the page."""
