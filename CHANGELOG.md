@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.16.0 (2026-01-29)
+
+Full Changelog: [v4.15.0...v4.16.0](https://github.com/team-telnyx/telnyx-python/compare/v4.15.0...v4.16.0)
+
+### Features
+
+* **api:** revert bad update to spec ([2cecd24](https://github.com/team-telnyx/telnyx-python/commit/2cecd24094258729da3c6d2c9a65b6d22bf2acc4))
+
 ## 4.15.0 (2026-01-29)
 
 Full Changelog: [v4.14.0...v4.15.0](https://github.com/team-telnyx/telnyx-python/compare/v4.14.0...v4.15.0)
