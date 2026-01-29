@@ -10,7 +10,7 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types import WebhookDeliveryListResponse, WebhookDeliveryRetrieveResponse
-from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
+from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -64,7 +64,7 @@ class TestWebhookDeliveries:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         webhook_delivery = client.webhook_deliveries.list()
-        assert_matches_type(SyncDefaultFlatPagination[WebhookDeliveryListResponse], webhook_delivery, path=["response"])
+        assert_matches_type(SyncDefaultPagination[WebhookDeliveryListResponse], webhook_delivery, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -84,10 +84,12 @@ class TestWebhookDeliveries:
                 "status": {"eq": "delivered"},
                 "webhook": {"contains": "call.initiated"},
             },
-            page_number=0,
-            page_size=0,
+            page={
+                "number": 1,
+                "size": 1,
+            },
         )
-        assert_matches_type(SyncDefaultFlatPagination[WebhookDeliveryListResponse], webhook_delivery, path=["response"])
+        assert_matches_type(SyncDefaultPagination[WebhookDeliveryListResponse], webhook_delivery, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -97,7 +99,7 @@ class TestWebhookDeliveries:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         webhook_delivery = response.parse()
-        assert_matches_type(SyncDefaultFlatPagination[WebhookDeliveryListResponse], webhook_delivery, path=["response"])
+        assert_matches_type(SyncDefaultPagination[WebhookDeliveryListResponse], webhook_delivery, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -107,9 +109,7 @@ class TestWebhookDeliveries:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             webhook_delivery = response.parse()
-            assert_matches_type(
-                SyncDefaultFlatPagination[WebhookDeliveryListResponse], webhook_delivery, path=["response"]
-            )
+            assert_matches_type(SyncDefaultPagination[WebhookDeliveryListResponse], webhook_delivery, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -165,9 +165,7 @@ class TestAsyncWebhookDeliveries:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         webhook_delivery = await async_client.webhook_deliveries.list()
-        assert_matches_type(
-            AsyncDefaultFlatPagination[WebhookDeliveryListResponse], webhook_delivery, path=["response"]
-        )
+        assert_matches_type(AsyncDefaultPagination[WebhookDeliveryListResponse], webhook_delivery, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -187,12 +185,12 @@ class TestAsyncWebhookDeliveries:
                 "status": {"eq": "delivered"},
                 "webhook": {"contains": "call.initiated"},
             },
-            page_number=0,
-            page_size=0,
+            page={
+                "number": 1,
+                "size": 1,
+            },
         )
-        assert_matches_type(
-            AsyncDefaultFlatPagination[WebhookDeliveryListResponse], webhook_delivery, path=["response"]
-        )
+        assert_matches_type(AsyncDefaultPagination[WebhookDeliveryListResponse], webhook_delivery, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -202,9 +200,7 @@ class TestAsyncWebhookDeliveries:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         webhook_delivery = await response.parse()
-        assert_matches_type(
-            AsyncDefaultFlatPagination[WebhookDeliveryListResponse], webhook_delivery, path=["response"]
-        )
+        assert_matches_type(AsyncDefaultPagination[WebhookDeliveryListResponse], webhook_delivery, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -215,7 +211,7 @@ class TestAsyncWebhookDeliveries:
 
             webhook_delivery = await response.parse()
             assert_matches_type(
-                AsyncDefaultFlatPagination[WebhookDeliveryListResponse], webhook_delivery, path=["response"]
+                AsyncDefaultPagination[WebhookDeliveryListResponse], webhook_delivery, path=["response"]
             )
 
         assert cast(Any, response.is_closed) is True

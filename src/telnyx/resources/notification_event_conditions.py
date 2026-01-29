@@ -15,7 +15,7 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
+from ..pagination import SyncDefaultPagination, AsyncDefaultPagination
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.notification_event_condition_list_response import NotificationEventConditionListResponse
 
@@ -46,15 +46,14 @@ class NotificationEventConditionsResource(SyncAPIResource):
         self,
         *,
         filter: notification_event_condition_list_params.Filter | Omit = omit,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: notification_event_condition_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[NotificationEventConditionListResponse]:
+    ) -> SyncDefaultPagination[NotificationEventConditionListResponse]:
         """
         Returns a list of your notifications events conditions.
 
@@ -64,6 +63,9 @@ class NotificationEventConditionsResource(SyncAPIResource):
               filter[associated_record_type][eq], filter[channel_type_id][eq],
               filter[notification_profile_id][eq], filter[notification_channel][eq],
               filter[notification_event_condition_id][eq], filter[status][eq]
+
+          page: Consolidated page parameter (deepObject style). Originally: page[number],
+              page[size]
 
           extra_headers: Send extra headers
 
@@ -75,7 +77,7 @@ class NotificationEventConditionsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/notification_event_conditions",
-            page=SyncDefaultFlatPagination[NotificationEventConditionListResponse],
+            page=SyncDefaultPagination[NotificationEventConditionListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -84,8 +86,7 @@ class NotificationEventConditionsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page_number": page_number,
-                        "page_size": page_size,
+                        "page": page,
                     },
                     notification_event_condition_list_params.NotificationEventConditionListParams,
                 ),
@@ -118,8 +119,7 @@ class AsyncNotificationEventConditionsResource(AsyncAPIResource):
         self,
         *,
         filter: notification_event_condition_list_params.Filter | Omit = omit,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: notification_event_condition_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -127,7 +127,7 @@ class AsyncNotificationEventConditionsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[
-        NotificationEventConditionListResponse, AsyncDefaultFlatPagination[NotificationEventConditionListResponse]
+        NotificationEventConditionListResponse, AsyncDefaultPagination[NotificationEventConditionListResponse]
     ]:
         """
         Returns a list of your notifications events conditions.
@@ -139,6 +139,9 @@ class AsyncNotificationEventConditionsResource(AsyncAPIResource):
               filter[notification_profile_id][eq], filter[notification_channel][eq],
               filter[notification_event_condition_id][eq], filter[status][eq]
 
+          page: Consolidated page parameter (deepObject style). Originally: page[number],
+              page[size]
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -149,7 +152,7 @@ class AsyncNotificationEventConditionsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/notification_event_conditions",
-            page=AsyncDefaultFlatPagination[NotificationEventConditionListResponse],
+            page=AsyncDefaultPagination[NotificationEventConditionListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -158,8 +161,7 @@ class AsyncNotificationEventConditionsResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page_number": page_number,
-                        "page_size": page_size,
+                        "page": page,
                     },
                     notification_event_condition_list_params.NotificationEventConditionListParams,
                 ),

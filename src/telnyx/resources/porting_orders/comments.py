@@ -14,7 +14,7 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
+from ...pagination import SyncDefaultPagination, AsyncDefaultPagination
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.porting_orders import comment_list_params, comment_create_params
 from ...types.porting_orders.comment_list_response import CommentListResponse
@@ -82,19 +82,21 @@ class CommentsResource(SyncAPIResource):
         self,
         id: str,
         *,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: comment_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[CommentListResponse]:
+    ) -> SyncDefaultPagination[CommentListResponse]:
         """
         Returns a list of all comments of a porting order.
 
         Args:
+          page: Consolidated page parameter (deepObject style). Originally: page[size],
+              page[number]
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -107,19 +109,13 @@ class CommentsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
             f"/porting_orders/{id}/comments",
-            page=SyncDefaultFlatPagination[CommentListResponse],
+            page=SyncDefaultPagination[CommentListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "page_number": page_number,
-                        "page_size": page_size,
-                    },
-                    comment_list_params.CommentListParams,
-                ),
+                query=maybe_transform({"page": page}, comment_list_params.CommentListParams),
             ),
             model=CommentListResponse,
         )
@@ -184,19 +180,21 @@ class AsyncCommentsResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: comment_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[CommentListResponse, AsyncDefaultFlatPagination[CommentListResponse]]:
+    ) -> AsyncPaginator[CommentListResponse, AsyncDefaultPagination[CommentListResponse]]:
         """
         Returns a list of all comments of a porting order.
 
         Args:
+          page: Consolidated page parameter (deepObject style). Originally: page[size],
+              page[number]
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -209,19 +207,13 @@ class AsyncCommentsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
             f"/porting_orders/{id}/comments",
-            page=AsyncDefaultFlatPagination[CommentListResponse],
+            page=AsyncDefaultPagination[CommentListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "page_number": page_number,
-                        "page_size": page_size,
-                    },
-                    comment_list_params.CommentListParams,
-                ),
+                query=maybe_transform({"page": page}, comment_list_params.CommentListParams),
             ),
             model=CommentListResponse,
         )

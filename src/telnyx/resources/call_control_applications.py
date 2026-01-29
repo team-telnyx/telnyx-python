@@ -313,6 +313,7 @@ class CallControlApplicationsResource(SyncAPIResource):
         self,
         *,
         filter: call_control_application_list_params.Filter | Omit = omit,
+        page: call_control_application_list_params.Page | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         sort: Literal["created_at", "connection_name", "active"] | Omit = omit,
@@ -333,6 +334,9 @@ class CallControlApplicationsResource(SyncAPIResource):
               filter[leg_id], filter[application_session_id], filter[connection_id],
               filter[product], filter[failed], filter[from], filter[to], filter[name],
               filter[type], filter[occurred_at][eq/gt/gte/lt/lte], filter[status]
+
+          page: Consolidated page parameter (deepObject style). Originally: page[after],
+              page[before], page[limit], page[size], page[number]
 
           sort: Specifies the sort order for results. By default sorting direction is ascending.
               To have the results sorted in descending order add the <code> -</code>
@@ -368,6 +372,7 @@ class CallControlApplicationsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
+                        "page": page,
                         "page_number": page_number,
                         "page_size": page_size,
                         "sort": sort,
@@ -690,6 +695,7 @@ class AsyncCallControlApplicationsResource(AsyncAPIResource):
         self,
         *,
         filter: call_control_application_list_params.Filter | Omit = omit,
+        page: call_control_application_list_params.Page | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         sort: Literal["created_at", "connection_name", "active"] | Omit = omit,
@@ -710,6 +716,9 @@ class AsyncCallControlApplicationsResource(AsyncAPIResource):
               filter[leg_id], filter[application_session_id], filter[connection_id],
               filter[product], filter[failed], filter[from], filter[to], filter[name],
               filter[type], filter[occurred_at][eq/gt/gte/lt/lte], filter[status]
+
+          page: Consolidated page parameter (deepObject style). Originally: page[after],
+              page[before], page[limit], page[size], page[number]
 
           sort: Specifies the sort order for results. By default sorting direction is ascending.
               To have the results sorted in descending order add the <code> -</code>
@@ -745,6 +754,7 @@ class AsyncCallControlApplicationsResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
+                        "page": page,
                         "page_number": page_number,
                         "page_size": page_size,
                         "sort": sort,

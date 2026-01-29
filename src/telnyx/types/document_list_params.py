@@ -9,7 +9,7 @@ from typing_extensions import Literal, Annotated, TypedDict
 from .._types import SequenceNotStr
 from .._utils import PropertyInfo
 
-__all__ = ["DocumentListParams", "Filter", "FilterCreatedAt", "FilterCustomerReference", "FilterFilename"]
+__all__ = ["DocumentListParams", "Filter", "FilterCreatedAt", "FilterCustomerReference", "FilterFilename", "Page"]
 
 
 class DocumentListParams(TypedDict, total=False):
@@ -20,9 +20,11 @@ class DocumentListParams(TypedDict, total=False):
     filter[customer_reference][in][], filter[created_at][gt], filter[created_at][lt]
     """
 
-    page_number: Annotated[int, PropertyInfo(alias="page[number]")]
+    page: Page
+    """Consolidated page parameter (deepObject style).
 
-    page_size: Annotated[int, PropertyInfo(alias="page[size]")]
+    Originally: page[size], page[number]
+    """
 
     sort: List[Literal["filename", "created_at", "updated_at", "-filename", "-created_at", "-updated_at"]]
     """Consolidated sort parameter for documents (deepObject style).
@@ -69,3 +71,16 @@ class Filter(TypedDict, total=False):
     customer_reference: FilterCustomerReference
 
     filename: FilterFilename
+
+
+class Page(TypedDict, total=False):
+    """Consolidated page parameter (deepObject style).
+
+    Originally: page[size], page[number]
+    """
+
+    number: int
+    """The page number to load"""
+
+    size: int
+    """The size of the page"""

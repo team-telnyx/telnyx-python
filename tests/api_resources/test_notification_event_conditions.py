@@ -10,7 +10,7 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types import NotificationEventConditionListResponse
-from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
+from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -23,7 +23,7 @@ class TestNotificationEventConditions:
     def test_method_list(self, client: Telnyx) -> None:
         notification_event_condition = client.notification_event_conditions.list()
         assert_matches_type(
-            SyncDefaultFlatPagination[NotificationEventConditionListResponse],
+            SyncDefaultPagination[NotificationEventConditionListResponse],
             notification_event_condition,
             path=["response"],
         )
@@ -40,11 +40,13 @@ class TestNotificationEventConditions:
                 "notification_profile_id": {"eq": "12455643-3cf1-4683-ad23-1cd32f7d5e0a"},
                 "status": {"eq": "enable-received"},
             },
-            page_number=0,
-            page_size=0,
+            page={
+                "number": 1,
+                "size": 1,
+            },
         )
         assert_matches_type(
-            SyncDefaultFlatPagination[NotificationEventConditionListResponse],
+            SyncDefaultPagination[NotificationEventConditionListResponse],
             notification_event_condition,
             path=["response"],
         )
@@ -58,7 +60,7 @@ class TestNotificationEventConditions:
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         notification_event_condition = response.parse()
         assert_matches_type(
-            SyncDefaultFlatPagination[NotificationEventConditionListResponse],
+            SyncDefaultPagination[NotificationEventConditionListResponse],
             notification_event_condition,
             path=["response"],
         )
@@ -72,7 +74,7 @@ class TestNotificationEventConditions:
 
             notification_event_condition = response.parse()
             assert_matches_type(
-                SyncDefaultFlatPagination[NotificationEventConditionListResponse],
+                SyncDefaultPagination[NotificationEventConditionListResponse],
                 notification_event_condition,
                 path=["response"],
             )
@@ -90,7 +92,7 @@ class TestAsyncNotificationEventConditions:
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         notification_event_condition = await async_client.notification_event_conditions.list()
         assert_matches_type(
-            AsyncDefaultFlatPagination[NotificationEventConditionListResponse],
+            AsyncDefaultPagination[NotificationEventConditionListResponse],
             notification_event_condition,
             path=["response"],
         )
@@ -107,11 +109,13 @@ class TestAsyncNotificationEventConditions:
                 "notification_profile_id": {"eq": "12455643-3cf1-4683-ad23-1cd32f7d5e0a"},
                 "status": {"eq": "enable-received"},
             },
-            page_number=0,
-            page_size=0,
+            page={
+                "number": 1,
+                "size": 1,
+            },
         )
         assert_matches_type(
-            AsyncDefaultFlatPagination[NotificationEventConditionListResponse],
+            AsyncDefaultPagination[NotificationEventConditionListResponse],
             notification_event_condition,
             path=["response"],
         )
@@ -125,7 +129,7 @@ class TestAsyncNotificationEventConditions:
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         notification_event_condition = await response.parse()
         assert_matches_type(
-            AsyncDefaultFlatPagination[NotificationEventConditionListResponse],
+            AsyncDefaultPagination[NotificationEventConditionListResponse],
             notification_event_condition,
             path=["response"],
         )
@@ -139,7 +143,7 @@ class TestAsyncNotificationEventConditions:
 
             notification_event_condition = await response.parse()
             assert_matches_type(
-                AsyncDefaultFlatPagination[NotificationEventConditionListResponse],
+                AsyncDefaultPagination[NotificationEventConditionListResponse],
                 notification_event_condition,
                 path=["response"],
             )

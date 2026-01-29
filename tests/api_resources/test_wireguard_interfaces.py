@@ -15,7 +15,7 @@ from telnyx.types import (
     WireguardInterfaceDeleteResponse,
     WireguardInterfaceRetrieveResponse,
 )
-from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
+from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -115,7 +115,7 @@ class TestWireguardInterfaces:
     def test_method_list(self, client: Telnyx) -> None:
         wireguard_interface = client.wireguard_interfaces.list()
         assert_matches_type(
-            SyncDefaultFlatPagination[WireguardInterfaceListResponse], wireguard_interface, path=["response"]
+            SyncDefaultPagination[WireguardInterfaceListResponse], wireguard_interface, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -123,11 +123,13 @@ class TestWireguardInterfaces:
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         wireguard_interface = client.wireguard_interfaces.list(
             filter={"network_id": "6a09cdc3-8948-47f0-aa62-74ac943d6c58"},
-            page_number=0,
-            page_size=0,
+            page={
+                "number": 1,
+                "size": 1,
+            },
         )
         assert_matches_type(
-            SyncDefaultFlatPagination[WireguardInterfaceListResponse], wireguard_interface, path=["response"]
+            SyncDefaultPagination[WireguardInterfaceListResponse], wireguard_interface, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -139,7 +141,7 @@ class TestWireguardInterfaces:
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         wireguard_interface = response.parse()
         assert_matches_type(
-            SyncDefaultFlatPagination[WireguardInterfaceListResponse], wireguard_interface, path=["response"]
+            SyncDefaultPagination[WireguardInterfaceListResponse], wireguard_interface, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -151,7 +153,7 @@ class TestWireguardInterfaces:
 
             wireguard_interface = response.parse()
             assert_matches_type(
-                SyncDefaultFlatPagination[WireguardInterfaceListResponse], wireguard_interface, path=["response"]
+                SyncDefaultPagination[WireguardInterfaceListResponse], wireguard_interface, path=["response"]
             )
 
         assert cast(Any, response.is_closed) is True
@@ -296,7 +298,7 @@ class TestAsyncWireguardInterfaces:
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         wireguard_interface = await async_client.wireguard_interfaces.list()
         assert_matches_type(
-            AsyncDefaultFlatPagination[WireguardInterfaceListResponse], wireguard_interface, path=["response"]
+            AsyncDefaultPagination[WireguardInterfaceListResponse], wireguard_interface, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -304,11 +306,13 @@ class TestAsyncWireguardInterfaces:
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         wireguard_interface = await async_client.wireguard_interfaces.list(
             filter={"network_id": "6a09cdc3-8948-47f0-aa62-74ac943d6c58"},
-            page_number=0,
-            page_size=0,
+            page={
+                "number": 1,
+                "size": 1,
+            },
         )
         assert_matches_type(
-            AsyncDefaultFlatPagination[WireguardInterfaceListResponse], wireguard_interface, path=["response"]
+            AsyncDefaultPagination[WireguardInterfaceListResponse], wireguard_interface, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -320,7 +324,7 @@ class TestAsyncWireguardInterfaces:
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         wireguard_interface = await response.parse()
         assert_matches_type(
-            AsyncDefaultFlatPagination[WireguardInterfaceListResponse], wireguard_interface, path=["response"]
+            AsyncDefaultPagination[WireguardInterfaceListResponse], wireguard_interface, path=["response"]
         )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -332,7 +336,7 @@ class TestAsyncWireguardInterfaces:
 
             wireguard_interface = await response.parse()
             assert_matches_type(
-                AsyncDefaultFlatPagination[WireguardInterfaceListResponse], wireguard_interface, path=["response"]
+                AsyncDefaultPagination[WireguardInterfaceListResponse], wireguard_interface, path=["response"]
             )
 
         assert cast(Any, response.is_closed) is True

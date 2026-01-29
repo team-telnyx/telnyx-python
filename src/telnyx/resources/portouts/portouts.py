@@ -41,7 +41,7 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
+from ...pagination import SyncDefaultPagination, AsyncDefaultPagination
 from ..._base_client import AsyncPaginator, make_request_options
 from .supporting_documents import (
     SupportingDocumentsResource,
@@ -132,15 +132,14 @@ class PortoutsResource(SyncAPIResource):
         self,
         *,
         filter: portout_list_params.Filter | Omit = omit,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: portout_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[PortoutDetails]:
+    ) -> SyncDefaultPagination[PortoutDetails]:
         """
         Returns the portout requests according to filters
 
@@ -152,6 +151,9 @@ class PortoutsResource(SyncAPIResource):
               filter[ported_out_at], filter[spid], filter[status], filter[status_in],
               filter[support_key]
 
+          page: Consolidated page parameter (deepObject style). Originally: page[number],
+              page[size]
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -162,7 +164,7 @@ class PortoutsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/portouts",
-            page=SyncDefaultFlatPagination[PortoutDetails],
+            page=SyncDefaultPagination[PortoutDetails],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -171,8 +173,7 @@ class PortoutsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page_number": page_number,
-                        "page_size": page_size,
+                        "page": page,
                     },
                     portout_list_params.PortoutListParams,
                 ),
@@ -347,15 +348,14 @@ class AsyncPortoutsResource(AsyncAPIResource):
         self,
         *,
         filter: portout_list_params.Filter | Omit = omit,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: portout_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[PortoutDetails, AsyncDefaultFlatPagination[PortoutDetails]]:
+    ) -> AsyncPaginator[PortoutDetails, AsyncDefaultPagination[PortoutDetails]]:
         """
         Returns the portout requests according to filters
 
@@ -367,6 +367,9 @@ class AsyncPortoutsResource(AsyncAPIResource):
               filter[ported_out_at], filter[spid], filter[status], filter[status_in],
               filter[support_key]
 
+          page: Consolidated page parameter (deepObject style). Originally: page[number],
+              page[size]
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -377,7 +380,7 @@ class AsyncPortoutsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/portouts",
-            page=AsyncDefaultFlatPagination[PortoutDetails],
+            page=AsyncDefaultPagination[PortoutDetails],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -386,8 +389,7 @@ class AsyncPortoutsResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page_number": page_number,
-                        "page_size": page_size,
+                        "page": page,
                     },
                     portout_list_params.PortoutListParams,
                 ),

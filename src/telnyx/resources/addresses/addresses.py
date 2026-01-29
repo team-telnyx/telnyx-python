@@ -25,7 +25,7 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
+from ...pagination import SyncDefaultPagination, AsyncDefaultPagination
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.address import Address
 from ...types.address_create_response import AddressCreateResponse
@@ -205,8 +205,7 @@ class AddressesResource(SyncAPIResource):
         self,
         *,
         filter: address_list_params.Filter | Omit = omit,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: address_list_params.Page | Omit = omit,
         sort: Literal["created_at", "first_name", "last_name", "business_name", "street_address"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -214,7 +213,7 @@ class AddressesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[Address]:
+    ) -> SyncDefaultPagination[Address]:
         """
         Returns a list of your addresses.
 
@@ -224,6 +223,9 @@ class AddressesResource(SyncAPIResource):
               filter[customer_reference][eq], filter[customer_reference][contains],
               filter[used_as_emergency], filter[street_address][contains],
               filter[address_book][eq]
+
+          page: Consolidated page parameter (deepObject style). Originally: page[number],
+              page[size]
 
           sort: Specifies the sort order for results. By default sorting direction is ascending.
               To have the results sorted in descending order add the <code> -</code>
@@ -250,7 +252,7 @@ class AddressesResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/addresses",
-            page=SyncDefaultFlatPagination[Address],
+            page=SyncDefaultPagination[Address],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -259,8 +261,7 @@ class AddressesResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page_number": page_number,
-                        "page_size": page_size,
+                        "page": page,
                         "sort": sort,
                     },
                     address_list_params.AddressListParams,
@@ -473,8 +474,7 @@ class AsyncAddressesResource(AsyncAPIResource):
         self,
         *,
         filter: address_list_params.Filter | Omit = omit,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: address_list_params.Page | Omit = omit,
         sort: Literal["created_at", "first_name", "last_name", "business_name", "street_address"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -482,7 +482,7 @@ class AsyncAddressesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[Address, AsyncDefaultFlatPagination[Address]]:
+    ) -> AsyncPaginator[Address, AsyncDefaultPagination[Address]]:
         """
         Returns a list of your addresses.
 
@@ -492,6 +492,9 @@ class AsyncAddressesResource(AsyncAPIResource):
               filter[customer_reference][eq], filter[customer_reference][contains],
               filter[used_as_emergency], filter[street_address][contains],
               filter[address_book][eq]
+
+          page: Consolidated page parameter (deepObject style). Originally: page[number],
+              page[size]
 
           sort: Specifies the sort order for results. By default sorting direction is ascending.
               To have the results sorted in descending order add the <code> -</code>
@@ -518,7 +521,7 @@ class AsyncAddressesResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/addresses",
-            page=AsyncDefaultFlatPagination[Address],
+            page=AsyncDefaultPagination[Address],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -527,8 +530,7 @@ class AsyncAddressesResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page_number": page_number,
-                        "page_size": page_size,
+                        "page": page,
                         "sort": sort,
                     },
                     address_list_params.AddressListParams,

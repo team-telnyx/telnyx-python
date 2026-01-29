@@ -9,7 +9,7 @@ import pytest
 
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
-from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
+from telnyx.pagination import SyncDefaultPagination, AsyncDefaultPagination
 from telnyx.types.bundle_pricing import (
     UserBundle,
     UserBundleCreateResponse,
@@ -123,7 +123,7 @@ class TestUserBundles:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         user_bundle = client.bundle_pricing.user_bundles.list()
-        assert_matches_type(SyncDefaultFlatPagination[UserBundle], user_bundle, path=["response"])
+        assert_matches_type(SyncDefaultPagination[UserBundle], user_bundle, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -133,11 +133,13 @@ class TestUserBundles:
                 "country_iso": ["US"],
                 "resource": ["+15617819942"],
             },
-            page_number=0,
-            page_size=0,
+            page={
+                "number": 1,
+                "size": 1,
+            },
             authorization_bearer="authorization_bearer",
         )
-        assert_matches_type(SyncDefaultFlatPagination[UserBundle], user_bundle, path=["response"])
+        assert_matches_type(SyncDefaultPagination[UserBundle], user_bundle, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -147,7 +149,7 @@ class TestUserBundles:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         user_bundle = response.parse()
-        assert_matches_type(SyncDefaultFlatPagination[UserBundle], user_bundle, path=["response"])
+        assert_matches_type(SyncDefaultPagination[UserBundle], user_bundle, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -157,7 +159,7 @@ class TestUserBundles:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             user_bundle = response.parse()
-            assert_matches_type(SyncDefaultFlatPagination[UserBundle], user_bundle, path=["response"])
+            assert_matches_type(SyncDefaultPagination[UserBundle], user_bundle, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -407,7 +409,7 @@ class TestAsyncUserBundles:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         user_bundle = await async_client.bundle_pricing.user_bundles.list()
-        assert_matches_type(AsyncDefaultFlatPagination[UserBundle], user_bundle, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[UserBundle], user_bundle, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -417,11 +419,13 @@ class TestAsyncUserBundles:
                 "country_iso": ["US"],
                 "resource": ["+15617819942"],
             },
-            page_number=0,
-            page_size=0,
+            page={
+                "number": 1,
+                "size": 1,
+            },
             authorization_bearer="authorization_bearer",
         )
-        assert_matches_type(AsyncDefaultFlatPagination[UserBundle], user_bundle, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[UserBundle], user_bundle, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -431,7 +435,7 @@ class TestAsyncUserBundles:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         user_bundle = await response.parse()
-        assert_matches_type(AsyncDefaultFlatPagination[UserBundle], user_bundle, path=["response"])
+        assert_matches_type(AsyncDefaultPagination[UserBundle], user_bundle, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -441,7 +445,7 @@ class TestAsyncUserBundles:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             user_bundle = await response.parse()
-            assert_matches_type(AsyncDefaultFlatPagination[UserBundle], user_bundle, path=["response"])
+            assert_matches_type(AsyncDefaultPagination[UserBundle], user_bundle, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

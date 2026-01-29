@@ -81,8 +81,7 @@ class LogMessagesResource(SyncAPIResource):
         self,
         *,
         filter: log_message_list_params.Filter | Omit = omit,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: log_message_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -97,6 +96,9 @@ class LogMessagesResource(SyncAPIResource):
         Args:
           filter: Filter parameter for log messages (deepObject style). Supports filtering by
               external_connection_id and telephone_number with eq/contains operations.
+
+          page: Consolidated page parameter (deepObject style). Originally: page[size],
+              page[number]
 
           extra_headers: Send extra headers
 
@@ -117,8 +119,7 @@ class LogMessagesResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page_number": page_number,
-                        "page_size": page_size,
+                        "page": page,
                     },
                     log_message_list_params.LogMessageListParams,
                 ),
@@ -217,8 +218,7 @@ class AsyncLogMessagesResource(AsyncAPIResource):
         self,
         *,
         filter: log_message_list_params.Filter | Omit = omit,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: log_message_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -233,6 +233,9 @@ class AsyncLogMessagesResource(AsyncAPIResource):
         Args:
           filter: Filter parameter for log messages (deepObject style). Supports filtering by
               external_connection_id and telephone_number with eq/contains operations.
+
+          page: Consolidated page parameter (deepObject style). Originally: page[size],
+              page[number]
 
           extra_headers: Send extra headers
 
@@ -253,8 +256,7 @@ class AsyncLogMessagesResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page_number": page_number,
-                        "page_size": page_size,
+                        "page": page,
                     },
                     log_message_list_params.LogMessageListParams,
                 ),

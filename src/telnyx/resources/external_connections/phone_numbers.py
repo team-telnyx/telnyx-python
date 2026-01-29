@@ -14,7 +14,7 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
+from ...pagination import SyncDefaultPagination, AsyncDefaultPagination
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.external_connections import phone_number_list_params, phone_number_update_params
 from ...types.external_connections.phone_number_update_response import PhoneNumberUpdateResponse
@@ -127,15 +127,14 @@ class PhoneNumbersResource(SyncAPIResource):
         id: str,
         *,
         filter: phone_number_list_params.Filter | Omit = omit,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: phone_number_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[ExternalConnectionPhoneNumber]:
+    ) -> SyncDefaultPagination[ExternalConnectionPhoneNumber]:
         """
         Returns a list of all active phone numbers associated with the given external
         connection.
@@ -143,6 +142,9 @@ class PhoneNumbersResource(SyncAPIResource):
         Args:
           filter: Filter parameter for phone numbers (deepObject style). Supports filtering by
               phone_number, civic_address_id, and location_id with eq/contains operations.
+
+          page: Consolidated page parameter (deepObject style). Originally: page[size],
+              page[number]
 
           extra_headers: Send extra headers
 
@@ -156,7 +158,7 @@ class PhoneNumbersResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
             f"/external_connections/{id}/phone_numbers",
-            page=SyncDefaultFlatPagination[ExternalConnectionPhoneNumber],
+            page=SyncDefaultPagination[ExternalConnectionPhoneNumber],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -165,8 +167,7 @@ class PhoneNumbersResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page_number": page_number,
-                        "page_size": page_size,
+                        "page": page,
                     },
                     phone_number_list_params.PhoneNumberListParams,
                 ),
@@ -280,15 +281,14 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
         id: str,
         *,
         filter: phone_number_list_params.Filter | Omit = omit,
-        page_number: int | Omit = omit,
-        page_size: int | Omit = omit,
+        page: phone_number_list_params.Page | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[ExternalConnectionPhoneNumber, AsyncDefaultFlatPagination[ExternalConnectionPhoneNumber]]:
+    ) -> AsyncPaginator[ExternalConnectionPhoneNumber, AsyncDefaultPagination[ExternalConnectionPhoneNumber]]:
         """
         Returns a list of all active phone numbers associated with the given external
         connection.
@@ -296,6 +296,9 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
         Args:
           filter: Filter parameter for phone numbers (deepObject style). Supports filtering by
               phone_number, civic_address_id, and location_id with eq/contains operations.
+
+          page: Consolidated page parameter (deepObject style). Originally: page[size],
+              page[number]
 
           extra_headers: Send extra headers
 
@@ -309,7 +312,7 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
             f"/external_connections/{id}/phone_numbers",
-            page=AsyncDefaultFlatPagination[ExternalConnectionPhoneNumber],
+            page=AsyncDefaultPagination[ExternalConnectionPhoneNumber],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -318,8 +321,7 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
-                        "page_number": page_number,
-                        "page_size": page_size,
+                        "page": page,
                     },
                     phone_number_list_params.PhoneNumberListParams,
                 ),

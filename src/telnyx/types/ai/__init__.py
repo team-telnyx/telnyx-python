@@ -44,6 +44,7 @@ from .assistant_chat_response import AssistantChatResponse as AssistantChatRespo
 from .assistant_create_params import AssistantCreateParams as AssistantCreateParams
 from .assistant_update_params import AssistantUpdateParams as AssistantUpdateParams
 from .audio_transcribe_params import AudioTranscribeParams as AudioTranscribeParams
+from .audio_visualizer_config import AudioVisualizerConfig as AudioVisualizerConfig
 from .cluster_retrieve_params import ClusterRetrieveParams as ClusterRetrieveParams
 from .embedding_create_params import EmbeddingCreateParams as EmbeddingCreateParams
 from .embedding_list_response import EmbeddingListResponse as EmbeddingListResponse
@@ -74,6 +75,7 @@ from .assistant_get_texml_response import AssistantGetTexmlResponse as Assistant
 from .conversation_update_response import ConversationUpdateResponse as ConversationUpdateResponse
 from .mcp_server_retrieve_response import McpServerRetrieveResponse as McpServerRetrieveResponse
 from .transcription_settings_param import TranscriptionSettingsParam as TranscriptionSettingsParam
+from .audio_visualizer_config_param import AudioVisualizerConfigParam as AudioVisualizerConfigParam
 from .chat_create_completion_params import ChatCreateCompletionParams as ChatCreateCompletionParams
 from .integration_retrieve_response import IntegrationRetrieveResponse as IntegrationRetrieveResponse
 from .transcription_settings_config import TranscriptionSettingsConfig as TranscriptionSettingsConfig
@@ -83,12 +85,6 @@ from .conversation_add_message_params import ConversationAddMessageParams as Con
 from .embedding_similarity_search_params import EmbeddingSimilaritySearchParams as EmbeddingSimilaritySearchParams
 from .transcription_settings_config_param import TranscriptionSettingsConfigParam as TranscriptionSettingsConfigParam
 from .embedding_similarity_search_response import EmbeddingSimilaritySearchResponse as EmbeddingSimilaritySearchResponse
-from .inference_embedding_webhook_tool_params import (
-    InferenceEmbeddingWebhookToolParams as InferenceEmbeddingWebhookToolParams,
-)
-from .inference_embedding_webhook_tool_params_param import (
-    InferenceEmbeddingWebhookToolParamsParam as InferenceEmbeddingWebhookToolParamsParam,
-)
 from .conversation_retrieve_conversations_insights_response import (
     ConversationRetrieveConversationsInsightsResponse as ConversationRetrieveConversationsInsightsResponse,
 )
