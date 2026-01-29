@@ -1,5 +1,14 @@
 # Changelog
 
+## 4.15.0 (2026-01-29)
+
+Full Changelog: [v4.14.0...v4.15.0](https://github.com/team-telnyx/telnyx-python/compare/v4.14.0...v4.15.0)
+
+### Features
+
+* Add deepgram/nova-3 transcription engine option to record_start ([665efb3](https://github.com/team-telnyx/telnyx-python/commit/665efb388d75492d5468f066f3ad61e2edc8f7e0))
+* **client:** add custom JSON encoder for extended type support ([bc6b681](https://github.com/team-telnyx/telnyx-python/commit/bc6b681452f280fea7c49df805f983eb16b1e957))
+
 ## 4.14.0 (2026-01-28)
 
 Full Changelog: [v4.13.1...v4.14.0](https://github.com/team-telnyx/telnyx-python/compare/v4.13.1...v4.14.0)
