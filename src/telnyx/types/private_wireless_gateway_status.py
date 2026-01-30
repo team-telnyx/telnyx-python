@@ -13,7 +13,8 @@ class PrivateWirelessGatewayStatus(BaseModel):
 
     error_code: Optional[str] = None
     """
-    This attribute is an [error code](https://developers.telnyx.com/api/errors)
+    This attribute is an
+    [error code](https://developers.telnyx.com/development/api-fundamentals/api-errors)
     related to the failure reason.
     """
 

@@ -186,7 +186,7 @@ class TestSimCardGroups:
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         sim_card_group = client.sim_card_groups.list(
-            filter_name="1119e3cb-f39d-4254-ad38-9080d5fe90a9",
+            filter_name="My Test Group",
             filter_private_wireless_gateway_id="7606c6d3-ff7c-49c1-943d-68879e9d584d",
             filter_wireless_blocklist_id="0f3f490e-c4d3-4cf5-838a-9970f10ee259",
             page_number=1,
@@ -426,7 +426,7 @@ class TestAsyncSimCardGroups:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         sim_card_group = await async_client.sim_card_groups.list(
-            filter_name="1119e3cb-f39d-4254-ad38-9080d5fe90a9",
+            filter_name="My Test Group",
             filter_private_wireless_gateway_id="7606c6d3-ff7c-49c1-943d-68879e9d584d",
             filter_wireless_blocklist_id="0f3f490e-c4d3-4cf5-838a-9970f10ee259",
             page_number=1,

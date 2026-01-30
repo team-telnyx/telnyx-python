@@ -202,7 +202,7 @@ class SimCardsResource(SyncAPIResource):
         Args:
           filter:
               Consolidated filter parameter for SIM cards (deepObject style). Originally:
-              filter[tags], filter[iccid], filter[status]
+              filter[iccid], filter[msisdn], filter[status], filter[tags]
 
           filter_sim_card_group_id: A valid SIM card group ID.
 
@@ -597,7 +597,7 @@ class AsyncSimCardsResource(AsyncAPIResource):
         Args:
           filter:
               Consolidated filter parameter for SIM cards (deepObject style). Originally:
-              filter[tags], filter[iccid], filter[status]
+              filter[iccid], filter[msisdn], filter[status], filter[tags]
 
           filter_sim_card_group_id: A valid SIM card group ID.
 
