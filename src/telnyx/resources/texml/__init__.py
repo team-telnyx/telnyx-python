@@ -1,13 +1,5 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from .calls import (
-    CallsResource,
-    AsyncCallsResource,
-    CallsResourceWithRawResponse,
-    AsyncCallsResourceWithRawResponse,
-    CallsResourceWithStreamingResponse,
-    AsyncCallsResourceWithStreamingResponse,
-)
 from .texml import (
     TexmlResource,
     AsyncTexmlResource,
@@ -32,12 +24,6 @@ __all__ = [
     "AsyncAccountsResourceWithRawResponse",
     "AccountsResourceWithStreamingResponse",
     "AsyncAccountsResourceWithStreamingResponse",
-    "CallsResource",
-    "AsyncCallsResource",
-    "CallsResourceWithRawResponse",
-    "AsyncCallsResourceWithRawResponse",
-    "CallsResourceWithStreamingResponse",
-    "AsyncCallsResourceWithStreamingResponse",
     "TexmlResource",
     "AsyncTexmlResource",
     "TexmlResourceWithRawResponse",

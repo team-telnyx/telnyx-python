@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Mapping, cast
+from typing import Dict, Mapping, cast
 from typing_extensions import Literal
 
 import httpx
@@ -47,9 +47,11 @@ class AudioResource(SyncAPIResource):
     def transcribe(
         self,
         *,
-        model: Literal["distil-whisper/distil-large-v2", "openai/whisper-large-v3-turbo"],
+        model: Literal["distil-whisper/distil-large-v2", "openai/whisper-large-v3-turbo", "deepgram/nova-3"],
         file: FileTypes | Omit = omit,
         file_url: str | Omit = omit,
+        language: str | Omit = omit,
+        model_config: Dict[str, object] | Omit = omit,
         response_format: Literal["json", "verbose_json"] | Omit = omit,
         timestamp_granularities: Literal["segment"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -68,15 +70,28 @@ class AudioResource(SyncAPIResource):
         Args:
           model: ID of the model to use. `distil-whisper/distil-large-v2` is lower latency but
               English-only. `openai/whisper-large-v3-turbo` is multi-lingual but slightly
-              higher latency.
+              higher latency. `deepgram/nova-3` supports English variants (en, en-US, en-GB,
+              en-AU, en-NZ, en-IN) and only accepts mp3/wav files.
 
           file: The audio file object to transcribe, in one of these formats: flac, mp3, mp4,
               mpeg, mpga, m4a, ogg, wav, or webm. File uploads are limited to 100 MB. Cannot
-              be used together with `file_url`
+              be used together with `file_url`. Note: `deepgram/nova-3` only supports mp3 and
+              wav formats.
 
           file_url: Link to audio file in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a,
               ogg, wav, or webm. Support for hosted files is limited to 100MB. Cannot be used
-              together with `file`
+              together with `file`. Note: `deepgram/nova-3` only supports mp3 and wav formats.
+
+          language: The language of the audio to be transcribed. For `deepgram/nova-3`, only English
+              variants are supported: `en`, `en-US`, `en-GB`, `en-AU`, `en-NZ`, `en-IN`. For
+              `openai/whisper-large-v3-turbo`, supports multiple languages.
+              `distil-whisper/distil-large-v2` does not support language parameter.
+
+          model_config: Additional model-specific configuration parameters. Only allowed with
+              `deepgram/nova-3` model. Can include Deepgram-specific options such as
+              `smart_format`, `punctuate`, `diarize`, `utterance`, `numerals`, and `language`.
+              If `language` is provided both as a top-level parameter and in `model_config`,
+              the top-level parameter takes precedence.
 
           response_format: The format of the transcript output. Use `verbose_json` to take advantage of
               timestamps.
@@ -98,6 +113,8 @@ class AudioResource(SyncAPIResource):
                 "model": model,
                 "file": file,
                 "file_url": file_url,
+                "language": language,
+                "model_config": model_config,
                 "response_format": response_format,
                 "timestamp_granularities": timestamp_granularities,
             }
@@ -141,9 +158,11 @@ class AsyncAudioResource(AsyncAPIResource):
     async def transcribe(
         self,
         *,
-        model: Literal["distil-whisper/distil-large-v2", "openai/whisper-large-v3-turbo"],
+        model: Literal["distil-whisper/distil-large-v2", "openai/whisper-large-v3-turbo", "deepgram/nova-3"],
         file: FileTypes | Omit = omit,
         file_url: str | Omit = omit,
+        language: str | Omit = omit,
+        model_config: Dict[str, object] | Omit = omit,
         response_format: Literal["json", "verbose_json"] | Omit = omit,
         timestamp_granularities: Literal["segment"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -162,15 +181,28 @@ class AsyncAudioResource(AsyncAPIResource):
         Args:
           model: ID of the model to use. `distil-whisper/distil-large-v2` is lower latency but
               English-only. `openai/whisper-large-v3-turbo` is multi-lingual but slightly
-              higher latency.
+              higher latency. `deepgram/nova-3` supports English variants (en, en-US, en-GB,
+              en-AU, en-NZ, en-IN) and only accepts mp3/wav files.
 
           file: The audio file object to transcribe, in one of these formats: flac, mp3, mp4,
               mpeg, mpga, m4a, ogg, wav, or webm. File uploads are limited to 100 MB. Cannot
-              be used together with `file_url`
+              be used together with `file_url`. Note: `deepgram/nova-3` only supports mp3 and
+              wav formats.
 
           file_url: Link to audio file in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a,
               ogg, wav, or webm. Support for hosted files is limited to 100MB. Cannot be used
-              together with `file`
+              together with `file`. Note: `deepgram/nova-3` only supports mp3 and wav formats.
+
+          language: The language of the audio to be transcribed. For `deepgram/nova-3`, only English
+              variants are supported: `en`, `en-US`, `en-GB`, `en-AU`, `en-NZ`, `en-IN`. For
+              `openai/whisper-large-v3-turbo`, supports multiple languages.
+              `distil-whisper/distil-large-v2` does not support language parameter.
+
+          model_config: Additional model-specific configuration parameters. Only allowed with
+              `deepgram/nova-3` model. Can include Deepgram-specific options such as
+              `smart_format`, `punctuate`, `diarize`, `utterance`, `numerals`, and `language`.
+              If `language` is provided both as a top-level parameter and in `model_config`,
+              the top-level parameter takes precedence.
 
           response_format: The format of the transcript output. Use `verbose_json` to take advantage of
               timestamps.
@@ -192,6 +224,8 @@ class AsyncAudioResource(AsyncAPIResource):
                 "model": model,
                 "file": file,
                 "file_url": file_url,
+                "language": language,
+                "model_config": model_config,
                 "response_format": response_format,
                 "timestamp_granularities": timestamp_granularities,
             }

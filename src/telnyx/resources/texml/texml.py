@@ -4,14 +4,6 @@ from __future__ import annotations
 
 import httpx
 
-from .calls import (
-    CallsResource,
-    AsyncCallsResource,
-    CallsResourceWithRawResponse,
-    AsyncCallsResourceWithRawResponse,
-    CallsResourceWithStreamingResponse,
-    AsyncCallsResourceWithStreamingResponse,
-)
 from ...types import texml_secrets_params
 from ..._types import Body, Query, Headers, NotGiven, not_given
 from ..._utils import maybe_transform, async_maybe_transform
@@ -41,10 +33,6 @@ class TexmlResource(SyncAPIResource):
     @cached_property
     def accounts(self) -> AccountsResource:
         return AccountsResource(self._client)
-
-    @cached_property
-    def calls(self) -> CallsResource:
-        return CallsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> TexmlResourceWithRawResponse:
@@ -118,10 +106,6 @@ class AsyncTexmlResource(AsyncAPIResource):
     @cached_property
     def accounts(self) -> AsyncAccountsResource:
         return AsyncAccountsResource(self._client)
-
-    @cached_property
-    def calls(self) -> AsyncCallsResource:
-        return AsyncCallsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncTexmlResourceWithRawResponse:
@@ -203,10 +187,6 @@ class TexmlResourceWithRawResponse:
     def accounts(self) -> AccountsResourceWithRawResponse:
         return AccountsResourceWithRawResponse(self._texml.accounts)
 
-    @cached_property
-    def calls(self) -> CallsResourceWithRawResponse:
-        return CallsResourceWithRawResponse(self._texml.calls)
-
 
 class AsyncTexmlResourceWithRawResponse:
     def __init__(self, texml: AsyncTexmlResource) -> None:
@@ -219,10 +199,6 @@ class AsyncTexmlResourceWithRawResponse:
     @cached_property
     def accounts(self) -> AsyncAccountsResourceWithRawResponse:
         return AsyncAccountsResourceWithRawResponse(self._texml.accounts)
-
-    @cached_property
-    def calls(self) -> AsyncCallsResourceWithRawResponse:
-        return AsyncCallsResourceWithRawResponse(self._texml.calls)
 
 
 class TexmlResourceWithStreamingResponse:
@@ -237,10 +213,6 @@ class TexmlResourceWithStreamingResponse:
     def accounts(self) -> AccountsResourceWithStreamingResponse:
         return AccountsResourceWithStreamingResponse(self._texml.accounts)
 
-    @cached_property
-    def calls(self) -> CallsResourceWithStreamingResponse:
-        return CallsResourceWithStreamingResponse(self._texml.calls)
-
 
 class AsyncTexmlResourceWithStreamingResponse:
     def __init__(self, texml: AsyncTexmlResource) -> None:
@@ -253,7 +225,3 @@ class AsyncTexmlResourceWithStreamingResponse:
     @cached_property
     def accounts(self) -> AsyncAccountsResourceWithStreamingResponse:
         return AsyncAccountsResourceWithStreamingResponse(self._texml.accounts)
-
-    @cached_property
-    def calls(self) -> AsyncCallsResourceWithStreamingResponse:
-        return AsyncCallsResourceWithStreamingResponse(self._texml.calls)

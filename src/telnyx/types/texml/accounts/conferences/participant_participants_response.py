@@ -21,6 +21,9 @@ class ParticipantParticipantsResponse(BaseModel):
     coaching_call_sid: Optional[str] = None
     """The identifier of the coached participant's call."""
 
+    conference_sid: Optional[str] = None
+    """The unique identifier for the conference."""
+
     end_conference_on_exit: Optional[bool] = None
     """Whether the conference ends when the participant leaves."""
 

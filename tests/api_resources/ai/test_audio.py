@@ -32,6 +32,11 @@ class TestAudio:
             model="distil-whisper/distil-large-v2",
             file=b"raw file contents",
             file_url="https://example.com/file.mp3",
+            language="en-US",
+            model_config={
+                "smart_format": "bar",
+                "punctuate": "bar",
+            },
             response_format="json",
             timestamp_granularities="segment",
         )
@@ -84,6 +89,11 @@ class TestAsyncAudio:
             model="distil-whisper/distil-large-v2",
             file=b"raw file contents",
             file_url="https://example.com/file.mp3",
+            language="en-US",
+            model_config={
+                "smart_format": "bar",
+                "punctuate": "bar",
+            },
             response_format="json",
             timestamp_granularities="segment",
         )

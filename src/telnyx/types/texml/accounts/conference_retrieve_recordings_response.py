@@ -85,6 +85,9 @@ class ConferenceRetrieveRecordingsResponse(BaseModel):
     page_size: Optional[int] = None
     """The number of items on the page"""
 
+    participants: Optional[List[object]] = None
+    """List of participant resources."""
+
     recordings: Optional[List[Recording]] = None
 
     start: Optional[int] = None
