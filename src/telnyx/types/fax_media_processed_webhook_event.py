@@ -1,16 +1,17 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Optional
+from datetime import datetime
 from typing_extensions import Literal
 
 from pydantic import Field as FieldInfo
 
 from .._models import BaseModel
 
-__all__ = ["FaxMediaProcessedWebhookEvent", "Payload"]
+__all__ = ["FaxMediaProcessedWebhookEvent", "Data", "DataPayload", "Meta"]
 
 
-class Payload(BaseModel):
+class DataPayload(BaseModel):
     client_state: Optional[str] = None
     """State received from a command."""
 
@@ -50,14 +51,34 @@ class Payload(BaseModel):
     """Identifier of the user to whom the fax belongs"""
 
 
-class FaxMediaProcessedWebhookEvent(BaseModel):
+class Data(BaseModel):
     id: Optional[str] = None
     """Identifies the type of resource."""
 
     event_type: Optional[Literal["fax.media.processed"]] = None
     """The type of event being delivered."""
 
-    payload: Optional[Payload] = None
+    occurred_at: Optional[datetime] = None
+    """ISO 8601 datetime of when the event occurred."""
+
+    payload: Optional[DataPayload] = None
 
     record_type: Optional[Literal["event"]] = None
     """Identifies the type of the resource."""
+
+
+class Meta(BaseModel):
+    """Metadata about the webhook delivery."""
+
+    attempt: Optional[int] = None
+    """The delivery attempt number."""
+
+    delivered_to: Optional[str] = None
+    """The URL the webhook was delivered to."""
+
+
+class FaxMediaProcessedWebhookEvent(BaseModel):
+    data: Optional[Data] = None
+
+    meta: Optional[Meta] = None
+    """Metadata about the webhook delivery."""
