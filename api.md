@@ -4177,19 +4177,6 @@ Methods:
 - <code title="get /texml/Accounts/{account_sid}/Queues">client.texml.accounts.queues.<a href="./src/telnyx/resources/texml/accounts/queues.py">list</a>(account_sid, \*\*<a href="src/telnyx/types/texml/accounts/queue_list_params.py">params</a>) -> <a href="./src/telnyx/types/texml/accounts/queue_list_response.py">SyncDefaultPaginationForQueues[QueueListResponse]</a></code>
 - <code title="delete /texml/Accounts/{account_sid}/Queues/{queue_sid}">client.texml.accounts.queues.<a href="./src/telnyx/resources/texml/accounts/queues.py">delete</a>(queue_sid, \*, account_sid) -> None</code>
 
-## Calls
-
-Types:
-
-```python
-from telnyx.types.texml import CallUpdateResponse, CallInitiateResponse
-```
-
-Methods:
-
-- <code title="post /texml/calls/{call_sid}/update">client.texml.calls.<a href="./src/telnyx/resources/texml/calls.py">update</a>(call_sid, \*\*<a href="src/telnyx/types/texml/call_update_params.py">params</a>) -> <a href="./src/telnyx/types/texml/call_update_response.py">CallUpdateResponse</a></code>
-- <code title="post /texml/calls/{application_id}">client.texml.calls.<a href="./src/telnyx/resources/texml/calls.py">initiate</a>(application_id, \*\*<a href="src/telnyx/types/texml/call_initiate_params.py">params</a>) -> <a href="./src/telnyx/types/texml/call_initiate_response.py">CallInitiateResponse</a></code>
-
 # TexmlApplications
 
 Types:

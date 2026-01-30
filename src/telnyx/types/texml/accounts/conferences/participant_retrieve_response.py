@@ -30,6 +30,9 @@ class ParticipantRetrieveResponse(BaseModel):
     coaching_call_sid_legacy: Optional[str] = None
     """The identifier of the coached participant's call."""
 
+    conference_sid: Optional[str] = None
+    """The unique identifier for the conference."""
+
     date_created: Optional[str] = None
     """The timestamp of when the resource was created."""
 
