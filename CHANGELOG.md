@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.17.0 (2026-02-04)
+
+Full Changelog: [v4.16.2...v4.17.0](https://github.com/team-telnyx/telnyx-python/compare/v4.16.2...v4.17.0)
+
+### Features
+
+* Add Texml parameter to create call endpoint [ENGDESK-49187] ([3db3c1c](https://github.com/team-telnyx/telnyx-python/commit/3db3c1cd082727e88ca65b20e32ed6553fc29a51))
+
 ## 4.16.2 (2026-02-02)
 
 Full Changelog: [v4.16.1...v4.16.2](https://github.com/team-telnyx/telnyx-python/compare/v4.16.1...v4.16.2)
