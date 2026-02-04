@@ -257,6 +257,7 @@ class CallsResource(SyncAPIResource):
         status_callback_method: Literal["GET", "POST"] | Omit = omit,
         supervise_call_sid: str | Omit = omit,
         supervising_role: Literal["barge", "whisper", "monitor"] | Omit = omit,
+        texml: str | Omit = omit,
         trim: Literal["trim-silence", "do-not-trim"] | Omit = omit,
         url: str | Omit = omit,
         url_method: Literal["GET", "POST"] | Omit = omit,
@@ -364,6 +365,9 @@ class CallsResource(SyncAPIResource):
               both sides), whisper (only hear supervisor), monitor (hear both sides but
               supervisor muted). Default: barge
 
+          texml: TeXML to be used as instructions for the call. If provided, the call will
+              execute these instructions instead of fetching from the Url.
+
           trim: Whether to trim any leading and trailing silence from the recording. Defaults to
               `trim-silence`.
 
@@ -420,6 +424,7 @@ class CallsResource(SyncAPIResource):
                     "status_callback_method": status_callback_method,
                     "supervise_call_sid": supervise_call_sid,
                     "supervising_role": supervising_role,
+                    "texml": texml,
                     "trim": trim,
                     "url": url,
                     "url_method": url_method,
@@ -871,6 +876,7 @@ class AsyncCallsResource(AsyncAPIResource):
         status_callback_method: Literal["GET", "POST"] | Omit = omit,
         supervise_call_sid: str | Omit = omit,
         supervising_role: Literal["barge", "whisper", "monitor"] | Omit = omit,
+        texml: str | Omit = omit,
         trim: Literal["trim-silence", "do-not-trim"] | Omit = omit,
         url: str | Omit = omit,
         url_method: Literal["GET", "POST"] | Omit = omit,
@@ -978,6 +984,9 @@ class AsyncCallsResource(AsyncAPIResource):
               both sides), whisper (only hear supervisor), monitor (hear both sides but
               supervisor muted). Default: barge
 
+          texml: TeXML to be used as instructions for the call. If provided, the call will
+              execute these instructions instead of fetching from the Url.
+
           trim: Whether to trim any leading and trailing silence from the recording. Defaults to
               `trim-silence`.
 
@@ -1034,6 +1043,7 @@ class AsyncCallsResource(AsyncAPIResource):
                     "status_callback_method": status_callback_method,
                     "supervise_call_sid": supervise_call_sid,
                     "supervising_role": supervising_role,
+                    "texml": texml,
                     "trim": trim,
                     "url": url,
                     "url_method": url_method,
