@@ -180,6 +180,13 @@ class CallCallsParams(TypedDict, total=False):
     supervisor), monitor (hear both sides but supervisor muted). Default: barge
     """
 
+    texml: Annotated[str, PropertyInfo(alias="Texml")]
+    """TeXML to be used as instructions for the call.
+
+    If provided, the call will execute these instructions instead of fetching from
+    the Url.
+    """
+
     trim: Annotated[Literal["trim-silence", "do-not-trim"], PropertyInfo(alias="Trim")]
     """Whether to trim any leading and trailing silence from the recording.
 
