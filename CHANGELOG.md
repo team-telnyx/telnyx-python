@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.18.0 (2026-02-05)
+
+Full Changelog: [v4.17.0...v4.18.0](https://github.com/team-telnyx/telnyx-python/compare/v4.17.0...v4.18.0)
+
+### Features
+
+* **api:** Merge pull request [#22](https://github.com/team-telnyx/telnyx-python/issues/22) from stainless-sdks/add-all-webhook-models ([470a75f](https://github.com/team-telnyx/telnyx-python/commit/470a75fe8f9f20cbb7d4453bacab261da251d49f))
+
 ## 4.17.0 (2026-02-04)
 
 Full Changelog: [v4.16.2...v4.17.0](https://github.com/team-telnyx/telnyx-python/compare/v4.16.2...v4.17.0)
