@@ -36,10 +36,14 @@ from .sim_card import SimCard as SimCard
 from .dtmf_type import DtmfType as DtmfType
 from .rcs_agent import RcsAgent as RcsAgent
 from .conference import Conference as Conference
+from .fax_failed import FaxFailed as FaxFailed
+from .fax_queued import FaxQueued as FaxQueued
 from .inbound_ip import InboundIP as InboundIP
 from .sip_header import SipHeader as SipHeader
+from .call_hangup import CallHangup as CallHangup
 from .oauth_grant import OAuthGrant as OAuthGrant
 from .outbound_ip import OutboundIP as OutboundIP
+from .call_bridged import CallBridged as CallBridged
 from .inbound_fqdn import InboundFqdn as InboundFqdn
 from .month_detail import MonthDetail as MonthDetail
 from .oauth_client import OAuthClient as OAuthClient
@@ -52,10 +56,15 @@ from .user_address import UserAddress as UserAddress
 from .verification import Verification as Verification
 from .video_region import VideoRegion as VideoRegion
 from .billing_group import BillingGroup as BillingGroup
+from .call_answered import CallAnswered as CallAnswered
+from .call_enqueued import CallEnqueued as CallEnqueued
 from .consumed_data import ConsumedData as ConsumedData
+from .fax_delivered import FaxDelivered as FaxDelivered
 from .ip_connection import IPConnection as IPConnection
 from .outbound_fqdn import OutboundFqdn as OutboundFqdn
 from .porting_order import PortingOrder as PortingOrder
+from .transcription import Transcription as Transcription
+from .call_initiated import CallInitiated as CallInitiated
 from .ip_list_params import IPListParams as IPListParams
 from .media_resource import MediaResource as MediaResource
 from .rcs_suggestion import RcsSuggestion as RcsSuggestion
@@ -65,10 +74,12 @@ from .sim_card_order import SimCardOrder as SimCardOrder
 from .verify_profile import VerifyProfile as VerifyProfile
 from .whatsapp_media import WhatsappMedia as WhatsappMedia
 from .access_ip_range import AccessIPRange as AccessIPRange
+from .call_left_queue import CallLeftQueue as CallLeftQueue
 from .encrypted_media import EncryptedMedia as EncryptedMedia
 from .fax_application import FaxApplication as FaxApplication
 from .fax_list_params import FaxListParams as FaxListParams
 from .fqdn_connection import FqdnConnection as FqdnConnection
+from .inbound_message import InboundMessage as InboundMessage
 from .managed_account import ManagedAccount as ManagedAccount
 from .messaging_error import MessagingError as MessagingError
 from .pagination_meta import PaginationMeta as PaginationMeta
@@ -76,12 +87,15 @@ from .portout_details import PortoutDetails as PortoutDetails
 from .push_credential import PushCredential as PushCredential
 from .verified_number import VerifiedNumber as VerifiedNumber
 from .call_dial_params import CallDialParams as CallDialParams
+from .call_speak_ended import CallSpeakEnded as CallSpeakEnded
+from .conference_ended import ConferenceEnded as ConferenceEnded
 from .fqdn_list_params import FqdnListParams as FqdnListParams
 from .inbound_ip_param import InboundIPParam as InboundIPParam
 from .interface_status import InterfaceStatus as InterfaceStatus
 from .ip_create_params import IPCreateParams as IPCreateParams
 from .ip_update_params import IPUpdateParams as IPUpdateParams
 from .message_template import MessageTemplate as MessageTemplate
+from .outbound_message import OutboundMessage as OutboundMessage
 from .rcs_card_content import RcsCardContent as RcsCardContent
 from .rcs_content_info import RcsContentInfo as RcsContentInfo
 from .room_composition import RoomComposition as RoomComposition
@@ -89,6 +103,10 @@ from .room_list_params import RoomListParams as RoomListParams
 from .sip_header_param import SipHeaderParam as SipHeaderParam
 from .sub_number_order import SubNumberOrder as SubNumberOrder
 from .available_service import AvailableService as AvailableService
+from .call_fork_started import CallForkStarted as CallForkStarted
+from .call_fork_stopped import CallForkStopped as CallForkStopped
+from .call_gather_ended import CallGatherEnded as CallGatherEnded
+from .call_refer_failed import CallReferFailed as CallReferFailed
 from .custom_sip_header import CustomSipHeader as CustomSipHeader
 from .fax_create_params import FaxCreateParams as FaxCreateParams
 from .media_list_params import MediaListParams as MediaListParams
@@ -99,6 +117,11 @@ from .rcs_agent_message import RcsAgentMessage as RcsAgentMessage
 from .requirement_group import RequirementGroup as RequirementGroup
 from .texml_application import TexmlApplication as TexmlApplication
 from .call_dial_response import CallDialResponse as CallDialResponse
+from .call_dtmf_received import CallDtmfReceived as CallDtmfReceived
+from .call_refer_started import CallReferStarted as CallReferStarted
+from .call_siprec_failed import CallSiprecFailed as CallSiprecFailed
+from .call_speak_started import CallSpeakStarted as CallSpeakStarted
+from .conference_created import ConferenceCreated as ConferenceCreated
 from .credential_inbound import CredentialInbound as CredentialInbound
 from .fqdn_create_params import FqdnCreateParams as FqdnCreateParams
 from .fqdn_update_params import FqdnUpdateParams as FqdnUpdateParams
@@ -121,10 +144,15 @@ from .wireless_blocklist import WirelessBlocklist as WirelessBlocklist
 from .address_list_params import AddressListParams as AddressListParams
 from .ai_summarize_params import AISummarizeParams as AISummarizeParams
 from .anchorsite_override import AnchorsiteOverride as AnchorsiteOverride
+from .call_playback_ended import CallPlaybackEnded as CallPlaybackEnded
+from .call_siprec_started import CallSiprecStarted as CallSiprecStarted
+from .call_siprec_stopped import CallSiprecStopped as CallSiprecStopped
 from .comment_list_params import CommentListParams as CommentListParams
 from .credential_outbound import CredentialOutbound as CredentialOutbound
 from .external_connection import ExternalConnection as ExternalConnection
 from .fax_create_response import FaxCreateResponse as FaxCreateResponse
+from .fax_media_processed import FaxMediaProcessed as FaxMediaProcessed
+from .fax_sending_started import FaxSendingStarted as FaxSendingStarted
 from .invoice_list_params import InvoiceListParams as InvoiceListParams
 from .media_list_response import MediaListResponse as MediaListResponse
 from .media_update_params import MediaUpdateParams as MediaUpdateParams
@@ -135,8 +163,13 @@ from .network_list_params import NetworkListParams as NetworkListParams
 from .oauth_grants_params import OAuthGrantsParams as OAuthGrantsParams
 from .outbound_fqdn_param import OutboundFqdnParam as OutboundFqdnParam
 from .portout_list_params import PortoutListParams as PortoutListParams
+from .replaced_link_click import ReplacedLinkClick as ReplacedLinkClick
 from .verify_profile_data import VerifyProfileData as VerifyProfileData
 from .webhook_api_version import WebhookAPIVersion as WebhookAPIVersion
+from .call_ai_gather_ended import CallAIGatherEnded as CallAIGatherEnded
+from .call_recording_error import CallRecordingError as CallRecordingError
+from .call_recording_saved import CallRecordingSaved as CallRecordingSaved
+from .call_refer_completed import CallReferCompleted as CallReferCompleted
 from .doc_service_document import DocServiceDocument as DocServiceDocument
 from .document_list_params import DocumentListParams as DocumentListParams
 from .fqdn_create_response import FqdnCreateResponse as FqdnCreateResponse
@@ -164,6 +197,7 @@ from .whatsapp_media_param import WhatsappMediaParam as WhatsappMediaParam
 from .wireguard_peer_patch import WireguardPeerPatch as WireguardPeerPatch
 from .address_create_params import AddressCreateParams as AddressCreateParams
 from .ai_summarize_response import AISummarizeResponse as AISummarizeResponse
+from .call_playback_started import CallPlaybackStarted as CallPlaybackStarted
 from .call_streaming_failed import CallStreamingFailed as CallStreamingFailed
 from .comment_create_params import CommentCreateParams as CommentCreateParams
 from .comment_list_response import CommentListResponse as CommentListResponse
@@ -187,8 +221,10 @@ from .s3_configuration_data import S3ConfigurationData as S3ConfigurationData
 from .call_event_list_params import CallEventListParams as CallEventListParams
 from .call_streaming_started import CallStreamingStarted as CallStreamingStarted
 from .call_streaming_stopped import CallStreamingStopped as CallStreamingStopped
+from .campaign_status_update import CampaignStatusUpdate as CampaignStatusUpdate
 from .cloudflare_sync_status import CloudflareSyncStatus as CloudflareSyncStatus
 from .conference_list_params import ConferenceListParams as ConferenceListParams
+from .conference_speak_ended import ConferenceSpeakEnded as ConferenceSpeakEnded
 from .connection_list_params import ConnectionListParams as ConnectionListParams
 from .document_update_params import DocumentUpdateParams as DocumentUpdateParams
 from .document_upload_params import DocumentUploadParams as DocumentUploadParams
@@ -210,6 +246,7 @@ from .address_create_response import AddressCreateResponse as AddressCreateRespo
 from .address_delete_response import AddressDeleteResponse as AddressDeleteResponse
 from .audit_event_list_params import AuditEventListParams as AuditEventListParams
 from .authentication_provider import AuthenticationProvider as AuthenticationProvider
+from .call_conversation_ended import CallConversationEnded as CallConversationEnded
 from .comment_create_response import CommentCreateResponse as CommentCreateResponse
 from .custom_sip_header_param import CustomSipHeaderParam as CustomSipHeaderParam
 from .customer_service_record import CustomerServiceRecord as CustomerServiceRecord
@@ -243,14 +280,14 @@ from .call_control_application import CallControlApplication as CallControlAppli
 from .call_event_list_response import CallEventListResponse as CallEventListResponse
 from .channel_zone_list_params import ChannelZoneListParams as ChannelZoneListParams
 from .conference_create_params import ConferenceCreateParams as ConferenceCreateParams
+from .conference_floor_changed import ConferenceFloorChanged as ConferenceFloorChanged
+from .conference_speak_started import ConferenceSpeakStarted as ConferenceSpeakStarted
 from .connection_list_response import ConnectionListResponse as ConnectionListResponse
 from .connection_rtcp_settings import ConnectionRtcpSettings as ConnectionRtcpSettings
 from .credential_inbound_param import CredentialInboundParam as CredentialInboundParam
 from .document_delete_response import DocumentDeleteResponse as DocumentDeleteResponse
 from .document_update_response import DocumentUpdateResponse as DocumentUpdateResponse
 from .document_upload_response import DocumentUploadResponse as DocumentUploadResponse
-from .fax_failed_webhook_event import FaxFailedWebhookEvent as FaxFailedWebhookEvent
-from .fax_queued_webhook_event import FaxQueuedWebhookEvent as FaxQueuedWebhookEvent
 from .network_interface_region import NetworkInterfaceRegion as NetworkInterfaceRegion
 from .number_order_list_params import NumberOrderListParams as NumberOrderListParams
 from .oauth_client_list_params import OAuthClientListParams as OAuthClientListParams
@@ -272,6 +309,7 @@ from .balance_retrieve_response import BalanceRetrieveResponse as BalanceRetriev
 from .billing_group_list_params import BillingGroupListParams as BillingGroupListParams
 from .call_hangup_webhook_event import CallHangupWebhookEvent as CallHangupWebhookEvent
 from .comment_retrieve_response import CommentRetrieveResponse as CommentRetrieveResponse
+from .conference_playback_ended import ConferencePlaybackEnded as ConferencePlaybackEnded
 from .credential_outbound_param import CredentialOutboundParam as CredentialOutboundParam
 from .detail_record_list_params import DetailRecordListParams as DetailRecordListParams
 from .document_link_list_params import DocumentLinkListParams as DocumentLinkListParams
@@ -299,6 +337,7 @@ from .call_bridged_webhook_event import CallBridgedWebhookEvent as CallBridgedWe
 from .channel_zone_list_response import ChannelZoneListResponse as ChannelZoneListResponse
 from .channel_zone_update_params import ChannelZoneUpdateParams as ChannelZoneUpdateParams
 from .conference_create_response import ConferenceCreateResponse as ConferenceCreateResponse
+from .conference_recording_saved import ConferenceRecordingSaved as ConferenceRecordingSaved
 from .conference_retrieve_params import ConferenceRetrieveParams as ConferenceRetrieveParams
 from .document_retrieve_response import DocumentRetrieveResponse as DocumentRetrieveResponse
 from .dynamic_emergency_endpoint import DynamicEmergencyEndpoint as DynamicEmergencyEndpoint
@@ -306,6 +345,7 @@ from .global_ip_assignment_param import GlobalIPAssignmentParam as GlobalIPAssig
 from .list_retrieve_all_response import ListRetrieveAllResponse as ListRetrieveAllResponse
 from .number_order_create_params import NumberOrderCreateParams as NumberOrderCreateParams
 from .number_order_list_response import NumberOrderListResponse as NumberOrderListResponse
+from .number_order_status_update import NumberOrderStatusUpdate as NumberOrderStatusUpdate
 from .number_order_update_params import NumberOrderUpdateParams as NumberOrderUpdateParams
 from .number_pool_settings_param import NumberPoolSettingsParam as NumberPoolSettingsParam
 from .oauth_client_create_params import OAuthClientCreateParams as OAuthClientCreateParams
@@ -327,11 +367,13 @@ from .billing_group_create_params import BillingGroupCreateParams as BillingGrou
 from .billing_group_update_params import BillingGroupUpdateParams as BillingGroupUpdateParams
 from .call_answered_webhook_event import CallAnsweredWebhookEvent as CallAnsweredWebhookEvent
 from .call_enqueued_webhook_event import CallEnqueuedWebhookEvent as CallEnqueuedWebhookEvent
+from .call_machine_greeting_ended import CallMachineGreetingEnded as CallMachineGreetingEnded
+from .conference_participant_left import ConferenceParticipantLeft as ConferenceParticipantLeft
+from .conference_playback_started import ConferencePlaybackStarted as ConferencePlaybackStarted
 from .detail_record_list_response import DetailRecordListResponse as DetailRecordListResponse
 from .document_link_list_response import DocumentLinkListResponse as DocumentLinkListResponse
 from .document_upload_json_params import DocumentUploadJsonParams as DocumentUploadJsonParams
 from .fax_application_list_params import FaxApplicationListParams as FaxApplicationListParams
-from .fax_delivered_webhook_event import FaxDeliveredWebhookEvent as FaxDeliveredWebhookEvent
 from .fqdn_connection_list_params import FqdnConnectionListParams as FqdnConnectionListParams
 from .global_ip_retrieve_response import GlobalIPRetrieveResponse as GlobalIPRetrieveResponse
 from .ip_connection_create_params import IPConnectionCreateParams as IPConnectionCreateParams
@@ -351,6 +393,7 @@ from .verified_number_list_params import VerifiedNumberListParams as VerifiedNum
 from .advanced_order_create_params import AdvancedOrderCreateParams as AdvancedOrderCreateParams
 from .advanced_order_list_response import AdvancedOrderListResponse as AdvancedOrderListResponse
 from .call_initiated_webhook_event import CallInitiatedWebhookEvent as CallInitiatedWebhookEvent
+from .call_machine_detection_ended import CallMachineDetectionEnded as CallMachineDetectionEnded
 from .channel_zone_update_response import ChannelZoneUpdateResponse as ChannelZoneUpdateResponse
 from .conference_retrieve_response import ConferenceRetrieveResponse as ConferenceRetrieveResponse
 from .connection_retrieve_response import ConnectionRetrieveResponse as ConnectionRetrieveResponse
@@ -399,6 +442,7 @@ from .billing_group_update_response import BillingGroupUpdateResponse as Billing
 from .call_left_queue_webhook_event import CallLeftQueueWebhookEvent as CallLeftQueueWebhookEvent
 from .call_retrieve_status_response import CallRetrieveStatusResponse as CallRetrieveStatusResponse
 from .comment_mark_as_read_response import CommentMarkAsReadResponse as CommentMarkAsReadResponse
+from .conference_participant_joined import ConferenceParticipantJoined as ConferenceParticipantJoined
 from .delivery_update_webhook_event import DeliveryUpdateWebhookEvent as DeliveryUpdateWebhookEvent
 from .document_upload_json_response import DocumentUploadJsonResponse as DocumentUploadJsonResponse
 from .fax_application_create_params import FaxApplicationCreateParams as FaxApplicationCreateParams
@@ -433,6 +477,7 @@ from .texml_application_list_params import TexmlApplicationListParams as TexmlAp
 from .verified_number_create_params import VerifiedNumberCreateParams as VerifiedNumberCreateParams
 from .advanced_order_create_response import AdvancedOrderCreateResponse as AdvancedOrderCreateResponse
 from .azure_configuration_data_param import AzureConfigurationDataParam as AzureConfigurationDataParam
+from .call_ai_gather_partial_results import CallAIGatherPartialResults as CallAIGatherPartialResults
 from .call_speak_ended_webhook_event import CallSpeakEndedWebhookEvent as CallSpeakEndedWebhookEvent
 from .conference_ended_webhook_event import ConferenceEndedWebhookEvent as ConferenceEndedWebhookEvent
 from .connection_rtcp_settings_param import ConnectionRtcpSettingsParam as ConnectionRtcpSettingsParam
@@ -565,8 +610,6 @@ from .credential_connection_list_params import CredentialConnectionListParams as
 from .external_connection_create_params import ExternalConnectionCreateParams as ExternalConnectionCreateParams
 from .external_connection_update_params import ExternalConnectionUpdateParams as ExternalConnectionUpdateParams
 from .fax_application_retrieve_response import FaxApplicationRetrieveResponse as FaxApplicationRetrieveResponse
-from .fax_media_processed_webhook_event import FaxMediaProcessedWebhookEvent as FaxMediaProcessedWebhookEvent
-from .fax_sending_started_webhook_event import FaxSendingStartedWebhookEvent as FaxSendingStartedWebhookEvent
 from .fqdn_connection_retrieve_response import FqdnConnectionRetrieveResponse as FqdnConnectionRetrieveResponse
 from .global_ip_latency_retrieve_params import GlobalIPLatencyRetrieveParams as GlobalIPLatencyRetrieveParams
 from .global_ip_usage_retrieve_response import GlobalIPUsageRetrieveResponse as GlobalIPUsageRetrieveResponse
@@ -596,7 +639,9 @@ from .bulk_sim_card_action_list_response import BulkSimCardActionListResponse as
 from .call_ai_gather_ended_webhook_event import CallAIGatherEndedWebhookEvent as CallAIGatherEndedWebhookEvent
 from .call_recording_error_webhook_event import CallRecordingErrorWebhookEvent as CallRecordingErrorWebhookEvent
 from .call_recording_saved_webhook_event import CallRecordingSavedWebhookEvent as CallRecordingSavedWebhookEvent
+from .call_recording_transcription_saved import CallRecordingTranscriptionSaved as CallRecordingTranscriptionSaved
 from .call_refer_completed_webhook_event import CallReferCompletedWebhookEvent as CallReferCompletedWebhookEvent
+from .conference_participant_speak_ended import ConferenceParticipantSpeakEnded as ConferenceParticipantSpeakEnded
 from .country_coverage_retrieve_response import CountryCoverageRetrieveResponse as CountryCoverageRetrieveResponse
 from .global_ip_assignment_update_params import GlobalIPAssignmentUpdateParams as GlobalIPAssignmentUpdateParams
 from .global_ip_health_check_list_params import GlobalIPHealthCheckListParams as GlobalIPHealthCheckListParams
@@ -627,6 +672,7 @@ from .wireless_blocklist_delete_response import WirelessBlocklistDeleteResponse 
 from .wireless_blocklist_update_response import WirelessBlocklistUpdateResponse as WirelessBlocklistUpdateResponse
 from .wireless_retrieve_regions_response import WirelessRetrieveRegionsResponse as WirelessRetrieveRegionsResponse
 from .authentication_provider_list_params import AuthenticationProviderListParams as AuthenticationProviderListParams
+from .call_machine_premium_greeting_ended import CallMachinePremiumGreetingEnded as CallMachinePremiumGreetingEnded
 from .call_playback_started_webhook_event import CallPlaybackStartedWebhookEvent as CallPlaybackStartedWebhookEvent
 from .call_streaming_failed_webhook_event import CallStreamingFailedWebhookEvent as CallStreamingFailedWebhookEvent
 from .charges_breakdown_retrieve_response import ChargesBreakdownRetrieveResponse as ChargesBreakdownRetrieveResponse
@@ -659,9 +705,11 @@ from .wireguard_interface_create_response import WireguardInterfaceCreateRespons
 from .wireguard_interface_delete_response import WireguardInterfaceDeleteResponse as WireguardInterfaceDeleteResponse
 from .available_phone_number_list_response import AvailablePhoneNumberListResponse as AvailablePhoneNumberListResponse
 from .call_control_application_list_params import CallControlApplicationListParams as CallControlApplicationListParams
+from .call_conversation_insights_generated import CallConversationInsightsGenerated as CallConversationInsightsGenerated
+from .call_machine_premium_detection_ended import CallMachinePremiumDetectionEnded as CallMachinePremiumDetectionEnded
 from .call_streaming_started_webhook_event import CallStreamingStartedWebhookEvent as CallStreamingStartedWebhookEvent
 from .call_streaming_stopped_webhook_event import CallStreamingStoppedWebhookEvent as CallStreamingStoppedWebhookEvent
-from .campaign_status_update_webhook_event import CampaignStatusUpdateWebhookEvent as CampaignStatusUpdateWebhookEvent
+from .conference_participant_speak_started import ConferenceParticipantSpeakStarted as ConferenceParticipantSpeakStarted
 from .conference_speak_ended_webhook_event import ConferenceSpeakEndedWebhookEvent as ConferenceSpeakEndedWebhookEvent
 from .global_ip_allowed_port_list_response import GlobalIPAllowedPortListResponse as GlobalIPAllowedPortListResponse
 from .global_ip_assignment_create_response import GlobalIPAssignmentCreateResponse as GlobalIPAssignmentCreateResponse
@@ -700,6 +748,9 @@ from .call_conversation_ended_webhook_event import (
 )
 from .conference_list_participants_response import (
     ConferenceListParticipantsResponse as ConferenceListParticipantsResponse,
+)
+from .conference_participant_playback_ended import (
+    ConferenceParticipantPlaybackEnded as ConferenceParticipantPlaybackEnded,
 )
 from .connection_list_active_calls_response import (
     ConnectionListActiveCallsResponse as ConnectionListActiveCallsResponse,
@@ -784,6 +835,9 @@ from .wireguard_interface_retrieve_response import (
 from .bulk_sim_card_action_retrieve_response import (
     BulkSimCardActionRetrieveResponse as BulkSimCardActionRetrieveResponse,
 )
+from .call_ai_gather_message_history_updated import (
+    CallAIGatherMessageHistoryUpdated as CallAIGatherMessageHistoryUpdated,
+)
 from .call_control_application_create_params import (
     CallControlApplicationCreateParams as CallControlApplicationCreateParams,
 )
@@ -792,9 +846,6 @@ from .call_control_application_inbound_param import (
 )
 from .call_control_application_update_params import (
     CallControlApplicationUpdateParams as CallControlApplicationUpdateParams,
-)
-from .conference_floor_changed_webhook_event import (
-    ConferenceFloorChangedWebhookEvent as ConferenceFloorChangedWebhookEvent,
 )
 from .conference_speak_started_webhook_event import (
     ConferenceSpeakStartedWebhookEvent as ConferenceSpeakStartedWebhookEvent,
@@ -855,6 +906,9 @@ from .authentication_provider_update_response import (
 )
 from .call_control_application_outbound_param import (
     CallControlApplicationOutboundParam as CallControlApplicationOutboundParam,
+)
+from .conference_participant_playback_started import (
+    ConferenceParticipantPlaybackStarted as ConferenceParticipantPlaybackStarted,
 )
 from .conference_playback_ended_webhook_event import (
     ConferencePlaybackEndedWebhookEvent as ConferencePlaybackEndedWebhookEvent,
@@ -945,9 +999,6 @@ from .global_ip_health_check_retrieve_response import (
 )
 from .notification_event_condition_list_params import (
     NotificationEventConditionListParams as NotificationEventConditionListParams,
-)
-from .number_order_status_update_webhook_event import (
-    NumberOrderStatusUpdateWebhookEvent as NumberOrderStatusUpdateWebhookEvent,
 )
 from .outbound_voice_profile_retrieve_response import (
     OutboundVoiceProfileRetrieveResponse as OutboundVoiceProfileRetrieveResponse,

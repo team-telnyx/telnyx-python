@@ -8,10 +8,13 @@ from pydantic import Field as FieldInfo
 
 from .._models import BaseModel
 
-__all__ = ["FaxQueuedWebhookEvent", "Data", "DataPayload", "Meta"]
+__all__ = ["FaxDelivered", "Data", "DataPayload", "Meta"]
 
 
 class DataPayload(BaseModel):
+    call_duration_secs: Optional[int] = None
+    """The duration of the call in seconds."""
+
     client_state: Optional[str] = None
     """State received from a command."""
 
@@ -41,7 +44,10 @@ class DataPayload(BaseModel):
     If media_name was supplied, this is omitted
     """
 
-    status: Optional[Literal["queued"]] = None
+    page_count: Optional[int] = None
+    """Number of transferred pages"""
+
+    status: Optional[Literal["delivered"]] = None
     """The status of the fax."""
 
     to: Optional[str] = None
@@ -55,7 +61,7 @@ class Data(BaseModel):
     id: Optional[str] = None
     """Identifies the type of resource."""
 
-    event_type: Optional[Literal["fax.queued"]] = None
+    event_type: Optional[Literal["fax.delivered"]] = None
     """The type of event being delivered."""
 
     occurred_at: Optional[datetime] = None
@@ -77,7 +83,7 @@ class Meta(BaseModel):
     """The URL the webhook was delivered to."""
 
 
-class FaxQueuedWebhookEvent(BaseModel):
+class FaxDelivered(BaseModel):
     data: Optional[Data] = None
 
     meta: Optional[Meta] = None

@@ -3,13 +3,18 @@
 from typing import Union
 from typing_extensions import TypeAlias
 
-from .fax_failed_webhook_event import FaxFailedWebhookEvent
-from .fax_queued_webhook_event import FaxQueuedWebhookEvent
+from .fax_failed import FaxFailed
+from .fax_queued import FaxQueued
+from .fax_delivered import FaxDelivered
+from .fax_media_processed import FaxMediaProcessed
+from .fax_sending_started import FaxSendingStarted
+from .campaign_status_update import CampaignStatusUpdate
+from .conference_floor_changed import ConferenceFloorChanged
 from .call_hangup_webhook_event import CallHangupWebhookEvent
 from .call_bridged_webhook_event import CallBridgedWebhookEvent
+from .number_order_status_update import NumberOrderStatusUpdate
 from .call_answered_webhook_event import CallAnsweredWebhookEvent
 from .call_enqueued_webhook_event import CallEnqueuedWebhookEvent
-from .fax_delivered_webhook_event import FaxDeliveredWebhookEvent
 from .transcription_webhook_event import TranscriptionWebhookEvent
 from .call_initiated_webhook_event import CallInitiatedWebhookEvent
 from .call_left_queue_webhook_event import CallLeftQueueWebhookEvent
@@ -29,8 +34,6 @@ from .conference_created_webhook_event import ConferenceCreatedWebhookEvent
 from .call_playback_ended_webhook_event import CallPlaybackEndedWebhookEvent
 from .call_siprec_started_webhook_event import CallSiprecStartedWebhookEvent
 from .call_siprec_stopped_webhook_event import CallSiprecStoppedWebhookEvent
-from .fax_media_processed_webhook_event import FaxMediaProcessedWebhookEvent
-from .fax_sending_started_webhook_event import FaxSendingStartedWebhookEvent
 from .replaced_link_click_webhook_event import ReplacedLinkClickWebhookEvent
 from .call_ai_gather_ended_webhook_event import CallAIGatherEndedWebhookEvent
 from .call_recording_error_webhook_event import CallRecordingErrorWebhookEvent
@@ -40,14 +43,11 @@ from .call_playback_started_webhook_event import CallPlaybackStartedWebhookEvent
 from .call_streaming_failed_webhook_event import CallStreamingFailedWebhookEvent
 from .call_streaming_started_webhook_event import CallStreamingStartedWebhookEvent
 from .call_streaming_stopped_webhook_event import CallStreamingStoppedWebhookEvent
-from .campaign_status_update_webhook_event import CampaignStatusUpdateWebhookEvent
 from .conference_speak_ended_webhook_event import ConferenceSpeakEndedWebhookEvent
 from .call_conversation_ended_webhook_event import CallConversationEndedWebhookEvent
-from .conference_floor_changed_webhook_event import ConferenceFloorChangedWebhookEvent
 from .conference_speak_started_webhook_event import ConferenceSpeakStartedWebhookEvent
 from .conference_playback_ended_webhook_event import ConferencePlaybackEndedWebhookEvent
 from .conference_recording_saved_webhook_event import ConferenceRecordingSavedWebhookEvent
-from .number_order_status_update_webhook_event import NumberOrderStatusUpdateWebhookEvent
 from .call_machine_greeting_ended_webhook_event import CallMachineGreetingEndedWebhookEvent
 from .conference_participant_left_webhook_event import ConferenceParticipantLeftWebhookEvent
 from .conference_playback_started_webhook_event import ConferencePlaybackStartedWebhookEvent
@@ -102,10 +102,10 @@ UnsafeUnwrapWebhookEvent: TypeAlias = Union[
     CallStreamingFailedWebhookEvent,
     CallStreamingStartedWebhookEvent,
     CallStreamingStoppedWebhookEvent,
-    CampaignStatusUpdateWebhookEvent,
+    CampaignStatusUpdate,
     ConferenceCreatedWebhookEvent,
     ConferenceEndedWebhookEvent,
-    ConferenceFloorChangedWebhookEvent,
+    ConferenceFloorChanged,
     ConferenceParticipantJoinedWebhookEvent,
     ConferenceParticipantLeftWebhookEvent,
     ConferenceParticipantPlaybackEndedWebhookEvent,
@@ -118,13 +118,13 @@ UnsafeUnwrapWebhookEvent: TypeAlias = Union[
     ConferenceSpeakEndedWebhookEvent,
     ConferenceSpeakStartedWebhookEvent,
     DeliveryUpdateWebhookEvent,
-    FaxDeliveredWebhookEvent,
-    FaxFailedWebhookEvent,
-    FaxMediaProcessedWebhookEvent,
-    FaxQueuedWebhookEvent,
-    FaxSendingStartedWebhookEvent,
+    FaxDelivered,
+    FaxFailed,
+    FaxMediaProcessed,
+    FaxQueued,
+    FaxSendingStarted,
     InboundMessageWebhookEvent,
-    NumberOrderStatusUpdateWebhookEvent,
+    NumberOrderStatusUpdate,
     ReplacedLinkClickWebhookEvent,
     TranscriptionWebhookEvent,
 ]

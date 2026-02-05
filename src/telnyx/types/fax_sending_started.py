@@ -8,7 +8,7 @@ from pydantic import Field as FieldInfo
 
 from .._models import BaseModel
 
-__all__ = ["FaxSendingStartedWebhookEvent", "Data", "DataPayload", "Meta"]
+__all__ = ["FaxSendingStarted", "Data", "DataPayload", "Meta"]
 
 
 class DataPayload(BaseModel):
@@ -77,7 +77,7 @@ class Meta(BaseModel):
     """The URL the webhook was delivered to."""
 
 
-class FaxSendingStartedWebhookEvent(BaseModel):
+class FaxSendingStarted(BaseModel):
     data: Optional[Data] = None
 
     meta: Optional[Meta] = None
