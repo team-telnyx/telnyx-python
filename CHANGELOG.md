@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.20.0 (2026-02-05)
+
+Full Changelog: [v4.19.0...v4.20.0](https://github.com/team-telnyx/telnyx-python/compare/v4.19.0...v4.20.0)
+
+### Features
+
+* **api:** Merge pull request [#23](https://github.com/team-telnyx/telnyx-python/issues/23) from stainless-sdks/fix/deepgram-nova3-enum-duplicates ([9768d83](https://github.com/team-telnyx/telnyx-python/commit/9768d838fced038745f53f8a3f90868874359127))
+
 ## 4.19.0 (2026-02-05)
 
 Full Changelog: [v4.18.0...v4.19.0](https://github.com/team-telnyx/telnyx-python/compare/v4.18.0...v4.19.0)
