@@ -21,6 +21,7 @@ from .shared import (
     MessagingFeatureSet as MessagingFeatureSet,
     NumberHealthMetrics as NumberHealthMetrics,
     InboundMessagePayload as InboundMessagePayload,
+    ConnectionJitterBuffer as ConnectionJitterBuffer,
     DocReqsRequirementType as DocReqsRequirementType,
     MessagingPaginationMeta as MessagingPaginationMeta,
     ConnectionsPaginationMeta as ConnectionsPaginationMeta,
