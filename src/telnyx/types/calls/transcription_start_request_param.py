@@ -103,7 +103,6 @@ class TranscriptionEngineConfigDeepgramNova3Config(TypedDict, total=False):
     """
 
     language: Literal[
-        "en",
         "en-US",
         "en-AU",
         "en-GB",
@@ -111,15 +110,12 @@ class TranscriptionEngineConfigDeepgramNova3Config(TypedDict, total=False):
         "en-NZ",
         "de",
         "nl",
-        "sv",
         "sv-SE",
-        "da",
         "da-DK",
         "es",
         "es-419",
         "fr",
         "fr-CA",
-        "pt",
         "pt-BR",
         "pt-PT",
         "auto_detect",
