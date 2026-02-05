@@ -8,7 +8,7 @@ from pydantic import Field as FieldInfo
 
 from .._models import BaseModel
 
-__all__ = ["FaxSendingStartedWebhookEvent", "Data", "DataPayload", "Meta"]
+__all__ = ["FaxFailed", "Data", "DataPayload", "Meta"]
 
 
 class DataPayload(BaseModel):
@@ -20,6 +20,9 @@ class DataPayload(BaseModel):
 
     direction: Optional[Literal["inbound", "outbound"]] = None
     """The direction of the fax."""
+
+    failure_reason: Optional[Literal["rejected"]] = None
+    """Cause of the sending failure"""
 
     fax_id: Optional[str] = None
     """Identifies the fax."""
@@ -41,7 +44,7 @@ class DataPayload(BaseModel):
     If media_name was supplied, this is omitted
     """
 
-    status: Optional[Literal["sending"]] = None
+    status: Optional[Literal["failed"]] = None
     """The status of the fax."""
 
     to: Optional[str] = None
@@ -55,7 +58,7 @@ class Data(BaseModel):
     id: Optional[str] = None
     """Identifies the type of resource."""
 
-    event_type: Optional[Literal["fax.sending.started"]] = None
+    event_type: Optional[Literal["fax.failed"]] = None
     """The type of event being delivered."""
 
     occurred_at: Optional[datetime] = None
@@ -77,7 +80,7 @@ class Meta(BaseModel):
     """The URL the webhook was delivered to."""
 
 
-class FaxSendingStartedWebhookEvent(BaseModel):
+class FaxFailed(BaseModel):
     data: Optional[Data] = None
 
     meta: Optional[Meta] = None

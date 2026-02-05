@@ -7,10 +7,10 @@ from pydantic import Field as FieldInfo
 
 from .._models import BaseModel
 
-__all__ = ["CampaignStatusUpdateWebhookEvent"]
+__all__ = ["CampaignStatusUpdate"]
 
 
-class CampaignStatusUpdateWebhookEvent(BaseModel):
+class CampaignStatusUpdate(BaseModel):
     brand_id: Optional[str] = FieldInfo(alias="brandId", default=None)
     """Brand ID associated with the campaign."""
 
