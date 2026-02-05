@@ -4,6 +4,7 @@
 from telnyx.types import (
     APIError,
     AvailablePhoneNumbersMetadata,
+    ConnectionJitterBuffer,
     ConnectionNoiseSuppressionDetails,
     ConnectionsPaginationMeta,
     DocReqsRequirementType,
@@ -549,6 +550,7 @@ from telnyx.types.ai import (
     Assistant,
     AssistantTool,
     AssistantsList,
+    AudioVisualizerConfig,
     EnabledFeatures,
     HangupTool,
     HangupToolParams,
