@@ -42,6 +42,7 @@ from ..types.fqdn_connection_create_response import FqdnConnectionCreateResponse
 from ..types.fqdn_connection_delete_response import FqdnConnectionDeleteResponse
 from ..types.fqdn_connection_update_response import FqdnConnectionUpdateResponse
 from ..types.fqdn_connection_retrieve_response import FqdnConnectionRetrieveResponse
+from ..types.shared_params.connection_jitter_buffer import ConnectionJitterBuffer
 from ..types.shared_params.connection_noise_suppression_details import ConnectionNoiseSuppressionDetails
 
 __all__ = ["FqdnConnectionsResource", "AsyncFqdnConnectionsResource"]
@@ -81,7 +82,7 @@ class FqdnConnectionsResource(SyncAPIResource):
         encrypted_media: Optional[EncryptedMedia] | Omit = omit,
         inbound: InboundFqdnParam | Omit = omit,
         ios_push_credential_id: Optional[str] | Omit = omit,
-        jitter_buffer: fqdn_connection_create_params.JitterBuffer | Omit = omit,
+        jitter_buffer: ConnectionJitterBuffer | Omit = omit,
         microsoft_teams_sbc: bool | Omit = omit,
         noise_suppression: Literal["inbound", "outbound", "both", "disabled"] | Omit = omit,
         noise_suppression_details: ConnectionNoiseSuppressionDetails | Omit = omit,
@@ -263,7 +264,7 @@ class FqdnConnectionsResource(SyncAPIResource):
         encrypted_media: Optional[EncryptedMedia] | Omit = omit,
         inbound: InboundFqdnParam | Omit = omit,
         ios_push_credential_id: Optional[str] | Omit = omit,
-        jitter_buffer: fqdn_connection_update_params.JitterBuffer | Omit = omit,
+        jitter_buffer: ConnectionJitterBuffer | Omit = omit,
         noise_suppression: Literal["inbound", "outbound", "both", "disabled"] | Omit = omit,
         noise_suppression_details: ConnectionNoiseSuppressionDetails | Omit = omit,
         onnet_t38_passthrough_enabled: bool | Omit = omit,
@@ -529,7 +530,7 @@ class AsyncFqdnConnectionsResource(AsyncAPIResource):
         encrypted_media: Optional[EncryptedMedia] | Omit = omit,
         inbound: InboundFqdnParam | Omit = omit,
         ios_push_credential_id: Optional[str] | Omit = omit,
-        jitter_buffer: fqdn_connection_create_params.JitterBuffer | Omit = omit,
+        jitter_buffer: ConnectionJitterBuffer | Omit = omit,
         microsoft_teams_sbc: bool | Omit = omit,
         noise_suppression: Literal["inbound", "outbound", "both", "disabled"] | Omit = omit,
         noise_suppression_details: ConnectionNoiseSuppressionDetails | Omit = omit,
@@ -711,7 +712,7 @@ class AsyncFqdnConnectionsResource(AsyncAPIResource):
         encrypted_media: Optional[EncryptedMedia] | Omit = omit,
         inbound: InboundFqdnParam | Omit = omit,
         ios_push_credential_id: Optional[str] | Omit = omit,
-        jitter_buffer: fqdn_connection_update_params.JitterBuffer | Omit = omit,
+        jitter_buffer: ConnectionJitterBuffer | Omit = omit,
         noise_suppression: Literal["inbound", "outbound", "both", "disabled"] | Omit = omit,
         noise_suppression_details: ConnectionNoiseSuppressionDetails | Omit = omit,
         onnet_t38_passthrough_enabled: bool | Omit = omit,

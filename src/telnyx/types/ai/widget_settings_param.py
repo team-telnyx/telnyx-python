@@ -5,15 +5,9 @@ from __future__ import annotations
 from typing import Optional
 from typing_extensions import Literal, TypedDict
 
-__all__ = ["WidgetSettingsParam", "AudioVisualizerConfig"]
+from .audio_visualizer_config_param import AudioVisualizerConfigParam
 
-
-class AudioVisualizerConfig(TypedDict, total=False):
-    color: Literal["verdant", "twilight", "bloom", "mystic", "flare", "glacier"]
-    """The color theme for the audio visualizer."""
-
-    preset: str
-    """The preset style for the audio visualizer."""
+__all__ = ["WidgetSettingsParam"]
 
 
 class WidgetSettingsParam(TypedDict, total=False):
@@ -22,7 +16,7 @@ class WidgetSettingsParam(TypedDict, total=False):
     agent_thinking_text: str
     """Text displayed while the agent is processing."""
 
-    audio_visualizer_config: AudioVisualizerConfig
+    audio_visualizer_config: AudioVisualizerConfigParam
 
     default_state: Literal["expanded", "collapsed"]
     """The default state of the widget."""
