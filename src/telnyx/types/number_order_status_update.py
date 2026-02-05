@@ -5,7 +5,7 @@ from datetime import datetime
 from .._models import BaseModel
 from .number_order_with_phone_numbers import NumberOrderWithPhoneNumbers
 
-__all__ = ["NumberOrderStatusUpdateWebhookEvent", "Data", "Meta"]
+__all__ = ["NumberOrderStatusUpdate", "Data", "Meta"]
 
 
 class Data(BaseModel):
@@ -32,7 +32,7 @@ class Meta(BaseModel):
     """URL where the webhook was delivered"""
 
 
-class NumberOrderStatusUpdateWebhookEvent(BaseModel):
+class NumberOrderStatusUpdate(BaseModel):
     data: Data
 
     meta: Meta
