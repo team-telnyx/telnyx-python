@@ -7,6 +7,7 @@ from typing_extensions import Literal, TypedDict
 __all__ = [
     "TelephonySettingsParam",
     "NoiseSuppressionConfig",
+    "RecordingSettings",
     "VoicemailDetection",
     "VoicemailDetectionOnVoicemailDetected",
     "VoicemailDetectionOnVoicemailDetectedVoicemailMessage",
@@ -24,6 +25,16 @@ class NoiseSuppressionConfig(TypedDict, total=False):
 
     mode: Literal["advanced"]
     """Mode for noise suppression configuration."""
+
+
+class RecordingSettings(TypedDict, total=False):
+    """Configuration for call recording format and channel settings."""
+
+    channels: Literal["single", "dual"]
+    """The number of channels for the recording. 'single' for mono, 'dual' for stereo."""
+
+    format: Literal["wav", "mp3"]
+    """The format of the recording file."""
 
 
 class VoicemailDetectionOnVoicemailDetectedVoicemailMessage(TypedDict, total=False):
@@ -92,6 +103,9 @@ class TelephonySettingsParam(TypedDict, total=False):
 
     Only applicable when noise_suppression is 'deepfilternet'.
     """
+
+    recording_settings: RecordingSettings
+    """Configuration for call recording format and channel settings."""
 
     supports_unauthenticated_web_calls: bool
     """

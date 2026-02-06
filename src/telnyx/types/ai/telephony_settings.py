@@ -8,6 +8,7 @@ from ..._models import BaseModel
 __all__ = [
     "TelephonySettings",
     "NoiseSuppressionConfig",
+    "RecordingSettings",
     "VoicemailDetection",
     "VoicemailDetectionOnVoicemailDetected",
     "VoicemailDetectionOnVoicemailDetectedVoicemailMessage",
@@ -25,6 +26,16 @@ class NoiseSuppressionConfig(BaseModel):
 
     mode: Optional[Literal["advanced"]] = None
     """Mode for noise suppression configuration."""
+
+
+class RecordingSettings(BaseModel):
+    """Configuration for call recording format and channel settings."""
+
+    channels: Optional[Literal["single", "dual"]] = None
+    """The number of channels for the recording. 'single' for mono, 'dual' for stereo."""
+
+    format: Optional[Literal["wav", "mp3"]] = None
+    """The format of the recording file."""
 
 
 class VoicemailDetectionOnVoicemailDetectedVoicemailMessage(BaseModel):
@@ -93,6 +104,9 @@ class TelephonySettings(BaseModel):
 
     Only applicable when noise_suppression is 'deepfilternet'.
     """
+
+    recording_settings: Optional[RecordingSettings] = None
+    """Configuration for call recording format and channel settings."""
 
     supports_unauthenticated_web_calls: Optional[bool] = None
     """
