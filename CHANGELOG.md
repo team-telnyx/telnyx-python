@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.20.1 (2026-02-06)
+
+Full Changelog: [v4.20.0...v4.20.1](https://github.com/team-telnyx/telnyx-python/compare/v4.20.0...v4.20.1)
+
 ## 4.20.0 (2026-02-05)
 
 Full Changelog: [v4.19.0...v4.20.0](https://github.com/team-telnyx/telnyx-python/compare/v4.19.0...v4.20.0)
