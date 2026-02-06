@@ -60,6 +60,10 @@ class TestAssistants:
                     "attenuation_limit": 0,
                     "mode": "advanced",
                 },
+                "recording_settings": {
+                    "channels": "single",
+                    "format": "wav",
+                },
                 "supports_unauthenticated_web_calls": True,
                 "time_limit_secs": 30,
                 "user_idle_timeout_secs": 30,
@@ -276,6 +280,10 @@ class TestAssistants:
                 "noise_suppression_config": {
                     "attenuation_limit": 0,
                     "mode": "advanced",
+                },
+                "recording_settings": {
+                    "channels": "single",
+                    "format": "wav",
                 },
                 "supports_unauthenticated_web_calls": True,
                 "time_limit_secs": 30,
@@ -775,6 +783,10 @@ class TestAsyncAssistants:
                     "attenuation_limit": 0,
                     "mode": "advanced",
                 },
+                "recording_settings": {
+                    "channels": "single",
+                    "format": "wav",
+                },
                 "supports_unauthenticated_web_calls": True,
                 "time_limit_secs": 30,
                 "user_idle_timeout_secs": 30,
@@ -991,6 +1003,10 @@ class TestAsyncAssistants:
                 "noise_suppression_config": {
                     "attenuation_limit": 0,
                     "mode": "advanced",
+                },
+                "recording_settings": {
+                    "channels": "single",
+                    "format": "wav",
                 },
                 "supports_unauthenticated_web_calls": True,
                 "time_limit_secs": 30,
