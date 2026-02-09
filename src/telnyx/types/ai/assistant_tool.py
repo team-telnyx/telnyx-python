@@ -20,6 +20,10 @@ __all__ = [
     "TransferTransfer",
     "TransferTransferTarget",
     "TransferTransferCustomHeader",
+    "TransferTransferVoicemailDetection",
+    "TransferTransferVoicemailDetectionDetectionConfig",
+    "TransferTransferVoicemailDetectionOnVoicemailDetected",
+    "TransferTransferVoicemailDetectionOnVoicemailDetectedVoicemailMessage",
     "Refer",
     "ReferRefer",
     "ReferReferTarget",
@@ -81,6 +85,110 @@ class TransferTransferCustomHeader(BaseModel):
     """
 
 
+class TransferTransferVoicemailDetectionDetectionConfig(BaseModel):
+    """Advanced AMD detection configuration parameters.
+
+    All values are optional - Telnyx will use defaults if not specified.
+    """
+
+    after_greeting_silence_millis: Optional[int] = None
+    """Duration of silence after greeting detection before finalizing the result."""
+
+    between_words_silence_millis: Optional[int] = None
+    """Maximum silence duration between words during greeting."""
+
+    greeting_duration_millis: Optional[int] = None
+    """Expected duration of greeting speech."""
+
+    greeting_silence_duration_millis: Optional[int] = None
+    """
+    Duration of silence after the greeting to wait before considering the greeting
+    complete.
+    """
+
+    greeting_total_analysis_time_millis: Optional[int] = None
+    """Maximum time to spend analyzing the greeting."""
+
+    initial_silence_millis: Optional[int] = None
+    """Maximum silence duration at the start of the call before speech."""
+
+    maximum_number_of_words: Optional[int] = None
+    """Maximum number of words expected in a human greeting."""
+
+    maximum_word_length_millis: Optional[int] = None
+    """Maximum duration of a single word."""
+
+    min_word_length_millis: Optional[int] = None
+    """Minimum duration for audio to be considered a word."""
+
+    silence_threshold: Optional[int] = None
+    """Audio level threshold for silence detection."""
+
+    total_analysis_time_millis: Optional[int] = None
+    """Total time allowed for AMD analysis."""
+
+
+class TransferTransferVoicemailDetectionOnVoicemailDetectedVoicemailMessage(BaseModel):
+    """Configuration for the voicemail message to leave.
+
+    Only applicable when action is 'leave_message_and_stop_transfer'.
+    """
+
+    message: Optional[str] = None
+    """The specific message to leave as voicemail (converted to speech).
+
+    Only applicable when type is 'message'.
+    """
+
+    type: Optional[Literal["message", "warm_transfer_instructions"]] = None
+    """The type of voicemail message.
+
+    Use 'message' to leave a specific TTS message, or 'warm_transfer_instructions'
+    to play the warm transfer audio.
+    """
+
+
+class TransferTransferVoicemailDetectionOnVoicemailDetected(BaseModel):
+    """Action to take when voicemail is detected on the transferred call."""
+
+    action: Optional[Literal["stop_transfer", "leave_message_and_stop_transfer", "continue_transfer"]] = None
+    """The action to take when voicemail is detected.
+
+    'stop_transfer' hangs up immediately. 'leave_message_and_stop_transfer' leaves a
+    message then hangs up. 'continue_transfer' bridges the call despite voicemail
+    detection.
+    """
+
+    voicemail_message: Optional[TransferTransferVoicemailDetectionOnVoicemailDetectedVoicemailMessage] = None
+    """Configuration for the voicemail message to leave.
+
+    Only applicable when action is 'leave_message_and_stop_transfer'.
+    """
+
+
+class TransferTransferVoicemailDetection(BaseModel):
+    """
+    Configuration for voicemail detection (AMD - Answering Machine Detection) on the transferred call. Allows the assistant to detect when a voicemail system answers the transferred call and take appropriate action.
+    """
+
+    detection_config: Optional[TransferTransferVoicemailDetectionDetectionConfig] = None
+    """Advanced AMD detection configuration parameters.
+
+    All values are optional - Telnyx will use defaults if not specified.
+    """
+
+    detection_mode: Optional[
+        Literal["premium", "detect", "detect_beep", "detect_words", "greeting_end", "disabled"]
+    ] = None
+    """The AMD detection mode to use.
+
+    'premium' provides the highest accuracy. 'disabled' turns off AMD detection.
+    """
+
+    on_voicemail_detected: Optional[TransferTransferVoicemailDetectionOnVoicemailDetected] = None
+    """Action to take when voicemail is detected on the transferred call."""
+
+
 class TransferTransfer(BaseModel):
     from_: str = FieldInfo(alias="from")
     """Number or SIP URI placing the call."""
@@ -93,6 +201,13 @@ class TransferTransfer(BaseModel):
 
     custom_headers: Optional[List[TransferTransferCustomHeader]] = None
     """Custom headers to be added to the SIP INVITE for the transfer command."""
+
+    voicemail_detection: Optional[TransferTransferVoicemailDetection] = None
+    """
+    Configuration for voicemail detection (AMD - Answering Machine Detection) on the
+    transferred call. Allows the assistant to detect when a voicemail system answers
+    the transferred call and take appropriate action.
+    """
 
     warm_transfer_instructions: Optional[str] = None
     """
