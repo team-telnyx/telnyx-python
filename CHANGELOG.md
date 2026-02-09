@@ -1,5 +1,18 @@
 # Changelog
 
+## 4.21.0 (2026-02-09)
+
+Full Changelog: [v4.20.0...v4.21.0](https://github.com/team-telnyx/telnyx-python/compare/v4.20.0...v4.21.0)
+
+### Features
+
+* Revert "fix emergency settings -schema" ([ae83738](https://github.com/team-telnyx/telnyx-python/commit/ae83738d1bb520c7c070824086d9b95b82a7f69a))
+
+
+### Chores
+
+* **internal:** bump dependencies ([6700435](https://github.com/team-telnyx/telnyx-python/commit/6700435e4cd91197c7de0766e7c6082e2e505ee0))
+
 ## 4.20.0 (2026-02-05)
 
 Full Changelog: [v4.19.0...v4.20.0](https://github.com/team-telnyx/telnyx-python/compare/v4.19.0...v4.20.0)
