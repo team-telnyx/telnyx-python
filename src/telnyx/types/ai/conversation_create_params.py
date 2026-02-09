@@ -10,6 +10,10 @@ __all__ = ["ConversationCreateParams"]
 
 class ConversationCreateParams(TypedDict, total=False):
     metadata: Dict[str, str]
-    """Metadata associated with the conversation."""
+    """Metadata associated with the conversation.
+
+    Set `ai_disabled` to `true` to create the conversation with AI message responses
+    disabled.
+    """
 
     name: str
