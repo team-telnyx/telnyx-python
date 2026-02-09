@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.22.0 (2026-02-09)
+
+Full Changelog: [v4.21.0...v4.22.0](https://github.com/team-telnyx/telnyx-python/compare/v4.21.0...v4.22.0)
+
+### Features
+
+* AI-2078 Feature: API endpoint to disable AI assistant mid-conversation ([f9ed715](https://github.com/team-telnyx/telnyx-python/commit/f9ed715a97ba517c210de14712aca958573aedd1))
+
 ## 4.21.0 (2026-02-09)
 
 Full Changelog: [v4.20.0...v4.21.0](https://github.com/team-telnyx/telnyx-python/compare/v4.20.0...v4.21.0)
