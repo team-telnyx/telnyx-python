@@ -10,4 +10,8 @@ __all__ = ["ConversationUpdateParams"]
 
 class ConversationUpdateParams(TypedDict, total=False):
     metadata: Dict[str, str]
-    """Metadata associated with the conversation."""
+    """Metadata associated with the conversation.
+
+    Set `ai_disabled` to `true` to stop AI from responding to messages (e.g., when a
+    human agent takes over). Set to `false` to re-enable AI responses.
+    """

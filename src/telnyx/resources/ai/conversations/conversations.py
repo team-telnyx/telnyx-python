@@ -107,7 +107,8 @@ class ConversationsResource(SyncAPIResource):
         Create a new AI Conversation.
 
         Args:
-          metadata: Metadata associated with the conversation.
+          metadata: Metadata associated with the conversation. Set `ai_disabled` to `true` to create
+              the conversation with AI message responses disabled.
 
           extra_headers: Send extra headers
 
@@ -181,7 +182,9 @@ class ConversationsResource(SyncAPIResource):
         Update metadata for a specific conversation.
 
         Args:
-          metadata: Metadata associated with the conversation.
+          metadata: Metadata associated with the conversation. Set `ai_disabled` to `true` to stop
+              AI from responding to messages (e.g., when a human agent takes over). Set to
+              `false` to re-enable AI responses.
 
           extra_headers: Send extra headers
 
@@ -473,7 +476,8 @@ class AsyncConversationsResource(AsyncAPIResource):
         Create a new AI Conversation.
 
         Args:
-          metadata: Metadata associated with the conversation.
+          metadata: Metadata associated with the conversation. Set `ai_disabled` to `true` to create
+              the conversation with AI message responses disabled.
 
           extra_headers: Send extra headers
 
@@ -547,7 +551,9 @@ class AsyncConversationsResource(AsyncAPIResource):
         Update metadata for a specific conversation.
 
         Args:
-          metadata: Metadata associated with the conversation.
+          metadata: Metadata associated with the conversation. Set `ai_disabled` to `true` to stop
+              AI from responding to messages (e.g., when a human agent takes over). Set to
+              `false` to re-enable AI responses.
 
           extra_headers: Send extra headers
 
