@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
-from .embedding_create_params import EmbeddingCreateParams as EmbeddingCreateParams
-from .embedding_create_response import EmbeddingCreateResponse as EmbeddingCreateResponse
-from .embedding_list_models_response import EmbeddingListModelsResponse as EmbeddingListModelsResponse
+from .embedding_create_embeddings_params import EmbeddingCreateEmbeddingsParams as EmbeddingCreateEmbeddingsParams
+from .embedding_create_embeddings_response import EmbeddingCreateEmbeddingsResponse as EmbeddingCreateEmbeddingsResponse
+from .embedding_list_embedding_models_response import (
+    EmbeddingListEmbeddingModelsResponse as EmbeddingListEmbeddingModelsResponse,
+)

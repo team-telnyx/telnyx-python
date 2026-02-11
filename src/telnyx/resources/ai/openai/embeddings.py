@@ -18,9 +18,9 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
-from ....types.ai.openai import embedding_create_params
-from ....types.ai.openai.embedding_create_response import EmbeddingCreateResponse
-from ....types.ai.openai.embedding_list_models_response import EmbeddingListModelsResponse
+from ....types.ai.openai import embedding_create_embeddings_params
+from ....types.ai.openai.embedding_create_embeddings_response import EmbeddingCreateEmbeddingsResponse
+from ....types.ai.openai.embedding_list_embedding_models_response import EmbeddingListEmbeddingModelsResponse
 
 __all__ = ["EmbeddingsResource", "AsyncEmbeddingsResource"]
 
@@ -45,7 +45,7 @@ class EmbeddingsResource(SyncAPIResource):
         """
         return EmbeddingsResourceWithStreamingResponse(self)
 
-    def create(
+    def create_embeddings(
         self,
         *,
         input: Union[str, SequenceNotStr[str]],
@@ -59,7 +59,7 @@ class EmbeddingsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> EmbeddingCreateResponse:
+    ) -> EmbeddingCreateEmbeddingsResponse:
         """Creates an embedding vector representing the input text.
 
         This endpoint is
@@ -100,15 +100,15 @@ class EmbeddingsResource(SyncAPIResource):
                     "encoding_format": encoding_format,
                     "user": user,
                 },
-                embedding_create_params.EmbeddingCreateParams,
+                embedding_create_embeddings_params.EmbeddingCreateEmbeddingsParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=EmbeddingCreateResponse,
+            cast_to=EmbeddingCreateEmbeddingsResponse,
         )
 
-    def list_models(
+    def list_embedding_models(
         self,
         *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -117,7 +117,7 @@ class EmbeddingsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> EmbeddingListModelsResponse:
+    ) -> EmbeddingListEmbeddingModelsResponse:
         """Returns a list of available embedding models.
 
         This endpoint is compatible with
@@ -128,7 +128,7 @@ class EmbeddingsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=EmbeddingListModelsResponse,
+            cast_to=EmbeddingListEmbeddingModelsResponse,
         )
 
 
@@ -152,7 +152,7 @@ class AsyncEmbeddingsResource(AsyncAPIResource):
         """
         return AsyncEmbeddingsResourceWithStreamingResponse(self)
 
-    async def create(
+    async def create_embeddings(
         self,
         *,
         input: Union[str, SequenceNotStr[str]],
@@ -166,7 +166,7 @@ class AsyncEmbeddingsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> EmbeddingCreateResponse:
+    ) -> EmbeddingCreateEmbeddingsResponse:
         """Creates an embedding vector representing the input text.
 
         This endpoint is
@@ -207,15 +207,15 @@ class AsyncEmbeddingsResource(AsyncAPIResource):
                     "encoding_format": encoding_format,
                     "user": user,
                 },
-                embedding_create_params.EmbeddingCreateParams,
+                embedding_create_embeddings_params.EmbeddingCreateEmbeddingsParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=EmbeddingCreateResponse,
+            cast_to=EmbeddingCreateEmbeddingsResponse,
         )
 
-    async def list_models(
+    async def list_embedding_models(
         self,
         *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -224,7 +224,7 @@ class AsyncEmbeddingsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> EmbeddingListModelsResponse:
+    ) -> EmbeddingListEmbeddingModelsResponse:
         """Returns a list of available embedding models.
 
         This endpoint is compatible with
@@ -235,7 +235,7 @@ class AsyncEmbeddingsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=EmbeddingListModelsResponse,
+            cast_to=EmbeddingListEmbeddingModelsResponse,
         )
 
 
@@ -243,11 +243,11 @@ class EmbeddingsResourceWithRawResponse:
     def __init__(self, embeddings: EmbeddingsResource) -> None:
         self._embeddings = embeddings
 
-        self.create = to_raw_response_wrapper(
-            embeddings.create,
+        self.create_embeddings = to_raw_response_wrapper(
+            embeddings.create_embeddings,
         )
-        self.list_models = to_raw_response_wrapper(
-            embeddings.list_models,
+        self.list_embedding_models = to_raw_response_wrapper(
+            embeddings.list_embedding_models,
         )
 
 
@@ -255,11 +255,11 @@ class AsyncEmbeddingsResourceWithRawResponse:
     def __init__(self, embeddings: AsyncEmbeddingsResource) -> None:
         self._embeddings = embeddings
 
-        self.create = async_to_raw_response_wrapper(
-            embeddings.create,
+        self.create_embeddings = async_to_raw_response_wrapper(
+            embeddings.create_embeddings,
         )
-        self.list_models = async_to_raw_response_wrapper(
-            embeddings.list_models,
+        self.list_embedding_models = async_to_raw_response_wrapper(
+            embeddings.list_embedding_models,
         )
 
 
@@ -267,11 +267,11 @@ class EmbeddingsResourceWithStreamingResponse:
     def __init__(self, embeddings: EmbeddingsResource) -> None:
         self._embeddings = embeddings
 
-        self.create = to_streamed_response_wrapper(
-            embeddings.create,
+        self.create_embeddings = to_streamed_response_wrapper(
+            embeddings.create_embeddings,
         )
-        self.list_models = to_streamed_response_wrapper(
-            embeddings.list_models,
+        self.list_embedding_models = to_streamed_response_wrapper(
+            embeddings.list_embedding_models,
         )
 
 
@@ -279,9 +279,9 @@ class AsyncEmbeddingsResourceWithStreamingResponse:
     def __init__(self, embeddings: AsyncEmbeddingsResource) -> None:
         self._embeddings = embeddings
 
-        self.create = async_to_streamed_response_wrapper(
-            embeddings.create,
+        self.create_embeddings = async_to_streamed_response_wrapper(
+            embeddings.create_embeddings,
         )
-        self.list_models = async_to_streamed_response_wrapper(
-            embeddings.list_models,
+        self.list_embedding_models = async_to_streamed_response_wrapper(
+            embeddings.list_embedding_models,
         )
