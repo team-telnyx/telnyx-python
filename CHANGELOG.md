@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.26.0 (2026-02-11)
+
+Full Changelog: [v4.25.0...v4.26.0](https://github.com/team-telnyx/telnyx-python/compare/v4.25.0...v4.26.0)
+
+### Features
+
+* Add OpenAI-compatible embeddings API spec ([05613d3](https://github.com/team-telnyx/telnyx-python/commit/05613d3835ff9615ac511178894e0f011dad16b6))
+
 ## 4.25.0 (2026-02-11)
 
 Full Changelog: [v4.24.1...v4.25.0](https://github.com/team-telnyx/telnyx-python/compare/v4.24.1...v4.25.0)
