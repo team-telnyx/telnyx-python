@@ -4,7 +4,7 @@ from typing import List
 
 from ...._models import BaseModel
 
-__all__ = ["EmbeddingListModelsResponse", "Data"]
+__all__ = ["EmbeddingListEmbeddingModelsResponse", "Data"]
 
 
 class Data(BaseModel):
@@ -21,7 +21,7 @@ class Data(BaseModel):
     """The organization that owns the model"""
 
 
-class EmbeddingListModelsResponse(BaseModel):
+class EmbeddingListEmbeddingModelsResponse(BaseModel):
     data: List[Data]
     """List of available embedding models"""
 
