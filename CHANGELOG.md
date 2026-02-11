@@ -1,5 +1,18 @@
 # Changelog
 
+## 4.24.0 (2026-02-11)
+
+Full Changelog: [v4.23.0...v4.24.0](https://github.com/team-telnyx/telnyx-python/compare/v4.23.0...v4.24.0)
+
+### Features
+
+* fix schema in emergency address schema ([02829b0](https://github.com/team-telnyx/telnyx-python/commit/02829b0769c07cf7fcf4ba164bd559f09c1634ea))
+
+
+### Chores
+
+* **internal:** fix lint error on Python 3.14 ([ce9c060](https://github.com/team-telnyx/telnyx-python/commit/ce9c060c2dac73429f854d73682a52888187cdc1))
+
 ## 4.23.0 (2026-02-11)
 
 Full Changelog: [v4.22.0...v4.23.0](https://github.com/team-telnyx/telnyx-python/compare/v4.22.0...v4.23.0)
