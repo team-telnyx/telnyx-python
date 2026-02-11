@@ -933,6 +933,21 @@ Methods:
 - <code title="get /ai/mcp_servers">client.ai.mcp_servers.<a href="./src/telnyx/resources/ai/mcp_servers.py">list</a>(\*\*<a href="src/telnyx/types/ai/mcp_server_list_params.py">params</a>) -> <a href="./src/telnyx/types/ai/mcp_server_list_response.py">SyncDefaultFlatPaginationTopLevelArray[McpServerListResponse]</a></code>
 - <code title="delete /ai/mcp_servers/{mcp_server_id}">client.ai.mcp_servers.<a href="./src/telnyx/resources/ai/mcp_servers.py">delete</a>(mcp_server_id) -> None</code>
 
+## OpenAI
+
+### Embeddings
+
+Types:
+
+```python
+from telnyx.types.ai.openai import EmbeddingCreateResponse, EmbeddingListModelsResponse
+```
+
+Methods:
+
+- <code title="post /ai/openai/embeddings">client.ai.openai.embeddings.<a href="./src/telnyx/resources/ai/openai/embeddings.py">create</a>(\*\*<a href="src/telnyx/types/ai/openai/embedding_create_params.py">params</a>) -> <a href="./src/telnyx/types/ai/openai/embedding_create_response.py">EmbeddingCreateResponse</a></code>
+- <code title="get /ai/openai/embeddings/models">client.ai.openai.embeddings.<a href="./src/telnyx/resources/ai/openai/embeddings.py">list_models</a>() -> <a href="./src/telnyx/types/ai/openai/embedding_list_models_response.py">EmbeddingListModelsResponse</a></code>
+
 # AuditEvents
 
 Types:

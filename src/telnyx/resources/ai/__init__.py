@@ -24,6 +24,14 @@ from .audio import (
     AudioResourceWithStreamingResponse,
     AsyncAudioResourceWithStreamingResponse,
 )
+from .openai import (
+    OpenAIResource,
+    AsyncOpenAIResource,
+    OpenAIResourceWithRawResponse,
+    AsyncOpenAIResourceWithRawResponse,
+    OpenAIResourceWithStreamingResponse,
+    AsyncOpenAIResourceWithStreamingResponse,
+)
 from .clusters import (
     ClustersResource,
     AsyncClustersResource,
@@ -136,6 +144,12 @@ __all__ = [
     "AsyncMcpServersResourceWithRawResponse",
     "McpServersResourceWithStreamingResponse",
     "AsyncMcpServersResourceWithStreamingResponse",
+    "OpenAIResource",
+    "AsyncOpenAIResource",
+    "OpenAIResourceWithRawResponse",
+    "AsyncOpenAIResourceWithRawResponse",
+    "OpenAIResourceWithStreamingResponse",
+    "AsyncOpenAIResourceWithStreamingResponse",
     "AIResource",
     "AsyncAIResource",
     "AIResourceWithRawResponse",
