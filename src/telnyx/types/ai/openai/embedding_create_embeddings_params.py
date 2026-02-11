@@ -7,10 +7,10 @@ from typing_extensions import Literal, Required, TypedDict
 
 from ...._types import SequenceNotStr
 
-__all__ = ["EmbeddingCreateParams"]
+__all__ = ["EmbeddingCreateEmbeddingsParams"]
 
 
-class EmbeddingCreateParams(TypedDict, total=False):
+class EmbeddingCreateEmbeddingsParams(TypedDict, total=False):
     input: Required[Union[str, SequenceNotStr[str]]]
     """Input text to embed. Can be a string or array of strings."""
 

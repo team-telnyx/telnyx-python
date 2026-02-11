@@ -4,7 +4,7 @@ from typing import List
 
 from ...._models import BaseModel
 
-__all__ = ["EmbeddingCreateResponse", "Data", "Usage"]
+__all__ = ["EmbeddingCreateEmbeddingsResponse", "Data", "Usage"]
 
 
 class Data(BaseModel):
@@ -26,7 +26,7 @@ class Usage(BaseModel):
     """Total number of tokens used"""
 
 
-class EmbeddingCreateResponse(BaseModel):
+class EmbeddingCreateEmbeddingsResponse(BaseModel):
     data: List[Data]
     """List of embedding objects"""
 

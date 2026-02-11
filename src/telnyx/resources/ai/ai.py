@@ -56,6 +56,14 @@ from .openai.openai import (
     AsyncOpenAIResourceWithStreamingResponse,
 )
 from ..._base_client import make_request_options
+from .missions.missions import (
+    MissionsResource,
+    AsyncMissionsResource,
+    MissionsResourceWithRawResponse,
+    AsyncMissionsResourceWithRawResponse,
+    MissionsResourceWithStreamingResponse,
+    AsyncMissionsResourceWithStreamingResponse,
+)
 from .assistants.assistants import (
     AssistantsResource,
     AsyncAssistantsResource,
@@ -138,6 +146,10 @@ class AIResource(SyncAPIResource):
     @cached_property
     def mcp_servers(self) -> McpServersResource:
         return McpServersResource(self._client)
+
+    @cached_property
+    def missions(self) -> MissionsResource:
+        return MissionsResource(self._client)
 
     @cached_property
     def openai(self) -> OpenAIResource:
@@ -281,6 +293,10 @@ class AsyncAIResource(AsyncAPIResource):
     @cached_property
     def mcp_servers(self) -> AsyncMcpServersResource:
         return AsyncMcpServersResource(self._client)
+
+    @cached_property
+    def missions(self) -> AsyncMissionsResource:
+        return AsyncMissionsResource(self._client)
 
     @cached_property
     def openai(self) -> AsyncOpenAIResource:
@@ -436,6 +452,10 @@ class AIResourceWithRawResponse:
         return McpServersResourceWithRawResponse(self._ai.mcp_servers)
 
     @cached_property
+    def missions(self) -> MissionsResourceWithRawResponse:
+        return MissionsResourceWithRawResponse(self._ai.missions)
+
+    @cached_property
     def openai(self) -> OpenAIResourceWithRawResponse:
         return OpenAIResourceWithRawResponse(self._ai.openai)
 
@@ -486,6 +506,10 @@ class AsyncAIResourceWithRawResponse:
     @cached_property
     def mcp_servers(self) -> AsyncMcpServersResourceWithRawResponse:
         return AsyncMcpServersResourceWithRawResponse(self._ai.mcp_servers)
+
+    @cached_property
+    def missions(self) -> AsyncMissionsResourceWithRawResponse:
+        return AsyncMissionsResourceWithRawResponse(self._ai.missions)
 
     @cached_property
     def openai(self) -> AsyncOpenAIResourceWithRawResponse:
@@ -540,6 +564,10 @@ class AIResourceWithStreamingResponse:
         return McpServersResourceWithStreamingResponse(self._ai.mcp_servers)
 
     @cached_property
+    def missions(self) -> MissionsResourceWithStreamingResponse:
+        return MissionsResourceWithStreamingResponse(self._ai.missions)
+
+    @cached_property
     def openai(self) -> OpenAIResourceWithStreamingResponse:
         return OpenAIResourceWithStreamingResponse(self._ai.openai)
 
@@ -590,6 +618,10 @@ class AsyncAIResourceWithStreamingResponse:
     @cached_property
     def mcp_servers(self) -> AsyncMcpServersResourceWithStreamingResponse:
         return AsyncMcpServersResourceWithStreamingResponse(self._ai.mcp_servers)
+
+    @cached_property
+    def missions(self) -> AsyncMissionsResourceWithStreamingResponse:
+        return AsyncMissionsResourceWithStreamingResponse(self._ai.missions)
 
     @cached_property
     def openai(self) -> AsyncOpenAIResourceWithStreamingResponse:
