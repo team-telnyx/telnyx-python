@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.23.0 (2026-02-11)
+
+Full Changelog: [v4.22.0...v4.23.0](https://github.com/team-telnyx/telnyx-python/compare/v4.22.0...v4.23.0)
+
+### Features
+
+* Limit detection_mode enum to disabled and detect only ([1845ace](https://github.com/team-telnyx/telnyx-python/commit/1845ace6db0b0d7bf019dd72b86ddf8a1fc072c0))
+
 ## 4.22.0 (2026-02-09)
 
 Full Changelog: [v4.21.0...v4.22.0](https://github.com/team-telnyx/telnyx-python/compare/v4.21.0...v4.22.0)
