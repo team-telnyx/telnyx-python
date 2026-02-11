@@ -44,6 +44,7 @@ class TestScheduledEvents:
             telnyx_conversation_channel="phone_call",
             telnyx_end_user_target="telnyx_end_user_target",
             conversation_metadata={"foo": "string"},
+            dynamic_variables={"foo": "string"},
             text="text",
         )
         assert_matches_type(ScheduledEventResponse, scheduled_event, path=["response"])
@@ -283,6 +284,7 @@ class TestAsyncScheduledEvents:
             telnyx_conversation_channel="phone_call",
             telnyx_end_user_target="telnyx_end_user_target",
             conversation_metadata={"foo": "string"},
+            dynamic_variables={"foo": "string"},
             text="text",
         )
         assert_matches_type(ScheduledEventResponse, scheduled_event, path=["response"])
