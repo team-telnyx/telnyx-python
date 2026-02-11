@@ -175,10 +175,11 @@ class TransferTransferVoicemailDetection(TypedDict, total=False):
     All values are optional - Telnyx will use defaults if not specified.
     """
 
-    detection_mode: Literal["premium", "detect", "detect_beep", "detect_words", "greeting_end", "disabled"]
+    detection_mode: Literal["disabled", "detect"]
     """The AMD detection mode to use.
 
-    'premium' provides the highest accuracy. 'disabled' turns off AMD detection.
+    'detect' enables answering machine detection (works best when warm transfer
+    instructions are also set). 'disabled' turns off AMD detection.
     """
 
     on_voicemail_detected: TransferTransferVoicemailDetectionOnVoicemailDetected
