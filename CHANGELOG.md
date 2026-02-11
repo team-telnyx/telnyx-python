@@ -1,5 +1,18 @@
 # Changelog
 
+## 4.27.0 (2026-02-11)
+
+Full Changelog: [v4.26.0...v4.27.0](https://github.com/team-telnyx/telnyx-python/compare/v4.26.0...v4.27.0)
+
+### Features
+
+* AI-2086: Add AI Missions endpoints to inference spec ([3ac4c56](https://github.com/team-telnyx/telnyx-python/commit/3ac4c569d668708c9da6467f3c4b9bd782d5ac24))
+
+
+### Bug Fixes
+
+* **client:** revert change to certain pagination metadata types ([a239d66](https://github.com/team-telnyx/telnyx-python/commit/a239d66ac555331287427686ba961556c491a9af))
+
 ## 4.26.0 (2026-02-11)
 
 Full Changelog: [v4.25.0...v4.26.0](https://github.com/team-telnyx/telnyx-python/compare/v4.25.0...v4.26.0)
