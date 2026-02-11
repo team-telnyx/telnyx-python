@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.25.0 (2026-02-11)
+
+Full Changelog: [v4.24.1...v4.25.0](https://github.com/team-telnyx/telnyx-python/compare/v4.24.1...v4.25.0)
+
+### Features
+
+* Add dynamic_variables field to scheduled event schemas ([58436b5](https://github.com/team-telnyx/telnyx-python/commit/58436b54351337dd9d54de1f0162b0ef61c6fd7b))
+
 ## 4.24.1 (2026-02-11)
 
 Full Changelog: [v4.24.0...v4.24.1](https://github.com/team-telnyx/telnyx-python/compare/v4.24.0...v4.24.1)
