@@ -177,12 +177,11 @@ class TransferTransferVoicemailDetection(BaseModel):
     All values are optional - Telnyx will use defaults if not specified.
     """
 
-    detection_mode: Optional[
-        Literal["premium", "detect", "detect_beep", "detect_words", "greeting_end", "disabled"]
-    ] = None
+    detection_mode: Optional[Literal["disabled", "detect"]] = None
     """The AMD detection mode to use.
 
-    'premium' provides the highest accuracy. 'disabled' turns off AMD detection.
+    'detect' enables answering machine detection (works best when warm transfer
+    instructions are also set). 'disabled' turns off AMD detection.
     """
 
     on_voicemail_detected: Optional[TransferTransferVoicemailDetectionOnVoicemailDetected] = None
