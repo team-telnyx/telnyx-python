@@ -31,5 +31,12 @@ class ScheduledEventCreateParams(TypedDict, total=False):
     own.
     """
 
+    dynamic_variables: Dict[str, str]
+    """A map of dynamic variable names to values.
+
+    These variables can be referenced in the assistant's instructions and messages
+    using {{variable_name}} syntax.
+    """
+
     text: str
     """Required for sms scheduled events. The text to be sent to the end user."""

@@ -27,6 +27,13 @@ class ScheduledPhoneCallEventResponse(BaseModel):
 
     created_at: Optional[datetime] = None
 
+    dynamic_variables: Optional[Dict[str, str]] = None
+    """A map of dynamic variable names to values.
+
+    These variables can be referenced in the assistant's instructions and messages
+    using {{variable_name}} syntax.
+    """
+
     errors: Optional[List[str]] = None
 
     retry_attempts: Optional[int] = None
