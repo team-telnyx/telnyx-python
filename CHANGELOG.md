@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.24.1 (2026-02-11)
+
+Full Changelog: [v4.24.0...v4.24.1](https://github.com/team-telnyx/telnyx-python/compare/v4.24.0...v4.24.1)
+
+### Bug Fixes
+
+* remove invalid discriminators from string enum schemas ([b213b40](https://github.com/team-telnyx/telnyx-python/commit/b213b40e98b17c9f7dc64d0a5d4b92e8744a599b))
+
 ## 4.24.0 (2026-02-11)
 
 Full Changelog: [v4.23.0...v4.24.0](https://github.com/team-telnyx/telnyx-python/compare/v4.23.0...v4.24.0)
