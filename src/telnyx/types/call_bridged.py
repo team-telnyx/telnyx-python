@@ -8,10 +8,10 @@ from pydantic import Field as FieldInfo
 
 from .._models import BaseModel
 
-__all__ = ["CallBridged", "Data", "DataPayload"]
+__all__ = ["CallBridged", "Payload"]
 
 
-class DataPayload(BaseModel):
+class Payload(BaseModel):
     call_control_id: Optional[str] = None
     """Call ID used to issue commands via Call Control API."""
 
@@ -38,7 +38,7 @@ class DataPayload(BaseModel):
     """Destination number or SIP URI of the call."""
 
 
-class Data(BaseModel):
+class CallBridged(BaseModel):
     id: Optional[str] = None
     """Identifies the type of resource."""
 
@@ -48,11 +48,7 @@ class Data(BaseModel):
     occurred_at: Optional[datetime] = None
     """ISO 8601 datetime of when the event occurred."""
 
-    payload: Optional[DataPayload] = None
+    payload: Optional[Payload] = None
 
     record_type: Optional[Literal["event"]] = None
     """Identifies the type of the resource."""
-
-
-class CallBridged(BaseModel):
-    data: Optional[Data] = None
