@@ -334,7 +334,6 @@ from .requirement_list_response import RequirementListResponse as RequirementLis
 from .sound_modifications_param import SoundModificationsParam as SoundModificationsParam
 from .stream_bidirectional_mode import StreamBidirectionalMode as StreamBidirectionalMode
 from .access_ip_address_response import AccessIPAddressResponse as AccessIPAddressResponse
-from .call_bridged_webhook_event import CallBridgedWebhookEvent as CallBridgedWebhookEvent
 from .channel_zone_list_response import ChannelZoneListResponse as ChannelZoneListResponse
 from .channel_zone_update_params import ChannelZoneUpdateParams as ChannelZoneUpdateParams
 from .conference_create_response import ConferenceCreateResponse as ConferenceCreateResponse
