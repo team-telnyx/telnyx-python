@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.29.0 (2026-02-12)
+
+Full Changelog: [v4.28.0...v4.29.0](https://github.com/team-telnyx/telnyx-python/compare/v4.28.0...v4.29.0)
+
+### Features
+
+* **api:** manual updates ([d7cbb74](https://github.com/team-telnyx/telnyx-python/commit/d7cbb7445e9d6e4049b45a45899ebe8e3c953188))
+
 ## 4.28.0 (2026-02-12)
 
 Full Changelog: [v4.27.0...v4.28.0](https://github.com/team-telnyx/telnyx-python/compare/v4.27.0...v4.28.0)
