@@ -5,13 +5,13 @@ from typing_extensions import TypeAlias
 
 from .fax_failed import FaxFailed
 from .fax_queued import FaxQueued
-from .call_bridged import CallBridged
 from .fax_delivered import FaxDelivered
 from .fax_media_processed import FaxMediaProcessed
 from .fax_sending_started import FaxSendingStarted
 from .campaign_status_update import CampaignStatusUpdate
 from .conference_floor_changed import ConferenceFloorChanged
 from .call_hangup_webhook_event import CallHangupWebhookEvent
+from .call_bridged_webhook_event import CallBridgedWebhookEvent
 from .number_order_status_update import NumberOrderStatusUpdate
 from .call_answered_webhook_event import CallAnsweredWebhookEvent
 from .call_enqueued_webhook_event import CallEnqueuedWebhookEvent
@@ -71,7 +71,7 @@ UnsafeUnwrapWebhookEvent: TypeAlias = Union[
     CallAIGatherMessageHistoryUpdatedWebhookEvent,
     CallAIGatherPartialResultsWebhookEvent,
     CallAnsweredWebhookEvent,
-    CallBridged,
+    CallBridgedWebhookEvent,
     CallConversationEndedWebhookEvent,
     CallConversationInsightsGeneratedWebhookEvent,
     CallDtmfReceivedWebhookEvent,
