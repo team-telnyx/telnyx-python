@@ -31,6 +31,8 @@ __all__ = [
     "ReferReferSipHeader",
     "SendDtmf",
     "SendMessage",
+    "SkipTurn",
+    "SkipTurnSkipTurn",
 ]
 
 
@@ -298,9 +300,28 @@ class SendMessage(BaseModel):
     type: Literal["send_message"]
 
 
+class SkipTurnSkipTurn(BaseModel):
+    description: Optional[str] = None
+    """The description of the function that will be passed to the assistant."""
+
+
+class SkipTurn(BaseModel):
+    skip_turn: SkipTurnSkipTurn
+
+    type: Literal["skip_turn"]
+
+
 AssistantTool: TypeAlias = Annotated[
     Union[
-        InferenceEmbeddingWebhookToolParams, RetrievalTool, Handoff, HangupTool, Transfer, Refer, SendDtmf, SendMessage
+        InferenceEmbeddingWebhookToolParams,
+        RetrievalTool,
+        Handoff,
+        HangupTool,
+        Transfer,
+        Refer,
+        SendDtmf,
+        SendMessage,
+        SkipTurn,
     ],
     PropertyInfo(discriminator="type"),
 ]

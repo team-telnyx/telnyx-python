@@ -29,6 +29,8 @@ __all__ = [
     "ReferReferSipHeader",
     "SendDtmf",
     "SendMessage",
+    "SkipTurn",
+    "SkipTurnSkipTurn",
 ]
 
 
@@ -302,6 +304,17 @@ class SendMessage(TypedDict, total=False):
     type: Required[Literal["send_message"]]
 
 
+class SkipTurnSkipTurn(TypedDict, total=False):
+    description: str
+    """The description of the function that will be passed to the assistant."""
+
+
+class SkipTurn(TypedDict, total=False):
+    skip_turn: Required[SkipTurnSkipTurn]
+
+    type: Required[Literal["skip_turn"]]
+
+
 AssistantToolParam: TypeAlias = Union[
     InferenceEmbeddingWebhookToolParamsParam,
     RetrievalToolParam,
@@ -311,4 +324,5 @@ AssistantToolParam: TypeAlias = Union[
     Refer,
     SendDtmf,
     SendMessage,
+    SkipTurn,
 ]
