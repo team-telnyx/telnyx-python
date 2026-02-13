@@ -6,10 +6,10 @@ from typing_extensions import Literal
 
 from ...._models import BaseModel
 
-__all__ = ["RunPauseRunResponse", "Data"]
+__all__ = ["RunListResponse"]
 
 
-class Data(BaseModel):
+class RunListResponse(BaseModel):
     mission_id: str
 
     run_id: str
@@ -31,7 +31,3 @@ class Data(BaseModel):
     result_payload: Optional[Dict[str, object]] = None
 
     result_summary: Optional[str] = None
-
-
-class RunPauseRunResponse(BaseModel):
-    data: Data

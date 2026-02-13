@@ -11,9 +11,10 @@ from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from telnyx.types.ai.missions import (
-    MissionRunData,
+    RunListResponse,
     RunCreateResponse,
     RunUpdateResponse,
+    RunListRunsResponse,
     RunPauseRunResponse,
     RunRetrieveResponse,
     RunCancelRunResponse,
@@ -202,7 +203,7 @@ class TestRuns:
         run = client.ai.missions.runs.list(
             mission_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(SyncDefaultFlatPagination[MissionRunData], run, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[RunListResponse], run, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -213,7 +214,7 @@ class TestRuns:
             page_size=1,
             status="status",
         )
-        assert_matches_type(SyncDefaultFlatPagination[MissionRunData], run, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[RunListResponse], run, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -225,7 +226,7 @@ class TestRuns:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         run = response.parse()
-        assert_matches_type(SyncDefaultFlatPagination[MissionRunData], run, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[RunListResponse], run, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -237,7 +238,7 @@ class TestRuns:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             run = response.parse()
-            assert_matches_type(SyncDefaultFlatPagination[MissionRunData], run, path=["response"])
+            assert_matches_type(SyncDefaultFlatPagination[RunListResponse], run, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -305,7 +306,7 @@ class TestRuns:
     @parametrize
     def test_method_list_runs(self, client: Telnyx) -> None:
         run = client.ai.missions.runs.list_runs()
-        assert_matches_type(SyncDefaultFlatPagination[MissionRunData], run, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[RunListRunsResponse], run, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -315,7 +316,7 @@ class TestRuns:
             page_size=1,
             status="status",
         )
-        assert_matches_type(SyncDefaultFlatPagination[MissionRunData], run, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[RunListRunsResponse], run, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -325,7 +326,7 @@ class TestRuns:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         run = response.parse()
-        assert_matches_type(SyncDefaultFlatPagination[MissionRunData], run, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[RunListRunsResponse], run, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -335,7 +336,7 @@ class TestRuns:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             run = response.parse()
-            assert_matches_type(SyncDefaultFlatPagination[MissionRunData], run, path=["response"])
+            assert_matches_type(SyncDefaultFlatPagination[RunListRunsResponse], run, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -625,7 +626,7 @@ class TestAsyncRuns:
         run = await async_client.ai.missions.runs.list(
             mission_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(AsyncDefaultFlatPagination[MissionRunData], run, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[RunListResponse], run, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -636,7 +637,7 @@ class TestAsyncRuns:
             page_size=1,
             status="status",
         )
-        assert_matches_type(AsyncDefaultFlatPagination[MissionRunData], run, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[RunListResponse], run, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -648,7 +649,7 @@ class TestAsyncRuns:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         run = await response.parse()
-        assert_matches_type(AsyncDefaultFlatPagination[MissionRunData], run, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[RunListResponse], run, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -660,7 +661,7 @@ class TestAsyncRuns:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             run = await response.parse()
-            assert_matches_type(AsyncDefaultFlatPagination[MissionRunData], run, path=["response"])
+            assert_matches_type(AsyncDefaultFlatPagination[RunListResponse], run, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -728,7 +729,7 @@ class TestAsyncRuns:
     @parametrize
     async def test_method_list_runs(self, async_client: AsyncTelnyx) -> None:
         run = await async_client.ai.missions.runs.list_runs()
-        assert_matches_type(AsyncDefaultFlatPagination[MissionRunData], run, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[RunListRunsResponse], run, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -738,7 +739,7 @@ class TestAsyncRuns:
             page_size=1,
             status="status",
         )
-        assert_matches_type(AsyncDefaultFlatPagination[MissionRunData], run, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[RunListRunsResponse], run, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -748,7 +749,7 @@ class TestAsyncRuns:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         run = await response.parse()
-        assert_matches_type(AsyncDefaultFlatPagination[MissionRunData], run, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[RunListRunsResponse], run, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -758,7 +759,7 @@ class TestAsyncRuns:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             run = await response.parse()
-            assert_matches_type(AsyncDefaultFlatPagination[MissionRunData], run, path=["response"])
+            assert_matches_type(AsyncDefaultFlatPagination[RunListRunsResponse], run, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -256,6 +256,7 @@ class ParticipantsResource(SyncAPIResource):
         early_media: bool | Omit = omit,
         end_conference_on_exit: bool | Omit = omit,
         from_: str | Omit = omit,
+        label: str | Omit = omit,
         machine_detection: Literal["Enable", "DetectMessageEnd"] | Omit = omit,
         machine_detection_silence_timeout: int | Omit = omit,
         machine_detection_speech_end_threshold: int | Omit = omit,
@@ -355,6 +356,10 @@ class ParticipantsResource(SyncAPIResource):
 
           from_: The phone number of the party that initiated the call. Phone numbers are
               formatted with a `+` and country code.
+
+          label: A unique label for the participant that will be added to the conference. The
+              label can be used to reference the participant for updates via the TeXML REST
+              API.
 
           machine_detection: Whether to detect if a human or an answering machine picked up the call. Use
               `Enable` if you would like to ne notified as soon as the called party is
@@ -460,6 +465,7 @@ class ParticipantsResource(SyncAPIResource):
                     "early_media": early_media,
                     "end_conference_on_exit": end_conference_on_exit,
                     "from_": from_,
+                    "label": label,
                     "machine_detection": machine_detection,
                     "machine_detection_silence_timeout": machine_detection_silence_timeout,
                     "machine_detection_speech_end_threshold": machine_detection_speech_end_threshold,
@@ -758,6 +764,7 @@ class AsyncParticipantsResource(AsyncAPIResource):
         early_media: bool | Omit = omit,
         end_conference_on_exit: bool | Omit = omit,
         from_: str | Omit = omit,
+        label: str | Omit = omit,
         machine_detection: Literal["Enable", "DetectMessageEnd"] | Omit = omit,
         machine_detection_silence_timeout: int | Omit = omit,
         machine_detection_speech_end_threshold: int | Omit = omit,
@@ -857,6 +864,10 @@ class AsyncParticipantsResource(AsyncAPIResource):
 
           from_: The phone number of the party that initiated the call. Phone numbers are
               formatted with a `+` and country code.
+
+          label: A unique label for the participant that will be added to the conference. The
+              label can be used to reference the participant for updates via the TeXML REST
+              API.
 
           machine_detection: Whether to detect if a human or an answering machine picked up the call. Use
               `Enable` if you would like to ne notified as soon as the called party is
@@ -962,6 +973,7 @@ class AsyncParticipantsResource(AsyncAPIResource):
                     "early_media": early_media,
                     "end_conference_on_exit": end_conference_on_exit,
                     "from_": from_,
+                    "label": label,
                     "machine_detection": machine_detection,
                     "machine_detection_silence_timeout": machine_detection_silence_timeout,
                     "machine_detection_speech_end_threshold": machine_detection_speech_end_threshold,
