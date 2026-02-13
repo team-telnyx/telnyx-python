@@ -135,6 +135,13 @@ class ParticipantParticipantsParams(TypedDict, total=False):
     Phone numbers are formatted with a `+` and country code.
     """
 
+    label: Annotated[str, PropertyInfo(alias="Label")]
+    """A unique label for the participant that will be added to the conference.
+
+    The label can be used to reference the participant for updates via the TeXML
+    REST API.
+    """
+
     machine_detection: Annotated[Literal["Enable", "DetectMessageEnd"], PropertyInfo(alias="MachineDetection")]
     """Whether to detect if a human or an answering machine picked up the call.
 
