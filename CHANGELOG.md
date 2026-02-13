@@ -1,5 +1,18 @@
 # Changelog
 
+## 4.30.0 (2026-02-13)
+
+Full Changelog: [v4.29.0...v4.30.0](https://github.com/team-telnyx/telnyx-python/compare/v4.29.0...v4.30.0)
+
+### Features
+
+* ENGDESK-49554: Add quail_voice_focus to noise suppression engine enums ([1329950](https://github.com/team-telnyx/telnyx-python/commit/132995074c9ac77227f9eba75ad99a88245fcd0b))
+
+
+### Chores
+
+* format all `api.md` files ([d326b25](https://github.com/team-telnyx/telnyx-python/commit/d326b2549a4319fe68043c5be14d7e5034507134))
+
 ## 4.29.0 (2026-02-12)
 
 Full Changelog: [v4.28.0...v4.29.0](https://github.com/team-telnyx/telnyx-python/compare/v4.28.0...v4.29.0)
