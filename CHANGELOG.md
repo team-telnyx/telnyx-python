@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.32.0 (2026-02-13)
+
+Full Changelog: [v4.31.0...v4.32.0](https://github.com/team-telnyx/telnyx-python/compare/v4.31.0...v4.32.0)
+
+### Features
+
+* AI-2090: Add skip_turn tool type to assistant config schema ([fc7e9ce](https://github.com/team-telnyx/telnyx-python/commit/fc7e9ced1cf790243b2fc9b191a7711ccfcc4837))
+
 ## 4.31.0 (2026-02-13)
 
 Full Changelog: [v4.30.0...v4.31.0](https://github.com/team-telnyx/telnyx-python/compare/v4.30.0...v4.31.0)
