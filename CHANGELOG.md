@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.31.0 (2026-02-13)
+
+Full Changelog: [v4.30.0...v4.31.0](https://github.com/team-telnyx/telnyx-python/compare/v4.30.0...v4.31.0)
+
+### Features
+
+* Add Label parameter to Dial Conference Participant endpoint ([2443fdd](https://github.com/team-telnyx/telnyx-python/commit/2443fddd6c4be617855d06e06987cc31ddcd7182))
+
 ## 4.30.0 (2026-02-13)
 
 Full Changelog: [v4.29.0...v4.30.0](https://github.com/team-telnyx/telnyx-python/compare/v4.29.0...v4.30.0)
