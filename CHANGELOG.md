@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.34.0 (2026-02-17)
+
+Full Changelog: [v4.33.0...v4.34.0](https://github.com/team-telnyx/telnyx-python/compare/v4.33.0...v4.34.0)
+
+### Features
+
+* Align transfer tool AMD spec with portal: premium mode, drop continue actions ([088f643](https://github.com/team-telnyx/telnyx-python/commit/088f643bfacf45de13fa01c69ba4503a4bb75768))
+
 ## 4.33.0 (2026-02-17)
 
 Full Changelog: [v4.32.0...v4.33.0](https://github.com/team-telnyx/telnyx-python/compare/v4.32.0...v4.33.0)
