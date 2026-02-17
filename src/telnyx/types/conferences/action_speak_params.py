@@ -10,7 +10,7 @@ from ..calls.aws_voice_settings_param import AwsVoiceSettingsParam
 from ..calls.telnyx_voice_settings_param import TelnyxVoiceSettingsParam
 from ..calls.eleven_labs_voice_settings_param import ElevenLabsVoiceSettingsParam
 
-__all__ = ["ActionSpeakParams", "VoiceSettings"]
+__all__ = ["ActionSpeakParams", "VoiceSettings", "VoiceSettingsMinimaxVoiceSettings"]
 
 
 class ActionSpeakParams(TypedDict, total=False):
@@ -38,14 +38,17 @@ class ActionSpeakParams(TypedDict, total=False):
       `ElevenLabs.eleven_multilingual_v2.21m00Tcm4TlvDq8ikWAM`). The `ModelId` part
       is optional. To use ElevenLabs, you must provide your ElevenLabs API key as an
       integration identifier secret in
-      `"voice_settings": {"api_key_ref": "<secret_identifier>"}`. See
-      [integration secrets documentation](https://developers.telnyx.com/api/secrets-manager/integration-secrets/create-integration-secret)
-      for details. Check
+      `"voice_settings": {"api_key_ref": "<secret_identifier>"}`. Check
       [available voices](https://elevenlabs.io/docs/api-reference/get-voices).
     - **Telnyx:** Use `Telnyx.<model_id>.<voice_id>`
-
-    For service_level basic, you may define the gender of the speaker (male or
-    female).
+    - **Minimax:** Use `Minimax.<ModelId>.<VoiceId>` (e.g.,
+      `Minimax.speech-02-hd.Wise_Woman`). Supported models: `speech-02-turbo`,
+      `speech-02-hd`, `speech-2.6-turbo`, `speech-2.8-turbo`. Optional parameters:
+      `speed` (float, default 1.0), `vol` (float, default 1.0), `pitch` (integer,
+      default 0).
+    - **Resemble:** Use `Resemble.<ModelId>.<VoiceId>` (e.g.,
+      `Resemble.Pro.my_voice`). Supported models: `Pro` (multilingual) and `Turbo`
+      (English only).
     """
 
     call_control_ids: SequenceNotStr[str]
@@ -114,4 +117,20 @@ class ActionSpeakParams(TypedDict, total=False):
     """The settings associated with the voice selected"""
 
 
-VoiceSettings: TypeAlias = Union[ElevenLabsVoiceSettingsParam, TelnyxVoiceSettingsParam, AwsVoiceSettingsParam]
+class VoiceSettingsMinimaxVoiceSettings(TypedDict, total=False):
+    type: Required[Literal["minimax"]]
+    """Voice settings provider type"""
+
+    pitch: int
+    """Voice pitch adjustment. Default is 0."""
+
+    speed: float
+    """Speech speed multiplier. Default is 1.0."""
+
+    vol: float
+    """Speech volume multiplier. Default is 1.0."""
+
+
+VoiceSettings: TypeAlias = Union[
+    ElevenLabsVoiceSettingsParam, TelnyxVoiceSettingsParam, AwsVoiceSettingsParam, VoiceSettingsMinimaxVoiceSettings
+]
