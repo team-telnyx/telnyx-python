@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.33.0 (2026-02-17)
+
+Full Changelog: [v4.32.0...v4.33.0](https://github.com/team-telnyx/telnyx-python/compare/v4.32.0...v4.33.0)
+
+### Features
+
+* Add Minimax and Resemble voice providers for speak commands ([5d87e9e](https://github.com/team-telnyx/telnyx-python/commit/5d87e9eb4868aadee770f82851d3d5f24e57633e))
+
 ## 4.32.0 (2026-02-13)
 
 Full Changelog: [v4.31.0...v4.32.0](https://github.com/team-telnyx/telnyx-python/compare/v4.31.0...v4.32.0)
