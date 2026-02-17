@@ -153,12 +153,11 @@ class TransferTransferVoicemailDetectionOnVoicemailDetectedVoicemailMessage(Base
 class TransferTransferVoicemailDetectionOnVoicemailDetected(BaseModel):
     """Action to take when voicemail is detected on the transferred call."""
 
-    action: Optional[Literal["stop_transfer", "leave_message_and_stop_transfer", "continue_transfer"]] = None
+    action: Optional[Literal["stop_transfer", "leave_message_and_stop_transfer"]] = None
     """The action to take when voicemail is detected.
 
     'stop_transfer' hangs up immediately. 'leave_message_and_stop_transfer' leaves a
-    message then hangs up. 'continue_transfer' bridges the call despite voicemail
-    detection.
+    message then hangs up.
     """
 
     voicemail_message: Optional[TransferTransferVoicemailDetectionOnVoicemailDetectedVoicemailMessage] = None
@@ -179,11 +178,11 @@ class TransferTransferVoicemailDetection(BaseModel):
     All values are optional - Telnyx will use defaults if not specified.
     """
 
-    detection_mode: Optional[Literal["disabled", "detect"]] = None
+    detection_mode: Optional[Literal["disabled", "premium"]] = None
     """The AMD detection mode to use.
 
-    'detect' enables answering machine detection (works best when warm transfer
-    instructions are also set). 'disabled' turns off AMD detection.
+    'premium' enables premium answering machine detection. 'disabled' turns off AMD
+    detection.
     """
 
     on_voicemail_detected: Optional[TransferTransferVoicemailDetectionOnVoicemailDetected] = None
