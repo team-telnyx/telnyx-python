@@ -37,11 +37,15 @@ from .campaign_get_mno_metadata_response import CampaignGetMnoMetadataResponse a
 from .phone_number_campaign_create_params import PhoneNumberCampaignCreateParams as PhoneNumberCampaignCreateParams
 from .phone_number_campaign_update_params import PhoneNumberCampaignUpdateParams as PhoneNumberCampaignUpdateParams
 from .campaign_get_sharing_status_response import CampaignGetSharingStatusResponse as CampaignGetSharingStatusResponse
+from .brand_get_sms_otp_by_reference_params import BrandGetSMSOtpByReferenceParams as BrandGetSMSOtpByReferenceParams
 from .brand_retrieve_sms_otp_status_response import (
     BrandRetrieveSMSOtpStatusResponse as BrandRetrieveSMSOtpStatusResponse,
 )
 from .campaign_get_operation_status_response import (
     CampaignGetOperationStatusResponse as CampaignGetOperationStatusResponse,
+)
+from .brand_get_sms_otp_by_reference_response import (
+    BrandGetSMSOtpByReferenceResponse as BrandGetSMSOtpByReferenceResponse,
 )
 from .partner_campaign_list_shared_by_me_params import (
     PartnerCampaignListSharedByMeParams as PartnerCampaignListSharedByMeParams,
