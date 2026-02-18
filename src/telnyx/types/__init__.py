@@ -20,6 +20,7 @@ from .shared import (
     PortingOrderStatus as PortingOrderStatus,
     MessagingFeatureSet as MessagingFeatureSet,
     NumberHealthMetrics as NumberHealthMetrics,
+    MinimaxVoiceSettings as MinimaxVoiceSettings,
     InboundMessagePayload as InboundMessagePayload,
     ConnectionJitterBuffer as ConnectionJitterBuffer,
     DocReqsRequirementType as DocReqsRequirementType,
