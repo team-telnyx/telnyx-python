@@ -14,6 +14,7 @@ from telnyx.types import (
     MessagingHostedNumberOrder,
     MessagingPaginationMeta,
     Metadata,
+    MinimaxVoiceSettings,
     NumberHealthMetrics,
     PhoneNumberWithMessagingSettings,
     PortingOrderStatus,
@@ -939,9 +940,9 @@ Types:
 
 ```python
 from telnyx.types.ai import (
+    MissionData,
     MissionCreateResponse,
     MissionRetrieveResponse,
-    MissionListResponse,
     MissionListEventsResponse,
     MissionUpdateMissionResponse,
 )
@@ -951,7 +952,7 @@ Methods:
 
 - <code title="post /ai/missions">client.ai.missions.<a href="./src/telnyx/resources/ai/missions/missions.py">create</a>(\*\*<a href="src/telnyx/types/ai/mission_create_params.py">params</a>) -> <a href="./src/telnyx/types/ai/mission_create_response.py">MissionCreateResponse</a></code>
 - <code title="get /ai/missions/{mission_id}">client.ai.missions.<a href="./src/telnyx/resources/ai/missions/missions.py">retrieve</a>(mission_id) -> <a href="./src/telnyx/types/ai/mission_retrieve_response.py">MissionRetrieveResponse</a></code>
-- <code title="get /ai/missions">client.ai.missions.<a href="./src/telnyx/resources/ai/missions/missions.py">list</a>(\*\*<a href="src/telnyx/types/ai/mission_list_params.py">params</a>) -> <a href="./src/telnyx/types/ai/mission_list_response.py">SyncDefaultFlatPagination[MissionListResponse]</a></code>
+- <code title="get /ai/missions">client.ai.missions.<a href="./src/telnyx/resources/ai/missions/missions.py">list</a>(\*\*<a href="src/telnyx/types/ai/mission_list_params.py">params</a>) -> <a href="./src/telnyx/types/ai/mission_data.py">SyncDefaultFlatPagination[MissionData]</a></code>
 - <code title="post /ai/missions/{mission_id}/clone">client.ai.missions.<a href="./src/telnyx/resources/ai/missions/missions.py">clone_mission</a>(mission_id) -> object</code>
 - <code title="delete /ai/missions/{mission_id}">client.ai.missions.<a href="./src/telnyx/resources/ai/missions/missions.py">delete_mission</a>(mission_id) -> None</code>
 - <code title="get /ai/missions/events">client.ai.missions.<a href="./src/telnyx/resources/ai/missions/missions.py">list_events</a>(\*\*<a href="src/telnyx/types/ai/mission_list_events_params.py">params</a>) -> <a href="./src/telnyx/types/ai/mission_list_events_response.py">SyncDefaultFlatPagination[MissionListEventsResponse]</a></code>
@@ -963,12 +964,11 @@ Types:
 
 ```python
 from telnyx.types.ai.missions import (
+    MissionRunData,
     RunCreateResponse,
     RunRetrieveResponse,
     RunUpdateResponse,
-    RunListResponse,
     RunCancelRunResponse,
-    RunListRunsResponse,
     RunPauseRunResponse,
     RunResumeRunResponse,
 )
@@ -979,9 +979,9 @@ Methods:
 - <code title="post /ai/missions/{mission_id}/runs">client.ai.missions.runs.<a href="./src/telnyx/resources/ai/missions/runs/runs.py">create</a>(mission_id, \*\*<a href="src/telnyx/types/ai/missions/run_create_params.py">params</a>) -> <a href="./src/telnyx/types/ai/missions/run_create_response.py">RunCreateResponse</a></code>
 - <code title="get /ai/missions/{mission_id}/runs/{run_id}">client.ai.missions.runs.<a href="./src/telnyx/resources/ai/missions/runs/runs.py">retrieve</a>(run_id, \*, mission_id) -> <a href="./src/telnyx/types/ai/missions/run_retrieve_response.py">RunRetrieveResponse</a></code>
 - <code title="patch /ai/missions/{mission_id}/runs/{run_id}">client.ai.missions.runs.<a href="./src/telnyx/resources/ai/missions/runs/runs.py">update</a>(run_id, \*, mission_id, \*\*<a href="src/telnyx/types/ai/missions/run_update_params.py">params</a>) -> <a href="./src/telnyx/types/ai/missions/run_update_response.py">RunUpdateResponse</a></code>
-- <code title="get /ai/missions/{mission_id}/runs">client.ai.missions.runs.<a href="./src/telnyx/resources/ai/missions/runs/runs.py">list</a>(mission_id, \*\*<a href="src/telnyx/types/ai/missions/run_list_params.py">params</a>) -> <a href="./src/telnyx/types/ai/missions/run_list_response.py">SyncDefaultFlatPagination[RunListResponse]</a></code>
+- <code title="get /ai/missions/{mission_id}/runs">client.ai.missions.runs.<a href="./src/telnyx/resources/ai/missions/runs/runs.py">list</a>(mission_id, \*\*<a href="src/telnyx/types/ai/missions/run_list_params.py">params</a>) -> <a href="./src/telnyx/types/ai/missions/mission_run_data.py">SyncDefaultFlatPagination[MissionRunData]</a></code>
 - <code title="post /ai/missions/{mission_id}/runs/{run_id}/cancel">client.ai.missions.runs.<a href="./src/telnyx/resources/ai/missions/runs/runs.py">cancel_run</a>(run_id, \*, mission_id) -> <a href="./src/telnyx/types/ai/missions/run_cancel_run_response.py">RunCancelRunResponse</a></code>
-- <code title="get /ai/missions/runs">client.ai.missions.runs.<a href="./src/telnyx/resources/ai/missions/runs/runs.py">list_runs</a>(\*\*<a href="src/telnyx/types/ai/missions/run_list_runs_params.py">params</a>) -> <a href="./src/telnyx/types/ai/missions/run_list_runs_response.py">SyncDefaultFlatPagination[RunListRunsResponse]</a></code>
+- <code title="get /ai/missions/runs">client.ai.missions.runs.<a href="./src/telnyx/resources/ai/missions/runs/runs.py">list_runs</a>(\*\*<a href="src/telnyx/types/ai/missions/run_list_runs_params.py">params</a>) -> <a href="./src/telnyx/types/ai/missions/mission_run_data.py">SyncDefaultFlatPagination[MissionRunData]</a></code>
 - <code title="post /ai/missions/{mission_id}/runs/{run_id}/pause">client.ai.missions.runs.<a href="./src/telnyx/resources/ai/missions/runs/runs.py">pause_run</a>(run_id, \*, mission_id) -> <a href="./src/telnyx/types/ai/missions/run_pause_run_response.py">RunPauseRunResponse</a></code>
 - <code title="post /ai/missions/{mission_id}/runs/{run_id}/resume">client.ai.missions.runs.<a href="./src/telnyx/resources/ai/missions/runs/runs.py">resume_run</a>(run_id, \*, mission_id) -> <a href="./src/telnyx/types/ai/missions/run_resume_run_response.py">RunResumeRunResponse</a></code>
 
@@ -1009,6 +1009,7 @@ Types:
 
 ```python
 from telnyx.types.ai.missions.runs import (
+    PlanStepData,
     PlanCreateResponse,
     PlanRetrieveResponse,
     PlanAddStepsToPlanResponse,

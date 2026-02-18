@@ -6,10 +6,10 @@ from typing_extensions import Literal
 
 from ...._models import BaseModel
 
-__all__ = ["RunListRunsResponse"]
+__all__ = ["MissionRunData"]
 
 
-class RunListRunsResponse(BaseModel):
+class MissionRunData(BaseModel):
     mission_id: str
 
     run_id: str
