@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Union
+from typing import Union, Optional
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 __all__ = [
@@ -71,6 +71,57 @@ class VoiceSettingsParam(TypedDict, total=False):
 
     Use a predefined media bed, or supply a looped MP3 URL. If a media URL is chosen
     in the portal, customers can preview it before saving.
+    """
+
+    language_boost: Optional[
+        Literal[
+            "auto",
+            "Chinese",
+            "Chinese,Yue",
+            "English",
+            "Arabic",
+            "Russian",
+            "Spanish",
+            "French",
+            "Portuguese",
+            "German",
+            "Turkish",
+            "Dutch",
+            "Ukrainian",
+            "Vietnamese",
+            "Indonesian",
+            "Japanese",
+            "Italian",
+            "Korean",
+            "Thai",
+            "Polish",
+            "Romanian",
+            "Greek",
+            "Czech",
+            "Finnish",
+            "Hindi",
+            "Bulgarian",
+            "Danish",
+            "Hebrew",
+            "Malay",
+            "Persian",
+            "Slovak",
+            "Swedish",
+            "Croatian",
+            "Filipino",
+            "Hungarian",
+            "Norwegian",
+            "Slovenian",
+            "Catalan",
+            "Nynorsk",
+            "Tamil",
+            "Afrikaans",
+        ]
+    ]
+    """
+    Enhances recognition for specific languages and dialects during MiniMax TTS
+    synthesis. Default is null (no boost). Set to 'auto' for automatic language
+    detection. Only applicable when using MiniMax voices.
     """
 
     similarity_boost: float
