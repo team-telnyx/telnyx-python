@@ -22,6 +22,16 @@ class MessageSendNumberPoolParams(TypedDict, total=False):
     recommended limit of message parts.
     """
 
+    encoding: Literal["auto", "gsm7", "ucs2"]
+    """Encoding to use for the message.
+
+    `auto` (default) uses smart encoding to automatically select the most efficient
+    encoding. `gsm7` forces GSM-7 encoding (returns 400 if message contains
+    characters that cannot be encoded). `ucs2` forces UCS-2 encoding and disables
+    smart encoding. When set, this overrides the messaging profile's
+    `smart_encoding` setting.
+    """
+
     media_urls: SequenceNotStr[str]
     """A list of media URLs. The total media size must be less than 1 MB.
 

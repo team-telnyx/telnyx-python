@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Iterable
+from typing import Union, Iterable
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 __all__ = [
@@ -45,7 +45,7 @@ class MessageUserMessage(TypedDict, total=False):
     role: Required[Literal["user"]]
     """The role of the messages author, in this case `user`."""
 
-    metadata: Dict[str, object]
+    metadata: object
     """Metadata to add to the message"""
 
 
@@ -78,7 +78,7 @@ class MessageAssistantMessage(TypedDict, total=False):
     content: str
     """The contents of the assistant message. Required unless `tool_calls`"""
 
-    metadata: Dict[str, object]
+    metadata: object
     """Metadata to add to the message"""
 
     tool_calls: Iterable[MessageAssistantMessageToolCall]
@@ -95,7 +95,7 @@ class MessageToolMessage(TypedDict, total=False):
     tool_call_id: Required[str]
     """Tool call that this message is responding to."""
 
-    metadata: Dict[str, object]
+    metadata: object
     """Metadata to add to the message"""
 
 
@@ -110,7 +110,7 @@ class MessageSystemMessage(TypedDict, total=False):
     role: Required[Literal["system"]]
     """The role of the messages author, in this case `system`."""
 
-    metadata: Dict[str, object]
+    metadata: object
     """Metadata to add to the message"""
 
 
@@ -125,7 +125,7 @@ class MessageDeveloperMessage(TypedDict, total=False):
     role: Required[Literal["developer"]]
     """The role of the messages author, in this case developer."""
 
-    metadata: Dict[str, object]
+    metadata: object
     """Metadata to add to the message"""
 
 

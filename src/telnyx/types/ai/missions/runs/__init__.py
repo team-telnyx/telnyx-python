@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-from .plan_step_data import PlanStepData as PlanStepData
 from .event_log_params import EventLogParams as EventLogParams
 from .event_list_params import EventListParams as EventListParams
 from .event_log_response import EventLogResponse as EventLogResponse

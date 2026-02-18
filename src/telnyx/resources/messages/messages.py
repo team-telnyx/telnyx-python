@@ -252,6 +252,7 @@ class MessagesResource(SyncAPIResource):
         *,
         to: str,
         auto_detect: bool | Omit = omit,
+        encoding: Literal["auto", "gsm7", "ucs2"] | Omit = omit,
         from_: str | Omit = omit,
         media_urls: SequenceNotStr[str] | Omit = omit,
         messaging_profile_id: str | Omit = omit,
@@ -282,6 +283,12 @@ class MessagesResource(SyncAPIResource):
 
           auto_detect: Automatically detect if an SMS message is unusually long and exceeds a
               recommended limit of message parts.
+
+          encoding: Encoding to use for the message. `auto` (default) uses smart encoding to
+              automatically select the most efficient encoding. `gsm7` forces GSM-7 encoding
+              (returns 400 if message contains characters that cannot be encoded). `ucs2`
+              forces UCS-2 encoding and disables smart encoding. When set, this overrides the
+              messaging profile's `smart_encoding` setting.
 
           from_: Sending address (+E.164 formatted phone number, alphanumeric sender ID, or short
               code).
@@ -331,6 +338,7 @@ class MessagesResource(SyncAPIResource):
                 {
                     "to": to,
                     "auto_detect": auto_detect,
+                    "encoding": encoding,
                     "from_": from_,
                     "media_urls": media_urls,
                     "messaging_profile_id": messaging_profile_id,
@@ -426,6 +434,7 @@ class MessagesResource(SyncAPIResource):
         from_: str,
         to: str,
         auto_detect: bool | Omit = omit,
+        encoding: Literal["auto", "gsm7", "ucs2"] | Omit = omit,
         media_urls: SequenceNotStr[str] | Omit = omit,
         subject: str | Omit = omit,
         text: str | Omit = omit,
@@ -450,6 +459,12 @@ class MessagesResource(SyncAPIResource):
 
           auto_detect: Automatically detect if an SMS message is unusually long and exceeds a
               recommended limit of message parts.
+
+          encoding: Encoding to use for the message. `auto` (default) uses smart encoding to
+              automatically select the most efficient encoding. `gsm7` forces GSM-7 encoding
+              (returns 400 if message contains characters that cannot be encoded). `ucs2`
+              forces UCS-2 encoding and disables smart encoding. When set, this overrides the
+              messaging profile's `smart_encoding` setting.
 
           media_urls: A list of media URLs. The total media size must be less than 1 MB.
 
@@ -487,6 +502,7 @@ class MessagesResource(SyncAPIResource):
                     "from_": from_,
                     "to": to,
                     "auto_detect": auto_detect,
+                    "encoding": encoding,
                     "media_urls": media_urls,
                     "subject": subject,
                     "text": text,
@@ -509,6 +525,7 @@ class MessagesResource(SyncAPIResource):
         messaging_profile_id: str,
         to: str,
         auto_detect: bool | Omit = omit,
+        encoding: Literal["auto", "gsm7", "ucs2"] | Omit = omit,
         media_urls: SequenceNotStr[str] | Omit = omit,
         subject: str | Omit = omit,
         text: str | Omit = omit,
@@ -533,6 +550,12 @@ class MessagesResource(SyncAPIResource):
 
           auto_detect: Automatically detect if an SMS message is unusually long and exceeds a
               recommended limit of message parts.
+
+          encoding: Encoding to use for the message. `auto` (default) uses smart encoding to
+              automatically select the most efficient encoding. `gsm7` forces GSM-7 encoding
+              (returns 400 if message contains characters that cannot be encoded). `ucs2`
+              forces UCS-2 encoding and disables smart encoding. When set, this overrides the
+              messaging profile's `smart_encoding` setting.
 
           media_urls: A list of media URLs. The total media size must be less than 1 MB.
 
@@ -570,6 +593,7 @@ class MessagesResource(SyncAPIResource):
                     "messaging_profile_id": messaging_profile_id,
                     "to": to,
                     "auto_detect": auto_detect,
+                    "encoding": encoding,
                     "media_urls": media_urls,
                     "subject": subject,
                     "text": text,
@@ -592,6 +616,7 @@ class MessagesResource(SyncAPIResource):
         from_: str,
         to: str,
         auto_detect: bool | Omit = omit,
+        encoding: Literal["auto", "gsm7", "ucs2"] | Omit = omit,
         media_urls: SequenceNotStr[str] | Omit = omit,
         subject: str | Omit = omit,
         text: str | Omit = omit,
@@ -616,6 +641,12 @@ class MessagesResource(SyncAPIResource):
 
           auto_detect: Automatically detect if an SMS message is unusually long and exceeds a
               recommended limit of message parts.
+
+          encoding: Encoding to use for the message. `auto` (default) uses smart encoding to
+              automatically select the most efficient encoding. `gsm7` forces GSM-7 encoding
+              (returns 400 if message contains characters that cannot be encoded). `ucs2`
+              forces UCS-2 encoding and disables smart encoding. When set, this overrides the
+              messaging profile's `smart_encoding` setting.
 
           media_urls: A list of media URLs. The total media size must be less than 1 MB.
 
@@ -653,6 +684,7 @@ class MessagesResource(SyncAPIResource):
                     "from_": from_,
                     "to": to,
                     "auto_detect": auto_detect,
+                    "encoding": encoding,
                     "media_urls": media_urls,
                     "subject": subject,
                     "text": text,
@@ -926,6 +958,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         *,
         to: str,
         auto_detect: bool | Omit = omit,
+        encoding: Literal["auto", "gsm7", "ucs2"] | Omit = omit,
         from_: str | Omit = omit,
         media_urls: SequenceNotStr[str] | Omit = omit,
         messaging_profile_id: str | Omit = omit,
@@ -956,6 +989,12 @@ class AsyncMessagesResource(AsyncAPIResource):
 
           auto_detect: Automatically detect if an SMS message is unusually long and exceeds a
               recommended limit of message parts.
+
+          encoding: Encoding to use for the message. `auto` (default) uses smart encoding to
+              automatically select the most efficient encoding. `gsm7` forces GSM-7 encoding
+              (returns 400 if message contains characters that cannot be encoded). `ucs2`
+              forces UCS-2 encoding and disables smart encoding. When set, this overrides the
+              messaging profile's `smart_encoding` setting.
 
           from_: Sending address (+E.164 formatted phone number, alphanumeric sender ID, or short
               code).
@@ -1005,6 +1044,7 @@ class AsyncMessagesResource(AsyncAPIResource):
                 {
                     "to": to,
                     "auto_detect": auto_detect,
+                    "encoding": encoding,
                     "from_": from_,
                     "media_urls": media_urls,
                     "messaging_profile_id": messaging_profile_id,
@@ -1100,6 +1140,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         from_: str,
         to: str,
         auto_detect: bool | Omit = omit,
+        encoding: Literal["auto", "gsm7", "ucs2"] | Omit = omit,
         media_urls: SequenceNotStr[str] | Omit = omit,
         subject: str | Omit = omit,
         text: str | Omit = omit,
@@ -1124,6 +1165,12 @@ class AsyncMessagesResource(AsyncAPIResource):
 
           auto_detect: Automatically detect if an SMS message is unusually long and exceeds a
               recommended limit of message parts.
+
+          encoding: Encoding to use for the message. `auto` (default) uses smart encoding to
+              automatically select the most efficient encoding. `gsm7` forces GSM-7 encoding
+              (returns 400 if message contains characters that cannot be encoded). `ucs2`
+              forces UCS-2 encoding and disables smart encoding. When set, this overrides the
+              messaging profile's `smart_encoding` setting.
 
           media_urls: A list of media URLs. The total media size must be less than 1 MB.
 
@@ -1161,6 +1208,7 @@ class AsyncMessagesResource(AsyncAPIResource):
                     "from_": from_,
                     "to": to,
                     "auto_detect": auto_detect,
+                    "encoding": encoding,
                     "media_urls": media_urls,
                     "subject": subject,
                     "text": text,
@@ -1183,6 +1231,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         messaging_profile_id: str,
         to: str,
         auto_detect: bool | Omit = omit,
+        encoding: Literal["auto", "gsm7", "ucs2"] | Omit = omit,
         media_urls: SequenceNotStr[str] | Omit = omit,
         subject: str | Omit = omit,
         text: str | Omit = omit,
@@ -1207,6 +1256,12 @@ class AsyncMessagesResource(AsyncAPIResource):
 
           auto_detect: Automatically detect if an SMS message is unusually long and exceeds a
               recommended limit of message parts.
+
+          encoding: Encoding to use for the message. `auto` (default) uses smart encoding to
+              automatically select the most efficient encoding. `gsm7` forces GSM-7 encoding
+              (returns 400 if message contains characters that cannot be encoded). `ucs2`
+              forces UCS-2 encoding and disables smart encoding. When set, this overrides the
+              messaging profile's `smart_encoding` setting.
 
           media_urls: A list of media URLs. The total media size must be less than 1 MB.
 
@@ -1244,6 +1299,7 @@ class AsyncMessagesResource(AsyncAPIResource):
                     "messaging_profile_id": messaging_profile_id,
                     "to": to,
                     "auto_detect": auto_detect,
+                    "encoding": encoding,
                     "media_urls": media_urls,
                     "subject": subject,
                     "text": text,
@@ -1266,6 +1322,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         from_: str,
         to: str,
         auto_detect: bool | Omit = omit,
+        encoding: Literal["auto", "gsm7", "ucs2"] | Omit = omit,
         media_urls: SequenceNotStr[str] | Omit = omit,
         subject: str | Omit = omit,
         text: str | Omit = omit,
@@ -1290,6 +1347,12 @@ class AsyncMessagesResource(AsyncAPIResource):
 
           auto_detect: Automatically detect if an SMS message is unusually long and exceeds a
               recommended limit of message parts.
+
+          encoding: Encoding to use for the message. `auto` (default) uses smart encoding to
+              automatically select the most efficient encoding. `gsm7` forces GSM-7 encoding
+              (returns 400 if message contains characters that cannot be encoded). `ucs2`
+              forces UCS-2 encoding and disables smart encoding. When set, this overrides the
+              messaging profile's `smart_encoding` setting.
 
           media_urls: A list of media URLs. The total media size must be less than 1 MB.
 
@@ -1327,6 +1390,7 @@ class AsyncMessagesResource(AsyncAPIResource):
                     "from_": from_,
                     "to": to,
                     "auto_detect": auto_detect,
+                    "encoding": encoding,
                     "media_urls": media_urls,
                     "subject": subject,
                     "text": text,

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Iterable
+from typing import Iterable
 from typing_extensions import Literal, Required, TypedDict
 
 from ..._types import SequenceNotStr
@@ -23,7 +23,7 @@ class WebhookBodyParameters(TypedDict, total=False):
     These parameters will be passed to the webhook as the body of the request. See the [JSON Schema reference](https://json-schema.org/understanding-json-schema) for documentation about the format
     """
 
-    properties: Dict[str, object]
+    properties: object
     """The properties of the body parameters."""
 
     required: SequenceNotStr[str]
@@ -50,7 +50,7 @@ class WebhookPathParameters(TypedDict, total=False):
     These parameters will be passed to the webhook as the path of the request if the URL contains a placeholder for a value. See the [JSON Schema reference](https://json-schema.org/understanding-json-schema) for documentation about the format
     """
 
-    properties: Dict[str, object]
+    properties: object
     """The properties of the path parameters."""
 
     required: SequenceNotStr[str]
@@ -65,7 +65,7 @@ class WebhookQueryParameters(TypedDict, total=False):
     These parameters will be passed to the webhook as the query of the request. See the [JSON Schema reference](https://json-schema.org/understanding-json-schema) for documentation about the format
     """
 
-    properties: Dict[str, object]
+    properties: object
     """The properties of the query parameters."""
 
     required: SequenceNotStr[str]
