@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.39.0 (2026-02-18)
+
+Full Changelog: [v4.38.0...v4.39.0](https://github.com/team-telnyx/telnyx-python/compare/v4.38.0...v4.39.0)
+
+### Features
+
+* AI-2093: Add language_boost to MiniMax voice settings ([0740caf](https://github.com/team-telnyx/telnyx-python/commit/0740caf1e59b73a32b5d8da0233631884197e43e))
+
 ## 4.38.0 (2026-02-18)
 
 Full Changelog: [v4.37.0...v4.38.0](https://github.com/team-telnyx/telnyx-python/compare/v4.37.0...v4.38.0)
