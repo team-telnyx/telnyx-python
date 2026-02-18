@@ -6,10 +6,10 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["MissionData"]
+__all__ = ["MissionListResponse"]
 
 
-class MissionData(BaseModel):
+class MissionListResponse(BaseModel):
     created_at: datetime
 
     execution_mode: Literal["external", "managed"]

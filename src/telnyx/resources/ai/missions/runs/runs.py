@@ -44,10 +44,11 @@ from .telnyx_agents import (
 from .....pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from ....._base_client import AsyncPaginator, make_request_options
 from .....types.ai.missions import run_list_params, run_create_params, run_update_params, run_list_runs_params
-from .....types.ai.missions.mission_run_data import MissionRunData
+from .....types.ai.missions.run_list_response import RunListResponse
 from .....types.ai.missions.run_create_response import RunCreateResponse
 from .....types.ai.missions.run_update_response import RunUpdateResponse
 from .....types.ai.missions.run_retrieve_response import RunRetrieveResponse
+from .....types.ai.missions.run_list_runs_response import RunListRunsResponse
 from .....types.ai.missions.run_pause_run_response import RunPauseRunResponse
 from .....types.ai.missions.run_cancel_run_response import RunCancelRunResponse
 from .....types.ai.missions.run_resume_run_response import RunResumeRunResponse
@@ -229,7 +230,7 @@ class RunsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[MissionRunData]:
+    ) -> SyncDefaultFlatPagination[RunListResponse]:
         """
         List all runs for a specific mission
 
@@ -250,7 +251,7 @@ class RunsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `mission_id` but received {mission_id!r}")
         return self._get_api_list(
             f"/ai/missions/{mission_id}/runs",
-            page=SyncDefaultFlatPagination[MissionRunData],
+            page=SyncDefaultFlatPagination[RunListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -265,7 +266,7 @@ class RunsResource(SyncAPIResource):
                     run_list_params.RunListParams,
                 ),
             ),
-            model=MissionRunData,
+            model=RunListResponse,
         )
 
     def cancel_run(
@@ -316,7 +317,7 @@ class RunsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[MissionRunData]:
+    ) -> SyncDefaultFlatPagination[RunListRunsResponse]:
         """
         List recent runs across all missions
 
@@ -335,7 +336,7 @@ class RunsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/ai/missions/runs",
-            page=SyncDefaultFlatPagination[MissionRunData],
+            page=SyncDefaultFlatPagination[RunListRunsResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -350,7 +351,7 @@ class RunsResource(SyncAPIResource):
                     run_list_runs_params.RunListRunsParams,
                 ),
             ),
-            model=MissionRunData,
+            model=RunListRunsResponse,
         )
 
     def pause_run(
@@ -600,7 +601,7 @@ class AsyncRunsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[MissionRunData, AsyncDefaultFlatPagination[MissionRunData]]:
+    ) -> AsyncPaginator[RunListResponse, AsyncDefaultFlatPagination[RunListResponse]]:
         """
         List all runs for a specific mission
 
@@ -621,7 +622,7 @@ class AsyncRunsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `mission_id` but received {mission_id!r}")
         return self._get_api_list(
             f"/ai/missions/{mission_id}/runs",
-            page=AsyncDefaultFlatPagination[MissionRunData],
+            page=AsyncDefaultFlatPagination[RunListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -636,7 +637,7 @@ class AsyncRunsResource(AsyncAPIResource):
                     run_list_params.RunListParams,
                 ),
             ),
-            model=MissionRunData,
+            model=RunListResponse,
         )
 
     async def cancel_run(
@@ -687,7 +688,7 @@ class AsyncRunsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[MissionRunData, AsyncDefaultFlatPagination[MissionRunData]]:
+    ) -> AsyncPaginator[RunListRunsResponse, AsyncDefaultFlatPagination[RunListRunsResponse]]:
         """
         List recent runs across all missions
 
@@ -706,7 +707,7 @@ class AsyncRunsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/ai/missions/runs",
-            page=AsyncDefaultFlatPagination[MissionRunData],
+            page=AsyncDefaultFlatPagination[RunListRunsResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -721,7 +722,7 @@ class AsyncRunsResource(AsyncAPIResource):
                     run_list_runs_params.RunListRunsParams,
                 ),
             ),
-            model=MissionRunData,
+            model=RunListRunsResponse,
         )
 
     async def pause_run(

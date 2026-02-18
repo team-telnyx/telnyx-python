@@ -187,6 +187,14 @@ class MessageCancelScheduledResponse(BaseModel):
     sent_at: Optional[datetime] = None
     """ISO 8601 formatted date indicating when the message was sent."""
 
+    smart_encoding_applied: Optional[bool] = None
+    """Indicates whether smart encoding was applied to this message.
+
+    When `true`, one or more Unicode characters were automatically replaced with
+    GSM-7 equivalents to reduce segment count and cost. The original message text is
+    preserved in webhooks.
+    """
+
     subject: Optional[str] = None
     """Subject of multimedia message"""
 
