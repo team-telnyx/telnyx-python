@@ -1,5 +1,16 @@
 # Changelog
 
+## 4.38.0 (2026-02-18)
+
+Full Changelog: [v4.37.0...v4.38.0](https://github.com/team-telnyx/telnyx-python/compare/v4.37.0...v4.38.0)
+
+### Features
+
+* Add smart encoding fields to messaging API spec ([5299f7e](https://github.com/team-telnyx/telnyx-python/commit/5299f7e7f251f377ac01d13f9cf38c3ee793a226))
+* **api:** manual updates ([5631359](https://github.com/team-telnyx/telnyx-python/commit/5631359512011de089f40b0bfb9663c7120346f5))
+* **api:** manual updates ([6a96c50](https://github.com/team-telnyx/telnyx-python/commit/6a96c5024c48fff71e424a0c07925ae143e5da5b))
+* **api:** manual updates ([808c197](https://github.com/team-telnyx/telnyx-python/commit/808c1978f6c58cae8ecf219a23868e02bb607db7))
+
 ## 4.37.0 (2026-02-18)
 
 Full Changelog: [v4.36.0...v4.37.0](https://github.com/team-telnyx/telnyx-python/compare/v4.36.0...v4.37.0)
