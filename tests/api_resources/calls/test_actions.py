@@ -74,7 +74,7 @@ class TestActions:
                 {
                     "content": "Get the user's favorite color",
                     "role": "system",
-                    "metadata": {},
+                    "metadata": {"foo": "bar"},
                 }
             ],
         )
@@ -2424,7 +2424,7 @@ class TestAsyncActions:
                 {
                     "content": "Get the user's favorite color",
                     "role": "system",
-                    "metadata": {},
+                    "metadata": {"foo": "bar"},
                 }
             ],
         )
