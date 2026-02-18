@@ -8,8 +8,9 @@ from typing_extensions import Literal, Required, TypeAlias, TypedDict
 from .aws_voice_settings_param import AwsVoiceSettingsParam
 from .telnyx_voice_settings_param import TelnyxVoiceSettingsParam
 from .eleven_labs_voice_settings_param import ElevenLabsVoiceSettingsParam
+from ..shared_params.minimax_voice_settings import MinimaxVoiceSettings
 
-__all__ = ["ActionSpeakParams", "VoiceSettings", "VoiceSettingsMinimaxVoiceSettings"]
+__all__ = ["ActionSpeakParams", "VoiceSettings"]
 
 
 class ActionSpeakParams(TypedDict, total=False):
@@ -125,20 +126,6 @@ class ActionSpeakParams(TypedDict, total=False):
     """The settings associated with the voice selected"""
 
 
-class VoiceSettingsMinimaxVoiceSettings(TypedDict, total=False):
-    type: Required[Literal["minimax"]]
-    """Voice settings provider type"""
-
-    pitch: int
-    """Voice pitch adjustment. Default is 0."""
-
-    speed: float
-    """Speech speed multiplier. Default is 1.0."""
-
-    vol: float
-    """Speech volume multiplier. Default is 1.0."""
-
-
 VoiceSettings: TypeAlias = Union[
-    ElevenLabsVoiceSettingsParam, TelnyxVoiceSettingsParam, AwsVoiceSettingsParam, VoiceSettingsMinimaxVoiceSettings
+    ElevenLabsVoiceSettingsParam, TelnyxVoiceSettingsParam, AwsVoiceSettingsParam, MinimaxVoiceSettings
 ]
