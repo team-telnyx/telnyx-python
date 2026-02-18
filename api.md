@@ -4815,6 +4815,7 @@ from telnyx.types.messaging_10dlc import (
     BrandRetrieveResponse,
     BrandListResponse,
     BrandGetFeedbackResponse,
+    BrandGetSMSOtpByReferenceResponse,
     BrandRetrieveSMSOtpStatusResponse,
     BrandTriggerSMSOtpResponse,
 )
@@ -4828,6 +4829,7 @@ Methods:
 - <code title="get /10dlc/brand">client.messaging_10dlc.brand.<a href="./src/telnyx/resources/messaging_10dlc/brand/brand.py">list</a>(\*\*<a href="src/telnyx/types/messaging_10dlc/brand_list_params.py">params</a>) -> <a href="./src/telnyx/types/messaging_10dlc/brand_list_response.py">SyncPerPagePaginationV2[BrandListResponse]</a></code>
 - <code title="delete /10dlc/brand/{brandId}">client.messaging_10dlc.brand.<a href="./src/telnyx/resources/messaging_10dlc/brand/brand.py">delete</a>(brand_id) -> None</code>
 - <code title="get /10dlc/brand/feedback/{brandId}">client.messaging_10dlc.brand.<a href="./src/telnyx/resources/messaging_10dlc/brand/brand.py">get_feedback</a>(brand_id) -> <a href="./src/telnyx/types/messaging_10dlc/brand_get_feedback_response.py">BrandGetFeedbackResponse</a></code>
+- <code title="get /10dlc/brand/smsOtp/{referenceId}">client.messaging_10dlc.brand.<a href="./src/telnyx/resources/messaging_10dlc/brand/brand.py">get_sms_otp_by_reference</a>(reference_id, \*\*<a href="src/telnyx/types/messaging_10dlc/brand_get_sms_otp_by_reference_params.py">params</a>) -> <a href="./src/telnyx/types/messaging_10dlc/brand_get_sms_otp_by_reference_response.py">BrandGetSMSOtpByReferenceResponse</a></code>
 - <code title="post /10dlc/brand/{brandId}/2faEmail">client.messaging_10dlc.brand.<a href="./src/telnyx/resources/messaging_10dlc/brand/brand.py">resend_2fa_email</a>(brand_id) -> None</code>
 - <code title="get /10dlc/brand/{brandId}/smsOtp">client.messaging_10dlc.brand.<a href="./src/telnyx/resources/messaging_10dlc/brand/brand.py">retrieve_sms_otp_status</a>(brand_id) -> <a href="./src/telnyx/types/messaging_10dlc/brand_retrieve_sms_otp_status_response.py">BrandRetrieveSMSOtpStatusResponse</a></code>
 - <code title="put /10dlc/brand/{brandId}/revet">client.messaging_10dlc.brand.<a href="./src/telnyx/resources/messaging_10dlc/brand/brand.py">revet</a>(brand_id) -> <a href="./src/telnyx/types/messaging_10dlc/telnyx_brand.py">TelnyxBrand</a></code>
