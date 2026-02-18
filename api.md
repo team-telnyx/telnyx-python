@@ -1308,6 +1308,8 @@ Types:
 from telnyx.types.calls import (
     AwsVoiceSettings,
     CallControlCommandResult,
+    DeepgramNova2Config,
+    DeepgramNova3Config,
     ElevenLabsVoiceSettings,
     GoogleTranscriptionLanguage,
     InterruptionSettings,
