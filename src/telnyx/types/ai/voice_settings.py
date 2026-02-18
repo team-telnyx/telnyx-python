@@ -77,6 +77,57 @@ class VoiceSettings(BaseModel):
     in the portal, customers can preview it before saving.
     """
 
+    language_boost: Optional[
+        Literal[
+            "auto",
+            "Chinese",
+            "Chinese,Yue",
+            "English",
+            "Arabic",
+            "Russian",
+            "Spanish",
+            "French",
+            "Portuguese",
+            "German",
+            "Turkish",
+            "Dutch",
+            "Ukrainian",
+            "Vietnamese",
+            "Indonesian",
+            "Japanese",
+            "Italian",
+            "Korean",
+            "Thai",
+            "Polish",
+            "Romanian",
+            "Greek",
+            "Czech",
+            "Finnish",
+            "Hindi",
+            "Bulgarian",
+            "Danish",
+            "Hebrew",
+            "Malay",
+            "Persian",
+            "Slovak",
+            "Swedish",
+            "Croatian",
+            "Filipino",
+            "Hungarian",
+            "Norwegian",
+            "Slovenian",
+            "Catalan",
+            "Nynorsk",
+            "Tamil",
+            "Afrikaans",
+        ]
+    ] = None
+    """
+    Enhances recognition for specific languages and dialects during MiniMax TTS
+    synthesis. Default is null (no boost). Set to 'auto' for automatic language
+    detection. Only applicable when using MiniMax voices.
+    """
+
     similarity_boost: Optional[float] = None
     """
     Determines how closely the AI should adhere to the original voice when
