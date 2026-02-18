@@ -37,7 +37,6 @@ from ....types.messaging_10dlc import (
     brand_update_params,
     brand_verify_sms_otp_params,
     brand_trigger_sms_otp_params,
-    brand_get_sms_otp_by_reference_params,
 )
 from ....types.messaging_10dlc.vertical import Vertical
 from ....types.messaging_10dlc.entity_type import EntityType
@@ -50,7 +49,6 @@ from ....types.messaging_10dlc.brand_retrieve_response import BrandRetrieveRespo
 from ....types.messaging_10dlc.brand_get_feedback_response import BrandGetFeedbackResponse
 from ....types.messaging_10dlc.brand_trigger_sms_otp_response import BrandTriggerSMSOtpResponse
 from ....types.messaging_10dlc.brand_retrieve_sms_otp_status_response import BrandRetrieveSMSOtpStatusResponse
-from ....types.messaging_10dlc.brand_get_sms_otp_by_reference_response import BrandGetSMSOtpByReferenceResponse
 
 __all__ = ["BrandResource", "AsyncBrandResource"]
 
@@ -552,59 +550,6 @@ class BrandResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=BrandGetFeedbackResponse,
-        )
-
-    def get_sms_otp_by_reference(
-        self,
-        reference_id: str,
-        *,
-        brand_id: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> BrandGetSMSOtpByReferenceResponse:
-        """
-        Query the status of an SMS OTP (One-Time Password) for Sole Proprietor brand
-        verification.
-
-        This endpoint allows you to check the delivery and verification status of an OTP
-        sent during the Sole Proprietor brand verification process. You can query by
-        either:
-
-        - `referenceId` - The reference ID returned when the OTP was initially triggered
-        - `brandId` - Query parameter for portal users to look up OTP status by Brand ID
-
-        The response includes delivery status, verification dates, and detailed delivery
-        information.
-
-        Args:
-          brand_id: Filter by Brand ID for easier lookup in portal applications
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not reference_id:
-            raise ValueError(f"Expected a non-empty value for `reference_id` but received {reference_id!r}")
-        return self._get(
-            f"/10dlc/brand/smsOtp/{reference_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {"brand_id": brand_id}, brand_get_sms_otp_by_reference_params.BrandGetSMSOtpByReferenceParams
-                ),
-            ),
-            cast_to=BrandGetSMSOtpByReferenceResponse,
         )
 
     def resend_2fa_email(
@@ -1340,59 +1285,6 @@ class AsyncBrandResource(AsyncAPIResource):
             cast_to=BrandGetFeedbackResponse,
         )
 
-    async def get_sms_otp_by_reference(
-        self,
-        reference_id: str,
-        *,
-        brand_id: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> BrandGetSMSOtpByReferenceResponse:
-        """
-        Query the status of an SMS OTP (One-Time Password) for Sole Proprietor brand
-        verification.
-
-        This endpoint allows you to check the delivery and verification status of an OTP
-        sent during the Sole Proprietor brand verification process. You can query by
-        either:
-
-        - `referenceId` - The reference ID returned when the OTP was initially triggered
-        - `brandId` - Query parameter for portal users to look up OTP status by Brand ID
-
-        The response includes delivery status, verification dates, and detailed delivery
-        information.
-
-        Args:
-          brand_id: Filter by Brand ID for easier lookup in portal applications
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not reference_id:
-            raise ValueError(f"Expected a non-empty value for `reference_id` but received {reference_id!r}")
-        return await self._get(
-            f"/10dlc/brand/smsOtp/{reference_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {"brand_id": brand_id}, brand_get_sms_otp_by_reference_params.BrandGetSMSOtpByReferenceParams
-                ),
-            ),
-            cast_to=BrandGetSMSOtpByReferenceResponse,
-        )
-
     async def resend_2fa_email(
         self,
         brand_id: str,
@@ -1649,9 +1541,6 @@ class BrandResourceWithRawResponse:
         self.get_feedback = to_raw_response_wrapper(
             brand.get_feedback,
         )
-        self.get_sms_otp_by_reference = to_raw_response_wrapper(
-            brand.get_sms_otp_by_reference,
-        )
         self.resend_2fa_email = to_raw_response_wrapper(
             brand.resend_2fa_email,
         )
@@ -1694,9 +1583,6 @@ class AsyncBrandResourceWithRawResponse:
         )
         self.get_feedback = async_to_raw_response_wrapper(
             brand.get_feedback,
-        )
-        self.get_sms_otp_by_reference = async_to_raw_response_wrapper(
-            brand.get_sms_otp_by_reference,
         )
         self.resend_2fa_email = async_to_raw_response_wrapper(
             brand.resend_2fa_email,
@@ -1741,9 +1627,6 @@ class BrandResourceWithStreamingResponse:
         self.get_feedback = to_streamed_response_wrapper(
             brand.get_feedback,
         )
-        self.get_sms_otp_by_reference = to_streamed_response_wrapper(
-            brand.get_sms_otp_by_reference,
-        )
         self.resend_2fa_email = to_streamed_response_wrapper(
             brand.resend_2fa_email,
         )
@@ -1786,9 +1669,6 @@ class AsyncBrandResourceWithStreamingResponse:
         )
         self.get_feedback = async_to_streamed_response_wrapper(
             brand.get_feedback,
-        )
-        self.get_sms_otp_by_reference = async_to_streamed_response_wrapper(
-            brand.get_sms_otp_by_reference,
         )
         self.resend_2fa_email = async_to_streamed_response_wrapper(
             brand.resend_2fa_email,

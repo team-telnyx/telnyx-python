@@ -57,7 +57,7 @@ from .knowledge_bases import (
     KnowledgeBasesResourceWithStreamingResponse,
     AsyncKnowledgeBasesResourceWithStreamingResponse,
 )
-from ....types.ai.mission_data import MissionData
+from ....types.ai.mission_list_response import MissionListResponse
 from ....types.ai.mission_create_response import MissionCreateResponse
 from ....types.ai.mission_retrieve_response import MissionRetrieveResponse
 from ....types.ai.mission_list_events_response import MissionListEventsResponse
@@ -193,7 +193,7 @@ class MissionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[MissionData]:
+    ) -> SyncDefaultFlatPagination[MissionListResponse]:
         """
         List all missions for the organization
 
@@ -212,7 +212,7 @@ class MissionsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/ai/missions",
-            page=SyncDefaultFlatPagination[MissionData],
+            page=SyncDefaultFlatPagination[MissionListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -226,7 +226,7 @@ class MissionsResource(SyncAPIResource):
                     mission_list_params.MissionListParams,
                 ),
             ),
-            model=MissionData,
+            model=MissionListResponse,
         )
 
     def clone_mission(
@@ -523,7 +523,7 @@ class AsyncMissionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[MissionData, AsyncDefaultFlatPagination[MissionData]]:
+    ) -> AsyncPaginator[MissionListResponse, AsyncDefaultFlatPagination[MissionListResponse]]:
         """
         List all missions for the organization
 
@@ -542,7 +542,7 @@ class AsyncMissionsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/ai/missions",
-            page=AsyncDefaultFlatPagination[MissionData],
+            page=AsyncDefaultFlatPagination[MissionListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -556,7 +556,7 @@ class AsyncMissionsResource(AsyncAPIResource):
                     mission_list_params.MissionListParams,
                 ),
             ),
-            model=MissionData,
+            model=MissionListResponse,
         )
 
     async def clone_mission(
