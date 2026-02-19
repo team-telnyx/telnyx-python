@@ -20,7 +20,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestTests:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create(self, client: Telnyx) -> None:
         test = client.ai.assistants.tests.create(
@@ -40,7 +40,7 @@ class TestTests:
         )
         assert_matches_type(AssistantTest, test, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create_with_all_params(self, client: Telnyx) -> None:
         test = client.ai.assistants.tests.create(
@@ -64,7 +64,7 @@ class TestTests:
         )
         assert_matches_type(AssistantTest, test, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: Telnyx) -> None:
         response = client.ai.assistants.tests.with_raw_response.create(
@@ -88,7 +88,7 @@ class TestTests:
         test = response.parse()
         assert_matches_type(AssistantTest, test, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: Telnyx) -> None:
         with client.ai.assistants.tests.with_streaming_response.create(
@@ -114,7 +114,7 @@ class TestTests:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Telnyx) -> None:
         test = client.ai.assistants.tests.retrieve(
@@ -122,7 +122,7 @@ class TestTests:
         )
         assert_matches_type(AssistantTest, test, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
         response = client.ai.assistants.tests.with_raw_response.retrieve(
@@ -134,7 +134,7 @@ class TestTests:
         test = response.parse()
         assert_matches_type(AssistantTest, test, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
         with client.ai.assistants.tests.with_streaming_response.retrieve(
@@ -148,7 +148,7 @@ class TestTests:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_retrieve(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `test_id` but received ''"):
@@ -156,7 +156,7 @@ class TestTests:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_update(self, client: Telnyx) -> None:
         test = client.ai.assistants.tests.update(
@@ -164,7 +164,7 @@ class TestTests:
         )
         assert_matches_type(AssistantTest, test, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_update_with_all_params(self, client: Telnyx) -> None:
         test = client.ai.assistants.tests.update(
@@ -185,7 +185,7 @@ class TestTests:
         )
         assert_matches_type(AssistantTest, test, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_update(self, client: Telnyx) -> None:
         response = client.ai.assistants.tests.with_raw_response.update(
@@ -197,7 +197,7 @@ class TestTests:
         test = response.parse()
         assert_matches_type(AssistantTest, test, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_update(self, client: Telnyx) -> None:
         with client.ai.assistants.tests.with_streaming_response.update(
@@ -211,7 +211,7 @@ class TestTests:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_update(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `test_id` but received ''"):
@@ -219,13 +219,13 @@ class TestTests:
                 test_id="",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         test = client.ai.assistants.tests.list()
         assert_matches_type(SyncDefaultFlatPagination[AssistantTest], test, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         test = client.ai.assistants.tests.list(
@@ -237,7 +237,7 @@ class TestTests:
         )
         assert_matches_type(SyncDefaultFlatPagination[AssistantTest], test, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Telnyx) -> None:
         response = client.ai.assistants.tests.with_raw_response.list()
@@ -247,7 +247,7 @@ class TestTests:
         test = response.parse()
         assert_matches_type(SyncDefaultFlatPagination[AssistantTest], test, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Telnyx) -> None:
         with client.ai.assistants.tests.with_streaming_response.list() as response:
@@ -259,7 +259,7 @@ class TestTests:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_delete(self, client: Telnyx) -> None:
         test = client.ai.assistants.tests.delete(
@@ -267,7 +267,7 @@ class TestTests:
         )
         assert test is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_delete(self, client: Telnyx) -> None:
         response = client.ai.assistants.tests.with_raw_response.delete(
@@ -279,7 +279,7 @@ class TestTests:
         test = response.parse()
         assert test is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_delete(self, client: Telnyx) -> None:
         with client.ai.assistants.tests.with_streaming_response.delete(
@@ -293,7 +293,7 @@ class TestTests:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_delete(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `test_id` but received ''"):
@@ -307,7 +307,7 @@ class TestAsyncTests:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncTelnyx) -> None:
         test = await async_client.ai.assistants.tests.create(
@@ -327,7 +327,7 @@ class TestAsyncTests:
         )
         assert_matches_type(AssistantTest, test, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncTelnyx) -> None:
         test = await async_client.ai.assistants.tests.create(
@@ -351,7 +351,7 @@ class TestAsyncTests:
         )
         assert_matches_type(AssistantTest, test, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.ai.assistants.tests.with_raw_response.create(
@@ -375,7 +375,7 @@ class TestAsyncTests:
         test = await response.parse()
         assert_matches_type(AssistantTest, test, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncTelnyx) -> None:
         async with async_client.ai.assistants.tests.with_streaming_response.create(
@@ -401,7 +401,7 @@ class TestAsyncTests:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
         test = await async_client.ai.assistants.tests.retrieve(
@@ -409,7 +409,7 @@ class TestAsyncTests:
         )
         assert_matches_type(AssistantTest, test, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.ai.assistants.tests.with_raw_response.retrieve(
@@ -421,7 +421,7 @@ class TestAsyncTests:
         test = await response.parse()
         assert_matches_type(AssistantTest, test, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         async with async_client.ai.assistants.tests.with_streaming_response.retrieve(
@@ -435,7 +435,7 @@ class TestAsyncTests:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `test_id` but received ''"):
@@ -443,7 +443,7 @@ class TestAsyncTests:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_update(self, async_client: AsyncTelnyx) -> None:
         test = await async_client.ai.assistants.tests.update(
@@ -451,7 +451,7 @@ class TestAsyncTests:
         )
         assert_matches_type(AssistantTest, test, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncTelnyx) -> None:
         test = await async_client.ai.assistants.tests.update(
@@ -472,7 +472,7 @@ class TestAsyncTests:
         )
         assert_matches_type(AssistantTest, test, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.ai.assistants.tests.with_raw_response.update(
@@ -484,7 +484,7 @@ class TestAsyncTests:
         test = await response.parse()
         assert_matches_type(AssistantTest, test, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncTelnyx) -> None:
         async with async_client.ai.assistants.tests.with_streaming_response.update(
@@ -498,7 +498,7 @@ class TestAsyncTests:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_update(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `test_id` but received ''"):
@@ -506,13 +506,13 @@ class TestAsyncTests:
                 test_id="",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         test = await async_client.ai.assistants.tests.list()
         assert_matches_type(AsyncDefaultFlatPagination[AssistantTest], test, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         test = await async_client.ai.assistants.tests.list(
@@ -524,7 +524,7 @@ class TestAsyncTests:
         )
         assert_matches_type(AsyncDefaultFlatPagination[AssistantTest], test, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.ai.assistants.tests.with_raw_response.list()
@@ -534,7 +534,7 @@ class TestAsyncTests:
         test = await response.parse()
         assert_matches_type(AsyncDefaultFlatPagination[AssistantTest], test, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncTelnyx) -> None:
         async with async_client.ai.assistants.tests.with_streaming_response.list() as response:
@@ -546,7 +546,7 @@ class TestAsyncTests:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_delete(self, async_client: AsyncTelnyx) -> None:
         test = await async_client.ai.assistants.tests.delete(
@@ -554,7 +554,7 @@ class TestAsyncTests:
         )
         assert test is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.ai.assistants.tests.with_raw_response.delete(
@@ -566,7 +566,7 @@ class TestAsyncTests:
         test = await response.parse()
         assert test is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncTelnyx) -> None:
         async with async_client.ai.assistants.tests.with_streaming_response.delete(
@@ -580,7 +580,7 @@ class TestAsyncTests:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `test_id` but received ''"):

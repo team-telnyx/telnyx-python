@@ -24,7 +24,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestSimCardGroups:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create(self, client: Telnyx) -> None:
         sim_card_group = client.sim_card_groups.create(
@@ -32,7 +32,7 @@ class TestSimCardGroups:
         )
         assert_matches_type(SimCardGroupCreateResponse, sim_card_group, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create_with_all_params(self, client: Telnyx) -> None:
         sim_card_group = client.sim_card_groups.create(
@@ -44,7 +44,7 @@ class TestSimCardGroups:
         )
         assert_matches_type(SimCardGroupCreateResponse, sim_card_group, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: Telnyx) -> None:
         response = client.sim_card_groups.with_raw_response.create(
@@ -56,7 +56,7 @@ class TestSimCardGroups:
         sim_card_group = response.parse()
         assert_matches_type(SimCardGroupCreateResponse, sim_card_group, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: Telnyx) -> None:
         with client.sim_card_groups.with_streaming_response.create(
@@ -70,7 +70,7 @@ class TestSimCardGroups:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Telnyx) -> None:
         sim_card_group = client.sim_card_groups.retrieve(
@@ -78,7 +78,7 @@ class TestSimCardGroups:
         )
         assert_matches_type(SimCardGroupRetrieveResponse, sim_card_group, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_retrieve_with_all_params(self, client: Telnyx) -> None:
         sim_card_group = client.sim_card_groups.retrieve(
@@ -87,7 +87,7 @@ class TestSimCardGroups:
         )
         assert_matches_type(SimCardGroupRetrieveResponse, sim_card_group, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
         response = client.sim_card_groups.with_raw_response.retrieve(
@@ -99,7 +99,7 @@ class TestSimCardGroups:
         sim_card_group = response.parse()
         assert_matches_type(SimCardGroupRetrieveResponse, sim_card_group, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
         with client.sim_card_groups.with_streaming_response.retrieve(
@@ -113,7 +113,7 @@ class TestSimCardGroups:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_retrieve(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -121,7 +121,7 @@ class TestSimCardGroups:
                 id="",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_update(self, client: Telnyx) -> None:
         sim_card_group = client.sim_card_groups.update(
@@ -129,7 +129,7 @@ class TestSimCardGroups:
         )
         assert_matches_type(SimCardGroupUpdateResponse, sim_card_group, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_update_with_all_params(self, client: Telnyx) -> None:
         sim_card_group = client.sim_card_groups.update(
@@ -142,7 +142,7 @@ class TestSimCardGroups:
         )
         assert_matches_type(SimCardGroupUpdateResponse, sim_card_group, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_update(self, client: Telnyx) -> None:
         response = client.sim_card_groups.with_raw_response.update(
@@ -154,7 +154,7 @@ class TestSimCardGroups:
         sim_card_group = response.parse()
         assert_matches_type(SimCardGroupUpdateResponse, sim_card_group, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_update(self, client: Telnyx) -> None:
         with client.sim_card_groups.with_streaming_response.update(
@@ -168,7 +168,7 @@ class TestSimCardGroups:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_update(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -176,13 +176,13 @@ class TestSimCardGroups:
                 id="",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         sim_card_group = client.sim_card_groups.list()
         assert_matches_type(SyncDefaultFlatPagination[SimCardGroupListResponse], sim_card_group, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         sim_card_group = client.sim_card_groups.list(
@@ -194,7 +194,7 @@ class TestSimCardGroups:
         )
         assert_matches_type(SyncDefaultFlatPagination[SimCardGroupListResponse], sim_card_group, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Telnyx) -> None:
         response = client.sim_card_groups.with_raw_response.list()
@@ -204,7 +204,7 @@ class TestSimCardGroups:
         sim_card_group = response.parse()
         assert_matches_type(SyncDefaultFlatPagination[SimCardGroupListResponse], sim_card_group, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Telnyx) -> None:
         with client.sim_card_groups.with_streaming_response.list() as response:
@@ -216,7 +216,7 @@ class TestSimCardGroups:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_delete(self, client: Telnyx) -> None:
         sim_card_group = client.sim_card_groups.delete(
@@ -224,7 +224,7 @@ class TestSimCardGroups:
         )
         assert_matches_type(SimCardGroupDeleteResponse, sim_card_group, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_delete(self, client: Telnyx) -> None:
         response = client.sim_card_groups.with_raw_response.delete(
@@ -236,7 +236,7 @@ class TestSimCardGroups:
         sim_card_group = response.parse()
         assert_matches_type(SimCardGroupDeleteResponse, sim_card_group, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_delete(self, client: Telnyx) -> None:
         with client.sim_card_groups.with_streaming_response.delete(
@@ -250,7 +250,7 @@ class TestSimCardGroups:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_delete(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -264,7 +264,7 @@ class TestAsyncSimCardGroups:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncTelnyx) -> None:
         sim_card_group = await async_client.sim_card_groups.create(
@@ -272,7 +272,7 @@ class TestAsyncSimCardGroups:
         )
         assert_matches_type(SimCardGroupCreateResponse, sim_card_group, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncTelnyx) -> None:
         sim_card_group = await async_client.sim_card_groups.create(
@@ -284,7 +284,7 @@ class TestAsyncSimCardGroups:
         )
         assert_matches_type(SimCardGroupCreateResponse, sim_card_group, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.sim_card_groups.with_raw_response.create(
@@ -296,7 +296,7 @@ class TestAsyncSimCardGroups:
         sim_card_group = await response.parse()
         assert_matches_type(SimCardGroupCreateResponse, sim_card_group, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncTelnyx) -> None:
         async with async_client.sim_card_groups.with_streaming_response.create(
@@ -310,7 +310,7 @@ class TestAsyncSimCardGroups:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
         sim_card_group = await async_client.sim_card_groups.retrieve(
@@ -318,7 +318,7 @@ class TestAsyncSimCardGroups:
         )
         assert_matches_type(SimCardGroupRetrieveResponse, sim_card_group, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_retrieve_with_all_params(self, async_client: AsyncTelnyx) -> None:
         sim_card_group = await async_client.sim_card_groups.retrieve(
@@ -327,7 +327,7 @@ class TestAsyncSimCardGroups:
         )
         assert_matches_type(SimCardGroupRetrieveResponse, sim_card_group, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.sim_card_groups.with_raw_response.retrieve(
@@ -339,7 +339,7 @@ class TestAsyncSimCardGroups:
         sim_card_group = await response.parse()
         assert_matches_type(SimCardGroupRetrieveResponse, sim_card_group, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         async with async_client.sim_card_groups.with_streaming_response.retrieve(
@@ -353,7 +353,7 @@ class TestAsyncSimCardGroups:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -361,7 +361,7 @@ class TestAsyncSimCardGroups:
                 id="",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_update(self, async_client: AsyncTelnyx) -> None:
         sim_card_group = await async_client.sim_card_groups.update(
@@ -369,7 +369,7 @@ class TestAsyncSimCardGroups:
         )
         assert_matches_type(SimCardGroupUpdateResponse, sim_card_group, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncTelnyx) -> None:
         sim_card_group = await async_client.sim_card_groups.update(
@@ -382,7 +382,7 @@ class TestAsyncSimCardGroups:
         )
         assert_matches_type(SimCardGroupUpdateResponse, sim_card_group, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.sim_card_groups.with_raw_response.update(
@@ -394,7 +394,7 @@ class TestAsyncSimCardGroups:
         sim_card_group = await response.parse()
         assert_matches_type(SimCardGroupUpdateResponse, sim_card_group, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncTelnyx) -> None:
         async with async_client.sim_card_groups.with_streaming_response.update(
@@ -408,7 +408,7 @@ class TestAsyncSimCardGroups:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_update(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -416,13 +416,13 @@ class TestAsyncSimCardGroups:
                 id="",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         sim_card_group = await async_client.sim_card_groups.list()
         assert_matches_type(AsyncDefaultFlatPagination[SimCardGroupListResponse], sim_card_group, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         sim_card_group = await async_client.sim_card_groups.list(
@@ -434,7 +434,7 @@ class TestAsyncSimCardGroups:
         )
         assert_matches_type(AsyncDefaultFlatPagination[SimCardGroupListResponse], sim_card_group, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.sim_card_groups.with_raw_response.list()
@@ -444,7 +444,7 @@ class TestAsyncSimCardGroups:
         sim_card_group = await response.parse()
         assert_matches_type(AsyncDefaultFlatPagination[SimCardGroupListResponse], sim_card_group, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncTelnyx) -> None:
         async with async_client.sim_card_groups.with_streaming_response.list() as response:
@@ -456,7 +456,7 @@ class TestAsyncSimCardGroups:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_delete(self, async_client: AsyncTelnyx) -> None:
         sim_card_group = await async_client.sim_card_groups.delete(
@@ -464,7 +464,7 @@ class TestAsyncSimCardGroups:
         )
         assert_matches_type(SimCardGroupDeleteResponse, sim_card_group, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.sim_card_groups.with_raw_response.delete(
@@ -476,7 +476,7 @@ class TestAsyncSimCardGroups:
         sim_card_group = await response.parse()
         assert_matches_type(SimCardGroupDeleteResponse, sim_card_group, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncTelnyx) -> None:
         async with async_client.sim_card_groups.with_streaming_response.delete(
@@ -490,7 +490,7 @@ class TestAsyncSimCardGroups:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):

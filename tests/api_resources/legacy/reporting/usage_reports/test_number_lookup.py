@@ -22,13 +22,13 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestNumberLookup:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create(self, client: Telnyx) -> None:
         number_lookup = client.legacy.reporting.usage_reports.number_lookup.create()
         assert_matches_type(NumberLookupCreateResponse, number_lookup, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create_with_all_params(self, client: Telnyx) -> None:
         number_lookup = client.legacy.reporting.usage_reports.number_lookup.create(
@@ -39,7 +39,7 @@ class TestNumberLookup:
         )
         assert_matches_type(NumberLookupCreateResponse, number_lookup, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: Telnyx) -> None:
         response = client.legacy.reporting.usage_reports.number_lookup.with_raw_response.create()
@@ -49,7 +49,7 @@ class TestNumberLookup:
         number_lookup = response.parse()
         assert_matches_type(NumberLookupCreateResponse, number_lookup, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: Telnyx) -> None:
         with client.legacy.reporting.usage_reports.number_lookup.with_streaming_response.create() as response:
@@ -61,7 +61,7 @@ class TestNumberLookup:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Telnyx) -> None:
         number_lookup = client.legacy.reporting.usage_reports.number_lookup.retrieve(
@@ -69,7 +69,7 @@ class TestNumberLookup:
         )
         assert_matches_type(NumberLookupRetrieveResponse, number_lookup, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
         response = client.legacy.reporting.usage_reports.number_lookup.with_raw_response.retrieve(
@@ -81,7 +81,7 @@ class TestNumberLookup:
         number_lookup = response.parse()
         assert_matches_type(NumberLookupRetrieveResponse, number_lookup, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
         with client.legacy.reporting.usage_reports.number_lookup.with_streaming_response.retrieve(
@@ -95,7 +95,7 @@ class TestNumberLookup:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_retrieve(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -103,13 +103,13 @@ class TestNumberLookup:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         number_lookup = client.legacy.reporting.usage_reports.number_lookup.list()
         assert_matches_type(NumberLookupListResponse, number_lookup, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Telnyx) -> None:
         response = client.legacy.reporting.usage_reports.number_lookup.with_raw_response.list()
@@ -119,7 +119,7 @@ class TestNumberLookup:
         number_lookup = response.parse()
         assert_matches_type(NumberLookupListResponse, number_lookup, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Telnyx) -> None:
         with client.legacy.reporting.usage_reports.number_lookup.with_streaming_response.list() as response:
@@ -131,7 +131,7 @@ class TestNumberLookup:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_delete(self, client: Telnyx) -> None:
         number_lookup = client.legacy.reporting.usage_reports.number_lookup.delete(
@@ -139,7 +139,7 @@ class TestNumberLookup:
         )
         assert number_lookup is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_delete(self, client: Telnyx) -> None:
         response = client.legacy.reporting.usage_reports.number_lookup.with_raw_response.delete(
@@ -151,7 +151,7 @@ class TestNumberLookup:
         number_lookup = response.parse()
         assert number_lookup is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_delete(self, client: Telnyx) -> None:
         with client.legacy.reporting.usage_reports.number_lookup.with_streaming_response.delete(
@@ -165,7 +165,7 @@ class TestNumberLookup:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_delete(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -179,13 +179,13 @@ class TestAsyncNumberLookup:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncTelnyx) -> None:
         number_lookup = await async_client.legacy.reporting.usage_reports.number_lookup.create()
         assert_matches_type(NumberLookupCreateResponse, number_lookup, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncTelnyx) -> None:
         number_lookup = await async_client.legacy.reporting.usage_reports.number_lookup.create(
@@ -196,7 +196,7 @@ class TestAsyncNumberLookup:
         )
         assert_matches_type(NumberLookupCreateResponse, number_lookup, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.legacy.reporting.usage_reports.number_lookup.with_raw_response.create()
@@ -206,7 +206,7 @@ class TestAsyncNumberLookup:
         number_lookup = await response.parse()
         assert_matches_type(NumberLookupCreateResponse, number_lookup, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncTelnyx) -> None:
         async with (
@@ -220,7 +220,7 @@ class TestAsyncNumberLookup:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
         number_lookup = await async_client.legacy.reporting.usage_reports.number_lookup.retrieve(
@@ -228,7 +228,7 @@ class TestAsyncNumberLookup:
         )
         assert_matches_type(NumberLookupRetrieveResponse, number_lookup, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.legacy.reporting.usage_reports.number_lookup.with_raw_response.retrieve(
@@ -240,7 +240,7 @@ class TestAsyncNumberLookup:
         number_lookup = await response.parse()
         assert_matches_type(NumberLookupRetrieveResponse, number_lookup, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         async with async_client.legacy.reporting.usage_reports.number_lookup.with_streaming_response.retrieve(
@@ -254,7 +254,7 @@ class TestAsyncNumberLookup:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -262,13 +262,13 @@ class TestAsyncNumberLookup:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         number_lookup = await async_client.legacy.reporting.usage_reports.number_lookup.list()
         assert_matches_type(NumberLookupListResponse, number_lookup, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.legacy.reporting.usage_reports.number_lookup.with_raw_response.list()
@@ -278,7 +278,7 @@ class TestAsyncNumberLookup:
         number_lookup = await response.parse()
         assert_matches_type(NumberLookupListResponse, number_lookup, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncTelnyx) -> None:
         async with async_client.legacy.reporting.usage_reports.number_lookup.with_streaming_response.list() as response:
@@ -290,7 +290,7 @@ class TestAsyncNumberLookup:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_delete(self, async_client: AsyncTelnyx) -> None:
         number_lookup = await async_client.legacy.reporting.usage_reports.number_lookup.delete(
@@ -298,7 +298,7 @@ class TestAsyncNumberLookup:
         )
         assert number_lookup is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.legacy.reporting.usage_reports.number_lookup.with_raw_response.delete(
@@ -310,7 +310,7 @@ class TestAsyncNumberLookup:
         number_lookup = await response.parse()
         assert number_lookup is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncTelnyx) -> None:
         async with async_client.legacy.reporting.usage_reports.number_lookup.with_streaming_response.delete(
@@ -324,7 +324,7 @@ class TestAsyncNumberLookup:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):

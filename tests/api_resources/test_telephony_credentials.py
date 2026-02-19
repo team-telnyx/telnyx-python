@@ -24,7 +24,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestTelephonyCredentials:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create(self, client: Telnyx) -> None:
         telephony_credential = client.telephony_credentials.create(
@@ -32,7 +32,7 @@ class TestTelephonyCredentials:
         )
         assert_matches_type(TelephonyCredentialCreateResponse, telephony_credential, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create_with_all_params(self, client: Telnyx) -> None:
         telephony_credential = client.telephony_credentials.create(
@@ -43,7 +43,7 @@ class TestTelephonyCredentials:
         )
         assert_matches_type(TelephonyCredentialCreateResponse, telephony_credential, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: Telnyx) -> None:
         response = client.telephony_credentials.with_raw_response.create(
@@ -55,7 +55,7 @@ class TestTelephonyCredentials:
         telephony_credential = response.parse()
         assert_matches_type(TelephonyCredentialCreateResponse, telephony_credential, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: Telnyx) -> None:
         with client.telephony_credentials.with_streaming_response.create(
@@ -69,7 +69,7 @@ class TestTelephonyCredentials:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Telnyx) -> None:
         telephony_credential = client.telephony_credentials.retrieve(
@@ -77,7 +77,7 @@ class TestTelephonyCredentials:
         )
         assert_matches_type(TelephonyCredentialRetrieveResponse, telephony_credential, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
         response = client.telephony_credentials.with_raw_response.retrieve(
@@ -89,7 +89,7 @@ class TestTelephonyCredentials:
         telephony_credential = response.parse()
         assert_matches_type(TelephonyCredentialRetrieveResponse, telephony_credential, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
         with client.telephony_credentials.with_streaming_response.retrieve(
@@ -103,7 +103,7 @@ class TestTelephonyCredentials:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_retrieve(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -111,7 +111,7 @@ class TestTelephonyCredentials:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_update(self, client: Telnyx) -> None:
         telephony_credential = client.telephony_credentials.update(
@@ -119,7 +119,7 @@ class TestTelephonyCredentials:
         )
         assert_matches_type(TelephonyCredentialUpdateResponse, telephony_credential, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_update_with_all_params(self, client: Telnyx) -> None:
         telephony_credential = client.telephony_credentials.update(
@@ -131,7 +131,7 @@ class TestTelephonyCredentials:
         )
         assert_matches_type(TelephonyCredentialUpdateResponse, telephony_credential, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_update(self, client: Telnyx) -> None:
         response = client.telephony_credentials.with_raw_response.update(
@@ -143,7 +143,7 @@ class TestTelephonyCredentials:
         telephony_credential = response.parse()
         assert_matches_type(TelephonyCredentialUpdateResponse, telephony_credential, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_update(self, client: Telnyx) -> None:
         with client.telephony_credentials.with_streaming_response.update(
@@ -157,7 +157,7 @@ class TestTelephonyCredentials:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_update(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -165,13 +165,13 @@ class TestTelephonyCredentials:
                 id="",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         telephony_credential = client.telephony_credentials.list()
         assert_matches_type(SyncDefaultFlatPagination[TelephonyCredential], telephony_credential, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         telephony_credential = client.telephony_credentials.list(
@@ -187,7 +187,7 @@ class TestTelephonyCredentials:
         )
         assert_matches_type(SyncDefaultFlatPagination[TelephonyCredential], telephony_credential, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Telnyx) -> None:
         response = client.telephony_credentials.with_raw_response.list()
@@ -197,7 +197,7 @@ class TestTelephonyCredentials:
         telephony_credential = response.parse()
         assert_matches_type(SyncDefaultFlatPagination[TelephonyCredential], telephony_credential, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Telnyx) -> None:
         with client.telephony_credentials.with_streaming_response.list() as response:
@@ -209,7 +209,7 @@ class TestTelephonyCredentials:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_delete(self, client: Telnyx) -> None:
         telephony_credential = client.telephony_credentials.delete(
@@ -217,7 +217,7 @@ class TestTelephonyCredentials:
         )
         assert_matches_type(TelephonyCredentialDeleteResponse, telephony_credential, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_delete(self, client: Telnyx) -> None:
         response = client.telephony_credentials.with_raw_response.delete(
@@ -229,7 +229,7 @@ class TestTelephonyCredentials:
         telephony_credential = response.parse()
         assert_matches_type(TelephonyCredentialDeleteResponse, telephony_credential, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_delete(self, client: Telnyx) -> None:
         with client.telephony_credentials.with_streaming_response.delete(
@@ -243,7 +243,7 @@ class TestTelephonyCredentials:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_delete(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -251,7 +251,7 @@ class TestTelephonyCredentials:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create_token(self, client: Telnyx) -> None:
         telephony_credential = client.telephony_credentials.create_token(
@@ -259,7 +259,7 @@ class TestTelephonyCredentials:
         )
         assert_matches_type(str, telephony_credential, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_create_token(self, client: Telnyx) -> None:
         response = client.telephony_credentials.with_raw_response.create_token(
@@ -271,7 +271,7 @@ class TestTelephonyCredentials:
         telephony_credential = response.parse()
         assert_matches_type(str, telephony_credential, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_create_token(self, client: Telnyx) -> None:
         with client.telephony_credentials.with_streaming_response.create_token(
@@ -285,7 +285,7 @@ class TestTelephonyCredentials:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_create_token(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -299,7 +299,7 @@ class TestAsyncTelephonyCredentials:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncTelnyx) -> None:
         telephony_credential = await async_client.telephony_credentials.create(
@@ -307,7 +307,7 @@ class TestAsyncTelephonyCredentials:
         )
         assert_matches_type(TelephonyCredentialCreateResponse, telephony_credential, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncTelnyx) -> None:
         telephony_credential = await async_client.telephony_credentials.create(
@@ -318,7 +318,7 @@ class TestAsyncTelephonyCredentials:
         )
         assert_matches_type(TelephonyCredentialCreateResponse, telephony_credential, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.telephony_credentials.with_raw_response.create(
@@ -330,7 +330,7 @@ class TestAsyncTelephonyCredentials:
         telephony_credential = await response.parse()
         assert_matches_type(TelephonyCredentialCreateResponse, telephony_credential, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncTelnyx) -> None:
         async with async_client.telephony_credentials.with_streaming_response.create(
@@ -344,7 +344,7 @@ class TestAsyncTelephonyCredentials:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
         telephony_credential = await async_client.telephony_credentials.retrieve(
@@ -352,7 +352,7 @@ class TestAsyncTelephonyCredentials:
         )
         assert_matches_type(TelephonyCredentialRetrieveResponse, telephony_credential, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.telephony_credentials.with_raw_response.retrieve(
@@ -364,7 +364,7 @@ class TestAsyncTelephonyCredentials:
         telephony_credential = await response.parse()
         assert_matches_type(TelephonyCredentialRetrieveResponse, telephony_credential, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         async with async_client.telephony_credentials.with_streaming_response.retrieve(
@@ -378,7 +378,7 @@ class TestAsyncTelephonyCredentials:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -386,7 +386,7 @@ class TestAsyncTelephonyCredentials:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_update(self, async_client: AsyncTelnyx) -> None:
         telephony_credential = await async_client.telephony_credentials.update(
@@ -394,7 +394,7 @@ class TestAsyncTelephonyCredentials:
         )
         assert_matches_type(TelephonyCredentialUpdateResponse, telephony_credential, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncTelnyx) -> None:
         telephony_credential = await async_client.telephony_credentials.update(
@@ -406,7 +406,7 @@ class TestAsyncTelephonyCredentials:
         )
         assert_matches_type(TelephonyCredentialUpdateResponse, telephony_credential, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.telephony_credentials.with_raw_response.update(
@@ -418,7 +418,7 @@ class TestAsyncTelephonyCredentials:
         telephony_credential = await response.parse()
         assert_matches_type(TelephonyCredentialUpdateResponse, telephony_credential, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncTelnyx) -> None:
         async with async_client.telephony_credentials.with_streaming_response.update(
@@ -432,7 +432,7 @@ class TestAsyncTelephonyCredentials:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_update(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -440,13 +440,13 @@ class TestAsyncTelephonyCredentials:
                 id="",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         telephony_credential = await async_client.telephony_credentials.list()
         assert_matches_type(AsyncDefaultFlatPagination[TelephonyCredential], telephony_credential, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         telephony_credential = await async_client.telephony_credentials.list(
@@ -462,7 +462,7 @@ class TestAsyncTelephonyCredentials:
         )
         assert_matches_type(AsyncDefaultFlatPagination[TelephonyCredential], telephony_credential, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.telephony_credentials.with_raw_response.list()
@@ -472,7 +472,7 @@ class TestAsyncTelephonyCredentials:
         telephony_credential = await response.parse()
         assert_matches_type(AsyncDefaultFlatPagination[TelephonyCredential], telephony_credential, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncTelnyx) -> None:
         async with async_client.telephony_credentials.with_streaming_response.list() as response:
@@ -486,7 +486,7 @@ class TestAsyncTelephonyCredentials:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_delete(self, async_client: AsyncTelnyx) -> None:
         telephony_credential = await async_client.telephony_credentials.delete(
@@ -494,7 +494,7 @@ class TestAsyncTelephonyCredentials:
         )
         assert_matches_type(TelephonyCredentialDeleteResponse, telephony_credential, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.telephony_credentials.with_raw_response.delete(
@@ -506,7 +506,7 @@ class TestAsyncTelephonyCredentials:
         telephony_credential = await response.parse()
         assert_matches_type(TelephonyCredentialDeleteResponse, telephony_credential, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncTelnyx) -> None:
         async with async_client.telephony_credentials.with_streaming_response.delete(
@@ -520,7 +520,7 @@ class TestAsyncTelephonyCredentials:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -528,7 +528,7 @@ class TestAsyncTelephonyCredentials:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create_token(self, async_client: AsyncTelnyx) -> None:
         telephony_credential = await async_client.telephony_credentials.create_token(
@@ -536,7 +536,7 @@ class TestAsyncTelephonyCredentials:
         )
         assert_matches_type(str, telephony_credential, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_create_token(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.telephony_credentials.with_raw_response.create_token(
@@ -548,7 +548,7 @@ class TestAsyncTelephonyCredentials:
         telephony_credential = await response.parse()
         assert_matches_type(str, telephony_credential, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_create_token(self, async_client: AsyncTelnyx) -> None:
         async with async_client.telephony_credentials.with_streaming_response.create_token(
@@ -562,7 +562,7 @@ class TestAsyncTelephonyCredentials:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_create_token(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):

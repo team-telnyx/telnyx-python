@@ -24,7 +24,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestOAuth:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Telnyx) -> None:
         oauth = client.oauth.retrieve(
@@ -32,7 +32,7 @@ class TestOAuth:
         )
         assert_matches_type(OAuthRetrieveResponse, oauth, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
         response = client.oauth.with_raw_response.retrieve(
@@ -44,7 +44,7 @@ class TestOAuth:
         oauth = response.parse()
         assert_matches_type(OAuthRetrieveResponse, oauth, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
         with client.oauth.with_streaming_response.retrieve(
@@ -58,7 +58,7 @@ class TestOAuth:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_retrieve(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `consent_token` but received ''"):
@@ -66,7 +66,7 @@ class TestOAuth:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_grants(self, client: Telnyx) -> None:
         oauth = client.oauth.grants(
@@ -75,7 +75,7 @@ class TestOAuth:
         )
         assert_matches_type(OAuthGrantsResponse, oauth, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_grants(self, client: Telnyx) -> None:
         response = client.oauth.with_raw_response.grants(
@@ -88,7 +88,7 @@ class TestOAuth:
         oauth = response.parse()
         assert_matches_type(OAuthGrantsResponse, oauth, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_grants(self, client: Telnyx) -> None:
         with client.oauth.with_streaming_response.grants(
@@ -103,7 +103,7 @@ class TestOAuth:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_introspect(self, client: Telnyx) -> None:
         oauth = client.oauth.introspect(
@@ -111,7 +111,7 @@ class TestOAuth:
         )
         assert_matches_type(OAuthIntrospectResponse, oauth, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_introspect(self, client: Telnyx) -> None:
         response = client.oauth.with_raw_response.introspect(
@@ -123,7 +123,7 @@ class TestOAuth:
         oauth = response.parse()
         assert_matches_type(OAuthIntrospectResponse, oauth, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_introspect(self, client: Telnyx) -> None:
         with client.oauth.with_streaming_response.introspect(
@@ -137,13 +137,13 @@ class TestOAuth:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_register(self, client: Telnyx) -> None:
         oauth = client.oauth.register()
         assert_matches_type(OAuthRegisterResponse, oauth, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_register_with_all_params(self, client: Telnyx) -> None:
         oauth = client.oauth.register(
@@ -159,7 +159,7 @@ class TestOAuth:
         )
         assert_matches_type(OAuthRegisterResponse, oauth, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_register(self, client: Telnyx) -> None:
         response = client.oauth.with_raw_response.register()
@@ -169,7 +169,7 @@ class TestOAuth:
         oauth = response.parse()
         assert_matches_type(OAuthRegisterResponse, oauth, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_register(self, client: Telnyx) -> None:
         with client.oauth.with_streaming_response.register() as response:
@@ -181,7 +181,7 @@ class TestOAuth:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_retrieve_authorize(self, client: Telnyx) -> None:
         oauth = client.oauth.retrieve_authorize(
@@ -191,7 +191,7 @@ class TestOAuth:
         )
         assert oauth is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_retrieve_authorize_with_all_params(self, client: Telnyx) -> None:
         oauth = client.oauth.retrieve_authorize(
@@ -205,7 +205,7 @@ class TestOAuth:
         )
         assert oauth is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_retrieve_authorize(self, client: Telnyx) -> None:
         response = client.oauth.with_raw_response.retrieve_authorize(
@@ -219,7 +219,7 @@ class TestOAuth:
         oauth = response.parse()
         assert oauth is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_retrieve_authorize(self, client: Telnyx) -> None:
         with client.oauth.with_streaming_response.retrieve_authorize(
@@ -235,13 +235,13 @@ class TestOAuth:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_retrieve_jwks(self, client: Telnyx) -> None:
         oauth = client.oauth.retrieve_jwks()
         assert_matches_type(OAuthRetrieveJwksResponse, oauth, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_retrieve_jwks(self, client: Telnyx) -> None:
         response = client.oauth.with_raw_response.retrieve_jwks()
@@ -251,7 +251,7 @@ class TestOAuth:
         oauth = response.parse()
         assert_matches_type(OAuthRetrieveJwksResponse, oauth, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_retrieve_jwks(self, client: Telnyx) -> None:
         with client.oauth.with_streaming_response.retrieve_jwks() as response:
@@ -263,7 +263,7 @@ class TestOAuth:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_token(self, client: Telnyx) -> None:
         oauth = client.oauth.token(
@@ -271,7 +271,7 @@ class TestOAuth:
         )
         assert_matches_type(OAuthTokenResponse, oauth, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_token_with_all_params(self, client: Telnyx) -> None:
         oauth = client.oauth.token(
@@ -286,7 +286,7 @@ class TestOAuth:
         )
         assert_matches_type(OAuthTokenResponse, oauth, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_token(self, client: Telnyx) -> None:
         response = client.oauth.with_raw_response.token(
@@ -298,7 +298,7 @@ class TestOAuth:
         oauth = response.parse()
         assert_matches_type(OAuthTokenResponse, oauth, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_token(self, client: Telnyx) -> None:
         with client.oauth.with_streaming_response.token(
@@ -318,7 +318,7 @@ class TestAsyncOAuth:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
         oauth = await async_client.oauth.retrieve(
@@ -326,7 +326,7 @@ class TestAsyncOAuth:
         )
         assert_matches_type(OAuthRetrieveResponse, oauth, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.oauth.with_raw_response.retrieve(
@@ -338,7 +338,7 @@ class TestAsyncOAuth:
         oauth = await response.parse()
         assert_matches_type(OAuthRetrieveResponse, oauth, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         async with async_client.oauth.with_streaming_response.retrieve(
@@ -352,7 +352,7 @@ class TestAsyncOAuth:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `consent_token` but received ''"):
@@ -360,7 +360,7 @@ class TestAsyncOAuth:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_grants(self, async_client: AsyncTelnyx) -> None:
         oauth = await async_client.oauth.grants(
@@ -369,7 +369,7 @@ class TestAsyncOAuth:
         )
         assert_matches_type(OAuthGrantsResponse, oauth, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_grants(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.oauth.with_raw_response.grants(
@@ -382,7 +382,7 @@ class TestAsyncOAuth:
         oauth = await response.parse()
         assert_matches_type(OAuthGrantsResponse, oauth, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_grants(self, async_client: AsyncTelnyx) -> None:
         async with async_client.oauth.with_streaming_response.grants(
@@ -397,7 +397,7 @@ class TestAsyncOAuth:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_introspect(self, async_client: AsyncTelnyx) -> None:
         oauth = await async_client.oauth.introspect(
@@ -405,7 +405,7 @@ class TestAsyncOAuth:
         )
         assert_matches_type(OAuthIntrospectResponse, oauth, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_introspect(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.oauth.with_raw_response.introspect(
@@ -417,7 +417,7 @@ class TestAsyncOAuth:
         oauth = await response.parse()
         assert_matches_type(OAuthIntrospectResponse, oauth, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_introspect(self, async_client: AsyncTelnyx) -> None:
         async with async_client.oauth.with_streaming_response.introspect(
@@ -431,13 +431,13 @@ class TestAsyncOAuth:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_register(self, async_client: AsyncTelnyx) -> None:
         oauth = await async_client.oauth.register()
         assert_matches_type(OAuthRegisterResponse, oauth, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_register_with_all_params(self, async_client: AsyncTelnyx) -> None:
         oauth = await async_client.oauth.register(
@@ -453,7 +453,7 @@ class TestAsyncOAuth:
         )
         assert_matches_type(OAuthRegisterResponse, oauth, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_register(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.oauth.with_raw_response.register()
@@ -463,7 +463,7 @@ class TestAsyncOAuth:
         oauth = await response.parse()
         assert_matches_type(OAuthRegisterResponse, oauth, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_register(self, async_client: AsyncTelnyx) -> None:
         async with async_client.oauth.with_streaming_response.register() as response:
@@ -475,7 +475,7 @@ class TestAsyncOAuth:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_retrieve_authorize(self, async_client: AsyncTelnyx) -> None:
         oauth = await async_client.oauth.retrieve_authorize(
@@ -485,7 +485,7 @@ class TestAsyncOAuth:
         )
         assert oauth is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_retrieve_authorize_with_all_params(self, async_client: AsyncTelnyx) -> None:
         oauth = await async_client.oauth.retrieve_authorize(
@@ -499,7 +499,7 @@ class TestAsyncOAuth:
         )
         assert oauth is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_retrieve_authorize(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.oauth.with_raw_response.retrieve_authorize(
@@ -513,7 +513,7 @@ class TestAsyncOAuth:
         oauth = await response.parse()
         assert oauth is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve_authorize(self, async_client: AsyncTelnyx) -> None:
         async with async_client.oauth.with_streaming_response.retrieve_authorize(
@@ -529,13 +529,13 @@ class TestAsyncOAuth:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_retrieve_jwks(self, async_client: AsyncTelnyx) -> None:
         oauth = await async_client.oauth.retrieve_jwks()
         assert_matches_type(OAuthRetrieveJwksResponse, oauth, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_retrieve_jwks(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.oauth.with_raw_response.retrieve_jwks()
@@ -545,7 +545,7 @@ class TestAsyncOAuth:
         oauth = await response.parse()
         assert_matches_type(OAuthRetrieveJwksResponse, oauth, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve_jwks(self, async_client: AsyncTelnyx) -> None:
         async with async_client.oauth.with_streaming_response.retrieve_jwks() as response:
@@ -557,7 +557,7 @@ class TestAsyncOAuth:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_token(self, async_client: AsyncTelnyx) -> None:
         oauth = await async_client.oauth.token(
@@ -565,7 +565,7 @@ class TestAsyncOAuth:
         )
         assert_matches_type(OAuthTokenResponse, oauth, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_token_with_all_params(self, async_client: AsyncTelnyx) -> None:
         oauth = await async_client.oauth.token(
@@ -580,7 +580,7 @@ class TestAsyncOAuth:
         )
         assert_matches_type(OAuthTokenResponse, oauth, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_token(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.oauth.with_raw_response.token(
@@ -592,7 +592,7 @@ class TestAsyncOAuth:
         oauth = await response.parse()
         assert_matches_type(OAuthTokenResponse, oauth, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_token(self, async_client: AsyncTelnyx) -> None:
         async with async_client.oauth.with_streaming_response.token(

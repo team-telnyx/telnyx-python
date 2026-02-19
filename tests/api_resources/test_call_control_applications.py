@@ -24,7 +24,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestCallControlApplications:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create(self, client: Telnyx) -> None:
         call_control_application = client.call_control_applications.create(
@@ -33,7 +33,7 @@ class TestCallControlApplications:
         )
         assert_matches_type(CallControlApplicationCreateResponse, call_control_application, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create_with_all_params(self, client: Telnyx) -> None:
         call_control_application = client.call_control_applications.create(
@@ -62,7 +62,7 @@ class TestCallControlApplications:
         )
         assert_matches_type(CallControlApplicationCreateResponse, call_control_application, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: Telnyx) -> None:
         response = client.call_control_applications.with_raw_response.create(
@@ -75,7 +75,7 @@ class TestCallControlApplications:
         call_control_application = response.parse()
         assert_matches_type(CallControlApplicationCreateResponse, call_control_application, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: Telnyx) -> None:
         with client.call_control_applications.with_streaming_response.create(
@@ -90,7 +90,7 @@ class TestCallControlApplications:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Telnyx) -> None:
         call_control_application = client.call_control_applications.retrieve(
@@ -98,7 +98,7 @@ class TestCallControlApplications:
         )
         assert_matches_type(CallControlApplicationRetrieveResponse, call_control_application, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
         response = client.call_control_applications.with_raw_response.retrieve(
@@ -110,7 +110,7 @@ class TestCallControlApplications:
         call_control_application = response.parse()
         assert_matches_type(CallControlApplicationRetrieveResponse, call_control_application, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
         with client.call_control_applications.with_streaming_response.retrieve(
@@ -124,7 +124,7 @@ class TestCallControlApplications:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_retrieve(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -132,7 +132,7 @@ class TestCallControlApplications:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_update(self, client: Telnyx) -> None:
         call_control_application = client.call_control_applications.update(
@@ -142,7 +142,7 @@ class TestCallControlApplications:
         )
         assert_matches_type(CallControlApplicationUpdateResponse, call_control_application, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_update_with_all_params(self, client: Telnyx) -> None:
         call_control_application = client.call_control_applications.update(
@@ -173,7 +173,7 @@ class TestCallControlApplications:
         )
         assert_matches_type(CallControlApplicationUpdateResponse, call_control_application, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_update(self, client: Telnyx) -> None:
         response = client.call_control_applications.with_raw_response.update(
@@ -187,7 +187,7 @@ class TestCallControlApplications:
         call_control_application = response.parse()
         assert_matches_type(CallControlApplicationUpdateResponse, call_control_application, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_update(self, client: Telnyx) -> None:
         with client.call_control_applications.with_streaming_response.update(
@@ -203,7 +203,7 @@ class TestCallControlApplications:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_update(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -213,7 +213,7 @@ class TestCallControlApplications:
                 webhook_event_url="https://example.com",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         call_control_application = client.call_control_applications.list()
@@ -221,7 +221,7 @@ class TestCallControlApplications:
             SyncDefaultFlatPagination[CallControlApplication], call_control_application, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         call_control_application = client.call_control_applications.list(
@@ -254,7 +254,7 @@ class TestCallControlApplications:
             SyncDefaultFlatPagination[CallControlApplication], call_control_application, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Telnyx) -> None:
         response = client.call_control_applications.with_raw_response.list()
@@ -266,7 +266,7 @@ class TestCallControlApplications:
             SyncDefaultFlatPagination[CallControlApplication], call_control_application, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Telnyx) -> None:
         with client.call_control_applications.with_streaming_response.list() as response:
@@ -280,7 +280,7 @@ class TestCallControlApplications:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_delete(self, client: Telnyx) -> None:
         call_control_application = client.call_control_applications.delete(
@@ -288,7 +288,7 @@ class TestCallControlApplications:
         )
         assert_matches_type(CallControlApplicationDeleteResponse, call_control_application, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_delete(self, client: Telnyx) -> None:
         response = client.call_control_applications.with_raw_response.delete(
@@ -300,7 +300,7 @@ class TestCallControlApplications:
         call_control_application = response.parse()
         assert_matches_type(CallControlApplicationDeleteResponse, call_control_application, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_delete(self, client: Telnyx) -> None:
         with client.call_control_applications.with_streaming_response.delete(
@@ -314,7 +314,7 @@ class TestCallControlApplications:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_delete(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -328,7 +328,7 @@ class TestAsyncCallControlApplications:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncTelnyx) -> None:
         call_control_application = await async_client.call_control_applications.create(
@@ -337,7 +337,7 @@ class TestAsyncCallControlApplications:
         )
         assert_matches_type(CallControlApplicationCreateResponse, call_control_application, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncTelnyx) -> None:
         call_control_application = await async_client.call_control_applications.create(
@@ -366,7 +366,7 @@ class TestAsyncCallControlApplications:
         )
         assert_matches_type(CallControlApplicationCreateResponse, call_control_application, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.call_control_applications.with_raw_response.create(
@@ -379,7 +379,7 @@ class TestAsyncCallControlApplications:
         call_control_application = await response.parse()
         assert_matches_type(CallControlApplicationCreateResponse, call_control_application, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncTelnyx) -> None:
         async with async_client.call_control_applications.with_streaming_response.create(
@@ -394,7 +394,7 @@ class TestAsyncCallControlApplications:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
         call_control_application = await async_client.call_control_applications.retrieve(
@@ -402,7 +402,7 @@ class TestAsyncCallControlApplications:
         )
         assert_matches_type(CallControlApplicationRetrieveResponse, call_control_application, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.call_control_applications.with_raw_response.retrieve(
@@ -414,7 +414,7 @@ class TestAsyncCallControlApplications:
         call_control_application = await response.parse()
         assert_matches_type(CallControlApplicationRetrieveResponse, call_control_application, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         async with async_client.call_control_applications.with_streaming_response.retrieve(
@@ -428,7 +428,7 @@ class TestAsyncCallControlApplications:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -436,7 +436,7 @@ class TestAsyncCallControlApplications:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_update(self, async_client: AsyncTelnyx) -> None:
         call_control_application = await async_client.call_control_applications.update(
@@ -446,7 +446,7 @@ class TestAsyncCallControlApplications:
         )
         assert_matches_type(CallControlApplicationUpdateResponse, call_control_application, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncTelnyx) -> None:
         call_control_application = await async_client.call_control_applications.update(
@@ -477,7 +477,7 @@ class TestAsyncCallControlApplications:
         )
         assert_matches_type(CallControlApplicationUpdateResponse, call_control_application, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.call_control_applications.with_raw_response.update(
@@ -491,7 +491,7 @@ class TestAsyncCallControlApplications:
         call_control_application = await response.parse()
         assert_matches_type(CallControlApplicationUpdateResponse, call_control_application, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncTelnyx) -> None:
         async with async_client.call_control_applications.with_streaming_response.update(
@@ -507,7 +507,7 @@ class TestAsyncCallControlApplications:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_update(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -517,7 +517,7 @@ class TestAsyncCallControlApplications:
                 webhook_event_url="https://example.com",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         call_control_application = await async_client.call_control_applications.list()
@@ -525,7 +525,7 @@ class TestAsyncCallControlApplications:
             AsyncDefaultFlatPagination[CallControlApplication], call_control_application, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         call_control_application = await async_client.call_control_applications.list(
@@ -558,7 +558,7 @@ class TestAsyncCallControlApplications:
             AsyncDefaultFlatPagination[CallControlApplication], call_control_application, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.call_control_applications.with_raw_response.list()
@@ -570,7 +570,7 @@ class TestAsyncCallControlApplications:
             AsyncDefaultFlatPagination[CallControlApplication], call_control_application, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncTelnyx) -> None:
         async with async_client.call_control_applications.with_streaming_response.list() as response:
@@ -584,7 +584,7 @@ class TestAsyncCallControlApplications:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_delete(self, async_client: AsyncTelnyx) -> None:
         call_control_application = await async_client.call_control_applications.delete(
@@ -592,7 +592,7 @@ class TestAsyncCallControlApplications:
         )
         assert_matches_type(CallControlApplicationDeleteResponse, call_control_application, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.call_control_applications.with_raw_response.delete(
@@ -604,7 +604,7 @@ class TestAsyncCallControlApplications:
         call_control_application = await response.parse()
         assert_matches_type(CallControlApplicationDeleteResponse, call_control_application, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncTelnyx) -> None:
         async with async_client.call_control_applications.with_streaming_response.delete(
@@ -618,7 +618,7 @@ class TestAsyncCallControlApplications:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
