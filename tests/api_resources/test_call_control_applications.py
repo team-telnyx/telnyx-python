@@ -53,7 +53,7 @@ class TestCallControlApplications:
             },
             outbound={
                 "channel_limit": 10,
-                "outbound_voice_profile_id": "outbound_voice_profile_id",
+                "outbound_voice_profile_id": "1293384261075731499",
             },
             redact_dtmf_debug_logging=True,
             webhook_api_version="1",
@@ -163,7 +163,7 @@ class TestCallControlApplications:
             },
             outbound={
                 "channel_limit": 10,
-                "outbound_voice_profile_id": "outbound_voice_profile_id",
+                "outbound_voice_profile_id": "1293384261075731499",
             },
             redact_dtmf_debug_logging=True,
             tags=["tag1", "tag2"],
@@ -240,7 +240,7 @@ class TestCallControlApplications:
                     "lt": "2019-03-29T11:10:00Z",
                     "lte": "2019-03-29T11:10:00Z",
                 },
-                "outbound_outbound_voice_profile_id": "outbound.outbound_voice_profile_id",
+                "outbound_outbound_voice_profile_id": "1293384261075731499",
                 "product": "texml",
                 "status": "init",
                 "to": "+12025550142",
@@ -357,7 +357,7 @@ class TestAsyncCallControlApplications:
             },
             outbound={
                 "channel_limit": 10,
-                "outbound_voice_profile_id": "outbound_voice_profile_id",
+                "outbound_voice_profile_id": "1293384261075731499",
             },
             redact_dtmf_debug_logging=True,
             webhook_api_version="1",
@@ -467,7 +467,7 @@ class TestAsyncCallControlApplications:
             },
             outbound={
                 "channel_limit": 10,
-                "outbound_voice_profile_id": "outbound_voice_profile_id",
+                "outbound_voice_profile_id": "1293384261075731499",
             },
             redact_dtmf_debug_logging=True,
             tags=["tag1", "tag2"],
@@ -544,7 +544,7 @@ class TestAsyncCallControlApplications:
                     "lt": "2019-03-29T11:10:00Z",
                     "lte": "2019-03-29T11:10:00Z",
                 },
-                "outbound_outbound_voice_profile_id": "outbound.outbound_voice_profile_id",
+                "outbound_outbound_voice_profile_id": "1293384261075731499",
                 "product": "texml",
                 "status": "init",
                 "to": "+12025550142",
