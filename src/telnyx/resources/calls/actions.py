@@ -716,6 +716,7 @@ class ActionsResource(SyncAPIResource):
         assistant: AssistantParam | Omit = omit,
         client_state: str | Omit = omit,
         command_id: str | Omit = omit,
+        gather_ended_speech: str | Omit = omit,
         greeting: str | Omit = omit,
         interruption_settings: InterruptionSettingsParam | Omit = omit,
         language: GoogleTranscriptionLanguage | Omit = omit,
@@ -761,6 +762,9 @@ class ActionsResource(SyncAPIResource):
           command_id: Use this field to avoid duplicate commands. Telnyx will ignore any command with
               the same `command_id` for the same `call_control_id`.
 
+          gather_ended_speech: Text that will be played when the gathering has finished. There is a 3,000
+              character limit.
+
           greeting: Text that will be played when the gathering starts, if none then nothing will be
               played when the gathering starts. The greeting can be text for any voice or SSML
               for `AWS.Polly.<voice_id>` voices. There is a 3,000 character limit.
@@ -787,8 +791,7 @@ class ActionsResource(SyncAPIResource):
               using a model with native audio support (e.g. `fixie-ai/ultravox-v0_4`) will
               ignore this field.
 
-          user_response_timeout_ms: The number of milliseconds to wait for a user response before the voice
-              assistant times out and check if the user is still there.
+          user_response_timeout_ms: The maximum time in milliseconds to wait for user response before timing out.
 
           voice: The voice to be used by the voice assistant. Currently we support ElevenLabs,
               Telnyx and AWS voices.
@@ -833,6 +836,7 @@ class ActionsResource(SyncAPIResource):
                     "assistant": assistant,
                     "client_state": client_state,
                     "command_id": command_id,
+                    "gather_ended_speech": gather_ended_speech,
                     "greeting": greeting,
                     "interruption_settings": interruption_settings,
                     "language": language,
@@ -1670,9 +1674,11 @@ class ActionsResource(SyncAPIResource):
             "tr-TR",
         ]
         | Omit = omit,
+        loop: LoopcountParam | Omit = omit,
         payload_type: Literal["text", "ssml"] | Omit = omit,
         service_level: Literal["basic", "premium"] | Omit = omit,
         stop: str | Omit = omit,
+        target_legs: Literal["self", "opposite", "both"] | Omit = omit,
         voice_settings: action_speak_params.VoiceSettings | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1736,6 +1742,9 @@ class ActionsResource(SyncAPIResource):
           language: The language you want spoken. This parameter is ignored when a `Polly.*` voice
               is specified.
 
+          loop: The number of times to play the audio file. Use `infinity` to loop indefinitely.
+              Defaults to 1.
+
           payload_type: The type of the provided payload. The payload can either be plain text, or
               Speech Synthesis Markup Language (SSML).
 
@@ -1746,6 +1755,8 @@ class ActionsResource(SyncAPIResource):
               stop the current audio being played, and to play the next file in the queue.
               Specify `all` to stop the current audio file being played and to also clear all
               audio files from the queue.
+
+          target_legs: Specifies which legs of the call should receive the spoken audio.
 
           voice_settings: The settings associated with the voice selected
 
@@ -1768,9 +1779,11 @@ class ActionsResource(SyncAPIResource):
                     "client_state": client_state,
                     "command_id": command_id,
                     "language": language,
+                    "loop": loop,
                     "payload_type": payload_type,
                     "service_level": service_level,
                     "stop": stop,
+                    "target_legs": target_legs,
                     "voice_settings": voice_settings,
                 },
                 action_speak_params.ActionSpeakParams,
@@ -2595,8 +2608,10 @@ class ActionsResource(SyncAPIResource):
         *,
         client_state: str | Omit = omit,
         command_id: str | Omit = omit,
+        custom_parameters: Iterable[action_start_streaming_params.CustomParameter] | Omit = omit,
         dialogflow_config: DialogflowConfigParam | Omit = omit,
         enable_dialogflow: bool | Omit = omit,
+        stream_auth_token: str | Omit = omit,
         stream_bidirectional_codec: StreamBidirectionalCodec | Omit = omit,
         stream_bidirectional_mode: StreamBidirectionalMode | Omit = omit,
         stream_bidirectional_sampling_rate: StreamBidirectionalSamplingRate | Omit = omit,
@@ -2626,7 +2641,12 @@ class ActionsResource(SyncAPIResource):
           command_id: Use this field to avoid duplicate commands. Telnyx will ignore any command with
               the same `command_id` for the same `call_control_id`.
 
+          custom_parameters: Custom parameters to be sent as part of the WebSocket connection.
+
           enable_dialogflow: Enables Dialogflow for the current call. The default value is false.
+
+          stream_auth_token: An authentication token to be sent as part of the WebSocket connection. Maximum
+              length is 4000 characters.
 
           stream_bidirectional_codec: Indicates codec for bidirectional streaming RTP payloads. Used only with
               stream_bidirectional_mode=rtp. Case sensitive.
@@ -2660,8 +2680,10 @@ class ActionsResource(SyncAPIResource):
                 {
                     "client_state": client_state,
                     "command_id": command_id,
+                    "custom_parameters": custom_parameters,
                     "dialogflow_config": dialogflow_config,
                     "enable_dialogflow": enable_dialogflow,
+                    "stream_auth_token": stream_auth_token,
                     "stream_bidirectional_codec": stream_bidirectional_codec,
                     "stream_bidirectional_mode": stream_bidirectional_mode,
                     "stream_bidirectional_sampling_rate": stream_bidirectional_sampling_rate,
@@ -3285,6 +3307,7 @@ class ActionsResource(SyncAPIResource):
         media_name: str | Omit = omit,
         mute_dtmf: Literal["none", "both", "self", "opposite"] | Omit = omit,
         park_after_unbridge: str | Omit = omit,
+        preferred_codecs: str | Omit = omit,
         record: Literal["record-from-answer"] | Omit = omit,
         record_channels: Literal["single", "dual"] | Omit = omit,
         record_custom_file_name: str | Omit = omit,
@@ -3302,8 +3325,11 @@ class ActionsResource(SyncAPIResource):
         target_leg_client_state: str | Omit = omit,
         time_limit_secs: int | Omit = omit,
         timeout_secs: int | Omit = omit,
+        webhook_retries_policies: Dict[str, action_transfer_params.WebhookRetriesPolicies] | Omit = omit,
         webhook_url: str | Omit = omit,
         webhook_url_method: Literal["POST", "GET"] | Omit = omit,
+        webhook_urls: Dict[str, str] | Omit = omit,
+        webhook_urls_method: Literal["POST", "GET"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3384,6 +3410,10 @@ class ActionsResource(SyncAPIResource):
               or is transferred). If supplied with the value `self`, the current leg will be
               parked after unbridge. If not set, the default behavior is to hang up the leg.
 
+          preferred_codecs: The list of comma-separated codecs in order of preference to be used during the
+              call. The codecs supported are `G722`, `PCMU`, `PCMA`, `G729`, `OPUS`, `VP8`,
+              `H264`, `AMR-WB`.
+
           record: Start recording automatically after an event. Disabled by default.
 
           record_channels: Defines which channel should be recorded ('single' or 'dual') when `record` is
@@ -3440,10 +3470,20 @@ class ActionsResource(SyncAPIResource):
               `hangup_cause` of `timeout` will be sent. Minimum value is 5 seconds. Maximum
               value is 600 seconds.
 
+          webhook_retries_policies: A map of event types to retry policies. Each retry policy contains an array of
+              `retries_ms` specifying the delays between retry attempts in milliseconds.
+              Maximum 5 retries, total delay cannot exceed 60 seconds.
+
           webhook_url: Use this field to override the URL for which Telnyx will send subsequent
               webhooks to for this call.
 
           webhook_url_method: HTTP request type used for `webhook_url`.
+
+          webhook_urls: A map of event types to webhook URLs. When an event of the specified type
+              occurs, the webhook URL associated with that event type will be called instead
+              of `webhook_url`. Events not mapped here will use the default `webhook_url`.
+
+          webhook_urls_method: HTTP request method to invoke `webhook_urls`.
 
           extra_headers: Send extra headers
 
@@ -3473,6 +3513,7 @@ class ActionsResource(SyncAPIResource):
                     "media_name": media_name,
                     "mute_dtmf": mute_dtmf,
                     "park_after_unbridge": park_after_unbridge,
+                    "preferred_codecs": preferred_codecs,
                     "record": record,
                     "record_channels": record_channels,
                     "record_custom_file_name": record_custom_file_name,
@@ -3490,8 +3531,11 @@ class ActionsResource(SyncAPIResource):
                     "target_leg_client_state": target_leg_client_state,
                     "time_limit_secs": time_limit_secs,
                     "timeout_secs": timeout_secs,
+                    "webhook_retries_policies": webhook_retries_policies,
                     "webhook_url": webhook_url,
                     "webhook_url_method": webhook_url_method,
+                    "webhook_urls": webhook_urls,
+                    "webhook_urls_method": webhook_urls_method,
                 },
                 action_transfer_params.ActionTransferParams,
             ),
@@ -4137,6 +4181,7 @@ class AsyncActionsResource(AsyncAPIResource):
         assistant: AssistantParam | Omit = omit,
         client_state: str | Omit = omit,
         command_id: str | Omit = omit,
+        gather_ended_speech: str | Omit = omit,
         greeting: str | Omit = omit,
         interruption_settings: InterruptionSettingsParam | Omit = omit,
         language: GoogleTranscriptionLanguage | Omit = omit,
@@ -4182,6 +4227,9 @@ class AsyncActionsResource(AsyncAPIResource):
           command_id: Use this field to avoid duplicate commands. Telnyx will ignore any command with
               the same `command_id` for the same `call_control_id`.
 
+          gather_ended_speech: Text that will be played when the gathering has finished. There is a 3,000
+              character limit.
+
           greeting: Text that will be played when the gathering starts, if none then nothing will be
               played when the gathering starts. The greeting can be text for any voice or SSML
               for `AWS.Polly.<voice_id>` voices. There is a 3,000 character limit.
@@ -4208,8 +4256,7 @@ class AsyncActionsResource(AsyncAPIResource):
               using a model with native audio support (e.g. `fixie-ai/ultravox-v0_4`) will
               ignore this field.
 
-          user_response_timeout_ms: The number of milliseconds to wait for a user response before the voice
-              assistant times out and check if the user is still there.
+          user_response_timeout_ms: The maximum time in milliseconds to wait for user response before timing out.
 
           voice: The voice to be used by the voice assistant. Currently we support ElevenLabs,
               Telnyx and AWS voices.
@@ -4254,6 +4301,7 @@ class AsyncActionsResource(AsyncAPIResource):
                     "assistant": assistant,
                     "client_state": client_state,
                     "command_id": command_id,
+                    "gather_ended_speech": gather_ended_speech,
                     "greeting": greeting,
                     "interruption_settings": interruption_settings,
                     "language": language,
@@ -5091,9 +5139,11 @@ class AsyncActionsResource(AsyncAPIResource):
             "tr-TR",
         ]
         | Omit = omit,
+        loop: LoopcountParam | Omit = omit,
         payload_type: Literal["text", "ssml"] | Omit = omit,
         service_level: Literal["basic", "premium"] | Omit = omit,
         stop: str | Omit = omit,
+        target_legs: Literal["self", "opposite", "both"] | Omit = omit,
         voice_settings: action_speak_params.VoiceSettings | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -5157,6 +5207,9 @@ class AsyncActionsResource(AsyncAPIResource):
           language: The language you want spoken. This parameter is ignored when a `Polly.*` voice
               is specified.
 
+          loop: The number of times to play the audio file. Use `infinity` to loop indefinitely.
+              Defaults to 1.
+
           payload_type: The type of the provided payload. The payload can either be plain text, or
               Speech Synthesis Markup Language (SSML).
 
@@ -5167,6 +5220,8 @@ class AsyncActionsResource(AsyncAPIResource):
               stop the current audio being played, and to play the next file in the queue.
               Specify `all` to stop the current audio file being played and to also clear all
               audio files from the queue.
+
+          target_legs: Specifies which legs of the call should receive the spoken audio.
 
           voice_settings: The settings associated with the voice selected
 
@@ -5189,9 +5244,11 @@ class AsyncActionsResource(AsyncAPIResource):
                     "client_state": client_state,
                     "command_id": command_id,
                     "language": language,
+                    "loop": loop,
                     "payload_type": payload_type,
                     "service_level": service_level,
                     "stop": stop,
+                    "target_legs": target_legs,
                     "voice_settings": voice_settings,
                 },
                 action_speak_params.ActionSpeakParams,
@@ -6016,8 +6073,10 @@ class AsyncActionsResource(AsyncAPIResource):
         *,
         client_state: str | Omit = omit,
         command_id: str | Omit = omit,
+        custom_parameters: Iterable[action_start_streaming_params.CustomParameter] | Omit = omit,
         dialogflow_config: DialogflowConfigParam | Omit = omit,
         enable_dialogflow: bool | Omit = omit,
+        stream_auth_token: str | Omit = omit,
         stream_bidirectional_codec: StreamBidirectionalCodec | Omit = omit,
         stream_bidirectional_mode: StreamBidirectionalMode | Omit = omit,
         stream_bidirectional_sampling_rate: StreamBidirectionalSamplingRate | Omit = omit,
@@ -6047,7 +6106,12 @@ class AsyncActionsResource(AsyncAPIResource):
           command_id: Use this field to avoid duplicate commands. Telnyx will ignore any command with
               the same `command_id` for the same `call_control_id`.
 
+          custom_parameters: Custom parameters to be sent as part of the WebSocket connection.
+
           enable_dialogflow: Enables Dialogflow for the current call. The default value is false.
+
+          stream_auth_token: An authentication token to be sent as part of the WebSocket connection. Maximum
+              length is 4000 characters.
 
           stream_bidirectional_codec: Indicates codec for bidirectional streaming RTP payloads. Used only with
               stream_bidirectional_mode=rtp. Case sensitive.
@@ -6081,8 +6145,10 @@ class AsyncActionsResource(AsyncAPIResource):
                 {
                     "client_state": client_state,
                     "command_id": command_id,
+                    "custom_parameters": custom_parameters,
                     "dialogflow_config": dialogflow_config,
                     "enable_dialogflow": enable_dialogflow,
+                    "stream_auth_token": stream_auth_token,
                     "stream_bidirectional_codec": stream_bidirectional_codec,
                     "stream_bidirectional_mode": stream_bidirectional_mode,
                     "stream_bidirectional_sampling_rate": stream_bidirectional_sampling_rate,
@@ -6708,6 +6774,7 @@ class AsyncActionsResource(AsyncAPIResource):
         media_name: str | Omit = omit,
         mute_dtmf: Literal["none", "both", "self", "opposite"] | Omit = omit,
         park_after_unbridge: str | Omit = omit,
+        preferred_codecs: str | Omit = omit,
         record: Literal["record-from-answer"] | Omit = omit,
         record_channels: Literal["single", "dual"] | Omit = omit,
         record_custom_file_name: str | Omit = omit,
@@ -6725,8 +6792,11 @@ class AsyncActionsResource(AsyncAPIResource):
         target_leg_client_state: str | Omit = omit,
         time_limit_secs: int | Omit = omit,
         timeout_secs: int | Omit = omit,
+        webhook_retries_policies: Dict[str, action_transfer_params.WebhookRetriesPolicies] | Omit = omit,
         webhook_url: str | Omit = omit,
         webhook_url_method: Literal["POST", "GET"] | Omit = omit,
+        webhook_urls: Dict[str, str] | Omit = omit,
+        webhook_urls_method: Literal["POST", "GET"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -6807,6 +6877,10 @@ class AsyncActionsResource(AsyncAPIResource):
               or is transferred). If supplied with the value `self`, the current leg will be
               parked after unbridge. If not set, the default behavior is to hang up the leg.
 
+          preferred_codecs: The list of comma-separated codecs in order of preference to be used during the
+              call. The codecs supported are `G722`, `PCMU`, `PCMA`, `G729`, `OPUS`, `VP8`,
+              `H264`, `AMR-WB`.
+
           record: Start recording automatically after an event. Disabled by default.
 
           record_channels: Defines which channel should be recorded ('single' or 'dual') when `record` is
@@ -6863,10 +6937,20 @@ class AsyncActionsResource(AsyncAPIResource):
               `hangup_cause` of `timeout` will be sent. Minimum value is 5 seconds. Maximum
               value is 600 seconds.
 
+          webhook_retries_policies: A map of event types to retry policies. Each retry policy contains an array of
+              `retries_ms` specifying the delays between retry attempts in milliseconds.
+              Maximum 5 retries, total delay cannot exceed 60 seconds.
+
           webhook_url: Use this field to override the URL for which Telnyx will send subsequent
               webhooks to for this call.
 
           webhook_url_method: HTTP request type used for `webhook_url`.
+
+          webhook_urls: A map of event types to webhook URLs. When an event of the specified type
+              occurs, the webhook URL associated with that event type will be called instead
+              of `webhook_url`. Events not mapped here will use the default `webhook_url`.
+
+          webhook_urls_method: HTTP request method to invoke `webhook_urls`.
 
           extra_headers: Send extra headers
 
@@ -6896,6 +6980,7 @@ class AsyncActionsResource(AsyncAPIResource):
                     "media_name": media_name,
                     "mute_dtmf": mute_dtmf,
                     "park_after_unbridge": park_after_unbridge,
+                    "preferred_codecs": preferred_codecs,
                     "record": record,
                     "record_channels": record_channels,
                     "record_custom_file_name": record_custom_file_name,
@@ -6913,8 +6998,11 @@ class AsyncActionsResource(AsyncAPIResource):
                     "target_leg_client_state": target_leg_client_state,
                     "time_limit_secs": time_limit_secs,
                     "timeout_secs": timeout_secs,
+                    "webhook_retries_policies": webhook_retries_policies,
                     "webhook_url": webhook_url,
                     "webhook_url_method": webhook_url_method,
+                    "webhook_urls": webhook_urls,
+                    "webhook_urls_method": webhook_urls_method,
                 },
                 action_transfer_params.ActionTransferParams,
             ),
