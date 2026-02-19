@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import Union
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
+from .loopcount_param import LoopcountParam
 from .aws_voice_settings_param import AwsVoiceSettingsParam
 from .telnyx_voice_settings_param import TelnyxVoiceSettingsParam
 from .eleven_labs_voice_settings_param import ElevenLabsVoiceSettingsParam
@@ -100,6 +101,12 @@ class ActionSpeakParams(TypedDict, total=False):
     This parameter is ignored when a `Polly.*` voice is specified.
     """
 
+    loop: LoopcountParam
+    """The number of times to play the audio file.
+
+    Use `infinity` to loop indefinitely. Defaults to 1.
+    """
+
     payload_type: Literal["text", "ssml"]
     """The type of the provided payload.
 
@@ -121,6 +128,9 @@ class ActionSpeakParams(TypedDict, total=False):
     file in the queue. Specify `all` to stop the current audio file being played and
     to also clear all audio files from the queue.
     """
+
+    target_legs: Literal["self", "opposite", "both"]
+    """Specifies which legs of the call should receive the spoken audio."""
 
     voice_settings: VoiceSettings
     """The settings associated with the voice selected"""

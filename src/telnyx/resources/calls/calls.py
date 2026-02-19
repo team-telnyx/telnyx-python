@@ -116,6 +116,7 @@ class CallsResource(SyncAPIResource):
         sip_region: Literal["US", "Europe", "Canada", "Australia", "Middle East"] | Omit = omit,
         sip_transport_protocol: Literal["UDP", "TCP", "TLS"] | Omit = omit,
         sound_modifications: SoundModificationsParam | Omit = omit,
+        stream_auth_token: str | Omit = omit,
         stream_bidirectional_codec: StreamBidirectionalCodec | Omit = omit,
         stream_bidirectional_mode: StreamBidirectionalMode | Omit = omit,
         stream_bidirectional_sampling_rate: StreamBidirectionalSamplingRate | Omit = omit,
@@ -283,6 +284,9 @@ class CallsResource(SyncAPIResource):
 
           sound_modifications: Use this field to modify sound effects, for example adjust the pitch.
 
+          stream_auth_token: An authentication token to be sent as part of the WebSocket connection when
+              using streaming. Maximum length is 4000 characters.
+
           stream_bidirectional_codec: Indicates codec for bidirectional streaming RTP payloads. Used only with
               stream_bidirectional_mode=rtp. Case sensitive.
 
@@ -378,6 +382,7 @@ class CallsResource(SyncAPIResource):
                     "sip_region": sip_region,
                     "sip_transport_protocol": sip_transport_protocol,
                     "sound_modifications": sound_modifications,
+                    "stream_auth_token": stream_auth_token,
                     "stream_bidirectional_codec": stream_bidirectional_codec,
                     "stream_bidirectional_mode": stream_bidirectional_mode,
                     "stream_bidirectional_sampling_rate": stream_bidirectional_sampling_rate,
@@ -503,6 +508,7 @@ class AsyncCallsResource(AsyncAPIResource):
         sip_region: Literal["US", "Europe", "Canada", "Australia", "Middle East"] | Omit = omit,
         sip_transport_protocol: Literal["UDP", "TCP", "TLS"] | Omit = omit,
         sound_modifications: SoundModificationsParam | Omit = omit,
+        stream_auth_token: str | Omit = omit,
         stream_bidirectional_codec: StreamBidirectionalCodec | Omit = omit,
         stream_bidirectional_mode: StreamBidirectionalMode | Omit = omit,
         stream_bidirectional_sampling_rate: StreamBidirectionalSamplingRate | Omit = omit,
@@ -670,6 +676,9 @@ class AsyncCallsResource(AsyncAPIResource):
 
           sound_modifications: Use this field to modify sound effects, for example adjust the pitch.
 
+          stream_auth_token: An authentication token to be sent as part of the WebSocket connection when
+              using streaming. Maximum length is 4000 characters.
+
           stream_bidirectional_codec: Indicates codec for bidirectional streaming RTP payloads. Used only with
               stream_bidirectional_mode=rtp. Case sensitive.
 
@@ -765,6 +774,7 @@ class AsyncCallsResource(AsyncAPIResource):
                     "sip_region": sip_region,
                     "sip_transport_protocol": sip_transport_protocol,
                     "sound_modifications": sound_modifications,
+                    "stream_auth_token": stream_auth_token,
                     "stream_bidirectional_codec": stream_bidirectional_codec,
                     "stream_bidirectional_mode": stream_bidirectional_mode,
                     "stream_bidirectional_sampling_rate": stream_bidirectional_sampling_rate,

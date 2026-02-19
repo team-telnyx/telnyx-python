@@ -43,6 +43,12 @@ class ActionGatherUsingAIParams(TypedDict, total=False):
     `call_control_id`.
     """
 
+    gather_ended_speech: str
+    """Text that will be played when the gathering has finished.
+
+    There is a 3,000 character limit.
+    """
+
     greeting: str
     """
     Text that will be played when the gathering starts, if none then nothing will be
@@ -89,10 +95,7 @@ class ActionGatherUsingAIParams(TypedDict, total=False):
     """
 
     user_response_timeout_ms: int
-    """
-    The number of milliseconds to wait for a user response before the voice
-    assistant times out and check if the user is still there.
-    """
+    """The maximum time in milliseconds to wait for user response before timing out."""
 
     voice: str
     """The voice to be used by the voice assistant.

@@ -228,6 +228,12 @@ class CallDialParams(TypedDict, total=False):
     sound_modifications: SoundModificationsParam
     """Use this field to modify sound effects, for example adjust the pitch."""
 
+    stream_auth_token: str
+    """
+    An authentication token to be sent as part of the WebSocket connection when
+    using streaming. Maximum length is 4000 characters.
+    """
+
     stream_bidirectional_codec: StreamBidirectionalCodec
     """Indicates codec for bidirectional streaming RTP payloads.
 

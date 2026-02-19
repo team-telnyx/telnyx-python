@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import Iterable
 from typing_extensions import Literal, TypedDict
 
 from ..stream_codec import StreamCodec
@@ -11,7 +12,7 @@ from ..stream_bidirectional_codec import StreamBidirectionalCodec
 from ..stream_bidirectional_target_legs import StreamBidirectionalTargetLegs
 from ..stream_bidirectional_sampling_rate import StreamBidirectionalSamplingRate
 
-__all__ = ["ActionStartStreamingParams"]
+__all__ = ["ActionStartStreamingParams", "CustomParameter"]
 
 
 class ActionStartStreamingParams(TypedDict, total=False):
@@ -28,10 +29,19 @@ class ActionStartStreamingParams(TypedDict, total=False):
     `call_control_id`.
     """
 
+    custom_parameters: Iterable[CustomParameter]
+    """Custom parameters to be sent as part of the WebSocket connection."""
+
     dialogflow_config: DialogflowConfigParam
 
     enable_dialogflow: bool
     """Enables Dialogflow for the current call. The default value is false."""
+
+    stream_auth_token: str
+    """An authentication token to be sent as part of the WebSocket connection.
+
+    Maximum length is 4000 characters.
+    """
 
     stream_bidirectional_codec: StreamBidirectionalCodec
     """Indicates codec for bidirectional streaming RTP payloads.
@@ -60,3 +70,11 @@ class ActionStartStreamingParams(TypedDict, total=False):
 
     stream_url: str
     """The destination WebSocket address where the stream is going to be delivered."""
+
+
+class CustomParameter(TypedDict, total=False):
+    name: str
+    """The name of the custom parameter."""
+
+    value: str
+    """The value of the custom parameter."""

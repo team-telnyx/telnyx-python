@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Iterable
+from typing import Dict, Iterable
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
@@ -10,7 +10,7 @@ from ..sip_header_param import SipHeaderParam
 from ..custom_sip_header_param import CustomSipHeaderParam
 from ..sound_modifications_param import SoundModificationsParam
 
-__all__ = ["ActionTransferParams", "AnsweringMachineDetectionConfig"]
+__all__ = ["ActionTransferParams", "AnsweringMachineDetectionConfig", "WebhookRetriesPolicies"]
 
 
 class ActionTransferParams(TypedDict, total=False):
@@ -100,6 +100,13 @@ class ActionTransferParams(TypedDict, total=False):
     the opposite leg either hangs up or is transferred). If supplied with the value
     `self`, the current leg will be parked after unbridge. If not set, the default
     behavior is to hang up the leg.
+    """
+
+    preferred_codecs: str
+    """
+    The list of comma-separated codecs in order of preference to be used during the
+    call. The codecs supported are `G722`, `PCMU`, `PCMA`, `G729`, `OPUS`, `VP8`,
+    `H264`, `AMR-WB`.
     """
 
     record: Literal["record-from-answer"]
@@ -198,6 +205,14 @@ class ActionTransferParams(TypedDict, total=False):
     value is 600 seconds.
     """
 
+    webhook_retries_policies: Dict[str, WebhookRetriesPolicies]
+    """A map of event types to retry policies.
+
+    Each retry policy contains an array of `retries_ms` specifying the delays
+    between retry attempts in milliseconds. Maximum 5 retries, total delay cannot
+    exceed 60 seconds.
+    """
+
     webhook_url: str
     """
     Use this field to override the URL for which Telnyx will send subsequent
@@ -206,6 +221,17 @@ class ActionTransferParams(TypedDict, total=False):
 
     webhook_url_method: Literal["POST", "GET"]
     """HTTP request type used for `webhook_url`."""
+
+    webhook_urls: Dict[str, str]
+    """A map of event types to webhook URLs.
+
+    When an event of the specified type occurs, the webhook URL associated with that
+    event type will be called instead of `webhook_url`. Events not mapped here will
+    use the default `webhook_url`.
+    """
+
+    webhook_urls_method: Literal["POST", "GET"]
+    """HTTP request method to invoke `webhook_urls`."""
 
 
 class AnsweringMachineDetectionConfig(TypedDict, total=False):
@@ -254,3 +280,11 @@ class AnsweringMachineDetectionConfig(TypedDict, total=False):
 
     total_analysis_time_millis: int
     """Maximum timeout threshold for overall detection."""
+
+
+class WebhookRetriesPolicies(TypedDict, total=False):
+    retries_ms: Iterable[int]
+    """Array of delays in milliseconds between retry attempts.
+
+    Total sum cannot exceed 60000ms.
+    """
