@@ -21,7 +21,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestVerificationCodes:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         verification_code = client.porting_orders.verification_codes.list(
@@ -31,7 +31,7 @@ class TestVerificationCodes:
             SyncDefaultFlatPagination[VerificationCodeListResponse], verification_code, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         verification_code = client.porting_orders.verification_codes.list(
@@ -45,7 +45,7 @@ class TestVerificationCodes:
             SyncDefaultFlatPagination[VerificationCodeListResponse], verification_code, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Telnyx) -> None:
         response = client.porting_orders.verification_codes.with_raw_response.list(
@@ -59,7 +59,7 @@ class TestVerificationCodes:
             SyncDefaultFlatPagination[VerificationCodeListResponse], verification_code, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Telnyx) -> None:
         with client.porting_orders.verification_codes.with_streaming_response.list(
@@ -75,7 +75,7 @@ class TestVerificationCodes:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_list(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -83,7 +83,7 @@ class TestVerificationCodes:
                 id="",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_send(self, client: Telnyx) -> None:
         verification_code = client.porting_orders.verification_codes.send(
@@ -91,7 +91,7 @@ class TestVerificationCodes:
         )
         assert verification_code is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_send_with_all_params(self, client: Telnyx) -> None:
         verification_code = client.porting_orders.verification_codes.send(
@@ -101,7 +101,7 @@ class TestVerificationCodes:
         )
         assert verification_code is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_send(self, client: Telnyx) -> None:
         response = client.porting_orders.verification_codes.with_raw_response.send(
@@ -113,7 +113,7 @@ class TestVerificationCodes:
         verification_code = response.parse()
         assert verification_code is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_send(self, client: Telnyx) -> None:
         with client.porting_orders.verification_codes.with_streaming_response.send(
@@ -127,7 +127,7 @@ class TestVerificationCodes:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_send(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -135,7 +135,7 @@ class TestVerificationCodes:
                 id="",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_verify(self, client: Telnyx) -> None:
         verification_code = client.porting_orders.verification_codes.verify(
@@ -143,7 +143,7 @@ class TestVerificationCodes:
         )
         assert_matches_type(VerificationCodeVerifyResponse, verification_code, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_verify_with_all_params(self, client: Telnyx) -> None:
         verification_code = client.porting_orders.verification_codes.verify(
@@ -161,7 +161,7 @@ class TestVerificationCodes:
         )
         assert_matches_type(VerificationCodeVerifyResponse, verification_code, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_verify(self, client: Telnyx) -> None:
         response = client.porting_orders.verification_codes.with_raw_response.verify(
@@ -173,7 +173,7 @@ class TestVerificationCodes:
         verification_code = response.parse()
         assert_matches_type(VerificationCodeVerifyResponse, verification_code, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_verify(self, client: Telnyx) -> None:
         with client.porting_orders.verification_codes.with_streaming_response.verify(
@@ -187,7 +187,7 @@ class TestVerificationCodes:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_verify(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -201,7 +201,7 @@ class TestAsyncVerificationCodes:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         verification_code = await async_client.porting_orders.verification_codes.list(
@@ -211,7 +211,7 @@ class TestAsyncVerificationCodes:
             AsyncDefaultFlatPagination[VerificationCodeListResponse], verification_code, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         verification_code = await async_client.porting_orders.verification_codes.list(
@@ -225,7 +225,7 @@ class TestAsyncVerificationCodes:
             AsyncDefaultFlatPagination[VerificationCodeListResponse], verification_code, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.porting_orders.verification_codes.with_raw_response.list(
@@ -239,7 +239,7 @@ class TestAsyncVerificationCodes:
             AsyncDefaultFlatPagination[VerificationCodeListResponse], verification_code, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncTelnyx) -> None:
         async with async_client.porting_orders.verification_codes.with_streaming_response.list(
@@ -255,7 +255,7 @@ class TestAsyncVerificationCodes:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_list(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -263,7 +263,7 @@ class TestAsyncVerificationCodes:
                 id="",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_send(self, async_client: AsyncTelnyx) -> None:
         verification_code = await async_client.porting_orders.verification_codes.send(
@@ -271,7 +271,7 @@ class TestAsyncVerificationCodes:
         )
         assert verification_code is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_send_with_all_params(self, async_client: AsyncTelnyx) -> None:
         verification_code = await async_client.porting_orders.verification_codes.send(
@@ -281,7 +281,7 @@ class TestAsyncVerificationCodes:
         )
         assert verification_code is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_send(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.porting_orders.verification_codes.with_raw_response.send(
@@ -293,7 +293,7 @@ class TestAsyncVerificationCodes:
         verification_code = await response.parse()
         assert verification_code is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_send(self, async_client: AsyncTelnyx) -> None:
         async with async_client.porting_orders.verification_codes.with_streaming_response.send(
@@ -307,7 +307,7 @@ class TestAsyncVerificationCodes:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_send(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -315,7 +315,7 @@ class TestAsyncVerificationCodes:
                 id="",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_verify(self, async_client: AsyncTelnyx) -> None:
         verification_code = await async_client.porting_orders.verification_codes.verify(
@@ -323,7 +323,7 @@ class TestAsyncVerificationCodes:
         )
         assert_matches_type(VerificationCodeVerifyResponse, verification_code, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_verify_with_all_params(self, async_client: AsyncTelnyx) -> None:
         verification_code = await async_client.porting_orders.verification_codes.verify(
@@ -341,7 +341,7 @@ class TestAsyncVerificationCodes:
         )
         assert_matches_type(VerificationCodeVerifyResponse, verification_code, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_verify(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.porting_orders.verification_codes.with_raw_response.verify(
@@ -353,7 +353,7 @@ class TestAsyncVerificationCodes:
         verification_code = await response.parse()
         assert_matches_type(VerificationCodeVerifyResponse, verification_code, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_verify(self, async_client: AsyncTelnyx) -> None:
         async with async_client.porting_orders.verification_codes.with_streaming_response.verify(
@@ -367,7 +367,7 @@ class TestAsyncVerificationCodes:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_verify(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):

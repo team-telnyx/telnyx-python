@@ -18,7 +18,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestCdrUsageReports:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_fetch_sync(self, client: Telnyx) -> None:
         cdr_usage_report = client.reports.cdr_usage_reports.fetch_sync(
@@ -27,7 +27,7 @@ class TestCdrUsageReports:
         )
         assert_matches_type(CdrUsageReportFetchSyncResponse, cdr_usage_report, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_fetch_sync_with_all_params(self, client: Telnyx) -> None:
         cdr_usage_report = client.reports.cdr_usage_reports.fetch_sync(
@@ -39,7 +39,7 @@ class TestCdrUsageReports:
         )
         assert_matches_type(CdrUsageReportFetchSyncResponse, cdr_usage_report, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_fetch_sync(self, client: Telnyx) -> None:
         response = client.reports.cdr_usage_reports.with_raw_response.fetch_sync(
@@ -52,7 +52,7 @@ class TestCdrUsageReports:
         cdr_usage_report = response.parse()
         assert_matches_type(CdrUsageReportFetchSyncResponse, cdr_usage_report, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_fetch_sync(self, client: Telnyx) -> None:
         with client.reports.cdr_usage_reports.with_streaming_response.fetch_sync(
@@ -73,7 +73,7 @@ class TestAsyncCdrUsageReports:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_fetch_sync(self, async_client: AsyncTelnyx) -> None:
         cdr_usage_report = await async_client.reports.cdr_usage_reports.fetch_sync(
@@ -82,7 +82,7 @@ class TestAsyncCdrUsageReports:
         )
         assert_matches_type(CdrUsageReportFetchSyncResponse, cdr_usage_report, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_fetch_sync_with_all_params(self, async_client: AsyncTelnyx) -> None:
         cdr_usage_report = await async_client.reports.cdr_usage_reports.fetch_sync(
@@ -94,7 +94,7 @@ class TestAsyncCdrUsageReports:
         )
         assert_matches_type(CdrUsageReportFetchSyncResponse, cdr_usage_report, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_fetch_sync(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.reports.cdr_usage_reports.with_raw_response.fetch_sync(
@@ -107,7 +107,7 @@ class TestAsyncCdrUsageReports:
         cdr_usage_report = await response.parse()
         assert_matches_type(CdrUsageReportFetchSyncResponse, cdr_usage_report, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_fetch_sync(self, async_client: AsyncTelnyx) -> None:
         async with async_client.reports.cdr_usage_reports.with_streaming_response.fetch_sync(

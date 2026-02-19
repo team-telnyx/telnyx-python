@@ -22,7 +22,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestUsers:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Telnyx) -> None:
         user = client.organizations.users.retrieve(
@@ -30,7 +30,7 @@ class TestUsers:
         )
         assert_matches_type(UserRetrieveResponse, user, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_retrieve_with_all_params(self, client: Telnyx) -> None:
         user = client.organizations.users.retrieve(
@@ -39,7 +39,7 @@ class TestUsers:
         )
         assert_matches_type(UserRetrieveResponse, user, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
         response = client.organizations.users.with_raw_response.retrieve(
@@ -51,7 +51,7 @@ class TestUsers:
         user = response.parse()
         assert_matches_type(UserRetrieveResponse, user, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
         with client.organizations.users.with_streaming_response.retrieve(
@@ -65,7 +65,7 @@ class TestUsers:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_retrieve(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -73,13 +73,13 @@ class TestUsers:
                 id="",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         user = client.organizations.users.list()
         assert_matches_type(SyncDefaultFlatPagination[UserListResponse], user, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         user = client.organizations.users.list(
@@ -91,7 +91,7 @@ class TestUsers:
         )
         assert_matches_type(SyncDefaultFlatPagination[UserListResponse], user, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Telnyx) -> None:
         response = client.organizations.users.with_raw_response.list()
@@ -101,7 +101,7 @@ class TestUsers:
         user = response.parse()
         assert_matches_type(SyncDefaultFlatPagination[UserListResponse], user, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Telnyx) -> None:
         with client.organizations.users.with_streaming_response.list() as response:
@@ -113,13 +113,13 @@ class TestUsers:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_get_groups_report(self, client: Telnyx) -> None:
         user = client.organizations.users.get_groups_report()
         assert_matches_type(UserGetGroupsReportResponse, user, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_get_groups_report_with_all_params(self, client: Telnyx) -> None:
         user = client.organizations.users.get_groups_report(
@@ -127,7 +127,7 @@ class TestUsers:
         )
         assert_matches_type(UserGetGroupsReportResponse, user, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_get_groups_report(self, client: Telnyx) -> None:
         response = client.organizations.users.with_raw_response.get_groups_report()
@@ -137,7 +137,7 @@ class TestUsers:
         user = response.parse()
         assert_matches_type(UserGetGroupsReportResponse, user, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_get_groups_report(self, client: Telnyx) -> None:
         with client.organizations.users.with_streaming_response.get_groups_report() as response:
@@ -155,7 +155,7 @@ class TestAsyncUsers:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
         user = await async_client.organizations.users.retrieve(
@@ -163,7 +163,7 @@ class TestAsyncUsers:
         )
         assert_matches_type(UserRetrieveResponse, user, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_retrieve_with_all_params(self, async_client: AsyncTelnyx) -> None:
         user = await async_client.organizations.users.retrieve(
@@ -172,7 +172,7 @@ class TestAsyncUsers:
         )
         assert_matches_type(UserRetrieveResponse, user, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.organizations.users.with_raw_response.retrieve(
@@ -184,7 +184,7 @@ class TestAsyncUsers:
         user = await response.parse()
         assert_matches_type(UserRetrieveResponse, user, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         async with async_client.organizations.users.with_streaming_response.retrieve(
@@ -198,7 +198,7 @@ class TestAsyncUsers:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -206,13 +206,13 @@ class TestAsyncUsers:
                 id="",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         user = await async_client.organizations.users.list()
         assert_matches_type(AsyncDefaultFlatPagination[UserListResponse], user, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         user = await async_client.organizations.users.list(
@@ -224,7 +224,7 @@ class TestAsyncUsers:
         )
         assert_matches_type(AsyncDefaultFlatPagination[UserListResponse], user, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.organizations.users.with_raw_response.list()
@@ -234,7 +234,7 @@ class TestAsyncUsers:
         user = await response.parse()
         assert_matches_type(AsyncDefaultFlatPagination[UserListResponse], user, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncTelnyx) -> None:
         async with async_client.organizations.users.with_streaming_response.list() as response:
@@ -246,13 +246,13 @@ class TestAsyncUsers:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_get_groups_report(self, async_client: AsyncTelnyx) -> None:
         user = await async_client.organizations.users.get_groups_report()
         assert_matches_type(UserGetGroupsReportResponse, user, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_get_groups_report_with_all_params(self, async_client: AsyncTelnyx) -> None:
         user = await async_client.organizations.users.get_groups_report(
@@ -260,7 +260,7 @@ class TestAsyncUsers:
         )
         assert_matches_type(UserGetGroupsReportResponse, user, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_get_groups_report(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.organizations.users.with_raw_response.get_groups_report()
@@ -270,7 +270,7 @@ class TestAsyncUsers:
         user = await response.parse()
         assert_matches_type(UserGetGroupsReportResponse, user, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_get_groups_report(self, async_client: AsyncTelnyx) -> None:
         async with async_client.organizations.users.with_streaming_response.get_groups_report() as response:

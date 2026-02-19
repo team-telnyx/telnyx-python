@@ -24,13 +24,13 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestMobileVoiceConnections:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create(self, client: Telnyx) -> None:
         mobile_voice_connection = client.mobile_voice_connections.create()
         assert_matches_type(MobileVoiceConnectionCreateResponse, mobile_voice_connection, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create_with_all_params(self, client: Telnyx) -> None:
         mobile_voice_connection = client.mobile_voice_connections.create(
@@ -49,7 +49,7 @@ class TestMobileVoiceConnections:
         )
         assert_matches_type(MobileVoiceConnectionCreateResponse, mobile_voice_connection, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: Telnyx) -> None:
         response = client.mobile_voice_connections.with_raw_response.create()
@@ -59,7 +59,7 @@ class TestMobileVoiceConnections:
         mobile_voice_connection = response.parse()
         assert_matches_type(MobileVoiceConnectionCreateResponse, mobile_voice_connection, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: Telnyx) -> None:
         with client.mobile_voice_connections.with_streaming_response.create() as response:
@@ -71,7 +71,7 @@ class TestMobileVoiceConnections:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Telnyx) -> None:
         mobile_voice_connection = client.mobile_voice_connections.retrieve(
@@ -79,7 +79,7 @@ class TestMobileVoiceConnections:
         )
         assert_matches_type(MobileVoiceConnectionRetrieveResponse, mobile_voice_connection, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
         response = client.mobile_voice_connections.with_raw_response.retrieve(
@@ -91,7 +91,7 @@ class TestMobileVoiceConnections:
         mobile_voice_connection = response.parse()
         assert_matches_type(MobileVoiceConnectionRetrieveResponse, mobile_voice_connection, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
         with client.mobile_voice_connections.with_streaming_response.retrieve(
@@ -105,7 +105,7 @@ class TestMobileVoiceConnections:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_retrieve(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -113,7 +113,7 @@ class TestMobileVoiceConnections:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_update(self, client: Telnyx) -> None:
         mobile_voice_connection = client.mobile_voice_connections.update(
@@ -121,7 +121,7 @@ class TestMobileVoiceConnections:
         )
         assert_matches_type(MobileVoiceConnectionUpdateResponse, mobile_voice_connection, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_update_with_all_params(self, client: Telnyx) -> None:
         mobile_voice_connection = client.mobile_voice_connections.update(
@@ -141,7 +141,7 @@ class TestMobileVoiceConnections:
         )
         assert_matches_type(MobileVoiceConnectionUpdateResponse, mobile_voice_connection, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_update(self, client: Telnyx) -> None:
         response = client.mobile_voice_connections.with_raw_response.update(
@@ -153,7 +153,7 @@ class TestMobileVoiceConnections:
         mobile_voice_connection = response.parse()
         assert_matches_type(MobileVoiceConnectionUpdateResponse, mobile_voice_connection, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_update(self, client: Telnyx) -> None:
         with client.mobile_voice_connections.with_streaming_response.update(
@@ -167,7 +167,7 @@ class TestMobileVoiceConnections:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_update(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -175,7 +175,7 @@ class TestMobileVoiceConnections:
                 id="",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         mobile_voice_connection = client.mobile_voice_connections.list()
@@ -183,7 +183,7 @@ class TestMobileVoiceConnections:
             SyncDefaultFlatPagination[MobileVoiceConnection], mobile_voice_connection, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         mobile_voice_connection = client.mobile_voice_connections.list(
@@ -196,7 +196,7 @@ class TestMobileVoiceConnections:
             SyncDefaultFlatPagination[MobileVoiceConnection], mobile_voice_connection, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Telnyx) -> None:
         response = client.mobile_voice_connections.with_raw_response.list()
@@ -208,7 +208,7 @@ class TestMobileVoiceConnections:
             SyncDefaultFlatPagination[MobileVoiceConnection], mobile_voice_connection, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Telnyx) -> None:
         with client.mobile_voice_connections.with_streaming_response.list() as response:
@@ -222,7 +222,7 @@ class TestMobileVoiceConnections:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_delete(self, client: Telnyx) -> None:
         mobile_voice_connection = client.mobile_voice_connections.delete(
@@ -230,7 +230,7 @@ class TestMobileVoiceConnections:
         )
         assert_matches_type(MobileVoiceConnectionDeleteResponse, mobile_voice_connection, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_delete(self, client: Telnyx) -> None:
         response = client.mobile_voice_connections.with_raw_response.delete(
@@ -242,7 +242,7 @@ class TestMobileVoiceConnections:
         mobile_voice_connection = response.parse()
         assert_matches_type(MobileVoiceConnectionDeleteResponse, mobile_voice_connection, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_delete(self, client: Telnyx) -> None:
         with client.mobile_voice_connections.with_streaming_response.delete(
@@ -256,7 +256,7 @@ class TestMobileVoiceConnections:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_delete(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -270,13 +270,13 @@ class TestAsyncMobileVoiceConnections:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncTelnyx) -> None:
         mobile_voice_connection = await async_client.mobile_voice_connections.create()
         assert_matches_type(MobileVoiceConnectionCreateResponse, mobile_voice_connection, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncTelnyx) -> None:
         mobile_voice_connection = await async_client.mobile_voice_connections.create(
@@ -295,7 +295,7 @@ class TestAsyncMobileVoiceConnections:
         )
         assert_matches_type(MobileVoiceConnectionCreateResponse, mobile_voice_connection, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.mobile_voice_connections.with_raw_response.create()
@@ -305,7 +305,7 @@ class TestAsyncMobileVoiceConnections:
         mobile_voice_connection = await response.parse()
         assert_matches_type(MobileVoiceConnectionCreateResponse, mobile_voice_connection, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncTelnyx) -> None:
         async with async_client.mobile_voice_connections.with_streaming_response.create() as response:
@@ -317,7 +317,7 @@ class TestAsyncMobileVoiceConnections:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
         mobile_voice_connection = await async_client.mobile_voice_connections.retrieve(
@@ -325,7 +325,7 @@ class TestAsyncMobileVoiceConnections:
         )
         assert_matches_type(MobileVoiceConnectionRetrieveResponse, mobile_voice_connection, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.mobile_voice_connections.with_raw_response.retrieve(
@@ -337,7 +337,7 @@ class TestAsyncMobileVoiceConnections:
         mobile_voice_connection = await response.parse()
         assert_matches_type(MobileVoiceConnectionRetrieveResponse, mobile_voice_connection, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         async with async_client.mobile_voice_connections.with_streaming_response.retrieve(
@@ -351,7 +351,7 @@ class TestAsyncMobileVoiceConnections:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -359,7 +359,7 @@ class TestAsyncMobileVoiceConnections:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_update(self, async_client: AsyncTelnyx) -> None:
         mobile_voice_connection = await async_client.mobile_voice_connections.update(
@@ -367,7 +367,7 @@ class TestAsyncMobileVoiceConnections:
         )
         assert_matches_type(MobileVoiceConnectionUpdateResponse, mobile_voice_connection, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncTelnyx) -> None:
         mobile_voice_connection = await async_client.mobile_voice_connections.update(
@@ -387,7 +387,7 @@ class TestAsyncMobileVoiceConnections:
         )
         assert_matches_type(MobileVoiceConnectionUpdateResponse, mobile_voice_connection, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.mobile_voice_connections.with_raw_response.update(
@@ -399,7 +399,7 @@ class TestAsyncMobileVoiceConnections:
         mobile_voice_connection = await response.parse()
         assert_matches_type(MobileVoiceConnectionUpdateResponse, mobile_voice_connection, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncTelnyx) -> None:
         async with async_client.mobile_voice_connections.with_streaming_response.update(
@@ -413,7 +413,7 @@ class TestAsyncMobileVoiceConnections:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_update(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -421,7 +421,7 @@ class TestAsyncMobileVoiceConnections:
                 id="",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         mobile_voice_connection = await async_client.mobile_voice_connections.list()
@@ -429,7 +429,7 @@ class TestAsyncMobileVoiceConnections:
             AsyncDefaultFlatPagination[MobileVoiceConnection], mobile_voice_connection, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         mobile_voice_connection = await async_client.mobile_voice_connections.list(
@@ -442,7 +442,7 @@ class TestAsyncMobileVoiceConnections:
             AsyncDefaultFlatPagination[MobileVoiceConnection], mobile_voice_connection, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.mobile_voice_connections.with_raw_response.list()
@@ -454,7 +454,7 @@ class TestAsyncMobileVoiceConnections:
             AsyncDefaultFlatPagination[MobileVoiceConnection], mobile_voice_connection, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncTelnyx) -> None:
         async with async_client.mobile_voice_connections.with_streaming_response.list() as response:
@@ -468,7 +468,7 @@ class TestAsyncMobileVoiceConnections:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_delete(self, async_client: AsyncTelnyx) -> None:
         mobile_voice_connection = await async_client.mobile_voice_connections.delete(
@@ -476,7 +476,7 @@ class TestAsyncMobileVoiceConnections:
         )
         assert_matches_type(MobileVoiceConnectionDeleteResponse, mobile_voice_connection, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.mobile_voice_connections.with_raw_response.delete(
@@ -488,7 +488,7 @@ class TestAsyncMobileVoiceConnections:
         mobile_voice_connection = await response.parse()
         assert_matches_type(MobileVoiceConnectionDeleteResponse, mobile_voice_connection, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncTelnyx) -> None:
         async with async_client.mobile_voice_connections.with_streaming_response.delete(
@@ -502,7 +502,7 @@ class TestAsyncMobileVoiceConnections:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):

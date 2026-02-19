@@ -21,7 +21,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestExternalVetting:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         external_vetting = client.messaging_10dlc.brand.external_vetting.list(
@@ -29,7 +29,7 @@ class TestExternalVetting:
         )
         assert_matches_type(ExternalVettingListResponse, external_vetting, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Telnyx) -> None:
         response = client.messaging_10dlc.brand.external_vetting.with_raw_response.list(
@@ -41,7 +41,7 @@ class TestExternalVetting:
         external_vetting = response.parse()
         assert_matches_type(ExternalVettingListResponse, external_vetting, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Telnyx) -> None:
         with client.messaging_10dlc.brand.external_vetting.with_streaming_response.list(
@@ -55,7 +55,7 @@ class TestExternalVetting:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_list(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `brand_id` but received ''"):
@@ -63,7 +63,7 @@ class TestExternalVetting:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_imports(self, client: Telnyx) -> None:
         external_vetting = client.messaging_10dlc.brand.external_vetting.imports(
@@ -73,7 +73,7 @@ class TestExternalVetting:
         )
         assert_matches_type(ExternalVettingImportsResponse, external_vetting, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_imports_with_all_params(self, client: Telnyx) -> None:
         external_vetting = client.messaging_10dlc.brand.external_vetting.imports(
@@ -84,7 +84,7 @@ class TestExternalVetting:
         )
         assert_matches_type(ExternalVettingImportsResponse, external_vetting, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_imports(self, client: Telnyx) -> None:
         response = client.messaging_10dlc.brand.external_vetting.with_raw_response.imports(
@@ -98,7 +98,7 @@ class TestExternalVetting:
         external_vetting = response.parse()
         assert_matches_type(ExternalVettingImportsResponse, external_vetting, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_imports(self, client: Telnyx) -> None:
         with client.messaging_10dlc.brand.external_vetting.with_streaming_response.imports(
@@ -114,7 +114,7 @@ class TestExternalVetting:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_imports(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `brand_id` but received ''"):
@@ -124,7 +124,7 @@ class TestExternalVetting:
                 vetting_id="vettingId",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_order(self, client: Telnyx) -> None:
         external_vetting = client.messaging_10dlc.brand.external_vetting.order(
@@ -134,7 +134,7 @@ class TestExternalVetting:
         )
         assert_matches_type(ExternalVettingOrderResponse, external_vetting, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_order(self, client: Telnyx) -> None:
         response = client.messaging_10dlc.brand.external_vetting.with_raw_response.order(
@@ -148,7 +148,7 @@ class TestExternalVetting:
         external_vetting = response.parse()
         assert_matches_type(ExternalVettingOrderResponse, external_vetting, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_order(self, client: Telnyx) -> None:
         with client.messaging_10dlc.brand.external_vetting.with_streaming_response.order(
@@ -164,7 +164,7 @@ class TestExternalVetting:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_order(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `brand_id` but received ''"):
@@ -180,7 +180,7 @@ class TestAsyncExternalVetting:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         external_vetting = await async_client.messaging_10dlc.brand.external_vetting.list(
@@ -188,7 +188,7 @@ class TestAsyncExternalVetting:
         )
         assert_matches_type(ExternalVettingListResponse, external_vetting, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.messaging_10dlc.brand.external_vetting.with_raw_response.list(
@@ -200,7 +200,7 @@ class TestAsyncExternalVetting:
         external_vetting = await response.parse()
         assert_matches_type(ExternalVettingListResponse, external_vetting, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncTelnyx) -> None:
         async with async_client.messaging_10dlc.brand.external_vetting.with_streaming_response.list(
@@ -214,7 +214,7 @@ class TestAsyncExternalVetting:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_list(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `brand_id` but received ''"):
@@ -222,7 +222,7 @@ class TestAsyncExternalVetting:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_imports(self, async_client: AsyncTelnyx) -> None:
         external_vetting = await async_client.messaging_10dlc.brand.external_vetting.imports(
@@ -232,7 +232,7 @@ class TestAsyncExternalVetting:
         )
         assert_matches_type(ExternalVettingImportsResponse, external_vetting, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_imports_with_all_params(self, async_client: AsyncTelnyx) -> None:
         external_vetting = await async_client.messaging_10dlc.brand.external_vetting.imports(
@@ -243,7 +243,7 @@ class TestAsyncExternalVetting:
         )
         assert_matches_type(ExternalVettingImportsResponse, external_vetting, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_imports(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.messaging_10dlc.brand.external_vetting.with_raw_response.imports(
@@ -257,7 +257,7 @@ class TestAsyncExternalVetting:
         external_vetting = await response.parse()
         assert_matches_type(ExternalVettingImportsResponse, external_vetting, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_imports(self, async_client: AsyncTelnyx) -> None:
         async with async_client.messaging_10dlc.brand.external_vetting.with_streaming_response.imports(
@@ -273,7 +273,7 @@ class TestAsyncExternalVetting:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_imports(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `brand_id` but received ''"):
@@ -283,7 +283,7 @@ class TestAsyncExternalVetting:
                 vetting_id="vettingId",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_order(self, async_client: AsyncTelnyx) -> None:
         external_vetting = await async_client.messaging_10dlc.brand.external_vetting.order(
@@ -293,7 +293,7 @@ class TestAsyncExternalVetting:
         )
         assert_matches_type(ExternalVettingOrderResponse, external_vetting, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_order(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.messaging_10dlc.brand.external_vetting.with_raw_response.order(
@@ -307,7 +307,7 @@ class TestAsyncExternalVetting:
         external_vetting = await response.parse()
         assert_matches_type(ExternalVettingOrderResponse, external_vetting, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_order(self, async_client: AsyncTelnyx) -> None:
         async with async_client.messaging_10dlc.brand.external_vetting.with_streaming_response.order(
@@ -323,7 +323,7 @@ class TestAsyncExternalVetting:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_order(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `brand_id` but received ''"):

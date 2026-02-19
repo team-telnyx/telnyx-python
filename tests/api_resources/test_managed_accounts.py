@@ -25,7 +25,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestManagedAccounts:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create(self, client: Telnyx) -> None:
         managed_account = client.managed_accounts.create(
@@ -33,7 +33,7 @@ class TestManagedAccounts:
         )
         assert_matches_type(ManagedAccountCreateResponse, managed_account, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create_with_all_params(self, client: Telnyx) -> None:
         managed_account = client.managed_accounts.create(
@@ -45,7 +45,7 @@ class TestManagedAccounts:
         )
         assert_matches_type(ManagedAccountCreateResponse, managed_account, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: Telnyx) -> None:
         response = client.managed_accounts.with_raw_response.create(
@@ -57,7 +57,7 @@ class TestManagedAccounts:
         managed_account = response.parse()
         assert_matches_type(ManagedAccountCreateResponse, managed_account, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: Telnyx) -> None:
         with client.managed_accounts.with_streaming_response.create(
@@ -71,7 +71,7 @@ class TestManagedAccounts:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Telnyx) -> None:
         managed_account = client.managed_accounts.retrieve(
@@ -79,7 +79,7 @@ class TestManagedAccounts:
         )
         assert_matches_type(ManagedAccountRetrieveResponse, managed_account, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
         response = client.managed_accounts.with_raw_response.retrieve(
@@ -91,7 +91,7 @@ class TestManagedAccounts:
         managed_account = response.parse()
         assert_matches_type(ManagedAccountRetrieveResponse, managed_account, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
         with client.managed_accounts.with_streaming_response.retrieve(
@@ -105,7 +105,7 @@ class TestManagedAccounts:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_retrieve(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -113,7 +113,7 @@ class TestManagedAccounts:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_update(self, client: Telnyx) -> None:
         managed_account = client.managed_accounts.update(
@@ -121,7 +121,7 @@ class TestManagedAccounts:
         )
         assert_matches_type(ManagedAccountUpdateResponse, managed_account, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_update_with_all_params(self, client: Telnyx) -> None:
         managed_account = client.managed_accounts.update(
@@ -130,7 +130,7 @@ class TestManagedAccounts:
         )
         assert_matches_type(ManagedAccountUpdateResponse, managed_account, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_update(self, client: Telnyx) -> None:
         response = client.managed_accounts.with_raw_response.update(
@@ -142,7 +142,7 @@ class TestManagedAccounts:
         managed_account = response.parse()
         assert_matches_type(ManagedAccountUpdateResponse, managed_account, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_update(self, client: Telnyx) -> None:
         with client.managed_accounts.with_streaming_response.update(
@@ -156,7 +156,7 @@ class TestManagedAccounts:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_update(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -164,13 +164,13 @@ class TestManagedAccounts:
                 id="",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         managed_account = client.managed_accounts.list()
         assert_matches_type(SyncDefaultFlatPagination[ManagedAccountListResponse], managed_account, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         managed_account = client.managed_accounts.list(
@@ -191,7 +191,7 @@ class TestManagedAccounts:
         )
         assert_matches_type(SyncDefaultFlatPagination[ManagedAccountListResponse], managed_account, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Telnyx) -> None:
         response = client.managed_accounts.with_raw_response.list()
@@ -201,7 +201,7 @@ class TestManagedAccounts:
         managed_account = response.parse()
         assert_matches_type(SyncDefaultFlatPagination[ManagedAccountListResponse], managed_account, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Telnyx) -> None:
         with client.managed_accounts.with_streaming_response.list() as response:
@@ -215,7 +215,7 @@ class TestManagedAccounts:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_get_allocatable_global_outbound_channels(self, client: Telnyx) -> None:
         managed_account = client.managed_accounts.get_allocatable_global_outbound_channels()
@@ -223,7 +223,7 @@ class TestManagedAccounts:
             ManagedAccountGetAllocatableGlobalOutboundChannelsResponse, managed_account, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_get_allocatable_global_outbound_channels(self, client: Telnyx) -> None:
         response = client.managed_accounts.with_raw_response.get_allocatable_global_outbound_channels()
@@ -235,7 +235,7 @@ class TestManagedAccounts:
             ManagedAccountGetAllocatableGlobalOutboundChannelsResponse, managed_account, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_get_allocatable_global_outbound_channels(self, client: Telnyx) -> None:
         with client.managed_accounts.with_streaming_response.get_allocatable_global_outbound_channels() as response:
@@ -249,7 +249,7 @@ class TestManagedAccounts:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_update_global_channel_limit(self, client: Telnyx) -> None:
         managed_account = client.managed_accounts.update_global_channel_limit(
@@ -257,7 +257,7 @@ class TestManagedAccounts:
         )
         assert_matches_type(ManagedAccountUpdateGlobalChannelLimitResponse, managed_account, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_update_global_channel_limit_with_all_params(self, client: Telnyx) -> None:
         managed_account = client.managed_accounts.update_global_channel_limit(
@@ -266,7 +266,7 @@ class TestManagedAccounts:
         )
         assert_matches_type(ManagedAccountUpdateGlobalChannelLimitResponse, managed_account, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_update_global_channel_limit(self, client: Telnyx) -> None:
         response = client.managed_accounts.with_raw_response.update_global_channel_limit(
@@ -278,7 +278,7 @@ class TestManagedAccounts:
         managed_account = response.parse()
         assert_matches_type(ManagedAccountUpdateGlobalChannelLimitResponse, managed_account, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_update_global_channel_limit(self, client: Telnyx) -> None:
         with client.managed_accounts.with_streaming_response.update_global_channel_limit(
@@ -292,7 +292,7 @@ class TestManagedAccounts:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_update_global_channel_limit(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -306,7 +306,7 @@ class TestAsyncManagedAccounts:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncTelnyx) -> None:
         managed_account = await async_client.managed_accounts.create(
@@ -314,7 +314,7 @@ class TestAsyncManagedAccounts:
         )
         assert_matches_type(ManagedAccountCreateResponse, managed_account, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncTelnyx) -> None:
         managed_account = await async_client.managed_accounts.create(
@@ -326,7 +326,7 @@ class TestAsyncManagedAccounts:
         )
         assert_matches_type(ManagedAccountCreateResponse, managed_account, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.managed_accounts.with_raw_response.create(
@@ -338,7 +338,7 @@ class TestAsyncManagedAccounts:
         managed_account = await response.parse()
         assert_matches_type(ManagedAccountCreateResponse, managed_account, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncTelnyx) -> None:
         async with async_client.managed_accounts.with_streaming_response.create(
@@ -352,7 +352,7 @@ class TestAsyncManagedAccounts:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
         managed_account = await async_client.managed_accounts.retrieve(
@@ -360,7 +360,7 @@ class TestAsyncManagedAccounts:
         )
         assert_matches_type(ManagedAccountRetrieveResponse, managed_account, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.managed_accounts.with_raw_response.retrieve(
@@ -372,7 +372,7 @@ class TestAsyncManagedAccounts:
         managed_account = await response.parse()
         assert_matches_type(ManagedAccountRetrieveResponse, managed_account, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         async with async_client.managed_accounts.with_streaming_response.retrieve(
@@ -386,7 +386,7 @@ class TestAsyncManagedAccounts:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -394,7 +394,7 @@ class TestAsyncManagedAccounts:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_update(self, async_client: AsyncTelnyx) -> None:
         managed_account = await async_client.managed_accounts.update(
@@ -402,7 +402,7 @@ class TestAsyncManagedAccounts:
         )
         assert_matches_type(ManagedAccountUpdateResponse, managed_account, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncTelnyx) -> None:
         managed_account = await async_client.managed_accounts.update(
@@ -411,7 +411,7 @@ class TestAsyncManagedAccounts:
         )
         assert_matches_type(ManagedAccountUpdateResponse, managed_account, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.managed_accounts.with_raw_response.update(
@@ -423,7 +423,7 @@ class TestAsyncManagedAccounts:
         managed_account = await response.parse()
         assert_matches_type(ManagedAccountUpdateResponse, managed_account, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncTelnyx) -> None:
         async with async_client.managed_accounts.with_streaming_response.update(
@@ -437,7 +437,7 @@ class TestAsyncManagedAccounts:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_update(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -445,13 +445,13 @@ class TestAsyncManagedAccounts:
                 id="",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         managed_account = await async_client.managed_accounts.list()
         assert_matches_type(AsyncDefaultFlatPagination[ManagedAccountListResponse], managed_account, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         managed_account = await async_client.managed_accounts.list(
@@ -472,7 +472,7 @@ class TestAsyncManagedAccounts:
         )
         assert_matches_type(AsyncDefaultFlatPagination[ManagedAccountListResponse], managed_account, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.managed_accounts.with_raw_response.list()
@@ -482,7 +482,7 @@ class TestAsyncManagedAccounts:
         managed_account = await response.parse()
         assert_matches_type(AsyncDefaultFlatPagination[ManagedAccountListResponse], managed_account, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncTelnyx) -> None:
         async with async_client.managed_accounts.with_streaming_response.list() as response:
@@ -496,7 +496,7 @@ class TestAsyncManagedAccounts:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_get_allocatable_global_outbound_channels(self, async_client: AsyncTelnyx) -> None:
         managed_account = await async_client.managed_accounts.get_allocatable_global_outbound_channels()
@@ -504,7 +504,7 @@ class TestAsyncManagedAccounts:
             ManagedAccountGetAllocatableGlobalOutboundChannelsResponse, managed_account, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_get_allocatable_global_outbound_channels(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.managed_accounts.with_raw_response.get_allocatable_global_outbound_channels()
@@ -516,7 +516,7 @@ class TestAsyncManagedAccounts:
             ManagedAccountGetAllocatableGlobalOutboundChannelsResponse, managed_account, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_get_allocatable_global_outbound_channels(self, async_client: AsyncTelnyx) -> None:
         async with (
@@ -532,7 +532,7 @@ class TestAsyncManagedAccounts:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_update_global_channel_limit(self, async_client: AsyncTelnyx) -> None:
         managed_account = await async_client.managed_accounts.update_global_channel_limit(
@@ -540,7 +540,7 @@ class TestAsyncManagedAccounts:
         )
         assert_matches_type(ManagedAccountUpdateGlobalChannelLimitResponse, managed_account, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_update_global_channel_limit_with_all_params(self, async_client: AsyncTelnyx) -> None:
         managed_account = await async_client.managed_accounts.update_global_channel_limit(
@@ -549,7 +549,7 @@ class TestAsyncManagedAccounts:
         )
         assert_matches_type(ManagedAccountUpdateGlobalChannelLimitResponse, managed_account, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_update_global_channel_limit(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.managed_accounts.with_raw_response.update_global_channel_limit(
@@ -561,7 +561,7 @@ class TestAsyncManagedAccounts:
         managed_account = await response.parse()
         assert_matches_type(ManagedAccountUpdateGlobalChannelLimitResponse, managed_account, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_update_global_channel_limit(self, async_client: AsyncTelnyx) -> None:
         async with async_client.managed_accounts.with_streaming_response.update_global_channel_limit(
@@ -575,7 +575,7 @@ class TestAsyncManagedAccounts:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_update_global_channel_limit(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):

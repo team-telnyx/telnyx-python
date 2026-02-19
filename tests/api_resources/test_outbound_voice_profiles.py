@@ -24,7 +24,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestOutboundVoiceProfiles:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create(self, client: Telnyx) -> None:
         outbound_voice_profile = client.outbound_voice_profiles.create(
@@ -32,7 +32,7 @@ class TestOutboundVoiceProfiles:
         )
         assert_matches_type(OutboundVoiceProfileCreateResponse, outbound_voice_profile, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create_with_all_params(self, client: Telnyx) -> None:
         outbound_voice_profile = client.outbound_voice_profiles.create(
@@ -62,7 +62,7 @@ class TestOutboundVoiceProfiles:
         )
         assert_matches_type(OutboundVoiceProfileCreateResponse, outbound_voice_profile, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: Telnyx) -> None:
         response = client.outbound_voice_profiles.with_raw_response.create(
@@ -74,7 +74,7 @@ class TestOutboundVoiceProfiles:
         outbound_voice_profile = response.parse()
         assert_matches_type(OutboundVoiceProfileCreateResponse, outbound_voice_profile, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: Telnyx) -> None:
         with client.outbound_voice_profiles.with_streaming_response.create(
@@ -88,7 +88,7 @@ class TestOutboundVoiceProfiles:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Telnyx) -> None:
         outbound_voice_profile = client.outbound_voice_profiles.retrieve(
@@ -96,7 +96,7 @@ class TestOutboundVoiceProfiles:
         )
         assert_matches_type(OutboundVoiceProfileRetrieveResponse, outbound_voice_profile, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
         response = client.outbound_voice_profiles.with_raw_response.retrieve(
@@ -108,7 +108,7 @@ class TestOutboundVoiceProfiles:
         outbound_voice_profile = response.parse()
         assert_matches_type(OutboundVoiceProfileRetrieveResponse, outbound_voice_profile, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
         with client.outbound_voice_profiles.with_streaming_response.retrieve(
@@ -122,7 +122,7 @@ class TestOutboundVoiceProfiles:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_retrieve(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -130,7 +130,7 @@ class TestOutboundVoiceProfiles:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_update(self, client: Telnyx) -> None:
         outbound_voice_profile = client.outbound_voice_profiles.update(
@@ -139,7 +139,7 @@ class TestOutboundVoiceProfiles:
         )
         assert_matches_type(OutboundVoiceProfileUpdateResponse, outbound_voice_profile, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_update_with_all_params(self, client: Telnyx) -> None:
         outbound_voice_profile = client.outbound_voice_profiles.update(
@@ -170,7 +170,7 @@ class TestOutboundVoiceProfiles:
         )
         assert_matches_type(OutboundVoiceProfileUpdateResponse, outbound_voice_profile, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_update(self, client: Telnyx) -> None:
         response = client.outbound_voice_profiles.with_raw_response.update(
@@ -183,7 +183,7 @@ class TestOutboundVoiceProfiles:
         outbound_voice_profile = response.parse()
         assert_matches_type(OutboundVoiceProfileUpdateResponse, outbound_voice_profile, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_update(self, client: Telnyx) -> None:
         with client.outbound_voice_profiles.with_streaming_response.update(
@@ -198,7 +198,7 @@ class TestOutboundVoiceProfiles:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_update(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -207,13 +207,13 @@ class TestOutboundVoiceProfiles:
                 name="office",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         outbound_voice_profile = client.outbound_voice_profiles.list()
         assert_matches_type(SyncDefaultFlatPagination[OutboundVoiceProfile], outbound_voice_profile, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         outbound_voice_profile = client.outbound_voice_profiles.list(
@@ -224,7 +224,7 @@ class TestOutboundVoiceProfiles:
         )
         assert_matches_type(SyncDefaultFlatPagination[OutboundVoiceProfile], outbound_voice_profile, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Telnyx) -> None:
         response = client.outbound_voice_profiles.with_raw_response.list()
@@ -234,7 +234,7 @@ class TestOutboundVoiceProfiles:
         outbound_voice_profile = response.parse()
         assert_matches_type(SyncDefaultFlatPagination[OutboundVoiceProfile], outbound_voice_profile, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Telnyx) -> None:
         with client.outbound_voice_profiles.with_streaming_response.list() as response:
@@ -248,7 +248,7 @@ class TestOutboundVoiceProfiles:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_delete(self, client: Telnyx) -> None:
         outbound_voice_profile = client.outbound_voice_profiles.delete(
@@ -256,7 +256,7 @@ class TestOutboundVoiceProfiles:
         )
         assert_matches_type(OutboundVoiceProfileDeleteResponse, outbound_voice_profile, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_delete(self, client: Telnyx) -> None:
         response = client.outbound_voice_profiles.with_raw_response.delete(
@@ -268,7 +268,7 @@ class TestOutboundVoiceProfiles:
         outbound_voice_profile = response.parse()
         assert_matches_type(OutboundVoiceProfileDeleteResponse, outbound_voice_profile, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_delete(self, client: Telnyx) -> None:
         with client.outbound_voice_profiles.with_streaming_response.delete(
@@ -282,7 +282,7 @@ class TestOutboundVoiceProfiles:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_delete(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -296,7 +296,7 @@ class TestAsyncOutboundVoiceProfiles:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncTelnyx) -> None:
         outbound_voice_profile = await async_client.outbound_voice_profiles.create(
@@ -304,7 +304,7 @@ class TestAsyncOutboundVoiceProfiles:
         )
         assert_matches_type(OutboundVoiceProfileCreateResponse, outbound_voice_profile, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncTelnyx) -> None:
         outbound_voice_profile = await async_client.outbound_voice_profiles.create(
@@ -334,7 +334,7 @@ class TestAsyncOutboundVoiceProfiles:
         )
         assert_matches_type(OutboundVoiceProfileCreateResponse, outbound_voice_profile, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.outbound_voice_profiles.with_raw_response.create(
@@ -346,7 +346,7 @@ class TestAsyncOutboundVoiceProfiles:
         outbound_voice_profile = await response.parse()
         assert_matches_type(OutboundVoiceProfileCreateResponse, outbound_voice_profile, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncTelnyx) -> None:
         async with async_client.outbound_voice_profiles.with_streaming_response.create(
@@ -360,7 +360,7 @@ class TestAsyncOutboundVoiceProfiles:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
         outbound_voice_profile = await async_client.outbound_voice_profiles.retrieve(
@@ -368,7 +368,7 @@ class TestAsyncOutboundVoiceProfiles:
         )
         assert_matches_type(OutboundVoiceProfileRetrieveResponse, outbound_voice_profile, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.outbound_voice_profiles.with_raw_response.retrieve(
@@ -380,7 +380,7 @@ class TestAsyncOutboundVoiceProfiles:
         outbound_voice_profile = await response.parse()
         assert_matches_type(OutboundVoiceProfileRetrieveResponse, outbound_voice_profile, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         async with async_client.outbound_voice_profiles.with_streaming_response.retrieve(
@@ -394,7 +394,7 @@ class TestAsyncOutboundVoiceProfiles:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -402,7 +402,7 @@ class TestAsyncOutboundVoiceProfiles:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_update(self, async_client: AsyncTelnyx) -> None:
         outbound_voice_profile = await async_client.outbound_voice_profiles.update(
@@ -411,7 +411,7 @@ class TestAsyncOutboundVoiceProfiles:
         )
         assert_matches_type(OutboundVoiceProfileUpdateResponse, outbound_voice_profile, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncTelnyx) -> None:
         outbound_voice_profile = await async_client.outbound_voice_profiles.update(
@@ -442,7 +442,7 @@ class TestAsyncOutboundVoiceProfiles:
         )
         assert_matches_type(OutboundVoiceProfileUpdateResponse, outbound_voice_profile, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.outbound_voice_profiles.with_raw_response.update(
@@ -455,7 +455,7 @@ class TestAsyncOutboundVoiceProfiles:
         outbound_voice_profile = await response.parse()
         assert_matches_type(OutboundVoiceProfileUpdateResponse, outbound_voice_profile, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncTelnyx) -> None:
         async with async_client.outbound_voice_profiles.with_streaming_response.update(
@@ -470,7 +470,7 @@ class TestAsyncOutboundVoiceProfiles:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_update(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -479,13 +479,13 @@ class TestAsyncOutboundVoiceProfiles:
                 name="office",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         outbound_voice_profile = await async_client.outbound_voice_profiles.list()
         assert_matches_type(AsyncDefaultFlatPagination[OutboundVoiceProfile], outbound_voice_profile, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         outbound_voice_profile = await async_client.outbound_voice_profiles.list(
@@ -496,7 +496,7 @@ class TestAsyncOutboundVoiceProfiles:
         )
         assert_matches_type(AsyncDefaultFlatPagination[OutboundVoiceProfile], outbound_voice_profile, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.outbound_voice_profiles.with_raw_response.list()
@@ -506,7 +506,7 @@ class TestAsyncOutboundVoiceProfiles:
         outbound_voice_profile = await response.parse()
         assert_matches_type(AsyncDefaultFlatPagination[OutboundVoiceProfile], outbound_voice_profile, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncTelnyx) -> None:
         async with async_client.outbound_voice_profiles.with_streaming_response.list() as response:
@@ -520,7 +520,7 @@ class TestAsyncOutboundVoiceProfiles:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_delete(self, async_client: AsyncTelnyx) -> None:
         outbound_voice_profile = await async_client.outbound_voice_profiles.delete(
@@ -528,7 +528,7 @@ class TestAsyncOutboundVoiceProfiles:
         )
         assert_matches_type(OutboundVoiceProfileDeleteResponse, outbound_voice_profile, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.outbound_voice_profiles.with_raw_response.delete(
@@ -540,7 +540,7 @@ class TestAsyncOutboundVoiceProfiles:
         outbound_voice_profile = await response.parse()
         assert_matches_type(OutboundVoiceProfileDeleteResponse, outbound_voice_profile, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncTelnyx) -> None:
         async with async_client.outbound_voice_profiles.with_streaming_response.delete(
@@ -554,7 +554,7 @@ class TestAsyncOutboundVoiceProfiles:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):

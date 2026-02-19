@@ -72,13 +72,13 @@ class TestTextToSpeech:
 
         assert cast(Any, text_to_speech.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list_voices(self, client: Telnyx) -> None:
         text_to_speech = client.text_to_speech.list_voices()
         assert_matches_type(TextToSpeechListVoicesResponse, text_to_speech, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list_voices_with_all_params(self, client: Telnyx) -> None:
         text_to_speech = client.text_to_speech.list_voices(
@@ -87,7 +87,7 @@ class TestTextToSpeech:
         )
         assert_matches_type(TextToSpeechListVoicesResponse, text_to_speech, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_list_voices(self, client: Telnyx) -> None:
         response = client.text_to_speech.with_raw_response.list_voices()
@@ -97,7 +97,7 @@ class TestTextToSpeech:
         text_to_speech = response.parse()
         assert_matches_type(TextToSpeechListVoicesResponse, text_to_speech, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_list_voices(self, client: Telnyx) -> None:
         with client.text_to_speech.with_streaming_response.list_voices() as response:
@@ -160,13 +160,13 @@ class TestAsyncTextToSpeech:
 
         assert cast(Any, text_to_speech.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list_voices(self, async_client: AsyncTelnyx) -> None:
         text_to_speech = await async_client.text_to_speech.list_voices()
         assert_matches_type(TextToSpeechListVoicesResponse, text_to_speech, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list_voices_with_all_params(self, async_client: AsyncTelnyx) -> None:
         text_to_speech = await async_client.text_to_speech.list_voices(
@@ -175,7 +175,7 @@ class TestAsyncTextToSpeech:
         )
         assert_matches_type(TextToSpeechListVoicesResponse, text_to_speech, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_list_voices(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.text_to_speech.with_raw_response.list_voices()
@@ -185,7 +185,7 @@ class TestAsyncTextToSpeech:
         text_to_speech = await response.parse()
         assert_matches_type(TextToSpeechListVoicesResponse, text_to_speech, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_list_voices(self, async_client: AsyncTelnyx) -> None:
         async with async_client.text_to_speech.with_streaming_response.list_voices() as response:

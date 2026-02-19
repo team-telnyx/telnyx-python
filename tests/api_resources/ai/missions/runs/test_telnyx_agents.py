@@ -17,7 +17,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestTelnyxAgents:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         telnyx_agent = client.ai.missions.runs.telnyx_agents.list(
@@ -26,7 +26,7 @@ class TestTelnyxAgents:
         )
         assert_matches_type(TelnyxAgentListResponse, telnyx_agent, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Telnyx) -> None:
         response = client.ai.missions.runs.telnyx_agents.with_raw_response.list(
@@ -39,7 +39,7 @@ class TestTelnyxAgents:
         telnyx_agent = response.parse()
         assert_matches_type(TelnyxAgentListResponse, telnyx_agent, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Telnyx) -> None:
         with client.ai.missions.runs.telnyx_agents.with_streaming_response.list(
@@ -54,7 +54,7 @@ class TestTelnyxAgents:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_list(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `mission_id` but received ''"):
@@ -69,7 +69,7 @@ class TestTelnyxAgents:
                 mission_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_link(self, client: Telnyx) -> None:
         telnyx_agent = client.ai.missions.runs.telnyx_agents.link(
@@ -79,7 +79,7 @@ class TestTelnyxAgents:
         )
         assert_matches_type(TelnyxAgentLinkResponse, telnyx_agent, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_link(self, client: Telnyx) -> None:
         response = client.ai.missions.runs.telnyx_agents.with_raw_response.link(
@@ -93,7 +93,7 @@ class TestTelnyxAgents:
         telnyx_agent = response.parse()
         assert_matches_type(TelnyxAgentLinkResponse, telnyx_agent, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_link(self, client: Telnyx) -> None:
         with client.ai.missions.runs.telnyx_agents.with_streaming_response.link(
@@ -109,7 +109,7 @@ class TestTelnyxAgents:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_link(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `mission_id` but received ''"):
@@ -126,7 +126,7 @@ class TestTelnyxAgents:
                 telnyx_agent_id="telnyx_agent_id",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_unlink(self, client: Telnyx) -> None:
         telnyx_agent = client.ai.missions.runs.telnyx_agents.unlink(
@@ -136,7 +136,7 @@ class TestTelnyxAgents:
         )
         assert telnyx_agent is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_unlink(self, client: Telnyx) -> None:
         response = client.ai.missions.runs.telnyx_agents.with_raw_response.unlink(
@@ -150,7 +150,7 @@ class TestTelnyxAgents:
         telnyx_agent = response.parse()
         assert telnyx_agent is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_unlink(self, client: Telnyx) -> None:
         with client.ai.missions.runs.telnyx_agents.with_streaming_response.unlink(
@@ -166,7 +166,7 @@ class TestTelnyxAgents:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_unlink(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `mission_id` but received ''"):
@@ -196,7 +196,7 @@ class TestAsyncTelnyxAgents:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         telnyx_agent = await async_client.ai.missions.runs.telnyx_agents.list(
@@ -205,7 +205,7 @@ class TestAsyncTelnyxAgents:
         )
         assert_matches_type(TelnyxAgentListResponse, telnyx_agent, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.ai.missions.runs.telnyx_agents.with_raw_response.list(
@@ -218,7 +218,7 @@ class TestAsyncTelnyxAgents:
         telnyx_agent = await response.parse()
         assert_matches_type(TelnyxAgentListResponse, telnyx_agent, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncTelnyx) -> None:
         async with async_client.ai.missions.runs.telnyx_agents.with_streaming_response.list(
@@ -233,7 +233,7 @@ class TestAsyncTelnyxAgents:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_list(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `mission_id` but received ''"):
@@ -248,7 +248,7 @@ class TestAsyncTelnyxAgents:
                 mission_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_link(self, async_client: AsyncTelnyx) -> None:
         telnyx_agent = await async_client.ai.missions.runs.telnyx_agents.link(
@@ -258,7 +258,7 @@ class TestAsyncTelnyxAgents:
         )
         assert_matches_type(TelnyxAgentLinkResponse, telnyx_agent, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_link(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.ai.missions.runs.telnyx_agents.with_raw_response.link(
@@ -272,7 +272,7 @@ class TestAsyncTelnyxAgents:
         telnyx_agent = await response.parse()
         assert_matches_type(TelnyxAgentLinkResponse, telnyx_agent, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_link(self, async_client: AsyncTelnyx) -> None:
         async with async_client.ai.missions.runs.telnyx_agents.with_streaming_response.link(
@@ -288,7 +288,7 @@ class TestAsyncTelnyxAgents:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_link(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `mission_id` but received ''"):
@@ -305,7 +305,7 @@ class TestAsyncTelnyxAgents:
                 telnyx_agent_id="telnyx_agent_id",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_unlink(self, async_client: AsyncTelnyx) -> None:
         telnyx_agent = await async_client.ai.missions.runs.telnyx_agents.unlink(
@@ -315,7 +315,7 @@ class TestAsyncTelnyxAgents:
         )
         assert telnyx_agent is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_unlink(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.ai.missions.runs.telnyx_agents.with_raw_response.unlink(
@@ -329,7 +329,7 @@ class TestAsyncTelnyxAgents:
         telnyx_agent = await response.parse()
         assert telnyx_agent is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_unlink(self, async_client: AsyncTelnyx) -> None:
         async with async_client.ai.missions.runs.telnyx_agents.with_streaming_response.unlink(
@@ -345,7 +345,7 @@ class TestAsyncTelnyxAgents:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_unlink(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `mission_id` but received ''"):
