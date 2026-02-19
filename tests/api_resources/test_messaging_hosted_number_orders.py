@@ -26,13 +26,13 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestMessagingHostedNumberOrders:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create(self, client: Telnyx) -> None:
         messaging_hosted_number_order = client.messaging_hosted_number_orders.create()
         assert_matches_type(MessagingHostedNumberOrderCreateResponse, messaging_hosted_number_order, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create_with_all_params(self, client: Telnyx) -> None:
         messaging_hosted_number_order = client.messaging_hosted_number_orders.create(
@@ -41,7 +41,7 @@ class TestMessagingHostedNumberOrders:
         )
         assert_matches_type(MessagingHostedNumberOrderCreateResponse, messaging_hosted_number_order, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: Telnyx) -> None:
         response = client.messaging_hosted_number_orders.with_raw_response.create()
@@ -51,7 +51,7 @@ class TestMessagingHostedNumberOrders:
         messaging_hosted_number_order = response.parse()
         assert_matches_type(MessagingHostedNumberOrderCreateResponse, messaging_hosted_number_order, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: Telnyx) -> None:
         with client.messaging_hosted_number_orders.with_streaming_response.create() as response:
@@ -65,7 +65,7 @@ class TestMessagingHostedNumberOrders:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Telnyx) -> None:
         messaging_hosted_number_order = client.messaging_hosted_number_orders.retrieve(
@@ -75,7 +75,7 @@ class TestMessagingHostedNumberOrders:
             MessagingHostedNumberOrderRetrieveResponse, messaging_hosted_number_order, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
         response = client.messaging_hosted_number_orders.with_raw_response.retrieve(
@@ -89,7 +89,7 @@ class TestMessagingHostedNumberOrders:
             MessagingHostedNumberOrderRetrieveResponse, messaging_hosted_number_order, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
         with client.messaging_hosted_number_orders.with_streaming_response.retrieve(
@@ -105,7 +105,7 @@ class TestMessagingHostedNumberOrders:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_retrieve(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -113,7 +113,7 @@ class TestMessagingHostedNumberOrders:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         messaging_hosted_number_order = client.messaging_hosted_number_orders.list()
@@ -121,7 +121,7 @@ class TestMessagingHostedNumberOrders:
             SyncDefaultFlatPagination[MessagingHostedNumberOrder], messaging_hosted_number_order, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         messaging_hosted_number_order = client.messaging_hosted_number_orders.list(
@@ -132,7 +132,7 @@ class TestMessagingHostedNumberOrders:
             SyncDefaultFlatPagination[MessagingHostedNumberOrder], messaging_hosted_number_order, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Telnyx) -> None:
         response = client.messaging_hosted_number_orders.with_raw_response.list()
@@ -144,7 +144,7 @@ class TestMessagingHostedNumberOrders:
             SyncDefaultFlatPagination[MessagingHostedNumberOrder], messaging_hosted_number_order, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Telnyx) -> None:
         with client.messaging_hosted_number_orders.with_streaming_response.list() as response:
@@ -158,7 +158,7 @@ class TestMessagingHostedNumberOrders:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_delete(self, client: Telnyx) -> None:
         messaging_hosted_number_order = client.messaging_hosted_number_orders.delete(
@@ -166,7 +166,7 @@ class TestMessagingHostedNumberOrders:
         )
         assert_matches_type(MessagingHostedNumberOrderDeleteResponse, messaging_hosted_number_order, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_delete(self, client: Telnyx) -> None:
         response = client.messaging_hosted_number_orders.with_raw_response.delete(
@@ -178,7 +178,7 @@ class TestMessagingHostedNumberOrders:
         messaging_hosted_number_order = response.parse()
         assert_matches_type(MessagingHostedNumberOrderDeleteResponse, messaging_hosted_number_order, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_delete(self, client: Telnyx) -> None:
         with client.messaging_hosted_number_orders.with_streaming_response.delete(
@@ -194,7 +194,7 @@ class TestMessagingHostedNumberOrders:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_delete(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -202,7 +202,7 @@ class TestMessagingHostedNumberOrders:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_check_eligibility(self, client: Telnyx) -> None:
         messaging_hosted_number_order = client.messaging_hosted_number_orders.check_eligibility(
@@ -212,7 +212,7 @@ class TestMessagingHostedNumberOrders:
             MessagingHostedNumberOrderCheckEligibilityResponse, messaging_hosted_number_order, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_check_eligibility(self, client: Telnyx) -> None:
         response = client.messaging_hosted_number_orders.with_raw_response.check_eligibility(
@@ -226,7 +226,7 @@ class TestMessagingHostedNumberOrders:
             MessagingHostedNumberOrderCheckEligibilityResponse, messaging_hosted_number_order, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_check_eligibility(self, client: Telnyx) -> None:
         with client.messaging_hosted_number_orders.with_streaming_response.check_eligibility(
@@ -242,7 +242,7 @@ class TestMessagingHostedNumberOrders:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create_verification_codes(self, client: Telnyx) -> None:
         messaging_hosted_number_order = client.messaging_hosted_number_orders.create_verification_codes(
@@ -254,7 +254,7 @@ class TestMessagingHostedNumberOrders:
             MessagingHostedNumberOrderCreateVerificationCodesResponse, messaging_hosted_number_order, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_create_verification_codes(self, client: Telnyx) -> None:
         response = client.messaging_hosted_number_orders.with_raw_response.create_verification_codes(
@@ -270,7 +270,7 @@ class TestMessagingHostedNumberOrders:
             MessagingHostedNumberOrderCreateVerificationCodesResponse, messaging_hosted_number_order, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_create_verification_codes(self, client: Telnyx) -> None:
         with client.messaging_hosted_number_orders.with_streaming_response.create_verification_codes(
@@ -290,7 +290,7 @@ class TestMessagingHostedNumberOrders:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_create_verification_codes(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -300,7 +300,7 @@ class TestMessagingHostedNumberOrders:
                 verification_method="sms",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_validate_codes(self, client: Telnyx) -> None:
         messaging_hosted_number_order = client.messaging_hosted_number_orders.validate_codes(
@@ -316,7 +316,7 @@ class TestMessagingHostedNumberOrders:
             MessagingHostedNumberOrderValidateCodesResponse, messaging_hosted_number_order, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_validate_codes(self, client: Telnyx) -> None:
         response = client.messaging_hosted_number_orders.with_raw_response.validate_codes(
@@ -336,7 +336,7 @@ class TestMessagingHostedNumberOrders:
             MessagingHostedNumberOrderValidateCodesResponse, messaging_hosted_number_order, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_validate_codes(self, client: Telnyx) -> None:
         with client.messaging_hosted_number_orders.with_streaming_response.validate_codes(
@@ -358,7 +358,7 @@ class TestMessagingHostedNumberOrders:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_validate_codes(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -378,13 +378,13 @@ class TestAsyncMessagingHostedNumberOrders:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncTelnyx) -> None:
         messaging_hosted_number_order = await async_client.messaging_hosted_number_orders.create()
         assert_matches_type(MessagingHostedNumberOrderCreateResponse, messaging_hosted_number_order, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncTelnyx) -> None:
         messaging_hosted_number_order = await async_client.messaging_hosted_number_orders.create(
@@ -393,7 +393,7 @@ class TestAsyncMessagingHostedNumberOrders:
         )
         assert_matches_type(MessagingHostedNumberOrderCreateResponse, messaging_hosted_number_order, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.messaging_hosted_number_orders.with_raw_response.create()
@@ -403,7 +403,7 @@ class TestAsyncMessagingHostedNumberOrders:
         messaging_hosted_number_order = await response.parse()
         assert_matches_type(MessagingHostedNumberOrderCreateResponse, messaging_hosted_number_order, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncTelnyx) -> None:
         async with async_client.messaging_hosted_number_orders.with_streaming_response.create() as response:
@@ -417,7 +417,7 @@ class TestAsyncMessagingHostedNumberOrders:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
         messaging_hosted_number_order = await async_client.messaging_hosted_number_orders.retrieve(
@@ -427,7 +427,7 @@ class TestAsyncMessagingHostedNumberOrders:
             MessagingHostedNumberOrderRetrieveResponse, messaging_hosted_number_order, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.messaging_hosted_number_orders.with_raw_response.retrieve(
@@ -441,7 +441,7 @@ class TestAsyncMessagingHostedNumberOrders:
             MessagingHostedNumberOrderRetrieveResponse, messaging_hosted_number_order, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         async with async_client.messaging_hosted_number_orders.with_streaming_response.retrieve(
@@ -457,7 +457,7 @@ class TestAsyncMessagingHostedNumberOrders:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -465,7 +465,7 @@ class TestAsyncMessagingHostedNumberOrders:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         messaging_hosted_number_order = await async_client.messaging_hosted_number_orders.list()
@@ -473,7 +473,7 @@ class TestAsyncMessagingHostedNumberOrders:
             AsyncDefaultFlatPagination[MessagingHostedNumberOrder], messaging_hosted_number_order, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         messaging_hosted_number_order = await async_client.messaging_hosted_number_orders.list(
@@ -484,7 +484,7 @@ class TestAsyncMessagingHostedNumberOrders:
             AsyncDefaultFlatPagination[MessagingHostedNumberOrder], messaging_hosted_number_order, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.messaging_hosted_number_orders.with_raw_response.list()
@@ -496,7 +496,7 @@ class TestAsyncMessagingHostedNumberOrders:
             AsyncDefaultFlatPagination[MessagingHostedNumberOrder], messaging_hosted_number_order, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncTelnyx) -> None:
         async with async_client.messaging_hosted_number_orders.with_streaming_response.list() as response:
@@ -510,7 +510,7 @@ class TestAsyncMessagingHostedNumberOrders:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_delete(self, async_client: AsyncTelnyx) -> None:
         messaging_hosted_number_order = await async_client.messaging_hosted_number_orders.delete(
@@ -518,7 +518,7 @@ class TestAsyncMessagingHostedNumberOrders:
         )
         assert_matches_type(MessagingHostedNumberOrderDeleteResponse, messaging_hosted_number_order, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.messaging_hosted_number_orders.with_raw_response.delete(
@@ -530,7 +530,7 @@ class TestAsyncMessagingHostedNumberOrders:
         messaging_hosted_number_order = await response.parse()
         assert_matches_type(MessagingHostedNumberOrderDeleteResponse, messaging_hosted_number_order, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncTelnyx) -> None:
         async with async_client.messaging_hosted_number_orders.with_streaming_response.delete(
@@ -546,7 +546,7 @@ class TestAsyncMessagingHostedNumberOrders:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -554,7 +554,7 @@ class TestAsyncMessagingHostedNumberOrders:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_check_eligibility(self, async_client: AsyncTelnyx) -> None:
         messaging_hosted_number_order = await async_client.messaging_hosted_number_orders.check_eligibility(
@@ -564,7 +564,7 @@ class TestAsyncMessagingHostedNumberOrders:
             MessagingHostedNumberOrderCheckEligibilityResponse, messaging_hosted_number_order, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_check_eligibility(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.messaging_hosted_number_orders.with_raw_response.check_eligibility(
@@ -578,7 +578,7 @@ class TestAsyncMessagingHostedNumberOrders:
             MessagingHostedNumberOrderCheckEligibilityResponse, messaging_hosted_number_order, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_check_eligibility(self, async_client: AsyncTelnyx) -> None:
         async with async_client.messaging_hosted_number_orders.with_streaming_response.check_eligibility(
@@ -594,7 +594,7 @@ class TestAsyncMessagingHostedNumberOrders:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create_verification_codes(self, async_client: AsyncTelnyx) -> None:
         messaging_hosted_number_order = await async_client.messaging_hosted_number_orders.create_verification_codes(
@@ -606,7 +606,7 @@ class TestAsyncMessagingHostedNumberOrders:
             MessagingHostedNumberOrderCreateVerificationCodesResponse, messaging_hosted_number_order, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_create_verification_codes(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.messaging_hosted_number_orders.with_raw_response.create_verification_codes(
@@ -622,7 +622,7 @@ class TestAsyncMessagingHostedNumberOrders:
             MessagingHostedNumberOrderCreateVerificationCodesResponse, messaging_hosted_number_order, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_create_verification_codes(self, async_client: AsyncTelnyx) -> None:
         async with async_client.messaging_hosted_number_orders.with_streaming_response.create_verification_codes(
@@ -642,7 +642,7 @@ class TestAsyncMessagingHostedNumberOrders:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_create_verification_codes(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -652,7 +652,7 @@ class TestAsyncMessagingHostedNumberOrders:
                 verification_method="sms",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_validate_codes(self, async_client: AsyncTelnyx) -> None:
         messaging_hosted_number_order = await async_client.messaging_hosted_number_orders.validate_codes(
@@ -668,7 +668,7 @@ class TestAsyncMessagingHostedNumberOrders:
             MessagingHostedNumberOrderValidateCodesResponse, messaging_hosted_number_order, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_validate_codes(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.messaging_hosted_number_orders.with_raw_response.validate_codes(
@@ -688,7 +688,7 @@ class TestAsyncMessagingHostedNumberOrders:
             MessagingHostedNumberOrderValidateCodesResponse, messaging_hosted_number_order, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_validate_codes(self, async_client: AsyncTelnyx) -> None:
         async with async_client.messaging_hosted_number_orders.with_streaming_response.validate_codes(
@@ -710,7 +710,7 @@ class TestAsyncMessagingHostedNumberOrders:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_validate_codes(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):

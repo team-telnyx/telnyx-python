@@ -22,7 +22,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestScheduledEvents:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create(self, client: Telnyx) -> None:
         scheduled_event = client.ai.assistants.scheduled_events.create(
@@ -34,7 +34,7 @@ class TestScheduledEvents:
         )
         assert_matches_type(ScheduledEventResponse, scheduled_event, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create_with_all_params(self, client: Telnyx) -> None:
         scheduled_event = client.ai.assistants.scheduled_events.create(
@@ -49,7 +49,7 @@ class TestScheduledEvents:
         )
         assert_matches_type(ScheduledEventResponse, scheduled_event, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: Telnyx) -> None:
         response = client.ai.assistants.scheduled_events.with_raw_response.create(
@@ -65,7 +65,7 @@ class TestScheduledEvents:
         scheduled_event = response.parse()
         assert_matches_type(ScheduledEventResponse, scheduled_event, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: Telnyx) -> None:
         with client.ai.assistants.scheduled_events.with_streaming_response.create(
@@ -83,7 +83,7 @@ class TestScheduledEvents:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_create(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `assistant_id` but received ''"):
@@ -95,7 +95,7 @@ class TestScheduledEvents:
                 telnyx_end_user_target="telnyx_end_user_target",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Telnyx) -> None:
         scheduled_event = client.ai.assistants.scheduled_events.retrieve(
@@ -104,7 +104,7 @@ class TestScheduledEvents:
         )
         assert_matches_type(ScheduledEventResponse, scheduled_event, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
         response = client.ai.assistants.scheduled_events.with_raw_response.retrieve(
@@ -117,7 +117,7 @@ class TestScheduledEvents:
         scheduled_event = response.parse()
         assert_matches_type(ScheduledEventResponse, scheduled_event, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
         with client.ai.assistants.scheduled_events.with_streaming_response.retrieve(
@@ -132,7 +132,7 @@ class TestScheduledEvents:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_retrieve(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `assistant_id` but received ''"):
@@ -147,7 +147,7 @@ class TestScheduledEvents:
                 assistant_id="assistant_id",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         scheduled_event = client.ai.assistants.scheduled_events.list(
@@ -155,7 +155,7 @@ class TestScheduledEvents:
         )
         assert_matches_type(SyncDefaultFlatPagination[ScheduledEventListResponse], scheduled_event, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         scheduled_event = client.ai.assistants.scheduled_events.list(
@@ -168,7 +168,7 @@ class TestScheduledEvents:
         )
         assert_matches_type(SyncDefaultFlatPagination[ScheduledEventListResponse], scheduled_event, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Telnyx) -> None:
         response = client.ai.assistants.scheduled_events.with_raw_response.list(
@@ -180,7 +180,7 @@ class TestScheduledEvents:
         scheduled_event = response.parse()
         assert_matches_type(SyncDefaultFlatPagination[ScheduledEventListResponse], scheduled_event, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Telnyx) -> None:
         with client.ai.assistants.scheduled_events.with_streaming_response.list(
@@ -196,7 +196,7 @@ class TestScheduledEvents:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_list(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `assistant_id` but received ''"):
@@ -204,7 +204,7 @@ class TestScheduledEvents:
                 assistant_id="",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_delete(self, client: Telnyx) -> None:
         scheduled_event = client.ai.assistants.scheduled_events.delete(
@@ -213,7 +213,7 @@ class TestScheduledEvents:
         )
         assert scheduled_event is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_delete(self, client: Telnyx) -> None:
         response = client.ai.assistants.scheduled_events.with_raw_response.delete(
@@ -226,7 +226,7 @@ class TestScheduledEvents:
         scheduled_event = response.parse()
         assert scheduled_event is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_delete(self, client: Telnyx) -> None:
         with client.ai.assistants.scheduled_events.with_streaming_response.delete(
@@ -241,7 +241,7 @@ class TestScheduledEvents:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_delete(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `assistant_id` but received ''"):
@@ -262,7 +262,7 @@ class TestAsyncScheduledEvents:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncTelnyx) -> None:
         scheduled_event = await async_client.ai.assistants.scheduled_events.create(
@@ -274,7 +274,7 @@ class TestAsyncScheduledEvents:
         )
         assert_matches_type(ScheduledEventResponse, scheduled_event, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncTelnyx) -> None:
         scheduled_event = await async_client.ai.assistants.scheduled_events.create(
@@ -289,7 +289,7 @@ class TestAsyncScheduledEvents:
         )
         assert_matches_type(ScheduledEventResponse, scheduled_event, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.ai.assistants.scheduled_events.with_raw_response.create(
@@ -305,7 +305,7 @@ class TestAsyncScheduledEvents:
         scheduled_event = await response.parse()
         assert_matches_type(ScheduledEventResponse, scheduled_event, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncTelnyx) -> None:
         async with async_client.ai.assistants.scheduled_events.with_streaming_response.create(
@@ -323,7 +323,7 @@ class TestAsyncScheduledEvents:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_create(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `assistant_id` but received ''"):
@@ -335,7 +335,7 @@ class TestAsyncScheduledEvents:
                 telnyx_end_user_target="telnyx_end_user_target",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
         scheduled_event = await async_client.ai.assistants.scheduled_events.retrieve(
@@ -344,7 +344,7 @@ class TestAsyncScheduledEvents:
         )
         assert_matches_type(ScheduledEventResponse, scheduled_event, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.ai.assistants.scheduled_events.with_raw_response.retrieve(
@@ -357,7 +357,7 @@ class TestAsyncScheduledEvents:
         scheduled_event = await response.parse()
         assert_matches_type(ScheduledEventResponse, scheduled_event, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         async with async_client.ai.assistants.scheduled_events.with_streaming_response.retrieve(
@@ -372,7 +372,7 @@ class TestAsyncScheduledEvents:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `assistant_id` but received ''"):
@@ -387,7 +387,7 @@ class TestAsyncScheduledEvents:
                 assistant_id="assistant_id",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         scheduled_event = await async_client.ai.assistants.scheduled_events.list(
@@ -395,7 +395,7 @@ class TestAsyncScheduledEvents:
         )
         assert_matches_type(AsyncDefaultFlatPagination[ScheduledEventListResponse], scheduled_event, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         scheduled_event = await async_client.ai.assistants.scheduled_events.list(
@@ -408,7 +408,7 @@ class TestAsyncScheduledEvents:
         )
         assert_matches_type(AsyncDefaultFlatPagination[ScheduledEventListResponse], scheduled_event, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.ai.assistants.scheduled_events.with_raw_response.list(
@@ -420,7 +420,7 @@ class TestAsyncScheduledEvents:
         scheduled_event = await response.parse()
         assert_matches_type(AsyncDefaultFlatPagination[ScheduledEventListResponse], scheduled_event, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncTelnyx) -> None:
         async with async_client.ai.assistants.scheduled_events.with_streaming_response.list(
@@ -436,7 +436,7 @@ class TestAsyncScheduledEvents:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_list(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `assistant_id` but received ''"):
@@ -444,7 +444,7 @@ class TestAsyncScheduledEvents:
                 assistant_id="",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_delete(self, async_client: AsyncTelnyx) -> None:
         scheduled_event = await async_client.ai.assistants.scheduled_events.delete(
@@ -453,7 +453,7 @@ class TestAsyncScheduledEvents:
         )
         assert scheduled_event is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.ai.assistants.scheduled_events.with_raw_response.delete(
@@ -466,7 +466,7 @@ class TestAsyncScheduledEvents:
         scheduled_event = await response.parse()
         assert scheduled_event is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncTelnyx) -> None:
         async with async_client.ai.assistants.scheduled_events.with_streaming_response.delete(
@@ -481,7 +481,7 @@ class TestAsyncScheduledEvents:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `assistant_id` but received ''"):

@@ -24,13 +24,13 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestBillingGroups:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create(self, client: Telnyx) -> None:
         billing_group = client.billing_groups.create()
         assert_matches_type(BillingGroupCreateResponse, billing_group, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create_with_all_params(self, client: Telnyx) -> None:
         billing_group = client.billing_groups.create(
@@ -38,7 +38,7 @@ class TestBillingGroups:
         )
         assert_matches_type(BillingGroupCreateResponse, billing_group, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: Telnyx) -> None:
         response = client.billing_groups.with_raw_response.create()
@@ -48,7 +48,7 @@ class TestBillingGroups:
         billing_group = response.parse()
         assert_matches_type(BillingGroupCreateResponse, billing_group, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: Telnyx) -> None:
         with client.billing_groups.with_streaming_response.create() as response:
@@ -60,7 +60,7 @@ class TestBillingGroups:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Telnyx) -> None:
         billing_group = client.billing_groups.retrieve(
@@ -68,7 +68,7 @@ class TestBillingGroups:
         )
         assert_matches_type(BillingGroupRetrieveResponse, billing_group, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
         response = client.billing_groups.with_raw_response.retrieve(
@@ -80,7 +80,7 @@ class TestBillingGroups:
         billing_group = response.parse()
         assert_matches_type(BillingGroupRetrieveResponse, billing_group, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
         with client.billing_groups.with_streaming_response.retrieve(
@@ -94,7 +94,7 @@ class TestBillingGroups:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_retrieve(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -102,7 +102,7 @@ class TestBillingGroups:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_update(self, client: Telnyx) -> None:
         billing_group = client.billing_groups.update(
@@ -110,7 +110,7 @@ class TestBillingGroups:
         )
         assert_matches_type(BillingGroupUpdateResponse, billing_group, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_update_with_all_params(self, client: Telnyx) -> None:
         billing_group = client.billing_groups.update(
@@ -119,7 +119,7 @@ class TestBillingGroups:
         )
         assert_matches_type(BillingGroupUpdateResponse, billing_group, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_update(self, client: Telnyx) -> None:
         response = client.billing_groups.with_raw_response.update(
@@ -131,7 +131,7 @@ class TestBillingGroups:
         billing_group = response.parse()
         assert_matches_type(BillingGroupUpdateResponse, billing_group, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_update(self, client: Telnyx) -> None:
         with client.billing_groups.with_streaming_response.update(
@@ -145,7 +145,7 @@ class TestBillingGroups:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_update(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -153,13 +153,13 @@ class TestBillingGroups:
                 id="",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         billing_group = client.billing_groups.list()
         assert_matches_type(SyncDefaultFlatPagination[BillingGroup], billing_group, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         billing_group = client.billing_groups.list(
@@ -168,7 +168,7 @@ class TestBillingGroups:
         )
         assert_matches_type(SyncDefaultFlatPagination[BillingGroup], billing_group, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Telnyx) -> None:
         response = client.billing_groups.with_raw_response.list()
@@ -178,7 +178,7 @@ class TestBillingGroups:
         billing_group = response.parse()
         assert_matches_type(SyncDefaultFlatPagination[BillingGroup], billing_group, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Telnyx) -> None:
         with client.billing_groups.with_streaming_response.list() as response:
@@ -190,7 +190,7 @@ class TestBillingGroups:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_delete(self, client: Telnyx) -> None:
         billing_group = client.billing_groups.delete(
@@ -198,7 +198,7 @@ class TestBillingGroups:
         )
         assert_matches_type(BillingGroupDeleteResponse, billing_group, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_delete(self, client: Telnyx) -> None:
         response = client.billing_groups.with_raw_response.delete(
@@ -210,7 +210,7 @@ class TestBillingGroups:
         billing_group = response.parse()
         assert_matches_type(BillingGroupDeleteResponse, billing_group, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_delete(self, client: Telnyx) -> None:
         with client.billing_groups.with_streaming_response.delete(
@@ -224,7 +224,7 @@ class TestBillingGroups:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_delete(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -238,13 +238,13 @@ class TestAsyncBillingGroups:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncTelnyx) -> None:
         billing_group = await async_client.billing_groups.create()
         assert_matches_type(BillingGroupCreateResponse, billing_group, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncTelnyx) -> None:
         billing_group = await async_client.billing_groups.create(
@@ -252,7 +252,7 @@ class TestAsyncBillingGroups:
         )
         assert_matches_type(BillingGroupCreateResponse, billing_group, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.billing_groups.with_raw_response.create()
@@ -262,7 +262,7 @@ class TestAsyncBillingGroups:
         billing_group = await response.parse()
         assert_matches_type(BillingGroupCreateResponse, billing_group, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncTelnyx) -> None:
         async with async_client.billing_groups.with_streaming_response.create() as response:
@@ -274,7 +274,7 @@ class TestAsyncBillingGroups:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
         billing_group = await async_client.billing_groups.retrieve(
@@ -282,7 +282,7 @@ class TestAsyncBillingGroups:
         )
         assert_matches_type(BillingGroupRetrieveResponse, billing_group, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.billing_groups.with_raw_response.retrieve(
@@ -294,7 +294,7 @@ class TestAsyncBillingGroups:
         billing_group = await response.parse()
         assert_matches_type(BillingGroupRetrieveResponse, billing_group, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         async with async_client.billing_groups.with_streaming_response.retrieve(
@@ -308,7 +308,7 @@ class TestAsyncBillingGroups:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -316,7 +316,7 @@ class TestAsyncBillingGroups:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_update(self, async_client: AsyncTelnyx) -> None:
         billing_group = await async_client.billing_groups.update(
@@ -324,7 +324,7 @@ class TestAsyncBillingGroups:
         )
         assert_matches_type(BillingGroupUpdateResponse, billing_group, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncTelnyx) -> None:
         billing_group = await async_client.billing_groups.update(
@@ -333,7 +333,7 @@ class TestAsyncBillingGroups:
         )
         assert_matches_type(BillingGroupUpdateResponse, billing_group, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.billing_groups.with_raw_response.update(
@@ -345,7 +345,7 @@ class TestAsyncBillingGroups:
         billing_group = await response.parse()
         assert_matches_type(BillingGroupUpdateResponse, billing_group, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncTelnyx) -> None:
         async with async_client.billing_groups.with_streaming_response.update(
@@ -359,7 +359,7 @@ class TestAsyncBillingGroups:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_update(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -367,13 +367,13 @@ class TestAsyncBillingGroups:
                 id="",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         billing_group = await async_client.billing_groups.list()
         assert_matches_type(AsyncDefaultFlatPagination[BillingGroup], billing_group, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         billing_group = await async_client.billing_groups.list(
@@ -382,7 +382,7 @@ class TestAsyncBillingGroups:
         )
         assert_matches_type(AsyncDefaultFlatPagination[BillingGroup], billing_group, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.billing_groups.with_raw_response.list()
@@ -392,7 +392,7 @@ class TestAsyncBillingGroups:
         billing_group = await response.parse()
         assert_matches_type(AsyncDefaultFlatPagination[BillingGroup], billing_group, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncTelnyx) -> None:
         async with async_client.billing_groups.with_streaming_response.list() as response:
@@ -404,7 +404,7 @@ class TestAsyncBillingGroups:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_delete(self, async_client: AsyncTelnyx) -> None:
         billing_group = await async_client.billing_groups.delete(
@@ -412,7 +412,7 @@ class TestAsyncBillingGroups:
         )
         assert_matches_type(BillingGroupDeleteResponse, billing_group, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.billing_groups.with_raw_response.delete(
@@ -424,7 +424,7 @@ class TestAsyncBillingGroups:
         billing_group = await response.parse()
         assert_matches_type(BillingGroupDeleteResponse, billing_group, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncTelnyx) -> None:
         async with async_client.billing_groups.with_streaming_response.delete(
@@ -438,7 +438,7 @@ class TestAsyncBillingGroups:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):

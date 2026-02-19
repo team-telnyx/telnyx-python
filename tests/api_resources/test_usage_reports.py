@@ -21,7 +21,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestUsageReports:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         usage_report = client.usage_reports.list(
@@ -31,7 +31,7 @@ class TestUsageReports:
         )
         assert_matches_type(SyncDefaultFlatPagination[UsageReportListResponse], usage_report, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         usage_report = client.usage_reports.list(
@@ -51,7 +51,7 @@ class TestUsageReports:
         )
         assert_matches_type(SyncDefaultFlatPagination[UsageReportListResponse], usage_report, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Telnyx) -> None:
         response = client.usage_reports.with_raw_response.list(
@@ -65,7 +65,7 @@ class TestUsageReports:
         usage_report = response.parse()
         assert_matches_type(SyncDefaultFlatPagination[UsageReportListResponse], usage_report, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Telnyx) -> None:
         with client.usage_reports.with_streaming_response.list(
@@ -81,13 +81,13 @@ class TestUsageReports:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_get_options(self, client: Telnyx) -> None:
         usage_report = client.usage_reports.get_options()
         assert_matches_type(UsageReportGetOptionsResponse, usage_report, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_get_options_with_all_params(self, client: Telnyx) -> None:
         usage_report = client.usage_reports.get_options(
@@ -96,7 +96,7 @@ class TestUsageReports:
         )
         assert_matches_type(UsageReportGetOptionsResponse, usage_report, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_get_options(self, client: Telnyx) -> None:
         response = client.usage_reports.with_raw_response.get_options()
@@ -106,7 +106,7 @@ class TestUsageReports:
         usage_report = response.parse()
         assert_matches_type(UsageReportGetOptionsResponse, usage_report, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_get_options(self, client: Telnyx) -> None:
         with client.usage_reports.with_streaming_response.get_options() as response:
@@ -124,7 +124,7 @@ class TestAsyncUsageReports:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         usage_report = await async_client.usage_reports.list(
@@ -134,7 +134,7 @@ class TestAsyncUsageReports:
         )
         assert_matches_type(AsyncDefaultFlatPagination[UsageReportListResponse], usage_report, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         usage_report = await async_client.usage_reports.list(
@@ -154,7 +154,7 @@ class TestAsyncUsageReports:
         )
         assert_matches_type(AsyncDefaultFlatPagination[UsageReportListResponse], usage_report, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.usage_reports.with_raw_response.list(
@@ -168,7 +168,7 @@ class TestAsyncUsageReports:
         usage_report = await response.parse()
         assert_matches_type(AsyncDefaultFlatPagination[UsageReportListResponse], usage_report, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncTelnyx) -> None:
         async with async_client.usage_reports.with_streaming_response.list(
@@ -184,13 +184,13 @@ class TestAsyncUsageReports:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_get_options(self, async_client: AsyncTelnyx) -> None:
         usage_report = await async_client.usage_reports.get_options()
         assert_matches_type(UsageReportGetOptionsResponse, usage_report, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_get_options_with_all_params(self, async_client: AsyncTelnyx) -> None:
         usage_report = await async_client.usage_reports.get_options(
@@ -199,7 +199,7 @@ class TestAsyncUsageReports:
         )
         assert_matches_type(UsageReportGetOptionsResponse, usage_report, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_get_options(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.usage_reports.with_raw_response.get_options()
@@ -209,7 +209,7 @@ class TestAsyncUsageReports:
         usage_report = await response.parse()
         assert_matches_type(UsageReportGetOptionsResponse, usage_report, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_get_options(self, async_client: AsyncTelnyx) -> None:
         async with async_client.usage_reports.with_streaming_response.get_options() as response:

@@ -24,7 +24,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestSimCardDataUsageNotifications:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create(self, client: Telnyx) -> None:
         sim_card_data_usage_notification = client.sim_card_data_usage_notifications.create(
@@ -35,7 +35,7 @@ class TestSimCardDataUsageNotifications:
             SimCardDataUsageNotificationCreateResponse, sim_card_data_usage_notification, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create_with_all_params(self, client: Telnyx) -> None:
         sim_card_data_usage_notification = client.sim_card_data_usage_notifications.create(
@@ -49,7 +49,7 @@ class TestSimCardDataUsageNotifications:
             SimCardDataUsageNotificationCreateResponse, sim_card_data_usage_notification, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: Telnyx) -> None:
         response = client.sim_card_data_usage_notifications.with_raw_response.create(
@@ -64,7 +64,7 @@ class TestSimCardDataUsageNotifications:
             SimCardDataUsageNotificationCreateResponse, sim_card_data_usage_notification, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: Telnyx) -> None:
         with client.sim_card_data_usage_notifications.with_streaming_response.create(
@@ -81,7 +81,7 @@ class TestSimCardDataUsageNotifications:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Telnyx) -> None:
         sim_card_data_usage_notification = client.sim_card_data_usage_notifications.retrieve(
@@ -91,7 +91,7 @@ class TestSimCardDataUsageNotifications:
             SimCardDataUsageNotificationRetrieveResponse, sim_card_data_usage_notification, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
         response = client.sim_card_data_usage_notifications.with_raw_response.retrieve(
@@ -105,7 +105,7 @@ class TestSimCardDataUsageNotifications:
             SimCardDataUsageNotificationRetrieveResponse, sim_card_data_usage_notification, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
         with client.sim_card_data_usage_notifications.with_streaming_response.retrieve(
@@ -121,7 +121,7 @@ class TestSimCardDataUsageNotifications:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_retrieve(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -129,7 +129,7 @@ class TestSimCardDataUsageNotifications:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_update(self, client: Telnyx) -> None:
         sim_card_data_usage_notification = client.sim_card_data_usage_notifications.update(
@@ -139,7 +139,7 @@ class TestSimCardDataUsageNotifications:
             SimCardDataUsageNotificationUpdateResponse, sim_card_data_usage_notification, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_update_with_all_params(self, client: Telnyx) -> None:
         sim_card_data_usage_notification = client.sim_card_data_usage_notifications.update(
@@ -154,7 +154,7 @@ class TestSimCardDataUsageNotifications:
             SimCardDataUsageNotificationUpdateResponse, sim_card_data_usage_notification, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_update(self, client: Telnyx) -> None:
         response = client.sim_card_data_usage_notifications.with_raw_response.update(
@@ -168,7 +168,7 @@ class TestSimCardDataUsageNotifications:
             SimCardDataUsageNotificationUpdateResponse, sim_card_data_usage_notification, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_update(self, client: Telnyx) -> None:
         with client.sim_card_data_usage_notifications.with_streaming_response.update(
@@ -184,7 +184,7 @@ class TestSimCardDataUsageNotifications:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_update(self, client: Telnyx) -> None:
         with pytest.raises(
@@ -194,7 +194,7 @@ class TestSimCardDataUsageNotifications:
                 sim_card_data_usage_notification_id="",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         sim_card_data_usage_notification = client.sim_card_data_usage_notifications.list()
@@ -202,7 +202,7 @@ class TestSimCardDataUsageNotifications:
             SyncDefaultFlatPagination[SimCardDataUsageNotification], sim_card_data_usage_notification, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         sim_card_data_usage_notification = client.sim_card_data_usage_notifications.list(
@@ -214,7 +214,7 @@ class TestSimCardDataUsageNotifications:
             SyncDefaultFlatPagination[SimCardDataUsageNotification], sim_card_data_usage_notification, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Telnyx) -> None:
         response = client.sim_card_data_usage_notifications.with_raw_response.list()
@@ -226,7 +226,7 @@ class TestSimCardDataUsageNotifications:
             SyncDefaultFlatPagination[SimCardDataUsageNotification], sim_card_data_usage_notification, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Telnyx) -> None:
         with client.sim_card_data_usage_notifications.with_streaming_response.list() as response:
@@ -242,7 +242,7 @@ class TestSimCardDataUsageNotifications:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_delete(self, client: Telnyx) -> None:
         sim_card_data_usage_notification = client.sim_card_data_usage_notifications.delete(
@@ -252,7 +252,7 @@ class TestSimCardDataUsageNotifications:
             SimCardDataUsageNotificationDeleteResponse, sim_card_data_usage_notification, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_delete(self, client: Telnyx) -> None:
         response = client.sim_card_data_usage_notifications.with_raw_response.delete(
@@ -266,7 +266,7 @@ class TestSimCardDataUsageNotifications:
             SimCardDataUsageNotificationDeleteResponse, sim_card_data_usage_notification, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_delete(self, client: Telnyx) -> None:
         with client.sim_card_data_usage_notifications.with_streaming_response.delete(
@@ -282,7 +282,7 @@ class TestSimCardDataUsageNotifications:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_delete(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -296,7 +296,7 @@ class TestAsyncSimCardDataUsageNotifications:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncTelnyx) -> None:
         sim_card_data_usage_notification = await async_client.sim_card_data_usage_notifications.create(
@@ -307,7 +307,7 @@ class TestAsyncSimCardDataUsageNotifications:
             SimCardDataUsageNotificationCreateResponse, sim_card_data_usage_notification, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncTelnyx) -> None:
         sim_card_data_usage_notification = await async_client.sim_card_data_usage_notifications.create(
@@ -321,7 +321,7 @@ class TestAsyncSimCardDataUsageNotifications:
             SimCardDataUsageNotificationCreateResponse, sim_card_data_usage_notification, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.sim_card_data_usage_notifications.with_raw_response.create(
@@ -336,7 +336,7 @@ class TestAsyncSimCardDataUsageNotifications:
             SimCardDataUsageNotificationCreateResponse, sim_card_data_usage_notification, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncTelnyx) -> None:
         async with async_client.sim_card_data_usage_notifications.with_streaming_response.create(
@@ -353,7 +353,7 @@ class TestAsyncSimCardDataUsageNotifications:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
         sim_card_data_usage_notification = await async_client.sim_card_data_usage_notifications.retrieve(
@@ -363,7 +363,7 @@ class TestAsyncSimCardDataUsageNotifications:
             SimCardDataUsageNotificationRetrieveResponse, sim_card_data_usage_notification, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.sim_card_data_usage_notifications.with_raw_response.retrieve(
@@ -377,7 +377,7 @@ class TestAsyncSimCardDataUsageNotifications:
             SimCardDataUsageNotificationRetrieveResponse, sim_card_data_usage_notification, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         async with async_client.sim_card_data_usage_notifications.with_streaming_response.retrieve(
@@ -393,7 +393,7 @@ class TestAsyncSimCardDataUsageNotifications:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -401,7 +401,7 @@ class TestAsyncSimCardDataUsageNotifications:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_update(self, async_client: AsyncTelnyx) -> None:
         sim_card_data_usage_notification = await async_client.sim_card_data_usage_notifications.update(
@@ -411,7 +411,7 @@ class TestAsyncSimCardDataUsageNotifications:
             SimCardDataUsageNotificationUpdateResponse, sim_card_data_usage_notification, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncTelnyx) -> None:
         sim_card_data_usage_notification = await async_client.sim_card_data_usage_notifications.update(
@@ -426,7 +426,7 @@ class TestAsyncSimCardDataUsageNotifications:
             SimCardDataUsageNotificationUpdateResponse, sim_card_data_usage_notification, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.sim_card_data_usage_notifications.with_raw_response.update(
@@ -440,7 +440,7 @@ class TestAsyncSimCardDataUsageNotifications:
             SimCardDataUsageNotificationUpdateResponse, sim_card_data_usage_notification, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncTelnyx) -> None:
         async with async_client.sim_card_data_usage_notifications.with_streaming_response.update(
@@ -456,7 +456,7 @@ class TestAsyncSimCardDataUsageNotifications:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_update(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(
@@ -466,7 +466,7 @@ class TestAsyncSimCardDataUsageNotifications:
                 sim_card_data_usage_notification_id="",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         sim_card_data_usage_notification = await async_client.sim_card_data_usage_notifications.list()
@@ -476,7 +476,7 @@ class TestAsyncSimCardDataUsageNotifications:
             path=["response"],
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         sim_card_data_usage_notification = await async_client.sim_card_data_usage_notifications.list(
@@ -490,7 +490,7 @@ class TestAsyncSimCardDataUsageNotifications:
             path=["response"],
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.sim_card_data_usage_notifications.with_raw_response.list()
@@ -504,7 +504,7 @@ class TestAsyncSimCardDataUsageNotifications:
             path=["response"],
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncTelnyx) -> None:
         async with async_client.sim_card_data_usage_notifications.with_streaming_response.list() as response:
@@ -520,7 +520,7 @@ class TestAsyncSimCardDataUsageNotifications:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_delete(self, async_client: AsyncTelnyx) -> None:
         sim_card_data_usage_notification = await async_client.sim_card_data_usage_notifications.delete(
@@ -530,7 +530,7 @@ class TestAsyncSimCardDataUsageNotifications:
             SimCardDataUsageNotificationDeleteResponse, sim_card_data_usage_notification, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.sim_card_data_usage_notifications.with_raw_response.delete(
@@ -544,7 +544,7 @@ class TestAsyncSimCardDataUsageNotifications:
             SimCardDataUsageNotificationDeleteResponse, sim_card_data_usage_notification, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncTelnyx) -> None:
         async with async_client.sim_card_data_usage_notifications.with_streaming_response.delete(
@@ -560,7 +560,7 @@ class TestAsyncSimCardDataUsageNotifications:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):

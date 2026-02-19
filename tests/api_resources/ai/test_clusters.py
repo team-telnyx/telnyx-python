@@ -30,7 +30,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestClusters:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Telnyx) -> None:
         cluster = client.ai.clusters.retrieve(
@@ -38,7 +38,7 @@ class TestClusters:
         )
         assert_matches_type(ClusterRetrieveResponse, cluster, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_retrieve_with_all_params(self, client: Telnyx) -> None:
         cluster = client.ai.clusters.retrieve(
@@ -48,7 +48,7 @@ class TestClusters:
         )
         assert_matches_type(ClusterRetrieveResponse, cluster, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
         response = client.ai.clusters.with_raw_response.retrieve(
@@ -60,7 +60,7 @@ class TestClusters:
         cluster = response.parse()
         assert_matches_type(ClusterRetrieveResponse, cluster, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
         with client.ai.clusters.with_streaming_response.retrieve(
@@ -74,7 +74,7 @@ class TestClusters:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_retrieve(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `task_id` but received ''"):
@@ -82,13 +82,13 @@ class TestClusters:
                 task_id="",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         cluster = client.ai.clusters.list()
         assert_matches_type(SyncDefaultFlatPagination[ClusterListResponse], cluster, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         cluster = client.ai.clusters.list(
@@ -97,7 +97,7 @@ class TestClusters:
         )
         assert_matches_type(SyncDefaultFlatPagination[ClusterListResponse], cluster, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Telnyx) -> None:
         response = client.ai.clusters.with_raw_response.list()
@@ -107,7 +107,7 @@ class TestClusters:
         cluster = response.parse()
         assert_matches_type(SyncDefaultFlatPagination[ClusterListResponse], cluster, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Telnyx) -> None:
         with client.ai.clusters.with_streaming_response.list() as response:
@@ -119,7 +119,7 @@ class TestClusters:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_delete(self, client: Telnyx) -> None:
         cluster = client.ai.clusters.delete(
@@ -127,7 +127,7 @@ class TestClusters:
         )
         assert cluster is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_delete(self, client: Telnyx) -> None:
         response = client.ai.clusters.with_raw_response.delete(
@@ -139,7 +139,7 @@ class TestClusters:
         cluster = response.parse()
         assert cluster is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_delete(self, client: Telnyx) -> None:
         with client.ai.clusters.with_streaming_response.delete(
@@ -153,7 +153,7 @@ class TestClusters:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_delete(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `task_id` but received ''"):
@@ -161,7 +161,7 @@ class TestClusters:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_compute(self, client: Telnyx) -> None:
         cluster = client.ai.clusters.compute(
@@ -169,7 +169,7 @@ class TestClusters:
         )
         assert_matches_type(ClusterComputeResponse, cluster, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_compute_with_all_params(self, client: Telnyx) -> None:
         cluster = client.ai.clusters.compute(
@@ -181,7 +181,7 @@ class TestClusters:
         )
         assert_matches_type(ClusterComputeResponse, cluster, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_compute(self, client: Telnyx) -> None:
         response = client.ai.clusters.with_raw_response.compute(
@@ -193,7 +193,7 @@ class TestClusters:
         cluster = response.parse()
         assert_matches_type(ClusterComputeResponse, cluster, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_compute(self, client: Telnyx) -> None:
         with client.ai.clusters.with_streaming_response.compute(
@@ -276,7 +276,7 @@ class TestAsyncClusters:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
         cluster = await async_client.ai.clusters.retrieve(
@@ -284,7 +284,7 @@ class TestAsyncClusters:
         )
         assert_matches_type(ClusterRetrieveResponse, cluster, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_retrieve_with_all_params(self, async_client: AsyncTelnyx) -> None:
         cluster = await async_client.ai.clusters.retrieve(
@@ -294,7 +294,7 @@ class TestAsyncClusters:
         )
         assert_matches_type(ClusterRetrieveResponse, cluster, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.ai.clusters.with_raw_response.retrieve(
@@ -306,7 +306,7 @@ class TestAsyncClusters:
         cluster = await response.parse()
         assert_matches_type(ClusterRetrieveResponse, cluster, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         async with async_client.ai.clusters.with_streaming_response.retrieve(
@@ -320,7 +320,7 @@ class TestAsyncClusters:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `task_id` but received ''"):
@@ -328,13 +328,13 @@ class TestAsyncClusters:
                 task_id="",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         cluster = await async_client.ai.clusters.list()
         assert_matches_type(AsyncDefaultFlatPagination[ClusterListResponse], cluster, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         cluster = await async_client.ai.clusters.list(
@@ -343,7 +343,7 @@ class TestAsyncClusters:
         )
         assert_matches_type(AsyncDefaultFlatPagination[ClusterListResponse], cluster, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.ai.clusters.with_raw_response.list()
@@ -353,7 +353,7 @@ class TestAsyncClusters:
         cluster = await response.parse()
         assert_matches_type(AsyncDefaultFlatPagination[ClusterListResponse], cluster, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncTelnyx) -> None:
         async with async_client.ai.clusters.with_streaming_response.list() as response:
@@ -365,7 +365,7 @@ class TestAsyncClusters:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_delete(self, async_client: AsyncTelnyx) -> None:
         cluster = await async_client.ai.clusters.delete(
@@ -373,7 +373,7 @@ class TestAsyncClusters:
         )
         assert cluster is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.ai.clusters.with_raw_response.delete(
@@ -385,7 +385,7 @@ class TestAsyncClusters:
         cluster = await response.parse()
         assert cluster is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncTelnyx) -> None:
         async with async_client.ai.clusters.with_streaming_response.delete(
@@ -399,7 +399,7 @@ class TestAsyncClusters:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `task_id` but received ''"):
@@ -407,7 +407,7 @@ class TestAsyncClusters:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_compute(self, async_client: AsyncTelnyx) -> None:
         cluster = await async_client.ai.clusters.compute(
@@ -415,7 +415,7 @@ class TestAsyncClusters:
         )
         assert_matches_type(ClusterComputeResponse, cluster, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_compute_with_all_params(self, async_client: AsyncTelnyx) -> None:
         cluster = await async_client.ai.clusters.compute(
@@ -427,7 +427,7 @@ class TestAsyncClusters:
         )
         assert_matches_type(ClusterComputeResponse, cluster, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_compute(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.ai.clusters.with_raw_response.compute(
@@ -439,7 +439,7 @@ class TestAsyncClusters:
         cluster = await response.parse()
         assert_matches_type(ClusterComputeResponse, cluster, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_compute(self, async_client: AsyncTelnyx) -> None:
         async with async_client.ai.clusters.with_streaming_response.compute(

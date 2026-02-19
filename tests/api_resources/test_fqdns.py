@@ -24,7 +24,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestFqdns:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create(self, client: Telnyx) -> None:
         fqdn = client.fqdns.create(
@@ -34,7 +34,7 @@ class TestFqdns:
         )
         assert_matches_type(FqdnCreateResponse, fqdn, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create_with_all_params(self, client: Telnyx) -> None:
         fqdn = client.fqdns.create(
@@ -45,7 +45,7 @@ class TestFqdns:
         )
         assert_matches_type(FqdnCreateResponse, fqdn, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: Telnyx) -> None:
         response = client.fqdns.with_raw_response.create(
@@ -59,7 +59,7 @@ class TestFqdns:
         fqdn = response.parse()
         assert_matches_type(FqdnCreateResponse, fqdn, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: Telnyx) -> None:
         with client.fqdns.with_streaming_response.create(
@@ -75,7 +75,7 @@ class TestFqdns:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Telnyx) -> None:
         fqdn = client.fqdns.retrieve(
@@ -83,7 +83,7 @@ class TestFqdns:
         )
         assert_matches_type(FqdnRetrieveResponse, fqdn, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
         response = client.fqdns.with_raw_response.retrieve(
@@ -95,7 +95,7 @@ class TestFqdns:
         fqdn = response.parse()
         assert_matches_type(FqdnRetrieveResponse, fqdn, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
         with client.fqdns.with_streaming_response.retrieve(
@@ -109,7 +109,7 @@ class TestFqdns:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_retrieve(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -117,7 +117,7 @@ class TestFqdns:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_update(self, client: Telnyx) -> None:
         fqdn = client.fqdns.update(
@@ -125,7 +125,7 @@ class TestFqdns:
         )
         assert_matches_type(FqdnUpdateResponse, fqdn, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_update_with_all_params(self, client: Telnyx) -> None:
         fqdn = client.fqdns.update(
@@ -137,7 +137,7 @@ class TestFqdns:
         )
         assert_matches_type(FqdnUpdateResponse, fqdn, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_update(self, client: Telnyx) -> None:
         response = client.fqdns.with_raw_response.update(
@@ -149,7 +149,7 @@ class TestFqdns:
         fqdn = response.parse()
         assert_matches_type(FqdnUpdateResponse, fqdn, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_update(self, client: Telnyx) -> None:
         with client.fqdns.with_streaming_response.update(
@@ -163,7 +163,7 @@ class TestFqdns:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_update(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -171,13 +171,13 @@ class TestFqdns:
                 id="",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         fqdn = client.fqdns.list()
         assert_matches_type(SyncDefaultFlatPagination[Fqdn], fqdn, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         fqdn = client.fqdns.list(
@@ -192,7 +192,7 @@ class TestFqdns:
         )
         assert_matches_type(SyncDefaultFlatPagination[Fqdn], fqdn, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Telnyx) -> None:
         response = client.fqdns.with_raw_response.list()
@@ -202,7 +202,7 @@ class TestFqdns:
         fqdn = response.parse()
         assert_matches_type(SyncDefaultFlatPagination[Fqdn], fqdn, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Telnyx) -> None:
         with client.fqdns.with_streaming_response.list() as response:
@@ -214,7 +214,7 @@ class TestFqdns:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_delete(self, client: Telnyx) -> None:
         fqdn = client.fqdns.delete(
@@ -222,7 +222,7 @@ class TestFqdns:
         )
         assert_matches_type(FqdnDeleteResponse, fqdn, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_delete(self, client: Telnyx) -> None:
         response = client.fqdns.with_raw_response.delete(
@@ -234,7 +234,7 @@ class TestFqdns:
         fqdn = response.parse()
         assert_matches_type(FqdnDeleteResponse, fqdn, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_delete(self, client: Telnyx) -> None:
         with client.fqdns.with_streaming_response.delete(
@@ -248,7 +248,7 @@ class TestFqdns:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_delete(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -262,7 +262,7 @@ class TestAsyncFqdns:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncTelnyx) -> None:
         fqdn = await async_client.fqdns.create(
@@ -272,7 +272,7 @@ class TestAsyncFqdns:
         )
         assert_matches_type(FqdnCreateResponse, fqdn, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncTelnyx) -> None:
         fqdn = await async_client.fqdns.create(
@@ -283,7 +283,7 @@ class TestAsyncFqdns:
         )
         assert_matches_type(FqdnCreateResponse, fqdn, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.fqdns.with_raw_response.create(
@@ -297,7 +297,7 @@ class TestAsyncFqdns:
         fqdn = await response.parse()
         assert_matches_type(FqdnCreateResponse, fqdn, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncTelnyx) -> None:
         async with async_client.fqdns.with_streaming_response.create(
@@ -313,7 +313,7 @@ class TestAsyncFqdns:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
         fqdn = await async_client.fqdns.retrieve(
@@ -321,7 +321,7 @@ class TestAsyncFqdns:
         )
         assert_matches_type(FqdnRetrieveResponse, fqdn, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.fqdns.with_raw_response.retrieve(
@@ -333,7 +333,7 @@ class TestAsyncFqdns:
         fqdn = await response.parse()
         assert_matches_type(FqdnRetrieveResponse, fqdn, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         async with async_client.fqdns.with_streaming_response.retrieve(
@@ -347,7 +347,7 @@ class TestAsyncFqdns:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -355,7 +355,7 @@ class TestAsyncFqdns:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_update(self, async_client: AsyncTelnyx) -> None:
         fqdn = await async_client.fqdns.update(
@@ -363,7 +363,7 @@ class TestAsyncFqdns:
         )
         assert_matches_type(FqdnUpdateResponse, fqdn, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncTelnyx) -> None:
         fqdn = await async_client.fqdns.update(
@@ -375,7 +375,7 @@ class TestAsyncFqdns:
         )
         assert_matches_type(FqdnUpdateResponse, fqdn, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.fqdns.with_raw_response.update(
@@ -387,7 +387,7 @@ class TestAsyncFqdns:
         fqdn = await response.parse()
         assert_matches_type(FqdnUpdateResponse, fqdn, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncTelnyx) -> None:
         async with async_client.fqdns.with_streaming_response.update(
@@ -401,7 +401,7 @@ class TestAsyncFqdns:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_update(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -409,13 +409,13 @@ class TestAsyncFqdns:
                 id="",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         fqdn = await async_client.fqdns.list()
         assert_matches_type(AsyncDefaultFlatPagination[Fqdn], fqdn, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         fqdn = await async_client.fqdns.list(
@@ -430,7 +430,7 @@ class TestAsyncFqdns:
         )
         assert_matches_type(AsyncDefaultFlatPagination[Fqdn], fqdn, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.fqdns.with_raw_response.list()
@@ -440,7 +440,7 @@ class TestAsyncFqdns:
         fqdn = await response.parse()
         assert_matches_type(AsyncDefaultFlatPagination[Fqdn], fqdn, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncTelnyx) -> None:
         async with async_client.fqdns.with_streaming_response.list() as response:
@@ -452,7 +452,7 @@ class TestAsyncFqdns:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_delete(self, async_client: AsyncTelnyx) -> None:
         fqdn = await async_client.fqdns.delete(
@@ -460,7 +460,7 @@ class TestAsyncFqdns:
         )
         assert_matches_type(FqdnDeleteResponse, fqdn, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.fqdns.with_raw_response.delete(
@@ -472,7 +472,7 @@ class TestAsyncFqdns:
         fqdn = await response.parse()
         assert_matches_type(FqdnDeleteResponse, fqdn, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncTelnyx) -> None:
         async with async_client.fqdns.with_streaming_response.delete(
@@ -486,7 +486,7 @@ class TestAsyncFqdns:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):

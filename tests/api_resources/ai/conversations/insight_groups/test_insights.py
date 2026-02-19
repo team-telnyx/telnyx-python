@@ -15,7 +15,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestInsights:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_assign(self, client: Telnyx) -> None:
         insight = client.ai.conversations.insight_groups.insights.assign(
@@ -24,7 +24,7 @@ class TestInsights:
         )
         assert insight is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_assign(self, client: Telnyx) -> None:
         response = client.ai.conversations.insight_groups.insights.with_raw_response.assign(
@@ -37,7 +37,7 @@ class TestInsights:
         insight = response.parse()
         assert insight is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_assign(self, client: Telnyx) -> None:
         with client.ai.conversations.insight_groups.insights.with_streaming_response.assign(
@@ -52,7 +52,7 @@ class TestInsights:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_assign(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `group_id` but received ''"):
@@ -67,7 +67,7 @@ class TestInsights:
                 group_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_delete_unassign(self, client: Telnyx) -> None:
         insight = client.ai.conversations.insight_groups.insights.delete_unassign(
@@ -76,7 +76,7 @@ class TestInsights:
         )
         assert insight is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_delete_unassign(self, client: Telnyx) -> None:
         response = client.ai.conversations.insight_groups.insights.with_raw_response.delete_unassign(
@@ -89,7 +89,7 @@ class TestInsights:
         insight = response.parse()
         assert insight is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_delete_unassign(self, client: Telnyx) -> None:
         with client.ai.conversations.insight_groups.insights.with_streaming_response.delete_unassign(
@@ -104,7 +104,7 @@ class TestInsights:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_delete_unassign(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `group_id` but received ''"):
@@ -125,7 +125,7 @@ class TestAsyncInsights:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_assign(self, async_client: AsyncTelnyx) -> None:
         insight = await async_client.ai.conversations.insight_groups.insights.assign(
@@ -134,7 +134,7 @@ class TestAsyncInsights:
         )
         assert insight is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_assign(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.ai.conversations.insight_groups.insights.with_raw_response.assign(
@@ -147,7 +147,7 @@ class TestAsyncInsights:
         insight = await response.parse()
         assert insight is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_assign(self, async_client: AsyncTelnyx) -> None:
         async with async_client.ai.conversations.insight_groups.insights.with_streaming_response.assign(
@@ -162,7 +162,7 @@ class TestAsyncInsights:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_assign(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `group_id` but received ''"):
@@ -177,7 +177,7 @@ class TestAsyncInsights:
                 group_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_delete_unassign(self, async_client: AsyncTelnyx) -> None:
         insight = await async_client.ai.conversations.insight_groups.insights.delete_unassign(
@@ -186,7 +186,7 @@ class TestAsyncInsights:
         )
         assert insight is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_delete_unassign(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.ai.conversations.insight_groups.insights.with_raw_response.delete_unassign(
@@ -199,7 +199,7 @@ class TestAsyncInsights:
         insight = await response.parse()
         assert insight is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_delete_unassign(self, async_client: AsyncTelnyx) -> None:
         async with async_client.ai.conversations.insight_groups.insights.with_streaming_response.delete_unassign(
@@ -214,7 +214,7 @@ class TestAsyncInsights:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_delete_unassign(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `group_id` but received ''"):
