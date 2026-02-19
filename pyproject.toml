@@ -1,6 +1,6 @@
 [project]
 name = "telnyx"
-version = "4.40.0"
+version = "4.41.0"
 description = "Telnyx API SDK for global Voice, SMS, MMS, WhatsApp, Fax, Wireless IoT, SIP Trunking, and Call Control."
 dynamic = ["readme"]
 license = "MIT"
