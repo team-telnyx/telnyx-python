@@ -293,7 +293,7 @@ class TestIPConnections:
             filter={
                 "connection_name": {"contains": "contains"},
                 "fqdn": "fqdn",
-                "outbound_voice_profile_id": "1293384261075731499",
+                "outbound_voice_profile_id": "outbound_voice_profile_id",
             },
             page_number=0,
             page_size=0,
@@ -640,7 +640,7 @@ class TestAsyncIPConnections:
             filter={
                 "connection_name": {"contains": "contains"},
                 "fqdn": "fqdn",
-                "outbound_voice_profile_id": "1293384261075731499",
+                "outbound_voice_profile_id": "outbound_voice_profile_id",
             },
             page_number=0,
             page_size=0,

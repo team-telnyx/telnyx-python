@@ -14,6 +14,8 @@ from telnyx.types import (
     ConferenceCreateResponse,
     ConferenceRetrieveResponse,
     ConferenceListParticipantsResponse,
+    ConferenceUpdateParticipantResponse,
+    ConferenceRetrieveParticipantResponse,
 )
 from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 
@@ -155,7 +157,7 @@ class TestConferences:
                     "lt": "2019-03-29T11:10:00Z",
                     "lte": "2019-03-29T11:10:00Z",
                 },
-                "outbound_outbound_voice_profile_id": "1293384261075731499",
+                "outbound_outbound_voice_profile_id": "outbound.outbound_voice_profile_id",
                 "product": "texml",
                 "status": "init",
                 "to": "+12025550142",
@@ -253,6 +255,122 @@ class TestConferences:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `conference_id` but received ''"):
             client.conferences.with_raw_response.list_participants(
                 conference_id="",
+            )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_retrieve_participant(self, client: Telnyx) -> None:
+        conference = client.conferences.retrieve_participant(
+            participant_id="participant_id",
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+        assert_matches_type(ConferenceRetrieveParticipantResponse, conference, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_raw_response_retrieve_participant(self, client: Telnyx) -> None:
+        response = client.conferences.with_raw_response.retrieve_participant(
+            participant_id="participant_id",
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        conference = response.parse()
+        assert_matches_type(ConferenceRetrieveParticipantResponse, conference, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_streaming_response_retrieve_participant(self, client: Telnyx) -> None:
+        with client.conferences.with_streaming_response.retrieve_participant(
+            participant_id="participant_id",
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            conference = response.parse()
+            assert_matches_type(ConferenceRetrieveParticipantResponse, conference, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_path_params_retrieve_participant(self, client: Telnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.conferences.with_raw_response.retrieve_participant(
+                participant_id="participant_id",
+                id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `participant_id` but received ''"):
+            client.conferences.with_raw_response.retrieve_participant(
+                participant_id="",
+                id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_update_participant(self, client: Telnyx) -> None:
+        conference = client.conferences.update_participant(
+            participant_id="participant_id",
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+        assert_matches_type(ConferenceUpdateParticipantResponse, conference, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_update_participant_with_all_params(self, client: Telnyx) -> None:
+        conference = client.conferences.update_participant(
+            participant_id="participant_id",
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            beep_enabled="never",
+            end_conference_on_exit=True,
+            soft_end_conference_on_exit=False,
+        )
+        assert_matches_type(ConferenceUpdateParticipantResponse, conference, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_raw_response_update_participant(self, client: Telnyx) -> None:
+        response = client.conferences.with_raw_response.update_participant(
+            participant_id="participant_id",
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        conference = response.parse()
+        assert_matches_type(ConferenceUpdateParticipantResponse, conference, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_streaming_response_update_participant(self, client: Telnyx) -> None:
+        with client.conferences.with_streaming_response.update_participant(
+            participant_id="participant_id",
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            conference = response.parse()
+            assert_matches_type(ConferenceUpdateParticipantResponse, conference, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_path_params_update_participant(self, client: Telnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.conferences.with_raw_response.update_participant(
+                participant_id="participant_id",
+                id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `participant_id` but received ''"):
+            client.conferences.with_raw_response.update_participant(
+                participant_id="",
+                id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             )
 
 
@@ -393,7 +511,7 @@ class TestAsyncConferences:
                     "lt": "2019-03-29T11:10:00Z",
                     "lte": "2019-03-29T11:10:00Z",
                 },
-                "outbound_outbound_voice_profile_id": "1293384261075731499",
+                "outbound_outbound_voice_profile_id": "outbound.outbound_voice_profile_id",
                 "product": "texml",
                 "status": "init",
                 "to": "+12025550142",
@@ -491,4 +609,120 @@ class TestAsyncConferences:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `conference_id` but received ''"):
             await async_client.conferences.with_raw_response.list_participants(
                 conference_id="",
+            )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_retrieve_participant(self, async_client: AsyncTelnyx) -> None:
+        conference = await async_client.conferences.retrieve_participant(
+            participant_id="participant_id",
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+        assert_matches_type(ConferenceRetrieveParticipantResponse, conference, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_raw_response_retrieve_participant(self, async_client: AsyncTelnyx) -> None:
+        response = await async_client.conferences.with_raw_response.retrieve_participant(
+            participant_id="participant_id",
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        conference = await response.parse()
+        assert_matches_type(ConferenceRetrieveParticipantResponse, conference, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_streaming_response_retrieve_participant(self, async_client: AsyncTelnyx) -> None:
+        async with async_client.conferences.with_streaming_response.retrieve_participant(
+            participant_id="participant_id",
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            conference = await response.parse()
+            assert_matches_type(ConferenceRetrieveParticipantResponse, conference, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_path_params_retrieve_participant(self, async_client: AsyncTelnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.conferences.with_raw_response.retrieve_participant(
+                participant_id="participant_id",
+                id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `participant_id` but received ''"):
+            await async_client.conferences.with_raw_response.retrieve_participant(
+                participant_id="",
+                id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_update_participant(self, async_client: AsyncTelnyx) -> None:
+        conference = await async_client.conferences.update_participant(
+            participant_id="participant_id",
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+        assert_matches_type(ConferenceUpdateParticipantResponse, conference, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_update_participant_with_all_params(self, async_client: AsyncTelnyx) -> None:
+        conference = await async_client.conferences.update_participant(
+            participant_id="participant_id",
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            beep_enabled="never",
+            end_conference_on_exit=True,
+            soft_end_conference_on_exit=False,
+        )
+        assert_matches_type(ConferenceUpdateParticipantResponse, conference, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_raw_response_update_participant(self, async_client: AsyncTelnyx) -> None:
+        response = await async_client.conferences.with_raw_response.update_participant(
+            participant_id="participant_id",
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        conference = await response.parse()
+        assert_matches_type(ConferenceUpdateParticipantResponse, conference, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_streaming_response_update_participant(self, async_client: AsyncTelnyx) -> None:
+        async with async_client.conferences.with_streaming_response.update_participant(
+            participant_id="participant_id",
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            conference = await response.parse()
+            assert_matches_type(ConferenceUpdateParticipantResponse, conference, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_path_params_update_participant(self, async_client: AsyncTelnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.conferences.with_raw_response.update_participant(
+                participant_id="participant_id",
+                id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `participant_id` but received ''"):
+            await async_client.conferences.with_raw_response.update_participant(
+                participant_id="",
+                id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             )

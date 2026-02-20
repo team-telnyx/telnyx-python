@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import Dict, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -15,6 +15,9 @@ class Settings(BaseModel):
     assertion_consumer_service_url: Optional[str] = None
     """The Assertion Consumer Service URL for the service provider (Telnyx)."""
 
+    idp_attribute_names: Optional[Dict[str, object]] = None
+    """Mapping of SAML attribute names used by the identity provider (IdP)."""
+
     idp_cert_fingerprint: Optional[str] = None
     """The certificate fingerprint for the identity provider (IdP)"""
 
@@ -24,8 +27,14 @@ class Settings(BaseModel):
     fingerprint
     """
 
+    idp_certificate: Optional[str] = None
+    """The full X.509 certificate for the identity provider (IdP)."""
+
     idp_entity_id: Optional[str] = None
     """The Entity ID for the identity provider (IdP)."""
+
+    idp_slo_target_url: Optional[str] = None
+    """The Single Logout (SLO) target URL for the identity provider (IdP)."""
 
     idp_sso_target_url: Optional[str] = None
     """The SSO target url for the identity provider (IdP)."""
@@ -37,13 +46,28 @@ class Settings(BaseModel):
     provider (Telnyx).
     """
 
+    provision_groups: Optional[bool] = None
+    """Whether group provisioning is enabled for this authentication provider."""
+
     service_provider_entity_id: Optional[str] = None
     """The Entity ID for the service provider (Telnyx)."""
+
+    service_provider_login_url: Optional[str] = None
+    """The login URL for the service provider (Telnyx).
+
+    Users navigate to this URL to initiate SSO login.
+    """
 
 
 class AuthenticationProvider(BaseModel):
     id: Optional[str] = None
     """Uniquely identifies the authentication provider."""
+
+    activated_at: Optional[datetime] = None
+    """
+    ISO 8601 formatted date indicating when the authentication provider was
+    activated.
+    """
 
     active: Optional[bool] = None
     """The active status of the authentication provider"""

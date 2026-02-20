@@ -13,6 +13,12 @@ class DeepgramNova3ConfigParam(TypedDict, total=False):
 
     transcription_model: Required[Literal["deepgram/nova-3"]]
 
+    interim_results: bool
+    """Whether to send also interim results.
+
+    If set to false, only final results will be sent.
+    """
+
     keywords_boosting: Dict[str, float]
     """
     Keywords and their respective intensifiers (boosting values) to improve
@@ -39,3 +45,9 @@ class DeepgramNova3ConfigParam(TypedDict, total=False):
         "auto_detect",
     ]
     """Language to use for speech recognition with nova-3 model"""
+
+    utterance_end_ms: int
+    """Number of milliseconds of silence to consider an utterance ended.
+
+    Ranges from 0 to 5000 ms.
+    """
