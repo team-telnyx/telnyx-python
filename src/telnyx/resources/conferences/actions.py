@@ -18,6 +18,7 @@ from ..._response import (
 )
 from ..._base_client import make_request_options
 from ...types.conferences import (
+    action_end_params,
     action_hold_params,
     action_join_params,
     action_mute_params,
@@ -28,12 +29,15 @@ from ...types.conferences import (
     action_unhold_params,
     action_unmute_params,
     action_update_params,
+    action_send_dtmf_params,
     action_record_stop_params,
     action_record_pause_params,
     action_record_start_params,
     action_record_resume_params,
+    action_gather_using_audio_params,
 )
 from ...types.calls.loopcount_param import LoopcountParam
+from ...types.conferences.action_end_response import ActionEndResponse
 from ...types.conferences.action_hold_response import ActionHoldResponse
 from ...types.conferences.action_join_response import ActionJoinResponse
 from ...types.conferences.action_mute_response import ActionMuteResponse
@@ -44,10 +48,12 @@ from ...types.conferences.action_speak_response import ActionSpeakResponse
 from ...types.conferences.action_unhold_response import ActionUnholdResponse
 from ...types.conferences.action_unmute_response import ActionUnmuteResponse
 from ...types.conferences.action_update_response import ActionUpdateResponse
+from ...types.conferences.action_send_dtmf_response import ActionSendDtmfResponse
 from ...types.conferences.action_record_stop_response import ActionRecordStopResponse
 from ...types.conferences.action_record_pause_response import ActionRecordPauseResponse
 from ...types.conferences.action_record_start_response import ActionRecordStartResponse
 from ...types.conferences.action_record_resume_response import ActionRecordResumeResponse
+from ...types.conferences.action_gather_using_audio_response import ActionGatherUsingAudioResponse
 
 __all__ = ["ActionsResource", "AsyncActionsResource"]
 
@@ -137,6 +143,151 @@ class ActionsResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=ActionUpdateResponse,
+        )
+
+    def end(
+        self,
+        id: str,
+        *,
+        command_id: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ActionEndResponse:
+        """
+        End a conference and terminate all active participants.
+
+        Args:
+          command_id: Use this field to avoid duplicate commands. Telnyx will ignore any command with
+              the same `command_id` for the same conference.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return self._post(
+            f"/conferences/{id}/actions/end",
+            body=maybe_transform({"command_id": command_id}, action_end_params.ActionEndParams),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ActionEndResponse,
+        )
+
+    def gather_using_audio(
+        self,
+        id: str,
+        *,
+        call_control_id: str,
+        audio_url: str | Omit = omit,
+        client_state: str | Omit = omit,
+        gather_id: str | Omit = omit,
+        initial_timeout_millis: int | Omit = omit,
+        inter_digit_timeout_millis: int | Omit = omit,
+        invalid_audio_url: str | Omit = omit,
+        invalid_media_name: str | Omit = omit,
+        maximum_digits: int | Omit = omit,
+        maximum_tries: int | Omit = omit,
+        media_name: str | Omit = omit,
+        minimum_digits: int | Omit = omit,
+        stop_playback_on_dtmf: bool | Omit = omit,
+        terminating_digit: str | Omit = omit,
+        timeout_millis: int | Omit = omit,
+        valid_digits: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ActionGatherUsingAudioResponse:
+        """
+        Play an audio file to a specific conference participant and gather DTMF input.
+
+        Args:
+          call_control_id: Unique identifier and token for controlling the call leg that will receive the
+              gather prompt.
+
+          audio_url: The URL of the audio file to play as the gather prompt. Must be WAV or MP3
+              format.
+
+          client_state: Use this field to add state to every subsequent webhook. Must be a valid Base-64
+              encoded string.
+
+          gather_id: Identifier for this gather command. Will be included in the gather ended
+              webhook. Maximum 100 characters.
+
+          initial_timeout_millis: Duration in milliseconds to wait for the first digit before timing out.
+
+          inter_digit_timeout_millis: Duration in milliseconds to wait between digits.
+
+          invalid_audio_url: URL of audio file to play when invalid input is received.
+
+          invalid_media_name: Name of media file to play when invalid input is received.
+
+          maximum_digits: Maximum number of digits to gather.
+
+          maximum_tries: Maximum number of times to play the prompt if no input is received.
+
+          media_name: The name of the media file uploaded to the Media Storage API to play as the
+              gather prompt.
+
+          minimum_digits: Minimum number of digits to gather.
+
+          stop_playback_on_dtmf: Whether to stop the audio playback when a DTMF digit is received.
+
+          terminating_digit: Digit that terminates gathering.
+
+          timeout_millis: Duration in milliseconds to wait for input before timing out.
+
+          valid_digits: Digits that are valid for gathering. All other digits will be ignored.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return self._post(
+            f"/conferences/{id}/actions/gather_using_audio",
+            body=maybe_transform(
+                {
+                    "call_control_id": call_control_id,
+                    "audio_url": audio_url,
+                    "client_state": client_state,
+                    "gather_id": gather_id,
+                    "initial_timeout_millis": initial_timeout_millis,
+                    "inter_digit_timeout_millis": inter_digit_timeout_millis,
+                    "invalid_audio_url": invalid_audio_url,
+                    "invalid_media_name": invalid_media_name,
+                    "maximum_digits": maximum_digits,
+                    "maximum_tries": maximum_tries,
+                    "media_name": media_name,
+                    "minimum_digits": minimum_digits,
+                    "stop_playback_on_dtmf": stop_playback_on_dtmf,
+                    "terminating_digit": terminating_digit,
+                    "timeout_millis": timeout_millis,
+                    "valid_digits": valid_digits,
+                },
+                action_gather_using_audio_params.ActionGatherUsingAudioParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ActionGatherUsingAudioResponse,
         )
 
     def hold(
@@ -743,6 +894,63 @@ class ActionsResource(SyncAPIResource):
             cast_to=ActionRecordStopResponse,
         )
 
+    def send_dtmf(
+        self,
+        id: str,
+        *,
+        digits: str,
+        call_control_ids: SequenceNotStr[str] | Omit = omit,
+        client_state: str | Omit = omit,
+        duration_millis: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ActionSendDtmfResponse:
+        """
+        Send DTMF tones to one or more conference participants.
+
+        Args:
+          digits: DTMF digits to send. Valid characters: 0-9, A-D, \\**, #, w (0.5s pause), W (1s
+              pause).
+
+          call_control_ids: Array of participant call control IDs to send DTMF to. When empty, DTMF will be
+              sent to all participants.
+
+          client_state: Use this field to add state to every subsequent webhook. Must be a valid Base-64
+              encoded string.
+
+          duration_millis: Duration of each DTMF digit in milliseconds.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return self._post(
+            f"/conferences/{id}/actions/send_dtmf",
+            body=maybe_transform(
+                {
+                    "digits": digits,
+                    "call_control_ids": call_control_ids,
+                    "client_state": client_state,
+                    "duration_millis": duration_millis,
+                },
+                action_send_dtmf_params.ActionSendDtmfParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ActionSendDtmfResponse,
+        )
+
     def speak(
         self,
         id: str,
@@ -1110,6 +1318,151 @@ class AsyncActionsResource(AsyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=ActionUpdateResponse,
+        )
+
+    async def end(
+        self,
+        id: str,
+        *,
+        command_id: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ActionEndResponse:
+        """
+        End a conference and terminate all active participants.
+
+        Args:
+          command_id: Use this field to avoid duplicate commands. Telnyx will ignore any command with
+              the same `command_id` for the same conference.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return await self._post(
+            f"/conferences/{id}/actions/end",
+            body=await async_maybe_transform({"command_id": command_id}, action_end_params.ActionEndParams),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ActionEndResponse,
+        )
+
+    async def gather_using_audio(
+        self,
+        id: str,
+        *,
+        call_control_id: str,
+        audio_url: str | Omit = omit,
+        client_state: str | Omit = omit,
+        gather_id: str | Omit = omit,
+        initial_timeout_millis: int | Omit = omit,
+        inter_digit_timeout_millis: int | Omit = omit,
+        invalid_audio_url: str | Omit = omit,
+        invalid_media_name: str | Omit = omit,
+        maximum_digits: int | Omit = omit,
+        maximum_tries: int | Omit = omit,
+        media_name: str | Omit = omit,
+        minimum_digits: int | Omit = omit,
+        stop_playback_on_dtmf: bool | Omit = omit,
+        terminating_digit: str | Omit = omit,
+        timeout_millis: int | Omit = omit,
+        valid_digits: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ActionGatherUsingAudioResponse:
+        """
+        Play an audio file to a specific conference participant and gather DTMF input.
+
+        Args:
+          call_control_id: Unique identifier and token for controlling the call leg that will receive the
+              gather prompt.
+
+          audio_url: The URL of the audio file to play as the gather prompt. Must be WAV or MP3
+              format.
+
+          client_state: Use this field to add state to every subsequent webhook. Must be a valid Base-64
+              encoded string.
+
+          gather_id: Identifier for this gather command. Will be included in the gather ended
+              webhook. Maximum 100 characters.
+
+          initial_timeout_millis: Duration in milliseconds to wait for the first digit before timing out.
+
+          inter_digit_timeout_millis: Duration in milliseconds to wait between digits.
+
+          invalid_audio_url: URL of audio file to play when invalid input is received.
+
+          invalid_media_name: Name of media file to play when invalid input is received.
+
+          maximum_digits: Maximum number of digits to gather.
+
+          maximum_tries: Maximum number of times to play the prompt if no input is received.
+
+          media_name: The name of the media file uploaded to the Media Storage API to play as the
+              gather prompt.
+
+          minimum_digits: Minimum number of digits to gather.
+
+          stop_playback_on_dtmf: Whether to stop the audio playback when a DTMF digit is received.
+
+          terminating_digit: Digit that terminates gathering.
+
+          timeout_millis: Duration in milliseconds to wait for input before timing out.
+
+          valid_digits: Digits that are valid for gathering. All other digits will be ignored.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return await self._post(
+            f"/conferences/{id}/actions/gather_using_audio",
+            body=await async_maybe_transform(
+                {
+                    "call_control_id": call_control_id,
+                    "audio_url": audio_url,
+                    "client_state": client_state,
+                    "gather_id": gather_id,
+                    "initial_timeout_millis": initial_timeout_millis,
+                    "inter_digit_timeout_millis": inter_digit_timeout_millis,
+                    "invalid_audio_url": invalid_audio_url,
+                    "invalid_media_name": invalid_media_name,
+                    "maximum_digits": maximum_digits,
+                    "maximum_tries": maximum_tries,
+                    "media_name": media_name,
+                    "minimum_digits": minimum_digits,
+                    "stop_playback_on_dtmf": stop_playback_on_dtmf,
+                    "terminating_digit": terminating_digit,
+                    "timeout_millis": timeout_millis,
+                    "valid_digits": valid_digits,
+                },
+                action_gather_using_audio_params.ActionGatherUsingAudioParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ActionGatherUsingAudioResponse,
         )
 
     async def hold(
@@ -1716,6 +2069,63 @@ class AsyncActionsResource(AsyncAPIResource):
             cast_to=ActionRecordStopResponse,
         )
 
+    async def send_dtmf(
+        self,
+        id: str,
+        *,
+        digits: str,
+        call_control_ids: SequenceNotStr[str] | Omit = omit,
+        client_state: str | Omit = omit,
+        duration_millis: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ActionSendDtmfResponse:
+        """
+        Send DTMF tones to one or more conference participants.
+
+        Args:
+          digits: DTMF digits to send. Valid characters: 0-9, A-D, \\**, #, w (0.5s pause), W (1s
+              pause).
+
+          call_control_ids: Array of participant call control IDs to send DTMF to. When empty, DTMF will be
+              sent to all participants.
+
+          client_state: Use this field to add state to every subsequent webhook. Must be a valid Base-64
+              encoded string.
+
+          duration_millis: Duration of each DTMF digit in milliseconds.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return await self._post(
+            f"/conferences/{id}/actions/send_dtmf",
+            body=await async_maybe_transform(
+                {
+                    "digits": digits,
+                    "call_control_ids": call_control_ids,
+                    "client_state": client_state,
+                    "duration_millis": duration_millis,
+                },
+                action_send_dtmf_params.ActionSendDtmfParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ActionSendDtmfResponse,
+        )
+
     async def speak(
         self,
         id: str,
@@ -2005,6 +2415,12 @@ class ActionsResourceWithRawResponse:
         self.update = to_raw_response_wrapper(
             actions.update,
         )
+        self.end = to_raw_response_wrapper(
+            actions.end,
+        )
+        self.gather_using_audio = to_raw_response_wrapper(
+            actions.gather_using_audio,
+        )
         self.hold = to_raw_response_wrapper(
             actions.hold,
         )
@@ -2032,6 +2448,9 @@ class ActionsResourceWithRawResponse:
         self.record_stop = to_raw_response_wrapper(
             actions.record_stop,
         )
+        self.send_dtmf = to_raw_response_wrapper(
+            actions.send_dtmf,
+        )
         self.speak = to_raw_response_wrapper(
             actions.speak,
         )
@@ -2052,6 +2471,12 @@ class AsyncActionsResourceWithRawResponse:
 
         self.update = async_to_raw_response_wrapper(
             actions.update,
+        )
+        self.end = async_to_raw_response_wrapper(
+            actions.end,
+        )
+        self.gather_using_audio = async_to_raw_response_wrapper(
+            actions.gather_using_audio,
         )
         self.hold = async_to_raw_response_wrapper(
             actions.hold,
@@ -2080,6 +2505,9 @@ class AsyncActionsResourceWithRawResponse:
         self.record_stop = async_to_raw_response_wrapper(
             actions.record_stop,
         )
+        self.send_dtmf = async_to_raw_response_wrapper(
+            actions.send_dtmf,
+        )
         self.speak = async_to_raw_response_wrapper(
             actions.speak,
         )
@@ -2100,6 +2528,12 @@ class ActionsResourceWithStreamingResponse:
 
         self.update = to_streamed_response_wrapper(
             actions.update,
+        )
+        self.end = to_streamed_response_wrapper(
+            actions.end,
+        )
+        self.gather_using_audio = to_streamed_response_wrapper(
+            actions.gather_using_audio,
         )
         self.hold = to_streamed_response_wrapper(
             actions.hold,
@@ -2128,6 +2562,9 @@ class ActionsResourceWithStreamingResponse:
         self.record_stop = to_streamed_response_wrapper(
             actions.record_stop,
         )
+        self.send_dtmf = to_streamed_response_wrapper(
+            actions.send_dtmf,
+        )
         self.speak = to_streamed_response_wrapper(
             actions.speak,
         )
@@ -2148,6 +2585,12 @@ class AsyncActionsResourceWithStreamingResponse:
 
         self.update = async_to_streamed_response_wrapper(
             actions.update,
+        )
+        self.end = async_to_streamed_response_wrapper(
+            actions.end,
+        )
+        self.gather_using_audio = async_to_streamed_response_wrapper(
+            actions.gather_using_audio,
         )
         self.hold = async_to_streamed_response_wrapper(
             actions.hold,
@@ -2175,6 +2618,9 @@ class AsyncActionsResourceWithStreamingResponse:
         )
         self.record_stop = async_to_streamed_response_wrapper(
             actions.record_stop,
+        )
+        self.send_dtmf = async_to_streamed_response_wrapper(
+            actions.send_dtmf,
         )
         self.speak = async_to_streamed_response_wrapper(
             actions.speak,
