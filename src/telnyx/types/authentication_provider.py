@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import Dict, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -15,7 +15,7 @@ class Settings(BaseModel):
     assertion_consumer_service_url: Optional[str] = None
     """The Assertion Consumer Service URL for the service provider (Telnyx)."""
 
-    idp_attribute_names: Optional[object] = None
+    idp_attribute_names: Optional[Dict[str, object]] = None
     """Mapping of SAML attribute names used by the identity provider (IdP)."""
 
     idp_cert_fingerprint: Optional[str] = None
