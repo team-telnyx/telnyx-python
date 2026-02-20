@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.43.1 (2026-02-20)
+
+Full Changelog: [v4.43.0...v4.43.1](https://github.com/team-telnyx/telnyx-python/compare/v4.43.0...v4.43.1)
+
+### Bug Fixes
+
+* StringFormatNotSupported ([c4caab3](https://github.com/team-telnyx/telnyx-python/commit/c4caab3d9d25d739f2269131044d3070d10ead9f))
+
 ## 4.43.0 (2026-02-20)
 
 Full Changelog: [v4.42.1...v4.43.0](https://github.com/team-telnyx/telnyx-python/compare/v4.42.1...v4.43.0)
