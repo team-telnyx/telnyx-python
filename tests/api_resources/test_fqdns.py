@@ -79,7 +79,7 @@ class TestFqdns:
     @parametrize
     def test_method_retrieve(self, client: Telnyx) -> None:
         fqdn = client.fqdns.retrieve(
-            "id",
+            "1517907029795014409",
         )
         assert_matches_type(FqdnRetrieveResponse, fqdn, path=["response"])
 
@@ -87,7 +87,7 @@ class TestFqdns:
     @parametrize
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
         response = client.fqdns.with_raw_response.retrieve(
-            "id",
+            "1517907029795014409",
         )
 
         assert response.is_closed is True
@@ -99,7 +99,7 @@ class TestFqdns:
     @parametrize
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
         with client.fqdns.with_streaming_response.retrieve(
-            "id",
+            "1517907029795014409",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -121,7 +121,7 @@ class TestFqdns:
     @parametrize
     def test_method_update(self, client: Telnyx) -> None:
         fqdn = client.fqdns.update(
-            id="id",
+            id="1517907029795014409",
         )
         assert_matches_type(FqdnUpdateResponse, fqdn, path=["response"])
 
@@ -129,7 +129,7 @@ class TestFqdns:
     @parametrize
     def test_method_update_with_all_params(self, client: Telnyx) -> None:
         fqdn = client.fqdns.update(
-            id="id",
+            id="1517907029795014409",
             connection_id="1516447646313612565",
             dns_record_type="a",
             fqdn="example.com",
@@ -141,7 +141,7 @@ class TestFqdns:
     @parametrize
     def test_raw_response_update(self, client: Telnyx) -> None:
         response = client.fqdns.with_raw_response.update(
-            id="id",
+            id="1517907029795014409",
         )
 
         assert response.is_closed is True
@@ -153,7 +153,7 @@ class TestFqdns:
     @parametrize
     def test_streaming_response_update(self, client: Telnyx) -> None:
         with client.fqdns.with_streaming_response.update(
-            id="id",
+            id="1517907029795014409",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -218,7 +218,7 @@ class TestFqdns:
     @parametrize
     def test_method_delete(self, client: Telnyx) -> None:
         fqdn = client.fqdns.delete(
-            "id",
+            "1517907029795014409",
         )
         assert_matches_type(FqdnDeleteResponse, fqdn, path=["response"])
 
@@ -226,7 +226,7 @@ class TestFqdns:
     @parametrize
     def test_raw_response_delete(self, client: Telnyx) -> None:
         response = client.fqdns.with_raw_response.delete(
-            "id",
+            "1517907029795014409",
         )
 
         assert response.is_closed is True
@@ -238,7 +238,7 @@ class TestFqdns:
     @parametrize
     def test_streaming_response_delete(self, client: Telnyx) -> None:
         with client.fqdns.with_streaming_response.delete(
-            "id",
+            "1517907029795014409",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -317,7 +317,7 @@ class TestAsyncFqdns:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
         fqdn = await async_client.fqdns.retrieve(
-            "id",
+            "1517907029795014409",
         )
         assert_matches_type(FqdnRetrieveResponse, fqdn, path=["response"])
 
@@ -325,7 +325,7 @@ class TestAsyncFqdns:
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.fqdns.with_raw_response.retrieve(
-            "id",
+            "1517907029795014409",
         )
 
         assert response.is_closed is True
@@ -337,7 +337,7 @@ class TestAsyncFqdns:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         async with async_client.fqdns.with_streaming_response.retrieve(
-            "id",
+            "1517907029795014409",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -359,7 +359,7 @@ class TestAsyncFqdns:
     @parametrize
     async def test_method_update(self, async_client: AsyncTelnyx) -> None:
         fqdn = await async_client.fqdns.update(
-            id="id",
+            id="1517907029795014409",
         )
         assert_matches_type(FqdnUpdateResponse, fqdn, path=["response"])
 
@@ -367,7 +367,7 @@ class TestAsyncFqdns:
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncTelnyx) -> None:
         fqdn = await async_client.fqdns.update(
-            id="id",
+            id="1517907029795014409",
             connection_id="1516447646313612565",
             dns_record_type="a",
             fqdn="example.com",
@@ -379,7 +379,7 @@ class TestAsyncFqdns:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.fqdns.with_raw_response.update(
-            id="id",
+            id="1517907029795014409",
         )
 
         assert response.is_closed is True
@@ -391,7 +391,7 @@ class TestAsyncFqdns:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncTelnyx) -> None:
         async with async_client.fqdns.with_streaming_response.update(
-            id="id",
+            id="1517907029795014409",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -456,7 +456,7 @@ class TestAsyncFqdns:
     @parametrize
     async def test_method_delete(self, async_client: AsyncTelnyx) -> None:
         fqdn = await async_client.fqdns.delete(
-            "id",
+            "1517907029795014409",
         )
         assert_matches_type(FqdnDeleteResponse, fqdn, path=["response"])
 
@@ -464,7 +464,7 @@ class TestAsyncFqdns:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.fqdns.with_raw_response.delete(
-            "id",
+            "1517907029795014409",
         )
 
         assert response.is_closed is True
@@ -476,7 +476,7 @@ class TestAsyncFqdns:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncTelnyx) -> None:
         async with async_client.fqdns.with_streaming_response.delete(
-            "id",
+            "1517907029795014409",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

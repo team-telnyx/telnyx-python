@@ -19,6 +19,9 @@ class NumberReservation(BaseModel):
     customer_reference: Optional[str] = None
     """A customer reference string for customer look ups."""
 
+    errors: Optional[str] = None
+    """Errors the reservation could happen upon"""
+
     phone_numbers: Optional[List[ReservedPhoneNumber]] = None
 
     record_type: Optional[str] = None

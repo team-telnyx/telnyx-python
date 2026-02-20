@@ -84,7 +84,7 @@ class TestCredentialConnections:
                 "generate_ringback_tone": True,
                 "instant_ringback_enabled": True,
                 "localization": "US",
-                "outbound_voice_profile_id": "outbound_voice_profile_id",
+                "outbound_voice_profile_id": "1293384261075731499",
                 "t38_reinvite_source": "customer",
             },
             rtcp_settings={
@@ -230,7 +230,7 @@ class TestCredentialConnections:
                 "generate_ringback_tone": True,
                 "instant_ringback_enabled": True,
                 "localization": "US",
-                "outbound_voice_profile_id": "outbound_voice_profile_id",
+                "outbound_voice_profile_id": "1293384261075731499",
                 "t38_reinvite_source": "customer",
             },
             password="my123secure456password789",
@@ -296,7 +296,7 @@ class TestCredentialConnections:
             filter={
                 "connection_name": {"contains": "contains"},
                 "fqdn": "fqdn",
-                "outbound_voice_profile_id": "outbound_voice_profile_id",
+                "outbound_voice_profile_id": "1293384261075731499",
             },
             page_number=0,
             page_size=0,
@@ -436,7 +436,7 @@ class TestAsyncCredentialConnections:
                 "generate_ringback_tone": True,
                 "instant_ringback_enabled": True,
                 "localization": "US",
-                "outbound_voice_profile_id": "outbound_voice_profile_id",
+                "outbound_voice_profile_id": "1293384261075731499",
                 "t38_reinvite_source": "customer",
             },
             rtcp_settings={
@@ -582,7 +582,7 @@ class TestAsyncCredentialConnections:
                 "generate_ringback_tone": True,
                 "instant_ringback_enabled": True,
                 "localization": "US",
-                "outbound_voice_profile_id": "outbound_voice_profile_id",
+                "outbound_voice_profile_id": "1293384261075731499",
                 "t38_reinvite_source": "customer",
             },
             password="my123secure456password789",
@@ -648,7 +648,7 @@ class TestAsyncCredentialConnections:
             filter={
                 "connection_name": {"contains": "contains"},
                 "fqdn": "fqdn",
-                "outbound_voice_profile_id": "outbound_voice_profile_id",
+                "outbound_voice_profile_id": "1293384261075731499",
             },
             page_number=0,
             page_size=0,

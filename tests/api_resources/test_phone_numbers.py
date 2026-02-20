@@ -79,6 +79,7 @@ class TestPhoneNumbers:
     def test_method_update_with_all_params(self, client: Telnyx) -> None:
         phone_number = client.phone_numbers.update(
             phone_number_id="1293384261075731499",
+            address_id="dc8f39ac-953d-4520-b93b-786ae87db0da",
             billing_group_id="dc8e4d67-33a0-4cbb-af74-7b58f05bd494",
             connection_id="dc8e4d67-33a0-4cbb-af74-7b58f05bd494",
             customer_reference="customer-reference",
@@ -343,6 +344,7 @@ class TestAsyncPhoneNumbers:
     async def test_method_update_with_all_params(self, async_client: AsyncTelnyx) -> None:
         phone_number = await async_client.phone_numbers.update(
             phone_number_id="1293384261075731499",
+            address_id="dc8f39ac-953d-4520-b93b-786ae87db0da",
             billing_group_id="dc8e4d67-33a0-4cbb-af74-7b58f05bd494",
             connection_id="dc8e4d67-33a0-4cbb-af74-7b58f05bd494",
             customer_reference="customer-reference",
