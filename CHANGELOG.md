@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.42.1 (2026-02-20)
+
+Full Changelog: [v4.42.0...v4.42.1](https://github.com/team-telnyx/telnyx-python/compare/v4.42.0...v4.42.1)
+
+### Bug Fixes
+
+* move unsupported string formats to x-format ([7921298](https://github.com/team-telnyx/telnyx-python/commit/79212984ae4f90e7516bdaabd7fee2a220db594c))
+
 ## 4.42.0 (2026-02-20)
 
 Full Changelog: [v4.41.0...v4.42.0](https://github.com/team-telnyx/telnyx-python/compare/v4.41.0...v4.42.0)
