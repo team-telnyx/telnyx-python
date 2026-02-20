@@ -258,6 +258,8 @@ class CallsResource(SyncAPIResource):
         supervise_call_sid: str | Omit = omit,
         supervising_role: Literal["barge", "whisper", "monitor"] | Omit = omit,
         texml: str | Omit = omit,
+        time_limit: int | Omit = omit,
+        timeout_seconds: int | Omit = omit,
         trim: Literal["trim-silence", "do-not-trim"] | Omit = omit,
         url: str | Omit = omit,
         url_method: Literal["GET", "POST"] | Omit = omit,
@@ -368,6 +370,13 @@ class CallsResource(SyncAPIResource):
           texml: TeXML to be used as instructions for the call. If provided, the call will
               execute these instructions instead of fetching from the Url.
 
+          time_limit: The maximum duration of the call in seconds. The minimum value is 30 and the
+              maximum value is 14400 (4 hours). Default is 14400 seconds.
+
+          timeout_seconds: The number of seconds to wait for the called party to answer the call before the
+              call is canceled. The minimum value is 5 and the maximum value is 120. Default
+              is 30 seconds.
+
           trim: Whether to trim any leading and trailing silence from the recording. Defaults to
               `trim-silence`.
 
@@ -425,6 +434,8 @@ class CallsResource(SyncAPIResource):
                     "supervise_call_sid": supervise_call_sid,
                     "supervising_role": supervising_role,
                     "texml": texml,
+                    "time_limit": time_limit,
+                    "timeout_seconds": timeout_seconds,
                     "trim": trim,
                     "url": url,
                     "url_method": url_method,
@@ -877,6 +888,8 @@ class AsyncCallsResource(AsyncAPIResource):
         supervise_call_sid: str | Omit = omit,
         supervising_role: Literal["barge", "whisper", "monitor"] | Omit = omit,
         texml: str | Omit = omit,
+        time_limit: int | Omit = omit,
+        timeout_seconds: int | Omit = omit,
         trim: Literal["trim-silence", "do-not-trim"] | Omit = omit,
         url: str | Omit = omit,
         url_method: Literal["GET", "POST"] | Omit = omit,
@@ -987,6 +1000,13 @@ class AsyncCallsResource(AsyncAPIResource):
           texml: TeXML to be used as instructions for the call. If provided, the call will
               execute these instructions instead of fetching from the Url.
 
+          time_limit: The maximum duration of the call in seconds. The minimum value is 30 and the
+              maximum value is 14400 (4 hours). Default is 14400 seconds.
+
+          timeout_seconds: The number of seconds to wait for the called party to answer the call before the
+              call is canceled. The minimum value is 5 and the maximum value is 120. Default
+              is 30 seconds.
+
           trim: Whether to trim any leading and trailing silence from the recording. Defaults to
               `trim-silence`.
 
@@ -1044,6 +1064,8 @@ class AsyncCallsResource(AsyncAPIResource):
                     "supervise_call_sid": supervise_call_sid,
                     "supervising_role": supervising_role,
                     "texml": texml,
+                    "time_limit": time_limit,
+                    "timeout_seconds": timeout_seconds,
                     "trim": trim,
                     "url": url,
                     "url_method": url_method,

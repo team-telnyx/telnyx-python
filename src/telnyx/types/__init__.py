@@ -713,6 +713,7 @@ from .call_streaming_started_webhook_event import CallStreamingStartedWebhookEve
 from .call_streaming_stopped_webhook_event import CallStreamingStoppedWebhookEvent as CallStreamingStoppedWebhookEvent
 from .conference_participant_speak_started import ConferenceParticipantSpeakStarted as ConferenceParticipantSpeakStarted
 from .conference_speak_ended_webhook_event import ConferenceSpeakEndedWebhookEvent as ConferenceSpeakEndedWebhookEvent
+from .conference_update_participant_params import ConferenceUpdateParticipantParams as ConferenceUpdateParticipantParams
 from .global_ip_allowed_port_list_response import GlobalIPAllowedPortListResponse as GlobalIPAllowedPortListResponse
 from .global_ip_assignment_create_response import GlobalIPAssignmentCreateResponse as GlobalIPAssignmentCreateResponse
 from .global_ip_assignment_delete_response import GlobalIPAssignmentDeleteResponse as GlobalIPAssignmentDeleteResponse
@@ -852,6 +853,9 @@ from .call_control_application_update_params import (
 from .conference_speak_started_webhook_event import (
     ConferenceSpeakStartedWebhookEvent as ConferenceSpeakStartedWebhookEvent,
 )
+from .conference_update_participant_response import (
+    ConferenceUpdateParticipantResponse as ConferenceUpdateParticipantResponse,
+)
 from .dynamic_emergency_endpoint_list_params import (
     DynamicEmergencyEndpointListParams as DynamicEmergencyEndpointListParams,
 )
@@ -989,6 +993,9 @@ from .call_control_application_update_response import (
 )
 from .conference_recording_saved_webhook_event import (
     ConferenceRecordingSavedWebhookEvent as ConferenceRecordingSavedWebhookEvent,
+)
+from .conference_retrieve_participant_response import (
+    ConferenceRetrieveParticipantResponse as ConferenceRetrieveParticipantResponse,
 )
 from .document_generate_download_link_response import (
     DocumentGenerateDownloadLinkResponse as DocumentGenerateDownloadLinkResponse,

@@ -11,6 +11,7 @@ from ...types import (
     conference_create_params,
     conference_retrieve_params,
     conference_list_participants_params,
+    conference_update_participant_params,
 )
 from .actions import (
     ActionsResource,
@@ -36,6 +37,8 @@ from ...types.conference import Conference
 from ...types.conference_create_response import ConferenceCreateResponse
 from ...types.conference_retrieve_response import ConferenceRetrieveResponse
 from ...types.conference_list_participants_response import ConferenceListParticipantsResponse
+from ...types.conference_update_participant_response import ConferenceUpdateParticipantResponse
+from ...types.conference_retrieve_participant_response import ConferenceRetrieveParticipantResponse
 
 __all__ = ["ConferencesResource", "AsyncConferencesResource"]
 
@@ -329,6 +332,97 @@ class ConferencesResource(SyncAPIResource):
                 ),
             ),
             model=ConferenceListParticipantsResponse,
+        )
+
+    def retrieve_participant(
+        self,
+        participant_id: str,
+        *,
+        id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ConferenceRetrieveParticipantResponse:
+        """
+        Retrieve details of a specific conference participant by their ID or label.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not participant_id:
+            raise ValueError(f"Expected a non-empty value for `participant_id` but received {participant_id!r}")
+        return self._get(
+            f"/conferences/{id}/participants/{participant_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ConferenceRetrieveParticipantResponse,
+        )
+
+    def update_participant(
+        self,
+        participant_id: str,
+        *,
+        id: str,
+        beep_enabled: Literal["always", "never", "on_enter", "on_exit"] | Omit = omit,
+        end_conference_on_exit: bool | Omit = omit,
+        soft_end_conference_on_exit: bool | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ConferenceUpdateParticipantResponse:
+        """
+        Update properties of a conference participant.
+
+        Args:
+          beep_enabled: Whether entry/exit beeps are enabled for this participant.
+
+          end_conference_on_exit: Whether the conference should end when this participant exits.
+
+          soft_end_conference_on_exit: Whether the conference should soft-end when this participant exits. A soft end
+              will stop new participants from joining but allow existing participants to
+              remain.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not participant_id:
+            raise ValueError(f"Expected a non-empty value for `participant_id` but received {participant_id!r}")
+        return self._patch(
+            f"/conferences/{id}/participants/{participant_id}",
+            body=maybe_transform(
+                {
+                    "beep_enabled": beep_enabled,
+                    "end_conference_on_exit": end_conference_on_exit,
+                    "soft_end_conference_on_exit": soft_end_conference_on_exit,
+                },
+                conference_update_participant_params.ConferenceUpdateParticipantParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ConferenceUpdateParticipantResponse,
         )
 
 
@@ -627,6 +721,97 @@ class AsyncConferencesResource(AsyncAPIResource):
             model=ConferenceListParticipantsResponse,
         )
 
+    async def retrieve_participant(
+        self,
+        participant_id: str,
+        *,
+        id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ConferenceRetrieveParticipantResponse:
+        """
+        Retrieve details of a specific conference participant by their ID or label.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not participant_id:
+            raise ValueError(f"Expected a non-empty value for `participant_id` but received {participant_id!r}")
+        return await self._get(
+            f"/conferences/{id}/participants/{participant_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ConferenceRetrieveParticipantResponse,
+        )
+
+    async def update_participant(
+        self,
+        participant_id: str,
+        *,
+        id: str,
+        beep_enabled: Literal["always", "never", "on_enter", "on_exit"] | Omit = omit,
+        end_conference_on_exit: bool | Omit = omit,
+        soft_end_conference_on_exit: bool | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ConferenceUpdateParticipantResponse:
+        """
+        Update properties of a conference participant.
+
+        Args:
+          beep_enabled: Whether entry/exit beeps are enabled for this participant.
+
+          end_conference_on_exit: Whether the conference should end when this participant exits.
+
+          soft_end_conference_on_exit: Whether the conference should soft-end when this participant exits. A soft end
+              will stop new participants from joining but allow existing participants to
+              remain.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not participant_id:
+            raise ValueError(f"Expected a non-empty value for `participant_id` but received {participant_id!r}")
+        return await self._patch(
+            f"/conferences/{id}/participants/{participant_id}",
+            body=await async_maybe_transform(
+                {
+                    "beep_enabled": beep_enabled,
+                    "end_conference_on_exit": end_conference_on_exit,
+                    "soft_end_conference_on_exit": soft_end_conference_on_exit,
+                },
+                conference_update_participant_params.ConferenceUpdateParticipantParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ConferenceUpdateParticipantResponse,
+        )
+
 
 class ConferencesResourceWithRawResponse:
     def __init__(self, conferences: ConferencesResource) -> None:
@@ -643,6 +828,12 @@ class ConferencesResourceWithRawResponse:
         )
         self.list_participants = to_raw_response_wrapper(
             conferences.list_participants,
+        )
+        self.retrieve_participant = to_raw_response_wrapper(
+            conferences.retrieve_participant,
+        )
+        self.update_participant = to_raw_response_wrapper(
+            conferences.update_participant,
         )
 
     @cached_property
@@ -666,6 +857,12 @@ class AsyncConferencesResourceWithRawResponse:
         self.list_participants = async_to_raw_response_wrapper(
             conferences.list_participants,
         )
+        self.retrieve_participant = async_to_raw_response_wrapper(
+            conferences.retrieve_participant,
+        )
+        self.update_participant = async_to_raw_response_wrapper(
+            conferences.update_participant,
+        )
 
     @cached_property
     def actions(self) -> AsyncActionsResourceWithRawResponse:
@@ -688,6 +885,12 @@ class ConferencesResourceWithStreamingResponse:
         self.list_participants = to_streamed_response_wrapper(
             conferences.list_participants,
         )
+        self.retrieve_participant = to_streamed_response_wrapper(
+            conferences.retrieve_participant,
+        )
+        self.update_participant = to_streamed_response_wrapper(
+            conferences.update_participant,
+        )
 
     @cached_property
     def actions(self) -> ActionsResourceWithStreamingResponse:
@@ -709,6 +912,12 @@ class AsyncConferencesResourceWithStreamingResponse:
         )
         self.list_participants = async_to_streamed_response_wrapper(
             conferences.list_participants,
+        )
+        self.retrieve_participant = async_to_streamed_response_wrapper(
+            conferences.retrieve_participant,
+        )
+        self.update_participant = async_to_streamed_response_wrapper(
+            conferences.update_participant,
         )
 
     @cached_property

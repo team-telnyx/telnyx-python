@@ -187,6 +187,20 @@ class CallCallsParams(TypedDict, total=False):
     the Url.
     """
 
+    time_limit: Annotated[int, PropertyInfo(alias="TimeLimit")]
+    """The maximum duration of the call in seconds.
+
+    The minimum value is 30 and the maximum value is 14400 (4 hours). Default is
+    14400 seconds.
+    """
+
+    timeout_seconds: Annotated[int, PropertyInfo(alias="Timeout")]
+    """
+    The number of seconds to wait for the called party to answer the call before the
+    call is canceled. The minimum value is 5 and the maximum value is 120. Default
+    is 30 seconds.
+    """
+
     trim: Annotated[Literal["trim-silence", "do-not-trim"], PropertyInfo(alias="Trim")]
     """Whether to trim any leading and trailing silence from the recording.
 

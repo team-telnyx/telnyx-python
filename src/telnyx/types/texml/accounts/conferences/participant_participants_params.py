@@ -19,6 +19,12 @@ class ParticipantParticipantsParams(TypedDict, total=False):
     amd_status_callback_method: Annotated[Literal["GET", "POST"], PropertyInfo(alias="AmdStatusCallbackMethod")]
     """HTTP request type used for `AmdStatusCallback`. Defaults to `POST`."""
 
+    application_sid: Annotated[str, PropertyInfo(alias="ApplicationSid")]
+    """The SID of the TeXML application that will handle the new participant's call.
+
+    Required unless joining an existing conference by its ConferenceSid.
+    """
+
     beep: Annotated[Literal["true", "false", "onEnter", "onExit"], PropertyInfo(alias="Beep")]
     """
     Whether to play a notification beep to the conference when the participant

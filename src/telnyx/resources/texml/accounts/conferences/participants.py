@@ -237,6 +237,7 @@ class ParticipantsResource(SyncAPIResource):
         account_sid: str,
         amd_status_callback: str | Omit = omit,
         amd_status_callback_method: Literal["GET", "POST"] | Omit = omit,
+        application_sid: str | Omit = omit,
         beep: Literal["true", "false", "onEnter", "onExit"] | Omit = omit,
         caller_id: str | Omit = omit,
         call_sid_to_coach: str | Omit = omit,
@@ -296,6 +297,9 @@ class ParticipantsResource(SyncAPIResource):
           amd_status_callback: The URL the result of answering machine detection will be sent to.
 
           amd_status_callback_method: HTTP request type used for `AmdStatusCallback`. Defaults to `POST`.
+
+          application_sid: The SID of the TeXML application that will handle the new participant's call.
+              Required unless joining an existing conference by its ConferenceSid.
 
           beep: Whether to play a notification beep to the conference when the participant
               enters and exits.
@@ -446,6 +450,7 @@ class ParticipantsResource(SyncAPIResource):
                 {
                     "amd_status_callback": amd_status_callback,
                     "amd_status_callback_method": amd_status_callback_method,
+                    "application_sid": application_sid,
                     "beep": beep,
                     "caller_id": caller_id,
                     "call_sid_to_coach": call_sid_to_coach,
@@ -745,6 +750,7 @@ class AsyncParticipantsResource(AsyncAPIResource):
         account_sid: str,
         amd_status_callback: str | Omit = omit,
         amd_status_callback_method: Literal["GET", "POST"] | Omit = omit,
+        application_sid: str | Omit = omit,
         beep: Literal["true", "false", "onEnter", "onExit"] | Omit = omit,
         caller_id: str | Omit = omit,
         call_sid_to_coach: str | Omit = omit,
@@ -804,6 +810,9 @@ class AsyncParticipantsResource(AsyncAPIResource):
           amd_status_callback: The URL the result of answering machine detection will be sent to.
 
           amd_status_callback_method: HTTP request type used for `AmdStatusCallback`. Defaults to `POST`.
+
+          application_sid: The SID of the TeXML application that will handle the new participant's call.
+              Required unless joining an existing conference by its ConferenceSid.
 
           beep: Whether to play a notification beep to the conference when the participant
               enters and exits.
@@ -954,6 +963,7 @@ class AsyncParticipantsResource(AsyncAPIResource):
                 {
                     "amd_status_callback": amd_status_callback,
                     "amd_status_callback_method": amd_status_callback_method,
+                    "application_sid": application_sid,
                     "beep": beep,
                     "caller_id": caller_id,
                     "call_sid_to_coach": call_sid_to_coach,
