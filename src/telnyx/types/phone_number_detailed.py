@@ -119,6 +119,9 @@ class PhoneNumberDetailed(BaseModel):
     enabled/disabled.
     """
 
+    hd_voice_enabled: Optional[bool] = None
+    """Indicates whether HD voice is enabled for this number."""
+
     inbound_call_screening: Optional[Literal["disabled", "reject_calls", "flag_calls"]] = None
     """
     The inbound_call_screening setting is a phone number configuration option
@@ -141,3 +144,6 @@ class PhoneNumberDetailed(BaseModel):
 
     t38_fax_gateway_enabled: Optional[bool] = None
     """Indicates whether T38 Fax Gateway for inbound calls to this number."""
+
+    updated_at: Optional[str] = None
+    """ISO 8601 formatted date indicating when the resource was updated."""

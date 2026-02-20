@@ -20,7 +20,7 @@ class APIError(BaseModel):
 
     title: str
 
-    detail: Optional[str] = None
+    description: Optional[str] = None
 
     meta: Optional[Dict[str, object]] = None
 

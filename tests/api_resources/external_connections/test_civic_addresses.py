@@ -25,7 +25,7 @@ class TestCivicAddresses:
     def test_method_retrieve(self, client: Telnyx) -> None:
         civic_address = client.external_connections.civic_addresses.retrieve(
             address_id="318fb664-d341-44d2-8405-e6bfb9ced6d9",
-            id="id",
+            id="1293384261075731499",
         )
         assert_matches_type(CivicAddressRetrieveResponse, civic_address, path=["response"])
 
@@ -34,7 +34,7 @@ class TestCivicAddresses:
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
         response = client.external_connections.civic_addresses.with_raw_response.retrieve(
             address_id="318fb664-d341-44d2-8405-e6bfb9ced6d9",
-            id="id",
+            id="1293384261075731499",
         )
 
         assert response.is_closed is True
@@ -47,7 +47,7 @@ class TestCivicAddresses:
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
         with client.external_connections.civic_addresses.with_streaming_response.retrieve(
             address_id="318fb664-d341-44d2-8405-e6bfb9ced6d9",
-            id="id",
+            id="1293384261075731499",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -69,14 +69,14 @@ class TestCivicAddresses:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `address_id` but received ''"):
             client.external_connections.civic_addresses.with_raw_response.retrieve(
                 address_id="",
-                id="id",
+                id="1293384261075731499",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         civic_address = client.external_connections.civic_addresses.list(
-            id="id",
+            id="1293384261075731499",
         )
         assert_matches_type(CivicAddressListResponse, civic_address, path=["response"])
 
@@ -84,7 +84,7 @@ class TestCivicAddresses:
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         civic_address = client.external_connections.civic_addresses.list(
-            id="id",
+            id="1293384261075731499",
             filter={"country": ["US", "CA", "MX", "BR"]},
         )
         assert_matches_type(CivicAddressListResponse, civic_address, path=["response"])
@@ -93,7 +93,7 @@ class TestCivicAddresses:
     @parametrize
     def test_raw_response_list(self, client: Telnyx) -> None:
         response = client.external_connections.civic_addresses.with_raw_response.list(
-            id="id",
+            id="1293384261075731499",
         )
 
         assert response.is_closed is True
@@ -105,7 +105,7 @@ class TestCivicAddresses:
     @parametrize
     def test_streaming_response_list(self, client: Telnyx) -> None:
         with client.external_connections.civic_addresses.with_streaming_response.list(
-            id="id",
+            id="1293384261075731499",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -134,7 +134,7 @@ class TestAsyncCivicAddresses:
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
         civic_address = await async_client.external_connections.civic_addresses.retrieve(
             address_id="318fb664-d341-44d2-8405-e6bfb9ced6d9",
-            id="id",
+            id="1293384261075731499",
         )
         assert_matches_type(CivicAddressRetrieveResponse, civic_address, path=["response"])
 
@@ -143,7 +143,7 @@ class TestAsyncCivicAddresses:
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.external_connections.civic_addresses.with_raw_response.retrieve(
             address_id="318fb664-d341-44d2-8405-e6bfb9ced6d9",
-            id="id",
+            id="1293384261075731499",
         )
 
         assert response.is_closed is True
@@ -156,7 +156,7 @@ class TestAsyncCivicAddresses:
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         async with async_client.external_connections.civic_addresses.with_streaming_response.retrieve(
             address_id="318fb664-d341-44d2-8405-e6bfb9ced6d9",
-            id="id",
+            id="1293384261075731499",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -178,14 +178,14 @@ class TestAsyncCivicAddresses:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `address_id` but received ''"):
             await async_client.external_connections.civic_addresses.with_raw_response.retrieve(
                 address_id="",
-                id="id",
+                id="1293384261075731499",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         civic_address = await async_client.external_connections.civic_addresses.list(
-            id="id",
+            id="1293384261075731499",
         )
         assert_matches_type(CivicAddressListResponse, civic_address, path=["response"])
 
@@ -193,7 +193,7 @@ class TestAsyncCivicAddresses:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         civic_address = await async_client.external_connections.civic_addresses.list(
-            id="id",
+            id="1293384261075731499",
             filter={"country": ["US", "CA", "MX", "BR"]},
         )
         assert_matches_type(CivicAddressListResponse, civic_address, path=["response"])
@@ -202,7 +202,7 @@ class TestAsyncCivicAddresses:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.external_connections.civic_addresses.with_raw_response.list(
-            id="id",
+            id="1293384261075731499",
         )
 
         assert response.is_closed is True
@@ -214,7 +214,7 @@ class TestAsyncCivicAddresses:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncTelnyx) -> None:
         async with async_client.external_connections.civic_addresses.with_streaming_response.list(
-            id="id",
+            id="1293384261075731499",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

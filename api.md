@@ -1495,8 +1495,8 @@ from telnyx.types.conferences import (
     ConferenceCommandResult,
     UpdateConference,
     ActionUpdateResponse,
-    ActionEndResponse,
-    ActionGatherUsingAudioResponse,
+    ActionEndConferenceResponse,
+    ActionGatherDtmfAudioResponse,
     ActionHoldResponse,
     ActionJoinResponse,
     ActionLeaveResponse,
@@ -1517,8 +1517,8 @@ from telnyx.types.conferences import (
 Methods:
 
 - <code title="post /conferences/{id}/actions/update">client.conferences.actions.<a href="./src/telnyx/resources/conferences/actions.py">update</a>(id, \*\*<a href="src/telnyx/types/conferences/action_update_params.py">params</a>) -> <a href="./src/telnyx/types/conferences/action_update_response.py">ActionUpdateResponse</a></code>
-- <code title="post /conferences/{id}/actions/end">client.conferences.actions.<a href="./src/telnyx/resources/conferences/actions.py">end</a>(id, \*\*<a href="src/telnyx/types/conferences/action_end_params.py">params</a>) -> <a href="./src/telnyx/types/conferences/action_end_response.py">ActionEndResponse</a></code>
-- <code title="post /conferences/{id}/actions/gather_using_audio">client.conferences.actions.<a href="./src/telnyx/resources/conferences/actions.py">gather_using_audio</a>(id, \*\*<a href="src/telnyx/types/conferences/action_gather_using_audio_params.py">params</a>) -> <a href="./src/telnyx/types/conferences/action_gather_using_audio_response.py">ActionGatherUsingAudioResponse</a></code>
+- <code title="post /conferences/{id}/actions/end">client.conferences.actions.<a href="./src/telnyx/resources/conferences/actions.py">end_conference</a>(id, \*\*<a href="src/telnyx/types/conferences/action_end_conference_params.py">params</a>) -> <a href="./src/telnyx/types/conferences/action_end_conference_response.py">ActionEndConferenceResponse</a></code>
+- <code title="post /conferences/{id}/actions/gather_using_audio">client.conferences.actions.<a href="./src/telnyx/resources/conferences/actions.py">gather_dtmf_audio</a>(id, \*\*<a href="src/telnyx/types/conferences/action_gather_dtmf_audio_params.py">params</a>) -> <a href="./src/telnyx/types/conferences/action_gather_dtmf_audio_response.py">ActionGatherDtmfAudioResponse</a></code>
 - <code title="post /conferences/{id}/actions/hold">client.conferences.actions.<a href="./src/telnyx/resources/conferences/actions.py">hold</a>(id, \*\*<a href="src/telnyx/types/conferences/action_hold_params.py">params</a>) -> <a href="./src/telnyx/types/conferences/action_hold_response.py">ActionHoldResponse</a></code>
 - <code title="post /conferences/{id}/actions/join">client.conferences.actions.<a href="./src/telnyx/resources/conferences/actions.py">join</a>(id, \*\*<a href="src/telnyx/types/conferences/action_join_params.py">params</a>) -> <a href="./src/telnyx/types/conferences/action_join_response.py">ActionJoinResponse</a></code>
 - <code title="post /conferences/{id}/actions/leave">client.conferences.actions.<a href="./src/telnyx/resources/conferences/actions.py">leave</a>(id, \*\*<a href="src/telnyx/types/conferences/action_leave_params.py">params</a>) -> <a href="./src/telnyx/types/conferences/action_leave_response.py">ActionLeaveResponse</a></code>

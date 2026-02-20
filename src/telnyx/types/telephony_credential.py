@@ -36,3 +36,6 @@ class TelephonyCredential(BaseModel):
 
     updated_at: Optional[str] = None
     """ISO-8601 formatted date indicating when the resource was updated."""
+
+    user_id: Optional[str] = None
+    """Identifies the user this credential is associated with."""

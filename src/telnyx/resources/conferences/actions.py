@@ -18,7 +18,6 @@ from ..._response import (
 )
 from ..._base_client import make_request_options
 from ...types.conferences import (
-    action_end_params,
     action_hold_params,
     action_join_params,
     action_mute_params,
@@ -34,10 +33,10 @@ from ...types.conferences import (
     action_record_pause_params,
     action_record_start_params,
     action_record_resume_params,
-    action_gather_using_audio_params,
+    action_end_conference_params,
+    action_gather_dtmf_audio_params,
 )
 from ...types.calls.loopcount_param import LoopcountParam
-from ...types.conferences.action_end_response import ActionEndResponse
 from ...types.conferences.action_hold_response import ActionHoldResponse
 from ...types.conferences.action_join_response import ActionJoinResponse
 from ...types.conferences.action_mute_response import ActionMuteResponse
@@ -53,7 +52,8 @@ from ...types.conferences.action_record_stop_response import ActionRecordStopRes
 from ...types.conferences.action_record_pause_response import ActionRecordPauseResponse
 from ...types.conferences.action_record_start_response import ActionRecordStartResponse
 from ...types.conferences.action_record_resume_response import ActionRecordResumeResponse
-from ...types.conferences.action_gather_using_audio_response import ActionGatherUsingAudioResponse
+from ...types.conferences.action_end_conference_response import ActionEndConferenceResponse
+from ...types.conferences.action_gather_dtmf_audio_response import ActionGatherDtmfAudioResponse
 
 __all__ = ["ActionsResource", "AsyncActionsResource"]
 
@@ -145,7 +145,7 @@ class ActionsResource(SyncAPIResource):
             cast_to=ActionUpdateResponse,
         )
 
-    def end(
+    def end_conference(
         self,
         id: str,
         *,
@@ -156,7 +156,7 @@ class ActionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ActionEndResponse:
+    ) -> ActionEndConferenceResponse:
         """
         End a conference and terminate all active participants.
 
@@ -176,14 +176,14 @@ class ActionsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._post(
             f"/conferences/{id}/actions/end",
-            body=maybe_transform({"command_id": command_id}, action_end_params.ActionEndParams),
+            body=maybe_transform({"command_id": command_id}, action_end_conference_params.ActionEndConferenceParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ActionEndResponse,
+            cast_to=ActionEndConferenceResponse,
         )
 
-    def gather_using_audio(
+    def gather_dtmf_audio(
         self,
         id: str,
         *,
@@ -209,7 +209,7 @@ class ActionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ActionGatherUsingAudioResponse:
+    ) -> ActionGatherDtmfAudioResponse:
         """
         Play an audio file to a specific conference participant and gather DTMF input.
 
@@ -282,12 +282,12 @@ class ActionsResource(SyncAPIResource):
                     "timeout_millis": timeout_millis,
                     "valid_digits": valid_digits,
                 },
-                action_gather_using_audio_params.ActionGatherUsingAudioParams,
+                action_gather_dtmf_audio_params.ActionGatherDtmfAudioParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ActionGatherUsingAudioResponse,
+            cast_to=ActionGatherDtmfAudioResponse,
         )
 
     def hold(
@@ -1320,7 +1320,7 @@ class AsyncActionsResource(AsyncAPIResource):
             cast_to=ActionUpdateResponse,
         )
 
-    async def end(
+    async def end_conference(
         self,
         id: str,
         *,
@@ -1331,7 +1331,7 @@ class AsyncActionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ActionEndResponse:
+    ) -> ActionEndConferenceResponse:
         """
         End a conference and terminate all active participants.
 
@@ -1351,14 +1351,16 @@ class AsyncActionsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._post(
             f"/conferences/{id}/actions/end",
-            body=await async_maybe_transform({"command_id": command_id}, action_end_params.ActionEndParams),
+            body=await async_maybe_transform(
+                {"command_id": command_id}, action_end_conference_params.ActionEndConferenceParams
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ActionEndResponse,
+            cast_to=ActionEndConferenceResponse,
         )
 
-    async def gather_using_audio(
+    async def gather_dtmf_audio(
         self,
         id: str,
         *,
@@ -1384,7 +1386,7 @@ class AsyncActionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ActionGatherUsingAudioResponse:
+    ) -> ActionGatherDtmfAudioResponse:
         """
         Play an audio file to a specific conference participant and gather DTMF input.
 
@@ -1457,12 +1459,12 @@ class AsyncActionsResource(AsyncAPIResource):
                     "timeout_millis": timeout_millis,
                     "valid_digits": valid_digits,
                 },
-                action_gather_using_audio_params.ActionGatherUsingAudioParams,
+                action_gather_dtmf_audio_params.ActionGatherDtmfAudioParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ActionGatherUsingAudioResponse,
+            cast_to=ActionGatherDtmfAudioResponse,
         )
 
     async def hold(
@@ -2415,11 +2417,11 @@ class ActionsResourceWithRawResponse:
         self.update = to_raw_response_wrapper(
             actions.update,
         )
-        self.end = to_raw_response_wrapper(
-            actions.end,
+        self.end_conference = to_raw_response_wrapper(
+            actions.end_conference,
         )
-        self.gather_using_audio = to_raw_response_wrapper(
-            actions.gather_using_audio,
+        self.gather_dtmf_audio = to_raw_response_wrapper(
+            actions.gather_dtmf_audio,
         )
         self.hold = to_raw_response_wrapper(
             actions.hold,
@@ -2472,11 +2474,11 @@ class AsyncActionsResourceWithRawResponse:
         self.update = async_to_raw_response_wrapper(
             actions.update,
         )
-        self.end = async_to_raw_response_wrapper(
-            actions.end,
+        self.end_conference = async_to_raw_response_wrapper(
+            actions.end_conference,
         )
-        self.gather_using_audio = async_to_raw_response_wrapper(
-            actions.gather_using_audio,
+        self.gather_dtmf_audio = async_to_raw_response_wrapper(
+            actions.gather_dtmf_audio,
         )
         self.hold = async_to_raw_response_wrapper(
             actions.hold,
@@ -2529,11 +2531,11 @@ class ActionsResourceWithStreamingResponse:
         self.update = to_streamed_response_wrapper(
             actions.update,
         )
-        self.end = to_streamed_response_wrapper(
-            actions.end,
+        self.end_conference = to_streamed_response_wrapper(
+            actions.end_conference,
         )
-        self.gather_using_audio = to_streamed_response_wrapper(
-            actions.gather_using_audio,
+        self.gather_dtmf_audio = to_streamed_response_wrapper(
+            actions.gather_dtmf_audio,
         )
         self.hold = to_streamed_response_wrapper(
             actions.hold,
@@ -2586,11 +2588,11 @@ class AsyncActionsResourceWithStreamingResponse:
         self.update = async_to_streamed_response_wrapper(
             actions.update,
         )
-        self.end = async_to_streamed_response_wrapper(
-            actions.end,
+        self.end_conference = async_to_streamed_response_wrapper(
+            actions.end_conference,
         )
-        self.gather_using_audio = async_to_streamed_response_wrapper(
-            actions.gather_using_audio,
+        self.gather_dtmf_audio = async_to_streamed_response_wrapper(
+            actions.gather_dtmf_audio,
         )
         self.hold = async_to_streamed_response_wrapper(
             actions.hold,

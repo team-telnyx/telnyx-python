@@ -18,6 +18,9 @@ class ReservedPhoneNumber(BaseModel):
     created.
     """
 
+    errors: Optional[str] = None
+    """Errors the reservation could happen upon"""
+
     expired_at: Optional[datetime] = None
     """
     An ISO 8901 datetime string for when the individual number reservation is going

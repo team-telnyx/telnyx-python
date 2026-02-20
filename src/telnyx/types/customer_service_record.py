@@ -93,3 +93,6 @@ class CustomerServiceRecord(BaseModel):
 
     updated_at: Optional[datetime] = None
     """ISO 8601 formatted date indicating when the resource was created."""
+
+    webhook_url: Optional[str] = None
+    """Callback URL to receive webhook notifications."""
