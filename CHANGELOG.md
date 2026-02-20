@@ -1,5 +1,24 @@
 # Changelog
 
+## 4.42.0 (2026-02-20)
+
+Full Changelog: [v4.41.0...v4.42.0](https://github.com/team-telnyx/telnyx-python/compare/v4.41.0...v4.42.0)
+
+### Features
+
+* fix-stainless-sdk-timeout ([632aeda](https://github.com/team-telnyx/telnyx-python/commit/632aedad6d63c5c5336133c943b5b8dbc651a078))
+
+
+### Chores
+
+* **internal:** remove mock server code ([ed56ccd](https://github.com/team-telnyx/telnyx-python/commit/ed56ccd127a9ad4eec1cd696214682ef1c6a2a95))
+* update mock server docs ([e35b75f](https://github.com/team-telnyx/telnyx-python/commit/e35b75feec5cf1a0f3927eed35c344d394c59ab1))
+
+
+### Documentation
+
+* **call-control:** Add missing parameters to call control endpoints ([5dde054](https://github.com/team-telnyx/telnyx-python/commit/5dde05405daf7a3f0cf2e7f501803df6b6ae0a22))
+
 ## 4.41.0 (2026-02-19)
 
 Full Changelog: [v4.40.0...v4.41.0](https://github.com/team-telnyx/telnyx-python/compare/v4.40.0...v4.41.0)
