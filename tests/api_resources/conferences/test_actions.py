@@ -10,7 +10,6 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types.conferences import (
-    ActionEndResponse,
     ActionHoldResponse,
     ActionJoinResponse,
     ActionMuteResponse,
@@ -26,7 +25,8 @@ from telnyx.types.conferences import (
     ActionRecordPauseResponse,
     ActionRecordStartResponse,
     ActionRecordResumeResponse,
-    ActionGatherUsingAudioResponse,
+    ActionEndConferenceResponse,
+    ActionGatherDtmfAudioResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -103,68 +103,68 @@ class TestActions:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_end(self, client: Telnyx) -> None:
-        action = client.conferences.actions.end(
+    def test_method_end_conference(self, client: Telnyx) -> None:
+        action = client.conferences.actions.end_conference(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(ActionEndResponse, action, path=["response"])
+        assert_matches_type(ActionEndConferenceResponse, action, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_end_with_all_params(self, client: Telnyx) -> None:
-        action = client.conferences.actions.end(
+    def test_method_end_conference_with_all_params(self, client: Telnyx) -> None:
+        action = client.conferences.actions.end_conference(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             command_id="891510ac-f3e4-11e8-af5b-de00688a4901",
         )
-        assert_matches_type(ActionEndResponse, action, path=["response"])
+        assert_matches_type(ActionEndConferenceResponse, action, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_end(self, client: Telnyx) -> None:
-        response = client.conferences.actions.with_raw_response.end(
+    def test_raw_response_end_conference(self, client: Telnyx) -> None:
+        response = client.conferences.actions.with_raw_response.end_conference(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         action = response.parse()
-        assert_matches_type(ActionEndResponse, action, path=["response"])
+        assert_matches_type(ActionEndConferenceResponse, action, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_end(self, client: Telnyx) -> None:
-        with client.conferences.actions.with_streaming_response.end(
+    def test_streaming_response_end_conference(self, client: Telnyx) -> None:
+        with client.conferences.actions.with_streaming_response.end_conference(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             action = response.parse()
-            assert_matches_type(ActionEndResponse, action, path=["response"])
+            assert_matches_type(ActionEndConferenceResponse, action, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_path_params_end(self, client: Telnyx) -> None:
+    def test_path_params_end_conference(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            client.conferences.actions.with_raw_response.end(
+            client.conferences.actions.with_raw_response.end_conference(
                 id="",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_gather_using_audio(self, client: Telnyx) -> None:
-        action = client.conferences.actions.gather_using_audio(
+    def test_method_gather_dtmf_audio(self, client: Telnyx) -> None:
+        action = client.conferences.actions.gather_dtmf_audio(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             call_control_id="v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg",
         )
-        assert_matches_type(ActionGatherUsingAudioResponse, action, path=["response"])
+        assert_matches_type(ActionGatherDtmfAudioResponse, action, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_gather_using_audio_with_all_params(self, client: Telnyx) -> None:
-        action = client.conferences.actions.gather_using_audio(
+    def test_method_gather_dtmf_audio_with_all_params(self, client: Telnyx) -> None:
+        action = client.conferences.actions.gather_dtmf_audio(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             call_control_id="v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg",
             audio_url="http://example.com/gather_prompt.wav",
@@ -183,12 +183,12 @@ class TestActions:
             timeout_millis=30000,
             valid_digits="0123456789",
         )
-        assert_matches_type(ActionGatherUsingAudioResponse, action, path=["response"])
+        assert_matches_type(ActionGatherDtmfAudioResponse, action, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_gather_using_audio(self, client: Telnyx) -> None:
-        response = client.conferences.actions.with_raw_response.gather_using_audio(
+    def test_raw_response_gather_dtmf_audio(self, client: Telnyx) -> None:
+        response = client.conferences.actions.with_raw_response.gather_dtmf_audio(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             call_control_id="v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg",
         )
@@ -196,12 +196,12 @@ class TestActions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         action = response.parse()
-        assert_matches_type(ActionGatherUsingAudioResponse, action, path=["response"])
+        assert_matches_type(ActionGatherDtmfAudioResponse, action, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_gather_using_audio(self, client: Telnyx) -> None:
-        with client.conferences.actions.with_streaming_response.gather_using_audio(
+    def test_streaming_response_gather_dtmf_audio(self, client: Telnyx) -> None:
+        with client.conferences.actions.with_streaming_response.gather_dtmf_audio(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             call_control_id="v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg",
         ) as response:
@@ -209,15 +209,15 @@ class TestActions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             action = response.parse()
-            assert_matches_type(ActionGatherUsingAudioResponse, action, path=["response"])
+            assert_matches_type(ActionGatherDtmfAudioResponse, action, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_path_params_gather_using_audio(self, client: Telnyx) -> None:
+    def test_path_params_gather_dtmf_audio(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            client.conferences.actions.with_raw_response.gather_using_audio(
+            client.conferences.actions.with_raw_response.gather_dtmf_audio(
                 id="",
                 call_control_id="v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg",
             )
@@ -1093,68 +1093,68 @@ class TestAsyncActions:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_end(self, async_client: AsyncTelnyx) -> None:
-        action = await async_client.conferences.actions.end(
+    async def test_method_end_conference(self, async_client: AsyncTelnyx) -> None:
+        action = await async_client.conferences.actions.end_conference(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(ActionEndResponse, action, path=["response"])
+        assert_matches_type(ActionEndConferenceResponse, action, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_end_with_all_params(self, async_client: AsyncTelnyx) -> None:
-        action = await async_client.conferences.actions.end(
+    async def test_method_end_conference_with_all_params(self, async_client: AsyncTelnyx) -> None:
+        action = await async_client.conferences.actions.end_conference(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             command_id="891510ac-f3e4-11e8-af5b-de00688a4901",
         )
-        assert_matches_type(ActionEndResponse, action, path=["response"])
+        assert_matches_type(ActionEndConferenceResponse, action, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_end(self, async_client: AsyncTelnyx) -> None:
-        response = await async_client.conferences.actions.with_raw_response.end(
+    async def test_raw_response_end_conference(self, async_client: AsyncTelnyx) -> None:
+        response = await async_client.conferences.actions.with_raw_response.end_conference(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         action = await response.parse()
-        assert_matches_type(ActionEndResponse, action, path=["response"])
+        assert_matches_type(ActionEndConferenceResponse, action, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_end(self, async_client: AsyncTelnyx) -> None:
-        async with async_client.conferences.actions.with_streaming_response.end(
+    async def test_streaming_response_end_conference(self, async_client: AsyncTelnyx) -> None:
+        async with async_client.conferences.actions.with_streaming_response.end_conference(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             action = await response.parse()
-            assert_matches_type(ActionEndResponse, action, path=["response"])
+            assert_matches_type(ActionEndConferenceResponse, action, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_path_params_end(self, async_client: AsyncTelnyx) -> None:
+    async def test_path_params_end_conference(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            await async_client.conferences.actions.with_raw_response.end(
+            await async_client.conferences.actions.with_raw_response.end_conference(
                 id="",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_gather_using_audio(self, async_client: AsyncTelnyx) -> None:
-        action = await async_client.conferences.actions.gather_using_audio(
+    async def test_method_gather_dtmf_audio(self, async_client: AsyncTelnyx) -> None:
+        action = await async_client.conferences.actions.gather_dtmf_audio(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             call_control_id="v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg",
         )
-        assert_matches_type(ActionGatherUsingAudioResponse, action, path=["response"])
+        assert_matches_type(ActionGatherDtmfAudioResponse, action, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_gather_using_audio_with_all_params(self, async_client: AsyncTelnyx) -> None:
-        action = await async_client.conferences.actions.gather_using_audio(
+    async def test_method_gather_dtmf_audio_with_all_params(self, async_client: AsyncTelnyx) -> None:
+        action = await async_client.conferences.actions.gather_dtmf_audio(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             call_control_id="v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg",
             audio_url="http://example.com/gather_prompt.wav",
@@ -1173,12 +1173,12 @@ class TestAsyncActions:
             timeout_millis=30000,
             valid_digits="0123456789",
         )
-        assert_matches_type(ActionGatherUsingAudioResponse, action, path=["response"])
+        assert_matches_type(ActionGatherDtmfAudioResponse, action, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_gather_using_audio(self, async_client: AsyncTelnyx) -> None:
-        response = await async_client.conferences.actions.with_raw_response.gather_using_audio(
+    async def test_raw_response_gather_dtmf_audio(self, async_client: AsyncTelnyx) -> None:
+        response = await async_client.conferences.actions.with_raw_response.gather_dtmf_audio(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             call_control_id="v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg",
         )
@@ -1186,12 +1186,12 @@ class TestAsyncActions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         action = await response.parse()
-        assert_matches_type(ActionGatherUsingAudioResponse, action, path=["response"])
+        assert_matches_type(ActionGatherDtmfAudioResponse, action, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_gather_using_audio(self, async_client: AsyncTelnyx) -> None:
-        async with async_client.conferences.actions.with_streaming_response.gather_using_audio(
+    async def test_streaming_response_gather_dtmf_audio(self, async_client: AsyncTelnyx) -> None:
+        async with async_client.conferences.actions.with_streaming_response.gather_dtmf_audio(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             call_control_id="v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg",
         ) as response:
@@ -1199,15 +1199,15 @@ class TestAsyncActions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             action = await response.parse()
-            assert_matches_type(ActionGatherUsingAudioResponse, action, path=["response"])
+            assert_matches_type(ActionGatherDtmfAudioResponse, action, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_path_params_gather_using_audio(self, async_client: AsyncTelnyx) -> None:
+    async def test_path_params_gather_dtmf_audio(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            await async_client.conferences.actions.with_raw_response.gather_using_audio(
+            await async_client.conferences.actions.with_raw_response.gather_dtmf_audio(
                 id="",
                 call_control_id="v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg",
             )

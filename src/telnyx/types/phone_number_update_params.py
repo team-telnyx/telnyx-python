@@ -10,6 +10,9 @@ __all__ = ["PhoneNumberUpdateParams"]
 
 
 class PhoneNumberUpdateParams(TypedDict, total=False):
+    address_id: str
+    """Identifies the address associated with the phone number."""
+
     billing_group_id: str
     """Identifies the billing group associated with the phone number."""
 

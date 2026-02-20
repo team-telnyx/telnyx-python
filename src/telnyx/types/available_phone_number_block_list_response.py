@@ -39,13 +39,13 @@ class Data(BaseModel):
 
     features: Optional[List[DataFeature]] = None
 
+    phone_number: Optional[str] = None
+
     range: Optional[int] = None
 
     record_type: Optional[Literal["available_phone_number_block"]] = None
 
     region_information: Optional[List[DataRegionInformation]] = None
-
-    starting_number: Optional[str] = None
 
 
 class AvailablePhoneNumberBlockListResponse(BaseModel):

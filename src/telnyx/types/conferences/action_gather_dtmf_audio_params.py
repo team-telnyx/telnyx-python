@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-__all__ = ["ActionGatherUsingAudioParams"]
+__all__ = ["ActionGatherDtmfAudioParams"]
 
 
-class ActionGatherUsingAudioParams(TypedDict, total=False):
+class ActionGatherDtmfAudioParams(TypedDict, total=False):
     call_control_id: Required[str]
     """
     Unique identifier and token for controlling the call leg that will receive the

@@ -34,6 +34,9 @@ class RoomComposition(BaseModel):
 
     record_type: Optional[str] = None
 
+    resolution: Optional[str] = None
+    """The resolution of the room composition."""
+
     room_id: Optional[str] = None
     """Identify the room associated with the room composition."""
 

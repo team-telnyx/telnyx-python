@@ -157,6 +157,7 @@ class PhoneNumbersResource(SyncAPIResource):
         self,
         phone_number_id: str,
         *,
+        address_id: str | Omit = omit,
         billing_group_id: str | Omit = omit,
         connection_id: str | Omit = omit,
         customer_reference: str | Omit = omit,
@@ -174,6 +175,8 @@ class PhoneNumbersResource(SyncAPIResource):
         Update a phone number
 
         Args:
+          address_id: Identifies the address associated with the phone number.
+
           billing_group_id: Identifies the billing group associated with the phone number.
 
           connection_id: Identifies the connection associated with the phone number.
@@ -203,6 +206,7 @@ class PhoneNumbersResource(SyncAPIResource):
             f"/phone_numbers/{phone_number_id}",
             body=maybe_transform(
                 {
+                    "address_id": address_id,
                     "billing_group_id": billing_group_id,
                     "connection_id": connection_id,
                     "customer_reference": customer_reference,
@@ -465,6 +469,7 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
         self,
         phone_number_id: str,
         *,
+        address_id: str | Omit = omit,
         billing_group_id: str | Omit = omit,
         connection_id: str | Omit = omit,
         customer_reference: str | Omit = omit,
@@ -482,6 +487,8 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
         Update a phone number
 
         Args:
+          address_id: Identifies the address associated with the phone number.
+
           billing_group_id: Identifies the billing group associated with the phone number.
 
           connection_id: Identifies the connection associated with the phone number.
@@ -511,6 +518,7 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
             f"/phone_numbers/{phone_number_id}",
             body=await async_maybe_transform(
                 {
+                    "address_id": address_id,
                     "billing_group_id": billing_group_id,
                     "connection_id": connection_id,
                     "customer_reference": customer_reference,

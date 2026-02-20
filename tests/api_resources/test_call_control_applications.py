@@ -53,7 +53,7 @@ class TestCallControlApplications:
             },
             outbound={
                 "channel_limit": 10,
-                "outbound_voice_profile_id": "outbound_voice_profile_id",
+                "outbound_voice_profile_id": "1293384261075731499",
             },
             redact_dtmf_debug_logging=True,
             webhook_api_version="1",
@@ -94,7 +94,7 @@ class TestCallControlApplications:
     @parametrize
     def test_method_retrieve(self, client: Telnyx) -> None:
         call_control_application = client.call_control_applications.retrieve(
-            "id",
+            "1293384261075731499",
         )
         assert_matches_type(CallControlApplicationRetrieveResponse, call_control_application, path=["response"])
 
@@ -102,7 +102,7 @@ class TestCallControlApplications:
     @parametrize
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
         response = client.call_control_applications.with_raw_response.retrieve(
-            "id",
+            "1293384261075731499",
         )
 
         assert response.is_closed is True
@@ -114,7 +114,7 @@ class TestCallControlApplications:
     @parametrize
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
         with client.call_control_applications.with_streaming_response.retrieve(
-            "id",
+            "1293384261075731499",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -136,7 +136,7 @@ class TestCallControlApplications:
     @parametrize
     def test_method_update(self, client: Telnyx) -> None:
         call_control_application = client.call_control_applications.update(
-            id="id",
+            id="1293384261075731499",
             application_name="call-router",
             webhook_event_url="https://example.com",
         )
@@ -146,7 +146,7 @@ class TestCallControlApplications:
     @parametrize
     def test_method_update_with_all_params(self, client: Telnyx) -> None:
         call_control_application = client.call_control_applications.update(
-            id="id",
+            id="1293384261075731499",
             application_name="call-router",
             webhook_event_url="https://example.com",
             active=False,
@@ -163,7 +163,7 @@ class TestCallControlApplications:
             },
             outbound={
                 "channel_limit": 10,
-                "outbound_voice_profile_id": "outbound_voice_profile_id",
+                "outbound_voice_profile_id": "1293384261075731499",
             },
             redact_dtmf_debug_logging=True,
             tags=["tag1", "tag2"],
@@ -177,7 +177,7 @@ class TestCallControlApplications:
     @parametrize
     def test_raw_response_update(self, client: Telnyx) -> None:
         response = client.call_control_applications.with_raw_response.update(
-            id="id",
+            id="1293384261075731499",
             application_name="call-router",
             webhook_event_url="https://example.com",
         )
@@ -191,7 +191,7 @@ class TestCallControlApplications:
     @parametrize
     def test_streaming_response_update(self, client: Telnyx) -> None:
         with client.call_control_applications.with_streaming_response.update(
-            id="id",
+            id="1293384261075731499",
             application_name="call-router",
             webhook_event_url="https://example.com",
         ) as response:
@@ -240,7 +240,7 @@ class TestCallControlApplications:
                     "lt": "2019-03-29T11:10:00Z",
                     "lte": "2019-03-29T11:10:00Z",
                 },
-                "outbound_outbound_voice_profile_id": "outbound.outbound_voice_profile_id",
+                "outbound_outbound_voice_profile_id": "1293384261075731499",
                 "product": "texml",
                 "status": "init",
                 "to": "+12025550142",
@@ -284,7 +284,7 @@ class TestCallControlApplications:
     @parametrize
     def test_method_delete(self, client: Telnyx) -> None:
         call_control_application = client.call_control_applications.delete(
-            "id",
+            "1293384261075731499",
         )
         assert_matches_type(CallControlApplicationDeleteResponse, call_control_application, path=["response"])
 
@@ -292,7 +292,7 @@ class TestCallControlApplications:
     @parametrize
     def test_raw_response_delete(self, client: Telnyx) -> None:
         response = client.call_control_applications.with_raw_response.delete(
-            "id",
+            "1293384261075731499",
         )
 
         assert response.is_closed is True
@@ -304,7 +304,7 @@ class TestCallControlApplications:
     @parametrize
     def test_streaming_response_delete(self, client: Telnyx) -> None:
         with client.call_control_applications.with_streaming_response.delete(
-            "id",
+            "1293384261075731499",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -357,7 +357,7 @@ class TestAsyncCallControlApplications:
             },
             outbound={
                 "channel_limit": 10,
-                "outbound_voice_profile_id": "outbound_voice_profile_id",
+                "outbound_voice_profile_id": "1293384261075731499",
             },
             redact_dtmf_debug_logging=True,
             webhook_api_version="1",
@@ -398,7 +398,7 @@ class TestAsyncCallControlApplications:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
         call_control_application = await async_client.call_control_applications.retrieve(
-            "id",
+            "1293384261075731499",
         )
         assert_matches_type(CallControlApplicationRetrieveResponse, call_control_application, path=["response"])
 
@@ -406,7 +406,7 @@ class TestAsyncCallControlApplications:
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.call_control_applications.with_raw_response.retrieve(
-            "id",
+            "1293384261075731499",
         )
 
         assert response.is_closed is True
@@ -418,7 +418,7 @@ class TestAsyncCallControlApplications:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         async with async_client.call_control_applications.with_streaming_response.retrieve(
-            "id",
+            "1293384261075731499",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -440,7 +440,7 @@ class TestAsyncCallControlApplications:
     @parametrize
     async def test_method_update(self, async_client: AsyncTelnyx) -> None:
         call_control_application = await async_client.call_control_applications.update(
-            id="id",
+            id="1293384261075731499",
             application_name="call-router",
             webhook_event_url="https://example.com",
         )
@@ -450,7 +450,7 @@ class TestAsyncCallControlApplications:
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncTelnyx) -> None:
         call_control_application = await async_client.call_control_applications.update(
-            id="id",
+            id="1293384261075731499",
             application_name="call-router",
             webhook_event_url="https://example.com",
             active=False,
@@ -467,7 +467,7 @@ class TestAsyncCallControlApplications:
             },
             outbound={
                 "channel_limit": 10,
-                "outbound_voice_profile_id": "outbound_voice_profile_id",
+                "outbound_voice_profile_id": "1293384261075731499",
             },
             redact_dtmf_debug_logging=True,
             tags=["tag1", "tag2"],
@@ -481,7 +481,7 @@ class TestAsyncCallControlApplications:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.call_control_applications.with_raw_response.update(
-            id="id",
+            id="1293384261075731499",
             application_name="call-router",
             webhook_event_url="https://example.com",
         )
@@ -495,7 +495,7 @@ class TestAsyncCallControlApplications:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncTelnyx) -> None:
         async with async_client.call_control_applications.with_streaming_response.update(
-            id="id",
+            id="1293384261075731499",
             application_name="call-router",
             webhook_event_url="https://example.com",
         ) as response:
@@ -544,7 +544,7 @@ class TestAsyncCallControlApplications:
                     "lt": "2019-03-29T11:10:00Z",
                     "lte": "2019-03-29T11:10:00Z",
                 },
-                "outbound_outbound_voice_profile_id": "outbound.outbound_voice_profile_id",
+                "outbound_outbound_voice_profile_id": "1293384261075731499",
                 "product": "texml",
                 "status": "init",
                 "to": "+12025550142",
@@ -588,7 +588,7 @@ class TestAsyncCallControlApplications:
     @parametrize
     async def test_method_delete(self, async_client: AsyncTelnyx) -> None:
         call_control_application = await async_client.call_control_applications.delete(
-            "id",
+            "1293384261075731499",
         )
         assert_matches_type(CallControlApplicationDeleteResponse, call_control_application, path=["response"])
 
@@ -596,7 +596,7 @@ class TestAsyncCallControlApplications:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.call_control_applications.with_raw_response.delete(
-            "id",
+            "1293384261075731499",
         )
 
         assert response.is_closed is True
@@ -608,7 +608,7 @@ class TestAsyncCallControlApplications:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncTelnyx) -> None:
         async with async_client.call_control_applications.with_streaming_response.delete(
-            "id",
+            "1293384261075731499",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

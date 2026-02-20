@@ -5,8 +5,8 @@ from typing import Optional
 from ..._models import BaseModel
 from .conference_command_result import ConferenceCommandResult
 
-__all__ = ["ActionGatherUsingAudioResponse"]
+__all__ = ["ActionEndConferenceResponse"]
 
 
-class ActionGatherUsingAudioResponse(BaseModel):
+class ActionEndConferenceResponse(BaseModel):
     data: Optional[ConferenceCommandResult] = None

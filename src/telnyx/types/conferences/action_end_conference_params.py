@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from typing_extensions import TypedDict
 
-__all__ = ["ActionEndParams"]
+__all__ = ["ActionEndConferenceParams"]
 
 
-class ActionEndParams(TypedDict, total=False):
+class ActionEndConferenceParams(TypedDict, total=False):
     command_id: str
     """Use this field to avoid duplicate commands.
 

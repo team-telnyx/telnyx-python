@@ -70,6 +70,9 @@ class Data(BaseModel):
     cooperate with this security mechanism.
     """
 
+    hd_voice_enabled: Optional[bool] = None
+    """Indicates whether HD voice is enabled for this number."""
+
     messaging_profile_id: Optional[str] = None
     """Identifies the messaging profile associated with the phone number."""
 

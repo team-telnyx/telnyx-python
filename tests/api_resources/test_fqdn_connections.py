@@ -89,7 +89,7 @@ class TestFqdnConnections:
                 "ip_authentication_method": "credential-authentication",
                 "ip_authentication_token": "aBcD1234",
                 "localization": "string",
-                "outbound_voice_profile_id": "outbound_voice_profile_id",
+                "outbound_voice_profile_id": "1293384261075731499",
                 "t38_reinvite_source": "customer",
                 "tech_prefix": "0123",
                 "timeout_1xx_secs": 10,
@@ -139,7 +139,7 @@ class TestFqdnConnections:
     @parametrize
     def test_method_retrieve(self, client: Telnyx) -> None:
         fqdn_connection = client.fqdn_connections.retrieve(
-            "id",
+            "1293384261075731499",
         )
         assert_matches_type(FqdnConnectionRetrieveResponse, fqdn_connection, path=["response"])
 
@@ -147,7 +147,7 @@ class TestFqdnConnections:
     @parametrize
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
         response = client.fqdn_connections.with_raw_response.retrieve(
-            "id",
+            "1293384261075731499",
         )
 
         assert response.is_closed is True
@@ -159,7 +159,7 @@ class TestFqdnConnections:
     @parametrize
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
         with client.fqdn_connections.with_streaming_response.retrieve(
-            "id",
+            "1293384261075731499",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -181,7 +181,7 @@ class TestFqdnConnections:
     @parametrize
     def test_method_update(self, client: Telnyx) -> None:
         fqdn_connection = client.fqdn_connections.update(
-            id="id",
+            id="1293384261075731499",
         )
         assert_matches_type(FqdnConnectionUpdateResponse, fqdn_connection, path=["response"])
 
@@ -189,7 +189,7 @@ class TestFqdnConnections:
     @parametrize
     def test_method_update_with_all_params(self, client: Telnyx) -> None:
         fqdn_connection = client.fqdn_connections.update(
-            id="id",
+            id="1293384261075731499",
             active=True,
             anchorsite_override="Latency",
             android_push_credential_id="06b09dfd-7154-4980-8b75-cebf7a9d4f8e",
@@ -242,7 +242,7 @@ class TestFqdnConnections:
                 "ip_authentication_method": "credential-authentication",
                 "ip_authentication_token": "ip_authentication_token",
                 "localization": "US",
-                "outbound_voice_profile_id": "outbound_voice_profile_id",
+                "outbound_voice_profile_id": "1293384261075731499",
                 "t38_reinvite_source": "telnyx",
                 "tech_prefix": "tech_prefix",
                 "timeout_1xx_secs": 1,
@@ -266,7 +266,7 @@ class TestFqdnConnections:
     @parametrize
     def test_raw_response_update(self, client: Telnyx) -> None:
         response = client.fqdn_connections.with_raw_response.update(
-            id="id",
+            id="1293384261075731499",
         )
 
         assert response.is_closed is True
@@ -278,7 +278,7 @@ class TestFqdnConnections:
     @parametrize
     def test_streaming_response_update(self, client: Telnyx) -> None:
         with client.fqdn_connections.with_streaming_response.update(
-            id="id",
+            id="1293384261075731499",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -309,7 +309,7 @@ class TestFqdnConnections:
             filter={
                 "connection_name": {"contains": "contains"},
                 "fqdn": "fqdn",
-                "outbound_voice_profile_id": "outbound_voice_profile_id",
+                "outbound_voice_profile_id": "1293384261075731499",
             },
             page_number=0,
             page_size=0,
@@ -343,7 +343,7 @@ class TestFqdnConnections:
     @parametrize
     def test_method_delete(self, client: Telnyx) -> None:
         fqdn_connection = client.fqdn_connections.delete(
-            "id",
+            "1293384261075731499",
         )
         assert_matches_type(FqdnConnectionDeleteResponse, fqdn_connection, path=["response"])
 
@@ -351,7 +351,7 @@ class TestFqdnConnections:
     @parametrize
     def test_raw_response_delete(self, client: Telnyx) -> None:
         response = client.fqdn_connections.with_raw_response.delete(
-            "id",
+            "1293384261075731499",
         )
 
         assert response.is_closed is True
@@ -363,7 +363,7 @@ class TestFqdnConnections:
     @parametrize
     def test_streaming_response_delete(self, client: Telnyx) -> None:
         with client.fqdn_connections.with_streaming_response.delete(
-            "id",
+            "1293384261075731499",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -452,7 +452,7 @@ class TestAsyncFqdnConnections:
                 "ip_authentication_method": "credential-authentication",
                 "ip_authentication_token": "aBcD1234",
                 "localization": "string",
-                "outbound_voice_profile_id": "outbound_voice_profile_id",
+                "outbound_voice_profile_id": "1293384261075731499",
                 "t38_reinvite_source": "customer",
                 "tech_prefix": "0123",
                 "timeout_1xx_secs": 10,
@@ -502,7 +502,7 @@ class TestAsyncFqdnConnections:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
         fqdn_connection = await async_client.fqdn_connections.retrieve(
-            "id",
+            "1293384261075731499",
         )
         assert_matches_type(FqdnConnectionRetrieveResponse, fqdn_connection, path=["response"])
 
@@ -510,7 +510,7 @@ class TestAsyncFqdnConnections:
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.fqdn_connections.with_raw_response.retrieve(
-            "id",
+            "1293384261075731499",
         )
 
         assert response.is_closed is True
@@ -522,7 +522,7 @@ class TestAsyncFqdnConnections:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         async with async_client.fqdn_connections.with_streaming_response.retrieve(
-            "id",
+            "1293384261075731499",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -544,7 +544,7 @@ class TestAsyncFqdnConnections:
     @parametrize
     async def test_method_update(self, async_client: AsyncTelnyx) -> None:
         fqdn_connection = await async_client.fqdn_connections.update(
-            id="id",
+            id="1293384261075731499",
         )
         assert_matches_type(FqdnConnectionUpdateResponse, fqdn_connection, path=["response"])
 
@@ -552,7 +552,7 @@ class TestAsyncFqdnConnections:
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncTelnyx) -> None:
         fqdn_connection = await async_client.fqdn_connections.update(
-            id="id",
+            id="1293384261075731499",
             active=True,
             anchorsite_override="Latency",
             android_push_credential_id="06b09dfd-7154-4980-8b75-cebf7a9d4f8e",
@@ -605,7 +605,7 @@ class TestAsyncFqdnConnections:
                 "ip_authentication_method": "credential-authentication",
                 "ip_authentication_token": "ip_authentication_token",
                 "localization": "US",
-                "outbound_voice_profile_id": "outbound_voice_profile_id",
+                "outbound_voice_profile_id": "1293384261075731499",
                 "t38_reinvite_source": "telnyx",
                 "tech_prefix": "tech_prefix",
                 "timeout_1xx_secs": 1,
@@ -629,7 +629,7 @@ class TestAsyncFqdnConnections:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.fqdn_connections.with_raw_response.update(
-            id="id",
+            id="1293384261075731499",
         )
 
         assert response.is_closed is True
@@ -641,7 +641,7 @@ class TestAsyncFqdnConnections:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncTelnyx) -> None:
         async with async_client.fqdn_connections.with_streaming_response.update(
-            id="id",
+            id="1293384261075731499",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -672,7 +672,7 @@ class TestAsyncFqdnConnections:
             filter={
                 "connection_name": {"contains": "contains"},
                 "fqdn": "fqdn",
-                "outbound_voice_profile_id": "outbound_voice_profile_id",
+                "outbound_voice_profile_id": "1293384261075731499",
             },
             page_number=0,
             page_size=0,
@@ -706,7 +706,7 @@ class TestAsyncFqdnConnections:
     @parametrize
     async def test_method_delete(self, async_client: AsyncTelnyx) -> None:
         fqdn_connection = await async_client.fqdn_connections.delete(
-            "id",
+            "1293384261075731499",
         )
         assert_matches_type(FqdnConnectionDeleteResponse, fqdn_connection, path=["response"])
 
@@ -714,7 +714,7 @@ class TestAsyncFqdnConnections:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.fqdn_connections.with_raw_response.delete(
-            "id",
+            "1293384261075731499",
         )
 
         assert response.is_closed is True
@@ -726,7 +726,7 @@ class TestAsyncFqdnConnections:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncTelnyx) -> None:
         async with async_client.fqdn_connections.with_streaming_response.delete(
-            "id",
+            "1293384261075731499",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
