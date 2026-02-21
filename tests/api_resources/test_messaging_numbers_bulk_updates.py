@@ -31,6 +31,16 @@ class TestMessagingNumbersBulkUpdates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
+    def test_method_create_with_all_params(self, client: Telnyx) -> None:
+        messaging_numbers_bulk_update = client.messaging_numbers_bulk_updates.create(
+            messaging_profile_id="00000000-0000-0000-0000-000000000000",
+            numbers=["+18880000000", "+18880000001", "+18880000002"],
+            assign_only=True,
+        )
+        assert_matches_type(MessagingNumbersBulkUpdateCreateResponse, messaging_numbers_bulk_update, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
     def test_raw_response_create(self, client: Telnyx) -> None:
         response = client.messaging_numbers_bulk_updates.with_raw_response.create(
             messaging_profile_id="00000000-0000-0000-0000-000000000000",
@@ -119,6 +129,16 @@ class TestAsyncMessagingNumbersBulkUpdates:
         messaging_numbers_bulk_update = await async_client.messaging_numbers_bulk_updates.create(
             messaging_profile_id="00000000-0000-0000-0000-000000000000",
             numbers=["+18880000000", "+18880000001", "+18880000002"],
+        )
+        assert_matches_type(MessagingNumbersBulkUpdateCreateResponse, messaging_numbers_bulk_update, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_create_with_all_params(self, async_client: AsyncTelnyx) -> None:
+        messaging_numbers_bulk_update = await async_client.messaging_numbers_bulk_updates.create(
+            messaging_profile_id="00000000-0000-0000-0000-000000000000",
+            numbers=["+18880000000", "+18880000001", "+18880000002"],
+            assign_only=True,
         )
         assert_matches_type(MessagingNumbersBulkUpdateCreateResponse, messaging_numbers_bulk_update, path=["response"])
 

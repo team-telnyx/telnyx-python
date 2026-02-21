@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Union
+from typing import Union, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -24,6 +24,7 @@ from ...types import (
     message_send_long_code_params,
     message_send_short_code_params,
     message_send_number_pool_params,
+    message_send_with_alphanumeric_sender_params,
 )
 from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
@@ -45,6 +46,8 @@ from ...types.message_send_long_code_response import MessageSendLongCodeResponse
 from ...types.message_send_short_code_response import MessageSendShortCodeResponse
 from ...types.message_cancel_scheduled_response import MessageCancelScheduledResponse
 from ...types.message_send_number_pool_response import MessageSendNumberPoolResponse
+from ...types.message_retrieve_group_messages_response import MessageRetrieveGroupMessagesResponse
+from ...types.message_send_with_alphanumeric_sender_response import MessageSendWithAlphanumericSenderResponse
 
 __all__ = ["MessagesResource", "AsyncMessagesResource"]
 
@@ -142,6 +145,39 @@ class MessagesResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=MessageCancelScheduledResponse,
+        )
+
+    def retrieve_group_messages(
+        self,
+        message_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> MessageRetrieveGroupMessagesResponse:
+        """
+        Retrieve all messages in a group MMS conversation by the group message ID.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not message_id:
+            raise ValueError(f"Expected a non-empty value for `message_id` but received {message_id!r}")
+        return self._get(
+            f"/messages/group/{message_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=MessageRetrieveGroupMessagesResponse,
         )
 
     def schedule(
@@ -754,6 +790,70 @@ class MessagesResource(SyncAPIResource):
             cast_to=MessageSendWhatsappResponse,
         )
 
+    def send_with_alphanumeric_sender(
+        self,
+        *,
+        from_: str,
+        messaging_profile_id: str,
+        text: str,
+        to: str,
+        use_profile_webhooks: bool | Omit = omit,
+        webhook_failover_url: Optional[str] | Omit = omit,
+        webhook_url: Optional[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> MessageSendWithAlphanumericSenderResponse:
+        """Send an SMS message using an alphanumeric sender ID.
+
+        This is SMS only.
+
+        Args:
+          from_: A valid alphanumeric sender ID on the user's account.
+
+          messaging_profile_id: The messaging profile ID to use.
+
+          text: The message body.
+
+          to: Receiving address (+E.164 formatted phone number).
+
+          use_profile_webhooks: If true, use the messaging profile's webhook settings.
+
+          webhook_failover_url: Failover callback URL for delivery status updates.
+
+          webhook_url: Callback URL for delivery status updates.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._post(
+            "/messages/alphanumeric_sender_id",
+            body=maybe_transform(
+                {
+                    "from_": from_,
+                    "messaging_profile_id": messaging_profile_id,
+                    "text": text,
+                    "to": to,
+                    "use_profile_webhooks": use_profile_webhooks,
+                    "webhook_failover_url": webhook_failover_url,
+                    "webhook_url": webhook_url,
+                },
+                message_send_with_alphanumeric_sender_params.MessageSendWithAlphanumericSenderParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=MessageSendWithAlphanumericSenderResponse,
+        )
+
 
 class AsyncMessagesResource(AsyncAPIResource):
     @cached_property
@@ -848,6 +948,39 @@ class AsyncMessagesResource(AsyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=MessageCancelScheduledResponse,
+        )
+
+    async def retrieve_group_messages(
+        self,
+        message_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> MessageRetrieveGroupMessagesResponse:
+        """
+        Retrieve all messages in a group MMS conversation by the group message ID.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not message_id:
+            raise ValueError(f"Expected a non-empty value for `message_id` but received {message_id!r}")
+        return await self._get(
+            f"/messages/group/{message_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=MessageRetrieveGroupMessagesResponse,
         )
 
     async def schedule(
@@ -1460,6 +1593,70 @@ class AsyncMessagesResource(AsyncAPIResource):
             cast_to=MessageSendWhatsappResponse,
         )
 
+    async def send_with_alphanumeric_sender(
+        self,
+        *,
+        from_: str,
+        messaging_profile_id: str,
+        text: str,
+        to: str,
+        use_profile_webhooks: bool | Omit = omit,
+        webhook_failover_url: Optional[str] | Omit = omit,
+        webhook_url: Optional[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> MessageSendWithAlphanumericSenderResponse:
+        """Send an SMS message using an alphanumeric sender ID.
+
+        This is SMS only.
+
+        Args:
+          from_: A valid alphanumeric sender ID on the user's account.
+
+          messaging_profile_id: The messaging profile ID to use.
+
+          text: The message body.
+
+          to: Receiving address (+E.164 formatted phone number).
+
+          use_profile_webhooks: If true, use the messaging profile's webhook settings.
+
+          webhook_failover_url: Failover callback URL for delivery status updates.
+
+          webhook_url: Callback URL for delivery status updates.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._post(
+            "/messages/alphanumeric_sender_id",
+            body=await async_maybe_transform(
+                {
+                    "from_": from_,
+                    "messaging_profile_id": messaging_profile_id,
+                    "text": text,
+                    "to": to,
+                    "use_profile_webhooks": use_profile_webhooks,
+                    "webhook_failover_url": webhook_failover_url,
+                    "webhook_url": webhook_url,
+                },
+                message_send_with_alphanumeric_sender_params.MessageSendWithAlphanumericSenderParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=MessageSendWithAlphanumericSenderResponse,
+        )
+
 
 class MessagesResourceWithRawResponse:
     def __init__(self, messages: MessagesResource) -> None:
@@ -1470,6 +1667,9 @@ class MessagesResourceWithRawResponse:
         )
         self.cancel_scheduled = to_raw_response_wrapper(
             messages.cancel_scheduled,
+        )
+        self.retrieve_group_messages = to_raw_response_wrapper(
+            messages.retrieve_group_messages,
         )
         self.schedule = to_raw_response_wrapper(
             messages.schedule,
@@ -1492,6 +1692,9 @@ class MessagesResourceWithRawResponse:
         self.send_whatsapp = to_raw_response_wrapper(
             messages.send_whatsapp,
         )
+        self.send_with_alphanumeric_sender = to_raw_response_wrapper(
+            messages.send_with_alphanumeric_sender,
+        )
 
     @cached_property
     def rcs(self) -> RcsResourceWithRawResponse:
@@ -1507,6 +1710,9 @@ class AsyncMessagesResourceWithRawResponse:
         )
         self.cancel_scheduled = async_to_raw_response_wrapper(
             messages.cancel_scheduled,
+        )
+        self.retrieve_group_messages = async_to_raw_response_wrapper(
+            messages.retrieve_group_messages,
         )
         self.schedule = async_to_raw_response_wrapper(
             messages.schedule,
@@ -1529,6 +1735,9 @@ class AsyncMessagesResourceWithRawResponse:
         self.send_whatsapp = async_to_raw_response_wrapper(
             messages.send_whatsapp,
         )
+        self.send_with_alphanumeric_sender = async_to_raw_response_wrapper(
+            messages.send_with_alphanumeric_sender,
+        )
 
     @cached_property
     def rcs(self) -> AsyncRcsResourceWithRawResponse:
@@ -1544,6 +1753,9 @@ class MessagesResourceWithStreamingResponse:
         )
         self.cancel_scheduled = to_streamed_response_wrapper(
             messages.cancel_scheduled,
+        )
+        self.retrieve_group_messages = to_streamed_response_wrapper(
+            messages.retrieve_group_messages,
         )
         self.schedule = to_streamed_response_wrapper(
             messages.schedule,
@@ -1566,6 +1778,9 @@ class MessagesResourceWithStreamingResponse:
         self.send_whatsapp = to_streamed_response_wrapper(
             messages.send_whatsapp,
         )
+        self.send_with_alphanumeric_sender = to_streamed_response_wrapper(
+            messages.send_with_alphanumeric_sender,
+        )
 
     @cached_property
     def rcs(self) -> RcsResourceWithStreamingResponse:
@@ -1581,6 +1796,9 @@ class AsyncMessagesResourceWithStreamingResponse:
         )
         self.cancel_scheduled = async_to_streamed_response_wrapper(
             messages.cancel_scheduled,
+        )
+        self.retrieve_group_messages = async_to_streamed_response_wrapper(
+            messages.retrieve_group_messages,
         )
         self.schedule = async_to_streamed_response_wrapper(
             messages.schedule,
@@ -1602,6 +1820,9 @@ class AsyncMessagesResourceWithStreamingResponse:
         )
         self.send_whatsapp = async_to_streamed_response_wrapper(
             messages.send_whatsapp,
+        )
+        self.send_with_alphanumeric_sender = async_to_streamed_response_wrapper(
+            messages.send_with_alphanumeric_sender,
         )
 
     @cached_property

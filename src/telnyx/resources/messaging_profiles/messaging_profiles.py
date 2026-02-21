@@ -12,7 +12,17 @@ from ...types import (
     messaging_profile_create_params,
     messaging_profile_update_params,
     messaging_profile_list_short_codes_params,
+    messaging_profile_retrieve_metrics_params,
     messaging_profile_list_phone_numbers_params,
+    messaging_profile_list_alphanumeric_sender_ids_params,
+)
+from .actions import (
+    ActionsResource,
+    AsyncActionsResource,
+    ActionsResourceWithRawResponse,
+    AsyncActionsResourceWithRawResponse,
+    ActionsResourceWithStreamingResponse,
+    AsyncActionsResourceWithStreamingResponse,
 )
 from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
@@ -42,7 +52,11 @@ from ...types.messaging_profile_create_response import MessagingProfileCreateRes
 from ...types.messaging_profile_delete_response import MessagingProfileDeleteResponse
 from ...types.messaging_profile_update_response import MessagingProfileUpdateResponse
 from ...types.messaging_profile_retrieve_response import MessagingProfileRetrieveResponse
+from ...types.messaging_profile_retrieve_metrics_response import MessagingProfileRetrieveMetricsResponse
 from ...types.shared.phone_number_with_messaging_settings import PhoneNumberWithMessagingSettings
+from ...types.messaging_profile_list_alphanumeric_sender_ids_response import (
+    MessagingProfileListAlphanumericSenderIDsResponse,
+)
 
 __all__ = ["MessagingProfilesResource", "AsyncMessagingProfilesResource"]
 
@@ -51,6 +65,10 @@ class MessagingProfilesResource(SyncAPIResource):
     @cached_property
     def autoresp_configs(self) -> AutorespConfigsResource:
         return AutorespConfigsResource(self._client)
+
+    @cached_property
+    def actions(self) -> ActionsResource:
+        return ActionsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> MessagingProfilesResourceWithRawResponse:
@@ -76,14 +94,17 @@ class MessagingProfilesResource(SyncAPIResource):
         *,
         name: str,
         whitelisted_destinations: SequenceNotStr[str],
+        ai_assistant_id: Optional[str] | Omit = omit,
         alpha_sender: Optional[str] | Omit = omit,
         daily_spend_limit: str | Omit = omit,
         daily_spend_limit_enabled: bool | Omit = omit,
         enabled: bool | Omit = omit,
+        health_webhook_url: Optional[str] | Omit = omit,
         mms_fall_back_to_sms: bool | Omit = omit,
         mms_transcoding: bool | Omit = omit,
         mobile_only: bool | Omit = omit,
         number_pool_settings: Optional[NumberPoolSettingsParam] | Omit = omit,
+        resource_group_id: Optional[str] | Omit = omit,
         smart_encoding: bool | Omit = omit,
         url_shortener_settings: Optional[URLShortenerSettingsParam] | Omit = omit,
         webhook_api_version: Literal["1", "2", "2010-04-01"] | Omit = omit,
@@ -106,6 +127,8 @@ class MessagingProfilesResource(SyncAPIResource):
               the list must be valid ISO 3166-1 alpha-2 country codes. If set to `["*"]` all
               destinations will be allowed.
 
+          ai_assistant_id: The AI assistant ID to associate with this messaging profile.
+
           alpha_sender: The alphanumeric sender ID to use when sending to destinations that require an
               alphanumeric sender ID.
 
@@ -115,6 +138,8 @@ class MessagingProfilesResource(SyncAPIResource):
           daily_spend_limit_enabled: Whether to enforce the value configured by `daily_spend_limit`.
 
           enabled: Specifies whether the messaging profile is enabled or not.
+
+          health_webhook_url: A URL to receive health check webhooks for numbers in this profile.
 
           mms_fall_back_to_sms: enables SMS fallback for MMS messages.
 
@@ -127,6 +152,8 @@ class MessagingProfilesResource(SyncAPIResource):
               and toll free numbers assigned to the messaging profile.
 
               To disable this feature, set the object field to `null`.
+
+          resource_group_id: The resource group ID to associate with this messaging profile.
 
           smart_encoding: Enables automatic character encoding optimization for SMS messages. When
               enabled, the system automatically selects the most efficient encoding (GSM-7 or
@@ -162,14 +189,17 @@ class MessagingProfilesResource(SyncAPIResource):
                 {
                     "name": name,
                     "whitelisted_destinations": whitelisted_destinations,
+                    "ai_assistant_id": ai_assistant_id,
                     "alpha_sender": alpha_sender,
                     "daily_spend_limit": daily_spend_limit,
                     "daily_spend_limit_enabled": daily_spend_limit_enabled,
                     "enabled": enabled,
+                    "health_webhook_url": health_webhook_url,
                     "mms_fall_back_to_sms": mms_fall_back_to_sms,
                     "mms_transcoding": mms_transcoding,
                     "mobile_only": mobile_only,
                     "number_pool_settings": number_pool_settings,
+                    "resource_group_id": resource_group_id,
                     "smart_encoding": smart_encoding,
                     "url_shortener_settings": url_shortener_settings,
                     "webhook_api_version": webhook_api_version,
@@ -347,6 +377,8 @@ class MessagingProfilesResource(SyncAPIResource):
         self,
         *,
         filter: messaging_profile_list_params.Filter | Omit = omit,
+        filter_name_contains: str | Omit = omit,
+        filter_name_eq: str | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -361,6 +393,10 @@ class MessagingProfilesResource(SyncAPIResource):
 
         Args:
           filter: Consolidated filter parameter (deepObject style). Originally: filter[name]
+
+          filter_name_contains: Filter profiles by name containing the given string.
+
+          filter_name_eq: Filter profiles by exact name match.
 
           extra_headers: Send extra headers
 
@@ -381,6 +417,8 @@ class MessagingProfilesResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
+                        "filter_name_contains": filter_name_contains,
+                        "filter_name_eq": filter_name_eq,
                         "page_number": page_number,
                         "page_size": page_size,
                     },
@@ -423,6 +461,52 @@ class MessagingProfilesResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=MessagingProfileDeleteResponse,
+        )
+
+    def list_alphanumeric_sender_ids(
+        self,
+        id: str,
+        *,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> SyncDefaultFlatPagination[MessagingProfileListAlphanumericSenderIDsResponse]:
+        """
+        List all alphanumeric sender IDs associated with a specific messaging profile.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return self._get_api_list(
+            f"/messaging_profiles/{id}/alphanumeric_sender_ids",
+            page=SyncDefaultFlatPagination[MessagingProfileListAlphanumericSenderIDsResponse],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "page_number": page_number,
+                        "page_size": page_size,
+                    },
+                    messaging_profile_list_alphanumeric_sender_ids_params.MessagingProfileListAlphanumericSenderIDsParams,
+                ),
+            ),
+            model=MessagingProfileListAlphanumericSenderIDsResponse,
         )
 
     def list_phone_numbers(
@@ -521,11 +605,59 @@ class MessagingProfilesResource(SyncAPIResource):
             model=ShortCode,
         )
 
+    def retrieve_metrics(
+        self,
+        id: str,
+        *,
+        time_frame: Literal["1h", "3h", "24h", "3d", "7d", "30d"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> MessagingProfileRetrieveMetricsResponse:
+        """
+        Get detailed metrics for a specific messaging profile, broken down by time
+        interval.
+
+        Args:
+          time_frame: The time frame for metrics.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return self._get(
+            f"/messaging_profiles/{id}/metrics",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {"time_frame": time_frame},
+                    messaging_profile_retrieve_metrics_params.MessagingProfileRetrieveMetricsParams,
+                ),
+            ),
+            cast_to=MessagingProfileRetrieveMetricsResponse,
+        )
+
 
 class AsyncMessagingProfilesResource(AsyncAPIResource):
     @cached_property
     def autoresp_configs(self) -> AsyncAutorespConfigsResource:
         return AsyncAutorespConfigsResource(self._client)
+
+    @cached_property
+    def actions(self) -> AsyncActionsResource:
+        return AsyncActionsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncMessagingProfilesResourceWithRawResponse:
@@ -551,14 +683,17 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
         *,
         name: str,
         whitelisted_destinations: SequenceNotStr[str],
+        ai_assistant_id: Optional[str] | Omit = omit,
         alpha_sender: Optional[str] | Omit = omit,
         daily_spend_limit: str | Omit = omit,
         daily_spend_limit_enabled: bool | Omit = omit,
         enabled: bool | Omit = omit,
+        health_webhook_url: Optional[str] | Omit = omit,
         mms_fall_back_to_sms: bool | Omit = omit,
         mms_transcoding: bool | Omit = omit,
         mobile_only: bool | Omit = omit,
         number_pool_settings: Optional[NumberPoolSettingsParam] | Omit = omit,
+        resource_group_id: Optional[str] | Omit = omit,
         smart_encoding: bool | Omit = omit,
         url_shortener_settings: Optional[URLShortenerSettingsParam] | Omit = omit,
         webhook_api_version: Literal["1", "2", "2010-04-01"] | Omit = omit,
@@ -581,6 +716,8 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
               the list must be valid ISO 3166-1 alpha-2 country codes. If set to `["*"]` all
               destinations will be allowed.
 
+          ai_assistant_id: The AI assistant ID to associate with this messaging profile.
+
           alpha_sender: The alphanumeric sender ID to use when sending to destinations that require an
               alphanumeric sender ID.
 
@@ -590,6 +727,8 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
           daily_spend_limit_enabled: Whether to enforce the value configured by `daily_spend_limit`.
 
           enabled: Specifies whether the messaging profile is enabled or not.
+
+          health_webhook_url: A URL to receive health check webhooks for numbers in this profile.
 
           mms_fall_back_to_sms: enables SMS fallback for MMS messages.
 
@@ -602,6 +741,8 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
               and toll free numbers assigned to the messaging profile.
 
               To disable this feature, set the object field to `null`.
+
+          resource_group_id: The resource group ID to associate with this messaging profile.
 
           smart_encoding: Enables automatic character encoding optimization for SMS messages. When
               enabled, the system automatically selects the most efficient encoding (GSM-7 or
@@ -637,14 +778,17 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
                 {
                     "name": name,
                     "whitelisted_destinations": whitelisted_destinations,
+                    "ai_assistant_id": ai_assistant_id,
                     "alpha_sender": alpha_sender,
                     "daily_spend_limit": daily_spend_limit,
                     "daily_spend_limit_enabled": daily_spend_limit_enabled,
                     "enabled": enabled,
+                    "health_webhook_url": health_webhook_url,
                     "mms_fall_back_to_sms": mms_fall_back_to_sms,
                     "mms_transcoding": mms_transcoding,
                     "mobile_only": mobile_only,
                     "number_pool_settings": number_pool_settings,
+                    "resource_group_id": resource_group_id,
                     "smart_encoding": smart_encoding,
                     "url_shortener_settings": url_shortener_settings,
                     "webhook_api_version": webhook_api_version,
@@ -822,6 +966,8 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
         self,
         *,
         filter: messaging_profile_list_params.Filter | Omit = omit,
+        filter_name_contains: str | Omit = omit,
+        filter_name_eq: str | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -836,6 +982,10 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
 
         Args:
           filter: Consolidated filter parameter (deepObject style). Originally: filter[name]
+
+          filter_name_contains: Filter profiles by name containing the given string.
+
+          filter_name_eq: Filter profiles by exact name match.
 
           extra_headers: Send extra headers
 
@@ -856,6 +1006,8 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter": filter,
+                        "filter_name_contains": filter_name_contains,
+                        "filter_name_eq": filter_name_eq,
                         "page_number": page_number,
                         "page_size": page_size,
                     },
@@ -898,6 +1050,55 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=MessagingProfileDeleteResponse,
+        )
+
+    def list_alphanumeric_sender_ids(
+        self,
+        id: str,
+        *,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncPaginator[
+        MessagingProfileListAlphanumericSenderIDsResponse,
+        AsyncDefaultFlatPagination[MessagingProfileListAlphanumericSenderIDsResponse],
+    ]:
+        """
+        List all alphanumeric sender IDs associated with a specific messaging profile.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return self._get_api_list(
+            f"/messaging_profiles/{id}/alphanumeric_sender_ids",
+            page=AsyncDefaultFlatPagination[MessagingProfileListAlphanumericSenderIDsResponse],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "page_number": page_number,
+                        "page_size": page_size,
+                    },
+                    messaging_profile_list_alphanumeric_sender_ids_params.MessagingProfileListAlphanumericSenderIDsParams,
+                ),
+            ),
+            model=MessagingProfileListAlphanumericSenderIDsResponse,
         )
 
     def list_phone_numbers(
@@ -996,6 +1197,50 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
             model=ShortCode,
         )
 
+    async def retrieve_metrics(
+        self,
+        id: str,
+        *,
+        time_frame: Literal["1h", "3h", "24h", "3d", "7d", "30d"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> MessagingProfileRetrieveMetricsResponse:
+        """
+        Get detailed metrics for a specific messaging profile, broken down by time
+        interval.
+
+        Args:
+          time_frame: The time frame for metrics.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return await self._get(
+            f"/messaging_profiles/{id}/metrics",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {"time_frame": time_frame},
+                    messaging_profile_retrieve_metrics_params.MessagingProfileRetrieveMetricsParams,
+                ),
+            ),
+            cast_to=MessagingProfileRetrieveMetricsResponse,
+        )
+
 
 class MessagingProfilesResourceWithRawResponse:
     def __init__(self, messaging_profiles: MessagingProfilesResource) -> None:
@@ -1016,16 +1261,26 @@ class MessagingProfilesResourceWithRawResponse:
         self.delete = to_raw_response_wrapper(
             messaging_profiles.delete,
         )
+        self.list_alphanumeric_sender_ids = to_raw_response_wrapper(
+            messaging_profiles.list_alphanumeric_sender_ids,
+        )
         self.list_phone_numbers = to_raw_response_wrapper(
             messaging_profiles.list_phone_numbers,
         )
         self.list_short_codes = to_raw_response_wrapper(
             messaging_profiles.list_short_codes,
         )
+        self.retrieve_metrics = to_raw_response_wrapper(
+            messaging_profiles.retrieve_metrics,
+        )
 
     @cached_property
     def autoresp_configs(self) -> AutorespConfigsResourceWithRawResponse:
         return AutorespConfigsResourceWithRawResponse(self._messaging_profiles.autoresp_configs)
+
+    @cached_property
+    def actions(self) -> ActionsResourceWithRawResponse:
+        return ActionsResourceWithRawResponse(self._messaging_profiles.actions)
 
 
 class AsyncMessagingProfilesResourceWithRawResponse:
@@ -1047,16 +1302,26 @@ class AsyncMessagingProfilesResourceWithRawResponse:
         self.delete = async_to_raw_response_wrapper(
             messaging_profiles.delete,
         )
+        self.list_alphanumeric_sender_ids = async_to_raw_response_wrapper(
+            messaging_profiles.list_alphanumeric_sender_ids,
+        )
         self.list_phone_numbers = async_to_raw_response_wrapper(
             messaging_profiles.list_phone_numbers,
         )
         self.list_short_codes = async_to_raw_response_wrapper(
             messaging_profiles.list_short_codes,
         )
+        self.retrieve_metrics = async_to_raw_response_wrapper(
+            messaging_profiles.retrieve_metrics,
+        )
 
     @cached_property
     def autoresp_configs(self) -> AsyncAutorespConfigsResourceWithRawResponse:
         return AsyncAutorespConfigsResourceWithRawResponse(self._messaging_profiles.autoresp_configs)
+
+    @cached_property
+    def actions(self) -> AsyncActionsResourceWithRawResponse:
+        return AsyncActionsResourceWithRawResponse(self._messaging_profiles.actions)
 
 
 class MessagingProfilesResourceWithStreamingResponse:
@@ -1078,16 +1343,26 @@ class MessagingProfilesResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             messaging_profiles.delete,
         )
+        self.list_alphanumeric_sender_ids = to_streamed_response_wrapper(
+            messaging_profiles.list_alphanumeric_sender_ids,
+        )
         self.list_phone_numbers = to_streamed_response_wrapper(
             messaging_profiles.list_phone_numbers,
         )
         self.list_short_codes = to_streamed_response_wrapper(
             messaging_profiles.list_short_codes,
         )
+        self.retrieve_metrics = to_streamed_response_wrapper(
+            messaging_profiles.retrieve_metrics,
+        )
 
     @cached_property
     def autoresp_configs(self) -> AutorespConfigsResourceWithStreamingResponse:
         return AutorespConfigsResourceWithStreamingResponse(self._messaging_profiles.autoresp_configs)
+
+    @cached_property
+    def actions(self) -> ActionsResourceWithStreamingResponse:
+        return ActionsResourceWithStreamingResponse(self._messaging_profiles.actions)
 
 
 class AsyncMessagingProfilesResourceWithStreamingResponse:
@@ -1109,13 +1384,23 @@ class AsyncMessagingProfilesResourceWithStreamingResponse:
         self.delete = async_to_streamed_response_wrapper(
             messaging_profiles.delete,
         )
+        self.list_alphanumeric_sender_ids = async_to_streamed_response_wrapper(
+            messaging_profiles.list_alphanumeric_sender_ids,
+        )
         self.list_phone_numbers = async_to_streamed_response_wrapper(
             messaging_profiles.list_phone_numbers,
         )
         self.list_short_codes = async_to_streamed_response_wrapper(
             messaging_profiles.list_short_codes,
         )
+        self.retrieve_metrics = async_to_streamed_response_wrapper(
+            messaging_profiles.retrieve_metrics,
+        )
 
     @cached_property
     def autoresp_configs(self) -> AsyncAutorespConfigsResourceWithStreamingResponse:
         return AsyncAutorespConfigsResourceWithStreamingResponse(self._messaging_profiles.autoresp_configs)
+
+    @cached_property
+    def actions(self) -> AsyncActionsResourceWithStreamingResponse:
+        return AsyncActionsResourceWithStreamingResponse(self._messaging_profiles.actions)
