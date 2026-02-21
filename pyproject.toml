@@ -1,6 +1,6 @@
 [project]
 name = "telnyx"
-version = "4.43.1"
+version = "4.43.2"
 description = "The official Python library for the telnyx API"
 dynamic = ["readme"]
 license = "MIT"
