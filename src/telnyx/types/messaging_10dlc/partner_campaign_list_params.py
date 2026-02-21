@@ -25,7 +25,7 @@ class PartnerCampaignListParams(TypedDict, total=False):
         "brandDisplayName",
         "-brandDisplayName",
         "tcrBrandId",
-        "-tcrBranId",
+        "-tcrBrandId",
         "tcrCampaignId",
         "-tcrCampaignId",
         "createdAt",
