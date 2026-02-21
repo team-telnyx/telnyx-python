@@ -929,6 +929,14 @@ from .virtual_cross_connects import (
     VirtualCrossConnectsResourceWithStreamingResponse,
     AsyncVirtualCrossConnectsResourceWithStreamingResponse,
 )
+from .alphanumeric_sender_ids import (
+    AlphanumericSenderIDsResource,
+    AsyncAlphanumericSenderIDsResource,
+    AlphanumericSenderIDsResourceWithRawResponse,
+    AsyncAlphanumericSenderIDsResourceWithRawResponse,
+    AlphanumericSenderIDsResourceWithStreamingResponse,
+    AsyncAlphanumericSenderIDsResourceWithStreamingResponse,
+)
 from .available_phone_numbers import (
     AvailablePhoneNumbersResource,
     AsyncAvailablePhoneNumbersResource,
@@ -1056,6 +1064,14 @@ from .call_control_applications import (
     AsyncCallControlApplicationsResourceWithRawResponse,
     CallControlApplicationsResourceWithStreamingResponse,
     AsyncCallControlApplicationsResourceWithStreamingResponse,
+)
+from .messaging_profile_metrics import (
+    MessagingProfileMetricsResource,
+    AsyncMessagingProfileMetricsResource,
+    MessagingProfileMetricsResourceWithRawResponse,
+    AsyncMessagingProfileMetricsResourceWithRawResponse,
+    MessagingProfileMetricsResourceWithStreamingResponse,
+    AsyncMessagingProfileMetricsResourceWithStreamingResponse,
 )
 from .private_wireless_gateways import (
     PrivateWirelessGatewaysResource,
@@ -2092,4 +2108,16 @@ __all__ = [
     "AsyncOrganizationsResourceWithRawResponse",
     "OrganizationsResourceWithStreamingResponse",
     "AsyncOrganizationsResourceWithStreamingResponse",
+    "AlphanumericSenderIDsResource",
+    "AsyncAlphanumericSenderIDsResource",
+    "AlphanumericSenderIDsResourceWithRawResponse",
+    "AsyncAlphanumericSenderIDsResourceWithRawResponse",
+    "AlphanumericSenderIDsResourceWithStreamingResponse",
+    "AsyncAlphanumericSenderIDsResourceWithStreamingResponse",
+    "MessagingProfileMetricsResource",
+    "AsyncMessagingProfileMetricsResource",
+    "MessagingProfileMetricsResourceWithRawResponse",
+    "AsyncMessagingProfileMetricsResourceWithRawResponse",
+    "MessagingProfileMetricsResourceWithStreamingResponse",
+    "AsyncMessagingProfileMetricsResourceWithStreamingResponse",
 ]

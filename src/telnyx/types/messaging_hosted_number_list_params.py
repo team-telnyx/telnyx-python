@@ -4,23 +4,20 @@ from __future__ import annotations
 
 from typing_extensions import Literal, Annotated, TypedDict
 
-from ..._utils import PropertyInfo
+from .._utils import PropertyInfo
 
-__all__ = ["MessagingListParams"]
+__all__ = ["MessagingHostedNumberListParams"]
 
 
-class MessagingListParams(TypedDict, total=False):
+class MessagingHostedNumberListParams(TypedDict, total=False):
     filter_messaging_profile_id: Annotated[str, PropertyInfo(alias="filter[messaging_profile_id]")]
     """Filter by messaging profile ID."""
 
     filter_phone_number: Annotated[str, PropertyInfo(alias="filter[phone_number]")]
-    """Filter by exact phone number (supports comma-separated list)."""
+    """Filter by exact phone number."""
 
     filter_phone_number_contains: Annotated[str, PropertyInfo(alias="filter[phone_number][contains]")]
     """Filter by phone number substring."""
-
-    filter_type: Annotated[Literal["tollfree", "longcode", "shortcode"], PropertyInfo(alias="filter[type]")]
-    """Filter by phone number type."""
 
     page_number: Annotated[int, PropertyInfo(alias="page[number]")]
 

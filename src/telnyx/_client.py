@@ -149,6 +149,7 @@ if TYPE_CHECKING:
         dialogflow_connections,
         sim_card_order_preview,
         virtual_cross_connects,
+        alphanumeric_sender_ids,
         available_phone_numbers,
         global_ip_allowed_ports,
         global_ip_health_checks,
@@ -165,6 +166,7 @@ if TYPE_CHECKING:
         recording_transcriptions,
         sub_number_orders_report,
         call_control_applications,
+        messaging_profile_metrics,
         private_wireless_gateways,
         wireless_blocklist_values,
         custom_storage_credentials,
@@ -282,6 +284,7 @@ if TYPE_CHECKING:
     from .resources.dialogflow_connections import DialogflowConnectionsResource, AsyncDialogflowConnectionsResource
     from .resources.sim_card_order_preview import SimCardOrderPreviewResource, AsyncSimCardOrderPreviewResource
     from .resources.virtual_cross_connects import VirtualCrossConnectsResource, AsyncVirtualCrossConnectsResource
+    from .resources.alphanumeric_sender_ids import AlphanumericSenderIDsResource, AsyncAlphanumericSenderIDsResource
     from .resources.available_phone_numbers import AvailablePhoneNumbersResource, AsyncAvailablePhoneNumbersResource
     from .resources.conferences.conferences import ConferencesResource, AsyncConferencesResource
     from .resources.global_ip_allowed_ports import GlobalIPAllowedPortsResource, AsyncGlobalIPAllowedPortsResource
@@ -307,6 +310,10 @@ if TYPE_CHECKING:
     from .resources.call_control_applications import (
         CallControlApplicationsResource,
         AsyncCallControlApplicationsResource,
+    )
+    from .resources.messaging_profile_metrics import (
+        MessagingProfileMetricsResource,
+        AsyncMessagingProfileMetricsResource,
     )
     from .resources.private_wireless_gateways import (
         PrivateWirelessGatewaysResource,
@@ -1391,6 +1398,18 @@ class Telnyx(SyncAPIClient):
         from .resources.organizations import OrganizationsResource
 
         return OrganizationsResource(self)
+
+    @cached_property
+    def alphanumeric_sender_ids(self) -> AlphanumericSenderIDsResource:
+        from .resources.alphanumeric_sender_ids import AlphanumericSenderIDsResource
+
+        return AlphanumericSenderIDsResource(self)
+
+    @cached_property
+    def messaging_profile_metrics(self) -> MessagingProfileMetricsResource:
+        from .resources.messaging_profile_metrics import MessagingProfileMetricsResource
+
+        return MessagingProfileMetricsResource(self)
 
     @cached_property
     def with_raw_response(self) -> TelnyxWithRawResponse:
@@ -2511,6 +2530,18 @@ class AsyncTelnyx(AsyncAPIClient):
         return AsyncOrganizationsResource(self)
 
     @cached_property
+    def alphanumeric_sender_ids(self) -> AsyncAlphanumericSenderIDsResource:
+        from .resources.alphanumeric_sender_ids import AsyncAlphanumericSenderIDsResource
+
+        return AsyncAlphanumericSenderIDsResource(self)
+
+    @cached_property
+    def messaging_profile_metrics(self) -> AsyncMessagingProfileMetricsResource:
+        from .resources.messaging_profile_metrics import AsyncMessagingProfileMetricsResource
+
+        return AsyncMessagingProfileMetricsResource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncTelnyxWithRawResponse:
         return AsyncTelnyxWithRawResponse(self)
 
@@ -3584,6 +3615,18 @@ class TelnyxWithRawResponse:
 
         return OrganizationsResourceWithRawResponse(self._client.organizations)
 
+    @cached_property
+    def alphanumeric_sender_ids(self) -> alphanumeric_sender_ids.AlphanumericSenderIDsResourceWithRawResponse:
+        from .resources.alphanumeric_sender_ids import AlphanumericSenderIDsResourceWithRawResponse
+
+        return AlphanumericSenderIDsResourceWithRawResponse(self._client.alphanumeric_sender_ids)
+
+    @cached_property
+    def messaging_profile_metrics(self) -> messaging_profile_metrics.MessagingProfileMetricsResourceWithRawResponse:
+        from .resources.messaging_profile_metrics import MessagingProfileMetricsResourceWithRawResponse
+
+        return MessagingProfileMetricsResourceWithRawResponse(self._client.messaging_profile_metrics)
+
 
 class AsyncTelnyxWithRawResponse:
     _client: AsyncTelnyx
@@ -4526,6 +4569,20 @@ class AsyncTelnyxWithRawResponse:
         from .resources.organizations import AsyncOrganizationsResourceWithRawResponse
 
         return AsyncOrganizationsResourceWithRawResponse(self._client.organizations)
+
+    @cached_property
+    def alphanumeric_sender_ids(self) -> alphanumeric_sender_ids.AsyncAlphanumericSenderIDsResourceWithRawResponse:
+        from .resources.alphanumeric_sender_ids import AsyncAlphanumericSenderIDsResourceWithRawResponse
+
+        return AsyncAlphanumericSenderIDsResourceWithRawResponse(self._client.alphanumeric_sender_ids)
+
+    @cached_property
+    def messaging_profile_metrics(
+        self,
+    ) -> messaging_profile_metrics.AsyncMessagingProfileMetricsResourceWithRawResponse:
+        from .resources.messaging_profile_metrics import AsyncMessagingProfileMetricsResourceWithRawResponse
+
+        return AsyncMessagingProfileMetricsResourceWithRawResponse(self._client.messaging_profile_metrics)
 
 
 class TelnyxWithStreamedResponse:
@@ -5471,6 +5528,20 @@ class TelnyxWithStreamedResponse:
         from .resources.organizations import OrganizationsResourceWithStreamingResponse
 
         return OrganizationsResourceWithStreamingResponse(self._client.organizations)
+
+    @cached_property
+    def alphanumeric_sender_ids(self) -> alphanumeric_sender_ids.AlphanumericSenderIDsResourceWithStreamingResponse:
+        from .resources.alphanumeric_sender_ids import AlphanumericSenderIDsResourceWithStreamingResponse
+
+        return AlphanumericSenderIDsResourceWithStreamingResponse(self._client.alphanumeric_sender_ids)
+
+    @cached_property
+    def messaging_profile_metrics(
+        self,
+    ) -> messaging_profile_metrics.MessagingProfileMetricsResourceWithStreamingResponse:
+        from .resources.messaging_profile_metrics import MessagingProfileMetricsResourceWithStreamingResponse
+
+        return MessagingProfileMetricsResourceWithStreamingResponse(self._client.messaging_profile_metrics)
 
 
 class AsyncTelnyxWithStreamedResponse:
@@ -6458,6 +6529,22 @@ class AsyncTelnyxWithStreamedResponse:
         from .resources.organizations import AsyncOrganizationsResourceWithStreamingResponse
 
         return AsyncOrganizationsResourceWithStreamingResponse(self._client.organizations)
+
+    @cached_property
+    def alphanumeric_sender_ids(
+        self,
+    ) -> alphanumeric_sender_ids.AsyncAlphanumericSenderIDsResourceWithStreamingResponse:
+        from .resources.alphanumeric_sender_ids import AsyncAlphanumericSenderIDsResourceWithStreamingResponse
+
+        return AsyncAlphanumericSenderIDsResourceWithStreamingResponse(self._client.alphanumeric_sender_ids)
+
+    @cached_property
+    def messaging_profile_metrics(
+        self,
+    ) -> messaging_profile_metrics.AsyncMessagingProfileMetricsResourceWithStreamingResponse:
+        from .resources.messaging_profile_metrics import AsyncMessagingProfileMetricsResourceWithStreamingResponse
+
+        return AsyncMessagingProfileMetricsResourceWithStreamingResponse(self._client.messaging_profile_metrics)
 
 
 Client = Telnyx

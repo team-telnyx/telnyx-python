@@ -2320,6 +2320,7 @@ from telnyx.types import (
     WhatsappMedia,
     MessageRetrieveResponse,
     MessageCancelScheduledResponse,
+    MessageRetrieveGroupMessagesResponse,
     MessageScheduleResponse,
     MessageSendResponse,
     MessageSendGroupMmsResponse,
@@ -2327,6 +2328,7 @@ from telnyx.types import (
     MessageSendNumberPoolResponse,
     MessageSendShortCodeResponse,
     MessageSendWhatsappResponse,
+    MessageSendWithAlphanumericSenderResponse,
 )
 ```
 
@@ -2334,6 +2336,7 @@ Methods:
 
 - <code title="get /messages/{id}">client.messages.<a href="./src/telnyx/resources/messages/messages.py">retrieve</a>(id) -> <a href="./src/telnyx/types/message_retrieve_response.py">MessageRetrieveResponse</a></code>
 - <code title="delete /messages/{id}">client.messages.<a href="./src/telnyx/resources/messages/messages.py">cancel_scheduled</a>(id) -> <a href="./src/telnyx/types/message_cancel_scheduled_response.py">MessageCancelScheduledResponse</a></code>
+- <code title="get /messages/group/{message_id}">client.messages.<a href="./src/telnyx/resources/messages/messages.py">retrieve_group_messages</a>(message_id) -> <a href="./src/telnyx/types/message_retrieve_group_messages_response.py">MessageRetrieveGroupMessagesResponse</a></code>
 - <code title="post /messages/schedule">client.messages.<a href="./src/telnyx/resources/messages/messages.py">schedule</a>(\*\*<a href="src/telnyx/types/message_schedule_params.py">params</a>) -> <a href="./src/telnyx/types/message_schedule_response.py">MessageScheduleResponse</a></code>
 - <code title="post /messages">client.messages.<a href="./src/telnyx/resources/messages/messages.py">send</a>(\*\*<a href="src/telnyx/types/message_send_params.py">params</a>) -> <a href="./src/telnyx/types/message_send_response.py">MessageSendResponse</a></code>
 - <code title="post /messages/group_mms">client.messages.<a href="./src/telnyx/resources/messages/messages.py">send_group_mms</a>(\*\*<a href="src/telnyx/types/message_send_group_mms_params.py">params</a>) -> <a href="./src/telnyx/types/message_send_group_mms_response.py">MessageSendGroupMmsResponse</a></code>
@@ -2341,6 +2344,7 @@ Methods:
 - <code title="post /messages/number_pool">client.messages.<a href="./src/telnyx/resources/messages/messages.py">send_number_pool</a>(\*\*<a href="src/telnyx/types/message_send_number_pool_params.py">params</a>) -> <a href="./src/telnyx/types/message_send_number_pool_response.py">MessageSendNumberPoolResponse</a></code>
 - <code title="post /messages/short_code">client.messages.<a href="./src/telnyx/resources/messages/messages.py">send_short_code</a>(\*\*<a href="src/telnyx/types/message_send_short_code_params.py">params</a>) -> <a href="./src/telnyx/types/message_send_short_code_response.py">MessageSendShortCodeResponse</a></code>
 - <code title="post /messages/whatsapp">client.messages.<a href="./src/telnyx/resources/messages/messages.py">send_whatsapp</a>(\*\*<a href="src/telnyx/types/message_send_whatsapp_params.py">params</a>) -> <a href="./src/telnyx/types/message_send_whatsapp_response.py">MessageSendWhatsappResponse</a></code>
+- <code title="post /messages/alphanumeric_sender_id">client.messages.<a href="./src/telnyx/resources/messages/messages.py">send_with_alphanumeric_sender</a>(\*\*<a href="src/telnyx/types/message_send_with_alphanumeric_sender_params.py">params</a>) -> <a href="./src/telnyx/types/message_send_with_alphanumeric_sender_response.py">MessageSendWithAlphanumericSenderResponse</a></code>
 
 ## Rcs
 
@@ -2426,11 +2430,18 @@ Methods:
 Types:
 
 ```python
-from telnyx.types import MessagingHostedNumberDeleteResponse
+from telnyx.types import (
+    MessagingHostedNumberRetrieveResponse,
+    MessagingHostedNumberUpdateResponse,
+    MessagingHostedNumberDeleteResponse,
+)
 ```
 
 Methods:
 
+- <code title="get /messaging_hosted_numbers/{id}">client.messaging_hosted_numbers.<a href="./src/telnyx/resources/messaging_hosted_numbers.py">retrieve</a>(id) -> <a href="./src/telnyx/types/messaging_hosted_number_retrieve_response.py">MessagingHostedNumberRetrieveResponse</a></code>
+- <code title="patch /messaging_hosted_numbers/{id}">client.messaging_hosted_numbers.<a href="./src/telnyx/resources/messaging_hosted_numbers.py">update</a>(id, \*\*<a href="src/telnyx/types/messaging_hosted_number_update_params.py">params</a>) -> <a href="./src/telnyx/types/messaging_hosted_number_update_response.py">MessagingHostedNumberUpdateResponse</a></code>
+- <code title="get /messaging_hosted_numbers">client.messaging_hosted_numbers.<a href="./src/telnyx/resources/messaging_hosted_numbers.py">list</a>(\*\*<a href="src/telnyx/types/messaging_hosted_number_list_params.py">params</a>) -> <a href="./src/telnyx/types/shared/phone_number_with_messaging_settings.py">SyncDefaultFlatPagination[PhoneNumberWithMessagingSettings]</a></code>
 - <code title="delete /messaging_hosted_numbers/{id}">client.messaging_hosted_numbers.<a href="./src/telnyx/resources/messaging_hosted_numbers.py">delete</a>(id) -> <a href="./src/telnyx/types/messaging_hosted_number_delete_response.py">MessagingHostedNumberDeleteResponse</a></code>
 
 # MessagingNumbersBulkUpdates
@@ -2474,6 +2485,8 @@ from telnyx.types import (
     MessagingProfileRetrieveResponse,
     MessagingProfileUpdateResponse,
     MessagingProfileDeleteResponse,
+    MessagingProfileListAlphanumericSenderIDsResponse,
+    MessagingProfileRetrieveMetricsResponse,
 )
 ```
 
@@ -2484,8 +2497,10 @@ Methods:
 - <code title="patch /messaging_profiles/{id}">client.messaging_profiles.<a href="./src/telnyx/resources/messaging_profiles/messaging_profiles.py">update</a>(messaging_profile_id, \*\*<a href="src/telnyx/types/messaging_profile_update_params.py">params</a>) -> <a href="./src/telnyx/types/messaging_profile_update_response.py">MessagingProfileUpdateResponse</a></code>
 - <code title="get /messaging_profiles">client.messaging_profiles.<a href="./src/telnyx/resources/messaging_profiles/messaging_profiles.py">list</a>(\*\*<a href="src/telnyx/types/messaging_profile_list_params.py">params</a>) -> <a href="./src/telnyx/types/messaging_profile.py">SyncDefaultFlatPagination[MessagingProfile]</a></code>
 - <code title="delete /messaging_profiles/{id}">client.messaging_profiles.<a href="./src/telnyx/resources/messaging_profiles/messaging_profiles.py">delete</a>(messaging_profile_id) -> <a href="./src/telnyx/types/messaging_profile_delete_response.py">MessagingProfileDeleteResponse</a></code>
+- <code title="get /messaging_profiles/{id}/alphanumeric_sender_ids">client.messaging_profiles.<a href="./src/telnyx/resources/messaging_profiles/messaging_profiles.py">list_alphanumeric_sender_ids</a>(id, \*\*<a href="src/telnyx/types/messaging_profile_list_alphanumeric_sender_ids_params.py">params</a>) -> <a href="./src/telnyx/types/messaging_profile_list_alphanumeric_sender_ids_response.py">SyncDefaultFlatPagination[MessagingProfileListAlphanumericSenderIDsResponse]</a></code>
 - <code title="get /messaging_profiles/{id}/phone_numbers">client.messaging_profiles.<a href="./src/telnyx/resources/messaging_profiles/messaging_profiles.py">list_phone_numbers</a>(messaging_profile_id, \*\*<a href="src/telnyx/types/messaging_profile_list_phone_numbers_params.py">params</a>) -> <a href="./src/telnyx/types/shared/phone_number_with_messaging_settings.py">SyncDefaultFlatPagination[PhoneNumberWithMessagingSettings]</a></code>
 - <code title="get /messaging_profiles/{id}/short_codes">client.messaging_profiles.<a href="./src/telnyx/resources/messaging_profiles/messaging_profiles.py">list_short_codes</a>(messaging_profile_id, \*\*<a href="src/telnyx/types/messaging_profile_list_short_codes_params.py">params</a>) -> <a href="./src/telnyx/types/shared/short_code.py">SyncDefaultFlatPagination[ShortCode]</a></code>
+- <code title="get /messaging_profiles/{id}/metrics">client.messaging_profiles.<a href="./src/telnyx/resources/messaging_profiles/messaging_profiles.py">retrieve_metrics</a>(id, \*\*<a href="src/telnyx/types/messaging_profile_retrieve_metrics_params.py">params</a>) -> <a href="./src/telnyx/types/messaging_profile_retrieve_metrics_response.py">MessagingProfileRetrieveMetricsResponse</a></code>
 
 ## AutorespConfigs
 
@@ -2508,6 +2523,18 @@ Methods:
 - <code title="put /messaging_profiles/{profile_id}/autoresp_configs/{autoresp_cfg_id}">client.messaging_profiles.autoresp_configs.<a href="./src/telnyx/resources/messaging_profiles/autoresp_configs.py">update</a>(autoresp_cfg_id, \*, profile_id, \*\*<a href="src/telnyx/types/messaging_profiles/autoresp_config_update_params.py">params</a>) -> <a href="./src/telnyx/types/messaging_profiles/auto_resp_config_response.py">AutoRespConfigResponse</a></code>
 - <code title="get /messaging_profiles/{profile_id}/autoresp_configs">client.messaging_profiles.autoresp_configs.<a href="./src/telnyx/resources/messaging_profiles/autoresp_configs.py">list</a>(profile_id, \*\*<a href="src/telnyx/types/messaging_profiles/autoresp_config_list_params.py">params</a>) -> <a href="./src/telnyx/types/messaging_profiles/autoresp_config_list_response.py">AutorespConfigListResponse</a></code>
 - <code title="delete /messaging_profiles/{profile_id}/autoresp_configs/{autoresp_cfg_id}">client.messaging_profiles.autoresp_configs.<a href="./src/telnyx/resources/messaging_profiles/autoresp_configs.py">delete</a>(autoresp_cfg_id, \*, profile_id) -> str</code>
+
+## Actions
+
+Types:
+
+```python
+from telnyx.types.messaging_profiles import ActionRegenerateSecretResponse
+```
+
+Methods:
+
+- <code title="post /messaging_profiles/{id}/actions/regenerate_secret">client.messaging_profiles.actions.<a href="./src/telnyx/resources/messaging_profiles/actions.py">regenerate_secret</a>(id) -> <a href="./src/telnyx/types/messaging_profiles/action_regenerate_secret_response.py">ActionRegenerateSecretResponse</a></code>
 
 # MessagingTollfree
 
@@ -5031,3 +5058,35 @@ from telnyx.types.organizations.users import ActionRemoveResponse
 Methods:
 
 - <code title="post /organizations/users/{id}/actions/remove">client.organizations.users.actions.<a href="./src/telnyx/resources/organizations/users/actions.py">remove</a>(id) -> <a href="./src/telnyx/types/organizations/users/action_remove_response.py">ActionRemoveResponse</a></code>
+
+# AlphanumericSenderIDs
+
+Types:
+
+```python
+from telnyx.types import (
+    AlphanumericSenderIDCreateResponse,
+    AlphanumericSenderIDRetrieveResponse,
+    AlphanumericSenderIDListResponse,
+    AlphanumericSenderIDDeleteResponse,
+)
+```
+
+Methods:
+
+- <code title="post /alphanumeric_sender_ids">client.alphanumeric_sender_ids.<a href="./src/telnyx/resources/alphanumeric_sender_ids.py">create</a>(\*\*<a href="src/telnyx/types/alphanumeric_sender_id_create_params.py">params</a>) -> <a href="./src/telnyx/types/alphanumeric_sender_id_create_response.py">AlphanumericSenderIDCreateResponse</a></code>
+- <code title="get /alphanumeric_sender_ids/{id}">client.alphanumeric_sender_ids.<a href="./src/telnyx/resources/alphanumeric_sender_ids.py">retrieve</a>(id) -> <a href="./src/telnyx/types/alphanumeric_sender_id_retrieve_response.py">AlphanumericSenderIDRetrieveResponse</a></code>
+- <code title="get /alphanumeric_sender_ids">client.alphanumeric_sender_ids.<a href="./src/telnyx/resources/alphanumeric_sender_ids.py">list</a>(\*\*<a href="src/telnyx/types/alphanumeric_sender_id_list_params.py">params</a>) -> <a href="./src/telnyx/types/alphanumeric_sender_id_list_response.py">SyncDefaultFlatPagination[AlphanumericSenderIDListResponse]</a></code>
+- <code title="delete /alphanumeric_sender_ids/{id}">client.alphanumeric_sender_ids.<a href="./src/telnyx/resources/alphanumeric_sender_ids.py">delete</a>(id) -> <a href="./src/telnyx/types/alphanumeric_sender_id_delete_response.py">AlphanumericSenderIDDeleteResponse</a></code>
+
+# MessagingProfileMetrics
+
+Types:
+
+```python
+from telnyx.types import MessagingProfileMetricListResponse
+```
+
+Methods:
+
+- <code title="get /messaging_profile_metrics">client.messaging_profile_metrics.<a href="./src/telnyx/resources/messaging_profile_metrics.py">list</a>(\*\*<a href="src/telnyx/types/messaging_profile_metric_list_params.py">params</a>) -> <a href="./src/telnyx/types/messaging_profile_metric_list_response.py">MessagingProfileMetricListResponse</a></code>

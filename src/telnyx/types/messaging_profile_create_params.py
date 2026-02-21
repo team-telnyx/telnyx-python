@@ -23,6 +23,9 @@ class MessagingProfileCreateParams(TypedDict, total=False):
     to `["*"]` all destinations will be allowed.
     """
 
+    ai_assistant_id: Optional[str]
+    """The AI assistant ID to associate with this messaging profile."""
+
     alpha_sender: Optional[str]
     """
     The alphanumeric sender ID to use when sending to destinations that require an
@@ -41,6 +44,9 @@ class MessagingProfileCreateParams(TypedDict, total=False):
     enabled: bool
     """Specifies whether the messaging profile is enabled or not."""
 
+    health_webhook_url: Optional[str]
+    """A URL to receive health check webhooks for numbers in this profile."""
+
     mms_fall_back_to_sms: bool
     """enables SMS fallback for MMS messages."""
 
@@ -58,6 +64,9 @@ class MessagingProfileCreateParams(TypedDict, total=False):
 
     To disable this feature, set the object field to `null`.
     """
+
+    resource_group_id: Optional[str]
+    """The resource group ID to associate with this messaging profile."""
 
     smart_encoding: bool
     """Enables automatic character encoding optimization for SMS messages.

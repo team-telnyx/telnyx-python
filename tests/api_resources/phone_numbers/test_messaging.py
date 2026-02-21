@@ -79,6 +79,7 @@ class TestMessaging:
             id="id",
             messaging_product="P2P",
             messaging_profile_id="dd50eba1-a0c0-4563-9925-b25e842a7cb6",
+            tags=["string"],
         )
         assert_matches_type(MessagingUpdateResponse, messaging, path=["response"])
 
@@ -126,8 +127,13 @@ class TestMessaging:
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         messaging = client.phone_numbers.messaging.list(
+            filter_messaging_profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            filter_phone_number="filter[phone_number]",
+            filter_phone_number_contains="filter[phone_number][contains]",
+            filter_type="tollfree",
             page_number=0,
             page_size=0,
+            sort_phone_number="asc",
         )
         assert_matches_type(SyncDefaultFlatPagination[PhoneNumberWithMessagingSettings], messaging, path=["response"])
 
@@ -218,6 +224,7 @@ class TestAsyncMessaging:
             id="id",
             messaging_product="P2P",
             messaging_profile_id="dd50eba1-a0c0-4563-9925-b25e842a7cb6",
+            tags=["string"],
         )
         assert_matches_type(MessagingUpdateResponse, messaging, path=["response"])
 
@@ -265,8 +272,13 @@ class TestAsyncMessaging:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         messaging = await async_client.phone_numbers.messaging.list(
+            filter_messaging_profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            filter_phone_number="filter[phone_number]",
+            filter_phone_number_contains="filter[phone_number][contains]",
+            filter_type="tollfree",
             page_number=0,
             page_size=0,
+            sort_phone_number="asc",
         )
         assert_matches_type(AsyncDefaultFlatPagination[PhoneNumberWithMessagingSettings], messaging, path=["response"])
 

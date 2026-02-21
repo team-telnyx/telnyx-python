@@ -15,6 +15,9 @@ class MessagingProfile(BaseModel):
     id: Optional[str] = None
     """Identifies the type of resource."""
 
+    ai_assistant_id: Optional[str] = None
+    """The AI assistant ID associated with this messaging profile."""
+
     alpha_sender: Optional[str] = None
     """
     The alphanumeric sender ID to use when sending to destinations that require an
@@ -60,6 +63,9 @@ class MessagingProfile(BaseModel):
     To disable this feature, set the object field to `null`.
     """
 
+    organization_id: Optional[str] = None
+    """The organization that owns this messaging profile."""
+
     record_type: Optional[Literal["messaging_profile"]] = None
     """Identifies the type of the resource."""
 
@@ -71,6 +77,9 @@ class MessagingProfile(BaseModel):
     Determines how much information is redacted in messages for privacy or
     compliance purposes.
     """
+
+    resource_group_id: Optional[str] = None
+    """The resource group ID associated with this messaging profile."""
 
     smart_encoding: Optional[bool] = None
     """Enables automatic character encoding optimization for SMS messages.
