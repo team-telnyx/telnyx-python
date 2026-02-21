@@ -30,7 +30,7 @@ class BrandUpdateParams(TypedDict, total=False):
     vertical: Required[Vertical]
     """Vertical or industry segment of the brand or campaign."""
 
-    alt_business_id: Annotated[str, PropertyInfo(alias="altBusiness_id")]
+    alt_business_id: Annotated[str, PropertyInfo(alias="altBusinessId")]
     """Alternate business identifier such as DUNS, LEI, or GIIN"""
 
     alt_business_id_type: Annotated[AltBusinessIDType, PropertyInfo(alias="altBusinessIdType")]
