@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ..types import messaging_numbers_bulk_update_create_params
-from .._types import Body, Query, Headers, NotGiven, SequenceNotStr, not_given
+from .._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -47,6 +47,7 @@ class MessagingNumbersBulkUpdatesResource(SyncAPIResource):
         *,
         messaging_profile_id: str,
         numbers: SequenceNotStr[str],
+        assign_only: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -68,6 +69,8 @@ class MessagingNumbersBulkUpdatesResource(SyncAPIResource):
 
           numbers: The list of phone numbers to update.
 
+          assign_only: If true, only assign numbers to the profile without changing other settings.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -82,6 +85,7 @@ class MessagingNumbersBulkUpdatesResource(SyncAPIResource):
                 {
                     "messaging_profile_id": messaging_profile_id,
                     "numbers": numbers,
+                    "assign_only": assign_only,
                 },
                 messaging_numbers_bulk_update_create_params.MessagingNumbersBulkUpdateCreateParams,
             ),
@@ -150,6 +154,7 @@ class AsyncMessagingNumbersBulkUpdatesResource(AsyncAPIResource):
         *,
         messaging_profile_id: str,
         numbers: SequenceNotStr[str],
+        assign_only: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -171,6 +176,8 @@ class AsyncMessagingNumbersBulkUpdatesResource(AsyncAPIResource):
 
           numbers: The list of phone numbers to update.
 
+          assign_only: If true, only assign numbers to the profile without changing other settings.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -185,6 +192,7 @@ class AsyncMessagingNumbersBulkUpdatesResource(AsyncAPIResource):
                 {
                     "messaging_profile_id": messaging_profile_id,
                     "numbers": numbers,
+                    "assign_only": assign_only,
                 },
                 messaging_numbers_bulk_update_create_params.MessagingNumbersBulkUpdateCreateParams,
             ),

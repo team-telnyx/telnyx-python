@@ -21,3 +21,6 @@ class MessagingNumbersBulkUpdateCreateParams(TypedDict, total=False):
 
     numbers: Required[SequenceNotStr[str]]
     """The list of phone numbers to update."""
+
+    assign_only: bool
+    """If true, only assign numbers to the profile without changing other settings."""

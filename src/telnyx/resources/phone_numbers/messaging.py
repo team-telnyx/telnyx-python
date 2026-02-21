@@ -2,9 +2,11 @@
 
 from __future__ import annotations
 
+from typing_extensions import Literal
+
 import httpx
 
-from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -83,6 +85,7 @@ class MessagingResource(SyncAPIResource):
         *,
         messaging_product: str | Omit = omit,
         messaging_profile_id: str | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -108,6 +111,8 @@ class MessagingResource(SyncAPIResource):
               - Set this field to a quoted UUID of a messaging profile to assign this number
                 to that messaging profile
 
+          tags: Tags to set on this phone number.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -124,6 +129,7 @@ class MessagingResource(SyncAPIResource):
                 {
                     "messaging_product": messaging_product,
                     "messaging_profile_id": messaging_profile_id,
+                    "tags": tags,
                 },
                 messaging_update_params.MessagingUpdateParams,
             ),
@@ -136,8 +142,13 @@ class MessagingResource(SyncAPIResource):
     def list(
         self,
         *,
+        filter_messaging_profile_id: str | Omit = omit,
+        filter_phone_number: str | Omit = omit,
+        filter_phone_number_contains: str | Omit = omit,
+        filter_type: Literal["tollfree", "longcode", "shortcode"] | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
+        sort_phone_number: Literal["asc", "desc"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -149,6 +160,16 @@ class MessagingResource(SyncAPIResource):
         List phone numbers with messaging settings
 
         Args:
+          filter_messaging_profile_id: Filter by messaging profile ID.
+
+          filter_phone_number: Filter by exact phone number (supports comma-separated list).
+
+          filter_phone_number_contains: Filter by phone number substring.
+
+          filter_type: Filter by phone number type.
+
+          sort_phone_number: Sort by phone number.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -167,8 +188,13 @@ class MessagingResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "filter_messaging_profile_id": filter_messaging_profile_id,
+                        "filter_phone_number": filter_phone_number,
+                        "filter_phone_number_contains": filter_phone_number_contains,
+                        "filter_type": filter_type,
                         "page_number": page_number,
                         "page_size": page_size,
+                        "sort_phone_number": sort_phone_number,
                     },
                     messaging_list_params.MessagingListParams,
                 ),
@@ -236,6 +262,7 @@ class AsyncMessagingResource(AsyncAPIResource):
         *,
         messaging_product: str | Omit = omit,
         messaging_profile_id: str | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -261,6 +288,8 @@ class AsyncMessagingResource(AsyncAPIResource):
               - Set this field to a quoted UUID of a messaging profile to assign this number
                 to that messaging profile
 
+          tags: Tags to set on this phone number.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -277,6 +306,7 @@ class AsyncMessagingResource(AsyncAPIResource):
                 {
                     "messaging_product": messaging_product,
                     "messaging_profile_id": messaging_profile_id,
+                    "tags": tags,
                 },
                 messaging_update_params.MessagingUpdateParams,
             ),
@@ -289,8 +319,13 @@ class AsyncMessagingResource(AsyncAPIResource):
     def list(
         self,
         *,
+        filter_messaging_profile_id: str | Omit = omit,
+        filter_phone_number: str | Omit = omit,
+        filter_phone_number_contains: str | Omit = omit,
+        filter_type: Literal["tollfree", "longcode", "shortcode"] | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
+        sort_phone_number: Literal["asc", "desc"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -302,6 +337,16 @@ class AsyncMessagingResource(AsyncAPIResource):
         List phone numbers with messaging settings
 
         Args:
+          filter_messaging_profile_id: Filter by messaging profile ID.
+
+          filter_phone_number: Filter by exact phone number (supports comma-separated list).
+
+          filter_phone_number_contains: Filter by phone number substring.
+
+          filter_type: Filter by phone number type.
+
+          sort_phone_number: Sort by phone number.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -320,8 +365,13 @@ class AsyncMessagingResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "filter_messaging_profile_id": filter_messaging_profile_id,
+                        "filter_phone_number": filter_phone_number,
+                        "filter_phone_number_contains": filter_phone_number_contains,
+                        "filter_type": filter_type,
                         "page_number": page_number,
                         "page_size": page_size,
+                        "sort_phone_number": sort_phone_number,
                     },
                     messaging_list_params.MessagingListParams,
                 ),

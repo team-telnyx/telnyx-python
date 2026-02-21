@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -37,11 +37,17 @@ class MessagingListResponse(BaseModel):
     messaging_profile_id: Optional[str] = None
     """Unique identifier for a messaging profile."""
 
+    organization_id: Optional[str] = None
+    """The organization that owns this phone number."""
+
     phone_number: Optional[str] = None
     """+E.164 formatted phone number."""
 
     record_type: Optional[Literal["messaging_phone_number", "messaging_settings"]] = None
     """Identifies the type of the resource."""
+
+    tags: Optional[List[str]] = None
+    """Tags associated with this phone number."""
 
     traffic_type: Optional[str] = None
     """The messaging traffic or use case for which the number is currently configured."""

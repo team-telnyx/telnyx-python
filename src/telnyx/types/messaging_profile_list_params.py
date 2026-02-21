@@ -13,6 +13,12 @@ class MessagingProfileListParams(TypedDict, total=False):
     filter: Filter
     """Consolidated filter parameter (deepObject style). Originally: filter[name]"""
 
+    filter_name_contains: Annotated[str, PropertyInfo(alias="filter[name][contains]")]
+    """Filter profiles by name containing the given string."""
+
+    filter_name_eq: Annotated[str, PropertyInfo(alias="filter[name][eq]")]
+    """Filter profiles by exact name match."""
+
     page_number: Annotated[int, PropertyInfo(alias="page[number]")]
 
     page_size: Annotated[int, PropertyInfo(alias="page[size]")]

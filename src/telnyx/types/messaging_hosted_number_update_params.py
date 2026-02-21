@@ -4,12 +4,12 @@ from __future__ import annotations
 
 from typing_extensions import TypedDict
 
-from ..._types import SequenceNotStr
+from .._types import SequenceNotStr
 
-__all__ = ["MessagingUpdateParams"]
+__all__ = ["MessagingHostedNumberUpdateParams"]
 
 
-class MessagingUpdateParams(TypedDict, total=False):
+class MessagingHostedNumberUpdateParams(TypedDict, total=False):
     messaging_product: str
     """Configure the messaging product for this number:
 

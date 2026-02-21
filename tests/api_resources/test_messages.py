@@ -19,6 +19,8 @@ from telnyx.types import (
     MessageSendShortCodeResponse,
     MessageSendNumberPoolResponse,
     MessageCancelScheduledResponse,
+    MessageRetrieveGroupMessagesResponse,
+    MessageSendWithAlphanumericSenderResponse,
 )
 from telnyx._utils import parse_datetime
 
@@ -109,6 +111,48 @@ class TestMessages:
     def test_path_params_cancel_scheduled(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.messages.with_raw_response.cancel_scheduled(
+                "",
+            )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_retrieve_group_messages(self, client: Telnyx) -> None:
+        message = client.messages.retrieve_group_messages(
+            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+        assert_matches_type(MessageRetrieveGroupMessagesResponse, message, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_raw_response_retrieve_group_messages(self, client: Telnyx) -> None:
+        response = client.messages.with_raw_response.retrieve_group_messages(
+            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        message = response.parse()
+        assert_matches_type(MessageRetrieveGroupMessagesResponse, message, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_streaming_response_retrieve_group_messages(self, client: Telnyx) -> None:
+        with client.messages.with_streaming_response.retrieve_group_messages(
+            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            message = response.parse()
+            assert_matches_type(MessageRetrieveGroupMessagesResponse, message, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_path_params_retrieve_group_messages(self, client: Telnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `message_id` but received ''"):
+            client.messages.with_raw_response.retrieve_group_messages(
                 "",
             )
 
@@ -658,6 +702,63 @@ class TestMessages:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_send_with_alphanumeric_sender(self, client: Telnyx) -> None:
+        message = client.messages.send_with_alphanumeric_sender(
+            from_="MyCompany",
+            messaging_profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            text="text",
+            to="+E.164",
+        )
+        assert_matches_type(MessageSendWithAlphanumericSenderResponse, message, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_send_with_alphanumeric_sender_with_all_params(self, client: Telnyx) -> None:
+        message = client.messages.send_with_alphanumeric_sender(
+            from_="MyCompany",
+            messaging_profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            text="text",
+            to="+E.164",
+            use_profile_webhooks=True,
+            webhook_failover_url="webhook_failover_url",
+            webhook_url="webhook_url",
+        )
+        assert_matches_type(MessageSendWithAlphanumericSenderResponse, message, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_raw_response_send_with_alphanumeric_sender(self, client: Telnyx) -> None:
+        response = client.messages.with_raw_response.send_with_alphanumeric_sender(
+            from_="MyCompany",
+            messaging_profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            text="text",
+            to="+E.164",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        message = response.parse()
+        assert_matches_type(MessageSendWithAlphanumericSenderResponse, message, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_streaming_response_send_with_alphanumeric_sender(self, client: Telnyx) -> None:
+        with client.messages.with_streaming_response.send_with_alphanumeric_sender(
+            from_="MyCompany",
+            messaging_profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            text="text",
+            to="+E.164",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            message = response.parse()
+            assert_matches_type(MessageSendWithAlphanumericSenderResponse, message, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
 
 class TestAsyncMessages:
     parametrize = pytest.mark.parametrize(
@@ -745,6 +846,48 @@ class TestAsyncMessages:
     async def test_path_params_cancel_scheduled(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.messages.with_raw_response.cancel_scheduled(
+                "",
+            )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_retrieve_group_messages(self, async_client: AsyncTelnyx) -> None:
+        message = await async_client.messages.retrieve_group_messages(
+            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+        assert_matches_type(MessageRetrieveGroupMessagesResponse, message, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_raw_response_retrieve_group_messages(self, async_client: AsyncTelnyx) -> None:
+        response = await async_client.messages.with_raw_response.retrieve_group_messages(
+            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        message = await response.parse()
+        assert_matches_type(MessageRetrieveGroupMessagesResponse, message, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_streaming_response_retrieve_group_messages(self, async_client: AsyncTelnyx) -> None:
+        async with async_client.messages.with_streaming_response.retrieve_group_messages(
+            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            message = await response.parse()
+            assert_matches_type(MessageRetrieveGroupMessagesResponse, message, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_path_params_retrieve_group_messages(self, async_client: AsyncTelnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `message_id` but received ''"):
+            await async_client.messages.with_raw_response.retrieve_group_messages(
                 "",
             )
 
@@ -1291,5 +1434,62 @@ class TestAsyncMessages:
 
             message = await response.parse()
             assert_matches_type(MessageSendWhatsappResponse, message, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_send_with_alphanumeric_sender(self, async_client: AsyncTelnyx) -> None:
+        message = await async_client.messages.send_with_alphanumeric_sender(
+            from_="MyCompany",
+            messaging_profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            text="text",
+            to="+E.164",
+        )
+        assert_matches_type(MessageSendWithAlphanumericSenderResponse, message, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_send_with_alphanumeric_sender_with_all_params(self, async_client: AsyncTelnyx) -> None:
+        message = await async_client.messages.send_with_alphanumeric_sender(
+            from_="MyCompany",
+            messaging_profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            text="text",
+            to="+E.164",
+            use_profile_webhooks=True,
+            webhook_failover_url="webhook_failover_url",
+            webhook_url="webhook_url",
+        )
+        assert_matches_type(MessageSendWithAlphanumericSenderResponse, message, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_raw_response_send_with_alphanumeric_sender(self, async_client: AsyncTelnyx) -> None:
+        response = await async_client.messages.with_raw_response.send_with_alphanumeric_sender(
+            from_="MyCompany",
+            messaging_profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            text="text",
+            to="+E.164",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        message = await response.parse()
+        assert_matches_type(MessageSendWithAlphanumericSenderResponse, message, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_streaming_response_send_with_alphanumeric_sender(self, async_client: AsyncTelnyx) -> None:
+        async with async_client.messages.with_streaming_response.send_with_alphanumeric_sender(
+            from_="MyCompany",
+            messaging_profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            text="text",
+            to="+E.164",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            message = await response.parse()
+            assert_matches_type(MessageSendWithAlphanumericSenderResponse, message, path=["response"])
 
         assert cast(Any, response.is_closed) is True

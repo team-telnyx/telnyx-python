@@ -15,6 +15,8 @@ from telnyx.types import (
     MessagingProfileDeleteResponse,
     MessagingProfileUpdateResponse,
     MessagingProfileRetrieveResponse,
+    MessagingProfileRetrieveMetricsResponse,
+    MessagingProfileListAlphanumericSenderIDsResponse,
 )
 from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from telnyx.types.shared import ShortCode, PhoneNumberWithMessagingSettings
@@ -40,10 +42,12 @@ class TestMessagingProfiles:
         messaging_profile = client.messaging_profiles.create(
             name="My name",
             whitelisted_destinations=["US"],
+            ai_assistant_id="ai_assistant_id",
             alpha_sender="sqF",
             daily_spend_limit="269125115713",
             daily_spend_limit_enabled=True,
             enabled=True,
+            health_webhook_url="health_webhook_url",
             mms_fall_back_to_sms=True,
             mms_transcoding=True,
             mobile_only=True,
@@ -54,6 +58,7 @@ class TestMessagingProfiles:
                 "geomatch": False,
                 "sticky_sender": False,
             },
+            resource_group_id="resource_group_id",
             smart_encoding=True,
             url_shortener_settings={
                 "domain": "example.ex",
@@ -225,6 +230,8 @@ class TestMessagingProfiles:
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         messaging_profile = client.messaging_profiles.list(
             filter={"name": "name"},
+            filter_name_contains="filter[name][contains]",
+            filter_name_eq="filter[name][eq]",
             page_number=0,
             page_size=0,
         )
@@ -292,6 +299,74 @@ class TestMessagingProfiles:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `messaging_profile_id` but received ''"):
             client.messaging_profiles.with_raw_response.delete(
                 "",
+            )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_list_alphanumeric_sender_ids(self, client: Telnyx) -> None:
+        messaging_profile = client.messaging_profiles.list_alphanumeric_sender_ids(
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+        assert_matches_type(
+            SyncDefaultFlatPagination[MessagingProfileListAlphanumericSenderIDsResponse],
+            messaging_profile,
+            path=["response"],
+        )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_list_alphanumeric_sender_ids_with_all_params(self, client: Telnyx) -> None:
+        messaging_profile = client.messaging_profiles.list_alphanumeric_sender_ids(
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            page_number=0,
+            page_size=0,
+        )
+        assert_matches_type(
+            SyncDefaultFlatPagination[MessagingProfileListAlphanumericSenderIDsResponse],
+            messaging_profile,
+            path=["response"],
+        )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_raw_response_list_alphanumeric_sender_ids(self, client: Telnyx) -> None:
+        response = client.messaging_profiles.with_raw_response.list_alphanumeric_sender_ids(
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        messaging_profile = response.parse()
+        assert_matches_type(
+            SyncDefaultFlatPagination[MessagingProfileListAlphanumericSenderIDsResponse],
+            messaging_profile,
+            path=["response"],
+        )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_streaming_response_list_alphanumeric_sender_ids(self, client: Telnyx) -> None:
+        with client.messaging_profiles.with_streaming_response.list_alphanumeric_sender_ids(
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            messaging_profile = response.parse()
+            assert_matches_type(
+                SyncDefaultFlatPagination[MessagingProfileListAlphanumericSenderIDsResponse],
+                messaging_profile,
+                path=["response"],
+            )
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_path_params_list_alphanumeric_sender_ids(self, client: Telnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.messaging_profiles.with_raw_response.list_alphanumeric_sender_ids(
+                id="",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -406,6 +481,57 @@ class TestMessagingProfiles:
                 messaging_profile_id="",
             )
 
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_retrieve_metrics(self, client: Telnyx) -> None:
+        messaging_profile = client.messaging_profiles.retrieve_metrics(
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+        assert_matches_type(MessagingProfileRetrieveMetricsResponse, messaging_profile, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_retrieve_metrics_with_all_params(self, client: Telnyx) -> None:
+        messaging_profile = client.messaging_profiles.retrieve_metrics(
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            time_frame="1h",
+        )
+        assert_matches_type(MessagingProfileRetrieveMetricsResponse, messaging_profile, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_raw_response_retrieve_metrics(self, client: Telnyx) -> None:
+        response = client.messaging_profiles.with_raw_response.retrieve_metrics(
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        messaging_profile = response.parse()
+        assert_matches_type(MessagingProfileRetrieveMetricsResponse, messaging_profile, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_streaming_response_retrieve_metrics(self, client: Telnyx) -> None:
+        with client.messaging_profiles.with_streaming_response.retrieve_metrics(
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            messaging_profile = response.parse()
+            assert_matches_type(MessagingProfileRetrieveMetricsResponse, messaging_profile, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_path_params_retrieve_metrics(self, client: Telnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.messaging_profiles.with_raw_response.retrieve_metrics(
+                id="",
+            )
+
 
 class TestAsyncMessagingProfiles:
     parametrize = pytest.mark.parametrize(
@@ -427,10 +553,12 @@ class TestAsyncMessagingProfiles:
         messaging_profile = await async_client.messaging_profiles.create(
             name="My name",
             whitelisted_destinations=["US"],
+            ai_assistant_id="ai_assistant_id",
             alpha_sender="sqF",
             daily_spend_limit="269125115713",
             daily_spend_limit_enabled=True,
             enabled=True,
+            health_webhook_url="health_webhook_url",
             mms_fall_back_to_sms=True,
             mms_transcoding=True,
             mobile_only=True,
@@ -441,6 +569,7 @@ class TestAsyncMessagingProfiles:
                 "geomatch": False,
                 "sticky_sender": False,
             },
+            resource_group_id="resource_group_id",
             smart_encoding=True,
             url_shortener_settings={
                 "domain": "example.ex",
@@ -612,6 +741,8 @@ class TestAsyncMessagingProfiles:
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         messaging_profile = await async_client.messaging_profiles.list(
             filter={"name": "name"},
+            filter_name_contains="filter[name][contains]",
+            filter_name_eq="filter[name][eq]",
             page_number=0,
             page_size=0,
         )
@@ -679,6 +810,74 @@ class TestAsyncMessagingProfiles:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `messaging_profile_id` but received ''"):
             await async_client.messaging_profiles.with_raw_response.delete(
                 "",
+            )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_list_alphanumeric_sender_ids(self, async_client: AsyncTelnyx) -> None:
+        messaging_profile = await async_client.messaging_profiles.list_alphanumeric_sender_ids(
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+        assert_matches_type(
+            AsyncDefaultFlatPagination[MessagingProfileListAlphanumericSenderIDsResponse],
+            messaging_profile,
+            path=["response"],
+        )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_list_alphanumeric_sender_ids_with_all_params(self, async_client: AsyncTelnyx) -> None:
+        messaging_profile = await async_client.messaging_profiles.list_alphanumeric_sender_ids(
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            page_number=0,
+            page_size=0,
+        )
+        assert_matches_type(
+            AsyncDefaultFlatPagination[MessagingProfileListAlphanumericSenderIDsResponse],
+            messaging_profile,
+            path=["response"],
+        )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_raw_response_list_alphanumeric_sender_ids(self, async_client: AsyncTelnyx) -> None:
+        response = await async_client.messaging_profiles.with_raw_response.list_alphanumeric_sender_ids(
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        messaging_profile = await response.parse()
+        assert_matches_type(
+            AsyncDefaultFlatPagination[MessagingProfileListAlphanumericSenderIDsResponse],
+            messaging_profile,
+            path=["response"],
+        )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_streaming_response_list_alphanumeric_sender_ids(self, async_client: AsyncTelnyx) -> None:
+        async with async_client.messaging_profiles.with_streaming_response.list_alphanumeric_sender_ids(
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            messaging_profile = await response.parse()
+            assert_matches_type(
+                AsyncDefaultFlatPagination[MessagingProfileListAlphanumericSenderIDsResponse],
+                messaging_profile,
+                path=["response"],
+            )
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_path_params_list_alphanumeric_sender_ids(self, async_client: AsyncTelnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.messaging_profiles.with_raw_response.list_alphanumeric_sender_ids(
+                id="",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -791,4 +990,55 @@ class TestAsyncMessagingProfiles:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `messaging_profile_id` but received ''"):
             await async_client.messaging_profiles.with_raw_response.list_short_codes(
                 messaging_profile_id="",
+            )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_retrieve_metrics(self, async_client: AsyncTelnyx) -> None:
+        messaging_profile = await async_client.messaging_profiles.retrieve_metrics(
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+        assert_matches_type(MessagingProfileRetrieveMetricsResponse, messaging_profile, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_retrieve_metrics_with_all_params(self, async_client: AsyncTelnyx) -> None:
+        messaging_profile = await async_client.messaging_profiles.retrieve_metrics(
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            time_frame="1h",
+        )
+        assert_matches_type(MessagingProfileRetrieveMetricsResponse, messaging_profile, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_raw_response_retrieve_metrics(self, async_client: AsyncTelnyx) -> None:
+        response = await async_client.messaging_profiles.with_raw_response.retrieve_metrics(
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        messaging_profile = await response.parse()
+        assert_matches_type(MessagingProfileRetrieveMetricsResponse, messaging_profile, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_streaming_response_retrieve_metrics(self, async_client: AsyncTelnyx) -> None:
+        async with async_client.messaging_profiles.with_streaming_response.retrieve_metrics(
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            messaging_profile = await response.parse()
+            assert_matches_type(MessagingProfileRetrieveMetricsResponse, messaging_profile, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_path_params_retrieve_metrics(self, async_client: AsyncTelnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.messaging_profiles.with_raw_response.retrieve_metrics(
+                id="",
             )

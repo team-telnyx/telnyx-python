@@ -2,12 +2,10 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal
-
 import httpx
 
-from ..types import messaging_hosted_number_list_params, messaging_hosted_number_update_params
-from .._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
+from ..types import alphanumeric_sender_id_list_params, alphanumeric_sender_id_create_params
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -19,33 +17,80 @@ from .._response import (
 )
 from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from .._base_client import AsyncPaginator, make_request_options
-from ..types.messaging_hosted_number_delete_response import MessagingHostedNumberDeleteResponse
-from ..types.messaging_hosted_number_update_response import MessagingHostedNumberUpdateResponse
-from ..types.messaging_hosted_number_retrieve_response import MessagingHostedNumberRetrieveResponse
-from ..types.shared.phone_number_with_messaging_settings import PhoneNumberWithMessagingSettings
+from ..types.alphanumeric_sender_id_list_response import AlphanumericSenderIDListResponse
+from ..types.alphanumeric_sender_id_create_response import AlphanumericSenderIDCreateResponse
+from ..types.alphanumeric_sender_id_delete_response import AlphanumericSenderIDDeleteResponse
+from ..types.alphanumeric_sender_id_retrieve_response import AlphanumericSenderIDRetrieveResponse
 
-__all__ = ["MessagingHostedNumbersResource", "AsyncMessagingHostedNumbersResource"]
+__all__ = ["AlphanumericSenderIDsResource", "AsyncAlphanumericSenderIDsResource"]
 
 
-class MessagingHostedNumbersResource(SyncAPIResource):
+class AlphanumericSenderIDsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> MessagingHostedNumbersResourceWithRawResponse:
+    def with_raw_response(self) -> AlphanumericSenderIDsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/team-telnyx/telnyx-python#accessing-raw-response-data-eg-headers
         """
-        return MessagingHostedNumbersResourceWithRawResponse(self)
+        return AlphanumericSenderIDsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> MessagingHostedNumbersResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AlphanumericSenderIDsResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
-        return MessagingHostedNumbersResourceWithStreamingResponse(self)
+        return AlphanumericSenderIDsResourceWithStreamingResponse(self)
+
+    def create(
+        self,
+        *,
+        alphanumeric_sender_id: str,
+        messaging_profile_id: str,
+        us_long_code_fallback: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AlphanumericSenderIDCreateResponse:
+        """
+        Create a new alphanumeric sender ID associated with a messaging profile.
+
+        Args:
+          alphanumeric_sender_id: The alphanumeric sender ID string.
+
+          messaging_profile_id: The messaging profile to associate the sender ID with.
+
+          us_long_code_fallback: A US long code number to use as fallback when sending to US destinations.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._post(
+            "/alphanumeric_sender_ids",
+            body=maybe_transform(
+                {
+                    "alphanumeric_sender_id": alphanumeric_sender_id,
+                    "messaging_profile_id": messaging_profile_id,
+                    "us_long_code_fallback": us_long_code_fallback,
+                },
+                alphanumeric_sender_id_create_params.AlphanumericSenderIDCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=AlphanumericSenderIDCreateResponse,
+        )
 
     def retrieve(
         self,
@@ -57,9 +102,9 @@ class MessagingHostedNumbersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MessagingHostedNumberRetrieveResponse:
+    ) -> AlphanumericSenderIDRetrieveResponse:
         """
-        Retrieve a specific messaging hosted number by its ID or phone number.
+        Retrieve a specific alphanumeric sender ID.
 
         Args:
           extra_headers: Send extra headers
@@ -73,100 +118,35 @@ class MessagingHostedNumbersResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
-            f"/messaging_hosted_numbers/{id}",
+            f"/alphanumeric_sender_ids/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MessagingHostedNumberRetrieveResponse,
-        )
-
-    def update(
-        self,
-        id: str,
-        *,
-        messaging_product: str | Omit = omit,
-        messaging_profile_id: str | Omit = omit,
-        tags: SequenceNotStr[str] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MessagingHostedNumberUpdateResponse:
-        """
-        Update the messaging settings for a hosted number.
-
-        Args:
-          messaging_product:
-              Configure the messaging product for this number:
-
-              - Omit this field or set its value to `null` to keep the current value.
-              - Set this field to a quoted product ID to set this phone number to that product
-
-          messaging_profile_id:
-              Configure the messaging profile this phone number is assigned to:
-
-              - Omit this field or set its value to `null` to keep the current value.
-              - Set this field to `""` to unassign the number from its messaging profile
-              - Set this field to a quoted UUID of a messaging profile to assign this number
-                to that messaging profile
-
-          tags: Tags to set on this phone number.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return self._patch(
-            f"/messaging_hosted_numbers/{id}",
-            body=maybe_transform(
-                {
-                    "messaging_product": messaging_product,
-                    "messaging_profile_id": messaging_profile_id,
-                    "tags": tags,
-                },
-                messaging_hosted_number_update_params.MessagingHostedNumberUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=MessagingHostedNumberUpdateResponse,
+            cast_to=AlphanumericSenderIDRetrieveResponse,
         )
 
     def list(
         self,
         *,
         filter_messaging_profile_id: str | Omit = omit,
-        filter_phone_number: str | Omit = omit,
-        filter_phone_number_contains: str | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
-        sort_phone_number: Literal["asc", "desc"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[PhoneNumberWithMessagingSettings]:
+    ) -> SyncDefaultFlatPagination[AlphanumericSenderIDListResponse]:
         """
-        List all hosted numbers associated with the authenticated user.
+        List all alphanumeric sender IDs for the authenticated user.
 
         Args:
           filter_messaging_profile_id: Filter by messaging profile ID.
 
-          filter_phone_number: Filter by exact phone number.
+          page_number: Page number.
 
-          filter_phone_number_contains: Filter by phone number substring.
-
-          sort_phone_number: Sort by phone number.
+          page_size: Page size.
 
           extra_headers: Send extra headers
 
@@ -177,8 +157,8 @@ class MessagingHostedNumbersResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/messaging_hosted_numbers",
-            page=SyncDefaultFlatPagination[PhoneNumberWithMessagingSettings],
+            "/alphanumeric_sender_ids",
+            page=SyncDefaultFlatPagination[AlphanumericSenderIDListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -187,16 +167,13 @@ class MessagingHostedNumbersResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter_messaging_profile_id": filter_messaging_profile_id,
-                        "filter_phone_number": filter_phone_number,
-                        "filter_phone_number_contains": filter_phone_number_contains,
                         "page_number": page_number,
                         "page_size": page_size,
-                        "sort_phone_number": sort_phone_number,
                     },
-                    messaging_hosted_number_list_params.MessagingHostedNumberListParams,
+                    alphanumeric_sender_id_list_params.AlphanumericSenderIDListParams,
                 ),
             ),
-            model=PhoneNumberWithMessagingSettings,
+            model=AlphanumericSenderIDListResponse,
         )
 
     def delete(
@@ -209,9 +186,9 @@ class MessagingHostedNumbersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MessagingHostedNumberDeleteResponse:
+    ) -> AlphanumericSenderIDDeleteResponse:
         """
-        Delete a messaging hosted number
+        Delete an alphanumeric sender ID and disassociate it from its messaging profile.
 
         Args:
           extra_headers: Send extra headers
@@ -225,33 +202,80 @@ class MessagingHostedNumbersResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._delete(
-            f"/messaging_hosted_numbers/{id}",
+            f"/alphanumeric_sender_ids/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MessagingHostedNumberDeleteResponse,
+            cast_to=AlphanumericSenderIDDeleteResponse,
         )
 
 
-class AsyncMessagingHostedNumbersResource(AsyncAPIResource):
+class AsyncAlphanumericSenderIDsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncMessagingHostedNumbersResourceWithRawResponse:
+    def with_raw_response(self) -> AsyncAlphanumericSenderIDsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/team-telnyx/telnyx-python#accessing-raw-response-data-eg-headers
         """
-        return AsyncMessagingHostedNumbersResourceWithRawResponse(self)
+        return AsyncAlphanumericSenderIDsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncMessagingHostedNumbersResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AsyncAlphanumericSenderIDsResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
-        return AsyncMessagingHostedNumbersResourceWithStreamingResponse(self)
+        return AsyncAlphanumericSenderIDsResourceWithStreamingResponse(self)
+
+    async def create(
+        self,
+        *,
+        alphanumeric_sender_id: str,
+        messaging_profile_id: str,
+        us_long_code_fallback: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AlphanumericSenderIDCreateResponse:
+        """
+        Create a new alphanumeric sender ID associated with a messaging profile.
+
+        Args:
+          alphanumeric_sender_id: The alphanumeric sender ID string.
+
+          messaging_profile_id: The messaging profile to associate the sender ID with.
+
+          us_long_code_fallback: A US long code number to use as fallback when sending to US destinations.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._post(
+            "/alphanumeric_sender_ids",
+            body=await async_maybe_transform(
+                {
+                    "alphanumeric_sender_id": alphanumeric_sender_id,
+                    "messaging_profile_id": messaging_profile_id,
+                    "us_long_code_fallback": us_long_code_fallback,
+                },
+                alphanumeric_sender_id_create_params.AlphanumericSenderIDCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=AlphanumericSenderIDCreateResponse,
+        )
 
     async def retrieve(
         self,
@@ -263,9 +287,9 @@ class AsyncMessagingHostedNumbersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MessagingHostedNumberRetrieveResponse:
+    ) -> AlphanumericSenderIDRetrieveResponse:
         """
-        Retrieve a specific messaging hosted number by its ID or phone number.
+        Retrieve a specific alphanumeric sender ID.
 
         Args:
           extra_headers: Send extra headers
@@ -279,100 +303,35 @@ class AsyncMessagingHostedNumbersResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
-            f"/messaging_hosted_numbers/{id}",
+            f"/alphanumeric_sender_ids/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MessagingHostedNumberRetrieveResponse,
-        )
-
-    async def update(
-        self,
-        id: str,
-        *,
-        messaging_product: str | Omit = omit,
-        messaging_profile_id: str | Omit = omit,
-        tags: SequenceNotStr[str] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MessagingHostedNumberUpdateResponse:
-        """
-        Update the messaging settings for a hosted number.
-
-        Args:
-          messaging_product:
-              Configure the messaging product for this number:
-
-              - Omit this field or set its value to `null` to keep the current value.
-              - Set this field to a quoted product ID to set this phone number to that product
-
-          messaging_profile_id:
-              Configure the messaging profile this phone number is assigned to:
-
-              - Omit this field or set its value to `null` to keep the current value.
-              - Set this field to `""` to unassign the number from its messaging profile
-              - Set this field to a quoted UUID of a messaging profile to assign this number
-                to that messaging profile
-
-          tags: Tags to set on this phone number.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return await self._patch(
-            f"/messaging_hosted_numbers/{id}",
-            body=await async_maybe_transform(
-                {
-                    "messaging_product": messaging_product,
-                    "messaging_profile_id": messaging_profile_id,
-                    "tags": tags,
-                },
-                messaging_hosted_number_update_params.MessagingHostedNumberUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=MessagingHostedNumberUpdateResponse,
+            cast_to=AlphanumericSenderIDRetrieveResponse,
         )
 
     def list(
         self,
         *,
         filter_messaging_profile_id: str | Omit = omit,
-        filter_phone_number: str | Omit = omit,
-        filter_phone_number_contains: str | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
-        sort_phone_number: Literal["asc", "desc"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[PhoneNumberWithMessagingSettings, AsyncDefaultFlatPagination[PhoneNumberWithMessagingSettings]]:
+    ) -> AsyncPaginator[AlphanumericSenderIDListResponse, AsyncDefaultFlatPagination[AlphanumericSenderIDListResponse]]:
         """
-        List all hosted numbers associated with the authenticated user.
+        List all alphanumeric sender IDs for the authenticated user.
 
         Args:
           filter_messaging_profile_id: Filter by messaging profile ID.
 
-          filter_phone_number: Filter by exact phone number.
+          page_number: Page number.
 
-          filter_phone_number_contains: Filter by phone number substring.
-
-          sort_phone_number: Sort by phone number.
+          page_size: Page size.
 
           extra_headers: Send extra headers
 
@@ -383,8 +342,8 @@ class AsyncMessagingHostedNumbersResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/messaging_hosted_numbers",
-            page=AsyncDefaultFlatPagination[PhoneNumberWithMessagingSettings],
+            "/alphanumeric_sender_ids",
+            page=AsyncDefaultFlatPagination[AlphanumericSenderIDListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -393,16 +352,13 @@ class AsyncMessagingHostedNumbersResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter_messaging_profile_id": filter_messaging_profile_id,
-                        "filter_phone_number": filter_phone_number,
-                        "filter_phone_number_contains": filter_phone_number_contains,
                         "page_number": page_number,
                         "page_size": page_size,
-                        "sort_phone_number": sort_phone_number,
                     },
-                    messaging_hosted_number_list_params.MessagingHostedNumberListParams,
+                    alphanumeric_sender_id_list_params.AlphanumericSenderIDListParams,
                 ),
             ),
-            model=PhoneNumberWithMessagingSettings,
+            model=AlphanumericSenderIDListResponse,
         )
 
     async def delete(
@@ -415,9 +371,9 @@ class AsyncMessagingHostedNumbersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MessagingHostedNumberDeleteResponse:
+    ) -> AlphanumericSenderIDDeleteResponse:
         """
-        Delete a messaging hosted number
+        Delete an alphanumeric sender ID and disassociate it from its messaging profile.
 
         Args:
           extra_headers: Send extra headers
@@ -431,81 +387,81 @@ class AsyncMessagingHostedNumbersResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._delete(
-            f"/messaging_hosted_numbers/{id}",
+            f"/alphanumeric_sender_ids/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MessagingHostedNumberDeleteResponse,
+            cast_to=AlphanumericSenderIDDeleteResponse,
         )
 
 
-class MessagingHostedNumbersResourceWithRawResponse:
-    def __init__(self, messaging_hosted_numbers: MessagingHostedNumbersResource) -> None:
-        self._messaging_hosted_numbers = messaging_hosted_numbers
+class AlphanumericSenderIDsResourceWithRawResponse:
+    def __init__(self, alphanumeric_sender_ids: AlphanumericSenderIDsResource) -> None:
+        self._alphanumeric_sender_ids = alphanumeric_sender_ids
 
+        self.create = to_raw_response_wrapper(
+            alphanumeric_sender_ids.create,
+        )
         self.retrieve = to_raw_response_wrapper(
-            messaging_hosted_numbers.retrieve,
-        )
-        self.update = to_raw_response_wrapper(
-            messaging_hosted_numbers.update,
+            alphanumeric_sender_ids.retrieve,
         )
         self.list = to_raw_response_wrapper(
-            messaging_hosted_numbers.list,
+            alphanumeric_sender_ids.list,
         )
         self.delete = to_raw_response_wrapper(
-            messaging_hosted_numbers.delete,
+            alphanumeric_sender_ids.delete,
         )
 
 
-class AsyncMessagingHostedNumbersResourceWithRawResponse:
-    def __init__(self, messaging_hosted_numbers: AsyncMessagingHostedNumbersResource) -> None:
-        self._messaging_hosted_numbers = messaging_hosted_numbers
+class AsyncAlphanumericSenderIDsResourceWithRawResponse:
+    def __init__(self, alphanumeric_sender_ids: AsyncAlphanumericSenderIDsResource) -> None:
+        self._alphanumeric_sender_ids = alphanumeric_sender_ids
 
+        self.create = async_to_raw_response_wrapper(
+            alphanumeric_sender_ids.create,
+        )
         self.retrieve = async_to_raw_response_wrapper(
-            messaging_hosted_numbers.retrieve,
-        )
-        self.update = async_to_raw_response_wrapper(
-            messaging_hosted_numbers.update,
+            alphanumeric_sender_ids.retrieve,
         )
         self.list = async_to_raw_response_wrapper(
-            messaging_hosted_numbers.list,
+            alphanumeric_sender_ids.list,
         )
         self.delete = async_to_raw_response_wrapper(
-            messaging_hosted_numbers.delete,
+            alphanumeric_sender_ids.delete,
         )
 
 
-class MessagingHostedNumbersResourceWithStreamingResponse:
-    def __init__(self, messaging_hosted_numbers: MessagingHostedNumbersResource) -> None:
-        self._messaging_hosted_numbers = messaging_hosted_numbers
+class AlphanumericSenderIDsResourceWithStreamingResponse:
+    def __init__(self, alphanumeric_sender_ids: AlphanumericSenderIDsResource) -> None:
+        self._alphanumeric_sender_ids = alphanumeric_sender_ids
 
+        self.create = to_streamed_response_wrapper(
+            alphanumeric_sender_ids.create,
+        )
         self.retrieve = to_streamed_response_wrapper(
-            messaging_hosted_numbers.retrieve,
-        )
-        self.update = to_streamed_response_wrapper(
-            messaging_hosted_numbers.update,
+            alphanumeric_sender_ids.retrieve,
         )
         self.list = to_streamed_response_wrapper(
-            messaging_hosted_numbers.list,
+            alphanumeric_sender_ids.list,
         )
         self.delete = to_streamed_response_wrapper(
-            messaging_hosted_numbers.delete,
+            alphanumeric_sender_ids.delete,
         )
 
 
-class AsyncMessagingHostedNumbersResourceWithStreamingResponse:
-    def __init__(self, messaging_hosted_numbers: AsyncMessagingHostedNumbersResource) -> None:
-        self._messaging_hosted_numbers = messaging_hosted_numbers
+class AsyncAlphanumericSenderIDsResourceWithStreamingResponse:
+    def __init__(self, alphanumeric_sender_ids: AsyncAlphanumericSenderIDsResource) -> None:
+        self._alphanumeric_sender_ids = alphanumeric_sender_ids
 
+        self.create = async_to_streamed_response_wrapper(
+            alphanumeric_sender_ids.create,
+        )
         self.retrieve = async_to_streamed_response_wrapper(
-            messaging_hosted_numbers.retrieve,
-        )
-        self.update = async_to_streamed_response_wrapper(
-            messaging_hosted_numbers.update,
+            alphanumeric_sender_ids.retrieve,
         )
         self.list = async_to_streamed_response_wrapper(
-            messaging_hosted_numbers.list,
+            alphanumeric_sender_ids.list,
         )
         self.delete = async_to_streamed_response_wrapper(
-            messaging_hosted_numbers.delete,
+            alphanumeric_sender_ids.delete,
         )
