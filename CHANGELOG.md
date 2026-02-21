@@ -1,5 +1,14 @@
 # Changelog
 
+## 4.43.2 (2026-02-21)
+
+Full Changelog: [v4.43.1...v4.43.2](https://github.com/team-telnyx/telnyx-python/compare/v4.43.1...v4.43.2)
+
+### Bug Fixes
+
+* OAS drift — 10dlc.json (messaging-campaign-registry) ([79965d8](https://github.com/team-telnyx/telnyx-python/commit/79965d87c6d4d49433582e88dcab684998ca4a1f))
+* OAS drift — messaging.json (messaging-settings + messaging-outbound) ([d5b6964](https://github.com/team-telnyx/telnyx-python/commit/d5b69645837cb1be180e1955f2235d61b480e7cd))
+
 ## 4.43.1 (2026-02-20)
 
 Full Changelog: [v4.43.0...v4.43.1](https://github.com/team-telnyx/telnyx-python/compare/v4.43.0...v4.43.1)
