@@ -17,7 +17,7 @@ from .._response import (
 )
 from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from .._base_client import AsyncPaginator, make_request_options
-from ..types.alphanumeric_sender_id_list_response import AlphanumericSenderIDListResponse
+from ..types.alphanumeric_sender_id import AlphanumericSenderID
 from ..types.alphanumeric_sender_id_create_response import AlphanumericSenderIDCreateResponse
 from ..types.alphanumeric_sender_id_delete_response import AlphanumericSenderIDDeleteResponse
 from ..types.alphanumeric_sender_id_retrieve_response import AlphanumericSenderIDRetrieveResponse
@@ -137,7 +137,7 @@ class AlphanumericSenderIDsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[AlphanumericSenderIDListResponse]:
+    ) -> SyncDefaultFlatPagination[AlphanumericSenderID]:
         """
         List all alphanumeric sender IDs for the authenticated user.
 
@@ -158,7 +158,7 @@ class AlphanumericSenderIDsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/alphanumeric_sender_ids",
-            page=SyncDefaultFlatPagination[AlphanumericSenderIDListResponse],
+            page=SyncDefaultFlatPagination[AlphanumericSenderID],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -173,7 +173,7 @@ class AlphanumericSenderIDsResource(SyncAPIResource):
                     alphanumeric_sender_id_list_params.AlphanumericSenderIDListParams,
                 ),
             ),
-            model=AlphanumericSenderIDListResponse,
+            model=AlphanumericSenderID,
         )
 
     def delete(
@@ -322,7 +322,7 @@ class AsyncAlphanumericSenderIDsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[AlphanumericSenderIDListResponse, AsyncDefaultFlatPagination[AlphanumericSenderIDListResponse]]:
+    ) -> AsyncPaginator[AlphanumericSenderID, AsyncDefaultFlatPagination[AlphanumericSenderID]]:
         """
         List all alphanumeric sender IDs for the authenticated user.
 
@@ -343,7 +343,7 @@ class AsyncAlphanumericSenderIDsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/alphanumeric_sender_ids",
-            page=AsyncDefaultFlatPagination[AlphanumericSenderIDListResponse],
+            page=AsyncDefaultFlatPagination[AlphanumericSenderID],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -358,7 +358,7 @@ class AsyncAlphanumericSenderIDsResource(AsyncAPIResource):
                     alphanumeric_sender_id_list_params.AlphanumericSenderIDListParams,
                 ),
             ),
-            model=AlphanumericSenderIDListResponse,
+            model=AlphanumericSenderID,
         )
 
     async def delete(

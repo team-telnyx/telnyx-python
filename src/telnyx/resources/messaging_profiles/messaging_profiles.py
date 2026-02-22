@@ -46,6 +46,7 @@ from .autoresp_configs import (
 )
 from ...types.messaging_profile import MessagingProfile
 from ...types.shared.short_code import ShortCode
+from ...types.alphanumeric_sender_id import AlphanumericSenderID
 from ...types.number_pool_settings_param import NumberPoolSettingsParam
 from ...types.url_shortener_settings_param import URLShortenerSettingsParam
 from ...types.messaging_profile_create_response import MessagingProfileCreateResponse
@@ -54,9 +55,6 @@ from ...types.messaging_profile_update_response import MessagingProfileUpdateRes
 from ...types.messaging_profile_retrieve_response import MessagingProfileRetrieveResponse
 from ...types.messaging_profile_retrieve_metrics_response import MessagingProfileRetrieveMetricsResponse
 from ...types.shared.phone_number_with_messaging_settings import PhoneNumberWithMessagingSettings
-from ...types.messaging_profile_list_alphanumeric_sender_ids_response import (
-    MessagingProfileListAlphanumericSenderIDsResponse,
-)
 
 __all__ = ["MessagingProfilesResource", "AsyncMessagingProfilesResource"]
 
@@ -475,7 +473,7 @@ class MessagingProfilesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[MessagingProfileListAlphanumericSenderIDsResponse]:
+    ) -> SyncDefaultFlatPagination[AlphanumericSenderID]:
         """
         List all alphanumeric sender IDs associated with a specific messaging profile.
 
@@ -492,7 +490,7 @@ class MessagingProfilesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
             f"/messaging_profiles/{id}/alphanumeric_sender_ids",
-            page=SyncDefaultFlatPagination[MessagingProfileListAlphanumericSenderIDsResponse],
+            page=SyncDefaultFlatPagination[AlphanumericSenderID],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -506,7 +504,7 @@ class MessagingProfilesResource(SyncAPIResource):
                     messaging_profile_list_alphanumeric_sender_ids_params.MessagingProfileListAlphanumericSenderIDsParams,
                 ),
             ),
-            model=MessagingProfileListAlphanumericSenderIDsResponse,
+            model=AlphanumericSenderID,
         )
 
     def list_phone_numbers(
@@ -1064,10 +1062,7 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[
-        MessagingProfileListAlphanumericSenderIDsResponse,
-        AsyncDefaultFlatPagination[MessagingProfileListAlphanumericSenderIDsResponse],
-    ]:
+    ) -> AsyncPaginator[AlphanumericSenderID, AsyncDefaultFlatPagination[AlphanumericSenderID]]:
         """
         List all alphanumeric sender IDs associated with a specific messaging profile.
 
@@ -1084,7 +1079,7 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
             f"/messaging_profiles/{id}/alphanumeric_sender_ids",
-            page=AsyncDefaultFlatPagination[MessagingProfileListAlphanumericSenderIDsResponse],
+            page=AsyncDefaultFlatPagination[AlphanumericSenderID],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1098,7 +1093,7 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
                     messaging_profile_list_alphanumeric_sender_ids_params.MessagingProfileListAlphanumericSenderIDsParams,
                 ),
             ),
-            model=MessagingProfileListAlphanumericSenderIDsResponse,
+            model=AlphanumericSenderID,
         )
 
     def list_phone_numbers(
