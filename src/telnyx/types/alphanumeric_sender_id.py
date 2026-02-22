@@ -5,10 +5,10 @@ from typing_extensions import Literal
 
 from .._models import BaseModel
 
-__all__ = ["MessagingProfileListAlphanumericSenderIDsResponse"]
+__all__ = ["AlphanumericSenderID"]
 
 
-class MessagingProfileListAlphanumericSenderIDsResponse(BaseModel):
+class AlphanumericSenderID(BaseModel):
     id: Optional[str] = None
     """Uniquely identifies the alphanumeric sender ID resource."""
 

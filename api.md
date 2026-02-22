@@ -2485,7 +2485,6 @@ from telnyx.types import (
     MessagingProfileRetrieveResponse,
     MessagingProfileUpdateResponse,
     MessagingProfileDeleteResponse,
-    MessagingProfileListAlphanumericSenderIDsResponse,
     MessagingProfileRetrieveMetricsResponse,
 )
 ```
@@ -2497,7 +2496,7 @@ Methods:
 - <code title="patch /messaging_profiles/{id}">client.messaging_profiles.<a href="./src/telnyx/resources/messaging_profiles/messaging_profiles.py">update</a>(messaging_profile_id, \*\*<a href="src/telnyx/types/messaging_profile_update_params.py">params</a>) -> <a href="./src/telnyx/types/messaging_profile_update_response.py">MessagingProfileUpdateResponse</a></code>
 - <code title="get /messaging_profiles">client.messaging_profiles.<a href="./src/telnyx/resources/messaging_profiles/messaging_profiles.py">list</a>(\*\*<a href="src/telnyx/types/messaging_profile_list_params.py">params</a>) -> <a href="./src/telnyx/types/messaging_profile.py">SyncDefaultFlatPagination[MessagingProfile]</a></code>
 - <code title="delete /messaging_profiles/{id}">client.messaging_profiles.<a href="./src/telnyx/resources/messaging_profiles/messaging_profiles.py">delete</a>(messaging_profile_id) -> <a href="./src/telnyx/types/messaging_profile_delete_response.py">MessagingProfileDeleteResponse</a></code>
-- <code title="get /messaging_profiles/{id}/alphanumeric_sender_ids">client.messaging_profiles.<a href="./src/telnyx/resources/messaging_profiles/messaging_profiles.py">list_alphanumeric_sender_ids</a>(id, \*\*<a href="src/telnyx/types/messaging_profile_list_alphanumeric_sender_ids_params.py">params</a>) -> <a href="./src/telnyx/types/messaging_profile_list_alphanumeric_sender_ids_response.py">SyncDefaultFlatPagination[MessagingProfileListAlphanumericSenderIDsResponse]</a></code>
+- <code title="get /messaging_profiles/{id}/alphanumeric_sender_ids">client.messaging_profiles.<a href="./src/telnyx/resources/messaging_profiles/messaging_profiles.py">list_alphanumeric_sender_ids</a>(id, \*\*<a href="src/telnyx/types/messaging_profile_list_alphanumeric_sender_ids_params.py">params</a>) -> <a href="./src/telnyx/types/alphanumeric_sender_id.py">SyncDefaultFlatPagination[AlphanumericSenderID]</a></code>
 - <code title="get /messaging_profiles/{id}/phone_numbers">client.messaging_profiles.<a href="./src/telnyx/resources/messaging_profiles/messaging_profiles.py">list_phone_numbers</a>(messaging_profile_id, \*\*<a href="src/telnyx/types/messaging_profile_list_phone_numbers_params.py">params</a>) -> <a href="./src/telnyx/types/shared/phone_number_with_messaging_settings.py">SyncDefaultFlatPagination[PhoneNumberWithMessagingSettings]</a></code>
 - <code title="get /messaging_profiles/{id}/short_codes">client.messaging_profiles.<a href="./src/telnyx/resources/messaging_profiles/messaging_profiles.py">list_short_codes</a>(messaging_profile_id, \*\*<a href="src/telnyx/types/messaging_profile_list_short_codes_params.py">params</a>) -> <a href="./src/telnyx/types/shared/short_code.py">SyncDefaultFlatPagination[ShortCode]</a></code>
 - <code title="get /messaging_profiles/{id}/metrics">client.messaging_profiles.<a href="./src/telnyx/resources/messaging_profiles/messaging_profiles.py">retrieve_metrics</a>(id, \*\*<a href="src/telnyx/types/messaging_profile_retrieve_metrics_params.py">params</a>) -> <a href="./src/telnyx/types/messaging_profile_retrieve_metrics_response.py">MessagingProfileRetrieveMetricsResponse</a></code>
@@ -5067,9 +5066,9 @@ Types:
 
 ```python
 from telnyx.types import (
+    AlphanumericSenderID,
     AlphanumericSenderIDCreateResponse,
     AlphanumericSenderIDRetrieveResponse,
-    AlphanumericSenderIDListResponse,
     AlphanumericSenderIDDeleteResponse,
 )
 ```
@@ -5078,7 +5077,7 @@ Methods:
 
 - <code title="post /alphanumeric_sender_ids">client.alphanumeric_sender_ids.<a href="./src/telnyx/resources/alphanumeric_sender_ids.py">create</a>(\*\*<a href="src/telnyx/types/alphanumeric_sender_id_create_params.py">params</a>) -> <a href="./src/telnyx/types/alphanumeric_sender_id_create_response.py">AlphanumericSenderIDCreateResponse</a></code>
 - <code title="get /alphanumeric_sender_ids/{id}">client.alphanumeric_sender_ids.<a href="./src/telnyx/resources/alphanumeric_sender_ids.py">retrieve</a>(id) -> <a href="./src/telnyx/types/alphanumeric_sender_id_retrieve_response.py">AlphanumericSenderIDRetrieveResponse</a></code>
-- <code title="get /alphanumeric_sender_ids">client.alphanumeric_sender_ids.<a href="./src/telnyx/resources/alphanumeric_sender_ids.py">list</a>(\*\*<a href="src/telnyx/types/alphanumeric_sender_id_list_params.py">params</a>) -> <a href="./src/telnyx/types/alphanumeric_sender_id_list_response.py">SyncDefaultFlatPagination[AlphanumericSenderIDListResponse]</a></code>
+- <code title="get /alphanumeric_sender_ids">client.alphanumeric_sender_ids.<a href="./src/telnyx/resources/alphanumeric_sender_ids.py">list</a>(\*\*<a href="src/telnyx/types/alphanumeric_sender_id_list_params.py">params</a>) -> <a href="./src/telnyx/types/alphanumeric_sender_id.py">SyncDefaultFlatPagination[AlphanumericSenderID]</a></code>
 - <code title="delete /alphanumeric_sender_ids/{id}">client.alphanumeric_sender_ids.<a href="./src/telnyx/resources/alphanumeric_sender_ids.py">delete</a>(id) -> <a href="./src/telnyx/types/alphanumeric_sender_id_delete_response.py">AlphanumericSenderIDDeleteResponse</a></code>
 
 # MessagingProfileMetrics

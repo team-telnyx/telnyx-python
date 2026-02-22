@@ -10,7 +10,7 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types import (
-    AlphanumericSenderIDListResponse,
+    AlphanumericSenderID,
     AlphanumericSenderIDCreateResponse,
     AlphanumericSenderIDDeleteResponse,
     AlphanumericSenderIDRetrieveResponse,
@@ -116,9 +116,7 @@ class TestAlphanumericSenderIDs:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         alphanumeric_sender_id = client.alphanumeric_sender_ids.list()
-        assert_matches_type(
-            SyncDefaultFlatPagination[AlphanumericSenderIDListResponse], alphanumeric_sender_id, path=["response"]
-        )
+        assert_matches_type(SyncDefaultFlatPagination[AlphanumericSenderID], alphanumeric_sender_id, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -128,9 +126,7 @@ class TestAlphanumericSenderIDs:
             page_number=0,
             page_size=0,
         )
-        assert_matches_type(
-            SyncDefaultFlatPagination[AlphanumericSenderIDListResponse], alphanumeric_sender_id, path=["response"]
-        )
+        assert_matches_type(SyncDefaultFlatPagination[AlphanumericSenderID], alphanumeric_sender_id, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -140,9 +136,7 @@ class TestAlphanumericSenderIDs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         alphanumeric_sender_id = response.parse()
-        assert_matches_type(
-            SyncDefaultFlatPagination[AlphanumericSenderIDListResponse], alphanumeric_sender_id, path=["response"]
-        )
+        assert_matches_type(SyncDefaultFlatPagination[AlphanumericSenderID], alphanumeric_sender_id, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -153,7 +147,7 @@ class TestAlphanumericSenderIDs:
 
             alphanumeric_sender_id = response.parse()
             assert_matches_type(
-                SyncDefaultFlatPagination[AlphanumericSenderIDListResponse], alphanumeric_sender_id, path=["response"]
+                SyncDefaultFlatPagination[AlphanumericSenderID], alphanumeric_sender_id, path=["response"]
             )
 
         assert cast(Any, response.is_closed) is True
@@ -299,9 +293,7 @@ class TestAsyncAlphanumericSenderIDs:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         alphanumeric_sender_id = await async_client.alphanumeric_sender_ids.list()
-        assert_matches_type(
-            AsyncDefaultFlatPagination[AlphanumericSenderIDListResponse], alphanumeric_sender_id, path=["response"]
-        )
+        assert_matches_type(AsyncDefaultFlatPagination[AlphanumericSenderID], alphanumeric_sender_id, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -311,9 +303,7 @@ class TestAsyncAlphanumericSenderIDs:
             page_number=0,
             page_size=0,
         )
-        assert_matches_type(
-            AsyncDefaultFlatPagination[AlphanumericSenderIDListResponse], alphanumeric_sender_id, path=["response"]
-        )
+        assert_matches_type(AsyncDefaultFlatPagination[AlphanumericSenderID], alphanumeric_sender_id, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -323,9 +313,7 @@ class TestAsyncAlphanumericSenderIDs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         alphanumeric_sender_id = await response.parse()
-        assert_matches_type(
-            AsyncDefaultFlatPagination[AlphanumericSenderIDListResponse], alphanumeric_sender_id, path=["response"]
-        )
+        assert_matches_type(AsyncDefaultFlatPagination[AlphanumericSenderID], alphanumeric_sender_id, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -336,7 +324,7 @@ class TestAsyncAlphanumericSenderIDs:
 
             alphanumeric_sender_id = await response.parse()
             assert_matches_type(
-                AsyncDefaultFlatPagination[AlphanumericSenderIDListResponse], alphanumeric_sender_id, path=["response"]
+                AsyncDefaultFlatPagination[AlphanumericSenderID], alphanumeric_sender_id, path=["response"]
             )
 
         assert cast(Any, response.is_closed) is True
