@@ -14,6 +14,7 @@ from telnyx.pagination import SyncDefaultPaginationForMessagingTollfree, AsyncDe
 from telnyx.types.messaging_tollfree.verification import (
     VerificationRequestEgress,
     VerificationRequestStatus,
+    RequestRetrieveStatusHistoryResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -37,7 +38,6 @@ class TestRequests:
             business_state="Texas",
             business_zip="78701",
             corporate_website="http://example.com",
-            isv_reseller="isvReseller",
             message_volume="100,000",
             opt_in_workflow="User signs into the Telnyx portal, enters a number and is prompted to select whether they want to use 2FA verification for security purposes. If they've opted in a confirmation message is sent out to the handset",
             opt_in_workflow_image_urls=[
@@ -66,7 +66,6 @@ class TestRequests:
             business_state="Texas",
             business_zip="78701",
             corporate_website="http://example.com",
-            isv_reseller="isvReseller",
             message_volume="100,000",
             opt_in_workflow="User signs into the Telnyx portal, enters a number and is prompted to select whether they want to use 2FA verification for security purposes. If they've opted in a confirmation message is sent out to the handset",
             opt_in_workflow_image_urls=[
@@ -86,6 +85,7 @@ class TestRequests:
             doing_business_as="Acme Services",
             entity_type="SOLE_PROPRIETOR",
             help_message_response="Reply HELP for assistance or STOP to unsubscribe. Contact: support@example.com",
+            isv_reseller="isvReseller",
             opt_in_confirmation_response="You have successfully opted in to receive messages from Acme Corp",
             opt_in_keywords="START, YES, SUBSCRIBE",
             privacy_policy_url="https://example.com/privacy",
@@ -109,7 +109,6 @@ class TestRequests:
             business_state="Texas",
             business_zip="78701",
             corporate_website="http://example.com",
-            isv_reseller="isvReseller",
             message_volume="100,000",
             opt_in_workflow="User signs into the Telnyx portal, enters a number and is prompted to select whether they want to use 2FA verification for security purposes. If they've opted in a confirmation message is sent out to the handset",
             opt_in_workflow_image_urls=[
@@ -142,7 +141,6 @@ class TestRequests:
             business_state="Texas",
             business_zip="78701",
             corporate_website="http://example.com",
-            isv_reseller="isvReseller",
             message_volume="100,000",
             opt_in_workflow="User signs into the Telnyx portal, enters a number and is prompted to select whether they want to use 2FA verification for security purposes. If they've opted in a confirmation message is sent out to the handset",
             opt_in_workflow_image_urls=[
@@ -220,7 +218,6 @@ class TestRequests:
             business_state="Texas",
             business_zip="78701",
             corporate_website="http://example.com",
-            isv_reseller="isvReseller",
             message_volume="100,000",
             opt_in_workflow="User signs into the Telnyx portal, enters a number and is prompted to select whether they want to use 2FA verification for security purposes. If they've opted in a confirmation message is sent out to the handset",
             opt_in_workflow_image_urls=[
@@ -250,7 +247,6 @@ class TestRequests:
             business_state="Texas",
             business_zip="78701",
             corporate_website="http://example.com",
-            isv_reseller="isvReseller",
             message_volume="100,000",
             opt_in_workflow="User signs into the Telnyx portal, enters a number and is prompted to select whether they want to use 2FA verification for security purposes. If they've opted in a confirmation message is sent out to the handset",
             opt_in_workflow_image_urls=[
@@ -270,6 +266,7 @@ class TestRequests:
             doing_business_as="Acme Services",
             entity_type="SOLE_PROPRIETOR",
             help_message_response="Reply HELP for assistance or STOP to unsubscribe. Contact: support@example.com",
+            isv_reseller="isvReseller",
             opt_in_confirmation_response="You have successfully opted in to receive messages from Acme Corp",
             opt_in_keywords="START, YES, SUBSCRIBE",
             privacy_policy_url="https://example.com/privacy",
@@ -294,7 +291,6 @@ class TestRequests:
             business_state="Texas",
             business_zip="78701",
             corporate_website="http://example.com",
-            isv_reseller="isvReseller",
             message_volume="100,000",
             opt_in_workflow="User signs into the Telnyx portal, enters a number and is prompted to select whether they want to use 2FA verification for security purposes. If they've opted in a confirmation message is sent out to the handset",
             opt_in_workflow_image_urls=[
@@ -328,7 +324,6 @@ class TestRequests:
             business_state="Texas",
             business_zip="78701",
             corporate_website="http://example.com",
-            isv_reseller="isvReseller",
             message_volume="100,000",
             opt_in_workflow="User signs into the Telnyx portal, enters a number and is prompted to select whether they want to use 2FA verification for security purposes. If they've opted in a confirmation message is sent out to the handset",
             opt_in_workflow_image_urls=[
@@ -365,7 +360,6 @@ class TestRequests:
                 business_state="Texas",
                 business_zip="78701",
                 corporate_website="http://example.com",
-                isv_reseller="isvReseller",
                 message_volume="100,000",
                 opt_in_workflow="User signs into the Telnyx portal, enters a number and is prompted to select whether they want to use 2FA verification for security purposes. If they've opted in a confirmation message is sent out to the handset",
                 opt_in_workflow_image_urls=[
@@ -395,6 +389,7 @@ class TestRequests:
         request = client.messaging_tollfree.verification.requests.list(
             page=1,
             page_size=1,
+            business_name="business_name",
             date_end=parse_datetime("2019-12-27T18:11:19.117Z"),
             date_start=parse_datetime("2019-12-27T18:11:19.117Z"),
             phone_number="phone_number",
@@ -478,6 +473,56 @@ class TestRequests:
                 "",
             )
 
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_retrieve_status_history(self, client: Telnyx) -> None:
+        request = client.messaging_tollfree.verification.requests.retrieve_status_history(
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            page_number=1,
+            page_size=1,
+        )
+        assert_matches_type(RequestRetrieveStatusHistoryResponse, request, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_raw_response_retrieve_status_history(self, client: Telnyx) -> None:
+        response = client.messaging_tollfree.verification.requests.with_raw_response.retrieve_status_history(
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            page_number=1,
+            page_size=1,
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        request = response.parse()
+        assert_matches_type(RequestRetrieveStatusHistoryResponse, request, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_streaming_response_retrieve_status_history(self, client: Telnyx) -> None:
+        with client.messaging_tollfree.verification.requests.with_streaming_response.retrieve_status_history(
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            page_number=1,
+            page_size=1,
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            request = response.parse()
+            assert_matches_type(RequestRetrieveStatusHistoryResponse, request, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_path_params_retrieve_status_history(self, client: Telnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.messaging_tollfree.verification.requests.with_raw_response.retrieve_status_history(
+                id="",
+                page_number=1,
+                page_size=1,
+            )
+
 
 class TestAsyncRequests:
     parametrize = pytest.mark.parametrize(
@@ -499,7 +544,6 @@ class TestAsyncRequests:
             business_state="Texas",
             business_zip="78701",
             corporate_website="http://example.com",
-            isv_reseller="isvReseller",
             message_volume="100,000",
             opt_in_workflow="User signs into the Telnyx portal, enters a number and is prompted to select whether they want to use 2FA verification for security purposes. If they've opted in a confirmation message is sent out to the handset",
             opt_in_workflow_image_urls=[
@@ -528,7 +572,6 @@ class TestAsyncRequests:
             business_state="Texas",
             business_zip="78701",
             corporate_website="http://example.com",
-            isv_reseller="isvReseller",
             message_volume="100,000",
             opt_in_workflow="User signs into the Telnyx portal, enters a number and is prompted to select whether they want to use 2FA verification for security purposes. If they've opted in a confirmation message is sent out to the handset",
             opt_in_workflow_image_urls=[
@@ -548,6 +591,7 @@ class TestAsyncRequests:
             doing_business_as="Acme Services",
             entity_type="SOLE_PROPRIETOR",
             help_message_response="Reply HELP for assistance or STOP to unsubscribe. Contact: support@example.com",
+            isv_reseller="isvReseller",
             opt_in_confirmation_response="You have successfully opted in to receive messages from Acme Corp",
             opt_in_keywords="START, YES, SUBSCRIBE",
             privacy_policy_url="https://example.com/privacy",
@@ -571,7 +615,6 @@ class TestAsyncRequests:
             business_state="Texas",
             business_zip="78701",
             corporate_website="http://example.com",
-            isv_reseller="isvReseller",
             message_volume="100,000",
             opt_in_workflow="User signs into the Telnyx portal, enters a number and is prompted to select whether they want to use 2FA verification for security purposes. If they've opted in a confirmation message is sent out to the handset",
             opt_in_workflow_image_urls=[
@@ -604,7 +647,6 @@ class TestAsyncRequests:
             business_state="Texas",
             business_zip="78701",
             corporate_website="http://example.com",
-            isv_reseller="isvReseller",
             message_volume="100,000",
             opt_in_workflow="User signs into the Telnyx portal, enters a number and is prompted to select whether they want to use 2FA verification for security purposes. If they've opted in a confirmation message is sent out to the handset",
             opt_in_workflow_image_urls=[
@@ -682,7 +724,6 @@ class TestAsyncRequests:
             business_state="Texas",
             business_zip="78701",
             corporate_website="http://example.com",
-            isv_reseller="isvReseller",
             message_volume="100,000",
             opt_in_workflow="User signs into the Telnyx portal, enters a number and is prompted to select whether they want to use 2FA verification for security purposes. If they've opted in a confirmation message is sent out to the handset",
             opt_in_workflow_image_urls=[
@@ -712,7 +753,6 @@ class TestAsyncRequests:
             business_state="Texas",
             business_zip="78701",
             corporate_website="http://example.com",
-            isv_reseller="isvReseller",
             message_volume="100,000",
             opt_in_workflow="User signs into the Telnyx portal, enters a number and is prompted to select whether they want to use 2FA verification for security purposes. If they've opted in a confirmation message is sent out to the handset",
             opt_in_workflow_image_urls=[
@@ -732,6 +772,7 @@ class TestAsyncRequests:
             doing_business_as="Acme Services",
             entity_type="SOLE_PROPRIETOR",
             help_message_response="Reply HELP for assistance or STOP to unsubscribe. Contact: support@example.com",
+            isv_reseller="isvReseller",
             opt_in_confirmation_response="You have successfully opted in to receive messages from Acme Corp",
             opt_in_keywords="START, YES, SUBSCRIBE",
             privacy_policy_url="https://example.com/privacy",
@@ -756,7 +797,6 @@ class TestAsyncRequests:
             business_state="Texas",
             business_zip="78701",
             corporate_website="http://example.com",
-            isv_reseller="isvReseller",
             message_volume="100,000",
             opt_in_workflow="User signs into the Telnyx portal, enters a number and is prompted to select whether they want to use 2FA verification for security purposes. If they've opted in a confirmation message is sent out to the handset",
             opt_in_workflow_image_urls=[
@@ -790,7 +830,6 @@ class TestAsyncRequests:
             business_state="Texas",
             business_zip="78701",
             corporate_website="http://example.com",
-            isv_reseller="isvReseller",
             message_volume="100,000",
             opt_in_workflow="User signs into the Telnyx portal, enters a number and is prompted to select whether they want to use 2FA verification for security purposes. If they've opted in a confirmation message is sent out to the handset",
             opt_in_workflow_image_urls=[
@@ -827,7 +866,6 @@ class TestAsyncRequests:
                 business_state="Texas",
                 business_zip="78701",
                 corporate_website="http://example.com",
-                isv_reseller="isvReseller",
                 message_volume="100,000",
                 opt_in_workflow="User signs into the Telnyx portal, enters a number and is prompted to select whether they want to use 2FA verification for security purposes. If they've opted in a confirmation message is sent out to the handset",
                 opt_in_workflow_image_urls=[
@@ -857,6 +895,7 @@ class TestAsyncRequests:
         request = await async_client.messaging_tollfree.verification.requests.list(
             page=1,
             page_size=1,
+            business_name="business_name",
             date_end=parse_datetime("2019-12-27T18:11:19.117Z"),
             date_start=parse_datetime("2019-12-27T18:11:19.117Z"),
             phone_number="phone_number",
@@ -938,4 +977,58 @@ class TestAsyncRequests:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.messaging_tollfree.verification.requests.with_raw_response.delete(
                 "",
+            )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_retrieve_status_history(self, async_client: AsyncTelnyx) -> None:
+        request = await async_client.messaging_tollfree.verification.requests.retrieve_status_history(
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            page_number=1,
+            page_size=1,
+        )
+        assert_matches_type(RequestRetrieveStatusHistoryResponse, request, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_raw_response_retrieve_status_history(self, async_client: AsyncTelnyx) -> None:
+        response = (
+            await async_client.messaging_tollfree.verification.requests.with_raw_response.retrieve_status_history(
+                id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                page_number=1,
+                page_size=1,
+            )
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        request = await response.parse()
+        assert_matches_type(RequestRetrieveStatusHistoryResponse, request, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_streaming_response_retrieve_status_history(self, async_client: AsyncTelnyx) -> None:
+        async with (
+            async_client.messaging_tollfree.verification.requests.with_streaming_response.retrieve_status_history(
+                id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                page_number=1,
+                page_size=1,
+            )
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            request = await response.parse()
+            assert_matches_type(RequestRetrieveStatusHistoryResponse, request, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_path_params_retrieve_status_history(self, async_client: AsyncTelnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.messaging_tollfree.verification.requests.with_raw_response.retrieve_status_history(
+                id="",
+                page_number=1,
+                page_size=1,
             )

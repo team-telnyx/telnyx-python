@@ -15,3 +15,9 @@ from .tf_verification_status import TfVerificationStatus as TfVerificationStatus
 from .verification_request_egress import VerificationRequestEgress as VerificationRequestEgress
 from .verification_request_status import VerificationRequestStatus as VerificationRequestStatus
 from .toll_free_verification_entity_type import TollFreeVerificationEntityType as TollFreeVerificationEntityType
+from .request_retrieve_status_history_params import (
+    RequestRetrieveStatusHistoryParams as RequestRetrieveStatusHistoryParams,
+)
+from .request_retrieve_status_history_response import (
+    RequestRetrieveStatusHistoryResponse as RequestRetrieveStatusHistoryResponse,
+)

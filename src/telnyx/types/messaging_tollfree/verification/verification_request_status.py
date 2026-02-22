@@ -43,8 +43,6 @@ class VerificationRequestStatus(BaseModel):
 
     corporate_website: str = FieldInfo(alias="corporateWebsite")
 
-    isv_reseller: str = FieldInfo(alias="isvReseller")
-
     message_volume: Volume = FieldInfo(alias="messageVolume")
     """Message Volume Enums"""
 
@@ -90,6 +88,8 @@ class VerificationRequestStatus(BaseModel):
     """Business entity classification"""
 
     help_message_response: Optional[str] = FieldInfo(alias="helpMessageResponse", default=None)
+
+    isv_reseller: Optional[str] = FieldInfo(alias="isvReseller", default=None)
 
     opt_in_confirmation_response: Optional[str] = FieldInfo(alias="optInConfirmationResponse", default=None)
 
