@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.43.4 (2026-02-22)
+
+Full Changelog: [v4.43.3...v4.43.4](https://github.com/team-telnyx/telnyx-python/compare/v4.43.3...v4.43.4)
+
+### Bug Fixes
+
+* OAS drift — verify.json (messaging-2fa) ([a456fe5](https://github.com/team-telnyx/telnyx-python/commit/a456fe54c14b857193bad77408bf7a48387ddc65))
+
 ## 4.43.3 (2026-02-22)
 
 Full Changelog: [v4.43.2...v4.43.3](https://github.com/team-telnyx/telnyx-python/compare/v4.43.2...v4.43.3)
