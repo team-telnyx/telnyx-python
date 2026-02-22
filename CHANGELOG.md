@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.43.3 (2026-02-22)
+
+Full Changelog: [v4.43.2...v4.43.3](https://github.com/team-telnyx/telnyx-python/compare/v4.43.2...v4.43.3)
+
+### Bug Fixes
+
+* OAS drift — toll-free-verification.json (messaging-tf-verify) ([b87d30d](https://github.com/team-telnyx/telnyx-python/commit/b87d30d0cfbe68c9a2040e6538fe1cd61f8fd64d))
+
 ## 4.43.2 (2026-02-21)
 
 Full Changelog: [v4.43.1...v4.43.2](https://github.com/team-telnyx/telnyx-python/compare/v4.43.1...v4.43.2)
