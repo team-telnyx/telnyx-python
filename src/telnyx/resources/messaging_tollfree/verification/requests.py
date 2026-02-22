@@ -27,6 +27,7 @@ from ....types.messaging_tollfree.verification import (
     request_list_params,
     request_create_params,
     request_update_params,
+    request_retrieve_status_history_params,
 )
 from ....types.messaging_tollfree.verification.volume import Volume
 from ....types.messaging_tollfree.verification.url_param import URLParam
@@ -36,6 +37,9 @@ from ....types.messaging_tollfree.verification.tf_verification_status import TfV
 from ....types.messaging_tollfree.verification.verification_request_egress import VerificationRequestEgress
 from ....types.messaging_tollfree.verification.verification_request_status import VerificationRequestStatus
 from ....types.messaging_tollfree.verification.toll_free_verification_entity_type import TollFreeVerificationEntityType
+from ....types.messaging_tollfree.verification.request_retrieve_status_history_response import (
+    RequestRetrieveStatusHistoryResponse,
+)
 
 __all__ = ["RequestsResource", "AsyncRequestsResource"]
 
@@ -74,7 +78,6 @@ class RequestsResource(SyncAPIResource):
         business_state: str,
         business_zip: str,
         corporate_website: str,
-        isv_reseller: str,
         message_volume: Volume,
         opt_in_workflow: str,
         opt_in_workflow_image_urls: Iterable[URLParam],
@@ -91,6 +94,7 @@ class RequestsResource(SyncAPIResource):
         doing_business_as: Optional[str] | Omit = omit,
         entity_type: Optional[TollFreeVerificationEntityType] | Omit = omit,
         help_message_response: Optional[str] | Omit = omit,
+        isv_reseller: Optional[str] | Omit = omit,
         opt_in_confirmation_response: Optional[str] | Omit = omit,
         opt_in_keywords: Optional[str] | Omit = omit,
         privacy_policy_url: Optional[str] | Omit = omit,
@@ -132,8 +136,6 @@ class RequestsResource(SyncAPIResource):
 
           corporate_website: A URL, including the scheme, pointing to the corporate website
 
-          isv_reseller: ISV name
-
           message_volume: Message Volume Enums
 
           opt_in_workflow: Human-readable description of how end users will opt into receiving messages
@@ -173,6 +175,8 @@ class RequestsResource(SyncAPIResource):
 
           help_message_response: The message returned when users text 'HELP'
 
+          isv_reseller: ISV name
+
           opt_in_confirmation_response: Message sent to users confirming their opt-in to receive messages
 
           opt_in_keywords: Keywords used to collect and process consumer opt-ins
@@ -208,7 +212,6 @@ class RequestsResource(SyncAPIResource):
                     "business_state": business_state,
                     "business_zip": business_zip,
                     "corporate_website": corporate_website,
-                    "isv_reseller": isv_reseller,
                     "message_volume": message_volume,
                     "opt_in_workflow": opt_in_workflow,
                     "opt_in_workflow_image_urls": opt_in_workflow_image_urls,
@@ -225,6 +228,7 @@ class RequestsResource(SyncAPIResource):
                     "doing_business_as": doing_business_as,
                     "entity_type": entity_type,
                     "help_message_response": help_message_response,
+                    "isv_reseller": isv_reseller,
                     "opt_in_confirmation_response": opt_in_confirmation_response,
                     "opt_in_keywords": opt_in_keywords,
                     "privacy_policy_url": privacy_policy_url,
@@ -287,7 +291,6 @@ class RequestsResource(SyncAPIResource):
         business_state: str,
         business_zip: str,
         corporate_website: str,
-        isv_reseller: str,
         message_volume: Volume,
         opt_in_workflow: str,
         opt_in_workflow_image_urls: Iterable[URLParam],
@@ -304,6 +307,7 @@ class RequestsResource(SyncAPIResource):
         doing_business_as: Optional[str] | Omit = omit,
         entity_type: Optional[TollFreeVerificationEntityType] | Omit = omit,
         help_message_response: Optional[str] | Omit = omit,
+        isv_reseller: Optional[str] | Omit = omit,
         opt_in_confirmation_response: Optional[str] | Omit = omit,
         opt_in_keywords: Optional[str] | Omit = omit,
         privacy_policy_url: Optional[str] | Omit = omit,
@@ -347,8 +351,6 @@ class RequestsResource(SyncAPIResource):
 
           corporate_website: A URL, including the scheme, pointing to the corporate website
 
-          isv_reseller: ISV name
-
           message_volume: Message Volume Enums
 
           opt_in_workflow: Human-readable description of how end users will opt into receiving messages
@@ -388,6 +390,8 @@ class RequestsResource(SyncAPIResource):
 
           help_message_response: The message returned when users text 'HELP'
 
+          isv_reseller: ISV name
+
           opt_in_confirmation_response: Message sent to users confirming their opt-in to receive messages
 
           opt_in_keywords: Keywords used to collect and process consumer opt-ins
@@ -425,7 +429,6 @@ class RequestsResource(SyncAPIResource):
                     "business_state": business_state,
                     "business_zip": business_zip,
                     "corporate_website": corporate_website,
-                    "isv_reseller": isv_reseller,
                     "message_volume": message_volume,
                     "opt_in_workflow": opt_in_workflow,
                     "opt_in_workflow_image_urls": opt_in_workflow_image_urls,
@@ -442,6 +445,7 @@ class RequestsResource(SyncAPIResource):
                     "doing_business_as": doing_business_as,
                     "entity_type": entity_type,
                     "help_message_response": help_message_response,
+                    "isv_reseller": isv_reseller,
                     "opt_in_confirmation_response": opt_in_confirmation_response,
                     "opt_in_keywords": opt_in_keywords,
                     "privacy_policy_url": privacy_policy_url,
@@ -461,6 +465,7 @@ class RequestsResource(SyncAPIResource):
         *,
         page: int,
         page_size: int,
+        business_name: str | Omit = omit,
         date_end: Union[str, datetime] | Omit = omit,
         date_start: Union[str, datetime] | Omit = omit,
         phone_number: str | Omit = omit,
@@ -479,6 +484,8 @@ class RequestsResource(SyncAPIResource):
           page_size: Request this many records per page
 
                       This value is automatically clamped if the provided value is too large.
+
+          business_name: Filter verification requests by business name
 
           status: Tollfree verification status
 
@@ -502,6 +509,7 @@ class RequestsResource(SyncAPIResource):
                     {
                         "page": page,
                         "page_size": page_size,
+                        "business_name": business_name,
                         "date_end": date_end,
                         "date_start": date_start,
                         "phone_number": phone_number,
@@ -553,6 +561,57 @@ class RequestsResource(SyncAPIResource):
             cast_to=NoneType,
         )
 
+    def retrieve_status_history(
+        self,
+        id: str,
+        *,
+        page_number: int,
+        page_size: int,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> RequestRetrieveStatusHistoryResponse:
+        """
+        Get the history of status changes for a verification request.
+
+        Returns a paginated list of historical status changes including the reason for
+        each change and when it occurred.
+
+        Args:
+          page_size: Request this many records per page. This value is automatically clamped if the
+              provided value is too large.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return self._get(
+            f"/messaging_tollfree/verification/requests/{id}/status_history",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "page_number": page_number,
+                        "page_size": page_size,
+                    },
+                    request_retrieve_status_history_params.RequestRetrieveStatusHistoryParams,
+                ),
+            ),
+            cast_to=RequestRetrieveStatusHistoryResponse,
+        )
+
 
 class AsyncRequestsResource(AsyncAPIResource):
     @cached_property
@@ -588,7 +647,6 @@ class AsyncRequestsResource(AsyncAPIResource):
         business_state: str,
         business_zip: str,
         corporate_website: str,
-        isv_reseller: str,
         message_volume: Volume,
         opt_in_workflow: str,
         opt_in_workflow_image_urls: Iterable[URLParam],
@@ -605,6 +663,7 @@ class AsyncRequestsResource(AsyncAPIResource):
         doing_business_as: Optional[str] | Omit = omit,
         entity_type: Optional[TollFreeVerificationEntityType] | Omit = omit,
         help_message_response: Optional[str] | Omit = omit,
+        isv_reseller: Optional[str] | Omit = omit,
         opt_in_confirmation_response: Optional[str] | Omit = omit,
         opt_in_keywords: Optional[str] | Omit = omit,
         privacy_policy_url: Optional[str] | Omit = omit,
@@ -646,8 +705,6 @@ class AsyncRequestsResource(AsyncAPIResource):
 
           corporate_website: A URL, including the scheme, pointing to the corporate website
 
-          isv_reseller: ISV name
-
           message_volume: Message Volume Enums
 
           opt_in_workflow: Human-readable description of how end users will opt into receiving messages
@@ -687,6 +744,8 @@ class AsyncRequestsResource(AsyncAPIResource):
 
           help_message_response: The message returned when users text 'HELP'
 
+          isv_reseller: ISV name
+
           opt_in_confirmation_response: Message sent to users confirming their opt-in to receive messages
 
           opt_in_keywords: Keywords used to collect and process consumer opt-ins
@@ -722,7 +781,6 @@ class AsyncRequestsResource(AsyncAPIResource):
                     "business_state": business_state,
                     "business_zip": business_zip,
                     "corporate_website": corporate_website,
-                    "isv_reseller": isv_reseller,
                     "message_volume": message_volume,
                     "opt_in_workflow": opt_in_workflow,
                     "opt_in_workflow_image_urls": opt_in_workflow_image_urls,
@@ -739,6 +797,7 @@ class AsyncRequestsResource(AsyncAPIResource):
                     "doing_business_as": doing_business_as,
                     "entity_type": entity_type,
                     "help_message_response": help_message_response,
+                    "isv_reseller": isv_reseller,
                     "opt_in_confirmation_response": opt_in_confirmation_response,
                     "opt_in_keywords": opt_in_keywords,
                     "privacy_policy_url": privacy_policy_url,
@@ -801,7 +860,6 @@ class AsyncRequestsResource(AsyncAPIResource):
         business_state: str,
         business_zip: str,
         corporate_website: str,
-        isv_reseller: str,
         message_volume: Volume,
         opt_in_workflow: str,
         opt_in_workflow_image_urls: Iterable[URLParam],
@@ -818,6 +876,7 @@ class AsyncRequestsResource(AsyncAPIResource):
         doing_business_as: Optional[str] | Omit = omit,
         entity_type: Optional[TollFreeVerificationEntityType] | Omit = omit,
         help_message_response: Optional[str] | Omit = omit,
+        isv_reseller: Optional[str] | Omit = omit,
         opt_in_confirmation_response: Optional[str] | Omit = omit,
         opt_in_keywords: Optional[str] | Omit = omit,
         privacy_policy_url: Optional[str] | Omit = omit,
@@ -861,8 +920,6 @@ class AsyncRequestsResource(AsyncAPIResource):
 
           corporate_website: A URL, including the scheme, pointing to the corporate website
 
-          isv_reseller: ISV name
-
           message_volume: Message Volume Enums
 
           opt_in_workflow: Human-readable description of how end users will opt into receiving messages
@@ -902,6 +959,8 @@ class AsyncRequestsResource(AsyncAPIResource):
 
           help_message_response: The message returned when users text 'HELP'
 
+          isv_reseller: ISV name
+
           opt_in_confirmation_response: Message sent to users confirming their opt-in to receive messages
 
           opt_in_keywords: Keywords used to collect and process consumer opt-ins
@@ -939,7 +998,6 @@ class AsyncRequestsResource(AsyncAPIResource):
                     "business_state": business_state,
                     "business_zip": business_zip,
                     "corporate_website": corporate_website,
-                    "isv_reseller": isv_reseller,
                     "message_volume": message_volume,
                     "opt_in_workflow": opt_in_workflow,
                     "opt_in_workflow_image_urls": opt_in_workflow_image_urls,
@@ -956,6 +1014,7 @@ class AsyncRequestsResource(AsyncAPIResource):
                     "doing_business_as": doing_business_as,
                     "entity_type": entity_type,
                     "help_message_response": help_message_response,
+                    "isv_reseller": isv_reseller,
                     "opt_in_confirmation_response": opt_in_confirmation_response,
                     "opt_in_keywords": opt_in_keywords,
                     "privacy_policy_url": privacy_policy_url,
@@ -975,6 +1034,7 @@ class AsyncRequestsResource(AsyncAPIResource):
         *,
         page: int,
         page_size: int,
+        business_name: str | Omit = omit,
         date_end: Union[str, datetime] | Omit = omit,
         date_start: Union[str, datetime] | Omit = omit,
         phone_number: str | Omit = omit,
@@ -995,6 +1055,8 @@ class AsyncRequestsResource(AsyncAPIResource):
           page_size: Request this many records per page
 
                       This value is automatically clamped if the provided value is too large.
+
+          business_name: Filter verification requests by business name
 
           status: Tollfree verification status
 
@@ -1018,6 +1080,7 @@ class AsyncRequestsResource(AsyncAPIResource):
                     {
                         "page": page,
                         "page_size": page_size,
+                        "business_name": business_name,
                         "date_end": date_end,
                         "date_start": date_start,
                         "phone_number": phone_number,
@@ -1069,6 +1132,57 @@ class AsyncRequestsResource(AsyncAPIResource):
             cast_to=NoneType,
         )
 
+    async def retrieve_status_history(
+        self,
+        id: str,
+        *,
+        page_number: int,
+        page_size: int,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> RequestRetrieveStatusHistoryResponse:
+        """
+        Get the history of status changes for a verification request.
+
+        Returns a paginated list of historical status changes including the reason for
+        each change and when it occurred.
+
+        Args:
+          page_size: Request this many records per page. This value is automatically clamped if the
+              provided value is too large.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return await self._get(
+            f"/messaging_tollfree/verification/requests/{id}/status_history",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "page_number": page_number,
+                        "page_size": page_size,
+                    },
+                    request_retrieve_status_history_params.RequestRetrieveStatusHistoryParams,
+                ),
+            ),
+            cast_to=RequestRetrieveStatusHistoryResponse,
+        )
+
 
 class RequestsResourceWithRawResponse:
     def __init__(self, requests: RequestsResource) -> None:
@@ -1088,6 +1202,9 @@ class RequestsResourceWithRawResponse:
         )
         self.delete = to_raw_response_wrapper(
             requests.delete,
+        )
+        self.retrieve_status_history = to_raw_response_wrapper(
+            requests.retrieve_status_history,
         )
 
 
@@ -1110,6 +1227,9 @@ class AsyncRequestsResourceWithRawResponse:
         self.delete = async_to_raw_response_wrapper(
             requests.delete,
         )
+        self.retrieve_status_history = async_to_raw_response_wrapper(
+            requests.retrieve_status_history,
+        )
 
 
 class RequestsResourceWithStreamingResponse:
@@ -1131,6 +1251,9 @@ class RequestsResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             requests.delete,
         )
+        self.retrieve_status_history = to_streamed_response_wrapper(
+            requests.retrieve_status_history,
+        )
 
 
 class AsyncRequestsResourceWithStreamingResponse:
@@ -1151,4 +1274,7 @@ class AsyncRequestsResourceWithStreamingResponse:
         )
         self.delete = async_to_streamed_response_wrapper(
             requests.delete,
+        )
+        self.retrieve_status_history = async_to_streamed_response_wrapper(
+            requests.retrieve_status_history,
         )
