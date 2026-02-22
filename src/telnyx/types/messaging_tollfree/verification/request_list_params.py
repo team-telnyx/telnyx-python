@@ -21,6 +21,9 @@ class RequestListParams(TypedDict, total=False):
             This value is automatically clamped if the provided value is too large.
     """
 
+    business_name: str
+    """Filter verification requests by business name"""
+
     date_end: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
 
     date_start: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]

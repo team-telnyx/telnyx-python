@@ -2555,6 +2555,7 @@ from telnyx.types.messaging_tollfree.verification import (
     VerificationRequestEgress,
     VerificationRequestStatus,
     Volume,
+    RequestRetrieveStatusHistoryResponse,
 )
 ```
 
@@ -2565,6 +2566,7 @@ Methods:
 - <code title="patch /messaging_tollfree/verification/requests/{id}">client.messaging_tollfree.verification.requests.<a href="./src/telnyx/resources/messaging_tollfree/verification/requests.py">update</a>(id, \*\*<a href="src/telnyx/types/messaging_tollfree/verification/request_update_params.py">params</a>) -> <a href="./src/telnyx/types/messaging_tollfree/verification/verification_request_egress.py">VerificationRequestEgress</a></code>
 - <code title="get /messaging_tollfree/verification/requests">client.messaging_tollfree.verification.requests.<a href="./src/telnyx/resources/messaging_tollfree/verification/requests.py">list</a>(\*\*<a href="src/telnyx/types/messaging_tollfree/verification/request_list_params.py">params</a>) -> <a href="./src/telnyx/types/messaging_tollfree/verification/verification_request_status.py">SyncDefaultPaginationForMessagingTollfree[VerificationRequestStatus]</a></code>
 - <code title="delete /messaging_tollfree/verification/requests/{id}">client.messaging_tollfree.verification.requests.<a href="./src/telnyx/resources/messaging_tollfree/verification/requests.py">delete</a>(id) -> None</code>
+- <code title="get /messaging_tollfree/verification/requests/{id}/status_history">client.messaging_tollfree.verification.requests.<a href="./src/telnyx/resources/messaging_tollfree/verification/requests.py">retrieve_status_history</a>(id, \*\*<a href="src/telnyx/types/messaging_tollfree/verification/request_retrieve_status_history_params.py">params</a>) -> <a href="./src/telnyx/types/messaging_tollfree/verification/request_retrieve_status_history_response.py">RequestRetrieveStatusHistoryResponse</a></code>
 
 # MessagingURLDomains
 

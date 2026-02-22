@@ -58,9 +58,6 @@ class RequestCreateParams(TypedDict, total=False):
     corporate_website: Required[Annotated[str, PropertyInfo(alias="corporateWebsite")]]
     """A URL, including the scheme, pointing to the corporate website"""
 
-    isv_reseller: Required[Annotated[str, PropertyInfo(alias="isvReseller")]]
-    """ISV name"""
-
     message_volume: Required[Annotated[Volume, PropertyInfo(alias="messageVolume")]]
     """Message Volume Enums"""
 
@@ -127,6 +124,9 @@ class RequestCreateParams(TypedDict, total=False):
 
     help_message_response: Annotated[Optional[str], PropertyInfo(alias="helpMessageResponse")]
     """The message returned when users text 'HELP'"""
+
+    isv_reseller: Annotated[Optional[str], PropertyInfo(alias="isvReseller")]
+    """ISV name"""
 
     opt_in_confirmation_response: Annotated[Optional[str], PropertyInfo(alias="optInConfirmationResponse")]
     """Message sent to users confirming their opt-in to receive messages"""
