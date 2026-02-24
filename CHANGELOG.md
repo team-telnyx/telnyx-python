@@ -1,5 +1,15 @@
 # Changelog
 
+## 4.44.1 (2026-02-24)
+
+Full Changelog: [v4.44.0...v4.44.1](https://github.com/team-telnyx/telnyx-python/compare/v4.44.0...v4.44.1)
+
+### Chores
+
+* **dependencies:** require standardwebhooks 1.0.1 ([f6c0916](https://github.com/team-telnyx/telnyx-python/commit/f6c09167c0eda8d914fd71fff5bded63a6f91d21))
+* **internal:** add request options to SSE classes ([8c1de8c](https://github.com/team-telnyx/telnyx-python/commit/8c1de8c14fec79f7cc30e3431d44d45df5e771b2))
+* **internal:** make `test_proxy_environment_variables` more resilient ([96176b0](https://github.com/team-telnyx/telnyx-python/commit/96176b0b7cc79992b1ff4cc3579944ba261d9f56))
+
 ## 4.44.0 (2026-02-22)
 
 Full Changelog: [v4.43.4...v4.44.0](https://github.com/team-telnyx/telnyx-python/compare/v4.43.4...v4.44.0)
