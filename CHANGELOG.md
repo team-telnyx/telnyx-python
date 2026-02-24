@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.44.2 (2026-02-24)
+
+Full Changelog: [v4.44.1...v4.44.2](https://github.com/team-telnyx/telnyx-python/compare/v4.44.1...v4.44.2)
+
+### Chores
+
+* **internal:** make `test_proxy_environment_variables` more resilient to env ([ce75c52](https://github.com/team-telnyx/telnyx-python/commit/ce75c52b99bec75bc3fad64a7e9df9b69d62e709))
+
 ## 4.44.1 (2026-02-24)
 
 Full Changelog: [v4.44.0...v4.44.1](https://github.com/team-telnyx/telnyx-python/compare/v4.44.0...v4.44.1)
