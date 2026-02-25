@@ -221,8 +221,11 @@ class ActionsResource(SyncAPIResource):
         stream_url: str | Omit = omit,
         transcription: bool | Omit = omit,
         transcription_config: TranscriptionStartRequestParam | Omit = omit,
+        webhook_retries_policies: Dict[str, action_answer_params.WebhookRetriesPolicies] | Omit = omit,
         webhook_url: str | Omit = omit,
         webhook_url_method: Literal["POST", "GET"] | Omit = omit,
+        webhook_urls: Dict[str, str] | Omit = omit,
+        webhook_urls_method: Literal["POST", "GET"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -309,10 +312,20 @@ class ActionsResource(SyncAPIResource):
 
           transcription: Enable transcription upon call answer. The default value is false.
 
+          webhook_retries_policies: A map of event types to retry policies. Each retry policy contains an array of
+              `retries_ms` specifying the delays between retry attempts in milliseconds.
+              Maximum 5 retries, total delay cannot exceed 60 seconds.
+
           webhook_url: Use this field to override the URL for which Telnyx will send subsequent
               webhooks to for this call.
 
           webhook_url_method: HTTP request type used for `webhook_url`.
+
+          webhook_urls: A map of event types to webhook URLs. When an event of the specified type
+              occurs, the webhook URL associated with that event type will be called instead
+              of `webhook_url`. Events not mapped here will use the default `webhook_url`.
+
+          webhook_urls_method: HTTP request method to invoke `webhook_urls`.
 
           extra_headers: Send extra headers
 
@@ -352,8 +365,11 @@ class ActionsResource(SyncAPIResource):
                     "stream_url": stream_url,
                     "transcription": transcription,
                     "transcription_config": transcription_config,
+                    "webhook_retries_policies": webhook_retries_policies,
                     "webhook_url": webhook_url,
                     "webhook_url_method": webhook_url_method,
+                    "webhook_urls": webhook_urls,
+                    "webhook_urls_method": webhook_urls_method,
                 },
                 action_answer_params.ActionAnswerParams,
             ),
@@ -370,6 +386,7 @@ class ActionsResource(SyncAPIResource):
         call_control_id_to_bridge_with: str,
         client_state: str | Omit = omit,
         command_id: str | Omit = omit,
+        hold_after_unbridge: bool | Omit = omit,
         mute_dtmf: Literal["none", "both", "self", "opposite"] | Omit = omit,
         park_after_unbridge: str | Omit = omit,
         play_ringtone: bool | Omit = omit,
@@ -453,6 +470,9 @@ class ActionsResource(SyncAPIResource):
           command_id: Use this field to avoid duplicate commands. Telnyx will ignore any command with
               the same `command_id` for the same `call_control_id`.
 
+          hold_after_unbridge: Specifies behavior after the bridge ends. If set to `true`, the current leg will
+              be put on hold after unbridge instead of being hung up.
+
           mute_dtmf: When enabled, DTMF tones are not passed to the call participant. The webhooks
               containing the DTMF information will be sent.
 
@@ -529,6 +549,7 @@ class ActionsResource(SyncAPIResource):
                     "call_control_id_to_bridge_with": call_control_id_to_bridge_with,
                     "client_state": client_state,
                     "command_id": command_id,
+                    "hold_after_unbridge": hold_after_unbridge,
                     "mute_dtmf": mute_dtmf,
                     "park_after_unbridge": park_after_unbridge,
                     "play_ringtone": play_ringtone,
@@ -1181,6 +1202,7 @@ class ActionsResource(SyncAPIResource):
         *,
         client_state: str | Omit = omit,
         command_id: str | Omit = omit,
+        custom_headers: Iterable[CustomSipHeaderParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1203,6 +1225,8 @@ class ActionsResource(SyncAPIResource):
           command_id: Use this field to avoid duplicate commands. Telnyx will ignore any command with
               the same `command_id` for the same `call_control_id`.
 
+          custom_headers: Custom headers to be added to the SIP BYE message.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1219,6 +1243,7 @@ class ActionsResource(SyncAPIResource):
                 {
                     "client_state": client_state,
                     "command_id": command_id,
+                    "custom_headers": custom_headers,
                 },
                 action_hangup_params.ActionHangupParams,
             ),
@@ -3709,8 +3734,11 @@ class AsyncActionsResource(AsyncAPIResource):
         stream_url: str | Omit = omit,
         transcription: bool | Omit = omit,
         transcription_config: TranscriptionStartRequestParam | Omit = omit,
+        webhook_retries_policies: Dict[str, action_answer_params.WebhookRetriesPolicies] | Omit = omit,
         webhook_url: str | Omit = omit,
         webhook_url_method: Literal["POST", "GET"] | Omit = omit,
+        webhook_urls: Dict[str, str] | Omit = omit,
+        webhook_urls_method: Literal["POST", "GET"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3797,10 +3825,20 @@ class AsyncActionsResource(AsyncAPIResource):
 
           transcription: Enable transcription upon call answer. The default value is false.
 
+          webhook_retries_policies: A map of event types to retry policies. Each retry policy contains an array of
+              `retries_ms` specifying the delays between retry attempts in milliseconds.
+              Maximum 5 retries, total delay cannot exceed 60 seconds.
+
           webhook_url: Use this field to override the URL for which Telnyx will send subsequent
               webhooks to for this call.
 
           webhook_url_method: HTTP request type used for `webhook_url`.
+
+          webhook_urls: A map of event types to webhook URLs. When an event of the specified type
+              occurs, the webhook URL associated with that event type will be called instead
+              of `webhook_url`. Events not mapped here will use the default `webhook_url`.
+
+          webhook_urls_method: HTTP request method to invoke `webhook_urls`.
 
           extra_headers: Send extra headers
 
@@ -3840,8 +3878,11 @@ class AsyncActionsResource(AsyncAPIResource):
                     "stream_url": stream_url,
                     "transcription": transcription,
                     "transcription_config": transcription_config,
+                    "webhook_retries_policies": webhook_retries_policies,
                     "webhook_url": webhook_url,
                     "webhook_url_method": webhook_url_method,
+                    "webhook_urls": webhook_urls,
+                    "webhook_urls_method": webhook_urls_method,
                 },
                 action_answer_params.ActionAnswerParams,
             ),
@@ -3858,6 +3899,7 @@ class AsyncActionsResource(AsyncAPIResource):
         call_control_id_to_bridge_with: str,
         client_state: str | Omit = omit,
         command_id: str | Omit = omit,
+        hold_after_unbridge: bool | Omit = omit,
         mute_dtmf: Literal["none", "both", "self", "opposite"] | Omit = omit,
         park_after_unbridge: str | Omit = omit,
         play_ringtone: bool | Omit = omit,
@@ -3941,6 +3983,9 @@ class AsyncActionsResource(AsyncAPIResource):
           command_id: Use this field to avoid duplicate commands. Telnyx will ignore any command with
               the same `command_id` for the same `call_control_id`.
 
+          hold_after_unbridge: Specifies behavior after the bridge ends. If set to `true`, the current leg will
+              be put on hold after unbridge instead of being hung up.
+
           mute_dtmf: When enabled, DTMF tones are not passed to the call participant. The webhooks
               containing the DTMF information will be sent.
 
@@ -4017,6 +4062,7 @@ class AsyncActionsResource(AsyncAPIResource):
                     "call_control_id_to_bridge_with": call_control_id_to_bridge_with,
                     "client_state": client_state,
                     "command_id": command_id,
+                    "hold_after_unbridge": hold_after_unbridge,
                     "mute_dtmf": mute_dtmf,
                     "park_after_unbridge": park_after_unbridge,
                     "play_ringtone": play_ringtone,
@@ -4669,6 +4715,7 @@ class AsyncActionsResource(AsyncAPIResource):
         *,
         client_state: str | Omit = omit,
         command_id: str | Omit = omit,
+        custom_headers: Iterable[CustomSipHeaderParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -4691,6 +4738,8 @@ class AsyncActionsResource(AsyncAPIResource):
           command_id: Use this field to avoid duplicate commands. Telnyx will ignore any command with
               the same `command_id` for the same `call_control_id`.
 
+          custom_headers: Custom headers to be added to the SIP BYE message.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -4707,6 +4756,7 @@ class AsyncActionsResource(AsyncAPIResource):
                 {
                     "client_state": client_state,
                     "command_id": command_id,
+                    "custom_headers": custom_headers,
                 },
                 action_hangup_params.ActionHangupParams,
             ),

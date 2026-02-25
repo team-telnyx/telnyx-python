@@ -2,7 +2,10 @@
 
 from __future__ import annotations
 
+from typing import Iterable
 from typing_extensions import TypedDict
+
+from ..custom_sip_header_param import CustomSipHeaderParam
 
 __all__ = ["ActionHangupParams"]
 
@@ -20,3 +23,6 @@ class ActionHangupParams(TypedDict, total=False):
     Telnyx will ignore any command with the same `command_id` for the same
     `call_control_id`.
     """
+
+    custom_headers: Iterable[CustomSipHeaderParam]
+    """Custom headers to be added to the SIP BYE message."""
