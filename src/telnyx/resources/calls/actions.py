@@ -373,6 +373,7 @@ class ActionsResource(SyncAPIResource):
         mute_dtmf: Literal["none", "both", "self", "opposite"] | Omit = omit,
         park_after_unbridge: str | Omit = omit,
         play_ringtone: bool | Omit = omit,
+        prevent_double_bridge: bool | Omit = omit,
         queue: str | Omit = omit,
         record: Literal["record-from-answer"] | Omit = omit,
         record_channels: Literal["single", "dual"] | Omit = omit,
@@ -462,6 +463,9 @@ class ActionsResource(SyncAPIResource):
           play_ringtone: Specifies whether to play a ringtone if the call you want to bridge with has not
               yet been answered.
 
+          prevent_double_bridge: When set to `true`, it prevents bridging if the target call is already bridged
+              to another call. Disabled by default.
+
           queue: The name of the queue you want to bridge with, can't be used together with
               call_control_id parameter or video_room_id parameter. Bridging with a queue
               means bridging with the first call in the queue. The call will always be removed
@@ -528,6 +532,7 @@ class ActionsResource(SyncAPIResource):
                     "mute_dtmf": mute_dtmf,
                     "park_after_unbridge": park_after_unbridge,
                     "play_ringtone": play_ringtone,
+                    "prevent_double_bridge": prevent_double_bridge,
                     "queue": queue,
                     "record": record,
                     "record_channels": record_channels,
@@ -3856,6 +3861,7 @@ class AsyncActionsResource(AsyncAPIResource):
         mute_dtmf: Literal["none", "both", "self", "opposite"] | Omit = omit,
         park_after_unbridge: str | Omit = omit,
         play_ringtone: bool | Omit = omit,
+        prevent_double_bridge: bool | Omit = omit,
         queue: str | Omit = omit,
         record: Literal["record-from-answer"] | Omit = omit,
         record_channels: Literal["single", "dual"] | Omit = omit,
@@ -3945,6 +3951,9 @@ class AsyncActionsResource(AsyncAPIResource):
           play_ringtone: Specifies whether to play a ringtone if the call you want to bridge with has not
               yet been answered.
 
+          prevent_double_bridge: When set to `true`, it prevents bridging if the target call is already bridged
+              to another call. Disabled by default.
+
           queue: The name of the queue you want to bridge with, can't be used together with
               call_control_id parameter or video_room_id parameter. Bridging with a queue
               means bridging with the first call in the queue. The call will always be removed
@@ -4011,6 +4020,7 @@ class AsyncActionsResource(AsyncAPIResource):
                     "mute_dtmf": mute_dtmf,
                     "park_after_unbridge": park_after_unbridge,
                     "play_ringtone": play_ringtone,
+                    "prevent_double_bridge": prevent_double_bridge,
                     "queue": queue,
                     "record": record,
                     "record_channels": record_channels,
