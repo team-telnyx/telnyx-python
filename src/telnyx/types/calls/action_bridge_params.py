@@ -49,6 +49,12 @@ class ActionBridgeParams(TypedDict, total=False):
     yet been answered.
     """
 
+    prevent_double_bridge: bool
+    """
+    When set to `true`, it prevents bridging if the target call is already bridged
+    to another call. Disabled by default.
+    """
+
     queue: str
     """
     The name of the queue you want to bridge with, can't be used together with
