@@ -118,6 +118,7 @@ from .media_list_params import MediaListParams as MediaListParams
 from .messaging_profile import MessagingProfile as MessagingProfile
 from .network_interface import NetworkInterface as NetworkInterface
 from .outbound_ip_param import OutboundIPParam as OutboundIPParam
+from .queue_list_params import QueueListParams as QueueListParams
 from .rcs_agent_message import RcsAgentMessage as RcsAgentMessage
 from .requirement_group import RequirementGroup as RequirementGroup
 from .texml_application import TexmlApplication as TexmlApplication
@@ -168,6 +169,9 @@ from .network_list_params import NetworkListParams as NetworkListParams
 from .oauth_grants_params import OAuthGrantsParams as OAuthGrantsParams
 from .outbound_fqdn_param import OutboundFqdnParam as OutboundFqdnParam
 from .portout_list_params import PortoutListParams as PortoutListParams
+from .queue_create_params import QueueCreateParams as QueueCreateParams
+from .queue_list_response import QueueListResponse as QueueListResponse
+from .queue_update_params import QueueUpdateParams as QueueUpdateParams
 from .replaced_link_click import ReplacedLinkClick as ReplacedLinkClick
 from .verify_profile_data import VerifyProfileData as VerifyProfileData
 from .webhook_api_version import WebhookAPIVersion as WebhookAPIVersion
@@ -220,6 +224,8 @@ from .oauth_grants_response import OAuthGrantsResponse as OAuthGrantsResponse
 from .oauth_register_params import OAuthRegisterParams as OAuthRegisterParams
 from .pagination_meta_oauth import PaginationMetaOAuth as PaginationMetaOAuth
 from .phone_number_detailed import PhoneNumberDetailed as PhoneNumberDetailed
+from .queue_create_response import QueueCreateResponse as QueueCreateResponse
+from .queue_update_response import QueueUpdateResponse as QueueUpdateResponse
 from .recording_list_params import RecordingListParams as RecordingListParams
 from .reserved_phone_number import ReservedPhoneNumber as ReservedPhoneNumber
 from .s3_configuration_data import S3ConfigurationData as S3ConfigurationData
