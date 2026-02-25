@@ -3534,12 +3534,21 @@ Methods:
 Types:
 
 ```python
-from telnyx.types import QueueRetrieveResponse
+from telnyx.types import (
+    QueueCreateResponse,
+    QueueRetrieveResponse,
+    QueueUpdateResponse,
+    QueueListResponse,
+)
 ```
 
 Methods:
 
+- <code title="post /queues">client.queues.<a href="./src/telnyx/resources/queues/queues.py">create</a>(\*\*<a href="src/telnyx/types/queue_create_params.py">params</a>) -> <a href="./src/telnyx/types/queue_create_response.py">QueueCreateResponse</a></code>
 - <code title="get /queues/{queue_name}">client.queues.<a href="./src/telnyx/resources/queues/queues.py">retrieve</a>(queue_name) -> <a href="./src/telnyx/types/queue_retrieve_response.py">QueueRetrieveResponse</a></code>
+- <code title="post /queues/{queue_name}">client.queues.<a href="./src/telnyx/resources/queues/queues.py">update</a>(queue_name, \*\*<a href="src/telnyx/types/queue_update_params.py">params</a>) -> <a href="./src/telnyx/types/queue_update_response.py">QueueUpdateResponse</a></code>
+- <code title="get /queues">client.queues.<a href="./src/telnyx/resources/queues/queues.py">list</a>(\*\*<a href="src/telnyx/types/queue_list_params.py">params</a>) -> <a href="./src/telnyx/types/queue_list_response.py">SyncDefaultFlatPagination[QueueListResponse]</a></code>
+- <code title="delete /queues/{queue_name}">client.queues.<a href="./src/telnyx/resources/queues/queues.py">delete</a>(queue_name) -> None</code>
 
 ## Calls
 
