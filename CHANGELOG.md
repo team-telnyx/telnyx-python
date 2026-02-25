@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.45.0 (2026-02-25)
+
+Full Changelog: [v4.44.2...v4.45.0](https://github.com/team-telnyx/telnyx-python/compare/v4.44.2...v4.45.0)
+
+### Features
+
+* Add missing TTS voice settings schemas and update voice descriptions ([4697821](https://github.com/team-telnyx/telnyx-python/commit/4697821650151bdce373441b51ae04f9487c05eb))
+
 ## 4.44.2 (2026-02-24)
 
 Full Changelog: [v4.44.1...v4.44.2](https://github.com/team-telnyx/telnyx-python/compare/v4.44.1...v4.44.2)
