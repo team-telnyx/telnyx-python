@@ -2925,6 +2925,16 @@ Methods:
 
 # Payment
 
+Types:
+
+```python
+from telnyx.types import PaymentCreateStoredPaymentTransactionResponse
+```
+
+Methods:
+
+- <code title="post /v2/payment/stored_payment_transactions">client.payment.<a href="./src/telnyx/resources/payment/payment.py">create_stored_payment_transaction</a>(\*\*<a href="src/telnyx/types/payment_create_stored_payment_transaction_params.py">params</a>) -> <a href="./src/telnyx/types/payment_create_stored_payment_transaction_response.py">PaymentCreateStoredPaymentTransactionResponse</a></code>
+
 ## AutoRechargePrefs
 
 Types:
