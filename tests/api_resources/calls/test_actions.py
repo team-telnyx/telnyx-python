@@ -193,8 +193,14 @@ class TestActions:
                 },
                 "transcription_tracks": "both",
             },
+            webhook_retries_policies={"call.hangup": {"retries_ms": [1000, 2000, 5000]}},
             webhook_url="https://www.example.com/server-b/",
             webhook_url_method="POST",
+            webhook_urls={
+                "call.hangup": "https://www.example.com/webhooks/hangup",
+                "call.bridge": "https://www.example.com/webhooks/bridge",
+            },
+            webhook_urls_method="POST",
         )
         assert_matches_type(ActionAnswerResponse, action, path=["response"])
 
@@ -249,6 +255,7 @@ class TestActions:
             call_control_id_to_bridge_with="v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg",
             client_state="aGF2ZSBhIG5pY2UgZGF5ID1d",
             command_id="891510ac-f3e4-11e8-af5b-de00688a4901",
+            hold_after_unbridge=True,
             mute_dtmf="opposite",
             park_after_unbridge="self",
             play_ringtone=True,
@@ -698,6 +705,16 @@ class TestActions:
             call_control_id="call_control_id",
             client_state="aGF2ZSBhIG5pY2UgZGF5ID1d",
             command_id="891510ac-f3e4-11e8-af5b-de00688a4901",
+            custom_headers=[
+                {
+                    "name": "head_1",
+                    "value": "val_1",
+                },
+                {
+                    "name": "head_2",
+                    "value": "val_2",
+                },
+            ],
         )
         assert_matches_type(ActionHangupResponse, action, path=["response"])
 
@@ -2565,8 +2582,14 @@ class TestAsyncActions:
                 },
                 "transcription_tracks": "both",
             },
+            webhook_retries_policies={"call.hangup": {"retries_ms": [1000, 2000, 5000]}},
             webhook_url="https://www.example.com/server-b/",
             webhook_url_method="POST",
+            webhook_urls={
+                "call.hangup": "https://www.example.com/webhooks/hangup",
+                "call.bridge": "https://www.example.com/webhooks/bridge",
+            },
+            webhook_urls_method="POST",
         )
         assert_matches_type(ActionAnswerResponse, action, path=["response"])
 
@@ -2621,6 +2644,7 @@ class TestAsyncActions:
             call_control_id_to_bridge_with="v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg",
             client_state="aGF2ZSBhIG5pY2UgZGF5ID1d",
             command_id="891510ac-f3e4-11e8-af5b-de00688a4901",
+            hold_after_unbridge=True,
             mute_dtmf="opposite",
             park_after_unbridge="self",
             play_ringtone=True,
@@ -3070,6 +3094,16 @@ class TestAsyncActions:
             call_control_id="call_control_id",
             client_state="aGF2ZSBhIG5pY2UgZGF5ID1d",
             command_id="891510ac-f3e4-11e8-af5b-de00688a4901",
+            custom_headers=[
+                {
+                    "name": "head_1",
+                    "value": "val_1",
+                },
+                {
+                    "name": "head_2",
+                    "value": "val_2",
+                },
+            ],
         )
         assert_matches_type(ActionHangupResponse, action, path=["response"])
 
