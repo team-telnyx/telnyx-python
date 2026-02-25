@@ -24,8 +24,8 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
+from ...types.queue import Queue
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.queue_list_response import QueueListResponse
 from ...types.queue_create_response import QueueCreateResponse
 from ...types.queue_update_response import QueueUpdateResponse
 from ...types.queue_retrieve_response import QueueRetrieveResponse
@@ -182,7 +182,7 @@ class QueuesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[QueueListResponse]:
+    ) -> SyncDefaultFlatPagination[Queue]:
         """
         List all queues for the authenticated user.
 
@@ -201,7 +201,7 @@ class QueuesResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/queues",
-            page=SyncDefaultFlatPagination[QueueListResponse],
+            page=SyncDefaultFlatPagination[Queue],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -215,7 +215,7 @@ class QueuesResource(SyncAPIResource):
                     queue_list_params.QueueListParams,
                 ),
             ),
-            model=QueueListResponse,
+            model=Queue,
         )
 
     def delete(
@@ -402,7 +402,7 @@ class AsyncQueuesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[QueueListResponse, AsyncDefaultFlatPagination[QueueListResponse]]:
+    ) -> AsyncPaginator[Queue, AsyncDefaultFlatPagination[Queue]]:
         """
         List all queues for the authenticated user.
 
@@ -421,7 +421,7 @@ class AsyncQueuesResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/queues",
-            page=AsyncDefaultFlatPagination[QueueListResponse],
+            page=AsyncDefaultFlatPagination[Queue],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -435,7 +435,7 @@ class AsyncQueuesResource(AsyncAPIResource):
                     queue_list_params.QueueListParams,
                 ),
             ),
-            model=QueueListResponse,
+            model=Queue,
         )
 
     async def delete(

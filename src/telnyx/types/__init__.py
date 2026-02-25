@@ -8,6 +8,7 @@ from .ip import IP as IP
 from .fax import Fax as Fax
 from .fqdn import Fqdn as Fqdn
 from .room import Room as Room
+from .queue import Queue as Queue
 from .record import Record as Record
 from .shared import (
     APIError as APIError,
@@ -170,7 +171,6 @@ from .oauth_grants_params import OAuthGrantsParams as OAuthGrantsParams
 from .outbound_fqdn_param import OutboundFqdnParam as OutboundFqdnParam
 from .portout_list_params import PortoutListParams as PortoutListParams
 from .queue_create_params import QueueCreateParams as QueueCreateParams
-from .queue_list_response import QueueListResponse as QueueListResponse
 from .queue_update_params import QueueUpdateParams as QueueUpdateParams
 from .replaced_link_click import ReplacedLinkClick as ReplacedLinkClick
 from .verify_profile_data import VerifyProfileData as VerifyProfileData
