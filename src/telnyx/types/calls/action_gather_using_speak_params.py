@@ -10,7 +10,13 @@ from .telnyx_voice_settings_param import TelnyxVoiceSettingsParam
 from .eleven_labs_voice_settings_param import ElevenLabsVoiceSettingsParam
 from ..shared_params.minimax_voice_settings import MinimaxVoiceSettings
 
-__all__ = ["ActionGatherUsingSpeakParams", "VoiceSettings"]
+__all__ = [
+    "ActionGatherUsingSpeakParams",
+    "VoiceSettings",
+    "VoiceSettingsAzureVoiceSettings",
+    "VoiceSettingsRimeVoiceSettings",
+    "VoiceSettingsResembleVoiceSettings",
+]
 
 
 class ActionGatherUsingSpeakParams(TypedDict, total=False):
@@ -30,25 +36,34 @@ class ActionGatherUsingSpeakParams(TypedDict, total=False):
       the `VoiceId` (e.g., `AWS.Polly.Joanna-Neural`). Check the
       [available voices](https://docs.aws.amazon.com/polly/latest/dg/available-voices.html)
       for compatibility.
-    - **Azure:** Use `Azure.<VoiceId>. (e.g. Azure.en-CA-ClaraNeural,
-      Azure.en-CA-LiamNeural, Azure.en-US-BrianMultilingualNeural,
-      Azure.en-US-Ava:DragonHDLatestNeural. For a complete list of voices, go to
-      [Azure Voice Gallery](https://speech.microsoft.com/portal/voicegallery).)
+    - **Azure:** Use `Azure.<VoiceId>` (e.g., `Azure.en-CA-ClaraNeural`,
+      `Azure.en-US-BrianMultilingualNeural`,
+      `Azure.en-US-Ava:DragonHDLatestNeural`). For a complete list of voices, go to
+      [Azure Voice Gallery](https://speech.microsoft.com/portal/voicegallery). Use
+      `voice_settings` to configure custom deployments, regions, or API keys.
     - **ElevenLabs:** Use `ElevenLabs.<ModelId>.<VoiceId>` (e.g.,
       `ElevenLabs.eleven_multilingual_v2.21m00Tcm4TlvDq8ikWAM`). The `ModelId` part
       is optional. To use ElevenLabs, you must provide your ElevenLabs API key as an
       integration identifier secret in
-      `"voice_settings": {"api_key_ref": "<secret_identifier>"}`. Check
+      `"voice_settings": {"api_key_ref": "<secret_identifier>"}`. See
+      [integration secrets documentation](https://developers.telnyx.com/api/secrets-manager/integration-secrets/create-integration-secret)
+      for details. Check
       [available voices](https://elevenlabs.io/docs/api-reference/get-voices).
-    - **Telnyx:** Use `Telnyx.<model_id>.<voice_id>`
+    - **Telnyx:** Use `Telnyx.<model_id>.<voice_id>` (e.g., `Telnyx.KokoroTTS.af`).
+      Use `voice_settings` to configure voice_speed and other synthesis parameters.
     - **Minimax:** Use `Minimax.<ModelId>.<VoiceId>` (e.g.,
       `Minimax.speech-02-hd.Wise_Woman`). Supported models: `speech-02-turbo`,
-      `speech-02-hd`, `speech-2.6-turbo`, `speech-2.8-turbo`. Optional parameters:
-      `speed` (float, default 1.0), `vol` (float, default 1.0), `pitch` (integer,
-      default 0).
-    - **Resemble:** Use `Resemble.<ModelId>.<VoiceId>` (e.g.,
-      `Resemble.Pro.my_voice`). Supported models: `Pro` (multilingual) and `Turbo`
-      (English only).
+      `speech-02-hd`, `speech-2.6-turbo`, `speech-2.8-turbo`. Use `voice_settings`
+      to configure speed, volume, pitch, and language_boost.
+    - **Rime:** Use `Rime.<model_id>.<voice_id>` (e.g., `Rime.Arcana.cove`).
+      Supported model_ids: `Arcana`, `Mist`. Use `voice_settings` to configure
+      voice_speed.
+    - **Resemble:** Use `Resemble.Turbo.<voice_id>` (e.g.,
+      `Resemble.Turbo.my_voice`). Only `Turbo` model is supported. Use
+      `voice_settings` to configure precision, sample_rate, and format.
+
+    For service_level basic, you may define the gender of the speaker (male or
+    female).
     """
 
     client_state: str
@@ -158,6 +173,60 @@ class ActionGatherUsingSpeakParams(TypedDict, total=False):
     """The settings associated with the voice selected"""
 
 
+class VoiceSettingsAzureVoiceSettings(TypedDict, total=False):
+    type: Required[Literal["azure"]]
+    """Voice settings provider type"""
+
+    api_key_ref: str
+    """
+    The `identifier` for an integration secret that refers to your Azure Speech API
+    key.
+    """
+
+    deployment_id: str
+    """The deployment ID for a custom Azure neural voice."""
+
+    effect: Literal["eq_car", "eq_telecomhp8k"]
+    """Audio effect to apply."""
+
+    gender: Literal["Male", "Female"]
+    """Voice gender filter."""
+
+    region: str
+    """The Azure region for the Speech service (e.g., `eastus`, `westeurope`).
+
+    Required when using a custom API key.
+    """
+
+
+class VoiceSettingsRimeVoiceSettings(TypedDict, total=False):
+    type: Required[Literal["rime"]]
+    """Voice settings provider type"""
+
+    voice_speed: float
+    """Speech speed multiplier. Default is 1.0."""
+
+
+class VoiceSettingsResembleVoiceSettings(TypedDict, total=False):
+    type: Required[Literal["resemble"]]
+    """Voice settings provider type"""
+
+    format: Literal["wav", "mp3"]
+    """Output audio format."""
+
+    precision: Literal["PCM_16", "PCM_24", "PCM_32", "MULAW"]
+    """Audio precision format."""
+
+    sample_rate: Literal["8000", "16000", "22050", "32000", "44100", "48000"]
+    """Audio sample rate in Hz."""
+
+
 VoiceSettings: TypeAlias = Union[
-    ElevenLabsVoiceSettingsParam, TelnyxVoiceSettingsParam, AwsVoiceSettingsParam, MinimaxVoiceSettings
+    ElevenLabsVoiceSettingsParam,
+    TelnyxVoiceSettingsParam,
+    AwsVoiceSettingsParam,
+    MinimaxVoiceSettings,
+    VoiceSettingsAzureVoiceSettings,
+    VoiceSettingsRimeVoiceSettings,
+    VoiceSettingsResembleVoiceSettings,
 ]
