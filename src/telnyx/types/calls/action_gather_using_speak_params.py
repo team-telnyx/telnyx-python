@@ -8,15 +8,12 @@ from typing_extensions import Literal, Required, TypeAlias, TypedDict
 from .aws_voice_settings_param import AwsVoiceSettingsParam
 from .telnyx_voice_settings_param import TelnyxVoiceSettingsParam
 from .eleven_labs_voice_settings_param import ElevenLabsVoiceSettingsParam
+from ..shared_params.rime_voice_settings import RimeVoiceSettings
+from ..shared_params.azure_voice_settings import AzureVoiceSettings
 from ..shared_params.minimax_voice_settings import MinimaxVoiceSettings
+from ..shared_params.resemble_voice_settings import ResembleVoiceSettings
 
-__all__ = [
-    "ActionGatherUsingSpeakParams",
-    "VoiceSettings",
-    "VoiceSettingsAzureVoiceSettings",
-    "VoiceSettingsRimeVoiceSettings",
-    "VoiceSettingsResembleVoiceSettings",
-]
+__all__ = ["ActionGatherUsingSpeakParams", "VoiceSettings"]
 
 
 class ActionGatherUsingSpeakParams(TypedDict, total=False):
@@ -173,60 +170,12 @@ class ActionGatherUsingSpeakParams(TypedDict, total=False):
     """The settings associated with the voice selected"""
 
 
-class VoiceSettingsAzureVoiceSettings(TypedDict, total=False):
-    type: Required[Literal["azure"]]
-    """Voice settings provider type"""
-
-    api_key_ref: str
-    """
-    The `identifier` for an integration secret that refers to your Azure Speech API
-    key.
-    """
-
-    deployment_id: str
-    """The deployment ID for a custom Azure neural voice."""
-
-    effect: Literal["eq_car", "eq_telecomhp8k"]
-    """Audio effect to apply."""
-
-    gender: Literal["Male", "Female"]
-    """Voice gender filter."""
-
-    region: str
-    """The Azure region for the Speech service (e.g., `eastus`, `westeurope`).
-
-    Required when using a custom API key.
-    """
-
-
-class VoiceSettingsRimeVoiceSettings(TypedDict, total=False):
-    type: Required[Literal["rime"]]
-    """Voice settings provider type"""
-
-    voice_speed: float
-    """Speech speed multiplier. Default is 1.0."""
-
-
-class VoiceSettingsResembleVoiceSettings(TypedDict, total=False):
-    type: Required[Literal["resemble"]]
-    """Voice settings provider type"""
-
-    format: Literal["wav", "mp3"]
-    """Output audio format."""
-
-    precision: Literal["PCM_16", "PCM_24", "PCM_32", "MULAW"]
-    """Audio precision format."""
-
-    sample_rate: Literal["8000", "16000", "22050", "32000", "44100", "48000"]
-    """Audio sample rate in Hz."""
-
-
 VoiceSettings: TypeAlias = Union[
     ElevenLabsVoiceSettingsParam,
     TelnyxVoiceSettingsParam,
     AwsVoiceSettingsParam,
     MinimaxVoiceSettings,
-    VoiceSettingsAzureVoiceSettings,
-    VoiceSettingsRimeVoiceSettings,
-    VoiceSettingsResembleVoiceSettings,
+    AzureVoiceSettings,
+    RimeVoiceSettings,
+    ResembleVoiceSettings,
 ]
