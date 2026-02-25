@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Iterable
+from typing import Dict, Iterable
 from typing_extensions import Literal, TypedDict
 
 from ..stream_codec import StreamCodec
@@ -14,7 +14,7 @@ from ..stream_bidirectional_codec import StreamBidirectionalCodec
 from ..stream_bidirectional_target_legs import StreamBidirectionalTargetLegs
 from .transcription_start_request_param import TranscriptionStartRequestParam
 
-__all__ = ["ActionAnswerParams"]
+__all__ = ["ActionAnswerParams", "WebhookRetriesPolicies"]
 
 
 class ActionAnswerParams(TypedDict, total=False):
@@ -138,6 +138,14 @@ class ActionAnswerParams(TypedDict, total=False):
 
     transcription_config: TranscriptionStartRequestParam
 
+    webhook_retries_policies: Dict[str, WebhookRetriesPolicies]
+    """A map of event types to retry policies.
+
+    Each retry policy contains an array of `retries_ms` specifying the delays
+    between retry attempts in milliseconds. Maximum 5 retries, total delay cannot
+    exceed 60 seconds.
+    """
+
     webhook_url: str
     """
     Use this field to override the URL for which Telnyx will send subsequent
@@ -146,3 +154,22 @@ class ActionAnswerParams(TypedDict, total=False):
 
     webhook_url_method: Literal["POST", "GET"]
     """HTTP request type used for `webhook_url`."""
+
+    webhook_urls: Dict[str, str]
+    """A map of event types to webhook URLs.
+
+    When an event of the specified type occurs, the webhook URL associated with that
+    event type will be called instead of `webhook_url`. Events not mapped here will
+    use the default `webhook_url`.
+    """
+
+    webhook_urls_method: Literal["POST", "GET"]
+    """HTTP request method to invoke `webhook_urls`."""
+
+
+class WebhookRetriesPolicies(TypedDict, total=False):
+    retries_ms: Iterable[int]
+    """Array of delays in milliseconds between retry attempts.
+
+    Total sum cannot exceed 60000ms.
+    """

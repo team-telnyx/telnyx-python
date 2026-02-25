@@ -29,6 +29,13 @@ class ActionBridgeParams(TypedDict, total=False):
     `call_control_id`.
     """
 
+    hold_after_unbridge: bool
+    """Specifies behavior after the bridge ends.
+
+    If set to `true`, the current leg will be put on hold after unbridge instead of
+    being hung up.
+    """
+
     mute_dtmf: Literal["none", "both", "self", "opposite"]
     """When enabled, DTMF tones are not passed to the call participant.
 
