@@ -13,7 +13,14 @@ from .telnyx_voice_settings_param import TelnyxVoiceSettingsParam
 from .google_transcription_language import GoogleTranscriptionLanguage
 from .eleven_labs_voice_settings_param import ElevenLabsVoiceSettingsParam
 
-__all__ = ["ActionGatherUsingAIParams", "MessageHistory", "VoiceSettings"]
+__all__ = [
+    "ActionGatherUsingAIParams",
+    "MessageHistory",
+    "VoiceSettings",
+    "VoiceSettingsAzureVoiceSettings",
+    "VoiceSettingsRimeVoiceSettings",
+    "VoiceSettingsResembleVoiceSettings",
+]
 
 
 class ActionGatherUsingAIParams(TypedDict, total=False):
@@ -135,4 +142,59 @@ class MessageHistory(TypedDict, total=False):
     """The role of the message sender"""
 
 
-VoiceSettings: TypeAlias = Union[ElevenLabsVoiceSettingsParam, TelnyxVoiceSettingsParam, AwsVoiceSettingsParam]
+class VoiceSettingsAzureVoiceSettings(TypedDict, total=False):
+    type: Required[Literal["azure"]]
+    """Voice settings provider type"""
+
+    api_key_ref: str
+    """
+    The `identifier` for an integration secret that refers to your Azure Speech API
+    key.
+    """
+
+    deployment_id: str
+    """The deployment ID for a custom Azure neural voice."""
+
+    effect: Literal["eq_car", "eq_telecomhp8k"]
+    """Audio effect to apply."""
+
+    gender: Literal["Male", "Female"]
+    """Voice gender filter."""
+
+    region: str
+    """The Azure region for the Speech service (e.g., `eastus`, `westeurope`).
+
+    Required when using a custom API key.
+    """
+
+
+class VoiceSettingsRimeVoiceSettings(TypedDict, total=False):
+    type: Required[Literal["rime"]]
+    """Voice settings provider type"""
+
+    voice_speed: float
+    """Speech speed multiplier. Default is 1.0."""
+
+
+class VoiceSettingsResembleVoiceSettings(TypedDict, total=False):
+    type: Required[Literal["resemble"]]
+    """Voice settings provider type"""
+
+    format: Literal["wav", "mp3"]
+    """Output audio format."""
+
+    precision: Literal["PCM_16", "PCM_24", "PCM_32", "MULAW"]
+    """Audio precision format."""
+
+    sample_rate: Literal["8000", "16000", "22050", "32000", "44100", "48000"]
+    """Audio sample rate in Hz."""
+
+
+VoiceSettings: TypeAlias = Union[
+    ElevenLabsVoiceSettingsParam,
+    TelnyxVoiceSettingsParam,
+    AwsVoiceSettingsParam,
+    VoiceSettingsAzureVoiceSettings,
+    VoiceSettingsRimeVoiceSettings,
+    VoiceSettingsResembleVoiceSettings,
+]
