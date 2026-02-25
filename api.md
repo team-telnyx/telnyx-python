@@ -4,6 +4,7 @@
 from telnyx.types import (
     APIError,
     AvailablePhoneNumbersMetadata,
+    AzureVoiceSettings,
     ConnectionJitterBuffer,
     ConnectionNoiseSuppressionDetails,
     ConnectionsPaginationMeta,
@@ -19,6 +20,8 @@ from telnyx.types import (
     PhoneNumberWithMessagingSettings,
     PortingOrderStatus,
     PortingOrdersExceptionType,
+    ResembleVoiceSettings,
+    RimeVoiceSettings,
     RoomParticipant,
     ShortCode,
     SimCardStatus,
