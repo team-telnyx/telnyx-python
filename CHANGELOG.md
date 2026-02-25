@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.47.0 (2026-02-25)
+
+Full Changelog: [v4.46.0...v4.47.0](https://github.com/team-telnyx/telnyx-python/compare/v4.46.0...v4.47.0)
+
+### Features
+
+* TELAPPS Add prevent_double_bridge to bridge command ([aa679f1](https://github.com/team-telnyx/telnyx-python/commit/aa679f1d214041985bd2bb3ed6c12032ef8eb688))
+
 ## 4.46.0 (2026-02-25)
 
 Full Changelog: [v4.45.0...v4.46.0](https://github.com/team-telnyx/telnyx-python/compare/v4.45.0...v4.46.0)
