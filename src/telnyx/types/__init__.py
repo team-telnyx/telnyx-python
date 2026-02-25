@@ -1293,6 +1293,9 @@ from .call_recording_transcription_saved_webhook_event import (
 from .conference_participant_speak_ended_webhook_event import (
     ConferenceParticipantSpeakEndedWebhookEvent as ConferenceParticipantSpeakEndedWebhookEvent,
 )
+from .payment_create_stored_payment_transaction_params import (
+    PaymentCreateStoredPaymentTransactionParams as PaymentCreateStoredPaymentTransactionParams,
+)
 from .sim_card_data_usage_notification_create_response import (
     SimCardDataUsageNotificationCreateResponse as SimCardDataUsageNotificationCreateResponse,
 )
@@ -1322,6 +1325,9 @@ from .conference_participant_speak_started_webhook_event import (
 )
 from .managed_account_update_global_channel_limit_params import (
     ManagedAccountUpdateGlobalChannelLimitParams as ManagedAccountUpdateGlobalChannelLimitParams,
+)
+from .payment_create_stored_payment_transaction_response import (
+    PaymentCreateStoredPaymentTransactionResponse as PaymentCreateStoredPaymentTransactionResponse,
 )
 from .sim_card_data_usage_notification_retrieve_response import (
     SimCardDataUsageNotificationRetrieveResponse as SimCardDataUsageNotificationRetrieveResponse,
