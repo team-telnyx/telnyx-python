@@ -1,5 +1,19 @@
 # Changelog
 
+## 4.48.0 (2026-02-25)
+
+Full Changelog: [v4.47.0...v4.48.0](https://github.com/team-telnyx/telnyx-python/compare/v4.47.0...v4.48.0)
+
+### Features
+
+* PORTAL-5923: Add stored_payment_transactions endpoint to OpenAPI docs ([b1f9469](https://github.com/team-telnyx/telnyx-python/commit/b1f94692a45fca532a50bc6711d13c3fa88e21fd))
+
+
+### Documentation
+
+* **call-control:** Add missing params to hangup, bridge, answer ([5a9edc7](https://github.com/team-telnyx/telnyx-python/commit/5a9edc7061f2792a1a0cc28bd3cb6b7a5f0f78cf))
+* **call-control:** Add queue CRUD endpoints ([6495063](https://github.com/team-telnyx/telnyx-python/commit/649506339ff4257fa584f869537d2fd7febd7cad))
+
 ## 4.47.0 (2026-02-25)
 
 Full Changelog: [v4.46.0...v4.47.0](https://github.com/team-telnyx/telnyx-python/compare/v4.46.0...v4.47.0)
