@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.50.0 (2026-02-26)
+
+Full Changelog: [v4.49.0...v4.50.0](https://github.com/team-telnyx/telnyx-python/compare/v4.49.0...v4.50.0)
+
+### Features
+
+* Add text-to-speech WebSocket streaming OpenAPI spec ([7c4e709](https://github.com/team-telnyx/telnyx-python/commit/7c4e7096921ae6e07ede51b783711bbdcd9c088a))
+
 ## 4.49.0 (2026-02-25)
 
 Full Changelog: [v4.48.0...v4.49.0](https://github.com/team-telnyx/telnyx-python/compare/v4.48.0...v4.49.0)
