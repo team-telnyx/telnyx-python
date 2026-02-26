@@ -4,10 +4,10 @@ from typing_extensions import Literal
 
 from .._models import BaseModel
 
-__all__ = ["QueueListResponse"]
+__all__ = ["Queue"]
 
 
-class QueueListResponse(BaseModel):
+class Queue(BaseModel):
     id: str
     """Uniquely identifies the queue"""
 
