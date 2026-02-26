@@ -765,7 +765,6 @@ class ActionsResource(SyncAPIResource):
         id: str,
         *,
         format: Literal["wav", "mp3"],
-        channels: Literal["single", "dual"] | Omit = omit,
         command_id: str | Omit = omit,
         custom_file_name: str | Omit = omit,
         play_beep: bool | Omit = omit,
@@ -790,9 +789,6 @@ class ActionsResource(SyncAPIResource):
         Args:
           format: The audio file format used when storing the conference recording. Can be either
               `mp3` or `wav`.
-
-          channels: When `dual`, final audio file will be stereo recorded with the conference
-              creator on the first channel, and the rest on the second channel.
 
           command_id: Use this field to avoid duplicate commands. Telnyx will ignore any command with
               the same `command_id` for the same `conference_id`.
@@ -823,7 +819,6 @@ class ActionsResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "format": format,
-                    "channels": channels,
                     "command_id": command_id,
                     "custom_file_name": custom_file_name,
                     "play_beep": play_beep,
@@ -1956,7 +1951,6 @@ class AsyncActionsResource(AsyncAPIResource):
         id: str,
         *,
         format: Literal["wav", "mp3"],
-        channels: Literal["single", "dual"] | Omit = omit,
         command_id: str | Omit = omit,
         custom_file_name: str | Omit = omit,
         play_beep: bool | Omit = omit,
@@ -1981,9 +1975,6 @@ class AsyncActionsResource(AsyncAPIResource):
         Args:
           format: The audio file format used when storing the conference recording. Can be either
               `mp3` or `wav`.
-
-          channels: When `dual`, final audio file will be stereo recorded with the conference
-              creator on the first channel, and the rest on the second channel.
 
           command_id: Use this field to avoid duplicate commands. Telnyx will ignore any command with
               the same `command_id` for the same `conference_id`.
@@ -2014,7 +2005,6 @@ class AsyncActionsResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "format": format,
-                    "channels": channels,
                     "command_id": command_id,
                     "custom_file_name": custom_file_name,
                     "play_beep": play_beep,
