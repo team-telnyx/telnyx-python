@@ -6,10 +6,10 @@ from typing_extensions import Literal
 from ..._models import BaseModel
 from .user_group_reference import UserGroupReference
 
-__all__ = ["UserListResponse"]
+__all__ = ["OrganizationUser"]
 
 
-class UserListResponse(BaseModel):
+class OrganizationUser(BaseModel):
     id: Optional[str] = None
     """Identifies the specific resource."""
 

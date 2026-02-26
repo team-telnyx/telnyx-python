@@ -8,7 +8,9 @@ from telnyx.types import (
     ConnectionJitterBuffer,
     ConnectionNoiseSuppressionDetails,
     ConnectionsPaginationMeta,
+    CostInformation,
     DocReqsRequirementType,
+    Feature,
     HostedNumber,
     InboundMessagePayload,
     MessagingFeatureSet,
@@ -16,10 +18,13 @@ from telnyx.types import (
     MessagingPaginationMeta,
     Metadata,
     MinimaxVoiceSettings,
+    NetappsLocation,
     NumberHealthMetrics,
     PhoneNumberWithMessagingSettings,
+    PhoneNumbersJobPhoneNumber,
     PortingOrderStatus,
     PortingOrdersExceptionType,
+    RegionInformation,
     ResembleVoiceSettings,
     RimeVoiceSettings,
     RoomParticipant,
@@ -454,6 +459,12 @@ Methods:
 
 # Actions
 
+Types:
+
+```python
+from telnyx.types import WirelessError
+```
+
 ## Purchase
 
 Types:
@@ -642,7 +653,7 @@ Methods:
 Types:
 
 ```python
-from telnyx.types.ai.assistants.tests import TestRunResponse, TestStatus
+from telnyx.types.ai.assistants.tests import TestRunDetailResult, TestRunResponse, TestStatus
 ```
 
 Methods:
@@ -907,7 +918,11 @@ Methods:
 Types:
 
 ```python
-from telnyx.types.ai.integrations import ConnectionRetrieveResponse, ConnectionListResponse
+from telnyx.types.ai.integrations import (
+    IntegrationConnection,
+    ConnectionRetrieveResponse,
+    ConnectionListResponse,
+)
 ```
 
 Methods:
@@ -946,7 +961,6 @@ from telnyx.types.ai import (
     MissionData,
     MissionCreateResponse,
     MissionRetrieveResponse,
-    MissionListEventsResponse,
     MissionUpdateMissionResponse,
 )
 ```
@@ -958,7 +972,7 @@ Methods:
 - <code title="get /ai/missions">client.ai.missions.<a href="./src/telnyx/resources/ai/missions/missions.py">list</a>(\*\*<a href="src/telnyx/types/ai/mission_list_params.py">params</a>) -> <a href="./src/telnyx/types/ai/mission_data.py">SyncDefaultFlatPagination[MissionData]</a></code>
 - <code title="post /ai/missions/{mission_id}/clone">client.ai.missions.<a href="./src/telnyx/resources/ai/missions/missions.py">clone_mission</a>(mission_id) -> object</code>
 - <code title="delete /ai/missions/{mission_id}">client.ai.missions.<a href="./src/telnyx/resources/ai/missions/missions.py">delete_mission</a>(mission_id) -> None</code>
-- <code title="get /ai/missions/events">client.ai.missions.<a href="./src/telnyx/resources/ai/missions/missions.py">list_events</a>(\*\*<a href="src/telnyx/types/ai/mission_list_events_params.py">params</a>) -> <a href="./src/telnyx/types/ai/mission_list_events_response.py">SyncDefaultFlatPagination[MissionListEventsResponse]</a></code>
+- <code title="get /ai/missions/events">client.ai.missions.<a href="./src/telnyx/resources/ai/missions/missions.py">list_events</a>(\*\*<a href="src/telnyx/types/ai/mission_list_events_params.py">params</a>) -> <a href="./src/telnyx/types/ai/missions/runs/event_data.py">SyncDefaultFlatPagination[EventData]</a></code>
 - <code title="put /ai/missions/{mission_id}">client.ai.missions.<a href="./src/telnyx/resources/ai/missions/missions.py">update_mission</a>(mission_id, \*\*<a href="src/telnyx/types/ai/mission_update_mission_params.py">params</a>) -> <a href="./src/telnyx/types/ai/mission_update_mission_response.py">MissionUpdateMissionResponse</a></code>
 
 ### Runs
@@ -993,16 +1007,12 @@ Methods:
 Types:
 
 ```python
-from telnyx.types.ai.missions.runs import (
-    EventListResponse,
-    EventGetEventDetailsResponse,
-    EventLogResponse,
-)
+from telnyx.types.ai.missions.runs import EventData, EventGetEventDetailsResponse, EventLogResponse
 ```
 
 Methods:
 
-- <code title="get /ai/missions/{mission_id}/runs/{run_id}/events">client.ai.missions.runs.events.<a href="./src/telnyx/resources/ai/missions/runs/events.py">list</a>(run_id, \*, mission_id, \*\*<a href="src/telnyx/types/ai/missions/runs/event_list_params.py">params</a>) -> <a href="./src/telnyx/types/ai/missions/runs/event_list_response.py">SyncDefaultFlatPagination[EventListResponse]</a></code>
+- <code title="get /ai/missions/{mission_id}/runs/{run_id}/events">client.ai.missions.runs.events.<a href="./src/telnyx/resources/ai/missions/runs/events.py">list</a>(run_id, \*, mission_id, \*\*<a href="src/telnyx/types/ai/missions/runs/event_list_params.py">params</a>) -> <a href="./src/telnyx/types/ai/missions/runs/event_data.py">SyncDefaultFlatPagination[EventData]</a></code>
 - <code title="get /ai/missions/{mission_id}/runs/{run_id}/events/{event_id}">client.ai.missions.runs.events.<a href="./src/telnyx/resources/ai/missions/runs/events.py">get_event_details</a>(event_id, \*, mission_id, run_id) -> <a href="./src/telnyx/types/ai/missions/runs/event_get_event_details_response.py">EventGetEventDetailsResponse</a></code>
 - <code title="post /ai/missions/{mission_id}/runs/{run_id}/events">client.ai.missions.runs.events.<a href="./src/telnyx/resources/ai/missions/runs/events.py">log</a>(run_id, \*, mission_id, \*\*<a href="src/telnyx/types/ai/missions/runs/event_log_params.py">params</a>) -> <a href="./src/telnyx/types/ai/missions/runs/event_log_response.py">EventLogResponse</a></code>
 
@@ -1034,7 +1044,11 @@ Methods:
 Types:
 
 ```python
-from telnyx.types.ai.missions.runs import TelnyxAgentListResponse, TelnyxAgentLinkResponse
+from telnyx.types.ai.missions.runs import (
+    TelnyxAgentData,
+    TelnyxAgentListResponse,
+    TelnyxAgentLinkResponse,
+)
 ```
 
 Methods:
@@ -1190,7 +1204,11 @@ Methods:
 Types:
 
 ```python
-from telnyx.types import BulkSimCardActionRetrieveResponse, BulkSimCardActionListResponse
+from telnyx.types import (
+    SimCardActionsSummary,
+    BulkSimCardActionRetrieveResponse,
+    BulkSimCardActionListResponse,
+)
 ```
 
 Methods:
@@ -1311,6 +1329,7 @@ Types:
 from telnyx.types.calls import (
     AwsVoiceSettings,
     CallControlCommandResult,
+    CallControlCommandResultWithConversationID,
     DeepgramNova2Config,
     DeepgramNova3Config,
     ElevenLabsVoiceSettings,
@@ -1472,6 +1491,7 @@ Types:
 ```python
 from telnyx.types import (
     Conference,
+    ConferenceParticipant,
     ConferenceCreateResponse,
     ConferenceRetrieveResponse,
     ConferenceListParticipantsResponse,
@@ -1560,7 +1580,11 @@ Methods:
 Types:
 
 ```python
-from telnyx.types import CountryCoverageRetrieveResponse, CountryCoverageRetrieveCountryResponse
+from telnyx.types import (
+    CountryCoverage,
+    CountryCoverageRetrieveResponse,
+    CountryCoverageRetrieveCountryResponse,
+)
 ```
 
 Methods:
@@ -1809,7 +1833,12 @@ Methods:
 Types:
 
 ```python
-from telnyx.types.external_connections import CivicAddressRetrieveResponse, CivicAddressListResponse
+from telnyx.types.external_connections import (
+    CivicAddress,
+    Location,
+    CivicAddressRetrieveResponse,
+    CivicAddressListResponse,
+)
 ```
 
 Methods:
@@ -1840,7 +1869,11 @@ Methods:
 Types:
 
 ```python
-from telnyx.types.external_connections import ReleaseRetrieveResponse, ReleaseListResponse
+from telnyx.types.external_connections import (
+    TnReleaseEntry,
+    ReleaseRetrieveResponse,
+    ReleaseListResponse,
+)
 ```
 
 Methods:
@@ -2320,7 +2353,13 @@ from telnyx.types import (
     RcsCardContent,
     RcsContentInfo,
     RcsSuggestion,
+    RcsToItem,
+    WhatsappContact,
+    WhatsappInteractive,
+    WhatsappLocation,
     WhatsappMedia,
+    WhatsappMessageContent,
+    WhatsappReaction,
     MessageRetrieveResponse,
     MessageCancelScheduledResponse,
     MessageRetrieveGroupMessagesResponse,
@@ -2453,6 +2492,7 @@ Types:
 
 ```python
 from telnyx.types import (
+    BulkMessagingSettingsUpdatePhoneNumbers,
     MessagingNumbersBulkUpdateCreateResponse,
     MessagingNumbersBulkUpdateRetrieveResponse,
 )
@@ -2940,7 +2980,11 @@ Methods:
 Types:
 
 ```python
-from telnyx.types.payment import AutoRechargePrefUpdateResponse, AutoRechargePrefListResponse
+from telnyx.types.payment import (
+    AutoRechargePref,
+    AutoRechargePrefUpdateResponse,
+    AutoRechargePrefListResponse,
+)
 ```
 
 Methods:
@@ -3147,7 +3191,16 @@ Methods:
 Types:
 
 ```python
-from telnyx.types.porting import EventRetrieveResponse, EventListResponse
+from telnyx.types.porting import (
+    PortingEventDeletedPayload,
+    PortingEventMessagingChangedPayload,
+    PortingEventNewCommentEvent,
+    PortingEventSplitEvent,
+    PortingEventStatusChangedEvent,
+    PortingEventWithoutWebhook,
+    EventRetrieveResponse,
+    EventListResponse,
+)
 ```
 
 Methods:
@@ -3441,7 +3494,13 @@ Methods:
 Types:
 
 ```python
-from telnyx.types.portouts import EventRetrieveResponse, EventListResponse
+from telnyx.types.portouts import (
+    WebhookPortoutFocDateChanged,
+    WebhookPortoutNewComment,
+    WebhookPortoutStatusChanged,
+    EventRetrieveResponse,
+    EventListResponse,
+)
 ```
 
 Methods:
@@ -3474,7 +3533,7 @@ Methods:
 Types:
 
 ```python
-from telnyx.types.portouts import CommentCreateResponse, CommentListResponse
+from telnyx.types.portouts import PortoutComment, CommentCreateResponse, CommentListResponse
 ```
 
 Methods:
@@ -3487,7 +3546,11 @@ Methods:
 Types:
 
 ```python
-from telnyx.types.portouts import SupportingDocumentCreateResponse, SupportingDocumentListResponse
+from telnyx.types.portouts import (
+    PortOutSupportingDocument,
+    SupportingDocumentCreateResponse,
+    SupportingDocumentListResponse,
+)
 ```
 
 Methods:
@@ -3694,7 +3757,7 @@ Methods:
 Types:
 
 ```python
-from telnyx.types import RequirementGroup, RequirementGroupListResponse
+from telnyx.types import RequirementGroup, UserRequirement, RequirementGroupListResponse
 ```
 
 Methods:
@@ -4199,6 +4262,7 @@ Types:
 
 ```python
 from telnyx.types import (
+    SubNumberOrdersReport,
     SubNumberOrdersReportCreateResponse,
     SubNumberOrdersReportRetrieveResponse,
     SubNumberOrdersReportDownloadResponse,
@@ -4636,7 +4700,7 @@ Methods:
 Types:
 
 ```python
-from telnyx.types import WebhookDeliveryRetrieveResponse, WebhookDeliveryListResponse
+from telnyx.types import Attempt, HTTP, WebhookDeliveryRetrieveResponse, WebhookDeliveryListResponse
 ```
 
 Methods:
@@ -4863,6 +4927,7 @@ Types:
 from telnyx.types.messaging_10dlc import (
     AltBusinessIDType,
     BrandIdentityStatus,
+    BrandOptionalAttributes,
     EntityType,
     StockExchange,
     TelnyxBrand,
@@ -5023,6 +5088,7 @@ Types:
 
 ```python
 from telnyx.types.messaging_10dlc import (
+    ProfileAssignmentPhoneNumbers,
     TaskStatus,
     PhoneNumberAssignmentByProfileAssignResponse,
     PhoneNumberAssignmentByProfileListPhoneNumberStatusResponse,
@@ -5052,9 +5118,9 @@ Types:
 
 ```python
 from telnyx.types.organizations import (
+    OrganizationUser,
     UserGroupReference,
     UserRetrieveResponse,
-    UserListResponse,
     UserGetGroupsReportResponse,
 )
 ```
@@ -5062,7 +5128,7 @@ from telnyx.types.organizations import (
 Methods:
 
 - <code title="get /organizations/users/{id}">client.organizations.users.<a href="./src/telnyx/resources/organizations/users/users.py">retrieve</a>(id, \*\*<a href="src/telnyx/types/organizations/user_retrieve_params.py">params</a>) -> <a href="./src/telnyx/types/organizations/user_retrieve_response.py">UserRetrieveResponse</a></code>
-- <code title="get /organizations/users">client.organizations.users.<a href="./src/telnyx/resources/organizations/users/users.py">list</a>(\*\*<a href="src/telnyx/types/organizations/user_list_params.py">params</a>) -> <a href="./src/telnyx/types/organizations/user_list_response.py">SyncDefaultFlatPagination[UserListResponse]</a></code>
+- <code title="get /organizations/users">client.organizations.users.<a href="./src/telnyx/resources/organizations/users/users.py">list</a>(\*\*<a href="src/telnyx/types/organizations/user_list_params.py">params</a>) -> <a href="./src/telnyx/types/organizations/organization_user.py">SyncDefaultFlatPagination[OrganizationUser]</a></code>
 - <code title="get /organizations/users/users_groups_report">client.organizations.users.<a href="./src/telnyx/resources/organizations/users/users.py">get_groups_report</a>() -> <a href="./src/telnyx/types/organizations/user_get_groups_report_response.py">UserGetGroupsReportResponse</a></code>
 
 ### Actions

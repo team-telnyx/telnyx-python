@@ -4,16 +4,9 @@ from typing import List, Optional
 from typing_extensions import Literal
 
 from ..._models import BaseModel
+from .tn_release_entry import TnReleaseEntry
 
-__all__ = ["ReleaseListResponse", "TelephoneNumber"]
-
-
-class TelephoneNumber(BaseModel):
-    number_id: Optional[str] = None
-    """Phone number ID from the Telnyx API."""
-
-    phone_number: Optional[str] = None
-    """Phone number in E164 format."""
+__all__ = ["ReleaseListResponse"]
 
 
 class ReleaseListResponse(BaseModel):
@@ -28,7 +21,7 @@ class ReleaseListResponse(BaseModel):
     ] = None
     """Represents the status of the release on Microsoft Teams."""
 
-    telephone_numbers: Optional[List[TelephoneNumber]] = None
+    telephone_numbers: Optional[List[TnReleaseEntry]] = None
 
     tenant_id: Optional[str] = None
 

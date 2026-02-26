@@ -4,40 +4,18 @@ from typing import List, Optional
 from typing_extensions import Literal
 
 from .._models import BaseModel
+from .shared.feature import Feature
+from .shared.cost_information import CostInformation
+from .shared.region_information import RegionInformation
 from .shared.available_phone_numbers_metadata import AvailablePhoneNumbersMetadata
 
-__all__ = [
-    "AvailablePhoneNumberBlockListResponse",
-    "Data",
-    "DataCostInformation",
-    "DataFeature",
-    "DataRegionInformation",
-]
-
-
-class DataCostInformation(BaseModel):
-    currency: Optional[str] = None
-    """The ISO 4217 code for the currency."""
-
-    monthly_cost: Optional[str] = None
-
-    upfront_cost: Optional[str] = None
-
-
-class DataFeature(BaseModel):
-    name: Optional[str] = None
-
-
-class DataRegionInformation(BaseModel):
-    region_name: Optional[str] = None
-
-    region_type: Optional[Literal["country_code", "rate_center", "state", "location"]] = None
+__all__ = ["AvailablePhoneNumberBlockListResponse", "Data"]
 
 
 class Data(BaseModel):
-    cost_information: Optional[DataCostInformation] = None
+    cost_information: Optional[CostInformation] = None
 
-    features: Optional[List[DataFeature]] = None
+    features: Optional[List[Feature]] = None
 
     phone_number: Optional[str] = None
 
@@ -45,7 +23,7 @@ class Data(BaseModel):
 
     record_type: Optional[Literal["available_phone_number_block"]] = None
 
-    region_information: Optional[List[DataRegionInformation]] = None
+    region_information: Optional[List[RegionInformation]] = None
 
 
 class AvailablePhoneNumberBlockListResponse(BaseModel):

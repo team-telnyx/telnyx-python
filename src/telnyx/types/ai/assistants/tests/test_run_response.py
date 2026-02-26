@@ -5,23 +5,9 @@ from datetime import datetime
 
 from ....._models import BaseModel
 from .test_status import TestStatus
+from .test_run_detail_result import TestRunDetailResult
 
-__all__ = ["TestRunResponse", "DetailStatus"]
-
-
-class DetailStatus(BaseModel):
-    name: str
-
-    status: TestStatus
-    """Represents the lifecycle of a test:
-
-    - 'pending': Test is waiting to be executed.
-    - 'starting': Test execution is initializing.
-    - 'running': Test is currently executing.
-    - 'passed': Test completed successfully.
-    - 'failed': Test executed but did not pass.
-    - 'error': An error occurred during test execution.
-    """
+__all__ = ["TestRunResponse"]
 
 
 class TestRunResponse(BaseModel):
@@ -63,7 +49,7 @@ class TestRunResponse(BaseModel):
     conversation_insights_id: Optional[str] = None
     """Identifier for conversation analysis and insights data."""
 
-    detail_status: Optional[List[DetailStatus]] = None
+    detail_status: Optional[List[TestRunDetailResult]] = None
     """Detailed evaluation results for each rubric criteria.
 
     Name is name of the criteria from the rubric and status is the result of the

@@ -4,14 +4,9 @@ from typing import Dict, List, Optional
 from typing_extensions import Literal
 
 from .._models import BaseModel
+from .sim_card_actions_summary import SimCardActionsSummary
 
-__all__ = ["BulkSimCardActionRetrieveResponse", "Data", "DataSimCardActionsSummary"]
-
-
-class DataSimCardActionsSummary(BaseModel):
-    count: Optional[int] = None
-
-    status: Optional[Literal["in-progress", "completed", "failed", "interrupted"]] = None
+__all__ = ["BulkSimCardActionRetrieveResponse", "Data"]
 
 
 class Data(BaseModel):
@@ -34,7 +29,7 @@ class Data(BaseModel):
     settings: Optional[Dict[str, object]] = None
     """A JSON object representation of the bulk action payload."""
 
-    sim_card_actions_summary: Optional[List[DataSimCardActionsSummary]] = None
+    sim_card_actions_summary: Optional[List[SimCardActionsSummary]] = None
 
     updated_at: Optional[str] = None
     """ISO 8601 formatted date-time indicating when the resource was updated."""

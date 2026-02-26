@@ -4,12 +4,12 @@ from typing import Dict, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
-from ..._models import BaseModel
+from ....._models import BaseModel
 
-__all__ = ["MissionListEventsResponse"]
+__all__ = ["EventData"]
 
 
-class MissionListEventsResponse(BaseModel):
+class EventData(BaseModel):
     event_id: str
 
     run_id: str

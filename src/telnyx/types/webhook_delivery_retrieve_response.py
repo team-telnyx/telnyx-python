@@ -4,66 +4,10 @@ from typing import Dict, List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
+from .attempt import Attempt
 from .._models import BaseModel
 
-__all__ = [
-    "WebhookDeliveryRetrieveResponse",
-    "Data",
-    "DataAttempt",
-    "DataAttemptHTTP",
-    "DataAttemptHTTPRequest",
-    "DataAttemptHTTPResponse",
-    "DataWebhook",
-]
-
-
-class DataAttemptHTTPRequest(BaseModel):
-    """Request details."""
-
-    headers: Optional[List[List[str]]] = None
-    """List of headers, limited to 10kB."""
-
-    url: Optional[str] = None
-
-
-class DataAttemptHTTPResponse(BaseModel):
-    """Response details, optional."""
-
-    body: Optional[str] = None
-    """Raw response body, limited to 10kB."""
-
-    headers: Optional[List[List[str]]] = None
-    """List of headers, limited to 10kB."""
-
-    status: Optional[int] = None
-
-
-class DataAttemptHTTP(BaseModel):
-    """HTTP request and response information."""
-
-    request: Optional[DataAttemptHTTPRequest] = None
-    """Request details."""
-
-    response: Optional[DataAttemptHTTPResponse] = None
-    """Response details, optional."""
-
-
-class DataAttempt(BaseModel):
-    """Webhook delivery attempt details."""
-
-    errors: Optional[List[int]] = None
-    """Webhook delivery error codes."""
-
-    finished_at: Optional[datetime] = None
-    """ISO 8601 timestamp indicating when the attempt has finished."""
-
-    http: Optional[DataAttemptHTTP] = None
-    """HTTP request and response information."""
-
-    started_at: Optional[datetime] = None
-    """ISO 8601 timestamp indicating when the attempt was initiated."""
-
-    status: Optional[Literal["delivered", "failed"]] = None
+__all__ = ["WebhookDeliveryRetrieveResponse", "Data", "DataWebhook"]
 
 
 class DataWebhook(BaseModel):
@@ -90,7 +34,7 @@ class Data(BaseModel):
     id: Optional[str] = None
     """Uniquely identifies the webhook_delivery record."""
 
-    attempts: Optional[List[DataAttempt]] = None
+    attempts: Optional[List[Attempt]] = None
     """Detailed delivery attempts, ordered by most recent."""
 
     finished_at: Optional[datetime] = None

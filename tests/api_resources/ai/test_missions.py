@@ -13,10 +13,10 @@ from telnyx.types.ai import (
     MissionData,
     MissionCreateResponse,
     MissionRetrieveResponse,
-    MissionListEventsResponse,
     MissionUpdateMissionResponse,
 )
 from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
+from telnyx.types.ai.missions.runs import EventData
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -238,7 +238,7 @@ class TestMissions:
     @parametrize
     def test_method_list_events(self, client: Telnyx) -> None:
         mission = client.ai.missions.list_events()
-        assert_matches_type(SyncDefaultFlatPagination[MissionListEventsResponse], mission, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[EventData], mission, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -248,7 +248,7 @@ class TestMissions:
             page_size=1,
             type="type",
         )
-        assert_matches_type(SyncDefaultFlatPagination[MissionListEventsResponse], mission, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[EventData], mission, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -258,7 +258,7 @@ class TestMissions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         mission = response.parse()
-        assert_matches_type(SyncDefaultFlatPagination[MissionListEventsResponse], mission, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[EventData], mission, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -268,7 +268,7 @@ class TestMissions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             mission = response.parse()
-            assert_matches_type(SyncDefaultFlatPagination[MissionListEventsResponse], mission, path=["response"])
+            assert_matches_type(SyncDefaultFlatPagination[EventData], mission, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -548,7 +548,7 @@ class TestAsyncMissions:
     @parametrize
     async def test_method_list_events(self, async_client: AsyncTelnyx) -> None:
         mission = await async_client.ai.missions.list_events()
-        assert_matches_type(AsyncDefaultFlatPagination[MissionListEventsResponse], mission, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[EventData], mission, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -558,7 +558,7 @@ class TestAsyncMissions:
             page_size=1,
             type="type",
         )
-        assert_matches_type(AsyncDefaultFlatPagination[MissionListEventsResponse], mission, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[EventData], mission, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -568,7 +568,7 @@ class TestAsyncMissions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         mission = await response.parse()
-        assert_matches_type(AsyncDefaultFlatPagination[MissionListEventsResponse], mission, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[EventData], mission, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -578,7 +578,7 @@ class TestAsyncMissions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             mission = await response.parse()
-            assert_matches_type(AsyncDefaultFlatPagination[MissionListEventsResponse], mission, path=["response"])
+            assert_matches_type(AsyncDefaultFlatPagination[EventData], mission, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

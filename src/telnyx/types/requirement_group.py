@@ -5,24 +5,9 @@ from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
+from .user_requirement import UserRequirement
 
-__all__ = ["RequirementGroup", "RegulatoryRequirement"]
-
-
-class RegulatoryRequirement(BaseModel):
-    created_at: Optional[datetime] = None
-
-    expires_at: Optional[datetime] = None
-
-    field_type: Optional[str] = None
-
-    field_value: Optional[str] = None
-
-    requirement_id: Optional[str] = None
-
-    status: Optional[Literal["approved", "unapproved", "pending-approval", "declined", "expired"]] = None
-
-    updated_at: Optional[datetime] = None
+__all__ = ["RequirementGroup"]
 
 
 class RequirementGroup(BaseModel):
@@ -40,7 +25,7 @@ class RequirementGroup(BaseModel):
 
     record_type: Optional[str] = None
 
-    regulatory_requirements: Optional[List[RegulatoryRequirement]] = None
+    regulatory_requirements: Optional[List[UserRequirement]] = None
 
     status: Optional[Literal["approved", "unapproved", "pending-approval", "declined", "expired"]] = None
 

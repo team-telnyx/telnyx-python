@@ -7,17 +7,22 @@ from .. import _compat
 from .ip import IP as IP
 from .fax import Fax as Fax
 from .fqdn import Fqdn as Fqdn
+from .http import HTTP as HTTP
 from .room import Room as Room
 from .queue import Queue as Queue
 from .record import Record as Record
 from .shared import (
+    Feature as Feature,
     APIError as APIError,
     Metadata as Metadata,
     ShortCode as ShortCode,
     HostedNumber as HostedNumber,
     SimCardStatus as SimCardStatus,
     SimpleSimCard as SimpleSimCard,
+    CostInformation as CostInformation,
+    NetappsLocation as NetappsLocation,
     RoomParticipant as RoomParticipant,
+    RegionInformation as RegionInformation,
     RimeVoiceSettings as RimeVoiceSettings,
     AzureVoiceSettings as AzureVoiceSettings,
     PortingOrderStatus as PortingOrderStatus,
@@ -31,6 +36,7 @@ from .shared import (
     MessagingPaginationMeta as MessagingPaginationMeta,
     ConnectionsPaginationMeta as ConnectionsPaginationMeta,
     MessagingHostedNumberOrder as MessagingHostedNumberOrder,
+    PhoneNumbersJobPhoneNumber as PhoneNumbersJobPhoneNumber,
     PortingOrdersExceptionType as PortingOrdersExceptionType,
     AvailablePhoneNumbersMetadata as AvailablePhoneNumbersMetadata,
     PhoneNumberWithMessagingSettings as PhoneNumberWithMessagingSettings,
@@ -38,6 +44,7 @@ from .shared import (
     SubNumberOrderRegulatoryRequirementWithValue as SubNumberOrderRegulatoryRequirementWithValue,
 )
 from .address import Address as Address
+from .attempt import Attempt as Attempt
 from .sim_card import SimCard as SimCard
 from .dtmf_type import DtmfType as DtmfType
 from .rcs_agent import RcsAgent as RcsAgent
@@ -49,6 +56,7 @@ from .sip_header import SipHeader as SipHeader
 from .call_hangup import CallHangup as CallHangup
 from .oauth_grant import OAuthGrant as OAuthGrant
 from .outbound_ip import OutboundIP as OutboundIP
+from .rcs_to_item import RcsToItem as RcsToItem
 from .call_bridged import CallBridged as CallBridged
 from .inbound_fqdn import InboundFqdn as InboundFqdn
 from .month_detail import MonthDetail as MonthDetail
@@ -79,6 +87,7 @@ from .sim_card_group import SimCardGroup as SimCardGroup
 from .sim_card_order import SimCardOrder as SimCardOrder
 from .verify_profile import VerifyProfile as VerifyProfile
 from .whatsapp_media import WhatsappMedia as WhatsappMedia
+from .wireless_error import WirelessError as WirelessError
 from .access_ip_range import AccessIPRange as AccessIPRange
 from .call_left_queue import CallLeftQueue as CallLeftQueue
 from .encrypted_media import EncryptedMedia as EncryptedMedia
@@ -95,6 +104,7 @@ from .verified_number import VerifiedNumber as VerifiedNumber
 from .call_dial_params import CallDialParams as CallDialParams
 from .call_speak_ended import CallSpeakEnded as CallSpeakEnded
 from .conference_ended import ConferenceEnded as ConferenceEnded
+from .country_coverage import CountryCoverage as CountryCoverage
 from .fqdn_list_params import FqdnListParams as FqdnListParams
 from .inbound_ip_param import InboundIPParam as InboundIPParam
 from .interface_status import InterfaceStatus as InterfaceStatus
@@ -108,6 +118,8 @@ from .room_composition import RoomComposition as RoomComposition
 from .room_list_params import RoomListParams as RoomListParams
 from .sip_header_param import SipHeaderParam as SipHeaderParam
 from .sub_number_order import SubNumberOrder as SubNumberOrder
+from .user_requirement import UserRequirement as UserRequirement
+from .whatsapp_contact import WhatsappContact as WhatsappContact
 from .available_service import AvailableService as AvailableService
 from .call_fork_started import CallForkStarted as CallForkStarted
 from .call_fork_stopped import CallForkStopped as CallForkStopped
@@ -123,6 +135,8 @@ from .queue_list_params import QueueListParams as QueueListParams
 from .rcs_agent_message import RcsAgentMessage as RcsAgentMessage
 from .requirement_group import RequirementGroup as RequirementGroup
 from .texml_application import TexmlApplication as TexmlApplication
+from .whatsapp_location import WhatsappLocation as WhatsappLocation
+from .whatsapp_reaction import WhatsappReaction as WhatsappReaction
 from .call_dial_response import CallDialResponse as CallDialResponse
 from .call_dtmf_received import CallDtmfReceived as CallDtmfReceived
 from .call_refer_started import CallReferStarted as CallReferStarted
@@ -202,6 +216,7 @@ from .texml_secrets_params import TexmlSecretsParams as TexmlSecretsParams
 from .unwrap_webhook_event import UnwrapWebhookEvent as UnwrapWebhookEvent
 from .usage_payment_method import UsagePaymentMethod as UsagePaymentMethod
 from .user_tag_list_params import UserTagListParams as UserTagListParams
+from .whatsapp_interactive import WhatsappInteractive as WhatsappInteractive
 from .whatsapp_media_param import WhatsappMediaParam as WhatsappMediaParam
 from .wireguard_peer_patch import WireguardPeerPatch as WireguardPeerPatch
 from .address_create_params import AddressCreateParams as AddressCreateParams
@@ -236,6 +251,7 @@ from .call_streaming_stopped import CallStreamingStopped as CallStreamingStopped
 from .campaign_status_update import CampaignStatusUpdate as CampaignStatusUpdate
 from .cloudflare_sync_status import CloudflareSyncStatus as CloudflareSyncStatus
 from .conference_list_params import ConferenceListParams as ConferenceListParams
+from .conference_participant import ConferenceParticipant as ConferenceParticipant
 from .conference_speak_ended import ConferenceSpeakEnded as ConferenceSpeakEnded
 from .connection_list_params import ConnectionListParams as ConnectionListParams
 from .document_update_params import DocumentUpdateParams as DocumentUpdateParams
@@ -254,6 +270,7 @@ from .sim_card_update_params import SimCardUpdateParams as SimCardUpdateParams
 from .texml_secrets_response import TexmlSecretsResponse as TexmlSecretsResponse
 from .url_shortener_settings import URLShortenerSettings as URLShortenerSettings
 from .user_tag_list_response import UserTagListResponse as UserTagListResponse
+from .whatsapp_contact_param import WhatsappContactParam as WhatsappContactParam
 from .address_create_response import AddressCreateResponse as AddressCreateResponse
 from .address_delete_response import AddressDeleteResponse as AddressDeleteResponse
 from .audit_event_list_params import AuditEventListParams as AuditEventListParams
@@ -287,6 +304,8 @@ from .recording_transcription import RecordingTranscription as RecordingTranscri
 from .report_list_mdrs_params import ReportListMdrsParams as ReportListMdrsParams
 from .report_list_wdrs_params import ReportListWdrsParams as ReportListWdrsParams
 from .requirement_list_params import RequirementListParams as RequirementListParams
+from .whatsapp_location_param import WhatsappLocationParam as WhatsappLocationParam
+from .whatsapp_reaction_param import WhatsappReactionParam as WhatsappReactionParam
 from .azure_configuration_data import AzureConfigurationData as AzureConfigurationData
 from .call_control_application import CallControlApplication as CallControlApplication
 from .call_event_list_response import CallEventListResponse as CallEventListResponse
@@ -310,11 +329,14 @@ from .porting_order_misc_param import PortingOrderMiscParam as PortingOrderMiscP
 from .private_wireless_gateway import PrivateWirelessGateway as PrivateWirelessGateway
 from .push_credential_response import PushCredentialResponse as PushCredentialResponse
 from .short_code_update_params import ShortCodeUpdateParams as ShortCodeUpdateParams
+from .sim_card_actions_summary import SimCardActionsSummary as SimCardActionsSummary
 from .sim_card_delete_response import SimCardDeleteResponse as SimCardDeleteResponse
 from .sim_card_retrieve_params import SimCardRetrieveParams as SimCardRetrieveParams
 from .sim_card_update_response import SimCardUpdateResponse as SimCardUpdateResponse
+from .sub_number_orders_report import SubNumberOrdersReport as SubNumberOrdersReport
 from .usage_report_list_params import UsageReportListParams as UsageReportListParams
 from .user_address_list_params import UserAddressListParams as UserAddressListParams
+from .whatsapp_message_content import WhatsappMessageContent as WhatsappMessageContent
 from .address_retrieve_response import AddressRetrieveResponse as AddressRetrieveResponse
 from .audit_event_list_response import AuditEventListResponse as AuditEventListResponse
 from .balance_retrieve_response import BalanceRetrieveResponse as BalanceRetrieveResponse
@@ -372,6 +394,7 @@ from .stream_bidirectional_codec import StreamBidirectionalCodec as StreamBidire
 from .usage_report_list_response import UsageReportListResponse as UsageReportListResponse
 from .user_address_create_params import UserAddressCreateParams as UserAddressCreateParams
 from .verify_profile_list_params import VerifyProfileListParams as VerifyProfileListParams
+from .whatsapp_interactive_param import WhatsappInteractiveParam as WhatsappInteractiveParam
 from .wireguard_peer_list_params import WireguardPeerListParams as WireguardPeerListParams
 from .access_ip_range_list_params import AccessIPRangeListParams as AccessIPRangeListParams
 from .ai_retrieve_models_response import AIRetrieveModelsResponse as AIRetrieveModelsResponse
@@ -525,6 +548,7 @@ from .sub_number_order_update_params import SubNumberOrderUpdateParams as SubNum
 from .user_address_retrieve_response import UserAddressRetrieveResponse as UserAddressRetrieveResponse
 from .verification_retrieve_response import VerificationRetrieveResponse as VerificationRetrieveResponse
 from .webhook_delivery_list_response import WebhookDeliveryListResponse as WebhookDeliveryListResponse
+from .whatsapp_message_content_param import WhatsappMessageContentParam as WhatsappMessageContentParam
 from .wireguard_peer_create_response import WireguardPeerCreateResponse as WireguardPeerCreateResponse
 from .wireguard_peer_delete_response import WireguardPeerDeleteResponse as WireguardPeerDeleteResponse
 from .wireguard_peer_update_response import WireguardPeerUpdateResponse as WireguardPeerUpdateResponse
@@ -1211,6 +1235,9 @@ from .seti_retrieve_black_box_test_results_params import (
 )
 from .virtual_cross_connects_coverage_list_params import (
     VirtualCrossConnectsCoverageListParams as VirtualCrossConnectsCoverageListParams,
+)
+from .bulk_messaging_settings_update_phone_numbers import (
+    BulkMessagingSettingsUpdatePhoneNumbers as BulkMessagingSettingsUpdatePhoneNumbers,
 )
 from .call_ai_gather_partial_results_webhook_event import (
     CallAIGatherPartialResultsWebhookEvent as CallAIGatherPartialResultsWebhookEvent,

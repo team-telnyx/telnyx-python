@@ -27,7 +27,7 @@ from ...._response import (
 from ....pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.organizations import user_list_params, user_retrieve_params
-from ....types.organizations.user_list_response import UserListResponse
+from ....types.organizations.organization_user import OrganizationUser
 from ....types.organizations.user_retrieve_response import UserRetrieveResponse
 from ....types.organizations.user_get_groups_report_response import UserGetGroupsReportResponse
 
@@ -114,7 +114,7 @@ class UsersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[UserListResponse]:
+    ) -> SyncDefaultFlatPagination[OrganizationUser]:
         """
         Returns a list of the users in your organization.
 
@@ -141,7 +141,7 @@ class UsersResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/organizations/users",
-            page=SyncDefaultFlatPagination[UserListResponse],
+            page=SyncDefaultFlatPagination[OrganizationUser],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -158,7 +158,7 @@ class UsersResource(SyncAPIResource):
                     user_list_params.UserListParams,
                 ),
             ),
-            model=UserListResponse,
+            model=OrganizationUser,
         )
 
     def get_groups_report(
@@ -282,7 +282,7 @@ class AsyncUsersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[UserListResponse, AsyncDefaultFlatPagination[UserListResponse]]:
+    ) -> AsyncPaginator[OrganizationUser, AsyncDefaultFlatPagination[OrganizationUser]]:
         """
         Returns a list of the users in your organization.
 
@@ -309,7 +309,7 @@ class AsyncUsersResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/organizations/users",
-            page=AsyncDefaultFlatPagination[UserListResponse],
+            page=AsyncDefaultFlatPagination[OrganizationUser],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -326,7 +326,7 @@ class AsyncUsersResource(AsyncAPIResource):
                     user_list_params.UserListParams,
                 ),
             ),
-            model=UserListResponse,
+            model=OrganizationUser,
         )
 
     async def get_groups_report(
