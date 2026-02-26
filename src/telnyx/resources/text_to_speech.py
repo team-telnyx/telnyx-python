@@ -6,16 +6,24 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..types import text_to_speech_stream_params, text_to_speech_list_voices_params
-from .._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
+from ..types import text_to_speech_list_voices_params, text_to_speech_generate_speech_params
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
+    BinaryAPIResponse,
+    AsyncBinaryAPIResponse,
+    StreamedBinaryAPIResponse,
+    AsyncStreamedBinaryAPIResponse,
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
+    to_custom_raw_response_wrapper,
     async_to_streamed_response_wrapper,
+    to_custom_streamed_response_wrapper,
+    async_to_custom_raw_response_wrapper,
+    async_to_custom_streamed_response_wrapper,
 )
 from .._base_client import make_request_options
 from ..types.text_to_speech_list_voices_response import TextToSpeechListVoicesResponse
@@ -42,6 +50,61 @@ class TextToSpeechResource(SyncAPIResource):
         For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
         return TextToSpeechResourceWithStreamingResponse(self)
+
+    def generate_speech(
+        self,
+        *,
+        text: str,
+        voice: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> BinaryAPIResponse:
+        """
+        Converts the provided text to speech using the specified voice and returns audio
+        data
+
+        Args:
+          text: The text to convert to speech
+
+          voice: The voice ID in the format Provider.ModelId.VoiceId.
+
+              Examples:
+
+              - AWS.Polly.Joanna-Neural
+              - Azure.en-US-AvaMultilingualNeural
+              - ElevenLabs.eleven_multilingual_v2.Rachel
+              - Telnyx.KokoroTTS.af
+
+              Use the `GET /text-to-speech/voices` endpoint to get a complete list of
+              available voices.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        extra_headers = {"Accept": "audio/mpeg", **(extra_headers or {})}
+        return self._post(
+            "/text-to-speech/speech",
+            body=maybe_transform(
+                {
+                    "text": text,
+                    "voice": voice,
+                },
+                text_to_speech_generate_speech_params.TextToSpeechGenerateSpeechParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=BinaryAPIResponse,
+        )
 
     def list_voices(
         self,
@@ -89,101 +152,6 @@ class TextToSpeechResource(SyncAPIResource):
             cast_to=TextToSpeechListVoicesResponse,
         )
 
-    def stream(
-        self,
-        *,
-        audio_format: Literal["pcm", "wav"] | Omit = omit,
-        disable_cache: bool | Omit = omit,
-        model_id: str | Omit = omit,
-        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "murfai", "rime", "resemble"]
-        | Omit = omit,
-        socket_id: str | Omit = omit,
-        voice: str | Omit = omit,
-        voice_id: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
-        """
-        Open a WebSocket connection to stream text and receive synthesized audio in real
-        time. Authentication is provided via the standard
-        `Authorization: Bearer <API_KEY>` header. Send JSON frames with text to
-        synthesize; receive JSON frames containing base64-encoded audio chunks.
-
-        Supported providers: `aws`, `telnyx`, `azure`, `murfai`, `minimax`, `rime`,
-        `resemble`, `elevenlabs`.
-
-        **Connection flow:**
-
-        1. Open WebSocket with query parameters specifying provider, voice, and model.
-        2. Send an initial handshake message `{"text": " "}` (single space) with
-           optional `voice_settings` to initialize the session.
-        3. Send text messages as `{"text": "Hello world"}`.
-        4. Receive audio chunks as JSON frames with base64-encoded audio.
-        5. A final frame with `isFinal: true` indicates the end of audio for the current
-           text.
-
-        To interrupt and restart synthesis mid-stream, send `{"force": true}` — the
-        current worker is stopped and a new one is started.
-
-        Args:
-          audio_format: Audio output format override. Supported for Telnyx `Natural`/`NaturalHD` models
-              only. Accepted values: `pcm`, `wav`.
-
-          disable_cache: When `true`, bypass the audio cache and generate fresh audio.
-
-          model_id: Model identifier for the chosen provider. Examples: `Natural`, `NaturalHD`
-              (Telnyx); `Polly.Generative` (AWS).
-
-          provider: TTS provider. Defaults to `telnyx` if not specified. Ignored when `voice` is
-              provided.
-
-          socket_id: Client-provided socket identifier for tracking. If not provided, one is
-              generated server-side.
-
-          voice: Voice identifier in the format `provider.model_id.voice_id` or
-              `provider.voice_id` (e.g. `telnyx.NaturalHD.Telnyx_Alloy` or
-              `azure.en-US-AvaMultilingualNeural`). When provided, the `provider`, `model_id`,
-              and `voice_id` are extracted automatically. Takes precedence over individual
-              `provider`/`model_id`/`voice_id` parameters.
-
-          voice_id: Voice identifier for the chosen provider.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
-        return self._get(
-            "/text-to-speech/speech",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "audio_format": audio_format,
-                        "disable_cache": disable_cache,
-                        "model_id": model_id,
-                        "provider": provider,
-                        "socket_id": socket_id,
-                        "voice": voice,
-                        "voice_id": voice_id,
-                    },
-                    text_to_speech_stream_params.TextToSpeechStreamParams,
-                ),
-            ),
-            cast_to=NoneType,
-        )
-
 
 class AsyncTextToSpeechResource(AsyncAPIResource):
     @cached_property
@@ -204,6 +172,61 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
         For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
         return AsyncTextToSpeechResourceWithStreamingResponse(self)
+
+    async def generate_speech(
+        self,
+        *,
+        text: str,
+        voice: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncBinaryAPIResponse:
+        """
+        Converts the provided text to speech using the specified voice and returns audio
+        data
+
+        Args:
+          text: The text to convert to speech
+
+          voice: The voice ID in the format Provider.ModelId.VoiceId.
+
+              Examples:
+
+              - AWS.Polly.Joanna-Neural
+              - Azure.en-US-AvaMultilingualNeural
+              - ElevenLabs.eleven_multilingual_v2.Rachel
+              - Telnyx.KokoroTTS.af
+
+              Use the `GET /text-to-speech/voices` endpoint to get a complete list of
+              available voices.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        extra_headers = {"Accept": "audio/mpeg", **(extra_headers or {})}
+        return await self._post(
+            "/text-to-speech/speech",
+            body=await async_maybe_transform(
+                {
+                    "text": text,
+                    "voice": voice,
+                },
+                text_to_speech_generate_speech_params.TextToSpeechGenerateSpeechParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=AsyncBinaryAPIResponse,
+        )
 
     async def list_voices(
         self,
@@ -251,111 +274,17 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
             cast_to=TextToSpeechListVoicesResponse,
         )
 
-    async def stream(
-        self,
-        *,
-        audio_format: Literal["pcm", "wav"] | Omit = omit,
-        disable_cache: bool | Omit = omit,
-        model_id: str | Omit = omit,
-        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "murfai", "rime", "resemble"]
-        | Omit = omit,
-        socket_id: str | Omit = omit,
-        voice: str | Omit = omit,
-        voice_id: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
-        """
-        Open a WebSocket connection to stream text and receive synthesized audio in real
-        time. Authentication is provided via the standard
-        `Authorization: Bearer <API_KEY>` header. Send JSON frames with text to
-        synthesize; receive JSON frames containing base64-encoded audio chunks.
-
-        Supported providers: `aws`, `telnyx`, `azure`, `murfai`, `minimax`, `rime`,
-        `resemble`, `elevenlabs`.
-
-        **Connection flow:**
-
-        1. Open WebSocket with query parameters specifying provider, voice, and model.
-        2. Send an initial handshake message `{"text": " "}` (single space) with
-           optional `voice_settings` to initialize the session.
-        3. Send text messages as `{"text": "Hello world"}`.
-        4. Receive audio chunks as JSON frames with base64-encoded audio.
-        5. A final frame with `isFinal: true` indicates the end of audio for the current
-           text.
-
-        To interrupt and restart synthesis mid-stream, send `{"force": true}` — the
-        current worker is stopped and a new one is started.
-
-        Args:
-          audio_format: Audio output format override. Supported for Telnyx `Natural`/`NaturalHD` models
-              only. Accepted values: `pcm`, `wav`.
-
-          disable_cache: When `true`, bypass the audio cache and generate fresh audio.
-
-          model_id: Model identifier for the chosen provider. Examples: `Natural`, `NaturalHD`
-              (Telnyx); `Polly.Generative` (AWS).
-
-          provider: TTS provider. Defaults to `telnyx` if not specified. Ignored when `voice` is
-              provided.
-
-          socket_id: Client-provided socket identifier for tracking. If not provided, one is
-              generated server-side.
-
-          voice: Voice identifier in the format `provider.model_id.voice_id` or
-              `provider.voice_id` (e.g. `telnyx.NaturalHD.Telnyx_Alloy` or
-              `azure.en-US-AvaMultilingualNeural`). When provided, the `provider`, `model_id`,
-              and `voice_id` are extracted automatically. Takes precedence over individual
-              `provider`/`model_id`/`voice_id` parameters.
-
-          voice_id: Voice identifier for the chosen provider.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
-        return await self._get(
-            "/text-to-speech/speech",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {
-                        "audio_format": audio_format,
-                        "disable_cache": disable_cache,
-                        "model_id": model_id,
-                        "provider": provider,
-                        "socket_id": socket_id,
-                        "voice": voice,
-                        "voice_id": voice_id,
-                    },
-                    text_to_speech_stream_params.TextToSpeechStreamParams,
-                ),
-            ),
-            cast_to=NoneType,
-        )
-
 
 class TextToSpeechResourceWithRawResponse:
     def __init__(self, text_to_speech: TextToSpeechResource) -> None:
         self._text_to_speech = text_to_speech
 
+        self.generate_speech = to_custom_raw_response_wrapper(
+            text_to_speech.generate_speech,
+            BinaryAPIResponse,
+        )
         self.list_voices = to_raw_response_wrapper(
             text_to_speech.list_voices,
-        )
-        self.stream = to_raw_response_wrapper(
-            text_to_speech.stream,
         )
 
 
@@ -363,11 +292,12 @@ class AsyncTextToSpeechResourceWithRawResponse:
     def __init__(self, text_to_speech: AsyncTextToSpeechResource) -> None:
         self._text_to_speech = text_to_speech
 
+        self.generate_speech = async_to_custom_raw_response_wrapper(
+            text_to_speech.generate_speech,
+            AsyncBinaryAPIResponse,
+        )
         self.list_voices = async_to_raw_response_wrapper(
             text_to_speech.list_voices,
-        )
-        self.stream = async_to_raw_response_wrapper(
-            text_to_speech.stream,
         )
 
 
@@ -375,11 +305,12 @@ class TextToSpeechResourceWithStreamingResponse:
     def __init__(self, text_to_speech: TextToSpeechResource) -> None:
         self._text_to_speech = text_to_speech
 
+        self.generate_speech = to_custom_streamed_response_wrapper(
+            text_to_speech.generate_speech,
+            StreamedBinaryAPIResponse,
+        )
         self.list_voices = to_streamed_response_wrapper(
             text_to_speech.list_voices,
-        )
-        self.stream = to_streamed_response_wrapper(
-            text_to_speech.stream,
         )
 
 
@@ -387,9 +318,10 @@ class AsyncTextToSpeechResourceWithStreamingResponse:
     def __init__(self, text_to_speech: AsyncTextToSpeechResource) -> None:
         self._text_to_speech = text_to_speech
 
+        self.generate_speech = async_to_custom_streamed_response_wrapper(
+            text_to_speech.generate_speech,
+            AsyncStreamedBinaryAPIResponse,
+        )
         self.list_voices = async_to_streamed_response_wrapper(
             text_to_speech.list_voices,
-        )
-        self.stream = async_to_streamed_response_wrapper(
-            text_to_speech.stream,
         )
