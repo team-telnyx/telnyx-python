@@ -9,6 +9,7 @@ from telnyx.types import (
     ConnectionNoiseSuppressionDetails,
     ConnectionsPaginationMeta,
     CostInformation,
+    Cursor,
     DocReqsRequirementType,
     Feature,
     HostedNumber,
@@ -1470,6 +1471,7 @@ Types:
 
 ```python
 from telnyx.types import (
+    Comment,
     CommentCreateResponse,
     CommentRetrieveResponse,
     CommentListResponse,

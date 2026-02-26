@@ -1,5 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from .cursor import Cursor as Cursor
 from .feature import Feature as Feature
 from .metadata import Metadata as Metadata
 from .api_error import APIError as APIError
