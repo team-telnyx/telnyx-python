@@ -12,6 +12,7 @@ from .room import Room as Room
 from .queue import Queue as Queue
 from .record import Record as Record
 from .shared import (
+    Cursor as Cursor,
     Feature as Feature,
     APIError as APIError,
     Metadata as Metadata,
@@ -45,6 +46,7 @@ from .shared import (
 )
 from .address import Address as Address
 from .attempt import Attempt as Attempt
+from .comment import Comment as Comment
 from .sim_card import SimCard as SimCard
 from .dtmf_type import DtmfType as DtmfType
 from .rcs_agent import RcsAgent as RcsAgent
