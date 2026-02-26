@@ -111,3 +111,6 @@ from .transcription_engine_telnyx_config_param import (
 from .action_add_ai_assistant_messages_response import (
     ActionAddAIAssistantMessagesResponse as ActionAddAIAssistantMessagesResponse,
 )
+from .call_control_command_result_with_conversation_id import (
+    CallControlCommandResultWithConversationID as CallControlCommandResultWithConversationID,
+)

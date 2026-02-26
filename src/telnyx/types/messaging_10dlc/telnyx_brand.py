@@ -10,13 +10,9 @@ from .entity_type import EntityType
 from .stock_exchange import StockExchange
 from .alt_business_id_type import AltBusinessIDType
 from .brand_identity_status import BrandIdentityStatus
+from .brand_optional_attributes import BrandOptionalAttributes
 
-__all__ = ["TelnyxBrand", "OptionalAttributes"]
-
-
-class OptionalAttributes(BaseModel):
-    tax_exempt_status: Optional[str] = FieldInfo(alias="taxExemptStatus", default=None)
-    """The tax exempt status of the brand"""
+__all__ = ["TelnyxBrand"]
 
 
 class TelnyxBrand(BaseModel):
@@ -99,7 +95,7 @@ class TelnyxBrand(BaseModel):
     mock: Optional[bool] = None
     """Mock brand for testing purposes"""
 
-    optional_attributes: Optional[OptionalAttributes] = FieldInfo(alias="optionalAttributes", default=None)
+    optional_attributes: Optional[BrandOptionalAttributes] = FieldInfo(alias="optionalAttributes", default=None)
 
     phone: Optional[str] = None
     """Valid phone number in e.164 international format."""

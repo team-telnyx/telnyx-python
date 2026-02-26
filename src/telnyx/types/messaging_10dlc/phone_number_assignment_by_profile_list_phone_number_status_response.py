@@ -2,23 +2,11 @@
 
 from typing import List
 
-from pydantic import Field as FieldInfo
-
 from ..._models import BaseModel
+from .profile_assignment_phone_numbers import ProfileAssignmentPhoneNumbers
 
-__all__ = ["PhoneNumberAssignmentByProfileListPhoneNumberStatusResponse", "Record"]
-
-
-class Record(BaseModel):
-    phone_number: str = FieldInfo(alias="phoneNumber")
-    """The phone number that the status is being checked for."""
-
-    status: str
-    """The status of the associated phone number assignment."""
-
-    task_id: str = FieldInfo(alias="taskId")
-    """The ID of the task associated with the phone number."""
+__all__ = ["PhoneNumberAssignmentByProfileListPhoneNumberStatusResponse"]
 
 
 class PhoneNumberAssignmentByProfileListPhoneNumberStatusResponse(BaseModel):
-    records: List[Record]
+    records: List[ProfileAssignmentPhoneNumbers]

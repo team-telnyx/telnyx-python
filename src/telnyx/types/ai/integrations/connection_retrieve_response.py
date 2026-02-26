@@ -1,19 +1,10 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List
-
 from ...._models import BaseModel
+from .integration_connection import IntegrationConnection
 
-__all__ = ["ConnectionRetrieveResponse", "Data"]
-
-
-class Data(BaseModel):
-    id: str
-
-    allowed_tools: List[str]
-
-    integration_id: str
+__all__ = ["ConnectionRetrieveResponse"]
 
 
 class ConnectionRetrieveResponse(BaseModel):
-    data: Data
+    data: IntegrationConnection

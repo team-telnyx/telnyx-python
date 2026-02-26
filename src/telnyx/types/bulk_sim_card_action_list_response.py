@@ -4,14 +4,9 @@ from typing import Dict, List, Optional
 from typing_extensions import Literal
 
 from .._models import BaseModel
+from .sim_card_actions_summary import SimCardActionsSummary
 
-__all__ = ["BulkSimCardActionListResponse", "SimCardActionsSummary"]
-
-
-class SimCardActionsSummary(BaseModel):
-    count: Optional[int] = None
-
-    status: Optional[Literal["in-progress", "completed", "failed", "interrupted"]] = None
+__all__ = ["BulkSimCardActionListResponse"]
 
 
 class BulkSimCardActionListResponse(BaseModel):

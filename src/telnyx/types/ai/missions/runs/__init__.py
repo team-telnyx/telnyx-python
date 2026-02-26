@@ -2,12 +2,13 @@
 
 from __future__ import annotations
 
+from .event_data import EventData as EventData
 from .plan_step_data import PlanStepData as PlanStepData
 from .event_log_params import EventLogParams as EventLogParams
 from .event_list_params import EventListParams as EventListParams
+from .telnyx_agent_data import TelnyxAgentData as TelnyxAgentData
 from .event_log_response import EventLogResponse as EventLogResponse
 from .plan_create_params import PlanCreateParams as PlanCreateParams
-from .event_list_response import EventListResponse as EventListResponse
 from .plan_create_response import PlanCreateResponse as PlanCreateResponse
 from .plan_retrieve_response import PlanRetrieveResponse as PlanRetrieveResponse
 from .plan_update_step_params import PlanUpdateStepParams as PlanUpdateStepParams

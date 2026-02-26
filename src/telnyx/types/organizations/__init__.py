@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from .user_list_params import UserListParams as UserListParams
-from .user_list_response import UserListResponse as UserListResponse
+from .organization_user import OrganizationUser as OrganizationUser
 from .user_group_reference import UserGroupReference as UserGroupReference
 from .user_retrieve_params import UserRetrieveParams as UserRetrieveParams
 from .user_retrieve_response import UserRetrieveResponse as UserRetrieveResponse

@@ -41,6 +41,7 @@ from ...types.message_send_response import MessageSendResponse
 from ...types.message_retrieve_response import MessageRetrieveResponse
 from ...types.message_schedule_response import MessageScheduleResponse
 from ...types.message_send_whatsapp_response import MessageSendWhatsappResponse
+from ...types.whatsapp_message_content_param import WhatsappMessageContentParam
 from ...types.message_send_group_mms_response import MessageSendGroupMmsResponse
 from ...types.message_send_long_code_response import MessageSendLongCodeResponse
 from ...types.message_send_short_code_response import MessageSendShortCodeResponse
@@ -742,7 +743,7 @@ class MessagesResource(SyncAPIResource):
         *,
         from_: str,
         to: str,
-        whatsapp_message: message_send_whatsapp_params.WhatsappMessage,
+        whatsapp_message: WhatsappMessageContentParam,
         type: Literal["WHATSAPP"] | Omit = omit,
         webhook_url: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1545,7 +1546,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         *,
         from_: str,
         to: str,
-        whatsapp_message: message_send_whatsapp_params.WhatsappMessage,
+        whatsapp_message: WhatsappMessageContentParam,
         type: Literal["WHATSAPP"] | Omit = omit,
         webhook_url: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

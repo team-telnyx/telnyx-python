@@ -3,16 +3,10 @@
 from typing import Optional
 
 from ..._models import BaseModel
+from .call_control_command_result_with_conversation_id import CallControlCommandResultWithConversationID
 
-__all__ = ["ActionGatherUsingAIResponse", "Data"]
-
-
-class Data(BaseModel):
-    conversation_id: Optional[str] = None
-    """The ID of the conversation created by the command."""
-
-    result: Optional[str] = None
+__all__ = ["ActionGatherUsingAIResponse"]
 
 
 class ActionGatherUsingAIResponse(BaseModel):
-    data: Optional[Data] = None
+    data: Optional[CallControlCommandResultWithConversationID] = None
