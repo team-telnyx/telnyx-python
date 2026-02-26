@@ -59,8 +59,8 @@ from .knowledge_bases import (
 )
 from ....types.ai.mission_data import MissionData
 from ....types.ai.mission_create_response import MissionCreateResponse
+from ....types.ai.missions.runs.event_data import EventData
 from ....types.ai.mission_retrieve_response import MissionRetrieveResponse
-from ....types.ai.mission_list_events_response import MissionListEventsResponse
 from ....types.ai.mission_update_mission_response import MissionUpdateMissionResponse
 
 __all__ = ["MissionsResource", "AsyncMissionsResource"]
@@ -308,7 +308,7 @@ class MissionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[MissionListEventsResponse]:
+    ) -> SyncDefaultFlatPagination[EventData]:
         """
         List recent events across all missions
 
@@ -327,7 +327,7 @@ class MissionsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/ai/missions/events",
-            page=SyncDefaultFlatPagination[MissionListEventsResponse],
+            page=SyncDefaultFlatPagination[EventData],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -342,7 +342,7 @@ class MissionsResource(SyncAPIResource):
                     mission_list_events_params.MissionListEventsParams,
                 ),
             ),
-            model=MissionListEventsResponse,
+            model=EventData,
         )
 
     def update_mission(
@@ -638,7 +638,7 @@ class AsyncMissionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[MissionListEventsResponse, AsyncDefaultFlatPagination[MissionListEventsResponse]]:
+    ) -> AsyncPaginator[EventData, AsyncDefaultFlatPagination[EventData]]:
         """
         List recent events across all missions
 
@@ -657,7 +657,7 @@ class AsyncMissionsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/ai/missions/events",
-            page=AsyncDefaultFlatPagination[MissionListEventsResponse],
+            page=AsyncDefaultFlatPagination[EventData],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -672,7 +672,7 @@ class AsyncMissionsResource(AsyncAPIResource):
                     mission_list_events_params.MissionListEventsParams,
                 ),
             ),
-            model=MissionListEventsResponse,
+            model=EventData,
         )
 
     async def update_mission(

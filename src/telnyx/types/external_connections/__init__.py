@@ -3,7 +3,10 @@
 from __future__ import annotations
 
 from .upload import Upload as Upload
+from .location import Location as Location
+from .civic_address import CivicAddress as CivicAddress
 from .tn_upload_entry import TnUploadEntry as TnUploadEntry
+from .tn_release_entry import TnReleaseEntry as TnReleaseEntry
 from .upload_list_params import UploadListParams as UploadListParams
 from .release_list_params import ReleaseListParams as ReleaseListParams
 from .upload_create_params import UploadCreateParams as UploadCreateParams

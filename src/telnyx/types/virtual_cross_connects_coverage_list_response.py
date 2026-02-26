@@ -4,25 +4,9 @@ from typing import List, Optional
 from typing_extensions import Literal
 
 from .._models import BaseModel
+from .shared.netapps_location import NetappsLocation
 
-__all__ = ["VirtualCrossConnectsCoverageListResponse", "Location"]
-
-
-class Location(BaseModel):
-    code: Optional[str] = None
-    """Location code."""
-
-    name: Optional[str] = None
-    """Human readable name of location."""
-
-    pop: Optional[str] = None
-    """Point of presence of location."""
-
-    region: Optional[str] = None
-    """Identifies the geographical region of location."""
-
-    site: Optional[str] = None
-    """Site of location."""
+__all__ = ["VirtualCrossConnectsCoverageListResponse"]
 
 
 class VirtualCrossConnectsCoverageListResponse(BaseModel):
@@ -45,7 +29,7 @@ class VirtualCrossConnectsCoverageListResponse(BaseModel):
     AWS but Frankfurt for Azure
     """
 
-    location: Optional[Location] = None
+    location: Optional[NetappsLocation] = None
 
     record_type: Optional[str] = None
     """Identifies the type of the resource."""

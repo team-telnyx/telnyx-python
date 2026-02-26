@@ -6,8 +6,9 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 from ..phone_number_blocks.job_error import JobError
+from ..shared.phone_numbers_job_phone_number import PhoneNumbersJobPhoneNumber
 
-__all__ = ["PhoneNumbersJob", "FailedOperation", "PendingOperation", "PhoneNumber", "SuccessfulOperation"]
+__all__ = ["PhoneNumbersJob", "FailedOperation", "PendingOperation", "SuccessfulOperation"]
 
 
 class FailedOperation(BaseModel):
@@ -25,16 +26,6 @@ class PendingOperation(BaseModel):
 
     Entries in this list are transient, and will be moved to either successful_operations or failed_operations once the processing is done.
     """
-
-    id: Optional[str] = None
-    """The phone number's ID"""
-
-    phone_number: Optional[str] = None
-    """The phone number in e164 format."""
-
-
-class PhoneNumber(BaseModel):
-    """The unique phone numbers given as arguments in the job creation."""
 
     id: Optional[str] = None
     """The phone number's ID"""
@@ -70,7 +61,7 @@ class PhoneNumbersJob(BaseModel):
 
     pending_operations: Optional[List[PendingOperation]] = None
 
-    phone_numbers: Optional[List[PhoneNumber]] = None
+    phone_numbers: Optional[List[PhoneNumbersJobPhoneNumber]] = None
 
     record_type: Optional[str] = None
     """Identifies the type of the resource."""

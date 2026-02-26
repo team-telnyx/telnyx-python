@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from .portout_report import PortoutReport as PortoutReport
+from .portout_comment import PortoutComment as PortoutComment
 from .event_list_params import EventListParams as EventListParams
 from .report_list_params import ReportListParams as ReportListParams
 from .event_list_response import EventListResponse as EventListResponse
@@ -14,7 +15,11 @@ from .comment_create_response import CommentCreateResponse as CommentCreateRespo
 from .event_retrieve_response import EventRetrieveResponse as EventRetrieveResponse
 from .report_retrieve_response import ReportRetrieveResponse as ReportRetrieveResponse
 from .export_portouts_csv_report import ExportPortoutsCsvReport as ExportPortoutsCsvReport
+from .webhook_portout_new_comment import WebhookPortoutNewComment as WebhookPortoutNewComment
+from .port_out_supporting_document import PortOutSupportingDocument as PortOutSupportingDocument
+from .webhook_portout_status_changed import WebhookPortoutStatusChanged as WebhookPortoutStatusChanged
 from .export_portouts_csv_report_param import ExportPortoutsCsvReportParam as ExportPortoutsCsvReportParam
+from .webhook_portout_foc_date_changed import WebhookPortoutFocDateChanged as WebhookPortoutFocDateChanged
 from .supporting_document_create_params import SupportingDocumentCreateParams as SupportingDocumentCreateParams
 from .supporting_document_list_response import SupportingDocumentListResponse as SupportingDocumentListResponse
 from .supporting_document_create_response import SupportingDocumentCreateResponse as SupportingDocumentCreateResponse

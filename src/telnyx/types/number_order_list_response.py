@@ -5,18 +5,9 @@ from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
+from .shared.phone_numbers_job_phone_number import PhoneNumbersJobPhoneNumber
 
-__all__ = ["NumberOrderListResponse", "PhoneNumber"]
-
-
-class PhoneNumber(BaseModel):
-    """The unique phone numbers given as arguments in the job creation."""
-
-    id: Optional[str] = None
-    """The phone number's ID"""
-
-    phone_number: Optional[str] = None
-    """The phone number in e164 format."""
+__all__ = ["NumberOrderListResponse"]
 
 
 class NumberOrderListResponse(BaseModel):
@@ -37,7 +28,7 @@ class NumberOrderListResponse(BaseModel):
     messaging_profile_id: Optional[str] = None
     """Identifies the messaging profile associated with the phone number."""
 
-    phone_numbers: Optional[List[PhoneNumber]] = None
+    phone_numbers: Optional[List[PhoneNumbersJobPhoneNumber]] = None
 
     phone_numbers_count: Optional[int] = None
     """The count of phone numbers in the number order."""

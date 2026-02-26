@@ -11,7 +11,7 @@ from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from telnyx.types.organizations import (
-    UserListResponse,
+    OrganizationUser,
     UserRetrieveResponse,
     UserGetGroupsReportResponse,
 )
@@ -77,7 +77,7 @@ class TestUsers:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         user = client.organizations.users.list()
-        assert_matches_type(SyncDefaultFlatPagination[UserListResponse], user, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[OrganizationUser], user, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -89,7 +89,7 @@ class TestUsers:
             page_number=1,
             page_size=1,
         )
-        assert_matches_type(SyncDefaultFlatPagination[UserListResponse], user, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[OrganizationUser], user, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -99,7 +99,7 @@ class TestUsers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         user = response.parse()
-        assert_matches_type(SyncDefaultFlatPagination[UserListResponse], user, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[OrganizationUser], user, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -109,7 +109,7 @@ class TestUsers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             user = response.parse()
-            assert_matches_type(SyncDefaultFlatPagination[UserListResponse], user, path=["response"])
+            assert_matches_type(SyncDefaultFlatPagination[OrganizationUser], user, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -210,7 +210,7 @@ class TestAsyncUsers:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         user = await async_client.organizations.users.list()
-        assert_matches_type(AsyncDefaultFlatPagination[UserListResponse], user, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[OrganizationUser], user, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -222,7 +222,7 @@ class TestAsyncUsers:
             page_number=1,
             page_size=1,
         )
-        assert_matches_type(AsyncDefaultFlatPagination[UserListResponse], user, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[OrganizationUser], user, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -232,7 +232,7 @@ class TestAsyncUsers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         user = await response.parse()
-        assert_matches_type(AsyncDefaultFlatPagination[UserListResponse], user, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[OrganizationUser], user, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -242,7 +242,7 @@ class TestAsyncUsers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             user = await response.parse()
-            assert_matches_type(AsyncDefaultFlatPagination[UserListResponse], user, path=["response"])
+            assert_matches_type(AsyncDefaultFlatPagination[OrganizationUser], user, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

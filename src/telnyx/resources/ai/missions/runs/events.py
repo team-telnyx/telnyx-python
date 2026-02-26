@@ -20,8 +20,8 @@ from ....._response import (
 from .....pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from ....._base_client import AsyncPaginator, make_request_options
 from .....types.ai.missions.runs import event_log_params, event_list_params
+from .....types.ai.missions.runs.event_data import EventData
 from .....types.ai.missions.runs.event_log_response import EventLogResponse
-from .....types.ai.missions.runs.event_list_response import EventListResponse
 from .....types.ai.missions.runs.event_get_event_details_response import EventGetEventDetailsResponse
 
 __all__ = ["EventsResource", "AsyncEventsResource"]
@@ -63,7 +63,7 @@ class EventsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[EventListResponse]:
+    ) -> SyncDefaultFlatPagination[EventData]:
         """
         List events for a run (paginated)
 
@@ -86,7 +86,7 @@ class EventsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `run_id` but received {run_id!r}")
         return self._get_api_list(
             f"/ai/missions/{mission_id}/runs/{run_id}/events",
-            page=SyncDefaultFlatPagination[EventListResponse],
+            page=SyncDefaultFlatPagination[EventData],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -103,7 +103,7 @@ class EventsResource(SyncAPIResource):
                     event_list_params.EventListParams,
                 ),
             ),
-            model=EventListResponse,
+            model=EventData,
         )
 
     def get_event_details(
@@ -247,7 +247,7 @@ class AsyncEventsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[EventListResponse, AsyncDefaultFlatPagination[EventListResponse]]:
+    ) -> AsyncPaginator[EventData, AsyncDefaultFlatPagination[EventData]]:
         """
         List events for a run (paginated)
 
@@ -270,7 +270,7 @@ class AsyncEventsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `run_id` but received {run_id!r}")
         return self._get_api_list(
             f"/ai/missions/{mission_id}/runs/{run_id}/events",
-            page=AsyncDefaultFlatPagination[EventListResponse],
+            page=AsyncDefaultFlatPagination[EventData],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -287,7 +287,7 @@ class AsyncEventsResource(AsyncAPIResource):
                     event_list_params.EventListParams,
                 ),
             ),
-            model=EventListResponse,
+            model=EventData,
         )
 
     async def get_event_details(

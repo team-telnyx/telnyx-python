@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from .auto_recharge_pref import AutoRechargePref as AutoRechargePref
 from .auto_recharge_pref_list_response import AutoRechargePrefListResponse as AutoRechargePrefListResponse
 from .auto_recharge_pref_update_params import AutoRechargePrefUpdateParams as AutoRechargePrefUpdateParams
 from .auto_recharge_pref_update_response import AutoRechargePrefUpdateResponse as AutoRechargePrefUpdateResponse

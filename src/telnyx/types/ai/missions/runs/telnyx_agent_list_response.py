@@ -1,20 +1,12 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List
-from datetime import datetime
 
 from ....._models import BaseModel
+from .telnyx_agent_data import TelnyxAgentData
 
-__all__ = ["TelnyxAgentListResponse", "Data"]
-
-
-class Data(BaseModel):
-    created_at: datetime
-
-    run_id: str
-
-    telnyx_agent_id: str
+__all__ = ["TelnyxAgentListResponse"]
 
 
 class TelnyxAgentListResponse(BaseModel):
-    data: List[Data]
+    data: List[TelnyxAgentData]
