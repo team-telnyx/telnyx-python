@@ -10,7 +10,7 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types import (
-    Queue,
+    QueueListResponse,
     QueueCreateResponse,
     QueueUpdateResponse,
     QueueRetrieveResponse,
@@ -158,7 +158,7 @@ class TestQueues:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         queue = client.queues.list()
-        assert_matches_type(SyncDefaultFlatPagination[Queue], queue, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[QueueListResponse], queue, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -167,7 +167,7 @@ class TestQueues:
             page_number=1,
             page_size=1,
         )
-        assert_matches_type(SyncDefaultFlatPagination[Queue], queue, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[QueueListResponse], queue, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -177,7 +177,7 @@ class TestQueues:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         queue = response.parse()
-        assert_matches_type(SyncDefaultFlatPagination[Queue], queue, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[QueueListResponse], queue, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -187,7 +187,7 @@ class TestQueues:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             queue = response.parse()
-            assert_matches_type(SyncDefaultFlatPagination[Queue], queue, path=["response"])
+            assert_matches_type(SyncDefaultFlatPagination[QueueListResponse], queue, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -374,7 +374,7 @@ class TestAsyncQueues:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         queue = await async_client.queues.list()
-        assert_matches_type(AsyncDefaultFlatPagination[Queue], queue, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[QueueListResponse], queue, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -383,7 +383,7 @@ class TestAsyncQueues:
             page_number=1,
             page_size=1,
         )
-        assert_matches_type(AsyncDefaultFlatPagination[Queue], queue, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[QueueListResponse], queue, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -393,7 +393,7 @@ class TestAsyncQueues:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         queue = await response.parse()
-        assert_matches_type(AsyncDefaultFlatPagination[Queue], queue, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[QueueListResponse], queue, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -403,7 +403,7 @@ class TestAsyncQueues:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             queue = await response.parse()
-            assert_matches_type(AsyncDefaultFlatPagination[Queue], queue, path=["response"])
+            assert_matches_type(AsyncDefaultFlatPagination[QueueListResponse], queue, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
