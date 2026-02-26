@@ -437,7 +437,6 @@ from .sim_card_group_list_response import SimCardGroupListResponse as SimCardGro
 from .sim_card_group_update_params import SimCardGroupUpdateParams as SimCardGroupUpdateParams
 from .sim_card_order_create_params import SimCardOrderCreateParams as SimCardOrderCreateParams
 from .sub_number_order_list_params import SubNumberOrderListParams as SubNumberOrderListParams
-from .text_to_speech_stream_params import TextToSpeechStreamParams as TextToSpeechStreamParams
 from .url_shortener_settings_param import URLShortenerSettingsParam as URLShortenerSettingsParam
 from .user_address_create_response import UserAddressCreateResponse as UserAddressCreateResponse
 from .verified_number_data_wrapper import VerifiedNumberDataWrapper as VerifiedNumberDataWrapper
@@ -831,6 +830,7 @@ from .recording_transcription_list_response import (
 )
 from .sim_card_get_activation_code_response import SimCardGetActivationCodeResponse as SimCardGetActivationCodeResponse
 from .sim_card_order_preview_preview_params import SimCardOrderPreviewPreviewParams as SimCardOrderPreviewPreviewParams
+from .text_to_speech_generate_speech_params import TextToSpeechGenerateSpeechParams as TextToSpeechGenerateSpeechParams
 from .verification_trigger_flashcall_params import (
     VerificationTriggerFlashcallParams as VerificationTriggerFlashcallParams,
 )

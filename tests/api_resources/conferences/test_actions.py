@@ -633,7 +633,6 @@ class TestActions:
         action = client.conferences.actions.record_start(
             id="id",
             format="wav",
-            channels="dual",
             command_id="891510ac-f3e4-11e8-af5b-de00688a4901",
             custom_file_name="my_recording_file_name",
             play_beep=True,
@@ -1624,7 +1623,6 @@ class TestAsyncActions:
         action = await async_client.conferences.actions.record_start(
             id="id",
             format="wav",
-            channels="dual",
             command_id="891510ac-f3e4-11e8-af5b-de00688a4901",
             custom_file_name="my_recording_file_name",
             play_beep=True,
