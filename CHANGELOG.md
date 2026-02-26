@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.52.0 (2026-02-26)
+
+Full Changelog: [v4.51.0...v4.52.0](https://github.com/team-telnyx/telnyx-python/compare/v4.51.0...v4.52.0)
+
+### Features
+
+* TELAPPS-ENGDESK-48951 add channels to conf record start ([6eee179](https://github.com/team-telnyx/telnyx-python/commit/6eee1798f5cdb7810d8d38dc589e75ac5c41166c))
+
 ## 4.51.0 (2026-02-26)
 
 Full Changelog: [v4.50.0...v4.51.0](https://github.com/team-telnyx/telnyx-python/compare/v4.50.0...v4.51.0)
