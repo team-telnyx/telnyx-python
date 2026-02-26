@@ -14,6 +14,12 @@ class ActionRecordStartParams(TypedDict, total=False):
     Can be either `mp3` or `wav`.
     """
 
+    channels: Literal["single", "dual"]
+    """
+    When `dual`, final audio file will be stereo recorded with the conference
+    creator on the first channel, and the rest on the second channel.
+    """
+
     command_id: str
     """Use this field to avoid duplicate commands.
 
