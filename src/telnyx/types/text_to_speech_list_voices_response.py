@@ -8,22 +8,25 @@ __all__ = ["TextToSpeechListVoicesResponse", "Voice"]
 
 
 class Voice(BaseModel):
-    id: Optional[str] = None
-
-    accent: Optional[str] = None
-
-    age: Optional[str] = None
+    """A voice available for text-to-speech synthesis."""
 
     gender: Optional[str] = None
-
-    label: Optional[str] = None
+    """Voice gender."""
 
     language: Optional[str] = None
+    """Language code."""
 
     name: Optional[str] = None
+    """Voice name."""
 
     provider: Optional[str] = None
+    """The TTS provider."""
+
+    voice_id: Optional[str] = None
+    """Voice identifier."""
 
 
 class TextToSpeechListVoicesResponse(BaseModel):
+    """List of available voices."""
+
     voices: Optional[List[Voice]] = None
