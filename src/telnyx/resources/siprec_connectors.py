@@ -24,6 +24,8 @@ __all__ = ["SiprecConnectorsResource", "AsyncSiprecConnectorsResource"]
 
 
 class SiprecConnectorsResource(SyncAPIResource):
+    """SIPREC connectors configuration."""
+
     @cached_property
     def with_raw_response(self) -> SiprecConnectorsResourceWithRawResponse:
         """
@@ -217,6 +219,8 @@ class SiprecConnectorsResource(SyncAPIResource):
 
 
 class AsyncSiprecConnectorsResource(AsyncAPIResource):
+    """SIPREC connectors configuration."""
+
     @cached_property
     def with_raw_response(self) -> AsyncSiprecConnectorsResourceWithRawResponse:
         """

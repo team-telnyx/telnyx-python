@@ -25,6 +25,8 @@ __all__ = ["LogMessagesResource", "AsyncLogMessagesResource"]
 
 
 class LogMessagesResource(SyncAPIResource):
+    """External Connections operations"""
+
     @cached_property
     def with_raw_response(self) -> LogMessagesResourceWithRawResponse:
         """
@@ -161,6 +163,8 @@ class LogMessagesResource(SyncAPIResource):
 
 
 class AsyncLogMessagesResource(AsyncAPIResource):
+    """External Connections operations"""
+
     @cached_property
     def with_raw_response(self) -> AsyncLogMessagesResourceWithRawResponse:
         """

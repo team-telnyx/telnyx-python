@@ -19,6 +19,7 @@ __all__ = ["PhoneNumberBlocksResource", "AsyncPhoneNumberBlocksResource"]
 class PhoneNumberBlocksResource(SyncAPIResource):
     @cached_property
     def jobs(self) -> JobsResource:
+        """Background jobs performed over a phone-numbers block's phone numbers"""
         return JobsResource(self._client)
 
     @cached_property
@@ -44,6 +45,7 @@ class PhoneNumberBlocksResource(SyncAPIResource):
 class AsyncPhoneNumberBlocksResource(AsyncAPIResource):
     @cached_property
     def jobs(self) -> AsyncJobsResource:
+        """Background jobs performed over a phone-numbers block's phone numbers"""
         return AsyncJobsResource(self._client)
 
     @cached_property
@@ -72,6 +74,7 @@ class PhoneNumberBlocksResourceWithRawResponse:
 
     @cached_property
     def jobs(self) -> JobsResourceWithRawResponse:
+        """Background jobs performed over a phone-numbers block's phone numbers"""
         return JobsResourceWithRawResponse(self._phone_number_blocks.jobs)
 
 
@@ -81,6 +84,7 @@ class AsyncPhoneNumberBlocksResourceWithRawResponse:
 
     @cached_property
     def jobs(self) -> AsyncJobsResourceWithRawResponse:
+        """Background jobs performed over a phone-numbers block's phone numbers"""
         return AsyncJobsResourceWithRawResponse(self._phone_number_blocks.jobs)
 
 
@@ -90,6 +94,7 @@ class PhoneNumberBlocksResourceWithStreamingResponse:
 
     @cached_property
     def jobs(self) -> JobsResourceWithStreamingResponse:
+        """Background jobs performed over a phone-numbers block's phone numbers"""
         return JobsResourceWithStreamingResponse(self._phone_number_blocks.jobs)
 
 
@@ -99,4 +104,5 @@ class AsyncPhoneNumberBlocksResourceWithStreamingResponse:
 
     @cached_property
     def jobs(self) -> AsyncJobsResourceWithStreamingResponse:
+        """Background jobs performed over a phone-numbers block's phone numbers"""
         return AsyncJobsResourceWithStreamingResponse(self._phone_number_blocks.jobs)

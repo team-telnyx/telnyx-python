@@ -27,10 +27,12 @@ __all__ = ["ActionsResource", "AsyncActionsResource"]
 class ActionsResource(SyncAPIResource):
     @cached_property
     def purchase(self) -> PurchaseResource:
+        """SIM Cards operations"""
         return PurchaseResource(self._client)
 
     @cached_property
     def register(self) -> RegisterResource:
+        """SIM Cards operations"""
         return RegisterResource(self._client)
 
     @cached_property
@@ -56,10 +58,12 @@ class ActionsResource(SyncAPIResource):
 class AsyncActionsResource(AsyncAPIResource):
     @cached_property
     def purchase(self) -> AsyncPurchaseResource:
+        """SIM Cards operations"""
         return AsyncPurchaseResource(self._client)
 
     @cached_property
     def register(self) -> AsyncRegisterResource:
+        """SIM Cards operations"""
         return AsyncRegisterResource(self._client)
 
     @cached_property
@@ -88,10 +92,12 @@ class ActionsResourceWithRawResponse:
 
     @cached_property
     def purchase(self) -> PurchaseResourceWithRawResponse:
+        """SIM Cards operations"""
         return PurchaseResourceWithRawResponse(self._actions.purchase)
 
     @cached_property
     def register(self) -> RegisterResourceWithRawResponse:
+        """SIM Cards operations"""
         return RegisterResourceWithRawResponse(self._actions.register)
 
 
@@ -101,10 +107,12 @@ class AsyncActionsResourceWithRawResponse:
 
     @cached_property
     def purchase(self) -> AsyncPurchaseResourceWithRawResponse:
+        """SIM Cards operations"""
         return AsyncPurchaseResourceWithRawResponse(self._actions.purchase)
 
     @cached_property
     def register(self) -> AsyncRegisterResourceWithRawResponse:
+        """SIM Cards operations"""
         return AsyncRegisterResourceWithRawResponse(self._actions.register)
 
 
@@ -114,10 +122,12 @@ class ActionsResourceWithStreamingResponse:
 
     @cached_property
     def purchase(self) -> PurchaseResourceWithStreamingResponse:
+        """SIM Cards operations"""
         return PurchaseResourceWithStreamingResponse(self._actions.purchase)
 
     @cached_property
     def register(self) -> RegisterResourceWithStreamingResponse:
+        """SIM Cards operations"""
         return RegisterResourceWithStreamingResponse(self._actions.register)
 
 
@@ -127,8 +137,10 @@ class AsyncActionsResourceWithStreamingResponse:
 
     @cached_property
     def purchase(self) -> AsyncPurchaseResourceWithStreamingResponse:
+        """SIM Cards operations"""
         return AsyncPurchaseResourceWithStreamingResponse(self._actions.purchase)
 
     @cached_property
     def register(self) -> AsyncRegisterResourceWithStreamingResponse:
+        """SIM Cards operations"""
         return AsyncRegisterResourceWithStreamingResponse(self._actions.register)

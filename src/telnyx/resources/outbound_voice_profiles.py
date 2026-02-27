@@ -41,6 +41,8 @@ __all__ = ["OutboundVoiceProfilesResource", "AsyncOutboundVoiceProfilesResource"
 
 
 class OutboundVoiceProfilesResource(SyncAPIResource):
+    """Outbound voice profiles operations"""
+
     @cached_property
     def with_raw_response(self) -> OutboundVoiceProfilesResourceWithRawResponse:
         """
@@ -400,6 +402,8 @@ class OutboundVoiceProfilesResource(SyncAPIResource):
 
 
 class AsyncOutboundVoiceProfilesResource(AsyncAPIResource):
+    """Outbound voice profiles operations"""
+
     @cached_property
     def with_raw_response(self) -> AsyncOutboundVoiceProfilesResourceWithRawResponse:
         """

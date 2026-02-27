@@ -27,6 +27,8 @@ __all__ = ["RequirementsResource", "AsyncRequirementsResource"]
 
 
 class RequirementsResource(SyncAPIResource):
+    """Requirements for international numbers and porting orders"""
+
     @cached_property
     def with_raw_response(self) -> RequirementsResourceWithRawResponse:
         """
@@ -148,6 +150,8 @@ class RequirementsResource(SyncAPIResource):
 
 
 class AsyncRequirementsResource(AsyncAPIResource):
+    """Requirements for international numbers and porting orders"""
+
     @cached_property
     def with_raw_response(self) -> AsyncRequirementsResourceWithRawResponse:
         """

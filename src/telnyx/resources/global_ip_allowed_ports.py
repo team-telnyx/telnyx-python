@@ -20,6 +20,8 @@ __all__ = ["GlobalIPAllowedPortsResource", "AsyncGlobalIPAllowedPortsResource"]
 
 
 class GlobalIPAllowedPortsResource(SyncAPIResource):
+    """Global IPs"""
+
     @cached_property
     def with_raw_response(self) -> GlobalIPAllowedPortsResourceWithRawResponse:
         """
@@ -60,6 +62,8 @@ class GlobalIPAllowedPortsResource(SyncAPIResource):
 
 
 class AsyncGlobalIPAllowedPortsResource(AsyncAPIResource):
+    """Global IPs"""
+
     @cached_property
     def with_raw_response(self) -> AsyncGlobalIPAllowedPortsResourceWithRawResponse:
         """

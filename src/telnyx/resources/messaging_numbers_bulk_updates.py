@@ -23,6 +23,8 @@ __all__ = ["MessagingNumbersBulkUpdatesResource", "AsyncMessagingNumbersBulkUpda
 
 
 class MessagingNumbersBulkUpdatesResource(SyncAPIResource):
+    """Configure your phone numbers"""
+
     @cached_property
     def with_raw_response(self) -> MessagingNumbersBulkUpdatesResourceWithRawResponse:
         """
@@ -130,6 +132,8 @@ class MessagingNumbersBulkUpdatesResource(SyncAPIResource):
 
 
 class AsyncMessagingNumbersBulkUpdatesResource(AsyncAPIResource):
+    """Configure your phone numbers"""
+
     @cached_property
     def with_raw_response(self) -> AsyncMessagingNumbersBulkUpdatesResourceWithRawResponse:
         """

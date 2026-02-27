@@ -30,8 +30,11 @@ __all__ = ["WirelessResource", "AsyncWirelessResource"]
 
 
 class WirelessResource(SyncAPIResource):
+    """Regions for wireless services"""
+
     @cached_property
     def detail_records_reports(self) -> DetailRecordsReportsResource:
+        """Wireless reporting operations"""
         return DetailRecordsReportsResource(self._client)
 
     @cached_property
@@ -95,8 +98,11 @@ class WirelessResource(SyncAPIResource):
 
 
 class AsyncWirelessResource(AsyncAPIResource):
+    """Regions for wireless services"""
+
     @cached_property
     def detail_records_reports(self) -> AsyncDetailRecordsReportsResource:
+        """Wireless reporting operations"""
         return AsyncDetailRecordsReportsResource(self._client)
 
     @cached_property
@@ -169,6 +175,7 @@ class WirelessResourceWithRawResponse:
 
     @cached_property
     def detail_records_reports(self) -> DetailRecordsReportsResourceWithRawResponse:
+        """Wireless reporting operations"""
         return DetailRecordsReportsResourceWithRawResponse(self._wireless.detail_records_reports)
 
 
@@ -182,6 +189,7 @@ class AsyncWirelessResourceWithRawResponse:
 
     @cached_property
     def detail_records_reports(self) -> AsyncDetailRecordsReportsResourceWithRawResponse:
+        """Wireless reporting operations"""
         return AsyncDetailRecordsReportsResourceWithRawResponse(self._wireless.detail_records_reports)
 
 
@@ -195,6 +203,7 @@ class WirelessResourceWithStreamingResponse:
 
     @cached_property
     def detail_records_reports(self) -> DetailRecordsReportsResourceWithStreamingResponse:
+        """Wireless reporting operations"""
         return DetailRecordsReportsResourceWithStreamingResponse(self._wireless.detail_records_reports)
 
 
@@ -208,4 +217,5 @@ class AsyncWirelessResourceWithStreamingResponse:
 
     @cached_property
     def detail_records_reports(self) -> AsyncDetailRecordsReportsResourceWithStreamingResponse:
+        """Wireless reporting operations"""
         return AsyncDetailRecordsReportsResourceWithStreamingResponse(self._wireless.detail_records_reports)

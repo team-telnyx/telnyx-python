@@ -26,6 +26,8 @@ __all__ = ["PrivateWirelessGatewaysResource", "AsyncPrivateWirelessGatewaysResou
 
 
 class PrivateWirelessGatewaysResource(SyncAPIResource):
+    """Private Wireless Gateways operations"""
+
     @cached_property
     def with_raw_response(self) -> PrivateWirelessGatewaysResourceWithRawResponse:
         """
@@ -230,6 +232,8 @@ class PrivateWirelessGatewaysResource(SyncAPIResource):
 
 
 class AsyncPrivateWirelessGatewaysResource(AsyncAPIResource):
+    """Private Wireless Gateways operations"""
+
     @cached_property
     def with_raw_response(self) -> AsyncPrivateWirelessGatewaysResourceWithRawResponse:
         """

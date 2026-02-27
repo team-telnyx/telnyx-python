@@ -22,6 +22,8 @@ __all__ = ["InventoryCoverageResource", "AsyncInventoryCoverageResource"]
 
 
 class InventoryCoverageResource(SyncAPIResource):
+    """Inventory Level"""
+
     @cached_property
     def with_raw_response(self) -> InventoryCoverageResourceWithRawResponse:
         """
@@ -85,6 +87,8 @@ class InventoryCoverageResource(SyncAPIResource):
 
 
 class AsyncInventoryCoverageResource(AsyncAPIResource):
+    """Inventory Level"""
+
     @cached_property
     def with_raw_response(self) -> AsyncInventoryCoverageResourceWithRawResponse:
         """

@@ -24,6 +24,8 @@ __all__ = ["DefaultGatewayResource", "AsyncDefaultGatewayResource"]
 
 
 class DefaultGatewayResource(SyncAPIResource):
+    """Network operations"""
+
     @cached_property
     def with_raw_response(self) -> DefaultGatewayResourceWithRawResponse:
         """
@@ -150,6 +152,8 @@ class DefaultGatewayResource(SyncAPIResource):
 
 
 class AsyncDefaultGatewayResource(AsyncAPIResource):
+    """Network operations"""
+
     @cached_property
     def with_raw_response(self) -> AsyncDefaultGatewayResourceWithRawResponse:
         """

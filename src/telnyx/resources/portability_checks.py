@@ -22,6 +22,8 @@ __all__ = ["PortabilityChecksResource", "AsyncPortabilityChecksResource"]
 
 
 class PortabilityChecksResource(SyncAPIResource):
+    """Determining portability of phone numbers"""
+
     @cached_property
     def with_raw_response(self) -> PortabilityChecksResourceWithRawResponse:
         """
@@ -79,6 +81,8 @@ class PortabilityChecksResource(SyncAPIResource):
 
 
 class AsyncPortabilityChecksResource(AsyncAPIResource):
+    """Determining portability of phone numbers"""
+
     @cached_property
     def with_raw_response(self) -> AsyncPortabilityChecksResourceWithRawResponse:
         """

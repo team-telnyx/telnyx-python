@@ -31,6 +31,8 @@ __all__ = ["SimCardDataUsageNotificationsResource", "AsyncSimCardDataUsageNotifi
 
 
 class SimCardDataUsageNotificationsResource(SyncAPIResource):
+    """SIM Cards operations"""
+
     @cached_property
     def with_raw_response(self) -> SimCardDataUsageNotificationsResourceWithRawResponse:
         """
@@ -262,6 +264,8 @@ class SimCardDataUsageNotificationsResource(SyncAPIResource):
 
 
 class AsyncSimCardDataUsageNotificationsResource(AsyncAPIResource):
+    """SIM Cards operations"""
+
     @cached_property
     def with_raw_response(self) -> AsyncSimCardDataUsageNotificationsResourceWithRawResponse:
         """

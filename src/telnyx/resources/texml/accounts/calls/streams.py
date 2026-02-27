@@ -24,6 +24,8 @@ __all__ = ["StreamsResource", "AsyncStreamsResource"]
 
 
 class StreamsResource(SyncAPIResource):
+    """TeXML REST Commands"""
+
     @cached_property
     def with_raw_response(self) -> StreamsResourceWithRawResponse:
         """
@@ -88,6 +90,8 @@ class StreamsResource(SyncAPIResource):
 
 
 class AsyncStreamsResource(AsyncAPIResource):
+    """TeXML REST Commands"""
+
     @cached_property
     def with_raw_response(self) -> AsyncStreamsResourceWithRawResponse:
         """

@@ -22,6 +22,8 @@ __all__ = ["UserTagsResource", "AsyncUserTagsResource"]
 
 
 class UserTagsResource(SyncAPIResource):
+    """User-defined tags for Telnyx resources"""
+
     @cached_property
     def with_raw_response(self) -> UserTagsResourceWithRawResponse:
         """
@@ -82,6 +84,8 @@ class UserTagsResource(SyncAPIResource):
 
 
 class AsyncUserTagsResource(AsyncAPIResource):
+    """User-defined tags for Telnyx resources"""
+
     @cached_property
     def with_raw_response(self) -> AsyncUserTagsResourceWithRawResponse:
         """

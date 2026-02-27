@@ -26,6 +26,10 @@ __all__ = ["EmbeddingsResource", "AsyncEmbeddingsResource"]
 
 
 class EmbeddingsResource(SyncAPIResource):
+    """
+    OpenAI-compatible embeddings endpoints for generating vector representations of text
+    """
+
     @cached_property
     def with_raw_response(self) -> EmbeddingsResourceWithRawResponse:
         """
@@ -133,6 +137,10 @@ class EmbeddingsResource(SyncAPIResource):
 
 
 class AsyncEmbeddingsResource(AsyncAPIResource):
+    """
+    OpenAI-compatible embeddings endpoints for generating vector representations of text
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncEmbeddingsResourceWithRawResponse:
         """

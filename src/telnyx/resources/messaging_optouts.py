@@ -23,6 +23,8 @@ __all__ = ["MessagingOptoutsResource", "AsyncMessagingOptoutsResource"]
 
 
 class MessagingOptoutsResource(SyncAPIResource):
+    """Opt-Out Management"""
+
     @cached_property
     def with_raw_response(self) -> MessagingOptoutsResourceWithRawResponse:
         """
@@ -103,6 +105,8 @@ class MessagingOptoutsResource(SyncAPIResource):
 
 
 class AsyncMessagingOptoutsResource(AsyncAPIResource):
+    """Opt-Out Management"""
+
     @cached_property
     def with_raw_response(self) -> AsyncMessagingOptoutsResourceWithRawResponse:
         """

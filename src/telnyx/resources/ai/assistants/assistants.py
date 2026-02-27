@@ -85,24 +85,31 @@ __all__ = ["AssistantsResource", "AsyncAssistantsResource"]
 
 
 class AssistantsResource(SyncAPIResource):
+    """Configure AI assistant specifications"""
+
     @cached_property
     def tests(self) -> TestsResource:
+        """Configure AI assistant specifications"""
         return TestsResource(self._client)
 
     @cached_property
     def canary_deploys(self) -> CanaryDeploysResource:
+        """Configure AI assistant specifications"""
         return CanaryDeploysResource(self._client)
 
     @cached_property
     def scheduled_events(self) -> ScheduledEventsResource:
+        """Configure AI assistant specifications"""
         return ScheduledEventsResource(self._client)
 
     @cached_property
     def tools(self) -> ToolsResource:
+        """Configure AI assistant specifications"""
         return ToolsResource(self._client)
 
     @cached_property
     def versions(self) -> VersionsResource:
+        """Configure AI assistant specifications"""
         return VersionsResource(self._client)
 
     @cached_property
@@ -672,24 +679,31 @@ class AssistantsResource(SyncAPIResource):
 
 
 class AsyncAssistantsResource(AsyncAPIResource):
+    """Configure AI assistant specifications"""
+
     @cached_property
     def tests(self) -> AsyncTestsResource:
+        """Configure AI assistant specifications"""
         return AsyncTestsResource(self._client)
 
     @cached_property
     def canary_deploys(self) -> AsyncCanaryDeploysResource:
+        """Configure AI assistant specifications"""
         return AsyncCanaryDeploysResource(self._client)
 
     @cached_property
     def scheduled_events(self) -> AsyncScheduledEventsResource:
+        """Configure AI assistant specifications"""
         return AsyncScheduledEventsResource(self._client)
 
     @cached_property
     def tools(self) -> AsyncToolsResource:
+        """Configure AI assistant specifications"""
         return AsyncToolsResource(self._client)
 
     @cached_property
     def versions(self) -> AsyncVersionsResource:
+        """Configure AI assistant specifications"""
         return AsyncVersionsResource(self._client)
 
     @cached_property
@@ -1295,22 +1309,27 @@ class AssistantsResourceWithRawResponse:
 
     @cached_property
     def tests(self) -> TestsResourceWithRawResponse:
+        """Configure AI assistant specifications"""
         return TestsResourceWithRawResponse(self._assistants.tests)
 
     @cached_property
     def canary_deploys(self) -> CanaryDeploysResourceWithRawResponse:
+        """Configure AI assistant specifications"""
         return CanaryDeploysResourceWithRawResponse(self._assistants.canary_deploys)
 
     @cached_property
     def scheduled_events(self) -> ScheduledEventsResourceWithRawResponse:
+        """Configure AI assistant specifications"""
         return ScheduledEventsResourceWithRawResponse(self._assistants.scheduled_events)
 
     @cached_property
     def tools(self) -> ToolsResourceWithRawResponse:
+        """Configure AI assistant specifications"""
         return ToolsResourceWithRawResponse(self._assistants.tools)
 
     @cached_property
     def versions(self) -> VersionsResourceWithRawResponse:
+        """Configure AI assistant specifications"""
         return VersionsResourceWithRawResponse(self._assistants.versions)
 
 
@@ -1351,22 +1370,27 @@ class AsyncAssistantsResourceWithRawResponse:
 
     @cached_property
     def tests(self) -> AsyncTestsResourceWithRawResponse:
+        """Configure AI assistant specifications"""
         return AsyncTestsResourceWithRawResponse(self._assistants.tests)
 
     @cached_property
     def canary_deploys(self) -> AsyncCanaryDeploysResourceWithRawResponse:
+        """Configure AI assistant specifications"""
         return AsyncCanaryDeploysResourceWithRawResponse(self._assistants.canary_deploys)
 
     @cached_property
     def scheduled_events(self) -> AsyncScheduledEventsResourceWithRawResponse:
+        """Configure AI assistant specifications"""
         return AsyncScheduledEventsResourceWithRawResponse(self._assistants.scheduled_events)
 
     @cached_property
     def tools(self) -> AsyncToolsResourceWithRawResponse:
+        """Configure AI assistant specifications"""
         return AsyncToolsResourceWithRawResponse(self._assistants.tools)
 
     @cached_property
     def versions(self) -> AsyncVersionsResourceWithRawResponse:
+        """Configure AI assistant specifications"""
         return AsyncVersionsResourceWithRawResponse(self._assistants.versions)
 
 
@@ -1407,22 +1431,27 @@ class AssistantsResourceWithStreamingResponse:
 
     @cached_property
     def tests(self) -> TestsResourceWithStreamingResponse:
+        """Configure AI assistant specifications"""
         return TestsResourceWithStreamingResponse(self._assistants.tests)
 
     @cached_property
     def canary_deploys(self) -> CanaryDeploysResourceWithStreamingResponse:
+        """Configure AI assistant specifications"""
         return CanaryDeploysResourceWithStreamingResponse(self._assistants.canary_deploys)
 
     @cached_property
     def scheduled_events(self) -> ScheduledEventsResourceWithStreamingResponse:
+        """Configure AI assistant specifications"""
         return ScheduledEventsResourceWithStreamingResponse(self._assistants.scheduled_events)
 
     @cached_property
     def tools(self) -> ToolsResourceWithStreamingResponse:
+        """Configure AI assistant specifications"""
         return ToolsResourceWithStreamingResponse(self._assistants.tools)
 
     @cached_property
     def versions(self) -> VersionsResourceWithStreamingResponse:
+        """Configure AI assistant specifications"""
         return VersionsResourceWithStreamingResponse(self._assistants.versions)
 
 
@@ -1463,20 +1492,25 @@ class AsyncAssistantsResourceWithStreamingResponse:
 
     @cached_property
     def tests(self) -> AsyncTestsResourceWithStreamingResponse:
+        """Configure AI assistant specifications"""
         return AsyncTestsResourceWithStreamingResponse(self._assistants.tests)
 
     @cached_property
     def canary_deploys(self) -> AsyncCanaryDeploysResourceWithStreamingResponse:
+        """Configure AI assistant specifications"""
         return AsyncCanaryDeploysResourceWithStreamingResponse(self._assistants.canary_deploys)
 
     @cached_property
     def scheduled_events(self) -> AsyncScheduledEventsResourceWithStreamingResponse:
+        """Configure AI assistant specifications"""
         return AsyncScheduledEventsResourceWithStreamingResponse(self._assistants.scheduled_events)
 
     @cached_property
     def tools(self) -> AsyncToolsResourceWithStreamingResponse:
+        """Configure AI assistant specifications"""
         return AsyncToolsResourceWithStreamingResponse(self._assistants.tools)
 
     @cached_property
     def versions(self) -> AsyncVersionsResourceWithStreamingResponse:
+        """Configure AI assistant specifications"""
         return AsyncVersionsResourceWithStreamingResponse(self._assistants.versions)

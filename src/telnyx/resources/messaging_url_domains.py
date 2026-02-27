@@ -23,6 +23,8 @@ __all__ = ["MessagingURLDomainsResource", "AsyncMessagingURLDomainsResource"]
 
 
 class MessagingURLDomainsResource(SyncAPIResource):
+    """Messaging URL Domains"""
+
     @cached_property
     def with_raw_response(self) -> MessagingURLDomainsResourceWithRawResponse:
         """
@@ -87,6 +89,8 @@ class MessagingURLDomainsResource(SyncAPIResource):
 
 
 class AsyncMessagingURLDomainsResource(AsyncAPIResource):
+    """Messaging URL Domains"""
+
     @cached_property
     def with_raw_response(self) -> AsyncMessagingURLDomainsResourceWithRawResponse:
         """

@@ -21,6 +21,8 @@ __all__ = ["BucketsResource", "AsyncBucketsResource"]
 
 
 class BucketsResource(SyncAPIResource):
+    """Embed documents and perform text searches"""
+
     @cached_property
     def with_raw_response(self) -> BucketsResourceWithRawResponse:
         """
@@ -130,6 +132,8 @@ class BucketsResource(SyncAPIResource):
 
 
 class AsyncBucketsResource(AsyncAPIResource):
+    """Embed documents and perform text searches"""
+
     @cached_property
     def with_raw_response(self) -> AsyncBucketsResourceWithRawResponse:
         """

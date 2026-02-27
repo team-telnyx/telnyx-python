@@ -35,6 +35,8 @@ __all__ = ["MediaResource", "AsyncMediaResource"]
 
 
 class MediaResource(SyncAPIResource):
+    """Media Storage operations"""
+
     @cached_property
     def with_raw_response(self) -> MediaResourceWithRawResponse:
         """
@@ -307,6 +309,8 @@ class MediaResource(SyncAPIResource):
 
 
 class AsyncMediaResource(AsyncAPIResource):
+    """Media Storage operations"""
+
     @cached_property
     def with_raw_response(self) -> AsyncMediaResourceWithRawResponse:
         """

@@ -26,6 +26,8 @@ __all__ = ["InsightsResource", "AsyncInsightsResource"]
 
 
 class InsightsResource(SyncAPIResource):
+    """Manage historical AI assistant conversations"""
+
     @cached_property
     def with_raw_response(self) -> InsightsResourceWithRawResponse:
         """
@@ -254,6 +256,8 @@ class InsightsResource(SyncAPIResource):
 
 
 class AsyncInsightsResource(AsyncAPIResource):
+    """Manage historical AI assistant conversations"""
+
     @cached_property
     def with_raw_response(self) -> AsyncInsightsResourceWithRawResponse:
         """

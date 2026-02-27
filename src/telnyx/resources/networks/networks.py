@@ -36,8 +36,11 @@ __all__ = ["NetworksResource", "AsyncNetworksResource"]
 
 
 class NetworksResource(SyncAPIResource):
+    """Network operations"""
+
     @cached_property
     def default_gateway(self) -> DefaultGatewayResource:
+        """Network operations"""
         return DefaultGatewayResource(self._client)
 
     @cached_property
@@ -296,8 +299,11 @@ class NetworksResource(SyncAPIResource):
 
 
 class AsyncNetworksResource(AsyncAPIResource):
+    """Network operations"""
+
     @cached_property
     def default_gateway(self) -> AsyncDefaultGatewayResource:
+        """Network operations"""
         return AsyncDefaultGatewayResource(self._client)
 
     @cached_property
@@ -580,6 +586,7 @@ class NetworksResourceWithRawResponse:
 
     @cached_property
     def default_gateway(self) -> DefaultGatewayResourceWithRawResponse:
+        """Network operations"""
         return DefaultGatewayResourceWithRawResponse(self._networks.default_gateway)
 
 
@@ -608,6 +615,7 @@ class AsyncNetworksResourceWithRawResponse:
 
     @cached_property
     def default_gateway(self) -> AsyncDefaultGatewayResourceWithRawResponse:
+        """Network operations"""
         return AsyncDefaultGatewayResourceWithRawResponse(self._networks.default_gateway)
 
 
@@ -636,6 +644,7 @@ class NetworksResourceWithStreamingResponse:
 
     @cached_property
     def default_gateway(self) -> DefaultGatewayResourceWithStreamingResponse:
+        """Network operations"""
         return DefaultGatewayResourceWithStreamingResponse(self._networks.default_gateway)
 
 
@@ -664,4 +673,5 @@ class AsyncNetworksResourceWithStreamingResponse:
 
     @cached_property
     def default_gateway(self) -> AsyncDefaultGatewayResourceWithStreamingResponse:
+        """Network operations"""
         return AsyncDefaultGatewayResourceWithStreamingResponse(self._networks.default_gateway)

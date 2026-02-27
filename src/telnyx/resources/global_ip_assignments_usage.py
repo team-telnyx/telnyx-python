@@ -22,6 +22,8 @@ __all__ = ["GlobalIPAssignmentsUsageResource", "AsyncGlobalIPAssignmentsUsageRes
 
 
 class GlobalIPAssignmentsUsageResource(SyncAPIResource):
+    """Global IPs"""
+
     @cached_property
     def with_raw_response(self) -> GlobalIPAssignmentsUsageResourceWithRawResponse:
         """
@@ -85,6 +87,8 @@ class GlobalIPAssignmentsUsageResource(SyncAPIResource):
 
 
 class AsyncGlobalIPAssignmentsUsageResource(AsyncAPIResource):
+    """Global IPs"""
+
     @cached_property
     def with_raw_response(self) -> AsyncGlobalIPAssignmentsUsageResourceWithRawResponse:
         """

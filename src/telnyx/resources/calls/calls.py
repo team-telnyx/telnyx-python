@@ -53,6 +53,7 @@ __all__ = ["CallsResource", "AsyncCallsResource"]
 class CallsResource(SyncAPIResource):
     @cached_property
     def actions(self) -> ActionsResource:
+        """Call Control command operations"""
         return ActionsResource(self._client)
 
     @cached_property
@@ -445,6 +446,7 @@ class CallsResource(SyncAPIResource):
 class AsyncCallsResource(AsyncAPIResource):
     @cached_property
     def actions(self) -> AsyncActionsResource:
+        """Call Control command operations"""
         return AsyncActionsResource(self._client)
 
     @cached_property
@@ -847,6 +849,7 @@ class CallsResourceWithRawResponse:
 
     @cached_property
     def actions(self) -> ActionsResourceWithRawResponse:
+        """Call Control command operations"""
         return ActionsResourceWithRawResponse(self._calls.actions)
 
 
@@ -863,6 +866,7 @@ class AsyncCallsResourceWithRawResponse:
 
     @cached_property
     def actions(self) -> AsyncActionsResourceWithRawResponse:
+        """Call Control command operations"""
         return AsyncActionsResourceWithRawResponse(self._calls.actions)
 
 
@@ -879,6 +883,7 @@ class CallsResourceWithStreamingResponse:
 
     @cached_property
     def actions(self) -> ActionsResourceWithStreamingResponse:
+        """Call Control command operations"""
         return ActionsResourceWithStreamingResponse(self._calls.actions)
 
 
@@ -895,4 +900,5 @@ class AsyncCallsResourceWithStreamingResponse:
 
     @cached_property
     def actions(self) -> AsyncActionsResourceWithStreamingResponse:
+        """Call Control command operations"""
         return AsyncActionsResourceWithStreamingResponse(self._calls.actions)

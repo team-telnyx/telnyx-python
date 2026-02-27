@@ -60,16 +60,21 @@ __all__ = ["ConversationsResource", "AsyncConversationsResource"]
 
 
 class ConversationsResource(SyncAPIResource):
+    """Manage historical AI assistant conversations"""
+
     @cached_property
     def insight_groups(self) -> InsightGroupsResource:
+        """Manage historical AI assistant conversations"""
         return InsightGroupsResource(self._client)
 
     @cached_property
     def insights(self) -> InsightsResource:
+        """Manage historical AI assistant conversations"""
         return InsightsResource(self._client)
 
     @cached_property
     def messages(self) -> MessagesResource:
+        """Manage historical AI assistant conversations"""
         return MessagesResource(self._client)
 
     @cached_property
@@ -429,16 +434,21 @@ class ConversationsResource(SyncAPIResource):
 
 
 class AsyncConversationsResource(AsyncAPIResource):
+    """Manage historical AI assistant conversations"""
+
     @cached_property
     def insight_groups(self) -> AsyncInsightGroupsResource:
+        """Manage historical AI assistant conversations"""
         return AsyncInsightGroupsResource(self._client)
 
     @cached_property
     def insights(self) -> AsyncInsightsResource:
+        """Manage historical AI assistant conversations"""
         return AsyncInsightsResource(self._client)
 
     @cached_property
     def messages(self) -> AsyncMessagesResource:
+        """Manage historical AI assistant conversations"""
         return AsyncMessagesResource(self._client)
 
     @cached_property
@@ -827,14 +837,17 @@ class ConversationsResourceWithRawResponse:
 
     @cached_property
     def insight_groups(self) -> InsightGroupsResourceWithRawResponse:
+        """Manage historical AI assistant conversations"""
         return InsightGroupsResourceWithRawResponse(self._conversations.insight_groups)
 
     @cached_property
     def insights(self) -> InsightsResourceWithRawResponse:
+        """Manage historical AI assistant conversations"""
         return InsightsResourceWithRawResponse(self._conversations.insights)
 
     @cached_property
     def messages(self) -> MessagesResourceWithRawResponse:
+        """Manage historical AI assistant conversations"""
         return MessagesResourceWithRawResponse(self._conversations.messages)
 
 
@@ -866,14 +879,17 @@ class AsyncConversationsResourceWithRawResponse:
 
     @cached_property
     def insight_groups(self) -> AsyncInsightGroupsResourceWithRawResponse:
+        """Manage historical AI assistant conversations"""
         return AsyncInsightGroupsResourceWithRawResponse(self._conversations.insight_groups)
 
     @cached_property
     def insights(self) -> AsyncInsightsResourceWithRawResponse:
+        """Manage historical AI assistant conversations"""
         return AsyncInsightsResourceWithRawResponse(self._conversations.insights)
 
     @cached_property
     def messages(self) -> AsyncMessagesResourceWithRawResponse:
+        """Manage historical AI assistant conversations"""
         return AsyncMessagesResourceWithRawResponse(self._conversations.messages)
 
 
@@ -905,14 +921,17 @@ class ConversationsResourceWithStreamingResponse:
 
     @cached_property
     def insight_groups(self) -> InsightGroupsResourceWithStreamingResponse:
+        """Manage historical AI assistant conversations"""
         return InsightGroupsResourceWithStreamingResponse(self._conversations.insight_groups)
 
     @cached_property
     def insights(self) -> InsightsResourceWithStreamingResponse:
+        """Manage historical AI assistant conversations"""
         return InsightsResourceWithStreamingResponse(self._conversations.insights)
 
     @cached_property
     def messages(self) -> MessagesResourceWithStreamingResponse:
+        """Manage historical AI assistant conversations"""
         return MessagesResourceWithStreamingResponse(self._conversations.messages)
 
 
@@ -944,12 +963,15 @@ class AsyncConversationsResourceWithStreamingResponse:
 
     @cached_property
     def insight_groups(self) -> AsyncInsightGroupsResourceWithStreamingResponse:
+        """Manage historical AI assistant conversations"""
         return AsyncInsightGroupsResourceWithStreamingResponse(self._conversations.insight_groups)
 
     @cached_property
     def insights(self) -> AsyncInsightsResourceWithStreamingResponse:
+        """Manage historical AI assistant conversations"""
         return AsyncInsightsResourceWithStreamingResponse(self._conversations.insights)
 
     @cached_property
     def messages(self) -> AsyncMessagesResourceWithStreamingResponse:
+        """Manage historical AI assistant conversations"""
         return AsyncMessagesResourceWithStreamingResponse(self._conversations.messages)

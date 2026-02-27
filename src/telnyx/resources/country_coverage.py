@@ -21,6 +21,8 @@ __all__ = ["CountryCoverageResource", "AsyncCountryCoverageResource"]
 
 
 class CountryCoverageResource(SyncAPIResource):
+    """Country Coverage"""
+
     @cached_property
     def with_raw_response(self) -> CountryCoverageResourceWithRawResponse:
         """
@@ -94,6 +96,8 @@ class CountryCoverageResource(SyncAPIResource):
 
 
 class AsyncCountryCoverageResource(AsyncAPIResource):
+    """Country Coverage"""
+
     @cached_property
     def with_raw_response(self) -> AsyncCountryCoverageResourceWithRawResponse:
         """

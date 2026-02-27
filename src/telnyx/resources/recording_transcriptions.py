@@ -22,6 +22,8 @@ __all__ = ["RecordingTranscriptionsResource", "AsyncRecordingTranscriptionsResou
 
 
 class RecordingTranscriptionsResource(SyncAPIResource):
+    """Call Recordings operations."""
+
     @cached_property
     def with_raw_response(self) -> RecordingTranscriptionsResourceWithRawResponse:
         """
@@ -132,6 +134,8 @@ class RecordingTranscriptionsResource(SyncAPIResource):
 
 
 class AsyncRecordingTranscriptionsResource(AsyncAPIResource):
+    """Call Recordings operations."""
+
     @cached_property
     def with_raw_response(self) -> AsyncRecordingTranscriptionsResourceWithRawResponse:
         """

@@ -19,6 +19,7 @@ __all__ = ["OrganizationsResource", "AsyncOrganizationsResource"]
 class OrganizationsResource(SyncAPIResource):
     @cached_property
     def users(self) -> UsersResource:
+        """Operations related to users in your organization"""
         return UsersResource(self._client)
 
     @cached_property
@@ -44,6 +45,7 @@ class OrganizationsResource(SyncAPIResource):
 class AsyncOrganizationsResource(AsyncAPIResource):
     @cached_property
     def users(self) -> AsyncUsersResource:
+        """Operations related to users in your organization"""
         return AsyncUsersResource(self._client)
 
     @cached_property
@@ -72,6 +74,7 @@ class OrganizationsResourceWithRawResponse:
 
     @cached_property
     def users(self) -> UsersResourceWithRawResponse:
+        """Operations related to users in your organization"""
         return UsersResourceWithRawResponse(self._organizations.users)
 
 
@@ -81,6 +84,7 @@ class AsyncOrganizationsResourceWithRawResponse:
 
     @cached_property
     def users(self) -> AsyncUsersResourceWithRawResponse:
+        """Operations related to users in your organization"""
         return AsyncUsersResourceWithRawResponse(self._organizations.users)
 
 
@@ -90,6 +94,7 @@ class OrganizationsResourceWithStreamingResponse:
 
     @cached_property
     def users(self) -> UsersResourceWithStreamingResponse:
+        """Operations related to users in your organization"""
         return UsersResourceWithStreamingResponse(self._organizations.users)
 
 
@@ -99,4 +104,5 @@ class AsyncOrganizationsResourceWithStreamingResponse:
 
     @cached_property
     def users(self) -> AsyncUsersResourceWithStreamingResponse:
+        """Operations related to users in your organization"""
         return AsyncUsersResourceWithStreamingResponse(self._organizations.users)

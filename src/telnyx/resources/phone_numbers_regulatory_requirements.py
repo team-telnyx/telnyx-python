@@ -24,6 +24,8 @@ __all__ = ["PhoneNumbersRegulatoryRequirementsResource", "AsyncPhoneNumbersRegul
 
 
 class PhoneNumbersRegulatoryRequirementsResource(SyncAPIResource):
+    """Regulatory Requirements"""
+
     @cached_property
     def with_raw_response(self) -> PhoneNumbersRegulatoryRequirementsResourceWithRawResponse:
         """
@@ -87,6 +89,8 @@ class PhoneNumbersRegulatoryRequirementsResource(SyncAPIResource):
 
 
 class AsyncPhoneNumbersRegulatoryRequirementsResource(AsyncAPIResource):
+    """Regulatory Requirements"""
+
     @cached_property
     def with_raw_response(self) -> AsyncPhoneNumbersRegulatoryRequirementsResourceWithRawResponse:
         """

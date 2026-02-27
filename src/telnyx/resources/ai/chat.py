@@ -25,6 +25,8 @@ __all__ = ["ChatResource", "AsyncChatResource"]
 
 
 class ChatResource(SyncAPIResource):
+    """Generate text with LLMs"""
+
     @cached_property
     def with_raw_response(self) -> ChatResourceWithRawResponse:
         """
@@ -197,6 +199,8 @@ class ChatResource(SyncAPIResource):
 
 
 class AsyncChatResource(AsyncAPIResource):
+    """Generate text with LLMs"""
+
     @cached_property
     def with_raw_response(self) -> AsyncChatResourceWithRawResponse:
         """

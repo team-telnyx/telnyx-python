@@ -26,6 +26,10 @@ __all__ = ["BulkSimCardActionsResource", "AsyncBulkSimCardActionsResource"]
 
 
 class BulkSimCardActionsResource(SyncAPIResource):
+    """
+    View SIM card actions, their progress and timestamps using the SIM Card Actions API
+    """
+
     @cached_property
     def with_raw_response(self) -> BulkSimCardActionsResourceWithRawResponse:
         """
@@ -135,6 +139,10 @@ class BulkSimCardActionsResource(SyncAPIResource):
 
 
 class AsyncBulkSimCardActionsResource(AsyncAPIResource):
+    """
+    View SIM card actions, their progress and timestamps using the SIM Card Actions API
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncBulkSimCardActionsResourceWithRawResponse:
         """

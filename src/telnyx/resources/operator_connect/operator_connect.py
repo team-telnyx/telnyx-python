@@ -19,6 +19,7 @@ __all__ = ["OperatorConnectResource", "AsyncOperatorConnectResource"]
 class OperatorConnectResource(SyncAPIResource):
     @cached_property
     def actions(self) -> ActionsResource:
+        """External Connections operations"""
         return ActionsResource(self._client)
 
     @cached_property
@@ -44,6 +45,7 @@ class OperatorConnectResource(SyncAPIResource):
 class AsyncOperatorConnectResource(AsyncAPIResource):
     @cached_property
     def actions(self) -> AsyncActionsResource:
+        """External Connections operations"""
         return AsyncActionsResource(self._client)
 
     @cached_property
@@ -72,6 +74,7 @@ class OperatorConnectResourceWithRawResponse:
 
     @cached_property
     def actions(self) -> ActionsResourceWithRawResponse:
+        """External Connections operations"""
         return ActionsResourceWithRawResponse(self._operator_connect.actions)
 
 
@@ -81,6 +84,7 @@ class AsyncOperatorConnectResourceWithRawResponse:
 
     @cached_property
     def actions(self) -> AsyncActionsResourceWithRawResponse:
+        """External Connections operations"""
         return AsyncActionsResourceWithRawResponse(self._operator_connect.actions)
 
 
@@ -90,6 +94,7 @@ class OperatorConnectResourceWithStreamingResponse:
 
     @cached_property
     def actions(self) -> ActionsResourceWithStreamingResponse:
+        """External Connections operations"""
         return ActionsResourceWithStreamingResponse(self._operator_connect.actions)
 
 
@@ -99,4 +104,5 @@ class AsyncOperatorConnectResourceWithStreamingResponse:
 
     @cached_property
     def actions(self) -> AsyncActionsResourceWithStreamingResponse:
+        """External Connections operations"""
         return AsyncActionsResourceWithStreamingResponse(self._operator_connect.actions)

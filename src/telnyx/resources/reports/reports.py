@@ -44,10 +44,12 @@ __all__ = ["ReportsResource", "AsyncReportsResource"]
 class ReportsResource(SyncAPIResource):
     @cached_property
     def cdr_usage_reports(self) -> CdrUsageReportsResource:
+        """Voice usage reports"""
         return CdrUsageReportsResource(self._client)
 
     @cached_property
     def mdr_usage_reports(self) -> MdrUsageReportsResource:
+        """Messaging usage reports"""
         return MdrUsageReportsResource(self._client)
 
     @cached_property
@@ -236,10 +238,12 @@ class ReportsResource(SyncAPIResource):
 class AsyncReportsResource(AsyncAPIResource):
     @cached_property
     def cdr_usage_reports(self) -> AsyncCdrUsageReportsResource:
+        """Voice usage reports"""
         return AsyncCdrUsageReportsResource(self._client)
 
     @cached_property
     def mdr_usage_reports(self) -> AsyncMdrUsageReportsResource:
+        """Messaging usage reports"""
         return AsyncMdrUsageReportsResource(self._client)
 
     @cached_property
@@ -438,10 +442,12 @@ class ReportsResourceWithRawResponse:
 
     @cached_property
     def cdr_usage_reports(self) -> CdrUsageReportsResourceWithRawResponse:
+        """Voice usage reports"""
         return CdrUsageReportsResourceWithRawResponse(self._reports.cdr_usage_reports)
 
     @cached_property
     def mdr_usage_reports(self) -> MdrUsageReportsResourceWithRawResponse:
+        """Messaging usage reports"""
         return MdrUsageReportsResourceWithRawResponse(self._reports.mdr_usage_reports)
 
 
@@ -458,10 +464,12 @@ class AsyncReportsResourceWithRawResponse:
 
     @cached_property
     def cdr_usage_reports(self) -> AsyncCdrUsageReportsResourceWithRawResponse:
+        """Voice usage reports"""
         return AsyncCdrUsageReportsResourceWithRawResponse(self._reports.cdr_usage_reports)
 
     @cached_property
     def mdr_usage_reports(self) -> AsyncMdrUsageReportsResourceWithRawResponse:
+        """Messaging usage reports"""
         return AsyncMdrUsageReportsResourceWithRawResponse(self._reports.mdr_usage_reports)
 
 
@@ -478,10 +486,12 @@ class ReportsResourceWithStreamingResponse:
 
     @cached_property
     def cdr_usage_reports(self) -> CdrUsageReportsResourceWithStreamingResponse:
+        """Voice usage reports"""
         return CdrUsageReportsResourceWithStreamingResponse(self._reports.cdr_usage_reports)
 
     @cached_property
     def mdr_usage_reports(self) -> MdrUsageReportsResourceWithStreamingResponse:
+        """Messaging usage reports"""
         return MdrUsageReportsResourceWithStreamingResponse(self._reports.mdr_usage_reports)
 
 
@@ -498,8 +508,10 @@ class AsyncReportsResourceWithStreamingResponse:
 
     @cached_property
     def cdr_usage_reports(self) -> AsyncCdrUsageReportsResourceWithStreamingResponse:
+        """Voice usage reports"""
         return AsyncCdrUsageReportsResourceWithStreamingResponse(self._reports.cdr_usage_reports)
 
     @cached_property
     def mdr_usage_reports(self) -> AsyncMdrUsageReportsResourceWithStreamingResponse:
+        """Messaging usage reports"""
         return AsyncMdrUsageReportsResourceWithStreamingResponse(self._reports.mdr_usage_reports)

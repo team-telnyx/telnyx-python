@@ -25,6 +25,8 @@ __all__ = ["DetailRecordsReportsResource", "AsyncDetailRecordsReportsResource"]
 
 
 class DetailRecordsReportsResource(SyncAPIResource):
+    """Wireless reporting operations"""
+
     @cached_property
     def with_raw_response(self) -> DetailRecordsReportsResourceWithRawResponse:
         """
@@ -202,6 +204,8 @@ class DetailRecordsReportsResource(SyncAPIResource):
 
 
 class AsyncDetailRecordsReportsResource(AsyncAPIResource):
+    """Wireless reporting operations"""
+
     @cached_property
     def with_raw_response(self) -> AsyncDetailRecordsReportsResourceWithRawResponse:
         """

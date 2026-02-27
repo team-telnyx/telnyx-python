@@ -23,6 +23,8 @@ __all__ = ["RunsResource", "AsyncRunsResource"]
 
 
 class RunsResource(SyncAPIResource):
+    """Configure AI assistant specifications"""
+
     @cached_property
     def with_raw_response(self) -> RunsResourceWithRawResponse:
         """
@@ -172,6 +174,8 @@ class RunsResource(SyncAPIResource):
 
 
 class AsyncRunsResource(AsyncAPIResource):
+    """Configure AI assistant specifications"""
+
     @cached_property
     def with_raw_response(self) -> AsyncRunsResourceWithRawResponse:
         """

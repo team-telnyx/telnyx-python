@@ -35,6 +35,8 @@ __all__ = ["MdrUsageReportsResource", "AsyncMdrUsageReportsResource"]
 
 
 class MdrUsageReportsResource(SyncAPIResource):
+    """Messaging usage reports"""
+
     @cached_property
     def with_raw_response(self) -> MdrUsageReportsResourceWithRawResponse:
         """
@@ -261,6 +263,8 @@ class MdrUsageReportsResource(SyncAPIResource):
 
 
 class AsyncMdrUsageReportsResource(AsyncAPIResource):
+    """Messaging usage reports"""
+
     @cached_property
     def with_raw_response(self) -> AsyncMdrUsageReportsResourceWithRawResponse:
         """

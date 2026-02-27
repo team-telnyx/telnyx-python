@@ -77,8 +77,11 @@ __all__ = ["PhoneNumbersResource", "AsyncPhoneNumbersResource"]
 
 
 class PhoneNumbersResource(SyncAPIResource):
+    """Configure your phone numbers"""
+
     @cached_property
     def actions(self) -> ActionsResource:
+        """Configure your phone numbers"""
         return ActionsResource(self._client)
 
     @cached_property
@@ -87,18 +90,22 @@ class PhoneNumbersResource(SyncAPIResource):
 
     @cached_property
     def jobs(self) -> JobsResource:
+        """Background jobs performed over a batch of phone numbers"""
         return JobsResource(self._client)
 
     @cached_property
     def messaging(self) -> MessagingResource:
+        """Configure your phone numbers"""
         return MessagingResource(self._client)
 
     @cached_property
     def voice(self) -> VoiceResource:
+        """Configure your phone numbers"""
         return VoiceResource(self._client)
 
     @cached_property
     def voicemail(self) -> VoicemailResource:
+        """Voicemail API"""
         return VoicemailResource(self._client)
 
     @cached_property
@@ -389,8 +396,11 @@ class PhoneNumbersResource(SyncAPIResource):
 
 
 class AsyncPhoneNumbersResource(AsyncAPIResource):
+    """Configure your phone numbers"""
+
     @cached_property
     def actions(self) -> AsyncActionsResource:
+        """Configure your phone numbers"""
         return AsyncActionsResource(self._client)
 
     @cached_property
@@ -399,18 +409,22 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
 
     @cached_property
     def jobs(self) -> AsyncJobsResource:
+        """Background jobs performed over a batch of phone numbers"""
         return AsyncJobsResource(self._client)
 
     @cached_property
     def messaging(self) -> AsyncMessagingResource:
+        """Configure your phone numbers"""
         return AsyncMessagingResource(self._client)
 
     @cached_property
     def voice(self) -> AsyncVoiceResource:
+        """Configure your phone numbers"""
         return AsyncVoiceResource(self._client)
 
     @cached_property
     def voicemail(self) -> AsyncVoicemailResource:
+        """Voicemail API"""
         return AsyncVoicemailResource(self._client)
 
     @cached_property
@@ -722,6 +736,7 @@ class PhoneNumbersResourceWithRawResponse:
 
     @cached_property
     def actions(self) -> ActionsResourceWithRawResponse:
+        """Configure your phone numbers"""
         return ActionsResourceWithRawResponse(self._phone_numbers.actions)
 
     @cached_property
@@ -730,18 +745,22 @@ class PhoneNumbersResourceWithRawResponse:
 
     @cached_property
     def jobs(self) -> JobsResourceWithRawResponse:
+        """Background jobs performed over a batch of phone numbers"""
         return JobsResourceWithRawResponse(self._phone_numbers.jobs)
 
     @cached_property
     def messaging(self) -> MessagingResourceWithRawResponse:
+        """Configure your phone numbers"""
         return MessagingResourceWithRawResponse(self._phone_numbers.messaging)
 
     @cached_property
     def voice(self) -> VoiceResourceWithRawResponse:
+        """Configure your phone numbers"""
         return VoiceResourceWithRawResponse(self._phone_numbers.voice)
 
     @cached_property
     def voicemail(self) -> VoicemailResourceWithRawResponse:
+        """Voicemail API"""
         return VoicemailResourceWithRawResponse(self._phone_numbers.voicemail)
 
 
@@ -767,6 +786,7 @@ class AsyncPhoneNumbersResourceWithRawResponse:
 
     @cached_property
     def actions(self) -> AsyncActionsResourceWithRawResponse:
+        """Configure your phone numbers"""
         return AsyncActionsResourceWithRawResponse(self._phone_numbers.actions)
 
     @cached_property
@@ -775,18 +795,22 @@ class AsyncPhoneNumbersResourceWithRawResponse:
 
     @cached_property
     def jobs(self) -> AsyncJobsResourceWithRawResponse:
+        """Background jobs performed over a batch of phone numbers"""
         return AsyncJobsResourceWithRawResponse(self._phone_numbers.jobs)
 
     @cached_property
     def messaging(self) -> AsyncMessagingResourceWithRawResponse:
+        """Configure your phone numbers"""
         return AsyncMessagingResourceWithRawResponse(self._phone_numbers.messaging)
 
     @cached_property
     def voice(self) -> AsyncVoiceResourceWithRawResponse:
+        """Configure your phone numbers"""
         return AsyncVoiceResourceWithRawResponse(self._phone_numbers.voice)
 
     @cached_property
     def voicemail(self) -> AsyncVoicemailResourceWithRawResponse:
+        """Voicemail API"""
         return AsyncVoicemailResourceWithRawResponse(self._phone_numbers.voicemail)
 
 
@@ -812,6 +836,7 @@ class PhoneNumbersResourceWithStreamingResponse:
 
     @cached_property
     def actions(self) -> ActionsResourceWithStreamingResponse:
+        """Configure your phone numbers"""
         return ActionsResourceWithStreamingResponse(self._phone_numbers.actions)
 
     @cached_property
@@ -820,18 +845,22 @@ class PhoneNumbersResourceWithStreamingResponse:
 
     @cached_property
     def jobs(self) -> JobsResourceWithStreamingResponse:
+        """Background jobs performed over a batch of phone numbers"""
         return JobsResourceWithStreamingResponse(self._phone_numbers.jobs)
 
     @cached_property
     def messaging(self) -> MessagingResourceWithStreamingResponse:
+        """Configure your phone numbers"""
         return MessagingResourceWithStreamingResponse(self._phone_numbers.messaging)
 
     @cached_property
     def voice(self) -> VoiceResourceWithStreamingResponse:
+        """Configure your phone numbers"""
         return VoiceResourceWithStreamingResponse(self._phone_numbers.voice)
 
     @cached_property
     def voicemail(self) -> VoicemailResourceWithStreamingResponse:
+        """Voicemail API"""
         return VoicemailResourceWithStreamingResponse(self._phone_numbers.voicemail)
 
 
@@ -857,6 +886,7 @@ class AsyncPhoneNumbersResourceWithStreamingResponse:
 
     @cached_property
     def actions(self) -> AsyncActionsResourceWithStreamingResponse:
+        """Configure your phone numbers"""
         return AsyncActionsResourceWithStreamingResponse(self._phone_numbers.actions)
 
     @cached_property
@@ -865,16 +895,20 @@ class AsyncPhoneNumbersResourceWithStreamingResponse:
 
     @cached_property
     def jobs(self) -> AsyncJobsResourceWithStreamingResponse:
+        """Background jobs performed over a batch of phone numbers"""
         return AsyncJobsResourceWithStreamingResponse(self._phone_numbers.jobs)
 
     @cached_property
     def messaging(self) -> AsyncMessagingResourceWithStreamingResponse:
+        """Configure your phone numbers"""
         return AsyncMessagingResourceWithStreamingResponse(self._phone_numbers.messaging)
 
     @cached_property
     def voice(self) -> AsyncVoiceResourceWithStreamingResponse:
+        """Configure your phone numbers"""
         return AsyncVoiceResourceWithStreamingResponse(self._phone_numbers.voice)
 
     @cached_property
     def voicemail(self) -> AsyncVoicemailResourceWithStreamingResponse:
+        """Voicemail API"""
         return AsyncVoicemailResourceWithStreamingResponse(self._phone_numbers.voicemail)

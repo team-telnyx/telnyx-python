@@ -44,8 +44,11 @@ __all__ = ["ConferencesResource", "AsyncConferencesResource"]
 
 
 class ConferencesResource(SyncAPIResource):
+    """Conference command operations"""
+
     @cached_property
     def actions(self) -> ActionsResource:
+        """Conference command operations"""
         return ActionsResource(self._client)
 
     @cached_property
@@ -427,8 +430,11 @@ class ConferencesResource(SyncAPIResource):
 
 
 class AsyncConferencesResource(AsyncAPIResource):
+    """Conference command operations"""
+
     @cached_property
     def actions(self) -> AsyncActionsResource:
+        """Conference command operations"""
         return AsyncActionsResource(self._client)
 
     @cached_property
@@ -838,6 +844,7 @@ class ConferencesResourceWithRawResponse:
 
     @cached_property
     def actions(self) -> ActionsResourceWithRawResponse:
+        """Conference command operations"""
         return ActionsResourceWithRawResponse(self._conferences.actions)
 
 
@@ -866,6 +873,7 @@ class AsyncConferencesResourceWithRawResponse:
 
     @cached_property
     def actions(self) -> AsyncActionsResourceWithRawResponse:
+        """Conference command operations"""
         return AsyncActionsResourceWithRawResponse(self._conferences.actions)
 
 
@@ -894,6 +902,7 @@ class ConferencesResourceWithStreamingResponse:
 
     @cached_property
     def actions(self) -> ActionsResourceWithStreamingResponse:
+        """Conference command operations"""
         return ActionsResourceWithStreamingResponse(self._conferences.actions)
 
 
@@ -922,4 +931,5 @@ class AsyncConferencesResourceWithStreamingResponse:
 
     @cached_property
     def actions(self) -> AsyncActionsResourceWithStreamingResponse:
+        """Conference command operations"""
         return AsyncActionsResourceWithStreamingResponse(self._conferences.actions)

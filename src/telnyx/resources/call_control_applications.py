@@ -36,6 +36,8 @@ __all__ = ["CallControlApplicationsResource", "AsyncCallControlApplicationsResou
 
 
 class CallControlApplicationsResource(SyncAPIResource):
+    """Call Control applications operations"""
+
     @cached_property
     def with_raw_response(self) -> CallControlApplicationsResourceWithRawResponse:
         """
@@ -413,6 +415,8 @@ class CallControlApplicationsResource(SyncAPIResource):
 
 
 class AsyncCallControlApplicationsResource(AsyncAPIResource):
+    """Call Control applications operations"""
+
     @cached_property
     def with_raw_response(self) -> AsyncCallControlApplicationsResourceWithRawResponse:
         """

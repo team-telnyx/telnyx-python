@@ -25,6 +25,8 @@ __all__ = ["SupportingDocumentsResource", "AsyncSupportingDocumentsResource"]
 
 
 class SupportingDocumentsResource(SyncAPIResource):
+    """Number portout operations"""
+
     @cached_property
     def with_raw_response(self) -> SupportingDocumentsResourceWithRawResponse:
         """
@@ -118,6 +120,8 @@ class SupportingDocumentsResource(SyncAPIResource):
 
 
 class AsyncSupportingDocumentsResource(AsyncAPIResource):
+    """Number portout operations"""
+
     @cached_property
     def with_raw_response(self) -> AsyncSupportingDocumentsResourceWithRawResponse:
         """

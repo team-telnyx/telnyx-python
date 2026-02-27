@@ -48,12 +48,16 @@ __all__ = ["CampaignResource", "AsyncCampaignResource"]
 
 
 class CampaignResource(SyncAPIResource):
+    """Campaign operations"""
+
     @cached_property
     def usecase(self) -> UsecaseResource:
+        """Campaign operations"""
         return UsecaseResource(self._client)
 
     @cached_property
     def osr(self) -> OsrResource:
+        """Campaign operations"""
         return OsrResource(self._client)
 
     @cached_property
@@ -477,12 +481,16 @@ class CampaignResource(SyncAPIResource):
 
 
 class AsyncCampaignResource(AsyncAPIResource):
+    """Campaign operations"""
+
     @cached_property
     def usecase(self) -> AsyncUsecaseResource:
+        """Campaign operations"""
         return AsyncUsecaseResource(self._client)
 
     @cached_property
     def osr(self) -> AsyncOsrResource:
+        """Campaign operations"""
         return AsyncOsrResource(self._client)
 
     @cached_property
@@ -939,10 +947,12 @@ class CampaignResourceWithRawResponse:
 
     @cached_property
     def usecase(self) -> UsecaseResourceWithRawResponse:
+        """Campaign operations"""
         return UsecaseResourceWithRawResponse(self._campaign.usecase)
 
     @cached_property
     def osr(self) -> OsrResourceWithRawResponse:
+        """Campaign operations"""
         return OsrResourceWithRawResponse(self._campaign.osr)
 
 
@@ -980,10 +990,12 @@ class AsyncCampaignResourceWithRawResponse:
 
     @cached_property
     def usecase(self) -> AsyncUsecaseResourceWithRawResponse:
+        """Campaign operations"""
         return AsyncUsecaseResourceWithRawResponse(self._campaign.usecase)
 
     @cached_property
     def osr(self) -> AsyncOsrResourceWithRawResponse:
+        """Campaign operations"""
         return AsyncOsrResourceWithRawResponse(self._campaign.osr)
 
 
@@ -1021,10 +1033,12 @@ class CampaignResourceWithStreamingResponse:
 
     @cached_property
     def usecase(self) -> UsecaseResourceWithStreamingResponse:
+        """Campaign operations"""
         return UsecaseResourceWithStreamingResponse(self._campaign.usecase)
 
     @cached_property
     def osr(self) -> OsrResourceWithStreamingResponse:
+        """Campaign operations"""
         return OsrResourceWithStreamingResponse(self._campaign.osr)
 
 
@@ -1062,8 +1076,10 @@ class AsyncCampaignResourceWithStreamingResponse:
 
     @cached_property
     def usecase(self) -> AsyncUsecaseResourceWithStreamingResponse:
+        """Campaign operations"""
         return AsyncUsecaseResourceWithStreamingResponse(self._campaign.usecase)
 
     @cached_property
     def osr(self) -> AsyncOsrResourceWithStreamingResponse:
+        """Campaign operations"""
         return AsyncOsrResourceWithStreamingResponse(self._campaign.osr)

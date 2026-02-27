@@ -25,6 +25,8 @@ __all__ = ["CanaryDeploysResource", "AsyncCanaryDeploysResource"]
 
 
 class CanaryDeploysResource(SyncAPIResource):
+    """Configure AI assistant specifications"""
+
     @cached_property
     def with_raw_response(self) -> CanaryDeploysResourceWithRawResponse:
         """
@@ -199,6 +201,8 @@ class CanaryDeploysResource(SyncAPIResource):
 
 
 class AsyncCanaryDeploysResource(AsyncAPIResource):
+    """Configure AI assistant specifications"""
+
     @cached_property
     def with_raw_response(self) -> AsyncCanaryDeploysResourceWithRawResponse:
         """

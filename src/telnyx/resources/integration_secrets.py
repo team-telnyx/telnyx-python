@@ -26,6 +26,8 @@ __all__ = ["IntegrationSecretsResource", "AsyncIntegrationSecretsResource"]
 
 
 class IntegrationSecretsResource(SyncAPIResource):
+    """Store and retrieve integration secrets"""
+
     @cached_property
     def with_raw_response(self) -> IntegrationSecretsResourceWithRawResponse:
         """
@@ -184,6 +186,8 @@ class IntegrationSecretsResource(SyncAPIResource):
 
 
 class AsyncIntegrationSecretsResource(AsyncAPIResource):
+    """Store and retrieve integration secrets"""
+
     @cached_property
     def with_raw_response(self) -> AsyncIntegrationSecretsResourceWithRawResponse:
         """

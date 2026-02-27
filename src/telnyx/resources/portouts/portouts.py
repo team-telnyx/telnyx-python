@@ -60,20 +60,26 @@ __all__ = ["PortoutsResource", "AsyncPortoutsResource"]
 
 
 class PortoutsResource(SyncAPIResource):
+    """Number portout operations"""
+
     @cached_property
     def events(self) -> EventsResource:
+        """Number portout operations"""
         return EventsResource(self._client)
 
     @cached_property
     def reports(self) -> ReportsResource:
+        """Number portout operations"""
         return ReportsResource(self._client)
 
     @cached_property
     def comments(self) -> CommentsResource:
+        """Number portout operations"""
         return CommentsResource(self._client)
 
     @cached_property
     def supporting_documents(self) -> SupportingDocumentsResource:
+        """Number portout operations"""
         return SupportingDocumentsResource(self._client)
 
     @cached_property
@@ -275,20 +281,26 @@ class PortoutsResource(SyncAPIResource):
 
 
 class AsyncPortoutsResource(AsyncAPIResource):
+    """Number portout operations"""
+
     @cached_property
     def events(self) -> AsyncEventsResource:
+        """Number portout operations"""
         return AsyncEventsResource(self._client)
 
     @cached_property
     def reports(self) -> AsyncReportsResource:
+        """Number portout operations"""
         return AsyncReportsResource(self._client)
 
     @cached_property
     def comments(self) -> AsyncCommentsResource:
+        """Number portout operations"""
         return AsyncCommentsResource(self._client)
 
     @cached_property
     def supporting_documents(self) -> AsyncSupportingDocumentsResource:
+        """Number portout operations"""
         return AsyncSupportingDocumentsResource(self._client)
 
     @cached_property
@@ -508,18 +520,22 @@ class PortoutsResourceWithRawResponse:
 
     @cached_property
     def events(self) -> EventsResourceWithRawResponse:
+        """Number portout operations"""
         return EventsResourceWithRawResponse(self._portouts.events)
 
     @cached_property
     def reports(self) -> ReportsResourceWithRawResponse:
+        """Number portout operations"""
         return ReportsResourceWithRawResponse(self._portouts.reports)
 
     @cached_property
     def comments(self) -> CommentsResourceWithRawResponse:
+        """Number portout operations"""
         return CommentsResourceWithRawResponse(self._portouts.comments)
 
     @cached_property
     def supporting_documents(self) -> SupportingDocumentsResourceWithRawResponse:
+        """Number portout operations"""
         return SupportingDocumentsResourceWithRawResponse(self._portouts.supporting_documents)
 
 
@@ -542,18 +558,22 @@ class AsyncPortoutsResourceWithRawResponse:
 
     @cached_property
     def events(self) -> AsyncEventsResourceWithRawResponse:
+        """Number portout operations"""
         return AsyncEventsResourceWithRawResponse(self._portouts.events)
 
     @cached_property
     def reports(self) -> AsyncReportsResourceWithRawResponse:
+        """Number portout operations"""
         return AsyncReportsResourceWithRawResponse(self._portouts.reports)
 
     @cached_property
     def comments(self) -> AsyncCommentsResourceWithRawResponse:
+        """Number portout operations"""
         return AsyncCommentsResourceWithRawResponse(self._portouts.comments)
 
     @cached_property
     def supporting_documents(self) -> AsyncSupportingDocumentsResourceWithRawResponse:
+        """Number portout operations"""
         return AsyncSupportingDocumentsResourceWithRawResponse(self._portouts.supporting_documents)
 
 
@@ -576,18 +596,22 @@ class PortoutsResourceWithStreamingResponse:
 
     @cached_property
     def events(self) -> EventsResourceWithStreamingResponse:
+        """Number portout operations"""
         return EventsResourceWithStreamingResponse(self._portouts.events)
 
     @cached_property
     def reports(self) -> ReportsResourceWithStreamingResponse:
+        """Number portout operations"""
         return ReportsResourceWithStreamingResponse(self._portouts.reports)
 
     @cached_property
     def comments(self) -> CommentsResourceWithStreamingResponse:
+        """Number portout operations"""
         return CommentsResourceWithStreamingResponse(self._portouts.comments)
 
     @cached_property
     def supporting_documents(self) -> SupportingDocumentsResourceWithStreamingResponse:
+        """Number portout operations"""
         return SupportingDocumentsResourceWithStreamingResponse(self._portouts.supporting_documents)
 
 
@@ -610,16 +634,20 @@ class AsyncPortoutsResourceWithStreamingResponse:
 
     @cached_property
     def events(self) -> AsyncEventsResourceWithStreamingResponse:
+        """Number portout operations"""
         return AsyncEventsResourceWithStreamingResponse(self._portouts.events)
 
     @cached_property
     def reports(self) -> AsyncReportsResourceWithStreamingResponse:
+        """Number portout operations"""
         return AsyncReportsResourceWithStreamingResponse(self._portouts.reports)
 
     @cached_property
     def comments(self) -> AsyncCommentsResourceWithStreamingResponse:
+        """Number portout operations"""
         return AsyncCommentsResourceWithStreamingResponse(self._portouts.comments)
 
     @cached_property
     def supporting_documents(self) -> AsyncSupportingDocumentsResourceWithStreamingResponse:
+        """Number portout operations"""
         return AsyncSupportingDocumentsResourceWithStreamingResponse(self._portouts.supporting_documents)

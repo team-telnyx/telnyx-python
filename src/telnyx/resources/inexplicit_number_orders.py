@@ -30,6 +30,8 @@ __all__ = ["InexplicitNumberOrdersResource", "AsyncInexplicitNumberOrdersResourc
 
 
 class InexplicitNumberOrdersResource(SyncAPIResource):
+    """Inexplicit number orders for bulk purchasing without specifying exact numbers"""
+
     @cached_property
     def with_raw_response(self) -> InexplicitNumberOrdersResourceWithRawResponse:
         """
@@ -188,6 +190,8 @@ class InexplicitNumberOrdersResource(SyncAPIResource):
 
 
 class AsyncInexplicitNumberOrdersResource(AsyncAPIResource):
+    """Inexplicit number orders for bulk purchasing without specifying exact numbers"""
+
     @cached_property
     def with_raw_response(self) -> AsyncInexplicitNumberOrdersResourceWithRawResponse:
         """

@@ -29,6 +29,8 @@ __all__ = ["RecordingsJsonResource", "AsyncRecordingsJsonResource"]
 
 
 class RecordingsJsonResource(SyncAPIResource):
+    """TeXML REST Commands"""
+
     @cached_property
     def with_raw_response(self) -> RecordingsJsonResourceWithRawResponse:
         """
@@ -158,6 +160,8 @@ class RecordingsJsonResource(SyncAPIResource):
 
 
 class AsyncRecordingsJsonResource(AsyncAPIResource):
+    """TeXML REST Commands"""
+
     @cached_property
     def with_raw_response(self) -> AsyncRecordingsJsonResourceWithRawResponse:
         """

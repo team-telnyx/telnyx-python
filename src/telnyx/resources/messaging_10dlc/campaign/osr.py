@@ -20,6 +20,8 @@ __all__ = ["OsrResource", "AsyncOsrResource"]
 
 
 class OsrResource(SyncAPIResource):
+    """Campaign operations"""
+
     @cached_property
     def with_raw_response(self) -> OsrResourceWithRawResponse:
         """
@@ -74,6 +76,8 @@ class OsrResource(SyncAPIResource):
 
 
 class AsyncOsrResource(AsyncAPIResource):
+    """Campaign operations"""
+
     @cached_property
     def with_raw_response(self) -> AsyncOsrResourceWithRawResponse:
         """

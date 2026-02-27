@@ -26,6 +26,8 @@ __all__ = ["QueuesResource", "AsyncQueuesResource"]
 
 
 class QueuesResource(SyncAPIResource):
+    """TeXML REST Commands"""
+
     @cached_property
     def with_raw_response(self) -> QueuesResourceWithRawResponse:
         """
@@ -271,6 +273,8 @@ class QueuesResource(SyncAPIResource):
 
 
 class AsyncQueuesResource(AsyncAPIResource):
+    """TeXML REST Commands"""
+
     @cached_property
     def with_raw_response(self) -> AsyncQueuesResourceWithRawResponse:
         """

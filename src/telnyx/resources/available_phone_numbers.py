@@ -22,6 +22,8 @@ __all__ = ["AvailablePhoneNumbersResource", "AsyncAvailablePhoneNumbersResource"
 
 
 class AvailablePhoneNumbersResource(SyncAPIResource):
+    """Number search"""
+
     @cached_property
     def with_raw_response(self) -> AvailablePhoneNumbersResourceWithRawResponse:
         """
@@ -87,6 +89,8 @@ class AvailablePhoneNumbersResource(SyncAPIResource):
 
 
 class AsyncAvailablePhoneNumbersResource(AsyncAPIResource):
+    """Number search"""
+
     @cached_property
     def with_raw_response(self) -> AsyncAvailablePhoneNumbersResourceWithRawResponse:
         """

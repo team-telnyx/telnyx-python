@@ -23,6 +23,8 @@ __all__ = ["VirtualCrossConnectsCoverageResource", "AsyncVirtualCrossConnectsCov
 
 
 class VirtualCrossConnectsCoverageResource(SyncAPIResource):
+    """Virtual Cross Connect operations"""
+
     @cached_property
     def with_raw_response(self) -> VirtualCrossConnectsCoverageResourceWithRawResponse:
         """
@@ -102,6 +104,8 @@ class VirtualCrossConnectsCoverageResource(SyncAPIResource):
 
 
 class AsyncVirtualCrossConnectsCoverageResource(AsyncAPIResource):
+    """Virtual Cross Connect operations"""
+
     @cached_property
     def with_raw_response(self) -> AsyncVirtualCrossConnectsCoverageResourceWithRawResponse:
         """

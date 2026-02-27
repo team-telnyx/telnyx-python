@@ -40,8 +40,11 @@ __all__ = ["EmbeddingsResource", "AsyncEmbeddingsResource"]
 
 
 class EmbeddingsResource(SyncAPIResource):
+    """Embed documents and perform text searches"""
+
     @cached_property
     def buckets(self) -> BucketsResource:
+        """Embed documents and perform text searches"""
         return BucketsResource(self._client)
 
     @cached_property
@@ -325,8 +328,11 @@ class EmbeddingsResource(SyncAPIResource):
 
 
 class AsyncEmbeddingsResource(AsyncAPIResource):
+    """Embed documents and perform text searches"""
+
     @cached_property
     def buckets(self) -> AsyncBucketsResource:
+        """Embed documents and perform text searches"""
         return AsyncBucketsResource(self._client)
 
     @cached_property
@@ -631,6 +637,7 @@ class EmbeddingsResourceWithRawResponse:
 
     @cached_property
     def buckets(self) -> BucketsResourceWithRawResponse:
+        """Embed documents and perform text searches"""
         return BucketsResourceWithRawResponse(self._embeddings.buckets)
 
 
@@ -656,6 +663,7 @@ class AsyncEmbeddingsResourceWithRawResponse:
 
     @cached_property
     def buckets(self) -> AsyncBucketsResourceWithRawResponse:
+        """Embed documents and perform text searches"""
         return AsyncBucketsResourceWithRawResponse(self._embeddings.buckets)
 
 
@@ -681,6 +689,7 @@ class EmbeddingsResourceWithStreamingResponse:
 
     @cached_property
     def buckets(self) -> BucketsResourceWithStreamingResponse:
+        """Embed documents and perform text searches"""
         return BucketsResourceWithStreamingResponse(self._embeddings.buckets)
 
 
@@ -706,4 +715,5 @@ class AsyncEmbeddingsResourceWithStreamingResponse:
 
     @cached_property
     def buckets(self) -> AsyncBucketsResourceWithStreamingResponse:
+        """Embed documents and perform text searches"""
         return AsyncBucketsResourceWithStreamingResponse(self._embeddings.buckets)

@@ -30,6 +30,8 @@ __all__ = ["VoiceResource", "AsyncVoiceResource"]
 
 
 class VoiceResource(SyncAPIResource):
+    """Voice batch detail records"""
+
     @cached_property
     def with_raw_response(self) -> VoiceResourceWithRawResponse:
         """
@@ -243,6 +245,8 @@ class VoiceResource(SyncAPIResource):
 
 
 class AsyncVoiceResource(AsyncAPIResource):
+    """Voice batch detail records"""
+
     @cached_property
     def with_raw_response(self) -> AsyncVoiceResourceWithRawResponse:
         """
