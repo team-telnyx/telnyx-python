@@ -29,6 +29,8 @@ __all__ = ["PhoneNumberCampaignsResource", "AsyncPhoneNumberCampaignsResource"]
 
 
 class PhoneNumberCampaignsResource(SyncAPIResource):
+    """Phone number campaign assignment"""
+
     @cached_property
     def with_raw_response(self) -> PhoneNumberCampaignsResourceWithRawResponse:
         """
@@ -264,6 +266,8 @@ class PhoneNumberCampaignsResource(SyncAPIResource):
 
 
 class AsyncPhoneNumberCampaignsResource(AsyncAPIResource):
+    """Phone number campaign assignment"""
+
     @cached_property
     def with_raw_response(self) -> AsyncPhoneNumberCampaignsResourceWithRawResponse:
         """

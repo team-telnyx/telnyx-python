@@ -36,6 +36,8 @@ __all__ = ["FaxApplicationsResource", "AsyncFaxApplicationsResource"]
 
 
 class FaxApplicationsResource(SyncAPIResource):
+    """Fax Applications operations"""
+
     @cached_property
     def with_raw_response(self) -> FaxApplicationsResourceWithRawResponse:
         """
@@ -349,6 +351,8 @@ class FaxApplicationsResource(SyncAPIResource):
 
 
 class AsyncFaxApplicationsResource(AsyncAPIResource):
+    """Fax Applications operations"""
+
     @cached_property
     def with_raw_response(self) -> AsyncFaxApplicationsResourceWithRawResponse:
         """

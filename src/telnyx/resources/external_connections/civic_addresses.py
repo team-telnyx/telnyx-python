@@ -23,6 +23,8 @@ __all__ = ["CivicAddressesResource", "AsyncCivicAddressesResource"]
 
 
 class CivicAddressesResource(SyncAPIResource):
+    """External Connections operations"""
+
     @cached_property
     def with_raw_response(self) -> CivicAddressesResourceWithRawResponse:
         """
@@ -122,6 +124,8 @@ class CivicAddressesResource(SyncAPIResource):
 
 
 class AsyncCivicAddressesResource(AsyncAPIResource):
+    """External Connections operations"""
+
     @cached_property
     def with_raw_response(self) -> AsyncCivicAddressesResourceWithRawResponse:
         """

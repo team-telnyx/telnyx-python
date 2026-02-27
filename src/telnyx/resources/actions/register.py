@@ -24,6 +24,8 @@ __all__ = ["RegisterResource", "AsyncRegisterResource"]
 
 
 class RegisterResource(SyncAPIResource):
+    """SIM Cards operations"""
+
     @cached_property
     def with_raw_response(self) -> RegisterResourceWithRawResponse:
         """
@@ -98,6 +100,8 @@ class RegisterResource(SyncAPIResource):
 
 
 class AsyncRegisterResource(AsyncAPIResource):
+    """SIM Cards operations"""
+
     @cached_property
     def with_raw_response(self) -> AsyncRegisterResourceWithRawResponse:
         """

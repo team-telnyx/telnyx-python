@@ -25,6 +25,8 @@ __all__ = ["RoomRecordingsResource", "AsyncRoomRecordingsResource"]
 
 
 class RoomRecordingsResource(SyncAPIResource):
+    """Rooms Recordings operations."""
+
     @cached_property
     def with_raw_response(self) -> RoomRecordingsResourceWithRawResponse:
         """
@@ -218,6 +220,8 @@ class RoomRecordingsResource(SyncAPIResource):
 
 
 class AsyncRoomRecordingsResource(AsyncAPIResource):
+    """Rooms Recordings operations."""
+
     @cached_property
     def with_raw_response(self) -> AsyncRoomRecordingsResourceWithRawResponse:
         """

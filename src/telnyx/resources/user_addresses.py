@@ -27,6 +27,11 @@ __all__ = ["UserAddressesResource", "AsyncUserAddressesResource"]
 
 
 class UserAddressesResource(SyncAPIResource):
+    """Operations for working with UserAddress records.
+
+    UserAddress records are stored addresses that users can use for non-emergency-calling purposes, such as for shipping addresses for orders of wireless SIMs (or other physical items). They cannot be used for emergency calling and are distinct from Address records, which are used on phone numbers.
+    """
+
     @cached_property
     def with_raw_response(self) -> UserAddressesResourceWithRawResponse:
         """
@@ -254,6 +259,11 @@ class UserAddressesResource(SyncAPIResource):
 
 
 class AsyncUserAddressesResource(AsyncAPIResource):
+    """Operations for working with UserAddress records.
+
+    UserAddress records are stored addresses that users can use for non-emergency-calling purposes, such as for shipping addresses for orders of wireless SIMs (or other physical items). They cannot be used for emergency calling and are distinct from Address records, which are used on phone numbers.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncUserAddressesResourceWithRawResponse:
         """

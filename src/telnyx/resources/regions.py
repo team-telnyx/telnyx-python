@@ -20,6 +20,8 @@ __all__ = ["RegionsResource", "AsyncRegionsResource"]
 
 
 class RegionsResource(SyncAPIResource):
+    """Regions"""
+
     @cached_property
     def with_raw_response(self) -> RegionsResourceWithRawResponse:
         """
@@ -60,6 +62,8 @@ class RegionsResource(SyncAPIResource):
 
 
 class AsyncRegionsResource(AsyncAPIResource):
+    """Regions"""
+
     @cached_property
     def with_raw_response(self) -> AsyncRegionsResourceWithRawResponse:
         """

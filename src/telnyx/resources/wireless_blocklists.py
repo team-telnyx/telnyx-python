@@ -29,6 +29,8 @@ __all__ = ["WirelessBlocklistsResource", "AsyncWirelessBlocklistsResource"]
 
 
 class WirelessBlocklistsResource(SyncAPIResource):
+    """Wireless Blocklists operations"""
+
     @cached_property
     def with_raw_response(self) -> WirelessBlocklistsResourceWithRawResponse:
         """
@@ -269,6 +271,8 @@ class WirelessBlocklistsResource(SyncAPIResource):
 
 
 class AsyncWirelessBlocklistsResource(AsyncAPIResource):
+    """Wireless Blocklists operations"""
+
     @cached_property
     def with_raw_response(self) -> AsyncWirelessBlocklistsResourceWithRawResponse:
         """

@@ -26,6 +26,8 @@ __all__ = ["EventsResource", "AsyncEventsResource"]
 
 
 class EventsResource(SyncAPIResource):
+    """Endpoints related to porting orders management."""
+
     @cached_property
     def with_raw_response(self) -> EventsResourceWithRawResponse:
         """
@@ -162,6 +164,8 @@ class EventsResource(SyncAPIResource):
 
 
 class AsyncEventsResource(AsyncAPIResource):
+    """Endpoints related to porting orders management."""
+
     @cached_property
     def with_raw_response(self) -> AsyncEventsResourceWithRawResponse:
         """

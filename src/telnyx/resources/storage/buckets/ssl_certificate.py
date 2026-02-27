@@ -26,6 +26,8 @@ __all__ = ["SslCertificateResource", "AsyncSslCertificateResource"]
 
 
 class SslCertificateResource(SyncAPIResource):
+    """SSL certificate operations"""
+
     @cached_property
     def with_raw_response(self) -> SslCertificateResourceWithRawResponse:
         """
@@ -166,6 +168,8 @@ class SslCertificateResource(SyncAPIResource):
 
 
 class AsyncSslCertificateResource(AsyncAPIResource):
+    """SSL certificate operations"""
+
     @cached_property
     def with_raw_response(self) -> AsyncSslCertificateResourceWithRawResponse:
         """

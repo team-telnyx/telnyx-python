@@ -29,6 +29,8 @@ __all__ = ["FqdnsResource", "AsyncFqdnsResource"]
 
 
 class FqdnsResource(SyncAPIResource):
+    """FQDN operations"""
+
     @cached_property
     def with_raw_response(self) -> FqdnsResourceWithRawResponse:
         """
@@ -276,6 +278,8 @@ class FqdnsResource(SyncAPIResource):
 
 
 class AsyncFqdnsResource(AsyncAPIResource):
+    """FQDN operations"""
+
     @cached_property
     def with_raw_response(self) -> AsyncFqdnsResourceWithRawResponse:
         """

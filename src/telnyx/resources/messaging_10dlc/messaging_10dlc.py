@@ -73,14 +73,17 @@ __all__ = ["Messaging10dlcResource", "AsyncMessaging10dlcResource"]
 class Messaging10dlcResource(SyncAPIResource):
     @cached_property
     def brand(self) -> BrandResource:
+        """Brand operations"""
         return BrandResource(self._client)
 
     @cached_property
     def campaign(self) -> CampaignResource:
+        """Campaign operations"""
         return CampaignResource(self._client)
 
     @cached_property
     def campaign_builder(self) -> CampaignBuilderResource:
+        """Campaign operations"""
         return CampaignBuilderResource(self._client)
 
     @cached_property
@@ -89,10 +92,12 @@ class Messaging10dlcResource(SyncAPIResource):
 
     @cached_property
     def phone_number_campaigns(self) -> PhoneNumberCampaignsResource:
+        """Phone number campaign assignment"""
         return PhoneNumberCampaignsResource(self._client)
 
     @cached_property
     def phone_number_assignment_by_profile(self) -> PhoneNumberAssignmentByProfileResource:
+        """Phone number campaign bulk assignment"""
         return PhoneNumberAssignmentByProfileResource(self._client)
 
     @cached_property
@@ -173,14 +178,17 @@ class Messaging10dlcResource(SyncAPIResource):
 class AsyncMessaging10dlcResource(AsyncAPIResource):
     @cached_property
     def brand(self) -> AsyncBrandResource:
+        """Brand operations"""
         return AsyncBrandResource(self._client)
 
     @cached_property
     def campaign(self) -> AsyncCampaignResource:
+        """Campaign operations"""
         return AsyncCampaignResource(self._client)
 
     @cached_property
     def campaign_builder(self) -> AsyncCampaignBuilderResource:
+        """Campaign operations"""
         return AsyncCampaignBuilderResource(self._client)
 
     @cached_property
@@ -189,10 +197,12 @@ class AsyncMessaging10dlcResource(AsyncAPIResource):
 
     @cached_property
     def phone_number_campaigns(self) -> AsyncPhoneNumberCampaignsResource:
+        """Phone number campaign assignment"""
         return AsyncPhoneNumberCampaignsResource(self._client)
 
     @cached_property
     def phone_number_assignment_by_profile(self) -> AsyncPhoneNumberAssignmentByProfileResource:
+        """Phone number campaign bulk assignment"""
         return AsyncPhoneNumberAssignmentByProfileResource(self._client)
 
     @cached_property
@@ -280,14 +290,17 @@ class Messaging10dlcResourceWithRawResponse:
 
     @cached_property
     def brand(self) -> BrandResourceWithRawResponse:
+        """Brand operations"""
         return BrandResourceWithRawResponse(self._messaging_10dlc.brand)
 
     @cached_property
     def campaign(self) -> CampaignResourceWithRawResponse:
+        """Campaign operations"""
         return CampaignResourceWithRawResponse(self._messaging_10dlc.campaign)
 
     @cached_property
     def campaign_builder(self) -> CampaignBuilderResourceWithRawResponse:
+        """Campaign operations"""
         return CampaignBuilderResourceWithRawResponse(self._messaging_10dlc.campaign_builder)
 
     @cached_property
@@ -296,10 +309,12 @@ class Messaging10dlcResourceWithRawResponse:
 
     @cached_property
     def phone_number_campaigns(self) -> PhoneNumberCampaignsResourceWithRawResponse:
+        """Phone number campaign assignment"""
         return PhoneNumberCampaignsResourceWithRawResponse(self._messaging_10dlc.phone_number_campaigns)
 
     @cached_property
     def phone_number_assignment_by_profile(self) -> PhoneNumberAssignmentByProfileResourceWithRawResponse:
+        """Phone number campaign bulk assignment"""
         return PhoneNumberAssignmentByProfileResourceWithRawResponse(
             self._messaging_10dlc.phone_number_assignment_by_profile
         )
@@ -315,14 +330,17 @@ class AsyncMessaging10dlcResourceWithRawResponse:
 
     @cached_property
     def brand(self) -> AsyncBrandResourceWithRawResponse:
+        """Brand operations"""
         return AsyncBrandResourceWithRawResponse(self._messaging_10dlc.brand)
 
     @cached_property
     def campaign(self) -> AsyncCampaignResourceWithRawResponse:
+        """Campaign operations"""
         return AsyncCampaignResourceWithRawResponse(self._messaging_10dlc.campaign)
 
     @cached_property
     def campaign_builder(self) -> AsyncCampaignBuilderResourceWithRawResponse:
+        """Campaign operations"""
         return AsyncCampaignBuilderResourceWithRawResponse(self._messaging_10dlc.campaign_builder)
 
     @cached_property
@@ -331,10 +349,12 @@ class AsyncMessaging10dlcResourceWithRawResponse:
 
     @cached_property
     def phone_number_campaigns(self) -> AsyncPhoneNumberCampaignsResourceWithRawResponse:
+        """Phone number campaign assignment"""
         return AsyncPhoneNumberCampaignsResourceWithRawResponse(self._messaging_10dlc.phone_number_campaigns)
 
     @cached_property
     def phone_number_assignment_by_profile(self) -> AsyncPhoneNumberAssignmentByProfileResourceWithRawResponse:
+        """Phone number campaign bulk assignment"""
         return AsyncPhoneNumberAssignmentByProfileResourceWithRawResponse(
             self._messaging_10dlc.phone_number_assignment_by_profile
         )
@@ -350,14 +370,17 @@ class Messaging10dlcResourceWithStreamingResponse:
 
     @cached_property
     def brand(self) -> BrandResourceWithStreamingResponse:
+        """Brand operations"""
         return BrandResourceWithStreamingResponse(self._messaging_10dlc.brand)
 
     @cached_property
     def campaign(self) -> CampaignResourceWithStreamingResponse:
+        """Campaign operations"""
         return CampaignResourceWithStreamingResponse(self._messaging_10dlc.campaign)
 
     @cached_property
     def campaign_builder(self) -> CampaignBuilderResourceWithStreamingResponse:
+        """Campaign operations"""
         return CampaignBuilderResourceWithStreamingResponse(self._messaging_10dlc.campaign_builder)
 
     @cached_property
@@ -366,10 +389,12 @@ class Messaging10dlcResourceWithStreamingResponse:
 
     @cached_property
     def phone_number_campaigns(self) -> PhoneNumberCampaignsResourceWithStreamingResponse:
+        """Phone number campaign assignment"""
         return PhoneNumberCampaignsResourceWithStreamingResponse(self._messaging_10dlc.phone_number_campaigns)
 
     @cached_property
     def phone_number_assignment_by_profile(self) -> PhoneNumberAssignmentByProfileResourceWithStreamingResponse:
+        """Phone number campaign bulk assignment"""
         return PhoneNumberAssignmentByProfileResourceWithStreamingResponse(
             self._messaging_10dlc.phone_number_assignment_by_profile
         )
@@ -385,14 +410,17 @@ class AsyncMessaging10dlcResourceWithStreamingResponse:
 
     @cached_property
     def brand(self) -> AsyncBrandResourceWithStreamingResponse:
+        """Brand operations"""
         return AsyncBrandResourceWithStreamingResponse(self._messaging_10dlc.brand)
 
     @cached_property
     def campaign(self) -> AsyncCampaignResourceWithStreamingResponse:
+        """Campaign operations"""
         return AsyncCampaignResourceWithStreamingResponse(self._messaging_10dlc.campaign)
 
     @cached_property
     def campaign_builder(self) -> AsyncCampaignBuilderResourceWithStreamingResponse:
+        """Campaign operations"""
         return AsyncCampaignBuilderResourceWithStreamingResponse(self._messaging_10dlc.campaign_builder)
 
     @cached_property
@@ -401,10 +429,12 @@ class AsyncMessaging10dlcResourceWithStreamingResponse:
 
     @cached_property
     def phone_number_campaigns(self) -> AsyncPhoneNumberCampaignsResourceWithStreamingResponse:
+        """Phone number campaign assignment"""
         return AsyncPhoneNumberCampaignsResourceWithStreamingResponse(self._messaging_10dlc.phone_number_campaigns)
 
     @cached_property
     def phone_number_assignment_by_profile(self) -> AsyncPhoneNumberAssignmentByProfileResourceWithStreamingResponse:
+        """Phone number campaign bulk assignment"""
         return AsyncPhoneNumberAssignmentByProfileResourceWithStreamingResponse(
             self._messaging_10dlc.phone_number_assignment_by_profile
         )

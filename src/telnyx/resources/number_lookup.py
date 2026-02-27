@@ -24,6 +24,8 @@ __all__ = ["NumberLookupResource", "AsyncNumberLookupResource"]
 
 
 class NumberLookupResource(SyncAPIResource):
+    """Look up phone number data"""
+
     @cached_property
     def with_raw_response(self) -> NumberLookupResourceWithRawResponse:
         """
@@ -85,6 +87,8 @@ class NumberLookupResource(SyncAPIResource):
 
 
 class AsyncNumberLookupResource(AsyncAPIResource):
+    """Look up phone number data"""
+
     @cached_property
     def with_raw_response(self) -> AsyncNumberLookupResourceWithRawResponse:
         """

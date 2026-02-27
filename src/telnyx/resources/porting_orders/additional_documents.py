@@ -26,6 +26,8 @@ __all__ = ["AdditionalDocumentsResource", "AsyncAdditionalDocumentsResource"]
 
 
 class AdditionalDocumentsResource(SyncAPIResource):
+    """Endpoints related to porting orders management."""
+
     @cached_property
     def with_raw_response(self) -> AdditionalDocumentsResourceWithRawResponse:
         """
@@ -180,6 +182,8 @@ class AdditionalDocumentsResource(SyncAPIResource):
 
 
 class AsyncAdditionalDocumentsResource(AsyncAPIResource):
+    """Endpoints related to porting orders management."""
+
     @cached_property
     def with_raw_response(self) -> AsyncAdditionalDocumentsResourceWithRawResponse:
         """

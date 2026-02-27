@@ -26,6 +26,8 @@ __all__ = ["RequirementGroupsResource", "AsyncRequirementGroupsResource"]
 
 
 class RequirementGroupsResource(SyncAPIResource):
+    """Requirement Groups"""
+
     @cached_property
     def with_raw_response(self) -> RequirementGroupsResourceWithRawResponse:
         """
@@ -277,6 +279,8 @@ class RequirementGroupsResource(SyncAPIResource):
 
 
 class AsyncRequirementGroupsResource(AsyncAPIResource):
+    """Requirement Groups"""
+
     @cached_property
     def with_raw_response(self) -> AsyncRequirementGroupsResourceWithRawResponse:
         """

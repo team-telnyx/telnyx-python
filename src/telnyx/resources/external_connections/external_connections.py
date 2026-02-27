@@ -76,24 +76,31 @@ __all__ = ["ExternalConnectionsResource", "AsyncExternalConnectionsResource"]
 
 
 class ExternalConnectionsResource(SyncAPIResource):
+    """External Connections operations"""
+
     @cached_property
     def log_messages(self) -> LogMessagesResource:
+        """External Connections operations"""
         return LogMessagesResource(self._client)
 
     @cached_property
     def civic_addresses(self) -> CivicAddressesResource:
+        """External Connections operations"""
         return CivicAddressesResource(self._client)
 
     @cached_property
     def phone_numbers(self) -> PhoneNumbersResource:
+        """External Connections operations"""
         return PhoneNumbersResource(self._client)
 
     @cached_property
     def releases(self) -> ReleasesResource:
+        """External Connections operations"""
         return ReleasesResource(self._client)
 
     @cached_property
     def uploads(self) -> UploadsResource:
+        """External Connections operations"""
         return UploadsResource(self._client)
 
     @cached_property
@@ -415,24 +422,31 @@ class ExternalConnectionsResource(SyncAPIResource):
 
 
 class AsyncExternalConnectionsResource(AsyncAPIResource):
+    """External Connections operations"""
+
     @cached_property
     def log_messages(self) -> AsyncLogMessagesResource:
+        """External Connections operations"""
         return AsyncLogMessagesResource(self._client)
 
     @cached_property
     def civic_addresses(self) -> AsyncCivicAddressesResource:
+        """External Connections operations"""
         return AsyncCivicAddressesResource(self._client)
 
     @cached_property
     def phone_numbers(self) -> AsyncPhoneNumbersResource:
+        """External Connections operations"""
         return AsyncPhoneNumbersResource(self._client)
 
     @cached_property
     def releases(self) -> AsyncReleasesResource:
+        """External Connections operations"""
         return AsyncReleasesResource(self._client)
 
     @cached_property
     def uploads(self) -> AsyncUploadsResource:
+        """External Connections operations"""
         return AsyncUploadsResource(self._client)
 
     @cached_property
@@ -778,22 +792,27 @@ class ExternalConnectionsResourceWithRawResponse:
 
     @cached_property
     def log_messages(self) -> LogMessagesResourceWithRawResponse:
+        """External Connections operations"""
         return LogMessagesResourceWithRawResponse(self._external_connections.log_messages)
 
     @cached_property
     def civic_addresses(self) -> CivicAddressesResourceWithRawResponse:
+        """External Connections operations"""
         return CivicAddressesResourceWithRawResponse(self._external_connections.civic_addresses)
 
     @cached_property
     def phone_numbers(self) -> PhoneNumbersResourceWithRawResponse:
+        """External Connections operations"""
         return PhoneNumbersResourceWithRawResponse(self._external_connections.phone_numbers)
 
     @cached_property
     def releases(self) -> ReleasesResourceWithRawResponse:
+        """External Connections operations"""
         return ReleasesResourceWithRawResponse(self._external_connections.releases)
 
     @cached_property
     def uploads(self) -> UploadsResourceWithRawResponse:
+        """External Connections operations"""
         return UploadsResourceWithRawResponse(self._external_connections.uploads)
 
 
@@ -822,22 +841,27 @@ class AsyncExternalConnectionsResourceWithRawResponse:
 
     @cached_property
     def log_messages(self) -> AsyncLogMessagesResourceWithRawResponse:
+        """External Connections operations"""
         return AsyncLogMessagesResourceWithRawResponse(self._external_connections.log_messages)
 
     @cached_property
     def civic_addresses(self) -> AsyncCivicAddressesResourceWithRawResponse:
+        """External Connections operations"""
         return AsyncCivicAddressesResourceWithRawResponse(self._external_connections.civic_addresses)
 
     @cached_property
     def phone_numbers(self) -> AsyncPhoneNumbersResourceWithRawResponse:
+        """External Connections operations"""
         return AsyncPhoneNumbersResourceWithRawResponse(self._external_connections.phone_numbers)
 
     @cached_property
     def releases(self) -> AsyncReleasesResourceWithRawResponse:
+        """External Connections operations"""
         return AsyncReleasesResourceWithRawResponse(self._external_connections.releases)
 
     @cached_property
     def uploads(self) -> AsyncUploadsResourceWithRawResponse:
+        """External Connections operations"""
         return AsyncUploadsResourceWithRawResponse(self._external_connections.uploads)
 
 
@@ -866,22 +890,27 @@ class ExternalConnectionsResourceWithStreamingResponse:
 
     @cached_property
     def log_messages(self) -> LogMessagesResourceWithStreamingResponse:
+        """External Connections operations"""
         return LogMessagesResourceWithStreamingResponse(self._external_connections.log_messages)
 
     @cached_property
     def civic_addresses(self) -> CivicAddressesResourceWithStreamingResponse:
+        """External Connections operations"""
         return CivicAddressesResourceWithStreamingResponse(self._external_connections.civic_addresses)
 
     @cached_property
     def phone_numbers(self) -> PhoneNumbersResourceWithStreamingResponse:
+        """External Connections operations"""
         return PhoneNumbersResourceWithStreamingResponse(self._external_connections.phone_numbers)
 
     @cached_property
     def releases(self) -> ReleasesResourceWithStreamingResponse:
+        """External Connections operations"""
         return ReleasesResourceWithStreamingResponse(self._external_connections.releases)
 
     @cached_property
     def uploads(self) -> UploadsResourceWithStreamingResponse:
+        """External Connections operations"""
         return UploadsResourceWithStreamingResponse(self._external_connections.uploads)
 
 
@@ -910,20 +939,25 @@ class AsyncExternalConnectionsResourceWithStreamingResponse:
 
     @cached_property
     def log_messages(self) -> AsyncLogMessagesResourceWithStreamingResponse:
+        """External Connections operations"""
         return AsyncLogMessagesResourceWithStreamingResponse(self._external_connections.log_messages)
 
     @cached_property
     def civic_addresses(self) -> AsyncCivicAddressesResourceWithStreamingResponse:
+        """External Connections operations"""
         return AsyncCivicAddressesResourceWithStreamingResponse(self._external_connections.civic_addresses)
 
     @cached_property
     def phone_numbers(self) -> AsyncPhoneNumbersResourceWithStreamingResponse:
+        """External Connections operations"""
         return AsyncPhoneNumbersResourceWithStreamingResponse(self._external_connections.phone_numbers)
 
     @cached_property
     def releases(self) -> AsyncReleasesResourceWithStreamingResponse:
+        """External Connections operations"""
         return AsyncReleasesResourceWithStreamingResponse(self._external_connections.releases)
 
     @cached_property
     def uploads(self) -> AsyncUploadsResourceWithStreamingResponse:
+        """External Connections operations"""
         return AsyncUploadsResourceWithStreamingResponse(self._external_connections.uploads)

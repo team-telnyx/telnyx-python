@@ -34,6 +34,8 @@ __all__ = ["MobileVoiceConnectionsResource", "AsyncMobileVoiceConnectionsResourc
 
 
 class MobileVoiceConnectionsResource(SyncAPIResource):
+    """Mobile voice connection operations"""
+
     @cached_property
     def with_raw_response(self) -> MobileVoiceConnectionsResourceWithRawResponse:
         """
@@ -286,6 +288,8 @@ class MobileVoiceConnectionsResource(SyncAPIResource):
 
 
 class AsyncMobileVoiceConnectionsResource(AsyncAPIResource):
+    """Mobile voice connection operations"""
+
     @cached_property
     def with_raw_response(self) -> AsyncMobileVoiceConnectionsResourceWithRawResponse:
         """

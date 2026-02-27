@@ -26,6 +26,8 @@ __all__ = ["PublicInternetGatewaysResource", "AsyncPublicInternetGatewaysResourc
 
 
 class PublicInternetGatewaysResource(SyncAPIResource):
+    """Public Internet Gateway operations"""
+
     @cached_property
     def with_raw_response(self) -> PublicInternetGatewaysResourceWithRawResponse:
         """
@@ -207,6 +209,8 @@ class PublicInternetGatewaysResource(SyncAPIResource):
 
 
 class AsyncPublicInternetGatewaysResource(AsyncAPIResource):
+    """Public Internet Gateway operations"""
+
     @cached_property
     def with_raw_response(self) -> AsyncPublicInternetGatewaysResourceWithRawResponse:
         """

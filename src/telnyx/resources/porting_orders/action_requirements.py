@@ -24,6 +24,8 @@ __all__ = ["ActionRequirementsResource", "AsyncActionRequirementsResource"]
 
 
 class ActionRequirementsResource(SyncAPIResource):
+    """Endpoints related to porting orders management."""
+
     @cached_property
     def with_raw_response(self) -> ActionRequirementsResourceWithRawResponse:
         """
@@ -143,6 +145,8 @@ class ActionRequirementsResource(SyncAPIResource):
 
 
 class AsyncActionRequirementsResource(AsyncAPIResource):
+    """Endpoints related to porting orders management."""
+
     @cached_property
     def with_raw_response(self) -> AsyncActionRequirementsResourceWithRawResponse:
         """

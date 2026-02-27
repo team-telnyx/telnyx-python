@@ -22,6 +22,8 @@ __all__ = ["RegulatoryRequirementsResource", "AsyncRegulatoryRequirementsResourc
 
 
 class RegulatoryRequirementsResource(SyncAPIResource):
+    """Regulatory Requirements"""
+
     @cached_property
     def with_raw_response(self) -> RegulatoryRequirementsResourceWithRawResponse:
         """
@@ -85,6 +87,8 @@ class RegulatoryRequirementsResource(SyncAPIResource):
 
 
 class AsyncRegulatoryRequirementsResource(AsyncAPIResource):
+    """Regulatory Requirements"""
+
     @cached_property
     def with_raw_response(self) -> AsyncRegulatoryRequirementsResourceWithRawResponse:
         """

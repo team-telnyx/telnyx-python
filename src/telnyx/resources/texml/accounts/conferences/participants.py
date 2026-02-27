@@ -30,6 +30,8 @@ __all__ = ["ParticipantsResource", "AsyncParticipantsResource"]
 
 
 class ParticipantsResource(SyncAPIResource):
+    """TeXML REST Commands"""
+
     @cached_property
     def with_raw_response(self) -> ParticipantsResourceWithRawResponse:
         """
@@ -543,6 +545,8 @@ class ParticipantsResource(SyncAPIResource):
 
 
 class AsyncParticipantsResource(AsyncAPIResource):
+    """TeXML REST Commands"""
+
     @cached_property
     def with_raw_response(self) -> AsyncParticipantsResourceWithRawResponse:
         """

@@ -23,6 +23,8 @@ __all__ = ["MobileNetworkOperatorsResource", "AsyncMobileNetworkOperatorsResourc
 
 
 class MobileNetworkOperatorsResource(SyncAPIResource):
+    """Mobile network operators operations"""
+
     @cached_property
     def with_raw_response(self) -> MobileNetworkOperatorsResourceWithRawResponse:
         """
@@ -98,6 +100,8 @@ class MobileNetworkOperatorsResource(SyncAPIResource):
 
 
 class AsyncMobileNetworkOperatorsResource(AsyncAPIResource):
+    """Mobile network operators operations"""
+
     @cached_property
     def with_raw_response(self) -> AsyncMobileNetworkOperatorsResourceWithRawResponse:
         """

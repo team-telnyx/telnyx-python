@@ -27,6 +27,8 @@ __all__ = ["MigrationSourcesResource", "AsyncMigrationSourcesResource"]
 
 
 class MigrationSourcesResource(SyncAPIResource):
+    """Migrate data from an external provider into Telnyx Cloud Storage"""
+
     @cached_property
     def with_raw_response(self) -> MigrationSourcesResourceWithRawResponse:
         """
@@ -184,6 +186,8 @@ class MigrationSourcesResource(SyncAPIResource):
 
 
 class AsyncMigrationSourcesResource(AsyncAPIResource):
+    """Migrate data from an external provider into Telnyx Cloud Storage"""
+
     @cached_property
     def with_raw_response(self) -> AsyncMigrationSourcesResourceWithRawResponse:
         """

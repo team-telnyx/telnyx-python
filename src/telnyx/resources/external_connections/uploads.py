@@ -31,6 +31,8 @@ __all__ = ["UploadsResource", "AsyncUploadsResource"]
 
 
 class UploadsResource(SyncAPIResource):
+    """External Connections operations"""
+
     @cached_property
     def with_raw_response(self) -> UploadsResourceWithRawResponse:
         """
@@ -303,6 +305,8 @@ class UploadsResource(SyncAPIResource):
 
 
 class AsyncUploadsResource(AsyncAPIResource):
+    """External Connections operations"""
+
     @cached_property
     def with_raw_response(self) -> AsyncUploadsResourceWithRawResponse:
         """

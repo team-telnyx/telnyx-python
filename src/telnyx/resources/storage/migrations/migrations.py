@@ -32,8 +32,11 @@ __all__ = ["MigrationsResource", "AsyncMigrationsResource"]
 
 
 class MigrationsResource(SyncAPIResource):
+    """Migrate data from an external provider into Telnyx Cloud Storage"""
+
     @cached_property
     def actions(self) -> ActionsResource:
+        """Migrate data from an external provider into Telnyx Cloud Storage"""
         return ActionsResource(self._client)
 
     @cached_property
@@ -164,8 +167,11 @@ class MigrationsResource(SyncAPIResource):
 
 
 class AsyncMigrationsResource(AsyncAPIResource):
+    """Migrate data from an external provider into Telnyx Cloud Storage"""
+
     @cached_property
     def actions(self) -> AsyncActionsResource:
+        """Migrate data from an external provider into Telnyx Cloud Storage"""
         return AsyncActionsResource(self._client)
 
     @cached_property
@@ -311,6 +317,7 @@ class MigrationsResourceWithRawResponse:
 
     @cached_property
     def actions(self) -> ActionsResourceWithRawResponse:
+        """Migrate data from an external provider into Telnyx Cloud Storage"""
         return ActionsResourceWithRawResponse(self._migrations.actions)
 
 
@@ -330,6 +337,7 @@ class AsyncMigrationsResourceWithRawResponse:
 
     @cached_property
     def actions(self) -> AsyncActionsResourceWithRawResponse:
+        """Migrate data from an external provider into Telnyx Cloud Storage"""
         return AsyncActionsResourceWithRawResponse(self._migrations.actions)
 
 
@@ -349,6 +357,7 @@ class MigrationsResourceWithStreamingResponse:
 
     @cached_property
     def actions(self) -> ActionsResourceWithStreamingResponse:
+        """Migrate data from an external provider into Telnyx Cloud Storage"""
         return ActionsResourceWithStreamingResponse(self._migrations.actions)
 
 
@@ -368,4 +377,5 @@ class AsyncMigrationsResourceWithStreamingResponse:
 
     @cached_property
     def actions(self) -> AsyncActionsResourceWithStreamingResponse:
+        """Migrate data from an external provider into Telnyx Cloud Storage"""
         return AsyncActionsResourceWithStreamingResponse(self._migrations.actions)

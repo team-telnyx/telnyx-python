@@ -24,6 +24,8 @@ __all__ = ["WebhookDeliveriesResource", "AsyncWebhookDeliveriesResource"]
 
 
 class WebhookDeliveriesResource(SyncAPIResource):
+    """Webhooks operations"""
+
     @cached_property
     def with_raw_response(self) -> WebhookDeliveriesResourceWithRawResponse:
         """
@@ -130,6 +132,8 @@ class WebhookDeliveriesResource(SyncAPIResource):
 
 
 class AsyncWebhookDeliveriesResource(AsyncAPIResource):
+    """Webhooks operations"""
+
     @cached_property
     def with_raw_response(self) -> AsyncWebhookDeliveriesResourceWithRawResponse:
         """

@@ -24,6 +24,8 @@ __all__ = ["TextToSpeechResource", "AsyncTextToSpeechResource"]
 
 
 class TextToSpeechResource(SyncAPIResource):
+    """Text to speech streaming command operations"""
+
     @cached_property
     def with_raw_response(self) -> TextToSpeechResourceWithRawResponse:
         """
@@ -191,6 +193,8 @@ class TextToSpeechResource(SyncAPIResource):
 
 
 class AsyncTextToSpeechResource(AsyncAPIResource):
+    """Text to speech streaming command operations"""
+
     @cached_property
     def with_raw_response(self) -> AsyncTextToSpeechResourceWithRawResponse:
         """

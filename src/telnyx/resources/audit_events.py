@@ -25,6 +25,8 @@ __all__ = ["AuditEventsResource", "AsyncAuditEventsResource"]
 
 
 class AuditEventsResource(SyncAPIResource):
+    """Audit log operations."""
+
     @cached_property
     def with_raw_response(self) -> AuditEventsResourceWithRawResponse:
         """
@@ -101,6 +103,8 @@ class AuditEventsResource(SyncAPIResource):
 
 
 class AsyncAuditEventsResource(AsyncAPIResource):
+    """Audit log operations."""
+
     @cached_property
     def with_raw_response(self) -> AsyncAuditEventsResourceWithRawResponse:
         """

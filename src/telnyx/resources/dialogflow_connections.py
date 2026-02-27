@@ -27,6 +27,8 @@ __all__ = ["DialogflowConnectionsResource", "AsyncDialogflowConnectionsResource"
 
 
 class DialogflowConnectionsResource(SyncAPIResource):
+    """Dialogflow Connection Operations."""
+
     @cached_property
     def with_raw_response(self) -> DialogflowConnectionsResourceWithRawResponse:
         """
@@ -235,6 +237,8 @@ class DialogflowConnectionsResource(SyncAPIResource):
 
 
 class AsyncDialogflowConnectionsResource(AsyncAPIResource):
+    """Dialogflow Connection Operations."""
+
     @cached_property
     def with_raw_response(self) -> AsyncDialogflowConnectionsResourceWithRawResponse:
         """

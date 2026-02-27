@@ -23,6 +23,8 @@ __all__ = ["CallEventsResource", "AsyncCallEventsResource"]
 
 
 class CallEventsResource(SyncAPIResource):
+    """Call Control debugging"""
+
     @cached_property
     def with_raw_response(self) -> CallEventsResourceWithRawResponse:
         """
@@ -101,6 +103,8 @@ class CallEventsResource(SyncAPIResource):
 
 
 class AsyncCallEventsResource(AsyncAPIResource):
+    """Call Control debugging"""
+
     @cached_property
     def with_raw_response(self) -> AsyncCallEventsResourceWithRawResponse:
         """

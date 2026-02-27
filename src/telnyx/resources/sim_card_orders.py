@@ -25,6 +25,8 @@ __all__ = ["SimCardOrdersResource", "AsyncSimCardOrdersResource"]
 
 
 class SimCardOrdersResource(SyncAPIResource):
+    """SIM Card Orders operations"""
+
     @cached_property
     def with_raw_response(self) -> SimCardOrdersResourceWithRawResponse:
         """
@@ -174,6 +176,8 @@ class SimCardOrdersResource(SyncAPIResource):
 
 
 class AsyncSimCardOrdersResource(AsyncAPIResource):
+    """SIM Card Orders operations"""
+
     @cached_property
     def with_raw_response(self) -> AsyncSimCardOrdersResourceWithRawResponse:
         """

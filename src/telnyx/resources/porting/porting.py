@@ -44,16 +44,21 @@ __all__ = ["PortingResource", "AsyncPortingResource"]
 
 
 class PortingResource(SyncAPIResource):
+    """Endpoints related to porting orders management."""
+
     @cached_property
     def events(self) -> EventsResource:
+        """Endpoints related to porting orders management."""
         return EventsResource(self._client)
 
     @cached_property
     def reports(self) -> ReportsResource:
+        """Endpoints related to porting orders management."""
         return ReportsResource(self._client)
 
     @cached_property
     def loa_configurations(self) -> LoaConfigurationsResource:
+        """Endpoints related to porting orders management."""
         return LoaConfigurationsResource(self._client)
 
     @cached_property
@@ -96,16 +101,21 @@ class PortingResource(SyncAPIResource):
 
 
 class AsyncPortingResource(AsyncAPIResource):
+    """Endpoints related to porting orders management."""
+
     @cached_property
     def events(self) -> AsyncEventsResource:
+        """Endpoints related to porting orders management."""
         return AsyncEventsResource(self._client)
 
     @cached_property
     def reports(self) -> AsyncReportsResource:
+        """Endpoints related to porting orders management."""
         return AsyncReportsResource(self._client)
 
     @cached_property
     def loa_configurations(self) -> AsyncLoaConfigurationsResource:
+        """Endpoints related to porting orders management."""
         return AsyncLoaConfigurationsResource(self._client)
 
     @cached_property
@@ -157,14 +167,17 @@ class PortingResourceWithRawResponse:
 
     @cached_property
     def events(self) -> EventsResourceWithRawResponse:
+        """Endpoints related to porting orders management."""
         return EventsResourceWithRawResponse(self._porting.events)
 
     @cached_property
     def reports(self) -> ReportsResourceWithRawResponse:
+        """Endpoints related to porting orders management."""
         return ReportsResourceWithRawResponse(self._porting.reports)
 
     @cached_property
     def loa_configurations(self) -> LoaConfigurationsResourceWithRawResponse:
+        """Endpoints related to porting orders management."""
         return LoaConfigurationsResourceWithRawResponse(self._porting.loa_configurations)
 
 
@@ -178,14 +191,17 @@ class AsyncPortingResourceWithRawResponse:
 
     @cached_property
     def events(self) -> AsyncEventsResourceWithRawResponse:
+        """Endpoints related to porting orders management."""
         return AsyncEventsResourceWithRawResponse(self._porting.events)
 
     @cached_property
     def reports(self) -> AsyncReportsResourceWithRawResponse:
+        """Endpoints related to porting orders management."""
         return AsyncReportsResourceWithRawResponse(self._porting.reports)
 
     @cached_property
     def loa_configurations(self) -> AsyncLoaConfigurationsResourceWithRawResponse:
+        """Endpoints related to porting orders management."""
         return AsyncLoaConfigurationsResourceWithRawResponse(self._porting.loa_configurations)
 
 
@@ -199,14 +215,17 @@ class PortingResourceWithStreamingResponse:
 
     @cached_property
     def events(self) -> EventsResourceWithStreamingResponse:
+        """Endpoints related to porting orders management."""
         return EventsResourceWithStreamingResponse(self._porting.events)
 
     @cached_property
     def reports(self) -> ReportsResourceWithStreamingResponse:
+        """Endpoints related to porting orders management."""
         return ReportsResourceWithStreamingResponse(self._porting.reports)
 
     @cached_property
     def loa_configurations(self) -> LoaConfigurationsResourceWithStreamingResponse:
+        """Endpoints related to porting orders management."""
         return LoaConfigurationsResourceWithStreamingResponse(self._porting.loa_configurations)
 
 
@@ -220,12 +239,15 @@ class AsyncPortingResourceWithStreamingResponse:
 
     @cached_property
     def events(self) -> AsyncEventsResourceWithStreamingResponse:
+        """Endpoints related to porting orders management."""
         return AsyncEventsResourceWithStreamingResponse(self._porting.events)
 
     @cached_property
     def reports(self) -> AsyncReportsResourceWithStreamingResponse:
+        """Endpoints related to porting orders management."""
         return AsyncReportsResourceWithStreamingResponse(self._porting.reports)
 
     @cached_property
     def loa_configurations(self) -> AsyncLoaConfigurationsResourceWithStreamingResponse:
+        """Endpoints related to porting orders management."""
         return AsyncLoaConfigurationsResourceWithStreamingResponse(self._porting.loa_configurations)

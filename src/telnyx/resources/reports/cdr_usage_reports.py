@@ -26,6 +26,8 @@ __all__ = ["CdrUsageReportsResource", "AsyncCdrUsageReportsResource"]
 
 
 class CdrUsageReportsResource(SyncAPIResource):
+    """Voice usage reports"""
+
     @cached_property
     def with_raw_response(self) -> CdrUsageReportsResourceWithRawResponse:
         """
@@ -98,6 +100,8 @@ class CdrUsageReportsResource(SyncAPIResource):
 
 
 class AsyncCdrUsageReportsResource(AsyncAPIResource):
+    """Voice usage reports"""
+
     @cached_property
     def with_raw_response(self) -> AsyncCdrUsageReportsResourceWithRawResponse:
         """

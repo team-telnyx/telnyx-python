@@ -28,6 +28,8 @@ __all__ = ["ActivationJobsResource", "AsyncActivationJobsResource"]
 
 
 class ActivationJobsResource(SyncAPIResource):
+    """Endpoints related to porting orders management."""
+
     @cached_property
     def with_raw_response(self) -> ActivationJobsResourceWithRawResponse:
         """
@@ -172,6 +174,8 @@ class ActivationJobsResource(SyncAPIResource):
 
 
 class AsyncActivationJobsResource(AsyncAPIResource):
+    """Endpoints related to porting orders management."""
+
     @cached_property
     def with_raw_response(self) -> AsyncActivationJobsResourceWithRawResponse:
         """

@@ -24,6 +24,8 @@ __all__ = ["CommentsResource", "AsyncCommentsResource"]
 
 
 class CommentsResource(SyncAPIResource):
+    """Endpoints related to porting orders management."""
+
     @cached_property
     def with_raw_response(self) -> CommentsResourceWithRawResponse:
         """
@@ -126,6 +128,8 @@ class CommentsResource(SyncAPIResource):
 
 
 class AsyncCommentsResource(AsyncAPIResource):
+    """Endpoints related to porting orders management."""
+
     @cached_property
     def with_raw_response(self) -> AsyncCommentsResourceWithRawResponse:
         """

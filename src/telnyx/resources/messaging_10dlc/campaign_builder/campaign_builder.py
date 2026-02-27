@@ -32,8 +32,11 @@ __all__ = ["CampaignBuilderResource", "AsyncCampaignBuilderResource"]
 
 
 class CampaignBuilderResource(SyncAPIResource):
+    """Campaign operations"""
+
     @cached_property
     def brand(self) -> BrandResource:
+        """Campaign operations"""
         return BrandResource(self._client)
 
     @cached_property
@@ -247,8 +250,11 @@ class CampaignBuilderResource(SyncAPIResource):
 
 
 class AsyncCampaignBuilderResource(AsyncAPIResource):
+    """Campaign operations"""
+
     @cached_property
     def brand(self) -> AsyncBrandResource:
+        """Campaign operations"""
         return AsyncBrandResource(self._client)
 
     @cached_property
@@ -471,6 +477,7 @@ class CampaignBuilderResourceWithRawResponse:
 
     @cached_property
     def brand(self) -> BrandResourceWithRawResponse:
+        """Campaign operations"""
         return BrandResourceWithRawResponse(self._campaign_builder.brand)
 
 
@@ -484,6 +491,7 @@ class AsyncCampaignBuilderResourceWithRawResponse:
 
     @cached_property
     def brand(self) -> AsyncBrandResourceWithRawResponse:
+        """Campaign operations"""
         return AsyncBrandResourceWithRawResponse(self._campaign_builder.brand)
 
 
@@ -497,6 +505,7 @@ class CampaignBuilderResourceWithStreamingResponse:
 
     @cached_property
     def brand(self) -> BrandResourceWithStreamingResponse:
+        """Campaign operations"""
         return BrandResourceWithStreamingResponse(self._campaign_builder.brand)
 
 
@@ -510,4 +519,5 @@ class AsyncCampaignBuilderResourceWithStreamingResponse:
 
     @cached_property
     def brand(self) -> AsyncBrandResourceWithStreamingResponse:
+        """Campaign operations"""
         return AsyncBrandResourceWithStreamingResponse(self._campaign_builder.brand)

@@ -40,6 +40,8 @@ __all__ = ["SimCardGroupsResource", "AsyncSimCardGroupsResource"]
 
 
 class SimCardGroupsResource(SyncAPIResource):
+    """SIM Card Groups operations"""
+
     @cached_property
     def actions(self) -> ActionsResource:
         return ActionsResource(self._client)
@@ -288,6 +290,8 @@ class SimCardGroupsResource(SyncAPIResource):
 
 
 class AsyncSimCardGroupsResource(AsyncAPIResource):
+    """SIM Card Groups operations"""
+
     @cached_property
     def actions(self) -> AsyncActionsResource:
         return AsyncActionsResource(self._client)

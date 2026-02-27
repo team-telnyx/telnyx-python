@@ -20,6 +20,8 @@ __all__ = ["BalanceResource", "AsyncBalanceResource"]
 
 
 class BalanceResource(SyncAPIResource):
+    """Billing operations"""
+
     @cached_property
     def with_raw_response(self) -> BalanceResourceWithRawResponse:
         """
@@ -60,6 +62,8 @@ class BalanceResource(SyncAPIResource):
 
 
 class AsyncBalanceResource(AsyncAPIResource):
+    """Billing operations"""
+
     @cached_property
     def with_raw_response(self) -> AsyncBalanceResourceWithRawResponse:
         """

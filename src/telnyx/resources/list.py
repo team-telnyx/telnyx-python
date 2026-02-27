@@ -21,6 +21,8 @@ __all__ = ["ListResource", "AsyncListResource"]
 
 
 class ListResource(SyncAPIResource):
+    """Voice Channels"""
+
     @cached_property
     def with_raw_response(self) -> ListResourceWithRawResponse:
         """
@@ -94,6 +96,8 @@ class ListResource(SyncAPIResource):
 
 
 class AsyncListResource(AsyncAPIResource):
+    """Voice Channels"""
+
     @cached_property
     def with_raw_response(self) -> AsyncListResourceWithRawResponse:
         """

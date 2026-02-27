@@ -26,6 +26,8 @@ __all__ = ["DynamicEmergencyEndpointsResource", "AsyncDynamicEmergencyEndpointsR
 
 
 class DynamicEmergencyEndpointsResource(SyncAPIResource):
+    """Dynamic Emergency Endpoints"""
+
     @cached_property
     def with_raw_response(self) -> DynamicEmergencyEndpointsResourceWithRawResponse:
         """
@@ -204,6 +206,8 @@ class DynamicEmergencyEndpointsResource(SyncAPIResource):
 
 
 class AsyncDynamicEmergencyEndpointsResource(AsyncAPIResource):
+    """Dynamic Emergency Endpoints"""
+
     @cached_property
     def with_raw_response(self) -> AsyncDynamicEmergencyEndpointsResourceWithRawResponse:
         """

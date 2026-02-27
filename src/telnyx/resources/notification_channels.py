@@ -33,6 +33,8 @@ __all__ = ["NotificationChannelsResource", "AsyncNotificationChannelsResource"]
 
 
 class NotificationChannelsResource(SyncAPIResource):
+    """Notification settings operations"""
+
     @cached_property
     def with_raw_response(self) -> NotificationChannelsResourceWithRawResponse:
         """
@@ -270,6 +272,8 @@ class NotificationChannelsResource(SyncAPIResource):
 
 
 class AsyncNotificationChannelsResource(AsyncAPIResource):
+    """Notification settings operations"""
+
     @cached_property
     def with_raw_response(self) -> AsyncNotificationChannelsResourceWithRawResponse:
         """

@@ -56,6 +56,7 @@ __all__ = ["MessagesResource", "AsyncMessagesResource"]
 class MessagesResource(SyncAPIResource):
     @cached_property
     def rcs(self) -> RcsResource:
+        """Send RCS messages"""
         return RcsResource(self._client)
 
     @cached_property
@@ -859,6 +860,7 @@ class MessagesResource(SyncAPIResource):
 class AsyncMessagesResource(AsyncAPIResource):
     @cached_property
     def rcs(self) -> AsyncRcsResource:
+        """Send RCS messages"""
         return AsyncRcsResource(self._client)
 
     @cached_property
@@ -1699,6 +1701,7 @@ class MessagesResourceWithRawResponse:
 
     @cached_property
     def rcs(self) -> RcsResourceWithRawResponse:
+        """Send RCS messages"""
         return RcsResourceWithRawResponse(self._messages.rcs)
 
 
@@ -1742,6 +1745,7 @@ class AsyncMessagesResourceWithRawResponse:
 
     @cached_property
     def rcs(self) -> AsyncRcsResourceWithRawResponse:
+        """Send RCS messages"""
         return AsyncRcsResourceWithRawResponse(self._messages.rcs)
 
 
@@ -1785,6 +1789,7 @@ class MessagesResourceWithStreamingResponse:
 
     @cached_property
     def rcs(self) -> RcsResourceWithStreamingResponse:
+        """Send RCS messages"""
         return RcsResourceWithStreamingResponse(self._messages.rcs)
 
 
@@ -1828,4 +1833,5 @@ class AsyncMessagesResourceWithStreamingResponse:
 
     @cached_property
     def rcs(self) -> AsyncRcsResourceWithStreamingResponse:
+        """Send RCS messages"""
         return AsyncRcsResourceWithStreamingResponse(self._messages.rcs)

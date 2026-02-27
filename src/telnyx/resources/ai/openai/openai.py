@@ -19,6 +19,9 @@ __all__ = ["OpenAIResource", "AsyncOpenAIResource"]
 class OpenAIResource(SyncAPIResource):
     @cached_property
     def embeddings(self) -> EmbeddingsResource:
+        """
+        OpenAI-compatible embeddings endpoints for generating vector representations of text
+        """
         return EmbeddingsResource(self._client)
 
     @cached_property
@@ -44,6 +47,9 @@ class OpenAIResource(SyncAPIResource):
 class AsyncOpenAIResource(AsyncAPIResource):
     @cached_property
     def embeddings(self) -> AsyncEmbeddingsResource:
+        """
+        OpenAI-compatible embeddings endpoints for generating vector representations of text
+        """
         return AsyncEmbeddingsResource(self._client)
 
     @cached_property
@@ -72,6 +78,9 @@ class OpenAIResourceWithRawResponse:
 
     @cached_property
     def embeddings(self) -> EmbeddingsResourceWithRawResponse:
+        """
+        OpenAI-compatible embeddings endpoints for generating vector representations of text
+        """
         return EmbeddingsResourceWithRawResponse(self._openai.embeddings)
 
 
@@ -81,6 +90,9 @@ class AsyncOpenAIResourceWithRawResponse:
 
     @cached_property
     def embeddings(self) -> AsyncEmbeddingsResourceWithRawResponse:
+        """
+        OpenAI-compatible embeddings endpoints for generating vector representations of text
+        """
         return AsyncEmbeddingsResourceWithRawResponse(self._openai.embeddings)
 
 
@@ -90,6 +102,9 @@ class OpenAIResourceWithStreamingResponse:
 
     @cached_property
     def embeddings(self) -> EmbeddingsResourceWithStreamingResponse:
+        """
+        OpenAI-compatible embeddings endpoints for generating vector representations of text
+        """
         return EmbeddingsResourceWithStreamingResponse(self._openai.embeddings)
 
 
@@ -99,4 +114,7 @@ class AsyncOpenAIResourceWithStreamingResponse:
 
     @cached_property
     def embeddings(self) -> AsyncEmbeddingsResourceWithStreamingResponse:
+        """
+        OpenAI-compatible embeddings endpoints for generating vector representations of text
+        """
         return AsyncEmbeddingsResourceWithStreamingResponse(self._openai.embeddings)

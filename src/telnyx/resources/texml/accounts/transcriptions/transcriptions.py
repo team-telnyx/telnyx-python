@@ -19,6 +19,7 @@ __all__ = ["TranscriptionsResource", "AsyncTranscriptionsResource"]
 class TranscriptionsResource(SyncAPIResource):
     @cached_property
     def json(self) -> JsonResource:
+        """TeXML REST Commands"""
         return JsonResource(self._client)
 
     @cached_property
@@ -44,6 +45,7 @@ class TranscriptionsResource(SyncAPIResource):
 class AsyncTranscriptionsResource(AsyncAPIResource):
     @cached_property
     def json(self) -> AsyncJsonResource:
+        """TeXML REST Commands"""
         return AsyncJsonResource(self._client)
 
     @cached_property
@@ -72,6 +74,7 @@ class TranscriptionsResourceWithRawResponse:
 
     @cached_property
     def json(self) -> JsonResourceWithRawResponse:
+        """TeXML REST Commands"""
         return JsonResourceWithRawResponse(self._transcriptions.json)
 
 
@@ -81,6 +84,7 @@ class AsyncTranscriptionsResourceWithRawResponse:
 
     @cached_property
     def json(self) -> AsyncJsonResourceWithRawResponse:
+        """TeXML REST Commands"""
         return AsyncJsonResourceWithRawResponse(self._transcriptions.json)
 
 
@@ -90,6 +94,7 @@ class TranscriptionsResourceWithStreamingResponse:
 
     @cached_property
     def json(self) -> JsonResourceWithStreamingResponse:
+        """TeXML REST Commands"""
         return JsonResourceWithStreamingResponse(self._transcriptions.json)
 
 
@@ -99,4 +104,5 @@ class AsyncTranscriptionsResourceWithStreamingResponse:
 
     @cached_property
     def json(self) -> AsyncJsonResourceWithStreamingResponse:
+        """TeXML REST Commands"""
         return AsyncJsonResourceWithStreamingResponse(self._transcriptions.json)

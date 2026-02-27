@@ -42,8 +42,11 @@ __all__ = ["RoomsResource", "AsyncRoomsResource"]
 
 
 class RoomsResource(SyncAPIResource):
+    """Rooms operations."""
+
     @cached_property
     def actions(self) -> ActionsResource:
+        """Rooms Client Tokens operations."""
         return ActionsResource(self._client)
 
     @cached_property
@@ -330,8 +333,11 @@ class RoomsResource(SyncAPIResource):
 
 
 class AsyncRoomsResource(AsyncAPIResource):
+    """Rooms operations."""
+
     @cached_property
     def actions(self) -> AsyncActionsResource:
+        """Rooms Client Tokens operations."""
         return AsyncActionsResource(self._client)
 
     @cached_property
@@ -641,6 +647,7 @@ class RoomsResourceWithRawResponse:
 
     @cached_property
     def actions(self) -> ActionsResourceWithRawResponse:
+        """Rooms Client Tokens operations."""
         return ActionsResourceWithRawResponse(self._rooms.actions)
 
     @cached_property
@@ -670,6 +677,7 @@ class AsyncRoomsResourceWithRawResponse:
 
     @cached_property
     def actions(self) -> AsyncActionsResourceWithRawResponse:
+        """Rooms Client Tokens operations."""
         return AsyncActionsResourceWithRawResponse(self._rooms.actions)
 
     @cached_property
@@ -699,6 +707,7 @@ class RoomsResourceWithStreamingResponse:
 
     @cached_property
     def actions(self) -> ActionsResourceWithStreamingResponse:
+        """Rooms Client Tokens operations."""
         return ActionsResourceWithStreamingResponse(self._rooms.actions)
 
     @cached_property
@@ -728,6 +737,7 @@ class AsyncRoomsResourceWithStreamingResponse:
 
     @cached_property
     def actions(self) -> AsyncActionsResourceWithStreamingResponse:
+        """Rooms Client Tokens operations."""
         return AsyncActionsResourceWithStreamingResponse(self._rooms.actions)
 
     @cached_property

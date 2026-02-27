@@ -49,6 +49,8 @@ __all__ = ["FqdnConnectionsResource", "AsyncFqdnConnectionsResource"]
 
 
 class FqdnConnectionsResource(SyncAPIResource):
+    """FQDN connection operations"""
+
     @cached_property
     def with_raw_response(self) -> FqdnConnectionsResourceWithRawResponse:
         """
@@ -497,6 +499,8 @@ class FqdnConnectionsResource(SyncAPIResource):
 
 
 class AsyncFqdnConnectionsResource(AsyncAPIResource):
+    """FQDN connection operations"""
+
     @cached_property
     def with_raw_response(self) -> AsyncFqdnConnectionsResourceWithRawResponse:
         """

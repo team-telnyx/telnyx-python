@@ -33,6 +33,8 @@ __all__ = ["ClustersResource", "AsyncClustersResource"]
 
 
 class ClustersResource(SyncAPIResource):
+    """Identify common themes and patterns in your embedded documents"""
+
     @cached_property
     def with_raw_response(self) -> ClustersResourceWithRawResponse:
         """
@@ -281,6 +283,8 @@ class ClustersResource(SyncAPIResource):
 
 
 class AsyncClustersResource(AsyncAPIResource):
+    """Identify common themes and patterns in your embedded documents"""
+
     @cached_property
     def with_raw_response(self) -> AsyncClustersResourceWithRawResponse:
         """

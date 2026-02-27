@@ -28,6 +28,8 @@ __all__ = ["ReportsResource", "AsyncReportsResource"]
 
 
 class ReportsResource(SyncAPIResource):
+    """Number portout operations"""
+
     @cached_property
     def with_raw_response(self) -> ReportsResourceWithRawResponse:
         """
@@ -174,6 +176,8 @@ class ReportsResource(SyncAPIResource):
 
 
 class AsyncReportsResource(AsyncAPIResource):
+    """Number portout operations"""
+
     @cached_property
     def with_raw_response(self) -> AsyncReportsResourceWithRawResponse:
         """

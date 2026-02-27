@@ -30,8 +30,11 @@ __all__ = ["PaymentResource", "AsyncPaymentResource"]
 
 
 class PaymentResource(SyncAPIResource):
+    """Operations for managing stored payment transactions."""
+
     @cached_property
     def auto_recharge_prefs(self) -> AutoRechargePrefsResource:
+        """V2 Auto Recharge Preferences API"""
         return AutoRechargePrefsResource(self._client)
 
     @cached_property
@@ -92,8 +95,11 @@ class PaymentResource(SyncAPIResource):
 
 
 class AsyncPaymentResource(AsyncAPIResource):
+    """Operations for managing stored payment transactions."""
+
     @cached_property
     def auto_recharge_prefs(self) -> AsyncAutoRechargePrefsResource:
+        """V2 Auto Recharge Preferences API"""
         return AsyncAutoRechargePrefsResource(self._client)
 
     @cached_property
@@ -163,6 +169,7 @@ class PaymentResourceWithRawResponse:
 
     @cached_property
     def auto_recharge_prefs(self) -> AutoRechargePrefsResourceWithRawResponse:
+        """V2 Auto Recharge Preferences API"""
         return AutoRechargePrefsResourceWithRawResponse(self._payment.auto_recharge_prefs)
 
 
@@ -176,6 +183,7 @@ class AsyncPaymentResourceWithRawResponse:
 
     @cached_property
     def auto_recharge_prefs(self) -> AsyncAutoRechargePrefsResourceWithRawResponse:
+        """V2 Auto Recharge Preferences API"""
         return AsyncAutoRechargePrefsResourceWithRawResponse(self._payment.auto_recharge_prefs)
 
 
@@ -189,6 +197,7 @@ class PaymentResourceWithStreamingResponse:
 
     @cached_property
     def auto_recharge_prefs(self) -> AutoRechargePrefsResourceWithStreamingResponse:
+        """V2 Auto Recharge Preferences API"""
         return AutoRechargePrefsResourceWithStreamingResponse(self._payment.auto_recharge_prefs)
 
 
@@ -202,4 +211,5 @@ class AsyncPaymentResourceWithStreamingResponse:
 
     @cached_property
     def auto_recharge_prefs(self) -> AsyncAutoRechargePrefsResourceWithStreamingResponse:
+        """V2 Auto Recharge Preferences API"""
         return AsyncAutoRechargePrefsResourceWithStreamingResponse(self._payment.auto_recharge_prefs)

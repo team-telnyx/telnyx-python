@@ -24,6 +24,8 @@ __all__ = ["ActionsResource", "AsyncActionsResource"]
 
 
 class ActionsResource(SyncAPIResource):
+    """Manage your messaging hosted numbers"""
+
     @cached_property
     def with_raw_response(self) -> ActionsResourceWithRawResponse:
         """
@@ -98,6 +100,8 @@ class ActionsResource(SyncAPIResource):
 
 
 class AsyncActionsResource(AsyncAPIResource):
+    """Manage your messaging hosted numbers"""
+
     @cached_property
     def with_raw_response(self) -> AsyncActionsResourceWithRawResponse:
         """

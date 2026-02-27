@@ -30,6 +30,8 @@ __all__ = ["SpeechToTextResource", "AsyncSpeechToTextResource"]
 
 
 class SpeechToTextResource(SyncAPIResource):
+    """Speech to text batch detail records"""
+
     @cached_property
     def with_raw_response(self) -> SpeechToTextResourceWithRawResponse:
         """
@@ -179,6 +181,8 @@ class SpeechToTextResource(SyncAPIResource):
 
 
 class AsyncSpeechToTextResource(AsyncAPIResource):
+    """Speech to text batch detail records"""
+
     @cached_property
     def with_raw_response(self) -> AsyncSpeechToTextResourceWithRawResponse:
         """

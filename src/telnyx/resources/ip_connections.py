@@ -45,6 +45,8 @@ __all__ = ["IPConnectionsResource", "AsyncIPConnectionsResource"]
 
 
 class IPConnectionsResource(SyncAPIResource):
+    """IP connection operations"""
+
     @cached_property
     def with_raw_response(self) -> IPConnectionsResourceWithRawResponse:
         """
@@ -484,6 +486,8 @@ class IPConnectionsResource(SyncAPIResource):
 
 
 class AsyncIPConnectionsResource(AsyncAPIResource):
+    """IP connection operations"""
+
     @cached_property
     def with_raw_response(self) -> AsyncIPConnectionsResourceWithRawResponse:
         """

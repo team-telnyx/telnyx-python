@@ -28,6 +28,8 @@ __all__ = ["RoomCompositionsResource", "AsyncRoomCompositionsResource"]
 
 
 class RoomCompositionsResource(SyncAPIResource):
+    """Rooms Compositions operations."""
+
     @cached_property
     def with_raw_response(self) -> RoomCompositionsResourceWithRawResponse:
         """
@@ -237,6 +239,8 @@ class RoomCompositionsResource(SyncAPIResource):
 
 
 class AsyncRoomCompositionsResource(AsyncAPIResource):
+    """Rooms Compositions operations."""
+
     @cached_property
     def with_raw_response(self) -> AsyncRoomCompositionsResourceWithRawResponse:
         """

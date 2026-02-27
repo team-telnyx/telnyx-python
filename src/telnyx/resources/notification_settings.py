@@ -28,6 +28,8 @@ __all__ = ["NotificationSettingsResource", "AsyncNotificationSettingsResource"]
 
 
 class NotificationSettingsResource(SyncAPIResource):
+    """Notification settings operations"""
+
     @cached_property
     def with_raw_response(self) -> NotificationSettingsResourceWithRawResponse:
         """
@@ -215,6 +217,8 @@ class NotificationSettingsResource(SyncAPIResource):
 
 
 class AsyncNotificationSettingsResource(AsyncAPIResource):
+    """Notification settings operations"""
+
     @cached_property
     def with_raw_response(self) -> AsyncNotificationSettingsResourceWithRawResponse:
         """

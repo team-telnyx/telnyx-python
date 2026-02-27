@@ -44,16 +44,21 @@ __all__ = ["StorageResource", "AsyncStorageResource"]
 
 
 class StorageResource(SyncAPIResource):
+    """Migrate data from an external provider into Telnyx Cloud Storage"""
+
     @cached_property
     def buckets(self) -> BucketsResource:
+        """Presigned object URL operations"""
         return BucketsResource(self._client)
 
     @cached_property
     def migration_sources(self) -> MigrationSourcesResource:
+        """Migrate data from an external provider into Telnyx Cloud Storage"""
         return MigrationSourcesResource(self._client)
 
     @cached_property
     def migrations(self) -> MigrationsResource:
+        """Migrate data from an external provider into Telnyx Cloud Storage"""
         return MigrationsResource(self._client)
 
     @cached_property
@@ -96,16 +101,21 @@ class StorageResource(SyncAPIResource):
 
 
 class AsyncStorageResource(AsyncAPIResource):
+    """Migrate data from an external provider into Telnyx Cloud Storage"""
+
     @cached_property
     def buckets(self) -> AsyncBucketsResource:
+        """Presigned object URL operations"""
         return AsyncBucketsResource(self._client)
 
     @cached_property
     def migration_sources(self) -> AsyncMigrationSourcesResource:
+        """Migrate data from an external provider into Telnyx Cloud Storage"""
         return AsyncMigrationSourcesResource(self._client)
 
     @cached_property
     def migrations(self) -> AsyncMigrationsResource:
+        """Migrate data from an external provider into Telnyx Cloud Storage"""
         return AsyncMigrationsResource(self._client)
 
     @cached_property
@@ -157,14 +167,17 @@ class StorageResourceWithRawResponse:
 
     @cached_property
     def buckets(self) -> BucketsResourceWithRawResponse:
+        """Presigned object URL operations"""
         return BucketsResourceWithRawResponse(self._storage.buckets)
 
     @cached_property
     def migration_sources(self) -> MigrationSourcesResourceWithRawResponse:
+        """Migrate data from an external provider into Telnyx Cloud Storage"""
         return MigrationSourcesResourceWithRawResponse(self._storage.migration_sources)
 
     @cached_property
     def migrations(self) -> MigrationsResourceWithRawResponse:
+        """Migrate data from an external provider into Telnyx Cloud Storage"""
         return MigrationsResourceWithRawResponse(self._storage.migrations)
 
 
@@ -178,14 +191,17 @@ class AsyncStorageResourceWithRawResponse:
 
     @cached_property
     def buckets(self) -> AsyncBucketsResourceWithRawResponse:
+        """Presigned object URL operations"""
         return AsyncBucketsResourceWithRawResponse(self._storage.buckets)
 
     @cached_property
     def migration_sources(self) -> AsyncMigrationSourcesResourceWithRawResponse:
+        """Migrate data from an external provider into Telnyx Cloud Storage"""
         return AsyncMigrationSourcesResourceWithRawResponse(self._storage.migration_sources)
 
     @cached_property
     def migrations(self) -> AsyncMigrationsResourceWithRawResponse:
+        """Migrate data from an external provider into Telnyx Cloud Storage"""
         return AsyncMigrationsResourceWithRawResponse(self._storage.migrations)
 
 
@@ -199,14 +215,17 @@ class StorageResourceWithStreamingResponse:
 
     @cached_property
     def buckets(self) -> BucketsResourceWithStreamingResponse:
+        """Presigned object URL operations"""
         return BucketsResourceWithStreamingResponse(self._storage.buckets)
 
     @cached_property
     def migration_sources(self) -> MigrationSourcesResourceWithStreamingResponse:
+        """Migrate data from an external provider into Telnyx Cloud Storage"""
         return MigrationSourcesResourceWithStreamingResponse(self._storage.migration_sources)
 
     @cached_property
     def migrations(self) -> MigrationsResourceWithStreamingResponse:
+        """Migrate data from an external provider into Telnyx Cloud Storage"""
         return MigrationsResourceWithStreamingResponse(self._storage.migrations)
 
 
@@ -220,12 +239,15 @@ class AsyncStorageResourceWithStreamingResponse:
 
     @cached_property
     def buckets(self) -> AsyncBucketsResourceWithStreamingResponse:
+        """Presigned object URL operations"""
         return AsyncBucketsResourceWithStreamingResponse(self._storage.buckets)
 
     @cached_property
     def migration_sources(self) -> AsyncMigrationSourcesResourceWithStreamingResponse:
+        """Migrate data from an external provider into Telnyx Cloud Storage"""
         return AsyncMigrationSourcesResourceWithStreamingResponse(self._storage.migration_sources)
 
     @cached_property
     def migrations(self) -> AsyncMigrationsResourceWithStreamingResponse:
+        """Migrate data from an external provider into Telnyx Cloud Storage"""
         return AsyncMigrationsResourceWithStreamingResponse(self._storage.migrations)

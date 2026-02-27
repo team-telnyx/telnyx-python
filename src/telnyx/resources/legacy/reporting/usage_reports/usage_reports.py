@@ -51,16 +51,21 @@ __all__ = ["UsageReportsResource", "AsyncUsageReportsResource"]
 
 
 class UsageReportsResource(SyncAPIResource):
+    """Speech to text usage reports"""
+
     @cached_property
     def messaging(self) -> MessagingResource:
+        """Messaging usage reports"""
         return MessagingResource(self._client)
 
     @cached_property
     def number_lookup(self) -> NumberLookupResource:
+        """Number lookup usage reports"""
         return NumberLookupResource(self._client)
 
     @cached_property
     def voice(self) -> VoiceResource:
+        """Voice usage reports"""
         return VoiceResource(self._client)
 
     @cached_property
@@ -128,16 +133,21 @@ class UsageReportsResource(SyncAPIResource):
 
 
 class AsyncUsageReportsResource(AsyncAPIResource):
+    """Speech to text usage reports"""
+
     @cached_property
     def messaging(self) -> AsyncMessagingResource:
+        """Messaging usage reports"""
         return AsyncMessagingResource(self._client)
 
     @cached_property
     def number_lookup(self) -> AsyncNumberLookupResource:
+        """Number lookup usage reports"""
         return AsyncNumberLookupResource(self._client)
 
     @cached_property
     def voice(self) -> AsyncVoiceResource:
+        """Voice usage reports"""
         return AsyncVoiceResource(self._client)
 
     @cached_property
@@ -214,14 +224,17 @@ class UsageReportsResourceWithRawResponse:
 
     @cached_property
     def messaging(self) -> MessagingResourceWithRawResponse:
+        """Messaging usage reports"""
         return MessagingResourceWithRawResponse(self._usage_reports.messaging)
 
     @cached_property
     def number_lookup(self) -> NumberLookupResourceWithRawResponse:
+        """Number lookup usage reports"""
         return NumberLookupResourceWithRawResponse(self._usage_reports.number_lookup)
 
     @cached_property
     def voice(self) -> VoiceResourceWithRawResponse:
+        """Voice usage reports"""
         return VoiceResourceWithRawResponse(self._usage_reports.voice)
 
 
@@ -235,14 +248,17 @@ class AsyncUsageReportsResourceWithRawResponse:
 
     @cached_property
     def messaging(self) -> AsyncMessagingResourceWithRawResponse:
+        """Messaging usage reports"""
         return AsyncMessagingResourceWithRawResponse(self._usage_reports.messaging)
 
     @cached_property
     def number_lookup(self) -> AsyncNumberLookupResourceWithRawResponse:
+        """Number lookup usage reports"""
         return AsyncNumberLookupResourceWithRawResponse(self._usage_reports.number_lookup)
 
     @cached_property
     def voice(self) -> AsyncVoiceResourceWithRawResponse:
+        """Voice usage reports"""
         return AsyncVoiceResourceWithRawResponse(self._usage_reports.voice)
 
 
@@ -256,14 +272,17 @@ class UsageReportsResourceWithStreamingResponse:
 
     @cached_property
     def messaging(self) -> MessagingResourceWithStreamingResponse:
+        """Messaging usage reports"""
         return MessagingResourceWithStreamingResponse(self._usage_reports.messaging)
 
     @cached_property
     def number_lookup(self) -> NumberLookupResourceWithStreamingResponse:
+        """Number lookup usage reports"""
         return NumberLookupResourceWithStreamingResponse(self._usage_reports.number_lookup)
 
     @cached_property
     def voice(self) -> VoiceResourceWithStreamingResponse:
+        """Voice usage reports"""
         return VoiceResourceWithStreamingResponse(self._usage_reports.voice)
 
 
@@ -277,12 +296,15 @@ class AsyncUsageReportsResourceWithStreamingResponse:
 
     @cached_property
     def messaging(self) -> AsyncMessagingResourceWithStreamingResponse:
+        """Messaging usage reports"""
         return AsyncMessagingResourceWithStreamingResponse(self._usage_reports.messaging)
 
     @cached_property
     def number_lookup(self) -> AsyncNumberLookupResourceWithStreamingResponse:
+        """Number lookup usage reports"""
         return AsyncNumberLookupResourceWithStreamingResponse(self._usage_reports.number_lookup)
 
     @cached_property
     def voice(self) -> AsyncVoiceResourceWithStreamingResponse:
+        """Voice usage reports"""
         return AsyncVoiceResourceWithStreamingResponse(self._usage_reports.voice)
