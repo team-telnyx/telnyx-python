@@ -6,7 +6,6 @@ from typing_extensions import Literal
 from .record import Record
 from .._models import BaseModel
 from .network_interface import NetworkInterface
-from .network_interface_region import NetworkInterfaceRegion
 
 __all__ = ["VirtualCrossConnectDeleteResponse", "Data", "DataRegion"]
 
@@ -22,7 +21,10 @@ class DataRegion(BaseModel):
     """Identifies the type of the resource."""
 
 
-class Data(Record, NetworkInterface, NetworkInterfaceRegion):
+class Data(Record, NetworkInterface):
+    region_code: str
+    """The region interface is deployed to."""
+
     bandwidth_mbps: Optional[float] = None
     """
     The desired throughput in Megabits per Second (Mbps) for your Virtual Cross
@@ -83,9 +85,6 @@ class Data(Record, NetworkInterface, NetworkInterfaceRegion):
     """
 
     region: Optional[DataRegion] = None
-
-    region_code: Optional[str] = None  # type: ignore
-    """The region interface is deployed to."""
 
     secondary_bgp_key: Optional[str] = None
     """The authentication key for BGP peer configuration."""
