@@ -2,15 +2,12 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Literal, TypedDict
 
 __all__ = ["VirtualCrossConnectCreateParams"]
 
 
 class VirtualCrossConnectCreateParams(TypedDict, total=False):
-    region_code: Required[str]
-    """The region the interface should be deployed to."""
-
     bandwidth_mbps: float
     """
     The desired throughput in Megabits per Second (Mbps) for your Virtual Cross
