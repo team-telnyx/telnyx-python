@@ -220,7 +220,6 @@ from .usage_payment_method import UsagePaymentMethod as UsagePaymentMethod
 from .user_tag_list_params import UserTagListParams as UserTagListParams
 from .whatsapp_interactive import WhatsappInteractive as WhatsappInteractive
 from .whatsapp_media_param import WhatsappMediaParam as WhatsappMediaParam
-from .wireguard_peer_patch import WireguardPeerPatch as WireguardPeerPatch
 from .address_create_params import AddressCreateParams as AddressCreateParams
 from .ai_summarize_response import AISummarizeResponse as AISummarizeResponse
 from .call_playback_started import CallPlaybackStarted as CallPlaybackStarted
