@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.56.0 (2026-02-27)
+
+Full Changelog: [v4.55.0...v4.56.0](https://github.com/team-telnyx/telnyx-python/compare/v4.55.0...v4.56.0)
+
+### Features
+
+* Add TTS file-based endpoint spec ([718a8ad](https://github.com/team-telnyx/telnyx-python/commit/718a8ada176d2639ccff920c006473b2b222fd0d))
+
 ## 4.55.0 (2026-02-26)
 
 Full Changelog: [v4.54.0...v4.55.0](https://github.com/team-telnyx/telnyx-python/compare/v4.54.0...v4.55.0)
