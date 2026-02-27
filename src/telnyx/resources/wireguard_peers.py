@@ -50,7 +50,6 @@ class WireguardPeersResource(SyncAPIResource):
         self,
         *,
         wireguard_interface_id: str,
-        public_key: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -66,9 +65,6 @@ class WireguardPeersResource(SyncAPIResource):
         Args:
           wireguard_interface_id: The id of the wireguard interface associated with the peer.
 
-          public_key: The WireGuard `PublicKey`.<br /><br />If you do not provide a Public Key, a new
-              Public and Private key pair will be generated for you.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -80,10 +76,7 @@ class WireguardPeersResource(SyncAPIResource):
         return self._post(
             "/wireguard_peers",
             body=maybe_transform(
-                {
-                    "wireguard_interface_id": wireguard_interface_id,
-                    "public_key": public_key,
-                },
+                {"wireguard_interface_id": wireguard_interface_id},
                 wireguard_peer_create_params.WireguardPeerCreateParams,
             ),
             options=make_request_options(
@@ -304,7 +297,6 @@ class AsyncWireguardPeersResource(AsyncAPIResource):
         self,
         *,
         wireguard_interface_id: str,
-        public_key: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -320,9 +312,6 @@ class AsyncWireguardPeersResource(AsyncAPIResource):
         Args:
           wireguard_interface_id: The id of the wireguard interface associated with the peer.
 
-          public_key: The WireGuard `PublicKey`.<br /><br />If you do not provide a Public Key, a new
-              Public and Private key pair will be generated for you.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -334,10 +323,7 @@ class AsyncWireguardPeersResource(AsyncAPIResource):
         return await self._post(
             "/wireguard_peers",
             body=await async_maybe_transform(
-                {
-                    "wireguard_interface_id": wireguard_interface_id,
-                    "public_key": public_key,
-                },
+                {"wireguard_interface_id": wireguard_interface_id},
                 wireguard_peer_create_params.WireguardPeerCreateParams,
             ),
             options=make_request_options(

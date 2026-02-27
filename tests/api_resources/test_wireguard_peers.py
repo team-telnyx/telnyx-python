@@ -34,15 +34,6 @@ class TestWireguardPeers:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_create_with_all_params(self, client: Telnyx) -> None:
-        wireguard_peer = client.wireguard_peers.create(
-            wireguard_interface_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
-            public_key="qF4EqlZq+5JL2IKYY8ij49daYyfKVhevJrcDxdqC8GU=",
-        )
-        assert_matches_type(WireguardPeerCreateResponse, wireguard_peer, path=["response"])
-
-    @pytest.mark.skip(reason="Mock server tests are disabled")
-    @parametrize
     def test_raw_response_create(self, client: Telnyx) -> None:
         response = client.wireguard_peers.with_raw_response.create(
             wireguard_interface_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
@@ -293,15 +284,6 @@ class TestAsyncWireguardPeers:
     async def test_method_create(self, async_client: AsyncTelnyx) -> None:
         wireguard_peer = await async_client.wireguard_peers.create(
             wireguard_interface_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
-        )
-        assert_matches_type(WireguardPeerCreateResponse, wireguard_peer, path=["response"])
-
-    @pytest.mark.skip(reason="Mock server tests are disabled")
-    @parametrize
-    async def test_method_create_with_all_params(self, async_client: AsyncTelnyx) -> None:
-        wireguard_peer = await async_client.wireguard_peers.create(
-            wireguard_interface_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
-            public_key="qF4EqlZq+5JL2IKYY8ij49daYyfKVhevJrcDxdqC8GU=",
         )
         assert_matches_type(WireguardPeerCreateResponse, wireguard_peer, path=["response"])
 
