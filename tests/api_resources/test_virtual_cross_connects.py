@@ -27,13 +27,16 @@ class TestVirtualCrossConnects:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create(self, client: Telnyx) -> None:
-        virtual_cross_connect = client.virtual_cross_connects.create()
+        virtual_cross_connect = client.virtual_cross_connects.create(
+            region_code="ashburn-va",
+        )
         assert_matches_type(VirtualCrossConnectCreateResponse, virtual_cross_connect, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create_with_all_params(self, client: Telnyx) -> None:
         virtual_cross_connect = client.virtual_cross_connects.create(
+            region_code="ashburn-va",
             bandwidth_mbps=50,
             bgp_asn=1234,
             cloud_provider="aws",
@@ -54,7 +57,9 @@ class TestVirtualCrossConnects:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: Telnyx) -> None:
-        response = client.virtual_cross_connects.with_raw_response.create()
+        response = client.virtual_cross_connects.with_raw_response.create(
+            region_code="ashburn-va",
+        )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -64,7 +69,9 @@ class TestVirtualCrossConnects:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: Telnyx) -> None:
-        with client.virtual_cross_connects.with_streaming_response.create() as response:
+        with client.virtual_cross_connects.with_streaming_response.create(
+            region_code="ashburn-va",
+        ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -268,13 +275,16 @@ class TestAsyncVirtualCrossConnects:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncTelnyx) -> None:
-        virtual_cross_connect = await async_client.virtual_cross_connects.create()
+        virtual_cross_connect = await async_client.virtual_cross_connects.create(
+            region_code="ashburn-va",
+        )
         assert_matches_type(VirtualCrossConnectCreateResponse, virtual_cross_connect, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncTelnyx) -> None:
         virtual_cross_connect = await async_client.virtual_cross_connects.create(
+            region_code="ashburn-va",
             bandwidth_mbps=50,
             bgp_asn=1234,
             cloud_provider="aws",
@@ -295,7 +305,9 @@ class TestAsyncVirtualCrossConnects:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncTelnyx) -> None:
-        response = await async_client.virtual_cross_connects.with_raw_response.create()
+        response = await async_client.virtual_cross_connects.with_raw_response.create(
+            region_code="ashburn-va",
+        )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -305,7 +317,9 @@ class TestAsyncVirtualCrossConnects:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncTelnyx) -> None:
-        async with async_client.virtual_cross_connects.with_streaming_response.create() as response:
+        async with async_client.virtual_cross_connects.with_streaming_response.create(
+            region_code="ashburn-va",
+        ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
