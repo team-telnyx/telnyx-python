@@ -27,7 +27,7 @@ class TestTextToSpeech:
     @parametrize
     def test_method_list_voices_with_all_params(self, client: Telnyx) -> None:
         text_to_speech = client.text_to_speech.list_voices(
-            elevenlabs_api_key_ref="elevenlabs_api_key_ref",
+            api_key="api_key",
             provider="aws",
         )
         assert_matches_type(TextToSpeechListVoicesResponse, text_to_speech, path=["response"])
@@ -112,7 +112,7 @@ class TestAsyncTextToSpeech:
     @parametrize
     async def test_method_list_voices_with_all_params(self, async_client: AsyncTelnyx) -> None:
         text_to_speech = await async_client.text_to_speech.list_voices(
-            elevenlabs_api_key_ref="elevenlabs_api_key_ref",
+            api_key="api_key",
             provider="aws",
         )
         assert_matches_type(TextToSpeechListVoicesResponse, text_to_speech, path=["response"])
