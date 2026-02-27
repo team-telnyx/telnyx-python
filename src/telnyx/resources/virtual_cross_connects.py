@@ -55,6 +55,7 @@ class VirtualCrossConnectsResource(SyncAPIResource):
     def create(
         self,
         *,
+        region_code: str,
         bandwidth_mbps: float | Omit = omit,
         bgp_asn: float | Omit = omit,
         cloud_provider: Literal["aws", "azure", "gce"] | Omit = omit,
@@ -85,6 +86,8 @@ class VirtualCrossConnectsResource(SyncAPIResource):
         created at the same time and they can not be independantly disabled.
 
         Args:
+          region_code: The region the interface should be deployed to.
+
           bandwidth_mbps: The desired throughput in Megabits per Second (Mbps) for your Virtual Cross
               Connect.<br /><br />The available bandwidths can be found using the
               /virtual_cross_connect_regions endpoint.
@@ -146,6 +149,7 @@ class VirtualCrossConnectsResource(SyncAPIResource):
             "/virtual_cross_connects",
             body=maybe_transform(
                 {
+                    "region_code": region_code,
                     "bandwidth_mbps": bandwidth_mbps,
                     "bgp_asn": bgp_asn,
                     "cloud_provider": cloud_provider,
@@ -380,6 +384,7 @@ class AsyncVirtualCrossConnectsResource(AsyncAPIResource):
     async def create(
         self,
         *,
+        region_code: str,
         bandwidth_mbps: float | Omit = omit,
         bgp_asn: float | Omit = omit,
         cloud_provider: Literal["aws", "azure", "gce"] | Omit = omit,
@@ -410,6 +415,8 @@ class AsyncVirtualCrossConnectsResource(AsyncAPIResource):
         created at the same time and they can not be independantly disabled.
 
         Args:
+          region_code: The region the interface should be deployed to.
+
           bandwidth_mbps: The desired throughput in Megabits per Second (Mbps) for your Virtual Cross
               Connect.<br /><br />The available bandwidths can be found using the
               /virtual_cross_connect_regions endpoint.
@@ -471,6 +478,7 @@ class AsyncVirtualCrossConnectsResource(AsyncAPIResource):
             "/virtual_cross_connects",
             body=await async_maybe_transform(
                 {
+                    "region_code": region_code,
                     "bandwidth_mbps": bandwidth_mbps,
                     "bgp_asn": bgp_asn,
                     "cloud_provider": cloud_provider,
