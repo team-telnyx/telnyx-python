@@ -46,8 +46,8 @@ class TextToSpeechResource(SyncAPIResource):
     def list_voices(
         self,
         *,
-        elevenlabs_api_key_ref: str | Omit = omit,
-        provider: Literal["aws", "azure", "elevenlabs", "telnyx"] | Omit = omit,
+        api_key: str | Omit = omit,
+        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "rime", "resemble"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -55,13 +55,18 @@ class TextToSpeechResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TextToSpeechListVoicesResponse:
-        """
-        Returns a list of voices that can be used with the text to speech commands.
+        """Retrieve a list of available voices from one or all TTS providers.
+
+        When
+        `provider` is specified, returns voices for that provider only. Otherwise,
+        returns voices from all providers.
+
+        Some providers (ElevenLabs, Resemble) require an API key to list voices.
 
         Args:
-          elevenlabs_api_key_ref: Reference to your ElevenLabs API key stored in the Telnyx Portal
+          api_key: API key for providers that require one to list voices (e.g. ElevenLabs).
 
-          provider: Filter voices by provider
+          provider: Filter voices by provider. If omitted, voices from all providers are returned.
 
           extra_headers: Send extra headers
 
@@ -80,7 +85,7 @@ class TextToSpeechResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "elevenlabs_api_key_ref": elevenlabs_api_key_ref,
+                        "api_key": api_key,
                         "provider": provider,
                     },
                     text_to_speech_list_voices_params.TextToSpeechListVoicesParams,
@@ -208,8 +213,8 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
     async def list_voices(
         self,
         *,
-        elevenlabs_api_key_ref: str | Omit = omit,
-        provider: Literal["aws", "azure", "elevenlabs", "telnyx"] | Omit = omit,
+        api_key: str | Omit = omit,
+        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "rime", "resemble"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -217,13 +222,18 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TextToSpeechListVoicesResponse:
-        """
-        Returns a list of voices that can be used with the text to speech commands.
+        """Retrieve a list of available voices from one or all TTS providers.
+
+        When
+        `provider` is specified, returns voices for that provider only. Otherwise,
+        returns voices from all providers.
+
+        Some providers (ElevenLabs, Resemble) require an API key to list voices.
 
         Args:
-          elevenlabs_api_key_ref: Reference to your ElevenLabs API key stored in the Telnyx Portal
+          api_key: API key for providers that require one to list voices (e.g. ElevenLabs).
 
-          provider: Filter voices by provider
+          provider: Filter voices by provider. If omitted, voices from all providers are returned.
 
           extra_headers: Send extra headers
 
@@ -242,7 +252,7 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
-                        "elevenlabs_api_key_ref": elevenlabs_api_key_ref,
+                        "api_key": api_key,
                         "provider": provider,
                     },
                     text_to_speech_list_voices_params.TextToSpeechListVoicesParams,

@@ -8,8 +8,8 @@ __all__ = ["TextToSpeechListVoicesParams"]
 
 
 class TextToSpeechListVoicesParams(TypedDict, total=False):
-    elevenlabs_api_key_ref: str
-    """Reference to your ElevenLabs API key stored in the Telnyx Portal"""
+    api_key: str
+    """API key for providers that require one to list voices (e.g. ElevenLabs)."""
 
-    provider: Literal["aws", "azure", "elevenlabs", "telnyx"]
-    """Filter voices by provider"""
+    provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "rime", "resemble"]
+    """Filter voices by provider. If omitted, voices from all providers are returned."""
