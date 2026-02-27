@@ -43,13 +43,16 @@ __all__ = ["TestsResource", "AsyncTestsResource"]
 
 class TestsResource(SyncAPIResource):
     __test__ = False
+    """Configure AI assistant specifications"""
 
     @cached_property
     def test_suites(self) -> TestSuitesResource:
+        """Configure AI assistant specifications"""
         return TestSuitesResource(self._client)
 
     @cached_property
     def runs(self) -> RunsResource:
+        """Configure AI assistant specifications"""
         return RunsResource(self._client)
 
     @cached_property
@@ -343,12 +346,16 @@ class TestsResource(SyncAPIResource):
 
 
 class AsyncTestsResource(AsyncAPIResource):
+    """Configure AI assistant specifications"""
+
     @cached_property
     def test_suites(self) -> AsyncTestSuitesResource:
+        """Configure AI assistant specifications"""
         return AsyncTestSuitesResource(self._client)
 
     @cached_property
     def runs(self) -> AsyncRunsResource:
+        """Configure AI assistant specifications"""
         return AsyncRunsResource(self._client)
 
     @cached_property
@@ -665,10 +672,12 @@ class TestsResourceWithRawResponse:
 
     @cached_property
     def test_suites(self) -> TestSuitesResourceWithRawResponse:
+        """Configure AI assistant specifications"""
         return TestSuitesResourceWithRawResponse(self._tests.test_suites)
 
     @cached_property
     def runs(self) -> RunsResourceWithRawResponse:
+        """Configure AI assistant specifications"""
         return RunsResourceWithRawResponse(self._tests.runs)
 
 
@@ -694,10 +703,12 @@ class AsyncTestsResourceWithRawResponse:
 
     @cached_property
     def test_suites(self) -> AsyncTestSuitesResourceWithRawResponse:
+        """Configure AI assistant specifications"""
         return AsyncTestSuitesResourceWithRawResponse(self._tests.test_suites)
 
     @cached_property
     def runs(self) -> AsyncRunsResourceWithRawResponse:
+        """Configure AI assistant specifications"""
         return AsyncRunsResourceWithRawResponse(self._tests.runs)
 
 
@@ -725,10 +736,12 @@ class TestsResourceWithStreamingResponse:
 
     @cached_property
     def test_suites(self) -> TestSuitesResourceWithStreamingResponse:
+        """Configure AI assistant specifications"""
         return TestSuitesResourceWithStreamingResponse(self._tests.test_suites)
 
     @cached_property
     def runs(self) -> RunsResourceWithStreamingResponse:
+        """Configure AI assistant specifications"""
         return RunsResourceWithStreamingResponse(self._tests.runs)
 
 
@@ -754,8 +767,10 @@ class AsyncTestsResourceWithStreamingResponse:
 
     @cached_property
     def test_suites(self) -> AsyncTestSuitesResourceWithStreamingResponse:
+        """Configure AI assistant specifications"""
         return AsyncTestSuitesResourceWithStreamingResponse(self._tests.test_suites)
 
     @cached_property
     def runs(self) -> AsyncRunsResourceWithStreamingResponse:
+        """Configure AI assistant specifications"""
         return AsyncRunsResourceWithStreamingResponse(self._tests.runs)

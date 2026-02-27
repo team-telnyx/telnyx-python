@@ -31,6 +31,7 @@ class ReportingResource(SyncAPIResource):
 
     @cached_property
     def usage_reports(self) -> UsageReportsResource:
+        """Speech to text usage reports"""
         return UsageReportsResource(self._client)
 
     @cached_property
@@ -60,6 +61,7 @@ class AsyncReportingResource(AsyncAPIResource):
 
     @cached_property
     def usage_reports(self) -> AsyncUsageReportsResource:
+        """Speech to text usage reports"""
         return AsyncUsageReportsResource(self._client)
 
     @cached_property
@@ -92,6 +94,7 @@ class ReportingResourceWithRawResponse:
 
     @cached_property
     def usage_reports(self) -> UsageReportsResourceWithRawResponse:
+        """Speech to text usage reports"""
         return UsageReportsResourceWithRawResponse(self._reporting.usage_reports)
 
 
@@ -105,6 +108,7 @@ class AsyncReportingResourceWithRawResponse:
 
     @cached_property
     def usage_reports(self) -> AsyncUsageReportsResourceWithRawResponse:
+        """Speech to text usage reports"""
         return AsyncUsageReportsResourceWithRawResponse(self._reporting.usage_reports)
 
 
@@ -118,6 +122,7 @@ class ReportingResourceWithStreamingResponse:
 
     @cached_property
     def usage_reports(self) -> UsageReportsResourceWithStreamingResponse:
+        """Speech to text usage reports"""
         return UsageReportsResourceWithStreamingResponse(self._reporting.usage_reports)
 
 
@@ -131,4 +136,5 @@ class AsyncReportingResourceWithStreamingResponse:
 
     @cached_property
     def usage_reports(self) -> AsyncUsageReportsResourceWithStreamingResponse:
+        """Speech to text usage reports"""
         return AsyncUsageReportsResourceWithStreamingResponse(self._reporting.usage_reports)

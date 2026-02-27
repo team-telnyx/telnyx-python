@@ -40,6 +40,8 @@ __all__ = ["DocumentsResource", "AsyncDocumentsResource"]
 
 
 class DocumentsResource(SyncAPIResource):
+    """Documents"""
+
     @cached_property
     def with_raw_response(self) -> DocumentsResourceWithRawResponse:
         """
@@ -364,6 +366,8 @@ class DocumentsResource(SyncAPIResource):
 
 
 class AsyncDocumentsResource(AsyncAPIResource):
+    """Documents"""
+
     @cached_property
     def with_raw_response(self) -> AsyncDocumentsResourceWithRawResponse:
         """

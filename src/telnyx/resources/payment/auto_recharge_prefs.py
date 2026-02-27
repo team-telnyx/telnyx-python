@@ -25,6 +25,8 @@ __all__ = ["AutoRechargePrefsResource", "AsyncAutoRechargePrefsResource"]
 
 
 class AutoRechargePrefsResource(SyncAPIResource):
+    """V2 Auto Recharge Preferences API"""
+
     @cached_property
     def with_raw_response(self) -> AutoRechargePrefsResourceWithRawResponse:
         """
@@ -119,6 +121,8 @@ class AutoRechargePrefsResource(SyncAPIResource):
 
 
 class AsyncAutoRechargePrefsResource(AsyncAPIResource):
+    """V2 Auto Recharge Preferences API"""
+
     @cached_property
     def with_raw_response(self) -> AsyncAutoRechargePrefsResourceWithRawResponse:
         """

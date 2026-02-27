@@ -68,20 +68,26 @@ __all__ = ["CallsResource", "AsyncCallsResource"]
 
 
 class CallsResource(SyncAPIResource):
+    """TeXML REST Commands"""
+
     @cached_property
     def recordings_json(self) -> RecordingsJsonResource:
+        """TeXML REST Commands"""
         return RecordingsJsonResource(self._client)
 
     @cached_property
     def recordings(self) -> RecordingsResource:
+        """TeXML REST Commands"""
         return RecordingsResource(self._client)
 
     @cached_property
     def siprec(self) -> SiprecResource:
+        """TeXML REST Commands"""
         return SiprecResource(self._client)
 
     @cached_property
     def streams(self) -> StreamsResource:
+        """TeXML REST Commands"""
         return StreamsResource(self._client)
 
     @cached_property
@@ -698,20 +704,26 @@ class CallsResource(SyncAPIResource):
 
 
 class AsyncCallsResource(AsyncAPIResource):
+    """TeXML REST Commands"""
+
     @cached_property
     def recordings_json(self) -> AsyncRecordingsJsonResource:
+        """TeXML REST Commands"""
         return AsyncRecordingsJsonResource(self._client)
 
     @cached_property
     def recordings(self) -> AsyncRecordingsResource:
+        """TeXML REST Commands"""
         return AsyncRecordingsResource(self._client)
 
     @cached_property
     def siprec(self) -> AsyncSiprecResource:
+        """TeXML REST Commands"""
         return AsyncSiprecResource(self._client)
 
     @cached_property
     def streams(self) -> AsyncStreamsResource:
+        """TeXML REST Commands"""
         return AsyncStreamsResource(self._client)
 
     @cached_property
@@ -1352,18 +1364,22 @@ class CallsResourceWithRawResponse:
 
     @cached_property
     def recordings_json(self) -> RecordingsJsonResourceWithRawResponse:
+        """TeXML REST Commands"""
         return RecordingsJsonResourceWithRawResponse(self._calls.recordings_json)
 
     @cached_property
     def recordings(self) -> RecordingsResourceWithRawResponse:
+        """TeXML REST Commands"""
         return RecordingsResourceWithRawResponse(self._calls.recordings)
 
     @cached_property
     def siprec(self) -> SiprecResourceWithRawResponse:
+        """TeXML REST Commands"""
         return SiprecResourceWithRawResponse(self._calls.siprec)
 
     @cached_property
     def streams(self) -> StreamsResourceWithRawResponse:
+        """TeXML REST Commands"""
         return StreamsResourceWithRawResponse(self._calls.streams)
 
 
@@ -1392,18 +1408,22 @@ class AsyncCallsResourceWithRawResponse:
 
     @cached_property
     def recordings_json(self) -> AsyncRecordingsJsonResourceWithRawResponse:
+        """TeXML REST Commands"""
         return AsyncRecordingsJsonResourceWithRawResponse(self._calls.recordings_json)
 
     @cached_property
     def recordings(self) -> AsyncRecordingsResourceWithRawResponse:
+        """TeXML REST Commands"""
         return AsyncRecordingsResourceWithRawResponse(self._calls.recordings)
 
     @cached_property
     def siprec(self) -> AsyncSiprecResourceWithRawResponse:
+        """TeXML REST Commands"""
         return AsyncSiprecResourceWithRawResponse(self._calls.siprec)
 
     @cached_property
     def streams(self) -> AsyncStreamsResourceWithRawResponse:
+        """TeXML REST Commands"""
         return AsyncStreamsResourceWithRawResponse(self._calls.streams)
 
 
@@ -1432,18 +1452,22 @@ class CallsResourceWithStreamingResponse:
 
     @cached_property
     def recordings_json(self) -> RecordingsJsonResourceWithStreamingResponse:
+        """TeXML REST Commands"""
         return RecordingsJsonResourceWithStreamingResponse(self._calls.recordings_json)
 
     @cached_property
     def recordings(self) -> RecordingsResourceWithStreamingResponse:
+        """TeXML REST Commands"""
         return RecordingsResourceWithStreamingResponse(self._calls.recordings)
 
     @cached_property
     def siprec(self) -> SiprecResourceWithStreamingResponse:
+        """TeXML REST Commands"""
         return SiprecResourceWithStreamingResponse(self._calls.siprec)
 
     @cached_property
     def streams(self) -> StreamsResourceWithStreamingResponse:
+        """TeXML REST Commands"""
         return StreamsResourceWithStreamingResponse(self._calls.streams)
 
 
@@ -1472,16 +1496,20 @@ class AsyncCallsResourceWithStreamingResponse:
 
     @cached_property
     def recordings_json(self) -> AsyncRecordingsJsonResourceWithStreamingResponse:
+        """TeXML REST Commands"""
         return AsyncRecordingsJsonResourceWithStreamingResponse(self._calls.recordings_json)
 
     @cached_property
     def recordings(self) -> AsyncRecordingsResourceWithStreamingResponse:
+        """TeXML REST Commands"""
         return AsyncRecordingsResourceWithStreamingResponse(self._calls.recordings)
 
     @cached_property
     def siprec(self) -> AsyncSiprecResourceWithStreamingResponse:
+        """TeXML REST Commands"""
         return AsyncSiprecResourceWithStreamingResponse(self._calls.siprec)
 
     @cached_property
     def streams(self) -> AsyncStreamsResourceWithStreamingResponse:
+        """TeXML REST Commands"""
         return AsyncStreamsResourceWithStreamingResponse(self._calls.streams)

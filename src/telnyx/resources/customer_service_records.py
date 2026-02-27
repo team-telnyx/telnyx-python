@@ -32,6 +32,8 @@ __all__ = ["CustomerServiceRecordsResource", "AsyncCustomerServiceRecordsResourc
 
 
 class CustomerServiceRecordsResource(SyncAPIResource):
+    """Customer Service Record operations"""
+
     @cached_property
     def with_raw_response(self) -> CustomerServiceRecordsResourceWithRawResponse:
         """
@@ -224,6 +226,8 @@ class CustomerServiceRecordsResource(SyncAPIResource):
 
 
 class AsyncCustomerServiceRecordsResource(AsyncAPIResource):
+    """Customer Service Record operations"""
+
     @cached_property
     def with_raw_response(self) -> AsyncCustomerServiceRecordsResourceWithRawResponse:
         """

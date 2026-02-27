@@ -28,6 +28,8 @@ __all__ = ["ScheduledEventsResource", "AsyncScheduledEventsResource"]
 
 
 class ScheduledEventsResource(SyncAPIResource):
+    """Configure AI assistant specifications"""
+
     @cached_property
     def with_raw_response(self) -> ScheduledEventsResourceWithRawResponse:
         """
@@ -254,6 +256,8 @@ class ScheduledEventsResource(SyncAPIResource):
 
 
 class AsyncScheduledEventsResource(AsyncAPIResource):
+    """Configure AI assistant specifications"""
+
     @cached_property
     def with_raw_response(self) -> AsyncScheduledEventsResourceWithRawResponse:
         """

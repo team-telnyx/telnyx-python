@@ -27,6 +27,8 @@ __all__ = ["BillingGroupsResource", "AsyncBillingGroupsResource"]
 
 
 class BillingGroupsResource(SyncAPIResource):
+    """Billing groups operations"""
+
     @cached_property
     def with_raw_response(self) -> BillingGroupsResourceWithRawResponse:
         """
@@ -228,6 +230,8 @@ class BillingGroupsResource(SyncAPIResource):
 
 
 class AsyncBillingGroupsResource(AsyncAPIResource):
+    """Billing groups operations"""
+
     @cached_property
     def with_raw_response(self) -> AsyncBillingGroupsResourceWithRawResponse:
         """

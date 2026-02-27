@@ -26,6 +26,8 @@ __all__ = ["UsageReportsResource", "AsyncUsageReportsResource"]
 
 
 class UsageReportsResource(SyncAPIResource):
+    """Usage data reporting across Telnyx products"""
+
     @cached_property
     def with_raw_response(self) -> UsageReportsResourceWithRawResponse:
         """
@@ -184,6 +186,8 @@ class UsageReportsResource(SyncAPIResource):
 
 
 class AsyncUsageReportsResource(AsyncAPIResource):
+    """Usage data reporting across Telnyx products"""
+
     @cached_property
     def with_raw_response(self) -> AsyncUsageReportsResourceWithRawResponse:
         """

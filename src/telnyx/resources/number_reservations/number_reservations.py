@@ -36,8 +36,11 @@ __all__ = ["NumberReservationsResource", "AsyncNumberReservationsResource"]
 
 
 class NumberReservationsResource(SyncAPIResource):
+    """Number reservations"""
+
     @cached_property
     def actions(self) -> ActionsResource:
+        """Number reservations"""
         return ActionsResource(self._client)
 
     @cached_property
@@ -186,8 +189,11 @@ class NumberReservationsResource(SyncAPIResource):
 
 
 class AsyncNumberReservationsResource(AsyncAPIResource):
+    """Number reservations"""
+
     @cached_property
     def actions(self) -> AsyncActionsResource:
+        """Number reservations"""
         return AsyncActionsResource(self._client)
 
     @cached_property
@@ -351,6 +357,7 @@ class NumberReservationsResourceWithRawResponse:
 
     @cached_property
     def actions(self) -> ActionsResourceWithRawResponse:
+        """Number reservations"""
         return ActionsResourceWithRawResponse(self._number_reservations.actions)
 
 
@@ -370,6 +377,7 @@ class AsyncNumberReservationsResourceWithRawResponse:
 
     @cached_property
     def actions(self) -> AsyncActionsResourceWithRawResponse:
+        """Number reservations"""
         return AsyncActionsResourceWithRawResponse(self._number_reservations.actions)
 
 
@@ -389,6 +397,7 @@ class NumberReservationsResourceWithStreamingResponse:
 
     @cached_property
     def actions(self) -> ActionsResourceWithStreamingResponse:
+        """Number reservations"""
         return ActionsResourceWithStreamingResponse(self._number_reservations.actions)
 
 
@@ -408,4 +417,5 @@ class AsyncNumberReservationsResourceWithStreamingResponse:
 
     @cached_property
     def actions(self) -> AsyncActionsResourceWithStreamingResponse:
+        """Number reservations"""
         return AsyncActionsResourceWithStreamingResponse(self._number_reservations.actions)

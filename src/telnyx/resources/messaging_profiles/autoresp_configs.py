@@ -29,6 +29,8 @@ __all__ = ["AutorespConfigsResource", "AsyncAutorespConfigsResource"]
 
 
 class AutorespConfigsResource(SyncAPIResource):
+    """Opt-Out Management"""
+
     @cached_property
     def with_raw_response(self) -> AutorespConfigsResourceWithRawResponse:
         """
@@ -272,6 +274,8 @@ class AutorespConfigsResource(SyncAPIResource):
 
 
 class AsyncAutorespConfigsResource(AsyncAPIResource):
+    """Opt-Out Management"""
+
     @cached_property
     def with_raw_response(self) -> AsyncAutorespConfigsResourceWithRawResponse:
         """

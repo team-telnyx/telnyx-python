@@ -19,6 +19,7 @@ __all__ = ["FineTuningResource", "AsyncFineTuningResource"]
 class FineTuningResource(SyncAPIResource):
     @cached_property
     def jobs(self) -> JobsResource:
+        """Customize LLMs for your unique needs"""
         return JobsResource(self._client)
 
     @cached_property
@@ -44,6 +45,7 @@ class FineTuningResource(SyncAPIResource):
 class AsyncFineTuningResource(AsyncAPIResource):
     @cached_property
     def jobs(self) -> AsyncJobsResource:
+        """Customize LLMs for your unique needs"""
         return AsyncJobsResource(self._client)
 
     @cached_property
@@ -72,6 +74,7 @@ class FineTuningResourceWithRawResponse:
 
     @cached_property
     def jobs(self) -> JobsResourceWithRawResponse:
+        """Customize LLMs for your unique needs"""
         return JobsResourceWithRawResponse(self._fine_tuning.jobs)
 
 
@@ -81,6 +84,7 @@ class AsyncFineTuningResourceWithRawResponse:
 
     @cached_property
     def jobs(self) -> AsyncJobsResourceWithRawResponse:
+        """Customize LLMs for your unique needs"""
         return AsyncJobsResourceWithRawResponse(self._fine_tuning.jobs)
 
 
@@ -90,6 +94,7 @@ class FineTuningResourceWithStreamingResponse:
 
     @cached_property
     def jobs(self) -> JobsResourceWithStreamingResponse:
+        """Customize LLMs for your unique needs"""
         return JobsResourceWithStreamingResponse(self._fine_tuning.jobs)
 
 
@@ -99,4 +104,5 @@ class AsyncFineTuningResourceWithStreamingResponse:
 
     @cached_property
     def jobs(self) -> AsyncJobsResourceWithStreamingResponse:
+        """Customize LLMs for your unique needs"""
         return AsyncJobsResourceWithStreamingResponse(self._fine_tuning.jobs)

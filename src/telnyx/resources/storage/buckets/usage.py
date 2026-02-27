@@ -23,6 +23,8 @@ __all__ = ["UsageResource", "AsyncUsageResource"]
 
 
 class UsageResource(SyncAPIResource):
+    """Bucket Usage operations"""
+
     @cached_property
     def with_raw_response(self) -> UsageResourceWithRawResponse:
         """
@@ -120,6 +122,8 @@ class UsageResource(SyncAPIResource):
 
 
 class AsyncUsageResource(AsyncAPIResource):
+    """Bucket Usage operations"""
+
     @cached_property
     def with_raw_response(self) -> AsyncUsageResourceWithRawResponse:
         """

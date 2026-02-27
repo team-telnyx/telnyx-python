@@ -35,14 +35,17 @@ __all__ = ["BatchDetailRecordsResource", "AsyncBatchDetailRecordsResource"]
 class BatchDetailRecordsResource(SyncAPIResource):
     @cached_property
     def messaging(self) -> MessagingResource:
+        """Messaging batch detail records"""
         return MessagingResource(self._client)
 
     @cached_property
     def speech_to_text(self) -> SpeechToTextResource:
+        """Speech to text batch detail records"""
         return SpeechToTextResource(self._client)
 
     @cached_property
     def voice(self) -> VoiceResource:
+        """Voice batch detail records"""
         return VoiceResource(self._client)
 
     @cached_property
@@ -68,14 +71,17 @@ class BatchDetailRecordsResource(SyncAPIResource):
 class AsyncBatchDetailRecordsResource(AsyncAPIResource):
     @cached_property
     def messaging(self) -> AsyncMessagingResource:
+        """Messaging batch detail records"""
         return AsyncMessagingResource(self._client)
 
     @cached_property
     def speech_to_text(self) -> AsyncSpeechToTextResource:
+        """Speech to text batch detail records"""
         return AsyncSpeechToTextResource(self._client)
 
     @cached_property
     def voice(self) -> AsyncVoiceResource:
+        """Voice batch detail records"""
         return AsyncVoiceResource(self._client)
 
     @cached_property
@@ -104,14 +110,17 @@ class BatchDetailRecordsResourceWithRawResponse:
 
     @cached_property
     def messaging(self) -> MessagingResourceWithRawResponse:
+        """Messaging batch detail records"""
         return MessagingResourceWithRawResponse(self._batch_detail_records.messaging)
 
     @cached_property
     def speech_to_text(self) -> SpeechToTextResourceWithRawResponse:
+        """Speech to text batch detail records"""
         return SpeechToTextResourceWithRawResponse(self._batch_detail_records.speech_to_text)
 
     @cached_property
     def voice(self) -> VoiceResourceWithRawResponse:
+        """Voice batch detail records"""
         return VoiceResourceWithRawResponse(self._batch_detail_records.voice)
 
 
@@ -121,14 +130,17 @@ class AsyncBatchDetailRecordsResourceWithRawResponse:
 
     @cached_property
     def messaging(self) -> AsyncMessagingResourceWithRawResponse:
+        """Messaging batch detail records"""
         return AsyncMessagingResourceWithRawResponse(self._batch_detail_records.messaging)
 
     @cached_property
     def speech_to_text(self) -> AsyncSpeechToTextResourceWithRawResponse:
+        """Speech to text batch detail records"""
         return AsyncSpeechToTextResourceWithRawResponse(self._batch_detail_records.speech_to_text)
 
     @cached_property
     def voice(self) -> AsyncVoiceResourceWithRawResponse:
+        """Voice batch detail records"""
         return AsyncVoiceResourceWithRawResponse(self._batch_detail_records.voice)
 
 
@@ -138,14 +150,17 @@ class BatchDetailRecordsResourceWithStreamingResponse:
 
     @cached_property
     def messaging(self) -> MessagingResourceWithStreamingResponse:
+        """Messaging batch detail records"""
         return MessagingResourceWithStreamingResponse(self._batch_detail_records.messaging)
 
     @cached_property
     def speech_to_text(self) -> SpeechToTextResourceWithStreamingResponse:
+        """Speech to text batch detail records"""
         return SpeechToTextResourceWithStreamingResponse(self._batch_detail_records.speech_to_text)
 
     @cached_property
     def voice(self) -> VoiceResourceWithStreamingResponse:
+        """Voice batch detail records"""
         return VoiceResourceWithStreamingResponse(self._batch_detail_records.voice)
 
 
@@ -155,12 +170,15 @@ class AsyncBatchDetailRecordsResourceWithStreamingResponse:
 
     @cached_property
     def messaging(self) -> AsyncMessagingResourceWithStreamingResponse:
+        """Messaging batch detail records"""
         return AsyncMessagingResourceWithStreamingResponse(self._batch_detail_records.messaging)
 
     @cached_property
     def speech_to_text(self) -> AsyncSpeechToTextResourceWithStreamingResponse:
+        """Speech to text batch detail records"""
         return AsyncSpeechToTextResourceWithStreamingResponse(self._batch_detail_records.speech_to_text)
 
     @cached_property
     def voice(self) -> AsyncVoiceResourceWithStreamingResponse:
+        """Voice batch detail records"""
         return AsyncVoiceResourceWithStreamingResponse(self._batch_detail_records.voice)

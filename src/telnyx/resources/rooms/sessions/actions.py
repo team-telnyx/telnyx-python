@@ -28,6 +28,8 @@ __all__ = ["ActionsResource", "AsyncActionsResource"]
 
 
 class ActionsResource(SyncAPIResource):
+    """Rooms Sessions operations."""
+
     @cached_property
     def with_raw_response(self) -> ActionsResourceWithRawResponse:
         """
@@ -223,6 +225,8 @@ class ActionsResource(SyncAPIResource):
 
 
 class AsyncActionsResource(AsyncAPIResource):
+    """Rooms Sessions operations."""
+
     @cached_property
     def with_raw_response(self) -> AsyncActionsResourceWithRawResponse:
         """

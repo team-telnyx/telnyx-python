@@ -53,8 +53,11 @@ __all__ = ["CredentialConnectionsResource", "AsyncCredentialConnectionsResource"
 
 
 class CredentialConnectionsResource(SyncAPIResource):
+    """Credential connection operations"""
+
     @cached_property
     def actions(self) -> ActionsResource:
+        """Credential connection operations"""
         return ActionsResource(self._client)
 
     @cached_property
@@ -528,8 +531,11 @@ class CredentialConnectionsResource(SyncAPIResource):
 
 
 class AsyncCredentialConnectionsResource(AsyncAPIResource):
+    """Credential connection operations"""
+
     @cached_property
     def actions(self) -> AsyncActionsResource:
+        """Credential connection operations"""
         return AsyncActionsResource(self._client)
 
     @cached_property
@@ -1024,6 +1030,7 @@ class CredentialConnectionsResourceWithRawResponse:
 
     @cached_property
     def actions(self) -> ActionsResourceWithRawResponse:
+        """Credential connection operations"""
         return ActionsResourceWithRawResponse(self._credential_connections.actions)
 
 
@@ -1049,6 +1056,7 @@ class AsyncCredentialConnectionsResourceWithRawResponse:
 
     @cached_property
     def actions(self) -> AsyncActionsResourceWithRawResponse:
+        """Credential connection operations"""
         return AsyncActionsResourceWithRawResponse(self._credential_connections.actions)
 
 
@@ -1074,6 +1082,7 @@ class CredentialConnectionsResourceWithStreamingResponse:
 
     @cached_property
     def actions(self) -> ActionsResourceWithStreamingResponse:
+        """Credential connection operations"""
         return ActionsResourceWithStreamingResponse(self._credential_connections.actions)
 
 
@@ -1099,4 +1108,5 @@ class AsyncCredentialConnectionsResourceWithStreamingResponse:
 
     @cached_property
     def actions(self) -> AsyncActionsResourceWithStreamingResponse:
+        """Credential connection operations"""
         return AsyncActionsResourceWithStreamingResponse(self._credential_connections.actions)

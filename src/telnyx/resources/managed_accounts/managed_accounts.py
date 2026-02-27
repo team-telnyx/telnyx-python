@@ -45,8 +45,11 @@ __all__ = ["ManagedAccountsResource", "AsyncManagedAccountsResource"]
 
 
 class ManagedAccountsResource(SyncAPIResource):
+    """Managed Accounts operations"""
+
     @cached_property
     def actions(self) -> ActionsResource:
+        """Managed Accounts operations"""
         return ActionsResource(self._client)
 
     @cached_property
@@ -354,8 +357,11 @@ class ManagedAccountsResource(SyncAPIResource):
 
 
 class AsyncManagedAccountsResource(AsyncAPIResource):
+    """Managed Accounts operations"""
+
     @cached_property
     def actions(self) -> AsyncActionsResource:
+        """Managed Accounts operations"""
         return AsyncActionsResource(self._client)
 
     @cached_property
@@ -687,6 +693,7 @@ class ManagedAccountsResourceWithRawResponse:
 
     @cached_property
     def actions(self) -> ActionsResourceWithRawResponse:
+        """Managed Accounts operations"""
         return ActionsResourceWithRawResponse(self._managed_accounts.actions)
 
 
@@ -715,6 +722,7 @@ class AsyncManagedAccountsResourceWithRawResponse:
 
     @cached_property
     def actions(self) -> AsyncActionsResourceWithRawResponse:
+        """Managed Accounts operations"""
         return AsyncActionsResourceWithRawResponse(self._managed_accounts.actions)
 
 
@@ -743,6 +751,7 @@ class ManagedAccountsResourceWithStreamingResponse:
 
     @cached_property
     def actions(self) -> ActionsResourceWithStreamingResponse:
+        """Managed Accounts operations"""
         return ActionsResourceWithStreamingResponse(self._managed_accounts.actions)
 
 
@@ -771,4 +780,5 @@ class AsyncManagedAccountsResourceWithStreamingResponse:
 
     @cached_property
     def actions(self) -> AsyncActionsResourceWithStreamingResponse:
+        """Managed Accounts operations"""
         return AsyncActionsResourceWithStreamingResponse(self._managed_accounts.actions)

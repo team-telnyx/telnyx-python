@@ -24,6 +24,8 @@ __all__ = ["ReleasesResource", "AsyncReleasesResource"]
 
 
 class ReleasesResource(SyncAPIResource):
+    """External Connections operations"""
+
     @cached_property
     def with_raw_response(self) -> ReleasesResourceWithRawResponse:
         """
@@ -135,6 +137,8 @@ class ReleasesResource(SyncAPIResource):
 
 
 class AsyncReleasesResource(AsyncAPIResource):
+    """External Connections operations"""
+
     @cached_property
     def with_raw_response(self) -> AsyncReleasesResourceWithRawResponse:
         """

@@ -132,44 +132,56 @@ __all__ = ["PortingOrdersResource", "AsyncPortingOrdersResource"]
 
 
 class PortingOrdersResource(SyncAPIResource):
+    """Endpoints related to porting orders management."""
+
     @cached_property
     def phone_number_configurations(self) -> PhoneNumberConfigurationsResource:
+        """Endpoints related to porting orders management."""
         return PhoneNumberConfigurationsResource(self._client)
 
     @cached_property
     def actions(self) -> ActionsResource:
+        """Endpoints related to porting orders management."""
         return ActionsResource(self._client)
 
     @cached_property
     def activation_jobs(self) -> ActivationJobsResource:
+        """Endpoints related to porting orders management."""
         return ActivationJobsResource(self._client)
 
     @cached_property
     def additional_documents(self) -> AdditionalDocumentsResource:
+        """Endpoints related to porting orders management."""
         return AdditionalDocumentsResource(self._client)
 
     @cached_property
     def comments(self) -> CommentsResource:
+        """Endpoints related to porting orders management."""
         return CommentsResource(self._client)
 
     @cached_property
     def verification_codes(self) -> VerificationCodesResource:
+        """Endpoints related to porting orders management."""
         return VerificationCodesResource(self._client)
 
     @cached_property
     def action_requirements(self) -> ActionRequirementsResource:
+        """Endpoints related to porting orders management."""
         return ActionRequirementsResource(self._client)
 
     @cached_property
     def associated_phone_numbers(self) -> AssociatedPhoneNumbersResource:
+        """Endpoints related to porting orders management."""
         return AssociatedPhoneNumbersResource(self._client)
 
     @cached_property
     def phone_number_blocks(self) -> PhoneNumberBlocksResource:
+        """Endpoints related to porting orders management."""
         return PhoneNumberBlocksResource(self._client)
 
     @cached_property
     def phone_number_extensions(self) -> PhoneNumberExtensionsResource:
+        """Endpoints related to porting orders management."""
         return PhoneNumberExtensionsResource(self._client)
 
     @cached_property
@@ -640,44 +652,56 @@ class PortingOrdersResource(SyncAPIResource):
 
 
 class AsyncPortingOrdersResource(AsyncAPIResource):
+    """Endpoints related to porting orders management."""
+
     @cached_property
     def phone_number_configurations(self) -> AsyncPhoneNumberConfigurationsResource:
+        """Endpoints related to porting orders management."""
         return AsyncPhoneNumberConfigurationsResource(self._client)
 
     @cached_property
     def actions(self) -> AsyncActionsResource:
+        """Endpoints related to porting orders management."""
         return AsyncActionsResource(self._client)
 
     @cached_property
     def activation_jobs(self) -> AsyncActivationJobsResource:
+        """Endpoints related to porting orders management."""
         return AsyncActivationJobsResource(self._client)
 
     @cached_property
     def additional_documents(self) -> AsyncAdditionalDocumentsResource:
+        """Endpoints related to porting orders management."""
         return AsyncAdditionalDocumentsResource(self._client)
 
     @cached_property
     def comments(self) -> AsyncCommentsResource:
+        """Endpoints related to porting orders management."""
         return AsyncCommentsResource(self._client)
 
     @cached_property
     def verification_codes(self) -> AsyncVerificationCodesResource:
+        """Endpoints related to porting orders management."""
         return AsyncVerificationCodesResource(self._client)
 
     @cached_property
     def action_requirements(self) -> AsyncActionRequirementsResource:
+        """Endpoints related to porting orders management."""
         return AsyncActionRequirementsResource(self._client)
 
     @cached_property
     def associated_phone_numbers(self) -> AsyncAssociatedPhoneNumbersResource:
+        """Endpoints related to porting orders management."""
         return AsyncAssociatedPhoneNumbersResource(self._client)
 
     @cached_property
     def phone_number_blocks(self) -> AsyncPhoneNumberBlocksResource:
+        """Endpoints related to porting orders management."""
         return AsyncPhoneNumberBlocksResource(self._client)
 
     @cached_property
     def phone_number_extensions(self) -> AsyncPhoneNumberExtensionsResource:
+        """Endpoints related to porting orders management."""
         return AsyncPhoneNumberExtensionsResource(self._client)
 
     @cached_property
@@ -1187,42 +1211,52 @@ class PortingOrdersResourceWithRawResponse:
 
     @cached_property
     def phone_number_configurations(self) -> PhoneNumberConfigurationsResourceWithRawResponse:
+        """Endpoints related to porting orders management."""
         return PhoneNumberConfigurationsResourceWithRawResponse(self._porting_orders.phone_number_configurations)
 
     @cached_property
     def actions(self) -> ActionsResourceWithRawResponse:
+        """Endpoints related to porting orders management."""
         return ActionsResourceWithRawResponse(self._porting_orders.actions)
 
     @cached_property
     def activation_jobs(self) -> ActivationJobsResourceWithRawResponse:
+        """Endpoints related to porting orders management."""
         return ActivationJobsResourceWithRawResponse(self._porting_orders.activation_jobs)
 
     @cached_property
     def additional_documents(self) -> AdditionalDocumentsResourceWithRawResponse:
+        """Endpoints related to porting orders management."""
         return AdditionalDocumentsResourceWithRawResponse(self._porting_orders.additional_documents)
 
     @cached_property
     def comments(self) -> CommentsResourceWithRawResponse:
+        """Endpoints related to porting orders management."""
         return CommentsResourceWithRawResponse(self._porting_orders.comments)
 
     @cached_property
     def verification_codes(self) -> VerificationCodesResourceWithRawResponse:
+        """Endpoints related to porting orders management."""
         return VerificationCodesResourceWithRawResponse(self._porting_orders.verification_codes)
 
     @cached_property
     def action_requirements(self) -> ActionRequirementsResourceWithRawResponse:
+        """Endpoints related to porting orders management."""
         return ActionRequirementsResourceWithRawResponse(self._porting_orders.action_requirements)
 
     @cached_property
     def associated_phone_numbers(self) -> AssociatedPhoneNumbersResourceWithRawResponse:
+        """Endpoints related to porting orders management."""
         return AssociatedPhoneNumbersResourceWithRawResponse(self._porting_orders.associated_phone_numbers)
 
     @cached_property
     def phone_number_blocks(self) -> PhoneNumberBlocksResourceWithRawResponse:
+        """Endpoints related to porting orders management."""
         return PhoneNumberBlocksResourceWithRawResponse(self._porting_orders.phone_number_blocks)
 
     @cached_property
     def phone_number_extensions(self) -> PhoneNumberExtensionsResourceWithRawResponse:
+        """Endpoints related to porting orders management."""
         return PhoneNumberExtensionsResourceWithRawResponse(self._porting_orders.phone_number_extensions)
 
 
@@ -1264,42 +1298,52 @@ class AsyncPortingOrdersResourceWithRawResponse:
 
     @cached_property
     def phone_number_configurations(self) -> AsyncPhoneNumberConfigurationsResourceWithRawResponse:
+        """Endpoints related to porting orders management."""
         return AsyncPhoneNumberConfigurationsResourceWithRawResponse(self._porting_orders.phone_number_configurations)
 
     @cached_property
     def actions(self) -> AsyncActionsResourceWithRawResponse:
+        """Endpoints related to porting orders management."""
         return AsyncActionsResourceWithRawResponse(self._porting_orders.actions)
 
     @cached_property
     def activation_jobs(self) -> AsyncActivationJobsResourceWithRawResponse:
+        """Endpoints related to porting orders management."""
         return AsyncActivationJobsResourceWithRawResponse(self._porting_orders.activation_jobs)
 
     @cached_property
     def additional_documents(self) -> AsyncAdditionalDocumentsResourceWithRawResponse:
+        """Endpoints related to porting orders management."""
         return AsyncAdditionalDocumentsResourceWithRawResponse(self._porting_orders.additional_documents)
 
     @cached_property
     def comments(self) -> AsyncCommentsResourceWithRawResponse:
+        """Endpoints related to porting orders management."""
         return AsyncCommentsResourceWithRawResponse(self._porting_orders.comments)
 
     @cached_property
     def verification_codes(self) -> AsyncVerificationCodesResourceWithRawResponse:
+        """Endpoints related to porting orders management."""
         return AsyncVerificationCodesResourceWithRawResponse(self._porting_orders.verification_codes)
 
     @cached_property
     def action_requirements(self) -> AsyncActionRequirementsResourceWithRawResponse:
+        """Endpoints related to porting orders management."""
         return AsyncActionRequirementsResourceWithRawResponse(self._porting_orders.action_requirements)
 
     @cached_property
     def associated_phone_numbers(self) -> AsyncAssociatedPhoneNumbersResourceWithRawResponse:
+        """Endpoints related to porting orders management."""
         return AsyncAssociatedPhoneNumbersResourceWithRawResponse(self._porting_orders.associated_phone_numbers)
 
     @cached_property
     def phone_number_blocks(self) -> AsyncPhoneNumberBlocksResourceWithRawResponse:
+        """Endpoints related to porting orders management."""
         return AsyncPhoneNumberBlocksResourceWithRawResponse(self._porting_orders.phone_number_blocks)
 
     @cached_property
     def phone_number_extensions(self) -> AsyncPhoneNumberExtensionsResourceWithRawResponse:
+        """Endpoints related to porting orders management."""
         return AsyncPhoneNumberExtensionsResourceWithRawResponse(self._porting_orders.phone_number_extensions)
 
 
@@ -1341,42 +1385,52 @@ class PortingOrdersResourceWithStreamingResponse:
 
     @cached_property
     def phone_number_configurations(self) -> PhoneNumberConfigurationsResourceWithStreamingResponse:
+        """Endpoints related to porting orders management."""
         return PhoneNumberConfigurationsResourceWithStreamingResponse(self._porting_orders.phone_number_configurations)
 
     @cached_property
     def actions(self) -> ActionsResourceWithStreamingResponse:
+        """Endpoints related to porting orders management."""
         return ActionsResourceWithStreamingResponse(self._porting_orders.actions)
 
     @cached_property
     def activation_jobs(self) -> ActivationJobsResourceWithStreamingResponse:
+        """Endpoints related to porting orders management."""
         return ActivationJobsResourceWithStreamingResponse(self._porting_orders.activation_jobs)
 
     @cached_property
     def additional_documents(self) -> AdditionalDocumentsResourceWithStreamingResponse:
+        """Endpoints related to porting orders management."""
         return AdditionalDocumentsResourceWithStreamingResponse(self._porting_orders.additional_documents)
 
     @cached_property
     def comments(self) -> CommentsResourceWithStreamingResponse:
+        """Endpoints related to porting orders management."""
         return CommentsResourceWithStreamingResponse(self._porting_orders.comments)
 
     @cached_property
     def verification_codes(self) -> VerificationCodesResourceWithStreamingResponse:
+        """Endpoints related to porting orders management."""
         return VerificationCodesResourceWithStreamingResponse(self._porting_orders.verification_codes)
 
     @cached_property
     def action_requirements(self) -> ActionRequirementsResourceWithStreamingResponse:
+        """Endpoints related to porting orders management."""
         return ActionRequirementsResourceWithStreamingResponse(self._porting_orders.action_requirements)
 
     @cached_property
     def associated_phone_numbers(self) -> AssociatedPhoneNumbersResourceWithStreamingResponse:
+        """Endpoints related to porting orders management."""
         return AssociatedPhoneNumbersResourceWithStreamingResponse(self._porting_orders.associated_phone_numbers)
 
     @cached_property
     def phone_number_blocks(self) -> PhoneNumberBlocksResourceWithStreamingResponse:
+        """Endpoints related to porting orders management."""
         return PhoneNumberBlocksResourceWithStreamingResponse(self._porting_orders.phone_number_blocks)
 
     @cached_property
     def phone_number_extensions(self) -> PhoneNumberExtensionsResourceWithStreamingResponse:
+        """Endpoints related to porting orders management."""
         return PhoneNumberExtensionsResourceWithStreamingResponse(self._porting_orders.phone_number_extensions)
 
 
@@ -1418,42 +1472,52 @@ class AsyncPortingOrdersResourceWithStreamingResponse:
 
     @cached_property
     def phone_number_configurations(self) -> AsyncPhoneNumberConfigurationsResourceWithStreamingResponse:
+        """Endpoints related to porting orders management."""
         return AsyncPhoneNumberConfigurationsResourceWithStreamingResponse(
             self._porting_orders.phone_number_configurations
         )
 
     @cached_property
     def actions(self) -> AsyncActionsResourceWithStreamingResponse:
+        """Endpoints related to porting orders management."""
         return AsyncActionsResourceWithStreamingResponse(self._porting_orders.actions)
 
     @cached_property
     def activation_jobs(self) -> AsyncActivationJobsResourceWithStreamingResponse:
+        """Endpoints related to porting orders management."""
         return AsyncActivationJobsResourceWithStreamingResponse(self._porting_orders.activation_jobs)
 
     @cached_property
     def additional_documents(self) -> AsyncAdditionalDocumentsResourceWithStreamingResponse:
+        """Endpoints related to porting orders management."""
         return AsyncAdditionalDocumentsResourceWithStreamingResponse(self._porting_orders.additional_documents)
 
     @cached_property
     def comments(self) -> AsyncCommentsResourceWithStreamingResponse:
+        """Endpoints related to porting orders management."""
         return AsyncCommentsResourceWithStreamingResponse(self._porting_orders.comments)
 
     @cached_property
     def verification_codes(self) -> AsyncVerificationCodesResourceWithStreamingResponse:
+        """Endpoints related to porting orders management."""
         return AsyncVerificationCodesResourceWithStreamingResponse(self._porting_orders.verification_codes)
 
     @cached_property
     def action_requirements(self) -> AsyncActionRequirementsResourceWithStreamingResponse:
+        """Endpoints related to porting orders management."""
         return AsyncActionRequirementsResourceWithStreamingResponse(self._porting_orders.action_requirements)
 
     @cached_property
     def associated_phone_numbers(self) -> AsyncAssociatedPhoneNumbersResourceWithStreamingResponse:
+        """Endpoints related to porting orders management."""
         return AsyncAssociatedPhoneNumbersResourceWithStreamingResponse(self._porting_orders.associated_phone_numbers)
 
     @cached_property
     def phone_number_blocks(self) -> AsyncPhoneNumberBlocksResourceWithStreamingResponse:
+        """Endpoints related to porting orders management."""
         return AsyncPhoneNumberBlocksResourceWithStreamingResponse(self._porting_orders.phone_number_blocks)
 
     @cached_property
     def phone_number_extensions(self) -> AsyncPhoneNumberExtensionsResourceWithStreamingResponse:
+        """Endpoints related to porting orders management."""
         return AsyncPhoneNumberExtensionsResourceWithStreamingResponse(self._porting_orders.phone_number_extensions)

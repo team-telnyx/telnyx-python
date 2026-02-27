@@ -38,8 +38,11 @@ __all__ = ["ConferencesResource", "AsyncConferencesResource"]
 
 
 class ConferencesResource(SyncAPIResource):
+    """TeXML REST Commands"""
+
     @cached_property
     def participants(self) -> ParticipantsResource:
+        """TeXML REST Commands"""
         return ParticipantsResource(self._client)
 
     @cached_property
@@ -299,8 +302,11 @@ class ConferencesResource(SyncAPIResource):
 
 
 class AsyncConferencesResource(AsyncAPIResource):
+    """TeXML REST Commands"""
+
     @cached_property
     def participants(self) -> AsyncParticipantsResource:
+        """TeXML REST Commands"""
         return AsyncParticipantsResource(self._client)
 
     @cached_property
@@ -581,6 +587,7 @@ class ConferencesResourceWithRawResponse:
 
     @cached_property
     def participants(self) -> ParticipantsResourceWithRawResponse:
+        """TeXML REST Commands"""
         return ParticipantsResourceWithRawResponse(self._conferences.participants)
 
 
@@ -606,6 +613,7 @@ class AsyncConferencesResourceWithRawResponse:
 
     @cached_property
     def participants(self) -> AsyncParticipantsResourceWithRawResponse:
+        """TeXML REST Commands"""
         return AsyncParticipantsResourceWithRawResponse(self._conferences.participants)
 
 
@@ -631,6 +639,7 @@ class ConferencesResourceWithStreamingResponse:
 
     @cached_property
     def participants(self) -> ParticipantsResourceWithStreamingResponse:
+        """TeXML REST Commands"""
         return ParticipantsResourceWithStreamingResponse(self._conferences.participants)
 
 
@@ -656,4 +665,5 @@ class AsyncConferencesResourceWithStreamingResponse:
 
     @cached_property
     def participants(self) -> AsyncParticipantsResourceWithStreamingResponse:
+        """TeXML REST Commands"""
         return AsyncParticipantsResourceWithStreamingResponse(self._conferences.participants)

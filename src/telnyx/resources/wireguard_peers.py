@@ -27,6 +27,8 @@ __all__ = ["WireguardPeersResource", "AsyncWireguardPeersResource"]
 
 
 class WireguardPeersResource(SyncAPIResource):
+    """WireGuard Interface operations"""
+
     @cached_property
     def with_raw_response(self) -> WireguardPeersResourceWithRawResponse:
         """
@@ -274,6 +276,8 @@ class WireguardPeersResource(SyncAPIResource):
 
 
 class AsyncWireguardPeersResource(AsyncAPIResource):
+    """WireGuard Interface operations"""
+
     @cached_property
     def with_raw_response(self) -> AsyncWireguardPeersResourceWithRawResponse:
         """

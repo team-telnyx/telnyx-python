@@ -23,6 +23,8 @@ __all__ = ["LedgerBillingGroupReportsResource", "AsyncLedgerBillingGroupReportsR
 
 
 class LedgerBillingGroupReportsResource(SyncAPIResource):
+    """Ledger billing reports"""
+
     @cached_property
     def with_raw_response(self) -> LedgerBillingGroupReportsResourceWithRawResponse:
         """
@@ -120,6 +122,8 @@ class LedgerBillingGroupReportsResource(SyncAPIResource):
 
 
 class AsyncLedgerBillingGroupReportsResource(AsyncAPIResource):
+    """Ledger billing reports"""
+
     @cached_property
     def with_raw_response(self) -> AsyncLedgerBillingGroupReportsResourceWithRawResponse:
         """

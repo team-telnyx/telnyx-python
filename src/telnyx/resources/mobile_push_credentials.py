@@ -24,6 +24,8 @@ __all__ = ["MobilePushCredentialsResource", "AsyncMobilePushCredentialsResource"
 
 
 class MobilePushCredentialsResource(SyncAPIResource):
+    """Mobile push credential management"""
+
     @cached_property
     def with_raw_response(self) -> MobilePushCredentialsResourceWithRawResponse:
         """
@@ -195,6 +197,8 @@ class MobilePushCredentialsResource(SyncAPIResource):
 
 
 class AsyncMobilePushCredentialsResource(AsyncAPIResource):
+    """Mobile push credential management"""
+
     @cached_property
     def with_raw_response(self) -> AsyncMobilePushCredentialsResourceWithRawResponse:
         """

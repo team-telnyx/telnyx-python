@@ -62,6 +62,7 @@ __all__ = ["MessagingProfilesResource", "AsyncMessagingProfilesResource"]
 class MessagingProfilesResource(SyncAPIResource):
     @cached_property
     def autoresp_configs(self) -> AutorespConfigsResource:
+        """Opt-Out Management"""
         return AutorespConfigsResource(self._client)
 
     @cached_property
@@ -651,6 +652,7 @@ class MessagingProfilesResource(SyncAPIResource):
 class AsyncMessagingProfilesResource(AsyncAPIResource):
     @cached_property
     def autoresp_configs(self) -> AsyncAutorespConfigsResource:
+        """Opt-Out Management"""
         return AsyncAutorespConfigsResource(self._client)
 
     @cached_property
@@ -1271,6 +1273,7 @@ class MessagingProfilesResourceWithRawResponse:
 
     @cached_property
     def autoresp_configs(self) -> AutorespConfigsResourceWithRawResponse:
+        """Opt-Out Management"""
         return AutorespConfigsResourceWithRawResponse(self._messaging_profiles.autoresp_configs)
 
     @cached_property
@@ -1312,6 +1315,7 @@ class AsyncMessagingProfilesResourceWithRawResponse:
 
     @cached_property
     def autoresp_configs(self) -> AsyncAutorespConfigsResourceWithRawResponse:
+        """Opt-Out Management"""
         return AsyncAutorespConfigsResourceWithRawResponse(self._messaging_profiles.autoresp_configs)
 
     @cached_property
@@ -1353,6 +1357,7 @@ class MessagingProfilesResourceWithStreamingResponse:
 
     @cached_property
     def autoresp_configs(self) -> AutorespConfigsResourceWithStreamingResponse:
+        """Opt-Out Management"""
         return AutorespConfigsResourceWithStreamingResponse(self._messaging_profiles.autoresp_configs)
 
     @cached_property
@@ -1394,6 +1399,7 @@ class AsyncMessagingProfilesResourceWithStreamingResponse:
 
     @cached_property
     def autoresp_configs(self) -> AsyncAutorespConfigsResourceWithStreamingResponse:
+        """Opt-Out Management"""
         return AsyncAutorespConfigsResourceWithStreamingResponse(self._messaging_profiles.autoresp_configs)
 
     @cached_property

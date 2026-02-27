@@ -34,6 +34,8 @@ __all__ = ["VersionsResource", "AsyncVersionsResource"]
 
 
 class VersionsResource(SyncAPIResource):
+    """Configure AI assistant specifications"""
+
     @cached_property
     def with_raw_response(self) -> VersionsResourceWithRawResponse:
         """
@@ -318,6 +320,8 @@ class VersionsResource(SyncAPIResource):
 
 
 class AsyncVersionsResource(AsyncAPIResource):
+    """Configure AI assistant specifications"""
+
     @cached_property
     def with_raw_response(self) -> AsyncVersionsResourceWithRawResponse:
         """

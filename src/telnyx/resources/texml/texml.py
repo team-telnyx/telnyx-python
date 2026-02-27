@@ -30,8 +30,11 @@ __all__ = ["TexmlResource", "AsyncTexmlResource"]
 
 
 class TexmlResource(SyncAPIResource):
+    """TeXML REST Commands"""
+
     @cached_property
     def accounts(self) -> AccountsResource:
+        """TeXML REST Commands"""
         return AccountsResource(self._client)
 
     @cached_property
@@ -103,8 +106,11 @@ class TexmlResource(SyncAPIResource):
 
 
 class AsyncTexmlResource(AsyncAPIResource):
+    """TeXML REST Commands"""
+
     @cached_property
     def accounts(self) -> AsyncAccountsResource:
+        """TeXML REST Commands"""
         return AsyncAccountsResource(self._client)
 
     @cached_property
@@ -185,6 +191,7 @@ class TexmlResourceWithRawResponse:
 
     @cached_property
     def accounts(self) -> AccountsResourceWithRawResponse:
+        """TeXML REST Commands"""
         return AccountsResourceWithRawResponse(self._texml.accounts)
 
 
@@ -198,6 +205,7 @@ class AsyncTexmlResourceWithRawResponse:
 
     @cached_property
     def accounts(self) -> AsyncAccountsResourceWithRawResponse:
+        """TeXML REST Commands"""
         return AsyncAccountsResourceWithRawResponse(self._texml.accounts)
 
 
@@ -211,6 +219,7 @@ class TexmlResourceWithStreamingResponse:
 
     @cached_property
     def accounts(self) -> AccountsResourceWithStreamingResponse:
+        """TeXML REST Commands"""
         return AccountsResourceWithStreamingResponse(self._texml.accounts)
 
 
@@ -224,4 +233,5 @@ class AsyncTexmlResourceWithStreamingResponse:
 
     @cached_property
     def accounts(self) -> AsyncAccountsResourceWithStreamingResponse:
+        """TeXML REST Commands"""
         return AsyncAccountsResourceWithStreamingResponse(self._texml.accounts)

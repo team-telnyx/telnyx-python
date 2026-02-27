@@ -24,6 +24,8 @@ __all__ = ["VoicemailResource", "AsyncVoicemailResource"]
 
 
 class VoicemailResource(SyncAPIResource):
+    """Voicemail API"""
+
     @cached_property
     def with_raw_response(self) -> VoicemailResourceWithRawResponse:
         """
@@ -170,6 +172,8 @@ class VoicemailResource(SyncAPIResource):
 
 
 class AsyncVoicemailResource(AsyncAPIResource):
+    """Voicemail API"""
+
     @cached_property
     def with_raw_response(self) -> AsyncVoicemailResourceWithRawResponse:
         """

@@ -28,6 +28,8 @@ __all__ = ["GlobalIPHealthChecksResource", "AsyncGlobalIPHealthChecksResource"]
 
 
 class GlobalIPHealthChecksResource(SyncAPIResource):
+    """Global IPs"""
+
     @cached_property
     def with_raw_response(self) -> GlobalIPHealthChecksResourceWithRawResponse:
         """
@@ -205,6 +207,8 @@ class GlobalIPHealthChecksResource(SyncAPIResource):
 
 
 class AsyncGlobalIPHealthChecksResource(AsyncAPIResource):
+    """Global IPs"""
+
     @cached_property
     def with_raw_response(self) -> AsyncGlobalIPHealthChecksResourceWithRawResponse:
         """

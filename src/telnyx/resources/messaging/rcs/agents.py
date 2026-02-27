@@ -26,6 +26,8 @@ __all__ = ["AgentsResource", "AsyncAgentsResource"]
 
 
 class AgentsResource(SyncAPIResource):
+    """Send RCS messages"""
+
     @cached_property
     def with_raw_response(self) -> AgentsResourceWithRawResponse:
         """
@@ -173,6 +175,8 @@ class AgentsResource(SyncAPIResource):
 
 
 class AsyncAgentsResource(AsyncAPIResource):
+    """Send RCS messages"""
+
     @cached_property
     def with_raw_response(self) -> AsyncAgentsResourceWithRawResponse:
         """

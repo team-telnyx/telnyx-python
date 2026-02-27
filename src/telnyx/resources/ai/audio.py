@@ -25,6 +25,8 @@ __all__ = ["AudioResource", "AsyncAudioResource"]
 
 
 class AudioResource(SyncAPIResource):
+    """Turn audio into text or text into audio."""
+
     @cached_property
     def with_raw_response(self) -> AudioResourceWithRawResponse:
         """
@@ -136,6 +138,8 @@ class AudioResource(SyncAPIResource):
 
 
 class AsyncAudioResource(AsyncAPIResource):
+    """Turn audio into text or text into audio."""
+
     @cached_property
     def with_raw_response(self) -> AsyncAudioResourceWithRawResponse:
         """

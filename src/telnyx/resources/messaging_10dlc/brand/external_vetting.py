@@ -24,6 +24,8 @@ __all__ = ["ExternalVettingResource", "AsyncExternalVettingResource"]
 
 
 class ExternalVettingResource(SyncAPIResource):
+    """Brand operations"""
+
     @cached_property
     def with_raw_response(self) -> ExternalVettingResourceWithRawResponse:
         """
@@ -178,6 +180,8 @@ class ExternalVettingResource(SyncAPIResource):
 
 
 class AsyncExternalVettingResource(AsyncAPIResource):
+    """Brand operations"""
+
     @cached_property
     def with_raw_response(self) -> AsyncExternalVettingResourceWithRawResponse:
         """

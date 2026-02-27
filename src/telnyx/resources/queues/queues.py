@@ -34,8 +34,11 @@ __all__ = ["QueuesResource", "AsyncQueuesResource"]
 
 
 class QueuesResource(SyncAPIResource):
+    """Queue commands operations"""
+
     @cached_property
     def calls(self) -> CallsResource:
+        """Queue commands operations"""
         return CallsResource(self._client)
 
     @cached_property
@@ -254,8 +257,11 @@ class QueuesResource(SyncAPIResource):
 
 
 class AsyncQueuesResource(AsyncAPIResource):
+    """Queue commands operations"""
+
     @cached_property
     def calls(self) -> AsyncCallsResource:
+        """Queue commands operations"""
         return AsyncCallsResource(self._client)
 
     @cached_property
@@ -495,6 +501,7 @@ class QueuesResourceWithRawResponse:
 
     @cached_property
     def calls(self) -> CallsResourceWithRawResponse:
+        """Queue commands operations"""
         return CallsResourceWithRawResponse(self._queues.calls)
 
 
@@ -520,6 +527,7 @@ class AsyncQueuesResourceWithRawResponse:
 
     @cached_property
     def calls(self) -> AsyncCallsResourceWithRawResponse:
+        """Queue commands operations"""
         return AsyncCallsResourceWithRawResponse(self._queues.calls)
 
 
@@ -545,6 +553,7 @@ class QueuesResourceWithStreamingResponse:
 
     @cached_property
     def calls(self) -> CallsResourceWithStreamingResponse:
+        """Queue commands operations"""
         return CallsResourceWithStreamingResponse(self._queues.calls)
 
 
@@ -570,4 +579,5 @@ class AsyncQueuesResourceWithStreamingResponse:
 
     @cached_property
     def calls(self) -> AsyncCallsResourceWithStreamingResponse:
+        """Queue commands operations"""
         return AsyncCallsResourceWithStreamingResponse(self._queues.calls)

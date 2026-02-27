@@ -26,6 +26,8 @@ __all__ = ["CustomStorageCredentialsResource", "AsyncCustomStorageCredentialsRes
 
 
 class CustomStorageCredentialsResource(SyncAPIResource):
+    """Call Recordings operations."""
+
     @cached_property
     def with_raw_response(self) -> CustomStorageCredentialsResourceWithRawResponse:
         """
@@ -198,6 +200,8 @@ class CustomStorageCredentialsResource(SyncAPIResource):
 
 
 class AsyncCustomStorageCredentialsResource(AsyncAPIResource):
+    """Call Recordings operations."""
+
     @cached_property
     def with_raw_response(self) -> AsyncCustomStorageCredentialsResourceWithRawResponse:
         """

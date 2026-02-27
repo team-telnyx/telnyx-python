@@ -56,8 +56,11 @@ __all__ = ["BrandResource", "AsyncBrandResource"]
 
 
 class BrandResource(SyncAPIResource):
+    """Brand operations"""
+
     @cached_property
     def external_vetting(self) -> ExternalVettingResource:
+        """Brand operations"""
         return ExternalVettingResource(self._client)
 
     @cached_property
@@ -842,8 +845,11 @@ class BrandResource(SyncAPIResource):
 
 
 class AsyncBrandResource(AsyncAPIResource):
+    """Brand operations"""
+
     @cached_property
     def external_vetting(self) -> AsyncExternalVettingResource:
+        """Brand operations"""
         return AsyncExternalVettingResource(self._client)
 
     @cached_property
@@ -1670,6 +1676,7 @@ class BrandResourceWithRawResponse:
 
     @cached_property
     def external_vetting(self) -> ExternalVettingResourceWithRawResponse:
+        """Brand operations"""
         return ExternalVettingResourceWithRawResponse(self._brand.external_vetting)
 
 
@@ -1716,6 +1723,7 @@ class AsyncBrandResourceWithRawResponse:
 
     @cached_property
     def external_vetting(self) -> AsyncExternalVettingResourceWithRawResponse:
+        """Brand operations"""
         return AsyncExternalVettingResourceWithRawResponse(self._brand.external_vetting)
 
 
@@ -1762,6 +1770,7 @@ class BrandResourceWithStreamingResponse:
 
     @cached_property
     def external_vetting(self) -> ExternalVettingResourceWithStreamingResponse:
+        """Brand operations"""
         return ExternalVettingResourceWithStreamingResponse(self._brand.external_vetting)
 
 
@@ -1808,4 +1817,5 @@ class AsyncBrandResourceWithStreamingResponse:
 
     @cached_property
     def external_vetting(self) -> AsyncExternalVettingResourceWithStreamingResponse:
+        """Brand operations"""
         return AsyncExternalVettingResourceWithStreamingResponse(self._brand.external_vetting)

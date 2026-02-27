@@ -33,6 +33,8 @@ __all__ = ["VirtualCrossConnectsResource", "AsyncVirtualCrossConnectsResource"]
 
 
 class VirtualCrossConnectsResource(SyncAPIResource):
+    """Virtual Cross Connect operations"""
+
     @cached_property
     def with_raw_response(self) -> VirtualCrossConnectsResourceWithRawResponse:
         """
@@ -362,6 +364,8 @@ class VirtualCrossConnectsResource(SyncAPIResource):
 
 
 class AsyncVirtualCrossConnectsResource(AsyncAPIResource):
+    """Virtual Cross Connect operations"""
+
     @cached_property
     def with_raw_response(self) -> AsyncVirtualCrossConnectsResourceWithRawResponse:
         """

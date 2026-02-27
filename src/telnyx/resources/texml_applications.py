@@ -37,6 +37,8 @@ __all__ = ["TexmlApplicationsResource", "AsyncTexmlApplicationsResource"]
 
 
 class TexmlApplicationsResource(SyncAPIResource):
+    """TeXML Applications operations"""
+
     @cached_property
     def with_raw_response(self) -> TexmlApplicationsResourceWithRawResponse:
         """
@@ -389,6 +391,8 @@ class TexmlApplicationsResource(SyncAPIResource):
 
 
 class AsyncTexmlApplicationsResource(AsyncAPIResource):
+    """TeXML Applications operations"""
+
     @cached_property
     def with_raw_response(self) -> AsyncTexmlApplicationsResourceWithRawResponse:
         """

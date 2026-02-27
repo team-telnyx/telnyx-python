@@ -20,6 +20,8 @@ __all__ = ["BrandResource", "AsyncBrandResource"]
 
 
 class BrandResource(SyncAPIResource):
+    """Campaign operations"""
+
     @cached_property
     def with_raw_response(self) -> BrandResourceWithRawResponse:
         """
@@ -78,6 +80,8 @@ class BrandResource(SyncAPIResource):
 
 
 class AsyncBrandResource(AsyncAPIResource):
+    """Campaign operations"""
+
     @cached_property
     def with_raw_response(self) -> AsyncBrandResourceWithRawResponse:
         """

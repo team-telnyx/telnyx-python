@@ -23,6 +23,8 @@ __all__ = ["DocumentLinksResource", "AsyncDocumentLinksResource"]
 
 
 class DocumentLinksResource(SyncAPIResource):
+    """Documents"""
+
     @cached_property
     def with_raw_response(self) -> DocumentLinksResourceWithRawResponse:
         """
@@ -93,6 +95,8 @@ class DocumentLinksResource(SyncAPIResource):
 
 
 class AsyncDocumentLinksResource(AsyncAPIResource):
+    """Documents"""
+
     @cached_property
     def with_raw_response(self) -> AsyncDocumentLinksResourceWithRawResponse:
         """

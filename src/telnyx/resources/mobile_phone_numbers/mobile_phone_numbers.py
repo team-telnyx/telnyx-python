@@ -36,6 +36,8 @@ __all__ = ["MobilePhoneNumbersResource", "AsyncMobilePhoneNumbersResource"]
 
 
 class MobilePhoneNumbersResource(SyncAPIResource):
+    """Mobile phone number operations"""
+
     @cached_property
     def messaging(self) -> MessagingResource:
         return MessagingResource(self._client)
@@ -201,6 +203,8 @@ class MobilePhoneNumbersResource(SyncAPIResource):
 
 
 class AsyncMobilePhoneNumbersResource(AsyncAPIResource):
+    """Mobile phone number operations"""
+
     @cached_property
     def messaging(self) -> AsyncMessagingResource:
         return AsyncMessagingResource(self._client)

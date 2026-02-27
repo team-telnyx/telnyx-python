@@ -27,6 +27,8 @@ __all__ = ["CommentsResource", "AsyncCommentsResource"]
 
 
 class CommentsResource(SyncAPIResource):
+    """Number orders"""
+
     @cached_property
     def with_raw_response(self) -> CommentsResourceWithRawResponse:
         """
@@ -194,6 +196,8 @@ class CommentsResource(SyncAPIResource):
 
 
 class AsyncCommentsResource(AsyncAPIResource):
+    """Number orders"""
+
     @cached_property
     def with_raw_response(self) -> AsyncCommentsResourceWithRawResponse:
         """

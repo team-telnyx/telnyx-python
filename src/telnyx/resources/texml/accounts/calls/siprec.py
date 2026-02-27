@@ -24,6 +24,8 @@ __all__ = ["SiprecResource", "AsyncSiprecResource"]
 
 
 class SiprecResource(SyncAPIResource):
+    """TeXML REST Commands"""
+
     @cached_property
     def with_raw_response(self) -> SiprecResourceWithRawResponse:
         """
@@ -89,6 +91,8 @@ class SiprecResource(SyncAPIResource):
 
 
 class AsyncSiprecResource(AsyncAPIResource):
+    """TeXML REST Commands"""
+
     @cached_property
     def with_raw_response(self) -> AsyncSiprecResourceWithRawResponse:
         """

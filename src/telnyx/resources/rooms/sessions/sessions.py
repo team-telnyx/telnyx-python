@@ -40,6 +40,7 @@ __all__ = ["SessionsResource", "AsyncSessionsResource"]
 class SessionsResource(SyncAPIResource):
     @cached_property
     def actions(self) -> ActionsResource:
+        """Rooms Sessions operations."""
         return ActionsResource(self._client)
 
     @cached_property
@@ -280,6 +281,7 @@ class SessionsResource(SyncAPIResource):
 class AsyncSessionsResource(AsyncAPIResource):
     @cached_property
     def actions(self) -> AsyncActionsResource:
+        """Rooms Sessions operations."""
         return AsyncActionsResource(self._client)
 
     @cached_property
@@ -536,6 +538,7 @@ class SessionsResourceWithRawResponse:
 
     @cached_property
     def actions(self) -> ActionsResourceWithRawResponse:
+        """Rooms Sessions operations."""
         return ActionsResourceWithRawResponse(self._sessions.actions)
 
 
@@ -558,6 +561,7 @@ class AsyncSessionsResourceWithRawResponse:
 
     @cached_property
     def actions(self) -> AsyncActionsResourceWithRawResponse:
+        """Rooms Sessions operations."""
         return AsyncActionsResourceWithRawResponse(self._sessions.actions)
 
 
@@ -580,6 +584,7 @@ class SessionsResourceWithStreamingResponse:
 
     @cached_property
     def actions(self) -> ActionsResourceWithStreamingResponse:
+        """Rooms Sessions operations."""
         return ActionsResourceWithStreamingResponse(self._sessions.actions)
 
 
@@ -602,4 +607,5 @@ class AsyncSessionsResourceWithStreamingResponse:
 
     @cached_property
     def actions(self) -> AsyncActionsResourceWithStreamingResponse:
+        """Rooms Sessions operations."""
         return AsyncActionsResourceWithStreamingResponse(self._sessions.actions)

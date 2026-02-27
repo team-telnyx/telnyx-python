@@ -52,8 +52,11 @@ __all__ = ["MessagingHostedNumberOrdersResource", "AsyncMessagingHostedNumberOrd
 
 
 class MessagingHostedNumberOrdersResource(SyncAPIResource):
+    """Manage your messaging hosted numbers"""
+
     @cached_property
     def actions(self) -> ActionsResource:
+        """Manage your messaging hosted numbers"""
         return ActionsResource(self._client)
 
     @cached_property
@@ -351,8 +354,11 @@ class MessagingHostedNumberOrdersResource(SyncAPIResource):
 
 
 class AsyncMessagingHostedNumberOrdersResource(AsyncAPIResource):
+    """Manage your messaging hosted numbers"""
+
     @cached_property
     def actions(self) -> AsyncActionsResource:
+        """Manage your messaging hosted numbers"""
         return AsyncActionsResource(self._client)
 
     @cached_property
@@ -677,6 +683,7 @@ class MessagingHostedNumberOrdersResourceWithRawResponse:
 
     @cached_property
     def actions(self) -> ActionsResourceWithRawResponse:
+        """Manage your messaging hosted numbers"""
         return ActionsResourceWithRawResponse(self._messaging_hosted_number_orders.actions)
 
 
@@ -708,6 +715,7 @@ class AsyncMessagingHostedNumberOrdersResourceWithRawResponse:
 
     @cached_property
     def actions(self) -> AsyncActionsResourceWithRawResponse:
+        """Manage your messaging hosted numbers"""
         return AsyncActionsResourceWithRawResponse(self._messaging_hosted_number_orders.actions)
 
 
@@ -739,6 +747,7 @@ class MessagingHostedNumberOrdersResourceWithStreamingResponse:
 
     @cached_property
     def actions(self) -> ActionsResourceWithStreamingResponse:
+        """Manage your messaging hosted numbers"""
         return ActionsResourceWithStreamingResponse(self._messaging_hosted_number_orders.actions)
 
 
@@ -770,4 +779,5 @@ class AsyncMessagingHostedNumberOrdersResourceWithStreamingResponse:
 
     @cached_property
     def actions(self) -> AsyncActionsResourceWithStreamingResponse:
+        """Manage your messaging hosted numbers"""
         return AsyncActionsResourceWithStreamingResponse(self._messaging_hosted_number_orders.actions)

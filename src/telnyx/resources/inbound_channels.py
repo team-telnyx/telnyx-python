@@ -23,6 +23,8 @@ __all__ = ["InboundChannelsResource", "AsyncInboundChannelsResource"]
 
 
 class InboundChannelsResource(SyncAPIResource):
+    """Voice Channels"""
+
     @cached_property
     def with_raw_response(self) -> InboundChannelsResourceWithRawResponse:
         """
@@ -107,6 +109,8 @@ class InboundChannelsResource(SyncAPIResource):
 
 
 class AsyncInboundChannelsResource(AsyncAPIResource):
+    """Voice Channels"""
+
     @cached_property
     def with_raw_response(self) -> AsyncInboundChannelsResourceWithRawResponse:
         """

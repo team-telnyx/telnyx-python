@@ -24,6 +24,8 @@ __all__ = ["OtaUpdatesResource", "AsyncOtaUpdatesResource"]
 
 
 class OtaUpdatesResource(SyncAPIResource):
+    """OTA updates operations"""
+
     @cached_property
     def with_raw_response(self) -> OtaUpdatesResourceWithRawResponse:
         """
@@ -127,6 +129,8 @@ class OtaUpdatesResource(SyncAPIResource):
 
 
 class AsyncOtaUpdatesResource(AsyncAPIResource):
+    """OTA updates operations"""
+
     @cached_property
     def with_raw_response(self) -> AsyncOtaUpdatesResourceWithRawResponse:
         """

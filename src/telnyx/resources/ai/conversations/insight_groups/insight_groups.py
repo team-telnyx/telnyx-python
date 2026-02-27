@@ -36,8 +36,11 @@ __all__ = ["InsightGroupsResource", "AsyncInsightGroupsResource"]
 
 
 class InsightGroupsResource(SyncAPIResource):
+    """Manage historical AI assistant conversations"""
+
     @cached_property
     def insights(self) -> InsightsResource:
+        """Manage historical AI assistant conversations"""
         return InsightsResource(self._client)
 
     @cached_property
@@ -262,8 +265,11 @@ class InsightGroupsResource(SyncAPIResource):
 
 
 class AsyncInsightGroupsResource(AsyncAPIResource):
+    """Manage historical AI assistant conversations"""
+
     @cached_property
     def insights(self) -> AsyncInsightsResource:
+        """Manage historical AI assistant conversations"""
         return AsyncInsightsResource(self._client)
 
     @cached_property
@@ -509,6 +515,7 @@ class InsightGroupsResourceWithRawResponse:
 
     @cached_property
     def insights(self) -> InsightsResourceWithRawResponse:
+        """Manage historical AI assistant conversations"""
         return InsightsResourceWithRawResponse(self._insight_groups.insights)
 
 
@@ -534,6 +541,7 @@ class AsyncInsightGroupsResourceWithRawResponse:
 
     @cached_property
     def insights(self) -> AsyncInsightsResourceWithRawResponse:
+        """Manage historical AI assistant conversations"""
         return AsyncInsightsResourceWithRawResponse(self._insight_groups.insights)
 
 
@@ -559,6 +567,7 @@ class InsightGroupsResourceWithStreamingResponse:
 
     @cached_property
     def insights(self) -> InsightsResourceWithStreamingResponse:
+        """Manage historical AI assistant conversations"""
         return InsightsResourceWithStreamingResponse(self._insight_groups.insights)
 
 
@@ -584,4 +593,5 @@ class AsyncInsightGroupsResourceWithStreamingResponse:
 
     @cached_property
     def insights(self) -> AsyncInsightsResourceWithStreamingResponse:
+        """Manage historical AI assistant conversations"""
         return AsyncInsightsResourceWithStreamingResponse(self._insight_groups.insights)

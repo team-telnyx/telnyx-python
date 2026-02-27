@@ -25,6 +25,8 @@ __all__ = ["PhoneNumbersResource", "AsyncPhoneNumbersResource"]
 
 
 class PhoneNumbersResource(SyncAPIResource):
+    """External Connections operations"""
+
     @cached_property
     def with_raw_response(self) -> PhoneNumbersResourceWithRawResponse:
         """
@@ -176,6 +178,8 @@ class PhoneNumbersResource(SyncAPIResource):
 
 
 class AsyncPhoneNumbersResource(AsyncAPIResource):
+    """External Connections operations"""
+
     @cached_property
     def with_raw_response(self) -> AsyncPhoneNumbersResourceWithRawResponse:
         """

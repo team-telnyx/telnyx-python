@@ -39,6 +39,8 @@ __all__ = ["LoaConfigurationsResource", "AsyncLoaConfigurationsResource"]
 
 
 class LoaConfigurationsResource(SyncAPIResource):
+    """Endpoints related to porting orders management."""
+
     @cached_property
     def with_raw_response(self) -> LoaConfigurationsResourceWithRawResponse:
         """
@@ -374,6 +376,8 @@ class LoaConfigurationsResource(SyncAPIResource):
 
 
 class AsyncLoaConfigurationsResource(AsyncAPIResource):
+    """Endpoints related to porting orders management."""
+
     @cached_property
     def with_raw_response(self) -> AsyncLoaConfigurationsResourceWithRawResponse:
         """

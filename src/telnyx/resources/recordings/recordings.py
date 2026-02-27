@@ -33,8 +33,11 @@ __all__ = ["RecordingsResource", "AsyncRecordingsResource"]
 
 
 class RecordingsResource(SyncAPIResource):
+    """Call Recordings operations."""
+
     @cached_property
     def actions(self) -> ActionsResource:
+        """Call Recordings operations."""
         return ActionsResource(self._client)
 
     @cached_property
@@ -175,8 +178,11 @@ class RecordingsResource(SyncAPIResource):
 
 
 class AsyncRecordingsResource(AsyncAPIResource):
+    """Call Recordings operations."""
+
     @cached_property
     def actions(self) -> AsyncActionsResource:
+        """Call Recordings operations."""
         return AsyncActionsResource(self._client)
 
     @cached_property
@@ -332,6 +338,7 @@ class RecordingsResourceWithRawResponse:
 
     @cached_property
     def actions(self) -> ActionsResourceWithRawResponse:
+        """Call Recordings operations."""
         return ActionsResourceWithRawResponse(self._recordings.actions)
 
 
@@ -351,6 +358,7 @@ class AsyncRecordingsResourceWithRawResponse:
 
     @cached_property
     def actions(self) -> AsyncActionsResourceWithRawResponse:
+        """Call Recordings operations."""
         return AsyncActionsResourceWithRawResponse(self._recordings.actions)
 
 
@@ -370,6 +378,7 @@ class RecordingsResourceWithStreamingResponse:
 
     @cached_property
     def actions(self) -> ActionsResourceWithStreamingResponse:
+        """Call Recordings operations."""
         return ActionsResourceWithStreamingResponse(self._recordings.actions)
 
 
@@ -389,4 +398,5 @@ class AsyncRecordingsResourceWithStreamingResponse:
 
     @cached_property
     def actions(self) -> AsyncActionsResourceWithStreamingResponse:
+        """Call Recordings operations."""
         return AsyncActionsResourceWithStreamingResponse(self._recordings.actions)

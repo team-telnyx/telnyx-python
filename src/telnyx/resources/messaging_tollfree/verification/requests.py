@@ -45,6 +45,8 @@ __all__ = ["RequestsResource", "AsyncRequestsResource"]
 
 
 class RequestsResource(SyncAPIResource):
+    """Manage your tollfree verification requests"""
+
     @cached_property
     def with_raw_response(self) -> RequestsResourceWithRawResponse:
         """
@@ -614,6 +616,8 @@ class RequestsResource(SyncAPIResource):
 
 
 class AsyncRequestsResource(AsyncAPIResource):
+    """Manage your tollfree verification requests"""
+
     @cached_property
     def with_raw_response(self) -> AsyncRequestsResourceWithRawResponse:
         """

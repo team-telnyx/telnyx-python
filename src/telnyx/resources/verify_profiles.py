@@ -32,6 +32,8 @@ __all__ = ["VerifyProfilesResource", "AsyncVerifyProfilesResource"]
 
 
 class VerifyProfilesResource(SyncAPIResource):
+    """Two factor authentication API"""
+
     @cached_property
     def with_raw_response(self) -> VerifyProfilesResourceWithRawResponse:
         """
@@ -365,6 +367,8 @@ class VerifyProfilesResource(SyncAPIResource):
 
 
 class AsyncVerifyProfilesResource(AsyncAPIResource):
+    """Two factor authentication API"""
+
     @cached_property
     def with_raw_response(self) -> AsyncVerifyProfilesResourceWithRawResponse:
         """

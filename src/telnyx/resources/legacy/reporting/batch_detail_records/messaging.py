@@ -29,6 +29,8 @@ __all__ = ["MessagingResource", "AsyncMessagingResource"]
 
 
 class MessagingResource(SyncAPIResource):
+    """Messaging batch detail records"""
+
     @cached_property
     def with_raw_response(self) -> MessagingResourceWithRawResponse:
         """
@@ -220,6 +222,8 @@ class MessagingResource(SyncAPIResource):
 
 
 class AsyncMessagingResource(AsyncAPIResource):
+    """Messaging batch detail records"""
+
     @cached_property
     def with_raw_response(self) -> AsyncMessagingResourceWithRawResponse:
         """

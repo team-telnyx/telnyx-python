@@ -31,6 +31,8 @@ __all__ = ["VerificationCodesResource", "AsyncVerificationCodesResource"]
 
 
 class VerificationCodesResource(SyncAPIResource):
+    """Endpoints related to porting orders management."""
+
     @cached_property
     def with_raw_response(self) -> VerificationCodesResourceWithRawResponse:
         """
@@ -186,6 +188,8 @@ class VerificationCodesResource(SyncAPIResource):
 
 
 class AsyncVerificationCodesResource(AsyncAPIResource):
+    """Endpoints related to porting orders management."""
+
     @cached_property
     def with_raw_response(self) -> AsyncVerificationCodesResourceWithRawResponse:
         """

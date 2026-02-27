@@ -27,6 +27,8 @@ __all__ = ["AssociatedPhoneNumbersResource", "AsyncAssociatedPhoneNumbersResourc
 
 
 class AssociatedPhoneNumbersResource(SyncAPIResource):
+    """Endpoints related to porting orders management."""
+
     @cached_property
     def with_raw_response(self) -> AssociatedPhoneNumbersResourceWithRawResponse:
         """
@@ -190,6 +192,8 @@ class AssociatedPhoneNumbersResource(SyncAPIResource):
 
 
 class AsyncAssociatedPhoneNumbersResource(AsyncAPIResource):
+    """Endpoints related to porting orders management."""
+
     @cached_property
     def with_raw_response(self) -> AsyncAssociatedPhoneNumbersResourceWithRawResponse:
         """

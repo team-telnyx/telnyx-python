@@ -66,12 +66,16 @@ __all__ = ["AccountsResource", "AsyncAccountsResource"]
 
 
 class AccountsResource(SyncAPIResource):
+    """TeXML REST Commands"""
+
     @cached_property
     def calls(self) -> CallsResource:
+        """TeXML REST Commands"""
         return CallsResource(self._client)
 
     @cached_property
     def conferences(self) -> ConferencesResource:
+        """TeXML REST Commands"""
         return ConferencesResource(self._client)
 
     @cached_property
@@ -84,6 +88,7 @@ class AccountsResource(SyncAPIResource):
 
     @cached_property
     def queues(self) -> QueuesResource:
+        """TeXML REST Commands"""
         return QueuesResource(self._client)
 
     @cached_property
@@ -212,12 +217,16 @@ class AccountsResource(SyncAPIResource):
 
 
 class AsyncAccountsResource(AsyncAPIResource):
+    """TeXML REST Commands"""
+
     @cached_property
     def calls(self) -> AsyncCallsResource:
+        """TeXML REST Commands"""
         return AsyncCallsResource(self._client)
 
     @cached_property
     def conferences(self) -> AsyncConferencesResource:
+        """TeXML REST Commands"""
         return AsyncConferencesResource(self._client)
 
     @cached_property
@@ -230,6 +239,7 @@ class AsyncAccountsResource(AsyncAPIResource):
 
     @cached_property
     def queues(self) -> AsyncQueuesResource:
+        """TeXML REST Commands"""
         return AsyncQueuesResource(self._client)
 
     @cached_property
@@ -370,10 +380,12 @@ class AccountsResourceWithRawResponse:
 
     @cached_property
     def calls(self) -> CallsResourceWithRawResponse:
+        """TeXML REST Commands"""
         return CallsResourceWithRawResponse(self._accounts.calls)
 
     @cached_property
     def conferences(self) -> ConferencesResourceWithRawResponse:
+        """TeXML REST Commands"""
         return ConferencesResourceWithRawResponse(self._accounts.conferences)
 
     @cached_property
@@ -386,6 +398,7 @@ class AccountsResourceWithRawResponse:
 
     @cached_property
     def queues(self) -> QueuesResourceWithRawResponse:
+        """TeXML REST Commands"""
         return QueuesResourceWithRawResponse(self._accounts.queues)
 
 
@@ -402,10 +415,12 @@ class AsyncAccountsResourceWithRawResponse:
 
     @cached_property
     def calls(self) -> AsyncCallsResourceWithRawResponse:
+        """TeXML REST Commands"""
         return AsyncCallsResourceWithRawResponse(self._accounts.calls)
 
     @cached_property
     def conferences(self) -> AsyncConferencesResourceWithRawResponse:
+        """TeXML REST Commands"""
         return AsyncConferencesResourceWithRawResponse(self._accounts.conferences)
 
     @cached_property
@@ -418,6 +433,7 @@ class AsyncAccountsResourceWithRawResponse:
 
     @cached_property
     def queues(self) -> AsyncQueuesResourceWithRawResponse:
+        """TeXML REST Commands"""
         return AsyncQueuesResourceWithRawResponse(self._accounts.queues)
 
 
@@ -434,10 +450,12 @@ class AccountsResourceWithStreamingResponse:
 
     @cached_property
     def calls(self) -> CallsResourceWithStreamingResponse:
+        """TeXML REST Commands"""
         return CallsResourceWithStreamingResponse(self._accounts.calls)
 
     @cached_property
     def conferences(self) -> ConferencesResourceWithStreamingResponse:
+        """TeXML REST Commands"""
         return ConferencesResourceWithStreamingResponse(self._accounts.conferences)
 
     @cached_property
@@ -450,6 +468,7 @@ class AccountsResourceWithStreamingResponse:
 
     @cached_property
     def queues(self) -> QueuesResourceWithStreamingResponse:
+        """TeXML REST Commands"""
         return QueuesResourceWithStreamingResponse(self._accounts.queues)
 
 
@@ -466,10 +485,12 @@ class AsyncAccountsResourceWithStreamingResponse:
 
     @cached_property
     def calls(self) -> AsyncCallsResourceWithStreamingResponse:
+        """TeXML REST Commands"""
         return AsyncCallsResourceWithStreamingResponse(self._accounts.calls)
 
     @cached_property
     def conferences(self) -> AsyncConferencesResourceWithStreamingResponse:
+        """TeXML REST Commands"""
         return AsyncConferencesResourceWithStreamingResponse(self._accounts.conferences)
 
     @cached_property
@@ -482,4 +503,5 @@ class AsyncAccountsResourceWithStreamingResponse:
 
     @cached_property
     def queues(self) -> AsyncQueuesResourceWithStreamingResponse:
+        """TeXML REST Commands"""
         return AsyncQueuesResourceWithStreamingResponse(self._accounts.queues)

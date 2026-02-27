@@ -27,6 +27,8 @@ __all__ = ["JobsResource", "AsyncJobsResource"]
 
 
 class JobsResource(SyncAPIResource):
+    """Background jobs performed over a phone-numbers block's phone numbers"""
+
     @cached_property
     def with_raw_response(self) -> JobsResourceWithRawResponse:
         """
@@ -173,6 +175,8 @@ class JobsResource(SyncAPIResource):
 
 
 class AsyncJobsResource(AsyncAPIResource):
+    """Background jobs performed over a phone-numbers block's phone numbers"""
+
     @cached_property
     def with_raw_response(self) -> AsyncJobsResourceWithRawResponse:
         """

@@ -26,6 +26,8 @@ __all__ = ["RcsResource", "AsyncRcsResource"]
 
 
 class RcsResource(SyncAPIResource):
+    """Send RCS messages"""
+
     @cached_property
     def with_raw_response(self) -> RcsResourceWithRawResponse:
         """
@@ -158,6 +160,8 @@ class RcsResource(SyncAPIResource):
 
 
 class AsyncRcsResource(AsyncAPIResource):
+    """Send RCS messages"""
+
     @cached_property
     def with_raw_response(self) -> AsyncRcsResourceWithRawResponse:
         """

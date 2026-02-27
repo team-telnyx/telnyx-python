@@ -36,8 +36,11 @@ __all__ = ["FaxesResource", "AsyncFaxesResource"]
 
 
 class FaxesResource(SyncAPIResource):
+    """Programmable fax command operations"""
+
     @cached_property
     def actions(self) -> ActionsResource:
+        """Programmable fax command operations"""
         return ActionsResource(self._client)
 
     @cached_property
@@ -304,8 +307,11 @@ class FaxesResource(SyncAPIResource):
 
 
 class AsyncFaxesResource(AsyncAPIResource):
+    """Programmable fax command operations"""
+
     @cached_property
     def actions(self) -> AsyncActionsResource:
+        """Programmable fax command operations"""
         return AsyncActionsResource(self._client)
 
     @cached_property
@@ -590,6 +596,7 @@ class FaxesResourceWithRawResponse:
 
     @cached_property
     def actions(self) -> ActionsResourceWithRawResponse:
+        """Programmable fax command operations"""
         return ActionsResourceWithRawResponse(self._faxes.actions)
 
 
@@ -612,6 +619,7 @@ class AsyncFaxesResourceWithRawResponse:
 
     @cached_property
     def actions(self) -> AsyncActionsResourceWithRawResponse:
+        """Programmable fax command operations"""
         return AsyncActionsResourceWithRawResponse(self._faxes.actions)
 
 
@@ -634,6 +642,7 @@ class FaxesResourceWithStreamingResponse:
 
     @cached_property
     def actions(self) -> ActionsResourceWithStreamingResponse:
+        """Programmable fax command operations"""
         return ActionsResourceWithStreamingResponse(self._faxes.actions)
 
 
@@ -656,4 +665,5 @@ class AsyncFaxesResourceWithStreamingResponse:
 
     @cached_property
     def actions(self) -> AsyncActionsResourceWithStreamingResponse:
+        """Programmable fax command operations"""
         return AsyncActionsResourceWithStreamingResponse(self._faxes.actions)

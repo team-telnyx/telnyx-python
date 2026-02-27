@@ -35,8 +35,11 @@ __all__ = ["VerifiedNumbersResource", "AsyncVerifiedNumbersResource"]
 
 
 class VerifiedNumbersResource(SyncAPIResource):
+    """Verified Numbers operations"""
+
     @cached_property
     def actions(self) -> ActionsResource:
+        """Verified Numbers operations"""
         return ActionsResource(self._client)
 
     @cached_property
@@ -224,8 +227,11 @@ class VerifiedNumbersResource(SyncAPIResource):
 
 
 class AsyncVerifiedNumbersResource(AsyncAPIResource):
+    """Verified Numbers operations"""
+
     @cached_property
     def actions(self) -> AsyncActionsResource:
+        """Verified Numbers operations"""
         return AsyncActionsResource(self._client)
 
     @cached_property
@@ -431,6 +437,7 @@ class VerifiedNumbersResourceWithRawResponse:
 
     @cached_property
     def actions(self) -> ActionsResourceWithRawResponse:
+        """Verified Numbers operations"""
         return ActionsResourceWithRawResponse(self._verified_numbers.actions)
 
 
@@ -453,6 +460,7 @@ class AsyncVerifiedNumbersResourceWithRawResponse:
 
     @cached_property
     def actions(self) -> AsyncActionsResourceWithRawResponse:
+        """Verified Numbers operations"""
         return AsyncActionsResourceWithRawResponse(self._verified_numbers.actions)
 
 
@@ -475,6 +483,7 @@ class VerifiedNumbersResourceWithStreamingResponse:
 
     @cached_property
     def actions(self) -> ActionsResourceWithStreamingResponse:
+        """Verified Numbers operations"""
         return ActionsResourceWithStreamingResponse(self._verified_numbers.actions)
 
 
@@ -497,4 +506,5 @@ class AsyncVerifiedNumbersResourceWithStreamingResponse:
 
     @cached_property
     def actions(self) -> AsyncActionsResourceWithStreamingResponse:
+        """Verified Numbers operations"""
         return AsyncActionsResourceWithStreamingResponse(self._verified_numbers.actions)

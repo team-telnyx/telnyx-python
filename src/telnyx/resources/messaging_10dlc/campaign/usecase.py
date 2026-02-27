@@ -22,6 +22,8 @@ __all__ = ["UsecaseResource", "AsyncUsecaseResource"]
 
 
 class UsecaseResource(SyncAPIResource):
+    """Campaign operations"""
+
     @cached_property
     def with_raw_response(self) -> UsecaseResourceWithRawResponse:
         """
@@ -78,6 +80,8 @@ class UsecaseResource(SyncAPIResource):
 
 
 class AsyncUsecaseResource(AsyncAPIResource):
+    """Campaign operations"""
+
     @cached_property
     def with_raw_response(self) -> AsyncUsecaseResourceWithRawResponse:
         """

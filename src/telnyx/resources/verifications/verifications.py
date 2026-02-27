@@ -45,12 +45,16 @@ __all__ = ["VerificationsResource", "AsyncVerificationsResource"]
 
 
 class VerificationsResource(SyncAPIResource):
+    """Two factor authentication API"""
+
     @cached_property
     def by_phone_number(self) -> ByPhoneNumberResource:
+        """Two factor authentication API"""
         return ByPhoneNumberResource(self._client)
 
     @cached_property
     def actions(self) -> ActionsResource:
+        """Two factor authentication API"""
         return ActionsResource(self._client)
 
     @cached_property
@@ -261,12 +265,16 @@ class VerificationsResource(SyncAPIResource):
 
 
 class AsyncVerificationsResource(AsyncAPIResource):
+    """Two factor authentication API"""
+
     @cached_property
     def by_phone_number(self) -> AsyncByPhoneNumberResource:
+        """Two factor authentication API"""
         return AsyncByPhoneNumberResource(self._client)
 
     @cached_property
     def actions(self) -> AsyncActionsResource:
+        """Two factor authentication API"""
         return AsyncActionsResource(self._client)
 
     @cached_property
@@ -495,10 +503,12 @@ class VerificationsResourceWithRawResponse:
 
     @cached_property
     def by_phone_number(self) -> ByPhoneNumberResourceWithRawResponse:
+        """Two factor authentication API"""
         return ByPhoneNumberResourceWithRawResponse(self._verifications.by_phone_number)
 
     @cached_property
     def actions(self) -> ActionsResourceWithRawResponse:
+        """Two factor authentication API"""
         return ActionsResourceWithRawResponse(self._verifications.actions)
 
 
@@ -521,10 +531,12 @@ class AsyncVerificationsResourceWithRawResponse:
 
     @cached_property
     def by_phone_number(self) -> AsyncByPhoneNumberResourceWithRawResponse:
+        """Two factor authentication API"""
         return AsyncByPhoneNumberResourceWithRawResponse(self._verifications.by_phone_number)
 
     @cached_property
     def actions(self) -> AsyncActionsResourceWithRawResponse:
+        """Two factor authentication API"""
         return AsyncActionsResourceWithRawResponse(self._verifications.actions)
 
 
@@ -547,10 +559,12 @@ class VerificationsResourceWithStreamingResponse:
 
     @cached_property
     def by_phone_number(self) -> ByPhoneNumberResourceWithStreamingResponse:
+        """Two factor authentication API"""
         return ByPhoneNumberResourceWithStreamingResponse(self._verifications.by_phone_number)
 
     @cached_property
     def actions(self) -> ActionsResourceWithStreamingResponse:
+        """Two factor authentication API"""
         return ActionsResourceWithStreamingResponse(self._verifications.actions)
 
 
@@ -573,8 +587,10 @@ class AsyncVerificationsResourceWithStreamingResponse:
 
     @cached_property
     def by_phone_number(self) -> AsyncByPhoneNumberResourceWithStreamingResponse:
+        """Two factor authentication API"""
         return AsyncByPhoneNumberResourceWithStreamingResponse(self._verifications.by_phone_number)
 
     @cached_property
     def actions(self) -> AsyncActionsResourceWithStreamingResponse:
+        """Two factor authentication API"""
         return AsyncActionsResourceWithStreamingResponse(self._verifications.actions)

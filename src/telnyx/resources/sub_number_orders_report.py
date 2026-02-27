@@ -27,6 +27,8 @@ __all__ = ["SubNumberOrdersReportResource", "AsyncSubNumberOrdersReportResource"
 
 
 class SubNumberOrdersReportResource(SyncAPIResource):
+    """Number orders"""
+
     @cached_property
     def with_raw_response(self) -> SubNumberOrdersReportResourceWithRawResponse:
         """
@@ -178,6 +180,8 @@ class SubNumberOrdersReportResource(SyncAPIResource):
 
 
 class AsyncSubNumberOrdersReportResource(AsyncAPIResource):
+    """Number orders"""
+
     @cached_property
     def with_raw_response(self) -> AsyncSubNumberOrdersReportResourceWithRawResponse:
         """

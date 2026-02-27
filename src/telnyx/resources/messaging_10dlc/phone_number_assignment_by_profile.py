@@ -37,6 +37,8 @@ __all__ = ["PhoneNumberAssignmentByProfileResource", "AsyncPhoneNumberAssignment
 
 
 class PhoneNumberAssignmentByProfileResource(SyncAPIResource):
+    """Phone number campaign bulk assignment"""
+
     @cached_property
     def with_raw_response(self) -> PhoneNumberAssignmentByProfileResourceWithRawResponse:
         """
@@ -240,6 +242,8 @@ class PhoneNumberAssignmentByProfileResource(SyncAPIResource):
 
 
 class AsyncPhoneNumberAssignmentByProfileResource(AsyncAPIResource):
+    """Phone number campaign bulk assignment"""
+
     @cached_property
     def with_raw_response(self) -> AsyncPhoneNumberAssignmentByProfileResourceWithRawResponse:
         """

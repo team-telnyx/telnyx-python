@@ -28,8 +28,11 @@ __all__ = ["ByPhoneNumberResource", "AsyncByPhoneNumberResource"]
 
 
 class ByPhoneNumberResource(SyncAPIResource):
+    """Two factor authentication API"""
+
     @cached_property
     def actions(self) -> ActionsResource:
+        """Two factor authentication API"""
         return ActionsResource(self._client)
 
     @cached_property
@@ -88,8 +91,11 @@ class ByPhoneNumberResource(SyncAPIResource):
 
 
 class AsyncByPhoneNumberResource(AsyncAPIResource):
+    """Two factor authentication API"""
+
     @cached_property
     def actions(self) -> AsyncActionsResource:
+        """Two factor authentication API"""
         return AsyncActionsResource(self._client)
 
     @cached_property
@@ -157,6 +163,7 @@ class ByPhoneNumberResourceWithRawResponse:
 
     @cached_property
     def actions(self) -> ActionsResourceWithRawResponse:
+        """Two factor authentication API"""
         return ActionsResourceWithRawResponse(self._by_phone_number.actions)
 
 
@@ -170,6 +177,7 @@ class AsyncByPhoneNumberResourceWithRawResponse:
 
     @cached_property
     def actions(self) -> AsyncActionsResourceWithRawResponse:
+        """Two factor authentication API"""
         return AsyncActionsResourceWithRawResponse(self._by_phone_number.actions)
 
 
@@ -183,6 +191,7 @@ class ByPhoneNumberResourceWithStreamingResponse:
 
     @cached_property
     def actions(self) -> ActionsResourceWithStreamingResponse:
+        """Two factor authentication API"""
         return ActionsResourceWithStreamingResponse(self._by_phone_number.actions)
 
 
@@ -196,4 +205,5 @@ class AsyncByPhoneNumberResourceWithStreamingResponse:
 
     @cached_property
     def actions(self) -> AsyncActionsResourceWithStreamingResponse:
+        """Two factor authentication API"""
         return AsyncActionsResourceWithStreamingResponse(self._by_phone_number.actions)

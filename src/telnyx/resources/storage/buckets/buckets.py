@@ -38,12 +38,16 @@ __all__ = ["BucketsResource", "AsyncBucketsResource"]
 
 
 class BucketsResource(SyncAPIResource):
+    """Presigned object URL operations"""
+
     @cached_property
     def ssl_certificate(self) -> SslCertificateResource:
+        """SSL certificate operations"""
         return SslCertificateResource(self._client)
 
     @cached_property
     def usage(self) -> UsageResource:
+        """Bucket Usage operations"""
         return UsageResource(self._client)
 
     @cached_property
@@ -112,12 +116,16 @@ class BucketsResource(SyncAPIResource):
 
 
 class AsyncBucketsResource(AsyncAPIResource):
+    """Presigned object URL operations"""
+
     @cached_property
     def ssl_certificate(self) -> AsyncSslCertificateResource:
+        """SSL certificate operations"""
         return AsyncSslCertificateResource(self._client)
 
     @cached_property
     def usage(self) -> AsyncUsageResource:
+        """Bucket Usage operations"""
         return AsyncUsageResource(self._client)
 
     @cached_property
@@ -197,10 +205,12 @@ class BucketsResourceWithRawResponse:
 
     @cached_property
     def ssl_certificate(self) -> SslCertificateResourceWithRawResponse:
+        """SSL certificate operations"""
         return SslCertificateResourceWithRawResponse(self._buckets.ssl_certificate)
 
     @cached_property
     def usage(self) -> UsageResourceWithRawResponse:
+        """Bucket Usage operations"""
         return UsageResourceWithRawResponse(self._buckets.usage)
 
 
@@ -214,10 +224,12 @@ class AsyncBucketsResourceWithRawResponse:
 
     @cached_property
     def ssl_certificate(self) -> AsyncSslCertificateResourceWithRawResponse:
+        """SSL certificate operations"""
         return AsyncSslCertificateResourceWithRawResponse(self._buckets.ssl_certificate)
 
     @cached_property
     def usage(self) -> AsyncUsageResourceWithRawResponse:
+        """Bucket Usage operations"""
         return AsyncUsageResourceWithRawResponse(self._buckets.usage)
 
 
@@ -231,10 +243,12 @@ class BucketsResourceWithStreamingResponse:
 
     @cached_property
     def ssl_certificate(self) -> SslCertificateResourceWithStreamingResponse:
+        """SSL certificate operations"""
         return SslCertificateResourceWithStreamingResponse(self._buckets.ssl_certificate)
 
     @cached_property
     def usage(self) -> UsageResourceWithStreamingResponse:
+        """Bucket Usage operations"""
         return UsageResourceWithStreamingResponse(self._buckets.usage)
 
 
@@ -248,8 +262,10 @@ class AsyncBucketsResourceWithStreamingResponse:
 
     @cached_property
     def ssl_certificate(self) -> AsyncSslCertificateResourceWithStreamingResponse:
+        """SSL certificate operations"""
         return AsyncSslCertificateResourceWithStreamingResponse(self._buckets.ssl_certificate)
 
     @cached_property
     def usage(self) -> AsyncUsageResourceWithStreamingResponse:
+        """Bucket Usage operations"""
         return AsyncUsageResourceWithStreamingResponse(self._buckets.usage)

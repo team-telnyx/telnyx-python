@@ -24,6 +24,8 @@ __all__ = ["PurchaseResource", "AsyncPurchaseResource"]
 
 
 class PurchaseResource(SyncAPIResource):
+    """SIM Cards operations"""
+
     @cached_property
     def with_raw_response(self) -> PurchaseResourceWithRawResponse:
         """
@@ -110,6 +112,8 @@ class PurchaseResource(SyncAPIResource):
 
 
 class AsyncPurchaseResource(AsyncAPIResource):
+    """SIM Cards operations"""
+
     @cached_property
     def with_raw_response(self) -> AsyncPurchaseResourceWithRawResponse:
         """

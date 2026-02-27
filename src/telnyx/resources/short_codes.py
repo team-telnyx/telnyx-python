@@ -25,6 +25,8 @@ __all__ = ["ShortCodesResource", "AsyncShortCodesResource"]
 
 
 class ShortCodesResource(SyncAPIResource):
+    """Short codes"""
+
     @cached_property
     def with_raw_response(self) -> ShortCodesResourceWithRawResponse:
         """
@@ -175,6 +177,8 @@ class ShortCodesResource(SyncAPIResource):
 
 
 class AsyncShortCodesResource(AsyncAPIResource):
+    """Short codes"""
+
     @cached_property
     def with_raw_response(self) -> AsyncShortCodesResourceWithRawResponse:
         """

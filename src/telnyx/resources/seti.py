@@ -22,6 +22,8 @@ __all__ = ["SetiResource", "AsyncSetiResource"]
 
 
 class SetiResource(SyncAPIResource):
+    """Observability into Telnyx platform stability and performance."""
+
     @cached_property
     def with_raw_response(self) -> SetiResourceWithRawResponse:
         """
@@ -83,6 +85,8 @@ class SetiResource(SyncAPIResource):
 
 
 class AsyncSetiResource(AsyncAPIResource):
+    """Observability into Telnyx platform stability and performance."""
+
     @cached_property
     def with_raw_response(self) -> AsyncSetiResourceWithRawResponse:
         """

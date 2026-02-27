@@ -111,28 +111,36 @@ __all__ = ["AIResource", "AsyncAIResource"]
 
 
 class AIResource(SyncAPIResource):
+    """Generate text with LLMs"""
+
     @cached_property
     def assistants(self) -> AssistantsResource:
+        """Configure AI assistant specifications"""
         return AssistantsResource(self._client)
 
     @cached_property
     def audio(self) -> AudioResource:
+        """Turn audio into text or text into audio."""
         return AudioResource(self._client)
 
     @cached_property
     def chat(self) -> ChatResource:
+        """Generate text with LLMs"""
         return ChatResource(self._client)
 
     @cached_property
     def clusters(self) -> ClustersResource:
+        """Identify common themes and patterns in your embedded documents"""
         return ClustersResource(self._client)
 
     @cached_property
     def conversations(self) -> ConversationsResource:
+        """Manage historical AI assistant conversations"""
         return ConversationsResource(self._client)
 
     @cached_property
     def embeddings(self) -> EmbeddingsResource:
+        """Embed documents and perform text searches"""
         return EmbeddingsResource(self._client)
 
     @cached_property
@@ -258,28 +266,36 @@ class AIResource(SyncAPIResource):
 
 
 class AsyncAIResource(AsyncAPIResource):
+    """Generate text with LLMs"""
+
     @cached_property
     def assistants(self) -> AsyncAssistantsResource:
+        """Configure AI assistant specifications"""
         return AsyncAssistantsResource(self._client)
 
     @cached_property
     def audio(self) -> AsyncAudioResource:
+        """Turn audio into text or text into audio."""
         return AsyncAudioResource(self._client)
 
     @cached_property
     def chat(self) -> AsyncChatResource:
+        """Generate text with LLMs"""
         return AsyncChatResource(self._client)
 
     @cached_property
     def clusters(self) -> AsyncClustersResource:
+        """Identify common themes and patterns in your embedded documents"""
         return AsyncClustersResource(self._client)
 
     @cached_property
     def conversations(self) -> AsyncConversationsResource:
+        """Manage historical AI assistant conversations"""
         return AsyncConversationsResource(self._client)
 
     @cached_property
     def embeddings(self) -> AsyncEmbeddingsResource:
+        """Embed documents and perform text searches"""
         return AsyncEmbeddingsResource(self._client)
 
     @cached_property
@@ -417,26 +433,32 @@ class AIResourceWithRawResponse:
 
     @cached_property
     def assistants(self) -> AssistantsResourceWithRawResponse:
+        """Configure AI assistant specifications"""
         return AssistantsResourceWithRawResponse(self._ai.assistants)
 
     @cached_property
     def audio(self) -> AudioResourceWithRawResponse:
+        """Turn audio into text or text into audio."""
         return AudioResourceWithRawResponse(self._ai.audio)
 
     @cached_property
     def chat(self) -> ChatResourceWithRawResponse:
+        """Generate text with LLMs"""
         return ChatResourceWithRawResponse(self._ai.chat)
 
     @cached_property
     def clusters(self) -> ClustersResourceWithRawResponse:
+        """Identify common themes and patterns in your embedded documents"""
         return ClustersResourceWithRawResponse(self._ai.clusters)
 
     @cached_property
     def conversations(self) -> ConversationsResourceWithRawResponse:
+        """Manage historical AI assistant conversations"""
         return ConversationsResourceWithRawResponse(self._ai.conversations)
 
     @cached_property
     def embeddings(self) -> EmbeddingsResourceWithRawResponse:
+        """Embed documents and perform text searches"""
         return EmbeddingsResourceWithRawResponse(self._ai.embeddings)
 
     @cached_property
@@ -473,26 +495,32 @@ class AsyncAIResourceWithRawResponse:
 
     @cached_property
     def assistants(self) -> AsyncAssistantsResourceWithRawResponse:
+        """Configure AI assistant specifications"""
         return AsyncAssistantsResourceWithRawResponse(self._ai.assistants)
 
     @cached_property
     def audio(self) -> AsyncAudioResourceWithRawResponse:
+        """Turn audio into text or text into audio."""
         return AsyncAudioResourceWithRawResponse(self._ai.audio)
 
     @cached_property
     def chat(self) -> AsyncChatResourceWithRawResponse:
+        """Generate text with LLMs"""
         return AsyncChatResourceWithRawResponse(self._ai.chat)
 
     @cached_property
     def clusters(self) -> AsyncClustersResourceWithRawResponse:
+        """Identify common themes and patterns in your embedded documents"""
         return AsyncClustersResourceWithRawResponse(self._ai.clusters)
 
     @cached_property
     def conversations(self) -> AsyncConversationsResourceWithRawResponse:
+        """Manage historical AI assistant conversations"""
         return AsyncConversationsResourceWithRawResponse(self._ai.conversations)
 
     @cached_property
     def embeddings(self) -> AsyncEmbeddingsResourceWithRawResponse:
+        """Embed documents and perform text searches"""
         return AsyncEmbeddingsResourceWithRawResponse(self._ai.embeddings)
 
     @cached_property
@@ -529,26 +557,32 @@ class AIResourceWithStreamingResponse:
 
     @cached_property
     def assistants(self) -> AssistantsResourceWithStreamingResponse:
+        """Configure AI assistant specifications"""
         return AssistantsResourceWithStreamingResponse(self._ai.assistants)
 
     @cached_property
     def audio(self) -> AudioResourceWithStreamingResponse:
+        """Turn audio into text or text into audio."""
         return AudioResourceWithStreamingResponse(self._ai.audio)
 
     @cached_property
     def chat(self) -> ChatResourceWithStreamingResponse:
+        """Generate text with LLMs"""
         return ChatResourceWithStreamingResponse(self._ai.chat)
 
     @cached_property
     def clusters(self) -> ClustersResourceWithStreamingResponse:
+        """Identify common themes and patterns in your embedded documents"""
         return ClustersResourceWithStreamingResponse(self._ai.clusters)
 
     @cached_property
     def conversations(self) -> ConversationsResourceWithStreamingResponse:
+        """Manage historical AI assistant conversations"""
         return ConversationsResourceWithStreamingResponse(self._ai.conversations)
 
     @cached_property
     def embeddings(self) -> EmbeddingsResourceWithStreamingResponse:
+        """Embed documents and perform text searches"""
         return EmbeddingsResourceWithStreamingResponse(self._ai.embeddings)
 
     @cached_property
@@ -585,26 +619,32 @@ class AsyncAIResourceWithStreamingResponse:
 
     @cached_property
     def assistants(self) -> AsyncAssistantsResourceWithStreamingResponse:
+        """Configure AI assistant specifications"""
         return AsyncAssistantsResourceWithStreamingResponse(self._ai.assistants)
 
     @cached_property
     def audio(self) -> AsyncAudioResourceWithStreamingResponse:
+        """Turn audio into text or text into audio."""
         return AsyncAudioResourceWithStreamingResponse(self._ai.audio)
 
     @cached_property
     def chat(self) -> AsyncChatResourceWithStreamingResponse:
+        """Generate text with LLMs"""
         return AsyncChatResourceWithStreamingResponse(self._ai.chat)
 
     @cached_property
     def clusters(self) -> AsyncClustersResourceWithStreamingResponse:
+        """Identify common themes and patterns in your embedded documents"""
         return AsyncClustersResourceWithStreamingResponse(self._ai.clusters)
 
     @cached_property
     def conversations(self) -> AsyncConversationsResourceWithStreamingResponse:
+        """Manage historical AI assistant conversations"""
         return AsyncConversationsResourceWithStreamingResponse(self._ai.conversations)
 
     @cached_property
     def embeddings(self) -> AsyncEmbeddingsResourceWithStreamingResponse:
+        """Embed documents and perform text searches"""
         return AsyncEmbeddingsResourceWithStreamingResponse(self._ai.embeddings)
 
     @cached_property

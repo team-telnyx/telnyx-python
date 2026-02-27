@@ -19,6 +19,7 @@ __all__ = ["VerificationResource", "AsyncVerificationResource"]
 class VerificationResource(SyncAPIResource):
     @cached_property
     def requests(self) -> RequestsResource:
+        """Manage your tollfree verification requests"""
         return RequestsResource(self._client)
 
     @cached_property
@@ -44,6 +45,7 @@ class VerificationResource(SyncAPIResource):
 class AsyncVerificationResource(AsyncAPIResource):
     @cached_property
     def requests(self) -> AsyncRequestsResource:
+        """Manage your tollfree verification requests"""
         return AsyncRequestsResource(self._client)
 
     @cached_property
@@ -72,6 +74,7 @@ class VerificationResourceWithRawResponse:
 
     @cached_property
     def requests(self) -> RequestsResourceWithRawResponse:
+        """Manage your tollfree verification requests"""
         return RequestsResourceWithRawResponse(self._verification.requests)
 
 
@@ -81,6 +84,7 @@ class AsyncVerificationResourceWithRawResponse:
 
     @cached_property
     def requests(self) -> AsyncRequestsResourceWithRawResponse:
+        """Manage your tollfree verification requests"""
         return AsyncRequestsResourceWithRawResponse(self._verification.requests)
 
 
@@ -90,6 +94,7 @@ class VerificationResourceWithStreamingResponse:
 
     @cached_property
     def requests(self) -> RequestsResourceWithStreamingResponse:
+        """Manage your tollfree verification requests"""
         return RequestsResourceWithStreamingResponse(self._verification.requests)
 
 
@@ -99,4 +104,5 @@ class AsyncVerificationResourceWithStreamingResponse:
 
     @cached_property
     def requests(self) -> AsyncRequestsResourceWithStreamingResponse:
+        """Manage your tollfree verification requests"""
         return AsyncRequestsResourceWithStreamingResponse(self._verification.requests)
