@@ -4,12 +4,11 @@ from typing import Optional
 
 from .record import Record
 from .._models import BaseModel
-from .wireguard_peer_patch import WireguardPeerPatch
 
 __all__ = ["WireguardPeerUpdateResponse", "Data"]
 
 
-class Data(Record, WireguardPeerPatch):
+class Data(Record):
     last_seen: Optional[str] = None
     """ISO 8601 formatted date-time indicating when peer sent traffic last time."""
 
