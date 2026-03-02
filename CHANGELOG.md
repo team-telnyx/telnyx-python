@@ -1,5 +1,18 @@
 # Changelog
 
+## 4.59.1 (2026-03-02)
+
+Full Changelog: [v4.59.0...v4.59.1](https://github.com/team-telnyx/telnyx-python/compare/v4.59.0...v4.59.1)
+
+### Bug Fixes
+
+* narrow porting event_type enums for SDK discriminator support ([7eb298c](https://github.com/team-telnyx/telnyx-python/commit/7eb298c84b686ddca5a1879d283c06616370e760))
+
+
+### Chores
+
+* **docs:** add missing descriptions ([4ceeb06](https://github.com/team-telnyx/telnyx-python/commit/4ceeb0638ea79aed95b74d8afe71ef7386f4a3af))
+
 ## 4.59.0 (2026-02-27)
 
 Full Changelog: [v4.58.0...v4.59.0](https://github.com/team-telnyx/telnyx-python/compare/v4.58.0...v4.59.0)
