@@ -4525,11 +4525,12 @@ Methods:
 Types:
 
 ```python
-from telnyx.types import TextToSpeechListVoicesResponse
+from telnyx.types import TextToSpeechGenerateResponse, TextToSpeechListVoicesResponse
 ```
 
 Methods:
 
+- <code title="post /text-to-speech/speech">client.text_to_speech.<a href="./src/telnyx/resources/text_to_speech.py">generate</a>(\*\*<a href="src/telnyx/types/text_to_speech_generate_params.py">params</a>) -> <a href="./src/telnyx/types/text_to_speech_generate_response.py">TextToSpeechGenerateResponse</a></code>
 - <code title="get /text-to-speech/voices">client.text_to_speech.<a href="./src/telnyx/resources/text_to_speech.py">list_voices</a>(\*\*<a href="src/telnyx/types/text_to_speech_list_voices_params.py">params</a>) -> <a href="./src/telnyx/types/text_to_speech_list_voices_response.py">TextToSpeechListVoicesResponse</a></code>
 - <code title="get /text-to-speech/speech">client.text_to_speech.<a href="./src/telnyx/resources/text_to_speech.py">stream</a>(\*\*<a href="src/telnyx/types/text_to_speech_stream_params.py">params</a>) -> None</code>
 
