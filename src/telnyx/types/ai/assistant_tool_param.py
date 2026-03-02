@@ -22,6 +22,11 @@ __all__ = [
     "TransferTransferVoicemailDetectionDetectionConfig",
     "TransferTransferVoicemailDetectionOnVoicemailDetected",
     "TransferTransferVoicemailDetectionOnVoicemailDetectedVoicemailMessage",
+    "Invite",
+    "InviteInvite",
+    "InviteInviteCustomHeader",
+    "InviteInviteVoicemailDetection",
+    "InviteInviteVoicemailDetectionOnVoicemailDetected",
     "Refer",
     "ReferRefer",
     "ReferReferTarget",
@@ -226,6 +231,67 @@ class Transfer(TypedDict, total=False):
     type: Required[Literal["transfer"]]
 
 
+class InviteInviteCustomHeader(TypedDict, total=False):
+    name: str
+
+    value: str
+    """The value of the header.
+
+    Note that we support mustache templating for the value. For example you can use
+    `{{#integration_secret}}test-secret{{/integration_secret}}` to pass the value of
+    the integration secret.
+    """
+
+
+class InviteInviteVoicemailDetectionOnVoicemailDetected(TypedDict, total=False):
+    """Action to take when voicemail is detected on the invited call."""
+
+    action: Literal["stop_invite"]
+    """The action to take when voicemail is detected."""
+
+
+class InviteInviteVoicemailDetection(TypedDict, total=False):
+    """
+    Configuration for voicemail detection (AMD - Answering Machine Detection) on the invited call.
+    """
+
+    detection_mode: Literal["disabled", "premium"]
+    """The AMD detection mode to use.
+
+    'premium' enables premium answering machine detection. 'disabled' turns off AMD
+    detection.
+    """
+
+    on_voicemail_detected: InviteInviteVoicemailDetectionOnVoicemailDetected
+    """Action to take when voicemail is detected on the invited call."""
+
+
+_InviteInviteReservedKeywords = TypedDict(
+    "_InviteInviteReservedKeywords",
+    {
+        "from": str,
+    },
+    total=False,
+)
+
+
+class InviteInvite(_InviteInviteReservedKeywords, total=False):
+    custom_headers: Iterable[InviteInviteCustomHeader]
+    """Custom headers to be added to the SIP INVITE for the invite command."""
+
+    voicemail_detection: InviteInviteVoicemailDetection
+    """
+    Configuration for voicemail detection (AMD - Answering Machine Detection) on the
+    invited call.
+    """
+
+
+class Invite(TypedDict, total=False):
+    invite: Required[InviteInvite]
+
+    type: Required[Literal["invite"]]
+
+
 class ReferReferTarget(TypedDict, total=False):
     name: Required[str]
     """The name of the target."""
@@ -320,6 +386,7 @@ AssistantToolParam: TypeAlias = Union[
     Handoff,
     HangupToolParam,
     Transfer,
+    Invite,
     Refer,
     SendDtmf,
     SendMessage,
