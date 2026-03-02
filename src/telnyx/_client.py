@@ -1374,7 +1374,6 @@ class Telnyx(SyncAPIClient):
 
     @cached_property
     def text_to_speech(self) -> TextToSpeechResource:
-        """Text to speech streaming command operations"""
         from .resources.text_to_speech import TextToSpeechResource
 
         return TextToSpeechResource(self)
@@ -2631,7 +2630,6 @@ class AsyncTelnyx(AsyncAPIClient):
 
     @cached_property
     def text_to_speech(self) -> AsyncTextToSpeechResource:
-        """Text to speech streaming command operations"""
         from .resources.text_to_speech import AsyncTextToSpeechResource
 
         return AsyncTextToSpeechResource(self)
@@ -3842,7 +3840,6 @@ class TelnyxWithRawResponse:
 
     @cached_property
     def text_to_speech(self) -> text_to_speech.TextToSpeechResourceWithRawResponse:
-        """Text to speech streaming command operations"""
         from .resources.text_to_speech import TextToSpeechResourceWithRawResponse
 
         return TextToSpeechResourceWithRawResponse(self._client.text_to_speech)
@@ -4922,7 +4919,6 @@ class AsyncTelnyxWithRawResponse:
 
     @cached_property
     def text_to_speech(self) -> text_to_speech.AsyncTextToSpeechResourceWithRawResponse:
-        """Text to speech streaming command operations"""
         from .resources.text_to_speech import AsyncTextToSpeechResourceWithRawResponse
 
         return AsyncTextToSpeechResourceWithRawResponse(self._client.text_to_speech)
@@ -6008,7 +6004,6 @@ class TelnyxWithStreamedResponse:
 
     @cached_property
     def text_to_speech(self) -> text_to_speech.TextToSpeechResourceWithStreamingResponse:
-        """Text to speech streaming command operations"""
         from .resources.text_to_speech import TextToSpeechResourceWithStreamingResponse
 
         return TextToSpeechResourceWithStreamingResponse(self._client.text_to_speech)
@@ -7128,7 +7123,6 @@ class AsyncTelnyxWithStreamedResponse:
 
     @cached_property
     def text_to_speech(self) -> text_to_speech.AsyncTextToSpeechResourceWithStreamingResponse:
-        """Text to speech streaming command operations"""
         from .resources.text_to_speech import AsyncTextToSpeechResourceWithStreamingResponse
 
         return AsyncTextToSpeechResourceWithStreamingResponse(self._client.text_to_speech)
