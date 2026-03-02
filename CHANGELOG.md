@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.60.0 (2026-03-02)
+
+Full Changelog: [v4.59.1...v4.60.0](https://github.com/team-telnyx/telnyx-python/compare/v4.59.1...v4.60.0)
+
+### Features
+
+* Merge TTS file-based spec into text-to-speech.json ([164d1de](https://github.com/team-telnyx/telnyx-python/commit/164d1ded20e728b49c5a53dfd772858a1e1eb13e))
+
 ## 4.59.1 (2026-03-02)
 
 Full Changelog: [v4.59.0...v4.59.1](https://github.com/team-telnyx/telnyx-python/compare/v4.59.0...v4.59.1)
