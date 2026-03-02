@@ -57,17 +57,7 @@ class PortingEventMessagingChangedPayload(BaseModel):
     created_at: Optional[datetime] = None
     """ISO 8601 formatted date indicating when the resource was created."""
 
-    event_type: Optional[
-        Literal[
-            "porting_order.deleted",
-            "porting_order.loa_updated",
-            "porting_order.messaging_changed",
-            "porting_order.status_changed",
-            "porting_order.sharing_token_expired",
-            "porting_order.new_comment",
-            "porting_order.split",
-        ]
-    ] = None
+    event_type: Optional[Literal["porting_order.messaging_changed"]] = None
     """Identifies the event type"""
 
     payload: Optional[Payload] = None

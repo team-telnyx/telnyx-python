@@ -36,17 +36,7 @@ class PortingEventDeletedPayload(BaseModel):
     available_notification_methods: Optional[List[Literal["email", "webhook", "webhook_v1"]]] = None
     """Indicates the notification methods used."""
 
-    event_type: Optional[
-        Literal[
-            "porting_order.deleted",
-            "porting_order.loa_updated",
-            "porting_order.messaging_changed",
-            "porting_order.status_changed",
-            "porting_order.sharing_token_expired",
-            "porting_order.new_comment",
-            "porting_order.split",
-        ]
-    ] = None
+    event_type: Optional[Literal["porting_order.deleted"]] = None
     """Identifies the event type"""
 
     payload: Optional[Payload] = None
