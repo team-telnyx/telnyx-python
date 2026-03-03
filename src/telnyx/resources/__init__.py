@@ -617,6 +617,14 @@ from .operator_connect import (
     OperatorConnectResourceWithStreamingResponse,
     AsyncOperatorConnectResourceWithStreamingResponse,
 )
+from .session_analysis import (
+    SessionAnalysisResource,
+    AsyncSessionAnalysisResource,
+    SessionAnalysisResourceWithRawResponse,
+    AsyncSessionAnalysisResourceWithRawResponse,
+    SessionAnalysisResourceWithStreamingResponse,
+    AsyncSessionAnalysisResourceWithStreamingResponse,
+)
 from .verified_numbers import (
     VerifiedNumbersResource,
     AsyncVerifiedNumbersResource,
@@ -2119,4 +2127,10 @@ __all__ = [
     "AsyncMessagingProfileMetricsResourceWithRawResponse",
     "MessagingProfileMetricsResourceWithStreamingResponse",
     "AsyncMessagingProfileMetricsResourceWithStreamingResponse",
+    "SessionAnalysisResource",
+    "AsyncSessionAnalysisResource",
+    "SessionAnalysisResourceWithRawResponse",
+    "AsyncSessionAnalysisResourceWithRawResponse",
+    "SessionAnalysisResourceWithStreamingResponse",
+    "AsyncSessionAnalysisResourceWithStreamingResponse",
 ]
