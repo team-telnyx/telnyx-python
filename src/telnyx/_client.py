@@ -110,6 +110,7 @@ if TYPE_CHECKING:
         network_coverage,
         numbers_features,
         operator_connect,
+        session_analysis,
         verified_numbers,
         access_ip_address,
         charges_breakdown,
@@ -380,6 +381,7 @@ if TYPE_CHECKING:
     )
     from .resources.managed_accounts.managed_accounts import ManagedAccountsResource, AsyncManagedAccountsResource
     from .resources.operator_connect.operator_connect import OperatorConnectResource, AsyncOperatorConnectResource
+    from .resources.session_analysis.session_analysis import SessionAnalysisResource, AsyncSessionAnalysisResource
     from .resources.sim_card_data_usage_notifications import (
         SimCardDataUsageNotificationsResource,
         AsyncSimCardDataUsageNotificationsResource,
@@ -1537,6 +1539,13 @@ class Telnyx(SyncAPIClient):
         from .resources.messaging_profile_metrics import MessagingProfileMetricsResource
 
         return MessagingProfileMetricsResource(self)
+
+    @cached_property
+    def session_analysis(self) -> SessionAnalysisResource:
+        """Analyze voice AI sessions, costs, and event hierarchies across Telnyx products."""
+        from .resources.session_analysis import SessionAnalysisResource
+
+        return SessionAnalysisResource(self)
 
     @cached_property
     def with_raw_response(self) -> TelnyxWithRawResponse:
@@ -2796,6 +2805,13 @@ class AsyncTelnyx(AsyncAPIClient):
         return AsyncMessagingProfileMetricsResource(self)
 
     @cached_property
+    def session_analysis(self) -> AsyncSessionAnalysisResource:
+        """Analyze voice AI sessions, costs, and event hierarchies across Telnyx products."""
+        from .resources.session_analysis import AsyncSessionAnalysisResource
+
+        return AsyncSessionAnalysisResource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncTelnyxWithRawResponse:
         return AsyncTelnyxWithRawResponse(self)
 
@@ -4008,6 +4024,13 @@ class TelnyxWithRawResponse:
 
         return MessagingProfileMetricsResourceWithRawResponse(self._client.messaging_profile_metrics)
 
+    @cached_property
+    def session_analysis(self) -> session_analysis.SessionAnalysisResourceWithRawResponse:
+        """Analyze voice AI sessions, costs, and event hierarchies across Telnyx products."""
+        from .resources.session_analysis import SessionAnalysisResourceWithRawResponse
+
+        return SessionAnalysisResourceWithRawResponse(self._client.session_analysis)
+
 
 class AsyncTelnyxWithRawResponse:
     _client: AsyncTelnyx
@@ -5091,6 +5114,13 @@ class AsyncTelnyxWithRawResponse:
         from .resources.messaging_profile_metrics import AsyncMessagingProfileMetricsResourceWithRawResponse
 
         return AsyncMessagingProfileMetricsResourceWithRawResponse(self._client.messaging_profile_metrics)
+
+    @cached_property
+    def session_analysis(self) -> session_analysis.AsyncSessionAnalysisResourceWithRawResponse:
+        """Analyze voice AI sessions, costs, and event hierarchies across Telnyx products."""
+        from .resources.session_analysis import AsyncSessionAnalysisResourceWithRawResponse
+
+        return AsyncSessionAnalysisResourceWithRawResponse(self._client.session_analysis)
 
 
 class TelnyxWithStreamedResponse:
@@ -6177,6 +6207,13 @@ class TelnyxWithStreamedResponse:
         from .resources.messaging_profile_metrics import MessagingProfileMetricsResourceWithStreamingResponse
 
         return MessagingProfileMetricsResourceWithStreamingResponse(self._client.messaging_profile_metrics)
+
+    @cached_property
+    def session_analysis(self) -> session_analysis.SessionAnalysisResourceWithStreamingResponse:
+        """Analyze voice AI sessions, costs, and event hierarchies across Telnyx products."""
+        from .resources.session_analysis import SessionAnalysisResourceWithStreamingResponse
+
+        return SessionAnalysisResourceWithStreamingResponse(self._client.session_analysis)
 
 
 class AsyncTelnyxWithStreamedResponse:
@@ -7307,6 +7344,13 @@ class AsyncTelnyxWithStreamedResponse:
         from .resources.messaging_profile_metrics import AsyncMessagingProfileMetricsResourceWithStreamingResponse
 
         return AsyncMessagingProfileMetricsResourceWithStreamingResponse(self._client.messaging_profile_metrics)
+
+    @cached_property
+    def session_analysis(self) -> session_analysis.AsyncSessionAnalysisResourceWithStreamingResponse:
+        """Analyze voice AI sessions, costs, and event hierarchies across Telnyx products."""
+        from .resources.session_analysis import AsyncSessionAnalysisResourceWithStreamingResponse
+
+        return AsyncSessionAnalysisResourceWithStreamingResponse(self._client.session_analysis)
 
 
 Client = Telnyx
