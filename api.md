@@ -5177,3 +5177,31 @@ from telnyx.types import MessagingProfileMetricListResponse
 Methods:
 
 - <code title="get /messaging_profile_metrics">client.messaging_profile_metrics.<a href="./src/telnyx/resources/messaging_profile_metrics.py">list</a>(\*\*<a href="src/telnyx/types/messaging_profile_metric_list_params.py">params</a>) -> <a href="./src/telnyx/types/messaging_profile_metric_list_response.py">MessagingProfileMetricListResponse</a></code>
+
+# SessionAnalysis
+
+Types:
+
+```python
+from telnyx.types import SessionAnalysisRetrieveResponse
+```
+
+Methods:
+
+- <code title="get /session_analysis/{record_type}/{event_id}">client.session_analysis.<a href="./src/telnyx/resources/session_analysis/session_analysis.py">retrieve</a>(event_id, \*, record_type, \*\*<a href="src/telnyx/types/session_analysis_retrieve_params.py">params</a>) -> <a href="./src/telnyx/types/session_analysis_retrieve_response.py">SessionAnalysisRetrieveResponse</a></code>
+
+## Metadata
+
+Types:
+
+```python
+from telnyx.types.session_analysis import (
+    MetadataRetrieveResponse,
+    MetadataRetrieveRecordTypeResponse,
+)
+```
+
+Methods:
+
+- <code title="get /session_analysis/metadata">client.session_analysis.metadata.<a href="./src/telnyx/resources/session_analysis/metadata.py">retrieve</a>() -> <a href="./src/telnyx/types/session_analysis/metadata_retrieve_response.py">MetadataRetrieveResponse</a></code>
+- <code title="get /session_analysis/metadata/{record_type}">client.session_analysis.metadata.<a href="./src/telnyx/resources/session_analysis/metadata.py">retrieve_record_type</a>(record_type) -> <a href="./src/telnyx/types/session_analysis/metadata_retrieve_record_type_response.py">MetadataRetrieveRecordTypeResponse</a></code>
