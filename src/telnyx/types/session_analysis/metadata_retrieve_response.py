@@ -4,17 +4,10 @@ from typing import Dict, List, Optional
 from datetime import datetime
 
 from ..._models import BaseModel
+from .child_relationship_info import ChildRelationshipInfo
+from .parent_relationship_info import ParentRelationshipInfo
 
-__all__ = [
-    "MetadataRetrieveResponse",
-    "Meta",
-    "QueryParameters",
-    "RecordType",
-    "RecordTypeChildRelationship",
-    "RecordTypeChildRelationshipVia",
-    "RecordTypeParentRelationship",
-    "RecordTypeParentRelationshipVia",
-]
+__all__ = ["MetadataRetrieveResponse", "Meta", "QueryParameters", "RecordType"]
 
 
 class Meta(BaseModel):
@@ -37,64 +30,16 @@ class QueryParameters(BaseModel):
     min: Optional[int] = None
 
 
-class RecordTypeChildRelationshipVia(BaseModel):
-    local_field: str
-
-    parent_field: str
-
-
-class RecordTypeChildRelationship(BaseModel):
-    child_event: str
-
-    child_product: str
-
-    child_record_type: str
-
-    cost_rollup: bool
-
-    description: str
-
-    relationship_type: str
-
-    traversal_enabled: bool
-
-    via: RecordTypeChildRelationshipVia
-
-
-class RecordTypeParentRelationshipVia(BaseModel):
-    local_field: str
-
-    parent_field: str
-
-
-class RecordTypeParentRelationship(BaseModel):
-    cost_rollup: bool
-
-    description: str
-
-    parent_event: str
-
-    parent_product: str
-
-    parent_record_type: str
-
-    relationship_type: str
-
-    traversal_enabled: bool
-
-    via: RecordTypeParentRelationshipVia
-
-
 class RecordType(BaseModel):
     aliases: List[str]
 
-    child_relationships: List[RecordTypeChildRelationship]
+    child_relationships: List[ChildRelationshipInfo]
 
     description: str
 
     event: str
 
-    parent_relationships: List[RecordTypeParentRelationship]
+    parent_relationships: List[ParentRelationshipInfo]
 
     product: str
 

@@ -3,39 +3,10 @@
 from typing import Dict, List
 
 from ..._models import BaseModel
+from .child_relationship_info import ChildRelationshipInfo
+from .parent_relationship_info import ParentRelationshipInfo
 
-__all__ = [
-    "MetadataRetrieveRecordTypeResponse",
-    "ChildRelationship",
-    "ChildRelationshipVia",
-    "Meta",
-    "ParentRelationship",
-    "ParentRelationshipVia",
-]
-
-
-class ChildRelationshipVia(BaseModel):
-    local_field: str
-
-    parent_field: str
-
-
-class ChildRelationship(BaseModel):
-    child_event: str
-
-    child_product: str
-
-    child_record_type: str
-
-    cost_rollup: bool
-
-    description: str
-
-    relationship_type: str
-
-    traversal_enabled: bool
-
-    via: ChildRelationshipVia
+__all__ = ["MetadataRetrieveRecordTypeResponse", "Meta"]
 
 
 class Meta(BaseModel):
@@ -48,34 +19,10 @@ class Meta(BaseModel):
     total_siblings: int
 
 
-class ParentRelationshipVia(BaseModel):
-    local_field: str
-
-    parent_field: str
-
-
-class ParentRelationship(BaseModel):
-    cost_rollup: bool
-
-    description: str
-
-    parent_event: str
-
-    parent_product: str
-
-    parent_record_type: str
-
-    relationship_type: str
-
-    traversal_enabled: bool
-
-    via: ParentRelationshipVia
-
-
 class MetadataRetrieveRecordTypeResponse(BaseModel):
     aliases: List[str]
 
-    child_relationships: List[ChildRelationship]
+    child_relationships: List[ChildRelationshipInfo]
 
     event: str
 
@@ -84,7 +31,7 @@ class MetadataRetrieveRecordTypeResponse(BaseModel):
 
     meta: Meta
 
-    parent_relationships: List[ParentRelationship]
+    parent_relationships: List[ParentRelationshipInfo]
 
     product: str
 
