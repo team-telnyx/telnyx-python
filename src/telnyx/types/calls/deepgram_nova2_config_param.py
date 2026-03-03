@@ -9,7 +9,7 @@ __all__ = ["DeepgramNova2ConfigParam"]
 
 
 class DeepgramNova2ConfigParam(TypedDict, total=False):
-    transcription_engine: Required[Literal["Deepgram"]]
+    transcription_engine: Required[Literal["deepgram/nova-2"]]
 
     transcription_model: Required[Literal["deepgram/nova-2"]]
 
