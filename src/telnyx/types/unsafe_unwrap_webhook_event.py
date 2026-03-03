@@ -8,7 +8,6 @@ from .fax_queued import FaxQueued
 from .fax_delivered import FaxDelivered
 from .fax_media_processed import FaxMediaProcessed
 from .fax_sending_started import FaxSendingStarted
-from .call_ai_gather_ended import CallAIGatherEnded
 from .campaign_status_update import CampaignStatusUpdate
 from .conference_floor_changed import ConferenceFloorChanged
 from .call_hangup_webhook_event import CallHangupWebhookEvent
@@ -36,6 +35,7 @@ from .call_playback_ended_webhook_event import CallPlaybackEndedWebhookEvent
 from .call_siprec_started_webhook_event import CallSiprecStartedWebhookEvent
 from .call_siprec_stopped_webhook_event import CallSiprecStoppedWebhookEvent
 from .replaced_link_click_webhook_event import ReplacedLinkClickWebhookEvent
+from .call_ai_gather_ended_webhook_event import CallAIGatherEndedWebhookEvent
 from .call_recording_error_webhook_event import CallRecordingErrorWebhookEvent
 from .call_recording_saved_webhook_event import CallRecordingSavedWebhookEvent
 from .call_refer_completed_webhook_event import CallReferCompletedWebhookEvent
@@ -45,7 +45,6 @@ from .call_streaming_started_webhook_event import CallStreamingStartedWebhookEve
 from .call_streaming_stopped_webhook_event import CallStreamingStoppedWebhookEvent
 from .conference_speak_ended_webhook_event import ConferenceSpeakEndedWebhookEvent
 from .call_conversation_ended_webhook_event import CallConversationEndedWebhookEvent
-from .call_ai_gather_message_history_updated import CallAIGatherMessageHistoryUpdated
 from .conference_speak_started_webhook_event import ConferenceSpeakStartedWebhookEvent
 from .conference_playback_ended_webhook_event import ConferencePlaybackEndedWebhookEvent
 from .conference_recording_saved_webhook_event import ConferenceRecordingSavedWebhookEvent
@@ -62,13 +61,14 @@ from .call_conversation_insights_generated_webhook_event import CallConversation
 from .call_machine_premium_detection_ended_webhook_event import CallMachinePremiumDetectionEndedWebhookEvent
 from .conference_participant_speak_started_webhook_event import ConferenceParticipantSpeakStartedWebhookEvent
 from .conference_participant_playback_ended_webhook_event import ConferenceParticipantPlaybackEndedWebhookEvent
+from .call_ai_gather_message_history_updated_webhook_event import CallAIGatherMessageHistoryUpdatedWebhookEvent
 from .conference_participant_playback_started_webhook_event import ConferenceParticipantPlaybackStartedWebhookEvent
 
 __all__ = ["UnsafeUnwrapWebhookEvent"]
 
 UnsafeUnwrapWebhookEvent: TypeAlias = Union[
-    CallAIGatherEnded,
-    CallAIGatherMessageHistoryUpdated,
+    CallAIGatherEndedWebhookEvent,
+    CallAIGatherMessageHistoryUpdatedWebhookEvent,
     CallAIGatherPartialResultsWebhookEvent,
     CallAnsweredWebhookEvent,
     CallBridgedWebhookEvent,
