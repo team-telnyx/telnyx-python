@@ -8,10 +8,10 @@ from pydantic import Field as FieldInfo
 
 from .._models import BaseModel
 
-__all__ = ["CallAIGatherMessageHistoryUpdated", "Data", "DataPayload", "DataPayloadMessageHistory"]
+__all__ = ["CallAIGatherMessageHistoryUpdated", "Payload", "PayloadMessageHistory"]
 
 
-class DataPayloadMessageHistory(BaseModel):
+class PayloadMessageHistory(BaseModel):
     content: Optional[str] = None
     """The content of the message"""
 
@@ -19,7 +19,7 @@ class DataPayloadMessageHistory(BaseModel):
     """The role of the message sender"""
 
 
-class DataPayload(BaseModel):
+class Payload(BaseModel):
     call_control_id: Optional[str] = None
     """Call ID used to issue commands via Call Control API."""
 
@@ -42,14 +42,14 @@ class DataPayload(BaseModel):
     from_: Optional[str] = FieldInfo(alias="from", default=None)
     """Number or SIP URI placing the call."""
 
-    message_history: Optional[List[DataPayloadMessageHistory]] = None
+    message_history: Optional[List[PayloadMessageHistory]] = None
     """The history of the messages exchanged during the AI gather"""
 
     to: Optional[str] = None
     """Destination number or SIP URI of the call."""
 
 
-class Data(BaseModel):
+class CallAIGatherMessageHistoryUpdated(BaseModel):
     id: Optional[str] = None
     """Identifies the type of resource."""
 
@@ -59,11 +59,7 @@ class Data(BaseModel):
     occurred_at: Optional[datetime] = None
     """ISO 8601 datetime of when the event occurred."""
 
-    payload: Optional[DataPayload] = None
+    payload: Optional[Payload] = None
 
     record_type: Optional[Literal["event"]] = None
     """Identifies the type of the resource."""
-
-
-class CallAIGatherMessageHistoryUpdated(BaseModel):
-    data: Optional[Data] = None
