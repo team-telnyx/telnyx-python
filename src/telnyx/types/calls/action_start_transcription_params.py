@@ -50,9 +50,9 @@ class ActionStartTranscriptionParams(TypedDict, total=False):
 TranscriptionEngineConfig: TypeAlias = Union[
     TranscriptionEngineGoogleConfigParam,
     TranscriptionEngineTelnyxConfigParam,
-    DeepgramNova2ConfigParam,
-    DeepgramNova3ConfigParam,
     TranscriptionEngineAzureConfigParam,
     TranscriptionEngineAConfigParam,
     TranscriptionEngineBConfigParam,
+    DeepgramNova2ConfigParam,
+    DeepgramNova3ConfigParam,
 ]
