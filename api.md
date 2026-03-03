@@ -5183,7 +5183,7 @@ Methods:
 Types:
 
 ```python
-from telnyx.types import SessionAnalysisRetrieveResponse
+from telnyx.types import EventNode, SessionAnalysisRetrieveResponse
 ```
 
 Methods:
@@ -5196,6 +5196,9 @@ Types:
 
 ```python
 from telnyx.types.session_analysis import (
+    ChildRelationshipInfo,
+    MetadataFieldMapping,
+    ParentRelationshipInfo,
     MetadataRetrieveResponse,
     MetadataRetrieveRecordTypeResponse,
 )
