@@ -2,15 +2,20 @@
 
 from __future__ import annotations
 
-from typing import Dict
-from typing_extensions import Literal
+import json
+import logging
+from types import TracebackType
+from typing import TYPE_CHECKING, Any, Dict, Iterator, cast
+from typing_extensions import Literal, AsyncIterator
 
 import httpx
+from pydantic import BaseModel
 
-from ..types import text_to_speech_stream_params, text_to_speech_generate_params, text_to_speech_list_voices_params
-from .._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
+from ..types import text_to_speech_generate_params, text_to_speech_list_voices_params
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
+from .._models import construct_type_unchecked
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
     to_raw_response_wrapper,
@@ -18,11 +23,24 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import make_request_options
+from .._exceptions import TelnyxError
+from .._base_client import _merge_mappings, make_request_options
+from ..types.stream_client_event import StreamClientEvent
+from ..types.stream_server_event import StreamServerEvent
+from ..types.stream_client_event_param import StreamClientEventParam
+from ..types.websocket_connection_options import WebsocketConnectionOptions
 from ..types.text_to_speech_generate_response import TextToSpeechGenerateResponse
 from ..types.text_to_speech_list_voices_response import TextToSpeechListVoicesResponse
 
+if TYPE_CHECKING:
+    from websockets.sync.client import ClientConnection as WebsocketConnection
+    from websockets.asyncio.client import ClientConnection as AsyncWebsocketConnection
+
+    from .._client import Telnyx, AsyncTelnyx
+
 __all__ = ["TextToSpeechResource", "AsyncTextToSpeechResource"]
+
+log: logging.Logger = logging.getLogger(__name__)
 
 
 class TextToSpeechResource(SyncAPIResource):
@@ -215,97 +233,15 @@ class TextToSpeechResource(SyncAPIResource):
 
     def stream(
         self,
-        *,
-        audio_format: Literal["pcm", "wav"] | Omit = omit,
-        disable_cache: bool | Omit = omit,
-        model_id: str | Omit = omit,
-        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "murfai", "rime", "resemble"]
-        | Omit = omit,
-        socket_id: str | Omit = omit,
-        voice: str | Omit = omit,
-        voice_id: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
-        """
-        Open a WebSocket connection to stream text and receive synthesized audio in real
-        time. Authentication is provided via the standard
-        `Authorization: Bearer <API_KEY>` header. Send JSON frames with text to
-        synthesize; receive JSON frames containing base64-encoded audio chunks.
-
-        Supported providers: `aws`, `telnyx`, `azure`, `murfai`, `minimax`, `rime`,
-        `resemble`, `elevenlabs`.
-
-        **Connection flow:**
-
-        1. Open WebSocket with query parameters specifying provider, voice, and model.
-        2. Send an initial handshake message `{"text": " "}` (single space) with
-           optional `voice_settings` to initialize the session.
-        3. Send text messages as `{"text": "Hello world"}`.
-        4. Receive audio chunks as JSON frames with base64-encoded audio.
-        5. A final frame with `isFinal: true` indicates the end of audio for the current
-           text.
-
-        To interrupt and restart synthesis mid-stream, send `{"force": true}` — the
-        current worker is stopped and a new one is started.
-
-        Args:
-          audio_format: Audio output format override. Supported for Telnyx `Natural`/`NaturalHD` models
-              only. Accepted values: `pcm`, `wav`.
-
-          disable_cache: When `true`, bypass the audio cache and generate fresh audio.
-
-          model_id: Model identifier for the chosen provider. Examples: `Natural`, `NaturalHD`
-              (Telnyx); `Polly.Generative` (AWS).
-
-          provider: TTS provider. Defaults to `telnyx` if not specified. Ignored when `voice` is
-              provided.
-
-          socket_id: Client-provided socket identifier for tracking. If not provided, one is
-              generated server-side.
-
-          voice: Voice identifier in the format `provider.model_id.voice_id` or
-              `provider.voice_id` (e.g. `telnyx.NaturalHD.Telnyx_Alloy` or
-              `azure.en-US-AvaMultilingualNeural`). When provided, the `provider`, `model_id`,
-              and `voice_id` are extracted automatically. Takes precedence over individual
-              `provider`/`model_id`/`voice_id` parameters.
-
-          voice_id: Voice identifier for the chosen provider.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
-        return self._get(
-            "/text-to-speech/speech",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "audio_format": audio_format,
-                        "disable_cache": disable_cache,
-                        "model_id": model_id,
-                        "provider": provider,
-                        "socket_id": socket_id,
-                        "voice": voice,
-                        "voice_id": voice_id,
-                    },
-                    text_to_speech_stream_params.TextToSpeechStreamParams,
-                ),
-            ),
-            cast_to=NoneType,
+        extra_query: Query = {},
+        extra_headers: Headers = {},
+        websocket_connection_options: WebsocketConnectionOptions = {},
+    ) -> TextToSpeechResourceConnectionManager:
+        return TextToSpeechResourceConnectionManager(
+            client=self._client,
+            extra_query=extra_query,
+            extra_headers=extra_headers,
+            websocket_connection_options=websocket_connection_options,
         )
 
 
@@ -497,99 +433,17 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
             cast_to=TextToSpeechListVoicesResponse,
         )
 
-    async def stream(
+    def stream(
         self,
-        *,
-        audio_format: Literal["pcm", "wav"] | Omit = omit,
-        disable_cache: bool | Omit = omit,
-        model_id: str | Omit = omit,
-        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "murfai", "rime", "resemble"]
-        | Omit = omit,
-        socket_id: str | Omit = omit,
-        voice: str | Omit = omit,
-        voice_id: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
-        """
-        Open a WebSocket connection to stream text and receive synthesized audio in real
-        time. Authentication is provided via the standard
-        `Authorization: Bearer <API_KEY>` header. Send JSON frames with text to
-        synthesize; receive JSON frames containing base64-encoded audio chunks.
-
-        Supported providers: `aws`, `telnyx`, `azure`, `murfai`, `minimax`, `rime`,
-        `resemble`, `elevenlabs`.
-
-        **Connection flow:**
-
-        1. Open WebSocket with query parameters specifying provider, voice, and model.
-        2. Send an initial handshake message `{"text": " "}` (single space) with
-           optional `voice_settings` to initialize the session.
-        3. Send text messages as `{"text": "Hello world"}`.
-        4. Receive audio chunks as JSON frames with base64-encoded audio.
-        5. A final frame with `isFinal: true` indicates the end of audio for the current
-           text.
-
-        To interrupt and restart synthesis mid-stream, send `{"force": true}` — the
-        current worker is stopped and a new one is started.
-
-        Args:
-          audio_format: Audio output format override. Supported for Telnyx `Natural`/`NaturalHD` models
-              only. Accepted values: `pcm`, `wav`.
-
-          disable_cache: When `true`, bypass the audio cache and generate fresh audio.
-
-          model_id: Model identifier for the chosen provider. Examples: `Natural`, `NaturalHD`
-              (Telnyx); `Polly.Generative` (AWS).
-
-          provider: TTS provider. Defaults to `telnyx` if not specified. Ignored when `voice` is
-              provided.
-
-          socket_id: Client-provided socket identifier for tracking. If not provided, one is
-              generated server-side.
-
-          voice: Voice identifier in the format `provider.model_id.voice_id` or
-              `provider.voice_id` (e.g. `telnyx.NaturalHD.Telnyx_Alloy` or
-              `azure.en-US-AvaMultilingualNeural`). When provided, the `provider`, `model_id`,
-              and `voice_id` are extracted automatically. Takes precedence over individual
-              `provider`/`model_id`/`voice_id` parameters.
-
-          voice_id: Voice identifier for the chosen provider.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
-        return await self._get(
-            "/text-to-speech/speech",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {
-                        "audio_format": audio_format,
-                        "disable_cache": disable_cache,
-                        "model_id": model_id,
-                        "provider": provider,
-                        "socket_id": socket_id,
-                        "voice": voice,
-                        "voice_id": voice_id,
-                    },
-                    text_to_speech_stream_params.TextToSpeechStreamParams,
-                ),
-            ),
-            cast_to=NoneType,
+        extra_query: Query = {},
+        extra_headers: Headers = {},
+        websocket_connection_options: WebsocketConnectionOptions = {},
+    ) -> AsyncTextToSpeechResourceConnectionManager:
+        return AsyncTextToSpeechResourceConnectionManager(
+            client=self._client,
+            extra_query=extra_query,
+            extra_headers=extra_headers,
+            websocket_connection_options=websocket_connection_options,
         )
 
 
@@ -603,9 +457,6 @@ class TextToSpeechResourceWithRawResponse:
         self.list_voices = to_raw_response_wrapper(
             text_to_speech.list_voices,
         )
-        self.stream = to_raw_response_wrapper(
-            text_to_speech.stream,
-        )
 
 
 class AsyncTextToSpeechResourceWithRawResponse:
@@ -617,9 +468,6 @@ class AsyncTextToSpeechResourceWithRawResponse:
         )
         self.list_voices = async_to_raw_response_wrapper(
             text_to_speech.list_voices,
-        )
-        self.stream = async_to_raw_response_wrapper(
-            text_to_speech.stream,
         )
 
 
@@ -633,9 +481,6 @@ class TextToSpeechResourceWithStreamingResponse:
         self.list_voices = to_streamed_response_wrapper(
             text_to_speech.list_voices,
         )
-        self.stream = to_streamed_response_wrapper(
-            text_to_speech.stream,
-        )
 
 
 class AsyncTextToSpeechResourceWithStreamingResponse:
@@ -648,6 +493,321 @@ class AsyncTextToSpeechResourceWithStreamingResponse:
         self.list_voices = async_to_streamed_response_wrapper(
             text_to_speech.list_voices,
         )
-        self.stream = async_to_streamed_response_wrapper(
-            text_to_speech.stream,
+
+
+class AsyncTextToSpeechResourceConnection:
+    """Represents a live WebSocket connection to the TextToSpeech API"""
+
+    _connection: AsyncWebsocketConnection
+
+    def __init__(self, connection: AsyncWebsocketConnection) -> None:
+        self._connection = connection
+
+    async def __aiter__(self) -> AsyncIterator[StreamServerEvent]:
+        """
+        An infinite-iterator that will continue to yield events until
+        the connection is closed.
+        """
+        from websockets.exceptions import ConnectionClosedOK
+
+        try:
+            while True:
+                yield await self.recv()
+        except ConnectionClosedOK:
+            return
+
+    async def recv(self) -> StreamServerEvent:
+        """
+        Receive the next message from the connection and parses it into a `StreamServerEvent` object.
+
+        Canceling this method is safe. There's no risk of losing data.
+        """
+        return self.parse_event(await self.recv_bytes())
+
+    async def recv_bytes(self) -> bytes:
+        """Receive the next message from the connection as raw bytes.
+
+        Canceling this method is safe. There's no risk of losing data.
+
+        If you want to parse the message into a `StreamServerEvent` object like `.recv()` does,
+        then you can call `.parse_event(data)`.
+        """
+        message = await self._connection.recv(decode=False)
+        log.debug(f"Received websocket message: %s", message)
+        return message
+
+    async def send(self, event: StreamClientEvent | StreamClientEventParam) -> None:
+        data = (
+            event.to_json(use_api_names=True, exclude_defaults=True, exclude_unset=True)
+            if isinstance(event, BaseModel)
+            else json.dumps(await async_maybe_transform(event, StreamClientEventParam))
         )
+        await self._connection.send(data)
+
+    async def close(self, *, code: int = 1000, reason: str = "") -> None:
+        await self._connection.close(code=code, reason=reason)
+
+    def parse_event(self, data: str | bytes) -> StreamServerEvent:
+        """
+        Converts a raw `str` or `bytes` message into a `StreamServerEvent` object.
+
+        This is helpful if you're using `.recv_bytes()`.
+        """
+        return cast(
+            StreamServerEvent, construct_type_unchecked(value=json.loads(data), type_=cast(Any, StreamServerEvent))
+        )
+
+
+class AsyncTextToSpeechResourceConnectionManager:
+    """
+    Context manager over a `AsyncTextToSpeechResourceConnection` that is returned by `text_to_speech.stream()`
+
+    This context manager ensures that the connection will be closed when it exits.
+
+    ---
+
+    Note that if your application doesn't work well with the context manager approach then you
+    can call the `.enter()` method directly to initiate a connection.
+
+    **Warning**: You must remember to close the connection with `.close()`.
+
+    ```py
+    connection = await client.text_to_speech.stream(...).enter()
+    # ...
+    await connection.close()
+    ```
+    """
+
+    def __init__(
+        self,
+        *,
+        client: AsyncTelnyx,
+        extra_query: Query,
+        extra_headers: Headers,
+        websocket_connection_options: WebsocketConnectionOptions,
+    ) -> None:
+        self.__client = client
+        self.__connection: AsyncTextToSpeechResourceConnection | None = None
+        self.__extra_query = extra_query
+        self.__extra_headers = extra_headers
+        self.__websocket_connection_options = websocket_connection_options
+
+    async def __aenter__(self) -> AsyncTextToSpeechResourceConnection:
+        """
+        👋 If your application doesn't work well with the context manager approach then you
+        can call this method directly to initiate a connection.
+
+        **Warning**: You must remember to close the connection with `.close()`.
+
+        ```py
+        connection = await client.text_to_speech.stream(...).enter()
+        # ...
+        await connection.close()
+        ```
+        """
+        try:
+            from websockets.asyncio.client import connect
+        except ImportError as exc:
+            raise TelnyxError("You need to install `telnyx[websockets]` to use this method") from exc
+
+        url = self._prepare_url().copy_with(
+            params={
+                **self.__client.base_url.params,
+                **self.__extra_query,
+            },
+        )
+        log.debug("Connecting to %s", url)
+        if self.__websocket_connection_options:
+            log.debug("Connection options: %s", self.__websocket_connection_options)
+
+        self.__connection = AsyncTextToSpeechResourceConnection(
+            await connect(
+                str(url),
+                user_agent_header=self.__client.user_agent,
+                additional_headers=_merge_mappings(
+                    {
+                        **self.__client.auth_headers,
+                    },
+                    self.__extra_headers,
+                ),
+                **self.__websocket_connection_options,
+            )
+        )
+
+        return self.__connection
+
+    enter = __aenter__
+
+    def _prepare_url(self) -> httpx.URL:
+        if self.__client.websocket_base_url is not None:
+            base_url = httpx.URL(self.__client.websocket_base_url)
+        else:
+            base_url = self.__client._base_url.copy_with(scheme="wss")
+
+        merge_raw_path = base_url.raw_path.rstrip(b"/") + b"/text-to-speech/speech"
+        return base_url.copy_with(raw_path=merge_raw_path)
+
+    async def __aexit__(
+        self, exc_type: type[BaseException] | None, exc: BaseException | None, exc_tb: TracebackType | None
+    ) -> None:
+        if self.__connection is not None:
+            await self.__connection.close()
+
+
+class TextToSpeechResourceConnection:
+    """Represents a live WebSocket connection to the TextToSpeech API"""
+
+    _connection: WebsocketConnection
+
+    def __init__(self, connection: WebsocketConnection) -> None:
+        self._connection = connection
+
+    def __iter__(self) -> Iterator[StreamServerEvent]:
+        """
+        An infinite-iterator that will continue to yield events until
+        the connection is closed.
+        """
+        from websockets.exceptions import ConnectionClosedOK
+
+        try:
+            while True:
+                yield self.recv()
+        except ConnectionClosedOK:
+            return
+
+    def recv(self) -> StreamServerEvent:
+        """
+        Receive the next message from the connection and parses it into a `StreamServerEvent` object.
+
+        Canceling this method is safe. There's no risk of losing data.
+        """
+        return self.parse_event(self.recv_bytes())
+
+    def recv_bytes(self) -> bytes:
+        """Receive the next message from the connection as raw bytes.
+
+        Canceling this method is safe. There's no risk of losing data.
+
+        If you want to parse the message into a `StreamServerEvent` object like `.recv()` does,
+        then you can call `.parse_event(data)`.
+        """
+        message = self._connection.recv(decode=False)
+        log.debug(f"Received websocket message: %s", message)
+        return message
+
+    def send(self, event: StreamClientEvent | StreamClientEventParam) -> None:
+        data = (
+            event.to_json(use_api_names=True, exclude_defaults=True, exclude_unset=True)
+            if isinstance(event, BaseModel)
+            else json.dumps(maybe_transform(event, StreamClientEventParam))
+        )
+        self._connection.send(data)
+
+    def close(self, *, code: int = 1000, reason: str = "") -> None:
+        self._connection.close(code=code, reason=reason)
+
+    def parse_event(self, data: str | bytes) -> StreamServerEvent:
+        """
+        Converts a raw `str` or `bytes` message into a `StreamServerEvent` object.
+
+        This is helpful if you're using `.recv_bytes()`.
+        """
+        return cast(
+            StreamServerEvent, construct_type_unchecked(value=json.loads(data), type_=cast(Any, StreamServerEvent))
+        )
+
+
+class TextToSpeechResourceConnectionManager:
+    """
+    Context manager over a `TextToSpeechResourceConnection` that is returned by `text_to_speech.stream()`
+
+    This context manager ensures that the connection will be closed when it exits.
+
+    ---
+
+    Note that if your application doesn't work well with the context manager approach then you
+    can call the `.enter()` method directly to initiate a connection.
+
+    **Warning**: You must remember to close the connection with `.close()`.
+
+    ```py
+    connection = client.text_to_speech.stream(...).enter()
+    # ...
+    connection.close()
+    ```
+    """
+
+    def __init__(
+        self,
+        *,
+        client: Telnyx,
+        extra_query: Query,
+        extra_headers: Headers,
+        websocket_connection_options: WebsocketConnectionOptions,
+    ) -> None:
+        self.__client = client
+        self.__connection: TextToSpeechResourceConnection | None = None
+        self.__extra_query = extra_query
+        self.__extra_headers = extra_headers
+        self.__websocket_connection_options = websocket_connection_options
+
+    def __enter__(self) -> TextToSpeechResourceConnection:
+        """
+        👋 If your application doesn't work well with the context manager approach then you
+        can call this method directly to initiate a connection.
+
+        **Warning**: You must remember to close the connection with `.close()`.
+
+        ```py
+        connection = client.text_to_speech.stream(...).enter()
+        # ...
+        connection.close()
+        ```
+        """
+        try:
+            from websockets.sync.client import connect
+        except ImportError as exc:
+            raise TelnyxError("You need to install `telnyx[websockets]` to use this method") from exc
+
+        url = self._prepare_url().copy_with(
+            params={
+                **self.__client.base_url.params,
+                **self.__extra_query,
+            },
+        )
+        log.debug("Connecting to %s", url)
+        if self.__websocket_connection_options:
+            log.debug("Connection options: %s", self.__websocket_connection_options)
+
+        self.__connection = TextToSpeechResourceConnection(
+            connect(
+                str(url),
+                user_agent_header=self.__client.user_agent,
+                additional_headers=_merge_mappings(
+                    {
+                        **self.__client.auth_headers,
+                    },
+                    self.__extra_headers,
+                ),
+                **self.__websocket_connection_options,
+            )
+        )
+
+        return self.__connection
+
+    enter = __enter__
+
+    def _prepare_url(self) -> httpx.URL:
+        if self.__client.websocket_base_url is not None:
+            base_url = httpx.URL(self.__client.websocket_base_url)
+        else:
+            base_url = self.__client._base_url.copy_with(scheme="wss")
+
+        merge_raw_path = base_url.raw_path.rstrip(b"/") + b"/text-to-speech/speech"
+        return base_url.copy_with(raw_path=merge_raw_path)
+
+    def __exit__(
+        self, exc_type: type[BaseException] | None, exc: BaseException | None, exc_tb: TracebackType | None
+    ) -> None:
+        if self.__connection is not None:
+            self.__connection.close()
