@@ -1,10 +1,11 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Union, Optional
-from typing_extensions import Literal, TypeAlias
+from typing_extensions import Literal, Annotated, TypeAlias
 
 from pydantic import Field as FieldInfo
 
+from .._utils import PropertyInfo
 from .._models import BaseModel
 
 __all__ = ["StreamServerEvent", "AudioChunkFrame", "FinalFrame", "ErrorFrame"]
@@ -36,6 +37,9 @@ class AudioChunkFrame(BaseModel):
     Only present on the first audio chunk of a synthesis request.
     """
 
+    type: Optional[Literal["audio_chunk"]] = None
+    """Frame type identifier."""
+
 
 class FinalFrame(BaseModel):
     """Server-to-client frame indicating synthesis is complete for the current text."""
@@ -52,6 +56,9 @@ class FinalFrame(BaseModel):
     time_to_first_audio_frame_ms: Optional[int] = FieldInfo(alias="timeToFirstAudioFrameMs", default=None)
     """Present if this was the first response frame."""
 
+    type: Optional[Literal["final"]] = None
+    """Frame type identifier."""
+
 
 class ErrorFrame(BaseModel):
     """Server-to-client frame indicating an error during synthesis.
@@ -62,5 +69,10 @@ class ErrorFrame(BaseModel):
     error: Optional[str] = None
     """Error message describing what went wrong."""
 
+    type: Optional[Literal["error"]] = None
+    """Frame type identifier."""
 
-StreamServerEvent: TypeAlias = Union[AudioChunkFrame, FinalFrame, ErrorFrame]
+
+StreamServerEvent: TypeAlias = Annotated[
+    Union[AudioChunkFrame, FinalFrame, ErrorFrame], PropertyInfo(discriminator="type")
+]
