@@ -190,6 +190,8 @@ from .portout_list_params import PortoutListParams as PortoutListParams
 from .queue_create_params import QueueCreateParams as QueueCreateParams
 from .queue_update_params import QueueUpdateParams as QueueUpdateParams
 from .replaced_link_click import ReplacedLinkClick as ReplacedLinkClick
+from .stream_client_event import StreamClientEvent as StreamClientEvent
+from .stream_server_event import StreamServerEvent as StreamServerEvent
 from .verify_profile_data import VerifyProfileData as VerifyProfileData
 from .webhook_api_version import WebhookAPIVersion as WebhookAPIVersion
 from .call_ai_gather_ended import CallAIGatherEnded as CallAIGatherEnded
@@ -367,6 +369,7 @@ from .report_list_wdrs_response import ReportListWdrsResponse as ReportListWdrsR
 from .requirement_list_response import RequirementListResponse as RequirementListResponse
 from .sound_modifications_param import SoundModificationsParam as SoundModificationsParam
 from .stream_bidirectional_mode import StreamBidirectionalMode as StreamBidirectionalMode
+from .stream_client_event_param import StreamClientEventParam as StreamClientEventParam
 from .access_ip_address_response import AccessIPAddressResponse as AccessIPAddressResponse
 from .call_bridged_webhook_event import CallBridgedWebhookEvent as CallBridgedWebhookEvent
 from .channel_zone_list_response import ChannelZoneListResponse as ChannelZoneListResponse
@@ -461,13 +464,13 @@ from .sim_card_group_list_response import SimCardGroupListResponse as SimCardGro
 from .sim_card_group_update_params import SimCardGroupUpdateParams as SimCardGroupUpdateParams
 from .sim_card_order_create_params import SimCardOrderCreateParams as SimCardOrderCreateParams
 from .sub_number_order_list_params import SubNumberOrderListParams as SubNumberOrderListParams
-from .text_to_speech_stream_params import TextToSpeechStreamParams as TextToSpeechStreamParams
 from .url_shortener_settings_param import URLShortenerSettingsParam as URLShortenerSettingsParam
 from .user_address_create_response import UserAddressCreateResponse as UserAddressCreateResponse
 from .verified_number_data_wrapper import VerifiedNumberDataWrapper as VerifiedNumberDataWrapper
 from .verify_profile_create_params import VerifyProfileCreateParams as VerifyProfileCreateParams
 from .verify_profile_update_params import VerifyProfileUpdateParams as VerifyProfileUpdateParams
 from .webhook_delivery_list_params import WebhookDeliveryListParams as WebhookDeliveryListParams
+from .websocket_connection_options import WebsocketConnectionOptions as WebsocketConnectionOptions
 from .wireguard_peer_create_params import WireguardPeerCreateParams as WireguardPeerCreateParams
 from .wireguard_peer_list_response import WireguardPeerListResponse as WireguardPeerListResponse
 from .wireguard_peer_update_params import WireguardPeerUpdateParams as WireguardPeerUpdateParams
