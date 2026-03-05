@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union
+from typing import Union
 from datetime import datetime
 from typing_extensions import Annotated, TypeAlias, TypedDict
 
@@ -67,7 +67,7 @@ class FilterCreatedAtDateRangeFilter(TypedDict, total=False):
 FilterCreatedAt: TypeAlias = Union[Union[str, datetime], FilterCreatedAtDateRangeFilter]
 
 
-class FilterTyped(TypedDict, total=False):
+class Filter(TypedDict, total=False, extra_items=object):  # type: ignore[call-arg]
     """Consolidated filter parameter (deepObject style).
 
     Originally: filter[cidr_block], filter[cidr_block][startswith], filter[cidr_block][endswith], filter[cidr_block][contains], filter[created_at]. Supports complex bracket operations for dynamic filtering.
@@ -78,6 +78,3 @@ class FilterTyped(TypedDict, total=False):
 
     created_at: Annotated[FilterCreatedAt, PropertyInfo(format="iso8601")]
     """Filter by exact creation date-time"""
-
-
-Filter: TypeAlias = Union[FilterTyped, Dict[str, object]]
