@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Optional
-from typing_extensions import TypeAlias, TypedDict
+from typing import Optional
+from typing_extensions import TypedDict
 
 from .._types import SequenceNotStr
 
@@ -28,7 +28,7 @@ class VerifyProfileUpdateParams(TypedDict, total=False):
     webhook_url: str
 
 
-class CallTyped(TypedDict, total=False):
+class Call(TypedDict, total=False, extra_items=object):  # type: ignore[call-arg]
     app_name: str
     """
     The name that identifies the application requesting 2fa in the verification
@@ -57,10 +57,7 @@ class CallTyped(TypedDict, total=False):
     """
 
 
-Call: TypeAlias = Union[CallTyped, Dict[str, object]]
-
-
-class FlashcallTyped(TypedDict, total=False):
+class Flashcall(TypedDict, total=False, extra_items=object):  # type: ignore[call-arg]
     app_name: str
     """
     The name that identifies the application requesting 2fa in the verification
@@ -83,10 +80,7 @@ class FlashcallTyped(TypedDict, total=False):
     """
 
 
-Flashcall: TypeAlias = Union[FlashcallTyped, Dict[str, object]]
-
-
-class RcsTyped(TypedDict, total=False):
+class Rcs(TypedDict, total=False, extra_items=object):  # type: ignore[call-arg]
     app_name: str
     """
     The name that identifies the application requesting 2fa in the verification
@@ -118,10 +112,7 @@ class RcsTyped(TypedDict, total=False):
     """
 
 
-Rcs: TypeAlias = Union[RcsTyped, Dict[str, object]]
-
-
-class SMSTyped(TypedDict, total=False):
+class SMS(TypedDict, total=False, extra_items=object):  # type: ignore[call-arg]
     alpha_sender: Optional[str]
     """
     The alphanumeric sender ID to use when sending to destinations that require an
@@ -154,6 +145,3 @@ class SMSTyped(TypedDict, total=False):
     The elements in the list must be valid ISO 3166-1 alpha-2 country codes. If set
     to `["*"]`, all destinations will be allowed.
     """
-
-
-SMS: TypeAlias = Union[SMSTyped, Dict[str, object]]

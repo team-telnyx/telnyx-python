@@ -2,8 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union
-from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
+from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from .._types import SequenceNotStr
 from .._utils import PropertyInfo
@@ -27,7 +26,7 @@ class DetailRecordListParams(TypedDict, total=False):
     """Specifies the sort order for results. <br/>Example: sort=-created_at"""
 
 
-class FilterTyped(TypedDict, total=False):
+class Filter(TypedDict, total=False, extra_items=object):  # type: ignore[call-arg]
     """Filter records on a given record attribute and value.
 
     <br/>Example: filter[status]=delivered. <br/>Required: filter[record_type] must be specified.
@@ -76,6 +75,3 @@ class FilterTyped(TypedDict, total=False):
     You can specify one of the following enum values, or a dynamic one using this
     format: last_N_days.
     """
-
-
-Filter: TypeAlias = Union[FilterTyped, Dict[str, object]]
