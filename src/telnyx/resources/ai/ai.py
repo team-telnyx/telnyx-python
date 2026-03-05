@@ -120,7 +120,6 @@ class AIResource(SyncAPIResource):
 
     @cached_property
     def audio(self) -> AudioResource:
-        """Turn audio into text or text into audio."""
         return AudioResource(self._client)
 
     @cached_property
@@ -275,7 +274,6 @@ class AsyncAIResource(AsyncAPIResource):
 
     @cached_property
     def audio(self) -> AsyncAudioResource:
-        """Turn audio into text or text into audio."""
         return AsyncAudioResource(self._client)
 
     @cached_property
@@ -438,7 +436,6 @@ class AIResourceWithRawResponse:
 
     @cached_property
     def audio(self) -> AudioResourceWithRawResponse:
-        """Turn audio into text or text into audio."""
         return AudioResourceWithRawResponse(self._ai.audio)
 
     @cached_property
@@ -500,7 +497,6 @@ class AsyncAIResourceWithRawResponse:
 
     @cached_property
     def audio(self) -> AsyncAudioResourceWithRawResponse:
-        """Turn audio into text or text into audio."""
         return AsyncAudioResourceWithRawResponse(self._ai.audio)
 
     @cached_property
@@ -562,7 +558,6 @@ class AIResourceWithStreamingResponse:
 
     @cached_property
     def audio(self) -> AudioResourceWithStreamingResponse:
-        """Turn audio into text or text into audio."""
         return AudioResourceWithStreamingResponse(self._ai.audio)
 
     @cached_property
@@ -624,7 +619,6 @@ class AsyncAIResourceWithStreamingResponse:
 
     @cached_property
     def audio(self) -> AsyncAudioResourceWithStreamingResponse:
-        """Turn audio into text or text into audio."""
         return AsyncAudioResourceWithStreamingResponse(self._ai.audio)
 
     @cached_property
