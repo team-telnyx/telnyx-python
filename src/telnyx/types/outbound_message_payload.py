@@ -214,6 +214,13 @@ class OutboundMessagePayload(BaseModel):
     will be nulled
     """
 
+    wait_seconds: Optional[float] = None
+    """
+    Seconds the message is queued due to rate limiting before being sent to the
+    carrier. Represents the maximum wait across all applicable rate limits (account,
+    carrier, campaign). 0.0 = no queuing delay.
+    """
+
     webhook_failover_url: Optional[str] = None
     """
     The failover URL where webhooks related to this message will be sent if sending

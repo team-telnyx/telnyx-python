@@ -45,6 +45,13 @@ class Data(BaseModel):
 
     type: Optional[str] = None
 
+    wait_seconds: Optional[float] = None
+    """
+    Seconds the message is queued due to rate limiting before being sent to the
+    carrier. Represents the maximum wait across all applicable rate limits (account,
+    carrier, campaign). 0.0 = no queuing delay.
+    """
+
 
 class RcSendResponse(BaseModel):
     data: Optional[Data] = None
