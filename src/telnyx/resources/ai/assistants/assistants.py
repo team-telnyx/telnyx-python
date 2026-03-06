@@ -7,6 +7,14 @@ from typing_extensions import Literal
 
 import httpx
 
+from .tags import (
+    TagsResource,
+    AsyncTagsResource,
+    TagsResourceWithRawResponse,
+    AsyncTagsResourceWithRawResponse,
+    TagsResourceWithStreamingResponse,
+    AsyncTagsResourceWithStreamingResponse,
+)
 from .tools import (
     ToolsResource,
     AsyncToolsResource,
@@ -111,6 +119,11 @@ class AssistantsResource(SyncAPIResource):
     def versions(self) -> VersionsResource:
         """Configure AI assistant specifications"""
         return VersionsResource(self._client)
+
+    @cached_property
+    def tags(self) -> TagsResource:
+        """Configure AI assistant specifications"""
+        return TagsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AssistantsResourceWithRawResponse:
@@ -705,6 +718,11 @@ class AsyncAssistantsResource(AsyncAPIResource):
     def versions(self) -> AsyncVersionsResource:
         """Configure AI assistant specifications"""
         return AsyncVersionsResource(self._client)
+
+    @cached_property
+    def tags(self) -> AsyncTagsResource:
+        """Configure AI assistant specifications"""
+        return AsyncTagsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncAssistantsResourceWithRawResponse:
@@ -1332,6 +1350,11 @@ class AssistantsResourceWithRawResponse:
         """Configure AI assistant specifications"""
         return VersionsResourceWithRawResponse(self._assistants.versions)
 
+    @cached_property
+    def tags(self) -> TagsResourceWithRawResponse:
+        """Configure AI assistant specifications"""
+        return TagsResourceWithRawResponse(self._assistants.tags)
+
 
 class AsyncAssistantsResourceWithRawResponse:
     def __init__(self, assistants: AsyncAssistantsResource) -> None:
@@ -1392,6 +1415,11 @@ class AsyncAssistantsResourceWithRawResponse:
     def versions(self) -> AsyncVersionsResourceWithRawResponse:
         """Configure AI assistant specifications"""
         return AsyncVersionsResourceWithRawResponse(self._assistants.versions)
+
+    @cached_property
+    def tags(self) -> AsyncTagsResourceWithRawResponse:
+        """Configure AI assistant specifications"""
+        return AsyncTagsResourceWithRawResponse(self._assistants.tags)
 
 
 class AssistantsResourceWithStreamingResponse:
@@ -1454,6 +1482,11 @@ class AssistantsResourceWithStreamingResponse:
         """Configure AI assistant specifications"""
         return VersionsResourceWithStreamingResponse(self._assistants.versions)
 
+    @cached_property
+    def tags(self) -> TagsResourceWithStreamingResponse:
+        """Configure AI assistant specifications"""
+        return TagsResourceWithStreamingResponse(self._assistants.tags)
+
 
 class AsyncAssistantsResourceWithStreamingResponse:
     def __init__(self, assistants: AsyncAssistantsResource) -> None:
@@ -1514,3 +1547,8 @@ class AsyncAssistantsResourceWithStreamingResponse:
     def versions(self) -> AsyncVersionsResourceWithStreamingResponse:
         """Configure AI assistant specifications"""
         return AsyncVersionsResourceWithStreamingResponse(self._assistants.versions)
+
+    @cached_property
+    def tags(self) -> AsyncTagsResourceWithStreamingResponse:
+        """Configure AI assistant specifications"""
+        return AsyncTagsResourceWithStreamingResponse(self._assistants.tags)
