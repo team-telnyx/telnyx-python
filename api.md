@@ -728,6 +728,20 @@ Methods:
 - <code title="delete /ai/assistants/{assistant_id}/versions/{version_id}">client.ai.assistants.versions.<a href="./src/telnyx/resources/ai/assistants/versions.py">delete</a>(version_id, \*, assistant_id) -> None</code>
 - <code title="post /ai/assistants/{assistant_id}/versions/{version_id}/promote">client.ai.assistants.versions.<a href="./src/telnyx/resources/ai/assistants/versions.py">promote</a>(version_id, \*, assistant_id) -> <a href="./src/telnyx/types/ai/inference_embedding.py">InferenceEmbedding</a></code>
 
+### Tags
+
+Types:
+
+```python
+from telnyx.types.ai.assistants import TagListResponse, TagAddResponse, TagRemoveResponse
+```
+
+Methods:
+
+- <code title="get /ai/assistants/tags">client.ai.assistants.tags.<a href="./src/telnyx/resources/ai/assistants/tags.py">list</a>() -> <a href="./src/telnyx/types/ai/assistants/tag_list_response.py">TagListResponse</a></code>
+- <code title="post /ai/assistants/{assistant_id}/tags">client.ai.assistants.tags.<a href="./src/telnyx/resources/ai/assistants/tags.py">add</a>(assistant_id, \*\*<a href="src/telnyx/types/ai/assistants/tag_add_params.py">params</a>) -> <a href="./src/telnyx/types/ai/assistants/tag_add_response.py">TagAddResponse</a></code>
+- <code title="delete /ai/assistants/{assistant_id}/tags/{tag}">client.ai.assistants.tags.<a href="./src/telnyx/resources/ai/assistants/tags.py">remove</a>(tag, \*, assistant_id) -> <a href="./src/telnyx/types/ai/assistants/tag_remove_response.py">TagRemoveResponse</a></code>
+
 ## Audio
 
 Types:
