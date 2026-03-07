@@ -30,8 +30,8 @@ class TestActions:
     def test_method_upload_file_with_all_params(self, client: Telnyx) -> None:
         action = client.messaging_hosted_number_orders.actions.upload_file(
             id="id",
-            bill=b"raw file contents",
-            loa=b"raw file contents",
+            bill=b"Example data",
+            loa=b"Example data",
         )
         assert_matches_type(ActionUploadFileResponse, action, path=["response"])
 
@@ -88,8 +88,8 @@ class TestAsyncActions:
     async def test_method_upload_file_with_all_params(self, async_client: AsyncTelnyx) -> None:
         action = await async_client.messaging_hosted_number_orders.actions.upload_file(
             id="id",
-            bill=b"raw file contents",
-            loa=b"raw file contents",
+            bill=b"Example data",
+            loa=b"Example data",
         )
         assert_matches_type(ActionUploadFileResponse, action, path=["response"])
 
