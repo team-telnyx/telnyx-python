@@ -34,8 +34,8 @@ class TestSslCertificate:
     def test_method_create_with_all_params(self, client: Telnyx) -> None:
         ssl_certificate = client.storage.buckets.ssl_certificate.create(
             bucket_name="",
-            certificate=b"raw file contents",
-            private_key=b"raw file contents",
+            certificate=b"Example data",
+            private_key=b"Example data",
         )
         assert_matches_type(SslCertificateCreateResponse, ssl_certificate, path=["response"])
 
@@ -176,8 +176,8 @@ class TestAsyncSslCertificate:
     async def test_method_create_with_all_params(self, async_client: AsyncTelnyx) -> None:
         ssl_certificate = await async_client.storage.buckets.ssl_certificate.create(
             bucket_name="",
-            certificate=b"raw file contents",
-            private_key=b"raw file contents",
+            certificate=b"Example data",
+            private_key=b"Example data",
         )
         assert_matches_type(SslCertificateCreateResponse, ssl_certificate, path=["response"])
 

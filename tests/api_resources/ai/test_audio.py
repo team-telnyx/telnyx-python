@@ -30,7 +30,7 @@ class TestAudio:
     def test_method_transcribe_with_all_params(self, client: Telnyx) -> None:
         audio = client.ai.audio.transcribe(
             model="distil-whisper/distil-large-v2",
-            file=b"raw file contents",
+            file=b"Example data",
             file_url="https://example.com/file.mp3",
             language="en-US",
             model_config={
@@ -87,7 +87,7 @@ class TestAsyncAudio:
     async def test_method_transcribe_with_all_params(self, async_client: AsyncTelnyx) -> None:
         audio = await async_client.ai.audio.transcribe(
             model="distil-whisper/distil-large-v2",
-            file=b"raw file contents",
+            file=b"Example data",
             file_url="https://example.com/file.mp3",
             language="en-US",
             model_config={
