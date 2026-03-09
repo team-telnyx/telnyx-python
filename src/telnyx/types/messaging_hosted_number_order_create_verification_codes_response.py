@@ -17,7 +17,7 @@ class Data(BaseModel):
     error: Optional[str] = None
     """Error message describing why the verification code creation failed"""
 
-    type: Optional[Literal["sms", "call", "flashcall"]] = None
+    type: Optional[Literal["sms", "call"]] = None
     """Type of verification method used"""
 
     verification_code_id: Optional[str] = None
