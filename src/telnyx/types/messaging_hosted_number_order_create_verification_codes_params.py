@@ -12,4 +12,4 @@ __all__ = ["MessagingHostedNumberOrderCreateVerificationCodesParams"]
 class MessagingHostedNumberOrderCreateVerificationCodesParams(TypedDict, total=False):
     phone_numbers: Required[SequenceNotStr[str]]
 
-    verification_method: Required[Literal["sms", "call", "flashcall"]]
+    verification_method: Required[Literal["sms", "call"]]
