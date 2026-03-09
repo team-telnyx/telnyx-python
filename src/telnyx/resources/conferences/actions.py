@@ -1051,6 +1051,8 @@ class ActionsResource(SyncAPIResource):
               - **Resemble:** Use `Resemble.Turbo.<voice_id>` (e.g.,
                 `Resemble.Turbo.my_voice`). Only `Turbo` model is supported. Use
                 `voice_settings` to configure precision, sample_rate, and format.
+              - **Inworld:** Use `Inworld.<ModelId>.<VoiceId>` (e.g., `Inworld.Mini.Loretta`,
+                `Inworld.Max.Oliver`). Supported models: `Mini`, `Max`.
 
               For service_level basic, you may define the gender of the speaker (male or
               female).
@@ -2244,6 +2246,8 @@ class AsyncActionsResource(AsyncAPIResource):
               - **Resemble:** Use `Resemble.Turbo.<voice_id>` (e.g.,
                 `Resemble.Turbo.my_voice`). Only `Turbo` model is supported. Use
                 `voice_settings` to configure precision, sample_rate, and format.
+              - **Inworld:** Use `Inworld.<ModelId>.<VoiceId>` (e.g., `Inworld.Mini.Loretta`,
+                `Inworld.Max.Oliver`). Supported models: `Mini`, `Max`.
 
               For service_level basic, you may define the gender of the speaker (male or
               female).

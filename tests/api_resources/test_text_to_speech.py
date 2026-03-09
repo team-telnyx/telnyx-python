@@ -53,6 +53,7 @@ class TestTextToSpeech:
                 "language_code": "language_code",
                 "voice_settings": {"foo": "bar"},
             },
+            inworld={},
             language="language",
             minimax={
                 "language_boost": "language_boost",
@@ -185,6 +186,7 @@ class TestAsyncTextToSpeech:
                 "language_code": "language_code",
                 "voice_settings": {"foo": "bar"},
             },
+            inworld={},
             language="language",
             minimax={
                 "language_boost": "language_boost",
