@@ -124,6 +124,8 @@ class ActionGatherUsingAIParams(TypedDict, total=False):
       for details. Check
       [available voices](https://elevenlabs.io/docs/api-reference/get-voices).
     - **Telnyx:** Use `Telnyx.<model_id>.<voice_id>`
+    - **Inworld:** Use `Inworld.<ModelId>.<VoiceId>` (e.g., `Inworld.Mini.Loretta`,
+      `Inworld.Max.Oliver`). Supported models: `Mini`, `Max`.
     """
 
     voice_settings: VoiceSettings

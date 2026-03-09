@@ -14,7 +14,7 @@ from ..shared_params.azure_voice_settings import AzureVoiceSettings
 from ..shared_params.minimax_voice_settings import MinimaxVoiceSettings
 from ..shared_params.resemble_voice_settings import ResembleVoiceSettings
 
-__all__ = ["ActionSpeakParams", "VoiceSettings"]
+__all__ = ["ActionSpeakParams", "VoiceSettings", "VoiceSettingsInworldVoiceSettings"]
 
 
 class ActionSpeakParams(TypedDict, total=False):
@@ -59,6 +59,8 @@ class ActionSpeakParams(TypedDict, total=False):
     - **Resemble:** Use `Resemble.Turbo.<voice_id>` (e.g.,
       `Resemble.Turbo.my_voice`). Only `Turbo` model is supported. Use
       `voice_settings` to configure precision, sample_rate, and format.
+    - **Inworld:** Use `Inworld.<ModelId>.<VoiceId>` (e.g., `Inworld.Mini.Loretta`,
+      `Inworld.Max.Oliver`). Supported models: `Mini`, `Max`.
 
     For service_level basic, you may define the gender of the speaker (male or
     female).
@@ -148,6 +150,11 @@ class ActionSpeakParams(TypedDict, total=False):
     """The settings associated with the voice selected"""
 
 
+class VoiceSettingsInworldVoiceSettings(TypedDict, total=False):
+    type: Required[Literal["inworld"]]
+    """Voice settings provider type"""
+
+
 VoiceSettings: TypeAlias = Union[
     ElevenLabsVoiceSettingsParam,
     TelnyxVoiceSettingsParam,
@@ -156,4 +163,5 @@ VoiceSettings: TypeAlias = Union[
     AzureVoiceSettings,
     RimeVoiceSettings,
     ResembleVoiceSettings,
+    VoiceSettingsInworldVoiceSettings,
 ]

@@ -23,6 +23,9 @@ class TextToSpeechGenerateParams(TypedDict, total=False):
     elevenlabs: Elevenlabs
     """ElevenLabs provider-specific parameters."""
 
+    inworld: object
+    """Inworld provider-specific parameters."""
+
     language: str
     """Language code (e.g. `en-US`). Usage varies by provider."""
 
@@ -36,7 +39,7 @@ class TextToSpeechGenerateParams(TypedDict, total=False):
     audio in JSON.
     """
 
-    provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "rime", "resemble"]
+    provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "rime", "resemble", "inworld"]
     """TTS provider. Required unless `voice` is provided."""
 
     resemble: Resemble
