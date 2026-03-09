@@ -1,5 +1,48 @@
 # Changelog
 
+## 4.61.0 (2026-03-09)
+
+Full Changelog: [v4.60.0...v4.61.0](https://github.com/team-telnyx/telnyx-python/compare/v4.60.0...v4.61.0)
+
+### Features
+
+* [TDA-6425] Add Session Analysis API spec to public docs ([a3df3b8](https://github.com/team-telnyx/telnyx-python/commit/a3df3b843527922682335f52396ac6dd2228b8f1))
+* AI-2106: Add invite tool schema to inference OpenAPI spec ([7ce2e19](https://github.com/team-telnyx/telnyx-python/commit/7ce2e198c8868461a61c687f0205c0bfe97efd07))
+* **api:** manual updates ([307eccb](https://github.com/team-telnyx/telnyx-python/commit/307eccb81f08aac682df5f11a76957f2312e3b14))
+* **api:** manual updates ([9836102](https://github.com/team-telnyx/telnyx-python/commit/9836102e8c36049094e466831035378402d66737))
+* **api:** manual updates ([fc35872](https://github.com/team-telnyx/telnyx-python/commit/fc35872ea3bae91b1a827b96e3e71d383681a1ab))
+* **api:** manual updates ([3685080](https://github.com/team-telnyx/telnyx-python/commit/368508027b9d03b4556ee603ba04f08e8d554a4b))
+* **api:** manual updates ([8a92529](https://github.com/team-telnyx/telnyx-python/commit/8a925296430de78be1f5251a2cb2e593d05b8be8))
+* **api:** manual updates ([df9980b](https://github.com/team-telnyx/telnyx-python/commit/df9980bf506f4bf1dd84ce83ccc96de84196ba58))
+* Assistant tags ([beb4319](https://github.com/team-telnyx/telnyx-python/commit/beb43199a47ebf11b154e22994cbb44c5bb08ce5))
+* Changing a tag for filebased STT endpoint ([586a5c9](https://github.com/team-telnyx/telnyx-python/commit/586a5c907c161c1bd2e3680cbb4c0d6564bdeb3d))
+* Changing the tag for TTS endpoint ([0f216f6](https://github.com/team-telnyx/telnyx-python/commit/0f216f6df35030b528459c2c33a30f14f67ed9a5))
+* MSG-6418: remove flashcall from hosted number verification codes endpoint ([99ea516](https://github.com/team-telnyx/telnyx-python/commit/99ea51685271b53f950114be6d6ffbe42f53aabd))
+* **stt:** add WebSocket event schemas for Stainless SDK generation ([834c8f3](https://github.com/team-telnyx/telnyx-python/commit/834c8f33fba5dfbb971cbe343dd92bb0ed11360b))
+* TELAPPS-ENGDESK-49737 Add prevent_double_bridge param to dial ([174bb17](https://github.com/team-telnyx/telnyx-python/commit/174bb172c448f52f16fefafff94417dfaf2e1866))
+
+
+### Bug Fixes
+
+* add discriminator to TtsServerEvent for Stainless SDK generation ([4bec629](https://github.com/team-telnyx/telnyx-python/commit/4bec629443e8d6a2dcfd16ee1c2826908e5d71f6))
+
+
+### Chores
+
+* **ci:** skip uploading artifacts on stainless-internal branches ([8ccd7b5](https://github.com/team-telnyx/telnyx-python/commit/8ccd7b5af7a8dd54e6ee8f7bc4d36a70350205fe))
+* **tests:** update webhook tests ([2578581](https://github.com/team-telnyx/telnyx-python/commit/257858104b910f7c2fc63111641f3d924d49d56e))
+* update placeholder string ([5ed11f3](https://github.com/team-telnyx/telnyx-python/commit/5ed11f39762e042a744c5c33761a05b5d9570014))
+
+
+### Documentation
+
+* **messaging:** Add wait_seconds to message response schemas ([aa938dd](https://github.com/team-telnyx/telnyx-python/commit/aa938ddaeb95691d2d85c85b42b09ab15546eabc))
+
+
+### Refactors
+
+* **types:** use `extra_items` from PEP 728 ([b5e0ea6](https://github.com/team-telnyx/telnyx-python/commit/b5e0ea620a758d7c9b2be5d77d066d7d83e59001))
+
 ## 4.60.0 (2026-03-02)
 
 Full Changelog: [v4.59.1...v4.60.0](https://github.com/team-telnyx/telnyx-python/compare/v4.59.1...v4.60.0)
