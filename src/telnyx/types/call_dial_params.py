@@ -154,6 +154,12 @@ class CallDialParams(TypedDict, total=False):
     be received.
     """
 
+    prevent_double_bridge: bool
+    """Prevents bridging and hangs up the call if the target is already bridged.
+
+    Disabled by default.
+    """
+
     record: Literal["record-from-answer"]
     """Start recording automatically after an event. Disabled by default."""
 

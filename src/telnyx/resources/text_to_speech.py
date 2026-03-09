@@ -72,10 +72,12 @@ class TextToSpeechResource(SyncAPIResource):
         azure: text_to_speech_generate_params.Azure | Omit = omit,
         disable_cache: bool | Omit = omit,
         elevenlabs: text_to_speech_generate_params.Elevenlabs | Omit = omit,
+        inworld: object | Omit = omit,
         language: str | Omit = omit,
         minimax: text_to_speech_generate_params.Minimax | Omit = omit,
         output_type: Literal["binary_output", "base64_output"] | Omit = omit,
-        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "rime", "resemble"] | Omit = omit,
+        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "rime", "resemble", "inworld"]
+        | Omit = omit,
         resemble: text_to_speech_generate_params.Resemble | Omit = omit,
         rime: text_to_speech_generate_params.Rime | Omit = omit,
         telnyx: text_to_speech_generate_params.Telnyx | Omit = omit,
@@ -105,7 +107,7 @@ class TextToSpeechResource(SyncAPIResource):
         parameters.
 
         Supported providers: `aws`, `telnyx`, `azure`, `elevenlabs`, `minimax`, `rime`,
-        `resemble`.
+        `resemble`, `inworld`.
 
         Args:
           aws: AWS Polly provider-specific parameters.
@@ -115,6 +117,8 @@ class TextToSpeechResource(SyncAPIResource):
           disable_cache: When `true`, bypass the audio cache and generate fresh audio.
 
           elevenlabs: ElevenLabs provider-specific parameters.
+
+          inworld: Inworld provider-specific parameters.
 
           language: Language code (e.g. `en-US`). Usage varies by provider.
 
@@ -160,6 +164,7 @@ class TextToSpeechResource(SyncAPIResource):
                     "azure": azure,
                     "disable_cache": disable_cache,
                     "elevenlabs": elevenlabs,
+                    "inworld": inworld,
                     "language": language,
                     "minimax": minimax,
                     "output_type": output_type,
@@ -184,7 +189,8 @@ class TextToSpeechResource(SyncAPIResource):
         self,
         *,
         api_key: str | Omit = omit,
-        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "rime", "resemble"] | Omit = omit,
+        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "rime", "resemble", "inworld"]
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -274,10 +280,12 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
         azure: text_to_speech_generate_params.Azure | Omit = omit,
         disable_cache: bool | Omit = omit,
         elevenlabs: text_to_speech_generate_params.Elevenlabs | Omit = omit,
+        inworld: object | Omit = omit,
         language: str | Omit = omit,
         minimax: text_to_speech_generate_params.Minimax | Omit = omit,
         output_type: Literal["binary_output", "base64_output"] | Omit = omit,
-        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "rime", "resemble"] | Omit = omit,
+        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "rime", "resemble", "inworld"]
+        | Omit = omit,
         resemble: text_to_speech_generate_params.Resemble | Omit = omit,
         rime: text_to_speech_generate_params.Rime | Omit = omit,
         telnyx: text_to_speech_generate_params.Telnyx | Omit = omit,
@@ -307,7 +315,7 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
         parameters.
 
         Supported providers: `aws`, `telnyx`, `azure`, `elevenlabs`, `minimax`, `rime`,
-        `resemble`.
+        `resemble`, `inworld`.
 
         Args:
           aws: AWS Polly provider-specific parameters.
@@ -317,6 +325,8 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
           disable_cache: When `true`, bypass the audio cache and generate fresh audio.
 
           elevenlabs: ElevenLabs provider-specific parameters.
+
+          inworld: Inworld provider-specific parameters.
 
           language: Language code (e.g. `en-US`). Usage varies by provider.
 
@@ -362,6 +372,7 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
                     "azure": azure,
                     "disable_cache": disable_cache,
                     "elevenlabs": elevenlabs,
+                    "inworld": inworld,
                     "language": language,
                     "minimax": minimax,
                     "output_type": output_type,
@@ -386,7 +397,8 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
         self,
         *,
         api_key: str | Omit = omit,
-        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "rime", "resemble"] | Omit = omit,
+        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "rime", "resemble", "inworld"]
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

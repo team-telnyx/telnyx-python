@@ -102,6 +102,7 @@ class CallsResource(SyncAPIResource):
         media_name: str | Omit = omit,
         park_after_unbridge: str | Omit = omit,
         preferred_codecs: str | Omit = omit,
+        prevent_double_bridge: bool | Omit = omit,
         record: Literal["record-from-answer"] | Omit = omit,
         record_channels: Literal["single", "dual"] | Omit = omit,
         record_custom_file_name: str | Omit = omit,
@@ -243,6 +244,9 @@ class CallsResource(SyncAPIResource):
           preferred_codecs: The list of comma-separated codecs in a preferred order for the forked media to
               be received.
 
+          prevent_double_bridge: Prevents bridging and hangs up the call if the target is already bridged.
+              Disabled by default.
+
           record: Start recording automatically after an event. Disabled by default.
 
           record_channels: Defines which channel should be recorded ('single' or 'dual') when `record` is
@@ -368,6 +372,7 @@ class CallsResource(SyncAPIResource):
                     "media_name": media_name,
                     "park_after_unbridge": park_after_unbridge,
                     "preferred_codecs": preferred_codecs,
+                    "prevent_double_bridge": prevent_double_bridge,
                     "record": record,
                     "record_channels": record_channels,
                     "record_custom_file_name": record_custom_file_name,
@@ -495,6 +500,7 @@ class AsyncCallsResource(AsyncAPIResource):
         media_name: str | Omit = omit,
         park_after_unbridge: str | Omit = omit,
         preferred_codecs: str | Omit = omit,
+        prevent_double_bridge: bool | Omit = omit,
         record: Literal["record-from-answer"] | Omit = omit,
         record_channels: Literal["single", "dual"] | Omit = omit,
         record_custom_file_name: str | Omit = omit,
@@ -636,6 +642,9 @@ class AsyncCallsResource(AsyncAPIResource):
           preferred_codecs: The list of comma-separated codecs in a preferred order for the forked media to
               be received.
 
+          prevent_double_bridge: Prevents bridging and hangs up the call if the target is already bridged.
+              Disabled by default.
+
           record: Start recording automatically after an event. Disabled by default.
 
           record_channels: Defines which channel should be recorded ('single' or 'dual') when `record` is
@@ -761,6 +770,7 @@ class AsyncCallsResource(AsyncAPIResource):
                     "media_name": media_name,
                     "park_after_unbridge": park_after_unbridge,
                     "preferred_codecs": preferred_codecs,
+                    "prevent_double_bridge": prevent_double_bridge,
                     "record": record,
                     "record_channels": record_channels,
                     "record_custom_file_name": record_custom_file_name,
