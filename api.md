@@ -4093,7 +4093,6 @@ Types:
 
 ```python
 from telnyx.types.sim_cards import (
-    BulkSimCardAction,
     SimCardAction,
     ActionRetrieveResponse,
     ActionBulkDisableVoiceResponse,
