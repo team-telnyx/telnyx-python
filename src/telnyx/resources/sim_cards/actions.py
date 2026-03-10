@@ -19,6 +19,8 @@ from ..._base_client import AsyncPaginator, make_request_options
 from ...types.sim_cards import (
     action_list_params,
     action_set_public_ip_params,
+    action_bulk_enable_voice_params,
+    action_bulk_disable_voice_params,
     action_bulk_set_public_ips_params,
     action_validate_registration_codes_params,
 )
@@ -29,6 +31,8 @@ from ...types.sim_cards.action_retrieve_response import ActionRetrieveResponse
 from ...types.sim_cards.action_set_standby_response import ActionSetStandbyResponse
 from ...types.sim_cards.action_set_public_ip_response import ActionSetPublicIPResponse
 from ...types.sim_cards.action_remove_public_ip_response import ActionRemovePublicIPResponse
+from ...types.sim_cards.action_bulk_enable_voice_response import ActionBulkEnableVoiceResponse
+from ...types.sim_cards.action_bulk_disable_voice_response import ActionBulkDisableVoiceResponse
 from ...types.sim_cards.action_bulk_set_public_ips_response import ActionBulkSetPublicIPsResponse
 from ...types.sim_cards.action_validate_registration_codes_response import ActionValidateRegistrationCodesResponse
 
@@ -138,6 +142,92 @@ class ActionsResource(SyncAPIResource):
                 ),
             ),
             model=SimCardAction,
+        )
+
+    def bulk_disable_voice(
+        self,
+        *,
+        sim_card_group_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ActionBulkDisableVoiceResponse:
+        """
+        This API triggers an asynchronous operation to disable voice on SIM cards
+        belonging to a specified SIM Card Group.<br/> For each SIM Card a SIM Card
+        Action will be generated. The status of the SIM Card Actions can be followed
+        through the
+        [List SIM Card Action](https://developers.telnyx.com/api-reference/sim-card-actions/list-sim-card-actions)
+        API.
+
+        The overall status of the Bulk SIM Card Action can be followed through the
+        [List Bulk SIM Card Action](https://developers.telnyx.com/api-reference/sim-card-actions/list-bulk-sim-card-actions)
+        API.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._post(
+            "/sim_cards/actions/bulk_disable_voice",
+            body=maybe_transform(
+                {"sim_card_group_id": sim_card_group_id}, action_bulk_disable_voice_params.ActionBulkDisableVoiceParams
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ActionBulkDisableVoiceResponse,
+        )
+
+    def bulk_enable_voice(
+        self,
+        *,
+        sim_card_group_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ActionBulkEnableVoiceResponse:
+        """
+        This API triggers an asynchronous operation to enable voice on SIM cards
+        belonging to a specified SIM Card Group.<br/> For each SIM Card a SIM Card
+        Action will be generated. The status of the SIM Card Actions can be followed
+        through the
+        [List SIM Card Action](https://developers.telnyx.com/api-reference/sim-card-actions/list-sim-card-actions)
+        API.
+
+        The overall status of the Bulk SIM Card Action can be followed through the
+        [List Bulk SIM Card Action](https://developers.telnyx.com/api-reference/sim-card-actions/list-bulk-sim-card-actions)
+        API.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._post(
+            "/sim_cards/actions/bulk_enable_voice",
+            body=maybe_transform(
+                {"sim_card_group_id": sim_card_group_id}, action_bulk_enable_voice_params.ActionBulkEnableVoiceParams
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ActionBulkEnableVoiceResponse,
         )
 
     def bulk_set_public_ips(
@@ -523,6 +613,92 @@ class AsyncActionsResource(AsyncAPIResource):
             model=SimCardAction,
         )
 
+    async def bulk_disable_voice(
+        self,
+        *,
+        sim_card_group_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ActionBulkDisableVoiceResponse:
+        """
+        This API triggers an asynchronous operation to disable voice on SIM cards
+        belonging to a specified SIM Card Group.<br/> For each SIM Card a SIM Card
+        Action will be generated. The status of the SIM Card Actions can be followed
+        through the
+        [List SIM Card Action](https://developers.telnyx.com/api-reference/sim-card-actions/list-sim-card-actions)
+        API.
+
+        The overall status of the Bulk SIM Card Action can be followed through the
+        [List Bulk SIM Card Action](https://developers.telnyx.com/api-reference/sim-card-actions/list-bulk-sim-card-actions)
+        API.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._post(
+            "/sim_cards/actions/bulk_disable_voice",
+            body=await async_maybe_transform(
+                {"sim_card_group_id": sim_card_group_id}, action_bulk_disable_voice_params.ActionBulkDisableVoiceParams
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ActionBulkDisableVoiceResponse,
+        )
+
+    async def bulk_enable_voice(
+        self,
+        *,
+        sim_card_group_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ActionBulkEnableVoiceResponse:
+        """
+        This API triggers an asynchronous operation to enable voice on SIM cards
+        belonging to a specified SIM Card Group.<br/> For each SIM Card a SIM Card
+        Action will be generated. The status of the SIM Card Actions can be followed
+        through the
+        [List SIM Card Action](https://developers.telnyx.com/api-reference/sim-card-actions/list-sim-card-actions)
+        API.
+
+        The overall status of the Bulk SIM Card Action can be followed through the
+        [List Bulk SIM Card Action](https://developers.telnyx.com/api-reference/sim-card-actions/list-bulk-sim-card-actions)
+        API.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._post(
+            "/sim_cards/actions/bulk_enable_voice",
+            body=await async_maybe_transform(
+                {"sim_card_group_id": sim_card_group_id}, action_bulk_enable_voice_params.ActionBulkEnableVoiceParams
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ActionBulkEnableVoiceResponse,
+        )
+
     async def bulk_set_public_ips(
         self,
         *,
@@ -811,6 +987,12 @@ class ActionsResourceWithRawResponse:
         self.list = to_raw_response_wrapper(
             actions.list,
         )
+        self.bulk_disable_voice = to_raw_response_wrapper(
+            actions.bulk_disable_voice,
+        )
+        self.bulk_enable_voice = to_raw_response_wrapper(
+            actions.bulk_enable_voice,
+        )
         self.bulk_set_public_ips = to_raw_response_wrapper(
             actions.bulk_set_public_ips,
         )
@@ -843,6 +1025,12 @@ class AsyncActionsResourceWithRawResponse:
         )
         self.list = async_to_raw_response_wrapper(
             actions.list,
+        )
+        self.bulk_disable_voice = async_to_raw_response_wrapper(
+            actions.bulk_disable_voice,
+        )
+        self.bulk_enable_voice = async_to_raw_response_wrapper(
+            actions.bulk_enable_voice,
         )
         self.bulk_set_public_ips = async_to_raw_response_wrapper(
             actions.bulk_set_public_ips,
@@ -877,6 +1065,12 @@ class ActionsResourceWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             actions.list,
         )
+        self.bulk_disable_voice = to_streamed_response_wrapper(
+            actions.bulk_disable_voice,
+        )
+        self.bulk_enable_voice = to_streamed_response_wrapper(
+            actions.bulk_enable_voice,
+        )
         self.bulk_set_public_ips = to_streamed_response_wrapper(
             actions.bulk_set_public_ips,
         )
@@ -909,6 +1103,12 @@ class AsyncActionsResourceWithStreamingResponse:
         )
         self.list = async_to_streamed_response_wrapper(
             actions.list,
+        )
+        self.bulk_disable_voice = async_to_streamed_response_wrapper(
+            actions.bulk_disable_voice,
+        )
+        self.bulk_enable_voice = async_to_streamed_response_wrapper(
+            actions.bulk_enable_voice,
         )
         self.bulk_set_public_ips = async_to_streamed_response_wrapper(
             actions.bulk_set_public_ips,
