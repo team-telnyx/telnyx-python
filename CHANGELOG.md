@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.62.0 (2026-03-10)
+
+Full Changelog: [v4.61.0...v4.62.0](https://github.com/team-telnyx/telnyx-python/compare/v4.61.0...v4.62.0)
+
+### Features
+
+* CW-2881 publish wireless VoLTE docs to prod ([3680bf6](https://github.com/team-telnyx/telnyx-python/commit/3680bf648091513b1a9aa329944a6b178a317f26))
+
 ## 4.61.0 (2026-03-09)
 
 Full Changelog: [v4.60.0...v4.61.0](https://github.com/team-telnyx/telnyx-python/compare/v4.60.0...v4.61.0)
