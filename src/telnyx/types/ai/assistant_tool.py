@@ -25,10 +25,10 @@ __all__ = [
     "TransferTransferVoicemailDetectionOnVoicemailDetected",
     "TransferTransferVoicemailDetectionOnVoicemailDetectedVoicemailMessage",
     "Invite",
-    "InviteInvite",
-    "InviteInviteCustomHeader",
-    "InviteInviteVoicemailDetection",
-    "InviteInviteVoicemailDetectionOnVoicemailDetected",
+    "InviteInviteConfig",
+    "InviteInviteConfigCustomHeader",
+    "InviteInviteConfigVoicemailDetection",
+    "InviteInviteConfigVoicemailDetectionOnVoicemailDetected",
     "Refer",
     "ReferRefer",
     "ReferReferTarget",
@@ -227,7 +227,7 @@ class Transfer(BaseModel):
     type: Literal["transfer"]
 
 
-class InviteInviteCustomHeader(BaseModel):
+class InviteInviteConfigCustomHeader(BaseModel):
     name: Optional[str] = None
 
     value: Optional[str] = None
@@ -239,14 +239,14 @@ class InviteInviteCustomHeader(BaseModel):
     """
 
 
-class InviteInviteVoicemailDetectionOnVoicemailDetected(BaseModel):
+class InviteInviteConfigVoicemailDetectionOnVoicemailDetected(BaseModel):
     """Action to take when voicemail is detected on the invited call."""
 
     action: Optional[Literal["stop_invite"]] = None
     """The action to take when voicemail is detected."""
 
 
-class InviteInviteVoicemailDetection(BaseModel):
+class InviteInviteConfigVoicemailDetection(BaseModel):
     """
     Configuration for voicemail detection (AMD - Answering Machine Detection) on the invited call.
     """
@@ -258,18 +258,18 @@ class InviteInviteVoicemailDetection(BaseModel):
     detection.
     """
 
-    on_voicemail_detected: Optional[InviteInviteVoicemailDetectionOnVoicemailDetected] = None
+    on_voicemail_detected: Optional[InviteInviteConfigVoicemailDetectionOnVoicemailDetected] = None
     """Action to take when voicemail is detected on the invited call."""
 
 
-class InviteInvite(BaseModel):
-    custom_headers: Optional[List[InviteInviteCustomHeader]] = None
+class InviteInviteConfig(BaseModel):
+    custom_headers: Optional[List[InviteInviteConfigCustomHeader]] = None
     """Custom headers to be added to the SIP INVITE for the invite command."""
 
     from_: Optional[str] = FieldInfo(alias="from", default=None)
     """Number or SIP URI placing the call."""
 
-    voicemail_detection: Optional[InviteInviteVoicemailDetection] = None
+    voicemail_detection: Optional[InviteInviteConfigVoicemailDetection] = None
     """
     Configuration for voicemail detection (AMD - Answering Machine Detection) on the
     invited call.
@@ -277,7 +277,7 @@ class InviteInvite(BaseModel):
 
 
 class Invite(BaseModel):
-    invite: InviteInvite
+    invite_config: InviteInviteConfig
 
     type: Literal["invite"]
 
