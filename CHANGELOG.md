@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.64.0 (2026-03-10)
+
+Full Changelog: [v4.63.0...v4.64.0](https://github.com/team-telnyx/telnyx-python/compare/v4.63.0...v4.64.0)
+
+### Features
+
+* **messaging:** add wait_seconds to OutboundMessagePayload example ([14209ab](https://github.com/team-telnyx/telnyx-python/commit/14209abf6b3f8a444eb85dbb017f7765b982a70e))
+
 ## 4.63.0 (2026-03-10)
 
 Full Changelog: [v4.62.0...v4.63.0](https://github.com/team-telnyx/telnyx-python/compare/v4.62.0...v4.63.0)
