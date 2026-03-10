@@ -4095,6 +4095,8 @@ Types:
 from telnyx.types.sim_cards import (
     SimCardAction,
     ActionRetrieveResponse,
+    ActionBulkDisableVoiceResponse,
+    ActionBulkEnableVoiceResponse,
     ActionBulkSetPublicIPsResponse,
     ActionDisableResponse,
     ActionEnableResponse,
@@ -4109,6 +4111,8 @@ Methods:
 
 - <code title="get /sim_card_actions/{id}">client.sim_cards.actions.<a href="./src/telnyx/resources/sim_cards/actions.py">retrieve</a>(id) -> <a href="./src/telnyx/types/sim_cards/action_retrieve_response.py">ActionRetrieveResponse</a></code>
 - <code title="get /sim_card_actions">client.sim_cards.actions.<a href="./src/telnyx/resources/sim_cards/actions.py">list</a>(\*\*<a href="src/telnyx/types/sim_cards/action_list_params.py">params</a>) -> <a href="./src/telnyx/types/sim_cards/sim_card_action.py">SyncDefaultFlatPagination[SimCardAction]</a></code>
+- <code title="post /sim_cards/actions/bulk_disable_voice">client.sim_cards.actions.<a href="./src/telnyx/resources/sim_cards/actions.py">bulk_disable_voice</a>(\*\*<a href="src/telnyx/types/sim_cards/action_bulk_disable_voice_params.py">params</a>) -> <a href="./src/telnyx/types/sim_cards/action_bulk_disable_voice_response.py">ActionBulkDisableVoiceResponse</a></code>
+- <code title="post /sim_cards/actions/bulk_enable_voice">client.sim_cards.actions.<a href="./src/telnyx/resources/sim_cards/actions.py">bulk_enable_voice</a>(\*\*<a href="src/telnyx/types/sim_cards/action_bulk_enable_voice_params.py">params</a>) -> <a href="./src/telnyx/types/sim_cards/action_bulk_enable_voice_response.py">ActionBulkEnableVoiceResponse</a></code>
 - <code title="post /sim_cards/actions/bulk_set_public_ips">client.sim_cards.actions.<a href="./src/telnyx/resources/sim_cards/actions.py">bulk_set_public_ips</a>(\*\*<a href="src/telnyx/types/sim_cards/action_bulk_set_public_ips_params.py">params</a>) -> <a href="./src/telnyx/types/sim_cards/action_bulk_set_public_ips_response.py">ActionBulkSetPublicIPsResponse</a></code>
 - <code title="post /sim_cards/{id}/actions/disable">client.sim_cards.actions.<a href="./src/telnyx/resources/sim_cards/actions.py">disable</a>(id) -> <a href="./src/telnyx/types/sim_cards/action_disable_response.py">ActionDisableResponse</a></code>
 - <code title="post /sim_cards/{id}/actions/enable">client.sim_cards.actions.<a href="./src/telnyx/resources/sim_cards/actions.py">enable</a>(id) -> <a href="./src/telnyx/types/sim_cards/action_enable_response.py">ActionEnableResponse</a></code>

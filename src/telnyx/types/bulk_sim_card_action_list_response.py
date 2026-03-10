@@ -13,11 +13,13 @@ class BulkSimCardActionListResponse(BaseModel):
     id: Optional[str] = None
     """Identifies the resource."""
 
-    action_type: Optional[Literal["bulk_set_public_ips"]] = None
-    """The operation type. It can be one of the following: <br/>
+    action_type: Optional[Literal["bulk_disable_voice", "bulk_enable_voice", "bulk_set_public_ips"]] = None
+    """The action type. It can be one of the following: <br/>
 
     <ul>
-    <li><code>bulk_set_public_ips</code> - set a public IP for each specified SIM card.</li>
+    <li><code>bulk_disable_voice</code> - disable voice for every SIM Card in a SIM Card Group.</li>
+    <li><code>bulk_enable_voice</code> - enable voice for every SIM Card in a SIM Card Group.</li>
+    <li><code>bulk_set_public_ips</code> - set a public IP for each specified SIM Card.</li>
     </ul>
     """
 

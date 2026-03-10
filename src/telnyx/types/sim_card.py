@@ -201,3 +201,6 @@ class SimCard(BaseModel):
 
     version: Optional[str] = None
     """The version of the SIM card."""
+
+    voice_enabled: Optional[bool] = None
+    """Indicates whether voice services are enabled for the SIM card."""
