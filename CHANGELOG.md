@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.65.0 (2026-03-10)
+
+Full Changelog: [v4.64.1...v4.65.0](https://github.com/team-telnyx/telnyx-python/compare/v4.64.1...v4.65.0)
+
+### Features
+
+* **api:** manual updates ([9f6a891](https://github.com/team-telnyx/telnyx-python/commit/9f6a8911845dc01e3910d9adfa8d7c87a9a7e5dd))
+
 ## 4.64.1 (2026-03-10)
 
 Full Changelog: [v4.64.0...v4.64.1](https://github.com/team-telnyx/telnyx-python/compare/v4.64.0...v4.64.1)
