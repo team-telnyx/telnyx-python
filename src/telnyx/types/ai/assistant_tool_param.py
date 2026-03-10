@@ -23,10 +23,10 @@ __all__ = [
     "TransferTransferVoicemailDetectionOnVoicemailDetected",
     "TransferTransferVoicemailDetectionOnVoicemailDetectedVoicemailMessage",
     "Invite",
-    "InviteInvite",
-    "InviteInviteCustomHeader",
-    "InviteInviteVoicemailDetection",
-    "InviteInviteVoicemailDetectionOnVoicemailDetected",
+    "InviteInviteConfig",
+    "InviteInviteConfigCustomHeader",
+    "InviteInviteConfigVoicemailDetection",
+    "InviteInviteConfigVoicemailDetectionOnVoicemailDetected",
     "Refer",
     "ReferRefer",
     "ReferReferTarget",
@@ -231,7 +231,7 @@ class Transfer(TypedDict, total=False):
     type: Required[Literal["transfer"]]
 
 
-class InviteInviteCustomHeader(TypedDict, total=False):
+class InviteInviteConfigCustomHeader(TypedDict, total=False):
     name: str
 
     value: str
@@ -243,14 +243,14 @@ class InviteInviteCustomHeader(TypedDict, total=False):
     """
 
 
-class InviteInviteVoicemailDetectionOnVoicemailDetected(TypedDict, total=False):
+class InviteInviteConfigVoicemailDetectionOnVoicemailDetected(TypedDict, total=False):
     """Action to take when voicemail is detected on the invited call."""
 
     action: Literal["stop_invite"]
     """The action to take when voicemail is detected."""
 
 
-class InviteInviteVoicemailDetection(TypedDict, total=False):
+class InviteInviteConfigVoicemailDetection(TypedDict, total=False):
     """
     Configuration for voicemail detection (AMD - Answering Machine Detection) on the invited call.
     """
@@ -262,12 +262,12 @@ class InviteInviteVoicemailDetection(TypedDict, total=False):
     detection.
     """
 
-    on_voicemail_detected: InviteInviteVoicemailDetectionOnVoicemailDetected
+    on_voicemail_detected: InviteInviteConfigVoicemailDetectionOnVoicemailDetected
     """Action to take when voicemail is detected on the invited call."""
 
 
-_InviteInviteReservedKeywords = TypedDict(
-    "_InviteInviteReservedKeywords",
+_InviteInviteConfigReservedKeywords = TypedDict(
+    "_InviteInviteConfigReservedKeywords",
     {
         "from": str,
     },
@@ -275,11 +275,11 @@ _InviteInviteReservedKeywords = TypedDict(
 )
 
 
-class InviteInvite(_InviteInviteReservedKeywords, total=False):
-    custom_headers: Iterable[InviteInviteCustomHeader]
+class InviteInviteConfig(_InviteInviteConfigReservedKeywords, total=False):
+    custom_headers: Iterable[InviteInviteConfigCustomHeader]
     """Custom headers to be added to the SIP INVITE for the invite command."""
 
-    voicemail_detection: InviteInviteVoicemailDetection
+    voicemail_detection: InviteInviteConfigVoicemailDetection
     """
     Configuration for voicemail detection (AMD - Answering Machine Detection) on the
     invited call.
@@ -287,7 +287,7 @@ class InviteInvite(_InviteInviteReservedKeywords, total=False):
 
 
 class Invite(TypedDict, total=False):
-    invite: Required[InviteInvite]
+    invite_config: Required[InviteInviteConfig]
 
     type: Required[Literal["invite"]]
 
