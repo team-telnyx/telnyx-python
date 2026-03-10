@@ -5,7 +5,7 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["ActionBulkSetPublicIPsResponse", "Data"]
+__all__ = ["ActionBulkDisableVoiceResponse", "Data"]
 
 
 class Data(BaseModel):
@@ -39,7 +39,7 @@ class Data(BaseModel):
     """ISO 8601 formatted date-time indicating when the resource was updated."""
 
 
-class ActionBulkSetPublicIPsResponse(BaseModel):
+class ActionBulkDisableVoiceResponse(BaseModel):
     data: Optional[Data] = None
     """This object represents a bulk SIM card action.
 

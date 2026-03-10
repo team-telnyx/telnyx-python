@@ -18,6 +18,8 @@ from telnyx.types.sim_cards import (
     ActionSetStandbyResponse,
     ActionSetPublicIPResponse,
     ActionRemovePublicIPResponse,
+    ActionBulkEnableVoiceResponse,
+    ActionBulkDisableVoiceResponse,
     ActionBulkSetPublicIPsResponse,
     ActionValidateRegistrationCodesResponse,
 )
@@ -110,6 +112,74 @@ class TestActions:
 
             action = response.parse()
             assert_matches_type(SyncDefaultFlatPagination[SimCardAction], action, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_bulk_disable_voice(self, client: Telnyx) -> None:
+        action = client.sim_cards.actions.bulk_disable_voice(
+            sim_card_group_id="6b14e151-8493-4fa1-8664-1cc4e6d14158",
+        )
+        assert_matches_type(ActionBulkDisableVoiceResponse, action, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_raw_response_bulk_disable_voice(self, client: Telnyx) -> None:
+        response = client.sim_cards.actions.with_raw_response.bulk_disable_voice(
+            sim_card_group_id="6b14e151-8493-4fa1-8664-1cc4e6d14158",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        action = response.parse()
+        assert_matches_type(ActionBulkDisableVoiceResponse, action, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_streaming_response_bulk_disable_voice(self, client: Telnyx) -> None:
+        with client.sim_cards.actions.with_streaming_response.bulk_disable_voice(
+            sim_card_group_id="6b14e151-8493-4fa1-8664-1cc4e6d14158",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            action = response.parse()
+            assert_matches_type(ActionBulkDisableVoiceResponse, action, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_bulk_enable_voice(self, client: Telnyx) -> None:
+        action = client.sim_cards.actions.bulk_enable_voice(
+            sim_card_group_id="6b14e151-8493-4fa1-8664-1cc4e6d14158",
+        )
+        assert_matches_type(ActionBulkEnableVoiceResponse, action, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_raw_response_bulk_enable_voice(self, client: Telnyx) -> None:
+        response = client.sim_cards.actions.with_raw_response.bulk_enable_voice(
+            sim_card_group_id="6b14e151-8493-4fa1-8664-1cc4e6d14158",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        action = response.parse()
+        assert_matches_type(ActionBulkEnableVoiceResponse, action, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_streaming_response_bulk_enable_voice(self, client: Telnyx) -> None:
+        with client.sim_cards.actions.with_streaming_response.bulk_enable_voice(
+            sim_card_group_id="6b14e151-8493-4fa1-8664-1cc4e6d14158",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            action = response.parse()
+            assert_matches_type(ActionBulkEnableVoiceResponse, action, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -490,6 +560,74 @@ class TestAsyncActions:
 
             action = await response.parse()
             assert_matches_type(AsyncDefaultFlatPagination[SimCardAction], action, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_bulk_disable_voice(self, async_client: AsyncTelnyx) -> None:
+        action = await async_client.sim_cards.actions.bulk_disable_voice(
+            sim_card_group_id="6b14e151-8493-4fa1-8664-1cc4e6d14158",
+        )
+        assert_matches_type(ActionBulkDisableVoiceResponse, action, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_raw_response_bulk_disable_voice(self, async_client: AsyncTelnyx) -> None:
+        response = await async_client.sim_cards.actions.with_raw_response.bulk_disable_voice(
+            sim_card_group_id="6b14e151-8493-4fa1-8664-1cc4e6d14158",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        action = await response.parse()
+        assert_matches_type(ActionBulkDisableVoiceResponse, action, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_streaming_response_bulk_disable_voice(self, async_client: AsyncTelnyx) -> None:
+        async with async_client.sim_cards.actions.with_streaming_response.bulk_disable_voice(
+            sim_card_group_id="6b14e151-8493-4fa1-8664-1cc4e6d14158",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            action = await response.parse()
+            assert_matches_type(ActionBulkDisableVoiceResponse, action, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_bulk_enable_voice(self, async_client: AsyncTelnyx) -> None:
+        action = await async_client.sim_cards.actions.bulk_enable_voice(
+            sim_card_group_id="6b14e151-8493-4fa1-8664-1cc4e6d14158",
+        )
+        assert_matches_type(ActionBulkEnableVoiceResponse, action, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_raw_response_bulk_enable_voice(self, async_client: AsyncTelnyx) -> None:
+        response = await async_client.sim_cards.actions.with_raw_response.bulk_enable_voice(
+            sim_card_group_id="6b14e151-8493-4fa1-8664-1cc4e6d14158",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        action = await response.parse()
+        assert_matches_type(ActionBulkEnableVoiceResponse, action, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_streaming_response_bulk_enable_voice(self, async_client: AsyncTelnyx) -> None:
+        async with async_client.sim_cards.actions.with_streaming_response.bulk_enable_voice(
+            sim_card_group_id="6b14e151-8493-4fa1-8664-1cc4e6d14158",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            action = await response.parse()
+            assert_matches_type(ActionBulkEnableVoiceResponse, action, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
