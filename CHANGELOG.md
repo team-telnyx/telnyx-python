@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.64.1 (2026-03-10)
+
+Full Changelog: [v4.64.0...v4.64.1](https://github.com/team-telnyx/telnyx-python/compare/v4.64.0...v4.64.1)
+
+### Bug Fixes
+
+* add title to InviteTool.invite for Stainless SDK ([2effda1](https://github.com/team-telnyx/telnyx-python/commit/2effda196419c1331af9f2585a59ff3d7abf2ef6))
+
 ## 4.64.0 (2026-03-10)
 
 Full Changelog: [v4.63.0...v4.64.0](https://github.com/team-telnyx/telnyx-python/compare/v4.63.0...v4.64.0)
