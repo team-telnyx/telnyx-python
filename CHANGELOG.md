@@ -1,5 +1,18 @@
 # Changelog
 
+## 4.67.0 (2026-03-11)
+
+Full Changelog: [v4.66.0...v4.67.0](https://github.com/team-telnyx/telnyx-python/compare/v4.66.0...v4.67.0)
+
+### Features
+
+* **api:** Merge pull request [#27](https://github.com/team-telnyx/telnyx-python/issues/27) from stainless-sdks/fix/whatsapp-message-templates-conflict ([b613738](https://github.com/team-telnyx/telnyx-python/commit/b61373874d712d9814829dc3b3f3e653333e7d8b))
+
+
+### Bug Fixes
+
+* rename whatsapp.message_templates to whatsapp.templates to avoid conflict ([b613738](https://github.com/team-telnyx/telnyx-python/commit/b61373874d712d9814829dc3b3f3e653333e7d8b))
+
 ## 4.66.0 (2026-03-11)
 
 Full Changelog: [v4.65.2...v4.66.0](https://github.com/team-telnyx/telnyx-python/compare/v4.65.2...v4.66.0)
