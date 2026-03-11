@@ -33,6 +33,7 @@ from telnyx.types import (
     SimCardStatus,
     SimpleSimCard,
     SubNumberOrderRegulatoryRequirementWithValue,
+    WhatsappTemplateData,
 )
 ```
 
@@ -5260,7 +5261,11 @@ Methods:
 Types:
 
 ```python
-from telnyx.types.whatsapp.business_accounts import SettingRetrieveResponse, SettingUpdateResponse
+from telnyx.types.whatsapp.business_accounts import (
+    WabaSettings,
+    SettingRetrieveResponse,
+    SettingUpdateResponse,
+)
 ```
 
 Methods:
@@ -5273,13 +5278,13 @@ Methods:
 Types:
 
 ```python
-from telnyx.types.whatsapp import TemplateCreateResponse, TemplateListResponse
+from telnyx.types.whatsapp import TemplateCreateResponse
 ```
 
 Methods:
 
 - <code title="post /v2/whatsapp/message_templates">client.whatsapp.templates.<a href="./src/telnyx/resources/whatsapp/templates.py">create</a>(\*\*<a href="src/telnyx/types/whatsapp/template_create_params.py">params</a>) -> <a href="./src/telnyx/types/whatsapp/template_create_response.py">TemplateCreateResponse</a></code>
-- <code title="get /v2/whatsapp/message_templates">client.whatsapp.templates.<a href="./src/telnyx/resources/whatsapp/templates.py">list</a>(\*\*<a href="src/telnyx/types/whatsapp/template_list_params.py">params</a>) -> <a href="./src/telnyx/types/whatsapp/template_list_response.py">SyncDefaultFlatPagination[TemplateListResponse]</a></code>
+- <code title="get /v2/whatsapp/message_templates">client.whatsapp.templates.<a href="./src/telnyx/resources/whatsapp/templates.py">list</a>(\*\*<a href="src/telnyx/types/whatsapp/template_list_params.py">params</a>) -> <a href="./src/telnyx/types/shared/whatsapp_template_data.py">SyncDefaultFlatPagination[WhatsappTemplateData]</a></code>
 
 ## PhoneNumbers
 
@@ -5302,6 +5307,7 @@ Types:
 
 ```python
 from telnyx.types.whatsapp.phone_numbers import (
+    WhatsappCallingSettingsData,
     CallingSettingRetrieveResponse,
     CallingSettingUpdateResponse,
 )
@@ -5317,7 +5323,11 @@ Methods:
 Types:
 
 ```python
-from telnyx.types.whatsapp.phone_numbers import ProfileRetrieveResponse, ProfileUpdateResponse
+from telnyx.types.whatsapp.phone_numbers import (
+    WhatsappProfileData,
+    ProfileRetrieveResponse,
+    ProfileUpdateResponse,
+)
 ```
 
 Methods:
