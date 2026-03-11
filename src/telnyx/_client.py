@@ -58,6 +58,7 @@ if TYPE_CHECKING:
         messages,
         networks,
         portouts,
+        whatsapp,
         wireless,
         addresses,
         documents,
@@ -171,6 +172,7 @@ if TYPE_CHECKING:
         wireless_blocklist_values,
         custom_storage_credentials,
         number_order_phone_numbers,
+        whatsapp_message_templates,
         dynamic_emergency_addresses,
         dynamic_emergency_endpoints,
         global_ip_assignment_health,
@@ -256,6 +258,7 @@ if TYPE_CHECKING:
     from .resources.room_participants import RoomParticipantsResource, AsyncRoomParticipantsResource
     from .resources.siprec_connectors import SiprecConnectorsResource, AsyncSiprecConnectorsResource
     from .resources.sub_number_orders import SubNumberOrdersResource, AsyncSubNumberOrdersResource
+    from .resources.whatsapp.whatsapp import WhatsappResource, AsyncWhatsappResource
     from .resources.wireless.wireless import WirelessResource, AsyncWirelessResource
     from .resources.inventory_coverage import InventoryCoverageResource, AsyncInventoryCoverageResource
     from .resources.portability_checks import PortabilityChecksResource, AsyncPortabilityChecksResource
@@ -329,6 +332,10 @@ if TYPE_CHECKING:
     from .resources.number_order_phone_numbers import (
         NumberOrderPhoneNumbersResource,
         AsyncNumberOrderPhoneNumbersResource,
+    )
+    from .resources.whatsapp_message_templates import (
+        WhatsappMessageTemplatesResource,
+        AsyncWhatsappMessageTemplatesResource,
     )
     from .resources.dynamic_emergency_addresses import (
         DynamicEmergencyAddressesResource,
@@ -1548,6 +1555,19 @@ class Telnyx(SyncAPIClient):
         from .resources.session_analysis import SessionAnalysisResource
 
         return SessionAnalysisResource(self)
+
+    @cached_property
+    def whatsapp(self) -> WhatsappResource:
+        from .resources.whatsapp import WhatsappResource
+
+        return WhatsappResource(self)
+
+    @cached_property
+    def whatsapp_message_templates(self) -> WhatsappMessageTemplatesResource:
+        """Manage Whatsapp message templates"""
+        from .resources.whatsapp_message_templates import WhatsappMessageTemplatesResource
+
+        return WhatsappMessageTemplatesResource(self)
 
     @cached_property
     def with_raw_response(self) -> TelnyxWithRawResponse:
@@ -2820,6 +2840,19 @@ class AsyncTelnyx(AsyncAPIClient):
         return AsyncSessionAnalysisResource(self)
 
     @cached_property
+    def whatsapp(self) -> AsyncWhatsappResource:
+        from .resources.whatsapp import AsyncWhatsappResource
+
+        return AsyncWhatsappResource(self)
+
+    @cached_property
+    def whatsapp_message_templates(self) -> AsyncWhatsappMessageTemplatesResource:
+        """Manage Whatsapp message templates"""
+        from .resources.whatsapp_message_templates import AsyncWhatsappMessageTemplatesResource
+
+        return AsyncWhatsappMessageTemplatesResource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncTelnyxWithRawResponse:
         return AsyncTelnyxWithRawResponse(self)
 
@@ -4034,6 +4067,19 @@ class TelnyxWithRawResponse:
 
         return SessionAnalysisResourceWithRawResponse(self._client.session_analysis)
 
+    @cached_property
+    def whatsapp(self) -> whatsapp.WhatsappResourceWithRawResponse:
+        from .resources.whatsapp import WhatsappResourceWithRawResponse
+
+        return WhatsappResourceWithRawResponse(self._client.whatsapp)
+
+    @cached_property
+    def whatsapp_message_templates(self) -> whatsapp_message_templates.WhatsappMessageTemplatesResourceWithRawResponse:
+        """Manage Whatsapp message templates"""
+        from .resources.whatsapp_message_templates import WhatsappMessageTemplatesResourceWithRawResponse
+
+        return WhatsappMessageTemplatesResourceWithRawResponse(self._client.whatsapp_message_templates)
+
 
 class AsyncTelnyxWithRawResponse:
     _client: AsyncTelnyx
@@ -5117,6 +5163,21 @@ class AsyncTelnyxWithRawResponse:
         from .resources.session_analysis import AsyncSessionAnalysisResourceWithRawResponse
 
         return AsyncSessionAnalysisResourceWithRawResponse(self._client.session_analysis)
+
+    @cached_property
+    def whatsapp(self) -> whatsapp.AsyncWhatsappResourceWithRawResponse:
+        from .resources.whatsapp import AsyncWhatsappResourceWithRawResponse
+
+        return AsyncWhatsappResourceWithRawResponse(self._client.whatsapp)
+
+    @cached_property
+    def whatsapp_message_templates(
+        self,
+    ) -> whatsapp_message_templates.AsyncWhatsappMessageTemplatesResourceWithRawResponse:
+        """Manage Whatsapp message templates"""
+        from .resources.whatsapp_message_templates import AsyncWhatsappMessageTemplatesResourceWithRawResponse
+
+        return AsyncWhatsappMessageTemplatesResourceWithRawResponse(self._client.whatsapp_message_templates)
 
 
 class TelnyxWithStreamedResponse:
@@ -6203,6 +6264,21 @@ class TelnyxWithStreamedResponse:
         from .resources.session_analysis import SessionAnalysisResourceWithStreamingResponse
 
         return SessionAnalysisResourceWithStreamingResponse(self._client.session_analysis)
+
+    @cached_property
+    def whatsapp(self) -> whatsapp.WhatsappResourceWithStreamingResponse:
+        from .resources.whatsapp import WhatsappResourceWithStreamingResponse
+
+        return WhatsappResourceWithStreamingResponse(self._client.whatsapp)
+
+    @cached_property
+    def whatsapp_message_templates(
+        self,
+    ) -> whatsapp_message_templates.WhatsappMessageTemplatesResourceWithStreamingResponse:
+        """Manage Whatsapp message templates"""
+        from .resources.whatsapp_message_templates import WhatsappMessageTemplatesResourceWithStreamingResponse
+
+        return WhatsappMessageTemplatesResourceWithStreamingResponse(self._client.whatsapp_message_templates)
 
 
 class AsyncTelnyxWithStreamedResponse:
@@ -7333,6 +7409,21 @@ class AsyncTelnyxWithStreamedResponse:
         from .resources.session_analysis import AsyncSessionAnalysisResourceWithStreamingResponse
 
         return AsyncSessionAnalysisResourceWithStreamingResponse(self._client.session_analysis)
+
+    @cached_property
+    def whatsapp(self) -> whatsapp.AsyncWhatsappResourceWithStreamingResponse:
+        from .resources.whatsapp import AsyncWhatsappResourceWithStreamingResponse
+
+        return AsyncWhatsappResourceWithStreamingResponse(self._client.whatsapp)
+
+    @cached_property
+    def whatsapp_message_templates(
+        self,
+    ) -> whatsapp_message_templates.AsyncWhatsappMessageTemplatesResourceWithStreamingResponse:
+        """Manage Whatsapp message templates"""
+        from .resources.whatsapp_message_templates import AsyncWhatsappMessageTemplatesResourceWithStreamingResponse
+
+        return AsyncWhatsappMessageTemplatesResourceWithStreamingResponse(self._client.whatsapp_message_templates)
 
 
 Client = Telnyx
