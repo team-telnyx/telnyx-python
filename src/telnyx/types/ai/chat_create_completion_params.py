@@ -46,6 +46,13 @@ class ChatCreateCompletionParams(TypedDict, total=False):
     unlikely to find better candidates.
     """
 
+    enable_thinking: bool
+    """
+    Whether to enable the thinking/reasoning phase for models that support it (e.g.,
+    QwQ, Qwen3). When set to false, the model will skip the internal reasoning step
+    and respond directly, which can reduce latency. Defaults to true.
+    """
+
     frequency_penalty: float
     """Higher values will penalize the model from repeating the same output tokens."""
 
