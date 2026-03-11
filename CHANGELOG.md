@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.69.1 (2026-03-11)
+
+Full Changelog: [v4.69.0...v4.69.1](https://github.com/team-telnyx/telnyx-python/compare/v4.69.0...v4.69.1)
+
+### Bug Fixes
+
+* add missing vertical enum values for 10DLC brand creation (ENGDESK-49040) ([5675e18](https://github.com/team-telnyx/telnyx-python/commit/5675e185c763e5d35d1b79d8971488136198757b))
+
 ## 4.69.0 (2026-03-11)
 
 Full Changelog: [v4.68.0...v4.69.0](https://github.com/team-telnyx/telnyx-python/compare/v4.68.0...v4.69.0)
