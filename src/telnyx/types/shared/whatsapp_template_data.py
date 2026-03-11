@@ -1,24 +1,24 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Dict, List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["MessageTemplateCreateResponse", "Data", "DataWhatsappBusinessAccount"]
+__all__ = ["WhatsappTemplateData", "WhatsappBusinessAccount"]
 
 
-class DataWhatsappBusinessAccount(BaseModel):
+class WhatsappBusinessAccount(BaseModel):
     id: Optional[str] = None
 
 
-class Data(BaseModel):
+class WhatsappTemplateData(BaseModel):
     id: Optional[str] = None
 
     category: Optional[Literal["MARKETING", "UTILITY", "AUTHENTICATION"]] = None
 
-    components: Optional[List[object]] = None
+    components: Optional[List[Dict[str, object]]] = None
     """Whatsapp template components (header, body, footer, buttons)"""
 
     created_at: Optional[datetime] = None
@@ -37,8 +37,4 @@ class Data(BaseModel):
 
     updated_at: Optional[datetime] = None
 
-    whatsapp_business_account: Optional[DataWhatsappBusinessAccount] = None
-
-
-class MessageTemplateCreateResponse(BaseModel):
-    data: Optional[Data] = None
+    whatsapp_business_account: Optional[WhatsappBusinessAccount] = None

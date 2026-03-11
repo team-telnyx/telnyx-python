@@ -10,35 +10,33 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
-from telnyx.types.whatsapp import (
-    MessageTemplateListResponse,
-    MessageTemplateCreateResponse,
-)
+from telnyx.types.shared import WhatsappTemplateData
+from telnyx.types.whatsapp import TemplateCreateResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
-class TestMessageTemplates:
+class TestTemplates:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create(self, client: Telnyx) -> None:
-        message_template = client.whatsapp.message_templates.create(
+        template = client.whatsapp.templates.create(
             category="MARKETING",
-            components=[{}],
+            components=[{"foo": "bar"}],
             language="language",
             name="name",
             waba_id="waba_id",
         )
-        assert_matches_type(MessageTemplateCreateResponse, message_template, path=["response"])
+        assert_matches_type(TemplateCreateResponse, template, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: Telnyx) -> None:
-        response = client.whatsapp.message_templates.with_raw_response.create(
+        response = client.whatsapp.templates.with_raw_response.create(
             category="MARKETING",
-            components=[{}],
+            components=[{"foo": "bar"}],
             language="language",
             name="name",
             waba_id="waba_id",
@@ -46,15 +44,15 @@ class TestMessageTemplates:
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        message_template = response.parse()
-        assert_matches_type(MessageTemplateCreateResponse, message_template, path=["response"])
+        template = response.parse()
+        assert_matches_type(TemplateCreateResponse, template, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: Telnyx) -> None:
-        with client.whatsapp.message_templates.with_streaming_response.create(
+        with client.whatsapp.templates.with_streaming_response.create(
             category="MARKETING",
-            components=[{}],
+            components=[{"foo": "bar"}],
             language="language",
             name="name",
             waba_id="waba_id",
@@ -62,21 +60,21 @@ class TestMessageTemplates:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            message_template = response.parse()
-            assert_matches_type(MessageTemplateCreateResponse, message_template, path=["response"])
+            template = response.parse()
+            assert_matches_type(TemplateCreateResponse, template, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
-        message_template = client.whatsapp.message_templates.list()
-        assert_matches_type(SyncDefaultFlatPagination[MessageTemplateListResponse], message_template, path=["response"])
+        template = client.whatsapp.templates.list()
+        assert_matches_type(SyncDefaultFlatPagination[WhatsappTemplateData], template, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
-        message_template = client.whatsapp.message_templates.list(
+        template = client.whatsapp.templates.list(
             filter_category="MARKETING",
             filter_search="filter[search]",
             filter_status="filter[status]",
@@ -84,34 +82,32 @@ class TestMessageTemplates:
             page_number=0,
             page_size=0,
         )
-        assert_matches_type(SyncDefaultFlatPagination[MessageTemplateListResponse], message_template, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[WhatsappTemplateData], template, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Telnyx) -> None:
-        response = client.whatsapp.message_templates.with_raw_response.list()
+        response = client.whatsapp.templates.with_raw_response.list()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        message_template = response.parse()
-        assert_matches_type(SyncDefaultFlatPagination[MessageTemplateListResponse], message_template, path=["response"])
+        template = response.parse()
+        assert_matches_type(SyncDefaultFlatPagination[WhatsappTemplateData], template, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Telnyx) -> None:
-        with client.whatsapp.message_templates.with_streaming_response.list() as response:
+        with client.whatsapp.templates.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            message_template = response.parse()
-            assert_matches_type(
-                SyncDefaultFlatPagination[MessageTemplateListResponse], message_template, path=["response"]
-            )
+            template = response.parse()
+            assert_matches_type(SyncDefaultFlatPagination[WhatsappTemplateData], template, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
 
-class TestAsyncMessageTemplates:
+class TestAsyncTemplates:
     parametrize = pytest.mark.parametrize(
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
@@ -119,21 +115,21 @@ class TestAsyncMessageTemplates:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncTelnyx) -> None:
-        message_template = await async_client.whatsapp.message_templates.create(
+        template = await async_client.whatsapp.templates.create(
             category="MARKETING",
-            components=[{}],
+            components=[{"foo": "bar"}],
             language="language",
             name="name",
             waba_id="waba_id",
         )
-        assert_matches_type(MessageTemplateCreateResponse, message_template, path=["response"])
+        assert_matches_type(TemplateCreateResponse, template, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncTelnyx) -> None:
-        response = await async_client.whatsapp.message_templates.with_raw_response.create(
+        response = await async_client.whatsapp.templates.with_raw_response.create(
             category="MARKETING",
-            components=[{}],
+            components=[{"foo": "bar"}],
             language="language",
             name="name",
             waba_id="waba_id",
@@ -141,15 +137,15 @@ class TestAsyncMessageTemplates:
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        message_template = await response.parse()
-        assert_matches_type(MessageTemplateCreateResponse, message_template, path=["response"])
+        template = await response.parse()
+        assert_matches_type(TemplateCreateResponse, template, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncTelnyx) -> None:
-        async with async_client.whatsapp.message_templates.with_streaming_response.create(
+        async with async_client.whatsapp.templates.with_streaming_response.create(
             category="MARKETING",
-            components=[{}],
+            components=[{"foo": "bar"}],
             language="language",
             name="name",
             waba_id="waba_id",
@@ -157,23 +153,21 @@ class TestAsyncMessageTemplates:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            message_template = await response.parse()
-            assert_matches_type(MessageTemplateCreateResponse, message_template, path=["response"])
+            template = await response.parse()
+            assert_matches_type(TemplateCreateResponse, template, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
-        message_template = await async_client.whatsapp.message_templates.list()
-        assert_matches_type(
-            AsyncDefaultFlatPagination[MessageTemplateListResponse], message_template, path=["response"]
-        )
+        template = await async_client.whatsapp.templates.list()
+        assert_matches_type(AsyncDefaultFlatPagination[WhatsappTemplateData], template, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
-        message_template = await async_client.whatsapp.message_templates.list(
+        template = await async_client.whatsapp.templates.list(
             filter_category="MARKETING",
             filter_search="filter[search]",
             filter_status="filter[status]",
@@ -181,32 +175,26 @@ class TestAsyncMessageTemplates:
             page_number=0,
             page_size=0,
         )
-        assert_matches_type(
-            AsyncDefaultFlatPagination[MessageTemplateListResponse], message_template, path=["response"]
-        )
+        assert_matches_type(AsyncDefaultFlatPagination[WhatsappTemplateData], template, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncTelnyx) -> None:
-        response = await async_client.whatsapp.message_templates.with_raw_response.list()
+        response = await async_client.whatsapp.templates.with_raw_response.list()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        message_template = await response.parse()
-        assert_matches_type(
-            AsyncDefaultFlatPagination[MessageTemplateListResponse], message_template, path=["response"]
-        )
+        template = await response.parse()
+        assert_matches_type(AsyncDefaultFlatPagination[WhatsappTemplateData], template, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncTelnyx) -> None:
-        async with async_client.whatsapp.message_templates.with_streaming_response.list() as response:
+        async with async_client.whatsapp.templates.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            message_template = await response.parse()
-            assert_matches_type(
-                AsyncDefaultFlatPagination[MessageTemplateListResponse], message_template, path=["response"]
-            )
+            template = await response.parse()
+            assert_matches_type(AsyncDefaultFlatPagination[WhatsappTemplateData], template, path=["response"])
 
         assert cast(Any, response.is_closed) is True
