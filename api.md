@@ -5225,3 +5225,132 @@ Methods:
 
 - <code title="get /session_analysis/metadata">client.session_analysis.metadata.<a href="./src/telnyx/resources/session_analysis/metadata.py">retrieve</a>() -> <a href="./src/telnyx/types/session_analysis/metadata_retrieve_response.py">MetadataRetrieveResponse</a></code>
 - <code title="get /session_analysis/metadata/{record_type}">client.session_analysis.metadata.<a href="./src/telnyx/resources/session_analysis/metadata.py">retrieve_record_type</a>(record_type) -> <a href="./src/telnyx/types/session_analysis/metadata_retrieve_record_type_response.py">MetadataRetrieveRecordTypeResponse</a></code>
+
+# Whatsapp
+
+## BusinessAccounts
+
+Types:
+
+```python
+from telnyx.types.whatsapp import BusinessAccountRetrieveResponse, BusinessAccountListResponse
+```
+
+Methods:
+
+- <code title="get /v2/whatsapp/business_accounts/{id}">client.whatsapp.business_accounts.<a href="./src/telnyx/resources/whatsapp/business_accounts/business_accounts.py">retrieve</a>(id) -> <a href="./src/telnyx/types/whatsapp/business_account_retrieve_response.py">BusinessAccountRetrieveResponse</a></code>
+- <code title="get /v2/whatsapp/business_accounts">client.whatsapp.business_accounts.<a href="./src/telnyx/resources/whatsapp/business_accounts/business_accounts.py">list</a>(\*\*<a href="src/telnyx/types/whatsapp/business_account_list_params.py">params</a>) -> <a href="./src/telnyx/types/whatsapp/business_account_list_response.py">SyncDefaultFlatPagination[BusinessAccountListResponse]</a></code>
+- <code title="delete /v2/whatsapp/business_accounts/{id}">client.whatsapp.business_accounts.<a href="./src/telnyx/resources/whatsapp/business_accounts/business_accounts.py">delete</a>(id) -> None</code>
+
+### PhoneNumbers
+
+Types:
+
+```python
+from telnyx.types.whatsapp.business_accounts import PhoneNumberListResponse
+```
+
+Methods:
+
+- <code title="get /v2/whatsapp/business_accounts/{id}/phone_numbers">client.whatsapp.business_accounts.phone_numbers.<a href="./src/telnyx/resources/whatsapp/business_accounts/phone_numbers.py">list</a>(id, \*\*<a href="src/telnyx/types/whatsapp/business_accounts/phone_number_list_params.py">params</a>) -> <a href="./src/telnyx/types/whatsapp/business_accounts/phone_number_list_response.py">SyncDefaultFlatPagination[PhoneNumberListResponse]</a></code>
+- <code title="post /v2/whatsapp/business_accounts/{id}/phone_numbers">client.whatsapp.business_accounts.phone_numbers.<a href="./src/telnyx/resources/whatsapp/business_accounts/phone_numbers.py">initialize_verification</a>(id, \*\*<a href="src/telnyx/types/whatsapp/business_accounts/phone_number_initialize_verification_params.py">params</a>) -> None</code>
+
+### Settings
+
+Types:
+
+```python
+from telnyx.types.whatsapp.business_accounts import SettingRetrieveResponse, SettingUpdateResponse
+```
+
+Methods:
+
+- <code title="get /v2/whatsapp/business_accounts/{id}/settings">client.whatsapp.business_accounts.settings.<a href="./src/telnyx/resources/whatsapp/business_accounts/settings.py">retrieve</a>(id) -> <a href="./src/telnyx/types/whatsapp/business_accounts/setting_retrieve_response.py">SettingRetrieveResponse</a></code>
+- <code title="patch /v2/whatsapp/business_accounts/{id}/settings">client.whatsapp.business_accounts.settings.<a href="./src/telnyx/resources/whatsapp/business_accounts/settings.py">update</a>(id, \*\*<a href="src/telnyx/types/whatsapp/business_accounts/setting_update_params.py">params</a>) -> <a href="./src/telnyx/types/whatsapp/business_accounts/setting_update_response.py">SettingUpdateResponse</a></code>
+
+## MessageTemplates
+
+Types:
+
+```python
+from telnyx.types.whatsapp import MessageTemplateCreateResponse, MessageTemplateListResponse
+```
+
+Methods:
+
+- <code title="post /v2/whatsapp/message_templates">client.whatsapp.message_templates.<a href="./src/telnyx/resources/whatsapp/message_templates.py">create</a>(\*\*<a href="src/telnyx/types/whatsapp/message_template_create_params.py">params</a>) -> <a href="./src/telnyx/types/whatsapp/message_template_create_response.py">MessageTemplateCreateResponse</a></code>
+- <code title="get /v2/whatsapp/message_templates">client.whatsapp.message_templates.<a href="./src/telnyx/resources/whatsapp/message_templates.py">list</a>(\*\*<a href="src/telnyx/types/whatsapp/message_template_list_params.py">params</a>) -> <a href="./src/telnyx/types/whatsapp/message_template_list_response.py">SyncDefaultFlatPagination[MessageTemplateListResponse]</a></code>
+
+## PhoneNumbers
+
+Types:
+
+```python
+from telnyx.types.whatsapp import PhoneNumberListResponse
+```
+
+Methods:
+
+- <code title="get /v2/whatsapp/phone_numbers">client.whatsapp.phone_numbers.<a href="./src/telnyx/resources/whatsapp/phone_numbers/phone_numbers.py">list</a>(\*\*<a href="src/telnyx/types/whatsapp/phone_number_list_params.py">params</a>) -> <a href="./src/telnyx/types/whatsapp/phone_number_list_response.py">SyncDefaultFlatPagination[PhoneNumberListResponse]</a></code>
+- <code title="delete /v2/whatsapp/phone_numbers/{phone_number}">client.whatsapp.phone_numbers.<a href="./src/telnyx/resources/whatsapp/phone_numbers/phone_numbers.py">delete</a>(phone_number) -> None</code>
+- <code title="post /v2/whatsapp/phone_numbers/{phone_number}/resend_verification">client.whatsapp.phone_numbers.<a href="./src/telnyx/resources/whatsapp/phone_numbers/phone_numbers.py">resend_verification</a>(phone_number, \*\*<a href="src/telnyx/types/whatsapp/phone_number_resend_verification_params.py">params</a>) -> None</code>
+- <code title="post /v2/whatsapp/phone_numbers/{phone_number}/verify">client.whatsapp.phone_numbers.<a href="./src/telnyx/resources/whatsapp/phone_numbers/phone_numbers.py">verify</a>(phone_number, \*\*<a href="src/telnyx/types/whatsapp/phone_number_verify_params.py">params</a>) -> None</code>
+
+### CallingSettings
+
+Types:
+
+```python
+from telnyx.types.whatsapp.phone_numbers import (
+    CallingSettingRetrieveResponse,
+    CallingSettingUpdateResponse,
+)
+```
+
+Methods:
+
+- <code title="get /v2/whatsapp/phone_numbers/{phone_number}/calling_settings">client.whatsapp.phone_numbers.calling_settings.<a href="./src/telnyx/resources/whatsapp/phone_numbers/calling_settings.py">retrieve</a>(phone_number) -> <a href="./src/telnyx/types/whatsapp/phone_numbers/calling_setting_retrieve_response.py">CallingSettingRetrieveResponse</a></code>
+- <code title="patch /v2/whatsapp/phone_numbers/{phone_number}/calling_settings">client.whatsapp.phone_numbers.calling_settings.<a href="./src/telnyx/resources/whatsapp/phone_numbers/calling_settings.py">update</a>(phone_number, \*\*<a href="src/telnyx/types/whatsapp/phone_numbers/calling_setting_update_params.py">params</a>) -> <a href="./src/telnyx/types/whatsapp/phone_numbers/calling_setting_update_response.py">CallingSettingUpdateResponse</a></code>
+
+### Profile
+
+Types:
+
+```python
+from telnyx.types.whatsapp.phone_numbers import ProfileRetrieveResponse, ProfileUpdateResponse
+```
+
+Methods:
+
+- <code title="get /v2/whatsapp/phone_numbers/{phone_number}/profile">client.whatsapp.phone_numbers.profile.<a href="./src/telnyx/resources/whatsapp/phone_numbers/profile/profile.py">retrieve</a>(phone_number) -> <a href="./src/telnyx/types/whatsapp/phone_numbers/profile_retrieve_response.py">ProfileRetrieveResponse</a></code>
+- <code title="patch /v2/whatsapp/phone_numbers/{phone_number}/profile">client.whatsapp.phone_numbers.profile.<a href="./src/telnyx/resources/whatsapp/phone_numbers/profile/profile.py">update</a>(phone_number, \*\*<a href="src/telnyx/types/whatsapp/phone_numbers/profile_update_params.py">params</a>) -> <a href="./src/telnyx/types/whatsapp/phone_numbers/profile_update_response.py">ProfileUpdateResponse</a></code>
+
+#### Photo
+
+Types:
+
+```python
+from telnyx.types.whatsapp.phone_numbers.profile import PhotoUploadResponse
+```
+
+Methods:
+
+- <code title="delete /v2/whatsapp/phone_numbers/{phone_number}/profile/photo">client.whatsapp.phone_numbers.profile.photo.<a href="./src/telnyx/resources/whatsapp/phone_numbers/profile/photo.py">delete</a>(phone_number) -> None</code>
+- <code title="post /v2/whatsapp/phone_numbers/{phone_number}/profile/photo">client.whatsapp.phone_numbers.profile.photo.<a href="./src/telnyx/resources/whatsapp/phone_numbers/profile/photo.py">upload</a>(phone_number, \*\*<a href="src/telnyx/types/whatsapp/phone_numbers/profile/photo_upload_params.py">params</a>) -> <a href="./src/telnyx/types/whatsapp/phone_numbers/profile/photo_upload_response.py">PhotoUploadResponse</a></code>
+
+# WhatsappMessageTemplates
+
+Types:
+
+```python
+from telnyx.types import (
+    WhatsappMessageTemplateRetrieveResponse,
+    WhatsappMessageTemplateUpdateResponse,
+)
+```
+
+Methods:
+
+- <code title="get /v2/whatsapp_message_templates/{id}">client.whatsapp_message_templates.<a href="./src/telnyx/resources/whatsapp_message_templates.py">retrieve</a>(id) -> <a href="./src/telnyx/types/whatsapp_message_template_retrieve_response.py">WhatsappMessageTemplateRetrieveResponse</a></code>
+- <code title="patch /v2/whatsapp_message_templates/{id}">client.whatsapp_message_templates.<a href="./src/telnyx/resources/whatsapp_message_templates.py">update</a>(id, \*\*<a href="src/telnyx/types/whatsapp_message_template_update_params.py">params</a>) -> <a href="./src/telnyx/types/whatsapp_message_template_update_response.py">WhatsappMessageTemplateUpdateResponse</a></code>
+- <code title="delete /v2/whatsapp_message_templates/{id}">client.whatsapp_message_templates.<a href="./src/telnyx/resources/whatsapp_message_templates.py">delete</a>(id) -> None</code>
