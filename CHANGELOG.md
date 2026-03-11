@@ -1,5 +1,18 @@
 # Changelog
 
+## 4.68.0 (2026-03-11)
+
+Full Changelog: [v4.67.0...v4.68.0](https://github.com/team-telnyx/telnyx-python/compare/v4.67.0...v4.68.0)
+
+### Features
+
+* **api:** manual updates ([48eae87](https://github.com/team-telnyx/telnyx-python/commit/48eae877f964011623e9184ff732fb3bb8024e6e))
+
+
+### Chores
+
+* use proper capitalization for WebSockets ([eb0c4b3](https://github.com/team-telnyx/telnyx-python/commit/eb0c4b3b11ad49cfbe9c14f075bbb003bf2df030))
+
 ## 4.67.0 (2026-03-11)
 
 Full Changelog: [v4.66.0...v4.67.0](https://github.com/team-telnyx/telnyx-python/compare/v4.66.0...v4.67.0)
