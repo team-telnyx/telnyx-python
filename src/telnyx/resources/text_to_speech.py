@@ -654,7 +654,9 @@ class AsyncTextToSpeechResourceConnectionManager:
         if self.__client.websocket_base_url is not None:
             base_url = httpx.URL(self.__client.websocket_base_url)
         else:
-            base_url = self.__client._base_url.copy_with(scheme="wss")
+            scheme = self.__client._base_url.scheme
+            ws_scheme = "ws" if scheme == "http" else "wss"
+            base_url = self.__client._base_url.copy_with(scheme=ws_scheme)
 
         merge_raw_path = base_url.raw_path.rstrip(b"/") + b"/text-to-speech/speech"
         return base_url.copy_with(raw_path=merge_raw_path)
@@ -813,7 +815,9 @@ class TextToSpeechResourceConnectionManager:
         if self.__client.websocket_base_url is not None:
             base_url = httpx.URL(self.__client.websocket_base_url)
         else:
-            base_url = self.__client._base_url.copy_with(scheme="wss")
+            scheme = self.__client._base_url.scheme
+            ws_scheme = "ws" if scheme == "http" else "wss"
+            base_url = self.__client._base_url.copy_with(scheme=ws_scheme)
 
         merge_raw_path = base_url.raw_path.rstrip(b"/") + b"/text-to-speech/speech"
         return base_url.copy_with(raw_path=merge_raw_path)
