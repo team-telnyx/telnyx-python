@@ -120,6 +120,11 @@ from .rcs_content_info import RcsContentInfo as RcsContentInfo
 from .room_composition import RoomComposition as RoomComposition
 from .room_list_params import RoomListParams as RoomListParams
 from .sip_header_param import SipHeaderParam as SipHeaderParam
+from .stt_server_event import (
+    SttErrorFrame as SttErrorFrame,
+    SttServerEvent as SttServerEvent,
+    TranscriptFrame as TranscriptFrame,
+)
 from .sub_number_order import SubNumberOrder as SubNumberOrder
 from .user_requirement import UserRequirement as UserRequirement
 from .whatsapp_contact import WhatsappContact as WhatsappContact
@@ -192,9 +197,6 @@ from .queue_update_params import QueueUpdateParams as QueueUpdateParams
 from .replaced_link_click import ReplacedLinkClick as ReplacedLinkClick
 from .stream_client_event import StreamClientEvent as StreamClientEvent
 from .stream_server_event import StreamServerEvent as StreamServerEvent
-from .stt_server_event import SttServerEvent as SttServerEvent
-from .stt_server_event import TranscriptFrame as TranscriptFrame
-from .stt_server_event import SttErrorFrame as SttErrorFrame
 from .verify_profile_data import VerifyProfileData as VerifyProfileData
 from .webhook_api_version import WebhookAPIVersion as WebhookAPIVersion
 from .call_ai_gather_ended import CallAIGatherEnded as CallAIGatherEnded
