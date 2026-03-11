@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Dict, List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -18,7 +18,7 @@ class WhatsappTemplateData(BaseModel):
 
     category: Optional[Literal["MARKETING", "UTILITY", "AUTHENTICATION"]] = None
 
-    components: Optional[List[object]] = None
+    components: Optional[List[Dict[str, object]]] = None
     """Whatsapp template components (header, body, footer, buttons)"""
 
     created_at: Optional[datetime] = None

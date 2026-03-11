@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Iterable
+from typing import Dict, Iterable
 from typing_extensions import Literal
 
 import httpx
@@ -52,7 +52,7 @@ class TemplatesResource(SyncAPIResource):
         self,
         *,
         category: Literal["MARKETING", "UTILITY", "AUTHENTICATION"],
-        components: Iterable[object],
+        components: Iterable[Dict[str, object]],
         language: str,
         name: str,
         waba_id: str,
@@ -179,7 +179,7 @@ class AsyncTemplatesResource(AsyncAPIResource):
         self,
         *,
         category: Literal["MARKETING", "UTILITY", "AUTHENTICATION"],
-        components: Iterable[object],
+        components: Iterable[Dict[str, object]],
         language: str,
         name: str,
         waba_id: str,
