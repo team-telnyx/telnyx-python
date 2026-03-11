@@ -192,6 +192,9 @@ from .queue_update_params import QueueUpdateParams as QueueUpdateParams
 from .replaced_link_click import ReplacedLinkClick as ReplacedLinkClick
 from .stream_client_event import StreamClientEvent as StreamClientEvent
 from .stream_server_event import StreamServerEvent as StreamServerEvent
+from .stt_server_event import SttServerEvent as SttServerEvent
+from .stt_server_event import TranscriptFrame as TranscriptFrame
+from .stt_server_event import SttErrorFrame as SttErrorFrame
 from .verify_profile_data import VerifyProfileData as VerifyProfileData
 from .webhook_api_version import WebhookAPIVersion as WebhookAPIVersion
 from .call_ai_gather_ended import CallAIGatherEnded as CallAIGatherEnded
