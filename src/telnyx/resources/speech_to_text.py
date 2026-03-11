@@ -349,7 +349,7 @@ class AsyncSpeechToTextResourceConnectionManager:
             base_url = self.__client._base_url.copy_with(scheme="wss")
 
         # Build query parameters
-        params = {"transcription_engine": self.__transcription_engine}
+        params: dict[str, str] = {"transcription_engine": self.__transcription_engine}
         if self.__input_format is not None:
             params["input_format"] = self.__input_format
         if self.__language is not None:
@@ -529,7 +529,7 @@ class SpeechToTextResourceConnectionManager:
             base_url = self.__client._base_url.copy_with(scheme="wss")
 
         # Build query parameters
-        params = {"transcription_engine": self.__transcription_engine}
+        params: dict[str, str] = {"transcription_engine": self.__transcription_engine}
         if self.__input_format is not None:
             params["input_format"] = self.__input_format
         if self.__language is not None:
