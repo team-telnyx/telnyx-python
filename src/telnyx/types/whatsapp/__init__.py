@@ -4,7 +4,6 @@ from __future__ import annotations
 
 from .template_list_params import TemplateListParams as TemplateListParams
 from .template_create_params import TemplateCreateParams as TemplateCreateParams
-from .template_list_response import TemplateListResponse as TemplateListResponse
 from .phone_number_list_params import PhoneNumberListParams as PhoneNumberListParams
 from .template_create_response import TemplateCreateResponse as TemplateCreateResponse
 from .phone_number_list_response import PhoneNumberListResponse as PhoneNumberListResponse

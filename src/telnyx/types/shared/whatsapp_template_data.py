@@ -6,14 +6,14 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["TemplateListResponse", "WhatsappBusinessAccount"]
+__all__ = ["WhatsappTemplateData", "WhatsappBusinessAccount"]
 
 
 class WhatsappBusinessAccount(BaseModel):
     id: Optional[str] = None
 
 
-class TemplateListResponse(BaseModel):
+class WhatsappTemplateData(BaseModel):
     id: Optional[str] = None
 
     category: Optional[Literal["MARKETING", "UTILITY", "AUTHENTICATION"]] = None
