@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-from .waba_settings import WabaSettings as WabaSettings
 from .setting_update_params import SettingUpdateParams as SettingUpdateParams
 from .setting_update_response import SettingUpdateResponse as SettingUpdateResponse
 from .phone_number_list_params import PhoneNumberListParams as PhoneNumberListParams

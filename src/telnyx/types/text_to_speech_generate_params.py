@@ -23,7 +23,7 @@ class TextToSpeechGenerateParams(TypedDict, total=False):
     elevenlabs: Elevenlabs
     """ElevenLabs provider-specific parameters."""
 
-    inworld: Dict[str, object]
+    inworld: object
     """Inworld provider-specific parameters."""
 
     language: str

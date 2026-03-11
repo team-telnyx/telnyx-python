@@ -30,7 +30,6 @@ from .shared import (
     MessagingFeatureSet as MessagingFeatureSet,
     NumberHealthMetrics as NumberHealthMetrics,
     MinimaxVoiceSettings as MinimaxVoiceSettings,
-    WhatsappTemplateData as WhatsappTemplateData,
     InboundMessagePayload as InboundMessagePayload,
     ResembleVoiceSettings as ResembleVoiceSettings,
     ConnectionJitterBuffer as ConnectionJitterBuffer,
