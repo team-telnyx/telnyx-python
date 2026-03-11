@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.66.0 (2026-03-11)
+
+Full Changelog: [v4.65.2...v4.66.0](https://github.com/team-telnyx/telnyx-python/compare/v4.65.2...v4.66.0)
+
+### Features
+
+* Add enable_thinking parameter to chat completions API ([15b1b8a](https://github.com/team-telnyx/telnyx-python/commit/15b1b8abf3a47641cf80e19d50ce5ffea380c9ec))
+
 ## 4.65.2 (2026-03-11)
 
 Full Changelog: [v4.65.1...v4.65.2](https://github.com/team-telnyx/telnyx-python/compare/v4.65.1...v4.65.2)
