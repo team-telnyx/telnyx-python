@@ -53,6 +53,7 @@ class ChatResource(SyncAPIResource):
         api_key_ref: str | Omit = omit,
         best_of: int | Omit = omit,
         early_stopping: bool | Omit = omit,
+        enable_thinking: bool | Omit = omit,
         frequency_penalty: float | Omit = omit,
         guided_choice: SequenceNotStr[str] | Omit = omit,
         guided_json: Dict[str, object] | Omit = omit,
@@ -99,6 +100,10 @@ class ChatResource(SyncAPIResource):
           early_stopping: This is used with `use_beam_search`. If `true`, generation stops as soon as
               there are `best_of` complete candidates; if `false`, a heuristic is applied and
               the generation stops when is it very unlikely to find better candidates.
+
+          enable_thinking: Whether to enable the thinking/reasoning phase for models that support it (e.g.,
+              QwQ, Qwen3). When set to false, the model will skip the internal reasoning step
+              and respond directly, which can reduce latency. Defaults to true.
 
           frequency_penalty: Higher values will penalize the model from repeating the same output tokens.
 
@@ -169,6 +174,7 @@ class ChatResource(SyncAPIResource):
                     "api_key_ref": api_key_ref,
                     "best_of": best_of,
                     "early_stopping": early_stopping,
+                    "enable_thinking": enable_thinking,
                     "frequency_penalty": frequency_penalty,
                     "guided_choice": guided_choice,
                     "guided_json": guided_json,
@@ -227,6 +233,7 @@ class AsyncChatResource(AsyncAPIResource):
         api_key_ref: str | Omit = omit,
         best_of: int | Omit = omit,
         early_stopping: bool | Omit = omit,
+        enable_thinking: bool | Omit = omit,
         frequency_penalty: float | Omit = omit,
         guided_choice: SequenceNotStr[str] | Omit = omit,
         guided_json: Dict[str, object] | Omit = omit,
@@ -273,6 +280,10 @@ class AsyncChatResource(AsyncAPIResource):
           early_stopping: This is used with `use_beam_search`. If `true`, generation stops as soon as
               there are `best_of` complete candidates; if `false`, a heuristic is applied and
               the generation stops when is it very unlikely to find better candidates.
+
+          enable_thinking: Whether to enable the thinking/reasoning phase for models that support it (e.g.,
+              QwQ, Qwen3). When set to false, the model will skip the internal reasoning step
+              and respond directly, which can reduce latency. Defaults to true.
 
           frequency_penalty: Higher values will penalize the model from repeating the same output tokens.
 
@@ -343,6 +354,7 @@ class AsyncChatResource(AsyncAPIResource):
                     "api_key_ref": api_key_ref,
                     "best_of": best_of,
                     "early_stopping": early_stopping,
+                    "enable_thinking": enable_thinking,
                     "frequency_penalty": frequency_penalty,
                     "guided_choice": guided_choice,
                     "guided_json": guided_json,
