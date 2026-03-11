@@ -6,14 +6,14 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["MessageTemplateCreateResponse", "Data", "DataWhatsappBusinessAccount"]
+__all__ = ["TemplateListResponse", "WhatsappBusinessAccount"]
 
 
-class DataWhatsappBusinessAccount(BaseModel):
+class WhatsappBusinessAccount(BaseModel):
     id: Optional[str] = None
 
 
-class Data(BaseModel):
+class TemplateListResponse(BaseModel):
     id: Optional[str] = None
 
     category: Optional[Literal["MARKETING", "UTILITY", "AUTHENTICATION"]] = None
@@ -37,8 +37,4 @@ class Data(BaseModel):
 
     updated_at: Optional[datetime] = None
 
-    whatsapp_business_account: Optional[DataWhatsappBusinessAccount] = None
-
-
-class MessageTemplateCreateResponse(BaseModel):
-    data: Optional[Data] = None
+    whatsapp_business_account: Optional[WhatsappBusinessAccount] = None
