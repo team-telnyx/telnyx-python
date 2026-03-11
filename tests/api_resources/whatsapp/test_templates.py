@@ -10,10 +10,8 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
-from telnyx.types.whatsapp import (
-    TemplateListResponse,
-    TemplateCreateResponse,
-)
+from telnyx.types.shared import WhatsappTemplateData
+from telnyx.types.whatsapp import TemplateCreateResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -71,7 +69,7 @@ class TestTemplates:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         template = client.whatsapp.templates.list()
-        assert_matches_type(SyncDefaultFlatPagination[TemplateListResponse], template, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[WhatsappTemplateData], template, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -84,7 +82,7 @@ class TestTemplates:
             page_number=0,
             page_size=0,
         )
-        assert_matches_type(SyncDefaultFlatPagination[TemplateListResponse], template, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[WhatsappTemplateData], template, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -94,7 +92,7 @@ class TestTemplates:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         template = response.parse()
-        assert_matches_type(SyncDefaultFlatPagination[TemplateListResponse], template, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[WhatsappTemplateData], template, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -104,7 +102,7 @@ class TestTemplates:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             template = response.parse()
-            assert_matches_type(SyncDefaultFlatPagination[TemplateListResponse], template, path=["response"])
+            assert_matches_type(SyncDefaultFlatPagination[WhatsappTemplateData], template, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -164,7 +162,7 @@ class TestAsyncTemplates:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         template = await async_client.whatsapp.templates.list()
-        assert_matches_type(AsyncDefaultFlatPagination[TemplateListResponse], template, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[WhatsappTemplateData], template, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -177,7 +175,7 @@ class TestAsyncTemplates:
             page_number=0,
             page_size=0,
         )
-        assert_matches_type(AsyncDefaultFlatPagination[TemplateListResponse], template, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[WhatsappTemplateData], template, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -187,7 +185,7 @@ class TestAsyncTemplates:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         template = await response.parse()
-        assert_matches_type(AsyncDefaultFlatPagination[TemplateListResponse], template, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[WhatsappTemplateData], template, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -197,6 +195,6 @@ class TestAsyncTemplates:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             template = await response.parse()
-            assert_matches_type(AsyncDefaultFlatPagination[TemplateListResponse], template, path=["response"])
+            assert_matches_type(AsyncDefaultFlatPagination[WhatsappTemplateData], template, path=["response"])
 
         assert cast(Any, response.is_closed) is True

@@ -20,7 +20,7 @@ from ..._response import (
 from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.whatsapp import template_list_params, template_create_params
-from ...types.whatsapp.template_list_response import TemplateListResponse
+from ...types.shared.whatsapp_template_data import WhatsappTemplateData
 from ...types.whatsapp.template_create_response import TemplateCreateResponse
 
 __all__ = ["TemplatesResource", "AsyncTemplatesResource"]
@@ -108,7 +108,7 @@ class TemplatesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[TemplateListResponse]:
+    ) -> SyncDefaultFlatPagination[WhatsappTemplateData]:
         """
         List Whatsapp message templates
 
@@ -131,7 +131,7 @@ class TemplatesResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/v2/whatsapp/message_templates",
-            page=SyncDefaultFlatPagination[TemplateListResponse],
+            page=SyncDefaultFlatPagination[WhatsappTemplateData],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -149,7 +149,7 @@ class TemplatesResource(SyncAPIResource):
                     template_list_params.TemplateListParams,
                 ),
             ),
-            model=TemplateListResponse,
+            model=WhatsappTemplateData,
         )
 
 
@@ -235,7 +235,7 @@ class AsyncTemplatesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[TemplateListResponse, AsyncDefaultFlatPagination[TemplateListResponse]]:
+    ) -> AsyncPaginator[WhatsappTemplateData, AsyncDefaultFlatPagination[WhatsappTemplateData]]:
         """
         List Whatsapp message templates
 
@@ -258,7 +258,7 @@ class AsyncTemplatesResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/v2/whatsapp/message_templates",
-            page=AsyncDefaultFlatPagination[TemplateListResponse],
+            page=AsyncDefaultFlatPagination[WhatsappTemplateData],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -276,7 +276,7 @@ class AsyncTemplatesResource(AsyncAPIResource):
                     template_list_params.TemplateListParams,
                 ),
             ),
-            model=TemplateListResponse,
+            model=WhatsappTemplateData,
         )
 
 
