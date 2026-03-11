@@ -31,7 +31,7 @@ class TestUsageReports:
     def test_method_retrieve_speech_to_text_with_all_params(self, client: Telnyx) -> None:
         usage_report = client.legacy.reporting.usage_reports.retrieve_speech_to_text(
             end_date=parse_datetime("2020-07-01T00:00:00-06:00"),
-            start_date=parse_datetime("2020-07-01T00:00:00-06:00"),
+            start_date=parse_datetime("2020-07-02T00:00:00-06:00"),
         )
         assert_matches_type(UsageReportRetrieveSpeechToTextResponse, usage_report, path=["response"])
 
@@ -74,7 +74,7 @@ class TestAsyncUsageReports:
     async def test_method_retrieve_speech_to_text_with_all_params(self, async_client: AsyncTelnyx) -> None:
         usage_report = await async_client.legacy.reporting.usage_reports.retrieve_speech_to_text(
             end_date=parse_datetime("2020-07-01T00:00:00-06:00"),
-            start_date=parse_datetime("2020-07-01T00:00:00-06:00"),
+            start_date=parse_datetime("2020-07-02T00:00:00-06:00"),
         )
         assert_matches_type(UsageReportRetrieveSpeechToTextResponse, usage_report, path=["response"])
 
