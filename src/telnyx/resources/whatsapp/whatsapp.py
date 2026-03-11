@@ -3,15 +3,15 @@
 from __future__ import annotations
 
 from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from .message_templates import (
-    MessageTemplatesResource,
-    AsyncMessageTemplatesResource,
-    MessageTemplatesResourceWithRawResponse,
-    AsyncMessageTemplatesResourceWithRawResponse,
-    MessageTemplatesResourceWithStreamingResponse,
-    AsyncMessageTemplatesResourceWithStreamingResponse,
+from .templates import (
+    TemplatesResource,
+    AsyncTemplatesResource,
+    TemplatesResourceWithRawResponse,
+    AsyncTemplatesResourceWithRawResponse,
+    TemplatesResourceWithStreamingResponse,
+    AsyncTemplatesResourceWithStreamingResponse,
 )
+from ..._resource import SyncAPIResource, AsyncAPIResource
 from .phone_numbers.phone_numbers import (
     PhoneNumbersResource,
     AsyncPhoneNumbersResource,
@@ -39,9 +39,9 @@ class WhatsappResource(SyncAPIResource):
         return BusinessAccountsResource(self._client)
 
     @cached_property
-    def message_templates(self) -> MessageTemplatesResource:
+    def templates(self) -> TemplatesResource:
         """Manage Whatsapp message templates"""
-        return MessageTemplatesResource(self._client)
+        return TemplatesResource(self._client)
 
     @cached_property
     def phone_numbers(self) -> PhoneNumbersResource:
@@ -75,9 +75,9 @@ class AsyncWhatsappResource(AsyncAPIResource):
         return AsyncBusinessAccountsResource(self._client)
 
     @cached_property
-    def message_templates(self) -> AsyncMessageTemplatesResource:
+    def templates(self) -> AsyncTemplatesResource:
         """Manage Whatsapp message templates"""
-        return AsyncMessageTemplatesResource(self._client)
+        return AsyncTemplatesResource(self._client)
 
     @cached_property
     def phone_numbers(self) -> AsyncPhoneNumbersResource:
@@ -114,9 +114,9 @@ class WhatsappResourceWithRawResponse:
         return BusinessAccountsResourceWithRawResponse(self._whatsapp.business_accounts)
 
     @cached_property
-    def message_templates(self) -> MessageTemplatesResourceWithRawResponse:
+    def templates(self) -> TemplatesResourceWithRawResponse:
         """Manage Whatsapp message templates"""
-        return MessageTemplatesResourceWithRawResponse(self._whatsapp.message_templates)
+        return TemplatesResourceWithRawResponse(self._whatsapp.templates)
 
     @cached_property
     def phone_numbers(self) -> PhoneNumbersResourceWithRawResponse:
@@ -134,9 +134,9 @@ class AsyncWhatsappResourceWithRawResponse:
         return AsyncBusinessAccountsResourceWithRawResponse(self._whatsapp.business_accounts)
 
     @cached_property
-    def message_templates(self) -> AsyncMessageTemplatesResourceWithRawResponse:
+    def templates(self) -> AsyncTemplatesResourceWithRawResponse:
         """Manage Whatsapp message templates"""
-        return AsyncMessageTemplatesResourceWithRawResponse(self._whatsapp.message_templates)
+        return AsyncTemplatesResourceWithRawResponse(self._whatsapp.templates)
 
     @cached_property
     def phone_numbers(self) -> AsyncPhoneNumbersResourceWithRawResponse:
@@ -154,9 +154,9 @@ class WhatsappResourceWithStreamingResponse:
         return BusinessAccountsResourceWithStreamingResponse(self._whatsapp.business_accounts)
 
     @cached_property
-    def message_templates(self) -> MessageTemplatesResourceWithStreamingResponse:
+    def templates(self) -> TemplatesResourceWithStreamingResponse:
         """Manage Whatsapp message templates"""
-        return MessageTemplatesResourceWithStreamingResponse(self._whatsapp.message_templates)
+        return TemplatesResourceWithStreamingResponse(self._whatsapp.templates)
 
     @cached_property
     def phone_numbers(self) -> PhoneNumbersResourceWithStreamingResponse:
@@ -174,9 +174,9 @@ class AsyncWhatsappResourceWithStreamingResponse:
         return AsyncBusinessAccountsResourceWithStreamingResponse(self._whatsapp.business_accounts)
 
     @cached_property
-    def message_templates(self) -> AsyncMessageTemplatesResourceWithStreamingResponse:
+    def templates(self) -> AsyncTemplatesResourceWithStreamingResponse:
         """Manage Whatsapp message templates"""
-        return AsyncMessageTemplatesResourceWithStreamingResponse(self._whatsapp.message_templates)
+        return AsyncTemplatesResourceWithStreamingResponse(self._whatsapp.templates)
 
     @cached_property
     def phone_numbers(self) -> AsyncPhoneNumbersResourceWithStreamingResponse:
