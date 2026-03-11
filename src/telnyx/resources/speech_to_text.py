@@ -5,7 +5,7 @@ from __future__ import annotations
 import json
 import logging
 from types import TracebackType
-from typing import TYPE_CHECKING, Any, Union, Iterator, cast
+from typing import TYPE_CHECKING, Any, Iterator, cast
 from typing_extensions import Literal, AsyncIterator
 
 import httpx
@@ -30,7 +30,7 @@ __all__ = ["SpeechToTextResource", "AsyncSpeechToTextResource"]
 log: logging.Logger = logging.getLogger(__name__)
 
 # Type alias for binary audio data
-SttClientEvent = Union[bytes, bytearray, memoryview]
+SttClientEvent = bytes
 
 
 class SpeechToTextResource(SyncAPIResource):
