@@ -4,16 +4,16 @@ from typing import List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
-from .._models import BaseModel
+from ..._models import BaseModel
 
-__all__ = ["WhatsappMessageTemplateUpdateResponse", "Data", "DataWhatsappBusinessAccount"]
+__all__ = ["MessageTemplateListResponse", "WhatsappBusinessAccount"]
 
 
-class DataWhatsappBusinessAccount(BaseModel):
+class WhatsappBusinessAccount(BaseModel):
     id: Optional[str] = None
 
 
-class Data(BaseModel):
+class MessageTemplateListResponse(BaseModel):
     id: Optional[str] = None
 
     category: Optional[Literal["MARKETING", "UTILITY", "AUTHENTICATION"]] = None
@@ -37,8 +37,4 @@ class Data(BaseModel):
 
     updated_at: Optional[datetime] = None
 
-    whatsapp_business_account: Optional[DataWhatsappBusinessAccount] = None
-
-
-class WhatsappMessageTemplateUpdateResponse(BaseModel):
-    data: Optional[Data] = None
+    whatsapp_business_account: Optional[WhatsappBusinessAccount] = None

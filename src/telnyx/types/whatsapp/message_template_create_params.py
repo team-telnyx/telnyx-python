@@ -2,16 +2,16 @@
 
 from __future__ import annotations
 
-from typing import Dict, Iterable
+from typing import Iterable
 from typing_extensions import Literal, Required, TypedDict
 
-__all__ = ["TemplateCreateParams"]
+__all__ = ["MessageTemplateCreateParams"]
 
 
-class TemplateCreateParams(TypedDict, total=False):
+class MessageTemplateCreateParams(TypedDict, total=False):
     category: Required[Literal["MARKETING", "UTILITY", "AUTHENTICATION"]]
 
-    components: Required[Iterable[Dict[str, object]]]
+    components: Required[Iterable[object]]
 
     language: Required[str]
 
