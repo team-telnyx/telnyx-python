@@ -1,5 +1,18 @@
 # Changelog
 
+## 4.65.2 (2026-03-11)
+
+Full Changelog: [v4.65.1...v4.65.2](https://github.com/team-telnyx/telnyx-python/compare/v4.65.1...v4.65.2)
+
+### Bug Fixes
+
+* update wait_seconds example to 0.5 ([2856cc7](https://github.com/team-telnyx/telnyx-python/commit/2856cc7db119ec997d61b9facbf157886eb30622))
+
+
+### Chores
+
+* match http protocol with ws protocol instead of wss ([3b84dee](https://github.com/team-telnyx/telnyx-python/commit/3b84dee5902e226c0c80dbdc6bc9875850ff1cdf))
+
 ## 4.65.1 (2026-03-11)
 
 Full Changelog: [v4.65.0...v4.65.1](https://github.com/team-telnyx/telnyx-python/compare/v4.65.0...v4.65.1)
