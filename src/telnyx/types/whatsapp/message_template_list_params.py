@@ -6,10 +6,10 @@ from typing_extensions import Literal, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
 
-__all__ = ["TemplateListParams"]
+__all__ = ["MessageTemplateListParams"]
 
 
-class TemplateListParams(TypedDict, total=False):
+class MessageTemplateListParams(TypedDict, total=False):
     filter_category: Annotated[
         Literal["MARKETING", "UTILITY", "AUTHENTICATION"], PropertyInfo(alias="filter[category]")
     ]

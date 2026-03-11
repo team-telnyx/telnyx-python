@@ -33,7 +33,6 @@ from telnyx.types import (
     SimCardStatus,
     SimpleSimCard,
     SubNumberOrderRegulatoryRequirementWithValue,
-    WhatsappTemplateData,
 )
 ```
 
@@ -4094,7 +4093,6 @@ Types:
 
 ```python
 from telnyx.types.sim_cards import (
-    BulkSimCardAction,
     SimCardAction,
     ActionRetrieveResponse,
     ActionBulkDisableVoiceResponse,
@@ -5261,11 +5259,7 @@ Methods:
 Types:
 
 ```python
-from telnyx.types.whatsapp.business_accounts import (
-    WabaSettings,
-    SettingRetrieveResponse,
-    SettingUpdateResponse,
-)
+from telnyx.types.whatsapp.business_accounts import SettingRetrieveResponse, SettingUpdateResponse
 ```
 
 Methods:
@@ -5273,18 +5267,18 @@ Methods:
 - <code title="get /v2/whatsapp/business_accounts/{id}/settings">client.whatsapp.business_accounts.settings.<a href="./src/telnyx/resources/whatsapp/business_accounts/settings.py">retrieve</a>(id) -> <a href="./src/telnyx/types/whatsapp/business_accounts/setting_retrieve_response.py">SettingRetrieveResponse</a></code>
 - <code title="patch /v2/whatsapp/business_accounts/{id}/settings">client.whatsapp.business_accounts.settings.<a href="./src/telnyx/resources/whatsapp/business_accounts/settings.py">update</a>(id, \*\*<a href="src/telnyx/types/whatsapp/business_accounts/setting_update_params.py">params</a>) -> <a href="./src/telnyx/types/whatsapp/business_accounts/setting_update_response.py">SettingUpdateResponse</a></code>
 
-## Templates
+## MessageTemplates
 
 Types:
 
 ```python
-from telnyx.types.whatsapp import TemplateCreateResponse
+from telnyx.types.whatsapp import MessageTemplateCreateResponse, MessageTemplateListResponse
 ```
 
 Methods:
 
-- <code title="post /v2/whatsapp/message_templates">client.whatsapp.templates.<a href="./src/telnyx/resources/whatsapp/templates.py">create</a>(\*\*<a href="src/telnyx/types/whatsapp/template_create_params.py">params</a>) -> <a href="./src/telnyx/types/whatsapp/template_create_response.py">TemplateCreateResponse</a></code>
-- <code title="get /v2/whatsapp/message_templates">client.whatsapp.templates.<a href="./src/telnyx/resources/whatsapp/templates.py">list</a>(\*\*<a href="src/telnyx/types/whatsapp/template_list_params.py">params</a>) -> <a href="./src/telnyx/types/shared/whatsapp_template_data.py">SyncDefaultFlatPagination[WhatsappTemplateData]</a></code>
+- <code title="post /v2/whatsapp/message_templates">client.whatsapp.message_templates.<a href="./src/telnyx/resources/whatsapp/message_templates.py">create</a>(\*\*<a href="src/telnyx/types/whatsapp/message_template_create_params.py">params</a>) -> <a href="./src/telnyx/types/whatsapp/message_template_create_response.py">MessageTemplateCreateResponse</a></code>
+- <code title="get /v2/whatsapp/message_templates">client.whatsapp.message_templates.<a href="./src/telnyx/resources/whatsapp/message_templates.py">list</a>(\*\*<a href="src/telnyx/types/whatsapp/message_template_list_params.py">params</a>) -> <a href="./src/telnyx/types/whatsapp/message_template_list_response.py">SyncDefaultFlatPagination[MessageTemplateListResponse]</a></code>
 
 ## PhoneNumbers
 
@@ -5307,7 +5301,6 @@ Types:
 
 ```python
 from telnyx.types.whatsapp.phone_numbers import (
-    WhatsappCallingSettingsData,
     CallingSettingRetrieveResponse,
     CallingSettingUpdateResponse,
 )
@@ -5323,11 +5316,7 @@ Methods:
 Types:
 
 ```python
-from telnyx.types.whatsapp.phone_numbers import (
-    WhatsappProfileData,
-    ProfileRetrieveResponse,
-    ProfileUpdateResponse,
-)
+from telnyx.types.whatsapp.phone_numbers import ProfileRetrieveResponse, ProfileUpdateResponse
 ```
 
 Methods:
