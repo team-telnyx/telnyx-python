@@ -5,11 +5,10 @@ from __future__ import annotations
 import json
 import logging
 from types import TracebackType
-from typing import TYPE_CHECKING, Any, Iterator, Union, cast
+from typing import TYPE_CHECKING, Any, Union, Iterator, cast
 from typing_extensions import Literal, AsyncIterator
 
 import httpx
-from pydantic import BaseModel
 
 from .._types import Query, Headers
 from .._compat import cached_property
