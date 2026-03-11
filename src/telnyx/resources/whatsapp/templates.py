@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Iterable
+from typing import Dict, Iterable
 from typing_extensions import Literal
 
 import httpx
@@ -19,40 +19,40 @@ from ..._response import (
 )
 from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.whatsapp import message_template_list_params, message_template_create_params
-from ...types.whatsapp.message_template_list_response import MessageTemplateListResponse
-from ...types.whatsapp.message_template_create_response import MessageTemplateCreateResponse
+from ...types.whatsapp import template_list_params, template_create_params
+from ...types.shared.whatsapp_template_data import WhatsappTemplateData
+from ...types.whatsapp.template_create_response import TemplateCreateResponse
 
-__all__ = ["MessageTemplatesResource", "AsyncMessageTemplatesResource"]
+__all__ = ["TemplatesResource", "AsyncTemplatesResource"]
 
 
-class MessageTemplatesResource(SyncAPIResource):
+class TemplatesResource(SyncAPIResource):
     """Manage Whatsapp message templates"""
 
     @cached_property
-    def with_raw_response(self) -> MessageTemplatesResourceWithRawResponse:
+    def with_raw_response(self) -> TemplatesResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/team-telnyx/telnyx-python#accessing-raw-response-data-eg-headers
         """
-        return MessageTemplatesResourceWithRawResponse(self)
+        return TemplatesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> MessageTemplatesResourceWithStreamingResponse:
+    def with_streaming_response(self) -> TemplatesResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
-        return MessageTemplatesResourceWithStreamingResponse(self)
+        return TemplatesResourceWithStreamingResponse(self)
 
     def create(
         self,
         *,
         category: Literal["MARKETING", "UTILITY", "AUTHENTICATION"],
-        components: Iterable[object],
+        components: Iterable[Dict[str, object]],
         language: str,
         name: str,
         waba_id: str,
@@ -62,7 +62,7 @@ class MessageTemplatesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MessageTemplateCreateResponse:
+    ) -> TemplateCreateResponse:
         """
         Create a Whatsapp message template
 
@@ -85,12 +85,12 @@ class MessageTemplatesResource(SyncAPIResource):
                     "name": name,
                     "waba_id": waba_id,
                 },
-                message_template_create_params.MessageTemplateCreateParams,
+                template_create_params.TemplateCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MessageTemplateCreateResponse,
+            cast_to=TemplateCreateResponse,
         )
 
     def list(
@@ -108,7 +108,7 @@ class MessageTemplatesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[MessageTemplateListResponse]:
+    ) -> SyncDefaultFlatPagination[WhatsappTemplateData]:
         """
         List Whatsapp message templates
 
@@ -131,7 +131,7 @@ class MessageTemplatesResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/v2/whatsapp/message_templates",
-            page=SyncDefaultFlatPagination[MessageTemplateListResponse],
+            page=SyncDefaultFlatPagination[WhatsappTemplateData],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -146,40 +146,40 @@ class MessageTemplatesResource(SyncAPIResource):
                         "page_number": page_number,
                         "page_size": page_size,
                     },
-                    message_template_list_params.MessageTemplateListParams,
+                    template_list_params.TemplateListParams,
                 ),
             ),
-            model=MessageTemplateListResponse,
+            model=WhatsappTemplateData,
         )
 
 
-class AsyncMessageTemplatesResource(AsyncAPIResource):
+class AsyncTemplatesResource(AsyncAPIResource):
     """Manage Whatsapp message templates"""
 
     @cached_property
-    def with_raw_response(self) -> AsyncMessageTemplatesResourceWithRawResponse:
+    def with_raw_response(self) -> AsyncTemplatesResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/team-telnyx/telnyx-python#accessing-raw-response-data-eg-headers
         """
-        return AsyncMessageTemplatesResourceWithRawResponse(self)
+        return AsyncTemplatesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncMessageTemplatesResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AsyncTemplatesResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
-        return AsyncMessageTemplatesResourceWithStreamingResponse(self)
+        return AsyncTemplatesResourceWithStreamingResponse(self)
 
     async def create(
         self,
         *,
         category: Literal["MARKETING", "UTILITY", "AUTHENTICATION"],
-        components: Iterable[object],
+        components: Iterable[Dict[str, object]],
         language: str,
         name: str,
         waba_id: str,
@@ -189,7 +189,7 @@ class AsyncMessageTemplatesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MessageTemplateCreateResponse:
+    ) -> TemplateCreateResponse:
         """
         Create a Whatsapp message template
 
@@ -212,12 +212,12 @@ class AsyncMessageTemplatesResource(AsyncAPIResource):
                     "name": name,
                     "waba_id": waba_id,
                 },
-                message_template_create_params.MessageTemplateCreateParams,
+                template_create_params.TemplateCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MessageTemplateCreateResponse,
+            cast_to=TemplateCreateResponse,
         )
 
     def list(
@@ -235,7 +235,7 @@ class AsyncMessageTemplatesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[MessageTemplateListResponse, AsyncDefaultFlatPagination[MessageTemplateListResponse]]:
+    ) -> AsyncPaginator[WhatsappTemplateData, AsyncDefaultFlatPagination[WhatsappTemplateData]]:
         """
         List Whatsapp message templates
 
@@ -258,7 +258,7 @@ class AsyncMessageTemplatesResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/v2/whatsapp/message_templates",
-            page=AsyncDefaultFlatPagination[MessageTemplateListResponse],
+            page=AsyncDefaultFlatPagination[WhatsappTemplateData],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -273,56 +273,56 @@ class AsyncMessageTemplatesResource(AsyncAPIResource):
                         "page_number": page_number,
                         "page_size": page_size,
                     },
-                    message_template_list_params.MessageTemplateListParams,
+                    template_list_params.TemplateListParams,
                 ),
             ),
-            model=MessageTemplateListResponse,
+            model=WhatsappTemplateData,
         )
 
 
-class MessageTemplatesResourceWithRawResponse:
-    def __init__(self, message_templates: MessageTemplatesResource) -> None:
-        self._message_templates = message_templates
+class TemplatesResourceWithRawResponse:
+    def __init__(self, templates: TemplatesResource) -> None:
+        self._templates = templates
 
         self.create = to_raw_response_wrapper(
-            message_templates.create,
+            templates.create,
         )
         self.list = to_raw_response_wrapper(
-            message_templates.list,
+            templates.list,
         )
 
 
-class AsyncMessageTemplatesResourceWithRawResponse:
-    def __init__(self, message_templates: AsyncMessageTemplatesResource) -> None:
-        self._message_templates = message_templates
+class AsyncTemplatesResourceWithRawResponse:
+    def __init__(self, templates: AsyncTemplatesResource) -> None:
+        self._templates = templates
 
         self.create = async_to_raw_response_wrapper(
-            message_templates.create,
+            templates.create,
         )
         self.list = async_to_raw_response_wrapper(
-            message_templates.list,
+            templates.list,
         )
 
 
-class MessageTemplatesResourceWithStreamingResponse:
-    def __init__(self, message_templates: MessageTemplatesResource) -> None:
-        self._message_templates = message_templates
+class TemplatesResourceWithStreamingResponse:
+    def __init__(self, templates: TemplatesResource) -> None:
+        self._templates = templates
 
         self.create = to_streamed_response_wrapper(
-            message_templates.create,
+            templates.create,
         )
         self.list = to_streamed_response_wrapper(
-            message_templates.list,
+            templates.list,
         )
 
 
-class AsyncMessageTemplatesResourceWithStreamingResponse:
-    def __init__(self, message_templates: AsyncMessageTemplatesResource) -> None:
-        self._message_templates = message_templates
+class AsyncTemplatesResourceWithStreamingResponse:
+    def __init__(self, templates: AsyncTemplatesResource) -> None:
+        self._templates = templates
 
         self.create = async_to_streamed_response_wrapper(
-            message_templates.create,
+            templates.create,
         )
         self.list = async_to_streamed_response_wrapper(
-            message_templates.list,
+            templates.list,
         )
