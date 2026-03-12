@@ -1,5 +1,23 @@
 # Changelog
 
+## 4.70.0 (2026-03-12)
+
+Full Changelog: [v4.69.1...v4.70.0](https://github.com/team-telnyx/telnyx-python/compare/v4.69.1...v4.70.0)
+
+### Features
+
+* Add Voice Designs and Voice Clones API specification ([3300a21](https://github.com/team-telnyx/telnyx-python/commit/3300a211cd0aebc7aee9fa50447ee91a17e9865d))
+
+
+### Reverts
+
+* restore stainless.yml changes removed in 1de6067 ([9a71770](https://github.com/team-telnyx/telnyx-python/commit/9a7177016ec5071291e77b593da1d61f7d9e4a0b))
+
+
+### Chores
+
+* update example date in usage-reports ([c026d4e](https://github.com/team-telnyx/telnyx-python/commit/c026d4edf91b5ab2102a14acf98c1ed6633c3196))
+
 ## 4.69.1 (2026-03-11)
 
 Full Changelog: [v4.69.0...v4.69.1](https://github.com/team-telnyx/telnyx-python/compare/v4.69.0...v4.69.1)
