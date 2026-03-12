@@ -345,6 +345,14 @@ from .requirements import (
     RequirementsResourceWithStreamingResponse,
     AsyncRequirementsResourceWithStreamingResponse,
 )
+from .voice_clones import (
+    VoiceClonesResource,
+    AsyncVoiceClonesResource,
+    VoiceClonesResourceWithRawResponse,
+    AsyncVoiceClonesResourceWithRawResponse,
+    VoiceClonesResourceWithStreamingResponse,
+    AsyncVoiceClonesResourceWithStreamingResponse,
+)
 from .channel_zones import (
     ChannelZonesResource,
     AsyncChannelZonesResource,
@@ -408,6 +416,14 @@ from .verifications import (
     AsyncVerificationsResourceWithRawResponse,
     VerificationsResourceWithStreamingResponse,
     AsyncVerificationsResourceWithStreamingResponse,
+)
+from .voice_designs import (
+    VoiceDesignsResource,
+    AsyncVoiceDesignsResource,
+    VoiceDesignsResourceWithRawResponse,
+    AsyncVoiceDesignsResourceWithRawResponse,
+    VoiceDesignsResourceWithStreamingResponse,
+    AsyncVoiceDesignsResourceWithStreamingResponse,
 )
 from .billing_groups import (
     BillingGroupsResource,
@@ -2148,4 +2164,16 @@ __all__ = [
     "AsyncWhatsappMessageTemplatesResourceWithRawResponse",
     "WhatsappMessageTemplatesResourceWithStreamingResponse",
     "AsyncWhatsappMessageTemplatesResourceWithStreamingResponse",
+    "VoiceClonesResource",
+    "AsyncVoiceClonesResource",
+    "VoiceClonesResourceWithRawResponse",
+    "AsyncVoiceClonesResourceWithRawResponse",
+    "VoiceClonesResourceWithStreamingResponse",
+    "AsyncVoiceClonesResourceWithStreamingResponse",
+    "VoiceDesignsResource",
+    "AsyncVoiceDesignsResource",
+    "VoiceDesignsResourceWithRawResponse",
+    "AsyncVoiceDesignsResourceWithRawResponse",
+    "VoiceDesignsResourceWithStreamingResponse",
+    "AsyncVoiceDesignsResourceWithStreamingResponse",
 ]
