@@ -5364,3 +5364,48 @@ Methods:
 - <code title="get /v2/whatsapp_message_templates/{id}">client.whatsapp_message_templates.<a href="./src/telnyx/resources/whatsapp_message_templates.py">retrieve</a>(id) -> <a href="./src/telnyx/types/whatsapp_message_template_retrieve_response.py">WhatsappMessageTemplateRetrieveResponse</a></code>
 - <code title="patch /v2/whatsapp_message_templates/{id}">client.whatsapp_message_templates.<a href="./src/telnyx/resources/whatsapp_message_templates.py">update</a>(id, \*\*<a href="src/telnyx/types/whatsapp_message_template_update_params.py">params</a>) -> <a href="./src/telnyx/types/whatsapp_message_template_update_response.py">WhatsappMessageTemplateUpdateResponse</a></code>
 - <code title="delete /v2/whatsapp_message_templates/{id}">client.whatsapp_message_templates.<a href="./src/telnyx/resources/whatsapp_message_templates.py">delete</a>(id) -> None</code>
+
+# VoiceClones
+
+Types:
+
+```python
+from telnyx.types import (
+    VoiceCloneCreateResponse,
+    VoiceCloneUpdateResponse,
+    VoiceCloneListResponse,
+    VoiceCloneCreateFromUploadResponse,
+)
+```
+
+Methods:
+
+- <code title="post /voice_clones">client.voice_clones.<a href="./src/telnyx/resources/voice_clones.py">create</a>(\*\*<a href="src/telnyx/types/voice_clone_create_params.py">params</a>) -> <a href="./src/telnyx/types/voice_clone_create_response.py">VoiceCloneCreateResponse</a></code>
+- <code title="patch /voice_clones/{id}">client.voice_clones.<a href="./src/telnyx/resources/voice_clones.py">update</a>(id, \*\*<a href="src/telnyx/types/voice_clone_update_params.py">params</a>) -> <a href="./src/telnyx/types/voice_clone_update_response.py">VoiceCloneUpdateResponse</a></code>
+- <code title="get /voice_clones">client.voice_clones.<a href="./src/telnyx/resources/voice_clones.py">list</a>(\*\*<a href="src/telnyx/types/voice_clone_list_params.py">params</a>) -> <a href="./src/telnyx/types/voice_clone_list_response.py">SyncDefaultFlatPagination[VoiceCloneListResponse]</a></code>
+- <code title="delete /voice_clones/{id}">client.voice_clones.<a href="./src/telnyx/resources/voice_clones.py">delete</a>(id) -> None</code>
+- <code title="post /voice_clones/from_upload">client.voice_clones.<a href="./src/telnyx/resources/voice_clones.py">create_from_upload</a>(\*\*<a href="src/telnyx/types/voice_clone_create_from_upload_params.py">params</a>) -> <a href="./src/telnyx/types/voice_clone_create_from_upload_response.py">VoiceCloneCreateFromUploadResponse</a></code>
+- <code title="get /voice_clones/{id}/sample">client.voice_clones.<a href="./src/telnyx/resources/voice_clones.py">download_sample</a>(id) -> BinaryAPIResponse</code>
+
+# VoiceDesigns
+
+Types:
+
+```python
+from telnyx.types import (
+    VoiceDesignCreateResponse,
+    VoiceDesignRetrieveResponse,
+    VoiceDesignListResponse,
+    VoiceDesignRenameResponse,
+)
+```
+
+Methods:
+
+- <code title="post /voice_designs">client.voice_designs.<a href="./src/telnyx/resources/voice_designs.py">create</a>(\*\*<a href="src/telnyx/types/voice_design_create_params.py">params</a>) -> <a href="./src/telnyx/types/voice_design_create_response.py">VoiceDesignCreateResponse</a></code>
+- <code title="get /voice_designs/{id}">client.voice_designs.<a href="./src/telnyx/resources/voice_designs.py">retrieve</a>(id, \*\*<a href="src/telnyx/types/voice_design_retrieve_params.py">params</a>) -> <a href="./src/telnyx/types/voice_design_retrieve_response.py">VoiceDesignRetrieveResponse</a></code>
+- <code title="get /voice_designs">client.voice_designs.<a href="./src/telnyx/resources/voice_designs.py">list</a>(\*\*<a href="src/telnyx/types/voice_design_list_params.py">params</a>) -> <a href="./src/telnyx/types/voice_design_list_response.py">SyncDefaultFlatPagination[VoiceDesignListResponse]</a></code>
+- <code title="delete /voice_designs/{id}">client.voice_designs.<a href="./src/telnyx/resources/voice_designs.py">delete</a>(id) -> None</code>
+- <code title="delete /voice_designs/{id}/versions/{version}">client.voice_designs.<a href="./src/telnyx/resources/voice_designs.py">delete_version</a>(version, \*, id) -> None</code>
+- <code title="get /voice_designs/{id}/sample">client.voice_designs.<a href="./src/telnyx/resources/voice_designs.py">download_sample</a>(id, \*\*<a href="src/telnyx/types/voice_design_download_sample_params.py">params</a>) -> BinaryAPIResponse</code>
+- <code title="patch /voice_designs/{id}">client.voice_designs.<a href="./src/telnyx/resources/voice_designs.py">rename</a>(id, \*\*<a href="src/telnyx/types/voice_design_rename_params.py">params</a>) -> <a href="./src/telnyx/types/voice_design_rename_response.py">VoiceDesignRenameResponse</a></code>
