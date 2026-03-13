@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.74.0 (2026-03-13)
+
+Full Changelog: [v4.73.0...v4.74.0](https://github.com/team-telnyx/telnyx-python/compare/v4.73.0...v4.74.0)
+
+### Features
+
+* AI-2131: Add expressive_mode boolean to VoiceSettings ([aca3c72](https://github.com/team-telnyx/telnyx-python/commit/aca3c728a11e448978403209b916b88825833382))
+
 ## 4.73.0 (2026-03-13)
 
 Full Changelog: [v4.72.0...v4.73.0](https://github.com/team-telnyx/telnyx-python/compare/v4.72.0...v4.73.0)
