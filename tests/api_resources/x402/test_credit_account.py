@@ -67,8 +67,8 @@ class TestCreditAccount:
     def test_method_settle_with_all_params(self, client: Telnyx) -> None:
         credit_account = client.x402.credit_account.settle(
             id="quote_abc123",
-            body_payment_signature="0xabc123...",
-            header_payment_signature="PAYMENT-SIGNATURE",
+            payment_signature="0xabc123...",
+            payment_signature_header="PAYMENT-SIGNATURE",
         )
         assert_matches_type(CreditAccountSettleResponse, credit_account, path=["response"])
 
@@ -151,8 +151,8 @@ class TestAsyncCreditAccount:
     async def test_method_settle_with_all_params(self, async_client: AsyncTelnyx) -> None:
         credit_account = await async_client.x402.credit_account.settle(
             id="quote_abc123",
-            body_payment_signature="0xabc123...",
-            header_payment_signature="PAYMENT-SIGNATURE",
+            payment_signature="0xabc123...",
+            payment_signature_header="PAYMENT-SIGNATURE",
         )
         assert_matches_type(CreditAccountSettleResponse, credit_account, path=["response"])
 
