@@ -5415,3 +5415,18 @@ Methods:
 - <code title="delete /voice_designs/{id}/versions/{version}">client.voice_designs.<a href="./src/telnyx/resources/voice_designs.py">delete_version</a>(version, \*, id) -> None</code>
 - <code title="get /voice_designs/{id}/sample">client.voice_designs.<a href="./src/telnyx/resources/voice_designs.py">download_sample</a>(id, \*\*<a href="src/telnyx/types/voice_design_download_sample_params.py">params</a>) -> BinaryAPIResponse</code>
 - <code title="patch /voice_designs/{id}">client.voice_designs.<a href="./src/telnyx/resources/voice_designs.py">rename</a>(id, \*\*<a href="src/telnyx/types/voice_design_rename_params.py">params</a>) -> <a href="./src/telnyx/types/voice_design_rename_response.py">VoiceDesignRenameResponse</a></code>
+
+# X402
+
+## CreditAccount
+
+Types:
+
+```python
+from telnyx.types.x402 import CreditAccountCreateQuoteResponse, CreditAccountSettleResponse
+```
+
+Methods:
+
+- <code title="post /v2/x402/credit_account/quote">client.x402.credit_account.<a href="./src/telnyx/resources/x402/credit_account.py">create_quote</a>(\*\*<a href="src/telnyx/types/x402/credit_account_create_quote_params.py">params</a>) -> <a href="./src/telnyx/types/x402/credit_account_create_quote_response.py">CreditAccountCreateQuoteResponse</a></code>
+- <code title="post /v2/x402/credit_account">client.x402.credit_account.<a href="./src/telnyx/resources/x402/credit_account.py">settle</a>(\*\*<a href="src/telnyx/types/x402/credit_account_settle_params.py">params</a>) -> <a href="./src/telnyx/types/x402/credit_account_settle_response.py">CreditAccountSettleResponse</a></code>
