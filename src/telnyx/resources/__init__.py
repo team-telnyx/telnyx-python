@@ -201,6 +201,14 @@ from .portouts import (
     AsyncPortoutsResourceWithStreamingResponse,
 )
 from .webhooks import WebhooksResource, AsyncWebhooksResource, TelnyxWebhookVerificationError
+from .whatsapp import (
+    WhatsappResource,
+    AsyncWhatsappResource,
+    WhatsappResourceWithRawResponse,
+    AsyncWhatsappResourceWithRawResponse,
+    WhatsappResourceWithStreamingResponse,
+    AsyncWhatsappResourceWithStreamingResponse,
+)
 from .wireless import (
     WirelessResource,
     AsyncWirelessResource,
@@ -337,6 +345,14 @@ from .requirements import (
     RequirementsResourceWithStreamingResponse,
     AsyncRequirementsResourceWithStreamingResponse,
 )
+from .voice_clones import (
+    VoiceClonesResource,
+    AsyncVoiceClonesResource,
+    VoiceClonesResourceWithRawResponse,
+    AsyncVoiceClonesResourceWithRawResponse,
+    VoiceClonesResourceWithStreamingResponse,
+    AsyncVoiceClonesResourceWithStreamingResponse,
+)
 from .channel_zones import (
     ChannelZonesResource,
     AsyncChannelZonesResource,
@@ -400,6 +416,14 @@ from .verifications import (
     AsyncVerificationsResourceWithRawResponse,
     VerificationsResourceWithStreamingResponse,
     AsyncVerificationsResourceWithStreamingResponse,
+)
+from .voice_designs import (
+    VoiceDesignsResource,
+    AsyncVoiceDesignsResource,
+    VoiceDesignsResourceWithRawResponse,
+    AsyncVoiceDesignsResourceWithRawResponse,
+    VoiceDesignsResourceWithStreamingResponse,
+    AsyncVoiceDesignsResourceWithStreamingResponse,
 )
 from .billing_groups import (
     BillingGroupsResource,
@@ -1110,6 +1134,14 @@ from .number_order_phone_numbers import (
     AsyncNumberOrderPhoneNumbersResourceWithRawResponse,
     NumberOrderPhoneNumbersResourceWithStreamingResponse,
     AsyncNumberOrderPhoneNumbersResourceWithStreamingResponse,
+)
+from .whatsapp_message_templates import (
+    WhatsappMessageTemplatesResource,
+    AsyncWhatsappMessageTemplatesResource,
+    WhatsappMessageTemplatesResourceWithRawResponse,
+    AsyncWhatsappMessageTemplatesResourceWithRawResponse,
+    WhatsappMessageTemplatesResourceWithStreamingResponse,
+    AsyncWhatsappMessageTemplatesResourceWithStreamingResponse,
 )
 from .dynamic_emergency_addresses import (
     DynamicEmergencyAddressesResource,
@@ -2130,4 +2162,28 @@ __all__ = [
     "AsyncSessionAnalysisResourceWithRawResponse",
     "SessionAnalysisResourceWithStreamingResponse",
     "AsyncSessionAnalysisResourceWithStreamingResponse",
+    "WhatsappResource",
+    "AsyncWhatsappResource",
+    "WhatsappResourceWithRawResponse",
+    "AsyncWhatsappResourceWithRawResponse",
+    "WhatsappResourceWithStreamingResponse",
+    "AsyncWhatsappResourceWithStreamingResponse",
+    "WhatsappMessageTemplatesResource",
+    "AsyncWhatsappMessageTemplatesResource",
+    "WhatsappMessageTemplatesResourceWithRawResponse",
+    "AsyncWhatsappMessageTemplatesResourceWithRawResponse",
+    "WhatsappMessageTemplatesResourceWithStreamingResponse",
+    "AsyncWhatsappMessageTemplatesResourceWithStreamingResponse",
+    "VoiceClonesResource",
+    "AsyncVoiceClonesResource",
+    "VoiceClonesResourceWithRawResponse",
+    "AsyncVoiceClonesResourceWithRawResponse",
+    "VoiceClonesResourceWithStreamingResponse",
+    "AsyncVoiceClonesResourceWithStreamingResponse",
+    "VoiceDesignsResource",
+    "AsyncVoiceDesignsResource",
+    "VoiceDesignsResourceWithRawResponse",
+    "AsyncVoiceDesignsResourceWithRawResponse",
+    "VoiceDesignsResourceWithStreamingResponse",
+    "AsyncVoiceDesignsResourceWithStreamingResponse",
 ]

@@ -58,6 +58,7 @@ if TYPE_CHECKING:
         messages,
         networks,
         portouts,
+        whatsapp,
         wireless,
         addresses,
         documents,
@@ -75,6 +76,7 @@ if TYPE_CHECKING:
         audit_events,
         oauth_grants,
         requirements,
+        voice_clones,
         channel_zones,
         number_lookup,
         number_orders,
@@ -83,6 +85,7 @@ if TYPE_CHECKING:
         phone_numbers,
         usage_reports,
         verifications,
+        voice_designs,
         billing_groups,
         bundle_pricing,
         detail_records,
@@ -171,6 +174,7 @@ if TYPE_CHECKING:
         wireless_blocklist_values,
         custom_storage_credentials,
         number_order_phone_numbers,
+        whatsapp_message_templates,
         dynamic_emergency_addresses,
         dynamic_emergency_endpoints,
         global_ip_assignment_health,
@@ -212,6 +216,7 @@ if TYPE_CHECKING:
     from .resources.audit_events import AuditEventsResource, AsyncAuditEventsResource
     from .resources.oauth_grants import OAuthGrantsResource, AsyncOAuthGrantsResource
     from .resources.requirements import RequirementsResource, AsyncRequirementsResource
+    from .resources.voice_clones import VoiceClonesResource, AsyncVoiceClonesResource
     from .resources.channel_zones import ChannelZonesResource, AsyncChannelZonesResource
     from .resources.legacy.legacy import LegacyResource, AsyncLegacyResource
     from .resources.number_lookup import NumberLookupResource, AsyncNumberLookupResource
@@ -219,6 +224,7 @@ if TYPE_CHECKING:
     from .resources.oauth_clients import OAuthClientsResource, AsyncOAuthClientsResource
     from .resources.queues.queues import QueuesResource, AsyncQueuesResource
     from .resources.usage_reports import UsageReportsResource, AsyncUsageReportsResource
+    from .resources.voice_designs import VoiceDesignsResource, AsyncVoiceDesignsResource
     from .resources.billing_groups import BillingGroupsResource, AsyncBillingGroupsResource
     from .resources.detail_records import DetailRecordsResource, AsyncDetailRecordsResource
     from .resources.document_links import DocumentLinksResource, AsyncDocumentLinksResource
@@ -257,6 +263,7 @@ if TYPE_CHECKING:
     from .resources.room_participants import RoomParticipantsResource, AsyncRoomParticipantsResource
     from .resources.siprec_connectors import SiprecConnectorsResource, AsyncSiprecConnectorsResource
     from .resources.sub_number_orders import SubNumberOrdersResource, AsyncSubNumberOrdersResource
+    from .resources.whatsapp.whatsapp import WhatsappResource, AsyncWhatsappResource
     from .resources.wireless.wireless import WirelessResource, AsyncWirelessResource
     from .resources.inventory_coverage import InventoryCoverageResource, AsyncInventoryCoverageResource
     from .resources.portability_checks import PortabilityChecksResource, AsyncPortabilityChecksResource
@@ -330,6 +337,10 @@ if TYPE_CHECKING:
     from .resources.number_order_phone_numbers import (
         NumberOrderPhoneNumbersResource,
         AsyncNumberOrderPhoneNumbersResource,
+    )
+    from .resources.whatsapp_message_templates import (
+        WhatsappMessageTemplatesResource,
+        AsyncWhatsappMessageTemplatesResource,
     )
     from .resources.dynamic_emergency_addresses import (
         DynamicEmergencyAddressesResource,
@@ -1556,6 +1567,35 @@ class Telnyx(SyncAPIClient):
         from .resources.session_analysis import SessionAnalysisResource
 
         return SessionAnalysisResource(self)
+
+    @cached_property
+    def whatsapp(self) -> WhatsappResource:
+        from .resources.whatsapp import WhatsappResource
+
+        return WhatsappResource(self)
+
+    @cached_property
+    def whatsapp_message_templates(self) -> WhatsappMessageTemplatesResource:
+        """Manage Whatsapp message templates"""
+        from .resources.whatsapp_message_templates import WhatsappMessageTemplatesResource
+
+        return WhatsappMessageTemplatesResource(self)
+
+    @cached_property
+    def voice_clones(self) -> VoiceClonesResource:
+        """
+        Capture and manage voice identities as clones for use in text-to-speech synthesis.
+        """
+        from .resources.voice_clones import VoiceClonesResource
+
+        return VoiceClonesResource(self)
+
+    @cached_property
+    def voice_designs(self) -> VoiceDesignsResource:
+        """Create and manage AI-generated voice designs using natural language prompts."""
+        from .resources.voice_designs import VoiceDesignsResource
+
+        return VoiceDesignsResource(self)
 
     @cached_property
     def with_raw_response(self) -> TelnyxWithRawResponse:
@@ -2835,6 +2875,35 @@ class AsyncTelnyx(AsyncAPIClient):
         return AsyncSessionAnalysisResource(self)
 
     @cached_property
+    def whatsapp(self) -> AsyncWhatsappResource:
+        from .resources.whatsapp import AsyncWhatsappResource
+
+        return AsyncWhatsappResource(self)
+
+    @cached_property
+    def whatsapp_message_templates(self) -> AsyncWhatsappMessageTemplatesResource:
+        """Manage Whatsapp message templates"""
+        from .resources.whatsapp_message_templates import AsyncWhatsappMessageTemplatesResource
+
+        return AsyncWhatsappMessageTemplatesResource(self)
+
+    @cached_property
+    def voice_clones(self) -> AsyncVoiceClonesResource:
+        """
+        Capture and manage voice identities as clones for use in text-to-speech synthesis.
+        """
+        from .resources.voice_clones import AsyncVoiceClonesResource
+
+        return AsyncVoiceClonesResource(self)
+
+    @cached_property
+    def voice_designs(self) -> AsyncVoiceDesignsResource:
+        """Create and manage AI-generated voice designs using natural language prompts."""
+        from .resources.voice_designs import AsyncVoiceDesignsResource
+
+        return AsyncVoiceDesignsResource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncTelnyxWithRawResponse:
         return AsyncTelnyxWithRawResponse(self)
 
@@ -4049,6 +4118,35 @@ class TelnyxWithRawResponse:
 
         return SessionAnalysisResourceWithRawResponse(self._client.session_analysis)
 
+    @cached_property
+    def whatsapp(self) -> whatsapp.WhatsappResourceWithRawResponse:
+        from .resources.whatsapp import WhatsappResourceWithRawResponse
+
+        return WhatsappResourceWithRawResponse(self._client.whatsapp)
+
+    @cached_property
+    def whatsapp_message_templates(self) -> whatsapp_message_templates.WhatsappMessageTemplatesResourceWithRawResponse:
+        """Manage Whatsapp message templates"""
+        from .resources.whatsapp_message_templates import WhatsappMessageTemplatesResourceWithRawResponse
+
+        return WhatsappMessageTemplatesResourceWithRawResponse(self._client.whatsapp_message_templates)
+
+    @cached_property
+    def voice_clones(self) -> voice_clones.VoiceClonesResourceWithRawResponse:
+        """
+        Capture and manage voice identities as clones for use in text-to-speech synthesis.
+        """
+        from .resources.voice_clones import VoiceClonesResourceWithRawResponse
+
+        return VoiceClonesResourceWithRawResponse(self._client.voice_clones)
+
+    @cached_property
+    def voice_designs(self) -> voice_designs.VoiceDesignsResourceWithRawResponse:
+        """Create and manage AI-generated voice designs using natural language prompts."""
+        from .resources.voice_designs import VoiceDesignsResourceWithRawResponse
+
+        return VoiceDesignsResourceWithRawResponse(self._client.voice_designs)
+
 
 class AsyncTelnyxWithRawResponse:
     _client: AsyncTelnyx
@@ -5132,6 +5230,37 @@ class AsyncTelnyxWithRawResponse:
         from .resources.session_analysis import AsyncSessionAnalysisResourceWithRawResponse
 
         return AsyncSessionAnalysisResourceWithRawResponse(self._client.session_analysis)
+
+    @cached_property
+    def whatsapp(self) -> whatsapp.AsyncWhatsappResourceWithRawResponse:
+        from .resources.whatsapp import AsyncWhatsappResourceWithRawResponse
+
+        return AsyncWhatsappResourceWithRawResponse(self._client.whatsapp)
+
+    @cached_property
+    def whatsapp_message_templates(
+        self,
+    ) -> whatsapp_message_templates.AsyncWhatsappMessageTemplatesResourceWithRawResponse:
+        """Manage Whatsapp message templates"""
+        from .resources.whatsapp_message_templates import AsyncWhatsappMessageTemplatesResourceWithRawResponse
+
+        return AsyncWhatsappMessageTemplatesResourceWithRawResponse(self._client.whatsapp_message_templates)
+
+    @cached_property
+    def voice_clones(self) -> voice_clones.AsyncVoiceClonesResourceWithRawResponse:
+        """
+        Capture and manage voice identities as clones for use in text-to-speech synthesis.
+        """
+        from .resources.voice_clones import AsyncVoiceClonesResourceWithRawResponse
+
+        return AsyncVoiceClonesResourceWithRawResponse(self._client.voice_clones)
+
+    @cached_property
+    def voice_designs(self) -> voice_designs.AsyncVoiceDesignsResourceWithRawResponse:
+        """Create and manage AI-generated voice designs using natural language prompts."""
+        from .resources.voice_designs import AsyncVoiceDesignsResourceWithRawResponse
+
+        return AsyncVoiceDesignsResourceWithRawResponse(self._client.voice_designs)
 
 
 class TelnyxWithStreamedResponse:
@@ -6218,6 +6347,37 @@ class TelnyxWithStreamedResponse:
         from .resources.session_analysis import SessionAnalysisResourceWithStreamingResponse
 
         return SessionAnalysisResourceWithStreamingResponse(self._client.session_analysis)
+
+    @cached_property
+    def whatsapp(self) -> whatsapp.WhatsappResourceWithStreamingResponse:
+        from .resources.whatsapp import WhatsappResourceWithStreamingResponse
+
+        return WhatsappResourceWithStreamingResponse(self._client.whatsapp)
+
+    @cached_property
+    def whatsapp_message_templates(
+        self,
+    ) -> whatsapp_message_templates.WhatsappMessageTemplatesResourceWithStreamingResponse:
+        """Manage Whatsapp message templates"""
+        from .resources.whatsapp_message_templates import WhatsappMessageTemplatesResourceWithStreamingResponse
+
+        return WhatsappMessageTemplatesResourceWithStreamingResponse(self._client.whatsapp_message_templates)
+
+    @cached_property
+    def voice_clones(self) -> voice_clones.VoiceClonesResourceWithStreamingResponse:
+        """
+        Capture and manage voice identities as clones for use in text-to-speech synthesis.
+        """
+        from .resources.voice_clones import VoiceClonesResourceWithStreamingResponse
+
+        return VoiceClonesResourceWithStreamingResponse(self._client.voice_clones)
+
+    @cached_property
+    def voice_designs(self) -> voice_designs.VoiceDesignsResourceWithStreamingResponse:
+        """Create and manage AI-generated voice designs using natural language prompts."""
+        from .resources.voice_designs import VoiceDesignsResourceWithStreamingResponse
+
+        return VoiceDesignsResourceWithStreamingResponse(self._client.voice_designs)
 
 
 class AsyncTelnyxWithStreamedResponse:
@@ -7348,6 +7508,37 @@ class AsyncTelnyxWithStreamedResponse:
         from .resources.session_analysis import AsyncSessionAnalysisResourceWithStreamingResponse
 
         return AsyncSessionAnalysisResourceWithStreamingResponse(self._client.session_analysis)
+
+    @cached_property
+    def whatsapp(self) -> whatsapp.AsyncWhatsappResourceWithStreamingResponse:
+        from .resources.whatsapp import AsyncWhatsappResourceWithStreamingResponse
+
+        return AsyncWhatsappResourceWithStreamingResponse(self._client.whatsapp)
+
+    @cached_property
+    def whatsapp_message_templates(
+        self,
+    ) -> whatsapp_message_templates.AsyncWhatsappMessageTemplatesResourceWithStreamingResponse:
+        """Manage Whatsapp message templates"""
+        from .resources.whatsapp_message_templates import AsyncWhatsappMessageTemplatesResourceWithStreamingResponse
+
+        return AsyncWhatsappMessageTemplatesResourceWithStreamingResponse(self._client.whatsapp_message_templates)
+
+    @cached_property
+    def voice_clones(self) -> voice_clones.AsyncVoiceClonesResourceWithStreamingResponse:
+        """
+        Capture and manage voice identities as clones for use in text-to-speech synthesis.
+        """
+        from .resources.voice_clones import AsyncVoiceClonesResourceWithStreamingResponse
+
+        return AsyncVoiceClonesResourceWithStreamingResponse(self._client.voice_clones)
+
+    @cached_property
+    def voice_designs(self) -> voice_designs.AsyncVoiceDesignsResourceWithStreamingResponse:
+        """Create and manage AI-generated voice designs using natural language prompts."""
+        from .resources.voice_designs import AsyncVoiceDesignsResourceWithStreamingResponse
+
+        return AsyncVoiceDesignsResourceWithStreamingResponse(self._client.voice_designs)
 
 
 Client = Telnyx

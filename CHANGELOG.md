@@ -1,5 +1,107 @@
 # Changelog
 
+## 4.71.1 (2026-03-13)
+
+Full Changelog: [v4.71.0...v4.71.1](https://github.com/team-telnyx/telnyx-python/compare/v4.71.0...v4.71.1)
+
+### Bug Fixes
+
+* **tests:** correct setup of OAuth 2 Client Credentials tests ([c8bfd0f](https://github.com/team-telnyx/telnyx-python/commit/c8bfd0ff91387363ccbd91847f00e83cb26becf8))
+
+## 4.71.0 (2026-03-13)
+
+Full Changelog: [v4.70.0...v4.71.0](https://github.com/team-telnyx/telnyx-python/compare/v4.70.0...v4.71.0)
+
+### Features
+
+* **api:** Merge pull request [#29](https://github.com/team-telnyx/telnyx-python/issues/29) from stainless-sdks/fix-add-voice-model ([167cbf2](https://github.com/team-telnyx/telnyx-python/commit/167cbf265f2772ec41acdf41f80982465060f36a))
+* **api:** update OpenAPI spec or Stainless config ([167cbf2](https://github.com/team-telnyx/telnyx-python/commit/167cbf265f2772ec41acdf41f80982465060f36a))
+
+## 4.70.0 (2026-03-12)
+
+Full Changelog: [v4.69.1...v4.70.0](https://github.com/team-telnyx/telnyx-python/compare/v4.69.1...v4.70.0)
+
+### Features
+
+* Add Voice Designs and Voice Clones API specification ([3300a21](https://github.com/team-telnyx/telnyx-python/commit/3300a211cd0aebc7aee9fa50447ee91a17e9865d))
+
+
+### Reverts
+
+* restore stainless.yml changes removed in 1de6067 ([9a71770](https://github.com/team-telnyx/telnyx-python/commit/9a7177016ec5071291e77b593da1d61f7d9e4a0b))
+
+
+### Chores
+
+* update example date in usage-reports ([c026d4e](https://github.com/team-telnyx/telnyx-python/commit/c026d4edf91b5ab2102a14acf98c1ed6633c3196))
+
+## 4.69.1 (2026-03-11)
+
+Full Changelog: [v4.69.0...v4.69.1](https://github.com/team-telnyx/telnyx-python/compare/v4.69.0...v4.69.1)
+
+### Bug Fixes
+
+* add missing vertical enum values for 10DLC brand creation (ENGDESK-49040) ([5675e18](https://github.com/team-telnyx/telnyx-python/commit/5675e185c763e5d35d1b79d8971488136198757b))
+
+## 4.69.0 (2026-03-11)
+
+Full Changelog: [v4.68.0...v4.69.0](https://github.com/team-telnyx/telnyx-python/compare/v4.68.0...v4.69.0)
+
+### Features
+
+* **api:** manual updates ([3a376ee](https://github.com/team-telnyx/telnyx-python/commit/3a376eed66a283b8bb84c59cc13f0aafab9ec936))
+
+## 4.68.0 (2026-03-11)
+
+Full Changelog: [v4.67.0...v4.68.0](https://github.com/team-telnyx/telnyx-python/compare/v4.67.0...v4.68.0)
+
+### Features
+
+* **api:** manual updates ([48eae87](https://github.com/team-telnyx/telnyx-python/commit/48eae877f964011623e9184ff732fb3bb8024e6e))
+
+
+### Chores
+
+* use proper capitalization for WebSockets ([eb0c4b3](https://github.com/team-telnyx/telnyx-python/commit/eb0c4b3b11ad49cfbe9c14f075bbb003bf2df030))
+
+## 4.67.0 (2026-03-11)
+
+Full Changelog: [v4.66.0...v4.67.0](https://github.com/team-telnyx/telnyx-python/compare/v4.66.0...v4.67.0)
+
+### Features
+
+* **api:** Merge pull request [#27](https://github.com/team-telnyx/telnyx-python/issues/27) from stainless-sdks/fix/whatsapp-message-templates-conflict ([b613738](https://github.com/team-telnyx/telnyx-python/commit/b61373874d712d9814829dc3b3f3e653333e7d8b))
+
+
+### Bug Fixes
+
+* rename whatsapp.message_templates to whatsapp.templates to avoid conflict ([b613738](https://github.com/team-telnyx/telnyx-python/commit/b61373874d712d9814829dc3b3f3e653333e7d8b))
+
+## 4.66.0 (2026-03-11)
+
+Full Changelog: [v4.65.2...v4.66.0](https://github.com/team-telnyx/telnyx-python/compare/v4.65.2...v4.66.0)
+
+### Features
+
+* Add enable_thinking parameter to chat completions API ([15b1b8a](https://github.com/team-telnyx/telnyx-python/commit/15b1b8abf3a47641cf80e19d50ce5ffea380c9ec))
+
+## 4.65.2 (2026-03-11)
+
+Full Changelog: [v4.65.1...v4.65.2](https://github.com/team-telnyx/telnyx-python/compare/v4.65.1...v4.65.2)
+
+### Bug Fixes
+
+* update wait_seconds example to 0.5 ([2856cc7](https://github.com/team-telnyx/telnyx-python/commit/2856cc7db119ec997d61b9facbf157886eb30622))
+
+
+### Chores
+
+* match http protocol with ws protocol instead of wss ([3b84dee](https://github.com/team-telnyx/telnyx-python/commit/3b84dee5902e226c0c80dbdc6bc9875850ff1cdf))
+
+## 4.65.1 (2026-03-11)
+
+Full Changelog: [v4.65.0...v4.65.1](https://github.com/team-telnyx/telnyx-python/compare/v4.65.0...v4.65.1)
+
 ## 4.65.0 (2026-03-10)
 
 Full Changelog: [v4.64.1...v4.65.0](https://github.com/team-telnyx/telnyx-python/compare/v4.64.1...v4.65.0)

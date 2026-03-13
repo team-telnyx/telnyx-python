@@ -28,13 +28,13 @@ from .._base_client import _merge_mappings, make_request_options
 from ..types.stream_client_event import StreamClientEvent
 from ..types.stream_server_event import StreamServerEvent
 from ..types.stream_client_event_param import StreamClientEventParam
-from ..types.websocket_connection_options import WebsocketConnectionOptions
+from ..types.websocket_connection_options import WebSocketConnectionOptions
 from ..types.text_to_speech_generate_response import TextToSpeechGenerateResponse
 from ..types.text_to_speech_list_voices_response import TextToSpeechListVoicesResponse
 
 if TYPE_CHECKING:
-    from websockets.sync.client import ClientConnection as WebsocketConnection
-    from websockets.asyncio.client import ClientConnection as AsyncWebsocketConnection
+    from websockets.sync.client import ClientConnection as WebSocketConnection
+    from websockets.asyncio.client import ClientConnection as AsyncWebSocketConnection
 
     from .._client import Telnyx, AsyncTelnyx
 
@@ -241,7 +241,7 @@ class TextToSpeechResource(SyncAPIResource):
         self,
         extra_query: Query = {},
         extra_headers: Headers = {},
-        websocket_connection_options: WebsocketConnectionOptions = {},
+        websocket_connection_options: WebSocketConnectionOptions = {},
     ) -> TextToSpeechResourceConnectionManager:
         return TextToSpeechResourceConnectionManager(
             client=self._client,
@@ -449,7 +449,7 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
         self,
         extra_query: Query = {},
         extra_headers: Headers = {},
-        websocket_connection_options: WebsocketConnectionOptions = {},
+        websocket_connection_options: WebSocketConnectionOptions = {},
     ) -> AsyncTextToSpeechResourceConnectionManager:
         return AsyncTextToSpeechResourceConnectionManager(
             client=self._client,
@@ -510,9 +510,9 @@ class AsyncTextToSpeechResourceWithStreamingResponse:
 class AsyncTextToSpeechResourceConnection:
     """Represents a live WebSocket connection to the TextToSpeech API"""
 
-    _connection: AsyncWebsocketConnection
+    _connection: AsyncWebSocketConnection
 
-    def __init__(self, connection: AsyncWebsocketConnection) -> None:
+    def __init__(self, connection: AsyncWebSocketConnection) -> None:
         self._connection = connection
 
     async def __aiter__(self) -> AsyncIterator[StreamServerEvent]:
@@ -545,7 +545,7 @@ class AsyncTextToSpeechResourceConnection:
         then you can call `.parse_event(data)`.
         """
         message = await self._connection.recv(decode=False)
-        log.debug(f"Received websocket message: %s", message)
+        log.debug(f"Received WebSocket message: %s", message)
         return message
 
     async def send(self, event: StreamClientEvent | StreamClientEventParam) -> None:
@@ -596,7 +596,7 @@ class AsyncTextToSpeechResourceConnectionManager:
         client: AsyncTelnyx,
         extra_query: Query,
         extra_headers: Headers,
-        websocket_connection_options: WebsocketConnectionOptions,
+        websocket_connection_options: WebSocketConnectionOptions,
     ) -> None:
         self.__client = client
         self.__connection: AsyncTextToSpeechResourceConnection | None = None
@@ -654,7 +654,9 @@ class AsyncTextToSpeechResourceConnectionManager:
         if self.__client.websocket_base_url is not None:
             base_url = httpx.URL(self.__client.websocket_base_url)
         else:
-            base_url = self.__client._base_url.copy_with(scheme="wss")
+            scheme = self.__client._base_url.scheme
+            ws_scheme = "ws" if scheme == "http" else "wss"
+            base_url = self.__client._base_url.copy_with(scheme=ws_scheme)
 
         merge_raw_path = base_url.raw_path.rstrip(b"/") + b"/text-to-speech/speech"
         return base_url.copy_with(raw_path=merge_raw_path)
@@ -669,9 +671,9 @@ class AsyncTextToSpeechResourceConnectionManager:
 class TextToSpeechResourceConnection:
     """Represents a live WebSocket connection to the TextToSpeech API"""
 
-    _connection: WebsocketConnection
+    _connection: WebSocketConnection
 
-    def __init__(self, connection: WebsocketConnection) -> None:
+    def __init__(self, connection: WebSocketConnection) -> None:
         self._connection = connection
 
     def __iter__(self) -> Iterator[StreamServerEvent]:
@@ -704,7 +706,7 @@ class TextToSpeechResourceConnection:
         then you can call `.parse_event(data)`.
         """
         message = self._connection.recv(decode=False)
-        log.debug(f"Received websocket message: %s", message)
+        log.debug(f"Received WebSocket message: %s", message)
         return message
 
     def send(self, event: StreamClientEvent | StreamClientEventParam) -> None:
@@ -755,7 +757,7 @@ class TextToSpeechResourceConnectionManager:
         client: Telnyx,
         extra_query: Query,
         extra_headers: Headers,
-        websocket_connection_options: WebsocketConnectionOptions,
+        websocket_connection_options: WebSocketConnectionOptions,
     ) -> None:
         self.__client = client
         self.__connection: TextToSpeechResourceConnection | None = None
@@ -813,7 +815,9 @@ class TextToSpeechResourceConnectionManager:
         if self.__client.websocket_base_url is not None:
             base_url = httpx.URL(self.__client.websocket_base_url)
         else:
-            base_url = self.__client._base_url.copy_with(scheme="wss")
+            scheme = self.__client._base_url.scheme
+            ws_scheme = "ws" if scheme == "http" else "wss"
+            base_url = self.__client._base_url.copy_with(scheme=ws_scheme)
 
         merge_raw_path = base_url.raw_path.rstrip(b"/") + b"/text-to-speech/speech"
         return base_url.copy_with(raw_path=merge_raw_path)
