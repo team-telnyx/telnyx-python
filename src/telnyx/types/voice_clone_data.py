@@ -6,10 +6,10 @@ from typing_extensions import Literal
 
 from .._models import BaseModel
 
-__all__ = ["VoiceCloneListResponse"]
+__all__ = ["VoiceCloneData"]
 
 
-class VoiceCloneListResponse(BaseModel):
+class VoiceCloneData(BaseModel):
     """A voice clone object."""
 
     id: Optional[str] = None
