@@ -17,7 +17,7 @@ from .._resource import SyncAPIResource, AsyncAPIResource
 from .._exceptions import TelnyxError
 from .._base_client import _merge_mappings
 from ..types.stt_server_event import SttServerEvent
-from ..types.websocket_connection_options import WebsocketConnectionOptions
+from ..types.websocket_connection_options import WebSocketConnectionOptions
 
 if TYPE_CHECKING:
     from websockets.sync.client import ClientConnection as WebsocketConnection
@@ -58,7 +58,7 @@ class SpeechToTextResource(SyncAPIResource):
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
-        websocket_connection_options: WebsocketConnectionOptions = {},
+        websocket_connection_options: WebSocketConnectionOptions = {},
     ) -> SpeechToTextResourceConnectionManager:
         """
         Create a WebSocket connection for real-time speech-to-text transcription.
@@ -131,7 +131,7 @@ class AsyncSpeechToTextResource(AsyncAPIResource):
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
-        websocket_connection_options: WebsocketConnectionOptions = {},
+        websocket_connection_options: WebSocketConnectionOptions = {},
     ) -> AsyncSpeechToTextResourceConnectionManager:
         """
         Create a WebSocket connection for real-time speech-to-text transcription.
@@ -283,7 +283,7 @@ class AsyncSpeechToTextResourceConnectionManager:
         model: str | None,
         extra_query: Query,
         extra_headers: Headers,
-        websocket_connection_options: WebsocketConnectionOptions,
+        websocket_connection_options: WebSocketConnectionOptions,
     ) -> None:
         self.__client = client
         self.__connection: AsyncSpeechToTextResourceConnection | None = None
@@ -463,7 +463,7 @@ class SpeechToTextResourceConnectionManager:
         model: str | None,
         extra_query: Query,
         extra_headers: Headers,
-        websocket_connection_options: WebsocketConnectionOptions,
+        websocket_connection_options: WebSocketConnectionOptions,
     ) -> None:
         self.__client = client
         self.__connection: SpeechToTextResourceConnection | None = None
