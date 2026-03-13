@@ -123,6 +123,7 @@ from .room_list_params import RoomListParams as RoomListParams
 from .sip_header_param import SipHeaderParam as SipHeaderParam
 from .sub_number_order import SubNumberOrder as SubNumberOrder
 from .user_requirement import UserRequirement as UserRequirement
+from .voice_clone_data import VoiceCloneData as VoiceCloneData
 from .whatsapp_contact import WhatsappContact as WhatsappContact
 from .available_service import AvailableService as AvailableService
 from .call_fork_started import CallForkStarted as CallForkStarted
@@ -139,6 +140,7 @@ from .queue_list_params import QueueListParams as QueueListParams
 from .rcs_agent_message import RcsAgentMessage as RcsAgentMessage
 from .requirement_group import RequirementGroup as RequirementGroup
 from .texml_application import TexmlApplication as TexmlApplication
+from .voice_design_data import VoiceDesignData as VoiceDesignData
 from .whatsapp_location import WhatsappLocation as WhatsappLocation
 from .whatsapp_reaction import WhatsappReaction as WhatsappReaction
 from .call_dial_response import CallDialResponse as CallDialResponse
@@ -374,7 +376,6 @@ from .sound_modifications_param import SoundModificationsParam as SoundModificat
 from .stream_bidirectional_mode import StreamBidirectionalMode as StreamBidirectionalMode
 from .stream_client_event_param import StreamClientEventParam as StreamClientEventParam
 from .voice_clone_create_params import VoiceCloneCreateParams as VoiceCloneCreateParams
-from .voice_clone_list_response import VoiceCloneListResponse as VoiceCloneListResponse
 from .voice_clone_update_params import VoiceCloneUpdateParams as VoiceCloneUpdateParams
 from .access_ip_address_response import AccessIPAddressResponse as AccessIPAddressResponse
 from .call_bridged_webhook_event import CallBridgedWebhookEvent as CallBridgedWebhookEvent
