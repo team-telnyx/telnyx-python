@@ -3666,7 +3666,6 @@ Types:
 from telnyx.types import (
     RecordingTranscription,
     RecordingTranscriptionRetrieveResponse,
-    RecordingTranscriptionListResponse,
     RecordingTranscriptionDeleteResponse,
 )
 ```
@@ -3674,7 +3673,7 @@ from telnyx.types import (
 Methods:
 
 - <code title="get /recording_transcriptions/{recording_transcription_id}">client.recording_transcriptions.<a href="./src/telnyx/resources/recording_transcriptions.py">retrieve</a>(recording_transcription_id) -> <a href="./src/telnyx/types/recording_transcription_retrieve_response.py">RecordingTranscriptionRetrieveResponse</a></code>
-- <code title="get /recording_transcriptions">client.recording_transcriptions.<a href="./src/telnyx/resources/recording_transcriptions.py">list</a>() -> <a href="./src/telnyx/types/recording_transcription_list_response.py">RecordingTranscriptionListResponse</a></code>
+- <code title="get /recording_transcriptions">client.recording_transcriptions.<a href="./src/telnyx/resources/recording_transcriptions.py">list</a>(\*\*<a href="src/telnyx/types/recording_transcription_list_params.py">params</a>) -> <a href="./src/telnyx/types/recording_transcription.py">SyncDefaultFlatPagination[RecordingTranscription]</a></code>
 - <code title="delete /recording_transcriptions/{recording_transcription_id}">client.recording_transcriptions.<a href="./src/telnyx/resources/recording_transcriptions.py">delete</a>(recording_transcription_id) -> <a href="./src/telnyx/types/recording_transcription_delete_response.py">RecordingTranscriptionDeleteResponse</a></code>
 
 # Recordings
@@ -3693,9 +3692,15 @@ Methods:
 
 ## Actions
 
+Types:
+
+```python
+from telnyx.types.recordings import ActionDeleteResponse
+```
+
 Methods:
 
-- <code title="post /recordings/actions/delete">client.recordings.actions.<a href="./src/telnyx/resources/recordings/actions.py">delete</a>(\*\*<a href="src/telnyx/types/recordings/action_delete_params.py">params</a>) -> None</code>
+- <code title="post /recordings/actions/delete">client.recordings.actions.<a href="./src/telnyx/resources/recordings/actions.py">delete</a>(\*\*<a href="src/telnyx/types/recordings/action_delete_params.py">params</a>) -> <a href="./src/telnyx/types/recordings/action_delete_response.py">ActionDeleteResponse</a></code>
 
 # Regions
 

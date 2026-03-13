@@ -109,11 +109,7 @@ class RecordingsResource(SyncAPIResource):
         Returns a list of your call recordings.
 
         Args:
-          filter:
-              Consolidated filter parameter (deepObject style). Originally:
-              filter[conference_id], filter[created_at][gte], filter[created_at][lte],
-              filter[call_leg_id], filter[call_session_id], filter[from], filter[to],
-              filter[connection_id], filter[sip_call_id]
+          filter: Filter recordings by various attributes.
 
           extra_headers: Send extra headers
 
@@ -254,11 +250,7 @@ class AsyncRecordingsResource(AsyncAPIResource):
         Returns a list of your call recordings.
 
         Args:
-          filter:
-              Consolidated filter parameter (deepObject style). Originally:
-              filter[conference_id], filter[created_at][gte], filter[created_at][lte],
-              filter[call_leg_id], filter[call_session_id], filter[from], filter[to],
-              filter[connection_id], filter[sip_call_id]
+          filter: Filter recordings by various attributes.
 
           extra_headers: Send extra headers
 
