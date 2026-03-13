@@ -32,6 +32,14 @@ from .seti import (
     SetiResourceWithStreamingResponse,
     AsyncSetiResourceWithStreamingResponse,
 )
+from .x402 import (
+    X402Resource,
+    AsyncX402Resource,
+    X402ResourceWithRawResponse,
+    AsyncX402ResourceWithRawResponse,
+    X402ResourceWithStreamingResponse,
+    AsyncX402ResourceWithStreamingResponse,
+)
 from .calls import (
     CallsResource,
     AsyncCallsResource,
@@ -2175,4 +2183,10 @@ __all__ = [
     "AsyncVoiceDesignsResourceWithRawResponse",
     "VoiceDesignsResourceWithStreamingResponse",
     "AsyncVoiceDesignsResourceWithStreamingResponse",
+    "X402Resource",
+    "AsyncX402Resource",
+    "X402ResourceWithRawResponse",
+    "AsyncX402ResourceWithRawResponse",
+    "X402ResourceWithStreamingResponse",
+    "AsyncX402ResourceWithStreamingResponse",
 ]

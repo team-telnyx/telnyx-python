@@ -37,6 +37,7 @@ if TYPE_CHECKING:
         ips,
         list,
         seti,
+        x402,
         calls,
         faxes,
         fqdns,
@@ -203,6 +204,7 @@ if TYPE_CHECKING:
     from .resources.webhooks import WebhooksResource, AsyncWebhooksResource
     from .resources.documents import DocumentsResource, AsyncDocumentsResource
     from .resources.user_tags import UserTagsResource, AsyncUserTagsResource
+    from .resources.x402.x402 import X402Resource, AsyncX402Resource
     from .resources.global_ips import GlobalIPsResource, AsyncGlobalIPsResource
     from .resources.well_known import WellKnownResource, AsyncWellKnownResource
     from .resources.call_events import CallEventsResource, AsyncCallEventsResource
@@ -1590,6 +1592,12 @@ class Telnyx(SyncAPIClient):
         return VoiceDesignsResource(self)
 
     @cached_property
+    def x402(self) -> X402Resource:
+        from .resources.x402 import X402Resource
+
+        return X402Resource(self)
+
+    @cached_property
     def with_raw_response(self) -> TelnyxWithRawResponse:
         return TelnyxWithRawResponse(self)
 
@@ -2889,6 +2897,12 @@ class AsyncTelnyx(AsyncAPIClient):
         return AsyncVoiceDesignsResource(self)
 
     @cached_property
+    def x402(self) -> AsyncX402Resource:
+        from .resources.x402 import AsyncX402Resource
+
+        return AsyncX402Resource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncTelnyxWithRawResponse:
         return AsyncTelnyxWithRawResponse(self)
 
@@ -4132,6 +4146,12 @@ class TelnyxWithRawResponse:
 
         return VoiceDesignsResourceWithRawResponse(self._client.voice_designs)
 
+    @cached_property
+    def x402(self) -> x402.X402ResourceWithRawResponse:
+        from .resources.x402 import X402ResourceWithRawResponse
+
+        return X402ResourceWithRawResponse(self._client.x402)
+
 
 class AsyncTelnyxWithRawResponse:
     _client: AsyncTelnyx
@@ -5246,6 +5266,12 @@ class AsyncTelnyxWithRawResponse:
         from .resources.voice_designs import AsyncVoiceDesignsResourceWithRawResponse
 
         return AsyncVoiceDesignsResourceWithRawResponse(self._client.voice_designs)
+
+    @cached_property
+    def x402(self) -> x402.AsyncX402ResourceWithRawResponse:
+        from .resources.x402 import AsyncX402ResourceWithRawResponse
+
+        return AsyncX402ResourceWithRawResponse(self._client.x402)
 
 
 class TelnyxWithStreamedResponse:
@@ -6363,6 +6389,12 @@ class TelnyxWithStreamedResponse:
         from .resources.voice_designs import VoiceDesignsResourceWithStreamingResponse
 
         return VoiceDesignsResourceWithStreamingResponse(self._client.voice_designs)
+
+    @cached_property
+    def x402(self) -> x402.X402ResourceWithStreamingResponse:
+        from .resources.x402 import X402ResourceWithStreamingResponse
+
+        return X402ResourceWithStreamingResponse(self._client.x402)
 
 
 class AsyncTelnyxWithStreamedResponse:
@@ -7524,6 +7556,12 @@ class AsyncTelnyxWithStreamedResponse:
         from .resources.voice_designs import AsyncVoiceDesignsResourceWithStreamingResponse
 
         return AsyncVoiceDesignsResourceWithStreamingResponse(self._client.voice_designs)
+
+    @cached_property
+    def x402(self) -> x402.AsyncX402ResourceWithStreamingResponse:
+        from .resources.x402 import AsyncX402ResourceWithStreamingResponse
+
+        return AsyncX402ResourceWithStreamingResponse(self._client.x402)
 
 
 Client = Telnyx
