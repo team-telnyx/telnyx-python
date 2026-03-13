@@ -3,6 +3,8 @@
 from typing import Optional
 from typing_extensions import Literal
 
+from pydantic import Field as FieldInfo
+
 from .._models import BaseModel
 
 __all__ = ["RecordingResponseData", "DownloadURLs"]
@@ -44,6 +46,12 @@ class RecordingResponseData(BaseModel):
     conference_id: Optional[str] = None
     """Uniquely identifies the conference."""
 
+    connection_id: Optional[str] = None
+    """
+    Identifies the Telnyx application (Call Control, TeXML) or SIP connection
+    resource associated with this recording.
+    """
+
     created_at: Optional[str] = None
     """ISO 8601 formatted date indicating when the resource was created."""
 
@@ -52,6 +60,16 @@ class RecordingResponseData(BaseModel):
 
     duration_millis: Optional[int] = None
     """The duration of the recording in milliseconds."""
+
+    from_: Optional[str] = FieldInfo(alias="from", default=None)
+    """The `from` (caller) number for the call that generated this recording."""
+
+    initiated_by: Optional[str] = None
+    """Indicates what triggered the recording.
+
+    Possible values include `DialVerb`, `Conference`, `OutboundAPI`, `Trunking`,
+    `RecordVerb`, `StartCallRecordingAPI`, `StartConferenceRecordingAPI`.
+    """
 
     record_type: Optional[Literal["recording"]] = None
 
@@ -69,6 +87,9 @@ class RecordingResponseData(BaseModel):
 
     Only `completed` recordings are currently supported.
     """
+
+    to: Optional[str] = None
+    """The `to` (callee) number for the call that generated this recording."""
 
     updated_at: Optional[str] = None
     """ISO 8601 formatted date indicating when the resource was updated."""
