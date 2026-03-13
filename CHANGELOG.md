@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.71.3 (2026-03-13)
+
+Full Changelog: [v4.71.2...v4.71.3](https://github.com/team-telnyx/telnyx-python/compare/v4.71.2...v4.71.3)
+
+### Bug Fixes
+
+* **call-recordings:** align OpenAPI spec with implementation ([ba44a14](https://github.com/team-telnyx/telnyx-python/commit/ba44a1442504e070d10f4d2a2c281f166148b582))
+
 ## 4.71.2 (2026-03-13)
 
 Full Changelog: [v4.71.1...v4.71.2](https://github.com/team-telnyx/telnyx-python/compare/v4.71.1...v4.71.2)
