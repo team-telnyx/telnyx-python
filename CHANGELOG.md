@@ -1,5 +1,15 @@
 # Changelog
 
+## 4.71.2 (2026-03-13)
+
+Full Changelog: [v4.71.1...v4.71.2](https://github.com/team-telnyx/telnyx-python/compare/v4.71.1...v4.71.2)
+
+### Bug Fixes
+
+* lint errors in _client.py ([08e1685](https://github.com/team-telnyx/telnyx-python/commit/08e1685411873c189db33fcb8c2b041040b4ecf9))
+* update WebsocketConnectionOptions -&gt; WebSocketConnectionOptions ([714eb76](https://github.com/team-telnyx/telnyx-python/commit/714eb76e7767d2e86e83e169a3273b1357a291ec))
+* wire up SpeechToTextResource to client ([762f42d](https://github.com/team-telnyx/telnyx-python/commit/762f42da6de8cc071bce18db39a4dcdcda964216))
+
 ## 4.71.1 (2026-03-13)
 
 Full Changelog: [v4.71.0...v4.71.1](https://github.com/team-telnyx/telnyx-python/compare/v4.71.0...v4.71.1)

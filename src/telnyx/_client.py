@@ -229,6 +229,7 @@ if TYPE_CHECKING:
     from .resources.detail_records import DetailRecordsResource, AsyncDetailRecordsResource
     from .resources.document_links import DocumentLinksResource, AsyncDocumentLinksResource
     from .resources.ip_connections import IPConnectionsResource, AsyncIPConnectionsResource
+    from .resources.speech_to_text import SpeechToTextResource, AsyncSpeechToTextResource
     from .resources.text_to_speech import TextToSpeechResource, AsyncTextToSpeechResource
     from .resources.user_addresses import UserAddressesResource, AsyncUserAddressesResource
     from .resources.actions.actions import ActionsResource, AsyncActionsResource
@@ -1400,6 +1401,13 @@ class Telnyx(SyncAPIClient):
         from .resources.text_to_speech import TextToSpeechResource
 
         return TextToSpeechResource(self)
+
+    @cached_property
+    def speech_to_text(self) -> SpeechToTextResource:
+        """Speech to text streaming command operations via WebSocket"""
+        from .resources.speech_to_text import SpeechToTextResource
+
+        return SpeechToTextResource(self)
 
     @cached_property
     def usage_reports(self) -> UsageReportsResource:
@@ -2699,6 +2707,13 @@ class AsyncTelnyx(AsyncAPIClient):
         from .resources.text_to_speech import AsyncTextToSpeechResource
 
         return AsyncTextToSpeechResource(self)
+
+    @cached_property
+    def speech_to_text(self) -> AsyncSpeechToTextResource:
+        """Speech to text streaming command operations via WebSocket"""
+        from .resources.speech_to_text import AsyncSpeechToTextResource
+
+        return AsyncSpeechToTextResource(self)
 
     @cached_property
     def usage_reports(self) -> AsyncUsageReportsResource:

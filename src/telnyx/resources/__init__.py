@@ -473,6 +473,12 @@ from .porting_orders import (
     PortingOrdersResourceWithStreamingResponse,
     AsyncPortingOrdersResourceWithStreamingResponse,
 )
+from .speech_to_text import (
+    SpeechToTextResource,
+    AsyncSpeechToTextResource,
+    SpeechToTextResourceWithRawResponse,
+    AsyncSpeechToTextResourceWithRawResponse,
+)
 from .text_to_speech import (
     TextToSpeechResource,
     AsyncTextToSpeechResource,
@@ -2008,6 +2014,10 @@ __all__ = [
     "AsyncTexmlApplicationsResourceWithRawResponse",
     "TexmlApplicationsResourceWithStreamingResponse",
     "AsyncTexmlApplicationsResourceWithStreamingResponse",
+    "SpeechToTextResource",
+    "AsyncSpeechToTextResource",
+    "SpeechToTextResourceWithRawResponse",
+    "AsyncSpeechToTextResourceWithRawResponse",
     "TextToSpeechResource",
     "AsyncTextToSpeechResource",
     "TextToSpeechResourceWithRawResponse",

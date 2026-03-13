@@ -121,6 +121,11 @@ from .rcs_content_info import RcsContentInfo as RcsContentInfo
 from .room_composition import RoomComposition as RoomComposition
 from .room_list_params import RoomListParams as RoomListParams
 from .sip_header_param import SipHeaderParam as SipHeaderParam
+from .stt_server_event import (
+    SttErrorFrame as SttErrorFrame,
+    SttServerEvent as SttServerEvent,
+    TranscriptFrame as TranscriptFrame,
+)
 from .sub_number_order import SubNumberOrder as SubNumberOrder
 from .user_requirement import UserRequirement as UserRequirement
 from .voice_clone_data import VoiceCloneData as VoiceCloneData
