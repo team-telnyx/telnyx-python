@@ -8,6 +8,8 @@ from typing import Any, cast
 import pytest
 
 from telnyx import Telnyx, AsyncTelnyx
+from tests.utils import assert_matches_type
+from telnyx.types.recordings import ActionDeleteResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -21,7 +23,7 @@ class TestActions:
         action = client.recordings.actions.delete(
             ids=["428c31b6-7af4-4bcb-b7f5-5013ef9657c1", "428c31b6-7af4-4bcb-b7f5-5013ef9657c2"],
         )
-        assert action is None
+        assert_matches_type(ActionDeleteResponse, action, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -33,7 +35,7 @@ class TestActions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         action = response.parse()
-        assert action is None
+        assert_matches_type(ActionDeleteResponse, action, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -45,7 +47,7 @@ class TestActions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             action = response.parse()
-            assert action is None
+            assert_matches_type(ActionDeleteResponse, action, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -61,7 +63,7 @@ class TestAsyncActions:
         action = await async_client.recordings.actions.delete(
             ids=["428c31b6-7af4-4bcb-b7f5-5013ef9657c1", "428c31b6-7af4-4bcb-b7f5-5013ef9657c2"],
         )
-        assert action is None
+        assert_matches_type(ActionDeleteResponse, action, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -73,7 +75,7 @@ class TestAsyncActions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         action = await response.parse()
-        assert action is None
+        assert_matches_type(ActionDeleteResponse, action, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -85,6 +87,6 @@ class TestAsyncActions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             action = await response.parse()
-            assert action is None
+            assert_matches_type(ActionDeleteResponse, action, path=["response"])
 
         assert cast(Any, response.is_closed) is True

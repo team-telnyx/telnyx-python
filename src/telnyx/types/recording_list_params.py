@@ -6,17 +6,12 @@ from typing_extensions import Annotated, TypedDict
 
 from .._utils import PropertyInfo
 
-__all__ = ["RecordingListParams", "Filter", "FilterCreatedAt"]
+__all__ = ["RecordingListParams", "Filter", "FilterCreatedAt", "FilterEndTime", "FilterStartTime"]
 
 
 class RecordingListParams(TypedDict, total=False):
     filter: Filter
-    """Consolidated filter parameter (deepObject style).
-
-    Originally: filter[conference_id], filter[created_at][gte],
-    filter[created_at][lte], filter[call_leg_id], filter[call_session_id],
-    filter[from], filter[to], filter[connection_id], filter[sip_call_id]
-    """
+    """Filter recordings by various attributes."""
 
     page_number: Annotated[int, PropertyInfo(alias="page[number]")]
 
@@ -31,6 +26,34 @@ class FilterCreatedAt(TypedDict, total=False):
     """Returns only recordings created earlier than or at given ISO 8601 datetime."""
 
 
+class FilterEndTime(TypedDict, total=False):
+    gte: str
+    """
+    Returns only recordings with an end time later than or equal to the given ISO
+    8601 datetime.
+    """
+
+    lte: str
+    """
+    Returns only recordings with an end time earlier than or equal to the given ISO
+    8601 datetime.
+    """
+
+
+class FilterStartTime(TypedDict, total=False):
+    gte: str
+    """
+    Returns only recordings with a start time later than or equal to the given ISO
+    8601 datetime.
+    """
+
+    lte: str
+    """
+    Returns only recordings with a start time earlier than or equal to the given ISO
+    8601 datetime.
+    """
+
+
 _FilterReservedKeywords = TypedDict(
     "_FilterReservedKeywords",
     {
@@ -41,9 +64,12 @@ _FilterReservedKeywords = TypedDict(
 
 
 class Filter(_FilterReservedKeywords, total=False):
-    """Consolidated filter parameter (deepObject style).
+    """Filter recordings by various attributes."""
 
-    Originally: filter[conference_id], filter[created_at][gte], filter[created_at][lte], filter[call_leg_id], filter[call_session_id], filter[from], filter[to], filter[connection_id], filter[sip_call_id]
+    call_control_id: str
+    """
+    If present, recordings will be filtered to those with a matching
+    `call_control_id`.
     """
 
     call_leg_id: str
@@ -58,6 +84,12 @@ class Filter(_FilterReservedKeywords, total=False):
     conference_id: str
     """Returns only recordings associated with a given conference."""
 
+    conference_region: str
+    """
+    If present, recordings will be filtered to those with a matching
+    `conference_region`.
+    """
+
     connection_id: str
     """
     If present, recordings will be filtered to those with a matching `connection_id`
@@ -66,11 +98,15 @@ class Filter(_FilterReservedKeywords, total=False):
 
     created_at: FilterCreatedAt
 
+    end_time: FilterEndTime
+
     sip_call_id: str
     """
     If present, recordings will be filtered to those with a matching `sip_call_id`
-    attribute. Matching is case-sensitive
+    attribute. Matching is case-sensitive.
     """
+
+    start_time: FilterStartTime
 
     to: str
     """
