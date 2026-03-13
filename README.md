@@ -347,6 +347,49 @@ On timeout, an `APITimeoutError` is thrown.
 
 Note that requests that time out are [retried twice by default](#retries).
 
+## Real-time Speech-to-Text (WebSocket)
+
+Stream audio for real-time transcription using WebSocket:
+
+```python
+import telnyx
+
+client = telnyx.Telnyx()
+
+# Synchronous usage
+with client.speech_to_text.stream(
+    transcription_engine="Telnyx",
+    language="en-US",
+    interim_results=True,
+) as connection:
+    # Send audio data
+    with open("audio.wav", "rb") as f:
+        connection.send(f.read())
+
+    # Receive transcripts
+    for event in connection:
+        if event.type == "transcript":
+            status = "✓" if event.is_final else "..."
+            print(f"{status} {event.transcript}")
+        elif event.type == "error":
+            print(f"Error: {event.error}")
+```
+
+Async usage:
+
+```python
+async with client.speech_to_text.stream(
+    transcription_engine="Telnyx",
+    language="en-US",
+) as connection:
+    await connection.send(audio_data)
+    async for event in connection:
+        if event.type == "transcript":
+            print(event.transcript)
+```
+
+Supported transcription engines: `Azure`, `Deepgram`, `Google`, `Telnyx`
+
 ## Advanced
 
 ### Logging
