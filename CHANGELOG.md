@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.72.0 (2026-03-13)
+
+Full Changelog: [v4.71.3...v4.72.0](https://github.com/team-telnyx/telnyx-python/compare/v4.71.3...v4.72.0)
+
+### Features
+
+* add public x402 payment endpoints to external specs ([5c45180](https://github.com/team-telnyx/telnyx-python/commit/5c45180ab8176b08cb848eea74b58e865710e167))
+
 ## 4.71.3 (2026-03-13)
 
 Full Changelog: [v4.71.2...v4.71.3](https://github.com/team-telnyx/telnyx-python/compare/v4.71.2...v4.71.3)
