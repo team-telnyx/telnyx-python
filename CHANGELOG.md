@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.71.1 (2026-03-13)
+
+Full Changelog: [v4.71.0...v4.71.1](https://github.com/team-telnyx/telnyx-python/compare/v4.71.0...v4.71.1)
+
+### Bug Fixes
+
+* **tests:** correct setup of OAuth 2 Client Credentials tests ([c8bfd0f](https://github.com/team-telnyx/telnyx-python/commit/c8bfd0ff91387363ccbd91847f00e83cb26becf8))
+
 ## 4.71.0 (2026-03-13)
 
 Full Changelog: [v4.70.0...v4.71.0](https://github.com/team-telnyx/telnyx-python/compare/v4.70.0...v4.71.0)
