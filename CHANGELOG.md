@@ -1,5 +1,14 @@
 # Changelog
 
+## 4.71.0 (2026-03-13)
+
+Full Changelog: [v4.70.0...v4.71.0](https://github.com/team-telnyx/telnyx-python/compare/v4.70.0...v4.71.0)
+
+### Features
+
+* **api:** Merge pull request [#29](https://github.com/team-telnyx/telnyx-python/issues/29) from stainless-sdks/fix-add-voice-model ([167cbf2](https://github.com/team-telnyx/telnyx-python/commit/167cbf265f2772ec41acdf41f80982465060f36a))
+* **api:** update OpenAPI spec or Stainless config ([167cbf2](https://github.com/team-telnyx/telnyx-python/commit/167cbf265f2772ec41acdf41f80982465060f36a))
+
 ## 4.70.0 (2026-03-12)
 
 Full Changelog: [v4.69.1...v4.70.0](https://github.com/team-telnyx/telnyx-python/compare/v4.69.1...v4.70.0)
