@@ -73,6 +73,13 @@ class VoiceSettingsParam(TypedDict, total=False):
     in the portal, customers can preview it before saving.
     """
 
+    expressive_mode: bool
+    """Enables emotionally expressive speech using SSML emotion tags.
+
+    When enabled, the assistant uses audio tags like angry, excited, content, and
+    sad to add emotional nuance. Only supported for Telnyx Ultra voices.
+    """
+
     language_boost: Optional[
         Literal[
             "auto",
