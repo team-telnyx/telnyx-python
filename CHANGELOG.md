@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.75.0 (2026-03-16)
+
+Full Changelog: [v4.74.0...v4.75.0](https://github.com/team-telnyx/telnyx-python/compare/v4.74.0...v4.75.0)
+
+### Features
+
+* AI-2132: Add warm_message_delay_ms to transfer tool OpenAPI spec ([b17ff61](https://github.com/team-telnyx/telnyx-python/commit/b17ff61b79cee1bf5f6d9c34969a5b9c11c1bff0))
+
 ## 4.74.0 (2026-03-13)
 
 Full Changelog: [v4.73.0...v4.74.0](https://github.com/team-telnyx/telnyx-python/compare/v4.73.0...v4.74.0)
