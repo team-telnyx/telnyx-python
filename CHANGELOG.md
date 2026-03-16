@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.75.1 (2026-03-16)
+
+Full Changelog: [v4.75.0...v4.75.1](https://github.com/team-telnyx/telnyx-python/compare/v4.75.0...v4.75.1)
+
+### Bug Fixes
+
+* **pydantic:** do not pass `by_alias` unless set ([56b3cfb](https://github.com/team-telnyx/telnyx-python/commit/56b3cfbccecc81e253103fcc4b2578bd4d248ddb))
+
 ## 4.75.0 (2026-03-16)
 
 Full Changelog: [v4.74.0...v4.75.0](https://github.com/team-telnyx/telnyx-python/compare/v4.74.0...v4.75.0)
