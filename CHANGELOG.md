@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.75.2 (2026-03-16)
+
+Full Changelog: [v4.75.1...v4.75.2](https://github.com/team-telnyx/telnyx-python/compare/v4.75.1...v4.75.2)
+
+### Bug Fixes
+
+* **deps:** bump minimum typing-extensions version ([a2dd1ec](https://github.com/team-telnyx/telnyx-python/commit/a2dd1eccb763e114f494130aef759ad88c04b2e8))
+
 ## 4.75.1 (2026-03-16)
 
 Full Changelog: [v4.75.0...v4.75.1](https://github.com/team-telnyx/telnyx-python/compare/v4.75.0...v4.75.1)
