@@ -87,7 +87,7 @@ class BulkSimCardActionsResource(SyncAPIResource):
     def list(
         self,
         *,
-        filter_action_type: Literal["bulk_set_public_ips"] | Omit = omit,
+        filter_action_type: Literal["bulk_disable_voice", "bulk_enable_voice", "bulk_set_public_ips"] | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -200,7 +200,7 @@ class AsyncBulkSimCardActionsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        filter_action_type: Literal["bulk_set_public_ips"] | Omit = omit,
+        filter_action_type: Literal["bulk_disable_voice", "bulk_enable_voice", "bulk_set_public_ips"] | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
