@@ -1,5 +1,18 @@
 # Changelog
 
+## 4.76.0 (2026-03-16)
+
+Full Changelog: [v4.75.2...v4.76.0](https://github.com/team-telnyx/telnyx-python/compare/v4.75.2...v4.76.0)
+
+### Features
+
+* CW-2881 update `filter[action_type]` enum ([18dc08f](https://github.com/team-telnyx/telnyx-python/commit/18dc08ffc05d58be686e93566f2e4c715eba2fd2))
+
+
+### Chores
+
+* **internal:** tweak CI branches ([ef46d7f](https://github.com/team-telnyx/telnyx-python/commit/ef46d7fb6c7aced9d3585f237d4a7f04441109e0))
+
 ## 4.75.2 (2026-03-16)
 
 Full Changelog: [v4.75.1...v4.75.2](https://github.com/team-telnyx/telnyx-python/compare/v4.75.1...v4.75.2)
