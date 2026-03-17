@@ -481,6 +481,14 @@ from .porting_orders import (
     PortingOrdersResourceWithStreamingResponse,
     AsyncPortingOrdersResourceWithStreamingResponse,
 )
+from .speech_to_text import (
+    SpeechToTextResource,
+    AsyncSpeechToTextResource,
+    SpeechToTextResourceWithRawResponse,
+    AsyncSpeechToTextResourceWithRawResponse,
+    SpeechToTextResourceWithStreamingResponse,
+    AsyncSpeechToTextResourceWithStreamingResponse,
+)
 from .text_to_speech import (
     TextToSpeechResource,
     AsyncTextToSpeechResource,
@@ -2189,4 +2197,10 @@ __all__ = [
     "AsyncX402ResourceWithRawResponse",
     "X402ResourceWithStreamingResponse",
     "AsyncX402ResourceWithStreamingResponse",
+    "SpeechToTextResource",
+    "AsyncSpeechToTextResource",
+    "SpeechToTextResourceWithRawResponse",
+    "AsyncSpeechToTextResourceWithRawResponse",
+    "SpeechToTextResourceWithStreamingResponse",
+    "AsyncSpeechToTextResourceWithStreamingResponse",
 ]
