@@ -487,6 +487,121 @@ class TestLoaConfigurations:
 
     @parametrize
     @pytest.mark.respx(base_url=base_url)
+    def test_method_preview_0(self, client: Telnyx, respx_mock: MockRouter) -> None:
+        respx_mock.post("/porting/loa_configurations/preview").mock(
+            return_value=httpx.Response(200, json={"foo": "bar"})
+        )
+        loa_configuration = client.porting.loa_configurations.preview_0(
+            address={
+                "city": "Austin",
+                "country_code": "US",
+                "state": "TX",
+                "street_address": "600 Congress Avenue",
+                "zip_code": "78701",
+            },
+            company_name="Telnyx",
+            contact={
+                "email": "testing@telnyx.com",
+                "phone_number": "+12003270001",
+            },
+            logo={"document_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"},
+            name="My LOA Configuration",
+        )
+        assert loa_configuration.is_closed
+        assert loa_configuration.json() == {"foo": "bar"}
+        assert cast(Any, loa_configuration.is_closed) is True
+        assert isinstance(loa_configuration, BinaryAPIResponse)
+
+    @parametrize
+    @pytest.mark.respx(base_url=base_url)
+    def test_method_preview_0_with_all_params(self, client: Telnyx, respx_mock: MockRouter) -> None:
+        respx_mock.post("/porting/loa_configurations/preview").mock(
+            return_value=httpx.Response(200, json={"foo": "bar"})
+        )
+        loa_configuration = client.porting.loa_configurations.preview_0(
+            address={
+                "city": "Austin",
+                "country_code": "US",
+                "state": "TX",
+                "street_address": "600 Congress Avenue",
+                "zip_code": "78701",
+                "extended_address": "14th Floor",
+            },
+            company_name="Telnyx",
+            contact={
+                "email": "testing@telnyx.com",
+                "phone_number": "+12003270001",
+            },
+            logo={"document_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"},
+            name="My LOA Configuration",
+        )
+        assert loa_configuration.is_closed
+        assert loa_configuration.json() == {"foo": "bar"}
+        assert cast(Any, loa_configuration.is_closed) is True
+        assert isinstance(loa_configuration, BinaryAPIResponse)
+
+    @parametrize
+    @pytest.mark.respx(base_url=base_url)
+    def test_raw_response_preview_0(self, client: Telnyx, respx_mock: MockRouter) -> None:
+        respx_mock.post("/porting/loa_configurations/preview").mock(
+            return_value=httpx.Response(200, json={"foo": "bar"})
+        )
+
+        loa_configuration = client.porting.loa_configurations.with_raw_response.preview_0(
+            address={
+                "city": "Austin",
+                "country_code": "US",
+                "state": "TX",
+                "street_address": "600 Congress Avenue",
+                "zip_code": "78701",
+            },
+            company_name="Telnyx",
+            contact={
+                "email": "testing@telnyx.com",
+                "phone_number": "+12003270001",
+            },
+            logo={"document_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"},
+            name="My LOA Configuration",
+        )
+
+        assert loa_configuration.is_closed is True
+        assert loa_configuration.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert loa_configuration.json() == {"foo": "bar"}
+        assert isinstance(loa_configuration, BinaryAPIResponse)
+
+    @parametrize
+    @pytest.mark.respx(base_url=base_url)
+    def test_streaming_response_preview_0(self, client: Telnyx, respx_mock: MockRouter) -> None:
+        respx_mock.post("/porting/loa_configurations/preview").mock(
+            return_value=httpx.Response(200, json={"foo": "bar"})
+        )
+        with client.porting.loa_configurations.with_streaming_response.preview_0(
+            address={
+                "city": "Austin",
+                "country_code": "US",
+                "state": "TX",
+                "street_address": "600 Congress Avenue",
+                "zip_code": "78701",
+            },
+            company_name="Telnyx",
+            contact={
+                "email": "testing@telnyx.com",
+                "phone_number": "+12003270001",
+            },
+            logo={"document_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"},
+            name="My LOA Configuration",
+        ) as loa_configuration:
+            assert not loa_configuration.is_closed
+            assert loa_configuration.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            assert loa_configuration.json() == {"foo": "bar"}
+            assert cast(Any, loa_configuration.is_closed) is True
+            assert isinstance(loa_configuration, StreamedBinaryAPIResponse)
+
+        assert cast(Any, loa_configuration.is_closed) is True
+
+    @parametrize
+    @pytest.mark.respx(base_url=base_url)
     def test_method_preview_1(self, client: Telnyx, respx_mock: MockRouter) -> None:
         respx_mock.get("/porting/loa_configurations/182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e/preview").mock(
             return_value=httpx.Response(200, json={"foo": "bar"})
@@ -977,6 +1092,121 @@ class TestAsyncLoaConfigurations:
             return_value=httpx.Response(200, json={"foo": "bar"})
         )
         async with async_client.porting.loa_configurations.with_streaming_response.preview(
+            address={
+                "city": "Austin",
+                "country_code": "US",
+                "state": "TX",
+                "street_address": "600 Congress Avenue",
+                "zip_code": "78701",
+            },
+            company_name="Telnyx",
+            contact={
+                "email": "testing@telnyx.com",
+                "phone_number": "+12003270001",
+            },
+            logo={"document_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"},
+            name="My LOA Configuration",
+        ) as loa_configuration:
+            assert not loa_configuration.is_closed
+            assert loa_configuration.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            assert await loa_configuration.json() == {"foo": "bar"}
+            assert cast(Any, loa_configuration.is_closed) is True
+            assert isinstance(loa_configuration, AsyncStreamedBinaryAPIResponse)
+
+        assert cast(Any, loa_configuration.is_closed) is True
+
+    @parametrize
+    @pytest.mark.respx(base_url=base_url)
+    async def test_method_preview_0(self, async_client: AsyncTelnyx, respx_mock: MockRouter) -> None:
+        respx_mock.post("/porting/loa_configurations/preview").mock(
+            return_value=httpx.Response(200, json={"foo": "bar"})
+        )
+        loa_configuration = await async_client.porting.loa_configurations.preview_0(
+            address={
+                "city": "Austin",
+                "country_code": "US",
+                "state": "TX",
+                "street_address": "600 Congress Avenue",
+                "zip_code": "78701",
+            },
+            company_name="Telnyx",
+            contact={
+                "email": "testing@telnyx.com",
+                "phone_number": "+12003270001",
+            },
+            logo={"document_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"},
+            name="My LOA Configuration",
+        )
+        assert loa_configuration.is_closed
+        assert await loa_configuration.json() == {"foo": "bar"}
+        assert cast(Any, loa_configuration.is_closed) is True
+        assert isinstance(loa_configuration, AsyncBinaryAPIResponse)
+
+    @parametrize
+    @pytest.mark.respx(base_url=base_url)
+    async def test_method_preview_0_with_all_params(self, async_client: AsyncTelnyx, respx_mock: MockRouter) -> None:
+        respx_mock.post("/porting/loa_configurations/preview").mock(
+            return_value=httpx.Response(200, json={"foo": "bar"})
+        )
+        loa_configuration = await async_client.porting.loa_configurations.preview_0(
+            address={
+                "city": "Austin",
+                "country_code": "US",
+                "state": "TX",
+                "street_address": "600 Congress Avenue",
+                "zip_code": "78701",
+                "extended_address": "14th Floor",
+            },
+            company_name="Telnyx",
+            contact={
+                "email": "testing@telnyx.com",
+                "phone_number": "+12003270001",
+            },
+            logo={"document_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"},
+            name="My LOA Configuration",
+        )
+        assert loa_configuration.is_closed
+        assert await loa_configuration.json() == {"foo": "bar"}
+        assert cast(Any, loa_configuration.is_closed) is True
+        assert isinstance(loa_configuration, AsyncBinaryAPIResponse)
+
+    @parametrize
+    @pytest.mark.respx(base_url=base_url)
+    async def test_raw_response_preview_0(self, async_client: AsyncTelnyx, respx_mock: MockRouter) -> None:
+        respx_mock.post("/porting/loa_configurations/preview").mock(
+            return_value=httpx.Response(200, json={"foo": "bar"})
+        )
+
+        loa_configuration = await async_client.porting.loa_configurations.with_raw_response.preview_0(
+            address={
+                "city": "Austin",
+                "country_code": "US",
+                "state": "TX",
+                "street_address": "600 Congress Avenue",
+                "zip_code": "78701",
+            },
+            company_name="Telnyx",
+            contact={
+                "email": "testing@telnyx.com",
+                "phone_number": "+12003270001",
+            },
+            logo={"document_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"},
+            name="My LOA Configuration",
+        )
+
+        assert loa_configuration.is_closed is True
+        assert loa_configuration.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert await loa_configuration.json() == {"foo": "bar"}
+        assert isinstance(loa_configuration, AsyncBinaryAPIResponse)
+
+    @parametrize
+    @pytest.mark.respx(base_url=base_url)
+    async def test_streaming_response_preview_0(self, async_client: AsyncTelnyx, respx_mock: MockRouter) -> None:
+        respx_mock.post("/porting/loa_configurations/preview").mock(
+            return_value=httpx.Response(200, json={"foo": "bar"})
+        )
+        async with async_client.porting.loa_configurations.with_streaming_response.preview_0(
             address={
                 "city": "Austin",
                 "country_code": "US",
