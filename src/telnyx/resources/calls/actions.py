@@ -1917,6 +1917,9 @@ class ActionsResource(SyncAPIResource):
         command_id: str | Omit = omit,
         greeting: str | Omit = omit,
         interruption_settings: InterruptionSettingsParam | Omit = omit,
+        message_history: Iterable[action_start_ai_assistant_params.MessageHistory] | Omit = omit,
+        participants: Iterable[action_start_ai_assistant_params.Participant] | Omit = omit,
+        send_message_history_updates: bool | Omit = omit,
         transcription: TranscriptionConfigParam | Omit = omit,
         voice: str | Omit = omit,
         voice_settings: action_start_ai_assistant_params.VoiceSettings | Omit = omit,
@@ -1949,6 +1952,14 @@ class ActionsResource(SyncAPIResource):
               for `AWS.Polly.<voice_id>` voices. There is a 3,000 character limit.
 
           interruption_settings: Settings for handling user interruptions during assistant speech
+
+          message_history: A list of messages to seed the conversation history before the assistant starts.
+              Follows the same message format as the `ai_assistant_add_messages` command.
+
+          participants: A list of participants to add to the conversation when it starts.
+
+          send_message_history_updates: When `true`, a webhook is sent each time the conversation message history is
+              updated.
 
           transcription: The settings associated with speech to text for the voice assistant. This is
               only relevant if the assistant uses a text-to-text language model. Any assistant
@@ -2001,6 +2012,9 @@ class ActionsResource(SyncAPIResource):
                     "command_id": command_id,
                     "greeting": greeting,
                     "interruption_settings": interruption_settings,
+                    "message_history": message_history,
+                    "participants": participants,
+                    "send_message_history_updates": send_message_history_updates,
                     "transcription": transcription,
                     "voice": voice,
                     "voice_settings": voice_settings,
@@ -5496,6 +5510,9 @@ class AsyncActionsResource(AsyncAPIResource):
         command_id: str | Omit = omit,
         greeting: str | Omit = omit,
         interruption_settings: InterruptionSettingsParam | Omit = omit,
+        message_history: Iterable[action_start_ai_assistant_params.MessageHistory] | Omit = omit,
+        participants: Iterable[action_start_ai_assistant_params.Participant] | Omit = omit,
+        send_message_history_updates: bool | Omit = omit,
         transcription: TranscriptionConfigParam | Omit = omit,
         voice: str | Omit = omit,
         voice_settings: action_start_ai_assistant_params.VoiceSettings | Omit = omit,
@@ -5528,6 +5545,14 @@ class AsyncActionsResource(AsyncAPIResource):
               for `AWS.Polly.<voice_id>` voices. There is a 3,000 character limit.
 
           interruption_settings: Settings for handling user interruptions during assistant speech
+
+          message_history: A list of messages to seed the conversation history before the assistant starts.
+              Follows the same message format as the `ai_assistant_add_messages` command.
+
+          participants: A list of participants to add to the conversation when it starts.
+
+          send_message_history_updates: When `true`, a webhook is sent each time the conversation message history is
+              updated.
 
           transcription: The settings associated with speech to text for the voice assistant. This is
               only relevant if the assistant uses a text-to-text language model. Any assistant
@@ -5580,6 +5605,9 @@ class AsyncActionsResource(AsyncAPIResource):
                     "command_id": command_id,
                     "greeting": greeting,
                     "interruption_settings": interruption_settings,
+                    "message_history": message_history,
+                    "participants": participants,
+                    "send_message_history_updates": send_message_history_updates,
                     "transcription": transcription,
                     "voice": voice,
                     "voice_settings": voice_settings,

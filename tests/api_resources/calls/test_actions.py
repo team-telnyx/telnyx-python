@@ -1336,6 +1336,22 @@ class TestActions:
             command_id="891510ac-f3e4-11e8-af5b-de00688a4901",
             greeting="Hello, can you tell me your age and where you live?",
             interruption_settings={"enable": True},
+            message_history=[
+                {
+                    "content": "Hello, I would like some help.",
+                    "role": "user",
+                    "metadata": {"foo": "bar"},
+                }
+            ],
+            participants=[
+                {
+                    "id": "v3:abc123def456",
+                    "role": "user",
+                    "name": "John Doe",
+                    "on_hangup": "continue_conversation",
+                }
+            ],
+            send_message_history_updates=True,
             transcription={"model": "distil-whisper/distil-large-v2"},
             voice="Telnyx.KokoroTTS.af",
             voice_settings={
@@ -3804,6 +3820,22 @@ class TestAsyncActions:
             command_id="891510ac-f3e4-11e8-af5b-de00688a4901",
             greeting="Hello, can you tell me your age and where you live?",
             interruption_settings={"enable": True},
+            message_history=[
+                {
+                    "content": "Hello, I would like some help.",
+                    "role": "user",
+                    "metadata": {"foo": "bar"},
+                }
+            ],
+            participants=[
+                {
+                    "id": "v3:abc123def456",
+                    "role": "user",
+                    "name": "John Doe",
+                    "on_hangup": "continue_conversation",
+                }
+            ],
+            send_message_history_updates=True,
             transcription={"model": "distil-whisper/distil-large-v2"},
             voice="Telnyx.KokoroTTS.af",
             voice_settings={
