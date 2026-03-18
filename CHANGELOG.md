@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.79.0 (2026-03-18)
+
+Full Changelog: [v4.78.0...v4.79.0](https://github.com/team-telnyx/telnyx-python/compare/v4.78.0...v4.79.0)
+
+### Features
+
+* add message_history, send_message_history_updates, participants to AIAssistantStartRequest ([cd521f0](https://github.com/team-telnyx/telnyx-python/commit/cd521f0b00758bda9ed3581f4499c7c18d4a26cc))
+
 ## 4.78.0 (2026-03-18)
 
 Full Changelog: [v4.77.0...v4.78.0](https://github.com/team-telnyx/telnyx-python/compare/v4.77.0...v4.78.0)
