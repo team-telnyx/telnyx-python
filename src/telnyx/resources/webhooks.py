@@ -18,6 +18,7 @@ __all__ = ["WebhooksResource", "AsyncWebhooksResource", "TelnyxWebhookVerificati
 
 class TelnyxWebhookVerificationError(TelnyxError):
     """Raised when webhook signature verification fails."""
+
     pass
 
 
@@ -49,8 +50,8 @@ def _verify_signature(payload: str, headers: dict[str, str], public_key: str | b
         raise TelnyxError("You need to install `pynacl` to use webhook verification") from exc
 
     # Extract required headers (case-insensitive)
-    signature_header = _get_header_case_insensitive(headers, 'telnyx-signature-ed25519')
-    timestamp_header = _get_header_case_insensitive(headers, 'telnyx-timestamp')
+    signature_header = _get_header_case_insensitive(headers, "telnyx-signature-ed25519")
+    timestamp_header = _get_header_case_insensitive(headers, "telnyx-timestamp")
 
     if not signature_header:
         raise TelnyxWebhookVerificationError("Missing header: Telnyx-Signature-Ed25519")
@@ -95,15 +96,13 @@ def _verify_signature(payload: str, headers: dict[str, str], public_key: str | b
         raise TelnyxWebhookVerificationError(f"Invalid signature format: {exc}") from exc
 
     # Create the signed payload: timestamp|payload
-    signed_payload = f"{timestamp_header}|{payload}".encode('utf-8')
+    signed_payload = f"{timestamp_header}|{payload}".encode("utf-8")
 
     # Verify the signature
     try:
         verify_key.verify(signed_payload, signature_bytes)
     except BadSignatureError as exc:
-        raise TelnyxWebhookVerificationError(
-            "Signature verification failed: signature does not match payload"
-        ) from exc
+        raise TelnyxWebhookVerificationError("Signature verification failed: signature does not match payload") from exc
 
 
 class WebhooksResource(SyncAPIResource):

@@ -486,6 +486,8 @@ from .speech_to_text import (
     AsyncSpeechToTextResource,
     SpeechToTextResourceWithRawResponse,
     AsyncSpeechToTextResourceWithRawResponse,
+    SpeechToTextResourceWithStreamingResponse,
+    AsyncSpeechToTextResourceWithStreamingResponse,
 )
 from .text_to_speech import (
     TextToSpeechResource,
@@ -2200,4 +2202,10 @@ __all__ = [
     "AsyncX402ResourceWithRawResponse",
     "X402ResourceWithStreamingResponse",
     "AsyncX402ResourceWithStreamingResponse",
+    "SpeechToTextResource",
+    "AsyncSpeechToTextResource",
+    "SpeechToTextResourceWithRawResponse",
+    "AsyncSpeechToTextResourceWithRawResponse",
+    "SpeechToTextResourceWithStreamingResponse",
+    "AsyncSpeechToTextResourceWithStreamingResponse",
 ]

@@ -46,6 +46,15 @@ class SpeechToTextResource(SyncAPIResource):
         """
         return SpeechToTextResourceWithRawResponse(self)
 
+    @cached_property
+    def with_streaming_response(self) -> SpeechToTextResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
+        """
+        return SpeechToTextResourceWithStreamingResponse(self)
+
     def stream(
         self,
         *,
@@ -118,6 +127,15 @@ class AsyncSpeechToTextResource(AsyncAPIResource):
         For more information, see https://www.github.com/team-telnyx/telnyx-python#accessing-raw-response-data-eg-headers
         """
         return AsyncSpeechToTextResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncSpeechToTextResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
+        """
+        return AsyncSpeechToTextResourceWithStreamingResponse(self)
 
     def stream(
         self,
@@ -247,9 +265,7 @@ class AsyncSpeechToTextResourceConnection:
 
         This is helpful if you're using `.recv_bytes()`.
         """
-        return cast(
-            SttServerEvent, construct_type_unchecked(value=json.loads(data), type_=cast(Any, SttServerEvent))
-        )
+        return cast(SttServerEvent, construct_type_unchecked(value=json.loads(data), type_=cast(Any, SttServerEvent)))
 
 
 class AsyncSpeechToTextResourceConnectionManager:
@@ -427,9 +443,7 @@ class SpeechToTextResourceConnection:
 
         This is helpful if you're using `.recv_bytes()`.
         """
-        return cast(
-            SttServerEvent, construct_type_unchecked(value=json.loads(data), type_=cast(Any, SttServerEvent))
-        )
+        return cast(SttServerEvent, construct_type_unchecked(value=json.loads(data), type_=cast(Any, SttServerEvent)))
 
 
 class SpeechToTextResourceConnectionManager:
@@ -547,3 +561,13 @@ class SpeechToTextResourceConnectionManager:
     ) -> None:
         if self.__connection is not None:
             self.__connection.close()
+
+
+class SpeechToTextResourceWithStreamingResponse:
+    def __init__(self, speech_to_text: SpeechToTextResource) -> None:
+        self._speech_to_text = speech_to_text
+
+
+class AsyncSpeechToTextResourceWithStreamingResponse:
+    def __init__(self, speech_to_text: AsyncSpeechToTextResource) -> None:
+        self._speech_to_text = speech_to_text
