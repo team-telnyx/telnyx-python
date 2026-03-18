@@ -1,5 +1,18 @@
 # Changelog
 
+## 4.77.0 (2026-03-18)
+
+Full Changelog: [v4.76.0...v4.77.0](https://github.com/team-telnyx/telnyx-python/compare/v4.76.0...v4.77.0)
+
+### Features
+
+* add ai_assistant_join call control command OpenAPI spec ([6276857](https://github.com/team-telnyx/telnyx-python/commit/627685730e0f148296d48310383e92f4173dec30))
+
+
+### Bug Fixes
+
+* revert generated tests for WebSocket stream methods ([e20a0e8](https://github.com/team-telnyx/telnyx-python/commit/e20a0e8461ad2ab85bea25223be3bad14a0d4f0a))
+
 ## 4.76.0 (2026-03-16)
 
 Full Changelog: [v4.75.2...v4.76.0](https://github.com/team-telnyx/telnyx-python/compare/v4.75.2...v4.76.0)
