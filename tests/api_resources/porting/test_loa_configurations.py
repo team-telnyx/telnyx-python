@@ -372,11 +372,11 @@ class TestLoaConfigurations:
 
     @parametrize
     @pytest.mark.respx(base_url=base_url)
-    def test_method_preview_0(self, client: Telnyx, respx_mock: MockRouter) -> None:
-        respx_mock.post("/porting/loa_configuration/preview").mock(
+    def test_method_preview(self, client: Telnyx, respx_mock: MockRouter) -> None:
+        respx_mock.post("/porting/loa_configurations/preview").mock(
             return_value=httpx.Response(200, json={"foo": "bar"})
         )
-        loa_configuration = client.porting.loa_configurations.preview_0(
+        loa_configuration = client.porting.loa_configurations.preview(
             address={
                 "city": "Austin",
                 "country_code": "US",
@@ -399,11 +399,11 @@ class TestLoaConfigurations:
 
     @parametrize
     @pytest.mark.respx(base_url=base_url)
-    def test_method_preview_0_with_all_params(self, client: Telnyx, respx_mock: MockRouter) -> None:
-        respx_mock.post("/porting/loa_configuration/preview").mock(
+    def test_method_preview_with_all_params(self, client: Telnyx, respx_mock: MockRouter) -> None:
+        respx_mock.post("/porting/loa_configurations/preview").mock(
             return_value=httpx.Response(200, json={"foo": "bar"})
         )
-        loa_configuration = client.porting.loa_configurations.preview_0(
+        loa_configuration = client.porting.loa_configurations.preview(
             address={
                 "city": "Austin",
                 "country_code": "US",
@@ -427,12 +427,12 @@ class TestLoaConfigurations:
 
     @parametrize
     @pytest.mark.respx(base_url=base_url)
-    def test_raw_response_preview_0(self, client: Telnyx, respx_mock: MockRouter) -> None:
-        respx_mock.post("/porting/loa_configuration/preview").mock(
+    def test_raw_response_preview(self, client: Telnyx, respx_mock: MockRouter) -> None:
+        respx_mock.post("/porting/loa_configurations/preview").mock(
             return_value=httpx.Response(200, json={"foo": "bar"})
         )
 
-        loa_configuration = client.porting.loa_configurations.with_raw_response.preview_0(
+        loa_configuration = client.porting.loa_configurations.with_raw_response.preview(
             address={
                 "city": "Austin",
                 "country_code": "US",
@@ -456,11 +456,11 @@ class TestLoaConfigurations:
 
     @parametrize
     @pytest.mark.respx(base_url=base_url)
-    def test_streaming_response_preview_0(self, client: Telnyx, respx_mock: MockRouter) -> None:
-        respx_mock.post("/porting/loa_configuration/preview").mock(
+    def test_streaming_response_preview(self, client: Telnyx, respx_mock: MockRouter) -> None:
+        respx_mock.post("/porting/loa_configurations/preview").mock(
             return_value=httpx.Response(200, json={"foo": "bar"})
         )
-        with client.porting.loa_configurations.with_streaming_response.preview_0(
+        with client.porting.loa_configurations.with_streaming_response.preview(
             address={
                 "city": "Austin",
                 "country_code": "US",
@@ -888,11 +888,11 @@ class TestAsyncLoaConfigurations:
 
     @parametrize
     @pytest.mark.respx(base_url=base_url)
-    async def test_method_preview_0(self, async_client: AsyncTelnyx, respx_mock: MockRouter) -> None:
-        respx_mock.post("/porting/loa_configuration/preview").mock(
+    async def test_method_preview(self, async_client: AsyncTelnyx, respx_mock: MockRouter) -> None:
+        respx_mock.post("/porting/loa_configurations/preview").mock(
             return_value=httpx.Response(200, json={"foo": "bar"})
         )
-        loa_configuration = await async_client.porting.loa_configurations.preview_0(
+        loa_configuration = await async_client.porting.loa_configurations.preview(
             address={
                 "city": "Austin",
                 "country_code": "US",
@@ -915,11 +915,11 @@ class TestAsyncLoaConfigurations:
 
     @parametrize
     @pytest.mark.respx(base_url=base_url)
-    async def test_method_preview_0_with_all_params(self, async_client: AsyncTelnyx, respx_mock: MockRouter) -> None:
-        respx_mock.post("/porting/loa_configuration/preview").mock(
+    async def test_method_preview_with_all_params(self, async_client: AsyncTelnyx, respx_mock: MockRouter) -> None:
+        respx_mock.post("/porting/loa_configurations/preview").mock(
             return_value=httpx.Response(200, json={"foo": "bar"})
         )
-        loa_configuration = await async_client.porting.loa_configurations.preview_0(
+        loa_configuration = await async_client.porting.loa_configurations.preview(
             address={
                 "city": "Austin",
                 "country_code": "US",
@@ -943,12 +943,12 @@ class TestAsyncLoaConfigurations:
 
     @parametrize
     @pytest.mark.respx(base_url=base_url)
-    async def test_raw_response_preview_0(self, async_client: AsyncTelnyx, respx_mock: MockRouter) -> None:
-        respx_mock.post("/porting/loa_configuration/preview").mock(
+    async def test_raw_response_preview(self, async_client: AsyncTelnyx, respx_mock: MockRouter) -> None:
+        respx_mock.post("/porting/loa_configurations/preview").mock(
             return_value=httpx.Response(200, json={"foo": "bar"})
         )
 
-        loa_configuration = await async_client.porting.loa_configurations.with_raw_response.preview_0(
+        loa_configuration = await async_client.porting.loa_configurations.with_raw_response.preview(
             address={
                 "city": "Austin",
                 "country_code": "US",
@@ -972,11 +972,11 @@ class TestAsyncLoaConfigurations:
 
     @parametrize
     @pytest.mark.respx(base_url=base_url)
-    async def test_streaming_response_preview_0(self, async_client: AsyncTelnyx, respx_mock: MockRouter) -> None:
-        respx_mock.post("/porting/loa_configuration/preview").mock(
+    async def test_streaming_response_preview(self, async_client: AsyncTelnyx, respx_mock: MockRouter) -> None:
+        respx_mock.post("/porting/loa_configurations/preview").mock(
             return_value=httpx.Response(200, json={"foo": "bar"})
         )
-        async with async_client.porting.loa_configurations.with_streaming_response.preview_0(
+        async with async_client.porting.loa_configurations.with_streaming_response.preview(
             address={
                 "city": "Austin",
                 "country_code": "US",
