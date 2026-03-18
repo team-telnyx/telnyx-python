@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-__all__ = ["LoaConfigurationPreview0Params", "Address", "Contact", "Logo"]
+__all__ = ["LoaConfigurationPreviewParams", "Address", "Contact", "Logo"]
 
 
-class LoaConfigurationPreview0Params(TypedDict, total=False):
+class LoaConfigurationPreviewParams(TypedDict, total=False):
     address: Required[Address]
     """The address of the company."""
 
