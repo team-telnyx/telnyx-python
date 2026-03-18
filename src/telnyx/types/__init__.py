@@ -1486,3 +1486,5 @@ else:
     ai.cluster_retrieve_response.ClusterRetrieveResponse.model_rebuild(_parent_namespace_depth=0)
     event_node.EventNode.model_rebuild(_parent_namespace_depth=0)
     session_analysis_retrieve_response.SessionAnalysisRetrieveResponse.model_rebuild(_parent_namespace_depth=0)
+from .text_to_speech_stream_params import TextToSpeechStreamParams as TextToSpeechStreamParams
+from .speech_to_text_transcribe_params import SpeechToTextTranscribeParams as SpeechToTextTranscribeParams

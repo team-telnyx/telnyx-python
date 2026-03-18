@@ -41,6 +41,4 @@ class SttErrorFrame(BaseModel):
     """Error message describing what went wrong."""
 
 
-SttServerEvent: TypeAlias = Annotated[
-    Union[TranscriptFrame, SttErrorFrame], PropertyInfo(discriminator="type")
-]
+SttServerEvent: TypeAlias = Annotated[Union[TranscriptFrame, SttErrorFrame], PropertyInfo(discriminator="type")]

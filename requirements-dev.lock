@@ -35,6 +35,8 @@ backports-asyncio-runner==1.2.0
 certifi==2026.1.4
     # via httpcore
     # via httpx
+cffi==2.0.0
+    # via pynacl
 colorlog==6.10.1
     # via nox
 dependency-groups==1.3.1
@@ -102,6 +104,8 @@ pluggy==1.6.0
 propcache==0.4.1
     # via aiohttp
     # via yarl
+pycparser==2.23
+    # via cffi
 pydantic==2.12.5
     # via telnyx
 pydantic-core==2.41.5
@@ -109,6 +113,8 @@ pydantic-core==2.41.5
 pygments==2.19.2
     # via pytest
     # via rich
+pynacl==1.6.2
+    # via telnyx
 pyright==1.1.399
 pytest==8.4.2
     # via pytest-asyncio

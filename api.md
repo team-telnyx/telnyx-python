@@ -1372,6 +1372,7 @@ from telnyx.types.calls import (
     ActionGatherUsingAudioResponse,
     ActionGatherUsingSpeakResponse,
     ActionHangupResponse,
+    ActionJoinAIAssistantResponse,
     ActionLeaveQueueResponse,
     ActionPauseRecordingResponse,
     ActionReferResponse,
@@ -1414,6 +1415,7 @@ Methods:
 - <code title="post /calls/{call_control_id}/actions/gather_using_audio">client.calls.actions.<a href="./src/telnyx/resources/calls/actions.py">gather_using_audio</a>(call_control_id, \*\*<a href="src/telnyx/types/calls/action_gather_using_audio_params.py">params</a>) -> <a href="./src/telnyx/types/calls/action_gather_using_audio_response.py">ActionGatherUsingAudioResponse</a></code>
 - <code title="post /calls/{call_control_id}/actions/gather_using_speak">client.calls.actions.<a href="./src/telnyx/resources/calls/actions.py">gather_using_speak</a>(call_control_id, \*\*<a href="src/telnyx/types/calls/action_gather_using_speak_params.py">params</a>) -> <a href="./src/telnyx/types/calls/action_gather_using_speak_response.py">ActionGatherUsingSpeakResponse</a></code>
 - <code title="post /calls/{call_control_id}/actions/hangup">client.calls.actions.<a href="./src/telnyx/resources/calls/actions.py">hangup</a>(call_control_id, \*\*<a href="src/telnyx/types/calls/action_hangup_params.py">params</a>) -> <a href="./src/telnyx/types/calls/action_hangup_response.py">ActionHangupResponse</a></code>
+- <code title="post /calls/{call_control_id}/actions/ai_assistant_join">client.calls.actions.<a href="./src/telnyx/resources/calls/actions.py">join_ai_assistant</a>(call_control_id, \*\*<a href="src/telnyx/types/calls/action_join_ai_assistant_params.py">params</a>) -> <a href="./src/telnyx/types/calls/action_join_ai_assistant_response.py">ActionJoinAIAssistantResponse</a></code>
 - <code title="post /calls/{call_control_id}/actions/leave_queue">client.calls.actions.<a href="./src/telnyx/resources/calls/actions.py">leave_queue</a>(call_control_id, \*\*<a href="src/telnyx/types/calls/action_leave_queue_params.py">params</a>) -> <a href="./src/telnyx/types/calls/action_leave_queue_response.py">ActionLeaveQueueResponse</a></code>
 - <code title="post /calls/{call_control_id}/actions/record_pause">client.calls.actions.<a href="./src/telnyx/resources/calls/actions.py">pause_recording</a>(call_control_id, \*\*<a href="src/telnyx/types/calls/action_pause_recording_params.py">params</a>) -> <a href="./src/telnyx/types/calls/action_pause_recording_response.py">ActionPauseRecordingResponse</a></code>
 - <code title="post /calls/{call_control_id}/actions/refer">client.calls.actions.<a href="./src/telnyx/resources/calls/actions.py">refer</a>(call_control_id, \*\*<a href="src/telnyx/types/calls/action_refer_params.py">params</a>) -> <a href="./src/telnyx/types/calls/action_refer_response.py">ActionReferResponse</a></code>
@@ -4550,18 +4552,14 @@ Methods:
 Types:
 
 ```python
-from telnyx.types import (
-    TextToSpeechGenerateResponse,
-    TextToSpeechListVoicesResponse,
-    StreamClientEvent,
-    StreamServerEvent,
-)
+from telnyx.types import TextToSpeechGenerateResponse, TextToSpeechListVoicesResponse
 ```
 
 Methods:
 
 - <code title="post /text-to-speech/speech">client.text_to_speech.<a href="./src/telnyx/resources/text_to_speech.py">generate</a>(\*\*<a href="src/telnyx/types/text_to_speech_generate_params.py">params</a>) -> <a href="./src/telnyx/types/text_to_speech_generate_response.py">TextToSpeechGenerateResponse</a></code>
 - <code title="get /text-to-speech/voices">client.text_to_speech.<a href="./src/telnyx/resources/text_to_speech.py">list_voices</a>(\*\*<a href="src/telnyx/types/text_to_speech_list_voices_params.py">params</a>) -> <a href="./src/telnyx/types/text_to_speech_list_voices_response.py">TextToSpeechListVoicesResponse</a></code>
+- <code title="get /text-to-speech/speech">client.text_to_speech.<a href="./src/telnyx/resources/text_to_speech.py">stream</a>(\*\*<a href="src/telnyx/types/text_to_speech_stream_params.py">params</a>) -> None</code>
 
 # UsageReports
 
@@ -5430,3 +5428,9 @@ Methods:
 
 - <code title="post /v2/x402/credit_account/quote">client.x402.credit_account.<a href="./src/telnyx/resources/x402/credit_account.py">create_quote</a>(\*\*<a href="src/telnyx/types/x402/credit_account_create_quote_params.py">params</a>) -> <a href="./src/telnyx/types/x402/credit_account_create_quote_response.py">CreditAccountCreateQuoteResponse</a></code>
 - <code title="post /v2/x402/credit_account">client.x402.credit_account.<a href="./src/telnyx/resources/x402/credit_account.py">settle</a>(\*\*<a href="src/telnyx/types/x402/credit_account_settle_params.py">params</a>) -> <a href="./src/telnyx/types/x402/credit_account_settle_response.py">CreditAccountSettleResponse</a></code>
+
+# SpeechToText
+
+Methods:
+
+- <code title="get /speech-to-text/transcription">client.speech_to_text.<a href="./src/telnyx/resources/speech_to_text.py">transcribe</a>(\*\*<a href="src/telnyx/types/speech_to_text_transcribe_params.py">params</a>) -> None</code>

@@ -52,6 +52,7 @@ from ...types.calls import (
     action_start_recording_params,
     action_start_streaming_params,
     action_resume_recording_params,
+    action_join_ai_assistant_params,
     action_stop_ai_assistant_params,
     action_gather_using_audio_params,
     action_gather_using_speak_params,
@@ -105,6 +106,7 @@ from ...types.calls.action_pause_recording_response import ActionPauseRecordingR
 from ...types.calls.action_start_recording_response import ActionStartRecordingResponse
 from ...types.calls.action_start_streaming_response import ActionStartStreamingResponse
 from ...types.calls.action_resume_recording_response import ActionResumeRecordingResponse
+from ...types.calls.action_join_ai_assistant_response import ActionJoinAIAssistantResponse
 from ...types.calls.action_stop_ai_assistant_response import ActionStopAIAssistantResponse
 from ...types.calls.transcription_start_request_param import TranscriptionStartRequestParam
 from ...types.calls.action_gather_using_audio_response import ActionGatherUsingAudioResponse
@@ -1257,6 +1259,62 @@ class ActionsResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=ActionHangupResponse,
+        )
+
+    def join_ai_assistant(
+        self,
+        call_control_id: str,
+        *,
+        conversation_id: str,
+        participant: action_join_ai_assistant_params.Participant,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ActionJoinAIAssistantResponse:
+        """Add a participant to an existing AI assistant conversation.
+
+        Use this command to
+        bring an additional call leg into a running AI conversation.
+
+        Args:
+          conversation_id: The ID of the AI assistant conversation to join.
+
+          client_state: Use this field to add state to every subsequent webhook. It must be a valid
+              Base-64 encoded string.
+
+          command_id: Use this field to avoid duplicate commands. Telnyx will ignore any command with
+              the same `command_id` for the same `call_control_id`.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not call_control_id:
+            raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
+        return self._post(
+            f"/calls/{call_control_id}/actions/ai_assistant_join",
+            body=maybe_transform(
+                {
+                    "conversation_id": conversation_id,
+                    "participant": participant,
+                    "client_state": client_state,
+                    "command_id": command_id,
+                },
+                action_join_ai_assistant_params.ActionJoinAIAssistantParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ActionJoinAIAssistantResponse,
         )
 
     def leave_queue(
@@ -4782,6 +4840,62 @@ class AsyncActionsResource(AsyncAPIResource):
             cast_to=ActionHangupResponse,
         )
 
+    async def join_ai_assistant(
+        self,
+        call_control_id: str,
+        *,
+        conversation_id: str,
+        participant: action_join_ai_assistant_params.Participant,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ActionJoinAIAssistantResponse:
+        """Add a participant to an existing AI assistant conversation.
+
+        Use this command to
+        bring an additional call leg into a running AI conversation.
+
+        Args:
+          conversation_id: The ID of the AI assistant conversation to join.
+
+          client_state: Use this field to add state to every subsequent webhook. It must be a valid
+              Base-64 encoded string.
+
+          command_id: Use this field to avoid duplicate commands. Telnyx will ignore any command with
+              the same `command_id` for the same `call_control_id`.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not call_control_id:
+            raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
+        return await self._post(
+            f"/calls/{call_control_id}/actions/ai_assistant_join",
+            body=await async_maybe_transform(
+                {
+                    "conversation_id": conversation_id,
+                    "participant": participant,
+                    "client_state": client_state,
+                    "command_id": command_id,
+                },
+                action_join_ai_assistant_params.ActionJoinAIAssistantParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ActionJoinAIAssistantResponse,
+        )
+
     async def leave_queue(
         self,
         call_control_id: str,
@@ -7200,6 +7314,9 @@ class ActionsResourceWithRawResponse:
         self.hangup = to_raw_response_wrapper(
             actions.hangup,
         )
+        self.join_ai_assistant = to_raw_response_wrapper(
+            actions.join_ai_assistant,
+        )
         self.leave_queue = to_raw_response_wrapper(
             actions.leave_queue,
         )
@@ -7316,6 +7433,9 @@ class AsyncActionsResourceWithRawResponse:
         )
         self.hangup = async_to_raw_response_wrapper(
             actions.hangup,
+        )
+        self.join_ai_assistant = async_to_raw_response_wrapper(
+            actions.join_ai_assistant,
         )
         self.leave_queue = async_to_raw_response_wrapper(
             actions.leave_queue,
@@ -7434,6 +7554,9 @@ class ActionsResourceWithStreamingResponse:
         self.hangup = to_streamed_response_wrapper(
             actions.hangup,
         )
+        self.join_ai_assistant = to_streamed_response_wrapper(
+            actions.join_ai_assistant,
+        )
         self.leave_queue = to_streamed_response_wrapper(
             actions.leave_queue,
         )
@@ -7550,6 +7673,9 @@ class AsyncActionsResourceWithStreamingResponse:
         )
         self.hangup = async_to_streamed_response_wrapper(
             actions.hangup,
+        )
+        self.join_ai_assistant = async_to_streamed_response_wrapper(
+            actions.join_ai_assistant,
         )
         self.leave_queue = async_to_streamed_response_wrapper(
             actions.leave_queue,

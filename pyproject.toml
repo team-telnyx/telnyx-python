@@ -46,8 +46,7 @@ Repository = "https://github.com/team-telnyx/telnyx-python"
 [project.optional-dependencies]
 aiohttp = ["aiohttp", "httpx_aiohttp>=0.1.9"]
 websockets = ["websockets >= 13, < 16"]
-webhooks = [ "pynacl>=1.5.0", "standardwebhooks >= 1.0.1, < 2"]
-
+webhooks = ["pynacl>=1.5.0", "standardwebhooks >= 1.0.1, < 2"]
 [tool.rye]
 managed = true
 # version pins are in requirements-dev.lock
