@@ -28,7 +28,7 @@ from ...types.porting import (
     loa_configuration_list_params,
     loa_configuration_create_params,
     loa_configuration_update_params,
-    loa_configuration_preview_0_params,
+    loa_configuration_preview_params,
 )
 from ...types.porting.porting_loa_configuration import PortingLoaConfiguration
 from ...types.porting.loa_configuration_create_response import LoaConfigurationCreateResponse
@@ -283,13 +283,13 @@ class LoaConfigurationsResource(SyncAPIResource):
             cast_to=NoneType,
         )
 
-    def preview_0(
+    def preview(
         self,
         *,
-        address: loa_configuration_preview_0_params.Address,
+        address: loa_configuration_preview_params.Address,
         company_name: str,
-        contact: loa_configuration_preview_0_params.Contact,
-        logo: loa_configuration_preview_0_params.Logo,
+        contact: loa_configuration_preview_params.Contact,
+        logo: loa_configuration_preview_params.Logo,
         name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -323,7 +323,7 @@ class LoaConfigurationsResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "application/pdf", **(extra_headers or {})}
         return self._post(
-            "/porting/loa_configuration/preview",
+            "/porting/loa_configurations/preview",
             body=maybe_transform(
                 {
                     "address": address,
@@ -332,7 +332,7 @@ class LoaConfigurationsResource(SyncAPIResource):
                     "logo": logo,
                     "name": name,
                 },
-                loa_configuration_preview_0_params.LoaConfigurationPreview0Params,
+                loa_configuration_preview_params.LoaConfigurationPreviewParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -620,13 +620,13 @@ class AsyncLoaConfigurationsResource(AsyncAPIResource):
             cast_to=NoneType,
         )
 
-    async def preview_0(
+    async def preview(
         self,
         *,
-        address: loa_configuration_preview_0_params.Address,
+        address: loa_configuration_preview_params.Address,
         company_name: str,
-        contact: loa_configuration_preview_0_params.Contact,
-        logo: loa_configuration_preview_0_params.Logo,
+        contact: loa_configuration_preview_params.Contact,
+        logo: loa_configuration_preview_params.Logo,
         name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -660,7 +660,7 @@ class AsyncLoaConfigurationsResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "application/pdf", **(extra_headers or {})}
         return await self._post(
-            "/porting/loa_configuration/preview",
+            "/porting/loa_configurations/preview",
             body=await async_maybe_transform(
                 {
                     "address": address,
@@ -669,7 +669,7 @@ class AsyncLoaConfigurationsResource(AsyncAPIResource):
                     "logo": logo,
                     "name": name,
                 },
-                loa_configuration_preview_0_params.LoaConfigurationPreview0Params,
+                loa_configuration_preview_params.LoaConfigurationPreviewParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -731,8 +731,8 @@ class LoaConfigurationsResourceWithRawResponse:
         self.delete = to_raw_response_wrapper(
             loa_configurations.delete,
         )
-        self.preview_0 = to_custom_raw_response_wrapper(
-            loa_configurations.preview_0,
+        self.preview = to_custom_raw_response_wrapper(
+            loa_configurations.preview,
             BinaryAPIResponse,
         )
         self.preview_1 = to_custom_raw_response_wrapper(
@@ -760,8 +760,8 @@ class AsyncLoaConfigurationsResourceWithRawResponse:
         self.delete = async_to_raw_response_wrapper(
             loa_configurations.delete,
         )
-        self.preview_0 = async_to_custom_raw_response_wrapper(
-            loa_configurations.preview_0,
+        self.preview = async_to_custom_raw_response_wrapper(
+            loa_configurations.preview,
             AsyncBinaryAPIResponse,
         )
         self.preview_1 = async_to_custom_raw_response_wrapper(
@@ -789,8 +789,8 @@ class LoaConfigurationsResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             loa_configurations.delete,
         )
-        self.preview_0 = to_custom_streamed_response_wrapper(
-            loa_configurations.preview_0,
+        self.preview = to_custom_streamed_response_wrapper(
+            loa_configurations.preview,
             StreamedBinaryAPIResponse,
         )
         self.preview_1 = to_custom_streamed_response_wrapper(
@@ -818,8 +818,8 @@ class AsyncLoaConfigurationsResourceWithStreamingResponse:
         self.delete = async_to_streamed_response_wrapper(
             loa_configurations.delete,
         )
-        self.preview_0 = async_to_custom_streamed_response_wrapper(
-            loa_configurations.preview_0,
+        self.preview = async_to_custom_streamed_response_wrapper(
+            loa_configurations.preview,
             AsyncStreamedBinaryAPIResponse,
         )
         self.preview_1 = async_to_custom_streamed_response_wrapper(
