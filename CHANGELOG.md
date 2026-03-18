@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.78.0 (2026-03-18)
+
+Full Changelog: [v4.77.0...v4.78.0](https://github.com/team-telnyx/telnyx-python/compare/v4.77.0...v4.78.0)
+
+### Features
+
+* port-4690: fix LOA configuration preview path (singular → plural) ([a6c9af8](https://github.com/team-telnyx/telnyx-python/commit/a6c9af8bb6500612a6f2bddae9bda84757918d3f))
+
 ## 4.77.0 (2026-03-18)
 
 Full Changelog: [v4.76.0...v4.77.0](https://github.com/team-telnyx/telnyx-python/compare/v4.76.0...v4.77.0)
