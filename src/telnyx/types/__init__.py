@@ -123,7 +123,6 @@ from .room_list_params import RoomListParams as RoomListParams
 from .sip_header_param import SipHeaderParam as SipHeaderParam
 from .sub_number_order import SubNumberOrder as SubNumberOrder
 from .user_requirement import UserRequirement as UserRequirement
-from .voice_clone_data import VoiceCloneData as VoiceCloneData
 from .whatsapp_contact import WhatsappContact as WhatsappContact
 from .available_service import AvailableService as AvailableService
 from .call_fork_started import CallForkStarted as CallForkStarted
@@ -140,7 +139,6 @@ from .queue_list_params import QueueListParams as QueueListParams
 from .rcs_agent_message import RcsAgentMessage as RcsAgentMessage
 from .requirement_group import RequirementGroup as RequirementGroup
 from .texml_application import TexmlApplication as TexmlApplication
-from .voice_design_data import VoiceDesignData as VoiceDesignData
 from .whatsapp_location import WhatsappLocation as WhatsappLocation
 from .whatsapp_reaction import WhatsappReaction as WhatsappReaction
 from .call_dial_response import CallDialResponse as CallDialResponse
@@ -193,6 +191,8 @@ from .portout_list_params import PortoutListParams as PortoutListParams
 from .queue_create_params import QueueCreateParams as QueueCreateParams
 from .queue_update_params import QueueUpdateParams as QueueUpdateParams
 from .replaced_link_click import ReplacedLinkClick as ReplacedLinkClick
+from .stream_client_event import StreamClientEvent as StreamClientEvent
+from .stream_server_event import StreamServerEvent as StreamServerEvent
 from .verify_profile_data import VerifyProfileData as VerifyProfileData
 from .webhook_api_version import WebhookAPIVersion as WebhookAPIVersion
 from .call_ai_gather_ended import CallAIGatherEnded as CallAIGatherEnded
@@ -372,7 +372,8 @@ from .report_list_wdrs_response import ReportListWdrsResponse as ReportListWdrsR
 from .requirement_list_response import RequirementListResponse as RequirementListResponse
 from .sound_modifications_param import SoundModificationsParam as SoundModificationsParam
 from .stream_bidirectional_mode import StreamBidirectionalMode as StreamBidirectionalMode
-from .voice_clone_create_params import VoiceCloneCreateParams as VoiceCloneCreateParams
+from .stream_client_event_param import StreamClientEventParam as StreamClientEventParam
+from .voice_clone_list_response import VoiceCloneListResponse as VoiceCloneListResponse
 from .voice_clone_update_params import VoiceCloneUpdateParams as VoiceCloneUpdateParams
 from .access_ip_address_response import AccessIPAddressResponse as AccessIPAddressResponse
 from .call_bridged_webhook_event import CallBridgedWebhookEvent as CallBridgedWebhookEvent
@@ -436,7 +437,6 @@ from .s3_configuration_data_param import S3ConfigurationDataParam as S3Configura
 from .transcription_webhook_event import TranscriptionWebhookEvent as TranscriptionWebhookEvent
 from .unsafe_unwrap_webhook_event import UnsafeUnwrapWebhookEvent as UnsafeUnwrapWebhookEvent
 from .verified_number_list_params import VerifiedNumberListParams as VerifiedNumberListParams
-from .voice_clone_create_response import VoiceCloneCreateResponse as VoiceCloneCreateResponse
 from .voice_clone_update_response import VoiceCloneUpdateResponse as VoiceCloneUpdateResponse
 from .advanced_order_create_params import AdvancedOrderCreateParams as AdvancedOrderCreateParams
 from .advanced_order_list_response import AdvancedOrderListResponse as AdvancedOrderListResponse
@@ -473,7 +473,6 @@ from .sim_card_group_list_response import SimCardGroupListResponse as SimCardGro
 from .sim_card_group_update_params import SimCardGroupUpdateParams as SimCardGroupUpdateParams
 from .sim_card_order_create_params import SimCardOrderCreateParams as SimCardOrderCreateParams
 from .sub_number_order_list_params import SubNumberOrderListParams as SubNumberOrderListParams
-from .text_to_speech_stream_params import TextToSpeechStreamParams as TextToSpeechStreamParams
 from .url_shortener_settings_param import URLShortenerSettingsParam as URLShortenerSettingsParam
 from .user_address_create_response import UserAddressCreateResponse as UserAddressCreateResponse
 from .verified_number_data_wrapper import VerifiedNumberDataWrapper as VerifiedNumberDataWrapper
@@ -483,6 +482,7 @@ from .voice_design_create_response import VoiceDesignCreateResponse as VoiceDesi
 from .voice_design_rename_response import VoiceDesignRenameResponse as VoiceDesignRenameResponse
 from .voice_design_retrieve_params import VoiceDesignRetrieveParams as VoiceDesignRetrieveParams
 from .webhook_delivery_list_params import WebhookDeliveryListParams as WebhookDeliveryListParams
+from .websocket_connection_options import WebSocketConnectionOptions as WebSocketConnectionOptions
 from .wireguard_peer_create_params import WireguardPeerCreateParams as WireguardPeerCreateParams
 from .wireguard_peer_list_response import WireguardPeerListResponse as WireguardPeerListResponse
 from .wireguard_peer_update_params import WireguardPeerUpdateParams as WireguardPeerUpdateParams
@@ -645,7 +645,6 @@ from .sim_card_group_retrieve_response import SimCardGroupRetrieveResponse as Si
 from .sim_card_order_retrieve_response import SimCardOrderRetrieveResponse as SimCardOrderRetrieveResponse
 from .siprec_connector_create_response import SiprecConnectorCreateResponse as SiprecConnectorCreateResponse
 from .siprec_connector_update_response import SiprecConnectorUpdateResponse as SiprecConnectorUpdateResponse
-from .speech_to_text_transcribe_params import SpeechToTextTranscribeParams as SpeechToTextTranscribeParams
 from .stream_bidirectional_target_legs import StreamBidirectionalTargetLegs as StreamBidirectionalTargetLegs
 from .sub_number_order_cancel_response import SubNumberOrderCancelResponse as SubNumberOrderCancelResponse
 from .sub_number_order_retrieve_params import SubNumberOrderRetrieveParams as SubNumberOrderRetrieveParams
@@ -893,6 +892,7 @@ from .virtual_cross_connect_delete_response import (
 from .virtual_cross_connect_update_response import (
     VirtualCrossConnectUpdateResponse as VirtualCrossConnectUpdateResponse,
 )
+from .voice_clone_create_from_design_params import VoiceCloneCreateFromDesignParams as VoiceCloneCreateFromDesignParams
 from .voice_clone_create_from_upload_params import VoiceCloneCreateFromUploadParams as VoiceCloneCreateFromUploadParams
 from .wireguard_interface_retrieve_response import (
     WireguardInterfaceRetrieveResponse as WireguardInterfaceRetrieveResponse,
@@ -1049,6 +1049,9 @@ from .sub_number_order_regulatory_requirement import (
 )
 from .virtual_cross_connect_retrieve_response import (
     VirtualCrossConnectRetrieveResponse as VirtualCrossConnectRetrieveResponse,
+)
+from .voice_clone_create_from_design_response import (
+    VoiceCloneCreateFromDesignResponse as VoiceCloneCreateFromDesignResponse,
 )
 from .voice_clone_create_from_upload_response import (
     VoiceCloneCreateFromUploadResponse as VoiceCloneCreateFromUploadResponse,

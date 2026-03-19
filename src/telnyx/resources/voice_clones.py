@@ -9,8 +9,8 @@ import httpx
 
 from ..types import (
     voice_clone_list_params,
-    voice_clone_create_params,
     voice_clone_update_params,
+    voice_clone_create_from_design_params,
     voice_clone_create_from_upload_params,
 )
 from .._types import Body, Omit, Query, Headers, NoneType, NotGiven, FileTypes, omit, not_given
@@ -33,9 +33,9 @@ from .._response import (
 )
 from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from .._base_client import AsyncPaginator, make_request_options
-from ..types.voice_clone_data import VoiceCloneData
-from ..types.voice_clone_create_response import VoiceCloneCreateResponse
+from ..types.voice_clone_list_response import VoiceCloneListResponse
 from ..types.voice_clone_update_response import VoiceCloneUpdateResponse
+from ..types.voice_clone_create_from_design_response import VoiceCloneCreateFromDesignResponse
 from ..types.voice_clone_create_from_upload_response import VoiceCloneCreateFromUploadResponse
 
 __all__ = ["VoiceClonesResource", "AsyncVoiceClonesResource"]
@@ -64,58 +64,6 @@ class VoiceClonesResource(SyncAPIResource):
         For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
         return VoiceClonesResourceWithStreamingResponse(self)
-
-    def create(
-        self,
-        *,
-        gender: Literal["male", "female", "neutral"],
-        language: str,
-        name: str,
-        voice_design_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> VoiceCloneCreateResponse:
-        """
-        Creates a new voice clone by capturing the voice identity of an existing voice
-        design. The clone can then be used for text-to-speech synthesis.
-
-        Args:
-          gender: Gender of the voice clone.
-
-          language: ISO 639-1 language code for the clone (e.g. `en`, `fr`, `de`).
-
-          name: Name for the voice clone.
-
-          voice_design_id: UUID of the source voice design to clone.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return self._post(
-            "/voice_clones",
-            body=maybe_transform(
-                {
-                    "gender": gender,
-                    "language": language,
-                    "name": name,
-                    "voice_design_id": voice_design_id,
-                },
-                voice_clone_create_params.VoiceCloneCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=VoiceCloneCreateResponse,
-        )
 
     def update(
         self,
@@ -180,7 +128,7 @@ class VoiceClonesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[VoiceCloneData]:
+    ) -> SyncDefaultFlatPagination[VoiceCloneListResponse]:
         """
         Returns a paginated list of voice clones belonging to the authenticated account.
 
@@ -203,7 +151,7 @@ class VoiceClonesResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/voice_clones",
-            page=SyncDefaultFlatPagination[VoiceCloneData],
+            page=SyncDefaultFlatPagination[VoiceCloneListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -219,7 +167,7 @@ class VoiceClonesResource(SyncAPIResource):
                     voice_clone_list_params.VoiceCloneListParams,
                 ),
             ),
-            model=VoiceCloneData,
+            model=VoiceCloneListResponse,
         )
 
     def delete(
@@ -255,6 +203,58 @@ class VoiceClonesResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=NoneType,
+        )
+
+    def create_from_design(
+        self,
+        *,
+        gender: Literal["male", "female", "neutral"],
+        language: str,
+        name: str,
+        voice_design_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> VoiceCloneCreateFromDesignResponse:
+        """
+        Creates a new voice clone by capturing the voice identity of an existing voice
+        design. The clone can then be used for text-to-speech synthesis.
+
+        Args:
+          gender: Gender of the voice clone.
+
+          language: ISO 639-1 language code for the clone (e.g. `en`, `fr`, `de`).
+
+          name: Name for the voice clone.
+
+          voice_design_id: UUID of the source voice design to clone.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._post(
+            "/voice_clones",
+            body=maybe_transform(
+                {
+                    "gender": gender,
+                    "language": language,
+                    "name": name,
+                    "voice_design_id": voice_design_id,
+                },
+                voice_clone_create_from_design_params.VoiceCloneCreateFromDesignParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=VoiceCloneCreateFromDesignResponse,
         )
 
     def create_from_upload(
@@ -387,58 +387,6 @@ class AsyncVoiceClonesResource(AsyncAPIResource):
         """
         return AsyncVoiceClonesResourceWithStreamingResponse(self)
 
-    async def create(
-        self,
-        *,
-        gender: Literal["male", "female", "neutral"],
-        language: str,
-        name: str,
-        voice_design_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> VoiceCloneCreateResponse:
-        """
-        Creates a new voice clone by capturing the voice identity of an existing voice
-        design. The clone can then be used for text-to-speech synthesis.
-
-        Args:
-          gender: Gender of the voice clone.
-
-          language: ISO 639-1 language code for the clone (e.g. `en`, `fr`, `de`).
-
-          name: Name for the voice clone.
-
-          voice_design_id: UUID of the source voice design to clone.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return await self._post(
-            "/voice_clones",
-            body=await async_maybe_transform(
-                {
-                    "gender": gender,
-                    "language": language,
-                    "name": name,
-                    "voice_design_id": voice_design_id,
-                },
-                voice_clone_create_params.VoiceCloneCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=VoiceCloneCreateResponse,
-        )
-
     async def update(
         self,
         id: str,
@@ -502,7 +450,7 @@ class AsyncVoiceClonesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[VoiceCloneData, AsyncDefaultFlatPagination[VoiceCloneData]]:
+    ) -> AsyncPaginator[VoiceCloneListResponse, AsyncDefaultFlatPagination[VoiceCloneListResponse]]:
         """
         Returns a paginated list of voice clones belonging to the authenticated account.
 
@@ -525,7 +473,7 @@ class AsyncVoiceClonesResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/voice_clones",
-            page=AsyncDefaultFlatPagination[VoiceCloneData],
+            page=AsyncDefaultFlatPagination[VoiceCloneListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -541,7 +489,7 @@ class AsyncVoiceClonesResource(AsyncAPIResource):
                     voice_clone_list_params.VoiceCloneListParams,
                 ),
             ),
-            model=VoiceCloneData,
+            model=VoiceCloneListResponse,
         )
 
     async def delete(
@@ -577,6 +525,58 @@ class AsyncVoiceClonesResource(AsyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=NoneType,
+        )
+
+    async def create_from_design(
+        self,
+        *,
+        gender: Literal["male", "female", "neutral"],
+        language: str,
+        name: str,
+        voice_design_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> VoiceCloneCreateFromDesignResponse:
+        """
+        Creates a new voice clone by capturing the voice identity of an existing voice
+        design. The clone can then be used for text-to-speech synthesis.
+
+        Args:
+          gender: Gender of the voice clone.
+
+          language: ISO 639-1 language code for the clone (e.g. `en`, `fr`, `de`).
+
+          name: Name for the voice clone.
+
+          voice_design_id: UUID of the source voice design to clone.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._post(
+            "/voice_clones",
+            body=await async_maybe_transform(
+                {
+                    "gender": gender,
+                    "language": language,
+                    "name": name,
+                    "voice_design_id": voice_design_id,
+                },
+                voice_clone_create_from_design_params.VoiceCloneCreateFromDesignParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=VoiceCloneCreateFromDesignResponse,
         )
 
     async def create_from_upload(
@@ -691,9 +691,6 @@ class VoiceClonesResourceWithRawResponse:
     def __init__(self, voice_clones: VoiceClonesResource) -> None:
         self._voice_clones = voice_clones
 
-        self.create = to_raw_response_wrapper(
-            voice_clones.create,
-        )
         self.update = to_raw_response_wrapper(
             voice_clones.update,
         )
@@ -702,6 +699,9 @@ class VoiceClonesResourceWithRawResponse:
         )
         self.delete = to_raw_response_wrapper(
             voice_clones.delete,
+        )
+        self.create_from_design = to_raw_response_wrapper(
+            voice_clones.create_from_design,
         )
         self.create_from_upload = to_raw_response_wrapper(
             voice_clones.create_from_upload,
@@ -716,9 +716,6 @@ class AsyncVoiceClonesResourceWithRawResponse:
     def __init__(self, voice_clones: AsyncVoiceClonesResource) -> None:
         self._voice_clones = voice_clones
 
-        self.create = async_to_raw_response_wrapper(
-            voice_clones.create,
-        )
         self.update = async_to_raw_response_wrapper(
             voice_clones.update,
         )
@@ -727,6 +724,9 @@ class AsyncVoiceClonesResourceWithRawResponse:
         )
         self.delete = async_to_raw_response_wrapper(
             voice_clones.delete,
+        )
+        self.create_from_design = async_to_raw_response_wrapper(
+            voice_clones.create_from_design,
         )
         self.create_from_upload = async_to_raw_response_wrapper(
             voice_clones.create_from_upload,
@@ -741,9 +741,6 @@ class VoiceClonesResourceWithStreamingResponse:
     def __init__(self, voice_clones: VoiceClonesResource) -> None:
         self._voice_clones = voice_clones
 
-        self.create = to_streamed_response_wrapper(
-            voice_clones.create,
-        )
         self.update = to_streamed_response_wrapper(
             voice_clones.update,
         )
@@ -752,6 +749,9 @@ class VoiceClonesResourceWithStreamingResponse:
         )
         self.delete = to_streamed_response_wrapper(
             voice_clones.delete,
+        )
+        self.create_from_design = to_streamed_response_wrapper(
+            voice_clones.create_from_design,
         )
         self.create_from_upload = to_streamed_response_wrapper(
             voice_clones.create_from_upload,
@@ -766,9 +766,6 @@ class AsyncVoiceClonesResourceWithStreamingResponse:
     def __init__(self, voice_clones: AsyncVoiceClonesResource) -> None:
         self._voice_clones = voice_clones
 
-        self.create = async_to_streamed_response_wrapper(
-            voice_clones.create,
-        )
         self.update = async_to_streamed_response_wrapper(
             voice_clones.update,
         )
@@ -777,6 +774,9 @@ class AsyncVoiceClonesResourceWithStreamingResponse:
         )
         self.delete = async_to_streamed_response_wrapper(
             voice_clones.delete,
+        )
+        self.create_from_design = async_to_streamed_response_wrapper(
+            voice_clones.create_from_design,
         )
         self.create_from_upload = async_to_streamed_response_wrapper(
             voice_clones.create_from_upload,

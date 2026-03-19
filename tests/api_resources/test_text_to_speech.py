@@ -53,7 +53,6 @@ class TestTextToSpeech:
                 "language_code": "language_code",
                 "voice_settings": {"foo": "bar"},
             },
-            inworld={"foo": "bar"},
             language="language",
             minimax={
                 "language_boost": "language_boost",
@@ -76,10 +75,12 @@ class TestTextToSpeech:
                 "voice_speed": 0,
             },
             telnyx={
+                "emotion": "neutral",
                 "response_format": "response_format",
                 "sampling_rate": 0,
                 "temperature": 0,
-                "voice_speed": 0,
+                "voice_speed": 0.5,
+                "volume": 0,
             },
             text="text",
             text_type="text",
@@ -147,48 +148,6 @@ class TestTextToSpeech:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Mock server tests are disabled")
-    @parametrize
-    def test_method_stream(self, client: Telnyx) -> None:
-        text_to_speech = client.text_to_speech.stream()
-        assert text_to_speech is None
-
-    @pytest.mark.skip(reason="Mock server tests are disabled")
-    @parametrize
-    def test_method_stream_with_all_params(self, client: Telnyx) -> None:
-        text_to_speech = client.text_to_speech.stream(
-            audio_format="pcm",
-            disable_cache=True,
-            model_id="model_id",
-            provider="aws",
-            socket_id="socket_id",
-            voice="voice",
-            voice_id="voice_id",
-        )
-        assert text_to_speech is None
-
-    @pytest.mark.skip(reason="Mock server tests are disabled")
-    @parametrize
-    def test_raw_response_stream(self, client: Telnyx) -> None:
-        response = client.text_to_speech.with_raw_response.stream()
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        text_to_speech = response.parse()
-        assert text_to_speech is None
-
-    @pytest.mark.skip(reason="Mock server tests are disabled")
-    @parametrize
-    def test_streaming_response_stream(self, client: Telnyx) -> None:
-        with client.text_to_speech.with_streaming_response.stream() as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            text_to_speech = response.parse()
-            assert text_to_speech is None
-
-        assert cast(Any, response.is_closed) is True
-
 
 class TestAsyncTextToSpeech:
     parametrize = pytest.mark.parametrize(
@@ -228,7 +187,6 @@ class TestAsyncTextToSpeech:
                 "language_code": "language_code",
                 "voice_settings": {"foo": "bar"},
             },
-            inworld={"foo": "bar"},
             language="language",
             minimax={
                 "language_boost": "language_boost",
@@ -251,10 +209,12 @@ class TestAsyncTextToSpeech:
                 "voice_speed": 0,
             },
             telnyx={
+                "emotion": "neutral",
                 "response_format": "response_format",
                 "sampling_rate": 0,
                 "temperature": 0,
-                "voice_speed": 0,
+                "voice_speed": 0.5,
+                "volume": 0,
             },
             text="text",
             text_type="text",
@@ -319,47 +279,5 @@ class TestAsyncTextToSpeech:
 
             text_to_speech = await response.parse()
             assert_matches_type(TextToSpeechListVoicesResponse, text_to_speech, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip(reason="Mock server tests are disabled")
-    @parametrize
-    async def test_method_stream(self, async_client: AsyncTelnyx) -> None:
-        text_to_speech = await async_client.text_to_speech.stream()
-        assert text_to_speech is None
-
-    @pytest.mark.skip(reason="Mock server tests are disabled")
-    @parametrize
-    async def test_method_stream_with_all_params(self, async_client: AsyncTelnyx) -> None:
-        text_to_speech = await async_client.text_to_speech.stream(
-            audio_format="pcm",
-            disable_cache=True,
-            model_id="model_id",
-            provider="aws",
-            socket_id="socket_id",
-            voice="voice",
-            voice_id="voice_id",
-        )
-        assert text_to_speech is None
-
-    @pytest.mark.skip(reason="Mock server tests are disabled")
-    @parametrize
-    async def test_raw_response_stream(self, async_client: AsyncTelnyx) -> None:
-        response = await async_client.text_to_speech.with_raw_response.stream()
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        text_to_speech = await response.parse()
-        assert text_to_speech is None
-
-    @pytest.mark.skip(reason="Mock server tests are disabled")
-    @parametrize
-    async def test_streaming_response_stream(self, async_client: AsyncTelnyx) -> None:
-        async with async_client.text_to_speech.with_streaming_response.stream() as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            text_to_speech = await response.parse()
-            assert text_to_speech is None
 
         assert cast(Any, response.is_closed) is True

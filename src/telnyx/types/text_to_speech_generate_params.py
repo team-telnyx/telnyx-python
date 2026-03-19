@@ -23,9 +23,6 @@ class TextToSpeechGenerateParams(TypedDict, total=False):
     elevenlabs: Elevenlabs
     """ElevenLabs provider-specific parameters."""
 
-    inworld: Dict[str, object]
-    """Inworld provider-specific parameters."""
-
     language: str
     """Language code (e.g. `en-US`). Usage varies by provider."""
 
@@ -39,7 +36,7 @@ class TextToSpeechGenerateParams(TypedDict, total=False):
     audio in JSON.
     """
 
-    provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "rime", "resemble", "inworld"]
+    provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "rime", "resemble"]
     """TTS provider. Required unless `voice` is provided."""
 
     resemble: Resemble
@@ -49,7 +46,11 @@ class TextToSpeechGenerateParams(TypedDict, total=False):
     """Rime provider-specific parameters."""
 
     telnyx: Telnyx
-    """Telnyx provider-specific parameters."""
+    """Telnyx provider-specific parameters.
+
+    Use `voice_speed` and `temperature` for `Natural` and `NaturalHD` models. For
+    the `Ultra` model, use `voice_speed`, `volume`, and `emotion`.
+    """
 
     text: str
     """The text to convert to speech."""
@@ -61,9 +62,10 @@ class TextToSpeechGenerateParams(TypedDict, total=False):
     """
     Voice identifier in the format `provider.model_id.voice_id` or
     `provider.voice_id`. Examples: `telnyx.NaturalHD.Alloy`,
-    `azure.en-US-AvaMultilingualNeural`, `aws.Polly.Generative.Lucia`. When
-    provided, `provider`, `model_id`, and `voice_id` are extracted automatically and
-    take precedence over individual parameters.
+    `Telnyx.Ultra.<voice_id>`, `azure.en-US-AvaMultilingualNeural`,
+    `aws.Polly.Generative.Lucia`. When provided, `provider`, `model_id`, and
+    `voice_id` are extracted automatically and take precedence over individual
+    parameters.
     """
 
     voice_settings: Dict[str, object]
@@ -182,7 +184,16 @@ class Rime(TypedDict, total=False):
 
 
 class Telnyx(TypedDict, total=False):
-    """Telnyx provider-specific parameters."""
+    """Telnyx provider-specific parameters.
+
+    Use `voice_speed` and `temperature` for `Natural` and `NaturalHD` models. For the `Ultra` model, use `voice_speed`, `volume`, and `emotion`.
+    """
+
+    emotion: Literal["neutral", "happy", "sad", "angry", "fearful", "disgusted", "surprised"]
+    """Emotion control for the Ultra model.
+
+    Adjusts the emotional tone of the synthesized speech.
+    """
 
     response_format: str
     """Audio response format."""
@@ -191,7 +202,10 @@ class Telnyx(TypedDict, total=False):
     """Audio sampling rate in Hz."""
 
     temperature: float
-    """Sampling temperature."""
+    """Sampling temperature. Applies to `Natural` and `NaturalHD` models only."""
 
     voice_speed: float
-    """Voice speed multiplier."""
+    """Voice speed multiplier. Applies to all models. Range: 0.5 to 2.0."""
+
+    volume: float
+    """Volume level for the Ultra model. Range: 0.0 to 2.0."""

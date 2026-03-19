@@ -93,7 +93,6 @@ if TYPE_CHECKING:
         document_links,
         ip_connections,
         porting_orders,
-        speech_to_text,
         text_to_speech,
         user_addresses,
         advanced_orders,
@@ -232,7 +231,6 @@ if TYPE_CHECKING:
     from .resources.detail_records import DetailRecordsResource, AsyncDetailRecordsResource
     from .resources.document_links import DocumentLinksResource, AsyncDocumentLinksResource
     from .resources.ip_connections import IPConnectionsResource, AsyncIPConnectionsResource
-    from .resources.speech_to_text import SpeechToTextResource, AsyncSpeechToTextResource
     from .resources.text_to_speech import TextToSpeechResource, AsyncTextToSpeechResource
     from .resources.user_addresses import UserAddressesResource, AsyncUserAddressesResource
     from .resources.actions.actions import ActionsResource, AsyncActionsResource
@@ -447,6 +445,14 @@ class Telnyx(SyncAPIClient):
     client_id: str | None
     client_secret: str | None
 
+    websocket_base_url: str | httpx.URL | None
+    """Base URL for WebSocket connections.
+
+    If not specified, the default base URL will be used, with 'wss://' replacing the
+    'http://' or 'https://' scheme. For example: 'http://example.com' becomes
+    'wss://example.com'
+    """
+
     def __init__(
         self,
         *,
@@ -455,6 +461,7 @@ class Telnyx(SyncAPIClient):
         client_id: str | None = None,
         client_secret: str | None = None,
         base_url: str | httpx.URL | None = None,
+        websocket_base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
         max_retries: int = DEFAULT_MAX_RETRIES,
         default_headers: Mapping[str, str] | None = None,
@@ -496,6 +503,8 @@ class Telnyx(SyncAPIClient):
         if client_secret is None:
             client_secret = os.environ.get("TELNYX_CLIENT_SECRET")
         self.client_secret = client_secret
+
+        self.websocket_base_url = websocket_base_url
 
         if base_url is None:
             base_url = os.environ.get("TELNYX_BASE_URL")
@@ -1567,6 +1576,12 @@ class Telnyx(SyncAPIClient):
         return WhatsappMessageTemplatesResource(self)
 
     @cached_property
+    def x402(self) -> X402Resource:
+        from .resources.x402 import X402Resource
+
+        return X402Resource(self)
+
+    @cached_property
     def voice_clones(self) -> VoiceClonesResource:
         """
         Capture and manage voice identities as clones for use in text-to-speech synthesis.
@@ -1581,19 +1596,6 @@ class Telnyx(SyncAPIClient):
         from .resources.voice_designs import VoiceDesignsResource
 
         return VoiceDesignsResource(self)
-
-    @cached_property
-    def x402(self) -> X402Resource:
-        from .resources.x402 import X402Resource
-
-        return X402Resource(self)
-
-    @cached_property
-    def speech_to_text(self) -> SpeechToTextResource:
-        """Speech to text command operations"""
-        from .resources.speech_to_text import SpeechToTextResource
-
-        return SpeechToTextResource(self)
 
     @cached_property
     def with_raw_response(self) -> TelnyxWithRawResponse:
@@ -1653,6 +1655,7 @@ class Telnyx(SyncAPIClient):
         public_key: str | None = None,
         client_id: str | None = None,
         client_secret: str | None = None,
+        websocket_base_url: str | httpx.URL | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
         http_client: httpx.Client | None = None,
@@ -1690,6 +1693,7 @@ class Telnyx(SyncAPIClient):
             public_key=public_key or self.public_key,
             client_id=client_id or self.client_id,
             client_secret=client_secret or self.client_secret,
+            websocket_base_url=websocket_base_url or self.websocket_base_url,
             base_url=base_url or self.base_url,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
             http_client=http_client,
@@ -1746,6 +1750,14 @@ class AsyncTelnyx(AsyncAPIClient):
     client_id: str | None
     client_secret: str | None
 
+    websocket_base_url: str | httpx.URL | None
+    """Base URL for WebSocket connections.
+
+    If not specified, the default base URL will be used, with 'wss://' replacing the
+    'http://' or 'https://' scheme. For example: 'http://example.com' becomes
+    'wss://example.com'
+    """
+
     def __init__(
         self,
         *,
@@ -1754,6 +1766,7 @@ class AsyncTelnyx(AsyncAPIClient):
         client_id: str | None = None,
         client_secret: str | None = None,
         base_url: str | httpx.URL | None = None,
+        websocket_base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
         max_retries: int = DEFAULT_MAX_RETRIES,
         default_headers: Mapping[str, str] | None = None,
@@ -1795,6 +1808,8 @@ class AsyncTelnyx(AsyncAPIClient):
         if client_secret is None:
             client_secret = os.environ.get("TELNYX_CLIENT_SECRET")
         self.client_secret = client_secret
+
+        self.websocket_base_url = websocket_base_url
 
         if base_url is None:
             base_url = os.environ.get("TELNYX_BASE_URL")
@@ -2866,6 +2881,12 @@ class AsyncTelnyx(AsyncAPIClient):
         return AsyncWhatsappMessageTemplatesResource(self)
 
     @cached_property
+    def x402(self) -> AsyncX402Resource:
+        from .resources.x402 import AsyncX402Resource
+
+        return AsyncX402Resource(self)
+
+    @cached_property
     def voice_clones(self) -> AsyncVoiceClonesResource:
         """
         Capture and manage voice identities as clones for use in text-to-speech synthesis.
@@ -2880,19 +2901,6 @@ class AsyncTelnyx(AsyncAPIClient):
         from .resources.voice_designs import AsyncVoiceDesignsResource
 
         return AsyncVoiceDesignsResource(self)
-
-    @cached_property
-    def x402(self) -> AsyncX402Resource:
-        from .resources.x402 import AsyncX402Resource
-
-        return AsyncX402Resource(self)
-
-    @cached_property
-    def speech_to_text(self) -> AsyncSpeechToTextResource:
-        """Speech to text command operations"""
-        from .resources.speech_to_text import AsyncSpeechToTextResource
-
-        return AsyncSpeechToTextResource(self)
 
     @cached_property
     def with_raw_response(self) -> AsyncTelnyxWithRawResponse:
@@ -2952,6 +2960,7 @@ class AsyncTelnyx(AsyncAPIClient):
         public_key: str | None = None,
         client_id: str | None = None,
         client_secret: str | None = None,
+        websocket_base_url: str | httpx.URL | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
         http_client: httpx.AsyncClient | None = None,
@@ -2989,6 +2998,7 @@ class AsyncTelnyx(AsyncAPIClient):
             public_key=public_key or self.public_key,
             client_id=client_id or self.client_id,
             client_secret=client_secret or self.client_secret,
+            websocket_base_url=websocket_base_url or self.websocket_base_url,
             base_url=base_url or self.base_url,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
             http_client=http_client,
@@ -4121,6 +4131,12 @@ class TelnyxWithRawResponse:
         return WhatsappMessageTemplatesResourceWithRawResponse(self._client.whatsapp_message_templates)
 
     @cached_property
+    def x402(self) -> x402.X402ResourceWithRawResponse:
+        from .resources.x402 import X402ResourceWithRawResponse
+
+        return X402ResourceWithRawResponse(self._client.x402)
+
+    @cached_property
     def voice_clones(self) -> voice_clones.VoiceClonesResourceWithRawResponse:
         """
         Capture and manage voice identities as clones for use in text-to-speech synthesis.
@@ -4135,19 +4151,6 @@ class TelnyxWithRawResponse:
         from .resources.voice_designs import VoiceDesignsResourceWithRawResponse
 
         return VoiceDesignsResourceWithRawResponse(self._client.voice_designs)
-
-    @cached_property
-    def x402(self) -> x402.X402ResourceWithRawResponse:
-        from .resources.x402 import X402ResourceWithRawResponse
-
-        return X402ResourceWithRawResponse(self._client.x402)
-
-    @cached_property
-    def speech_to_text(self) -> speech_to_text.SpeechToTextResourceWithRawResponse:
-        """Speech to text command operations"""
-        from .resources.speech_to_text import SpeechToTextResourceWithRawResponse
-
-        return SpeechToTextResourceWithRawResponse(self._client.speech_to_text)
 
 
 class AsyncTelnyxWithRawResponse:
@@ -5249,6 +5252,12 @@ class AsyncTelnyxWithRawResponse:
         return AsyncWhatsappMessageTemplatesResourceWithRawResponse(self._client.whatsapp_message_templates)
 
     @cached_property
+    def x402(self) -> x402.AsyncX402ResourceWithRawResponse:
+        from .resources.x402 import AsyncX402ResourceWithRawResponse
+
+        return AsyncX402ResourceWithRawResponse(self._client.x402)
+
+    @cached_property
     def voice_clones(self) -> voice_clones.AsyncVoiceClonesResourceWithRawResponse:
         """
         Capture and manage voice identities as clones for use in text-to-speech synthesis.
@@ -5263,19 +5272,6 @@ class AsyncTelnyxWithRawResponse:
         from .resources.voice_designs import AsyncVoiceDesignsResourceWithRawResponse
 
         return AsyncVoiceDesignsResourceWithRawResponse(self._client.voice_designs)
-
-    @cached_property
-    def x402(self) -> x402.AsyncX402ResourceWithRawResponse:
-        from .resources.x402 import AsyncX402ResourceWithRawResponse
-
-        return AsyncX402ResourceWithRawResponse(self._client.x402)
-
-    @cached_property
-    def speech_to_text(self) -> speech_to_text.AsyncSpeechToTextResourceWithRawResponse:
-        """Speech to text command operations"""
-        from .resources.speech_to_text import AsyncSpeechToTextResourceWithRawResponse
-
-        return AsyncSpeechToTextResourceWithRawResponse(self._client.speech_to_text)
 
 
 class TelnyxWithStreamedResponse:
@@ -6379,6 +6375,12 @@ class TelnyxWithStreamedResponse:
         return WhatsappMessageTemplatesResourceWithStreamingResponse(self._client.whatsapp_message_templates)
 
     @cached_property
+    def x402(self) -> x402.X402ResourceWithStreamingResponse:
+        from .resources.x402 import X402ResourceWithStreamingResponse
+
+        return X402ResourceWithStreamingResponse(self._client.x402)
+
+    @cached_property
     def voice_clones(self) -> voice_clones.VoiceClonesResourceWithStreamingResponse:
         """
         Capture and manage voice identities as clones for use in text-to-speech synthesis.
@@ -6393,19 +6395,6 @@ class TelnyxWithStreamedResponse:
         from .resources.voice_designs import VoiceDesignsResourceWithStreamingResponse
 
         return VoiceDesignsResourceWithStreamingResponse(self._client.voice_designs)
-
-    @cached_property
-    def x402(self) -> x402.X402ResourceWithStreamingResponse:
-        from .resources.x402 import X402ResourceWithStreamingResponse
-
-        return X402ResourceWithStreamingResponse(self._client.x402)
-
-    @cached_property
-    def speech_to_text(self) -> speech_to_text.SpeechToTextResourceWithStreamingResponse:
-        """Speech to text command operations"""
-        from .resources.speech_to_text import SpeechToTextResourceWithStreamingResponse
-
-        return SpeechToTextResourceWithStreamingResponse(self._client.speech_to_text)
 
 
 class AsyncTelnyxWithStreamedResponse:
@@ -7553,6 +7542,12 @@ class AsyncTelnyxWithStreamedResponse:
         return AsyncWhatsappMessageTemplatesResourceWithStreamingResponse(self._client.whatsapp_message_templates)
 
     @cached_property
+    def x402(self) -> x402.AsyncX402ResourceWithStreamingResponse:
+        from .resources.x402 import AsyncX402ResourceWithStreamingResponse
+
+        return AsyncX402ResourceWithStreamingResponse(self._client.x402)
+
+    @cached_property
     def voice_clones(self) -> voice_clones.AsyncVoiceClonesResourceWithStreamingResponse:
         """
         Capture and manage voice identities as clones for use in text-to-speech synthesis.
@@ -7567,19 +7562,6 @@ class AsyncTelnyxWithStreamedResponse:
         from .resources.voice_designs import AsyncVoiceDesignsResourceWithStreamingResponse
 
         return AsyncVoiceDesignsResourceWithStreamingResponse(self._client.voice_designs)
-
-    @cached_property
-    def x402(self) -> x402.AsyncX402ResourceWithStreamingResponse:
-        from .resources.x402 import AsyncX402ResourceWithStreamingResponse
-
-        return AsyncX402ResourceWithStreamingResponse(self._client.x402)
-
-    @cached_property
-    def speech_to_text(self) -> speech_to_text.AsyncSpeechToTextResourceWithStreamingResponse:
-        """Speech to text command operations"""
-        from .resources.speech_to_text import AsyncSpeechToTextResourceWithStreamingResponse
-
-        return AsyncSpeechToTextResourceWithStreamingResponse(self._client.speech_to_text)
 
 
 Client = Telnyx

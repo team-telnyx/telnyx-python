@@ -42,6 +42,7 @@ Repository = "https://github.com/team-telnyx/telnyx-python"
 
 [project.optional-dependencies]
 aiohttp = ["aiohttp", "httpx_aiohttp>=0.1.9"]
+websockets = ["websockets >= 13, < 16"]
 webhooks = ["standardwebhooks >= 1.0.1, < 2"]
 
 [tool.rye]

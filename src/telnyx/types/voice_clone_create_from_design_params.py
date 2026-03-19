@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from typing_extensions import Literal, Required, TypedDict
 
-__all__ = ["VoiceCloneCreateParams"]
+__all__ = ["VoiceCloneCreateFromDesignParams"]
 
 
-class VoiceCloneCreateParams(TypedDict, total=False):
+class VoiceCloneCreateFromDesignParams(TypedDict, total=False):
     gender: Required[Literal["male", "female", "neutral"]]
     """Gender of the voice clone."""
 
