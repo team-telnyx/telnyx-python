@@ -7,7 +7,7 @@ from typing import Dict
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -80,7 +80,9 @@ class ToolsResource(SyncAPIResource):
         if not tool_id:
             raise ValueError(f"Expected a non-empty value for `tool_id` but received {tool_id!r}")
         return self._post(
-            f"/ai/assistants/{assistant_id}/tools/{tool_id}/test",
+            path_template(
+                "/ai/assistants/{assistant_id}/tools/{tool_id}/test", assistant_id=assistant_id, tool_id=tool_id
+            ),
             body=maybe_transform(
                 {
                     "arguments": arguments,
@@ -152,7 +154,9 @@ class AsyncToolsResource(AsyncAPIResource):
         if not tool_id:
             raise ValueError(f"Expected a non-empty value for `tool_id` but received {tool_id!r}")
         return await self._post(
-            f"/ai/assistants/{assistant_id}/tools/{tool_id}/test",
+            path_template(
+                "/ai/assistants/{assistant_id}/tools/{tool_id}/test", assistant_id=assistant_id, tool_id=tool_id
+            ),
             body=await async_maybe_transform(
                 {
                     "arguments": arguments,

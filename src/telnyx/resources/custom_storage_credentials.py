@@ -8,7 +8,7 @@ import httpx
 
 from ..types import custom_storage_credential_create_params, custom_storage_credential_update_params
 from .._types import Body, Query, Headers, NoneType, NotGiven, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -75,7 +75,7 @@ class CustomStorageCredentialsResource(SyncAPIResource):
         if not connection_id:
             raise ValueError(f"Expected a non-empty value for `connection_id` but received {connection_id!r}")
         return self._post(
-            f"/custom_storage_credentials/{connection_id}",
+            path_template("/custom_storage_credentials/{connection_id}", connection_id=connection_id),
             body=maybe_transform(
                 {
                     "backend": backend,
@@ -115,7 +115,7 @@ class CustomStorageCredentialsResource(SyncAPIResource):
         if not connection_id:
             raise ValueError(f"Expected a non-empty value for `connection_id` but received {connection_id!r}")
         return self._get(
-            f"/custom_storage_credentials/{connection_id}",
+            path_template("/custom_storage_credentials/{connection_id}", connection_id=connection_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -150,7 +150,7 @@ class CustomStorageCredentialsResource(SyncAPIResource):
         if not connection_id:
             raise ValueError(f"Expected a non-empty value for `connection_id` but received {connection_id!r}")
         return self._put(
-            f"/custom_storage_credentials/{connection_id}",
+            path_template("/custom_storage_credentials/{connection_id}", connection_id=connection_id),
             body=maybe_transform(
                 {
                     "backend": backend,
@@ -191,7 +191,7 @@ class CustomStorageCredentialsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `connection_id` but received {connection_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/custom_storage_credentials/{connection_id}",
+            path_template("/custom_storage_credentials/{connection_id}", connection_id=connection_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -249,7 +249,7 @@ class AsyncCustomStorageCredentialsResource(AsyncAPIResource):
         if not connection_id:
             raise ValueError(f"Expected a non-empty value for `connection_id` but received {connection_id!r}")
         return await self._post(
-            f"/custom_storage_credentials/{connection_id}",
+            path_template("/custom_storage_credentials/{connection_id}", connection_id=connection_id),
             body=await async_maybe_transform(
                 {
                     "backend": backend,
@@ -289,7 +289,7 @@ class AsyncCustomStorageCredentialsResource(AsyncAPIResource):
         if not connection_id:
             raise ValueError(f"Expected a non-empty value for `connection_id` but received {connection_id!r}")
         return await self._get(
-            f"/custom_storage_credentials/{connection_id}",
+            path_template("/custom_storage_credentials/{connection_id}", connection_id=connection_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -324,7 +324,7 @@ class AsyncCustomStorageCredentialsResource(AsyncAPIResource):
         if not connection_id:
             raise ValueError(f"Expected a non-empty value for `connection_id` but received {connection_id!r}")
         return await self._put(
-            f"/custom_storage_credentials/{connection_id}",
+            path_template("/custom_storage_credentials/{connection_id}", connection_id=connection_id),
             body=await async_maybe_transform(
                 {
                     "backend": backend,
@@ -365,7 +365,7 @@ class AsyncCustomStorageCredentialsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `connection_id` but received {connection_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/custom_storage_credentials/{connection_id}",
+            path_template("/custom_storage_credentials/{connection_id}", connection_id=connection_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

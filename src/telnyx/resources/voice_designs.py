@@ -14,7 +14,7 @@ from ..types import (
     voice_design_download_sample_params,
 )
 from .._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -182,7 +182,7 @@ class VoiceDesignsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
-            f"/voice_designs/{id}",
+            path_template("/voice_designs/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -223,7 +223,7 @@ class VoiceDesignsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._patch(
-            f"/voice_designs/{id}",
+            path_template("/voice_designs/{id}", id=id),
             body=maybe_transform({"name": name}, voice_design_update_params.VoiceDesignUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -316,7 +316,7 @@ class VoiceDesignsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/voice_designs/{id}",
+            path_template("/voice_designs/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -353,7 +353,7 @@ class VoiceDesignsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/voice_designs/{id}/versions/{version}",
+            path_template("/voice_designs/{id}/versions/{version}", id=id, version=version),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -394,7 +394,7 @@ class VoiceDesignsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         extra_headers = {"Accept": "audio/wav", **(extra_headers or {})}
         return self._get(
-            f"/voice_designs/{id}/sample",
+            path_template("/voice_designs/{id}/sample", id=id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -549,7 +549,7 @@ class AsyncVoiceDesignsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
-            f"/voice_designs/{id}",
+            path_template("/voice_designs/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -592,7 +592,7 @@ class AsyncVoiceDesignsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._patch(
-            f"/voice_designs/{id}",
+            path_template("/voice_designs/{id}", id=id),
             body=await async_maybe_transform({"name": name}, voice_design_update_params.VoiceDesignUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -685,7 +685,7 @@ class AsyncVoiceDesignsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/voice_designs/{id}",
+            path_template("/voice_designs/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -722,7 +722,7 @@ class AsyncVoiceDesignsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/voice_designs/{id}/versions/{version}",
+            path_template("/voice_designs/{id}/versions/{version}", id=id, version=version),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -763,7 +763,7 @@ class AsyncVoiceDesignsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         extra_headers = {"Accept": "audio/wav", **(extra_headers or {})}
         return await self._get(
-            f"/voice_designs/{id}/sample",
+            path_template("/voice_designs/{id}/sample", id=id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

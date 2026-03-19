@@ -8,7 +8,7 @@ import httpx
 
 from ..types import room_composition_list_params, room_composition_create_params
 from .._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -144,7 +144,7 @@ class RoomCompositionsResource(SyncAPIResource):
                 f"Expected a non-empty value for `room_composition_id` but received {room_composition_id!r}"
             )
         return self._get(
-            f"/room_compositions/{room_composition_id}",
+            path_template("/room_compositions/{room_composition_id}", room_composition_id=room_composition_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -230,7 +230,7 @@ class RoomCompositionsResource(SyncAPIResource):
             )
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/room_compositions/{room_composition_id}",
+            path_template("/room_compositions/{room_composition_id}", room_composition_id=room_composition_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -355,7 +355,7 @@ class AsyncRoomCompositionsResource(AsyncAPIResource):
                 f"Expected a non-empty value for `room_composition_id` but received {room_composition_id!r}"
             )
         return await self._get(
-            f"/room_compositions/{room_composition_id}",
+            path_template("/room_compositions/{room_composition_id}", room_composition_id=room_composition_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -441,7 +441,7 @@ class AsyncRoomCompositionsResource(AsyncAPIResource):
             )
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/room_compositions/{room_composition_id}",
+            path_template("/room_compositions/{room_composition_id}", room_composition_id=room_composition_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

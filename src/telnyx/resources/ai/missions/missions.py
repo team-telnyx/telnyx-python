@@ -16,7 +16,7 @@ from .tools import (
     AsyncToolsResourceWithStreamingResponse,
 )
 from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from .runs.runs import (
     RunsResource,
     AsyncRunsResource,
@@ -175,7 +175,7 @@ class MissionsResource(SyncAPIResource):
         if not mission_id:
             raise ValueError(f"Expected a non-empty value for `mission_id` but received {mission_id!r}")
         return self._get(
-            f"/ai/missions/{mission_id}",
+            path_template("/ai/missions/{mission_id}", mission_id=mission_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -255,7 +255,7 @@ class MissionsResource(SyncAPIResource):
         if not mission_id:
             raise ValueError(f"Expected a non-empty value for `mission_id` but received {mission_id!r}")
         return self._post(
-            f"/ai/missions/{mission_id}/clone",
+            path_template("/ai/missions/{mission_id}/clone", mission_id=mission_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -289,7 +289,7 @@ class MissionsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `mission_id` but received {mission_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/ai/missions/{mission_id}",
+            path_template("/ai/missions/{mission_id}", mission_id=mission_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -377,7 +377,7 @@ class MissionsResource(SyncAPIResource):
         if not mission_id:
             raise ValueError(f"Expected a non-empty value for `mission_id` but received {mission_id!r}")
         return self._put(
-            f"/ai/missions/{mission_id}",
+            path_template("/ai/missions/{mission_id}", mission_id=mission_id),
             body=maybe_transform(
                 {
                     "description": description,
@@ -505,7 +505,7 @@ class AsyncMissionsResource(AsyncAPIResource):
         if not mission_id:
             raise ValueError(f"Expected a non-empty value for `mission_id` but received {mission_id!r}")
         return await self._get(
-            f"/ai/missions/{mission_id}",
+            path_template("/ai/missions/{mission_id}", mission_id=mission_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -585,7 +585,7 @@ class AsyncMissionsResource(AsyncAPIResource):
         if not mission_id:
             raise ValueError(f"Expected a non-empty value for `mission_id` but received {mission_id!r}")
         return await self._post(
-            f"/ai/missions/{mission_id}/clone",
+            path_template("/ai/missions/{mission_id}/clone", mission_id=mission_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -619,7 +619,7 @@ class AsyncMissionsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `mission_id` but received {mission_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/ai/missions/{mission_id}",
+            path_template("/ai/missions/{mission_id}", mission_id=mission_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -707,7 +707,7 @@ class AsyncMissionsResource(AsyncAPIResource):
         if not mission_id:
             raise ValueError(f"Expected a non-empty value for `mission_id` but received {mission_id!r}")
         return await self._put(
-            f"/ai/missions/{mission_id}",
+            path_template("/ai/missions/{mission_id}", mission_id=mission_id),
             body=await async_maybe_transform(
                 {
                     "description": description,

@@ -5,6 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ...._types import Body, Query, Headers, NoneType, NotGiven, not_given
+from ...._utils import path_template
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -69,7 +70,7 @@ class BucketsResource(SyncAPIResource):
         if not bucket_name:
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         return self._get(
-            f"/ai/embeddings/buckets/{bucket_name}",
+            path_template("/ai/embeddings/buckets/{bucket_name}", bucket_name=bucket_name),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -123,7 +124,7 @@ class BucketsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/ai/embeddings/buckets/{bucket_name}",
+            path_template("/ai/embeddings/buckets/{bucket_name}", bucket_name=bucket_name),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -180,7 +181,7 @@ class AsyncBucketsResource(AsyncAPIResource):
         if not bucket_name:
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         return await self._get(
-            f"/ai/embeddings/buckets/{bucket_name}",
+            path_template("/ai/embeddings/buckets/{bucket_name}", bucket_name=bucket_name),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -234,7 +235,7 @@ class AsyncBucketsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/ai/embeddings/buckets/{bucket_name}",
+            path_template("/ai/embeddings/buckets/{bucket_name}", bucket_name=bucket_name),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

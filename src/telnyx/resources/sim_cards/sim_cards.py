@@ -23,7 +23,7 @@ from .actions import (
     AsyncActionsResourceWithStreamingResponse,
 )
 from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -107,7 +107,7 @@ class SimCardsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
-            f"/sim_cards/{id}",
+            path_template("/sim_cards/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -164,7 +164,7 @@ class SimCardsResource(SyncAPIResource):
         if not sim_card_id:
             raise ValueError(f"Expected a non-empty value for `sim_card_id` but received {sim_card_id!r}")
         return self._patch(
-            f"/sim_cards/{sim_card_id}",
+            path_template("/sim_cards/{sim_card_id}", sim_card_id=sim_card_id),
             body=maybe_transform(
                 {
                     "authorized_imeis": authorized_imeis,
@@ -280,7 +280,7 @@ class SimCardsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._delete(
-            f"/sim_cards/{id}",
+            path_template("/sim_cards/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -319,7 +319,7 @@ class SimCardsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
-            f"/sim_cards/{id}/activation_code",
+            path_template("/sim_cards/{id}/activation_code", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -352,7 +352,7 @@ class SimCardsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
-            f"/sim_cards/{id}/device_details",
+            path_template("/sim_cards/{id}/device_details", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -385,7 +385,7 @@ class SimCardsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
-            f"/sim_cards/{id}/public_ip",
+            path_template("/sim_cards/{id}/public_ip", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -425,7 +425,7 @@ class SimCardsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
-            f"/sim_cards/{id}/wireless_connectivity_logs",
+            path_template("/sim_cards/{id}/wireless_connectivity_logs", id=id),
             page=SyncDefaultFlatPagination[SimCardListWirelessConnectivityLogsResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -504,7 +504,7 @@ class AsyncSimCardsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
-            f"/sim_cards/{id}",
+            path_template("/sim_cards/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -561,7 +561,7 @@ class AsyncSimCardsResource(AsyncAPIResource):
         if not sim_card_id:
             raise ValueError(f"Expected a non-empty value for `sim_card_id` but received {sim_card_id!r}")
         return await self._patch(
-            f"/sim_cards/{sim_card_id}",
+            path_template("/sim_cards/{sim_card_id}", sim_card_id=sim_card_id),
             body=await async_maybe_transform(
                 {
                     "authorized_imeis": authorized_imeis,
@@ -677,7 +677,7 @@ class AsyncSimCardsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._delete(
-            f"/sim_cards/{id}",
+            path_template("/sim_cards/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -718,7 +718,7 @@ class AsyncSimCardsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
-            f"/sim_cards/{id}/activation_code",
+            path_template("/sim_cards/{id}/activation_code", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -751,7 +751,7 @@ class AsyncSimCardsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
-            f"/sim_cards/{id}/device_details",
+            path_template("/sim_cards/{id}/device_details", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -784,7 +784,7 @@ class AsyncSimCardsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
-            f"/sim_cards/{id}/public_ip",
+            path_template("/sim_cards/{id}/public_ip", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -827,7 +827,7 @@ class AsyncSimCardsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
-            f"/sim_cards/{id}/wireless_connectivity_logs",
+            path_template("/sim_cards/{id}/wireless_connectivity_logs", id=id),
             page=AsyncDefaultFlatPagination[SimCardListWirelessConnectivityLogsResponse],
             options=make_request_options(
                 extra_headers=extra_headers,

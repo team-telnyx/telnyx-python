@@ -8,7 +8,7 @@ import httpx
 
 from ..types import connection_list_params, connection_list_active_calls_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import maybe_transform
+from .._utils import path_template, maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -74,7 +74,7 @@ class ConnectionsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
-            f"/connections/{id}",
+            path_template("/connections/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -179,7 +179,7 @@ class ConnectionsResource(SyncAPIResource):
         if not connection_id:
             raise ValueError(f"Expected a non-empty value for `connection_id` but received {connection_id!r}")
         return self._get_api_list(
-            f"/connections/{connection_id}/active_calls",
+            path_template("/connections/{connection_id}/active_calls", connection_id=connection_id),
             page=SyncDefaultFlatPagination[ConnectionListActiveCallsResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -246,7 +246,7 @@ class AsyncConnectionsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
-            f"/connections/{id}",
+            path_template("/connections/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -353,7 +353,7 @@ class AsyncConnectionsResource(AsyncAPIResource):
         if not connection_id:
             raise ValueError(f"Expected a non-empty value for `connection_id` but received {connection_id!r}")
         return self._get_api_list(
-            f"/connections/{connection_id}/active_calls",
+            path_template("/connections/{connection_id}/active_calls", connection_id=connection_id),
             page=AsyncDefaultFlatPagination[ConnectionListActiveCallsResponse],
             options=make_request_options(
                 extra_headers=extra_headers,

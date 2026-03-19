@@ -7,7 +7,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -119,7 +119,7 @@ class PhoneNumberCampaignsResource(SyncAPIResource):
         if not phone_number:
             raise ValueError(f"Expected a non-empty value for `phone_number` but received {phone_number!r}")
         return self._get(
-            f"/10dlc/phone_number_campaigns/{phone_number}",
+            path_template("/10dlc/phone_number_campaigns/{phone_number}", phone_number=phone_number),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -160,7 +160,9 @@ class PhoneNumberCampaignsResource(SyncAPIResource):
                 f"Expected a non-empty value for `campaign_phone_number` but received {campaign_phone_number!r}"
             )
         return self._put(
-            f"/10dlc/phone_number_campaigns/{campaign_phone_number}",
+            path_template(
+                "/10dlc/phone_number_campaigns/{campaign_phone_number}", campaign_phone_number=campaign_phone_number
+            ),
             body=maybe_transform(
                 {
                     "campaign_id": campaign_id,
@@ -257,7 +259,7 @@ class PhoneNumberCampaignsResource(SyncAPIResource):
         if not phone_number:
             raise ValueError(f"Expected a non-empty value for `phone_number` but received {phone_number!r}")
         return self._delete(
-            f"/10dlc/phone_number_campaigns/{phone_number}",
+            path_template("/10dlc/phone_number_campaigns/{phone_number}", phone_number=phone_number),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -356,7 +358,7 @@ class AsyncPhoneNumberCampaignsResource(AsyncAPIResource):
         if not phone_number:
             raise ValueError(f"Expected a non-empty value for `phone_number` but received {phone_number!r}")
         return await self._get(
-            f"/10dlc/phone_number_campaigns/{phone_number}",
+            path_template("/10dlc/phone_number_campaigns/{phone_number}", phone_number=phone_number),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -397,7 +399,9 @@ class AsyncPhoneNumberCampaignsResource(AsyncAPIResource):
                 f"Expected a non-empty value for `campaign_phone_number` but received {campaign_phone_number!r}"
             )
         return await self._put(
-            f"/10dlc/phone_number_campaigns/{campaign_phone_number}",
+            path_template(
+                "/10dlc/phone_number_campaigns/{campaign_phone_number}", campaign_phone_number=campaign_phone_number
+            ),
             body=await async_maybe_transform(
                 {
                     "campaign_id": campaign_id,
@@ -494,7 +498,7 @@ class AsyncPhoneNumberCampaignsResource(AsyncAPIResource):
         if not phone_number:
             raise ValueError(f"Expected a non-empty value for `phone_number` but received {phone_number!r}")
         return await self._delete(
-            f"/10dlc/phone_number_campaigns/{phone_number}",
+            path_template("/10dlc/phone_number_campaigns/{phone_number}", phone_number=phone_number),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

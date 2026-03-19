@@ -10,7 +10,7 @@ import httpx
 
 from ..types import sub_number_orders_report_create_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -135,7 +135,7 @@ class SubNumberOrdersReportResource(SyncAPIResource):
         if not report_id:
             raise ValueError(f"Expected a non-empty value for `report_id` but received {report_id!r}")
         return self._get(
-            f"/sub_number_orders_report/{report_id}",
+            path_template("/sub_number_orders_report/{report_id}", report_id=report_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -171,7 +171,7 @@ class SubNumberOrdersReportResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `report_id` but received {report_id!r}")
         extra_headers = {"Accept": "text/csv", **(extra_headers or {})}
         return self._get(
-            f"/sub_number_orders_report/{report_id}/download",
+            path_template("/sub_number_orders_report/{report_id}/download", report_id=report_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -288,7 +288,7 @@ class AsyncSubNumberOrdersReportResource(AsyncAPIResource):
         if not report_id:
             raise ValueError(f"Expected a non-empty value for `report_id` but received {report_id!r}")
         return await self._get(
-            f"/sub_number_orders_report/{report_id}",
+            path_template("/sub_number_orders_report/{report_id}", report_id=report_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -324,7 +324,7 @@ class AsyncSubNumberOrdersReportResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `report_id` but received {report_id!r}")
         extra_headers = {"Accept": "text/csv", **(extra_headers or {})}
         return await self._get(
-            f"/sub_number_orders_report/{report_id}/download",
+            path_template("/sub_number_orders_report/{report_id}/download", report_id=report_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -79,7 +79,7 @@ class QueuesResource(SyncAPIResource):
         if not account_sid:
             raise ValueError(f"Expected a non-empty value for `account_sid` but received {account_sid!r}")
         return self._post(
-            f"/texml/Accounts/{account_sid}/Queues",
+            path_template("/texml/Accounts/{account_sid}/Queues", account_sid=account_sid),
             body=maybe_transform(
                 {
                     "friendly_name": friendly_name,
@@ -122,7 +122,9 @@ class QueuesResource(SyncAPIResource):
         if not queue_sid:
             raise ValueError(f"Expected a non-empty value for `queue_sid` but received {queue_sid!r}")
         return self._get(
-            f"/texml/Accounts/{account_sid}/Queues/{queue_sid}",
+            path_template(
+                "/texml/Accounts/{account_sid}/Queues/{queue_sid}", account_sid=account_sid, queue_sid=queue_sid
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -161,7 +163,9 @@ class QueuesResource(SyncAPIResource):
         if not queue_sid:
             raise ValueError(f"Expected a non-empty value for `queue_sid` but received {queue_sid!r}")
         return self._post(
-            f"/texml/Accounts/{account_sid}/Queues/{queue_sid}",
+            path_template(
+                "/texml/Accounts/{account_sid}/Queues/{queue_sid}", account_sid=account_sid, queue_sid=queue_sid
+            ),
             body=maybe_transform({"max_size": max_size}, queue_update_params.QueueUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -213,7 +217,7 @@ class QueuesResource(SyncAPIResource):
         if not account_sid:
             raise ValueError(f"Expected a non-empty value for `account_sid` but received {account_sid!r}")
         return self._get_api_list(
-            f"/texml/Accounts/{account_sid}/Queues",
+            path_template("/texml/Accounts/{account_sid}/Queues", account_sid=account_sid),
             page=SyncDefaultPaginationForQueues[QueueListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -264,7 +268,9 @@ class QueuesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `queue_sid` but received {queue_sid!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/texml/Accounts/{account_sid}/Queues/{queue_sid}",
+            path_template(
+                "/texml/Accounts/{account_sid}/Queues/{queue_sid}", account_sid=account_sid, queue_sid=queue_sid
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -326,7 +332,7 @@ class AsyncQueuesResource(AsyncAPIResource):
         if not account_sid:
             raise ValueError(f"Expected a non-empty value for `account_sid` but received {account_sid!r}")
         return await self._post(
-            f"/texml/Accounts/{account_sid}/Queues",
+            path_template("/texml/Accounts/{account_sid}/Queues", account_sid=account_sid),
             body=await async_maybe_transform(
                 {
                     "friendly_name": friendly_name,
@@ -369,7 +375,9 @@ class AsyncQueuesResource(AsyncAPIResource):
         if not queue_sid:
             raise ValueError(f"Expected a non-empty value for `queue_sid` but received {queue_sid!r}")
         return await self._get(
-            f"/texml/Accounts/{account_sid}/Queues/{queue_sid}",
+            path_template(
+                "/texml/Accounts/{account_sid}/Queues/{queue_sid}", account_sid=account_sid, queue_sid=queue_sid
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -408,7 +416,9 @@ class AsyncQueuesResource(AsyncAPIResource):
         if not queue_sid:
             raise ValueError(f"Expected a non-empty value for `queue_sid` but received {queue_sid!r}")
         return await self._post(
-            f"/texml/Accounts/{account_sid}/Queues/{queue_sid}",
+            path_template(
+                "/texml/Accounts/{account_sid}/Queues/{queue_sid}", account_sid=account_sid, queue_sid=queue_sid
+            ),
             body=await async_maybe_transform({"max_size": max_size}, queue_update_params.QueueUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -460,7 +470,7 @@ class AsyncQueuesResource(AsyncAPIResource):
         if not account_sid:
             raise ValueError(f"Expected a non-empty value for `account_sid` but received {account_sid!r}")
         return self._get_api_list(
-            f"/texml/Accounts/{account_sid}/Queues",
+            path_template("/texml/Accounts/{account_sid}/Queues", account_sid=account_sid),
             page=AsyncDefaultPaginationForQueues[QueueListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -511,7 +521,9 @@ class AsyncQueuesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `queue_sid` but received {queue_sid!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/texml/Accounts/{account_sid}/Queues/{queue_sid}",
+            path_template(
+                "/texml/Accounts/{account_sid}/Queues/{queue_sid}", account_sid=account_sid, queue_sid=queue_sid
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

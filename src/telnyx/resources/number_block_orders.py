@@ -6,7 +6,7 @@ import httpx
 
 from ..types import number_block_order_list_params, number_block_order_create_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -127,7 +127,7 @@ class NumberBlockOrdersResource(SyncAPIResource):
                 f"Expected a non-empty value for `number_block_order_id` but received {number_block_order_id!r}"
             )
         return self._get(
-            f"/number_block_orders/{number_block_order_id}",
+            path_template("/number_block_orders/{number_block_order_id}", number_block_order_id=number_block_order_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -286,7 +286,7 @@ class AsyncNumberBlockOrdersResource(AsyncAPIResource):
                 f"Expected a non-empty value for `number_block_order_id` but received {number_block_order_id!r}"
             )
         return await self._get(
-            f"/number_block_orders/{number_block_order_id}",
+            path_template("/number_block_orders/{number_block_order_id}", number_block_order_id=number_block_order_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

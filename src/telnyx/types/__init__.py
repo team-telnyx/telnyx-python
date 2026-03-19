@@ -382,7 +382,6 @@ from .requirement_list_response import RequirementListResponse as RequirementLis
 from .sound_modifications_param import SoundModificationsParam as SoundModificationsParam
 from .stream_bidirectional_mode import StreamBidirectionalMode as StreamBidirectionalMode
 from .stream_client_event_param import StreamClientEventParam as StreamClientEventParam
-
 from .voice_clone_create_params import VoiceCloneCreateParams as VoiceCloneCreateParams
 from .voice_clone_update_params import VoiceCloneUpdateParams as VoiceCloneUpdateParams
 from .access_ip_address_response import AccessIPAddressResponse as AccessIPAddressResponse
@@ -1075,6 +1074,9 @@ from .virtual_cross_connect_retrieve_response import (
 from .voice_clone_create_from_upload_response import (
     VoiceCloneCreateFromUploadResponse as VoiceCloneCreateFromUploadResponse,
 )
+from .whatsapp_message_template_update_params import (
+    WhatsappMessageTemplateUpdateParams as WhatsappMessageTemplateUpdateParams,
+)
 from .wireguard_peer_retrieve_config_response import (
     WireguardPeerRetrieveConfigResponse as WireguardPeerRetrieveConfigResponse,
 )
@@ -1195,6 +1197,9 @@ from .public_internet_gateway_retrieve_response import (
 from .recording_transcription_retrieve_response import (
     RecordingTranscriptionRetrieveResponse as RecordingTranscriptionRetrieveResponse,
 )
+from .whatsapp_message_template_update_response import (
+    WhatsappMessageTemplateUpdateResponse as WhatsappMessageTemplateUpdateResponse,
+)
 from .available_phone_number_block_list_response import (
     AvailablePhoneNumberBlockListResponse as AvailablePhoneNumberBlockListResponse,
 )
@@ -1287,6 +1292,9 @@ from .traffic_policy_profile_list_services_params import (
 )
 from .virtual_cross_connects_coverage_list_params import (
     VirtualCrossConnectsCoverageListParams as VirtualCrossConnectsCoverageListParams,
+)
+from .whatsapp_message_template_retrieve_response import (
+    WhatsappMessageTemplateRetrieveResponse as WhatsappMessageTemplateRetrieveResponse,
 )
 from .bulk_messaging_settings_update_phone_numbers import (
     BulkMessagingSettingsUpdatePhoneNumbers as BulkMessagingSettingsUpdatePhoneNumbers,

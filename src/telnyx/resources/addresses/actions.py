@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -77,7 +77,7 @@ class ActionsResource(SyncAPIResource):
         if not address_uuid:
             raise ValueError(f"Expected a non-empty value for `address_uuid` but received {address_uuid!r}")
         return self._post(
-            f"/addresses/{address_uuid}/actions/accept_suggestions",
+            path_template("/addresses/{address_uuid}/actions/accept_suggestions", address_uuid=address_uuid),
             body=maybe_transform({"id": id}, action_accept_suggestions_params.ActionAcceptSuggestionsParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -203,7 +203,7 @@ class AsyncActionsResource(AsyncAPIResource):
         if not address_uuid:
             raise ValueError(f"Expected a non-empty value for `address_uuid` but received {address_uuid!r}")
         return await self._post(
-            f"/addresses/{address_uuid}/actions/accept_suggestions",
+            path_template("/addresses/{address_uuid}/actions/accept_suggestions", address_uuid=address_uuid),
             body=await async_maybe_transform(
                 {"id": id}, action_accept_suggestions_params.ActionAcceptSuggestionsParams
             ),

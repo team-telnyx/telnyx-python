@@ -7,7 +7,7 @@ from typing import Iterable
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -84,7 +84,9 @@ class PhoneNumberExtensionsResource(SyncAPIResource):
         if not porting_order_id:
             raise ValueError(f"Expected a non-empty value for `porting_order_id` but received {porting_order_id!r}")
         return self._post(
-            f"/porting_orders/{porting_order_id}/phone_number_extensions",
+            path_template(
+                "/porting_orders/{porting_order_id}/phone_number_extensions", porting_order_id=porting_order_id
+            ),
             body=maybe_transform(
                 {
                     "activation_ranges": activation_ranges,
@@ -135,7 +137,9 @@ class PhoneNumberExtensionsResource(SyncAPIResource):
         if not porting_order_id:
             raise ValueError(f"Expected a non-empty value for `porting_order_id` but received {porting_order_id!r}")
         return self._get_api_list(
-            f"/porting_orders/{porting_order_id}/phone_number_extensions",
+            path_template(
+                "/porting_orders/{porting_order_id}/phone_number_extensions", porting_order_id=porting_order_id
+            ),
             page=SyncDefaultFlatPagination[PortingPhoneNumberExtension],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -184,7 +188,11 @@ class PhoneNumberExtensionsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._delete(
-            f"/porting_orders/{porting_order_id}/phone_number_extensions/{id}",
+            path_template(
+                "/porting_orders/{porting_order_id}/phone_number_extensions/{id}",
+                porting_order_id=porting_order_id,
+                id=id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -250,7 +258,9 @@ class AsyncPhoneNumberExtensionsResource(AsyncAPIResource):
         if not porting_order_id:
             raise ValueError(f"Expected a non-empty value for `porting_order_id` but received {porting_order_id!r}")
         return await self._post(
-            f"/porting_orders/{porting_order_id}/phone_number_extensions",
+            path_template(
+                "/porting_orders/{porting_order_id}/phone_number_extensions", porting_order_id=porting_order_id
+            ),
             body=await async_maybe_transform(
                 {
                     "activation_ranges": activation_ranges,
@@ -301,7 +311,9 @@ class AsyncPhoneNumberExtensionsResource(AsyncAPIResource):
         if not porting_order_id:
             raise ValueError(f"Expected a non-empty value for `porting_order_id` but received {porting_order_id!r}")
         return self._get_api_list(
-            f"/porting_orders/{porting_order_id}/phone_number_extensions",
+            path_template(
+                "/porting_orders/{porting_order_id}/phone_number_extensions", porting_order_id=porting_order_id
+            ),
             page=AsyncDefaultFlatPagination[PortingPhoneNumberExtension],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -350,7 +362,11 @@ class AsyncPhoneNumberExtensionsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._delete(
-            f"/porting_orders/{porting_order_id}/phone_number_extensions/{id}",
+            path_template(
+                "/porting_orders/{porting_order_id}/phone_number_extensions/{id}",
+                porting_order_id=porting_order_id,
+                id=id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

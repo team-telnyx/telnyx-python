@@ -13,7 +13,7 @@ from .usage import (
     AsyncUsageResourceWithStreamingResponse,
 )
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -106,7 +106,11 @@ class BucketsResource(SyncAPIResource):
         if not object_name:
             raise ValueError(f"Expected a non-empty value for `object_name` but received {object_name!r}")
         return self._post(
-            f"/storage/buckets/{bucket_name}/{object_name}/presigned_url",
+            path_template(
+                "/storage/buckets/{bucket_name}/{object_name}/presigned_url",
+                bucket_name=bucket_name,
+                object_name=object_name,
+            ),
             body=maybe_transform({"ttl": ttl}, bucket_create_presigned_url_params.BucketCreatePresignedURLParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -184,7 +188,11 @@ class AsyncBucketsResource(AsyncAPIResource):
         if not object_name:
             raise ValueError(f"Expected a non-empty value for `object_name` but received {object_name!r}")
         return await self._post(
-            f"/storage/buckets/{bucket_name}/{object_name}/presigned_url",
+            path_template(
+                "/storage/buckets/{bucket_name}/{object_name}/presigned_url",
+                bucket_name=bucket_name,
+                object_name=object_name,
+            ),
             body=await async_maybe_transform(
                 {"ttl": ttl}, bucket_create_presigned_url_params.BucketCreatePresignedURLParams
             ),

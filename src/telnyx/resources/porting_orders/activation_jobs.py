@@ -8,7 +8,7 @@ from datetime import datetime
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -78,7 +78,9 @@ class ActivationJobsResource(SyncAPIResource):
         if not activation_job_id:
             raise ValueError(f"Expected a non-empty value for `activation_job_id` but received {activation_job_id!r}")
         return self._get(
-            f"/porting_orders/{id}/activation_jobs/{activation_job_id}",
+            path_template(
+                "/porting_orders/{id}/activation_jobs/{activation_job_id}", id=id, activation_job_id=activation_job_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -118,7 +120,9 @@ class ActivationJobsResource(SyncAPIResource):
         if not activation_job_id:
             raise ValueError(f"Expected a non-empty value for `activation_job_id` but received {activation_job_id!r}")
         return self._patch(
-            f"/porting_orders/{id}/activation_jobs/{activation_job_id}",
+            path_template(
+                "/porting_orders/{id}/activation_jobs/{activation_job_id}", id=id, activation_job_id=activation_job_id
+            ),
             body=maybe_transform({"activate_at": activate_at}, activation_job_update_params.ActivationJobUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -154,7 +158,7 @@ class ActivationJobsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
-            f"/porting_orders/{id}/activation_jobs",
+            path_template("/porting_orders/{id}/activation_jobs", id=id),
             page=SyncDefaultFlatPagination[PortingOrdersActivationJob],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -224,7 +228,9 @@ class AsyncActivationJobsResource(AsyncAPIResource):
         if not activation_job_id:
             raise ValueError(f"Expected a non-empty value for `activation_job_id` but received {activation_job_id!r}")
         return await self._get(
-            f"/porting_orders/{id}/activation_jobs/{activation_job_id}",
+            path_template(
+                "/porting_orders/{id}/activation_jobs/{activation_job_id}", id=id, activation_job_id=activation_job_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -264,7 +270,9 @@ class AsyncActivationJobsResource(AsyncAPIResource):
         if not activation_job_id:
             raise ValueError(f"Expected a non-empty value for `activation_job_id` but received {activation_job_id!r}")
         return await self._patch(
-            f"/porting_orders/{id}/activation_jobs/{activation_job_id}",
+            path_template(
+                "/porting_orders/{id}/activation_jobs/{activation_job_id}", id=id, activation_job_id=activation_job_id
+            ),
             body=await async_maybe_transform(
                 {"activate_at": activate_at}, activation_job_update_params.ActivationJobUpdateParams
             ),
@@ -302,7 +310,7 @@ class AsyncActivationJobsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
-            f"/porting_orders/{id}/activation_jobs",
+            path_template("/porting_orders/{id}/activation_jobs", id=id),
             page=AsyncDefaultFlatPagination[PortingOrdersActivationJob],
             options=make_request_options(
                 extra_headers=extra_headers,

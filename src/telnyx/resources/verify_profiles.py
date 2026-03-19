@@ -12,7 +12,7 @@ from ..types import (
     verify_profile_update_template_params,
 )
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -130,7 +130,7 @@ class VerifyProfilesResource(SyncAPIResource):
         if not verify_profile_id:
             raise ValueError(f"Expected a non-empty value for `verify_profile_id` but received {verify_profile_id!r}")
         return self._get(
-            f"/verify_profiles/{verify_profile_id}",
+            path_template("/verify_profiles/{verify_profile_id}", verify_profile_id=verify_profile_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -171,7 +171,7 @@ class VerifyProfilesResource(SyncAPIResource):
         if not verify_profile_id:
             raise ValueError(f"Expected a non-empty value for `verify_profile_id` but received {verify_profile_id!r}")
         return self._patch(
-            f"/verify_profiles/{verify_profile_id}",
+            path_template("/verify_profiles/{verify_profile_id}", verify_profile_id=verify_profile_id),
             body=maybe_transform(
                 {
                     "call": call,
@@ -264,7 +264,7 @@ class VerifyProfilesResource(SyncAPIResource):
         if not verify_profile_id:
             raise ValueError(f"Expected a non-empty value for `verify_profile_id` but received {verify_profile_id!r}")
         return self._delete(
-            f"/verify_profiles/{verify_profile_id}",
+            path_template("/verify_profiles/{verify_profile_id}", verify_profile_id=verify_profile_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -355,7 +355,7 @@ class VerifyProfilesResource(SyncAPIResource):
         if not template_id:
             raise ValueError(f"Expected a non-empty value for `template_id` but received {template_id!r}")
         return self._patch(
-            f"/verify_profiles/templates/{template_id}",
+            path_template("/verify_profiles/templates/{template_id}", template_id=template_id),
             body=maybe_transform(
                 {"text": text}, verify_profile_update_template_params.VerifyProfileUpdateTemplateParams
             ),
@@ -465,7 +465,7 @@ class AsyncVerifyProfilesResource(AsyncAPIResource):
         if not verify_profile_id:
             raise ValueError(f"Expected a non-empty value for `verify_profile_id` but received {verify_profile_id!r}")
         return await self._get(
-            f"/verify_profiles/{verify_profile_id}",
+            path_template("/verify_profiles/{verify_profile_id}", verify_profile_id=verify_profile_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -506,7 +506,7 @@ class AsyncVerifyProfilesResource(AsyncAPIResource):
         if not verify_profile_id:
             raise ValueError(f"Expected a non-empty value for `verify_profile_id` but received {verify_profile_id!r}")
         return await self._patch(
-            f"/verify_profiles/{verify_profile_id}",
+            path_template("/verify_profiles/{verify_profile_id}", verify_profile_id=verify_profile_id),
             body=await async_maybe_transform(
                 {
                     "call": call,
@@ -599,7 +599,7 @@ class AsyncVerifyProfilesResource(AsyncAPIResource):
         if not verify_profile_id:
             raise ValueError(f"Expected a non-empty value for `verify_profile_id` but received {verify_profile_id!r}")
         return await self._delete(
-            f"/verify_profiles/{verify_profile_id}",
+            path_template("/verify_profiles/{verify_profile_id}", verify_profile_id=verify_profile_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -690,7 +690,7 @@ class AsyncVerifyProfilesResource(AsyncAPIResource):
         if not template_id:
             raise ValueError(f"Expected a non-empty value for `template_id` but received {template_id!r}")
         return await self._patch(
-            f"/verify_profiles/templates/{template_id}",
+            path_template("/verify_profiles/templates/{template_id}", template_id=template_id),
             body=await async_maybe_transform(
                 {"text": text}, verify_profile_update_template_params.VerifyProfileUpdateTemplateParams
             ),

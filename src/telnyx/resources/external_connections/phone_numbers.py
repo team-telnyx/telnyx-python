@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -76,7 +76,9 @@ class PhoneNumbersResource(SyncAPIResource):
         if not phone_number_id:
             raise ValueError(f"Expected a non-empty value for `phone_number_id` but received {phone_number_id!r}")
         return self._get(
-            f"/external_connections/{id}/phone_numbers/{phone_number_id}",
+            path_template(
+                "/external_connections/{id}/phone_numbers/{phone_number_id}", id=id, phone_number_id=phone_number_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -116,7 +118,9 @@ class PhoneNumbersResource(SyncAPIResource):
         if not phone_number_id:
             raise ValueError(f"Expected a non-empty value for `phone_number_id` but received {phone_number_id!r}")
         return self._patch(
-            f"/external_connections/{id}/phone_numbers/{phone_number_id}",
+            path_template(
+                "/external_connections/{id}/phone_numbers/{phone_number_id}", id=id, phone_number_id=phone_number_id
+            ),
             body=maybe_transform({"location_id": location_id}, phone_number_update_params.PhoneNumberUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -157,7 +161,7 @@ class PhoneNumbersResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
-            f"/external_connections/{id}/phone_numbers",
+            path_template("/external_connections/{id}/phone_numbers", id=id),
             page=SyncDefaultFlatPagination[ExternalConnectionPhoneNumber],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -229,7 +233,9 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
         if not phone_number_id:
             raise ValueError(f"Expected a non-empty value for `phone_number_id` but received {phone_number_id!r}")
         return await self._get(
-            f"/external_connections/{id}/phone_numbers/{phone_number_id}",
+            path_template(
+                "/external_connections/{id}/phone_numbers/{phone_number_id}", id=id, phone_number_id=phone_number_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -269,7 +275,9 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
         if not phone_number_id:
             raise ValueError(f"Expected a non-empty value for `phone_number_id` but received {phone_number_id!r}")
         return await self._patch(
-            f"/external_connections/{id}/phone_numbers/{phone_number_id}",
+            path_template(
+                "/external_connections/{id}/phone_numbers/{phone_number_id}", id=id, phone_number_id=phone_number_id
+            ),
             body=await async_maybe_transform(
                 {"location_id": location_id}, phone_number_update_params.PhoneNumberUpdateParams
             ),
@@ -312,7 +320,7 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
-            f"/external_connections/{id}/phone_numbers",
+            path_template("/external_connections/{id}/phone_numbers", id=id),
             page=AsyncDefaultFlatPagination[ExternalConnectionPhoneNumber],
             options=make_request_options(
                 extra_headers=extra_headers,

@@ -6,7 +6,7 @@ import httpx
 
 from ..types import room_participant_list_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import maybe_transform
+from .._utils import path_template, maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -73,7 +73,7 @@ class RoomParticipantsResource(SyncAPIResource):
                 f"Expected a non-empty value for `room_participant_id` but received {room_participant_id!r}"
             )
         return self._get(
-            f"/room_participants/{room_participant_id}",
+            path_template("/room_participants/{room_participant_id}", room_participant_id=room_participant_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -184,7 +184,7 @@ class AsyncRoomParticipantsResource(AsyncAPIResource):
                 f"Expected a non-empty value for `room_participant_id` but received {room_participant_id!r}"
             )
         return await self._get(
-            f"/room_participants/{room_participant_id}",
+            path_template("/room_participants/{room_participant_id}", room_participant_id=room_participant_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

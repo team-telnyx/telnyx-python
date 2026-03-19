@@ -7,7 +7,7 @@ from typing import Dict, List, Iterable
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -85,7 +85,9 @@ class VersionsResource(SyncAPIResource):
         if not version_id:
             raise ValueError(f"Expected a non-empty value for `version_id` but received {version_id!r}")
         return self._get(
-            f"/ai/assistants/{assistant_id}/versions/{version_id}",
+            path_template(
+                "/ai/assistants/{assistant_id}/versions/{version_id}", assistant_id=assistant_id, version_id=version_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -178,7 +180,9 @@ class VersionsResource(SyncAPIResource):
         if not version_id:
             raise ValueError(f"Expected a non-empty value for `version_id` but received {version_id!r}")
         return self._post(
-            f"/ai/assistants/{assistant_id}/versions/{version_id}",
+            path_template(
+                "/ai/assistants/{assistant_id}/versions/{version_id}", assistant_id=assistant_id, version_id=version_id
+            ),
             body=maybe_transform(
                 {
                     "description": description,
@@ -234,7 +238,7 @@ class VersionsResource(SyncAPIResource):
         if not assistant_id:
             raise ValueError(f"Expected a non-empty value for `assistant_id` but received {assistant_id!r}")
         return self._get(
-            f"/ai/assistants/{assistant_id}/versions",
+            path_template("/ai/assistants/{assistant_id}/versions", assistant_id=assistant_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -273,7 +277,9 @@ class VersionsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `version_id` but received {version_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/ai/assistants/{assistant_id}/versions/{version_id}",
+            path_template(
+                "/ai/assistants/{assistant_id}/versions/{version_id}", assistant_id=assistant_id, version_id=version_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -311,7 +317,11 @@ class VersionsResource(SyncAPIResource):
         if not version_id:
             raise ValueError(f"Expected a non-empty value for `version_id` but received {version_id!r}")
         return self._post(
-            f"/ai/assistants/{assistant_id}/versions/{version_id}/promote",
+            path_template(
+                "/ai/assistants/{assistant_id}/versions/{version_id}/promote",
+                assistant_id=assistant_id,
+                version_id=version_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -371,7 +381,9 @@ class AsyncVersionsResource(AsyncAPIResource):
         if not version_id:
             raise ValueError(f"Expected a non-empty value for `version_id` but received {version_id!r}")
         return await self._get(
-            f"/ai/assistants/{assistant_id}/versions/{version_id}",
+            path_template(
+                "/ai/assistants/{assistant_id}/versions/{version_id}", assistant_id=assistant_id, version_id=version_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -464,7 +476,9 @@ class AsyncVersionsResource(AsyncAPIResource):
         if not version_id:
             raise ValueError(f"Expected a non-empty value for `version_id` but received {version_id!r}")
         return await self._post(
-            f"/ai/assistants/{assistant_id}/versions/{version_id}",
+            path_template(
+                "/ai/assistants/{assistant_id}/versions/{version_id}", assistant_id=assistant_id, version_id=version_id
+            ),
             body=await async_maybe_transform(
                 {
                     "description": description,
@@ -520,7 +534,7 @@ class AsyncVersionsResource(AsyncAPIResource):
         if not assistant_id:
             raise ValueError(f"Expected a non-empty value for `assistant_id` but received {assistant_id!r}")
         return await self._get(
-            f"/ai/assistants/{assistant_id}/versions",
+            path_template("/ai/assistants/{assistant_id}/versions", assistant_id=assistant_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -559,7 +573,9 @@ class AsyncVersionsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `version_id` but received {version_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/ai/assistants/{assistant_id}/versions/{version_id}",
+            path_template(
+                "/ai/assistants/{assistant_id}/versions/{version_id}", assistant_id=assistant_id, version_id=version_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -597,7 +613,11 @@ class AsyncVersionsResource(AsyncAPIResource):
         if not version_id:
             raise ValueError(f"Expected a non-empty value for `version_id` but received {version_id!r}")
         return await self._post(
-            f"/ai/assistants/{assistant_id}/versions/{version_id}/promote",
+            path_template(
+                "/ai/assistants/{assistant_id}/versions/{version_id}/promote",
+                assistant_id=assistant_id,
+                version_id=version_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

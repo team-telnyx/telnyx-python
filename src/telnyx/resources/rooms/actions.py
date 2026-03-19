@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -82,7 +82,7 @@ class ActionsResource(SyncAPIResource):
         if not room_id:
             raise ValueError(f"Expected a non-empty value for `room_id` but received {room_id!r}")
         return self._post(
-            f"/rooms/{room_id}/actions/generate_join_client_token",
+            path_template("/rooms/{room_id}/actions/generate_join_client_token", room_id=room_id),
             body=maybe_transform(
                 {
                     "refresh_token_ttl_secs": refresh_token_ttl_secs,
@@ -129,7 +129,7 @@ class ActionsResource(SyncAPIResource):
         if not room_id:
             raise ValueError(f"Expected a non-empty value for `room_id` but received {room_id!r}")
         return self._post(
-            f"/rooms/{room_id}/actions/refresh_client_token",
+            path_template("/rooms/{room_id}/actions/refresh_client_token", room_id=room_id),
             body=maybe_transform(
                 {
                     "refresh_token": refresh_token,
@@ -204,7 +204,7 @@ class AsyncActionsResource(AsyncAPIResource):
         if not room_id:
             raise ValueError(f"Expected a non-empty value for `room_id` but received {room_id!r}")
         return await self._post(
-            f"/rooms/{room_id}/actions/generate_join_client_token",
+            path_template("/rooms/{room_id}/actions/generate_join_client_token", room_id=room_id),
             body=await async_maybe_transform(
                 {
                     "refresh_token_ttl_secs": refresh_token_ttl_secs,
@@ -251,7 +251,7 @@ class AsyncActionsResource(AsyncAPIResource):
         if not room_id:
             raise ValueError(f"Expected a non-empty value for `room_id` but received {room_id!r}")
         return await self._post(
-            f"/rooms/{room_id}/actions/refresh_client_token",
+            path_template("/rooms/{room_id}/actions/refresh_client_token", room_id=room_id),
             body=await async_maybe_transform(
                 {
                     "refresh_token": refresh_token,

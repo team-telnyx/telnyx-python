@@ -6,7 +6,7 @@ import httpx
 
 from ..types import short_code_list_params, short_code_update_params
 from .._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -72,7 +72,7 @@ class ShortCodesResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
-            f"/short_codes/{id}",
+            path_template("/short_codes/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -112,7 +112,7 @@ class ShortCodesResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._patch(
-            f"/short_codes/{id}",
+            path_template("/short_codes/{id}", id=id),
             body=maybe_transform(
                 {
                     "messaging_profile_id": messaging_profile_id,
@@ -224,7 +224,7 @@ class AsyncShortCodesResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
-            f"/short_codes/{id}",
+            path_template("/short_codes/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -264,7 +264,7 @@ class AsyncShortCodesResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._patch(
-            f"/short_codes/{id}",
+            path_template("/short_codes/{id}", id=id),
             body=await async_maybe_transform(
                 {
                     "messaging_profile_id": messaging_profile_id,

@@ -6,7 +6,7 @@ import httpx
 
 from ..types import mobile_push_credential_list_params, mobile_push_credential_create_params
 from .._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -106,7 +106,7 @@ class MobilePushCredentialsResource(SyncAPIResource):
         if not push_credential_id:
             raise ValueError(f"Expected a non-empty value for `push_credential_id` but received {push_credential_id!r}")
         return self._get(
-            f"/mobile_push_credentials/{push_credential_id}",
+            path_template("/mobile_push_credentials/{push_credential_id}", push_credential_id=push_credential_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -188,7 +188,7 @@ class MobilePushCredentialsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `push_credential_id` but received {push_credential_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/mobile_push_credentials/{push_credential_id}",
+            path_template("/mobile_push_credentials/{push_credential_id}", push_credential_id=push_credential_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -279,7 +279,7 @@ class AsyncMobilePushCredentialsResource(AsyncAPIResource):
         if not push_credential_id:
             raise ValueError(f"Expected a non-empty value for `push_credential_id` but received {push_credential_id!r}")
         return await self._get(
-            f"/mobile_push_credentials/{push_credential_id}",
+            path_template("/mobile_push_credentials/{push_credential_id}", push_credential_id=push_credential_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -361,7 +361,7 @@ class AsyncMobilePushCredentialsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `push_credential_id` but received {push_credential_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/mobile_push_credentials/{push_credential_id}",
+            path_template("/mobile_push_credentials/{push_credential_id}", push_credential_id=push_credential_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

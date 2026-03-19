@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ......_types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ......_utils import maybe_transform, async_maybe_transform
+from ......_utils import path_template, maybe_transform, async_maybe_transform
 from ......_compat import cached_property
 from ......_resource import SyncAPIResource, AsyncAPIResource
 from ......_response import (
@@ -80,7 +80,7 @@ class RunsResource(SyncAPIResource):
         if not suite_name:
             raise ValueError(f"Expected a non-empty value for `suite_name` but received {suite_name!r}")
         return self._get_api_list(
-            f"/ai/assistants/tests/test-suites/{suite_name}/runs",
+            path_template("/ai/assistants/tests/test-suites/{suite_name}/runs", suite_name=suite_name),
             page=SyncDefaultFlatPagination[TestRunResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -131,7 +131,7 @@ class RunsResource(SyncAPIResource):
         if not suite_name:
             raise ValueError(f"Expected a non-empty value for `suite_name` but received {suite_name!r}")
         return self._post(
-            f"/ai/assistants/tests/test-suites/{suite_name}/runs",
+            path_template("/ai/assistants/tests/test-suites/{suite_name}/runs", suite_name=suite_name),
             body=maybe_transform(
                 {"destination_version_id": destination_version_id}, run_trigger_params.RunTriggerParams
             ),
@@ -199,7 +199,7 @@ class AsyncRunsResource(AsyncAPIResource):
         if not suite_name:
             raise ValueError(f"Expected a non-empty value for `suite_name` but received {suite_name!r}")
         return self._get_api_list(
-            f"/ai/assistants/tests/test-suites/{suite_name}/runs",
+            path_template("/ai/assistants/tests/test-suites/{suite_name}/runs", suite_name=suite_name),
             page=AsyncDefaultFlatPagination[TestRunResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -250,7 +250,7 @@ class AsyncRunsResource(AsyncAPIResource):
         if not suite_name:
             raise ValueError(f"Expected a non-empty value for `suite_name` but received {suite_name!r}")
         return await self._post(
-            f"/ai/assistants/tests/test-suites/{suite_name}/runs",
+            path_template("/ai/assistants/tests/test-suites/{suite_name}/runs", suite_name=suite_name),
             body=await async_maybe_transform(
                 {"destination_version_id": destination_version_id}, run_trigger_params.RunTriggerParams
             ),
