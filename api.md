@@ -3268,7 +3268,6 @@ Methods:
 - <code title="get /porting/loa_configurations">client.porting.loa_configurations.<a href="./src/telnyx/resources/porting/loa_configurations.py">list</a>(\*\*<a href="src/telnyx/types/porting/loa_configuration_list_params.py">params</a>) -> <a href="./src/telnyx/types/porting/porting_loa_configuration.py">SyncDefaultFlatPagination[PortingLoaConfiguration]</a></code>
 - <code title="delete /porting/loa_configurations/{id}">client.porting.loa_configurations.<a href="./src/telnyx/resources/porting/loa_configurations.py">delete</a>(id) -> None</code>
 - <code title="post /porting/loa_configurations/preview">client.porting.loa_configurations.<a href="./src/telnyx/resources/porting/loa_configurations.py">preview</a>(\*\*<a href="src/telnyx/types/porting/loa_configuration_preview_params.py">params</a>) -> BinaryAPIResponse</code>
-- <code title="post /porting/loa_configurations/preview">client.porting.loa_configurations.<a href="./src/telnyx/resources/porting/loa_configurations.py">preview_0</a>(\*\*<a href="src/telnyx/types/porting/loa_configuration_preview_0_params.py">params</a>) -> BinaryAPIResponse</code>
 - <code title="get /porting/loa_configurations/{id}/preview">client.porting.loa_configurations.<a href="./src/telnyx/resources/porting/loa_configurations.py">preview_1</a>(id) -> BinaryAPIResponse</code>
 
 # PortingOrders
@@ -4553,14 +4552,18 @@ Methods:
 Types:
 
 ```python
-from telnyx.types import TextToSpeechGenerateResponse, TextToSpeechListVoicesResponse
+from telnyx.types import (
+    TextToSpeechGenerateResponse,
+    TextToSpeechListVoicesResponse,
+    StreamClientEvent,
+    StreamServerEvent,
+)
 ```
 
 Methods:
 
 - <code title="post /text-to-speech/speech">client.text_to_speech.<a href="./src/telnyx/resources/text_to_speech.py">generate</a>(\*\*<a href="src/telnyx/types/text_to_speech_generate_params.py">params</a>) -> <a href="./src/telnyx/types/text_to_speech_generate_response.py">TextToSpeechGenerateResponse</a></code>
 - <code title="get /text-to-speech/voices">client.text_to_speech.<a href="./src/telnyx/resources/text_to_speech.py">list_voices</a>(\*\*<a href="src/telnyx/types/text_to_speech_list_voices_params.py">params</a>) -> <a href="./src/telnyx/types/text_to_speech_list_voices_response.py">TextToSpeechListVoicesResponse</a></code>
-- <code title="get /text-to-speech/speech">client.text_to_speech.<a href="./src/telnyx/resources/text_to_speech.py">stream</a>(\*\*<a href="src/telnyx/types/text_to_speech_stream_params.py">params</a>) -> None</code>
 
 # UsageReports
 
@@ -5369,25 +5372,40 @@ Methods:
 - <code title="patch /v2/whatsapp_message_templates/{id}">client.whatsapp_message_templates.<a href="./src/telnyx/resources/whatsapp_message_templates.py">update</a>(id, \*\*<a href="src/telnyx/types/whatsapp_message_template_update_params.py">params</a>) -> <a href="./src/telnyx/types/whatsapp_message_template_update_response.py">WhatsappMessageTemplateUpdateResponse</a></code>
 - <code title="delete /v2/whatsapp_message_templates/{id}">client.whatsapp_message_templates.<a href="./src/telnyx/resources/whatsapp_message_templates.py">delete</a>(id) -> None</code>
 
+# X402
+
+## CreditAccount
+
+Types:
+
+```python
+from telnyx.types.x402 import CreditAccountCreateQuoteResponse, CreditAccountSettleResponse
+```
+
+Methods:
+
+- <code title="post /v2/x402/credit_account/quote">client.x402.credit_account.<a href="./src/telnyx/resources/x402/credit_account.py">create_quote</a>(\*\*<a href="src/telnyx/types/x402/credit_account_create_quote_params.py">params</a>) -> <a href="./src/telnyx/types/x402/credit_account_create_quote_response.py">CreditAccountCreateQuoteResponse</a></code>
+- <code title="post /v2/x402/credit_account">client.x402.credit_account.<a href="./src/telnyx/resources/x402/credit_account.py">settle</a>(\*\*<a href="src/telnyx/types/x402/credit_account_settle_params.py">params</a>) -> <a href="./src/telnyx/types/x402/credit_account_settle_response.py">CreditAccountSettleResponse</a></code>
+
 # VoiceClones
 
 Types:
 
 ```python
 from telnyx.types import (
-    VoiceCloneData,
-    VoiceCloneCreateResponse,
     VoiceCloneUpdateResponse,
+    VoiceCloneListResponse,
+    VoiceCloneCreateFromDesignResponse,
     VoiceCloneCreateFromUploadResponse,
 )
 ```
 
 Methods:
 
-- <code title="post /voice_clones">client.voice_clones.<a href="./src/telnyx/resources/voice_clones.py">create</a>(\*\*<a href="src/telnyx/types/voice_clone_create_params.py">params</a>) -> <a href="./src/telnyx/types/voice_clone_create_response.py">VoiceCloneCreateResponse</a></code>
 - <code title="patch /voice_clones/{id}">client.voice_clones.<a href="./src/telnyx/resources/voice_clones.py">update</a>(id, \*\*<a href="src/telnyx/types/voice_clone_update_params.py">params</a>) -> <a href="./src/telnyx/types/voice_clone_update_response.py">VoiceCloneUpdateResponse</a></code>
-- <code title="get /voice_clones">client.voice_clones.<a href="./src/telnyx/resources/voice_clones.py">list</a>(\*\*<a href="src/telnyx/types/voice_clone_list_params.py">params</a>) -> <a href="./src/telnyx/types/voice_clone_data.py">SyncDefaultFlatPagination[VoiceCloneData]</a></code>
+- <code title="get /voice_clones">client.voice_clones.<a href="./src/telnyx/resources/voice_clones.py">list</a>(\*\*<a href="src/telnyx/types/voice_clone_list_params.py">params</a>) -> <a href="./src/telnyx/types/voice_clone_list_response.py">SyncDefaultFlatPagination[VoiceCloneListResponse]</a></code>
 - <code title="delete /voice_clones/{id}">client.voice_clones.<a href="./src/telnyx/resources/voice_clones.py">delete</a>(id) -> None</code>
+- <code title="post /voice_clones">client.voice_clones.<a href="./src/telnyx/resources/voice_clones.py">create_from_design</a>(\*\*<a href="src/telnyx/types/voice_clone_create_from_design_params.py">params</a>) -> <a href="./src/telnyx/types/voice_clone_create_from_design_response.py">VoiceCloneCreateFromDesignResponse</a></code>
 - <code title="post /voice_clones/from_upload">client.voice_clones.<a href="./src/telnyx/resources/voice_clones.py">create_from_upload</a>(\*\*<a href="src/telnyx/types/voice_clone_create_from_upload_params.py">params</a>) -> <a href="./src/telnyx/types/voice_clone_create_from_upload_response.py">VoiceCloneCreateFromUploadResponse</a></code>
 - <code title="get /voice_clones/{id}/sample">client.voice_clones.<a href="./src/telnyx/resources/voice_clones.py">download_sample</a>(id) -> BinaryAPIResponse</code>
 
@@ -5397,7 +5415,6 @@ Types:
 
 ```python
 from telnyx.types import (
-    VoiceDesignData,
     VoiceDesignCreateResponse,
     VoiceDesignRetrieveResponse,
     VoiceDesignListResponse,
@@ -5414,24 +5431,3 @@ Methods:
 - <code title="delete /voice_designs/{id}/versions/{version}">client.voice_designs.<a href="./src/telnyx/resources/voice_designs.py">delete_version</a>(version, \*, id) -> None</code>
 - <code title="get /voice_designs/{id}/sample">client.voice_designs.<a href="./src/telnyx/resources/voice_designs.py">download_sample</a>(id, \*\*<a href="src/telnyx/types/voice_design_download_sample_params.py">params</a>) -> BinaryAPIResponse</code>
 - <code title="patch /voice_designs/{id}">client.voice_designs.<a href="./src/telnyx/resources/voice_designs.py">rename</a>(id, \*\*<a href="src/telnyx/types/voice_design_rename_params.py">params</a>) -> <a href="./src/telnyx/types/voice_design_rename_response.py">VoiceDesignRenameResponse</a></code>
-
-# X402
-
-## CreditAccount
-
-Types:
-
-```python
-from telnyx.types.x402 import CreditAccountCreateQuoteResponse, CreditAccountSettleResponse
-```
-
-Methods:
-
-- <code title="post /v2/x402/credit_account/quote">client.x402.credit_account.<a href="./src/telnyx/resources/x402/credit_account.py">create_quote</a>(\*\*<a href="src/telnyx/types/x402/credit_account_create_quote_params.py">params</a>) -> <a href="./src/telnyx/types/x402/credit_account_create_quote_response.py">CreditAccountCreateQuoteResponse</a></code>
-- <code title="post /v2/x402/credit_account">client.x402.credit_account.<a href="./src/telnyx/resources/x402/credit_account.py">settle</a>(\*\*<a href="src/telnyx/types/x402/credit_account_settle_params.py">params</a>) -> <a href="./src/telnyx/types/x402/credit_account_settle_response.py">CreditAccountSettleResponse</a></code>
-
-# SpeechToText
-
-Methods:
-
-- <code title="get /speech-to-text/transcription">client.speech_to_text.<a href="./src/telnyx/resources/speech_to_text.py">transcribe</a>(\*\*<a href="src/telnyx/types/speech_to_text_transcribe_params.py">params</a>) -> None</code>

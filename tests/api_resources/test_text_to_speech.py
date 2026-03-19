@@ -53,7 +53,6 @@ class TestTextToSpeech:
                 "language_code": "language_code",
                 "voice_settings": {"foo": "bar"},
             },
-            inworld={"foo": "bar"},
             language="language",
             minimax={
                 "language_boost": "language_boost",
@@ -76,10 +75,12 @@ class TestTextToSpeech:
                 "voice_speed": 0,
             },
             telnyx={
+                "emotion": "neutral",
                 "response_format": "response_format",
                 "sampling_rate": 0,
                 "temperature": 0,
-                "voice_speed": 0,
+                "voice_speed": 0.5,
+                "volume": 0,
             },
             text="text",
             text_type="text",
@@ -186,7 +187,6 @@ class TestAsyncTextToSpeech:
                 "language_code": "language_code",
                 "voice_settings": {"foo": "bar"},
             },
-            inworld={"foo": "bar"},
             language="language",
             minimax={
                 "language_boost": "language_boost",
@@ -209,10 +209,12 @@ class TestAsyncTextToSpeech:
                 "voice_speed": 0,
             },
             telnyx={
+                "emotion": "neutral",
                 "response_format": "response_format",
                 "sampling_rate": 0,
                 "temperature": 0,
-                "voice_speed": 0,
+                "voice_speed": 0.5,
+                "volume": 0,
             },
             text="text",
             text_type="text",

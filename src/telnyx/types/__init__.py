@@ -128,7 +128,6 @@ from .stt_server_event import (
 )
 from .sub_number_order import SubNumberOrder as SubNumberOrder
 from .user_requirement import UserRequirement as UserRequirement
-from .voice_clone_data import VoiceCloneData as VoiceCloneData
 from .whatsapp_contact import WhatsappContact as WhatsappContact
 from .available_service import AvailableService as AvailableService
 from .call_fork_started import CallForkStarted as CallForkStarted
@@ -145,7 +144,6 @@ from .queue_list_params import QueueListParams as QueueListParams
 from .rcs_agent_message import RcsAgentMessage as RcsAgentMessage
 from .requirement_group import RequirementGroup as RequirementGroup
 from .texml_application import TexmlApplication as TexmlApplication
-from .voice_design_data import VoiceDesignData as VoiceDesignData
 from .whatsapp_location import WhatsappLocation as WhatsappLocation
 from .whatsapp_reaction import WhatsappReaction as WhatsappReaction
 from .call_dial_response import CallDialResponse as CallDialResponse
@@ -380,7 +378,10 @@ from .requirement_list_response import RequirementListResponse as RequirementLis
 from .sound_modifications_param import SoundModificationsParam as SoundModificationsParam
 from .stream_bidirectional_mode import StreamBidirectionalMode as StreamBidirectionalMode
 from .stream_client_event_param import StreamClientEventParam as StreamClientEventParam
+
 from .voice_clone_create_params import VoiceCloneCreateParams as VoiceCloneCreateParams
+from .voice_clone_list_response import VoiceCloneListResponse as VoiceCloneListResponse
+from .voice_clone_list_response import VoiceCloneListResponse as VoiceCloneListResponse
 from .voice_clone_update_params import VoiceCloneUpdateParams as VoiceCloneUpdateParams
 from .access_ip_address_response import AccessIPAddressResponse as AccessIPAddressResponse
 from .call_bridged_webhook_event import CallBridgedWebhookEvent as CallBridgedWebhookEvent
@@ -444,7 +445,6 @@ from .s3_configuration_data_param import S3ConfigurationDataParam as S3Configura
 from .transcription_webhook_event import TranscriptionWebhookEvent as TranscriptionWebhookEvent
 from .unsafe_unwrap_webhook_event import UnsafeUnwrapWebhookEvent as UnsafeUnwrapWebhookEvent
 from .verified_number_list_params import VerifiedNumberListParams as VerifiedNumberListParams
-from .voice_clone_create_response import VoiceCloneCreateResponse as VoiceCloneCreateResponse
 from .voice_clone_update_response import VoiceCloneUpdateResponse as VoiceCloneUpdateResponse
 from .advanced_order_create_params import AdvancedOrderCreateParams as AdvancedOrderCreateParams
 from .advanced_order_list_response import AdvancedOrderListResponse as AdvancedOrderListResponse
@@ -900,6 +900,7 @@ from .virtual_cross_connect_delete_response import (
 from .virtual_cross_connect_update_response import (
     VirtualCrossConnectUpdateResponse as VirtualCrossConnectUpdateResponse,
 )
+from .voice_clone_create_from_design_params import VoiceCloneCreateFromDesignParams as VoiceCloneCreateFromDesignParams
 from .voice_clone_create_from_upload_params import VoiceCloneCreateFromUploadParams as VoiceCloneCreateFromUploadParams
 from .wireguard_interface_retrieve_response import (
     WireguardInterfaceRetrieveResponse as WireguardInterfaceRetrieveResponse,
@@ -1056,6 +1057,9 @@ from .sub_number_order_regulatory_requirement import (
 )
 from .virtual_cross_connect_retrieve_response import (
     VirtualCrossConnectRetrieveResponse as VirtualCrossConnectRetrieveResponse,
+)
+from .voice_clone_create_from_design_response import (
+    VoiceCloneCreateFromDesignResponse as VoiceCloneCreateFromDesignResponse,
 )
 from .voice_clone_create_from_upload_response import (
     VoiceCloneCreateFromUploadResponse as VoiceCloneCreateFromUploadResponse,

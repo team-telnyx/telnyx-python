@@ -72,12 +72,10 @@ class TextToSpeechResource(SyncAPIResource):
         azure: text_to_speech_generate_params.Azure | Omit = omit,
         disable_cache: bool | Omit = omit,
         elevenlabs: text_to_speech_generate_params.Elevenlabs | Omit = omit,
-        inworld: Dict[str, object] | Omit = omit,
         language: str | Omit = omit,
         minimax: text_to_speech_generate_params.Minimax | Omit = omit,
         output_type: Literal["binary_output", "base64_output"] | Omit = omit,
-        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "rime", "resemble", "inworld"]
-        | Omit = omit,
+        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "rime", "resemble"] | Omit = omit,
         resemble: text_to_speech_generate_params.Resemble | Omit = omit,
         rime: text_to_speech_generate_params.Rime | Omit = omit,
         telnyx: text_to_speech_generate_params.Telnyx | Omit = omit,
@@ -102,12 +100,16 @@ class TextToSpeechResource(SyncAPIResource):
         header.
 
         The `voice` parameter provides a convenient shorthand to specify provider,
-        model, and voice in a single string (e.g. `telnyx.NaturalHD.Alloy`).
-        Alternatively, specify `provider` explicitly along with provider-specific
-        parameters.
+        model, and voice in a single string (e.g. `telnyx.NaturalHD.Alloy` or
+        `Telnyx.Ultra.<voice_id>`). Alternatively, specify `provider` explicitly along
+        with provider-specific parameters.
 
         Supported providers: `aws`, `telnyx`, `azure`, `elevenlabs`, `minimax`, `rime`,
-        `resemble`, `inworld`.
+        `resemble`.
+
+        The Telnyx `Ultra` model supports 44 languages with emotion control, speed
+        adjustment, and volume control. Use the `telnyx` provider-specific parameters to
+        configure these features.
 
         Args:
           aws: AWS Polly provider-specific parameters.
@@ -117,8 +119,6 @@ class TextToSpeechResource(SyncAPIResource):
           disable_cache: When `true`, bypass the audio cache and generate fresh audio.
 
           elevenlabs: ElevenLabs provider-specific parameters.
-
-          inworld: Inworld provider-specific parameters.
 
           language: Language code (e.g. `en-US`). Usage varies by provider.
 
@@ -133,7 +133,9 @@ class TextToSpeechResource(SyncAPIResource):
 
           rime: Rime provider-specific parameters.
 
-          telnyx: Telnyx provider-specific parameters.
+          telnyx: Telnyx provider-specific parameters. Use `voice_speed` and `temperature` for
+              `Natural` and `NaturalHD` models. For the `Ultra` model, use `voice_speed`,
+              `volume`, and `emotion`.
 
           text: The text to convert to speech.
 
@@ -141,9 +143,10 @@ class TextToSpeechResource(SyncAPIResource):
 
           voice: Voice identifier in the format `provider.model_id.voice_id` or
               `provider.voice_id`. Examples: `telnyx.NaturalHD.Alloy`,
-              `azure.en-US-AvaMultilingualNeural`, `aws.Polly.Generative.Lucia`. When
-              provided, `provider`, `model_id`, and `voice_id` are extracted automatically and
-              take precedence over individual parameters.
+              `Telnyx.Ultra.<voice_id>`, `azure.en-US-AvaMultilingualNeural`,
+              `aws.Polly.Generative.Lucia`. When provided, `provider`, `model_id`, and
+              `voice_id` are extracted automatically and take precedence over individual
+              parameters.
 
           voice_settings: Provider-specific voice settings. Contents vary by provider — see
               provider-specific parameter objects below.
@@ -164,7 +167,6 @@ class TextToSpeechResource(SyncAPIResource):
                     "azure": azure,
                     "disable_cache": disable_cache,
                     "elevenlabs": elevenlabs,
-                    "inworld": inworld,
                     "language": language,
                     "minimax": minimax,
                     "output_type": output_type,
@@ -189,8 +191,7 @@ class TextToSpeechResource(SyncAPIResource):
         self,
         *,
         api_key: str | Omit = omit,
-        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "rime", "resemble", "inworld"]
-        | Omit = omit,
+        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "rime", "resemble"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -280,12 +281,10 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
         azure: text_to_speech_generate_params.Azure | Omit = omit,
         disable_cache: bool | Omit = omit,
         elevenlabs: text_to_speech_generate_params.Elevenlabs | Omit = omit,
-        inworld: Dict[str, object] | Omit = omit,
         language: str | Omit = omit,
         minimax: text_to_speech_generate_params.Minimax | Omit = omit,
         output_type: Literal["binary_output", "base64_output"] | Omit = omit,
-        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "rime", "resemble", "inworld"]
-        | Omit = omit,
+        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "rime", "resemble"] | Omit = omit,
         resemble: text_to_speech_generate_params.Resemble | Omit = omit,
         rime: text_to_speech_generate_params.Rime | Omit = omit,
         telnyx: text_to_speech_generate_params.Telnyx | Omit = omit,
@@ -310,12 +309,16 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
         header.
 
         The `voice` parameter provides a convenient shorthand to specify provider,
-        model, and voice in a single string (e.g. `telnyx.NaturalHD.Alloy`).
-        Alternatively, specify `provider` explicitly along with provider-specific
-        parameters.
+        model, and voice in a single string (e.g. `telnyx.NaturalHD.Alloy` or
+        `Telnyx.Ultra.<voice_id>`). Alternatively, specify `provider` explicitly along
+        with provider-specific parameters.
 
         Supported providers: `aws`, `telnyx`, `azure`, `elevenlabs`, `minimax`, `rime`,
-        `resemble`, `inworld`.
+        `resemble`.
+
+        The Telnyx `Ultra` model supports 44 languages with emotion control, speed
+        adjustment, and volume control. Use the `telnyx` provider-specific parameters to
+        configure these features.
 
         Args:
           aws: AWS Polly provider-specific parameters.
@@ -325,8 +328,6 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
           disable_cache: When `true`, bypass the audio cache and generate fresh audio.
 
           elevenlabs: ElevenLabs provider-specific parameters.
-
-          inworld: Inworld provider-specific parameters.
 
           language: Language code (e.g. `en-US`). Usage varies by provider.
 
@@ -341,7 +342,9 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
 
           rime: Rime provider-specific parameters.
 
-          telnyx: Telnyx provider-specific parameters.
+          telnyx: Telnyx provider-specific parameters. Use `voice_speed` and `temperature` for
+              `Natural` and `NaturalHD` models. For the `Ultra` model, use `voice_speed`,
+              `volume`, and `emotion`.
 
           text: The text to convert to speech.
 
@@ -349,9 +352,10 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
 
           voice: Voice identifier in the format `provider.model_id.voice_id` or
               `provider.voice_id`. Examples: `telnyx.NaturalHD.Alloy`,
-              `azure.en-US-AvaMultilingualNeural`, `aws.Polly.Generative.Lucia`. When
-              provided, `provider`, `model_id`, and `voice_id` are extracted automatically and
-              take precedence over individual parameters.
+              `Telnyx.Ultra.<voice_id>`, `azure.en-US-AvaMultilingualNeural`,
+              `aws.Polly.Generative.Lucia`. When provided, `provider`, `model_id`, and
+              `voice_id` are extracted automatically and take precedence over individual
+              parameters.
 
           voice_settings: Provider-specific voice settings. Contents vary by provider — see
               provider-specific parameter objects below.
@@ -372,7 +376,6 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
                     "azure": azure,
                     "disable_cache": disable_cache,
                     "elevenlabs": elevenlabs,
-                    "inworld": inworld,
                     "language": language,
                     "minimax": minimax,
                     "output_type": output_type,
@@ -397,8 +400,7 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
         self,
         *,
         api_key: str | Omit = omit,
-        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "rime", "resemble", "inworld"]
-        | Omit = omit,
+        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "rime", "resemble"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
