@@ -6,7 +6,7 @@ from typing_extensions import Literal
 
 from .._models import BaseModel
 
-__all__ = ["VoiceCloneCreateFromDesignResponse", "Data"]
+__all__ = ["VoiceCloneCreateResponse", "Data"]
 
 
 class Data(BaseModel):
@@ -46,7 +46,7 @@ class Data(BaseModel):
     """Timestamp when the voice clone was last updated."""
 
 
-class VoiceCloneCreateFromDesignResponse(BaseModel):
+class VoiceCloneCreateResponse(BaseModel):
     """Response envelope for a single voice clone."""
 
     data: Optional[Data] = None
