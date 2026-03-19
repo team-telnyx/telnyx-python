@@ -33,6 +33,7 @@ from telnyx.types import (
     SimCardStatus,
     SimpleSimCard,
     SubNumberOrderRegulatoryRequirementWithValue,
+    WhatsappTemplateData,
 )
 ```
 
@@ -3269,6 +3270,7 @@ Methods:
 - <code title="get /porting/loa_configurations">client.porting.loa_configurations.<a href="./src/telnyx/resources/porting/loa_configurations.py">list</a>(\*\*<a href="src/telnyx/types/porting/loa_configuration_list_params.py">params</a>) -> <a href="./src/telnyx/types/porting/porting_loa_configuration.py">SyncDefaultFlatPagination[PortingLoaConfiguration]</a></code>
 - <code title="delete /porting/loa_configurations/{id}">client.porting.loa_configurations.<a href="./src/telnyx/resources/porting/loa_configurations.py">delete</a>(id) -> None</code>
 - <code title="post /porting/loa_configurations/preview">client.porting.loa_configurations.<a href="./src/telnyx/resources/porting/loa_configurations.py">preview</a>(\*\*<a href="src/telnyx/types/porting/loa_configuration_preview_params.py">params</a>) -> BinaryAPIResponse</code>
+- <code title="post /porting/loa_configurations/preview">client.porting.loa_configurations.<a href="./src/telnyx/resources/porting/loa_configurations.py">preview_0</a>(\*\*<a href="src/telnyx/types/porting/loa_configuration_preview_0_params.py">params</a>) -> BinaryAPIResponse</code>
 - <code title="get /porting/loa_configurations/{id}/preview">client.porting.loa_configurations.<a href="./src/telnyx/resources/porting/loa_configurations.py">preview_1</a>(id) -> BinaryAPIResponse</code>
 
 # PortingOrders
@@ -4102,6 +4104,7 @@ Types:
 
 ```python
 from telnyx.types.sim_cards import (
+    BulkSimCardAction,
     SimCardAction,
     ActionRetrieveResponse,
     ActionBulkDisableVoiceResponse,
@@ -5292,7 +5295,11 @@ Methods:
 Types:
 
 ```python
-from telnyx.types.whatsapp.business_accounts import SettingRetrieveResponse, SettingUpdateResponse
+from telnyx.types.whatsapp.business_accounts import (
+    WabaSettings,
+    SettingRetrieveResponse,
+    SettingUpdateResponse,
+)
 ```
 
 Methods:
@@ -5305,13 +5312,20 @@ Methods:
 Types:
 
 ```python
-from telnyx.types.whatsapp import MessageTemplateCreateResponse, MessageTemplateListResponse
+from telnyx.types.whatsapp import (
+    MessageTemplateCreateResponse,
+    MessageTemplateRetrieveResponse,
+    MessageTemplateUpdateResponse,
+)
 ```
 
 Methods:
 
 - <code title="post /v2/whatsapp/message_templates">client.whatsapp.message_templates.<a href="./src/telnyx/resources/whatsapp/message_templates.py">create</a>(\*\*<a href="src/telnyx/types/whatsapp/message_template_create_params.py">params</a>) -> <a href="./src/telnyx/types/whatsapp/message_template_create_response.py">MessageTemplateCreateResponse</a></code>
-- <code title="get /v2/whatsapp/message_templates">client.whatsapp.message_templates.<a href="./src/telnyx/resources/whatsapp/message_templates.py">list</a>(\*\*<a href="src/telnyx/types/whatsapp/message_template_list_params.py">params</a>) -> <a href="./src/telnyx/types/whatsapp/message_template_list_response.py">SyncDefaultFlatPagination[MessageTemplateListResponse]</a></code>
+- <code title="get /v2/whatsapp_message_templates/{id}">client.whatsapp.message_templates.<a href="./src/telnyx/resources/whatsapp/message_templates.py">retrieve</a>(id) -> <a href="./src/telnyx/types/whatsapp/message_template_retrieve_response.py">MessageTemplateRetrieveResponse</a></code>
+- <code title="patch /v2/whatsapp_message_templates/{id}">client.whatsapp.message_templates.<a href="./src/telnyx/resources/whatsapp/message_templates.py">update</a>(id, \*\*<a href="src/telnyx/types/whatsapp/message_template_update_params.py">params</a>) -> <a href="./src/telnyx/types/whatsapp/message_template_update_response.py">MessageTemplateUpdateResponse</a></code>
+- <code title="get /v2/whatsapp/message_templates">client.whatsapp.message_templates.<a href="./src/telnyx/resources/whatsapp/message_templates.py">list</a>(\*\*<a href="src/telnyx/types/whatsapp/message_template_list_params.py">params</a>) -> <a href="./src/telnyx/types/shared/whatsapp_template_data.py">SyncDefaultFlatPagination[WhatsappTemplateData]</a></code>
+- <code title="delete /v2/whatsapp_message_templates/{id}">client.whatsapp.message_templates.<a href="./src/telnyx/resources/whatsapp/message_templates.py">delete</a>(id) -> None</code>
 
 ## PhoneNumbers
 
@@ -5334,6 +5348,7 @@ Types:
 
 ```python
 from telnyx.types.whatsapp.phone_numbers import (
+    WhatsappCallingSettingsData,
     CallingSettingRetrieveResponse,
     CallingSettingUpdateResponse,
 )
@@ -5369,23 +5384,6 @@ Methods:
 
 - <code title="delete /v2/whatsapp/phone_numbers/{phone_number}/profile/photo">client.whatsapp.phone_numbers.profile.photo.<a href="./src/telnyx/resources/whatsapp/phone_numbers/profile/photo.py">delete</a>(phone_number) -> None</code>
 - <code title="post /v2/whatsapp/phone_numbers/{phone_number}/profile/photo">client.whatsapp.phone_numbers.profile.photo.<a href="./src/telnyx/resources/whatsapp/phone_numbers/profile/photo.py">upload</a>(phone_number, \*\*<a href="src/telnyx/types/whatsapp/phone_numbers/profile/photo_upload_params.py">params</a>) -> <a href="./src/telnyx/types/whatsapp/phone_numbers/profile/photo_upload_response.py">PhotoUploadResponse</a></code>
-
-# WhatsappMessageTemplates
-
-Types:
-
-```python
-from telnyx.types import (
-    WhatsappMessageTemplateRetrieveResponse,
-    WhatsappMessageTemplateUpdateResponse,
-)
-```
-
-Methods:
-
-- <code title="get /v2/whatsapp_message_templates/{id}">client.whatsapp_message_templates.<a href="./src/telnyx/resources/whatsapp_message_templates.py">retrieve</a>(id) -> <a href="./src/telnyx/types/whatsapp_message_template_retrieve_response.py">WhatsappMessageTemplateRetrieveResponse</a></code>
-- <code title="patch /v2/whatsapp_message_templates/{id}">client.whatsapp_message_templates.<a href="./src/telnyx/resources/whatsapp_message_templates.py">update</a>(id, \*\*<a href="src/telnyx/types/whatsapp_message_template_update_params.py">params</a>) -> <a href="./src/telnyx/types/whatsapp_message_template_update_response.py">WhatsappMessageTemplateUpdateResponse</a></code>
-- <code title="delete /v2/whatsapp_message_templates/{id}">client.whatsapp_message_templates.<a href="./src/telnyx/resources/whatsapp_message_templates.py">delete</a>(id) -> None</code>
 
 # X402
 

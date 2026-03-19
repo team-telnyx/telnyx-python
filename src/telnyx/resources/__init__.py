@@ -1145,14 +1145,6 @@ from .number_order_phone_numbers import (
     NumberOrderPhoneNumbersResourceWithStreamingResponse,
     AsyncNumberOrderPhoneNumbersResourceWithStreamingResponse,
 )
-from .whatsapp_message_templates import (
-    WhatsappMessageTemplatesResource,
-    AsyncWhatsappMessageTemplatesResource,
-    WhatsappMessageTemplatesResourceWithRawResponse,
-    AsyncWhatsappMessageTemplatesResourceWithRawResponse,
-    WhatsappMessageTemplatesResourceWithStreamingResponse,
-    AsyncWhatsappMessageTemplatesResourceWithStreamingResponse,
-)
 from .dynamic_emergency_addresses import (
     DynamicEmergencyAddressesResource,
     AsyncDynamicEmergencyAddressesResource,
@@ -2184,12 +2176,6 @@ __all__ = [
     "AsyncWhatsappResourceWithRawResponse",
     "WhatsappResourceWithStreamingResponse",
     "AsyncWhatsappResourceWithStreamingResponse",
-    "WhatsappMessageTemplatesResource",
-    "AsyncWhatsappMessageTemplatesResource",
-    "WhatsappMessageTemplatesResourceWithRawResponse",
-    "AsyncWhatsappMessageTemplatesResourceWithRawResponse",
-    "WhatsappMessageTemplatesResourceWithStreamingResponse",
-    "AsyncWhatsappMessageTemplatesResourceWithStreamingResponse",
     "X402Resource",
     "AsyncX402Resource",
     "X402ResourceWithRawResponse",

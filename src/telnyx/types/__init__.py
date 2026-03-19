@@ -30,6 +30,7 @@ from .shared import (
     MessagingFeatureSet as MessagingFeatureSet,
     NumberHealthMetrics as NumberHealthMetrics,
     MinimaxVoiceSettings as MinimaxVoiceSettings,
+    WhatsappTemplateData as WhatsappTemplateData,
     InboundMessagePayload as InboundMessagePayload,
     ResembleVoiceSettings as ResembleVoiceSettings,
     ConnectionJitterBuffer as ConnectionJitterBuffer,
@@ -1073,9 +1074,6 @@ from .virtual_cross_connect_retrieve_response import (
 from .voice_clone_create_from_upload_response import (
     VoiceCloneCreateFromUploadResponse as VoiceCloneCreateFromUploadResponse,
 )
-from .whatsapp_message_template_update_params import (
-    WhatsappMessageTemplateUpdateParams as WhatsappMessageTemplateUpdateParams,
-)
 from .wireguard_peer_retrieve_config_response import (
     WireguardPeerRetrieveConfigResponse as WireguardPeerRetrieveConfigResponse,
 )
@@ -1196,9 +1194,6 @@ from .public_internet_gateway_retrieve_response import (
 from .recording_transcription_retrieve_response import (
     RecordingTranscriptionRetrieveResponse as RecordingTranscriptionRetrieveResponse,
 )
-from .whatsapp_message_template_update_response import (
-    WhatsappMessageTemplateUpdateResponse as WhatsappMessageTemplateUpdateResponse,
-)
 from .available_phone_number_block_list_response import (
     AvailablePhoneNumberBlockListResponse as AvailablePhoneNumberBlockListResponse,
 )
@@ -1291,9 +1286,6 @@ from .traffic_policy_profile_list_services_params import (
 )
 from .virtual_cross_connects_coverage_list_params import (
     VirtualCrossConnectsCoverageListParams as VirtualCrossConnectsCoverageListParams,
-)
-from .whatsapp_message_template_retrieve_response import (
-    WhatsappMessageTemplateRetrieveResponse as WhatsappMessageTemplateRetrieveResponse,
 )
 from .bulk_messaging_settings_update_phone_numbers import (
     BulkMessagingSettingsUpdatePhoneNumbers as BulkMessagingSettingsUpdatePhoneNumbers,
