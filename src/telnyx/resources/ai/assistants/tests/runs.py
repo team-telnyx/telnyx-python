@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ....._utils import maybe_transform, async_maybe_transform
+from ....._utils import path_template, maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -73,7 +73,7 @@ class RunsResource(SyncAPIResource):
         if not run_id:
             raise ValueError(f"Expected a non-empty value for `run_id` but received {run_id!r}")
         return self._get(
-            f"/ai/assistants/tests/{test_id}/runs/{run_id}",
+            path_template("/ai/assistants/tests/{test_id}/runs/{run_id}", test_id=test_id, run_id=run_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -112,7 +112,7 @@ class RunsResource(SyncAPIResource):
         if not test_id:
             raise ValueError(f"Expected a non-empty value for `test_id` but received {test_id!r}")
         return self._get_api_list(
-            f"/ai/assistants/tests/{test_id}/runs",
+            path_template("/ai/assistants/tests/{test_id}/runs", test_id=test_id),
             page=SyncDefaultFlatPagination[TestRunResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -162,7 +162,7 @@ class RunsResource(SyncAPIResource):
         if not test_id:
             raise ValueError(f"Expected a non-empty value for `test_id` but received {test_id!r}")
         return self._post(
-            f"/ai/assistants/tests/{test_id}/runs",
+            path_template("/ai/assistants/tests/{test_id}/runs", test_id=test_id),
             body=maybe_transform(
                 {"destination_version_id": destination_version_id}, run_trigger_params.RunTriggerParams
             ),
@@ -224,7 +224,7 @@ class AsyncRunsResource(AsyncAPIResource):
         if not run_id:
             raise ValueError(f"Expected a non-empty value for `run_id` but received {run_id!r}")
         return await self._get(
-            f"/ai/assistants/tests/{test_id}/runs/{run_id}",
+            path_template("/ai/assistants/tests/{test_id}/runs/{run_id}", test_id=test_id, run_id=run_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -263,7 +263,7 @@ class AsyncRunsResource(AsyncAPIResource):
         if not test_id:
             raise ValueError(f"Expected a non-empty value for `test_id` but received {test_id!r}")
         return self._get_api_list(
-            f"/ai/assistants/tests/{test_id}/runs",
+            path_template("/ai/assistants/tests/{test_id}/runs", test_id=test_id),
             page=AsyncDefaultFlatPagination[TestRunResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -313,7 +313,7 @@ class AsyncRunsResource(AsyncAPIResource):
         if not test_id:
             raise ValueError(f"Expected a non-empty value for `test_id` but received {test_id!r}")
         return await self._post(
-            f"/ai/assistants/tests/{test_id}/runs",
+            path_template("/ai/assistants/tests/{test_id}/runs", test_id=test_id),
             body=await async_maybe_transform(
                 {"destination_version_id": destination_version_id}, run_trigger_params.RunTriggerParams
             ),

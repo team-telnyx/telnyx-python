@@ -8,6 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import Body, Query, Headers, NotGiven, not_given
+from ..._utils import path_template
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -164,7 +165,7 @@ class Messaging10dlcResource(SyncAPIResource):
         return cast(
             Messaging10dlcGetEnumResponse,
             self._get(
-                f"/10dlc/enum/{endpoint}",
+                path_template("/10dlc/enum/{endpoint}", endpoint=endpoint),
                 options=make_request_options(
                     extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
                 ),
@@ -269,7 +270,7 @@ class AsyncMessaging10dlcResource(AsyncAPIResource):
         return cast(
             Messaging10dlcGetEnumResponse,
             await self._get(
-                f"/10dlc/enum/{endpoint}",
+                path_template("/10dlc/enum/{endpoint}", endpoint=endpoint),
                 options=make_request_options(
                     extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
                 ),

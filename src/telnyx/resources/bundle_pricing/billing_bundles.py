@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, strip_not_given
+from ..._utils import path_template, maybe_transform, strip_not_given
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -75,7 +75,7 @@ class BillingBundlesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `bundle_id` but received {bundle_id!r}")
         extra_headers = {**strip_not_given({"authorization_bearer": authorization_bearer}), **(extra_headers or {})}
         return self._get(
-            f"/bundle_pricing/billing_bundles/{bundle_id}",
+            path_template("/bundle_pricing/billing_bundles/{bundle_id}", bundle_id=bundle_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -188,7 +188,7 @@ class AsyncBillingBundlesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `bundle_id` but received {bundle_id!r}")
         extra_headers = {**strip_not_given({"authorization_bearer": authorization_bearer}), **(extra_headers or {})}
         return await self._get(
-            f"/bundle_pricing/billing_bundles/{bundle_id}",
+            path_template("/bundle_pricing/billing_bundles/{bundle_id}", bundle_id=bundle_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

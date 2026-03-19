@@ -6,7 +6,7 @@ import httpx
 
 from ..types import siprec_connector_create_params, siprec_connector_update_params
 from .._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -122,7 +122,7 @@ class SiprecConnectorsResource(SyncAPIResource):
         if not connector_name:
             raise ValueError(f"Expected a non-empty value for `connector_name` but received {connector_name!r}")
         return self._get(
-            f"/siprec_connectors/{connector_name}",
+            path_template("/siprec_connectors/{connector_name}", connector_name=connector_name),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -167,7 +167,7 @@ class SiprecConnectorsResource(SyncAPIResource):
         if not connector_name:
             raise ValueError(f"Expected a non-empty value for `connector_name` but received {connector_name!r}")
         return self._put(
-            f"/siprec_connectors/{connector_name}",
+            path_template("/siprec_connectors/{connector_name}", connector_name=connector_name),
             body=maybe_transform(
                 {
                     "host": host,
@@ -210,7 +210,7 @@ class SiprecConnectorsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `connector_name` but received {connector_name!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/siprec_connectors/{connector_name}",
+            path_template("/siprec_connectors/{connector_name}", connector_name=connector_name),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -317,7 +317,7 @@ class AsyncSiprecConnectorsResource(AsyncAPIResource):
         if not connector_name:
             raise ValueError(f"Expected a non-empty value for `connector_name` but received {connector_name!r}")
         return await self._get(
-            f"/siprec_connectors/{connector_name}",
+            path_template("/siprec_connectors/{connector_name}", connector_name=connector_name),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -362,7 +362,7 @@ class AsyncSiprecConnectorsResource(AsyncAPIResource):
         if not connector_name:
             raise ValueError(f"Expected a non-empty value for `connector_name` but received {connector_name!r}")
         return await self._put(
-            f"/siprec_connectors/{connector_name}",
+            path_template("/siprec_connectors/{connector_name}", connector_name=connector_name),
             body=await async_maybe_transform(
                 {
                     "host": host,
@@ -405,7 +405,7 @@ class AsyncSiprecConnectorsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `connector_name` but received {connector_name!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/siprec_connectors/{connector_name}",
+            path_template("/siprec_connectors/{connector_name}", connector_name=connector_name),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

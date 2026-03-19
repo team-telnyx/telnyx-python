@@ -16,7 +16,7 @@ from .queues import (
     AsyncQueuesResourceWithStreamingResponse,
 )
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from .calls.calls import (
     CallsResource,
@@ -148,7 +148,7 @@ class AccountsResource(SyncAPIResource):
         if not account_sid:
             raise ValueError(f"Expected a non-empty value for `account_sid` but received {account_sid!r}")
         return self._get(
-            f"/texml/Accounts/{account_sid}/Recordings.json",
+            path_template("/texml/Accounts/{account_sid}/Recordings.json", account_sid=account_sid),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -198,7 +198,7 @@ class AccountsResource(SyncAPIResource):
         if not account_sid:
             raise ValueError(f"Expected a non-empty value for `account_sid` but received {account_sid!r}")
         return self._get(
-            f"/texml/Accounts/{account_sid}/Transcriptions.json",
+            path_template("/texml/Accounts/{account_sid}/Transcriptions.json", account_sid=account_sid),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -299,7 +299,7 @@ class AsyncAccountsResource(AsyncAPIResource):
         if not account_sid:
             raise ValueError(f"Expected a non-empty value for `account_sid` but received {account_sid!r}")
         return await self._get(
-            f"/texml/Accounts/{account_sid}/Recordings.json",
+            path_template("/texml/Accounts/{account_sid}/Recordings.json", account_sid=account_sid),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -349,7 +349,7 @@ class AsyncAccountsResource(AsyncAPIResource):
         if not account_sid:
             raise ValueError(f"Expected a non-empty value for `account_sid` but received {account_sid!r}")
         return await self._get(
-            f"/texml/Accounts/{account_sid}/Transcriptions.json",
+            path_template("/texml/Accounts/{account_sid}/Transcriptions.json", account_sid=account_sid),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -75,7 +75,7 @@ class ActionsResource(SyncAPIResource):
         if not room_session_id:
             raise ValueError(f"Expected a non-empty value for `room_session_id` but received {room_session_id!r}")
         return self._post(
-            f"/room_sessions/{room_session_id}/actions/end",
+            path_template("/room_sessions/{room_session_id}/actions/end", room_session_id=room_session_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -115,7 +115,7 @@ class ActionsResource(SyncAPIResource):
         if not room_session_id:
             raise ValueError(f"Expected a non-empty value for `room_session_id` but received {room_session_id!r}")
         return self._post(
-            f"/room_sessions/{room_session_id}/actions/kick",
+            path_template("/room_sessions/{room_session_id}/actions/kick", room_session_id=room_session_id),
             body=maybe_transform(
                 {
                     "exclude": exclude,
@@ -162,7 +162,7 @@ class ActionsResource(SyncAPIResource):
         if not room_session_id:
             raise ValueError(f"Expected a non-empty value for `room_session_id` but received {room_session_id!r}")
         return self._post(
-            f"/room_sessions/{room_session_id}/actions/mute",
+            path_template("/room_sessions/{room_session_id}/actions/mute", room_session_id=room_session_id),
             body=maybe_transform(
                 {
                     "exclude": exclude,
@@ -209,7 +209,7 @@ class ActionsResource(SyncAPIResource):
         if not room_session_id:
             raise ValueError(f"Expected a non-empty value for `room_session_id` but received {room_session_id!r}")
         return self._post(
-            f"/room_sessions/{room_session_id}/actions/unmute",
+            path_template("/room_sessions/{room_session_id}/actions/unmute", room_session_id=room_session_id),
             body=maybe_transform(
                 {
                     "exclude": exclude,
@@ -272,7 +272,7 @@ class AsyncActionsResource(AsyncAPIResource):
         if not room_session_id:
             raise ValueError(f"Expected a non-empty value for `room_session_id` but received {room_session_id!r}")
         return await self._post(
-            f"/room_sessions/{room_session_id}/actions/end",
+            path_template("/room_sessions/{room_session_id}/actions/end", room_session_id=room_session_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -312,7 +312,7 @@ class AsyncActionsResource(AsyncAPIResource):
         if not room_session_id:
             raise ValueError(f"Expected a non-empty value for `room_session_id` but received {room_session_id!r}")
         return await self._post(
-            f"/room_sessions/{room_session_id}/actions/kick",
+            path_template("/room_sessions/{room_session_id}/actions/kick", room_session_id=room_session_id),
             body=await async_maybe_transform(
                 {
                     "exclude": exclude,
@@ -359,7 +359,7 @@ class AsyncActionsResource(AsyncAPIResource):
         if not room_session_id:
             raise ValueError(f"Expected a non-empty value for `room_session_id` but received {room_session_id!r}")
         return await self._post(
-            f"/room_sessions/{room_session_id}/actions/mute",
+            path_template("/room_sessions/{room_session_id}/actions/mute", room_session_id=room_session_id),
             body=await async_maybe_transform(
                 {
                     "exclude": exclude,
@@ -406,7 +406,7 @@ class AsyncActionsResource(AsyncAPIResource):
         if not room_session_id:
             raise ValueError(f"Expected a non-empty value for `room_session_id` but received {room_session_id!r}")
         return await self._post(
-            f"/room_sessions/{room_session_id}/actions/unmute",
+            path_template("/room_sessions/{room_session_id}/actions/unmute", room_session_id=room_session_id),
             body=await async_maybe_transform(
                 {
                     "exclude": exclude,

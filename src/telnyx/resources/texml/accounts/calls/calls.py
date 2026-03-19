@@ -24,7 +24,7 @@ from .streams import (
     AsyncStreamsResourceWithStreamingResponse,
 )
 from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ....._utils import maybe_transform, async_maybe_transform
+from ....._utils import path_template, maybe_transform, async_maybe_transform
 from .recordings import (
     RecordingsResource,
     AsyncRecordingsResource,
@@ -140,7 +140,7 @@ class CallsResource(SyncAPIResource):
         if not call_sid:
             raise ValueError(f"Expected a non-empty value for `call_sid` but received {call_sid!r}")
         return self._get(
-            f"/texml/Accounts/{account_sid}/Calls/{call_sid}",
+            path_template("/texml/Accounts/{account_sid}/Calls/{call_sid}", account_sid=account_sid, call_sid=call_sid),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -205,7 +205,7 @@ class CallsResource(SyncAPIResource):
         if not call_sid:
             raise ValueError(f"Expected a non-empty value for `call_sid` but received {call_sid!r}")
         return self._post(
-            f"/texml/Accounts/{account_sid}/Calls/{call_sid}",
+            path_template("/texml/Accounts/{account_sid}/Calls/{call_sid}", account_sid=account_sid, call_sid=call_sid),
             body=maybe_transform(
                 {
                     "fallback_method": fallback_method,
@@ -402,7 +402,7 @@ class CallsResource(SyncAPIResource):
         if not account_sid:
             raise ValueError(f"Expected a non-empty value for `account_sid` but received {account_sid!r}")
         return self._post(
-            f"/texml/Accounts/{account_sid}/Calls",
+            path_template("/texml/Accounts/{account_sid}/Calls", account_sid=account_sid),
             body=maybe_transform(
                 {
                     "application_sid": application_sid,
@@ -519,7 +519,7 @@ class CallsResource(SyncAPIResource):
         if not account_sid:
             raise ValueError(f"Expected a non-empty value for `account_sid` but received {account_sid!r}")
         return self._get(
-            f"/texml/Accounts/{account_sid}/Calls",
+            path_template("/texml/Accounts/{account_sid}/Calls", account_sid=account_sid),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -611,7 +611,9 @@ class CallsResource(SyncAPIResource):
         if not call_sid:
             raise ValueError(f"Expected a non-empty value for `call_sid` but received {call_sid!r}")
         return self._post(
-            f"/texml/Accounts/{account_sid}/Calls/{call_sid}/Siprec.json",
+            path_template(
+                "/texml/Accounts/{account_sid}/Calls/{call_sid}/Siprec.json", account_sid=account_sid, call_sid=call_sid
+            ),
             body=maybe_transform(
                 {
                     "connector_name": connector_name,
@@ -683,7 +685,11 @@ class CallsResource(SyncAPIResource):
         if not call_sid:
             raise ValueError(f"Expected a non-empty value for `call_sid` but received {call_sid!r}")
         return self._post(
-            f"/texml/Accounts/{account_sid}/Calls/{call_sid}/Streams.json",
+            path_template(
+                "/texml/Accounts/{account_sid}/Calls/{call_sid}/Streams.json",
+                account_sid=account_sid,
+                call_sid=call_sid,
+            ),
             body=maybe_transform(
                 {
                     "bidirectional_codec": bidirectional_codec,
@@ -776,7 +782,7 @@ class AsyncCallsResource(AsyncAPIResource):
         if not call_sid:
             raise ValueError(f"Expected a non-empty value for `call_sid` but received {call_sid!r}")
         return await self._get(
-            f"/texml/Accounts/{account_sid}/Calls/{call_sid}",
+            path_template("/texml/Accounts/{account_sid}/Calls/{call_sid}", account_sid=account_sid, call_sid=call_sid),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -841,7 +847,7 @@ class AsyncCallsResource(AsyncAPIResource):
         if not call_sid:
             raise ValueError(f"Expected a non-empty value for `call_sid` but received {call_sid!r}")
         return await self._post(
-            f"/texml/Accounts/{account_sid}/Calls/{call_sid}",
+            path_template("/texml/Accounts/{account_sid}/Calls/{call_sid}", account_sid=account_sid, call_sid=call_sid),
             body=await async_maybe_transform(
                 {
                     "fallback_method": fallback_method,
@@ -1038,7 +1044,7 @@ class AsyncCallsResource(AsyncAPIResource):
         if not account_sid:
             raise ValueError(f"Expected a non-empty value for `account_sid` but received {account_sid!r}")
         return await self._post(
-            f"/texml/Accounts/{account_sid}/Calls",
+            path_template("/texml/Accounts/{account_sid}/Calls", account_sid=account_sid),
             body=await async_maybe_transform(
                 {
                     "application_sid": application_sid,
@@ -1155,7 +1161,7 @@ class AsyncCallsResource(AsyncAPIResource):
         if not account_sid:
             raise ValueError(f"Expected a non-empty value for `account_sid` but received {account_sid!r}")
         return await self._get(
-            f"/texml/Accounts/{account_sid}/Calls",
+            path_template("/texml/Accounts/{account_sid}/Calls", account_sid=account_sid),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1247,7 +1253,9 @@ class AsyncCallsResource(AsyncAPIResource):
         if not call_sid:
             raise ValueError(f"Expected a non-empty value for `call_sid` but received {call_sid!r}")
         return await self._post(
-            f"/texml/Accounts/{account_sid}/Calls/{call_sid}/Siprec.json",
+            path_template(
+                "/texml/Accounts/{account_sid}/Calls/{call_sid}/Siprec.json", account_sid=account_sid, call_sid=call_sid
+            ),
             body=await async_maybe_transform(
                 {
                     "connector_name": connector_name,
@@ -1319,7 +1327,11 @@ class AsyncCallsResource(AsyncAPIResource):
         if not call_sid:
             raise ValueError(f"Expected a non-empty value for `call_sid` but received {call_sid!r}")
         return await self._post(
-            f"/texml/Accounts/{account_sid}/Calls/{call_sid}/Streams.json",
+            path_template(
+                "/texml/Accounts/{account_sid}/Calls/{call_sid}/Streams.json",
+                account_sid=account_sid,
+                call_sid=call_sid,
+            ),
             body=await async_maybe_transform(
                 {
                     "bidirectional_codec": bidirectional_codec,

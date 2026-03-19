@@ -7,7 +7,7 @@ from typing_extensions import Literal
 import httpx
 
 from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ....._utils import maybe_transform, async_maybe_transform
+from ....._utils import path_template, maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -80,7 +80,12 @@ class StreamsResource(SyncAPIResource):
         if not streaming_sid:
             raise ValueError(f"Expected a non-empty value for `streaming_sid` but received {streaming_sid!r}")
         return self._post(
-            f"/texml/Accounts/{account_sid}/Calls/{call_sid}/Streams/{streaming_sid}.json",
+            path_template(
+                "/texml/Accounts/{account_sid}/Calls/{call_sid}/Streams/{streaming_sid}.json",
+                account_sid=account_sid,
+                call_sid=call_sid,
+                streaming_sid=streaming_sid,
+            ),
             body=maybe_transform({"status": status}, stream_streaming_sid_json_params.StreamStreamingSidJsonParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -146,7 +151,12 @@ class AsyncStreamsResource(AsyncAPIResource):
         if not streaming_sid:
             raise ValueError(f"Expected a non-empty value for `streaming_sid` but received {streaming_sid!r}")
         return await self._post(
-            f"/texml/Accounts/{account_sid}/Calls/{call_sid}/Streams/{streaming_sid}.json",
+            path_template(
+                "/texml/Accounts/{account_sid}/Calls/{call_sid}/Streams/{streaming_sid}.json",
+                account_sid=account_sid,
+                call_sid=call_sid,
+                streaming_sid=streaming_sid,
+            ),
             body=await async_maybe_transform(
                 {"status": status}, stream_streaming_sid_json_params.StreamStreamingSidJsonParams
             ),

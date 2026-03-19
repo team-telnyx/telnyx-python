@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ....._utils import maybe_transform, async_maybe_transform
+from ....._utils import path_template, maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -78,7 +78,7 @@ class PlanResource(SyncAPIResource):
         if not run_id:
             raise ValueError(f"Expected a non-empty value for `run_id` but received {run_id!r}")
         return self._post(
-            f"/ai/missions/{mission_id}/runs/{run_id}/plan",
+            path_template("/ai/missions/{mission_id}/runs/{run_id}/plan", mission_id=mission_id, run_id=run_id),
             body=maybe_transform({"steps": steps}, plan_create_params.PlanCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -115,7 +115,7 @@ class PlanResource(SyncAPIResource):
         if not run_id:
             raise ValueError(f"Expected a non-empty value for `run_id` but received {run_id!r}")
         return self._get(
-            f"/ai/missions/{mission_id}/runs/{run_id}/plan",
+            path_template("/ai/missions/{mission_id}/runs/{run_id}/plan", mission_id=mission_id, run_id=run_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -152,7 +152,7 @@ class PlanResource(SyncAPIResource):
         if not run_id:
             raise ValueError(f"Expected a non-empty value for `run_id` but received {run_id!r}")
         return self._post(
-            f"/ai/missions/{mission_id}/runs/{run_id}/plan/steps",
+            path_template("/ai/missions/{mission_id}/runs/{run_id}/plan/steps", mission_id=mission_id, run_id=run_id),
             body=maybe_transform({"steps": steps}, plan_add_steps_to_plan_params.PlanAddStepsToPlanParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -192,7 +192,12 @@ class PlanResource(SyncAPIResource):
         if not step_id:
             raise ValueError(f"Expected a non-empty value for `step_id` but received {step_id!r}")
         return self._get(
-            f"/ai/missions/{mission_id}/runs/{run_id}/plan/steps/{step_id}",
+            path_template(
+                "/ai/missions/{mission_id}/runs/{run_id}/plan/steps/{step_id}",
+                mission_id=mission_id,
+                run_id=run_id,
+                step_id=step_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -233,7 +238,12 @@ class PlanResource(SyncAPIResource):
         if not step_id:
             raise ValueError(f"Expected a non-empty value for `step_id` but received {step_id!r}")
         return self._patch(
-            f"/ai/missions/{mission_id}/runs/{run_id}/plan/steps/{step_id}",
+            path_template(
+                "/ai/missions/{mission_id}/runs/{run_id}/plan/steps/{step_id}",
+                mission_id=mission_id,
+                run_id=run_id,
+                step_id=step_id,
+            ),
             body=maybe_transform(
                 {
                     "metadata": metadata,
@@ -298,7 +308,7 @@ class AsyncPlanResource(AsyncAPIResource):
         if not run_id:
             raise ValueError(f"Expected a non-empty value for `run_id` but received {run_id!r}")
         return await self._post(
-            f"/ai/missions/{mission_id}/runs/{run_id}/plan",
+            path_template("/ai/missions/{mission_id}/runs/{run_id}/plan", mission_id=mission_id, run_id=run_id),
             body=await async_maybe_transform({"steps": steps}, plan_create_params.PlanCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -335,7 +345,7 @@ class AsyncPlanResource(AsyncAPIResource):
         if not run_id:
             raise ValueError(f"Expected a non-empty value for `run_id` but received {run_id!r}")
         return await self._get(
-            f"/ai/missions/{mission_id}/runs/{run_id}/plan",
+            path_template("/ai/missions/{mission_id}/runs/{run_id}/plan", mission_id=mission_id, run_id=run_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -372,7 +382,7 @@ class AsyncPlanResource(AsyncAPIResource):
         if not run_id:
             raise ValueError(f"Expected a non-empty value for `run_id` but received {run_id!r}")
         return await self._post(
-            f"/ai/missions/{mission_id}/runs/{run_id}/plan/steps",
+            path_template("/ai/missions/{mission_id}/runs/{run_id}/plan/steps", mission_id=mission_id, run_id=run_id),
             body=await async_maybe_transform({"steps": steps}, plan_add_steps_to_plan_params.PlanAddStepsToPlanParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -412,7 +422,12 @@ class AsyncPlanResource(AsyncAPIResource):
         if not step_id:
             raise ValueError(f"Expected a non-empty value for `step_id` but received {step_id!r}")
         return await self._get(
-            f"/ai/missions/{mission_id}/runs/{run_id}/plan/steps/{step_id}",
+            path_template(
+                "/ai/missions/{mission_id}/runs/{run_id}/plan/steps/{step_id}",
+                mission_id=mission_id,
+                run_id=run_id,
+                step_id=step_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -453,7 +468,12 @@ class AsyncPlanResource(AsyncAPIResource):
         if not step_id:
             raise ValueError(f"Expected a non-empty value for `step_id` but received {step_id!r}")
         return await self._patch(
-            f"/ai/missions/{mission_id}/runs/{run_id}/plan/steps/{step_id}",
+            path_template(
+                "/ai/missions/{mission_id}/runs/{run_id}/plan/steps/{step_id}",
+                mission_id=mission_id,
+                run_id=run_id,
+                step_id=step_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "metadata": metadata,

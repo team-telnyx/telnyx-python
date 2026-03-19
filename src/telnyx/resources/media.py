@@ -8,7 +8,7 @@ import httpx
 
 from ..types import media_list_params, media_update_params, media_upload_params
 from .._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from .._utils import extract_files, maybe_transform, deepcopy_minimal, async_maybe_transform
+from .._utils import extract_files, path_template, maybe_transform, deepcopy_minimal, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -82,7 +82,7 @@ class MediaResource(SyncAPIResource):
         if not media_name:
             raise ValueError(f"Expected a non-empty value for `media_name` but received {media_name!r}")
         return self._get(
-            f"/media/{media_name}",
+            path_template("/media/{media_name}", media_name=media_name),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -135,7 +135,7 @@ class MediaResource(SyncAPIResource):
             # multipart/form-data; boundary=---abc--
             extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return self._put(
-            f"/media/{media_name}",
+            path_template("/media/{media_name}", media_name=media_name),
             body=maybe_transform(body, media_update_params.MediaUpdateParams),
             files=files,
             options=make_request_options(
@@ -210,7 +210,7 @@ class MediaResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `media_name` but received {media_name!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/media/{media_name}",
+            path_template("/media/{media_name}", media_name=media_name),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -244,7 +244,7 @@ class MediaResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `media_name` but received {media_name!r}")
         extra_headers = {"Accept": "application/octet-stream", **(extra_headers or {})}
         return self._get(
-            f"/media/{media_name}/download",
+            path_template("/media/{media_name}/download", media_name=media_name),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -356,7 +356,7 @@ class AsyncMediaResource(AsyncAPIResource):
         if not media_name:
             raise ValueError(f"Expected a non-empty value for `media_name` but received {media_name!r}")
         return await self._get(
-            f"/media/{media_name}",
+            path_template("/media/{media_name}", media_name=media_name),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -409,7 +409,7 @@ class AsyncMediaResource(AsyncAPIResource):
             # multipart/form-data; boundary=---abc--
             extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return await self._put(
-            f"/media/{media_name}",
+            path_template("/media/{media_name}", media_name=media_name),
             body=await async_maybe_transform(body, media_update_params.MediaUpdateParams),
             files=files,
             options=make_request_options(
@@ -484,7 +484,7 @@ class AsyncMediaResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `media_name` but received {media_name!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/media/{media_name}",
+            path_template("/media/{media_name}", media_name=media_name),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -518,7 +518,7 @@ class AsyncMediaResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `media_name` but received {media_name!r}")
         extra_headers = {"Accept": "application/octet-stream", **(extra_headers or {})}
         return await self._get(
-            f"/media/{media_name}/download",
+            path_template("/media/{media_name}/download", media_name=media_name),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

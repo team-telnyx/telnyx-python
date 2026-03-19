@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ..._types import Body, Query, Headers, NotGiven, SequenceNotStr, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -83,7 +83,7 @@ class ActionsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._patch(
-            f"/phone_numbers/{id}/actions/bundle_status_change",
+            path_template("/phone_numbers/{id}/actions/bundle_status_change", id=id),
             body=maybe_transform(
                 {"bundle_id": bundle_id}, action_change_bundle_status_params.ActionChangeBundleStatusParams
             ),
@@ -125,7 +125,7 @@ class ActionsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._post(
-            f"/phone_numbers/{id}/actions/enable_emergency",
+            path_template("/phone_numbers/{id}/actions/enable_emergency", id=id),
             body=maybe_transform(
                 {
                     "emergency_address_id": emergency_address_id,
@@ -233,7 +233,7 @@ class AsyncActionsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._patch(
-            f"/phone_numbers/{id}/actions/bundle_status_change",
+            path_template("/phone_numbers/{id}/actions/bundle_status_change", id=id),
             body=await async_maybe_transform(
                 {"bundle_id": bundle_id}, action_change_bundle_status_params.ActionChangeBundleStatusParams
             ),
@@ -275,7 +275,7 @@ class AsyncActionsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._post(
-            f"/phone_numbers/{id}/actions/enable_emergency",
+            path_template("/phone_numbers/{id}/actions/enable_emergency", id=id),
             body=await async_maybe_transform(
                 {
                     "emergency_address_id": emergency_address_id,

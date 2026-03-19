@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ...._types import Body, Query, Headers, NotGiven, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -76,7 +76,7 @@ class UsageResource(SyncAPIResource):
         if not bucket_name:
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         return self._get(
-            f"/storage/buckets/{bucket_name}/usage/api",
+            path_template("/storage/buckets/{bucket_name}/usage/api", bucket_name=bucket_name),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -113,7 +113,7 @@ class UsageResource(SyncAPIResource):
         if not bucket_name:
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         return self._get(
-            f"/storage/buckets/{bucket_name}/usage/storage",
+            path_template("/storage/buckets/{bucket_name}/usage/storage", bucket_name=bucket_name),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -175,7 +175,7 @@ class AsyncUsageResource(AsyncAPIResource):
         if not bucket_name:
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         return await self._get(
-            f"/storage/buckets/{bucket_name}/usage/api",
+            path_template("/storage/buckets/{bucket_name}/usage/api", bucket_name=bucket_name),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -214,7 +214,7 @@ class AsyncUsageResource(AsyncAPIResource):
         if not bucket_name:
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         return await self._get(
-            f"/storage/buckets/{bucket_name}/usage/storage",
+            path_template("/storage/buckets/{bucket_name}/usage/storage", bucket_name=bucket_name),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

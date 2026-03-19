@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -74,7 +74,9 @@ class CallsResource(SyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return self._get(
-            f"/queues/{queue_name}/calls/{call_control_id}",
+            path_template(
+                "/queues/{queue_name}/calls/{call_control_id}", queue_name=queue_name, call_control_id=call_control_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -114,7 +116,9 @@ class CallsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._patch(
-            f"/queues/{queue_name}/calls/{call_control_id}",
+            path_template(
+                "/queues/{queue_name}/calls/{call_control_id}", queue_name=queue_name, call_control_id=call_control_id
+            ),
             body=maybe_transform({"keep_after_hangup": keep_after_hangup}, call_update_params.CallUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -150,7 +154,7 @@ class CallsResource(SyncAPIResource):
         if not queue_name:
             raise ValueError(f"Expected a non-empty value for `queue_name` but received {queue_name!r}")
         return self._get_api_list(
-            f"/queues/{queue_name}/calls",
+            path_template("/queues/{queue_name}/calls", queue_name=queue_name),
             page=SyncDefaultFlatPagination[CallListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -200,7 +204,9 @@ class CallsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/queues/{queue_name}/calls/{call_control_id}",
+            path_template(
+                "/queues/{queue_name}/calls/{call_control_id}", queue_name=queue_name, call_control_id=call_control_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -259,7 +265,9 @@ class AsyncCallsResource(AsyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return await self._get(
-            f"/queues/{queue_name}/calls/{call_control_id}",
+            path_template(
+                "/queues/{queue_name}/calls/{call_control_id}", queue_name=queue_name, call_control_id=call_control_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -299,7 +307,9 @@ class AsyncCallsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._patch(
-            f"/queues/{queue_name}/calls/{call_control_id}",
+            path_template(
+                "/queues/{queue_name}/calls/{call_control_id}", queue_name=queue_name, call_control_id=call_control_id
+            ),
             body=await async_maybe_transform(
                 {"keep_after_hangup": keep_after_hangup}, call_update_params.CallUpdateParams
             ),
@@ -337,7 +347,7 @@ class AsyncCallsResource(AsyncAPIResource):
         if not queue_name:
             raise ValueError(f"Expected a non-empty value for `queue_name` but received {queue_name!r}")
         return self._get_api_list(
-            f"/queues/{queue_name}/calls",
+            path_template("/queues/{queue_name}/calls", queue_name=queue_name),
             page=AsyncDefaultFlatPagination[CallListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -387,7 +397,9 @@ class AsyncCallsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/queues/{queue_name}/calls/{call_control_id}",
+            path_template(
+                "/queues/{queue_name}/calls/{call_control_id}", queue_name=queue_name, call_control_id=call_control_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

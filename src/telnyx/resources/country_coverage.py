@@ -5,6 +5,7 @@ from __future__ import annotations
 import httpx
 
 from .._types import Body, Query, Headers, NotGiven, not_given
+from .._utils import path_template
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -87,7 +88,7 @@ class CountryCoverageResource(SyncAPIResource):
         if not country_code:
             raise ValueError(f"Expected a non-empty value for `country_code` but received {country_code!r}")
         return self._get(
-            f"/country_coverage/countries/{country_code}",
+            path_template("/country_coverage/countries/{country_code}", country_code=country_code),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -162,7 +163,7 @@ class AsyncCountryCoverageResource(AsyncAPIResource):
         if not country_code:
             raise ValueError(f"Expected a non-empty value for `country_code` but received {country_code!r}")
         return await self._get(
-            f"/country_coverage/countries/{country_code}",
+            path_template("/country_coverage/countries/{country_code}", country_code=country_code),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

@@ -10,7 +10,7 @@ from ..types import (
     telephony_credential_update_params,
 )
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -125,7 +125,7 @@ class TelephonyCredentialsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
-            f"/telephony_credentials/{id}",
+            path_template("/telephony_credentials/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -168,7 +168,7 @@ class TelephonyCredentialsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._patch(
-            f"/telephony_credentials/{id}",
+            path_template("/telephony_credentials/{id}", id=id),
             body=maybe_transform(
                 {
                     "connection_id": connection_id,
@@ -258,7 +258,7 @@ class TelephonyCredentialsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._delete(
-            f"/telephony_credentials/{id}",
+            path_template("/telephony_credentials/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -292,7 +292,7 @@ class TelephonyCredentialsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         extra_headers = {"Accept": "text/plain", **(extra_headers or {})}
         return self._post(
-            f"/telephony_credentials/{id}/token",
+            path_template("/telephony_credentials/{id}/token", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -395,7 +395,7 @@ class AsyncTelephonyCredentialsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
-            f"/telephony_credentials/{id}",
+            path_template("/telephony_credentials/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -438,7 +438,7 @@ class AsyncTelephonyCredentialsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._patch(
-            f"/telephony_credentials/{id}",
+            path_template("/telephony_credentials/{id}", id=id),
             body=await async_maybe_transform(
                 {
                     "connection_id": connection_id,
@@ -528,7 +528,7 @@ class AsyncTelephonyCredentialsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._delete(
-            f"/telephony_credentials/{id}",
+            path_template("/telephony_credentials/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -562,7 +562,7 @@ class AsyncTelephonyCredentialsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         extra_headers = {"Accept": "text/plain", **(extra_headers or {})}
         return await self._post(
-            f"/telephony_credentials/{id}/token",
+            path_template("/telephony_credentials/{id}/token", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

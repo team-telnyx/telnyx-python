@@ -23,7 +23,7 @@ from .actions import (
     AsyncActionsResourceWithStreamingResponse,
 )
 from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from .comments import (
     CommentsResource,
     AsyncCommentsResource,
@@ -279,7 +279,7 @@ class PortingOrdersResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
-            f"/porting_orders/{id}",
+            path_template("/porting_orders/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -349,7 +349,7 @@ class PortingOrdersResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._patch(
-            f"/porting_orders/{id}",
+            path_template("/porting_orders/{id}", id=id),
             body=maybe_transform(
                 {
                     "activation_settings": activation_settings,
@@ -466,7 +466,7 @@ class PortingOrdersResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/porting_orders/{id}",
+            path_template("/porting_orders/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -499,7 +499,7 @@ class PortingOrdersResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
-            f"/porting_orders/{id}/allowed_foc_windows",
+            path_template("/porting_orders/{id}/allowed_foc_windows", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -556,7 +556,7 @@ class PortingOrdersResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         extra_headers = {"Accept": "application/pdf", **(extra_headers or {})}
         return self._get(
-            f"/porting_orders/{id}/loa_template",
+            path_template("/porting_orders/{id}/loa_template", id=id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -599,7 +599,7 @@ class PortingOrdersResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
-            f"/porting_orders/{id}/requirements",
+            path_template("/porting_orders/{id}/requirements", id=id),
             page=SyncDefaultFlatPagination[PortingOrderRetrieveRequirementsResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -643,7 +643,7 @@ class PortingOrdersResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
-            f"/porting_orders/{id}/sub_request",
+            path_template("/porting_orders/{id}/sub_request", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -799,7 +799,7 @@ class AsyncPortingOrdersResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
-            f"/porting_orders/{id}",
+            path_template("/porting_orders/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -869,7 +869,7 @@ class AsyncPortingOrdersResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._patch(
-            f"/porting_orders/{id}",
+            path_template("/porting_orders/{id}", id=id),
             body=await async_maybe_transform(
                 {
                     "activation_settings": activation_settings,
@@ -986,7 +986,7 @@ class AsyncPortingOrdersResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/porting_orders/{id}",
+            path_template("/porting_orders/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1019,7 +1019,7 @@ class AsyncPortingOrdersResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
-            f"/porting_orders/{id}/allowed_foc_windows",
+            path_template("/porting_orders/{id}/allowed_foc_windows", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1076,7 +1076,7 @@ class AsyncPortingOrdersResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         extra_headers = {"Accept": "application/pdf", **(extra_headers or {})}
         return await self._get(
-            f"/porting_orders/{id}/loa_template",
+            path_template("/porting_orders/{id}/loa_template", id=id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1121,7 +1121,7 @@ class AsyncPortingOrdersResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
-            f"/porting_orders/{id}/requirements",
+            path_template("/porting_orders/{id}/requirements", id=id),
             page=AsyncDefaultFlatPagination[PortingOrderRetrieveRequirementsResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -1165,7 +1165,7 @@ class AsyncPortingOrdersResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
-            f"/porting_orders/{id}/sub_request",
+            path_template("/porting_orders/{id}/sub_request", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

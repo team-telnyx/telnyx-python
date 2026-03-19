@@ -24,7 +24,7 @@ from .messages import (
     AsyncMessagesResourceWithStreamingResponse,
 )
 from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ....types.ai import (
     conversation_list_params,
@@ -164,7 +164,7 @@ class ConversationsResource(SyncAPIResource):
         if not conversation_id:
             raise ValueError(f"Expected a non-empty value for `conversation_id` but received {conversation_id!r}")
         return self._get(
-            f"/ai/conversations/{conversation_id}",
+            path_template("/ai/conversations/{conversation_id}", conversation_id=conversation_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -202,7 +202,7 @@ class ConversationsResource(SyncAPIResource):
         if not conversation_id:
             raise ValueError(f"Expected a non-empty value for `conversation_id` but received {conversation_id!r}")
         return self._put(
-            f"/ai/conversations/{conversation_id}",
+            path_template("/ai/conversations/{conversation_id}", conversation_id=conversation_id),
             body=maybe_transform({"metadata": metadata}, conversation_update_params.ConversationUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -333,7 +333,7 @@ class ConversationsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `conversation_id` but received {conversation_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/ai/conversations/{conversation_id}",
+            path_template("/ai/conversations/{conversation_id}", conversation_id=conversation_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -379,7 +379,7 @@ class ConversationsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `conversation_id` but received {conversation_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
-            f"/ai/conversations/{conversation_id}/message",
+            path_template("/ai/conversations/{conversation_id}/message", conversation_id=conversation_id),
             body=maybe_transform(
                 {
                     "role": role,
@@ -425,7 +425,9 @@ class ConversationsResource(SyncAPIResource):
         if not conversation_id:
             raise ValueError(f"Expected a non-empty value for `conversation_id` but received {conversation_id!r}")
         return self._get(
-            f"/ai/conversations/{conversation_id}/conversations-insights",
+            path_template(
+                "/ai/conversations/{conversation_id}/conversations-insights", conversation_id=conversation_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -538,7 +540,7 @@ class AsyncConversationsResource(AsyncAPIResource):
         if not conversation_id:
             raise ValueError(f"Expected a non-empty value for `conversation_id` but received {conversation_id!r}")
         return await self._get(
-            f"/ai/conversations/{conversation_id}",
+            path_template("/ai/conversations/{conversation_id}", conversation_id=conversation_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -576,7 +578,7 @@ class AsyncConversationsResource(AsyncAPIResource):
         if not conversation_id:
             raise ValueError(f"Expected a non-empty value for `conversation_id` but received {conversation_id!r}")
         return await self._put(
-            f"/ai/conversations/{conversation_id}",
+            path_template("/ai/conversations/{conversation_id}", conversation_id=conversation_id),
             body=await async_maybe_transform(
                 {"metadata": metadata}, conversation_update_params.ConversationUpdateParams
             ),
@@ -709,7 +711,7 @@ class AsyncConversationsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `conversation_id` but received {conversation_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/ai/conversations/{conversation_id}",
+            path_template("/ai/conversations/{conversation_id}", conversation_id=conversation_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -755,7 +757,7 @@ class AsyncConversationsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `conversation_id` but received {conversation_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
-            f"/ai/conversations/{conversation_id}/message",
+            path_template("/ai/conversations/{conversation_id}/message", conversation_id=conversation_id),
             body=await async_maybe_transform(
                 {
                     "role": role,
@@ -801,7 +803,9 @@ class AsyncConversationsResource(AsyncAPIResource):
         if not conversation_id:
             raise ValueError(f"Expected a non-empty value for `conversation_id` but received {conversation_id!r}")
         return await self._get(
-            f"/ai/conversations/{conversation_id}/conversations-insights",
+            path_template(
+                "/ai/conversations/{conversation_id}/conversations-insights", conversation_id=conversation_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

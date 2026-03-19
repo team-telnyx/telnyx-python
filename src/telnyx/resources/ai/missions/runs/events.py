@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ....._utils import maybe_transform, async_maybe_transform
+from ....._utils import path_template, maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -85,7 +85,7 @@ class EventsResource(SyncAPIResource):
         if not run_id:
             raise ValueError(f"Expected a non-empty value for `run_id` but received {run_id!r}")
         return self._get_api_list(
-            f"/ai/missions/{mission_id}/runs/{run_id}/events",
+            path_template("/ai/missions/{mission_id}/runs/{run_id}/events", mission_id=mission_id, run_id=run_id),
             page=SyncDefaultFlatPagination[EventData],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -138,7 +138,12 @@ class EventsResource(SyncAPIResource):
         if not event_id:
             raise ValueError(f"Expected a non-empty value for `event_id` but received {event_id!r}")
         return self._get(
-            f"/ai/missions/{mission_id}/runs/{run_id}/events/{event_id}",
+            path_template(
+                "/ai/missions/{mission_id}/runs/{run_id}/events/{event_id}",
+                mission_id=mission_id,
+                run_id=run_id,
+                event_id=event_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -192,7 +197,7 @@ class EventsResource(SyncAPIResource):
         if not run_id:
             raise ValueError(f"Expected a non-empty value for `run_id` but received {run_id!r}")
         return self._post(
-            f"/ai/missions/{mission_id}/runs/{run_id}/events",
+            path_template("/ai/missions/{mission_id}/runs/{run_id}/events", mission_id=mission_id, run_id=run_id),
             body=maybe_transform(
                 {
                     "summary": summary,
@@ -269,7 +274,7 @@ class AsyncEventsResource(AsyncAPIResource):
         if not run_id:
             raise ValueError(f"Expected a non-empty value for `run_id` but received {run_id!r}")
         return self._get_api_list(
-            f"/ai/missions/{mission_id}/runs/{run_id}/events",
+            path_template("/ai/missions/{mission_id}/runs/{run_id}/events", mission_id=mission_id, run_id=run_id),
             page=AsyncDefaultFlatPagination[EventData],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -322,7 +327,12 @@ class AsyncEventsResource(AsyncAPIResource):
         if not event_id:
             raise ValueError(f"Expected a non-empty value for `event_id` but received {event_id!r}")
         return await self._get(
-            f"/ai/missions/{mission_id}/runs/{run_id}/events/{event_id}",
+            path_template(
+                "/ai/missions/{mission_id}/runs/{run_id}/events/{event_id}",
+                mission_id=mission_id,
+                run_id=run_id,
+                event_id=event_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -376,7 +386,7 @@ class AsyncEventsResource(AsyncAPIResource):
         if not run_id:
             raise ValueError(f"Expected a non-empty value for `run_id` but received {run_id!r}")
         return await self._post(
-            f"/ai/missions/{mission_id}/runs/{run_id}/events",
+            path_template("/ai/missions/{mission_id}/runs/{run_id}/events", mission_id=mission_id, run_id=run_id),
             body=await async_maybe_transform(
                 {
                     "summary": summary,

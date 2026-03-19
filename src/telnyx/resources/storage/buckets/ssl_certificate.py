@@ -7,7 +7,7 @@ from typing import Mapping, cast
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, FileTypes, omit, not_given
-from ...._utils import extract_files, maybe_transform, deepcopy_minimal, async_maybe_transform
+from ...._utils import extract_files, path_template, maybe_transform, deepcopy_minimal, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -91,7 +91,7 @@ class SslCertificateResource(SyncAPIResource):
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return self._put(
-            f"/storage/buckets/{bucket_name}/ssl_certificate",
+            path_template("/storage/buckets/{bucket_name}/ssl_certificate", bucket_name=bucket_name),
             body=maybe_transform(body, ssl_certificate_create_params.SslCertificateCreateParams),
             files=files,
             options=make_request_options(
@@ -126,7 +126,7 @@ class SslCertificateResource(SyncAPIResource):
         if not bucket_name:
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         return self._get(
-            f"/storage/buckets/{bucket_name}/ssl_certificate",
+            path_template("/storage/buckets/{bucket_name}/ssl_certificate", bucket_name=bucket_name),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -159,7 +159,7 @@ class SslCertificateResource(SyncAPIResource):
         if not bucket_name:
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         return self._delete(
-            f"/storage/buckets/{bucket_name}/ssl_certificate",
+            path_template("/storage/buckets/{bucket_name}/ssl_certificate", bucket_name=bucket_name),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -233,7 +233,7 @@ class AsyncSslCertificateResource(AsyncAPIResource):
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return await self._put(
-            f"/storage/buckets/{bucket_name}/ssl_certificate",
+            path_template("/storage/buckets/{bucket_name}/ssl_certificate", bucket_name=bucket_name),
             body=await async_maybe_transform(body, ssl_certificate_create_params.SslCertificateCreateParams),
             files=files,
             options=make_request_options(
@@ -268,7 +268,7 @@ class AsyncSslCertificateResource(AsyncAPIResource):
         if not bucket_name:
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         return await self._get(
-            f"/storage/buckets/{bucket_name}/ssl_certificate",
+            path_template("/storage/buckets/{bucket_name}/ssl_certificate", bucket_name=bucket_name),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -301,7 +301,7 @@ class AsyncSslCertificateResource(AsyncAPIResource):
         if not bucket_name:
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         return await self._delete(
-            f"/storage/buckets/{bucket_name}/ssl_certificate",
+            path_template("/storage/buckets/{bucket_name}/ssl_certificate", bucket_name=bucket_name),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
