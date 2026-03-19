@@ -176,7 +176,6 @@ if TYPE_CHECKING:
         wireless_blocklist_values,
         custom_storage_credentials,
         number_order_phone_numbers,
-        whatsapp_message_templates,
         dynamic_emergency_addresses,
         dynamic_emergency_endpoints,
         global_ip_assignment_health,
@@ -340,10 +339,6 @@ if TYPE_CHECKING:
     from .resources.number_order_phone_numbers import (
         NumberOrderPhoneNumbersResource,
         AsyncNumberOrderPhoneNumbersResource,
-    )
-    from .resources.whatsapp_message_templates import (
-        WhatsappMessageTemplatesResource,
-        AsyncWhatsappMessageTemplatesResource,
     )
     from .resources.dynamic_emergency_addresses import (
         DynamicEmergencyAddressesResource,
@@ -1576,13 +1571,6 @@ class Telnyx(SyncAPIClient):
         from .resources.whatsapp import WhatsappResource
 
         return WhatsappResource(self)
-
-    @cached_property
-    def whatsapp_message_templates(self) -> WhatsappMessageTemplatesResource:
-        """Manage Whatsapp message templates"""
-        from .resources.whatsapp_message_templates import WhatsappMessageTemplatesResource
-
-        return WhatsappMessageTemplatesResource(self)
 
     @cached_property
     def x402(self) -> X402Resource:
@@ -2890,13 +2878,6 @@ class AsyncTelnyx(AsyncAPIClient):
         return AsyncWhatsappResource(self)
 
     @cached_property
-    def whatsapp_message_templates(self) -> AsyncWhatsappMessageTemplatesResource:
-        """Manage Whatsapp message templates"""
-        from .resources.whatsapp_message_templates import AsyncWhatsappMessageTemplatesResource
-
-        return AsyncWhatsappMessageTemplatesResource(self)
-
-    @cached_property
     def x402(self) -> AsyncX402Resource:
         from .resources.x402 import AsyncX402Resource
 
@@ -4147,13 +4128,6 @@ class TelnyxWithRawResponse:
         return WhatsappResourceWithRawResponse(self._client.whatsapp)
 
     @cached_property
-    def whatsapp_message_templates(self) -> whatsapp_message_templates.WhatsappMessageTemplatesResourceWithRawResponse:
-        """Manage Whatsapp message templates"""
-        from .resources.whatsapp_message_templates import WhatsappMessageTemplatesResourceWithRawResponse
-
-        return WhatsappMessageTemplatesResourceWithRawResponse(self._client.whatsapp_message_templates)
-
-    @cached_property
     def x402(self) -> x402.X402ResourceWithRawResponse:
         from .resources.x402 import X402ResourceWithRawResponse
 
@@ -5271,15 +5245,6 @@ class AsyncTelnyxWithRawResponse:
         from .resources.whatsapp import AsyncWhatsappResourceWithRawResponse
 
         return AsyncWhatsappResourceWithRawResponse(self._client.whatsapp)
-
-    @cached_property
-    def whatsapp_message_templates(
-        self,
-    ) -> whatsapp_message_templates.AsyncWhatsappMessageTemplatesResourceWithRawResponse:
-        """Manage Whatsapp message templates"""
-        from .resources.whatsapp_message_templates import AsyncWhatsappMessageTemplatesResourceWithRawResponse
-
-        return AsyncWhatsappMessageTemplatesResourceWithRawResponse(self._client.whatsapp_message_templates)
 
     @cached_property
     def x402(self) -> x402.AsyncX402ResourceWithRawResponse:
@@ -6401,15 +6366,6 @@ class TelnyxWithStreamedResponse:
         from .resources.whatsapp import WhatsappResourceWithStreamingResponse
 
         return WhatsappResourceWithStreamingResponse(self._client.whatsapp)
-
-    @cached_property
-    def whatsapp_message_templates(
-        self,
-    ) -> whatsapp_message_templates.WhatsappMessageTemplatesResourceWithStreamingResponse:
-        """Manage Whatsapp message templates"""
-        from .resources.whatsapp_message_templates import WhatsappMessageTemplatesResourceWithStreamingResponse
-
-        return WhatsappMessageTemplatesResourceWithStreamingResponse(self._client.whatsapp_message_templates)
 
     @cached_property
     def x402(self) -> x402.X402ResourceWithStreamingResponse:
@@ -7577,15 +7533,6 @@ class AsyncTelnyxWithStreamedResponse:
         from .resources.whatsapp import AsyncWhatsappResourceWithStreamingResponse
 
         return AsyncWhatsappResourceWithStreamingResponse(self._client.whatsapp)
-
-    @cached_property
-    def whatsapp_message_templates(
-        self,
-    ) -> whatsapp_message_templates.AsyncWhatsappMessageTemplatesResourceWithStreamingResponse:
-        """Manage Whatsapp message templates"""
-        from .resources.whatsapp_message_templates import AsyncWhatsappMessageTemplatesResourceWithStreamingResponse
-
-        return AsyncWhatsappMessageTemplatesResourceWithStreamingResponse(self._client.whatsapp_message_templates)
 
     @cached_property
     def x402(self) -> x402.AsyncX402ResourceWithStreamingResponse:
