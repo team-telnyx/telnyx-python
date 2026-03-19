@@ -1,5 +1,29 @@
 # Changelog
 
+## 4.81.0 (2026-03-19)
+
+Full Changelog: [v4.80.0...v4.81.0](https://github.com/team-telnyx/telnyx-python/compare/v4.80.0...v4.81.0)
+
+### Features
+
+* add HTTP transcribe() method to speech_to_text for parity with TypeScript ([220736f](https://github.com/team-telnyx/telnyx-python/commit/220736fc369291d635a68a3b35925772b418cb12))
+* **api:** manual updates ([7a1dfe2](https://github.com/team-telnyx/telnyx-python/commit/7a1dfe2bc46d2c85943fd05ca1cb6450218b3fb7))
+* **api:** manual updates ([5e54b72](https://github.com/team-telnyx/telnyx-python/commit/5e54b7254155eaea4161362474bf8ad69068d6ea))
+* **api:** manual updates ([581ee71](https://github.com/team-telnyx/telnyx-python/commit/581ee7158875c7253fc19e4e91bca3beb301acf4))
+* TELAPPS-5668: Add call.cost webhook event documentation ([ae53676](https://github.com/team-telnyx/telnyx-python/commit/ae53676a72faec983bff7d78d42e73ee5c604ae2))
+* **wireless:** add traffic policy profiles endpoints to OpenAPI spec ([e1f00fd](https://github.com/team-telnyx/telnyx-python/commit/e1f00fd22cef573bd63ce187af733ca160a405fb))
+
+
+### Bug Fixes
+
+* restore deleted modules for speech_to_text, text_to_speech, and whatsapp_message_templates ([275701d](https://github.com/team-telnyx/telnyx-python/commit/275701da2c8cdd25c2b1acd9936dbaf410eb03cc))
+* sanitize endpoint path params ([a0143f2](https://github.com/team-telnyx/telnyx-python/commit/a0143f23dbda5147750b0248c4c28023a1cc49f8))
+
+
+### Documentation
+
+* **tts:** Add Telnyx.Ultra model documentation ([3059e3e](https://github.com/team-telnyx/telnyx-python/commit/3059e3ebfcba108c779aeb2b179a44078ac3117c))
+
 ## 4.80.0 (2026-03-18)
 
 Full Changelog: [v4.79.0...v4.80.0](https://github.com/team-telnyx/telnyx-python/compare/v4.79.0...v4.80.0)
