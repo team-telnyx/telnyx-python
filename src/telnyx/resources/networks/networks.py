@@ -6,7 +6,7 @@ import httpx
 
 from ...types import network_list_params, network_create_params, network_update_params, network_list_interfaces_params
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -122,7 +122,7 @@ class NetworksResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
-            f"/networks/{id}",
+            path_template("/networks/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -158,7 +158,7 @@ class NetworksResource(SyncAPIResource):
         if not network_id:
             raise ValueError(f"Expected a non-empty value for `network_id` but received {network_id!r}")
         return self._patch(
-            f"/networks/{network_id}",
+            path_template("/networks/{network_id}", network_id=network_id),
             body=maybe_transform({"name": name}, network_update_params.NetworkUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -239,7 +239,7 @@ class NetworksResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._delete(
-            f"/networks/{id}",
+            path_template("/networks/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -278,7 +278,7 @@ class NetworksResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
-            f"/networks/{id}/network_interfaces",
+            path_template("/networks/{id}/network_interfaces", id=id),
             page=SyncDefaultFlatPagination[NetworkListInterfacesResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -385,7 +385,7 @@ class AsyncNetworksResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
-            f"/networks/{id}",
+            path_template("/networks/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -421,7 +421,7 @@ class AsyncNetworksResource(AsyncAPIResource):
         if not network_id:
             raise ValueError(f"Expected a non-empty value for `network_id` but received {network_id!r}")
         return await self._patch(
-            f"/networks/{network_id}",
+            path_template("/networks/{network_id}", network_id=network_id),
             body=await async_maybe_transform({"name": name}, network_update_params.NetworkUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -502,7 +502,7 @@ class AsyncNetworksResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._delete(
-            f"/networks/{id}",
+            path_template("/networks/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -541,7 +541,7 @@ class AsyncNetworksResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
-            f"/networks/{id}/network_interfaces",
+            path_template("/networks/{id}/network_interfaces", id=id),
             page=AsyncDefaultFlatPagination[NetworkListInterfacesResponse],
             options=make_request_options(
                 extra_headers=extra_headers,

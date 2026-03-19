@@ -6,7 +6,7 @@ import httpx
 
 from ..types import global_ip_assignment_list_params, global_ip_assignment_update_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -93,7 +93,7 @@ class GlobalIPAssignmentsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
-            f"/global_ip_assignments/{id}",
+            path_template("/global_ip_assignments/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -129,7 +129,9 @@ class GlobalIPAssignmentsResource(SyncAPIResource):
                 f"Expected a non-empty value for `global_ip_assignment_id` but received {global_ip_assignment_id!r}"
             )
         return self._patch(
-            f"/global_ip_assignments/{global_ip_assignment_id}",
+            path_template(
+                "/global_ip_assignments/{global_ip_assignment_id}", global_ip_assignment_id=global_ip_assignment_id
+            ),
             body=maybe_transform(
                 global_ip_assignment_update_request, global_ip_assignment_update_params.GlobalIPAssignmentUpdateParams
             ),
@@ -208,7 +210,7 @@ class GlobalIPAssignmentsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._delete(
-            f"/global_ip_assignments/{id}",
+            path_template("/global_ip_assignments/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -283,7 +285,7 @@ class AsyncGlobalIPAssignmentsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
-            f"/global_ip_assignments/{id}",
+            path_template("/global_ip_assignments/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -319,7 +321,9 @@ class AsyncGlobalIPAssignmentsResource(AsyncAPIResource):
                 f"Expected a non-empty value for `global_ip_assignment_id` but received {global_ip_assignment_id!r}"
             )
         return await self._patch(
-            f"/global_ip_assignments/{global_ip_assignment_id}",
+            path_template(
+                "/global_ip_assignments/{global_ip_assignment_id}", global_ip_assignment_id=global_ip_assignment_id
+            ),
             body=await async_maybe_transform(
                 global_ip_assignment_update_request, global_ip_assignment_update_params.GlobalIPAssignmentUpdateParams
             ),
@@ -398,7 +402,7 @@ class AsyncGlobalIPAssignmentsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._delete(
-            f"/global_ip_assignments/{id}",
+            path_template("/global_ip_assignments/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

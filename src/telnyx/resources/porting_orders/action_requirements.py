@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -80,7 +80,7 @@ class ActionRequirementsResource(SyncAPIResource):
         if not porting_order_id:
             raise ValueError(f"Expected a non-empty value for `porting_order_id` but received {porting_order_id!r}")
         return self._get_api_list(
-            f"/porting_orders/{porting_order_id}/action_requirements",
+            path_template("/porting_orders/{porting_order_id}/action_requirements", porting_order_id=porting_order_id),
             page=SyncDefaultFlatPagination[ActionRequirementListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -133,7 +133,11 @@ class ActionRequirementsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._post(
-            f"/porting_orders/{porting_order_id}/action_requirements/{id}/initiate",
+            path_template(
+                "/porting_orders/{porting_order_id}/action_requirements/{id}/initiate",
+                porting_order_id=porting_order_id,
+                id=id,
+            ),
             body=maybe_transform(
                 {"params": params}, action_requirement_initiate_params.ActionRequirementInitiateParams
             ),
@@ -201,7 +205,7 @@ class AsyncActionRequirementsResource(AsyncAPIResource):
         if not porting_order_id:
             raise ValueError(f"Expected a non-empty value for `porting_order_id` but received {porting_order_id!r}")
         return self._get_api_list(
-            f"/porting_orders/{porting_order_id}/action_requirements",
+            path_template("/porting_orders/{porting_order_id}/action_requirements", porting_order_id=porting_order_id),
             page=AsyncDefaultFlatPagination[ActionRequirementListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -254,7 +258,11 @@ class AsyncActionRequirementsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._post(
-            f"/porting_orders/{porting_order_id}/action_requirements/{id}/initiate",
+            path_template(
+                "/porting_orders/{porting_order_id}/action_requirements/{id}/initiate",
+                porting_order_id=porting_order_id,
+                id=id,
+            ),
             body=await async_maybe_transform(
                 {"params": params}, action_requirement_initiate_params.ActionRequirementInitiateParams
             ),

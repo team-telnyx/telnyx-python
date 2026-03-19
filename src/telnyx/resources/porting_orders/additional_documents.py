@@ -7,7 +7,7 @@ from typing import Iterable
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -74,7 +74,7 @@ class AdditionalDocumentsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._post(
-            f"/porting_orders/{id}/additional_documents",
+            path_template("/porting_orders/{id}/additional_documents", id=id),
             body=maybe_transform(
                 {"additional_documents": additional_documents},
                 additional_document_create_params.AdditionalDocumentCreateParams,
@@ -121,7 +121,7 @@ class AdditionalDocumentsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
-            f"/porting_orders/{id}/additional_documents",
+            path_template("/porting_orders/{id}/additional_documents", id=id),
             page=SyncDefaultFlatPagination[AdditionalDocumentListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -173,7 +173,11 @@ class AdditionalDocumentsResource(SyncAPIResource):
             )
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/porting_orders/{id}/additional_documents/{additional_document_id}",
+            path_template(
+                "/porting_orders/{id}/additional_documents/{additional_document_id}",
+                id=id,
+                additional_document_id=additional_document_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -230,7 +234,7 @@ class AsyncAdditionalDocumentsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._post(
-            f"/porting_orders/{id}/additional_documents",
+            path_template("/porting_orders/{id}/additional_documents", id=id),
             body=await async_maybe_transform(
                 {"additional_documents": additional_documents},
                 additional_document_create_params.AdditionalDocumentCreateParams,
@@ -277,7 +281,7 @@ class AsyncAdditionalDocumentsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
-            f"/porting_orders/{id}/additional_documents",
+            path_template("/porting_orders/{id}/additional_documents", id=id),
             page=AsyncDefaultFlatPagination[AdditionalDocumentListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -329,7 +333,11 @@ class AsyncAdditionalDocumentsResource(AsyncAPIResource):
             )
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/porting_orders/{id}/additional_documents/{additional_document_id}",
+            path_template(
+                "/porting_orders/{id}/additional_documents/{additional_document_id}",
+                id=id,
+                additional_document_id=additional_document_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

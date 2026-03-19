@@ -13,7 +13,7 @@ from ..types import (
     sub_number_order_update_requirement_group_params,
 )
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -86,7 +86,7 @@ class SubNumberOrdersResource(SyncAPIResource):
                 f"Expected a non-empty value for `sub_number_order_id` but received {sub_number_order_id!r}"
             )
         return self._get(
-            f"/sub_number_orders/{sub_number_order_id}",
+            path_template("/sub_number_orders/{sub_number_order_id}", sub_number_order_id=sub_number_order_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -128,7 +128,7 @@ class SubNumberOrdersResource(SyncAPIResource):
                 f"Expected a non-empty value for `sub_number_order_id` but received {sub_number_order_id!r}"
             )
         return self._patch(
-            f"/sub_number_orders/{sub_number_order_id}",
+            path_template("/sub_number_orders/{sub_number_order_id}", sub_number_order_id=sub_number_order_id),
             body=maybe_transform(
                 {"regulatory_requirements": regulatory_requirements},
                 sub_number_order_update_params.SubNumberOrderUpdateParams,
@@ -206,7 +206,7 @@ class SubNumberOrdersResource(SyncAPIResource):
                 f"Expected a non-empty value for `sub_number_order_id` but received {sub_number_order_id!r}"
             )
         return self._patch(
-            f"/sub_number_orders/{sub_number_order_id}/cancel",
+            path_template("/sub_number_orders/{sub_number_order_id}/cancel", sub_number_order_id=sub_number_order_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -242,7 +242,7 @@ class SubNumberOrdersResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._post(
-            f"/sub_number_orders/{id}/requirement_group",
+            path_template("/sub_number_orders/{id}/requirement_group", id=id),
             body=maybe_transform(
                 {"requirement_group_id": requirement_group_id},
                 sub_number_order_update_requirement_group_params.SubNumberOrderUpdateRequirementGroupParams,
@@ -307,7 +307,7 @@ class AsyncSubNumberOrdersResource(AsyncAPIResource):
                 f"Expected a non-empty value for `sub_number_order_id` but received {sub_number_order_id!r}"
             )
         return await self._get(
-            f"/sub_number_orders/{sub_number_order_id}",
+            path_template("/sub_number_orders/{sub_number_order_id}", sub_number_order_id=sub_number_order_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -349,7 +349,7 @@ class AsyncSubNumberOrdersResource(AsyncAPIResource):
                 f"Expected a non-empty value for `sub_number_order_id` but received {sub_number_order_id!r}"
             )
         return await self._patch(
-            f"/sub_number_orders/{sub_number_order_id}",
+            path_template("/sub_number_orders/{sub_number_order_id}", sub_number_order_id=sub_number_order_id),
             body=await async_maybe_transform(
                 {"regulatory_requirements": regulatory_requirements},
                 sub_number_order_update_params.SubNumberOrderUpdateParams,
@@ -429,7 +429,7 @@ class AsyncSubNumberOrdersResource(AsyncAPIResource):
                 f"Expected a non-empty value for `sub_number_order_id` but received {sub_number_order_id!r}"
             )
         return await self._patch(
-            f"/sub_number_orders/{sub_number_order_id}/cancel",
+            path_template("/sub_number_orders/{sub_number_order_id}/cancel", sub_number_order_id=sub_number_order_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -465,7 +465,7 @@ class AsyncSubNumberOrdersResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._post(
-            f"/sub_number_orders/{id}/requirement_group",
+            path_template("/sub_number_orders/{id}/requirement_group", id=id),
             body=await async_maybe_transform(
                 {"requirement_group_id": requirement_group_id},
                 sub_number_order_update_requirement_group_params.SubNumberOrderUpdateRequirementGroupParams,

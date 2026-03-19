@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ...._types import Body, Query, Headers, NotGiven, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -70,7 +70,7 @@ class CallingSettingsResource(SyncAPIResource):
         if not phone_number:
             raise ValueError(f"Expected a non-empty value for `phone_number` but received {phone_number!r}")
         return self._get(
-            f"/v2/whatsapp/phone_numbers/{phone_number}/calling_settings",
+            path_template("/v2/whatsapp/phone_numbers/{phone_number}/calling_settings", phone_number=phone_number),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -104,7 +104,7 @@ class CallingSettingsResource(SyncAPIResource):
         if not phone_number:
             raise ValueError(f"Expected a non-empty value for `phone_number` but received {phone_number!r}")
         return self._patch(
-            f"/v2/whatsapp/phone_numbers/{phone_number}/calling_settings",
+            path_template("/v2/whatsapp/phone_numbers/{phone_number}/calling_settings", phone_number=phone_number),
             body=maybe_transform({"enabled": enabled}, calling_setting_update_params.CallingSettingUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -161,7 +161,7 @@ class AsyncCallingSettingsResource(AsyncAPIResource):
         if not phone_number:
             raise ValueError(f"Expected a non-empty value for `phone_number` but received {phone_number!r}")
         return await self._get(
-            f"/v2/whatsapp/phone_numbers/{phone_number}/calling_settings",
+            path_template("/v2/whatsapp/phone_numbers/{phone_number}/calling_settings", phone_number=phone_number),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -195,7 +195,7 @@ class AsyncCallingSettingsResource(AsyncAPIResource):
         if not phone_number:
             raise ValueError(f"Expected a non-empty value for `phone_number` but received {phone_number!r}")
         return await self._patch(
-            f"/v2/whatsapp/phone_numbers/{phone_number}/calling_settings",
+            path_template("/v2/whatsapp/phone_numbers/{phone_number}/calling_settings", phone_number=phone_number),
             body=await async_maybe_transform(
                 {"enabled": enabled}, calling_setting_update_params.CallingSettingUpdateParams
             ),

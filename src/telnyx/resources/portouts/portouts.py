@@ -24,7 +24,7 @@ from .reports import (
     AsyncReportsResourceWithStreamingResponse,
 )
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from .comments import (
     CommentsResource,
     AsyncCommentsResource,
@@ -127,7 +127,7 @@ class PortoutsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
-            f"/portouts/{id}",
+            path_template("/portouts/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -216,7 +216,7 @@ class PortoutsResource(SyncAPIResource):
         if not portout_id:
             raise ValueError(f"Expected a non-empty value for `portout_id` but received {portout_id!r}")
         return self._get(
-            f"/portouts/rejections/{portout_id}",
+            path_template("/portouts/rejections/{portout_id}", portout_id=portout_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -265,7 +265,7 @@ class PortoutsResource(SyncAPIResource):
         if not status:
             raise ValueError(f"Expected a non-empty value for `status` but received {status!r}")
         return self._patch(
-            f"/portouts/{id}/{status}",
+            path_template("/portouts/{id}/{status}", id=id, status=status),
             body=maybe_transform(
                 {
                     "reason": reason,
@@ -348,7 +348,7 @@ class AsyncPortoutsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
-            f"/portouts/{id}",
+            path_template("/portouts/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -437,7 +437,7 @@ class AsyncPortoutsResource(AsyncAPIResource):
         if not portout_id:
             raise ValueError(f"Expected a non-empty value for `portout_id` but received {portout_id!r}")
         return await self._get(
-            f"/portouts/rejections/{portout_id}",
+            path_template("/portouts/rejections/{portout_id}", portout_id=portout_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -486,7 +486,7 @@ class AsyncPortoutsResource(AsyncAPIResource):
         if not status:
             raise ValueError(f"Expected a non-empty value for `status` but received {status!r}")
         return await self._patch(
-            f"/portouts/{id}/{status}",
+            path_template("/portouts/{id}/{status}", id=id, status=status),
             body=await async_maybe_transform(
                 {
                     "reason": reason,

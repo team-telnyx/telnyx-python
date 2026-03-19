@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ...types.ai import cluster_list_params, cluster_compute_params, cluster_retrieve_params, cluster_fetch_graph_params
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -87,7 +87,7 @@ class ClustersResource(SyncAPIResource):
         if not task_id:
             raise ValueError(f"Expected a non-empty value for `task_id` but received {task_id!r}")
         return self._get(
-            f"/ai/clusters/{task_id}",
+            path_template("/ai/clusters/{task_id}", task_id=task_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -174,7 +174,7 @@ class ClustersResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `task_id` but received {task_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/ai/clusters/{task_id}",
+            path_template("/ai/clusters/{task_id}", task_id=task_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -270,7 +270,7 @@ class ClustersResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `task_id` but received {task_id!r}")
         extra_headers = {"Accept": "image/png", **(extra_headers or {})}
         return self._get(
-            f"/ai/clusters/{task_id}/graph",
+            path_template("/ai/clusters/{task_id}/graph", task_id=task_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -337,7 +337,7 @@ class AsyncClustersResource(AsyncAPIResource):
         if not task_id:
             raise ValueError(f"Expected a non-empty value for `task_id` but received {task_id!r}")
         return await self._get(
-            f"/ai/clusters/{task_id}",
+            path_template("/ai/clusters/{task_id}", task_id=task_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -424,7 +424,7 @@ class AsyncClustersResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `task_id` but received {task_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/ai/clusters/{task_id}",
+            path_template("/ai/clusters/{task_id}", task_id=task_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -520,7 +520,7 @@ class AsyncClustersResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `task_id` but received {task_id!r}")
         extra_headers = {"Accept": "image/png", **(extra_headers or {})}
         return await self._get(
-            f"/ai/clusters/{task_id}/graph",
+            path_template("/ai/clusters/{task_id}/graph", task_id=task_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

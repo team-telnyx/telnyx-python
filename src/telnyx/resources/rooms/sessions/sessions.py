@@ -13,7 +13,7 @@ from .actions import (
     AsyncActionsResourceWithStreamingResponse,
 )
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -91,7 +91,7 @@ class SessionsResource(SyncAPIResource):
         if not room_session_id:
             raise ValueError(f"Expected a non-empty value for `room_session_id` but received {room_session_id!r}")
         return self._get(
-            f"/room_sessions/{room_session_id}",
+            path_template("/room_sessions/{room_session_id}", room_session_id=room_session_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -201,7 +201,7 @@ class SessionsResource(SyncAPIResource):
         if not room_id:
             raise ValueError(f"Expected a non-empty value for `room_id` but received {room_id!r}")
         return self._get_api_list(
-            f"/rooms/{room_id}/sessions",
+            path_template("/rooms/{room_id}/sessions", room_id=room_id),
             page=SyncDefaultFlatPagination[RoomSession],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -258,7 +258,7 @@ class SessionsResource(SyncAPIResource):
         if not room_session_id:
             raise ValueError(f"Expected a non-empty value for `room_session_id` but received {room_session_id!r}")
         return self._get_api_list(
-            f"/room_sessions/{room_session_id}/participants",
+            path_template("/room_sessions/{room_session_id}/participants", room_session_id=room_session_id),
             page=SyncDefaultFlatPagination[RoomParticipant],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -332,7 +332,7 @@ class AsyncSessionsResource(AsyncAPIResource):
         if not room_session_id:
             raise ValueError(f"Expected a non-empty value for `room_session_id` but received {room_session_id!r}")
         return await self._get(
-            f"/room_sessions/{room_session_id}",
+            path_template("/room_sessions/{room_session_id}", room_session_id=room_session_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -442,7 +442,7 @@ class AsyncSessionsResource(AsyncAPIResource):
         if not room_id:
             raise ValueError(f"Expected a non-empty value for `room_id` but received {room_id!r}")
         return self._get_api_list(
-            f"/rooms/{room_id}/sessions",
+            path_template("/rooms/{room_id}/sessions", room_id=room_id),
             page=AsyncDefaultFlatPagination[RoomSession],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -499,7 +499,7 @@ class AsyncSessionsResource(AsyncAPIResource):
         if not room_session_id:
             raise ValueError(f"Expected a non-empty value for `room_session_id` but received {room_session_id!r}")
         return self._get_api_list(
-            f"/room_sessions/{room_session_id}/participants",
+            path_template("/room_sessions/{room_session_id}/participants", room_session_id=room_session_id),
             page=AsyncDefaultFlatPagination[RoomParticipant],
             options=make_request_options(
                 extra_headers=extra_headers,

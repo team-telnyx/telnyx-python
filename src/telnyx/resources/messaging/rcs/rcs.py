@@ -13,7 +13,7 @@ from .agents import (
     AsyncAgentsResourceWithStreamingResponse,
 )
 from ...._types import Body, Query, Headers, NotGiven, SequenceNotStr, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -87,7 +87,7 @@ class RcsResource(SyncAPIResource):
         if not phone_number:
             raise ValueError(f"Expected a non-empty value for `phone_number` but received {phone_number!r}")
         return self._put(
-            f"/messaging/rcs/test_number_invite/{id}/{phone_number}",
+            path_template("/messaging/rcs/test_number_invite/{id}/{phone_number}", id=id, phone_number=phone_number),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -166,7 +166,9 @@ class RcsResource(SyncAPIResource):
         if not phone_number:
             raise ValueError(f"Expected a non-empty value for `phone_number` but received {phone_number!r}")
         return self._get(
-            f"/messaging/rcs/capabilities/{agent_id}/{phone_number}",
+            path_template(
+                "/messaging/rcs/capabilities/{agent_id}/{phone_number}", agent_id=agent_id, phone_number=phone_number
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -230,7 +232,7 @@ class AsyncRcsResource(AsyncAPIResource):
         if not phone_number:
             raise ValueError(f"Expected a non-empty value for `phone_number` but received {phone_number!r}")
         return await self._put(
-            f"/messaging/rcs/test_number_invite/{id}/{phone_number}",
+            path_template("/messaging/rcs/test_number_invite/{id}/{phone_number}", id=id, phone_number=phone_number),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -309,7 +311,9 @@ class AsyncRcsResource(AsyncAPIResource):
         if not phone_number:
             raise ValueError(f"Expected a non-empty value for `phone_number` but received {phone_number!r}")
         return await self._get(
-            f"/messaging/rcs/capabilities/{agent_id}/{phone_number}",
+            path_template(
+                "/messaging/rcs/capabilities/{agent_id}/{phone_number}", agent_id=agent_id, phone_number=phone_number
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

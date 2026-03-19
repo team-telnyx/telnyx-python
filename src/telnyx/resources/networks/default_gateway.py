@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -74,7 +74,7 @@ class DefaultGatewayResource(SyncAPIResource):
         if not network_identifier:
             raise ValueError(f"Expected a non-empty value for `network_identifier` but received {network_identifier!r}")
         return self._post(
-            f"/networks/{network_identifier}/default_gateway",
+            path_template("/networks/{network_identifier}/default_gateway", network_identifier=network_identifier),
             body=maybe_transform(
                 {"wireguard_peer_id": wireguard_peer_id}, default_gateway_create_params.DefaultGatewayCreateParams
             ),
@@ -110,7 +110,7 @@ class DefaultGatewayResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
-            f"/networks/{id}/default_gateway",
+            path_template("/networks/{id}/default_gateway", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -143,7 +143,7 @@ class DefaultGatewayResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._delete(
-            f"/networks/{id}/default_gateway",
+            path_template("/networks/{id}/default_gateway", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -202,7 +202,7 @@ class AsyncDefaultGatewayResource(AsyncAPIResource):
         if not network_identifier:
             raise ValueError(f"Expected a non-empty value for `network_identifier` but received {network_identifier!r}")
         return await self._post(
-            f"/networks/{network_identifier}/default_gateway",
+            path_template("/networks/{network_identifier}/default_gateway", network_identifier=network_identifier),
             body=await async_maybe_transform(
                 {"wireguard_peer_id": wireguard_peer_id}, default_gateway_create_params.DefaultGatewayCreateParams
             ),
@@ -238,7 +238,7 @@ class AsyncDefaultGatewayResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
-            f"/networks/{id}/default_gateway",
+            path_template("/networks/{id}/default_gateway", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -271,7 +271,7 @@ class AsyncDefaultGatewayResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._delete(
-            f"/networks/{id}/default_gateway",
+            path_template("/networks/{id}/default_gateway", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

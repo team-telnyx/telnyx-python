@@ -8,7 +8,7 @@ import httpx
 
 from ..types import messaging_hosted_number_list_params, messaging_hosted_number_update_params
 from .._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -73,7 +73,7 @@ class MessagingHostedNumbersResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
-            f"/messaging_hosted_numbers/{id}",
+            path_template("/messaging_hosted_numbers/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -125,7 +125,7 @@ class MessagingHostedNumbersResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._patch(
-            f"/messaging_hosted_numbers/{id}",
+            path_template("/messaging_hosted_numbers/{id}", id=id),
             body=maybe_transform(
                 {
                     "messaging_product": messaging_product,
@@ -225,7 +225,7 @@ class MessagingHostedNumbersResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._delete(
-            f"/messaging_hosted_numbers/{id}",
+            path_template("/messaging_hosted_numbers/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -279,7 +279,7 @@ class AsyncMessagingHostedNumbersResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
-            f"/messaging_hosted_numbers/{id}",
+            path_template("/messaging_hosted_numbers/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -331,7 +331,7 @@ class AsyncMessagingHostedNumbersResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._patch(
-            f"/messaging_hosted_numbers/{id}",
+            path_template("/messaging_hosted_numbers/{id}", id=id),
             body=await async_maybe_transform(
                 {
                     "messaging_product": messaging_product,
@@ -431,7 +431,7 @@ class AsyncMessagingHostedNumbersResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._delete(
-            f"/messaging_hosted_numbers/{id}",
+            path_template("/messaging_hosted_numbers/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

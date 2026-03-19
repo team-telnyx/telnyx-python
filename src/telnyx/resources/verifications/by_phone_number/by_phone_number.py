@@ -13,6 +13,7 @@ from .actions import (
     AsyncActionsResourceWithStreamingResponse,
 )
 from ...._types import Body, Query, Headers, NotGiven, not_given
+from ...._utils import path_template
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -82,7 +83,7 @@ class ByPhoneNumberResource(SyncAPIResource):
         if not phone_number:
             raise ValueError(f"Expected a non-empty value for `phone_number` but received {phone_number!r}")
         return self._get(
-            f"/verifications/by_phone_number/{phone_number}",
+            path_template("/verifications/by_phone_number/{phone_number}", phone_number=phone_number),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -145,7 +146,7 @@ class AsyncByPhoneNumberResource(AsyncAPIResource):
         if not phone_number:
             raise ValueError(f"Expected a non-empty value for `phone_number` but received {phone_number!r}")
         return await self._get(
-            f"/verifications/by_phone_number/{phone_number}",
+            path_template("/verifications/by_phone_number/{phone_number}", phone_number=phone_number),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

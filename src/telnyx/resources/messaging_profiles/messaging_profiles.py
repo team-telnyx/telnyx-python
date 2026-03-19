@@ -25,7 +25,7 @@ from .actions import (
     AsyncActionsResourceWithStreamingResponse,
 )
 from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -241,7 +241,7 @@ class MessagingProfilesResource(SyncAPIResource):
                 f"Expected a non-empty value for `messaging_profile_id` but received {messaging_profile_id!r}"
             )
         return self._get(
-            f"/messaging_profiles/{messaging_profile_id}",
+            path_template("/messaging_profiles/{messaging_profile_id}", messaging_profile_id=messaging_profile_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -344,7 +344,7 @@ class MessagingProfilesResource(SyncAPIResource):
                 f"Expected a non-empty value for `messaging_profile_id` but received {messaging_profile_id!r}"
             )
         return self._patch(
-            f"/messaging_profiles/{messaging_profile_id}",
+            path_template("/messaging_profiles/{messaging_profile_id}", messaging_profile_id=messaging_profile_id),
             body=maybe_transform(
                 {
                     "alpha_sender": alpha_sender,
@@ -455,7 +455,7 @@ class MessagingProfilesResource(SyncAPIResource):
                 f"Expected a non-empty value for `messaging_profile_id` but received {messaging_profile_id!r}"
             )
         return self._delete(
-            f"/messaging_profiles/{messaging_profile_id}",
+            path_template("/messaging_profiles/{messaging_profile_id}", messaging_profile_id=messaging_profile_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -490,7 +490,7 @@ class MessagingProfilesResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
-            f"/messaging_profiles/{id}/alphanumeric_sender_ids",
+            path_template("/messaging_profiles/{id}/alphanumeric_sender_ids", id=id),
             page=SyncDefaultFlatPagination[AlphanumericSenderID],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -538,7 +538,9 @@ class MessagingProfilesResource(SyncAPIResource):
                 f"Expected a non-empty value for `messaging_profile_id` but received {messaging_profile_id!r}"
             )
         return self._get_api_list(
-            f"/messaging_profiles/{messaging_profile_id}/phone_numbers",
+            path_template(
+                "/messaging_profiles/{messaging_profile_id}/phone_numbers", messaging_profile_id=messaging_profile_id
+            ),
             page=SyncDefaultFlatPagination[PhoneNumberWithMessagingSettings],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -586,7 +588,9 @@ class MessagingProfilesResource(SyncAPIResource):
                 f"Expected a non-empty value for `messaging_profile_id` but received {messaging_profile_id!r}"
             )
         return self._get_api_list(
-            f"/messaging_profiles/{messaging_profile_id}/short_codes",
+            path_template(
+                "/messaging_profiles/{messaging_profile_id}/short_codes", messaging_profile_id=messaging_profile_id
+            ),
             page=SyncDefaultFlatPagination[ShortCode],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -634,7 +638,7 @@ class MessagingProfilesResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
-            f"/messaging_profiles/{id}/metrics",
+            path_template("/messaging_profiles/{id}/metrics", id=id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -831,7 +835,7 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
                 f"Expected a non-empty value for `messaging_profile_id` but received {messaging_profile_id!r}"
             )
         return await self._get(
-            f"/messaging_profiles/{messaging_profile_id}",
+            path_template("/messaging_profiles/{messaging_profile_id}", messaging_profile_id=messaging_profile_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -934,7 +938,7 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
                 f"Expected a non-empty value for `messaging_profile_id` but received {messaging_profile_id!r}"
             )
         return await self._patch(
-            f"/messaging_profiles/{messaging_profile_id}",
+            path_template("/messaging_profiles/{messaging_profile_id}", messaging_profile_id=messaging_profile_id),
             body=await async_maybe_transform(
                 {
                     "alpha_sender": alpha_sender,
@@ -1045,7 +1049,7 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
                 f"Expected a non-empty value for `messaging_profile_id` but received {messaging_profile_id!r}"
             )
         return await self._delete(
-            f"/messaging_profiles/{messaging_profile_id}",
+            path_template("/messaging_profiles/{messaging_profile_id}", messaging_profile_id=messaging_profile_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1080,7 +1084,7 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
-            f"/messaging_profiles/{id}/alphanumeric_sender_ids",
+            path_template("/messaging_profiles/{id}/alphanumeric_sender_ids", id=id),
             page=AsyncDefaultFlatPagination[AlphanumericSenderID],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -1128,7 +1132,9 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
                 f"Expected a non-empty value for `messaging_profile_id` but received {messaging_profile_id!r}"
             )
         return self._get_api_list(
-            f"/messaging_profiles/{messaging_profile_id}/phone_numbers",
+            path_template(
+                "/messaging_profiles/{messaging_profile_id}/phone_numbers", messaging_profile_id=messaging_profile_id
+            ),
             page=AsyncDefaultFlatPagination[PhoneNumberWithMessagingSettings],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -1176,7 +1182,9 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
                 f"Expected a non-empty value for `messaging_profile_id` but received {messaging_profile_id!r}"
             )
         return self._get_api_list(
-            f"/messaging_profiles/{messaging_profile_id}/short_codes",
+            path_template(
+                "/messaging_profiles/{messaging_profile_id}/short_codes", messaging_profile_id=messaging_profile_id
+            ),
             page=AsyncDefaultFlatPagination[ShortCode],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -1224,7 +1232,7 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
-            f"/messaging_profiles/{id}/metrics",
+            path_template("/messaging_profiles/{id}/metrics", id=id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

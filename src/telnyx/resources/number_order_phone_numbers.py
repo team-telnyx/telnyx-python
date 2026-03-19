@@ -12,7 +12,7 @@ from ..types import (
     number_order_phone_number_update_requirement_group_params,
 )
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -83,7 +83,10 @@ class NumberOrderPhoneNumbersResource(SyncAPIResource):
                 f"Expected a non-empty value for `number_order_phone_number_id` but received {number_order_phone_number_id!r}"
             )
         return self._get(
-            f"/number_order_phone_numbers/{number_order_phone_number_id}",
+            path_template(
+                "/number_order_phone_numbers/{number_order_phone_number_id}",
+                number_order_phone_number_id=number_order_phone_number_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -160,7 +163,7 @@ class NumberOrderPhoneNumbersResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._post(
-            f"/number_order_phone_numbers/{id}/requirement_group",
+            path_template("/number_order_phone_numbers/{id}/requirement_group", id=id),
             body=maybe_transform(
                 {"requirement_group_id": requirement_group_id},
                 number_order_phone_number_update_requirement_group_params.NumberOrderPhoneNumberUpdateRequirementGroupParams,
@@ -200,7 +203,10 @@ class NumberOrderPhoneNumbersResource(SyncAPIResource):
                 f"Expected a non-empty value for `number_order_phone_number_id` but received {number_order_phone_number_id!r}"
             )
         return self._patch(
-            f"/number_order_phone_numbers/{number_order_phone_number_id}",
+            path_template(
+                "/number_order_phone_numbers/{number_order_phone_number_id}",
+                number_order_phone_number_id=number_order_phone_number_id,
+            ),
             body=maybe_transform(
                 {"regulatory_requirements": regulatory_requirements},
                 number_order_phone_number_update_requirements_params.NumberOrderPhoneNumberUpdateRequirementsParams,
@@ -260,7 +266,10 @@ class AsyncNumberOrderPhoneNumbersResource(AsyncAPIResource):
                 f"Expected a non-empty value for `number_order_phone_number_id` but received {number_order_phone_number_id!r}"
             )
         return await self._get(
-            f"/number_order_phone_numbers/{number_order_phone_number_id}",
+            path_template(
+                "/number_order_phone_numbers/{number_order_phone_number_id}",
+                number_order_phone_number_id=number_order_phone_number_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -337,7 +346,7 @@ class AsyncNumberOrderPhoneNumbersResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._post(
-            f"/number_order_phone_numbers/{id}/requirement_group",
+            path_template("/number_order_phone_numbers/{id}/requirement_group", id=id),
             body=await async_maybe_transform(
                 {"requirement_group_id": requirement_group_id},
                 number_order_phone_number_update_requirement_group_params.NumberOrderPhoneNumberUpdateRequirementGroupParams,
@@ -377,7 +386,10 @@ class AsyncNumberOrderPhoneNumbersResource(AsyncAPIResource):
                 f"Expected a non-empty value for `number_order_phone_number_id` but received {number_order_phone_number_id!r}"
             )
         return await self._patch(
-            f"/number_order_phone_numbers/{number_order_phone_number_id}",
+            path_template(
+                "/number_order_phone_numbers/{number_order_phone_number_id}",
+                number_order_phone_number_id=number_order_phone_number_id,
+            ),
             body=await async_maybe_transform(
                 {"regulatory_requirements": regulatory_requirements},
                 number_order_phone_number_update_requirements_params.NumberOrderPhoneNumberUpdateRequirementsParams,

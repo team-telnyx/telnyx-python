@@ -7,7 +7,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -130,7 +130,7 @@ class ActionsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._post(
-            f"/conferences/{id}/actions/update",
+            path_template("/conferences/{id}/actions/update", id=id),
             body=maybe_transform(
                 {
                     "call_control_id": call_control_id,
@@ -177,7 +177,7 @@ class ActionsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._post(
-            f"/conferences/{id}/actions/end",
+            path_template("/conferences/{id}/actions/end", id=id),
             body=maybe_transform({"command_id": command_id}, action_end_conference_params.ActionEndConferenceParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -264,7 +264,7 @@ class ActionsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._post(
-            f"/conferences/{id}/actions/gather_using_audio",
+            path_template("/conferences/{id}/actions/gather_using_audio", id=id),
             body=maybe_transform(
                 {
                     "call_control_id": call_control_id,
@@ -336,7 +336,7 @@ class ActionsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._post(
-            f"/conferences/{id}/actions/hold",
+            path_template("/conferences/{id}/actions/hold", id=id),
             body=maybe_transform(
                 {
                     "audio_url": audio_url,
@@ -457,7 +457,7 @@ class ActionsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._post(
-            f"/conferences/{id}/actions/join",
+            path_template("/conferences/{id}/actions/join", id=id),
             body=maybe_transform(
                 {
                     "call_control_id": call_control_id,
@@ -529,7 +529,7 @@ class ActionsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._post(
-            f"/conferences/{id}/actions/leave",
+            path_template("/conferences/{id}/actions/leave", id=id),
             body=maybe_transform(
                 {
                     "call_control_id": call_control_id,
@@ -579,7 +579,7 @@ class ActionsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._post(
-            f"/conferences/{id}/actions/mute",
+            path_template("/conferences/{id}/actions/mute", id=id),
             body=maybe_transform(
                 {
                     "call_control_ids": call_control_ids,
@@ -641,7 +641,7 @@ class ActionsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._post(
-            f"/conferences/{id}/actions/play",
+            path_template("/conferences/{id}/actions/play", id=id),
             body=maybe_transform(
                 {
                     "audio_url": audio_url,
@@ -695,7 +695,7 @@ class ActionsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._post(
-            f"/conferences/{id}/actions/record_pause",
+            path_template("/conferences/{id}/actions/record_pause", id=id),
             body=maybe_transform(
                 {
                     "command_id": command_id,
@@ -747,7 +747,7 @@ class ActionsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._post(
-            f"/conferences/{id}/actions/record_resume",
+            path_template("/conferences/{id}/actions/record_resume", id=id),
             body=maybe_transform(
                 {
                     "command_id": command_id,
@@ -821,7 +821,7 @@ class ActionsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._post(
-            f"/conferences/{id}/actions/record_start",
+            path_template("/conferences/{id}/actions/record_start", id=id),
             body=maybe_transform(
                 {
                     "format": format,
@@ -885,7 +885,7 @@ class ActionsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._post(
-            f"/conferences/{id}/actions/record_stop",
+            path_template("/conferences/{id}/actions/record_stop", id=id),
             body=maybe_transform(
                 {
                     "client_state": client_state,
@@ -942,7 +942,7 @@ class ActionsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._post(
-            f"/conferences/{id}/actions/send_dtmf",
+            path_template("/conferences/{id}/actions/send_dtmf", id=id),
             body=maybe_transform(
                 {
                     "digits": digits,
@@ -1086,7 +1086,7 @@ class ActionsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._post(
-            f"/conferences/{id}/actions/speak",
+            path_template("/conferences/{id}/actions/speak", id=id),
             body=maybe_transform(
                 {
                     "payload": payload,
@@ -1140,7 +1140,7 @@ class ActionsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._post(
-            f"/conferences/{id}/actions/stop",
+            path_template("/conferences/{id}/actions/stop", id=id),
             body=maybe_transform(
                 {
                     "call_control_ids": call_control_ids,
@@ -1188,7 +1188,7 @@ class ActionsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._post(
-            f"/conferences/{id}/actions/unhold",
+            path_template("/conferences/{id}/actions/unhold", id=id),
             body=maybe_transform(
                 {
                     "call_control_ids": call_control_ids,
@@ -1236,7 +1236,7 @@ class ActionsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._post(
-            f"/conferences/{id}/actions/unmute",
+            path_template("/conferences/{id}/actions/unmute", id=id),
             body=maybe_transform(
                 {
                     "call_control_ids": call_control_ids,
@@ -1323,7 +1323,7 @@ class AsyncActionsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._post(
-            f"/conferences/{id}/actions/update",
+            path_template("/conferences/{id}/actions/update", id=id),
             body=await async_maybe_transform(
                 {
                     "call_control_id": call_control_id,
@@ -1370,7 +1370,7 @@ class AsyncActionsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._post(
-            f"/conferences/{id}/actions/end",
+            path_template("/conferences/{id}/actions/end", id=id),
             body=await async_maybe_transform(
                 {"command_id": command_id}, action_end_conference_params.ActionEndConferenceParams
             ),
@@ -1459,7 +1459,7 @@ class AsyncActionsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._post(
-            f"/conferences/{id}/actions/gather_using_audio",
+            path_template("/conferences/{id}/actions/gather_using_audio", id=id),
             body=await async_maybe_transform(
                 {
                     "call_control_id": call_control_id,
@@ -1531,7 +1531,7 @@ class AsyncActionsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._post(
-            f"/conferences/{id}/actions/hold",
+            path_template("/conferences/{id}/actions/hold", id=id),
             body=await async_maybe_transform(
                 {
                     "audio_url": audio_url,
@@ -1652,7 +1652,7 @@ class AsyncActionsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._post(
-            f"/conferences/{id}/actions/join",
+            path_template("/conferences/{id}/actions/join", id=id),
             body=await async_maybe_transform(
                 {
                     "call_control_id": call_control_id,
@@ -1724,7 +1724,7 @@ class AsyncActionsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._post(
-            f"/conferences/{id}/actions/leave",
+            path_template("/conferences/{id}/actions/leave", id=id),
             body=await async_maybe_transform(
                 {
                     "call_control_id": call_control_id,
@@ -1774,7 +1774,7 @@ class AsyncActionsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._post(
-            f"/conferences/{id}/actions/mute",
+            path_template("/conferences/{id}/actions/mute", id=id),
             body=await async_maybe_transform(
                 {
                     "call_control_ids": call_control_ids,
@@ -1836,7 +1836,7 @@ class AsyncActionsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._post(
-            f"/conferences/{id}/actions/play",
+            path_template("/conferences/{id}/actions/play", id=id),
             body=await async_maybe_transform(
                 {
                     "audio_url": audio_url,
@@ -1890,7 +1890,7 @@ class AsyncActionsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._post(
-            f"/conferences/{id}/actions/record_pause",
+            path_template("/conferences/{id}/actions/record_pause", id=id),
             body=await async_maybe_transform(
                 {
                     "command_id": command_id,
@@ -1942,7 +1942,7 @@ class AsyncActionsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._post(
-            f"/conferences/{id}/actions/record_resume",
+            path_template("/conferences/{id}/actions/record_resume", id=id),
             body=await async_maybe_transform(
                 {
                     "command_id": command_id,
@@ -2016,7 +2016,7 @@ class AsyncActionsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._post(
-            f"/conferences/{id}/actions/record_start",
+            path_template("/conferences/{id}/actions/record_start", id=id),
             body=await async_maybe_transform(
                 {
                     "format": format,
@@ -2080,7 +2080,7 @@ class AsyncActionsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._post(
-            f"/conferences/{id}/actions/record_stop",
+            path_template("/conferences/{id}/actions/record_stop", id=id),
             body=await async_maybe_transform(
                 {
                     "client_state": client_state,
@@ -2137,7 +2137,7 @@ class AsyncActionsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._post(
-            f"/conferences/{id}/actions/send_dtmf",
+            path_template("/conferences/{id}/actions/send_dtmf", id=id),
             body=await async_maybe_transform(
                 {
                     "digits": digits,
@@ -2281,7 +2281,7 @@ class AsyncActionsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._post(
-            f"/conferences/{id}/actions/speak",
+            path_template("/conferences/{id}/actions/speak", id=id),
             body=await async_maybe_transform(
                 {
                     "payload": payload,
@@ -2335,7 +2335,7 @@ class AsyncActionsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._post(
-            f"/conferences/{id}/actions/stop",
+            path_template("/conferences/{id}/actions/stop", id=id),
             body=await async_maybe_transform(
                 {
                     "call_control_ids": call_control_ids,
@@ -2383,7 +2383,7 @@ class AsyncActionsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._post(
-            f"/conferences/{id}/actions/unhold",
+            path_template("/conferences/{id}/actions/unhold", id=id),
             body=await async_maybe_transform(
                 {
                     "call_control_ids": call_control_ids,
@@ -2431,7 +2431,7 @@ class AsyncActionsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._post(
-            f"/conferences/{id}/actions/unmute",
+            path_template("/conferences/{id}/actions/unmute", id=id),
             body=await async_maybe_transform(
                 {
                     "call_control_ids": call_control_ids,

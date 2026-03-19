@@ -23,7 +23,7 @@ from .actions import (
     AsyncActionsResourceWithStreamingResponse,
 )
 from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -148,7 +148,7 @@ class MessagingHostedNumberOrdersResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
-            f"/messaging_hosted_number_orders/{id}",
+            path_template("/messaging_hosted_number_orders/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -224,7 +224,7 @@ class MessagingHostedNumberOrdersResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._delete(
-            f"/messaging_hosted_number_orders/{id}",
+            path_template("/messaging_hosted_number_orders/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -298,7 +298,7 @@ class MessagingHostedNumberOrdersResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._post(
-            f"/messaging_hosted_number_orders/{id}/verification_codes",
+            path_template("/messaging_hosted_number_orders/{id}/verification_codes", id=id),
             body=maybe_transform(
                 {
                     "phone_numbers": phone_numbers,
@@ -341,7 +341,7 @@ class MessagingHostedNumberOrdersResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._post(
-            f"/messaging_hosted_number_orders/{id}/validation_codes",
+            path_template("/messaging_hosted_number_orders/{id}/validation_codes", id=id),
             body=maybe_transform(
                 {"verification_codes": verification_codes},
                 messaging_hosted_number_order_validate_codes_params.MessagingHostedNumberOrderValidateCodesParams,
@@ -450,7 +450,7 @@ class AsyncMessagingHostedNumberOrdersResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
-            f"/messaging_hosted_number_orders/{id}",
+            path_template("/messaging_hosted_number_orders/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -526,7 +526,7 @@ class AsyncMessagingHostedNumberOrdersResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._delete(
-            f"/messaging_hosted_number_orders/{id}",
+            path_template("/messaging_hosted_number_orders/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -600,7 +600,7 @@ class AsyncMessagingHostedNumberOrdersResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._post(
-            f"/messaging_hosted_number_orders/{id}/verification_codes",
+            path_template("/messaging_hosted_number_orders/{id}/verification_codes", id=id),
             body=await async_maybe_transform(
                 {
                     "phone_numbers": phone_numbers,
@@ -643,7 +643,7 @@ class AsyncMessagingHostedNumberOrdersResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._post(
-            f"/messaging_hosted_number_orders/{id}/validation_codes",
+            path_template("/messaging_hosted_number_orders/{id}/validation_codes", id=id),
             body=await async_maybe_transform(
                 {"verification_codes": verification_codes},
                 messaging_hosted_number_order_validate_codes_params.MessagingHostedNumberOrderValidateCodesParams,

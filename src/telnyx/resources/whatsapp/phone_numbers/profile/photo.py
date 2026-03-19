@@ -7,7 +7,7 @@ from typing import Mapping, cast
 import httpx
 
 from ....._types import Body, Query, Headers, NoneType, NotGiven, FileTypes, not_given
-from ....._utils import extract_files, maybe_transform, deepcopy_minimal, async_maybe_transform
+from ....._utils import extract_files, path_template, maybe_transform, deepcopy_minimal, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -72,7 +72,7 @@ class PhotoResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `phone_number` but received {phone_number!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/v2/whatsapp/phone_numbers/{phone_number}/profile/photo",
+            path_template("/v2/whatsapp/phone_numbers/{phone_number}/profile/photo", phone_number=phone_number),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -114,7 +114,7 @@ class PhotoResource(SyncAPIResource):
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return self._post(
-            f"/v2/whatsapp/phone_numbers/{phone_number}/profile/photo",
+            path_template("/v2/whatsapp/phone_numbers/{phone_number}/profile/photo", phone_number=phone_number),
             body=maybe_transform(body, photo_upload_params.PhotoUploadParams),
             files=files,
             options=make_request_options(
@@ -173,7 +173,7 @@ class AsyncPhotoResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `phone_number` but received {phone_number!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/v2/whatsapp/phone_numbers/{phone_number}/profile/photo",
+            path_template("/v2/whatsapp/phone_numbers/{phone_number}/profile/photo", phone_number=phone_number),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -215,7 +215,7 @@ class AsyncPhotoResource(AsyncAPIResource):
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return await self._post(
-            f"/v2/whatsapp/phone_numbers/{phone_number}/profile/photo",
+            path_template("/v2/whatsapp/phone_numbers/{phone_number}/profile/photo", phone_number=phone_number),
             body=await async_maybe_transform(body, photo_upload_params.PhotoUploadParams),
             files=files,
             options=make_request_options(

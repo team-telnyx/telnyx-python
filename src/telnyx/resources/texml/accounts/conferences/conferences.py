@@ -7,7 +7,7 @@ from typing_extensions import Literal
 import httpx
 
 from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ....._utils import maybe_transform, async_maybe_transform
+from ....._utils import path_template, maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from .participants import (
     ParticipantsResource,
@@ -93,7 +93,11 @@ class ConferencesResource(SyncAPIResource):
         if not conference_sid:
             raise ValueError(f"Expected a non-empty value for `conference_sid` but received {conference_sid!r}")
         return self._get(
-            f"/texml/Accounts/{account_sid}/Conferences/{conference_sid}",
+            path_template(
+                "/texml/Accounts/{account_sid}/Conferences/{conference_sid}",
+                account_sid=account_sid,
+                conference_sid=conference_sid,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -141,7 +145,11 @@ class ConferencesResource(SyncAPIResource):
         if not conference_sid:
             raise ValueError(f"Expected a non-empty value for `conference_sid` but received {conference_sid!r}")
         return self._post(
-            f"/texml/Accounts/{account_sid}/Conferences/{conference_sid}",
+            path_template(
+                "/texml/Accounts/{account_sid}/Conferences/{conference_sid}",
+                account_sid=account_sid,
+                conference_sid=conference_sid,
+            ),
             body=maybe_transform(
                 {
                     "announce_method": announce_method,
@@ -206,7 +214,7 @@ class ConferencesResource(SyncAPIResource):
         if not account_sid:
             raise ValueError(f"Expected a non-empty value for `account_sid` but received {account_sid!r}")
         return self._get(
-            f"/texml/Accounts/{account_sid}/Conferences",
+            path_template("/texml/Accounts/{account_sid}/Conferences", account_sid=account_sid),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -257,7 +265,11 @@ class ConferencesResource(SyncAPIResource):
         if not conference_sid:
             raise ValueError(f"Expected a non-empty value for `conference_sid` but received {conference_sid!r}")
         return self._get(
-            f"/texml/Accounts/{account_sid}/Conferences/{conference_sid}/Recordings",
+            path_template(
+                "/texml/Accounts/{account_sid}/Conferences/{conference_sid}/Recordings",
+                account_sid=account_sid,
+                conference_sid=conference_sid,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -293,7 +305,11 @@ class ConferencesResource(SyncAPIResource):
         if not conference_sid:
             raise ValueError(f"Expected a non-empty value for `conference_sid` but received {conference_sid!r}")
         return self._get(
-            f"/texml/Accounts/{account_sid}/Conferences/{conference_sid}/Recordings.json",
+            path_template(
+                "/texml/Accounts/{account_sid}/Conferences/{conference_sid}/Recordings.json",
+                account_sid=account_sid,
+                conference_sid=conference_sid,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -357,7 +373,11 @@ class AsyncConferencesResource(AsyncAPIResource):
         if not conference_sid:
             raise ValueError(f"Expected a non-empty value for `conference_sid` but received {conference_sid!r}")
         return await self._get(
-            f"/texml/Accounts/{account_sid}/Conferences/{conference_sid}",
+            path_template(
+                "/texml/Accounts/{account_sid}/Conferences/{conference_sid}",
+                account_sid=account_sid,
+                conference_sid=conference_sid,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -405,7 +425,11 @@ class AsyncConferencesResource(AsyncAPIResource):
         if not conference_sid:
             raise ValueError(f"Expected a non-empty value for `conference_sid` but received {conference_sid!r}")
         return await self._post(
-            f"/texml/Accounts/{account_sid}/Conferences/{conference_sid}",
+            path_template(
+                "/texml/Accounts/{account_sid}/Conferences/{conference_sid}",
+                account_sid=account_sid,
+                conference_sid=conference_sid,
+            ),
             body=await async_maybe_transform(
                 {
                     "announce_method": announce_method,
@@ -470,7 +494,7 @@ class AsyncConferencesResource(AsyncAPIResource):
         if not account_sid:
             raise ValueError(f"Expected a non-empty value for `account_sid` but received {account_sid!r}")
         return await self._get(
-            f"/texml/Accounts/{account_sid}/Conferences",
+            path_template("/texml/Accounts/{account_sid}/Conferences", account_sid=account_sid),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -521,7 +545,11 @@ class AsyncConferencesResource(AsyncAPIResource):
         if not conference_sid:
             raise ValueError(f"Expected a non-empty value for `conference_sid` but received {conference_sid!r}")
         return await self._get(
-            f"/texml/Accounts/{account_sid}/Conferences/{conference_sid}/Recordings",
+            path_template(
+                "/texml/Accounts/{account_sid}/Conferences/{conference_sid}/Recordings",
+                account_sid=account_sid,
+                conference_sid=conference_sid,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -557,7 +585,11 @@ class AsyncConferencesResource(AsyncAPIResource):
         if not conference_sid:
             raise ValueError(f"Expected a non-empty value for `conference_sid` but received {conference_sid!r}")
         return await self._get(
-            f"/texml/Accounts/{account_sid}/Conferences/{conference_sid}/Recordings.json",
+            path_template(
+                "/texml/Accounts/{account_sid}/Conferences/{conference_sid}/Recordings.json",
+                account_sid=account_sid,
+                conference_sid=conference_sid,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

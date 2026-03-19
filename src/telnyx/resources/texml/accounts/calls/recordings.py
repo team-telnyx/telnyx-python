@@ -7,7 +7,7 @@ from typing_extensions import Literal
 import httpx
 
 from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ....._utils import maybe_transform, async_maybe_transform
+from ....._utils import path_template, maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -78,7 +78,12 @@ class RecordingsResource(SyncAPIResource):
         if not recording_sid:
             raise ValueError(f"Expected a non-empty value for `recording_sid` but received {recording_sid!r}")
         return self._post(
-            f"/texml/Accounts/{account_sid}/Calls/{call_sid}/Recordings/{recording_sid}.json",
+            path_template(
+                "/texml/Accounts/{account_sid}/Calls/{call_sid}/Recordings/{recording_sid}.json",
+                account_sid=account_sid,
+                call_sid=call_sid,
+                recording_sid=recording_sid,
+            ),
             body=maybe_transform(
                 {"status": status}, recording_recording_sid_json_params.RecordingRecordingSidJsonParams
             ),
@@ -144,7 +149,12 @@ class AsyncRecordingsResource(AsyncAPIResource):
         if not recording_sid:
             raise ValueError(f"Expected a non-empty value for `recording_sid` but received {recording_sid!r}")
         return await self._post(
-            f"/texml/Accounts/{account_sid}/Calls/{call_sid}/Recordings/{recording_sid}.json",
+            path_template(
+                "/texml/Accounts/{account_sid}/Calls/{call_sid}/Recordings/{recording_sid}.json",
+                account_sid=account_sid,
+                call_sid=call_sid,
+                recording_sid=recording_sid,
+            ),
             body=await async_maybe_transform(
                 {"status": status}, recording_recording_sid_json_params.RecordingRecordingSidJsonParams
             ),

@@ -15,7 +15,7 @@ from ...types import (
     StreamBidirectionalSamplingRate,
 )
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -182,7 +182,9 @@ class ActionsResource(SyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return self._post(
-            f"/calls/{call_control_id}/actions/ai_assistant_add_messages",
+            path_template(
+                "/calls/{call_control_id}/actions/ai_assistant_add_messages", call_control_id=call_control_id
+            ),
             body=maybe_transform(
                 {
                     "client_state": client_state,
@@ -342,7 +344,7 @@ class ActionsResource(SyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return self._post(
-            f"/calls/{call_control_id}/actions/answer",
+            path_template("/calls/{call_control_id}/actions/answer", call_control_id=call_control_id),
             body=maybe_transform(
                 {
                     "billing_group_id": billing_group_id,
@@ -547,7 +549,9 @@ class ActionsResource(SyncAPIResource):
                 f"Expected a non-empty value for `call_control_id_to_bridge` but received {call_control_id_to_bridge!r}"
             )
         return self._post(
-            f"/calls/{call_control_id_to_bridge}/actions/bridge",
+            path_template(
+                "/calls/{call_control_id_to_bridge}/actions/bridge", call_control_id_to_bridge=call_control_id_to_bridge
+            ),
             body=maybe_transform(
                 {
                     "call_control_id_to_bridge_with": call_control_id_to_bridge_with,
@@ -629,7 +633,7 @@ class ActionsResource(SyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return self._post(
-            f"/calls/{call_control_id}/actions/enqueue",
+            path_template("/calls/{call_control_id}/actions/enqueue", call_control_id=call_control_id),
             body=maybe_transform(
                 {
                     "queue_name": queue_name,
@@ -716,7 +720,7 @@ class ActionsResource(SyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return self._post(
-            f"/calls/{call_control_id}/actions/gather",
+            path_template("/calls/{call_control_id}/actions/gather", call_control_id=call_control_id),
             body=maybe_transform(
                 {
                     "client_state": client_state,
@@ -861,7 +865,7 @@ class ActionsResource(SyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return self._post(
-            f"/calls/{call_control_id}/actions/gather_using_ai",
+            path_template("/calls/{call_control_id}/actions/gather_using_ai", call_control_id=call_control_id),
             body=maybe_transform(
                 {
                     "parameters": parameters,
@@ -983,7 +987,7 @@ class ActionsResource(SyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return self._post(
-            f"/calls/{call_control_id}/actions/gather_using_audio",
+            path_template("/calls/{call_control_id}/actions/gather_using_audio", call_control_id=call_control_id),
             body=maybe_transform(
                 {
                     "audio_url": audio_url,
@@ -1176,7 +1180,7 @@ class ActionsResource(SyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return self._post(
-            f"/calls/{call_control_id}/actions/gather_using_speak",
+            path_template("/calls/{call_control_id}/actions/gather_using_speak", call_control_id=call_control_id),
             body=maybe_transform(
                 {
                     "payload": payload,
@@ -1246,7 +1250,7 @@ class ActionsResource(SyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return self._post(
-            f"/calls/{call_control_id}/actions/hangup",
+            path_template("/calls/{call_control_id}/actions/hangup", call_control_id=call_control_id),
             body=maybe_transform(
                 {
                     "client_state": client_state,
@@ -1301,7 +1305,7 @@ class ActionsResource(SyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return self._post(
-            f"/calls/{call_control_id}/actions/ai_assistant_join",
+            path_template("/calls/{call_control_id}/actions/ai_assistant_join", call_control_id=call_control_id),
             body=maybe_transform(
                 {
                     "conversation_id": conversation_id,
@@ -1351,7 +1355,7 @@ class ActionsResource(SyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return self._post(
-            f"/calls/{call_control_id}/actions/leave_queue",
+            path_template("/calls/{call_control_id}/actions/leave_queue", call_control_id=call_control_id),
             body=maybe_transform(
                 {
                     "client_state": client_state,
@@ -1407,7 +1411,7 @@ class ActionsResource(SyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return self._post(
-            f"/calls/{call_control_id}/actions/record_pause",
+            path_template("/calls/{call_control_id}/actions/record_pause", call_control_id=call_control_id),
             body=maybe_transform(
                 {
                     "client_state": client_state,
@@ -1481,7 +1485,7 @@ class ActionsResource(SyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return self._post(
-            f"/calls/{call_control_id}/actions/refer",
+            path_template("/calls/{call_control_id}/actions/refer", call_control_id=call_control_id),
             body=maybe_transform(
                 {
                     "sip_address": sip_address,
@@ -1541,7 +1545,7 @@ class ActionsResource(SyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return self._post(
-            f"/calls/{call_control_id}/actions/reject",
+            path_template("/calls/{call_control_id}/actions/reject", call_control_id=call_control_id),
             body=maybe_transform(
                 {
                     "cause": cause,
@@ -1597,7 +1601,7 @@ class ActionsResource(SyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return self._post(
-            f"/calls/{call_control_id}/actions/record_resume",
+            path_template("/calls/{call_control_id}/actions/record_resume", call_control_id=call_control_id),
             body=maybe_transform(
                 {
                     "client_state": client_state,
@@ -1660,7 +1664,7 @@ class ActionsResource(SyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return self._post(
-            f"/calls/{call_control_id}/actions/send_dtmf",
+            path_template("/calls/{call_control_id}/actions/send_dtmf", call_control_id=call_control_id),
             body=maybe_transform(
                 {
                     "digits": digits,
@@ -1721,7 +1725,7 @@ class ActionsResource(SyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return self._post(
-            f"/calls/{call_control_id}/actions/send_sip_info",
+            path_template("/calls/{call_control_id}/actions/send_sip_info", call_control_id=call_control_id),
             body=maybe_transform(
                 {
                     "body": body,
@@ -1885,7 +1889,7 @@ class ActionsResource(SyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return self._post(
-            f"/calls/{call_control_id}/actions/speak",
+            path_template("/calls/{call_control_id}/actions/speak", call_control_id=call_control_id),
             body=maybe_transform(
                 {
                     "payload": payload,
@@ -2004,7 +2008,7 @@ class ActionsResource(SyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return self._post(
-            f"/calls/{call_control_id}/actions/ai_assistant_start",
+            path_template("/calls/{call_control_id}/actions/ai_assistant_start", call_control_id=call_control_id),
             body=maybe_transform(
                 {
                     "assistant": assistant,
@@ -2083,7 +2087,7 @@ class ActionsResource(SyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return self._post(
-            f"/calls/{call_control_id}/actions/fork_start",
+            path_template("/calls/{call_control_id}/actions/fork_start", call_control_id=call_control_id),
             body=maybe_transform(
                 {
                     "client_state": client_state,
@@ -2146,7 +2150,7 @@ class ActionsResource(SyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return self._post(
-            f"/calls/{call_control_id}/actions/suppression_start",
+            path_template("/calls/{call_control_id}/actions/suppression_start", call_control_id=call_control_id),
             body=maybe_transform(
                 {
                     "client_state": client_state,
@@ -2252,7 +2256,7 @@ class ActionsResource(SyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return self._post(
-            f"/calls/{call_control_id}/actions/playback_start",
+            path_template("/calls/{call_control_id}/actions/playback_start", call_control_id=call_control_id),
             body=maybe_transform(
                 {
                     "audio_type": audio_type,
@@ -2625,7 +2629,7 @@ class ActionsResource(SyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return self._post(
-            f"/calls/{call_control_id}/actions/record_start",
+            path_template("/calls/{call_control_id}/actions/record_start", call_control_id=call_control_id),
             body=maybe_transform(
                 {
                     "channels": channels,
@@ -2713,7 +2717,7 @@ class ActionsResource(SyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return self._post(
-            f"/calls/{call_control_id}/actions/siprec_start",
+            path_template("/calls/{call_control_id}/actions/siprec_start", call_control_id=call_control_id),
             body=maybe_transform(
                 {
                     "client_state": client_state,
@@ -2805,7 +2809,7 @@ class ActionsResource(SyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return self._post(
-            f"/calls/{call_control_id}/actions/streaming_start",
+            path_template("/calls/{call_control_id}/actions/streaming_start", call_control_id=call_control_id),
             body=maybe_transform(
                 {
                     "client_state": client_state,
@@ -2880,7 +2884,7 @@ class ActionsResource(SyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return self._post(
-            f"/calls/{call_control_id}/actions/transcription_start",
+            path_template("/calls/{call_control_id}/actions/transcription_start", call_control_id=call_control_id),
             body=maybe_transform(
                 {
                     "client_state": client_state,
@@ -2931,7 +2935,7 @@ class ActionsResource(SyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return self._post(
-            f"/calls/{call_control_id}/actions/ai_assistant_stop",
+            path_template("/calls/{call_control_id}/actions/ai_assistant_stop", call_control_id=call_control_id),
             body=maybe_transform(
                 {
                     "client_state": client_state,
@@ -2987,7 +2991,7 @@ class ActionsResource(SyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return self._post(
-            f"/calls/{call_control_id}/actions/fork_stop",
+            path_template("/calls/{call_control_id}/actions/fork_stop", call_control_id=call_control_id),
             body=maybe_transform(
                 {
                     "client_state": client_state,
@@ -3040,7 +3044,7 @@ class ActionsResource(SyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return self._post(
-            f"/calls/{call_control_id}/actions/gather_stop",
+            path_template("/calls/{call_control_id}/actions/gather_stop", call_control_id=call_control_id),
             body=maybe_transform(
                 {
                     "client_state": client_state,
@@ -3088,7 +3092,7 @@ class ActionsResource(SyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return self._post(
-            f"/calls/{call_control_id}/actions/suppression_stop",
+            path_template("/calls/{call_control_id}/actions/suppression_stop", call_control_id=call_control_id),
             body=maybe_transform(
                 {
                     "client_state": client_state,
@@ -3147,7 +3151,7 @@ class ActionsResource(SyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return self._post(
-            f"/calls/{call_control_id}/actions/playback_stop",
+            path_template("/calls/{call_control_id}/actions/playback_stop", call_control_id=call_control_id),
             body=maybe_transform(
                 {
                     "client_state": client_state,
@@ -3204,7 +3208,7 @@ class ActionsResource(SyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return self._post(
-            f"/calls/{call_control_id}/actions/record_stop",
+            path_template("/calls/{call_control_id}/actions/record_stop", call_control_id=call_control_id),
             body=maybe_transform(
                 {
                     "client_state": client_state,
@@ -3257,7 +3261,7 @@ class ActionsResource(SyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return self._post(
-            f"/calls/{call_control_id}/actions/siprec_stop",
+            path_template("/calls/{call_control_id}/actions/siprec_stop", call_control_id=call_control_id),
             body=maybe_transform(
                 {
                     "client_state": client_state,
@@ -3313,7 +3317,7 @@ class ActionsResource(SyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return self._post(
-            f"/calls/{call_control_id}/actions/streaming_stop",
+            path_template("/calls/{call_control_id}/actions/streaming_stop", call_control_id=call_control_id),
             body=maybe_transform(
                 {
                     "client_state": client_state,
@@ -3362,7 +3366,7 @@ class ActionsResource(SyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return self._post(
-            f"/calls/{call_control_id}/actions/transcription_stop",
+            path_template("/calls/{call_control_id}/actions/transcription_stop", call_control_id=call_control_id),
             body=maybe_transform(
                 {
                     "client_state": client_state,
@@ -3408,7 +3412,7 @@ class ActionsResource(SyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return self._post(
-            f"/calls/{call_control_id}/actions/switch_supervisor_role",
+            path_template("/calls/{call_control_id}/actions/switch_supervisor_role", call_control_id=call_control_id),
             body=maybe_transform({"role": role}, action_switch_supervisor_role_params.ActionSwitchSupervisorRoleParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -3626,7 +3630,7 @@ class ActionsResource(SyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return self._post(
-            f"/calls/{call_control_id}/actions/transfer",
+            path_template("/calls/{call_control_id}/actions/transfer", call_control_id=call_control_id),
             body=maybe_transform(
                 {
                     "to": to,
@@ -3705,7 +3709,7 @@ class ActionsResource(SyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return self._put(
-            f"/calls/{call_control_id}/actions/client_state_update",
+            path_template("/calls/{call_control_id}/actions/client_state_update", call_control_id=call_control_id),
             body=maybe_transform(
                 {"client_state": client_state}, action_update_client_state_params.ActionUpdateClientStateParams
             ),
@@ -3775,7 +3779,9 @@ class AsyncActionsResource(AsyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return await self._post(
-            f"/calls/{call_control_id}/actions/ai_assistant_add_messages",
+            path_template(
+                "/calls/{call_control_id}/actions/ai_assistant_add_messages", call_control_id=call_control_id
+            ),
             body=await async_maybe_transform(
                 {
                     "client_state": client_state,
@@ -3935,7 +3941,7 @@ class AsyncActionsResource(AsyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return await self._post(
-            f"/calls/{call_control_id}/actions/answer",
+            path_template("/calls/{call_control_id}/actions/answer", call_control_id=call_control_id),
             body=await async_maybe_transform(
                 {
                     "billing_group_id": billing_group_id,
@@ -4140,7 +4146,9 @@ class AsyncActionsResource(AsyncAPIResource):
                 f"Expected a non-empty value for `call_control_id_to_bridge` but received {call_control_id_to_bridge!r}"
             )
         return await self._post(
-            f"/calls/{call_control_id_to_bridge}/actions/bridge",
+            path_template(
+                "/calls/{call_control_id_to_bridge}/actions/bridge", call_control_id_to_bridge=call_control_id_to_bridge
+            ),
             body=await async_maybe_transform(
                 {
                     "call_control_id_to_bridge_with": call_control_id_to_bridge_with,
@@ -4222,7 +4230,7 @@ class AsyncActionsResource(AsyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return await self._post(
-            f"/calls/{call_control_id}/actions/enqueue",
+            path_template("/calls/{call_control_id}/actions/enqueue", call_control_id=call_control_id),
             body=await async_maybe_transform(
                 {
                     "queue_name": queue_name,
@@ -4309,7 +4317,7 @@ class AsyncActionsResource(AsyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return await self._post(
-            f"/calls/{call_control_id}/actions/gather",
+            path_template("/calls/{call_control_id}/actions/gather", call_control_id=call_control_id),
             body=await async_maybe_transform(
                 {
                     "client_state": client_state,
@@ -4454,7 +4462,7 @@ class AsyncActionsResource(AsyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return await self._post(
-            f"/calls/{call_control_id}/actions/gather_using_ai",
+            path_template("/calls/{call_control_id}/actions/gather_using_ai", call_control_id=call_control_id),
             body=await async_maybe_transform(
                 {
                     "parameters": parameters,
@@ -4576,7 +4584,7 @@ class AsyncActionsResource(AsyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return await self._post(
-            f"/calls/{call_control_id}/actions/gather_using_audio",
+            path_template("/calls/{call_control_id}/actions/gather_using_audio", call_control_id=call_control_id),
             body=await async_maybe_transform(
                 {
                     "audio_url": audio_url,
@@ -4769,7 +4777,7 @@ class AsyncActionsResource(AsyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return await self._post(
-            f"/calls/{call_control_id}/actions/gather_using_speak",
+            path_template("/calls/{call_control_id}/actions/gather_using_speak", call_control_id=call_control_id),
             body=await async_maybe_transform(
                 {
                     "payload": payload,
@@ -4839,7 +4847,7 @@ class AsyncActionsResource(AsyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return await self._post(
-            f"/calls/{call_control_id}/actions/hangup",
+            path_template("/calls/{call_control_id}/actions/hangup", call_control_id=call_control_id),
             body=await async_maybe_transform(
                 {
                     "client_state": client_state,
@@ -4894,7 +4902,7 @@ class AsyncActionsResource(AsyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return await self._post(
-            f"/calls/{call_control_id}/actions/ai_assistant_join",
+            path_template("/calls/{call_control_id}/actions/ai_assistant_join", call_control_id=call_control_id),
             body=await async_maybe_transform(
                 {
                     "conversation_id": conversation_id,
@@ -4944,7 +4952,7 @@ class AsyncActionsResource(AsyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return await self._post(
-            f"/calls/{call_control_id}/actions/leave_queue",
+            path_template("/calls/{call_control_id}/actions/leave_queue", call_control_id=call_control_id),
             body=await async_maybe_transform(
                 {
                     "client_state": client_state,
@@ -5000,7 +5008,7 @@ class AsyncActionsResource(AsyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return await self._post(
-            f"/calls/{call_control_id}/actions/record_pause",
+            path_template("/calls/{call_control_id}/actions/record_pause", call_control_id=call_control_id),
             body=await async_maybe_transform(
                 {
                     "client_state": client_state,
@@ -5074,7 +5082,7 @@ class AsyncActionsResource(AsyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return await self._post(
-            f"/calls/{call_control_id}/actions/refer",
+            path_template("/calls/{call_control_id}/actions/refer", call_control_id=call_control_id),
             body=await async_maybe_transform(
                 {
                     "sip_address": sip_address,
@@ -5134,7 +5142,7 @@ class AsyncActionsResource(AsyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return await self._post(
-            f"/calls/{call_control_id}/actions/reject",
+            path_template("/calls/{call_control_id}/actions/reject", call_control_id=call_control_id),
             body=await async_maybe_transform(
                 {
                     "cause": cause,
@@ -5190,7 +5198,7 @@ class AsyncActionsResource(AsyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return await self._post(
-            f"/calls/{call_control_id}/actions/record_resume",
+            path_template("/calls/{call_control_id}/actions/record_resume", call_control_id=call_control_id),
             body=await async_maybe_transform(
                 {
                     "client_state": client_state,
@@ -5253,7 +5261,7 @@ class AsyncActionsResource(AsyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return await self._post(
-            f"/calls/{call_control_id}/actions/send_dtmf",
+            path_template("/calls/{call_control_id}/actions/send_dtmf", call_control_id=call_control_id),
             body=await async_maybe_transform(
                 {
                     "digits": digits,
@@ -5314,7 +5322,7 @@ class AsyncActionsResource(AsyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return await self._post(
-            f"/calls/{call_control_id}/actions/send_sip_info",
+            path_template("/calls/{call_control_id}/actions/send_sip_info", call_control_id=call_control_id),
             body=await async_maybe_transform(
                 {
                     "body": body,
@@ -5478,7 +5486,7 @@ class AsyncActionsResource(AsyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return await self._post(
-            f"/calls/{call_control_id}/actions/speak",
+            path_template("/calls/{call_control_id}/actions/speak", call_control_id=call_control_id),
             body=await async_maybe_transform(
                 {
                     "payload": payload,
@@ -5597,7 +5605,7 @@ class AsyncActionsResource(AsyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return await self._post(
-            f"/calls/{call_control_id}/actions/ai_assistant_start",
+            path_template("/calls/{call_control_id}/actions/ai_assistant_start", call_control_id=call_control_id),
             body=await async_maybe_transform(
                 {
                     "assistant": assistant,
@@ -5676,7 +5684,7 @@ class AsyncActionsResource(AsyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return await self._post(
-            f"/calls/{call_control_id}/actions/fork_start",
+            path_template("/calls/{call_control_id}/actions/fork_start", call_control_id=call_control_id),
             body=await async_maybe_transform(
                 {
                     "client_state": client_state,
@@ -5739,7 +5747,7 @@ class AsyncActionsResource(AsyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return await self._post(
-            f"/calls/{call_control_id}/actions/suppression_start",
+            path_template("/calls/{call_control_id}/actions/suppression_start", call_control_id=call_control_id),
             body=await async_maybe_transform(
                 {
                     "client_state": client_state,
@@ -5845,7 +5853,7 @@ class AsyncActionsResource(AsyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return await self._post(
-            f"/calls/{call_control_id}/actions/playback_start",
+            path_template("/calls/{call_control_id}/actions/playback_start", call_control_id=call_control_id),
             body=await async_maybe_transform(
                 {
                     "audio_type": audio_type,
@@ -6218,7 +6226,7 @@ class AsyncActionsResource(AsyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return await self._post(
-            f"/calls/{call_control_id}/actions/record_start",
+            path_template("/calls/{call_control_id}/actions/record_start", call_control_id=call_control_id),
             body=await async_maybe_transform(
                 {
                     "channels": channels,
@@ -6306,7 +6314,7 @@ class AsyncActionsResource(AsyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return await self._post(
-            f"/calls/{call_control_id}/actions/siprec_start",
+            path_template("/calls/{call_control_id}/actions/siprec_start", call_control_id=call_control_id),
             body=await async_maybe_transform(
                 {
                     "client_state": client_state,
@@ -6398,7 +6406,7 @@ class AsyncActionsResource(AsyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return await self._post(
-            f"/calls/{call_control_id}/actions/streaming_start",
+            path_template("/calls/{call_control_id}/actions/streaming_start", call_control_id=call_control_id),
             body=await async_maybe_transform(
                 {
                     "client_state": client_state,
@@ -6473,7 +6481,7 @@ class AsyncActionsResource(AsyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return await self._post(
-            f"/calls/{call_control_id}/actions/transcription_start",
+            path_template("/calls/{call_control_id}/actions/transcription_start", call_control_id=call_control_id),
             body=await async_maybe_transform(
                 {
                     "client_state": client_state,
@@ -6524,7 +6532,7 @@ class AsyncActionsResource(AsyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return await self._post(
-            f"/calls/{call_control_id}/actions/ai_assistant_stop",
+            path_template("/calls/{call_control_id}/actions/ai_assistant_stop", call_control_id=call_control_id),
             body=await async_maybe_transform(
                 {
                     "client_state": client_state,
@@ -6580,7 +6588,7 @@ class AsyncActionsResource(AsyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return await self._post(
-            f"/calls/{call_control_id}/actions/fork_stop",
+            path_template("/calls/{call_control_id}/actions/fork_stop", call_control_id=call_control_id),
             body=await async_maybe_transform(
                 {
                     "client_state": client_state,
@@ -6633,7 +6641,7 @@ class AsyncActionsResource(AsyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return await self._post(
-            f"/calls/{call_control_id}/actions/gather_stop",
+            path_template("/calls/{call_control_id}/actions/gather_stop", call_control_id=call_control_id),
             body=await async_maybe_transform(
                 {
                     "client_state": client_state,
@@ -6681,7 +6689,7 @@ class AsyncActionsResource(AsyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return await self._post(
-            f"/calls/{call_control_id}/actions/suppression_stop",
+            path_template("/calls/{call_control_id}/actions/suppression_stop", call_control_id=call_control_id),
             body=await async_maybe_transform(
                 {
                     "client_state": client_state,
@@ -6740,7 +6748,7 @@ class AsyncActionsResource(AsyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return await self._post(
-            f"/calls/{call_control_id}/actions/playback_stop",
+            path_template("/calls/{call_control_id}/actions/playback_stop", call_control_id=call_control_id),
             body=await async_maybe_transform(
                 {
                     "client_state": client_state,
@@ -6797,7 +6805,7 @@ class AsyncActionsResource(AsyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return await self._post(
-            f"/calls/{call_control_id}/actions/record_stop",
+            path_template("/calls/{call_control_id}/actions/record_stop", call_control_id=call_control_id),
             body=await async_maybe_transform(
                 {
                     "client_state": client_state,
@@ -6850,7 +6858,7 @@ class AsyncActionsResource(AsyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return await self._post(
-            f"/calls/{call_control_id}/actions/siprec_stop",
+            path_template("/calls/{call_control_id}/actions/siprec_stop", call_control_id=call_control_id),
             body=await async_maybe_transform(
                 {
                     "client_state": client_state,
@@ -6906,7 +6914,7 @@ class AsyncActionsResource(AsyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return await self._post(
-            f"/calls/{call_control_id}/actions/streaming_stop",
+            path_template("/calls/{call_control_id}/actions/streaming_stop", call_control_id=call_control_id),
             body=await async_maybe_transform(
                 {
                     "client_state": client_state,
@@ -6955,7 +6963,7 @@ class AsyncActionsResource(AsyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return await self._post(
-            f"/calls/{call_control_id}/actions/transcription_stop",
+            path_template("/calls/{call_control_id}/actions/transcription_stop", call_control_id=call_control_id),
             body=await async_maybe_transform(
                 {
                     "client_state": client_state,
@@ -7001,7 +7009,7 @@ class AsyncActionsResource(AsyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return await self._post(
-            f"/calls/{call_control_id}/actions/switch_supervisor_role",
+            path_template("/calls/{call_control_id}/actions/switch_supervisor_role", call_control_id=call_control_id),
             body=await async_maybe_transform(
                 {"role": role}, action_switch_supervisor_role_params.ActionSwitchSupervisorRoleParams
             ),
@@ -7221,7 +7229,7 @@ class AsyncActionsResource(AsyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return await self._post(
-            f"/calls/{call_control_id}/actions/transfer",
+            path_template("/calls/{call_control_id}/actions/transfer", call_control_id=call_control_id),
             body=await async_maybe_transform(
                 {
                     "to": to,
@@ -7300,7 +7308,7 @@ class AsyncActionsResource(AsyncAPIResource):
         if not call_control_id:
             raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
         return await self._put(
-            f"/calls/{call_control_id}/actions/client_state_update",
+            path_template("/calls/{call_control_id}/actions/client_state_update", call_control_id=call_control_id),
             body=await async_maybe_transform(
                 {"client_state": client_state}, action_update_client_state_params.ActionUpdateClientStateParams
             ),

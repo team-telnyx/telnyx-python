@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ....._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from ....._utils import maybe_transform, async_maybe_transform
+from ....._utils import path_template, maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -85,7 +85,12 @@ class ParticipantsResource(SyncAPIResource):
                 f"Expected a non-empty value for `call_sid_or_participant_label` but received {call_sid_or_participant_label!r}"
             )
         return self._get(
-            f"/texml/Accounts/{account_sid}/Conferences/{conference_sid}/Participants/{call_sid_or_participant_label}",
+            path_template(
+                "/texml/Accounts/{account_sid}/Conferences/{conference_sid}/Participants/{call_sid_or_participant_label}",
+                account_sid=account_sid,
+                conference_sid=conference_sid,
+                call_sid_or_participant_label=call_sid_or_participant_label,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -167,7 +172,12 @@ class ParticipantsResource(SyncAPIResource):
                 f"Expected a non-empty value for `call_sid_or_participant_label` but received {call_sid_or_participant_label!r}"
             )
         return self._post(
-            f"/texml/Accounts/{account_sid}/Conferences/{conference_sid}/Participants/{call_sid_or_participant_label}",
+            path_template(
+                "/texml/Accounts/{account_sid}/Conferences/{conference_sid}/Participants/{call_sid_or_participant_label}",
+                account_sid=account_sid,
+                conference_sid=conference_sid,
+                call_sid_or_participant_label=call_sid_or_participant_label,
+            ),
             body=maybe_transform(
                 {
                     "announce_method": announce_method,
@@ -225,7 +235,12 @@ class ParticipantsResource(SyncAPIResource):
             )
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/texml/Accounts/{account_sid}/Conferences/{conference_sid}/Participants/{call_sid_or_participant_label}",
+            path_template(
+                "/texml/Accounts/{account_sid}/Conferences/{conference_sid}/Participants/{call_sid_or_participant_label}",
+                account_sid=account_sid,
+                conference_sid=conference_sid,
+                call_sid_or_participant_label=call_sid_or_participant_label,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -447,7 +462,11 @@ class ParticipantsResource(SyncAPIResource):
         if not conference_sid:
             raise ValueError(f"Expected a non-empty value for `conference_sid` but received {conference_sid!r}")
         return self._post(
-            f"/texml/Accounts/{account_sid}/Conferences/{conference_sid}/Participants",
+            path_template(
+                "/texml/Accounts/{account_sid}/Conferences/{conference_sid}/Participants",
+                account_sid=account_sid,
+                conference_sid=conference_sid,
+            ),
             body=maybe_transform(
                 {
                     "amd_status_callback": amd_status_callback,
@@ -536,7 +555,11 @@ class ParticipantsResource(SyncAPIResource):
         if not conference_sid:
             raise ValueError(f"Expected a non-empty value for `conference_sid` but received {conference_sid!r}")
         return self._get(
-            f"/texml/Accounts/{account_sid}/Conferences/{conference_sid}/Participants",
+            path_template(
+                "/texml/Accounts/{account_sid}/Conferences/{conference_sid}/Participants",
+                account_sid=account_sid,
+                conference_sid=conference_sid,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -600,7 +623,12 @@ class AsyncParticipantsResource(AsyncAPIResource):
                 f"Expected a non-empty value for `call_sid_or_participant_label` but received {call_sid_or_participant_label!r}"
             )
         return await self._get(
-            f"/texml/Accounts/{account_sid}/Conferences/{conference_sid}/Participants/{call_sid_or_participant_label}",
+            path_template(
+                "/texml/Accounts/{account_sid}/Conferences/{conference_sid}/Participants/{call_sid_or_participant_label}",
+                account_sid=account_sid,
+                conference_sid=conference_sid,
+                call_sid_or_participant_label=call_sid_or_participant_label,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -682,7 +710,12 @@ class AsyncParticipantsResource(AsyncAPIResource):
                 f"Expected a non-empty value for `call_sid_or_participant_label` but received {call_sid_or_participant_label!r}"
             )
         return await self._post(
-            f"/texml/Accounts/{account_sid}/Conferences/{conference_sid}/Participants/{call_sid_or_participant_label}",
+            path_template(
+                "/texml/Accounts/{account_sid}/Conferences/{conference_sid}/Participants/{call_sid_or_participant_label}",
+                account_sid=account_sid,
+                conference_sid=conference_sid,
+                call_sid_or_participant_label=call_sid_or_participant_label,
+            ),
             body=await async_maybe_transform(
                 {
                     "announce_method": announce_method,
@@ -740,7 +773,12 @@ class AsyncParticipantsResource(AsyncAPIResource):
             )
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/texml/Accounts/{account_sid}/Conferences/{conference_sid}/Participants/{call_sid_or_participant_label}",
+            path_template(
+                "/texml/Accounts/{account_sid}/Conferences/{conference_sid}/Participants/{call_sid_or_participant_label}",
+                account_sid=account_sid,
+                conference_sid=conference_sid,
+                call_sid_or_participant_label=call_sid_or_participant_label,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -962,7 +1000,11 @@ class AsyncParticipantsResource(AsyncAPIResource):
         if not conference_sid:
             raise ValueError(f"Expected a non-empty value for `conference_sid` but received {conference_sid!r}")
         return await self._post(
-            f"/texml/Accounts/{account_sid}/Conferences/{conference_sid}/Participants",
+            path_template(
+                "/texml/Accounts/{account_sid}/Conferences/{conference_sid}/Participants",
+                account_sid=account_sid,
+                conference_sid=conference_sid,
+            ),
             body=await async_maybe_transform(
                 {
                     "amd_status_callback": amd_status_callback,
@@ -1051,7 +1093,11 @@ class AsyncParticipantsResource(AsyncAPIResource):
         if not conference_sid:
             raise ValueError(f"Expected a non-empty value for `conference_sid` but received {conference_sid!r}")
         return await self._get(
-            f"/texml/Accounts/{account_sid}/Conferences/{conference_sid}/Participants",
+            path_template(
+                "/texml/Accounts/{account_sid}/Conferences/{conference_sid}/Participants",
+                account_sid=account_sid,
+                conference_sid=conference_sid,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
