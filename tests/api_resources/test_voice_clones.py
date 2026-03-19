@@ -13,8 +13,8 @@ from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types import (
     VoiceCloneListResponse,
+    VoiceCloneCreateResponse,
     VoiceCloneUpdateResponse,
-    VoiceCloneCreateFromDesignResponse,
     VoiceCloneCreateFromUploadResponse,
 )
 from telnyx._response import (
@@ -30,6 +30,49 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 class TestVoiceClones:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_create(self, client: Telnyx) -> None:
+        voice_clone = client.voice_clones.create(
+            gender="male",
+            language="en",
+            name="clone-narrator",
+            voice_design_id="550e8400-e29b-41d4-a716-446655440000",
+        )
+        assert_matches_type(VoiceCloneCreateResponse, voice_clone, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_raw_response_create(self, client: Telnyx) -> None:
+        response = client.voice_clones.with_raw_response.create(
+            gender="male",
+            language="en",
+            name="clone-narrator",
+            voice_design_id="550e8400-e29b-41d4-a716-446655440000",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        voice_clone = response.parse()
+        assert_matches_type(VoiceCloneCreateResponse, voice_clone, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_streaming_response_create(self, client: Telnyx) -> None:
+        with client.voice_clones.with_streaming_response.create(
+            gender="male",
+            language="en",
+            name="clone-narrator",
+            voice_design_id="550e8400-e29b-41d4-a716-446655440000",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            voice_clone = response.parse()
+            assert_matches_type(VoiceCloneCreateResponse, voice_clone, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -171,49 +214,6 @@ class TestVoiceClones:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_create_from_design(self, client: Telnyx) -> None:
-        voice_clone = client.voice_clones.create_from_design(
-            gender="male",
-            language="en",
-            name="clone-narrator",
-            voice_design_id="550e8400-e29b-41d4-a716-446655440000",
-        )
-        assert_matches_type(VoiceCloneCreateFromDesignResponse, voice_clone, path=["response"])
-
-    @pytest.mark.skip(reason="Mock server tests are disabled")
-    @parametrize
-    def test_raw_response_create_from_design(self, client: Telnyx) -> None:
-        response = client.voice_clones.with_raw_response.create_from_design(
-            gender="male",
-            language="en",
-            name="clone-narrator",
-            voice_design_id="550e8400-e29b-41d4-a716-446655440000",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        voice_clone = response.parse()
-        assert_matches_type(VoiceCloneCreateFromDesignResponse, voice_clone, path=["response"])
-
-    @pytest.mark.skip(reason="Mock server tests are disabled")
-    @parametrize
-    def test_streaming_response_create_from_design(self, client: Telnyx) -> None:
-        with client.voice_clones.with_streaming_response.create_from_design(
-            gender="male",
-            language="en",
-            name="clone-narrator",
-            voice_design_id="550e8400-e29b-41d4-a716-446655440000",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            voice_clone = response.parse()
-            assert_matches_type(VoiceCloneCreateFromDesignResponse, voice_clone, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip(reason="Mock server tests are disabled")
-    @parametrize
     def test_method_create_from_upload(self, client: Telnyx) -> None:
         voice_clone = client.voice_clones.create_from_upload(
             audio_file=b"Example data",
@@ -326,6 +326,49 @@ class TestAsyncVoiceClones:
     parametrize = pytest.mark.parametrize(
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_create(self, async_client: AsyncTelnyx) -> None:
+        voice_clone = await async_client.voice_clones.create(
+            gender="male",
+            language="en",
+            name="clone-narrator",
+            voice_design_id="550e8400-e29b-41d4-a716-446655440000",
+        )
+        assert_matches_type(VoiceCloneCreateResponse, voice_clone, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_raw_response_create(self, async_client: AsyncTelnyx) -> None:
+        response = await async_client.voice_clones.with_raw_response.create(
+            gender="male",
+            language="en",
+            name="clone-narrator",
+            voice_design_id="550e8400-e29b-41d4-a716-446655440000",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        voice_clone = await response.parse()
+        assert_matches_type(VoiceCloneCreateResponse, voice_clone, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_streaming_response_create(self, async_client: AsyncTelnyx) -> None:
+        async with async_client.voice_clones.with_streaming_response.create(
+            gender="male",
+            language="en",
+            name="clone-narrator",
+            voice_design_id="550e8400-e29b-41d4-a716-446655440000",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            voice_clone = await response.parse()
+            assert_matches_type(VoiceCloneCreateResponse, voice_clone, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -464,49 +507,6 @@ class TestAsyncVoiceClones:
             await async_client.voice_clones.with_raw_response.delete(
                 "",
             )
-
-    @pytest.mark.skip(reason="Mock server tests are disabled")
-    @parametrize
-    async def test_method_create_from_design(self, async_client: AsyncTelnyx) -> None:
-        voice_clone = await async_client.voice_clones.create_from_design(
-            gender="male",
-            language="en",
-            name="clone-narrator",
-            voice_design_id="550e8400-e29b-41d4-a716-446655440000",
-        )
-        assert_matches_type(VoiceCloneCreateFromDesignResponse, voice_clone, path=["response"])
-
-    @pytest.mark.skip(reason="Mock server tests are disabled")
-    @parametrize
-    async def test_raw_response_create_from_design(self, async_client: AsyncTelnyx) -> None:
-        response = await async_client.voice_clones.with_raw_response.create_from_design(
-            gender="male",
-            language="en",
-            name="clone-narrator",
-            voice_design_id="550e8400-e29b-41d4-a716-446655440000",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        voice_clone = await response.parse()
-        assert_matches_type(VoiceCloneCreateFromDesignResponse, voice_clone, path=["response"])
-
-    @pytest.mark.skip(reason="Mock server tests are disabled")
-    @parametrize
-    async def test_streaming_response_create_from_design(self, async_client: AsyncTelnyx) -> None:
-        async with async_client.voice_clones.with_streaming_response.create_from_design(
-            gender="male",
-            language="en",
-            name="clone-narrator",
-            voice_design_id="550e8400-e29b-41d4-a716-446655440000",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            voice_clone = await response.parse()
-            assert_matches_type(VoiceCloneCreateFromDesignResponse, voice_clone, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
