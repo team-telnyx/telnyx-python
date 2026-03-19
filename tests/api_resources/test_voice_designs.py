@@ -14,7 +14,7 @@ from tests.utils import assert_matches_type
 from telnyx.types import (
     VoiceDesignListResponse,
     VoiceDesignCreateResponse,
-    VoiceDesignRenameResponse,
+    VoiceDesignUpdateResponse,
     VoiceDesignRetrieveResponse,
 )
 from telnyx._response import (
@@ -134,6 +134,52 @@ class TestVoiceDesigns:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.voice_designs.with_raw_response.retrieve(
                 id="",
+            )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_update(self, client: Telnyx) -> None:
+        voice_design = client.voice_designs.update(
+            id="id",
+            name="updated-narrator",
+        )
+        assert_matches_type(VoiceDesignUpdateResponse, voice_design, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_raw_response_update(self, client: Telnyx) -> None:
+        response = client.voice_designs.with_raw_response.update(
+            id="id",
+            name="updated-narrator",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        voice_design = response.parse()
+        assert_matches_type(VoiceDesignUpdateResponse, voice_design, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_streaming_response_update(self, client: Telnyx) -> None:
+        with client.voice_designs.with_streaming_response.update(
+            id="id",
+            name="updated-narrator",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            voice_design = response.parse()
+            assert_matches_type(VoiceDesignUpdateResponse, voice_design, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_path_params_update(self, client: Telnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.voice_designs.with_raw_response.update(
+                id="",
+                name="updated-narrator",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -326,52 +372,6 @@ class TestVoiceDesigns:
                 id="",
             )
 
-    @pytest.mark.skip(reason="Mock server tests are disabled")
-    @parametrize
-    def test_method_rename(self, client: Telnyx) -> None:
-        voice_design = client.voice_designs.rename(
-            id="id",
-            name="updated-narrator",
-        )
-        assert_matches_type(VoiceDesignRenameResponse, voice_design, path=["response"])
-
-    @pytest.mark.skip(reason="Mock server tests are disabled")
-    @parametrize
-    def test_raw_response_rename(self, client: Telnyx) -> None:
-        response = client.voice_designs.with_raw_response.rename(
-            id="id",
-            name="updated-narrator",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        voice_design = response.parse()
-        assert_matches_type(VoiceDesignRenameResponse, voice_design, path=["response"])
-
-    @pytest.mark.skip(reason="Mock server tests are disabled")
-    @parametrize
-    def test_streaming_response_rename(self, client: Telnyx) -> None:
-        with client.voice_designs.with_streaming_response.rename(
-            id="id",
-            name="updated-narrator",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            voice_design = response.parse()
-            assert_matches_type(VoiceDesignRenameResponse, voice_design, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip(reason="Mock server tests are disabled")
-    @parametrize
-    def test_path_params_rename(self, client: Telnyx) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            client.voice_designs.with_raw_response.rename(
-                id="",
-                name="updated-narrator",
-            )
-
 
 class TestAsyncVoiceDesigns:
     parametrize = pytest.mark.parametrize(
@@ -481,6 +481,52 @@ class TestAsyncVoiceDesigns:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.voice_designs.with_raw_response.retrieve(
                 id="",
+            )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_update(self, async_client: AsyncTelnyx) -> None:
+        voice_design = await async_client.voice_designs.update(
+            id="id",
+            name="updated-narrator",
+        )
+        assert_matches_type(VoiceDesignUpdateResponse, voice_design, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_raw_response_update(self, async_client: AsyncTelnyx) -> None:
+        response = await async_client.voice_designs.with_raw_response.update(
+            id="id",
+            name="updated-narrator",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        voice_design = await response.parse()
+        assert_matches_type(VoiceDesignUpdateResponse, voice_design, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_streaming_response_update(self, async_client: AsyncTelnyx) -> None:
+        async with async_client.voice_designs.with_streaming_response.update(
+            id="id",
+            name="updated-narrator",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            voice_design = await response.parse()
+            assert_matches_type(VoiceDesignUpdateResponse, voice_design, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_path_params_update(self, async_client: AsyncTelnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.voice_designs.with_raw_response.update(
+                id="",
+                name="updated-narrator",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -673,50 +719,4 @@ class TestAsyncVoiceDesigns:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.voice_designs.with_raw_response.download_sample(
                 id="",
-            )
-
-    @pytest.mark.skip(reason="Mock server tests are disabled")
-    @parametrize
-    async def test_method_rename(self, async_client: AsyncTelnyx) -> None:
-        voice_design = await async_client.voice_designs.rename(
-            id="id",
-            name="updated-narrator",
-        )
-        assert_matches_type(VoiceDesignRenameResponse, voice_design, path=["response"])
-
-    @pytest.mark.skip(reason="Mock server tests are disabled")
-    @parametrize
-    async def test_raw_response_rename(self, async_client: AsyncTelnyx) -> None:
-        response = await async_client.voice_designs.with_raw_response.rename(
-            id="id",
-            name="updated-narrator",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        voice_design = await response.parse()
-        assert_matches_type(VoiceDesignRenameResponse, voice_design, path=["response"])
-
-    @pytest.mark.skip(reason="Mock server tests are disabled")
-    @parametrize
-    async def test_streaming_response_rename(self, async_client: AsyncTelnyx) -> None:
-        async with async_client.voice_designs.with_streaming_response.rename(
-            id="id",
-            name="updated-narrator",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            voice_design = await response.parse()
-            assert_matches_type(VoiceDesignRenameResponse, voice_design, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip(reason="Mock server tests are disabled")
-    @parametrize
-    async def test_path_params_rename(self, async_client: AsyncTelnyx) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            await async_client.voice_designs.with_raw_response.rename(
-                id="",
-                name="updated-narrator",
             )

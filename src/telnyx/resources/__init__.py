@@ -1017,6 +1017,14 @@ from .regulatory_requirements import (
     RegulatoryRequirementsResourceWithStreamingResponse,
     AsyncRegulatoryRequirementsResourceWithStreamingResponse,
 )
+from .traffic_policy_profiles import (
+    TrafficPolicyProfilesResource,
+    AsyncTrafficPolicyProfilesResource,
+    TrafficPolicyProfilesResourceWithRawResponse,
+    AsyncTrafficPolicyProfilesResourceWithRawResponse,
+    TrafficPolicyProfilesResourceWithStreamingResponse,
+    AsyncTrafficPolicyProfilesResourceWithStreamingResponse,
+)
 from .authentication_providers import (
     AuthenticationProvidersResource,
     AsyncAuthenticationProvidersResource,
@@ -2159,6 +2167,12 @@ __all__ = [
     "AsyncSessionAnalysisResourceWithRawResponse",
     "SessionAnalysisResourceWithStreamingResponse",
     "AsyncSessionAnalysisResourceWithStreamingResponse",
+    "TrafficPolicyProfilesResource",
+    "AsyncTrafficPolicyProfilesResource",
+    "TrafficPolicyProfilesResourceWithRawResponse",
+    "AsyncTrafficPolicyProfilesResourceWithRawResponse",
+    "TrafficPolicyProfilesResourceWithStreamingResponse",
+    "AsyncTrafficPolicyProfilesResourceWithStreamingResponse",
     "WhatsappResource",
     "AsyncWhatsappResource",
     "WhatsappResourceWithRawResponse",

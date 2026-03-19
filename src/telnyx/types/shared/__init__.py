@@ -18,7 +18,6 @@ from .porting_order_status import PortingOrderStatus as PortingOrderStatus
 from .messaging_feature_set import MessagingFeatureSet as MessagingFeatureSet
 from .number_health_metrics import NumberHealthMetrics as NumberHealthMetrics
 from .minimax_voice_settings import MinimaxVoiceSettings as MinimaxVoiceSettings
-from .whatsapp_template_data import WhatsappTemplateData as WhatsappTemplateData
 from .inbound_message_payload import InboundMessagePayload as InboundMessagePayload
 from .resemble_voice_settings import ResembleVoiceSettings as ResembleVoiceSettings
 from .connection_jitter_buffer import ConnectionJitterBuffer as ConnectionJitterBuffer

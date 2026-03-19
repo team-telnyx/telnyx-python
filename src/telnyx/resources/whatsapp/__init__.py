@@ -8,14 +8,6 @@ from .whatsapp import (
     WhatsappResourceWithStreamingResponse,
     AsyncWhatsappResourceWithStreamingResponse,
 )
-from .templates import (
-    TemplatesResource,
-    AsyncTemplatesResource,
-    TemplatesResourceWithRawResponse,
-    AsyncTemplatesResourceWithRawResponse,
-    TemplatesResourceWithStreamingResponse,
-    AsyncTemplatesResourceWithStreamingResponse,
-)
 from .phone_numbers import (
     PhoneNumbersResource,
     AsyncPhoneNumbersResource,
@@ -32,6 +24,14 @@ from .business_accounts import (
     BusinessAccountsResourceWithStreamingResponse,
     AsyncBusinessAccountsResourceWithStreamingResponse,
 )
+from .message_templates import (
+    MessageTemplatesResource,
+    AsyncMessageTemplatesResource,
+    MessageTemplatesResourceWithRawResponse,
+    AsyncMessageTemplatesResourceWithRawResponse,
+    MessageTemplatesResourceWithStreamingResponse,
+    AsyncMessageTemplatesResourceWithStreamingResponse,
+)
 
 __all__ = [
     "BusinessAccountsResource",
@@ -40,12 +40,12 @@ __all__ = [
     "AsyncBusinessAccountsResourceWithRawResponse",
     "BusinessAccountsResourceWithStreamingResponse",
     "AsyncBusinessAccountsResourceWithStreamingResponse",
-    "TemplatesResource",
-    "AsyncTemplatesResource",
-    "TemplatesResourceWithRawResponse",
-    "AsyncTemplatesResourceWithRawResponse",
-    "TemplatesResourceWithStreamingResponse",
-    "AsyncTemplatesResourceWithStreamingResponse",
+    "MessageTemplatesResource",
+    "AsyncMessageTemplatesResource",
+    "MessageTemplatesResourceWithRawResponse",
+    "AsyncMessageTemplatesResourceWithRawResponse",
+    "MessageTemplatesResourceWithStreamingResponse",
+    "AsyncMessageTemplatesResourceWithStreamingResponse",
     "PhoneNumbersResource",
     "AsyncPhoneNumbersResource",
     "PhoneNumbersResourceWithRawResponse",
