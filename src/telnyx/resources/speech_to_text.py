@@ -10,12 +10,18 @@ from typing_extensions import Literal, AsyncIterator
 
 import httpx
 
-from .._types import Query, Headers
+from ..types import speech_to_text_transcribe_params
+from .._types import Body, Query, Headers, NoneType, NotGiven, not_given
+from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._models import construct_type_unchecked
 from .._resource import SyncAPIResource, AsyncAPIResource
+from .._response import (
+    to_raw_response_wrapper,
+    async_to_raw_response_wrapper,
+)
 from .._exceptions import TelnyxError
-from .._base_client import _merge_mappings
+from .._base_client import _merge_mappings, make_request_options
 from ..types.stt_server_event import SttServerEvent
 from ..types.websocket_connection_options import WebSocketConnectionOptions
 
@@ -54,6 +60,114 @@ class SpeechToTextResource(SyncAPIResource):
         For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
         return SpeechToTextResourceWithStreamingResponse(self)
+
+    def transcribe(
+        self,
+        *,
+        input_format: Literal["mp3", "wav"],
+        transcription_engine: Literal["Azure", "Deepgram", "Google", "Telnyx"],
+        endpointing: int | NotGiven = not_given,
+        interim_results: bool | NotGiven = not_given,
+        keyterm: str | NotGiven = not_given,
+        keywords: str | NotGiven = not_given,
+        language: str | NotGiven = not_given,
+        model: Literal[
+            "fast",
+            "deepgram/nova-2",
+            "deepgram/nova-3",
+            "latest_long",
+            "latest_short",
+            "command_and_search",
+            "phone_call",
+            "video",
+            "default",
+            "medical_conversation",
+            "medical_dictation",
+            "openai/whisper-tiny",
+            "openai/whisper-large-v3-turbo",
+        ]
+        | NotGiven = not_given,
+        redact: str | NotGiven = not_given,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> None:
+        """
+        Open a WebSocket connection to stream audio and receive transcriptions in
+        real-time. Authentication is provided via the standard
+        `Authorization: Bearer <API_KEY>` header.
+
+        Supported engines: `Azure`, `Deepgram`, `Google`, `Telnyx`.
+
+        **Connection flow:**
+
+        1. Open WebSocket with query parameters specifying engine, input format, and
+           language.
+        2. Send binary audio frames (mp3/wav format).
+        3. Receive JSON transcript frames with `transcript`, `is_final`, and
+           `confidence` fields.
+        4. Close connection when done.
+
+        Args:
+          input_format: The format of input audio stream.
+
+          transcription_engine: The transcription engine to use for processing the audio stream.
+
+          endpointing: Silence duration (in milliseconds) that triggers end-of-speech detection.
+              When set, the engine uses this value to determine when a speaker has stopped
+              talking. Not all engines support this parameter.
+
+          interim_results: Whether to receive interim transcription results.
+
+          keyterm: A key term to boost in the transcription. The engine will be more likely to
+              recognize this term. Can be specified multiple times for multiple terms.
+
+          keywords: Comma-separated list of keywords to boost in the transcription. The engine will
+              prioritize recognition of these words.
+
+          language: The language spoken in the audio stream.
+
+          model: The specific model to use within the selected transcription engine.
+
+          redact: Enable redaction of sensitive information (e.g., PCI data, SSN) from
+              transcription results. Supported values depend on the transcription engine.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        return self._get(
+            "/speech-to-text/transcription",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "input_format": input_format,
+                        "transcription_engine": transcription_engine,
+                        "endpointing": endpointing,
+                        "interim_results": interim_results,
+                        "keyterm": keyterm,
+                        "keywords": keywords,
+                        "language": language,
+                        "model": model,
+                        "redact": redact,
+                    },
+                    speech_to_text_transcribe_params.SpeechToTextTranscribeParams,
+                ),
+            ),
+            cast_to=NoneType,
+        )
 
     def stream(
         self,
@@ -137,6 +251,114 @@ class AsyncSpeechToTextResource(AsyncAPIResource):
         """
         return AsyncSpeechToTextResourceWithStreamingResponse(self)
 
+    async def transcribe(
+        self,
+        *,
+        input_format: Literal["mp3", "wav"],
+        transcription_engine: Literal["Azure", "Deepgram", "Google", "Telnyx"],
+        endpointing: int | NotGiven = not_given,
+        interim_results: bool | NotGiven = not_given,
+        keyterm: str | NotGiven = not_given,
+        keywords: str | NotGiven = not_given,
+        language: str | NotGiven = not_given,
+        model: Literal[
+            "fast",
+            "deepgram/nova-2",
+            "deepgram/nova-3",
+            "latest_long",
+            "latest_short",
+            "command_and_search",
+            "phone_call",
+            "video",
+            "default",
+            "medical_conversation",
+            "medical_dictation",
+            "openai/whisper-tiny",
+            "openai/whisper-large-v3-turbo",
+        ]
+        | NotGiven = not_given,
+        redact: str | NotGiven = not_given,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> None:
+        """
+        Open a WebSocket connection to stream audio and receive transcriptions in
+        real-time. Authentication is provided via the standard
+        `Authorization: Bearer <API_KEY>` header.
+
+        Supported engines: `Azure`, `Deepgram`, `Google`, `Telnyx`.
+
+        **Connection flow:**
+
+        1. Open WebSocket with query parameters specifying engine, input format, and
+           language.
+        2. Send binary audio frames (mp3/wav format).
+        3. Receive JSON transcript frames with `transcript`, `is_final`, and
+           `confidence` fields.
+        4. Close connection when done.
+
+        Args:
+          input_format: The format of input audio stream.
+
+          transcription_engine: The transcription engine to use for processing the audio stream.
+
+          endpointing: Silence duration (in milliseconds) that triggers end-of-speech detection.
+              When set, the engine uses this value to determine when a speaker has stopped
+              talking. Not all engines support this parameter.
+
+          interim_results: Whether to receive interim transcription results.
+
+          keyterm: A key term to boost in the transcription. The engine will be more likely to
+              recognize this term. Can be specified multiple times for multiple terms.
+
+          keywords: Comma-separated list of keywords to boost in the transcription. The engine will
+              prioritize recognition of these words.
+
+          language: The language spoken in the audio stream.
+
+          model: The specific model to use within the selected transcription engine.
+
+          redact: Enable redaction of sensitive information (e.g., PCI data, SSN) from
+              transcription results. Supported values depend on the transcription engine.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        return await self._get(
+            "/speech-to-text/transcription",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "input_format": input_format,
+                        "transcription_engine": transcription_engine,
+                        "endpointing": endpointing,
+                        "interim_results": interim_results,
+                        "keyterm": keyterm,
+                        "keywords": keywords,
+                        "language": language,
+                        "model": model,
+                        "redact": redact,
+                    },
+                    speech_to_text_transcribe_params.SpeechToTextTranscribeParams,
+                ),
+            ),
+            cast_to=NoneType,
+        )
+
     def stream(
         self,
         *,
@@ -201,10 +423,18 @@ class SpeechToTextResourceWithRawResponse:
     def __init__(self, speech_to_text: SpeechToTextResource) -> None:
         self._speech_to_text = speech_to_text
 
+        self.transcribe = to_raw_response_wrapper(
+            speech_to_text.transcribe,
+        )
+
 
 class AsyncSpeechToTextResourceWithRawResponse:
     def __init__(self, speech_to_text: AsyncSpeechToTextResource) -> None:
         self._speech_to_text = speech_to_text
+
+        self.transcribe = async_to_raw_response_wrapper(
+            speech_to_text.transcribe,
+        )
 
 
 class AsyncSpeechToTextResourceConnection:
