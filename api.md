@@ -3270,6 +3270,7 @@ Methods:
 - <code title="get /porting/loa_configurations">client.porting.loa_configurations.<a href="./src/telnyx/resources/porting/loa_configurations.py">list</a>(\*\*<a href="src/telnyx/types/porting/loa_configuration_list_params.py">params</a>) -> <a href="./src/telnyx/types/porting/porting_loa_configuration.py">SyncDefaultFlatPagination[PortingLoaConfiguration]</a></code>
 - <code title="delete /porting/loa_configurations/{id}">client.porting.loa_configurations.<a href="./src/telnyx/resources/porting/loa_configurations.py">delete</a>(id) -> None</code>
 - <code title="post /porting/loa_configurations/preview">client.porting.loa_configurations.<a href="./src/telnyx/resources/porting/loa_configurations.py">preview</a>(\*\*<a href="src/telnyx/types/porting/loa_configuration_preview_params.py">params</a>) -> BinaryAPIResponse</code>
+- <code title="post /porting/loa_configurations/preview">client.porting.loa_configurations.<a href="./src/telnyx/resources/porting/loa_configurations.py">preview_0</a>(\*\*<a href="src/telnyx/types/porting/loa_configuration_preview_0_params.py">params</a>) -> BinaryAPIResponse</code>
 - <code title="get /porting/loa_configurations/{id}/preview">client.porting.loa_configurations.<a href="./src/telnyx/resources/porting/loa_configurations.py">preview_1</a>(id) -> BinaryAPIResponse</code>
 
 # PortingOrders
