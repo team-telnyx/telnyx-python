@@ -74,8 +74,8 @@ class TestPhoneNumbers:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_initialize_verification(self, client: Telnyx) -> None:
-        phone_number = client.whatsapp.business_accounts.phone_numbers.initialize_verification(
+    def test_method_create_verification(self, client: Telnyx) -> None:
+        phone_number = client.whatsapp.business_accounts.phone_numbers.create_verification(
             id="id",
             display_name="display_name",
             phone_number="phone_number",
@@ -84,8 +84,8 @@ class TestPhoneNumbers:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_initialize_verification_with_all_params(self, client: Telnyx) -> None:
-        phone_number = client.whatsapp.business_accounts.phone_numbers.initialize_verification(
+    def test_method_create_verification_with_all_params(self, client: Telnyx) -> None:
+        phone_number = client.whatsapp.business_accounts.phone_numbers.create_verification(
             id="id",
             display_name="display_name",
             phone_number="phone_number",
@@ -96,8 +96,8 @@ class TestPhoneNumbers:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_initialize_verification(self, client: Telnyx) -> None:
-        response = client.whatsapp.business_accounts.phone_numbers.with_raw_response.initialize_verification(
+    def test_raw_response_create_verification(self, client: Telnyx) -> None:
+        response = client.whatsapp.business_accounts.phone_numbers.with_raw_response.create_verification(
             id="id",
             display_name="display_name",
             phone_number="phone_number",
@@ -110,8 +110,8 @@ class TestPhoneNumbers:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_initialize_verification(self, client: Telnyx) -> None:
-        with client.whatsapp.business_accounts.phone_numbers.with_streaming_response.initialize_verification(
+    def test_streaming_response_create_verification(self, client: Telnyx) -> None:
+        with client.whatsapp.business_accounts.phone_numbers.with_streaming_response.create_verification(
             id="id",
             display_name="display_name",
             phone_number="phone_number",
@@ -126,9 +126,9 @@ class TestPhoneNumbers:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_path_params_initialize_verification(self, client: Telnyx) -> None:
+    def test_path_params_create_verification(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            client.whatsapp.business_accounts.phone_numbers.with_raw_response.initialize_verification(
+            client.whatsapp.business_accounts.phone_numbers.with_raw_response.create_verification(
                 id="",
                 display_name="display_name",
                 phone_number="phone_number",
@@ -194,8 +194,8 @@ class TestAsyncPhoneNumbers:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_initialize_verification(self, async_client: AsyncTelnyx) -> None:
-        phone_number = await async_client.whatsapp.business_accounts.phone_numbers.initialize_verification(
+    async def test_method_create_verification(self, async_client: AsyncTelnyx) -> None:
+        phone_number = await async_client.whatsapp.business_accounts.phone_numbers.create_verification(
             id="id",
             display_name="display_name",
             phone_number="phone_number",
@@ -204,8 +204,8 @@ class TestAsyncPhoneNumbers:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_initialize_verification_with_all_params(self, async_client: AsyncTelnyx) -> None:
-        phone_number = await async_client.whatsapp.business_accounts.phone_numbers.initialize_verification(
+    async def test_method_create_verification_with_all_params(self, async_client: AsyncTelnyx) -> None:
+        phone_number = await async_client.whatsapp.business_accounts.phone_numbers.create_verification(
             id="id",
             display_name="display_name",
             phone_number="phone_number",
@@ -216,13 +216,11 @@ class TestAsyncPhoneNumbers:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_initialize_verification(self, async_client: AsyncTelnyx) -> None:
-        response = (
-            await async_client.whatsapp.business_accounts.phone_numbers.with_raw_response.initialize_verification(
-                id="id",
-                display_name="display_name",
-                phone_number="phone_number",
-            )
+    async def test_raw_response_create_verification(self, async_client: AsyncTelnyx) -> None:
+        response = await async_client.whatsapp.business_accounts.phone_numbers.with_raw_response.create_verification(
+            id="id",
+            display_name="display_name",
+            phone_number="phone_number",
         )
 
         assert response.is_closed is True
@@ -232,13 +230,11 @@ class TestAsyncPhoneNumbers:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_initialize_verification(self, async_client: AsyncTelnyx) -> None:
-        async with (
-            async_client.whatsapp.business_accounts.phone_numbers.with_streaming_response.initialize_verification(
-                id="id",
-                display_name="display_name",
-                phone_number="phone_number",
-            )
+    async def test_streaming_response_create_verification(self, async_client: AsyncTelnyx) -> None:
+        async with async_client.whatsapp.business_accounts.phone_numbers.with_streaming_response.create_verification(
+            id="id",
+            display_name="display_name",
+            phone_number="phone_number",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -250,9 +246,9 @@ class TestAsyncPhoneNumbers:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_path_params_initialize_verification(self, async_client: AsyncTelnyx) -> None:
+    async def test_path_params_create_verification(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            await async_client.whatsapp.business_accounts.phone_numbers.with_raw_response.initialize_verification(
+            await async_client.whatsapp.business_accounts.phone_numbers.with_raw_response.create_verification(
                 id="",
                 display_name="display_name",
                 phone_number="phone_number",

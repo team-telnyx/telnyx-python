@@ -8,7 +8,7 @@ from pydantic import Field as FieldInfo
 from .._utils import PropertyInfo
 from .._models import BaseModel
 
-__all__ = ["StreamServerEvent", "AudioChunkFrame", "FinalFrameEvent", "ErrorFrame"]
+__all__ = ["StreamServerEvent", "AudioChunkFrame", "FinalFrame", "ErrorFrame"]
 
 
 class AudioChunkFrame(BaseModel):
@@ -41,7 +41,7 @@ class AudioChunkFrame(BaseModel):
     """Frame type identifier."""
 
 
-class FinalFrameEvent(BaseModel):
+class FinalFrame(BaseModel):
     """Server-to-client frame indicating synthesis is complete for the current text."""
 
     audio: None = None
@@ -74,5 +74,5 @@ class ErrorFrame(BaseModel):
 
 
 StreamServerEvent: TypeAlias = Annotated[
-    Union[AudioChunkFrame, FinalFrameEvent, ErrorFrame], PropertyInfo(discriminator="type")
+    Union[AudioChunkFrame, FinalFrame, ErrorFrame], PropertyInfo(discriminator="type")
 ]
