@@ -324,6 +324,7 @@ from telnyx.types import (
     CallBridgedWebhookEvent,
     CallConversationEndedWebhookEvent,
     CallConversationInsightsGeneratedWebhookEvent,
+    CallCostWebhookEvent,
     CallDtmfReceivedWebhookEvent,
     CallEnqueuedWebhookEvent,
     CallForkStartedWebhookEvent,
@@ -376,6 +377,7 @@ from telnyx.types import (
     CallBridgedWebhookEvent,
     CallConversationEndedWebhookEvent,
     CallConversationInsightsGeneratedWebhookEvent,
+    CallCostWebhookEvent,
     CallDtmfReceivedWebhookEvent,
     CallEnqueuedWebhookEvent,
     CallForkStartedWebhookEvent,
@@ -5393,19 +5395,19 @@ Types:
 
 ```python
 from telnyx.types import (
+    VoiceCloneCreateResponse,
     VoiceCloneUpdateResponse,
     VoiceCloneListResponse,
-    VoiceCloneCreateFromDesignResponse,
     VoiceCloneCreateFromUploadResponse,
 )
 ```
 
 Methods:
 
+- <code title="post /voice_clones">client.voice_clones.<a href="./src/telnyx/resources/voice_clones.py">create</a>(\*\*<a href="src/telnyx/types/voice_clone_create_params.py">params</a>) -> <a href="./src/telnyx/types/voice_clone_create_response.py">VoiceCloneCreateResponse</a></code>
 - <code title="patch /voice_clones/{id}">client.voice_clones.<a href="./src/telnyx/resources/voice_clones.py">update</a>(id, \*\*<a href="src/telnyx/types/voice_clone_update_params.py">params</a>) -> <a href="./src/telnyx/types/voice_clone_update_response.py">VoiceCloneUpdateResponse</a></code>
 - <code title="get /voice_clones">client.voice_clones.<a href="./src/telnyx/resources/voice_clones.py">list</a>(\*\*<a href="src/telnyx/types/voice_clone_list_params.py">params</a>) -> <a href="./src/telnyx/types/voice_clone_list_response.py">SyncDefaultFlatPagination[VoiceCloneListResponse]</a></code>
 - <code title="delete /voice_clones/{id}">client.voice_clones.<a href="./src/telnyx/resources/voice_clones.py">delete</a>(id) -> None</code>
-- <code title="post /voice_clones">client.voice_clones.<a href="./src/telnyx/resources/voice_clones.py">create_from_design</a>(\*\*<a href="src/telnyx/types/voice_clone_create_from_design_params.py">params</a>) -> <a href="./src/telnyx/types/voice_clone_create_from_design_response.py">VoiceCloneCreateFromDesignResponse</a></code>
 - <code title="post /voice_clones/from_upload">client.voice_clones.<a href="./src/telnyx/resources/voice_clones.py">create_from_upload</a>(\*\*<a href="src/telnyx/types/voice_clone_create_from_upload_params.py">params</a>) -> <a href="./src/telnyx/types/voice_clone_create_from_upload_response.py">VoiceCloneCreateFromUploadResponse</a></code>
 - <code title="get /voice_clones/{id}/sample">client.voice_clones.<a href="./src/telnyx/resources/voice_clones.py">download_sample</a>(id) -> BinaryAPIResponse</code>
 

@@ -9,6 +9,7 @@ from .fax_delivered import FaxDelivered
 from .fax_media_processed import FaxMediaProcessed
 from .fax_sending_started import FaxSendingStarted
 from .campaign_status_update import CampaignStatusUpdate
+from .call_cost_webhook_event import CallCostWebhookEvent
 from .conference_floor_changed import ConferenceFloorChanged
 from .call_hangup_webhook_event import CallHangupWebhookEvent
 from .call_bridged_webhook_event import CallBridgedWebhookEvent
@@ -74,6 +75,7 @@ UnsafeUnwrapWebhookEvent: TypeAlias = Union[
     CallBridgedWebhookEvent,
     CallConversationEndedWebhookEvent,
     CallConversationInsightsGeneratedWebhookEvent,
+    CallCostWebhookEvent,
     CallDtmfReceivedWebhookEvent,
     CallEnqueuedWebhookEvent,
     CallForkStartedWebhookEvent,
