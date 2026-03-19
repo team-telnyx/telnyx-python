@@ -25,7 +25,7 @@ from .._response import (
 )
 from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from .._base_client import AsyncPaginator, make_request_options
-from ..types.traffic_policy_profile_list_response import TrafficPolicyProfileListResponse
+from ..types.traffic_policy_profile import TrafficPolicyProfile
 from ..types.traffic_policy_profile_create_response import TrafficPolicyProfileCreateResponse
 from ..types.traffic_policy_profile_delete_response import TrafficPolicyProfileDeleteResponse
 from ..types.traffic_policy_profile_update_response import TrafficPolicyProfileUpdateResponse
@@ -219,7 +219,7 @@ class TrafficPolicyProfilesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[TrafficPolicyProfileListResponse]:
+    ) -> SyncDefaultFlatPagination[TrafficPolicyProfile]:
         """
         Get all traffic policy profiles belonging to the user that match the given
         filters.
@@ -246,7 +246,7 @@ class TrafficPolicyProfilesResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/traffic_policy_profiles",
-            page=SyncDefaultFlatPagination[TrafficPolicyProfileListResponse],
+            page=SyncDefaultFlatPagination[TrafficPolicyProfile],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -263,7 +263,7 @@ class TrafficPolicyProfilesResource(SyncAPIResource):
                     traffic_policy_profile_list_params.TrafficPolicyProfileListParams,
                 ),
             ),
-            model=TrafficPolicyProfileListResponse,
+            model=TrafficPolicyProfile,
         )
 
     def delete(
@@ -539,7 +539,7 @@ class AsyncTrafficPolicyProfilesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[TrafficPolicyProfileListResponse, AsyncDefaultFlatPagination[TrafficPolicyProfileListResponse]]:
+    ) -> AsyncPaginator[TrafficPolicyProfile, AsyncDefaultFlatPagination[TrafficPolicyProfile]]:
         """
         Get all traffic policy profiles belonging to the user that match the given
         filters.
@@ -566,7 +566,7 @@ class AsyncTrafficPolicyProfilesResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/traffic_policy_profiles",
-            page=AsyncDefaultFlatPagination[TrafficPolicyProfileListResponse],
+            page=AsyncDefaultFlatPagination[TrafficPolicyProfile],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -583,7 +583,7 @@ class AsyncTrafficPolicyProfilesResource(AsyncAPIResource):
                     traffic_policy_profile_list_params.TrafficPolicyProfileListParams,
                 ),
             ),
-            model=TrafficPolicyProfileListResponse,
+            model=TrafficPolicyProfile,
         )
 
     async def delete(
