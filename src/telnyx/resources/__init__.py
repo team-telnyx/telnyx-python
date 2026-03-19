@@ -481,6 +481,14 @@ from .porting_orders import (
     PortingOrdersResourceWithStreamingResponse,
     AsyncPortingOrdersResourceWithStreamingResponse,
 )
+from .speech_to_text import (
+    SpeechToTextResource,
+    AsyncSpeechToTextResource,
+    SpeechToTextResourceWithRawResponse,
+    AsyncSpeechToTextResourceWithRawResponse,
+    SpeechToTextResourceWithStreamingResponse,
+    AsyncSpeechToTextResourceWithStreamingResponse,
+)
 from .text_to_speech import (
     TextToSpeechResource,
     AsyncTextToSpeechResource,
@@ -1144,6 +1152,14 @@ from .number_order_phone_numbers import (
     AsyncNumberOrderPhoneNumbersResourceWithRawResponse,
     NumberOrderPhoneNumbersResourceWithStreamingResponse,
     AsyncNumberOrderPhoneNumbersResourceWithStreamingResponse,
+)
+from .whatsapp_message_templates import (
+    WhatsappMessageTemplatesResource,
+    AsyncWhatsappMessageTemplatesResource,
+    WhatsappMessageTemplatesResourceWithRawResponse,
+    AsyncWhatsappMessageTemplatesResourceWithRawResponse,
+    WhatsappMessageTemplatesResourceWithStreamingResponse,
+    AsyncWhatsappMessageTemplatesResourceWithStreamingResponse,
 )
 from .dynamic_emergency_addresses import (
     DynamicEmergencyAddressesResource,
@@ -2020,6 +2036,8 @@ __all__ = [
     "AsyncSpeechToTextResource",
     "SpeechToTextResourceWithRawResponse",
     "AsyncSpeechToTextResourceWithRawResponse",
+    "SpeechToTextResourceWithStreamingResponse",
+    "AsyncSpeechToTextResourceWithStreamingResponse",
     "TextToSpeechResource",
     "AsyncTextToSpeechResource",
     "TextToSpeechResourceWithRawResponse",
@@ -2092,6 +2110,12 @@ __all__ = [
     "AsyncWireguardPeersResourceWithRawResponse",
     "WireguardPeersResourceWithStreamingResponse",
     "AsyncWireguardPeersResourceWithStreamingResponse",
+    "WhatsappMessageTemplatesResource",
+    "AsyncWhatsappMessageTemplatesResource",
+    "WhatsappMessageTemplatesResourceWithRawResponse",
+    "AsyncWhatsappMessageTemplatesResourceWithRawResponse",
+    "WhatsappMessageTemplatesResourceWithStreamingResponse",
+    "AsyncWhatsappMessageTemplatesResourceWithStreamingResponse",
     "WirelessResource",
     "AsyncWirelessResource",
     "WirelessResourceWithRawResponse",

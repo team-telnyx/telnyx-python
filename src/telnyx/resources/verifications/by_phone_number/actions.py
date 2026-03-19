@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ...._types import Body, Query, Headers, NotGiven, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -77,7 +77,7 @@ class ActionsResource(SyncAPIResource):
         if not phone_number:
             raise ValueError(f"Expected a non-empty value for `phone_number` but received {phone_number!r}")
         return self._post(
-            f"/verifications/by_phone_number/{phone_number}/actions/verify",
+            path_template("/verifications/by_phone_number/{phone_number}/actions/verify", phone_number=phone_number),
             body=maybe_transform(
                 {
                     "code": code,
@@ -148,7 +148,7 @@ class AsyncActionsResource(AsyncAPIResource):
         if not phone_number:
             raise ValueError(f"Expected a non-empty value for `phone_number` but received {phone_number!r}")
         return await self._post(
-            f"/verifications/by_phone_number/{phone_number}/actions/verify",
+            path_template("/verifications/by_phone_number/{phone_number}/actions/verify", phone_number=phone_number),
             body=await async_maybe_transform(
                 {
                     "code": code,

@@ -14,7 +14,7 @@ from .actions import (
     AsyncActionsResourceWithStreamingResponse,
 )
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform
+from ..._utils import path_template, maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -85,7 +85,7 @@ class RecordingsResource(SyncAPIResource):
         if not recording_id:
             raise ValueError(f"Expected a non-empty value for `recording_id` but received {recording_id!r}")
         return self._get(
-            f"/recordings/{recording_id}",
+            path_template("/recordings/{recording_id}", recording_id=recording_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -165,7 +165,7 @@ class RecordingsResource(SyncAPIResource):
         if not recording_id:
             raise ValueError(f"Expected a non-empty value for `recording_id` but received {recording_id!r}")
         return self._delete(
-            f"/recordings/{recording_id}",
+            path_template("/recordings/{recording_id}", recording_id=recording_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -226,7 +226,7 @@ class AsyncRecordingsResource(AsyncAPIResource):
         if not recording_id:
             raise ValueError(f"Expected a non-empty value for `recording_id` but received {recording_id!r}")
         return await self._get(
-            f"/recordings/{recording_id}",
+            path_template("/recordings/{recording_id}", recording_id=recording_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -306,7 +306,7 @@ class AsyncRecordingsResource(AsyncAPIResource):
         if not recording_id:
             raise ValueError(f"Expected a non-empty value for `recording_id` but received {recording_id!r}")
         return await self._delete(
-            f"/recordings/{recording_id}",
+            path_template("/recordings/{recording_id}", recording_id=recording_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

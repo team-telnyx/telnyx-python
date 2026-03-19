@@ -176,6 +176,7 @@ if TYPE_CHECKING:
         wireless_blocklist_values,
         custom_storage_credentials,
         number_order_phone_numbers,
+        whatsapp_message_templates,
         dynamic_emergency_addresses,
         dynamic_emergency_endpoints,
         global_ip_assignment_health,
@@ -340,6 +341,10 @@ if TYPE_CHECKING:
     from .resources.number_order_phone_numbers import (
         NumberOrderPhoneNumbersResource,
         AsyncNumberOrderPhoneNumbersResource,
+    )
+    from .resources.whatsapp_message_templates import (
+        WhatsappMessageTemplatesResource,
+        AsyncWhatsappMessageTemplatesResource,
     )
     from .resources.dynamic_emergency_addresses import (
         DynamicEmergencyAddressesResource,

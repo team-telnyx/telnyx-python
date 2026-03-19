@@ -22,7 +22,7 @@ from .actions import (
     AsyncActionsResourceWithStreamingResponse,
 )
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -211,7 +211,7 @@ class ConferencesResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
-            f"/conferences/{id}",
+            path_template("/conferences/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -317,7 +317,7 @@ class ConferencesResource(SyncAPIResource):
         if not conference_id:
             raise ValueError(f"Expected a non-empty value for `conference_id` but received {conference_id!r}")
         return self._get_api_list(
-            f"/conferences/{conference_id}/participants",
+            path_template("/conferences/{conference_id}/participants", conference_id=conference_id),
             page=SyncDefaultFlatPagination[ConferenceListParticipantsResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -366,7 +366,7 @@ class ConferencesResource(SyncAPIResource):
         if not participant_id:
             raise ValueError(f"Expected a non-empty value for `participant_id` but received {participant_id!r}")
         return self._get(
-            f"/conferences/{id}/participants/{participant_id}",
+            path_template("/conferences/{id}/participants/{participant_id}", id=id, participant_id=participant_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -413,7 +413,7 @@ class ConferencesResource(SyncAPIResource):
         if not participant_id:
             raise ValueError(f"Expected a non-empty value for `participant_id` but received {participant_id!r}")
         return self._patch(
-            f"/conferences/{id}/participants/{participant_id}",
+            path_template("/conferences/{id}/participants/{participant_id}", id=id, participant_id=participant_id),
             body=maybe_transform(
                 {
                     "beep_enabled": beep_enabled,
@@ -597,7 +597,7 @@ class AsyncConferencesResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
-            f"/conferences/{id}",
+            path_template("/conferences/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -707,7 +707,7 @@ class AsyncConferencesResource(AsyncAPIResource):
         if not conference_id:
             raise ValueError(f"Expected a non-empty value for `conference_id` but received {conference_id!r}")
         return self._get_api_list(
-            f"/conferences/{conference_id}/participants",
+            path_template("/conferences/{conference_id}/participants", conference_id=conference_id),
             page=AsyncDefaultFlatPagination[ConferenceListParticipantsResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -756,7 +756,7 @@ class AsyncConferencesResource(AsyncAPIResource):
         if not participant_id:
             raise ValueError(f"Expected a non-empty value for `participant_id` but received {participant_id!r}")
         return await self._get(
-            f"/conferences/{id}/participants/{participant_id}",
+            path_template("/conferences/{id}/participants/{participant_id}", id=id, participant_id=participant_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -803,7 +803,7 @@ class AsyncConferencesResource(AsyncAPIResource):
         if not participant_id:
             raise ValueError(f"Expected a non-empty value for `participant_id` but received {participant_id!r}")
         return await self._patch(
-            f"/conferences/{id}/participants/{participant_id}",
+            path_template("/conferences/{id}/participants/{participant_id}", id=id, participant_id=participant_id),
             body=await async_maybe_transform(
                 {
                     "beep_enabled": beep_enabled,

@@ -7,7 +7,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -80,7 +80,7 @@ class AutorespConfigsResource(SyncAPIResource):
         if not profile_id:
             raise ValueError(f"Expected a non-empty value for `profile_id` but received {profile_id!r}")
         return self._post(
-            f"/messaging_profiles/{profile_id}/autoresp_configs",
+            path_template("/messaging_profiles/{profile_id}/autoresp_configs", profile_id=profile_id),
             body=maybe_transform(
                 {
                     "country_code": country_code,
@@ -125,7 +125,11 @@ class AutorespConfigsResource(SyncAPIResource):
         if not autoresp_cfg_id:
             raise ValueError(f"Expected a non-empty value for `autoresp_cfg_id` but received {autoresp_cfg_id!r}")
         return self._get(
-            f"/messaging_profiles/{profile_id}/autoresp_configs/{autoresp_cfg_id}",
+            path_template(
+                "/messaging_profiles/{profile_id}/autoresp_configs/{autoresp_cfg_id}",
+                profile_id=profile_id,
+                autoresp_cfg_id=autoresp_cfg_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -165,7 +169,11 @@ class AutorespConfigsResource(SyncAPIResource):
         if not autoresp_cfg_id:
             raise ValueError(f"Expected a non-empty value for `autoresp_cfg_id` but received {autoresp_cfg_id!r}")
         return self._put(
-            f"/messaging_profiles/{profile_id}/autoresp_configs/{autoresp_cfg_id}",
+            path_template(
+                "/messaging_profiles/{profile_id}/autoresp_configs/{autoresp_cfg_id}",
+                profile_id=profile_id,
+                autoresp_cfg_id=autoresp_cfg_id,
+            ),
             body=maybe_transform(
                 {
                     "country_code": country_code,
@@ -218,7 +226,7 @@ class AutorespConfigsResource(SyncAPIResource):
         if not profile_id:
             raise ValueError(f"Expected a non-empty value for `profile_id` but received {profile_id!r}")
         return self._get(
-            f"/messaging_profiles/{profile_id}/autoresp_configs",
+            path_template("/messaging_profiles/{profile_id}/autoresp_configs", profile_id=profile_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -265,7 +273,11 @@ class AutorespConfigsResource(SyncAPIResource):
         if not autoresp_cfg_id:
             raise ValueError(f"Expected a non-empty value for `autoresp_cfg_id` but received {autoresp_cfg_id!r}")
         return self._delete(
-            f"/messaging_profiles/{profile_id}/autoresp_configs/{autoresp_cfg_id}",
+            path_template(
+                "/messaging_profiles/{profile_id}/autoresp_configs/{autoresp_cfg_id}",
+                profile_id=profile_id,
+                autoresp_cfg_id=autoresp_cfg_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -325,7 +337,7 @@ class AsyncAutorespConfigsResource(AsyncAPIResource):
         if not profile_id:
             raise ValueError(f"Expected a non-empty value for `profile_id` but received {profile_id!r}")
         return await self._post(
-            f"/messaging_profiles/{profile_id}/autoresp_configs",
+            path_template("/messaging_profiles/{profile_id}/autoresp_configs", profile_id=profile_id),
             body=await async_maybe_transform(
                 {
                     "country_code": country_code,
@@ -370,7 +382,11 @@ class AsyncAutorespConfigsResource(AsyncAPIResource):
         if not autoresp_cfg_id:
             raise ValueError(f"Expected a non-empty value for `autoresp_cfg_id` but received {autoresp_cfg_id!r}")
         return await self._get(
-            f"/messaging_profiles/{profile_id}/autoresp_configs/{autoresp_cfg_id}",
+            path_template(
+                "/messaging_profiles/{profile_id}/autoresp_configs/{autoresp_cfg_id}",
+                profile_id=profile_id,
+                autoresp_cfg_id=autoresp_cfg_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -410,7 +426,11 @@ class AsyncAutorespConfigsResource(AsyncAPIResource):
         if not autoresp_cfg_id:
             raise ValueError(f"Expected a non-empty value for `autoresp_cfg_id` but received {autoresp_cfg_id!r}")
         return await self._put(
-            f"/messaging_profiles/{profile_id}/autoresp_configs/{autoresp_cfg_id}",
+            path_template(
+                "/messaging_profiles/{profile_id}/autoresp_configs/{autoresp_cfg_id}",
+                profile_id=profile_id,
+                autoresp_cfg_id=autoresp_cfg_id,
+            ),
             body=await async_maybe_transform(
                 {
                     "country_code": country_code,
@@ -463,7 +483,7 @@ class AsyncAutorespConfigsResource(AsyncAPIResource):
         if not profile_id:
             raise ValueError(f"Expected a non-empty value for `profile_id` but received {profile_id!r}")
         return await self._get(
-            f"/messaging_profiles/{profile_id}/autoresp_configs",
+            path_template("/messaging_profiles/{profile_id}/autoresp_configs", profile_id=profile_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -510,7 +530,11 @@ class AsyncAutorespConfigsResource(AsyncAPIResource):
         if not autoresp_cfg_id:
             raise ValueError(f"Expected a non-empty value for `autoresp_cfg_id` but received {autoresp_cfg_id!r}")
         return await self._delete(
-            f"/messaging_profiles/{profile_id}/autoresp_configs/{autoresp_cfg_id}",
+            path_template(
+                "/messaging_profiles/{profile_id}/autoresp_configs/{autoresp_cfg_id}",
+                profile_id=profile_id,
+                autoresp_cfg_id=autoresp_cfg_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

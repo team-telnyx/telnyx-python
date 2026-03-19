@@ -6,7 +6,7 @@ import httpx
 
 from ..types import channel_zone_list_params, channel_zone_update_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -78,7 +78,7 @@ class ChannelZonesResource(SyncAPIResource):
         if not channel_zone_id:
             raise ValueError(f"Expected a non-empty value for `channel_zone_id` but received {channel_zone_id!r}")
         return self._put(
-            f"/channel_zones/{channel_zone_id}",
+            path_template("/channel_zones/{channel_zone_id}", channel_zone_id=channel_zone_id),
             body=maybe_transform({"channels": channels}, channel_zone_update_params.ChannelZoneUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -190,7 +190,7 @@ class AsyncChannelZonesResource(AsyncAPIResource):
         if not channel_zone_id:
             raise ValueError(f"Expected a non-empty value for `channel_zone_id` but received {channel_zone_id!r}")
         return await self._put(
-            f"/channel_zones/{channel_zone_id}",
+            path_template("/channel_zones/{channel_zone_id}", channel_zone_id=channel_zone_id),
             body=await async_maybe_transform(
                 {"channels": channels}, channel_zone_update_params.ChannelZoneUpdateParams
             ),

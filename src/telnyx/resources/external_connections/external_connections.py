@@ -22,7 +22,7 @@ from .uploads import (
     AsyncUploadsResourceWithStreamingResponse,
 )
 from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from .releases import (
     ReleasesResource,
     AsyncReleasesResource,
@@ -217,7 +217,7 @@ class ExternalConnectionsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
-            f"/external_connections/{id}",
+            path_template("/external_connections/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -270,7 +270,7 @@ class ExternalConnectionsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._patch(
-            f"/external_connections/{id}",
+            path_template("/external_connections/{id}", id=id),
             body=maybe_transform(
                 {
                     "outbound": outbound,
@@ -370,7 +370,7 @@ class ExternalConnectionsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._delete(
-            f"/external_connections/{id}",
+            path_template("/external_connections/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -409,7 +409,7 @@ class ExternalConnectionsResource(SyncAPIResource):
         if not location_id:
             raise ValueError(f"Expected a non-empty value for `location_id` but received {location_id!r}")
         return self._patch(
-            f"/external_connections/{id}/locations/{location_id}",
+            path_template("/external_connections/{id}/locations/{location_id}", id=id, location_id=location_id),
             body=maybe_transform(
                 {"static_emergency_address_id": static_emergency_address_id},
                 external_connection_update_location_params.ExternalConnectionUpdateLocationParams,
@@ -563,7 +563,7 @@ class AsyncExternalConnectionsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
-            f"/external_connections/{id}",
+            path_template("/external_connections/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -616,7 +616,7 @@ class AsyncExternalConnectionsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._patch(
-            f"/external_connections/{id}",
+            path_template("/external_connections/{id}", id=id),
             body=await async_maybe_transform(
                 {
                     "outbound": outbound,
@@ -716,7 +716,7 @@ class AsyncExternalConnectionsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._delete(
-            f"/external_connections/{id}",
+            path_template("/external_connections/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -755,7 +755,7 @@ class AsyncExternalConnectionsResource(AsyncAPIResource):
         if not location_id:
             raise ValueError(f"Expected a non-empty value for `location_id` but received {location_id!r}")
         return await self._patch(
-            f"/external_connections/{id}/locations/{location_id}",
+            path_template("/external_connections/{id}/locations/{location_id}", id=id, location_id=location_id),
             body=await async_maybe_transform(
                 {"static_emergency_address_id": static_emergency_address_id},
                 external_connection_update_location_params.ExternalConnectionUpdateLocationParams,

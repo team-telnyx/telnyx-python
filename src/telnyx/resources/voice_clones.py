@@ -14,7 +14,7 @@ from ..types import (
     voice_clone_create_from_upload_params,
 )
 from .._types import Body, Omit, Query, Headers, NoneType, NotGiven, FileTypes, omit, not_given
-from .._utils import extract_files, maybe_transform, deepcopy_minimal, async_maybe_transform
+from .._utils import extract_files, path_template, maybe_transform, deepcopy_minimal, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -152,7 +152,7 @@ class VoiceClonesResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._patch(
-            f"/voice_clones/{id}",
+            path_template("/voice_clones/{id}", id=id),
             body=maybe_transform(
                 {
                     "name": name,
@@ -250,7 +250,7 @@ class VoiceClonesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/voice_clones/{id}",
+            path_template("/voice_clones/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -355,7 +355,7 @@ class VoiceClonesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         extra_headers = {"Accept": "audio/wav", **(extra_headers or {})}
         return self._get(
-            f"/voice_clones/{id}/sample",
+            path_template("/voice_clones/{id}/sample", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -474,7 +474,7 @@ class AsyncVoiceClonesResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._patch(
-            f"/voice_clones/{id}",
+            path_template("/voice_clones/{id}", id=id),
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -572,7 +572,7 @@ class AsyncVoiceClonesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/voice_clones/{id}",
+            path_template("/voice_clones/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -679,7 +679,7 @@ class AsyncVoiceClonesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         extra_headers = {"Accept": "audio/wav", **(extra_headers or {})}
         return await self._get(
-            f"/voice_clones/{id}/sample",
+            path_template("/voice_clones/{id}/sample", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

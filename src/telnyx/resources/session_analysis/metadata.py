@@ -5,6 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ..._types import Body, Query, Headers, NotGiven, not_given
+from ..._utils import path_template
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -91,7 +92,7 @@ class MetadataResource(SyncAPIResource):
         if not record_type:
             raise ValueError(f"Expected a non-empty value for `record_type` but received {record_type!r}")
         return self._get(
-            f"/session_analysis/metadata/{record_type}",
+            path_template("/session_analysis/metadata/{record_type}", record_type=record_type),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -170,7 +171,7 @@ class AsyncMetadataResource(AsyncAPIResource):
         if not record_type:
             raise ValueError(f"Expected a non-empty value for `record_type` but received {record_type!r}")
         return await self._get(
-            f"/session_analysis/metadata/{record_type}",
+            path_template("/session_analysis/metadata/{record_type}", record_type=record_type),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

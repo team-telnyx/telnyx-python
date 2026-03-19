@@ -7,7 +7,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -78,7 +78,7 @@ class PartnerCampaignsResource(SyncAPIResource):
         if not campaign_id:
             raise ValueError(f"Expected a non-empty value for `campaign_id` but received {campaign_id!r}")
         return self._get(
-            f"/10dlc/partner_campaigns/{campaign_id}",
+            path_template("/10dlc/partner_campaigns/{campaign_id}", campaign_id=campaign_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -119,7 +119,7 @@ class PartnerCampaignsResource(SyncAPIResource):
         if not campaign_id:
             raise ValueError(f"Expected a non-empty value for `campaign_id` but received {campaign_id!r}")
         return self._patch(
-            f"/10dlc/partner_campaigns/{campaign_id}",
+            path_template("/10dlc/partner_campaigns/{campaign_id}", campaign_id=campaign_id),
             body=maybe_transform(
                 {
                     "webhook_failover_url": webhook_failover_url,
@@ -284,7 +284,7 @@ class PartnerCampaignsResource(SyncAPIResource):
         if not campaign_id:
             raise ValueError(f"Expected a non-empty value for `campaign_id` but received {campaign_id!r}")
         return self._get(
-            f"/10dlc/partnerCampaign/{campaign_id}/sharing",
+            path_template("/10dlc/partnerCampaign/{campaign_id}/sharing", campaign_id=campaign_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -338,7 +338,7 @@ class AsyncPartnerCampaignsResource(AsyncAPIResource):
         if not campaign_id:
             raise ValueError(f"Expected a non-empty value for `campaign_id` but received {campaign_id!r}")
         return await self._get(
-            f"/10dlc/partner_campaigns/{campaign_id}",
+            path_template("/10dlc/partner_campaigns/{campaign_id}", campaign_id=campaign_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -379,7 +379,7 @@ class AsyncPartnerCampaignsResource(AsyncAPIResource):
         if not campaign_id:
             raise ValueError(f"Expected a non-empty value for `campaign_id` but received {campaign_id!r}")
         return await self._patch(
-            f"/10dlc/partner_campaigns/{campaign_id}",
+            path_template("/10dlc/partner_campaigns/{campaign_id}", campaign_id=campaign_id),
             body=await async_maybe_transform(
                 {
                     "webhook_failover_url": webhook_failover_url,
@@ -546,7 +546,7 @@ class AsyncPartnerCampaignsResource(AsyncAPIResource):
         if not campaign_id:
             raise ValueError(f"Expected a non-empty value for `campaign_id` but received {campaign_id!r}")
         return await self._get(
-            f"/10dlc/partnerCampaign/{campaign_id}/sharing",
+            path_template("/10dlc/partnerCampaign/{campaign_id}/sharing", campaign_id=campaign_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

@@ -13,7 +13,7 @@ from ..types import (
     call_control_application_update_params,
 )
 from .._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -190,7 +190,7 @@ class CallControlApplicationsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
-            f"/call_control_applications/{id}",
+            path_template("/call_control_applications/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -284,7 +284,7 @@ class CallControlApplicationsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._patch(
-            f"/call_control_applications/{id}",
+            path_template("/call_control_applications/{id}", id=id),
             body=maybe_transform(
                 {
                     "application_name": application_name,
@@ -406,7 +406,7 @@ class CallControlApplicationsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._delete(
-            f"/call_control_applications/{id}",
+            path_template("/call_control_applications/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -569,7 +569,7 @@ class AsyncCallControlApplicationsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
-            f"/call_control_applications/{id}",
+            path_template("/call_control_applications/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -663,7 +663,7 @@ class AsyncCallControlApplicationsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._patch(
-            f"/call_control_applications/{id}",
+            path_template("/call_control_applications/{id}", id=id),
             body=await async_maybe_transform(
                 {
                     "application_name": application_name,
@@ -785,7 +785,7 @@ class AsyncCallControlApplicationsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._delete(
-            f"/call_control_applications/{id}",
+            path_template("/call_control_applications/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

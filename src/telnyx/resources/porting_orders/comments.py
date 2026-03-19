@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -72,7 +72,7 @@ class CommentsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._post(
-            f"/porting_orders/{id}/comments",
+            path_template("/porting_orders/{id}/comments", id=id),
             body=maybe_transform({"body": body}, comment_create_params.CommentCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -108,7 +108,7 @@ class CommentsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
-            f"/porting_orders/{id}/comments",
+            path_template("/porting_orders/{id}/comments", id=id),
             page=SyncDefaultFlatPagination[CommentListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -176,7 +176,7 @@ class AsyncCommentsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._post(
-            f"/porting_orders/{id}/comments",
+            path_template("/porting_orders/{id}/comments", id=id),
             body=await async_maybe_transform({"body": body}, comment_create_params.CommentCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -212,7 +212,7 @@ class AsyncCommentsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
-            f"/porting_orders/{id}/comments",
+            path_template("/porting_orders/{id}/comments", id=id),
             page=AsyncDefaultFlatPagination[CommentListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,

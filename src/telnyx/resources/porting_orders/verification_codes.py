@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -86,7 +86,7 @@ class VerificationCodesResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
-            f"/porting_orders/{id}/verification_codes",
+            path_template("/porting_orders/{id}/verification_codes", id=id),
             page=SyncDefaultFlatPagination[VerificationCodeListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -135,7 +135,7 @@ class VerificationCodesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
-            f"/porting_orders/{id}/verification_codes/send",
+            path_template("/porting_orders/{id}/verification_codes/send", id=id),
             body=maybe_transform(
                 {
                     "phone_numbers": phone_numbers,
@@ -176,7 +176,7 @@ class VerificationCodesResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._post(
-            f"/porting_orders/{id}/verification_codes/verify",
+            path_template("/porting_orders/{id}/verification_codes/verify", id=id),
             body=maybe_transform(
                 {"verification_codes": verification_codes}, verification_code_verify_params.VerificationCodeVerifyParams
             ),
@@ -243,7 +243,7 @@ class AsyncVerificationCodesResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
-            f"/porting_orders/{id}/verification_codes",
+            path_template("/porting_orders/{id}/verification_codes", id=id),
             page=AsyncDefaultFlatPagination[VerificationCodeListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -292,7 +292,7 @@ class AsyncVerificationCodesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
-            f"/porting_orders/{id}/verification_codes/send",
+            path_template("/porting_orders/{id}/verification_codes/send", id=id),
             body=await async_maybe_transform(
                 {
                     "phone_numbers": phone_numbers,
@@ -333,7 +333,7 @@ class AsyncVerificationCodesResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._post(
-            f"/porting_orders/{id}/verification_codes/verify",
+            path_template("/porting_orders/{id}/verification_codes/verify", id=id),
             body=await async_maybe_transform(
                 {"verification_codes": verification_codes}, verification_code_verify_params.VerificationCodeVerifyParams
             ),

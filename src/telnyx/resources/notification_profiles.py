@@ -10,7 +10,7 @@ from ..types import (
     notification_profile_update_params,
 )
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -112,7 +112,7 @@ class NotificationProfilesResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
-            f"/notification_profiles/{id}",
+            path_template("/notification_profiles/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -150,7 +150,9 @@ class NotificationProfilesResource(SyncAPIResource):
                 f"Expected a non-empty value for `notification_profile_id` but received {notification_profile_id!r}"
             )
         return self._patch(
-            f"/notification_profiles/{notification_profile_id}",
+            path_template(
+                "/notification_profiles/{notification_profile_id}", notification_profile_id=notification_profile_id
+            ),
             body=maybe_transform({"name": name}, notification_profile_update_params.NotificationProfileUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -227,7 +229,7 @@ class NotificationProfilesResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._delete(
-            f"/notification_profiles/{id}",
+            path_template("/notification_profiles/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -319,7 +321,7 @@ class AsyncNotificationProfilesResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
-            f"/notification_profiles/{id}",
+            path_template("/notification_profiles/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -357,7 +359,9 @@ class AsyncNotificationProfilesResource(AsyncAPIResource):
                 f"Expected a non-empty value for `notification_profile_id` but received {notification_profile_id!r}"
             )
         return await self._patch(
-            f"/notification_profiles/{notification_profile_id}",
+            path_template(
+                "/notification_profiles/{notification_profile_id}", notification_profile_id=notification_profile_id
+            ),
             body=await async_maybe_transform(
                 {"name": name}, notification_profile_update_params.NotificationProfileUpdateParams
             ),
@@ -436,7 +440,7 @@ class AsyncNotificationProfilesResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._delete(
-            f"/notification_profiles/{id}",
+            path_template("/notification_profiles/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

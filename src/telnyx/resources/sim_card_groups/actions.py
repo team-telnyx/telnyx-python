@@ -7,7 +7,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -84,7 +84,7 @@ class ActionsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
-            f"/sim_card_group_actions/{id}",
+            path_template("/sim_card_group_actions/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -188,7 +188,7 @@ class ActionsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._post(
-            f"/sim_card_groups/{id}/actions/remove_private_wireless_gateway",
+            path_template("/sim_card_groups/{id}/actions/remove_private_wireless_gateway", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -222,7 +222,7 @@ class ActionsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._post(
-            f"/sim_card_groups/{id}/actions/remove_wireless_blocklist",
+            path_template("/sim_card_groups/{id}/actions/remove_wireless_blocklist", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -264,7 +264,7 @@ class ActionsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._post(
-            f"/sim_card_groups/{id}/actions/set_private_wireless_gateway",
+            path_template("/sim_card_groups/{id}/actions/set_private_wireless_gateway", id=id),
             body=maybe_transform(
                 {"private_wireless_gateway_id": private_wireless_gateway_id},
                 action_set_private_wireless_gateway_params.ActionSetPrivateWirelessGatewayParams,
@@ -305,7 +305,7 @@ class ActionsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._post(
-            f"/sim_card_groups/{id}/actions/set_wireless_blocklist",
+            path_template("/sim_card_groups/{id}/actions/set_wireless_blocklist", id=id),
             body=maybe_transform(
                 {"wireless_blocklist_id": wireless_blocklist_id},
                 action_set_wireless_blocklist_params.ActionSetWirelessBlocklistParams,
@@ -364,7 +364,7 @@ class AsyncActionsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
-            f"/sim_card_group_actions/{id}",
+            path_template("/sim_card_group_actions/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -468,7 +468,7 @@ class AsyncActionsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._post(
-            f"/sim_card_groups/{id}/actions/remove_private_wireless_gateway",
+            path_template("/sim_card_groups/{id}/actions/remove_private_wireless_gateway", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -502,7 +502,7 @@ class AsyncActionsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._post(
-            f"/sim_card_groups/{id}/actions/remove_wireless_blocklist",
+            path_template("/sim_card_groups/{id}/actions/remove_wireless_blocklist", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -544,7 +544,7 @@ class AsyncActionsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._post(
-            f"/sim_card_groups/{id}/actions/set_private_wireless_gateway",
+            path_template("/sim_card_groups/{id}/actions/set_private_wireless_gateway", id=id),
             body=await async_maybe_transform(
                 {"private_wireless_gateway_id": private_wireless_gateway_id},
                 action_set_private_wireless_gateway_params.ActionSetPrivateWirelessGatewayParams,
@@ -585,7 +585,7 @@ class AsyncActionsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._post(
-            f"/sim_card_groups/{id}/actions/set_wireless_blocklist",
+            path_template("/sim_card_groups/{id}/actions/set_wireless_blocklist", id=id),
             body=await async_maybe_transform(
                 {"wireless_blocklist_id": wireless_blocklist_id},
                 action_set_wireless_blocklist_params.ActionSetWirelessBlocklistParams,

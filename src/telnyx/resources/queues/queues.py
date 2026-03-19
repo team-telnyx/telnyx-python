@@ -14,7 +14,7 @@ from .calls import (
 )
 from ...types import queue_list_params, queue_create_params, queue_update_params
 from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -130,7 +130,7 @@ class QueuesResource(SyncAPIResource):
         if not queue_name:
             raise ValueError(f"Expected a non-empty value for `queue_name` but received {queue_name!r}")
         return self._get(
-            f"/queues/{queue_name}",
+            path_template("/queues/{queue_name}", queue_name=queue_name),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -166,7 +166,7 @@ class QueuesResource(SyncAPIResource):
         if not queue_name:
             raise ValueError(f"Expected a non-empty value for `queue_name` but received {queue_name!r}")
         return self._post(
-            f"/queues/{queue_name}",
+            path_template("/queues/{queue_name}", queue_name=queue_name),
             body=maybe_transform({"max_size": max_size}, queue_update_params.QueueUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -248,7 +248,7 @@ class QueuesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `queue_name` but received {queue_name!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/queues/{queue_name}",
+            path_template("/queues/{queue_name}", queue_name=queue_name),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -353,7 +353,7 @@ class AsyncQueuesResource(AsyncAPIResource):
         if not queue_name:
             raise ValueError(f"Expected a non-empty value for `queue_name` but received {queue_name!r}")
         return await self._get(
-            f"/queues/{queue_name}",
+            path_template("/queues/{queue_name}", queue_name=queue_name),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -389,7 +389,7 @@ class AsyncQueuesResource(AsyncAPIResource):
         if not queue_name:
             raise ValueError(f"Expected a non-empty value for `queue_name` but received {queue_name!r}")
         return await self._post(
-            f"/queues/{queue_name}",
+            path_template("/queues/{queue_name}", queue_name=queue_name),
             body=await async_maybe_transform({"max_size": max_size}, queue_update_params.QueueUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -471,7 +471,7 @@ class AsyncQueuesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `queue_name` but received {queue_name!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/queues/{queue_name}",
+            path_template("/queues/{queue_name}", queue_name=queue_name),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
