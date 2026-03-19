@@ -6,7 +6,7 @@ from typing_extensions import Literal
 
 from .._models import BaseModel
 
-__all__ = ["VoiceDesignRenameResponse", "Data"]
+__all__ = ["VoiceDesignUpdateResponse", "Data"]
 
 
 class Data(BaseModel):
@@ -28,7 +28,7 @@ class Data(BaseModel):
     """Timestamp when the voice design was last updated."""
 
 
-class VoiceDesignRenameResponse(BaseModel):
+class VoiceDesignUpdateResponse(BaseModel):
     """
     Response envelope for a voice design after a rename operation (no version-specific fields).
     """

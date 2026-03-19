@@ -15,10 +15,10 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
-from ....types.ai.assistants import tag_add_params
-from ....types.ai.assistants.tag_add_response import TagAddResponse
+from ....types.ai.assistants import tag_create_params
 from ....types.ai.assistants.tag_list_response import TagListResponse
-from ....types.ai.assistants.tag_remove_response import TagRemoveResponse
+from ....types.ai.assistants.tag_create_response import TagCreateResponse
+from ....types.ai.assistants.tag_delete_response import TagDeleteResponse
 
 __all__ = ["TagsResource", "AsyncTagsResource"]
 
@@ -45,6 +45,41 @@ class TagsResource(SyncAPIResource):
         """
         return TagsResourceWithStreamingResponse(self)
 
+    def create(
+        self,
+        assistant_id: str,
+        *,
+        tag: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TagCreateResponse:
+        """
+        Add Assistant Tag
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not assistant_id:
+            raise ValueError(f"Expected a non-empty value for `assistant_id` but received {assistant_id!r}")
+        return self._post(
+            f"/ai/assistants/{assistant_id}/tags",
+            body=maybe_transform({"tag": tag}, tag_create_params.TagCreateParams),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=TagCreateResponse,
+        )
+
     def list(
         self,
         *,
@@ -64,42 +99,7 @@ class TagsResource(SyncAPIResource):
             cast_to=TagListResponse,
         )
 
-    def add(
-        self,
-        assistant_id: str,
-        *,
-        tag: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TagAddResponse:
-        """
-        Add Assistant Tag
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not assistant_id:
-            raise ValueError(f"Expected a non-empty value for `assistant_id` but received {assistant_id!r}")
-        return self._post(
-            f"/ai/assistants/{assistant_id}/tags",
-            body=maybe_transform({"tag": tag}, tag_add_params.TagAddParams),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=TagAddResponse,
-        )
-
-    def remove(
+    def delete(
         self,
         tag: str,
         *,
@@ -110,7 +110,7 @@ class TagsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TagRemoveResponse:
+    ) -> TagDeleteResponse:
         """
         Remove Assistant Tag
 
@@ -132,7 +132,7 @@ class TagsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=TagRemoveResponse,
+            cast_to=TagDeleteResponse,
         )
 
 
@@ -158,6 +158,41 @@ class AsyncTagsResource(AsyncAPIResource):
         """
         return AsyncTagsResourceWithStreamingResponse(self)
 
+    async def create(
+        self,
+        assistant_id: str,
+        *,
+        tag: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TagCreateResponse:
+        """
+        Add Assistant Tag
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not assistant_id:
+            raise ValueError(f"Expected a non-empty value for `assistant_id` but received {assistant_id!r}")
+        return await self._post(
+            f"/ai/assistants/{assistant_id}/tags",
+            body=await async_maybe_transform({"tag": tag}, tag_create_params.TagCreateParams),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=TagCreateResponse,
+        )
+
     async def list(
         self,
         *,
@@ -177,42 +212,7 @@ class AsyncTagsResource(AsyncAPIResource):
             cast_to=TagListResponse,
         )
 
-    async def add(
-        self,
-        assistant_id: str,
-        *,
-        tag: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TagAddResponse:
-        """
-        Add Assistant Tag
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not assistant_id:
-            raise ValueError(f"Expected a non-empty value for `assistant_id` but received {assistant_id!r}")
-        return await self._post(
-            f"/ai/assistants/{assistant_id}/tags",
-            body=await async_maybe_transform({"tag": tag}, tag_add_params.TagAddParams),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=TagAddResponse,
-        )
-
-    async def remove(
+    async def delete(
         self,
         tag: str,
         *,
@@ -223,7 +223,7 @@ class AsyncTagsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TagRemoveResponse:
+    ) -> TagDeleteResponse:
         """
         Remove Assistant Tag
 
@@ -245,7 +245,7 @@ class AsyncTagsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=TagRemoveResponse,
+            cast_to=TagDeleteResponse,
         )
 
 
@@ -253,14 +253,14 @@ class TagsResourceWithRawResponse:
     def __init__(self, tags: TagsResource) -> None:
         self._tags = tags
 
+        self.create = to_raw_response_wrapper(
+            tags.create,
+        )
         self.list = to_raw_response_wrapper(
             tags.list,
         )
-        self.add = to_raw_response_wrapper(
-            tags.add,
-        )
-        self.remove = to_raw_response_wrapper(
-            tags.remove,
+        self.delete = to_raw_response_wrapper(
+            tags.delete,
         )
 
 
@@ -268,14 +268,14 @@ class AsyncTagsResourceWithRawResponse:
     def __init__(self, tags: AsyncTagsResource) -> None:
         self._tags = tags
 
+        self.create = async_to_raw_response_wrapper(
+            tags.create,
+        )
         self.list = async_to_raw_response_wrapper(
             tags.list,
         )
-        self.add = async_to_raw_response_wrapper(
-            tags.add,
-        )
-        self.remove = async_to_raw_response_wrapper(
-            tags.remove,
+        self.delete = async_to_raw_response_wrapper(
+            tags.delete,
         )
 
 
@@ -283,14 +283,14 @@ class TagsResourceWithStreamingResponse:
     def __init__(self, tags: TagsResource) -> None:
         self._tags = tags
 
+        self.create = to_streamed_response_wrapper(
+            tags.create,
+        )
         self.list = to_streamed_response_wrapper(
             tags.list,
         )
-        self.add = to_streamed_response_wrapper(
-            tags.add,
-        )
-        self.remove = to_streamed_response_wrapper(
-            tags.remove,
+        self.delete = to_streamed_response_wrapper(
+            tags.delete,
         )
 
 
@@ -298,12 +298,12 @@ class AsyncTagsResourceWithStreamingResponse:
     def __init__(self, tags: AsyncTagsResource) -> None:
         self._tags = tags
 
+        self.create = async_to_streamed_response_wrapper(
+            tags.create,
+        )
         self.list = async_to_streamed_response_wrapper(
             tags.list,
         )
-        self.add = async_to_streamed_response_wrapper(
-            tags.add,
-        )
-        self.remove = async_to_streamed_response_wrapper(
-            tags.remove,
+        self.delete = async_to_streamed_response_wrapper(
+            tags.delete,
         )

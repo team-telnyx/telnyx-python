@@ -6,7 +6,7 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["CreditAccountSettleResponse", "Data"]
+__all__ = ["CreditAccountSettlePaymentResponse", "Data"]
 
 
 class Data(BaseModel):
@@ -34,5 +34,5 @@ class Data(BaseModel):
     """The on-chain transaction hash, if available."""
 
 
-class CreditAccountSettleResponse(BaseModel):
+class CreditAccountSettlePaymentResponse(BaseModel):
     data: Optional[Data] = None
