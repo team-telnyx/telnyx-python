@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Iterable
+from typing import Iterable
 from typing_extensions import Literal
 
 import httpx
@@ -85,7 +85,7 @@ class WhatsappMessageTemplatesResource(SyncAPIResource):
         id: str,
         *,
         category: Literal["MARKETING", "UTILITY", "AUTHENTICATION"] | Omit = omit,
-        components: Iterable[Dict[str, object]] | Omit = omit,
+        components: Iterable[whatsapp_message_template_update_params.Component] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -97,6 +97,8 @@ class WhatsappMessageTemplatesResource(SyncAPIResource):
         Update a Whatsapp message template
 
         Args:
+          components: Updated template components. Same structure as the create request.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -217,7 +219,7 @@ class AsyncWhatsappMessageTemplatesResource(AsyncAPIResource):
         id: str,
         *,
         category: Literal["MARKETING", "UTILITY", "AUTHENTICATION"] | Omit = omit,
-        components: Iterable[Dict[str, object]] | Omit = omit,
+        components: Iterable[whatsapp_message_template_update_params.Component] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -229,6 +231,8 @@ class AsyncWhatsappMessageTemplatesResource(AsyncAPIResource):
         Update a Whatsapp message template
 
         Args:
+          components: Updated template components. Same structure as the create request.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
