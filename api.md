@@ -3270,6 +3270,7 @@ Methods:
 - <code title="get /porting/loa_configurations">client.porting.loa_configurations.<a href="./src/telnyx/resources/porting/loa_configurations.py">list</a>(\*\*<a href="src/telnyx/types/porting/loa_configuration_list_params.py">params</a>) -> <a href="./src/telnyx/types/porting/porting_loa_configuration.py">SyncDefaultFlatPagination[PortingLoaConfiguration]</a></code>
 - <code title="delete /porting/loa_configurations/{id}">client.porting.loa_configurations.<a href="./src/telnyx/resources/porting/loa_configurations.py">delete</a>(id) -> None</code>
 - <code title="post /porting/loa_configurations/preview">client.porting.loa_configurations.<a href="./src/telnyx/resources/porting/loa_configurations.py">preview</a>(\*\*<a href="src/telnyx/types/porting/loa_configuration_preview_params.py">params</a>) -> BinaryAPIResponse</code>
+- <code title="post /porting/loa_configurations/preview">client.porting.loa_configurations.<a href="./src/telnyx/resources/porting/loa_configurations.py">preview_0</a>(\*\*<a href="src/telnyx/types/porting/loa_configuration_preview_0_params.py">params</a>) -> BinaryAPIResponse</code>
 - <code title="get /porting/loa_configurations/{id}/preview">client.porting.loa_configurations.<a href="./src/telnyx/resources/porting/loa_configurations.py">preview_1</a>(id) -> BinaryAPIResponse</code>
 
 # PortingOrders
@@ -5395,9 +5396,9 @@ Types:
 
 ```python
 from telnyx.types import (
+    VoiceCloneData,
     VoiceCloneCreateResponse,
     VoiceCloneUpdateResponse,
-    VoiceCloneListResponse,
     VoiceCloneCreateFromUploadResponse,
 )
 ```
@@ -5406,7 +5407,7 @@ Methods:
 
 - <code title="post /voice_clones">client.voice_clones.<a href="./src/telnyx/resources/voice_clones.py">create</a>(\*\*<a href="src/telnyx/types/voice_clone_create_params.py">params</a>) -> <a href="./src/telnyx/types/voice_clone_create_response.py">VoiceCloneCreateResponse</a></code>
 - <code title="patch /voice_clones/{id}">client.voice_clones.<a href="./src/telnyx/resources/voice_clones.py">update</a>(id, \*\*<a href="src/telnyx/types/voice_clone_update_params.py">params</a>) -> <a href="./src/telnyx/types/voice_clone_update_response.py">VoiceCloneUpdateResponse</a></code>
-- <code title="get /voice_clones">client.voice_clones.<a href="./src/telnyx/resources/voice_clones.py">list</a>(\*\*<a href="src/telnyx/types/voice_clone_list_params.py">params</a>) -> <a href="./src/telnyx/types/voice_clone_list_response.py">SyncDefaultFlatPagination[VoiceCloneListResponse]</a></code>
+- <code title="get /voice_clones">client.voice_clones.<a href="./src/telnyx/resources/voice_clones.py">list</a>(\*\*<a href="src/telnyx/types/voice_clone_list_params.py">params</a>) -> <a href="./src/telnyx/types/voice_clone_data.py">SyncDefaultFlatPagination[VoiceCloneData]</a></code>
 - <code title="delete /voice_clones/{id}">client.voice_clones.<a href="./src/telnyx/resources/voice_clones.py">delete</a>(id) -> None</code>
 - <code title="post /voice_clones/from_upload">client.voice_clones.<a href="./src/telnyx/resources/voice_clones.py">create_from_upload</a>(\*\*<a href="src/telnyx/types/voice_clone_create_from_upload_params.py">params</a>) -> <a href="./src/telnyx/types/voice_clone_create_from_upload_response.py">VoiceCloneCreateFromUploadResponse</a></code>
 - <code title="get /voice_clones/{id}/sample">client.voice_clones.<a href="./src/telnyx/resources/voice_clones.py">download_sample</a>(id) -> BinaryAPIResponse</code>
@@ -5417,6 +5418,7 @@ Types:
 
 ```python
 from telnyx.types import (
+    VoiceDesignData,
     VoiceDesignCreateResponse,
     VoiceDesignRetrieveResponse,
     VoiceDesignListResponse,
@@ -5440,10 +5442,10 @@ Types:
 
 ```python
 from telnyx.types import (
+    TrafficPolicyProfile,
     TrafficPolicyProfileCreateResponse,
     TrafficPolicyProfileRetrieveResponse,
     TrafficPolicyProfileUpdateResponse,
-    TrafficPolicyProfileListResponse,
     TrafficPolicyProfileDeleteResponse,
     TrafficPolicyProfileListServicesResponse,
 )
@@ -5454,6 +5456,6 @@ Methods:
 - <code title="post /traffic_policy_profiles">client.traffic_policy_profiles.<a href="./src/telnyx/resources/traffic_policy_profiles.py">create</a>(\*\*<a href="src/telnyx/types/traffic_policy_profile_create_params.py">params</a>) -> <a href="./src/telnyx/types/traffic_policy_profile_create_response.py">TrafficPolicyProfileCreateResponse</a></code>
 - <code title="get /traffic_policy_profiles/{id}">client.traffic_policy_profiles.<a href="./src/telnyx/resources/traffic_policy_profiles.py">retrieve</a>(id) -> <a href="./src/telnyx/types/traffic_policy_profile_retrieve_response.py">TrafficPolicyProfileRetrieveResponse</a></code>
 - <code title="patch /traffic_policy_profiles/{id}">client.traffic_policy_profiles.<a href="./src/telnyx/resources/traffic_policy_profiles.py">update</a>(id, \*\*<a href="src/telnyx/types/traffic_policy_profile_update_params.py">params</a>) -> <a href="./src/telnyx/types/traffic_policy_profile_update_response.py">TrafficPolicyProfileUpdateResponse</a></code>
-- <code title="get /traffic_policy_profiles">client.traffic_policy_profiles.<a href="./src/telnyx/resources/traffic_policy_profiles.py">list</a>(\*\*<a href="src/telnyx/types/traffic_policy_profile_list_params.py">params</a>) -> <a href="./src/telnyx/types/traffic_policy_profile_list_response.py">SyncDefaultFlatPagination[TrafficPolicyProfileListResponse]</a></code>
+- <code title="get /traffic_policy_profiles">client.traffic_policy_profiles.<a href="./src/telnyx/resources/traffic_policy_profiles.py">list</a>(\*\*<a href="src/telnyx/types/traffic_policy_profile_list_params.py">params</a>) -> <a href="./src/telnyx/types/traffic_policy_profile.py">SyncDefaultFlatPagination[TrafficPolicyProfile]</a></code>
 - <code title="delete /traffic_policy_profiles/{id}">client.traffic_policy_profiles.<a href="./src/telnyx/resources/traffic_policy_profiles.py">delete</a>(id) -> <a href="./src/telnyx/types/traffic_policy_profile_delete_response.py">TrafficPolicyProfileDeleteResponse</a></code>
 - <code title="get /traffic_policy_profiles/services">client.traffic_policy_profiles.<a href="./src/telnyx/resources/traffic_policy_profiles.py">list_services</a>(\*\*<a href="src/telnyx/types/traffic_policy_profile_list_services_params.py">params</a>) -> <a href="./src/telnyx/types/traffic_policy_profile_list_services_response.py">SyncDefaultFlatPagination[TrafficPolicyProfileListServicesResponse]</a></code>
