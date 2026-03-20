@@ -27,8 +27,8 @@ from ._exceptions import (
     APIWebhookValidationError,
     APIResponseValidationError,
 )
-from .lib.webhook_verification import TelnyxWebhookVerificationError
 from ._base_client import DefaultHttpxClient, DefaultAioHttpClient, DefaultAsyncHttpxClient
+from .lib.webhook_verification import TelnyxWebhookVerificationError
 from ._utils._logs import setup_logging as _setup_logging
 
 __all__ = [
