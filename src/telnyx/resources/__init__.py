@@ -208,7 +208,7 @@ from .portouts import (
     PortoutsResourceWithStreamingResponse,
     AsyncPortoutsResourceWithStreamingResponse,
 )
-from .webhooks import WebhooksResource, AsyncWebhooksResource, TelnyxWebhookVerificationError
+from .webhooks import WebhooksResource, AsyncWebhooksResource
 from .whatsapp import (
     WhatsappResource,
     AsyncWhatsappResource,
@@ -1105,6 +1105,7 @@ from .sub_number_orders_report import (
     SubNumberOrdersReportResourceWithStreamingResponse,
     AsyncSubNumberOrdersReportResourceWithStreamingResponse,
 )
+from ..lib.webhook_verification import TelnyxWebhookVerificationError
 from .call_control_applications import (
     CallControlApplicationsResource,
     AsyncCallControlApplicationsResource,
