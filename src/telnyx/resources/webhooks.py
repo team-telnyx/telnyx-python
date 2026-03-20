@@ -7,11 +7,9 @@ from typing import Mapping, cast
 
 from .._models import construct_type
 from .._resource import SyncAPIResource, AsyncAPIResource
+from ..lib.webhook_verification import verify_signature
 from ..types.unwrap_webhook_event import UnwrapWebhookEvent
 from ..types.unsafe_unwrap_webhook_event import UnsafeUnwrapWebhookEvent
-
-# Import verification function from lib module to avoid merge conflicts
-from ..lib.webhook_verification import verify_signature
 
 __all__ = ["WebhooksResource", "AsyncWebhooksResource"]
 
