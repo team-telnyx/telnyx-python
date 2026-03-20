@@ -1,5 +1,20 @@
 # Changelog
 
+## 4.81.1 (2026-03-20)
+
+Full Changelog: [v4.81.0...v4.81.1](https://github.com/team-telnyx/telnyx-python/compare/v4.81.0...v4.81.1)
+
+### Bug Fixes
+
+* correct import ordering for lint ([0518d88](https://github.com/team-telnyx/telnyx-python/commit/0518d885648472dfe8b555938cb0a97523dc3492))
+* import TelnyxWebhookVerificationError from lib module in resources/__init__.py ([2b92532](https://github.com/team-telnyx/telnyx-python/commit/2b92532a56c1bc577285bf1b02591e44bcb5849d))
+* sort imports to pass lint ([46e7b6c](https://github.com/team-telnyx/telnyx-python/commit/46e7b6c59df06da8781225bb599c40183a625135))
+
+
+### Refactors
+
+* move webhook verification to separate module to avoid merge conflicts ([230a1ac](https://github.com/team-telnyx/telnyx-python/commit/230a1ac3d1deaa002b010c6409b29ec1afd5117b))
+
 ## 4.81.0 (2026-03-19)
 
 Full Changelog: [v4.80.0...v4.81.0](https://github.com/team-telnyx/telnyx-python/compare/v4.80.0...v4.81.0)
