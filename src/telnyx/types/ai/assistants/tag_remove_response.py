@@ -4,8 +4,8 @@ from typing import List
 
 from ...._models import BaseModel
 
-__all__ = ["TagCreateResponse"]
+__all__ = ["TagRemoveResponse"]
 
 
-class TagCreateResponse(BaseModel):
+class TagRemoveResponse(BaseModel):
     tags: List[str]

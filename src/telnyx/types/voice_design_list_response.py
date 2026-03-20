@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -20,6 +20,12 @@ class VoiceDesignListResponse(BaseModel):
 
     name: Optional[str] = None
     """Name of the voice design."""
+
+    provider: Optional[Literal["telnyx", "minimax", "Telnyx", "Minimax"]] = None
+    """Voice synthesis provider used for this design."""
+
+    provider_supported_models: Optional[List[str]] = None
+    """List of TTS model identifiers supported by this design's provider."""
 
     record_type: Optional[Literal["voice_design"]] = None
     """Identifies the resource type."""

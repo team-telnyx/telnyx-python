@@ -128,7 +128,6 @@ from .stt_server_event import (
 )
 from .sub_number_order import SubNumberOrder as SubNumberOrder
 from .user_requirement import UserRequirement as UserRequirement
-from .voice_clone_data import VoiceCloneData as VoiceCloneData
 from .whatsapp_contact import WhatsappContact as WhatsappContact
 from .available_service import AvailableService as AvailableService
 from .call_fork_started import CallForkStarted as CallForkStarted
@@ -145,7 +144,6 @@ from .queue_list_params import QueueListParams as QueueListParams
 from .rcs_agent_message import RcsAgentMessage as RcsAgentMessage
 from .requirement_group import RequirementGroup as RequirementGroup
 from .texml_application import TexmlApplication as TexmlApplication
-from .voice_design_data import VoiceDesignData as VoiceDesignData
 from .whatsapp_location import WhatsappLocation as WhatsappLocation
 from .whatsapp_reaction import WhatsappReaction as WhatsappReaction
 from .call_dial_response import CallDialResponse as CallDialResponse
@@ -280,7 +278,6 @@ from .short_code_list_params import ShortCodeListParams as ShortCodeListParams
 from .sim_card_delete_params import SimCardDeleteParams as SimCardDeleteParams
 from .sim_card_update_params import SimCardUpdateParams as SimCardUpdateParams
 from .texml_secrets_response import TexmlSecretsResponse as TexmlSecretsResponse
-from .traffic_policy_profile import TrafficPolicyProfile as TrafficPolicyProfile
 from .url_shortener_settings import URLShortenerSettings as URLShortenerSettings
 from .user_tag_list_response import UserTagListResponse as UserTagListResponse
 from .whatsapp_contact_param import WhatsappContactParam as WhatsappContactParam
@@ -383,6 +380,7 @@ from .sound_modifications_param import SoundModificationsParam as SoundModificat
 from .stream_bidirectional_mode import StreamBidirectionalMode as StreamBidirectionalMode
 from .stream_client_event_param import StreamClientEventParam as StreamClientEventParam
 from .voice_clone_create_params import VoiceCloneCreateParams as VoiceCloneCreateParams
+from .voice_clone_list_response import VoiceCloneListResponse as VoiceCloneListResponse
 from .voice_clone_update_params import VoiceCloneUpdateParams as VoiceCloneUpdateParams
 from .access_ip_address_response import AccessIPAddressResponse as AccessIPAddressResponse
 from .call_bridged_webhook_event import CallBridgedWebhookEvent as CallBridgedWebhookEvent
@@ -414,7 +412,7 @@ from .user_address_create_params import UserAddressCreateParams as UserAddressCr
 from .verify_profile_list_params import VerifyProfileListParams as VerifyProfileListParams
 from .voice_design_create_params import VoiceDesignCreateParams as VoiceDesignCreateParams
 from .voice_design_list_response import VoiceDesignListResponse as VoiceDesignListResponse
-from .voice_design_update_params import VoiceDesignUpdateParams as VoiceDesignUpdateParams
+from .voice_design_rename_params import VoiceDesignRenameParams as VoiceDesignRenameParams
 from .whatsapp_interactive_param import WhatsappInteractiveParam as WhatsappInteractiveParam
 from .wireguard_peer_list_params import WireguardPeerListParams as WireguardPeerListParams
 from .access_ip_range_list_params import AccessIPRangeListParams as AccessIPRangeListParams
@@ -489,8 +487,8 @@ from .verified_number_data_wrapper import VerifiedNumberDataWrapper as VerifiedN
 from .verify_profile_create_params import VerifyProfileCreateParams as VerifyProfileCreateParams
 from .verify_profile_update_params import VerifyProfileUpdateParams as VerifyProfileUpdateParams
 from .voice_design_create_response import VoiceDesignCreateResponse as VoiceDesignCreateResponse
+from .voice_design_rename_response import VoiceDesignRenameResponse as VoiceDesignRenameResponse
 from .voice_design_retrieve_params import VoiceDesignRetrieveParams as VoiceDesignRetrieveParams
-from .voice_design_update_response import VoiceDesignUpdateResponse as VoiceDesignUpdateResponse
 from .webhook_delivery_list_params import WebhookDeliveryListParams as WebhookDeliveryListParams
 from .websocket_connection_options import WebSocketConnectionOptions as WebSocketConnectionOptions
 from .wireguard_peer_create_params import WireguardPeerCreateParams as WireguardPeerCreateParams
@@ -811,6 +809,7 @@ from .telephony_credential_create_response import TelephonyCredentialCreateRespo
 from .telephony_credential_delete_response import TelephonyCredentialDeleteResponse as TelephonyCredentialDeleteResponse
 from .telephony_credential_update_response import TelephonyCredentialUpdateResponse as TelephonyCredentialUpdateResponse
 from .traffic_policy_profile_create_params import TrafficPolicyProfileCreateParams as TrafficPolicyProfileCreateParams
+from .traffic_policy_profile_list_response import TrafficPolicyProfileListResponse as TrafficPolicyProfileListResponse
 from .traffic_policy_profile_update_params import TrafficPolicyProfileUpdateParams as TrafficPolicyProfileUpdateParams
 from .wireless_blocklist_retrieve_response import WirelessBlocklistRetrieveResponse as WirelessBlocklistRetrieveResponse
 from .wireless_blocklist_value_list_params import WirelessBlocklistValueListParams as WirelessBlocklistValueListParams

@@ -14,7 +14,8 @@ class VoiceCloneCreateFromUploadParams(TypedDict, total=False):
     """Audio file to clone the voice from.
 
     Supported formats: WAV, MP3, FLAC, OGG, M4A. For best quality, provide 5–10
-    seconds of clear, uninterrupted speech. Maximum size: 2MB.
+    seconds of clear, uninterrupted speech. Maximum size: 5MB for Telnyx, 20MB for
+    Minimax.
     """
 
     language: Required[str]
@@ -31,6 +32,9 @@ class VoiceCloneCreateFromUploadParams(TypedDict, total=False):
 
     If omitted, falls back to the source design's prompt text.
     """
+
+    provider: Literal["telnyx", "minimax", "Telnyx", "Minimax"]
+    """Voice synthesis provider. Case-insensitive. Defaults to `telnyx`."""
 
     ref_text: str
     """Optional transcript of the audio file. Providing this improves clone quality."""

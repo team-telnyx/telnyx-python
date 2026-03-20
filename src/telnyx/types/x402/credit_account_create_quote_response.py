@@ -9,7 +9,7 @@ from pydantic import Field as FieldInfo
 from ..._models import BaseModel
 
 __all__ = [
-    "CreditAccountCreatePaymentQuoteResponse",
+    "CreditAccountCreateQuoteResponse",
     "Data",
     "DataPaymentRequirements",
     "DataPaymentRequirementsAccept",
@@ -120,5 +120,5 @@ class Data(BaseModel):
     record_type: Optional[Literal["quote"]] = None
 
 
-class CreditAccountCreatePaymentQuoteResponse(BaseModel):
+class CreditAccountCreateQuoteResponse(BaseModel):
     data: Optional[Data] = None

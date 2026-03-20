@@ -18,7 +18,7 @@ from ...._response import (
 )
 from ....pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from ...._base_client import AsyncPaginator, make_request_options
-from ....types.whatsapp.business_accounts import phone_number_list_params, phone_number_create_verification_params
+from ....types.whatsapp.business_accounts import phone_number_list_params, phone_number_initialize_verification_params
 from ....types.whatsapp.business_accounts.phone_number_list_response import PhoneNumberListResponse
 
 __all__ = ["PhoneNumbersResource", "AsyncPhoneNumbersResource"]
@@ -90,7 +90,7 @@ class PhoneNumbersResource(SyncAPIResource):
             model=PhoneNumberListResponse,
         )
 
-    def create_verification(
+    def initialize_verification(
         self,
         id: str,
         *,
@@ -129,7 +129,7 @@ class PhoneNumbersResource(SyncAPIResource):
                     "language": language,
                     "verification_method": verification_method,
                 },
-                phone_number_create_verification_params.PhoneNumberCreateVerificationParams,
+                phone_number_initialize_verification_params.PhoneNumberInitializeVerificationParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -204,7 +204,7 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
             model=PhoneNumberListResponse,
         )
 
-    async def create_verification(
+    async def initialize_verification(
         self,
         id: str,
         *,
@@ -243,7 +243,7 @@ class AsyncPhoneNumbersResource(AsyncAPIResource):
                     "language": language,
                     "verification_method": verification_method,
                 },
-                phone_number_create_verification_params.PhoneNumberCreateVerificationParams,
+                phone_number_initialize_verification_params.PhoneNumberInitializeVerificationParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -259,8 +259,8 @@ class PhoneNumbersResourceWithRawResponse:
         self.list = to_raw_response_wrapper(
             phone_numbers.list,
         )
-        self.create_verification = to_raw_response_wrapper(
-            phone_numbers.create_verification,
+        self.initialize_verification = to_raw_response_wrapper(
+            phone_numbers.initialize_verification,
         )
 
 
@@ -271,8 +271,8 @@ class AsyncPhoneNumbersResourceWithRawResponse:
         self.list = async_to_raw_response_wrapper(
             phone_numbers.list,
         )
-        self.create_verification = async_to_raw_response_wrapper(
-            phone_numbers.create_verification,
+        self.initialize_verification = async_to_raw_response_wrapper(
+            phone_numbers.initialize_verification,
         )
 
 
@@ -283,8 +283,8 @@ class PhoneNumbersResourceWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             phone_numbers.list,
         )
-        self.create_verification = to_streamed_response_wrapper(
-            phone_numbers.create_verification,
+        self.initialize_verification = to_streamed_response_wrapper(
+            phone_numbers.initialize_verification,
         )
 
 
@@ -295,6 +295,6 @@ class AsyncPhoneNumbersResourceWithStreamingResponse:
         self.list = async_to_streamed_response_wrapper(
             phone_numbers.list,
         )
-        self.create_verification = async_to_streamed_response_wrapper(
-            phone_numbers.create_verification,
+        self.initialize_verification = async_to_streamed_response_wrapper(
+            phone_numbers.initialize_verification,
         )

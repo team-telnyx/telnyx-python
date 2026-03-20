@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from typing_extensions import Literal, Required, TypedDict
 
-__all__ = ["PhoneNumberCreateVerificationParams"]
+__all__ = ["PhoneNumberInitializeVerificationParams"]
 
 
-class PhoneNumberCreateVerificationParams(TypedDict, total=False):
+class PhoneNumberInitializeVerificationParams(TypedDict, total=False):
     display_name: Required[str]
 
     phone_number: Required[str]

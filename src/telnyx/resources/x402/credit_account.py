@@ -14,10 +14,10 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...types.x402 import credit_account_settle_payment_params, credit_account_create_payment_quote_params
+from ...types.x402 import credit_account_settle_params, credit_account_create_quote_params
 from ..._base_client import make_request_options
-from ...types.x402.credit_account_settle_payment_response import CreditAccountSettlePaymentResponse
-from ...types.x402.credit_account_create_payment_quote_response import CreditAccountCreatePaymentQuoteResponse
+from ...types.x402.credit_account_settle_response import CreditAccountSettleResponse
+from ...types.x402.credit_account_create_quote_response import CreditAccountCreateQuoteResponse
 
 __all__ = ["CreditAccountResource", "AsyncCreditAccountResource"]
 
@@ -47,7 +47,7 @@ class CreditAccountResource(SyncAPIResource):
         """
         return CreditAccountResourceWithStreamingResponse(self)
 
-    def create_payment_quote(
+    def create_quote(
         self,
         *,
         amount_usd: str,
@@ -57,7 +57,7 @@ class CreditAccountResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CreditAccountCreatePaymentQuoteResponse:
+    ) -> CreditAccountCreateQuoteResponse:
         """Creates a payment quote for the specified USD amount.
 
         Returns payment details
@@ -78,16 +78,15 @@ class CreditAccountResource(SyncAPIResource):
         return self._post(
             "/v2/x402/credit_account/quote",
             body=maybe_transform(
-                {"amount_usd": amount_usd},
-                credit_account_create_payment_quote_params.CreditAccountCreatePaymentQuoteParams,
+                {"amount_usd": amount_usd}, credit_account_create_quote_params.CreditAccountCreateQuoteParams
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CreditAccountCreatePaymentQuoteResponse,
+            cast_to=CreditAccountCreateQuoteResponse,
         )
 
-    def settle_payment(
+    def settle(
         self,
         *,
         id: str,
@@ -99,7 +98,7 @@ class CreditAccountResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CreditAccountSettlePaymentResponse:
+    ) -> CreditAccountSettleResponse:
         """
         Settles an x402 payment using the quote ID and a signed payment authorization.
         The payment signature can be provided via the `PAYMENT-SIGNATURE` header or the
@@ -128,12 +127,12 @@ class CreditAccountResource(SyncAPIResource):
                     "id": id,
                     "body_payment_signature": body_payment_signature,
                 },
-                credit_account_settle_payment_params.CreditAccountSettlePaymentParams,
+                credit_account_settle_params.CreditAccountSettleParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CreditAccountSettlePaymentResponse,
+            cast_to=CreditAccountSettleResponse,
         )
 
 
@@ -162,7 +161,7 @@ class AsyncCreditAccountResource(AsyncAPIResource):
         """
         return AsyncCreditAccountResourceWithStreamingResponse(self)
 
-    async def create_payment_quote(
+    async def create_quote(
         self,
         *,
         amount_usd: str,
@@ -172,7 +171,7 @@ class AsyncCreditAccountResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CreditAccountCreatePaymentQuoteResponse:
+    ) -> CreditAccountCreateQuoteResponse:
         """Creates a payment quote for the specified USD amount.
 
         Returns payment details
@@ -193,16 +192,15 @@ class AsyncCreditAccountResource(AsyncAPIResource):
         return await self._post(
             "/v2/x402/credit_account/quote",
             body=await async_maybe_transform(
-                {"amount_usd": amount_usd},
-                credit_account_create_payment_quote_params.CreditAccountCreatePaymentQuoteParams,
+                {"amount_usd": amount_usd}, credit_account_create_quote_params.CreditAccountCreateQuoteParams
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CreditAccountCreatePaymentQuoteResponse,
+            cast_to=CreditAccountCreateQuoteResponse,
         )
 
-    async def settle_payment(
+    async def settle(
         self,
         *,
         id: str,
@@ -214,7 +212,7 @@ class AsyncCreditAccountResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CreditAccountSettlePaymentResponse:
+    ) -> CreditAccountSettleResponse:
         """
         Settles an x402 payment using the quote ID and a signed payment authorization.
         The payment signature can be provided via the `PAYMENT-SIGNATURE` header or the
@@ -243,12 +241,12 @@ class AsyncCreditAccountResource(AsyncAPIResource):
                     "id": id,
                     "body_payment_signature": body_payment_signature,
                 },
-                credit_account_settle_payment_params.CreditAccountSettlePaymentParams,
+                credit_account_settle_params.CreditAccountSettleParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CreditAccountSettlePaymentResponse,
+            cast_to=CreditAccountSettleResponse,
         )
 
 
@@ -256,11 +254,11 @@ class CreditAccountResourceWithRawResponse:
     def __init__(self, credit_account: CreditAccountResource) -> None:
         self._credit_account = credit_account
 
-        self.create_payment_quote = to_raw_response_wrapper(
-            credit_account.create_payment_quote,
+        self.create_quote = to_raw_response_wrapper(
+            credit_account.create_quote,
         )
-        self.settle_payment = to_raw_response_wrapper(
-            credit_account.settle_payment,
+        self.settle = to_raw_response_wrapper(
+            credit_account.settle,
         )
 
 
@@ -268,11 +266,11 @@ class AsyncCreditAccountResourceWithRawResponse:
     def __init__(self, credit_account: AsyncCreditAccountResource) -> None:
         self._credit_account = credit_account
 
-        self.create_payment_quote = async_to_raw_response_wrapper(
-            credit_account.create_payment_quote,
+        self.create_quote = async_to_raw_response_wrapper(
+            credit_account.create_quote,
         )
-        self.settle_payment = async_to_raw_response_wrapper(
-            credit_account.settle_payment,
+        self.settle = async_to_raw_response_wrapper(
+            credit_account.settle,
         )
 
 
@@ -280,11 +278,11 @@ class CreditAccountResourceWithStreamingResponse:
     def __init__(self, credit_account: CreditAccountResource) -> None:
         self._credit_account = credit_account
 
-        self.create_payment_quote = to_streamed_response_wrapper(
-            credit_account.create_payment_quote,
+        self.create_quote = to_streamed_response_wrapper(
+            credit_account.create_quote,
         )
-        self.settle_payment = to_streamed_response_wrapper(
-            credit_account.settle_payment,
+        self.settle = to_streamed_response_wrapper(
+            credit_account.settle,
         )
 
 
@@ -292,9 +290,9 @@ class AsyncCreditAccountResourceWithStreamingResponse:
     def __init__(self, credit_account: AsyncCreditAccountResource) -> None:
         self._credit_account = credit_account
 
-        self.create_payment_quote = async_to_streamed_response_wrapper(
-            credit_account.create_payment_quote,
+        self.create_quote = async_to_streamed_response_wrapper(
+            credit_account.create_quote,
         )
-        self.settle_payment = async_to_streamed_response_wrapper(
-            credit_account.settle_payment,
+        self.settle = async_to_streamed_response_wrapper(
+            credit_account.settle,
         )
