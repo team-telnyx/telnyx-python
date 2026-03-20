@@ -1589,7 +1589,7 @@ class Telnyx(SyncAPIClient):
     def x402(self) -> X402Resource:
         from .resources.x402 import X402Resource
 
-        return WhatsappMessageTemplatesResource(self)
+        return X402Resource(self)
 
     @cached_property
     def voice_clones(self) -> VoiceClonesResource:
@@ -2908,7 +2908,7 @@ class AsyncTelnyx(AsyncAPIClient):
     def x402(self) -> AsyncX402Resource:
         from .resources.x402 import AsyncX402Resource
 
-        return AsyncWhatsappMessageTemplatesResource(self)
+        return AsyncX402Resource(self)
 
     @cached_property
     def voice_clones(self) -> AsyncVoiceClonesResource:
@@ -4165,7 +4165,7 @@ class TelnyxWithRawResponse:
     def x402(self) -> x402.X402ResourceWithRawResponse:
         from .resources.x402 import X402ResourceWithRawResponse
 
-        return WhatsappMessageTemplatesResourceWithRawResponse(self._client.whatsapp_message_templates)
+        return X402ResourceWithRawResponse(self._client.x402)
 
     @cached_property
     def voice_clones(self) -> voice_clones.VoiceClonesResourceWithRawResponse:
@@ -5293,7 +5293,7 @@ class AsyncTelnyxWithRawResponse:
     def x402(self) -> x402.AsyncX402ResourceWithRawResponse:
         from .resources.x402 import AsyncX402ResourceWithRawResponse
 
-        return AsyncWhatsappMessageTemplatesResourceWithRawResponse(self._client.whatsapp_message_templates)
+        return AsyncX402ResourceWithRawResponse(self._client.x402)
 
     @cached_property
     def voice_clones(self) -> voice_clones.AsyncVoiceClonesResourceWithRawResponse:
@@ -6423,7 +6423,7 @@ class TelnyxWithStreamedResponse:
     def x402(self) -> x402.X402ResourceWithStreamingResponse:
         from .resources.x402 import X402ResourceWithStreamingResponse
 
-        return WhatsappMessageTemplatesResourceWithStreamingResponse(self._client.whatsapp_message_templates)
+        return X402ResourceWithStreamingResponse(self._client.x402)
 
     @cached_property
     def voice_clones(self) -> voice_clones.VoiceClonesResourceWithStreamingResponse:
@@ -7597,7 +7597,7 @@ class AsyncTelnyxWithStreamedResponse:
     def x402(self) -> x402.AsyncX402ResourceWithStreamingResponse:
         from .resources.x402 import AsyncX402ResourceWithStreamingResponse
 
-        return AsyncWhatsappMessageTemplatesResourceWithStreamingResponse(self._client.whatsapp_message_templates)
+        return AsyncX402ResourceWithStreamingResponse(self._client.x402)
 
     @cached_property
     def voice_clones(self) -> voice_clones.AsyncVoiceClonesResourceWithStreamingResponse:
