@@ -76,7 +76,17 @@ class TestWhatsappMessageTemplates:
         whatsapp_message_template = client.whatsapp_message_templates.update(
             id="id",
             category="MARKETING",
-            components=[{"foo": "bar"}],
+            components=[
+                {
+                    "format": "TEXT",
+                    "type": "HEADER",
+                    "example": {
+                        "header_handle": ["string"],
+                        "header_text": ["string"],
+                    },
+                    "text": "text",
+                }
+            ],
         )
         assert_matches_type(WhatsappMessageTemplateUpdateResponse, whatsapp_message_template, path=["response"])
 
@@ -218,7 +228,17 @@ class TestAsyncWhatsappMessageTemplates:
         whatsapp_message_template = await async_client.whatsapp_message_templates.update(
             id="id",
             category="MARKETING",
-            components=[{"foo": "bar"}],
+            components=[
+                {
+                    "format": "TEXT",
+                    "type": "HEADER",
+                    "example": {
+                        "header_handle": ["string"],
+                        "header_text": ["string"],
+                    },
+                    "text": "text",
+                }
+            ],
         )
         assert_matches_type(WhatsappMessageTemplateUpdateResponse, whatsapp_message_template, path=["response"])
 

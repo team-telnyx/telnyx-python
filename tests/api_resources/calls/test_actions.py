@@ -1467,7 +1467,16 @@ class TestActions:
             command_id="891510ac-f3e4-11e8-af5b-de00688a4901",
             direction="both",
             noise_suppression_engine="DeepFilterNet",
-            noise_suppression_engine_config={"attenuation_limit": 100},
+            noise_suppression_engine_config={
+                "attenuation_limit": 100,
+                "enhancement_level": 0.5,
+                "family": "sparrow",
+                "mode": "standard",
+                "model": "krisp-viva-tel-v2.kef",
+                "size": "l",
+                "suppression_level": 50,
+                "voice_gain": 1,
+            },
         )
         assert_matches_type(ActionStartNoiseSuppressionResponse, action, path=["response"])
 
@@ -3951,7 +3960,16 @@ class TestAsyncActions:
             command_id="891510ac-f3e4-11e8-af5b-de00688a4901",
             direction="both",
             noise_suppression_engine="DeepFilterNet",
-            noise_suppression_engine_config={"attenuation_limit": 100},
+            noise_suppression_engine_config={
+                "attenuation_limit": 100,
+                "enhancement_level": 0.5,
+                "family": "sparrow",
+                "mode": "standard",
+                "model": "krisp-viva-tel-v2.kef",
+                "size": "l",
+                "suppression_level": 50,
+                "voice_gain": 1,
+            },
         )
         assert_matches_type(ActionStartNoiseSuppressionResponse, action, path=["response"])
 

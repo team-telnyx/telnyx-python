@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.82.1 (2026-03-20)
+
+Full Changelog: [v4.82.0...v4.82.1](https://github.com/team-telnyx/telnyx-python/compare/v4.82.0...v4.82.1)
+
+### Documentation
+
+* WhatsApp template components schema ([01a856a](https://github.com/team-telnyx/telnyx-python/commit/01a856ab64e3074a7799485e3ef5e52aa77534d7))
+
 ## 4.82.0 (2026-03-20)
 
 Full Changelog: [v4.81.1...v4.82.0](https://github.com/team-telnyx/telnyx-python/compare/v4.81.1...v4.82.0)
