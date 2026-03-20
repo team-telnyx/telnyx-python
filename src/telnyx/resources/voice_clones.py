@@ -33,7 +33,7 @@ from .._response import (
 )
 from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from .._base_client import AsyncPaginator, make_request_options
-from ..types.voice_clone_list_response import VoiceCloneListResponse
+from ..types.voice_clone_data import VoiceCloneData
 from ..types.voice_clone_create_response import VoiceCloneCreateResponse
 from ..types.voice_clone_update_response import VoiceCloneUpdateResponse
 from ..types.voice_clone_create_from_upload_response import VoiceCloneCreateFromUploadResponse
@@ -185,7 +185,7 @@ class VoiceClonesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[VoiceCloneListResponse]:
+    ) -> SyncDefaultFlatPagination[VoiceCloneData]:
         """
         Returns a paginated list of voice clones belonging to the authenticated account.
 
@@ -210,7 +210,7 @@ class VoiceClonesResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/voice_clones",
-            page=SyncDefaultFlatPagination[VoiceCloneListResponse],
+            page=SyncDefaultFlatPagination[VoiceCloneData],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -227,7 +227,7 @@ class VoiceClonesResource(SyncAPIResource):
                     voice_clone_list_params.VoiceCloneListParams,
                 ),
             ),
-            model=VoiceCloneListResponse,
+            model=VoiceCloneData,
         )
 
     def delete(
@@ -519,7 +519,7 @@ class AsyncVoiceClonesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[VoiceCloneListResponse, AsyncDefaultFlatPagination[VoiceCloneListResponse]]:
+    ) -> AsyncPaginator[VoiceCloneData, AsyncDefaultFlatPagination[VoiceCloneData]]:
         """
         Returns a paginated list of voice clones belonging to the authenticated account.
 
@@ -544,7 +544,7 @@ class AsyncVoiceClonesResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/voice_clones",
-            page=AsyncDefaultFlatPagination[VoiceCloneListResponse],
+            page=AsyncDefaultFlatPagination[VoiceCloneData],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -561,7 +561,7 @@ class AsyncVoiceClonesResource(AsyncAPIResource):
                     voice_clone_list_params.VoiceCloneListParams,
                 ),
             ),
-            model=VoiceCloneListResponse,
+            model=VoiceCloneData,
         )
 
     async def delete(
