@@ -1,12 +1,12 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
 
-__all__ = ["VoiceDesignUpdateResponse", "Data"]
+__all__ = ["VoiceDesignRenameResponse", "Data"]
 
 
 class Data(BaseModel):
@@ -21,6 +21,12 @@ class Data(BaseModel):
     name: Optional[str] = None
     """Name of the voice design."""
 
+    provider: Optional[Literal["telnyx", "minimax", "Telnyx", "Minimax"]] = None
+    """Voice synthesis provider used for this design."""
+
+    provider_supported_models: Optional[List[str]] = None
+    """List of TTS model identifiers supported by this design's provider."""
+
     record_type: Optional[Literal["voice_design"]] = None
     """Identifies the resource type."""
 
@@ -28,7 +34,7 @@ class Data(BaseModel):
     """Timestamp when the voice design was last updated."""
 
 
-class VoiceDesignUpdateResponse(BaseModel):
+class VoiceDesignRenameResponse(BaseModel):
     """
     Response envelope for a voice design after a rename operation (no version-specific fields).
     """

@@ -12,7 +12,7 @@ from respx import MockRouter
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types import (
-    VoiceCloneData,
+    VoiceCloneListResponse,
     VoiceCloneCreateResponse,
     VoiceCloneUpdateResponse,
     VoiceCloneCreateFromUploadResponse,
@@ -39,6 +39,18 @@ class TestVoiceClones:
             language="en",
             name="clone-narrator",
             voice_design_id="550e8400-e29b-41d4-a716-446655440000",
+        )
+        assert_matches_type(VoiceCloneCreateResponse, voice_clone, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_create_with_all_params(self, client: Telnyx) -> None:
+        voice_clone = client.voice_clones.create(
+            gender="male",
+            language="en",
+            name="clone-narrator",
+            voice_design_id="550e8400-e29b-41d4-a716-446655440000",
+            provider="telnyx",
         )
         assert_matches_type(VoiceCloneCreateResponse, voice_clone, path=["response"])
 
@@ -135,18 +147,19 @@ class TestVoiceClones:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         voice_clone = client.voice_clones.list()
-        assert_matches_type(SyncDefaultFlatPagination[VoiceCloneData], voice_clone, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[VoiceCloneListResponse], voice_clone, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         voice_clone = client.voice_clones.list(
             filter_name="filter[name]",
+            filter_provider="telnyx",
             page_number=1,
             page_size=1,
             sort="name",
         )
-        assert_matches_type(SyncDefaultFlatPagination[VoiceCloneData], voice_clone, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[VoiceCloneListResponse], voice_clone, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -156,7 +169,7 @@ class TestVoiceClones:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         voice_clone = response.parse()
-        assert_matches_type(SyncDefaultFlatPagination[VoiceCloneData], voice_clone, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[VoiceCloneListResponse], voice_clone, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -166,7 +179,7 @@ class TestVoiceClones:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             voice_clone = response.parse()
-            assert_matches_type(SyncDefaultFlatPagination[VoiceCloneData], voice_clone, path=["response"])
+            assert_matches_type(SyncDefaultFlatPagination[VoiceCloneListResponse], voice_clone, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -231,6 +244,7 @@ class TestVoiceClones:
             name="name",
             gender="male",
             label="label",
+            provider="telnyx",
             ref_text="ref_text",
         )
         assert_matches_type(VoiceCloneCreateFromUploadResponse, voice_clone, path=["response"])
@@ -340,6 +354,18 @@ class TestAsyncVoiceClones:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
+    async def test_method_create_with_all_params(self, async_client: AsyncTelnyx) -> None:
+        voice_clone = await async_client.voice_clones.create(
+            gender="male",
+            language="en",
+            name="clone-narrator",
+            voice_design_id="550e8400-e29b-41d4-a716-446655440000",
+            provider="telnyx",
+        )
+        assert_matches_type(VoiceCloneCreateResponse, voice_clone, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
     async def test_raw_response_create(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.voice_clones.with_raw_response.create(
             gender="male",
@@ -431,18 +457,19 @@ class TestAsyncVoiceClones:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         voice_clone = await async_client.voice_clones.list()
-        assert_matches_type(AsyncDefaultFlatPagination[VoiceCloneData], voice_clone, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[VoiceCloneListResponse], voice_clone, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         voice_clone = await async_client.voice_clones.list(
             filter_name="filter[name]",
+            filter_provider="telnyx",
             page_number=1,
             page_size=1,
             sort="name",
         )
-        assert_matches_type(AsyncDefaultFlatPagination[VoiceCloneData], voice_clone, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[VoiceCloneListResponse], voice_clone, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -452,7 +479,7 @@ class TestAsyncVoiceClones:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         voice_clone = await response.parse()
-        assert_matches_type(AsyncDefaultFlatPagination[VoiceCloneData], voice_clone, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[VoiceCloneListResponse], voice_clone, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -462,7 +489,7 @@ class TestAsyncVoiceClones:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             voice_clone = await response.parse()
-            assert_matches_type(AsyncDefaultFlatPagination[VoiceCloneData], voice_clone, path=["response"])
+            assert_matches_type(AsyncDefaultFlatPagination[VoiceCloneListResponse], voice_clone, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -527,6 +554,7 @@ class TestAsyncVoiceClones:
             name="name",
             gender="male",
             label="label",
+            provider="telnyx",
             ref_text="ref_text",
         )
         assert_matches_type(VoiceCloneCreateFromUploadResponse, voice_clone, path=["response"])

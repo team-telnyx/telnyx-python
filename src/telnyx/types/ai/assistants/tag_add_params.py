@@ -4,9 +4,8 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-__all__ = ["VoiceDesignUpdateParams"]
+__all__ = ["TagAddParams"]
 
 
-class VoiceDesignUpdateParams(TypedDict, total=False):
-    name: Required[str]
-    """New name for the voice design."""
+class TagAddParams(TypedDict, total=False):
+    tag: Required[str]

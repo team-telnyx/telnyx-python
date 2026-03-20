@@ -5,8 +5,8 @@ from typing import Optional
 from ..._models import BaseModel
 from ..shared.whatsapp_template_data import WhatsappTemplateData
 
-__all__ = ["MessageTemplateRetrieveResponse"]
+__all__ = ["TemplateCreateResponse"]
 
 
-class MessageTemplateRetrieveResponse(BaseModel):
+class TemplateCreateResponse(BaseModel):
     data: Optional[WhatsappTemplateData] = None
