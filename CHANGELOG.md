@@ -1,5 +1,19 @@
 # Changelog
 
+## 4.82.0 (2026-03-20)
+
+Full Changelog: [v4.81.1...v4.82.0](https://github.com/team-telnyx/telnyx-python/compare/v4.81.1...v4.82.0)
+
+### Features
+
+* Add Minimax provider support to Voice Designs and Voice Clones API spec ([3c69d56](https://github.com/team-telnyx/telnyx-python/commit/3c69d560962b499eccaeae70d6882b28c2e64ab4))
+* **api:** manual updates ([b0edd56](https://github.com/team-telnyx/telnyx-python/commit/b0edd56c61ea53bf8e294736dd823b70313d9f66))
+
+
+### Bug Fixes
+
+* correct x402 resource return types ([da227d0](https://github.com/team-telnyx/telnyx-python/commit/da227d0e36a8c5810b71396ea4be2dcc214f2ff9))
+
 ## 4.81.1 (2026-03-20)
 
 Full Changelog: [v4.81.0...v4.81.1](https://github.com/team-telnyx/telnyx-python/compare/v4.81.0...v4.81.1)
