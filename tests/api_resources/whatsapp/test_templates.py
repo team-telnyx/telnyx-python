@@ -24,7 +24,12 @@ class TestTemplates:
     def test_method_create(self, client: Telnyx) -> None:
         template = client.whatsapp.templates.create(
             category="MARKETING",
-            components=[{"foo": "bar"}],
+            components=[
+                {
+                    "format": "TEXT",
+                    "type": "HEADER",
+                }
+            ],
             language="language",
             name="name",
             waba_id="waba_id",
@@ -36,7 +41,12 @@ class TestTemplates:
     def test_raw_response_create(self, client: Telnyx) -> None:
         response = client.whatsapp.templates.with_raw_response.create(
             category="MARKETING",
-            components=[{"foo": "bar"}],
+            components=[
+                {
+                    "format": "TEXT",
+                    "type": "HEADER",
+                }
+            ],
             language="language",
             name="name",
             waba_id="waba_id",
@@ -52,7 +62,12 @@ class TestTemplates:
     def test_streaming_response_create(self, client: Telnyx) -> None:
         with client.whatsapp.templates.with_streaming_response.create(
             category="MARKETING",
-            components=[{"foo": "bar"}],
+            components=[
+                {
+                    "format": "TEXT",
+                    "type": "HEADER",
+                }
+            ],
             language="language",
             name="name",
             waba_id="waba_id",
@@ -117,7 +132,12 @@ class TestAsyncTemplates:
     async def test_method_create(self, async_client: AsyncTelnyx) -> None:
         template = await async_client.whatsapp.templates.create(
             category="MARKETING",
-            components=[{"foo": "bar"}],
+            components=[
+                {
+                    "format": "TEXT",
+                    "type": "HEADER",
+                }
+            ],
             language="language",
             name="name",
             waba_id="waba_id",
@@ -129,7 +149,12 @@ class TestAsyncTemplates:
     async def test_raw_response_create(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.whatsapp.templates.with_raw_response.create(
             category="MARKETING",
-            components=[{"foo": "bar"}],
+            components=[
+                {
+                    "format": "TEXT",
+                    "type": "HEADER",
+                }
+            ],
             language="language",
             name="name",
             waba_id="waba_id",
@@ -145,7 +170,12 @@ class TestAsyncTemplates:
     async def test_streaming_response_create(self, async_client: AsyncTelnyx) -> None:
         async with async_client.whatsapp.templates.with_streaming_response.create(
             category="MARKETING",
-            components=[{"foo": "bar"}],
+            components=[
+                {
+                    "format": "TEXT",
+                    "type": "HEADER",
+                }
+            ],
             language="language",
             name="name",
             waba_id="waba_id",

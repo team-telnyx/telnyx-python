@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Iterable
+from typing import Iterable
 from typing_extensions import Literal
 
 import httpx
@@ -52,7 +52,7 @@ class TemplatesResource(SyncAPIResource):
         self,
         *,
         category: Literal["MARKETING", "UTILITY", "AUTHENTICATION"],
-        components: Iterable[Dict[str, object]],
+        components: Iterable[template_create_params.Component],
         language: str,
         name: str,
         waba_id: str,
@@ -67,6 +67,18 @@ class TemplatesResource(SyncAPIResource):
         Create a Whatsapp message template
 
         Args:
+          category: Template category: AUTHENTICATION, UTILITY, or MARKETING.
+
+          components: Template components defining message structure. Passed through to Meta Graph
+              API. Templates with variables must include example values. Supports HEADER,
+              BODY, FOOTER, BUTTONS, CAROUSEL and any future Meta component types.
+
+          language: Template language code (e.g. en_US, es, pt_BR).
+
+          name: Template name. Lowercase letters, numbers, and underscores only.
+
+          waba_id: The WhatsApp Business Account ID.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -179,7 +191,7 @@ class AsyncTemplatesResource(AsyncAPIResource):
         self,
         *,
         category: Literal["MARKETING", "UTILITY", "AUTHENTICATION"],
-        components: Iterable[Dict[str, object]],
+        components: Iterable[template_create_params.Component],
         language: str,
         name: str,
         waba_id: str,
@@ -194,6 +206,18 @@ class AsyncTemplatesResource(AsyncAPIResource):
         Create a Whatsapp message template
 
         Args:
+          category: Template category: AUTHENTICATION, UTILITY, or MARKETING.
+
+          components: Template components defining message structure. Passed through to Meta Graph
+              API. Templates with variables must include example values. Supports HEADER,
+              BODY, FOOTER, BUTTONS, CAROUSEL and any future Meta component types.
+
+          language: Template language code (e.g. en_US, es, pt_BR).
+
+          name: Template name. Lowercase letters, numbers, and underscores only.
+
+          waba_id: The WhatsApp Business Account ID.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
