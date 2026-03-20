@@ -19,7 +19,10 @@ class WhatsappTemplateData(BaseModel):
     category: Optional[Literal["MARKETING", "UTILITY", "AUTHENTICATION"]] = None
 
     components: Optional[List[Dict[str, object]]] = None
-    """Whatsapp template components (header, body, footer, buttons)"""
+    """
+    Template components (header, body, footer, buttons) as submitted, including
+    example values.
+    """
 
     created_at: Optional[datetime] = None
 
@@ -32,6 +35,11 @@ class WhatsappTemplateData(BaseModel):
     rejection_reason: Optional[str] = None
 
     status: Optional[str] = None
+    """Current template status from Meta (e.g.
+
+    PENDING, APPROVED, REJECTED, PAUSED, DISABLED). Additional statuses may be
+    returned as Meta evolves the template lifecycle.
+    """
 
     template_id: Optional[str] = None
 
