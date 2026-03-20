@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["VoiceDesignCreateParams"]
 
@@ -32,6 +32,13 @@ class VoiceDesignCreateParams(TypedDict, total=False):
 
     Required when creating a new design (`voice_design_id` is not provided); ignored
     when adding a version. Cannot be a UUID.
+    """
+
+    provider: Literal["telnyx", "minimax", "Telnyx", "Minimax"]
+    """Voice synthesis provider.
+
+    `telnyx` uses the Qwen3TTS model; `minimax` uses the Minimax speech models.
+    Case-insensitive. Defaults to `telnyx`.
     """
 
     repetition_penalty: float

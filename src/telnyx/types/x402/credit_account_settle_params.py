@@ -6,10 +6,10 @@ from typing_extensions import Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
 
-__all__ = ["CreditAccountSettlePaymentParams"]
+__all__ = ["CreditAccountSettleParams"]
 
 
-class CreditAccountSettlePaymentParams(TypedDict, total=False):
+class CreditAccountSettleParams(TypedDict, total=False):
     id: Required[str]
     """The quote ID to settle."""
 

@@ -1,15 +1,15 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
 
-__all__ = ["VoiceCloneData"]
+__all__ = ["VoiceCloneListResponse"]
 
 
-class VoiceCloneData(BaseModel):
+class VoiceCloneListResponse(BaseModel):
     """A voice clone object."""
 
     id: Optional[str] = None
@@ -32,6 +32,19 @@ class VoiceCloneData(BaseModel):
 
     name: Optional[str] = None
     """Name of the voice clone."""
+
+    provider: Optional[Literal["telnyx", "minimax", "Telnyx", "Minimax"]] = None
+    """Voice synthesis provider used for this clone."""
+
+    provider_supported_models: Optional[List[str]] = None
+    """List of TTS model identifiers supported by this clone's provider."""
+
+    provider_voice_id: Optional[str] = None
+    """Provider-specific voice identifier used for TTS synthesis.
+
+    For Telnyx clones this equals the clone ID; for Minimax it is the
+    Minimax-assigned voice ID.
+    """
 
     record_type: Optional[Literal["voice_clone"]] = None
     """Identifies the resource type."""

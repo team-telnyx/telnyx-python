@@ -5,10 +5,10 @@ from __future__ import annotations
 from typing import Dict, Iterable
 from typing_extensions import Literal, TypedDict
 
-__all__ = ["MessageTemplateUpdateParams"]
+__all__ = ["WhatsappMessageTemplateUpdateParams"]
 
 
-class MessageTemplateUpdateParams(TypedDict, total=False):
+class WhatsappMessageTemplateUpdateParams(TypedDict, total=False):
     category: Literal["MARKETING", "UTILITY", "AUTHENTICATION"]
 
     components: Iterable[Dict[str, object]]

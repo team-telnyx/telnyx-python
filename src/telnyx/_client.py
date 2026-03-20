@@ -176,6 +176,7 @@ if TYPE_CHECKING:
         wireless_blocklist_values,
         custom_storage_credentials,
         number_order_phone_numbers,
+        whatsapp_message_templates,
         dynamic_emergency_addresses,
         dynamic_emergency_endpoints,
         global_ip_assignment_health,
@@ -339,6 +340,10 @@ if TYPE_CHECKING:
     from .resources.number_order_phone_numbers import (
         NumberOrderPhoneNumbersResource,
         AsyncNumberOrderPhoneNumbersResource,
+    )
+    from .resources.whatsapp_message_templates import (
+        WhatsappMessageTemplatesResource,
+        AsyncWhatsappMessageTemplatesResource,
     )
     from .resources.dynamic_emergency_addresses import (
         DynamicEmergencyAddressesResource,
@@ -1560,17 +1565,17 @@ class Telnyx(SyncAPIClient):
         return SessionAnalysisResource(self)
 
     @cached_property
-    def traffic_policy_profiles(self) -> TrafficPolicyProfilesResource:
-        """Traffic Policy Profiles operations"""
-        from .resources.traffic_policy_profiles import TrafficPolicyProfilesResource
-
-        return TrafficPolicyProfilesResource(self)
-
-    @cached_property
     def whatsapp(self) -> WhatsappResource:
         from .resources.whatsapp import WhatsappResource
 
         return WhatsappResource(self)
+
+    @cached_property
+    def whatsapp_message_templates(self) -> WhatsappMessageTemplatesResource:
+        """Manage Whatsapp message templates"""
+        from .resources.whatsapp_message_templates import WhatsappMessageTemplatesResource
+
+        return WhatsappMessageTemplatesResource(self)
 
     @cached_property
     def x402(self) -> X402Resource:
@@ -1593,6 +1598,13 @@ class Telnyx(SyncAPIClient):
         from .resources.voice_designs import VoiceDesignsResource
 
         return VoiceDesignsResource(self)
+
+    @cached_property
+    def traffic_policy_profiles(self) -> TrafficPolicyProfilesResource:
+        """Traffic Policy Profiles operations"""
+        from .resources.traffic_policy_profiles import TrafficPolicyProfilesResource
+
+        return TrafficPolicyProfilesResource(self)
 
     @cached_property
     def with_raw_response(self) -> TelnyxWithRawResponse:
@@ -2865,17 +2877,17 @@ class AsyncTelnyx(AsyncAPIClient):
         return AsyncSessionAnalysisResource(self)
 
     @cached_property
-    def traffic_policy_profiles(self) -> AsyncTrafficPolicyProfilesResource:
-        """Traffic Policy Profiles operations"""
-        from .resources.traffic_policy_profiles import AsyncTrafficPolicyProfilesResource
-
-        return AsyncTrafficPolicyProfilesResource(self)
-
-    @cached_property
     def whatsapp(self) -> AsyncWhatsappResource:
         from .resources.whatsapp import AsyncWhatsappResource
 
         return AsyncWhatsappResource(self)
+
+    @cached_property
+    def whatsapp_message_templates(self) -> AsyncWhatsappMessageTemplatesResource:
+        """Manage Whatsapp message templates"""
+        from .resources.whatsapp_message_templates import AsyncWhatsappMessageTemplatesResource
+
+        return AsyncWhatsappMessageTemplatesResource(self)
 
     @cached_property
     def x402(self) -> AsyncX402Resource:
@@ -2898,6 +2910,13 @@ class AsyncTelnyx(AsyncAPIClient):
         from .resources.voice_designs import AsyncVoiceDesignsResource
 
         return AsyncVoiceDesignsResource(self)
+
+    @cached_property
+    def traffic_policy_profiles(self) -> AsyncTrafficPolicyProfilesResource:
+        """Traffic Policy Profiles operations"""
+        from .resources.traffic_policy_profiles import AsyncTrafficPolicyProfilesResource
+
+        return AsyncTrafficPolicyProfilesResource(self)
 
     @cached_property
     def with_raw_response(self) -> AsyncTelnyxWithRawResponse:
@@ -4115,17 +4134,17 @@ class TelnyxWithRawResponse:
         return SessionAnalysisResourceWithRawResponse(self._client.session_analysis)
 
     @cached_property
-    def traffic_policy_profiles(self) -> traffic_policy_profiles.TrafficPolicyProfilesResourceWithRawResponse:
-        """Traffic Policy Profiles operations"""
-        from .resources.traffic_policy_profiles import TrafficPolicyProfilesResourceWithRawResponse
-
-        return TrafficPolicyProfilesResourceWithRawResponse(self._client.traffic_policy_profiles)
-
-    @cached_property
     def whatsapp(self) -> whatsapp.WhatsappResourceWithRawResponse:
         from .resources.whatsapp import WhatsappResourceWithRawResponse
 
         return WhatsappResourceWithRawResponse(self._client.whatsapp)
+
+    @cached_property
+    def whatsapp_message_templates(self) -> whatsapp_message_templates.WhatsappMessageTemplatesResourceWithRawResponse:
+        """Manage Whatsapp message templates"""
+        from .resources.whatsapp_message_templates import WhatsappMessageTemplatesResourceWithRawResponse
+
+        return WhatsappMessageTemplatesResourceWithRawResponse(self._client.whatsapp_message_templates)
 
     @cached_property
     def x402(self) -> x402.X402ResourceWithRawResponse:
@@ -4148,6 +4167,13 @@ class TelnyxWithRawResponse:
         from .resources.voice_designs import VoiceDesignsResourceWithRawResponse
 
         return VoiceDesignsResourceWithRawResponse(self._client.voice_designs)
+
+    @cached_property
+    def traffic_policy_profiles(self) -> traffic_policy_profiles.TrafficPolicyProfilesResourceWithRawResponse:
+        """Traffic Policy Profiles operations"""
+        from .resources.traffic_policy_profiles import TrafficPolicyProfilesResourceWithRawResponse
+
+        return TrafficPolicyProfilesResourceWithRawResponse(self._client.traffic_policy_profiles)
 
 
 class AsyncTelnyxWithRawResponse:
@@ -5234,17 +5260,19 @@ class AsyncTelnyxWithRawResponse:
         return AsyncSessionAnalysisResourceWithRawResponse(self._client.session_analysis)
 
     @cached_property
-    def traffic_policy_profiles(self) -> traffic_policy_profiles.AsyncTrafficPolicyProfilesResourceWithRawResponse:
-        """Traffic Policy Profiles operations"""
-        from .resources.traffic_policy_profiles import AsyncTrafficPolicyProfilesResourceWithRawResponse
-
-        return AsyncTrafficPolicyProfilesResourceWithRawResponse(self._client.traffic_policy_profiles)
-
-    @cached_property
     def whatsapp(self) -> whatsapp.AsyncWhatsappResourceWithRawResponse:
         from .resources.whatsapp import AsyncWhatsappResourceWithRawResponse
 
         return AsyncWhatsappResourceWithRawResponse(self._client.whatsapp)
+
+    @cached_property
+    def whatsapp_message_templates(
+        self,
+    ) -> whatsapp_message_templates.AsyncWhatsappMessageTemplatesResourceWithRawResponse:
+        """Manage Whatsapp message templates"""
+        from .resources.whatsapp_message_templates import AsyncWhatsappMessageTemplatesResourceWithRawResponse
+
+        return AsyncWhatsappMessageTemplatesResourceWithRawResponse(self._client.whatsapp_message_templates)
 
     @cached_property
     def x402(self) -> x402.AsyncX402ResourceWithRawResponse:
@@ -5267,6 +5295,13 @@ class AsyncTelnyxWithRawResponse:
         from .resources.voice_designs import AsyncVoiceDesignsResourceWithRawResponse
 
         return AsyncVoiceDesignsResourceWithRawResponse(self._client.voice_designs)
+
+    @cached_property
+    def traffic_policy_profiles(self) -> traffic_policy_profiles.AsyncTrafficPolicyProfilesResourceWithRawResponse:
+        """Traffic Policy Profiles operations"""
+        from .resources.traffic_policy_profiles import AsyncTrafficPolicyProfilesResourceWithRawResponse
+
+        return AsyncTrafficPolicyProfilesResourceWithRawResponse(self._client.traffic_policy_profiles)
 
 
 class TelnyxWithStreamedResponse:
@@ -6355,17 +6390,19 @@ class TelnyxWithStreamedResponse:
         return SessionAnalysisResourceWithStreamingResponse(self._client.session_analysis)
 
     @cached_property
-    def traffic_policy_profiles(self) -> traffic_policy_profiles.TrafficPolicyProfilesResourceWithStreamingResponse:
-        """Traffic Policy Profiles operations"""
-        from .resources.traffic_policy_profiles import TrafficPolicyProfilesResourceWithStreamingResponse
-
-        return TrafficPolicyProfilesResourceWithStreamingResponse(self._client.traffic_policy_profiles)
-
-    @cached_property
     def whatsapp(self) -> whatsapp.WhatsappResourceWithStreamingResponse:
         from .resources.whatsapp import WhatsappResourceWithStreamingResponse
 
         return WhatsappResourceWithStreamingResponse(self._client.whatsapp)
+
+    @cached_property
+    def whatsapp_message_templates(
+        self,
+    ) -> whatsapp_message_templates.WhatsappMessageTemplatesResourceWithStreamingResponse:
+        """Manage Whatsapp message templates"""
+        from .resources.whatsapp_message_templates import WhatsappMessageTemplatesResourceWithStreamingResponse
+
+        return WhatsappMessageTemplatesResourceWithStreamingResponse(self._client.whatsapp_message_templates)
 
     @cached_property
     def x402(self) -> x402.X402ResourceWithStreamingResponse:
@@ -6388,6 +6425,13 @@ class TelnyxWithStreamedResponse:
         from .resources.voice_designs import VoiceDesignsResourceWithStreamingResponse
 
         return VoiceDesignsResourceWithStreamingResponse(self._client.voice_designs)
+
+    @cached_property
+    def traffic_policy_profiles(self) -> traffic_policy_profiles.TrafficPolicyProfilesResourceWithStreamingResponse:
+        """Traffic Policy Profiles operations"""
+        from .resources.traffic_policy_profiles import TrafficPolicyProfilesResourceWithStreamingResponse
+
+        return TrafficPolicyProfilesResourceWithStreamingResponse(self._client.traffic_policy_profiles)
 
 
 class AsyncTelnyxWithStreamedResponse:
@@ -7520,19 +7564,19 @@ class AsyncTelnyxWithStreamedResponse:
         return AsyncSessionAnalysisResourceWithStreamingResponse(self._client.session_analysis)
 
     @cached_property
-    def traffic_policy_profiles(
-        self,
-    ) -> traffic_policy_profiles.AsyncTrafficPolicyProfilesResourceWithStreamingResponse:
-        """Traffic Policy Profiles operations"""
-        from .resources.traffic_policy_profiles import AsyncTrafficPolicyProfilesResourceWithStreamingResponse
-
-        return AsyncTrafficPolicyProfilesResourceWithStreamingResponse(self._client.traffic_policy_profiles)
-
-    @cached_property
     def whatsapp(self) -> whatsapp.AsyncWhatsappResourceWithStreamingResponse:
         from .resources.whatsapp import AsyncWhatsappResourceWithStreamingResponse
 
         return AsyncWhatsappResourceWithStreamingResponse(self._client.whatsapp)
+
+    @cached_property
+    def whatsapp_message_templates(
+        self,
+    ) -> whatsapp_message_templates.AsyncWhatsappMessageTemplatesResourceWithStreamingResponse:
+        """Manage Whatsapp message templates"""
+        from .resources.whatsapp_message_templates import AsyncWhatsappMessageTemplatesResourceWithStreamingResponse
+
+        return AsyncWhatsappMessageTemplatesResourceWithStreamingResponse(self._client.whatsapp_message_templates)
 
     @cached_property
     def x402(self) -> x402.AsyncX402ResourceWithStreamingResponse:
@@ -7555,6 +7599,15 @@ class AsyncTelnyxWithStreamedResponse:
         from .resources.voice_designs import AsyncVoiceDesignsResourceWithStreamingResponse
 
         return AsyncVoiceDesignsResourceWithStreamingResponse(self._client.voice_designs)
+
+    @cached_property
+    def traffic_policy_profiles(
+        self,
+    ) -> traffic_policy_profiles.AsyncTrafficPolicyProfilesResourceWithStreamingResponse:
+        """Traffic Policy Profiles operations"""
+        from .resources.traffic_policy_profiles import AsyncTrafficPolicyProfilesResourceWithStreamingResponse
+
+        return AsyncTrafficPolicyProfilesResourceWithStreamingResponse(self._client.traffic_policy_profiles)
 
 
 Client = Telnyx

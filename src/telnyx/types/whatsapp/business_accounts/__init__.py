@@ -8,6 +8,6 @@ from .setting_update_response import SettingUpdateResponse as SettingUpdateRespo
 from .phone_number_list_params import PhoneNumberListParams as PhoneNumberListParams
 from .setting_retrieve_response import SettingRetrieveResponse as SettingRetrieveResponse
 from .phone_number_list_response import PhoneNumberListResponse as PhoneNumberListResponse
-from .phone_number_create_verification_params import (
-    PhoneNumberCreateVerificationParams as PhoneNumberCreateVerificationParams,
+from .phone_number_initialize_verification_params import (
+    PhoneNumberInitializeVerificationParams as PhoneNumberInitializeVerificationParams,
 )

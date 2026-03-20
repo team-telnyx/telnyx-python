@@ -33,7 +33,7 @@ from .._response import (
 )
 from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from .._base_client import AsyncPaginator, make_request_options
-from ..types.voice_clone_data import VoiceCloneData
+from ..types.voice_clone_list_response import VoiceCloneListResponse
 from ..types.voice_clone_create_response import VoiceCloneCreateResponse
 from ..types.voice_clone_update_response import VoiceCloneUpdateResponse
 from ..types.voice_clone_create_from_upload_response import VoiceCloneCreateFromUploadResponse
@@ -72,6 +72,7 @@ class VoiceClonesResource(SyncAPIResource):
         language: str,
         name: str,
         voice_design_id: str,
+        provider: Literal["telnyx", "minimax", "Telnyx", "Minimax"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -92,6 +93,8 @@ class VoiceClonesResource(SyncAPIResource):
 
           voice_design_id: UUID of the source voice design to clone.
 
+          provider: Voice synthesis provider. Case-insensitive. Defaults to `telnyx`.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -108,6 +111,7 @@ class VoiceClonesResource(SyncAPIResource):
                     "language": language,
                     "name": name,
                     "voice_design_id": voice_design_id,
+                    "provider": provider,
                 },
                 voice_clone_create_params.VoiceCloneCreateParams,
             ),
@@ -171,6 +175,7 @@ class VoiceClonesResource(SyncAPIResource):
         self,
         *,
         filter_name: str | Omit = omit,
+        filter_provider: Literal["telnyx", "minimax", "Telnyx", "Minimax"] | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         sort: Literal["name", "-name", "created_at", "-created_at"] | Omit = omit,
@@ -180,12 +185,14 @@ class VoiceClonesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[VoiceCloneData]:
+    ) -> SyncDefaultFlatPagination[VoiceCloneListResponse]:
         """
         Returns a paginated list of voice clones belonging to the authenticated account.
 
         Args:
           filter_name: Case-insensitive substring filter on the name field.
+
+          filter_provider: Filter by voice synthesis provider. Case-insensitive.
 
           page_number: Page number for pagination (1-based).
 
@@ -203,7 +210,7 @@ class VoiceClonesResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/voice_clones",
-            page=SyncDefaultFlatPagination[VoiceCloneData],
+            page=SyncDefaultFlatPagination[VoiceCloneListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -212,6 +219,7 @@ class VoiceClonesResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter_name": filter_name,
+                        "filter_provider": filter_provider,
                         "page_number": page_number,
                         "page_size": page_size,
                         "sort": sort,
@@ -219,7 +227,7 @@ class VoiceClonesResource(SyncAPIResource):
                     voice_clone_list_params.VoiceCloneListParams,
                 ),
             ),
-            model=VoiceCloneData,
+            model=VoiceCloneListResponse,
         )
 
     def delete(
@@ -265,6 +273,7 @@ class VoiceClonesResource(SyncAPIResource):
         name: str,
         gender: Literal["male", "female", "neutral"] | Omit = omit,
         label: str | Omit = omit,
+        provider: Literal["telnyx", "minimax", "Telnyx", "Minimax"] | Omit = omit,
         ref_text: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -282,7 +291,7 @@ class VoiceClonesResource(SyncAPIResource):
         Args:
           audio_file: Audio file to clone the voice from. Supported formats: WAV, MP3, FLAC, OGG, M4A.
               For best quality, provide 5–10 seconds of clear, uninterrupted speech. Maximum
-              size: 2MB.
+              size: 5MB for Telnyx, 20MB for Minimax.
 
           language: ISO 639-1 language code (e.g. `en`, `fr`) or `auto` for automatic detection.
 
@@ -292,6 +301,8 @@ class VoiceClonesResource(SyncAPIResource):
 
           label: Optional custom label describing the voice style. If omitted, falls back to the
               source design's prompt text.
+
+          provider: Voice synthesis provider. Case-insensitive. Defaults to `telnyx`.
 
           ref_text: Optional transcript of the audio file. Providing this improves clone quality.
 
@@ -310,6 +321,7 @@ class VoiceClonesResource(SyncAPIResource):
                 "name": name,
                 "gender": gender,
                 "label": label,
+                "provider": provider,
                 "ref_text": ref_text,
             }
         )
@@ -394,6 +406,7 @@ class AsyncVoiceClonesResource(AsyncAPIResource):
         language: str,
         name: str,
         voice_design_id: str,
+        provider: Literal["telnyx", "minimax", "Telnyx", "Minimax"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -414,6 +427,8 @@ class AsyncVoiceClonesResource(AsyncAPIResource):
 
           voice_design_id: UUID of the source voice design to clone.
 
+          provider: Voice synthesis provider. Case-insensitive. Defaults to `telnyx`.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -430,6 +445,7 @@ class AsyncVoiceClonesResource(AsyncAPIResource):
                     "language": language,
                     "name": name,
                     "voice_design_id": voice_design_id,
+                    "provider": provider,
                 },
                 voice_clone_create_params.VoiceCloneCreateParams,
             ),
@@ -493,6 +509,7 @@ class AsyncVoiceClonesResource(AsyncAPIResource):
         self,
         *,
         filter_name: str | Omit = omit,
+        filter_provider: Literal["telnyx", "minimax", "Telnyx", "Minimax"] | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         sort: Literal["name", "-name", "created_at", "-created_at"] | Omit = omit,
@@ -502,12 +519,14 @@ class AsyncVoiceClonesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[VoiceCloneData, AsyncDefaultFlatPagination[VoiceCloneData]]:
+    ) -> AsyncPaginator[VoiceCloneListResponse, AsyncDefaultFlatPagination[VoiceCloneListResponse]]:
         """
         Returns a paginated list of voice clones belonging to the authenticated account.
 
         Args:
           filter_name: Case-insensitive substring filter on the name field.
+
+          filter_provider: Filter by voice synthesis provider. Case-insensitive.
 
           page_number: Page number for pagination (1-based).
 
@@ -525,7 +544,7 @@ class AsyncVoiceClonesResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/voice_clones",
-            page=AsyncDefaultFlatPagination[VoiceCloneData],
+            page=AsyncDefaultFlatPagination[VoiceCloneListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -534,6 +553,7 @@ class AsyncVoiceClonesResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "filter_name": filter_name,
+                        "filter_provider": filter_provider,
                         "page_number": page_number,
                         "page_size": page_size,
                         "sort": sort,
@@ -541,7 +561,7 @@ class AsyncVoiceClonesResource(AsyncAPIResource):
                     voice_clone_list_params.VoiceCloneListParams,
                 ),
             ),
-            model=VoiceCloneData,
+            model=VoiceCloneListResponse,
         )
 
     async def delete(
@@ -587,6 +607,7 @@ class AsyncVoiceClonesResource(AsyncAPIResource):
         name: str,
         gender: Literal["male", "female", "neutral"] | Omit = omit,
         label: str | Omit = omit,
+        provider: Literal["telnyx", "minimax", "Telnyx", "Minimax"] | Omit = omit,
         ref_text: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -604,7 +625,7 @@ class AsyncVoiceClonesResource(AsyncAPIResource):
         Args:
           audio_file: Audio file to clone the voice from. Supported formats: WAV, MP3, FLAC, OGG, M4A.
               For best quality, provide 5–10 seconds of clear, uninterrupted speech. Maximum
-              size: 2MB.
+              size: 5MB for Telnyx, 20MB for Minimax.
 
           language: ISO 639-1 language code (e.g. `en`, `fr`) or `auto` for automatic detection.
 
@@ -614,6 +635,8 @@ class AsyncVoiceClonesResource(AsyncAPIResource):
 
           label: Optional custom label describing the voice style. If omitted, falls back to the
               source design's prompt text.
+
+          provider: Voice synthesis provider. Case-insensitive. Defaults to `telnyx`.
 
           ref_text: Optional transcript of the audio file. Providing this improves clone quality.
 
@@ -632,6 +655,7 @@ class AsyncVoiceClonesResource(AsyncAPIResource):
                 "name": name,
                 "gender": gender,
                 "label": label,
+                "provider": provider,
                 "ref_text": ref_text,
             }
         )

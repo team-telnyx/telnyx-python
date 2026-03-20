@@ -10,7 +10,7 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types import (
-    TrafficPolicyProfile,
+    TrafficPolicyProfileListResponse,
     TrafficPolicyProfileCreateResponse,
     TrafficPolicyProfileDeleteResponse,
     TrafficPolicyProfileUpdateResponse,
@@ -172,7 +172,9 @@ class TestTrafficPolicyProfiles:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         traffic_policy_profile = client.traffic_policy_profiles.list()
-        assert_matches_type(SyncDefaultFlatPagination[TrafficPolicyProfile], traffic_policy_profile, path=["response"])
+        assert_matches_type(
+            SyncDefaultFlatPagination[TrafficPolicyProfileListResponse], traffic_policy_profile, path=["response"]
+        )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -184,7 +186,9 @@ class TestTrafficPolicyProfiles:
             page_size=1,
             sort="service",
         )
-        assert_matches_type(SyncDefaultFlatPagination[TrafficPolicyProfile], traffic_policy_profile, path=["response"])
+        assert_matches_type(
+            SyncDefaultFlatPagination[TrafficPolicyProfileListResponse], traffic_policy_profile, path=["response"]
+        )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -194,7 +198,9 @@ class TestTrafficPolicyProfiles:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         traffic_policy_profile = response.parse()
-        assert_matches_type(SyncDefaultFlatPagination[TrafficPolicyProfile], traffic_policy_profile, path=["response"])
+        assert_matches_type(
+            SyncDefaultFlatPagination[TrafficPolicyProfileListResponse], traffic_policy_profile, path=["response"]
+        )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -205,7 +211,7 @@ class TestTrafficPolicyProfiles:
 
             traffic_policy_profile = response.parse()
             assert_matches_type(
-                SyncDefaultFlatPagination[TrafficPolicyProfile], traffic_policy_profile, path=["response"]
+                SyncDefaultFlatPagination[TrafficPolicyProfileListResponse], traffic_policy_profile, path=["response"]
             )
 
         assert cast(Any, response.is_closed) is True
@@ -460,7 +466,9 @@ class TestAsyncTrafficPolicyProfiles:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         traffic_policy_profile = await async_client.traffic_policy_profiles.list()
-        assert_matches_type(AsyncDefaultFlatPagination[TrafficPolicyProfile], traffic_policy_profile, path=["response"])
+        assert_matches_type(
+            AsyncDefaultFlatPagination[TrafficPolicyProfileListResponse], traffic_policy_profile, path=["response"]
+        )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -472,7 +480,9 @@ class TestAsyncTrafficPolicyProfiles:
             page_size=1,
             sort="service",
         )
-        assert_matches_type(AsyncDefaultFlatPagination[TrafficPolicyProfile], traffic_policy_profile, path=["response"])
+        assert_matches_type(
+            AsyncDefaultFlatPagination[TrafficPolicyProfileListResponse], traffic_policy_profile, path=["response"]
+        )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -482,7 +492,9 @@ class TestAsyncTrafficPolicyProfiles:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         traffic_policy_profile = await response.parse()
-        assert_matches_type(AsyncDefaultFlatPagination[TrafficPolicyProfile], traffic_policy_profile, path=["response"])
+        assert_matches_type(
+            AsyncDefaultFlatPagination[TrafficPolicyProfileListResponse], traffic_policy_profile, path=["response"]
+        )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -493,7 +505,7 @@ class TestAsyncTrafficPolicyProfiles:
 
             traffic_policy_profile = await response.parse()
             assert_matches_type(
-                AsyncDefaultFlatPagination[TrafficPolicyProfile], traffic_policy_profile, path=["response"]
+                AsyncDefaultFlatPagination[TrafficPolicyProfileListResponse], traffic_policy_profile, path=["response"]
             )
 
         assert cast(Any, response.is_closed) is True
