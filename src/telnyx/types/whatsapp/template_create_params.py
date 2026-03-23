@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Union, Iterable
+from typing import Dict, Union, Iterable
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from ..._types import SequenceNotStr
@@ -174,7 +174,7 @@ class ComponentWhatsappTemplateButtonsComponent(TypedDict, total=False):
 
 
 class ComponentWhatsappTemplateCarouselComponentCard(TypedDict, total=False):
-    components: Iterable[object]
+    components: Iterable[Dict[str, object]]
 
 
 class ComponentWhatsappTemplateCarouselComponent(TypedDict, total=False):
