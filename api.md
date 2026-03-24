@@ -713,6 +713,8 @@ from telnyx.types.ai.assistants import ToolTestResponse
 
 Methods:
 
+- <code title="put /ai/assistants/{assistant_id}/tools/{tool_id}">client.ai.assistants.tools.<a href="./src/telnyx/resources/ai/assistants/tools.py">add</a>(tool_id, \*, assistant_id) -> object</code>
+- <code title="delete /ai/assistants/{assistant_id}/tools/{tool_id}">client.ai.assistants.tools.<a href="./src/telnyx/resources/ai/assistants/tools.py">remove</a>(tool_id, \*, assistant_id) -> object</code>
 - <code title="post /ai/assistants/{assistant_id}/tools/{tool_id}/test">client.ai.assistants.tools.<a href="./src/telnyx/resources/ai/assistants/tools.py">test</a>(tool_id, \*, assistant_id, \*\*<a href="src/telnyx/types/ai/assistants/tool_test_params.py">params</a>) -> <a href="./src/telnyx/types/ai/assistants/tool_test_response.py">ToolTestResponse</a></code>
 
 ### Versions
@@ -1122,6 +1124,27 @@ Methods:
 
 - <code title="post /ai/openai/embeddings">client.ai.openai.embeddings.<a href="./src/telnyx/resources/ai/openai/embeddings.py">create_embeddings</a>(\*\*<a href="src/telnyx/types/ai/openai/embedding_create_embeddings_params.py">params</a>) -> <a href="./src/telnyx/types/ai/openai/embedding_create_embeddings_response.py">EmbeddingCreateEmbeddingsResponse</a></code>
 - <code title="get /ai/openai/embeddings/models">client.ai.openai.embeddings.<a href="./src/telnyx/resources/ai/openai/embeddings.py">list_embedding_models</a>() -> <a href="./src/telnyx/types/ai/openai/embedding_list_embedding_models_response.py">EmbeddingListEmbeddingModelsResponse</a></code>
+
+## Tools
+
+Types:
+
+```python
+from telnyx.types.ai import (
+    ToolCreateResponse,
+    ToolRetrieveResponse,
+    ToolUpdateResponse,
+    ToolListResponse,
+)
+```
+
+Methods:
+
+- <code title="post /ai/tools">client.ai.tools.<a href="./src/telnyx/resources/ai/tools.py">create</a>(\*\*<a href="src/telnyx/types/ai/tool_create_params.py">params</a>) -> <a href="./src/telnyx/types/ai/tool_create_response.py">ToolCreateResponse</a></code>
+- <code title="get /ai/tools/{tool_id}">client.ai.tools.<a href="./src/telnyx/resources/ai/tools.py">retrieve</a>(tool_id) -> <a href="./src/telnyx/types/ai/tool_retrieve_response.py">ToolRetrieveResponse</a></code>
+- <code title="patch /ai/tools/{tool_id}">client.ai.tools.<a href="./src/telnyx/resources/ai/tools.py">update</a>(tool_id, \*\*<a href="src/telnyx/types/ai/tool_update_params.py">params</a>) -> <a href="./src/telnyx/types/ai/tool_update_response.py">ToolUpdateResponse</a></code>
+- <code title="get /ai/tools">client.ai.tools.<a href="./src/telnyx/resources/ai/tools.py">list</a>(\*\*<a href="src/telnyx/types/ai/tool_list_params.py">params</a>) -> <a href="./src/telnyx/types/ai/tool_list_response.py">SyncDefaultFlatPagination[ToolListResponse]</a></code>
+- <code title="delete /ai/tools/{tool_id}">client.ai.tools.<a href="./src/telnyx/resources/ai/tools.py">delete</a>(tool_id) -> object</code>
 
 # AuditEvents
 

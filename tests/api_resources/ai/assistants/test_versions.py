@@ -138,6 +138,7 @@ class TestVersions:
                     }
                 },
             },
+            tool_ids=["string"],
             tools=[
                 {
                     "type": "webhook",
@@ -541,6 +542,7 @@ class TestAsyncVersions:
                     }
                 },
             },
+            tool_ids=["string"],
             tools=[
                 {
                     "type": "webhook",
