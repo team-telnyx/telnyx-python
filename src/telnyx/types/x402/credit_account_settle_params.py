@@ -13,7 +13,7 @@ class CreditAccountSettleParams(TypedDict, total=False):
     id: Required[str]
     """The quote ID to settle."""
 
-    body_payment_signature: Annotated[str, PropertyInfo(alias="payment_signature")]
+    payment_signature: str
     """Base64-encoded signed payment authorization (x402 PaymentPayload).
 
     Can alternatively be provided via the PAYMENT-SIGNATURE header.

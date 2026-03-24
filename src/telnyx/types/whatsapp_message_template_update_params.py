@@ -10,15 +10,15 @@ from .._types import SequenceNotStr
 __all__ = [
     "WhatsappMessageTemplateUpdateParams",
     "Component",
-    "ComponentWhatsappTemplateHeaderComponent",
-    "ComponentWhatsappTemplateHeaderComponentExample",
-    "ComponentWhatsappTemplateBodyComponent",
-    "ComponentWhatsappTemplateBodyComponentExample",
-    "ComponentWhatsappTemplateFooterComponent",
-    "ComponentWhatsappTemplateButtonsComponent",
-    "ComponentWhatsappTemplateButtonsComponentButton",
-    "ComponentWhatsappTemplateCarouselComponent",
-    "ComponentWhatsappTemplateCarouselComponentCard",
+    "ComponentHeader",
+    "ComponentHeaderExample",
+    "ComponentBody",
+    "ComponentBodyExample",
+    "ComponentFooter",
+    "ComponentButtons",
+    "ComponentButtonsButton",
+    "ComponentCarousel",
+    "ComponentCarouselCard",
 ]
 
 
@@ -29,7 +29,7 @@ class WhatsappMessageTemplateUpdateParams(TypedDict, total=False):
     """Updated template components. Same structure as the create request."""
 
 
-class ComponentWhatsappTemplateHeaderComponentExample(TypedDict, total=False):
+class ComponentHeaderExample(TypedDict, total=False):
     """Sample values for header variables."""
 
     header_handle: SequenceNotStr[str]
@@ -39,7 +39,7 @@ class ComponentWhatsappTemplateHeaderComponentExample(TypedDict, total=False):
     """Sample values for text header variables."""
 
 
-class ComponentWhatsappTemplateHeaderComponent(TypedDict, total=False):
+class ComponentHeader(TypedDict, total=False):
     """Optional header displayed at the top of the message."""
 
     format: Required[Literal["TEXT", "IMAGE", "VIDEO", "DOCUMENT", "LOCATION"]]
@@ -50,7 +50,7 @@ class ComponentWhatsappTemplateHeaderComponent(TypedDict, total=False):
 
     type: Required[Literal["HEADER"]]
 
-    example: ComponentWhatsappTemplateHeaderComponentExample
+    example: ComponentHeaderExample
     """Sample values for header variables."""
 
     text: str
@@ -61,14 +61,14 @@ class ComponentWhatsappTemplateHeaderComponent(TypedDict, total=False):
     """
 
 
-class ComponentWhatsappTemplateBodyComponentExample(TypedDict, total=False):
+class ComponentBodyExample(TypedDict, total=False):
     """Sample values for body variables. Required when body text contains parameters."""
 
     body_text: Iterable[SequenceNotStr[str]]
     """Array containing one array of sample values, one per variable in order."""
 
 
-class ComponentWhatsappTemplateBodyComponent(TypedDict, total=False):
+class ComponentBody(TypedDict, total=False):
     """The main text content of the message.
 
     Supports multiple variable parameters ({{1}}, {{2}}, etc.). Variables cannot be at the start or end. Maximum 1024 characters.
@@ -76,7 +76,7 @@ class ComponentWhatsappTemplateBodyComponent(TypedDict, total=False):
 
     type: Required[Literal["BODY"]]
 
-    example: ComponentWhatsappTemplateBodyComponentExample
+    example: ComponentBodyExample
     """Sample values for body variables. Required when body text contains parameters."""
 
     text: str
@@ -88,7 +88,7 @@ class ComponentWhatsappTemplateBodyComponent(TypedDict, total=False):
     """
 
 
-class ComponentWhatsappTemplateFooterComponent(TypedDict, total=False):
+class ComponentFooter(TypedDict, total=False):
     """Optional footer displayed at the bottom of the message.
 
     Does not support variables.
@@ -106,7 +106,7 @@ class ComponentWhatsappTemplateFooterComponent(TypedDict, total=False):
     """Footer text. Maximum 60 characters. For non-authentication templates."""
 
 
-class ComponentWhatsappTemplateButtonsComponentButton(TypedDict, total=False):
+class ComponentButtonsButton(TypedDict, total=False):
     type: Required[Literal["URL", "PHONE_NUMBER", "QUICK_REPLY", "OTP", "COPY_CODE", "FLOW"]]
 
     autofill_text: str
@@ -149,35 +149,29 @@ class ComponentWhatsappTemplateButtonsComponentButton(TypedDict, total=False):
     """Whether zero-tap terms have been accepted."""
 
 
-class ComponentWhatsappTemplateButtonsComponent(TypedDict, total=False):
+class ComponentButtons(TypedDict, total=False):
     """Optional interactive buttons. Maximum 3 buttons per template."""
 
-    buttons: Required[Iterable[ComponentWhatsappTemplateButtonsComponentButton]]
+    buttons: Required[Iterable[ComponentButtonsButton]]
     """Array of button objects. Meta supports various combinations of button types."""
 
     type: Required[Literal["BUTTONS"]]
 
 
-class ComponentWhatsappTemplateCarouselComponentCard(TypedDict, total=False):
+class ComponentCarouselCard(TypedDict, total=False):
     components: Iterable[Dict[str, object]]
 
 
-class ComponentWhatsappTemplateCarouselComponent(TypedDict, total=False):
+class ComponentCarousel(TypedDict, total=False):
     """Carousel component for multi-card templates.
 
     Each card can contain its own header, body, and buttons.
     """
 
-    cards: Required[Iterable[ComponentWhatsappTemplateCarouselComponentCard]]
+    cards: Required[Iterable[ComponentCarouselCard]]
     """Array of card objects, each with its own components."""
 
     type: Required[Literal["CAROUSEL"]]
 
 
-Component: TypeAlias = Union[
-    ComponentWhatsappTemplateHeaderComponent,
-    ComponentWhatsappTemplateBodyComponent,
-    ComponentWhatsappTemplateFooterComponent,
-    ComponentWhatsappTemplateButtonsComponent,
-    ComponentWhatsappTemplateCarouselComponent,
-]
+Component: TypeAlias = Union[ComponentHeader, ComponentBody, ComponentFooter, ComponentButtons, ComponentCarousel]

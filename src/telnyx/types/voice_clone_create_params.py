@@ -20,5 +20,5 @@ class VoiceCloneCreateParams(TypedDict, total=False):
     voice_design_id: Required[str]
     """UUID of the source voice design to clone."""
 
-    provider: Literal["telnyx", "minimax", "Telnyx", "Minimax"]
+    provider: Literal["telnyx", "minimax"]
     """Voice synthesis provider. Case-insensitive. Defaults to `telnyx`."""
