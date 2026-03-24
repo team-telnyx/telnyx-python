@@ -33,7 +33,7 @@ class VoiceCloneData(BaseModel):
     name: Optional[str] = None
     """Name of the voice clone."""
 
-    provider: Optional[Literal["telnyx", "minimax", "Telnyx", "Minimax"]] = None
+    provider: Optional[Literal["telnyx", "minimax"]] = None
     """Voice synthesis provider used for this clone."""
 
     provider_supported_models: Optional[List[str]] = None

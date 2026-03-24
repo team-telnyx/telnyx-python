@@ -24,7 +24,7 @@ class VoiceDesignData(BaseModel):
     prompt: Optional[str] = None
     """Natural language prompt used to define the voice style for this version."""
 
-    provider: Optional[Literal["telnyx", "minimax", "Telnyx", "Minimax"]] = None
+    provider: Optional[Literal["telnyx", "minimax"]] = None
     """Voice synthesis provider used for this design."""
 
     provider_supported_models: Optional[List[str]] = None
