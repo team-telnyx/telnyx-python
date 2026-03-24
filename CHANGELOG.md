@@ -1,5 +1,19 @@
 # Changelog
 
+## 4.84.0 (2026-03-24)
+
+Full Changelog: [v4.83.0...v4.84.0](https://github.com/team-telnyx/telnyx-python/compare/v4.83.0...v4.84.0)
+
+### Features
+
+* **api:** Merge pull request [#30](https://github.com/team-telnyx/telnyx-python/issues/30) from stainless-sdks/fix-schemaUnionDiscriminatorMissing ([0fb60ae](https://github.com/team-telnyx/telnyx-python/commit/0fb60ae4db579b458cb30b1ece6a27dd1f0dff61))
+
+
+### Chores
+
+* **ci:** skip lint on metadata-only changes ([6a26d79](https://github.com/team-telnyx/telnyx-python/commit/6a26d79d236777735707f0ce7ac93eb1e90d260f))
+* **internal:** update gitignore ([9b892a4](https://github.com/team-telnyx/telnyx-python/commit/9b892a4c5a1781278d768d09e61f51cbb56f1a63))
+
 ## 4.83.0 (2026-03-23)
 
 Full Changelog: [v4.82.0...v4.83.0](https://github.com/team-telnyx/telnyx-python/compare/v4.82.0...v4.83.0)
