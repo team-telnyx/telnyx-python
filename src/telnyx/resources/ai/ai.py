@@ -20,6 +20,14 @@ from .audio import (
     AudioResourceWithStreamingResponse,
     AsyncAudioResourceWithStreamingResponse,
 )
+from .tools import (
+    ToolsResource,
+    AsyncToolsResource,
+    ToolsResourceWithRawResponse,
+    AsyncToolsResourceWithRawResponse,
+    ToolsResourceWithStreamingResponse,
+    AsyncToolsResourceWithStreamingResponse,
+)
 from ...types import ai_summarize_params
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
@@ -161,6 +169,11 @@ class AIResource(SyncAPIResource):
     @cached_property
     def openai(self) -> OpenAIResource:
         return OpenAIResource(self._client)
+
+    @cached_property
+    def tools(self) -> ToolsResource:
+        """Configure AI assistant specifications"""
+        return ToolsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AIResourceWithRawResponse:
@@ -315,6 +328,11 @@ class AsyncAIResource(AsyncAPIResource):
     @cached_property
     def openai(self) -> AsyncOpenAIResource:
         return AsyncOpenAIResource(self._client)
+
+    @cached_property
+    def tools(self) -> AsyncToolsResource:
+        """Configure AI assistant specifications"""
+        return AsyncToolsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncAIResourceWithRawResponse:
@@ -478,6 +496,11 @@ class AIResourceWithRawResponse:
     def openai(self) -> OpenAIResourceWithRawResponse:
         return OpenAIResourceWithRawResponse(self._ai.openai)
 
+    @cached_property
+    def tools(self) -> ToolsResourceWithRawResponse:
+        """Configure AI assistant specifications"""
+        return ToolsResourceWithRawResponse(self._ai.tools)
+
 
 class AsyncAIResourceWithRawResponse:
     def __init__(self, ai: AsyncAIResource) -> None:
@@ -538,6 +561,11 @@ class AsyncAIResourceWithRawResponse:
     @cached_property
     def openai(self) -> AsyncOpenAIResourceWithRawResponse:
         return AsyncOpenAIResourceWithRawResponse(self._ai.openai)
+
+    @cached_property
+    def tools(self) -> AsyncToolsResourceWithRawResponse:
+        """Configure AI assistant specifications"""
+        return AsyncToolsResourceWithRawResponse(self._ai.tools)
 
 
 class AIResourceWithStreamingResponse:
@@ -600,6 +628,11 @@ class AIResourceWithStreamingResponse:
     def openai(self) -> OpenAIResourceWithStreamingResponse:
         return OpenAIResourceWithStreamingResponse(self._ai.openai)
 
+    @cached_property
+    def tools(self) -> ToolsResourceWithStreamingResponse:
+        """Configure AI assistant specifications"""
+        return ToolsResourceWithStreamingResponse(self._ai.tools)
+
 
 class AsyncAIResourceWithStreamingResponse:
     def __init__(self, ai: AsyncAIResource) -> None:
@@ -660,3 +693,8 @@ class AsyncAIResourceWithStreamingResponse:
     @cached_property
     def openai(self) -> AsyncOpenAIResourceWithStreamingResponse:
         return AsyncOpenAIResourceWithStreamingResponse(self._ai.openai)
+
+    @cached_property
+    def tools(self) -> AsyncToolsResourceWithStreamingResponse:
+        """Configure AI assistant specifications"""
+        return AsyncToolsResourceWithStreamingResponse(self._ai.tools)

@@ -45,6 +45,78 @@ class ToolsResource(SyncAPIResource):
         """
         return ToolsResourceWithStreamingResponse(self)
 
+    def add(
+        self,
+        tool_id: str,
+        *,
+        assistant_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> object:
+        """
+        Add Assistant Tool
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not assistant_id:
+            raise ValueError(f"Expected a non-empty value for `assistant_id` but received {assistant_id!r}")
+        if not tool_id:
+            raise ValueError(f"Expected a non-empty value for `tool_id` but received {tool_id!r}")
+        return self._put(
+            path_template("/ai/assistants/{assistant_id}/tools/{tool_id}", assistant_id=assistant_id, tool_id=tool_id),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=object,
+        )
+
+    def remove(
+        self,
+        tool_id: str,
+        *,
+        assistant_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> object:
+        """
+        Remove Assistant Tool
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not assistant_id:
+            raise ValueError(f"Expected a non-empty value for `assistant_id` but received {assistant_id!r}")
+        if not tool_id:
+            raise ValueError(f"Expected a non-empty value for `tool_id` but received {tool_id!r}")
+        return self._delete(
+            path_template("/ai/assistants/{assistant_id}/tools/{tool_id}", assistant_id=assistant_id, tool_id=tool_id),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=object,
+        )
+
     def test(
         self,
         tool_id: str,
@@ -119,6 +191,78 @@ class AsyncToolsResource(AsyncAPIResource):
         """
         return AsyncToolsResourceWithStreamingResponse(self)
 
+    async def add(
+        self,
+        tool_id: str,
+        *,
+        assistant_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> object:
+        """
+        Add Assistant Tool
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not assistant_id:
+            raise ValueError(f"Expected a non-empty value for `assistant_id` but received {assistant_id!r}")
+        if not tool_id:
+            raise ValueError(f"Expected a non-empty value for `tool_id` but received {tool_id!r}")
+        return await self._put(
+            path_template("/ai/assistants/{assistant_id}/tools/{tool_id}", assistant_id=assistant_id, tool_id=tool_id),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=object,
+        )
+
+    async def remove(
+        self,
+        tool_id: str,
+        *,
+        assistant_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> object:
+        """
+        Remove Assistant Tool
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not assistant_id:
+            raise ValueError(f"Expected a non-empty value for `assistant_id` but received {assistant_id!r}")
+        if not tool_id:
+            raise ValueError(f"Expected a non-empty value for `tool_id` but received {tool_id!r}")
+        return await self._delete(
+            path_template("/ai/assistants/{assistant_id}/tools/{tool_id}", assistant_id=assistant_id, tool_id=tool_id),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=object,
+        )
+
     async def test(
         self,
         tool_id: str,
@@ -175,6 +319,12 @@ class ToolsResourceWithRawResponse:
     def __init__(self, tools: ToolsResource) -> None:
         self._tools = tools
 
+        self.add = to_raw_response_wrapper(
+            tools.add,
+        )
+        self.remove = to_raw_response_wrapper(
+            tools.remove,
+        )
         self.test = to_raw_response_wrapper(
             tools.test,
         )
@@ -184,6 +334,12 @@ class AsyncToolsResourceWithRawResponse:
     def __init__(self, tools: AsyncToolsResource) -> None:
         self._tools = tools
 
+        self.add = async_to_raw_response_wrapper(
+            tools.add,
+        )
+        self.remove = async_to_raw_response_wrapper(
+            tools.remove,
+        )
         self.test = async_to_raw_response_wrapper(
             tools.test,
         )
@@ -193,6 +349,12 @@ class ToolsResourceWithStreamingResponse:
     def __init__(self, tools: ToolsResource) -> None:
         self._tools = tools
 
+        self.add = to_streamed_response_wrapper(
+            tools.add,
+        )
+        self.remove = to_streamed_response_wrapper(
+            tools.remove,
+        )
         self.test = to_streamed_response_wrapper(
             tools.test,
         )
@@ -202,6 +364,12 @@ class AsyncToolsResourceWithStreamingResponse:
     def __init__(self, tools: AsyncToolsResource) -> None:
         self._tools = tools
 
+        self.add = async_to_streamed_response_wrapper(
+            tools.add,
+        )
+        self.remove = async_to_streamed_response_wrapper(
+            tools.remove,
+        )
         self.test = async_to_streamed_response_wrapper(
             tools.test,
         )
