@@ -14,6 +14,7 @@ __all__ = [
     "WebhookHeader",
     "WebhookPathParameters",
     "WebhookQueryParameters",
+    "WebhookStoreFieldsAsVariable",
 ]
 
 
@@ -76,6 +77,17 @@ class WebhookQueryParameters(TypedDict, total=False):
     type: Literal["object"]
 
 
+class WebhookStoreFieldsAsVariable(TypedDict, total=False):
+    name: Required[str]
+    """The name of the dynamic variable to store the extracted value in."""
+
+    value_path: Required[str]
+    """A dot-notation path to the value in the webhook response body (e.g.
+
+    'customer.name' or 'id').
+    """
+
+
 _WebhookReservedKeywords = TypedDict(
     "_WebhookReservedKeywords",
     {
@@ -131,6 +143,13 @@ class Webhook(_WebhookReservedKeywords, total=False):
     These parameters will be passed to the webhook as the query of the request. See
     the [JSON Schema reference](https://json-schema.org/understanding-json-schema)
     for documentation about the format
+    """
+
+    store_fields_as_variables: Iterable[WebhookStoreFieldsAsVariable]
+    """
+    A list of mappings that extract values from the webhook response and store them
+    as dynamic variables. Each mapping specifies a dynamic variable name and a
+    dot-notation path to the value in the response body.
     """
 
     timeout_ms: int
