@@ -111,6 +111,12 @@ class TestAssistants:
                             "required": ["page"],
                             "type": "object",
                         },
+                        "store_fields_as_variables": [
+                            {
+                                "name": "x",
+                                "value_path": "x",
+                            }
+                        ],
                         "timeout_ms": 500,
                     },
                 }
@@ -334,6 +340,12 @@ class TestAssistants:
                             "required": ["page"],
                             "type": "object",
                         },
+                        "store_fields_as_variables": [
+                            {
+                                "name": "x",
+                                "value_path": "x",
+                            }
+                        ],
                         "timeout_ms": 500,
                     },
                 }
@@ -838,6 +850,12 @@ class TestAsyncAssistants:
                             "required": ["page"],
                             "type": "object",
                         },
+                        "store_fields_as_variables": [
+                            {
+                                "name": "x",
+                                "value_path": "x",
+                            }
+                        ],
                         "timeout_ms": 500,
                     },
                 }
@@ -1061,6 +1079,12 @@ class TestAsyncAssistants:
                             "required": ["page"],
                             "type": "object",
                         },
+                        "store_fields_as_variables": [
+                            {
+                                "name": "x",
+                                "value_path": "x",
+                            }
+                        ],
                         "timeout_ms": 500,
                     },
                 }
