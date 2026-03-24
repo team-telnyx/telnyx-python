@@ -6,7 +6,7 @@ from typing import Dict, List, Iterable
 
 import httpx
 
-from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
+from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -118,6 +118,7 @@ class VersionsResource(SyncAPIResource):
         name: str | Omit = omit,
         privacy_settings: PrivacySettingsParam | Omit = omit,
         telephony_settings: TelephonySettingsParam | Omit = omit,
+        tool_ids: SequenceNotStr[str] | Omit = omit,
         tools: Iterable[AssistantToolParam] | Omit = omit,
         transcription: TranscriptionSettingsParam | Omit = omit,
         voice_settings: VoiceSettingsParam | Omit = omit,
@@ -198,6 +199,7 @@ class VersionsResource(SyncAPIResource):
                     "name": name,
                     "privacy_settings": privacy_settings,
                     "telephony_settings": telephony_settings,
+                    "tool_ids": tool_ids,
                     "tools": tools,
                     "transcription": transcription,
                     "voice_settings": voice_settings,
@@ -414,6 +416,7 @@ class AsyncVersionsResource(AsyncAPIResource):
         name: str | Omit = omit,
         privacy_settings: PrivacySettingsParam | Omit = omit,
         telephony_settings: TelephonySettingsParam | Omit = omit,
+        tool_ids: SequenceNotStr[str] | Omit = omit,
         tools: Iterable[AssistantToolParam] | Omit = omit,
         transcription: TranscriptionSettingsParam | Omit = omit,
         voice_settings: VoiceSettingsParam | Omit = omit,
@@ -494,6 +497,7 @@ class AsyncVersionsResource(AsyncAPIResource):
                     "name": name,
                     "privacy_settings": privacy_settings,
                     "telephony_settings": telephony_settings,
+                    "tool_ids": tool_ids,
                     "tools": tools,
                     "transcription": transcription,
                     "voice_settings": voice_settings,

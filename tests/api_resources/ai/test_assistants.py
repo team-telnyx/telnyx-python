@@ -78,6 +78,7 @@ class TestAssistants:
                     }
                 },
             },
+            tool_ids=["string"],
             tools=[
                 {
                     "type": "webhook",
@@ -307,6 +308,7 @@ class TestAssistants:
                     }
                 },
             },
+            tool_ids=["string"],
             tools=[
                 {
                     "type": "webhook",
@@ -817,6 +819,7 @@ class TestAsyncAssistants:
                     }
                 },
             },
+            tool_ids=["string"],
             tools=[
                 {
                     "type": "webhook",
@@ -1046,6 +1049,7 @@ class TestAsyncAssistants:
                     }
                 },
             },
+            tool_ids=["string"],
             tools=[
                 {
                     "type": "webhook",

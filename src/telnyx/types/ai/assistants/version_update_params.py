@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import Dict, List, Iterable
 from typing_extensions import Required, TypedDict
 
+from ...._types import SequenceNotStr
 from ..enabled_features import EnabledFeatures
 from ..assistant_tool_param import AssistantToolParam
 from ..voice_settings_param import VoiceSettingsParam
@@ -79,6 +80,8 @@ class VersionUpdateParams(TypedDict, total=False):
     privacy_settings: PrivacySettingsParam
 
     telephony_settings: TelephonySettingsParam
+
+    tool_ids: SequenceNotStr[str]
 
     tools: Iterable[AssistantToolParam]
     """The tools that the assistant can use.
