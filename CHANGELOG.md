@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.86.0 (2026-03-24)
+
+Full Changelog: [v4.85.0...v4.86.0](https://github.com/team-telnyx/telnyx-python/compare/v4.85.0...v4.86.0)
+
+### Features
+
+* New tools api ([568023f](https://github.com/team-telnyx/telnyx-python/commit/568023f75797bf08f172d5655bbc8031fc9f1048))
+
 ## 4.85.0 (2026-03-24)
 
 Full Changelog: [v4.84.0...v4.85.0](https://github.com/team-telnyx/telnyx-python/compare/v4.84.0...v4.85.0)
