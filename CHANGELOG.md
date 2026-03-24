@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.85.0 (2026-03-24)
+
+Full Changelog: [v4.84.0...v4.85.0](https://github.com/team-telnyx/telnyx-python/compare/v4.84.0...v4.85.0)
+
+### Features
+
+* TELAPPS-5685: Add store_fields_as_variables to WebhookToolParams ([7e22baa](https://github.com/team-telnyx/telnyx-python/commit/7e22baa225cb2e4ae8695ffc51bd9f5eb7fa2df4))
+
 ## 4.84.0 (2026-03-24)
 
 Full Changelog: [v4.83.0...v4.84.0](https://github.com/team-telnyx/telnyx-python/compare/v4.83.0...v4.84.0)
