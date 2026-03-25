@@ -60,7 +60,7 @@ class NumberReputationResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
-            "/terms-of-service/number-reputation/agree",
+            "/terms_of_service/number_reputation/agree",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -110,7 +110,7 @@ class AsyncNumberReputationResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
-            "/terms-of-service/number-reputation/agree",
+            "/terms_of_service/number_reputation/agree",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
