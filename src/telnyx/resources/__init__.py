@@ -281,6 +281,14 @@ from .recordings import (
     RecordingsResourceWithStreamingResponse,
     AsyncRecordingsResourceWithStreamingResponse,
 )
+from .reputation import (
+    ReputationResource,
+    AsyncReputationResource,
+    ReputationResourceWithRawResponse,
+    AsyncReputationResourceWithRawResponse,
+    ReputationResourceWithStreamingResponse,
+    AsyncReputationResourceWithStreamingResponse,
+)
 from .well_known import (
     WellKnownResource,
     AsyncWellKnownResource,
@@ -312,6 +320,14 @@ from .connections import (
     AsyncConnectionsResourceWithRawResponse,
     ConnectionsResourceWithStreamingResponse,
     AsyncConnectionsResourceWithStreamingResponse,
+)
+from .enterprises import (
+    EnterprisesResource,
+    AsyncEnterprisesResource,
+    EnterprisesResourceWithRawResponse,
+    AsyncEnterprisesResourceWithRawResponse,
+    EnterprisesResourceWithStreamingResponse,
+    AsyncEnterprisesResourceWithStreamingResponse,
 )
 from .ota_updates import (
     OtaUpdatesResource,
@@ -648,6 +664,14 @@ from .session_analysis import (
     AsyncSessionAnalysisResourceWithRawResponse,
     SessionAnalysisResourceWithStreamingResponse,
     AsyncSessionAnalysisResourceWithStreamingResponse,
+)
+from .terms_of_service import (
+    TermsOfServiceResource,
+    AsyncTermsOfServiceResource,
+    TermsOfServiceResourceWithRawResponse,
+    AsyncTermsOfServiceResourceWithRawResponse,
+    TermsOfServiceResourceWithStreamingResponse,
+    AsyncTermsOfServiceResourceWithStreamingResponse,
 )
 from .verified_numbers import (
     VerifiedNumbersResource,
@@ -2203,4 +2227,22 @@ __all__ = [
     "AsyncTrafficPolicyProfilesResourceWithRawResponse",
     "TrafficPolicyProfilesResourceWithStreamingResponse",
     "AsyncTrafficPolicyProfilesResourceWithStreamingResponse",
+    "EnterprisesResource",
+    "AsyncEnterprisesResource",
+    "EnterprisesResourceWithRawResponse",
+    "AsyncEnterprisesResourceWithRawResponse",
+    "EnterprisesResourceWithStreamingResponse",
+    "AsyncEnterprisesResourceWithStreamingResponse",
+    "ReputationResource",
+    "AsyncReputationResource",
+    "ReputationResourceWithRawResponse",
+    "AsyncReputationResourceWithRawResponse",
+    "ReputationResourceWithStreamingResponse",
+    "AsyncReputationResourceWithStreamingResponse",
+    "TermsOfServiceResource",
+    "AsyncTermsOfServiceResource",
+    "TermsOfServiceResourceWithRawResponse",
+    "AsyncTermsOfServiceResourceWithRawResponse",
+    "TermsOfServiceResourceWithStreamingResponse",
+    "AsyncTermsOfServiceResourceWithStreamingResponse",
 ]

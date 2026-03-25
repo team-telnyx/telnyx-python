@@ -5482,3 +5482,86 @@ Methods:
 - <code title="get /traffic_policy_profiles">client.traffic_policy_profiles.<a href="./src/telnyx/resources/traffic_policy_profiles.py">list</a>(\*\*<a href="src/telnyx/types/traffic_policy_profile_list_params.py">params</a>) -> <a href="./src/telnyx/types/traffic_policy_profile.py">SyncDefaultFlatPagination[TrafficPolicyProfile]</a></code>
 - <code title="delete /traffic_policy_profiles/{id}">client.traffic_policy_profiles.<a href="./src/telnyx/resources/traffic_policy_profiles.py">delete</a>(id) -> <a href="./src/telnyx/types/traffic_policy_profile_delete_response.py">TrafficPolicyProfileDeleteResponse</a></code>
 - <code title="get /traffic_policy_profiles/services">client.traffic_policy_profiles.<a href="./src/telnyx/resources/traffic_policy_profiles.py">list_services</a>(\*\*<a href="src/telnyx/types/traffic_policy_profile_list_services_params.py">params</a>) -> <a href="./src/telnyx/types/traffic_policy_profile_list_services_response.py">SyncDefaultFlatPagination[TrafficPolicyProfileListServicesResponse]</a></code>
+
+# Enterprises
+
+Types:
+
+```python
+from telnyx.types import (
+    EnterpriseCreateResponse,
+    EnterpriseRetrieveResponse,
+    EnterpriseUpdateResponse,
+    EnterpriseListResponse,
+)
+```
+
+Methods:
+
+- <code title="post /enterprises">client.enterprises.<a href="./src/telnyx/resources/enterprises/enterprises.py">create</a>(\*\*<a href="src/telnyx/types/enterprise_create_params.py">params</a>) -> <a href="./src/telnyx/types/enterprise_create_response.py">EnterpriseCreateResponse</a></code>
+- <code title="get /enterprises/{enterprise_id}">client.enterprises.<a href="./src/telnyx/resources/enterprises/enterprises.py">retrieve</a>(enterprise_id) -> <a href="./src/telnyx/types/enterprise_retrieve_response.py">EnterpriseRetrieveResponse</a></code>
+- <code title="put /enterprises/{enterprise_id}">client.enterprises.<a href="./src/telnyx/resources/enterprises/enterprises.py">update</a>(enterprise_id, \*\*<a href="src/telnyx/types/enterprise_update_params.py">params</a>) -> <a href="./src/telnyx/types/enterprise_update_response.py">EnterpriseUpdateResponse</a></code>
+- <code title="get /enterprises">client.enterprises.<a href="./src/telnyx/resources/enterprises/enterprises.py">list</a>(\*\*<a href="src/telnyx/types/enterprise_list_params.py">params</a>) -> <a href="./src/telnyx/types/enterprise_list_response.py">SyncDefaultFlatPagination[EnterpriseListResponse]</a></code>
+- <code title="delete /enterprises/{enterprise_id}">client.enterprises.<a href="./src/telnyx/resources/enterprises/enterprises.py">delete</a>(enterprise_id) -> None</code>
+
+## Reputation
+
+Types:
+
+```python
+from telnyx.types.enterprises import (
+    ReputationCreateResponse,
+    ReputationListResponse,
+    ReputationUpdateFrequencyResponse,
+)
+```
+
+Methods:
+
+- <code title="post /enterprises/{enterprise_id}/reputation">client.enterprises.reputation.<a href="./src/telnyx/resources/enterprises/reputation/reputation.py">create</a>(enterprise_id, \*\*<a href="src/telnyx/types/enterprises/reputation_create_params.py">params</a>) -> <a href="./src/telnyx/types/enterprises/reputation_create_response.py">ReputationCreateResponse</a></code>
+- <code title="get /enterprises/{enterprise_id}/reputation">client.enterprises.reputation.<a href="./src/telnyx/resources/enterprises/reputation/reputation.py">list</a>(enterprise_id) -> <a href="./src/telnyx/types/enterprises/reputation_list_response.py">ReputationListResponse</a></code>
+- <code title="delete /enterprises/{enterprise_id}/reputation">client.enterprises.reputation.<a href="./src/telnyx/resources/enterprises/reputation/reputation.py">delete_all</a>(enterprise_id) -> None</code>
+- <code title="patch /enterprises/{enterprise_id}/reputation/frequency">client.enterprises.reputation.<a href="./src/telnyx/resources/enterprises/reputation/reputation.py">update_frequency</a>(enterprise_id, \*\*<a href="src/telnyx/types/enterprises/reputation_update_frequency_params.py">params</a>) -> <a href="./src/telnyx/types/enterprises/reputation_update_frequency_response.py">ReputationUpdateFrequencyResponse</a></code>
+
+### Numbers
+
+Types:
+
+```python
+from telnyx.types.enterprises.reputation import (
+    NumberCreateResponse,
+    NumberRetrieveResponse,
+    NumberListResponse,
+)
+```
+
+Methods:
+
+- <code title="post /enterprises/{enterprise_id}/reputation/numbers">client.enterprises.reputation.numbers.<a href="./src/telnyx/resources/enterprises/reputation/numbers.py">create</a>(enterprise_id, \*\*<a href="src/telnyx/types/enterprises/reputation/number_create_params.py">params</a>) -> <a href="./src/telnyx/types/enterprises/reputation/number_create_response.py">NumberCreateResponse</a></code>
+- <code title="get /enterprises/{enterprise_id}/reputation/numbers/{phone_number}">client.enterprises.reputation.numbers.<a href="./src/telnyx/resources/enterprises/reputation/numbers.py">retrieve</a>(phone_number, \*, enterprise_id, \*\*<a href="src/telnyx/types/enterprises/reputation/number_retrieve_params.py">params</a>) -> <a href="./src/telnyx/types/enterprises/reputation/number_retrieve_response.py">NumberRetrieveResponse</a></code>
+- <code title="get /enterprises/{enterprise_id}/reputation/numbers">client.enterprises.reputation.numbers.<a href="./src/telnyx/resources/enterprises/reputation/numbers.py">list</a>(enterprise_id, \*\*<a href="src/telnyx/types/enterprises/reputation/number_list_params.py">params</a>) -> <a href="./src/telnyx/types/enterprises/reputation/number_list_response.py">SyncDefaultFlatPagination[NumberListResponse]</a></code>
+- <code title="delete /enterprises/{enterprise_id}/reputation/numbers/{phone_number}">client.enterprises.reputation.numbers.<a href="./src/telnyx/resources/enterprises/reputation/numbers.py">delete</a>(phone_number, \*, enterprise_id) -> None</code>
+
+# Reputation
+
+## Numbers
+
+Types:
+
+```python
+from telnyx.types.reputation import NumberRetrieveResponse, NumberListResponse
+```
+
+Methods:
+
+- <code title="get /reputation/numbers/{phone_number}">client.reputation.numbers.<a href="./src/telnyx/resources/reputation/numbers.py">retrieve</a>(phone_number, \*\*<a href="src/telnyx/types/reputation/number_retrieve_params.py">params</a>) -> <a href="./src/telnyx/types/reputation/number_retrieve_response.py">NumberRetrieveResponse</a></code>
+- <code title="get /reputation/numbers">client.reputation.numbers.<a href="./src/telnyx/resources/reputation/numbers.py">list</a>(\*\*<a href="src/telnyx/types/reputation/number_list_params.py">params</a>) -> <a href="./src/telnyx/types/reputation/number_list_response.py">SyncDefaultFlatPagination[NumberListResponse]</a></code>
+- <code title="delete /reputation/numbers/{phone_number}">client.reputation.numbers.<a href="./src/telnyx/resources/reputation/numbers.py">delete</a>(phone_number) -> None</code>
+
+# TermsOfService
+
+## NumberReputation
+
+Methods:
+
+- <code title="post /terms-of-service/number-reputation/agree">client.terms_of_service.number_reputation.<a href="./src/telnyx/resources/terms_of_service/number_reputation.py">agree</a>() -> None</code>
