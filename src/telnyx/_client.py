@@ -68,10 +68,12 @@ if TYPE_CHECKING:
         user_tags,
         global_ips,
         recordings,
+        reputation,
         well_known,
         call_events,
         conferences,
         connections,
+        enterprises,
         ota_updates,
         short_codes,
         audit_events,
@@ -114,6 +116,7 @@ if TYPE_CHECKING:
         numbers_features,
         operator_connect,
         session_analysis,
+        terms_of_service,
         verified_numbers,
         access_ip_address,
         charges_breakdown,
@@ -290,6 +293,7 @@ if TYPE_CHECKING:
     from .resources.notification_settings import NotificationSettingsResource, AsyncNotificationSettingsResource
     from .resources.porting_phone_numbers import PortingPhoneNumbersResource, AsyncPortingPhoneNumbersResource
     from .resources.recordings.recordings import RecordingsResource, AsyncRecordingsResource
+    from .resources.reputation.reputation import ReputationResource, AsyncReputationResource
     from .resources.telephony_credentials import TelephonyCredentialsResource, AsyncTelephonyCredentialsResource
     from .resources.dialogflow_connections import DialogflowConnectionsResource, AsyncDialogflowConnectionsResource
     from .resources.sim_card_order_preview import SimCardOrderPreviewResource, AsyncSimCardOrderPreviewResource
@@ -297,6 +301,7 @@ if TYPE_CHECKING:
     from .resources.alphanumeric_sender_ids import AlphanumericSenderIDsResource, AsyncAlphanumericSenderIDsResource
     from .resources.available_phone_numbers import AvailablePhoneNumbersResource, AsyncAvailablePhoneNumbersResource
     from .resources.conferences.conferences import ConferencesResource, AsyncConferencesResource
+    from .resources.enterprises.enterprises import EnterprisesResource, AsyncEnterprisesResource
     from .resources.global_ip_allowed_ports import GlobalIPAllowedPortsResource, AsyncGlobalIPAllowedPortsResource
     from .resources.global_ip_health_checks import GlobalIPHealthChecksResource, AsyncGlobalIPHealthChecksResource
     from .resources.mobile_push_credentials import MobilePushCredentialsResource, AsyncMobilePushCredentialsResource
@@ -400,6 +405,7 @@ if TYPE_CHECKING:
         SimCardDataUsageNotificationsResource,
         AsyncSimCardDataUsageNotificationsResource,
     )
+    from .resources.terms_of_service.terms_of_service import TermsOfServiceResource, AsyncTermsOfServiceResource
     from .resources.verified_numbers.verified_numbers import VerifiedNumbersResource, AsyncVerifiedNumbersResource
     from .resources.messaging_profiles.messaging_profiles import (
         MessagingProfilesResource,
@@ -1613,6 +1619,25 @@ class Telnyx(SyncAPIClient):
         from .resources.traffic_policy_profiles import TrafficPolicyProfilesResource
 
         return TrafficPolicyProfilesResource(self)
+
+    @cached_property
+    def enterprises(self) -> EnterprisesResource:
+        """Enterprise management for Branded Calling and Number Reputation services"""
+        from .resources.enterprises import EnterprisesResource
+
+        return EnterprisesResource(self)
+
+    @cached_property
+    def reputation(self) -> ReputationResource:
+        from .resources.reputation import ReputationResource
+
+        return ReputationResource(self)
+
+    @cached_property
+    def terms_of_service(self) -> TermsOfServiceResource:
+        from .resources.terms_of_service import TermsOfServiceResource
+
+        return TermsOfServiceResource(self)
 
     @cached_property
     def with_raw_response(self) -> TelnyxWithRawResponse:
@@ -2934,6 +2959,25 @@ class AsyncTelnyx(AsyncAPIClient):
         return AsyncTrafficPolicyProfilesResource(self)
 
     @cached_property
+    def enterprises(self) -> AsyncEnterprisesResource:
+        """Enterprise management for Branded Calling and Number Reputation services"""
+        from .resources.enterprises import AsyncEnterprisesResource
+
+        return AsyncEnterprisesResource(self)
+
+    @cached_property
+    def reputation(self) -> AsyncReputationResource:
+        from .resources.reputation import AsyncReputationResource
+
+        return AsyncReputationResource(self)
+
+    @cached_property
+    def terms_of_service(self) -> AsyncTermsOfServiceResource:
+        from .resources.terms_of_service import AsyncTermsOfServiceResource
+
+        return AsyncTermsOfServiceResource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncTelnyxWithRawResponse:
         return AsyncTelnyxWithRawResponse(self)
 
@@ -4190,6 +4234,25 @@ class TelnyxWithRawResponse:
 
         return TrafficPolicyProfilesResourceWithRawResponse(self._client.traffic_policy_profiles)
 
+    @cached_property
+    def enterprises(self) -> enterprises.EnterprisesResourceWithRawResponse:
+        """Enterprise management for Branded Calling and Number Reputation services"""
+        from .resources.enterprises import EnterprisesResourceWithRawResponse
+
+        return EnterprisesResourceWithRawResponse(self._client.enterprises)
+
+    @cached_property
+    def reputation(self) -> reputation.ReputationResourceWithRawResponse:
+        from .resources.reputation import ReputationResourceWithRawResponse
+
+        return ReputationResourceWithRawResponse(self._client.reputation)
+
+    @cached_property
+    def terms_of_service(self) -> terms_of_service.TermsOfServiceResourceWithRawResponse:
+        from .resources.terms_of_service import TermsOfServiceResourceWithRawResponse
+
+        return TermsOfServiceResourceWithRawResponse(self._client.terms_of_service)
+
 
 class AsyncTelnyxWithRawResponse:
     _client: AsyncTelnyx
@@ -5317,6 +5380,25 @@ class AsyncTelnyxWithRawResponse:
         from .resources.traffic_policy_profiles import AsyncTrafficPolicyProfilesResourceWithRawResponse
 
         return AsyncTrafficPolicyProfilesResourceWithRawResponse(self._client.traffic_policy_profiles)
+
+    @cached_property
+    def enterprises(self) -> enterprises.AsyncEnterprisesResourceWithRawResponse:
+        """Enterprise management for Branded Calling and Number Reputation services"""
+        from .resources.enterprises import AsyncEnterprisesResourceWithRawResponse
+
+        return AsyncEnterprisesResourceWithRawResponse(self._client.enterprises)
+
+    @cached_property
+    def reputation(self) -> reputation.AsyncReputationResourceWithRawResponse:
+        from .resources.reputation import AsyncReputationResourceWithRawResponse
+
+        return AsyncReputationResourceWithRawResponse(self._client.reputation)
+
+    @cached_property
+    def terms_of_service(self) -> terms_of_service.AsyncTermsOfServiceResourceWithRawResponse:
+        from .resources.terms_of_service import AsyncTermsOfServiceResourceWithRawResponse
+
+        return AsyncTermsOfServiceResourceWithRawResponse(self._client.terms_of_service)
 
 
 class TelnyxWithStreamedResponse:
@@ -6447,6 +6529,25 @@ class TelnyxWithStreamedResponse:
         from .resources.traffic_policy_profiles import TrafficPolicyProfilesResourceWithStreamingResponse
 
         return TrafficPolicyProfilesResourceWithStreamingResponse(self._client.traffic_policy_profiles)
+
+    @cached_property
+    def enterprises(self) -> enterprises.EnterprisesResourceWithStreamingResponse:
+        """Enterprise management for Branded Calling and Number Reputation services"""
+        from .resources.enterprises import EnterprisesResourceWithStreamingResponse
+
+        return EnterprisesResourceWithStreamingResponse(self._client.enterprises)
+
+    @cached_property
+    def reputation(self) -> reputation.ReputationResourceWithStreamingResponse:
+        from .resources.reputation import ReputationResourceWithStreamingResponse
+
+        return ReputationResourceWithStreamingResponse(self._client.reputation)
+
+    @cached_property
+    def terms_of_service(self) -> terms_of_service.TermsOfServiceResourceWithStreamingResponse:
+        from .resources.terms_of_service import TermsOfServiceResourceWithStreamingResponse
+
+        return TermsOfServiceResourceWithStreamingResponse(self._client.terms_of_service)
 
 
 class AsyncTelnyxWithStreamedResponse:
@@ -7623,6 +7724,25 @@ class AsyncTelnyxWithStreamedResponse:
         from .resources.traffic_policy_profiles import AsyncTrafficPolicyProfilesResourceWithStreamingResponse
 
         return AsyncTrafficPolicyProfilesResourceWithStreamingResponse(self._client.traffic_policy_profiles)
+
+    @cached_property
+    def enterprises(self) -> enterprises.AsyncEnterprisesResourceWithStreamingResponse:
+        """Enterprise management for Branded Calling and Number Reputation services"""
+        from .resources.enterprises import AsyncEnterprisesResourceWithStreamingResponse
+
+        return AsyncEnterprisesResourceWithStreamingResponse(self._client.enterprises)
+
+    @cached_property
+    def reputation(self) -> reputation.AsyncReputationResourceWithStreamingResponse:
+        from .resources.reputation import AsyncReputationResourceWithStreamingResponse
+
+        return AsyncReputationResourceWithStreamingResponse(self._client.reputation)
+
+    @cached_property
+    def terms_of_service(self) -> terms_of_service.AsyncTermsOfServiceResourceWithStreamingResponse:
+        from .resources.terms_of_service import AsyncTermsOfServiceResourceWithStreamingResponse
+
+        return AsyncTermsOfServiceResourceWithStreamingResponse(self._client.terms_of_service)
 
 
 Client = Telnyx
