@@ -1,5 +1,18 @@
 # Changelog
 
+## 4.86.1 (2026-03-25)
+
+Full Changelog: [v4.86.0...v4.86.1](https://github.com/team-telnyx/telnyx-python/compare/v4.86.0...v4.86.1)
+
+### Bug Fixes
+
+* rename number-reputation ToS route to use underscores ([df56464](https://github.com/team-telnyx/telnyx-python/commit/df5646407c6e651bf08dff99e2359d079ba9d83c))
+
+
+### Documentation
+
+* **branded-calling:** add Number Reputation API specs ([cebfcf3](https://github.com/team-telnyx/telnyx-python/commit/cebfcf3e9fe7cc5ad8b20be921ddf839aeb81ea7))
+
 ## 4.86.0 (2026-03-24)
 
 Full Changelog: [v4.85.0...v4.86.0](https://github.com/team-telnyx/telnyx-python/compare/v4.85.0...v4.86.0)
