@@ -5564,4 +5564,4 @@ Methods:
 
 Methods:
 
-- <code title="post /terms-of-service/number-reputation/agree">client.terms_of_service.number_reputation.<a href="./src/telnyx/resources/terms_of_service/number_reputation.py">agree</a>() -> None</code>
+- <code title="post /terms_of_service/number_reputation/agree">client.terms_of_service.number_reputation.<a href="./src/telnyx/resources/terms_of_service/number_reputation.py">agree</a>() -> None</code>
