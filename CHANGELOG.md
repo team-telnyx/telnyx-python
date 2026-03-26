@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.87.0 (2026-03-26)
+
+Full Changelog: [v4.86.1...v4.87.0](https://github.com/team-telnyx/telnyx-python/compare/v4.86.1...v4.87.0)
+
+### Features
+
+* **internal:** implement indices array format for query and form serialization ([1de2959](https://github.com/team-telnyx/telnyx-python/commit/1de295920ee04d3f4cbe4984d76eef1c9eba7841))
+
 ## 4.86.1 (2026-03-25)
 
 Full Changelog: [v4.86.0...v4.86.1](https://github.com/team-telnyx/telnyx-python/compare/v4.86.0...v4.86.1)
