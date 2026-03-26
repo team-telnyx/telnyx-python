@@ -1,36 +1,12 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
-from datetime import datetime
-from typing_extensions import Literal
+from typing import Optional
 
 from ..._models import BaseModel
+from .enterprise_reputation_public import EnterpriseReputationPublic
 
-__all__ = ["ReputationListResponse", "Data"]
-
-
-class Data(BaseModel):
-    check_frequency: Optional[Literal["business_daily", "daily", "weekly", "biweekly", "monthly", "never"]] = None
-    """Frequency for refreshing reputation data"""
-
-    created_at: Optional[datetime] = None
-    """When the reputation settings were created"""
-
-    enterprise_id: Optional[str] = None
-    """ID of the associated enterprise"""
-
-    loa_document_id: Optional[str] = None
-    """ID of the signed LOA document"""
-
-    rejection_reasons: Optional[List[str]] = None
-    """Reasons for rejection (present when status is rejected)"""
-
-    status: Optional[Literal["pending", "approved", "rejected", "deleted"]] = None
-    """Current enrollment status"""
-
-    updated_at: Optional[datetime] = None
-    """When the reputation settings were last updated"""
+__all__ = ["ReputationListResponse"]
 
 
 class ReputationListResponse(BaseModel):
-    data: Optional[Data] = None
+    data: Optional[EnterpriseReputationPublic] = None

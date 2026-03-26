@@ -17,9 +17,9 @@ from ...._response import (
 from ....pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.enterprises.reputation import number_list_params, number_create_params, number_retrieve_params
-from ....types.enterprises.reputation.number_list_response import NumberListResponse
 from ....types.enterprises.reputation.number_create_response import NumberCreateResponse
 from ....types.enterprises.reputation.number_retrieve_response import NumberRetrieveResponse
+from ....types.shared.reputation_phone_number_with_reputation_data import ReputationPhoneNumberWithReputationData
 
 __all__ = ["NumbersResource", "AsyncNumbersResource"]
 
@@ -177,7 +177,7 @@ class NumbersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[NumberListResponse]:
+    ) -> SyncDefaultFlatPagination[ReputationPhoneNumberWithReputationData]:
         """
         List all phone numbers associated with an enterprise for Number Reputation
         monitoring.
@@ -204,7 +204,7 @@ class NumbersResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `enterprise_id` but received {enterprise_id!r}")
         return self._get_api_list(
             path_template("/enterprises/{enterprise_id}/reputation/numbers", enterprise_id=enterprise_id),
-            page=SyncDefaultFlatPagination[NumberListResponse],
+            page=SyncDefaultFlatPagination[ReputationPhoneNumberWithReputationData],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -219,7 +219,7 @@ class NumbersResource(SyncAPIResource):
                     number_list_params.NumberListParams,
                 ),
             ),
-            model=NumberListResponse,
+            model=ReputationPhoneNumberWithReputationData,
         )
 
     def delete(
@@ -420,7 +420,9 @@ class AsyncNumbersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[NumberListResponse, AsyncDefaultFlatPagination[NumberListResponse]]:
+    ) -> AsyncPaginator[
+        ReputationPhoneNumberWithReputationData, AsyncDefaultFlatPagination[ReputationPhoneNumberWithReputationData]
+    ]:
         """
         List all phone numbers associated with an enterprise for Number Reputation
         monitoring.
@@ -447,7 +449,7 @@ class AsyncNumbersResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `enterprise_id` but received {enterprise_id!r}")
         return self._get_api_list(
             path_template("/enterprises/{enterprise_id}/reputation/numbers", enterprise_id=enterprise_id),
-            page=AsyncDefaultFlatPagination[NumberListResponse],
+            page=AsyncDefaultFlatPagination[ReputationPhoneNumberWithReputationData],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -462,7 +464,7 @@ class AsyncNumbersResource(AsyncAPIResource):
                     number_list_params.NumberListParams,
                 ),
             ),
-            model=NumberListResponse,
+            model=ReputationPhoneNumberWithReputationData,
         )
 
     async def delete(
