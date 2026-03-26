@@ -5,93 +5,15 @@ from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
+from .billing_address import BillingAddress
+from .billing_contact import BillingContact
+from .physical_address import PhysicalAddress
+from .organization_contact import OrganizationContact
 
-__all__ = [
-    "EnterpriseListResponse",
-    "BillingAddress",
-    "BillingContact",
-    "OrganizationContact",
-    "OrganizationPhysicalAddress",
-]
+__all__ = ["EnterprisePublic"]
 
 
-class BillingAddress(BaseModel):
-    administrative_area: str
-    """State or province"""
-
-    city: str
-    """City name"""
-
-    country: str
-    """Country name (e.g., United States)"""
-
-    postal_code: str
-    """ZIP or postal code"""
-
-    street_address: str
-    """Street address"""
-
-    extended_address: Optional[str] = None
-    """Additional address line (suite, apt, etc.)"""
-
-
-class BillingContact(BaseModel):
-    email: str
-    """Contact's email address"""
-
-    first_name: str
-    """Contact's first name"""
-
-    last_name: str
-    """Contact's last name"""
-
-    phone_number: str
-    """Contact's phone number (10-15 digits)"""
-
-
-class OrganizationContact(BaseModel):
-    """Organization contact information.
-
-    Note: the response returns this object with the phone field as 'phone' (not 'phone_number').
-    """
-
-    email: str
-    """Contact's email address"""
-
-    first_name: str
-    """Contact's first name"""
-
-    job_title: str
-    """Contact's job title (required)"""
-
-    last_name: str
-    """Contact's last name"""
-
-    phone: str
-    """Contact's phone number in E.164 format"""
-
-
-class OrganizationPhysicalAddress(BaseModel):
-    administrative_area: str
-    """State or province"""
-
-    city: str
-    """City name"""
-
-    country: str
-    """Country name (e.g., United States)"""
-
-    postal_code: str
-    """ZIP or postal code"""
-
-    street_address: str
-    """Street address"""
-
-    extended_address: Optional[str] = None
-    """Additional address line (suite, apt, etc.)"""
-
-
-class EnterpriseListResponse(BaseModel):
+class EnterprisePublic(BaseModel):
     id: Optional[str] = None
     """Unique identifier of the enterprise"""
 
@@ -141,7 +63,7 @@ class EnterpriseListResponse(BaseModel):
     organization_legal_type: Optional[Literal["corporation", "llc", "partnership", "nonprofit", "other"]] = None
     """Legal structure type"""
 
-    organization_physical_address: Optional[OrganizationPhysicalAddress] = None
+    organization_physical_address: Optional[PhysicalAddress] = None
 
     organization_type: Optional[Literal["commercial", "government", "non_profit"]] = None
     """Type of organization"""
