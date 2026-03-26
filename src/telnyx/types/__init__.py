@@ -16,10 +16,12 @@ from .shared import (
     Feature as Feature,
     APIError as APIError,
     Metadata as Metadata,
+    MetaInfo as MetaInfo,
     ShortCode as ShortCode,
     HostedNumber as HostedNumber,
     SimCardStatus as SimCardStatus,
     SimpleSimCard as SimpleSimCard,
+    ReputationData as ReputationData,
     CostInformation as CostInformation,
     NetappsLocation as NetappsLocation,
     RoomParticipant as RoomParticipant,
@@ -43,6 +45,7 @@ from .shared import (
     AvailablePhoneNumbersMetadata as AvailablePhoneNumbersMetadata,
     PhoneNumberWithMessagingSettings as PhoneNumberWithMessagingSettings,
     ConnectionNoiseSuppressionDetails as ConnectionNoiseSuppressionDetails,
+    ReputationPhoneNumberWithReputationData as ReputationPhoneNumberWithReputationData,
     SubNumberOrderRegulatoryRequirementWithValue as SubNumberOrderRegulatoryRequirementWithValue,
 )
 from .address import Address as Address
@@ -93,6 +96,8 @@ from .verify_profile import VerifyProfile as VerifyProfile
 from .whatsapp_media import WhatsappMedia as WhatsappMedia
 from .wireless_error import WirelessError as WirelessError
 from .access_ip_range import AccessIPRange as AccessIPRange
+from .billing_address import BillingAddress as BillingAddress
+from .billing_contact import BillingContact as BillingContact
 from .call_left_queue import CallLeftQueue as CallLeftQueue
 from .encrypted_media import EncryptedMedia as EncryptedMedia
 from .fax_application import FaxApplication as FaxApplication
@@ -116,6 +121,7 @@ from .ip_create_params import IPCreateParams as IPCreateParams
 from .ip_update_params import IPUpdateParams as IPUpdateParams
 from .message_template import MessageTemplate as MessageTemplate
 from .outbound_message import OutboundMessage as OutboundMessage
+from .physical_address import PhysicalAddress as PhysicalAddress
 from .rcs_card_content import RcsCardContent as RcsCardContent
 from .rcs_content_info import RcsContentInfo as RcsContentInfo
 from .room_composition import RoomComposition as RoomComposition
@@ -136,6 +142,7 @@ from .call_fork_stopped import CallForkStopped as CallForkStopped
 from .call_gather_ended import CallGatherEnded as CallGatherEnded
 from .call_refer_failed import CallReferFailed as CallReferFailed
 from .custom_sip_header import CustomSipHeader as CustomSipHeader
+from .enterprise_public import EnterprisePublic as EnterprisePublic
 from .fax_create_params import FaxCreateParams as FaxCreateParams
 from .media_list_params import MediaListParams as MediaListParams
 from .messaging_profile import MessagingProfile as MessagingProfile
@@ -218,6 +225,7 @@ from .notification_profile import NotificationProfile as NotificationProfile
 from .notification_setting import NotificationSetting as NotificationSetting
 from .number_pool_settings import NumberPoolSettings as NumberPoolSettings
 from .oauth_token_response import OAuthTokenResponse as OAuthTokenResponse
+from .organization_contact import OrganizationContact as OrganizationContact
 from .rcs_suggestion_param import RcsSuggestionParam as RcsSuggestionParam
 from .region_list_response import RegionListResponse as RegionListResponse
 from .room_create_response import RoomCreateResponse as RoomCreateResponse
@@ -233,6 +241,8 @@ from .whatsapp_interactive import WhatsappInteractive as WhatsappInteractive
 from .whatsapp_media_param import WhatsappMediaParam as WhatsappMediaParam
 from .address_create_params import AddressCreateParams as AddressCreateParams
 from .ai_summarize_response import AISummarizeResponse as AISummarizeResponse
+from .billing_address_param import BillingAddressParam as BillingAddressParam
+from .billing_contact_param import BillingContactParam as BillingContactParam
 from .call_playback_started import CallPlaybackStarted as CallPlaybackStarted
 from .call_streaming_failed import CallStreamingFailed as CallStreamingFailed
 from .comment_create_params import CommentCreateParams as CommentCreateParams
@@ -273,6 +283,7 @@ from .fqdn_retrieve_response import FqdnRetrieveResponse as FqdnRetrieveResponse
 from .gcs_configuration_data import GcsConfigurationData as GcsConfigurationData
 from .ota_update_list_params import OtaUpdateListParams as OtaUpdateListParams
 from .outbound_voice_profile import OutboundVoiceProfile as OutboundVoiceProfile
+from .physical_address_param import PhysicalAddressParam as PhysicalAddressParam
 from .porting_order_end_user import PortingOrderEndUser as PortingOrderEndUser
 from .rcs_card_content_param import RcsCardContentParam as RcsCardContentParam
 from .rcs_content_info_param import RcsContentInfoParam as RcsContentInfoParam
@@ -336,7 +347,6 @@ from .document_delete_response import DocumentDeleteResponse as DocumentDeleteRe
 from .document_update_response import DocumentUpdateResponse as DocumentUpdateResponse
 from .document_upload_response import DocumentUploadResponse as DocumentUploadResponse
 from .enterprise_create_params import EnterpriseCreateParams as EnterpriseCreateParams
-from .enterprise_list_response import EnterpriseListResponse as EnterpriseListResponse
 from .enterprise_update_params import EnterpriseUpdateParams as EnterpriseUpdateParams
 from .number_order_list_params import NumberOrderListParams as NumberOrderListParams
 from .oauth_client_list_params import OAuthClientListParams as OAuthClientListParams
@@ -408,6 +418,7 @@ from .number_order_update_params import NumberOrderUpdateParams as NumberOrderUp
 from .number_pool_settings_param import NumberPoolSettingsParam as NumberPoolSettingsParam
 from .oauth_client_create_params import OAuthClientCreateParams as OAuthClientCreateParams
 from .oauth_client_update_params import OAuthClientUpdateParams as OAuthClientUpdateParams
+from .organization_contact_param import OrganizationContactParam as OrganizationContactParam
 from .phone_number_update_params import PhoneNumberUpdateParams as PhoneNumberUpdateParams
 from .room_recording_list_params import RoomRecordingListParams as RoomRecordingListParams
 from .short_code_update_response import ShortCodeUpdateResponse as ShortCodeUpdateResponse

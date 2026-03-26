@@ -6,7 +6,11 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...types import enterprise_list_params, enterprise_create_params, enterprise_update_params
+from ...types import (
+    enterprise_list_params,
+    enterprise_create_params,
+    enterprise_update_params,
+)
 from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
@@ -27,9 +31,13 @@ from .reputation.reputation import (
     ReputationResourceWithStreamingResponse,
     AsyncReputationResourceWithStreamingResponse,
 )
-from ...types.enterprise_list_response import EnterpriseListResponse
+from ...types.enterprise_public import EnterprisePublic
+from ...types.billing_address_param import BillingAddressParam
+from ...types.billing_contact_param import BillingContactParam
+from ...types.physical_address_param import PhysicalAddressParam
 from ...types.enterprise_create_response import EnterpriseCreateResponse
 from ...types.enterprise_update_response import EnterpriseUpdateResponse
+from ...types.organization_contact_param import OrganizationContactParam
 from ...types.enterprise_retrieve_response import EnterpriseRetrieveResponse
 
 __all__ = ["EnterprisesResource", "AsyncEnterprisesResource"]
@@ -67,17 +75,17 @@ class EnterprisesResource(SyncAPIResource):
     def create(
         self,
         *,
-        billing_address: enterprise_create_params.BillingAddress,
-        billing_contact: enterprise_create_params.BillingContact,
+        billing_address: BillingAddressParam,
+        billing_contact: BillingContactParam,
         country_code: str,
         doing_business_as: str,
         fein: str,
         industry: str,
         legal_name: str,
         number_of_employees: Literal["1-10", "11-50", "51-200", "201-500", "501-2000", "2001-10000", "10001+"],
-        organization_contact: enterprise_create_params.OrganizationContact,
+        organization_contact: OrganizationContactParam,
         organization_legal_type: Literal["corporation", "llc", "partnership", "nonprofit", "other"],
-        organization_physical_address: enterprise_create_params.OrganizationPhysicalAddress,
+        organization_physical_address: PhysicalAddressParam,
         organization_type: Literal["commercial", "government", "non_profit"],
         website: str,
         corporate_registration_number: str | Omit = omit,
@@ -223,8 +231,8 @@ class EnterprisesResource(SyncAPIResource):
         self,
         enterprise_id: str,
         *,
-        billing_address: enterprise_update_params.BillingAddress | Omit = omit,
-        billing_contact: enterprise_update_params.BillingContact | Omit = omit,
+        billing_address: BillingAddressParam | Omit = omit,
+        billing_contact: BillingContactParam | Omit = omit,
         corporate_registration_number: str | Omit = omit,
         customer_reference: str | Omit = omit,
         doing_business_as: str | Omit = omit,
@@ -234,9 +242,9 @@ class EnterprisesResource(SyncAPIResource):
         legal_name: str | Omit = omit,
         number_of_employees: Literal["1-10", "11-50", "51-200", "201-500", "501-2000", "2001-10000", "10001+"]
         | Omit = omit,
-        organization_contact: enterprise_update_params.OrganizationContact | Omit = omit,
+        organization_contact: OrganizationContactParam | Omit = omit,
         organization_legal_type: Literal["corporation", "llc", "partnership", "nonprofit", "other"] | Omit = omit,
-        organization_physical_address: enterprise_update_params.OrganizationPhysicalAddress | Omit = omit,
+        organization_physical_address: PhysicalAddressParam | Omit = omit,
         primary_business_domain_sic_code: str | Omit = omit,
         professional_license_number: str | Omit = omit,
         website: str | Omit = omit,
@@ -331,7 +339,7 @@ class EnterprisesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[EnterpriseListResponse]:
+    ) -> SyncDefaultFlatPagination[EnterprisePublic]:
         """
         Retrieve a paginated list of enterprises associated with your account.
 
@@ -352,7 +360,7 @@ class EnterprisesResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/enterprises",
-            page=SyncDefaultFlatPagination[EnterpriseListResponse],
+            page=SyncDefaultFlatPagination[EnterprisePublic],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -367,7 +375,7 @@ class EnterprisesResource(SyncAPIResource):
                     enterprise_list_params.EnterpriseListParams,
                 ),
             ),
-            model=EnterpriseListResponse,
+            model=EnterprisePublic,
         )
 
     def delete(
@@ -438,17 +446,17 @@ class AsyncEnterprisesResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        billing_address: enterprise_create_params.BillingAddress,
-        billing_contact: enterprise_create_params.BillingContact,
+        billing_address: BillingAddressParam,
+        billing_contact: BillingContactParam,
         country_code: str,
         doing_business_as: str,
         fein: str,
         industry: str,
         legal_name: str,
         number_of_employees: Literal["1-10", "11-50", "51-200", "201-500", "501-2000", "2001-10000", "10001+"],
-        organization_contact: enterprise_create_params.OrganizationContact,
+        organization_contact: OrganizationContactParam,
         organization_legal_type: Literal["corporation", "llc", "partnership", "nonprofit", "other"],
-        organization_physical_address: enterprise_create_params.OrganizationPhysicalAddress,
+        organization_physical_address: PhysicalAddressParam,
         organization_type: Literal["commercial", "government", "non_profit"],
         website: str,
         corporate_registration_number: str | Omit = omit,
@@ -594,8 +602,8 @@ class AsyncEnterprisesResource(AsyncAPIResource):
         self,
         enterprise_id: str,
         *,
-        billing_address: enterprise_update_params.BillingAddress | Omit = omit,
-        billing_contact: enterprise_update_params.BillingContact | Omit = omit,
+        billing_address: BillingAddressParam | Omit = omit,
+        billing_contact: BillingContactParam | Omit = omit,
         corporate_registration_number: str | Omit = omit,
         customer_reference: str | Omit = omit,
         doing_business_as: str | Omit = omit,
@@ -605,9 +613,9 @@ class AsyncEnterprisesResource(AsyncAPIResource):
         legal_name: str | Omit = omit,
         number_of_employees: Literal["1-10", "11-50", "51-200", "201-500", "501-2000", "2001-10000", "10001+"]
         | Omit = omit,
-        organization_contact: enterprise_update_params.OrganizationContact | Omit = omit,
+        organization_contact: OrganizationContactParam | Omit = omit,
         organization_legal_type: Literal["corporation", "llc", "partnership", "nonprofit", "other"] | Omit = omit,
-        organization_physical_address: enterprise_update_params.OrganizationPhysicalAddress | Omit = omit,
+        organization_physical_address: PhysicalAddressParam | Omit = omit,
         primary_business_domain_sic_code: str | Omit = omit,
         professional_license_number: str | Omit = omit,
         website: str | Omit = omit,
@@ -702,7 +710,7 @@ class AsyncEnterprisesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[EnterpriseListResponse, AsyncDefaultFlatPagination[EnterpriseListResponse]]:
+    ) -> AsyncPaginator[EnterprisePublic, AsyncDefaultFlatPagination[EnterprisePublic]]:
         """
         Retrieve a paginated list of enterprises associated with your account.
 
@@ -723,7 +731,7 @@ class AsyncEnterprisesResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/enterprises",
-            page=AsyncDefaultFlatPagination[EnterpriseListResponse],
+            page=AsyncDefaultFlatPagination[EnterprisePublic],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -738,7 +746,7 @@ class AsyncEnterprisesResource(AsyncAPIResource):
                     enterprise_list_params.EnterpriseListParams,
                 ),
             ),
-            model=EnterpriseListResponse,
+            model=EnterprisePublic,
         )
 
     async def delete(
