@@ -1,15 +1,12 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, Union, Optional
+from typing import Optional
 from datetime import datetime
-from typing_extensions import TypeAlias
 
-from . import reputation_data
 from ..._models import BaseModel
+from .reputation_data import ReputationData
 
-__all__ = ["ReputationPhoneNumberWithReputationData", "ReputationData"]
-
-ReputationData: TypeAlias = Union[reputation_data.ReputationData, Optional[Dict[str, object]]]
+__all__ = ["ReputationPhoneNumberWithReputationData"]
 
 
 class ReputationPhoneNumberWithReputationData(BaseModel):
@@ -26,7 +23,7 @@ class ReputationPhoneNumberWithReputationData(BaseModel):
     """Phone number in E.164 format"""
 
     reputation_data: Optional[ReputationData] = None
-    """Reputation metrics (null if not yet fetched)"""
+    """Reputation metrics"""
 
     updated_at: Optional[datetime] = None
     """When the record was last updated"""
