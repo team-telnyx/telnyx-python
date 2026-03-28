@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.88.0 (2026-03-28)
+
+Full Changelog: [v4.87.1...v4.88.0](https://github.com/team-telnyx/telnyx-python/compare/v4.87.1...v4.88.0)
+
+### Features
+
+* bump version for clean break from compromised releases ([2c3b8f8](https://github.com/team-telnyx/telnyx-python/commit/2c3b8f8b6c6e2bfa136ee3069c24b4053ec81c45))
+
 ## 4.87.1 (2026-03-27)
 
 Full Changelog: [v4.87.0...v4.87.1](https://github.com/team-telnyx/telnyx-python/compare/v4.87.0...v4.87.1)
