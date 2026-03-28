@@ -21,12 +21,12 @@ class Source(BaseModel):
 
 
 class JobError(BaseModel):
-    code: str
-
-    title: str
+    code: Optional[str] = None
 
     detail: Optional[str] = None
 
     meta: Optional[Meta] = None
 
     source: Optional[Source] = None
+
+    title: Optional[str] = None

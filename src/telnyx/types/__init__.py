@@ -127,11 +127,6 @@ from .rcs_content_info import RcsContentInfo as RcsContentInfo
 from .room_composition import RoomComposition as RoomComposition
 from .room_list_params import RoomListParams as RoomListParams
 from .sip_header_param import SipHeaderParam as SipHeaderParam
-from .stt_server_event import (
-    SttErrorFrame as SttErrorFrame,
-    SttServerEvent as SttServerEvent,
-    TranscriptFrame as TranscriptFrame,
-)
 from .sub_number_order import SubNumberOrder as SubNumberOrder
 from .user_requirement import UserRequirement as UserRequirement
 from .voice_clone_data import VoiceCloneData as VoiceCloneData
@@ -1527,5 +1522,3 @@ else:
     ai.cluster_retrieve_response.ClusterRetrieveResponse.model_rebuild(_parent_namespace_depth=0)
     event_node.EventNode.model_rebuild(_parent_namespace_depth=0)
     session_analysis_retrieve_response.SessionAnalysisRetrieveResponse.model_rebuild(_parent_namespace_depth=0)
-from .text_to_speech_stream_params import TextToSpeechStreamParams as TextToSpeechStreamParams
-from .speech_to_text_transcribe_params import SpeechToTextTranscribeParams as SpeechToTextTranscribeParams
