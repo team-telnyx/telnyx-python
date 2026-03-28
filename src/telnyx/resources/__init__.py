@@ -497,14 +497,6 @@ from .porting_orders import (
     PortingOrdersResourceWithStreamingResponse,
     AsyncPortingOrdersResourceWithStreamingResponse,
 )
-from .speech_to_text import (
-    SpeechToTextResource,
-    AsyncSpeechToTextResource,
-    SpeechToTextResourceWithRawResponse,
-    AsyncSpeechToTextResourceWithRawResponse,
-    SpeechToTextResourceWithStreamingResponse,
-    AsyncSpeechToTextResourceWithStreamingResponse,
-)
 from .text_to_speech import (
     TextToSpeechResource,
     AsyncTextToSpeechResource,
@@ -1129,7 +1121,6 @@ from .sub_number_orders_report import (
     SubNumberOrdersReportResourceWithStreamingResponse,
     AsyncSubNumberOrdersReportResourceWithStreamingResponse,
 )
-from ..lib.webhook_verification import TelnyxWebhookVerificationError
 from .call_control_applications import (
     CallControlApplicationsResource,
     AsyncCallControlApplicationsResource,
@@ -1318,7 +1309,6 @@ __all__ = [
     "AsyncOAuthGrantsResourceWithStreamingResponse",
     "WebhooksResource",
     "AsyncWebhooksResource",
-    "TelnyxWebhookVerificationError",
     "AccessIPAddressResource",
     "AsyncAccessIPAddressResource",
     "AccessIPAddressResourceWithRawResponse",
@@ -2057,12 +2047,6 @@ __all__ = [
     "AsyncTexmlApplicationsResourceWithRawResponse",
     "TexmlApplicationsResourceWithStreamingResponse",
     "AsyncTexmlApplicationsResourceWithStreamingResponse",
-    "SpeechToTextResource",
-    "AsyncSpeechToTextResource",
-    "SpeechToTextResourceWithRawResponse",
-    "AsyncSpeechToTextResourceWithRawResponse",
-    "SpeechToTextResourceWithStreamingResponse",
-    "AsyncSpeechToTextResourceWithStreamingResponse",
     "TextToSpeechResource",
     "AsyncTextToSpeechResource",
     "TextToSpeechResourceWithRawResponse",
@@ -2135,12 +2119,6 @@ __all__ = [
     "AsyncWireguardPeersResourceWithRawResponse",
     "WireguardPeersResourceWithStreamingResponse",
     "AsyncWireguardPeersResourceWithStreamingResponse",
-    "WhatsappMessageTemplatesResource",
-    "AsyncWhatsappMessageTemplatesResource",
-    "WhatsappMessageTemplatesResourceWithRawResponse",
-    "AsyncWhatsappMessageTemplatesResourceWithRawResponse",
-    "WhatsappMessageTemplatesResourceWithStreamingResponse",
-    "AsyncWhatsappMessageTemplatesResourceWithStreamingResponse",
     "WirelessResource",
     "AsyncWirelessResource",
     "WirelessResourceWithRawResponse",
