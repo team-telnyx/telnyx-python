@@ -41,9 +41,10 @@ from __future__ import annotations
 import json
 import threading
 from queue import Empty, Queue
-from typing import TYPE_CHECKING, Iterator, Optional
+from typing import TYPE_CHECKING, Any, List, Iterator, Optional, cast
 from dataclasses import field, dataclass
 from urllib.parse import urlparse, urlencode
+from typing_extensions import override
 
 if TYPE_CHECKING:
     from collections.abc import AsyncIterator
@@ -66,6 +67,7 @@ class SpeechToTextWSError(Exception):
         self.message = message
         self.cause = cause
 
+    @override
     def __str__(self) -> str:
         if self.cause:
             return f"{self.message}: {self.cause}"
@@ -145,13 +147,13 @@ class SttWord:
     confidence: Optional[float] = None
 
     @classmethod
-    def from_dict(cls, data: dict) -> "SttWord":
+    def from_dict(cls, data: dict[str, Any]) -> "SttWord":
         """Create an SttWord from a dictionary."""
         return cls(
-            word=data.get("word", ""),
+            word=str(data.get("word", "")),
             start=float(data.get("start", 0)),
             end=float(data.get("end", 0)),
-            confidence=data.get("confidence"),
+            confidence=float(data["confidence"]) if data.get("confidence") is not None else None,
         )
 
 
@@ -176,27 +178,32 @@ class SttEvent:
     is_final: bool = False
     confidence: Optional[float] = None
     error: Optional[str] = None
-    words: list[SttWord] = field(default_factory=list)
+    words: List[SttWord] = field(default_factory=lambda: [])
     channel: Optional[int] = None
     start_time: Optional[float] = None
     duration: Optional[float] = None
 
     @classmethod
-    def from_dict(cls, data: dict) -> "SttEvent":
+    def from_dict(cls, data: dict[str, Any]) -> "SttEvent":
         """Create an SttEvent from a dictionary."""
-        words_data = data.get("words", [])
-        words = [SttWord.from_dict(w) for w in words_data] if words_data else []
+        words_data: object = data.get("words")
+        words_list: List[SttWord] = []
+        if words_data is not None and isinstance(words_data, list):
+            for word_item in cast(List[object], words_data):
+                if isinstance(word_item, dict):
+                    word_dict = cast(dict[str, Any], word_item)
+                    words_list.append(SttWord.from_dict(word_dict))
 
         return cls(
-            type=data.get("type", "unknown"),
-            transcript=data.get("transcript"),
+            type=str(data.get("type", "unknown")),
+            transcript=str(data["transcript"]) if data.get("transcript") is not None else None,
             is_final=bool(data.get("is_final", False)),
-            confidence=data.get("confidence"),
-            error=data.get("error"),
-            words=words,
-            channel=data.get("channel"),
-            start_time=data.get("start_time"),
-            duration=data.get("duration"),
+            confidence=float(data["confidence"]) if data.get("confidence") is not None else None,
+            error=str(data["error"]) if data.get("error") is not None else None,
+            words=words_list,
+            channel=int(data["channel"]) if data.get("channel") is not None else None,
+            start_time=float(data["start_time"]) if data.get("start_time") is not None else None,
+            duration=float(data["duration"]) if data.get("duration") is not None else None,
         )
 
 
@@ -219,10 +226,11 @@ def _build_websocket_url(base_url: str, params: SpeechToTextStreamParams) -> str
     query_params = params.to_query_params()
     query_string = urlencode(query_params) if query_params else ""
 
-    # Construct the URL
+    # Construct URL
+    host = parsed.netloc
     if query_string:
-        return f"{ws_scheme}://{parsed.netloc}{path}?{query_string}"
-    return f"{ws_scheme}://{parsed.netloc}{path}"
+        return f"{ws_scheme}://{host}{path}?{query_string}"
+    return f"{ws_scheme}://{host}{path}"
 
 
 class SpeechToTextWS:
@@ -240,22 +248,11 @@ class SpeechToTextWS:
             input_format="wav",
         )
 
-        ws = SpeechToTextWS(api_key="YOUR_API_KEY", params=params)
-        ws.connect()
-
-        try:
+        with SpeechToTextWS(api_key="YOUR_API_KEY", params=params) as ws:
             ws.send(audio_bytes)
             for event in ws.events():
                 if event.type == "transcript":
                     print(f"Transcript: {event.transcript} (final: {event.is_final})")
-        finally:
-            ws.close()
-
-        # Or using context manager:
-        with SpeechToTextWS(api_key="YOUR_API_KEY", params=params) as ws:
-            ws.send(audio_bytes)
-            for event in ws.events():
-                print(event.transcript)
     """
 
     def __init__(
@@ -278,7 +275,7 @@ class SpeechToTextWS:
         self._base_url = base_url
         self._event_buffer_size = event_buffer_size
 
-        self._ws: Optional["websockets.sync.client.ClientConnection"] = None
+        self._ws: Any = None  # websockets.sync.client.ClientConnection
         self._events_queue: Queue[Optional[SttEvent]] = Queue(maxsize=event_buffer_size)
         self._receiver_thread: Optional[threading.Thread] = None
         self._closed = False
@@ -292,7 +289,7 @@ class SpeechToTextWS:
             SpeechToTextWSError: If connection fails or websockets is not installed.
         """
         try:
-            import websockets.sync.client
+            from websockets.sync.client import connect as ws_connect
         except ImportError as e:
             raise SpeechToTextWSError(
                 "websockets library is required. Install with: pip install 'telnyx[websockets]'",
@@ -306,7 +303,7 @@ class SpeechToTextWS:
         headers = {"Authorization": f"Bearer {self._api_key}"}
 
         try:
-            self._ws = websockets.sync.client.connect(url, additional_headers=headers)
+            self._ws = ws_connect(url, additional_headers=headers)
             self._connected = True
             self._closed = False
 
@@ -386,7 +383,7 @@ class SpeechToTextWS:
                 try:
                     message = self._ws.recv()
                     if isinstance(message, str):
-                        data = json.loads(message)
+                        data: dict[str, Any] = json.loads(message)
                         event = SttEvent.from_dict(data)
                         try:
                             self._events_queue.put(event, timeout=1.0)
@@ -408,7 +405,12 @@ class SpeechToTextWS:
         self.connect()
         return self
 
-    def __exit__(self, exc_type, exc_val, exc_tb) -> None:
+    def __exit__(
+        self,
+        exc_type: Optional[type[BaseException]],
+        exc_val: Optional[BaseException],
+        exc_tb: Any,
+    ) -> None:
         """Context manager exit."""
         self.close()
 
@@ -461,7 +463,7 @@ class AsyncSpeechToTextWS:
         self._params = params
         self._base_url = base_url
 
-        self._ws: Optional["websockets.asyncio.client.ClientConnection"] = None
+        self._ws: Any = None  # websockets.asyncio.client.ClientConnection
         self._closed = False
         self._connected = False
 
@@ -472,7 +474,7 @@ class AsyncSpeechToTextWS:
             SpeechToTextWSError: If connection fails or websockets is not installed.
         """
         try:
-            import websockets.asyncio.client
+            from websockets.asyncio.client import connect as ws_connect
         except ImportError as e:
             raise SpeechToTextWSError(
                 "websockets library is required. Install with: pip install 'telnyx[websockets]'",
@@ -486,7 +488,7 @@ class AsyncSpeechToTextWS:
         headers = {"Authorization": f"Bearer {self._api_key}"}
 
         try:
-            self._ws = await websockets.asyncio.client.connect(url, additional_headers=headers)
+            self._ws = await ws_connect(url, additional_headers=headers)
             self._connected = True
             self._closed = False
         except Exception as e:
@@ -528,7 +530,7 @@ class AsyncSpeechToTextWS:
                 if self._closed:
                     break
                 if isinstance(message, str):
-                    data = json.loads(message)
+                    data: dict[str, Any] = json.loads(message)
                     yield SttEvent.from_dict(data)
         except Exception:
             if not self._closed:
@@ -554,7 +556,12 @@ class AsyncSpeechToTextWS:
         await self.connect()
         return self
 
-    async def __aexit__(self, exc_type, exc_val, exc_tb) -> None:
+    async def __aexit__(
+        self,
+        exc_type: Optional[type[BaseException]],
+        exc_val: Optional[BaseException],
+        exc_tb: Any,
+    ) -> None:
         """Async context manager exit."""
         await self.close()
 
