@@ -1,5 +1,19 @@
 # Changelog
 
+## 4.89.0 (2026-03-30)
+
+Full Changelog: [v4.88.1...v4.89.0](https://github.com/team-telnyx/telnyx-python/compare/v4.88.1...v4.89.0)
+
+### Features
+
+* **lib:** add Speech-to-Text WebSocket streaming support ([b7e059a](https://github.com/team-telnyx/telnyx-python/commit/b7e059ab7d86a982f8773a420867f827fde2ca51))
+
+
+### Bug Fixes
+
+* resolve pyright strict mode type errors ([3283d71](https://github.com/team-telnyx/telnyx-python/commit/3283d71d81d515147e7c2b96acf541f38ae34f9c))
+* resolve ruff import sorting errors ([f210455](https://github.com/team-telnyx/telnyx-python/commit/f2104551e00dedd2db3bab6596e58591efd899ef))
+
 ## 4.88.1 (2026-03-28)
 
 Full Changelog: [v4.88.0...v4.88.1](https://github.com/team-telnyx/telnyx-python/compare/v4.88.0...v4.88.1)
