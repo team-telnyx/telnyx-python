@@ -6,12 +6,12 @@ including WebSocket support for real-time streaming APIs.
 """
 
 from telnyx.lib.speech_to_text_ws import (
-    AsyncSpeechToTextWS,
-    SpeechToTextStreamParams,
-    SpeechToTextWS,
-    SpeechToTextWSError,
-    SttEvent,
     SttWord,
+    SttEvent,
+    SpeechToTextWS,
+    AsyncSpeechToTextWS,
+    SpeechToTextWSError,
+    SpeechToTextStreamParams,
 )
 
 __all__ = [
