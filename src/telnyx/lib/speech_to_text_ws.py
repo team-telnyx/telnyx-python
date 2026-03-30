@@ -40,10 +40,10 @@ from __future__ import annotations
 
 import json
 import threading
-from dataclasses import dataclass, field
 from queue import Empty, Queue
 from typing import TYPE_CHECKING, Iterator, Optional
-from urllib.parse import urlencode, urlparse
+from dataclasses import field, dataclass
+from urllib.parse import urlparse, urlencode
 
 if TYPE_CHECKING:
     from collections.abc import AsyncIterator
