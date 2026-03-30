@@ -95,6 +95,7 @@ if TYPE_CHECKING:
         document_links,
         ip_connections,
         porting_orders,
+        speech_to_text,
         text_to_speech,
         user_addresses,
         advanced_orders,
@@ -235,6 +236,7 @@ if TYPE_CHECKING:
     from .resources.detail_records import DetailRecordsResource, AsyncDetailRecordsResource
     from .resources.document_links import DocumentLinksResource, AsyncDocumentLinksResource
     from .resources.ip_connections import IPConnectionsResource, AsyncIPConnectionsResource
+    from .resources.speech_to_text import SpeechToTextResource, AsyncSpeechToTextResource
     from .resources.text_to_speech import TextToSpeechResource, AsyncTextToSpeechResource
     from .resources.user_addresses import UserAddressesResource, AsyncUserAddressesResource
     from .resources.actions.actions import ActionsResource, AsyncActionsResource
@@ -1403,6 +1405,13 @@ class Telnyx(SyncAPIClient):
         from .resources.texml_applications import TexmlApplicationsResource
 
         return TexmlApplicationsResource(self)
+
+    @cached_property
+    def speech_to_text(self) -> SpeechToTextResource:
+        """Speech to text streaming operations via WebSocket"""
+        from .resources.speech_to_text import SpeechToTextResource
+
+        return SpeechToTextResource(self)
 
     @cached_property
     def text_to_speech(self) -> TextToSpeechResource:
@@ -2736,6 +2745,13 @@ class AsyncTelnyx(AsyncAPIClient):
         return AsyncTexmlApplicationsResource(self)
 
     @cached_property
+    def speech_to_text(self) -> AsyncSpeechToTextResource:
+        """Speech to text streaming operations via WebSocket"""
+        from .resources.speech_to_text import AsyncSpeechToTextResource
+
+        return AsyncSpeechToTextResource(self)
+
+    @cached_property
     def text_to_speech(self) -> AsyncTextToSpeechResource:
         """Text to speech streaming command operations"""
         from .resources.text_to_speech import AsyncTextToSpeechResource
@@ -4010,6 +4026,13 @@ class TelnyxWithRawResponse:
         return TexmlApplicationsResourceWithRawResponse(self._client.texml_applications)
 
     @cached_property
+    def speech_to_text(self) -> speech_to_text.SpeechToTextResourceWithRawResponse:
+        """Speech to text streaming operations via WebSocket"""
+        from .resources.speech_to_text import SpeechToTextResourceWithRawResponse
+
+        return SpeechToTextResourceWithRawResponse(self._client.speech_to_text)
+
+    @cached_property
     def text_to_speech(self) -> text_to_speech.TextToSpeechResourceWithRawResponse:
         """Text to speech streaming command operations"""
         from .resources.text_to_speech import TextToSpeechResourceWithRawResponse
@@ -5149,6 +5172,13 @@ class AsyncTelnyxWithRawResponse:
         from .resources.texml_applications import AsyncTexmlApplicationsResourceWithRawResponse
 
         return AsyncTexmlApplicationsResourceWithRawResponse(self._client.texml_applications)
+
+    @cached_property
+    def speech_to_text(self) -> speech_to_text.AsyncSpeechToTextResourceWithRawResponse:
+        """Speech to text streaming operations via WebSocket"""
+        from .resources.speech_to_text import AsyncSpeechToTextResourceWithRawResponse
+
+        return AsyncSpeechToTextResourceWithRawResponse(self._client.speech_to_text)
 
     @cached_property
     def text_to_speech(self) -> text_to_speech.AsyncTextToSpeechResourceWithRawResponse:
@@ -6298,6 +6328,13 @@ class TelnyxWithStreamedResponse:
         from .resources.texml_applications import TexmlApplicationsResourceWithStreamingResponse
 
         return TexmlApplicationsResourceWithStreamingResponse(self._client.texml_applications)
+
+    @cached_property
+    def speech_to_text(self) -> speech_to_text.SpeechToTextResourceWithStreamingResponse:
+        """Speech to text streaming operations via WebSocket"""
+        from .resources.speech_to_text import SpeechToTextResourceWithStreamingResponse
+
+        return SpeechToTextResourceWithStreamingResponse(self._client.speech_to_text)
 
     @cached_property
     def text_to_speech(self) -> text_to_speech.TextToSpeechResourceWithStreamingResponse:
@@ -7481,6 +7518,13 @@ class AsyncTelnyxWithStreamedResponse:
         from .resources.texml_applications import AsyncTexmlApplicationsResourceWithStreamingResponse
 
         return AsyncTexmlApplicationsResourceWithStreamingResponse(self._client.texml_applications)
+
+    @cached_property
+    def speech_to_text(self) -> speech_to_text.AsyncSpeechToTextResourceWithStreamingResponse:
+        """Speech to text streaming operations via WebSocket"""
+        from .resources.speech_to_text import AsyncSpeechToTextResourceWithStreamingResponse
+
+        return AsyncSpeechToTextResourceWithStreamingResponse(self._client.speech_to_text)
 
     @cached_property
     def text_to_speech(self) -> text_to_speech.AsyncTextToSpeechResourceWithStreamingResponse:
