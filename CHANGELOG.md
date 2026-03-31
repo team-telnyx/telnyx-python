@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.90.0 (2026-03-31)
+
+Full Changelog: [v4.89.0...v4.90.0](https://github.com/team-telnyx/telnyx-python/compare/v4.89.0...v4.90.0)
+
+### Features
+
+* **lib:** add ED25519 webhook signature verification ([18be54b](https://github.com/team-telnyx/telnyx-python/commit/18be54bff12109ba79b6ba2a80a881fdfaa523f0))
+
 ## 4.89.0 (2026-03-30)
 
 Full Changelog: [v4.88.1...v4.89.0](https://github.com/team-telnyx/telnyx-python/compare/v4.88.1...v4.89.0)
