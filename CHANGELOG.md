@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.94.1 (2026-04-07)
+
+Full Changelog: [v4.94.0...v4.94.1](https://github.com/team-telnyx/telnyx-python/compare/v4.94.0...v4.94.1)
+
+### Bug Fixes
+
+* **client:** preserve hardcoded query params when merging with user params ([acc1ed8](https://github.com/team-telnyx/telnyx-python/commit/acc1ed8681f91c7f601916c297dc2fa0a4b59617))
+
 ## 4.94.0 (2026-04-07)
 
 Full Changelog: [v4.93.0...v4.94.0](https://github.com/team-telnyx/telnyx-python/compare/v4.93.0...v4.94.0)
