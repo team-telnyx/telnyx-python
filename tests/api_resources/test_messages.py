@@ -659,6 +659,31 @@ class TestMessages:
                     "link": "http://example.com/media.jpg",
                     "voice": True,
                 },
+                "template": {
+                    "components": [
+                        {
+                            "index": 0,
+                            "parameters": [
+                                {
+                                    "text": "text",
+                                    "type": "text",
+                                }
+                            ],
+                            "sub_type": "quick_reply",
+                            "type": "header",
+                        }
+                    ],
+                    "language": {
+                        "code": "en_US",
+                        "policy": "deterministic",
+                    },
+                    "name": "order_confirmation",
+                    "template_id": "019cd44b-3a1c-781b-956e-bd33e9fd2ac6",
+                },
+                "text": {
+                    "body": "Hello from Telnyx!",
+                    "preview_url": True,
+                },
                 "type": "audio",
                 "video": {
                     "caption": "caption",
@@ -1393,6 +1418,31 @@ class TestAsyncMessages:
                     "filename": "filename",
                     "link": "http://example.com/media.jpg",
                     "voice": True,
+                },
+                "template": {
+                    "components": [
+                        {
+                            "index": 0,
+                            "parameters": [
+                                {
+                                    "text": "text",
+                                    "type": "text",
+                                }
+                            ],
+                            "sub_type": "quick_reply",
+                            "type": "header",
+                        }
+                    ],
+                    "language": {
+                        "code": "en_US",
+                        "policy": "deterministic",
+                    },
+                    "name": "order_confirmation",
+                    "template_id": "019cd44b-3a1c-781b-956e-bd33e9fd2ac6",
+                },
+                "text": {
+                    "body": "Hello from Telnyx!",
+                    "preview_url": True,
                 },
                 "type": "audio",
                 "video": {
