@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Dict, List, Iterable
-from typing_extensions import TypedDict
+from typing_extensions import Literal, TypedDict
 
 from ..._types import SequenceNotStr
 from .enabled_features import EnabledFeatures
@@ -16,7 +16,7 @@ from .messaging_settings_param import MessagingSettingsParam
 from .telephony_settings_param import TelephonySettingsParam
 from .transcription_settings_param import TranscriptionSettingsParam
 
-__all__ = ["AssistantUpdateParams"]
+__all__ = ["AssistantUpdateParams", "ObservabilitySettings"]
 
 
 class AssistantUpdateParams(TypedDict, total=False):
@@ -75,6 +75,8 @@ class AssistantUpdateParams(TypedDict, total=False):
 
     name: str
 
+    observability_settings: ObservabilitySettings
+
     privacy_settings: PrivacySettingsParam
 
     promote_to_main: bool
@@ -100,3 +102,13 @@ class AssistantUpdateParams(TypedDict, total=False):
 
     widget_settings: WidgetSettingsParam
     """Configuration settings for the assistant's web widget."""
+
+
+class ObservabilitySettings(TypedDict, total=False):
+    host: str
+
+    public_key_ref: str
+
+    secret_key_ref: str
+
+    status: Literal["enabled", "disabled"]
