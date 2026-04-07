@@ -581,6 +581,8 @@ from telnyx.types.ai import (
     InferenceEmbeddingWebhookToolParams,
     InsightSettings,
     MessagingSettings,
+    Observability,
+    ObservabilityReq,
     PrivacySettings,
     RetrievalTool,
     TelephonySettings,

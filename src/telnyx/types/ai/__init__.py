@@ -6,6 +6,7 @@ from .bucket_ids import BucketIDs as BucketIDs
 from .hangup_tool import HangupTool as HangupTool
 from .conversation import Conversation as Conversation
 from .mission_data import MissionData as MissionData
+from .observability import Observability as Observability
 from .assistant_tool import AssistantTool as AssistantTool
 from .retrieval_tool import RetrievalTool as RetrievalTool
 from .voice_settings import VoiceSettings as VoiceSettings
@@ -59,6 +60,7 @@ from .cluster_retrieve_params import ClusterRetrieveParams as ClusterRetrievePar
 from .embedding_create_params import EmbeddingCreateParams as EmbeddingCreateParams
 from .embedding_list_response import EmbeddingListResponse as EmbeddingListResponse
 from .mission_create_response import MissionCreateResponse as MissionCreateResponse
+from .observability_req_param import ObservabilityReqParam as ObservabilityReqParam
 from .assistant_imports_params import AssistantImportsParams as AssistantImportsParams
 from .cluster_compute_response import ClusterComputeResponse as ClusterComputeResponse
 from .conversation_list_params import ConversationListParams as ConversationListParams
