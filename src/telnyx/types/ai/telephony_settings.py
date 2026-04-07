@@ -34,6 +34,13 @@ class RecordingSettings(BaseModel):
     channels: Optional[Literal["single", "dual"]] = None
     """The number of channels for the recording. 'single' for mono, 'dual' for stereo."""
 
+    enabled: Optional[bool] = None
+    """Whether call recording is enabled.
+
+    When set to false, calls will not be recorded regardless of other recording
+    configuration.
+    """
+
     format: Optional[Literal["wav", "mp3"]] = None
     """The format of the recording file."""
 

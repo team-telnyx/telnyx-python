@@ -128,6 +128,7 @@ class TestVersions:
                 },
                 "recording_settings": {
                     "channels": "single",
+                    "enabled": True,
                     "format": "wav",
                 },
                 "supports_unauthenticated_web_calls": True,
@@ -538,6 +539,7 @@ class TestAsyncVersions:
                 },
                 "recording_settings": {
                     "channels": "single",
+                    "enabled": True,
                     "format": "wav",
                 },
                 "supports_unauthenticated_web_calls": True,
