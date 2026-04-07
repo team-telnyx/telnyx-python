@@ -68,6 +68,7 @@ class TestAssistants:
                 },
                 "recording_settings": {
                     "channels": "single",
+                    "enabled": True,
                     "format": "wav",
                 },
                 "supports_unauthenticated_web_calls": True,
@@ -304,6 +305,7 @@ class TestAssistants:
                 },
                 "recording_settings": {
                     "channels": "single",
+                    "enabled": True,
                     "format": "wav",
                 },
                 "supports_unauthenticated_web_calls": True,
@@ -821,6 +823,7 @@ class TestAsyncAssistants:
                 },
                 "recording_settings": {
                     "channels": "single",
+                    "enabled": True,
                     "format": "wav",
                 },
                 "supports_unauthenticated_web_calls": True,
@@ -1057,6 +1060,7 @@ class TestAsyncAssistants:
                 },
                 "recording_settings": {
                     "channels": "single",
+                    "enabled": True,
                     "format": "wav",
                 },
                 "supports_unauthenticated_web_calls": True,
