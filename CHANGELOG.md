@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.96.0 (2026-04-07)
+
+Full Changelog: [v4.95.0...v4.96.0](https://github.com/team-telnyx/telnyx-python/compare/v4.95.0...v4.96.0)
+
+### Features
+
+* AI-2180: Add message_template to SendMessageTool schema ([7e21d03](https://github.com/team-telnyx/telnyx-python/commit/7e21d03c66deab58fdad063a0f9b2b14805576d2))
+
 ## 4.95.0 (2026-04-07)
 
 Full Changelog: [v4.94.1...v4.95.0](https://github.com/team-telnyx/telnyx-python/compare/v4.94.1...v4.95.0)
