@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.95.0 (2026-04-07)
+
+Full Changelog: [v4.94.1...v4.95.0](https://github.com/team-telnyx/telnyx-python/compare/v4.94.1...v4.95.0)
+
+### Features
+
+* add enabled boolean to recording_settings [AI-2178] ([0c7505a](https://github.com/team-telnyx/telnyx-python/commit/0c7505a6f76751c5a88fa715624f554be6325a80))
+
 ## 4.94.1 (2026-04-07)
 
 Full Changelog: [v4.94.0...v4.94.1](https://github.com/team-telnyx/telnyx-python/compare/v4.94.0...v4.94.1)
