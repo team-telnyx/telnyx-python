@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.92.0 (2026-04-07)
+
+Full Changelog: [v4.91.0...v4.92.0](https://github.com/team-telnyx/telnyx-python/compare/v4.91.0...v4.92.0)
+
+### Features
+
+* Assistants: add observability ([0782eea](https://github.com/team-telnyx/telnyx-python/commit/0782eeabd629a5178d4db6ace324398c5b9b6094))
+
 ## 4.91.0 (2026-04-07)
 
 Full Changelog: [v4.90.0...v4.91.0](https://github.com/team-telnyx/telnyx-python/compare/v4.90.0...v4.91.0)
