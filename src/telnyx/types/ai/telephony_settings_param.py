@@ -33,6 +33,13 @@ class RecordingSettings(TypedDict, total=False):
     channels: Literal["single", "dual"]
     """The number of channels for the recording. 'single' for mono, 'dual' for stereo."""
 
+    enabled: bool
+    """Whether call recording is enabled.
+
+    When set to false, calls will not be recorded regardless of other recording
+    configuration.
+    """
+
     format: Literal["wav", "mp3"]
     """The format of the recording file."""
 
