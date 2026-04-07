@@ -4647,6 +4647,7 @@ Methods:
 - <code title="post /verifications/call">client.verifications.<a href="./src/telnyx/resources/verifications/verifications.py">trigger_call</a>(\*\*<a href="src/telnyx/types/verification_trigger_call_params.py">params</a>) -> <a href="./src/telnyx/types/create_verification_response.py">CreateVerificationResponse</a></code>
 - <code title="post /verifications/flashcall">client.verifications.<a href="./src/telnyx/resources/verifications/verifications.py">trigger_flashcall</a>(\*\*<a href="src/telnyx/types/verification_trigger_flashcall_params.py">params</a>) -> <a href="./src/telnyx/types/create_verification_response.py">CreateVerificationResponse</a></code>
 - <code title="post /verifications/sms">client.verifications.<a href="./src/telnyx/resources/verifications/verifications.py">trigger_sms</a>(\*\*<a href="src/telnyx/types/verification_trigger_sms_params.py">params</a>) -> <a href="./src/telnyx/types/create_verification_response.py">CreateVerificationResponse</a></code>
+- <code title="post /verifications/whatsapp">client.verifications.<a href="./src/telnyx/resources/verifications/verifications.py">trigger_whatsapp_verification</a>(\*\*<a href="src/telnyx/types/verification_trigger_whatsapp_verification_params.py">params</a>) -> <a href="./src/telnyx/types/create_verification_response.py">CreateVerificationResponse</a></code>
 
 ## ByPhoneNumber
 

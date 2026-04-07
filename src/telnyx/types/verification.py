@@ -33,7 +33,7 @@ class Verification(BaseModel):
     profile.
     """
 
-    type: Optional[Literal["sms", "call", "flashcall"]] = None
+    type: Optional[Literal["sms", "call", "flashcall", "whatsapp"]] = None
     """The possible types of verification."""
 
     updated_at: Optional[str] = None

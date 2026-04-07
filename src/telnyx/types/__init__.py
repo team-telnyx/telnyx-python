@@ -1417,6 +1417,9 @@ from .call_machine_premium_greeting_ended_webhook_event import (
 from .sim_card_list_wireless_connectivity_logs_response import (
     SimCardListWirelessConnectivityLogsResponse as SimCardListWirelessConnectivityLogsResponse,
 )
+from .verification_trigger_whatsapp_verification_params import (
+    VerificationTriggerWhatsappVerificationParams as VerificationTriggerWhatsappVerificationParams,
+)
 from .call_conversation_insights_generated_webhook_event import (
     CallConversationInsightsGeneratedWebhookEvent as CallConversationInsightsGeneratedWebhookEvent,
 )

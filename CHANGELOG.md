@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.91.0 (2026-04-07)
+
+Full Changelog: [v4.90.0...v4.91.0](https://github.com/team-telnyx/telnyx-python/compare/v4.90.0...v4.91.0)
+
+### Features
+
+* MSG-6673: Add WhatsApp verification endpoint and profile settings ([e873736](https://github.com/team-telnyx/telnyx-python/commit/e8737361ace9db26d4f9e89ed79ceada7c89caa8))
+
 ## 4.90.0 (2026-03-31)
 
 Full Changelog: [v4.89.0...v4.90.0](https://github.com/team-telnyx/telnyx-python/compare/v4.89.0...v4.90.0)

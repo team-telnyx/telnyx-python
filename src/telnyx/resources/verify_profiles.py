@@ -64,6 +64,7 @@ class VerifyProfilesResource(SyncAPIResource):
         sms: verify_profile_create_params.SMS | Omit = omit,
         webhook_failover_url: str | Omit = omit,
         webhook_url: str | Omit = omit,
+        whatsapp: verify_profile_create_params.Whatsapp | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -95,6 +96,7 @@ class VerifyProfilesResource(SyncAPIResource):
                     "sms": sms,
                     "webhook_failover_url": webhook_failover_url,
                     "webhook_url": webhook_url,
+                    "whatsapp": whatsapp,
                 },
                 verify_profile_create_params.VerifyProfileCreateParams,
             ),
@@ -149,6 +151,7 @@ class VerifyProfilesResource(SyncAPIResource):
         sms: verify_profile_update_params.SMS | Omit = omit,
         webhook_failover_url: str | Omit = omit,
         webhook_url: str | Omit = omit,
+        whatsapp: verify_profile_update_params.Whatsapp | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -182,6 +185,7 @@ class VerifyProfilesResource(SyncAPIResource):
                     "sms": sms,
                     "webhook_failover_url": webhook_failover_url,
                     "webhook_url": webhook_url,
+                    "whatsapp": whatsapp,
                 },
                 verify_profile_update_params.VerifyProfileUpdateParams,
             ),
@@ -399,6 +403,7 @@ class AsyncVerifyProfilesResource(AsyncAPIResource):
         sms: verify_profile_create_params.SMS | Omit = omit,
         webhook_failover_url: str | Omit = omit,
         webhook_url: str | Omit = omit,
+        whatsapp: verify_profile_create_params.Whatsapp | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -430,6 +435,7 @@ class AsyncVerifyProfilesResource(AsyncAPIResource):
                     "sms": sms,
                     "webhook_failover_url": webhook_failover_url,
                     "webhook_url": webhook_url,
+                    "whatsapp": whatsapp,
                 },
                 verify_profile_create_params.VerifyProfileCreateParams,
             ),
@@ -484,6 +490,7 @@ class AsyncVerifyProfilesResource(AsyncAPIResource):
         sms: verify_profile_update_params.SMS | Omit = omit,
         webhook_failover_url: str | Omit = omit,
         webhook_url: str | Omit = omit,
+        whatsapp: verify_profile_update_params.Whatsapp | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -517,6 +524,7 @@ class AsyncVerifyProfilesResource(AsyncAPIResource):
                     "sms": sms,
                     "webhook_failover_url": webhook_failover_url,
                     "webhook_url": webhook_url,
+                    "whatsapp": whatsapp,
                 },
                 verify_profile_update_params.VerifyProfileUpdateParams,
             ),

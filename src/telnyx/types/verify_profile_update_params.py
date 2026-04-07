@@ -7,7 +7,7 @@ from typing_extensions import TypedDict
 
 from .._types import SequenceNotStr
 
-__all__ = ["VerifyProfileUpdateParams", "Call", "Flashcall", "Rcs", "SMS"]
+__all__ = ["VerifyProfileUpdateParams", "Call", "Flashcall", "Rcs", "SMS", "Whatsapp"]
 
 
 class VerifyProfileUpdateParams(TypedDict, total=False):
@@ -26,6 +26,8 @@ class VerifyProfileUpdateParams(TypedDict, total=False):
     webhook_failover_url: str
 
     webhook_url: str
+
+    whatsapp: Whatsapp
 
 
 class Call(TypedDict, total=False, extra_items=object):  # type: ignore[call-arg]
@@ -138,6 +140,29 @@ class SMS(TypedDict, total=False, extra_items=object):  # type: ignore[call-arg]
 
     messaging_template_id: str
     """The message template identifier selected from /verify_profiles/templates"""
+
+    whitelisted_destinations: SequenceNotStr[str]
+    """Enabled country destinations to send verification codes.
+
+    The elements in the list must be valid ISO 3166-1 alpha-2 country codes. If set
+    to `["*"]`, all destinations will be allowed.
+    """
+
+
+class Whatsapp(TypedDict, total=False, extra_items=object):  # type: ignore[call-arg]
+    app_name: str
+    """
+    The name that identifies the application requesting 2fa in the verification
+    message.
+    """
+
+    default_verification_timeout_secs: int
+    """
+    For every request that is initiated via this Verify profile, this sets the
+    number of seconds before a verification request code expires. Once the
+    verification request expires, the user cannot use the code to verify their
+    identity.
+    """
 
     whitelisted_destinations: SequenceNotStr[str]
     """Enabled country destinations to send verification codes.
