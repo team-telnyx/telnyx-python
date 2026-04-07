@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.93.0 (2026-04-07)
+
+Full Changelog: [v4.92.0...v4.93.0](https://github.com/team-telnyx/telnyx-python/compare/v4.92.0...v4.93.0)
+
+### Features
+
+* MSG-6666: Add template and text properties to WhatsApp send message schema ([313ba3d](https://github.com/team-telnyx/telnyx-python/commit/313ba3d602d43079854e8b8dc8ee8a68c8cf5c47))
+
 ## 4.92.0 (2026-04-07)
 
 Full Changelog: [v4.91.0...v4.92.0](https://github.com/team-telnyx/telnyx-python/compare/v4.91.0...v4.92.0)
