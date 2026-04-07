@@ -206,6 +206,54 @@ class TestVerifications:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_trigger_whatsapp_verification(self, client: Telnyx) -> None:
+        verification = client.verifications.trigger_whatsapp_verification(
+            phone_number="+13035551234",
+            verify_profile_id="12ade33a-21c0-473b-b055-b3c836e1c292",
+        )
+        assert_matches_type(CreateVerificationResponse, verification, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_trigger_whatsapp_verification_with_all_params(self, client: Telnyx) -> None:
+        verification = client.verifications.trigger_whatsapp_verification(
+            phone_number="+13035551234",
+            verify_profile_id="12ade33a-21c0-473b-b055-b3c836e1c292",
+            custom_code="43612",
+            timeout_secs=300,
+        )
+        assert_matches_type(CreateVerificationResponse, verification, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_raw_response_trigger_whatsapp_verification(self, client: Telnyx) -> None:
+        response = client.verifications.with_raw_response.trigger_whatsapp_verification(
+            phone_number="+13035551234",
+            verify_profile_id="12ade33a-21c0-473b-b055-b3c836e1c292",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        verification = response.parse()
+        assert_matches_type(CreateVerificationResponse, verification, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_streaming_response_trigger_whatsapp_verification(self, client: Telnyx) -> None:
+        with client.verifications.with_streaming_response.trigger_whatsapp_verification(
+            phone_number="+13035551234",
+            verify_profile_id="12ade33a-21c0-473b-b055-b3c836e1c292",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            verification = response.parse()
+            assert_matches_type(CreateVerificationResponse, verification, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
 
 class TestAsyncVerifications:
     parametrize = pytest.mark.parametrize(
@@ -387,6 +435,54 @@ class TestAsyncVerifications:
     @parametrize
     async def test_streaming_response_trigger_sms(self, async_client: AsyncTelnyx) -> None:
         async with async_client.verifications.with_streaming_response.trigger_sms(
+            phone_number="+13035551234",
+            verify_profile_id="12ade33a-21c0-473b-b055-b3c836e1c292",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            verification = await response.parse()
+            assert_matches_type(CreateVerificationResponse, verification, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_trigger_whatsapp_verification(self, async_client: AsyncTelnyx) -> None:
+        verification = await async_client.verifications.trigger_whatsapp_verification(
+            phone_number="+13035551234",
+            verify_profile_id="12ade33a-21c0-473b-b055-b3c836e1c292",
+        )
+        assert_matches_type(CreateVerificationResponse, verification, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_trigger_whatsapp_verification_with_all_params(self, async_client: AsyncTelnyx) -> None:
+        verification = await async_client.verifications.trigger_whatsapp_verification(
+            phone_number="+13035551234",
+            verify_profile_id="12ade33a-21c0-473b-b055-b3c836e1c292",
+            custom_code="43612",
+            timeout_secs=300,
+        )
+        assert_matches_type(CreateVerificationResponse, verification, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_raw_response_trigger_whatsapp_verification(self, async_client: AsyncTelnyx) -> None:
+        response = await async_client.verifications.with_raw_response.trigger_whatsapp_verification(
+            phone_number="+13035551234",
+            verify_profile_id="12ade33a-21c0-473b-b055-b3c836e1c292",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        verification = await response.parse()
+        assert_matches_type(CreateVerificationResponse, verification, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_streaming_response_trigger_whatsapp_verification(self, async_client: AsyncTelnyx) -> None:
+        async with async_client.verifications.with_streaming_response.trigger_whatsapp_verification(
             phone_number="+13035551234",
             verify_profile_id="12ade33a-21c0-473b-b055-b3c836e1c292",
         ) as response:

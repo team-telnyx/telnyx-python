@@ -10,6 +10,7 @@ from ...types import (
     verification_trigger_sms_params,
     verification_trigger_call_params,
     verification_trigger_flashcall_params,
+    verification_trigger_whatsapp_verification_params,
 )
 from .actions import (
     ActionsResource,
@@ -263,6 +264,57 @@ class VerificationsResource(SyncAPIResource):
             cast_to=CreateVerificationResponse,
         )
 
+    def trigger_whatsapp_verification(
+        self,
+        *,
+        phone_number: str,
+        verify_profile_id: str,
+        custom_code: Optional[str] | Omit = omit,
+        timeout_secs: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> CreateVerificationResponse:
+        """
+        Trigger WhatsApp verification
+
+        Args:
+          phone_number: +E164 formatted phone number.
+
+          verify_profile_id: The identifier of the associated Verify profile.
+
+          custom_code: Send a self-generated numeric code to the end-user
+
+          timeout_secs: The number of seconds the verification code is valid for.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._post(
+            "/verifications/whatsapp",
+            body=maybe_transform(
+                {
+                    "phone_number": phone_number,
+                    "verify_profile_id": verify_profile_id,
+                    "custom_code": custom_code,
+                    "timeout_secs": timeout_secs,
+                },
+                verification_trigger_whatsapp_verification_params.VerificationTriggerWhatsappVerificationParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=CreateVerificationResponse,
+        )
+
 
 class AsyncVerificationsResource(AsyncAPIResource):
     """Two factor authentication API"""
@@ -483,6 +535,57 @@ class AsyncVerificationsResource(AsyncAPIResource):
             cast_to=CreateVerificationResponse,
         )
 
+    async def trigger_whatsapp_verification(
+        self,
+        *,
+        phone_number: str,
+        verify_profile_id: str,
+        custom_code: Optional[str] | Omit = omit,
+        timeout_secs: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> CreateVerificationResponse:
+        """
+        Trigger WhatsApp verification
+
+        Args:
+          phone_number: +E164 formatted phone number.
+
+          verify_profile_id: The identifier of the associated Verify profile.
+
+          custom_code: Send a self-generated numeric code to the end-user
+
+          timeout_secs: The number of seconds the verification code is valid for.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._post(
+            "/verifications/whatsapp",
+            body=await async_maybe_transform(
+                {
+                    "phone_number": phone_number,
+                    "verify_profile_id": verify_profile_id,
+                    "custom_code": custom_code,
+                    "timeout_secs": timeout_secs,
+                },
+                verification_trigger_whatsapp_verification_params.VerificationTriggerWhatsappVerificationParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=CreateVerificationResponse,
+        )
+
 
 class VerificationsResourceWithRawResponse:
     def __init__(self, verifications: VerificationsResource) -> None:
@@ -499,6 +602,9 @@ class VerificationsResourceWithRawResponse:
         )
         self.trigger_sms = to_raw_response_wrapper(
             verifications.trigger_sms,
+        )
+        self.trigger_whatsapp_verification = to_raw_response_wrapper(
+            verifications.trigger_whatsapp_verification,
         )
 
     @cached_property
@@ -528,6 +634,9 @@ class AsyncVerificationsResourceWithRawResponse:
         self.trigger_sms = async_to_raw_response_wrapper(
             verifications.trigger_sms,
         )
+        self.trigger_whatsapp_verification = async_to_raw_response_wrapper(
+            verifications.trigger_whatsapp_verification,
+        )
 
     @cached_property
     def by_phone_number(self) -> AsyncByPhoneNumberResourceWithRawResponse:
@@ -556,6 +665,9 @@ class VerificationsResourceWithStreamingResponse:
         self.trigger_sms = to_streamed_response_wrapper(
             verifications.trigger_sms,
         )
+        self.trigger_whatsapp_verification = to_streamed_response_wrapper(
+            verifications.trigger_whatsapp_verification,
+        )
 
     @cached_property
     def by_phone_number(self) -> ByPhoneNumberResourceWithStreamingResponse:
@@ -583,6 +695,9 @@ class AsyncVerificationsResourceWithStreamingResponse:
         )
         self.trigger_sms = async_to_streamed_response_wrapper(
             verifications.trigger_sms,
+        )
+        self.trigger_whatsapp_verification = async_to_streamed_response_wrapper(
+            verifications.trigger_whatsapp_verification,
         )
 
     @cached_property
