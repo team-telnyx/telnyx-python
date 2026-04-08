@@ -7,10 +7,26 @@ from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from .._types import FileTypes
 
-__all__ = ["VoiceCloneCreateFromUploadParams", "TelnyxQwen3TtsClone", "TelnyxUltraClone", "MinimaxClone"]
+__all__ = [
+    "VoiceCloneCreateFromUploadParams",
+    "Params",
+    "ParamsTelnyxQwen3TtsClone",
+    "ParamsTelnyxUltraClone",
+    "ParamsMinimaxClone",
+]
 
 
-class TelnyxQwen3TtsClone(TypedDict, total=False):
+class VoiceCloneCreateFromUploadParams(TypedDict, total=False):
+    params: Required[Params]
+    """Multipart form data for creating a voice clone from a direct audio upload.
+
+    Maximum file size: 5MB for Telnyx, 20MB for Minimax.
+    """
+
+
+class ParamsTelnyxQwen3TtsClone(TypedDict, total=False):
+    """Upload-based voice clone using the Telnyx Qwen3TTS model (default)."""
+
     audio_file: Required[FileTypes]
     """Audio file to clone the voice from.
 
@@ -40,7 +56,9 @@ class TelnyxQwen3TtsClone(TypedDict, total=False):
     """Optional transcript of the audio file. Providing this improves clone quality."""
 
 
-class TelnyxUltraClone(TypedDict, total=False):
+class ParamsTelnyxUltraClone(TypedDict, total=False):
+    """Upload-based voice clone using the Telnyx Ultra model."""
+
     audio_file: Required[FileTypes]
     """Audio file to clone the voice from.
 
@@ -70,7 +88,9 @@ class TelnyxUltraClone(TypedDict, total=False):
     """Optional transcript of the audio file. Providing this improves clone quality."""
 
 
-class MinimaxClone(TypedDict, total=False):
+class ParamsMinimaxClone(TypedDict, total=False):
+    """Upload-based voice clone using the Minimax provider."""
+
     audio_file: Required[FileTypes]
     """Audio file to clone the voice from.
 
@@ -100,4 +120,4 @@ class MinimaxClone(TypedDict, total=False):
     """Optional transcript of the audio file. Providing this improves clone quality."""
 
 
-VoiceCloneCreateFromUploadParams: TypeAlias = Union[TelnyxQwen3TtsClone, TelnyxUltraClone, MinimaxClone]
+Params: TypeAlias = Union[ParamsTelnyxQwen3TtsClone, ParamsTelnyxUltraClone, ParamsMinimaxClone]

@@ -19,7 +19,7 @@ from .._response import (
 )
 from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from .._base_client import AsyncPaginator, make_request_options
-from ..types.pronunciation_dict_list_response import PronunciationDictListResponse
+from ..types.pronunciation_dict_data import PronunciationDictData
 from ..types.pronunciation_dict_create_response import PronunciationDictCreateResponse
 from ..types.pronunciation_dict_update_response import PronunciationDictUpdateResponse
 from ..types.pronunciation_dict_retrieve_response import PronunciationDictRetrieveResponse
@@ -214,7 +214,7 @@ class PronunciationDictsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[PronunciationDictListResponse]:
+    ) -> SyncDefaultFlatPagination[PronunciationDictData]:
         """List all pronunciation dictionaries for the authenticated organization.
 
         Results
@@ -235,7 +235,7 @@ class PronunciationDictsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/pronunciation_dicts",
-            page=SyncDefaultFlatPagination[PronunciationDictListResponse],
+            page=SyncDefaultFlatPagination[PronunciationDictData],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -249,7 +249,7 @@ class PronunciationDictsResource(SyncAPIResource):
                     pronunciation_dict_list_params.PronunciationDictListParams,
                 ),
             ),
-            model=PronunciationDictListResponse,
+            model=PronunciationDictData,
         )
 
     def delete(
@@ -474,7 +474,7 @@ class AsyncPronunciationDictsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[PronunciationDictListResponse, AsyncDefaultFlatPagination[PronunciationDictListResponse]]:
+    ) -> AsyncPaginator[PronunciationDictData, AsyncDefaultFlatPagination[PronunciationDictData]]:
         """List all pronunciation dictionaries for the authenticated organization.
 
         Results
@@ -495,7 +495,7 @@ class AsyncPronunciationDictsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/pronunciation_dicts",
-            page=AsyncDefaultFlatPagination[PronunciationDictListResponse],
+            page=AsyncDefaultFlatPagination[PronunciationDictData],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -509,7 +509,7 @@ class AsyncPronunciationDictsResource(AsyncAPIResource):
                     pronunciation_dict_list_params.PronunciationDictListParams,
                 ),
             ),
-            model=PronunciationDictListResponse,
+            model=PronunciationDictData,
         )
 
     async def delete(
