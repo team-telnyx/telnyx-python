@@ -5580,10 +5580,12 @@ Types:
 
 ```python
 from telnyx.types import (
+    PronunciationDictAliasItem,
+    PronunciationDictData,
+    PronunciationDictPhonemeItem,
     PronunciationDictCreateResponse,
     PronunciationDictRetrieveResponse,
     PronunciationDictUpdateResponse,
-    PronunciationDictListResponse,
 )
 ```
 
@@ -5592,5 +5594,5 @@ Methods:
 - <code title="post /pronunciation_dicts">client.pronunciation_dicts.<a href="./src/telnyx/resources/pronunciation_dicts.py">create</a>(\*\*<a href="src/telnyx/types/pronunciation_dict_create_params.py">params</a>) -> <a href="./src/telnyx/types/pronunciation_dict_create_response.py">PronunciationDictCreateResponse</a></code>
 - <code title="get /pronunciation_dicts/{id}">client.pronunciation_dicts.<a href="./src/telnyx/resources/pronunciation_dicts.py">retrieve</a>(id) -> <a href="./src/telnyx/types/pronunciation_dict_retrieve_response.py">PronunciationDictRetrieveResponse</a></code>
 - <code title="patch /pronunciation_dicts/{id}">client.pronunciation_dicts.<a href="./src/telnyx/resources/pronunciation_dicts.py">update</a>(id, \*\*<a href="src/telnyx/types/pronunciation_dict_update_params.py">params</a>) -> <a href="./src/telnyx/types/pronunciation_dict_update_response.py">PronunciationDictUpdateResponse</a></code>
-- <code title="get /pronunciation_dicts">client.pronunciation_dicts.<a href="./src/telnyx/resources/pronunciation_dicts.py">list</a>(\*\*<a href="src/telnyx/types/pronunciation_dict_list_params.py">params</a>) -> <a href="./src/telnyx/types/pronunciation_dict_list_response.py">SyncDefaultFlatPagination[PronunciationDictListResponse]</a></code>
+- <code title="get /pronunciation_dicts">client.pronunciation_dicts.<a href="./src/telnyx/resources/pronunciation_dicts.py">list</a>(\*\*<a href="src/telnyx/types/pronunciation_dict_list_params.py">params</a>) -> <a href="./src/telnyx/types/pronunciation_dict_data.py">SyncDefaultFlatPagination[PronunciationDictData]</a></code>
 - <code title="delete /pronunciation_dicts/{id}">client.pronunciation_dicts.<a href="./src/telnyx/resources/pronunciation_dicts.py">delete</a>(id) -> None</code>

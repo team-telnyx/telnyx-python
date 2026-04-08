@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Iterable
+from typing import Iterable, Optional
 from typing_extensions import Literal, overload
 
 import httpx
@@ -265,7 +265,7 @@ class CallsResource(SyncAPIResource):
         status_callback_method: Literal["GET", "POST"] | Omit = omit,
         supervise_call_sid: str | Omit = omit,
         supervising_role: Literal["barge", "whisper", "monitor"] | Omit = omit,
-        texml: object | Omit = omit,
+        texml: Optional[str] | Omit = omit,
         time_limit: int | Omit = omit,
         timeout_seconds: int | Omit = omit,
         to: str | Omit = omit,
@@ -449,7 +449,7 @@ class CallsResource(SyncAPIResource):
         timeout_seconds: int | Omit = omit,
         to: str | Omit = omit,
         trim: Literal["trim-silence", "do-not-trim"] | Omit = omit,
-        url: object | Omit = omit,
+        url: Optional[str] | Omit = omit,
         url_method: Literal["GET", "POST"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -625,12 +625,12 @@ class CallsResource(SyncAPIResource):
         status_callback_method: Literal["GET", "POST"] | Omit = omit,
         supervise_call_sid: str | Omit = omit,
         supervising_role: Literal["barge", "whisper", "monitor"] | Omit = omit,
-        texml: object | Omit = omit,
+        texml: Optional[str] | Omit = omit,
         time_limit: int | Omit = omit,
         timeout_seconds: int | Omit = omit,
         to: str | Omit = omit,
         trim: Literal["trim-silence", "do-not-trim"] | Omit = omit,
-        url: object | Omit = omit,
+        url: Optional[str] | Omit = omit,
         url_method: Literal["GET", "POST"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -768,7 +768,7 @@ class CallsResource(SyncAPIResource):
         self,
         account_sid: str,
         *,
-        url: str | object | Omit = omit,
+        url: str | Optional[str] | Omit = omit,
         application_sid: str | Omit = omit,
         async_amd: bool | Omit = omit,
         async_amd_status_callback: str | Omit = omit,
@@ -806,7 +806,7 @@ class CallsResource(SyncAPIResource):
         status_callback_method: Literal["GET", "POST"] | Omit = omit,
         supervise_call_sid: str | Omit = omit,
         supervising_role: Literal["barge", "whisper", "monitor"] | Omit = omit,
-        texml: object | str | Omit = omit,
+        texml: Optional[str] | str | Omit = omit,
         time_limit: int | Omit = omit,
         timeout_seconds: int | Omit = omit,
         to: str | Omit = omit,
@@ -1328,7 +1328,7 @@ class AsyncCallsResource(AsyncAPIResource):
         status_callback_method: Literal["GET", "POST"] | Omit = omit,
         supervise_call_sid: str | Omit = omit,
         supervising_role: Literal["barge", "whisper", "monitor"] | Omit = omit,
-        texml: object | Omit = omit,
+        texml: Optional[str] | Omit = omit,
         time_limit: int | Omit = omit,
         timeout_seconds: int | Omit = omit,
         to: str | Omit = omit,
@@ -1512,7 +1512,7 @@ class AsyncCallsResource(AsyncAPIResource):
         timeout_seconds: int | Omit = omit,
         to: str | Omit = omit,
         trim: Literal["trim-silence", "do-not-trim"] | Omit = omit,
-        url: object | Omit = omit,
+        url: Optional[str] | Omit = omit,
         url_method: Literal["GET", "POST"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1688,12 +1688,12 @@ class AsyncCallsResource(AsyncAPIResource):
         status_callback_method: Literal["GET", "POST"] | Omit = omit,
         supervise_call_sid: str | Omit = omit,
         supervising_role: Literal["barge", "whisper", "monitor"] | Omit = omit,
-        texml: object | Omit = omit,
+        texml: Optional[str] | Omit = omit,
         time_limit: int | Omit = omit,
         timeout_seconds: int | Omit = omit,
         to: str | Omit = omit,
         trim: Literal["trim-silence", "do-not-trim"] | Omit = omit,
-        url: object | Omit = omit,
+        url: Optional[str] | Omit = omit,
         url_method: Literal["GET", "POST"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1831,7 +1831,7 @@ class AsyncCallsResource(AsyncAPIResource):
         self,
         account_sid: str,
         *,
-        url: str | object | Omit = omit,
+        url: str | Optional[str] | Omit = omit,
         application_sid: str | Omit = omit,
         async_amd: bool | Omit = omit,
         async_amd_status_callback: str | Omit = omit,
@@ -1869,7 +1869,7 @@ class AsyncCallsResource(AsyncAPIResource):
         status_callback_method: Literal["GET", "POST"] | Omit = omit,
         supervise_call_sid: str | Omit = omit,
         supervising_role: Literal["barge", "whisper", "monitor"] | Omit = omit,
-        texml: object | str | Omit = omit,
+        texml: Optional[str] | str | Omit = omit,
         time_limit: int | Omit = omit,
         timeout_seconds: int | Omit = omit,
         to: str | Omit = omit,

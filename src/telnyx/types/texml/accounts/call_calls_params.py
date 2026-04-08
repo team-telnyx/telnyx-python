@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Union, Iterable
+from typing import Union, Iterable, Optional
 from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
 from ...._utils import PropertyInfo
@@ -193,7 +193,7 @@ class WithURL(TypedDict, total=False):
     supervisor), monitor (hear both sides but supervisor muted). Default: barge
     """
 
-    texml: Annotated[object, PropertyInfo(alias="Texml")]
+    texml: Annotated[Optional[str], PropertyInfo(alias="Texml")]
 
     time_limit: Annotated[int, PropertyInfo(alias="TimeLimit")]
     """The maximum duration of the call in seconds.
@@ -441,7 +441,7 @@ class WithTeXml(TypedDict, total=False):
     Defaults to `trim-silence`.
     """
 
-    url: Annotated[object, PropertyInfo(alias="Url")]
+    url: Annotated[Optional[str], PropertyInfo(alias="Url")]
 
     url_method: Annotated[Literal["GET", "POST"], PropertyInfo(alias="UrlMethod")]
     """HTTP request type used for `Url`.
@@ -630,7 +630,7 @@ class ApplicationDefault(TypedDict, total=False):
     supervisor), monitor (hear both sides but supervisor muted). Default: barge
     """
 
-    texml: Annotated[object, PropertyInfo(alias="Texml")]
+    texml: Annotated[Optional[str], PropertyInfo(alias="Texml")]
 
     time_limit: Annotated[int, PropertyInfo(alias="TimeLimit")]
     """The maximum duration of the call in seconds.
@@ -658,7 +658,7 @@ class ApplicationDefault(TypedDict, total=False):
     Defaults to `trim-silence`.
     """
 
-    url: Annotated[object, PropertyInfo(alias="Url")]
+    url: Annotated[Optional[str], PropertyInfo(alias="Url")]
 
     url_method: Annotated[Literal["GET", "POST"], PropertyInfo(alias="UrlMethod")]
     """HTTP request type used for `Url`.
