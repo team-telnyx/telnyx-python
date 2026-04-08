@@ -109,6 +109,14 @@ class ActionTransferParams(TypedDict, total=False):
     `H264`, `AMR-WB`.
     """
 
+    privacy: Literal["id", "none"]
+    """Indicates the privacy level to be used for the call.
+
+    When set to `id`, caller ID information (name and number) will be hidden from
+    the called party. When set to `none` or omitted, caller ID will be shown
+    normally.
+    """
+
     record: Literal["record-from-answer"]
     """Start recording automatically after an event. Disabled by default."""
 

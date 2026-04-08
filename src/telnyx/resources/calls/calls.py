@@ -103,6 +103,7 @@ class CallsResource(SyncAPIResource):
         park_after_unbridge: str | Omit = omit,
         preferred_codecs: str | Omit = omit,
         prevent_double_bridge: bool | Omit = omit,
+        privacy: Literal["id", "none"] | Omit = omit,
         record: Literal["record-from-answer"] | Omit = omit,
         record_channels: Literal["single", "dual"] | Omit = omit,
         record_custom_file_name: str | Omit = omit,
@@ -247,6 +248,10 @@ class CallsResource(SyncAPIResource):
           prevent_double_bridge: Prevents bridging and hangs up the call if the target is already bridged.
               Disabled by default.
 
+          privacy: Indicates the privacy level to be used for the call. When set to `id`, caller ID
+              information (name and number) will be hidden from the called party. When set to
+              `none` or omitted, caller ID will be shown normally.
+
           record: Start recording automatically after an event. Disabled by default.
 
           record_channels: Defines which channel should be recorded ('single' or 'dual') when `record` is
@@ -373,6 +378,7 @@ class CallsResource(SyncAPIResource):
                     "park_after_unbridge": park_after_unbridge,
                     "preferred_codecs": preferred_codecs,
                     "prevent_double_bridge": prevent_double_bridge,
+                    "privacy": privacy,
                     "record": record,
                     "record_channels": record_channels,
                     "record_custom_file_name": record_custom_file_name,
@@ -501,6 +507,7 @@ class AsyncCallsResource(AsyncAPIResource):
         park_after_unbridge: str | Omit = omit,
         preferred_codecs: str | Omit = omit,
         prevent_double_bridge: bool | Omit = omit,
+        privacy: Literal["id", "none"] | Omit = omit,
         record: Literal["record-from-answer"] | Omit = omit,
         record_channels: Literal["single", "dual"] | Omit = omit,
         record_custom_file_name: str | Omit = omit,
@@ -645,6 +652,10 @@ class AsyncCallsResource(AsyncAPIResource):
           prevent_double_bridge: Prevents bridging and hangs up the call if the target is already bridged.
               Disabled by default.
 
+          privacy: Indicates the privacy level to be used for the call. When set to `id`, caller ID
+              information (name and number) will be hidden from the called party. When set to
+              `none` or omitted, caller ID will be shown normally.
+
           record: Start recording automatically after an event. Disabled by default.
 
           record_channels: Defines which channel should be recorded ('single' or 'dual') when `record` is
@@ -771,6 +782,7 @@ class AsyncCallsResource(AsyncAPIResource):
                     "park_after_unbridge": park_after_unbridge,
                     "preferred_codecs": preferred_codecs,
                     "prevent_double_bridge": prevent_double_bridge,
+                    "privacy": privacy,
                     "record": record,
                     "record_channels": record_channels,
                     "record_custom_file_name": record_custom_file_name,

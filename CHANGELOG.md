@@ -1,5 +1,18 @@
 # Changelog
 
+## 4.99.0 (2026-04-08)
+
+Full Changelog: [v4.98.0...v4.99.0](https://github.com/team-telnyx/telnyx-python/compare/v4.98.0...v4.99.0)
+
+### Features
+
+* TELAPPS-5707: Add privacy parameter to Call Control dial and transfer ([994a4ae](https://github.com/team-telnyx/telnyx-python/commit/994a4ae45ea23d56e53d9b63c0900ff194579b81))
+
+
+### Reverts
+
+* revert stainless.yml changes from pronunciation dictionaries commit ([62f4c82](https://github.com/team-telnyx/telnyx-python/commit/62f4c82b7231098bac5254a4a4ae05ec0c5550a4))
+
 ## 4.98.0 (2026-04-08)
 
 Full Changelog: [v4.97.0...v4.98.0](https://github.com/team-telnyx/telnyx-python/compare/v4.97.0...v4.98.0)

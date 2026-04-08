@@ -3443,6 +3443,7 @@ class ActionsResource(SyncAPIResource):
         mute_dtmf: Literal["none", "both", "self", "opposite"] | Omit = omit,
         park_after_unbridge: str | Omit = omit,
         preferred_codecs: str | Omit = omit,
+        privacy: Literal["id", "none"] | Omit = omit,
         record: Literal["record-from-answer"] | Omit = omit,
         record_channels: Literal["single", "dual"] | Omit = omit,
         record_custom_file_name: str | Omit = omit,
@@ -3549,6 +3550,10 @@ class ActionsResource(SyncAPIResource):
               call. The codecs supported are `G722`, `PCMU`, `PCMA`, `G729`, `OPUS`, `VP8`,
               `H264`, `AMR-WB`.
 
+          privacy: Indicates the privacy level to be used for the call. When set to `id`, caller ID
+              information (name and number) will be hidden from the called party. When set to
+              `none` or omitted, caller ID will be shown normally.
+
           record: Start recording automatically after an event. Disabled by default.
 
           record_channels: Defines which channel should be recorded ('single' or 'dual') when `record` is
@@ -3649,6 +3654,7 @@ class ActionsResource(SyncAPIResource):
                     "mute_dtmf": mute_dtmf,
                     "park_after_unbridge": park_after_unbridge,
                     "preferred_codecs": preferred_codecs,
+                    "privacy": privacy,
                     "record": record,
                     "record_channels": record_channels,
                     "record_custom_file_name": record_custom_file_name,
@@ -7043,6 +7049,7 @@ class AsyncActionsResource(AsyncAPIResource):
         mute_dtmf: Literal["none", "both", "self", "opposite"] | Omit = omit,
         park_after_unbridge: str | Omit = omit,
         preferred_codecs: str | Omit = omit,
+        privacy: Literal["id", "none"] | Omit = omit,
         record: Literal["record-from-answer"] | Omit = omit,
         record_channels: Literal["single", "dual"] | Omit = omit,
         record_custom_file_name: str | Omit = omit,
@@ -7149,6 +7156,10 @@ class AsyncActionsResource(AsyncAPIResource):
               call. The codecs supported are `G722`, `PCMU`, `PCMA`, `G729`, `OPUS`, `VP8`,
               `H264`, `AMR-WB`.
 
+          privacy: Indicates the privacy level to be used for the call. When set to `id`, caller ID
+              information (name and number) will be hidden from the called party. When set to
+              `none` or omitted, caller ID will be shown normally.
+
           record: Start recording automatically after an event. Disabled by default.
 
           record_channels: Defines which channel should be recorded ('single' or 'dual') when `record` is
@@ -7249,6 +7260,7 @@ class AsyncActionsResource(AsyncAPIResource):
                     "mute_dtmf": mute_dtmf,
                     "park_after_unbridge": park_after_unbridge,
                     "preferred_codecs": preferred_codecs,
+                    "privacy": privacy,
                     "record": record,
                     "record_channels": record_channels,
                     "record_custom_file_name": record_custom_file_name,
