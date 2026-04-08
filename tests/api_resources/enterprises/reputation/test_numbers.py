@@ -12,8 +12,8 @@ from tests.utils import assert_matches_type
 from telnyx.pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from telnyx.types.shared import ReputationPhoneNumberWithReputationData
 from telnyx.types.enterprises.reputation import (
+    NumberCreateResponse,
     NumberRetrieveResponse,
-    NumberAssociateResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -21,6 +21,52 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 class TestNumbers:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_create(self, client: Telnyx) -> None:
+        number = client.enterprises.reputation.numbers.create(
+            enterprise_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+            phone_numbers=["+16035551234"],
+        )
+        assert_matches_type(NumberCreateResponse, number, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_raw_response_create(self, client: Telnyx) -> None:
+        response = client.enterprises.reputation.numbers.with_raw_response.create(
+            enterprise_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+            phone_numbers=["+16035551234"],
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        number = response.parse()
+        assert_matches_type(NumberCreateResponse, number, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_streaming_response_create(self, client: Telnyx) -> None:
+        with client.enterprises.reputation.numbers.with_streaming_response.create(
+            enterprise_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+            phone_numbers=["+16035551234"],
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            number = response.parse()
+            assert_matches_type(NumberCreateResponse, number, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_path_params_create(self, client: Telnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `enterprise_id` but received ''"):
+            client.enterprises.reputation.numbers.with_raw_response.create(
+                enterprise_id="",
+                phone_numbers=["+16035551234"],
+            )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -147,54 +193,8 @@ class TestNumbers:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_associate(self, client: Telnyx) -> None:
-        number = client.enterprises.reputation.numbers.associate(
-            enterprise_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
-            phone_numbers=["+16035551234"],
-        )
-        assert_matches_type(NumberAssociateResponse, number, path=["response"])
-
-    @pytest.mark.skip(reason="Mock server tests are disabled")
-    @parametrize
-    def test_raw_response_associate(self, client: Telnyx) -> None:
-        response = client.enterprises.reputation.numbers.with_raw_response.associate(
-            enterprise_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
-            phone_numbers=["+16035551234"],
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        number = response.parse()
-        assert_matches_type(NumberAssociateResponse, number, path=["response"])
-
-    @pytest.mark.skip(reason="Mock server tests are disabled")
-    @parametrize
-    def test_streaming_response_associate(self, client: Telnyx) -> None:
-        with client.enterprises.reputation.numbers.with_streaming_response.associate(
-            enterprise_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
-            phone_numbers=["+16035551234"],
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            number = response.parse()
-            assert_matches_type(NumberAssociateResponse, number, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip(reason="Mock server tests are disabled")
-    @parametrize
-    def test_path_params_associate(self, client: Telnyx) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `enterprise_id` but received ''"):
-            client.enterprises.reputation.numbers.with_raw_response.associate(
-                enterprise_id="",
-                phone_numbers=["+16035551234"],
-            )
-
-    @pytest.mark.skip(reason="Mock server tests are disabled")
-    @parametrize
-    def test_method_disassociate(self, client: Telnyx) -> None:
-        number = client.enterprises.reputation.numbers.disassociate(
+    def test_method_delete(self, client: Telnyx) -> None:
+        number = client.enterprises.reputation.numbers.delete(
             phone_number="+16035551234",
             enterprise_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
         )
@@ -202,8 +202,8 @@ class TestNumbers:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_disassociate(self, client: Telnyx) -> None:
-        response = client.enterprises.reputation.numbers.with_raw_response.disassociate(
+    def test_raw_response_delete(self, client: Telnyx) -> None:
+        response = client.enterprises.reputation.numbers.with_raw_response.delete(
             phone_number="+16035551234",
             enterprise_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
         )
@@ -215,8 +215,8 @@ class TestNumbers:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_disassociate(self, client: Telnyx) -> None:
-        with client.enterprises.reputation.numbers.with_streaming_response.disassociate(
+    def test_streaming_response_delete(self, client: Telnyx) -> None:
+        with client.enterprises.reputation.numbers.with_streaming_response.delete(
             phone_number="+16035551234",
             enterprise_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
         ) as response:
@@ -230,15 +230,15 @@ class TestNumbers:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_path_params_disassociate(self, client: Telnyx) -> None:
+    def test_path_params_delete(self, client: Telnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `enterprise_id` but received ''"):
-            client.enterprises.reputation.numbers.with_raw_response.disassociate(
+            client.enterprises.reputation.numbers.with_raw_response.delete(
                 phone_number="+16035551234",
                 enterprise_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `phone_number` but received ''"):
-            client.enterprises.reputation.numbers.with_raw_response.disassociate(
+            client.enterprises.reputation.numbers.with_raw_response.delete(
                 phone_number="",
                 enterprise_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
             )
@@ -248,6 +248,52 @@ class TestAsyncNumbers:
     parametrize = pytest.mark.parametrize(
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_create(self, async_client: AsyncTelnyx) -> None:
+        number = await async_client.enterprises.reputation.numbers.create(
+            enterprise_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+            phone_numbers=["+16035551234"],
+        )
+        assert_matches_type(NumberCreateResponse, number, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_raw_response_create(self, async_client: AsyncTelnyx) -> None:
+        response = await async_client.enterprises.reputation.numbers.with_raw_response.create(
+            enterprise_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+            phone_numbers=["+16035551234"],
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        number = await response.parse()
+        assert_matches_type(NumberCreateResponse, number, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_streaming_response_create(self, async_client: AsyncTelnyx) -> None:
+        async with async_client.enterprises.reputation.numbers.with_streaming_response.create(
+            enterprise_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+            phone_numbers=["+16035551234"],
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            number = await response.parse()
+            assert_matches_type(NumberCreateResponse, number, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_path_params_create(self, async_client: AsyncTelnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `enterprise_id` but received ''"):
+            await async_client.enterprises.reputation.numbers.with_raw_response.create(
+                enterprise_id="",
+                phone_numbers=["+16035551234"],
+            )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -374,54 +420,8 @@ class TestAsyncNumbers:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_associate(self, async_client: AsyncTelnyx) -> None:
-        number = await async_client.enterprises.reputation.numbers.associate(
-            enterprise_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
-            phone_numbers=["+16035551234"],
-        )
-        assert_matches_type(NumberAssociateResponse, number, path=["response"])
-
-    @pytest.mark.skip(reason="Mock server tests are disabled")
-    @parametrize
-    async def test_raw_response_associate(self, async_client: AsyncTelnyx) -> None:
-        response = await async_client.enterprises.reputation.numbers.with_raw_response.associate(
-            enterprise_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
-            phone_numbers=["+16035551234"],
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        number = await response.parse()
-        assert_matches_type(NumberAssociateResponse, number, path=["response"])
-
-    @pytest.mark.skip(reason="Mock server tests are disabled")
-    @parametrize
-    async def test_streaming_response_associate(self, async_client: AsyncTelnyx) -> None:
-        async with async_client.enterprises.reputation.numbers.with_streaming_response.associate(
-            enterprise_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
-            phone_numbers=["+16035551234"],
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            number = await response.parse()
-            assert_matches_type(NumberAssociateResponse, number, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip(reason="Mock server tests are disabled")
-    @parametrize
-    async def test_path_params_associate(self, async_client: AsyncTelnyx) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `enterprise_id` but received ''"):
-            await async_client.enterprises.reputation.numbers.with_raw_response.associate(
-                enterprise_id="",
-                phone_numbers=["+16035551234"],
-            )
-
-    @pytest.mark.skip(reason="Mock server tests are disabled")
-    @parametrize
-    async def test_method_disassociate(self, async_client: AsyncTelnyx) -> None:
-        number = await async_client.enterprises.reputation.numbers.disassociate(
+    async def test_method_delete(self, async_client: AsyncTelnyx) -> None:
+        number = await async_client.enterprises.reputation.numbers.delete(
             phone_number="+16035551234",
             enterprise_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
         )
@@ -429,8 +429,8 @@ class TestAsyncNumbers:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_disassociate(self, async_client: AsyncTelnyx) -> None:
-        response = await async_client.enterprises.reputation.numbers.with_raw_response.disassociate(
+    async def test_raw_response_delete(self, async_client: AsyncTelnyx) -> None:
+        response = await async_client.enterprises.reputation.numbers.with_raw_response.delete(
             phone_number="+16035551234",
             enterprise_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
         )
@@ -442,8 +442,8 @@ class TestAsyncNumbers:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_disassociate(self, async_client: AsyncTelnyx) -> None:
-        async with async_client.enterprises.reputation.numbers.with_streaming_response.disassociate(
+    async def test_streaming_response_delete(self, async_client: AsyncTelnyx) -> None:
+        async with async_client.enterprises.reputation.numbers.with_streaming_response.delete(
             phone_number="+16035551234",
             enterprise_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
         ) as response:
@@ -457,15 +457,15 @@ class TestAsyncNumbers:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_path_params_disassociate(self, async_client: AsyncTelnyx) -> None:
+    async def test_path_params_delete(self, async_client: AsyncTelnyx) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `enterprise_id` but received ''"):
-            await async_client.enterprises.reputation.numbers.with_raw_response.disassociate(
+            await async_client.enterprises.reputation.numbers.with_raw_response.delete(
                 phone_number="+16035551234",
                 enterprise_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `phone_number` but received ''"):
-            await async_client.enterprises.reputation.numbers.with_raw_response.disassociate(
+            await async_client.enterprises.reputation.numbers.with_raw_response.delete(
                 phone_number="",
                 enterprise_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
             )

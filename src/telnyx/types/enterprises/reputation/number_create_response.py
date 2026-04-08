@@ -6,7 +6,7 @@ from datetime import datetime
 from ...._models import BaseModel
 from ...shared.meta_info import MetaInfo
 
-__all__ = ["NumberAssociateResponse", "Data"]
+__all__ = ["NumberCreateResponse", "Data"]
 
 
 class Data(BaseModel):
@@ -26,7 +26,7 @@ class Data(BaseModel):
     """When the record was last updated"""
 
 
-class NumberAssociateResponse(BaseModel):
+class NumberCreateResponse(BaseModel):
     data: Optional[List[Data]] = None
 
     meta: Optional[MetaInfo] = None
