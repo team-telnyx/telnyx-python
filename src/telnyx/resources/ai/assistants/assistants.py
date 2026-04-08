@@ -83,6 +83,7 @@ from ....types.ai.widget_settings_param import WidgetSettingsParam
 from ....types.ai.insight_settings_param import InsightSettingsParam
 from ....types.ai.privacy_settings_param import PrivacySettingsParam
 from ....types.ai.assistant_chat_response import AssistantChatResponse
+from ....types.ai.observability_req_param import ObservabilityReqParam
 from ....types.ai.messaging_settings_param import MessagingSettingsParam
 from ....types.ai.telephony_settings_param import TelephonySettingsParam
 from ....types.ai.assistant_delete_response import AssistantDeleteResponse
@@ -158,7 +159,7 @@ class AssistantsResource(SyncAPIResource):
         insight_settings: InsightSettingsParam | Omit = omit,
         llm_api_key_ref: str | Omit = omit,
         messaging_settings: MessagingSettingsParam | Omit = omit,
-        observability_settings: assistant_create_params.ObservabilitySettings | Omit = omit,
+        observability_settings: ObservabilityReqParam | Omit = omit,
         privacy_settings: PrivacySettingsParam | Omit = omit,
         telephony_settings: TelephonySettingsParam | Omit = omit,
         tool_ids: SequenceNotStr[str] | Omit = omit,
@@ -313,7 +314,7 @@ class AssistantsResource(SyncAPIResource):
         messaging_settings: MessagingSettingsParam | Omit = omit,
         model: str | Omit = omit,
         name: str | Omit = omit,
-        observability_settings: assistant_update_params.ObservabilitySettings | Omit = omit,
+        observability_settings: ObservabilityReqParam | Omit = omit,
         privacy_settings: PrivacySettingsParam | Omit = omit,
         promote_to_main: bool | Omit = omit,
         telephony_settings: TelephonySettingsParam | Omit = omit,
@@ -765,7 +766,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
         insight_settings: InsightSettingsParam | Omit = omit,
         llm_api_key_ref: str | Omit = omit,
         messaging_settings: MessagingSettingsParam | Omit = omit,
-        observability_settings: assistant_create_params.ObservabilitySettings | Omit = omit,
+        observability_settings: ObservabilityReqParam | Omit = omit,
         privacy_settings: PrivacySettingsParam | Omit = omit,
         telephony_settings: TelephonySettingsParam | Omit = omit,
         tool_ids: SequenceNotStr[str] | Omit = omit,
@@ -920,7 +921,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
         messaging_settings: MessagingSettingsParam | Omit = omit,
         model: str | Omit = omit,
         name: str | Omit = omit,
-        observability_settings: assistant_update_params.ObservabilitySettings | Omit = omit,
+        observability_settings: ObservabilityReqParam | Omit = omit,
         privacy_settings: PrivacySettingsParam | Omit = omit,
         promote_to_main: bool | Omit = omit,
         telephony_settings: TelephonySettingsParam | Omit = omit,

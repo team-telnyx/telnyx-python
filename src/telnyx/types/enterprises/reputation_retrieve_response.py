@@ -5,8 +5,8 @@ from typing import Optional
 from ..._models import BaseModel
 from .enterprise_reputation_public import EnterpriseReputationPublic
 
-__all__ = ["ReputationListResponse"]
+__all__ = ["ReputationRetrieveResponse"]
 
 
-class ReputationListResponse(BaseModel):
+class ReputationRetrieveResponse(BaseModel):
     data: Optional[EnterpriseReputationPublic] = None

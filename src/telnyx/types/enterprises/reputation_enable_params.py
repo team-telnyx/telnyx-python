@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from typing_extensions import Literal, Required, TypedDict
 
-__all__ = ["ReputationCreateParams"]
+__all__ = ["ReputationEnableParams"]
 
 
-class ReputationCreateParams(TypedDict, total=False):
+class ReputationEnableParams(TypedDict, total=False):
     loa_document_id: Required[str]
     """
     ID of the signed Letter of Authorization (LOA) document uploaded to the document

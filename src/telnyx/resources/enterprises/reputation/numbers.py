@@ -16,9 +16,9 @@ from ...._response import (
 )
 from ....pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from ...._base_client import AsyncPaginator, make_request_options
-from ....types.enterprises.reputation import number_list_params, number_create_params, number_retrieve_params
-from ....types.enterprises.reputation.number_create_response import NumberCreateResponse
+from ....types.enterprises.reputation import number_list_params, number_retrieve_params, number_associate_params
 from ....types.enterprises.reputation.number_retrieve_response import NumberRetrieveResponse
+from ....types.enterprises.reputation.number_associate_response import NumberAssociateResponse
 from ....types.shared.reputation_phone_number_with_reputation_data import ReputationPhoneNumberWithReputationData
 
 __all__ = ["NumbersResource", "AsyncNumbersResource"]
@@ -47,57 +47,6 @@ class NumbersResource(SyncAPIResource):
         For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
         return NumbersResourceWithStreamingResponse(self)
-
-    def create(
-        self,
-        enterprise_id: str,
-        *,
-        phone_numbers: SequenceNotStr[str],
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NumberCreateResponse:
-        """
-        Associate one or more phone numbers with an enterprise for Number Reputation
-        monitoring.
-
-        **Validations:**
-
-        - Phone numbers must be in E.164 format (e.g., `+16035551234`)
-        - Phone numbers must be in-service and belong to your account (verified via
-          Warehouse)
-        - Phone numbers must be US local numbers
-        - Phone numbers cannot already be associated with any enterprise
-
-        **Note:** This operation is atomic — if any number fails validation, the entire
-        request fails.
-
-        **Maximum:** 100 phone numbers per request.
-
-        Args:
-          phone_numbers: List of phone numbers to associate for reputation monitoring (max 100)
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not enterprise_id:
-            raise ValueError(f"Expected a non-empty value for `enterprise_id` but received {enterprise_id!r}")
-        return self._post(
-            path_template("/enterprises/{enterprise_id}/reputation/numbers", enterprise_id=enterprise_id),
-            body=maybe_transform({"phone_numbers": phone_numbers}, number_create_params.NumberCreateParams),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=NumberCreateResponse,
-        )
 
     def retrieve(
         self,
@@ -222,7 +171,58 @@ class NumbersResource(SyncAPIResource):
             model=ReputationPhoneNumberWithReputationData,
         )
 
-    def delete(
+    def associate(
+        self,
+        enterprise_id: str,
+        *,
+        phone_numbers: SequenceNotStr[str],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> NumberAssociateResponse:
+        """
+        Associate one or more phone numbers with an enterprise for Number Reputation
+        monitoring.
+
+        **Validations:**
+
+        - Phone numbers must be in E.164 format (e.g., `+16035551234`)
+        - Phone numbers must be in-service and belong to your account (verified via
+          Warehouse)
+        - Phone numbers must be US local numbers
+        - Phone numbers cannot already be associated with any enterprise
+
+        **Note:** This operation is atomic — if any number fails validation, the entire
+        request fails.
+
+        **Maximum:** 100 phone numbers per request.
+
+        Args:
+          phone_numbers: List of phone numbers to associate for reputation monitoring (max 100)
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not enterprise_id:
+            raise ValueError(f"Expected a non-empty value for `enterprise_id` but received {enterprise_id!r}")
+        return self._post(
+            path_template("/enterprises/{enterprise_id}/reputation/numbers", enterprise_id=enterprise_id),
+            body=maybe_transform({"phone_numbers": phone_numbers}, number_associate_params.NumberAssociateParams),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=NumberAssociateResponse,
+        )
+
+    def disassociate(
         self,
         phone_number: str,
         *,
@@ -290,57 +290,6 @@ class AsyncNumbersResource(AsyncAPIResource):
         For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
         return AsyncNumbersResourceWithStreamingResponse(self)
-
-    async def create(
-        self,
-        enterprise_id: str,
-        *,
-        phone_numbers: SequenceNotStr[str],
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NumberCreateResponse:
-        """
-        Associate one or more phone numbers with an enterprise for Number Reputation
-        monitoring.
-
-        **Validations:**
-
-        - Phone numbers must be in E.164 format (e.g., `+16035551234`)
-        - Phone numbers must be in-service and belong to your account (verified via
-          Warehouse)
-        - Phone numbers must be US local numbers
-        - Phone numbers cannot already be associated with any enterprise
-
-        **Note:** This operation is atomic — if any number fails validation, the entire
-        request fails.
-
-        **Maximum:** 100 phone numbers per request.
-
-        Args:
-          phone_numbers: List of phone numbers to associate for reputation monitoring (max 100)
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not enterprise_id:
-            raise ValueError(f"Expected a non-empty value for `enterprise_id` but received {enterprise_id!r}")
-        return await self._post(
-            path_template("/enterprises/{enterprise_id}/reputation/numbers", enterprise_id=enterprise_id),
-            body=await async_maybe_transform({"phone_numbers": phone_numbers}, number_create_params.NumberCreateParams),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=NumberCreateResponse,
-        )
 
     async def retrieve(
         self,
@@ -467,7 +416,60 @@ class AsyncNumbersResource(AsyncAPIResource):
             model=ReputationPhoneNumberWithReputationData,
         )
 
-    async def delete(
+    async def associate(
+        self,
+        enterprise_id: str,
+        *,
+        phone_numbers: SequenceNotStr[str],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> NumberAssociateResponse:
+        """
+        Associate one or more phone numbers with an enterprise for Number Reputation
+        monitoring.
+
+        **Validations:**
+
+        - Phone numbers must be in E.164 format (e.g., `+16035551234`)
+        - Phone numbers must be in-service and belong to your account (verified via
+          Warehouse)
+        - Phone numbers must be US local numbers
+        - Phone numbers cannot already be associated with any enterprise
+
+        **Note:** This operation is atomic — if any number fails validation, the entire
+        request fails.
+
+        **Maximum:** 100 phone numbers per request.
+
+        Args:
+          phone_numbers: List of phone numbers to associate for reputation monitoring (max 100)
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not enterprise_id:
+            raise ValueError(f"Expected a non-empty value for `enterprise_id` but received {enterprise_id!r}")
+        return await self._post(
+            path_template("/enterprises/{enterprise_id}/reputation/numbers", enterprise_id=enterprise_id),
+            body=await async_maybe_transform(
+                {"phone_numbers": phone_numbers}, number_associate_params.NumberAssociateParams
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=NumberAssociateResponse,
+        )
+
+    async def disassociate(
         self,
         phone_number: str,
         *,
@@ -516,17 +518,17 @@ class NumbersResourceWithRawResponse:
     def __init__(self, numbers: NumbersResource) -> None:
         self._numbers = numbers
 
-        self.create = to_raw_response_wrapper(
-            numbers.create,
-        )
         self.retrieve = to_raw_response_wrapper(
             numbers.retrieve,
         )
         self.list = to_raw_response_wrapper(
             numbers.list,
         )
-        self.delete = to_raw_response_wrapper(
-            numbers.delete,
+        self.associate = to_raw_response_wrapper(
+            numbers.associate,
+        )
+        self.disassociate = to_raw_response_wrapper(
+            numbers.disassociate,
         )
 
 
@@ -534,17 +536,17 @@ class AsyncNumbersResourceWithRawResponse:
     def __init__(self, numbers: AsyncNumbersResource) -> None:
         self._numbers = numbers
 
-        self.create = async_to_raw_response_wrapper(
-            numbers.create,
-        )
         self.retrieve = async_to_raw_response_wrapper(
             numbers.retrieve,
         )
         self.list = async_to_raw_response_wrapper(
             numbers.list,
         )
-        self.delete = async_to_raw_response_wrapper(
-            numbers.delete,
+        self.associate = async_to_raw_response_wrapper(
+            numbers.associate,
+        )
+        self.disassociate = async_to_raw_response_wrapper(
+            numbers.disassociate,
         )
 
 
@@ -552,17 +554,17 @@ class NumbersResourceWithStreamingResponse:
     def __init__(self, numbers: NumbersResource) -> None:
         self._numbers = numbers
 
-        self.create = to_streamed_response_wrapper(
-            numbers.create,
-        )
         self.retrieve = to_streamed_response_wrapper(
             numbers.retrieve,
         )
         self.list = to_streamed_response_wrapper(
             numbers.list,
         )
-        self.delete = to_streamed_response_wrapper(
-            numbers.delete,
+        self.associate = to_streamed_response_wrapper(
+            numbers.associate,
+        )
+        self.disassociate = to_streamed_response_wrapper(
+            numbers.disassociate,
         )
 
 
@@ -570,15 +572,15 @@ class AsyncNumbersResourceWithStreamingResponse:
     def __init__(self, numbers: AsyncNumbersResource) -> None:
         self._numbers = numbers
 
-        self.create = async_to_streamed_response_wrapper(
-            numbers.create,
-        )
         self.retrieve = async_to_streamed_response_wrapper(
             numbers.retrieve,
         )
         self.list = async_to_streamed_response_wrapper(
             numbers.list,
         )
-        self.delete = async_to_streamed_response_wrapper(
-            numbers.delete,
+        self.associate = async_to_streamed_response_wrapper(
+            numbers.associate,
+        )
+        self.disassociate = async_to_streamed_response_wrapper(
+            numbers.disassociate,
         )
