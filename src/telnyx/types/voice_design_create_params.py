@@ -34,7 +34,7 @@ class VoiceDesignCreateParams(TypedDict, total=False):
     when adding a version. Cannot be a UUID.
     """
 
-    provider: Literal["telnyx", "minimax"]
+    provider: Literal["telnyx", "minimax", "Telnyx", "Minimax"]
     """Voice synthesis provider.
 
     `telnyx` uses the Qwen3TTS model; `minimax` uses the Minimax speech models.

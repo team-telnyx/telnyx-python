@@ -6,10 +6,10 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["EnterpriseReputationPublic"]
+__all__ = ["ReputationEnableResponse", "Data"]
 
 
-class EnterpriseReputationPublic(BaseModel):
+class Data(BaseModel):
     check_frequency: Optional[Literal["business_daily", "daily", "weekly", "biweekly", "monthly", "never"]] = None
     """Frequency for refreshing reputation data"""
 
@@ -30,3 +30,7 @@ class EnterpriseReputationPublic(BaseModel):
 
     updated_at: Optional[datetime] = None
     """When the reputation settings were last updated"""
+
+
+class ReputationEnableResponse(BaseModel):
+    data: Optional[Data] = None

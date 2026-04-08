@@ -13,7 +13,9 @@ class VoiceCloneListParams(TypedDict, total=False):
     filter_name: Annotated[str, PropertyInfo(alias="filter[name]")]
     """Case-insensitive substring filter on the name field."""
 
-    filter_provider: Annotated[Literal["telnyx", "minimax"], PropertyInfo(alias="filter[provider]")]
+    filter_provider: Annotated[
+        Literal["telnyx", "minimax", "Telnyx", "Minimax"], PropertyInfo(alias="filter[provider]")
+    ]
     """Filter by voice synthesis provider. Case-insensitive."""
 
     page_number: Annotated[int, PropertyInfo(alias="page[number]")]

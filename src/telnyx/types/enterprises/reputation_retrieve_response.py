@@ -6,7 +6,7 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["ReputationUpdateFrequencyResponse", "Data"]
+__all__ = ["ReputationRetrieveResponse", "Data"]
 
 
 class Data(BaseModel):
@@ -32,5 +32,5 @@ class Data(BaseModel):
     """When the reputation settings were last updated"""
 
 
-class ReputationUpdateFrequencyResponse(BaseModel):
+class ReputationRetrieveResponse(BaseModel):
     data: Optional[Data] = None

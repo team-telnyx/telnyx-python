@@ -33,7 +33,7 @@ from .._response import (
 )
 from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from .._base_client import AsyncPaginator, make_request_options
-from ..types.voice_clone_data import VoiceCloneData
+from ..types.voice_clone_list_response import VoiceCloneListResponse
 from ..types.voice_clone_create_response import VoiceCloneCreateResponse
 from ..types.voice_clone_update_response import VoiceCloneUpdateResponse
 from ..types.voice_clone_create_from_upload_response import VoiceCloneCreateFromUploadResponse
@@ -72,7 +72,7 @@ class VoiceClonesResource(SyncAPIResource):
         language: str,
         name: str,
         voice_design_id: str,
-        provider: Literal["telnyx", "minimax"] | Omit = omit,
+        provider: Literal["telnyx", "minimax", "Telnyx", "Minimax"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -175,7 +175,7 @@ class VoiceClonesResource(SyncAPIResource):
         self,
         *,
         filter_name: str | Omit = omit,
-        filter_provider: Literal["telnyx", "minimax"] | Omit = omit,
+        filter_provider: Literal["telnyx", "minimax", "Telnyx", "Minimax"] | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         sort: Literal["name", "-name", "created_at", "-created_at"] | Omit = omit,
@@ -185,7 +185,7 @@ class VoiceClonesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[VoiceCloneData]:
+    ) -> SyncDefaultFlatPagination[VoiceCloneListResponse]:
         """
         Returns a paginated list of voice clones belonging to the authenticated account.
 
@@ -210,7 +210,7 @@ class VoiceClonesResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/voice_clones",
-            page=SyncDefaultFlatPagination[VoiceCloneData],
+            page=SyncDefaultFlatPagination[VoiceCloneListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -227,7 +227,7 @@ class VoiceClonesResource(SyncAPIResource):
                     voice_clone_list_params.VoiceCloneListParams,
                 ),
             ),
-            model=VoiceCloneData,
+            model=VoiceCloneListResponse,
         )
 
     def delete(
@@ -273,7 +273,7 @@ class VoiceClonesResource(SyncAPIResource):
         name: str,
         gender: Literal["male", "female", "neutral"] | Omit = omit,
         label: str | Omit = omit,
-        provider: Literal["telnyx", "minimax"] | Omit = omit,
+        provider: Literal["telnyx", "minimax", "Telnyx", "Minimax"] | Omit = omit,
         ref_text: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -406,7 +406,7 @@ class AsyncVoiceClonesResource(AsyncAPIResource):
         language: str,
         name: str,
         voice_design_id: str,
-        provider: Literal["telnyx", "minimax"] | Omit = omit,
+        provider: Literal["telnyx", "minimax", "Telnyx", "Minimax"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -509,7 +509,7 @@ class AsyncVoiceClonesResource(AsyncAPIResource):
         self,
         *,
         filter_name: str | Omit = omit,
-        filter_provider: Literal["telnyx", "minimax"] | Omit = omit,
+        filter_provider: Literal["telnyx", "minimax", "Telnyx", "Minimax"] | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         sort: Literal["name", "-name", "created_at", "-created_at"] | Omit = omit,
@@ -519,7 +519,7 @@ class AsyncVoiceClonesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[VoiceCloneData, AsyncDefaultFlatPagination[VoiceCloneData]]:
+    ) -> AsyncPaginator[VoiceCloneListResponse, AsyncDefaultFlatPagination[VoiceCloneListResponse]]:
         """
         Returns a paginated list of voice clones belonging to the authenticated account.
 
@@ -544,7 +544,7 @@ class AsyncVoiceClonesResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/voice_clones",
-            page=AsyncDefaultFlatPagination[VoiceCloneData],
+            page=AsyncDefaultFlatPagination[VoiceCloneListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -561,7 +561,7 @@ class AsyncVoiceClonesResource(AsyncAPIResource):
                     voice_clone_list_params.VoiceCloneListParams,
                 ),
             ),
-            model=VoiceCloneData,
+            model=VoiceCloneListResponse,
         )
 
     async def delete(
@@ -607,7 +607,7 @@ class AsyncVoiceClonesResource(AsyncAPIResource):
         name: str,
         gender: Literal["male", "female", "neutral"] | Omit = omit,
         label: str | Omit = omit,
-        provider: Literal["telnyx", "minimax"] | Omit = omit,
+        provider: Literal["telnyx", "minimax", "Telnyx", "Minimax"] | Omit = omit,
         ref_text: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

@@ -1,32 +1,32 @@
 ## Setting up the environment
 
-### With `uv`
+### With Rye
 
-We use [uv](https://docs.astral.sh/uv/) to manage dependencies because it will automatically provision a Python environment with the expected Python version. To set it up, run:
+We use [Rye](https://rye.astral.sh/) to manage dependencies because it will automatically provision a Python environment with the expected Python version. To set it up, run:
 
 ```sh
 $ ./scripts/bootstrap
 ```
 
-Or [install uv manually](https://docs.astral.sh/uv/getting-started/installation/) and run:
+Or [install Rye manually](https://rye.astral.sh/guide/installation/) and run:
 
 ```sh
-$ uv sync --all-extras
+$ rye sync --all-features
 ```
 
-You can then run scripts using `uv run python script.py` or by manually activating the virtual environment:
+You can then run scripts using `rye run python script.py` or by activating the virtual environment:
 
 ```sh
-# manually activate - https://docs.python.org/3/library/venv.html#how-venvs-work
+# Activate the virtual environment - https://docs.python.org/3/library/venv.html#how-venvs-work
 $ source .venv/bin/activate
 
-# now you can omit the `uv run` prefix
+# now you can omit the `rye run` prefix
 $ python script.py
 ```
 
-### Without `uv`
+### Without Rye
 
-Alternatively if you don't want to install `uv`, you can stick with the standard `pip` setup by ensuring you have the Python version specified in `.python-version`, create a virtual environment however you desire and then install dependencies using this command:
+Alternatively if you don't want to install `Rye`, you can stick with the standard `pip` setup by ensuring you have the Python version specified in `.python-version`, create a virtual environment however you desire and then install dependencies using this command:
 
 ```sh
 $ pip install -r requirements-dev.lock
@@ -45,7 +45,7 @@ All files in the `examples/` directory are not modified by the generator and can
 ```py
 # add an example to examples/<your-example>.py
 
-#!/usr/bin/env -S uv run python
+#!/usr/bin/env -S rye run python
 …
 ```
 
@@ -72,7 +72,7 @@ Building this package will create two files in the `dist/` directory, a `.tar.gz
 To create a distributable version of the library, all you have to do is run this command:
 
 ```sh
-$ uv build
+$ rye build
 # or
 $ python -m build
 ```

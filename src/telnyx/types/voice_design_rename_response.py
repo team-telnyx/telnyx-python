@@ -21,7 +21,7 @@ class Data(BaseModel):
     name: Optional[str] = None
     """Name of the voice design."""
 
-    provider: Optional[Literal["telnyx", "minimax"]] = None
+    provider: Optional[Literal["telnyx", "minimax", "Telnyx", "Minimax"]] = None
     """Voice synthesis provider used for this design."""
 
     provider_supported_models: Optional[List[str]] = None

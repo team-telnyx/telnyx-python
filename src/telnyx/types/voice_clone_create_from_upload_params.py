@@ -33,7 +33,7 @@ class VoiceCloneCreateFromUploadParams(TypedDict, total=False):
     If omitted, falls back to the source design's prompt text.
     """
 
-    provider: Literal["telnyx", "minimax"]
+    provider: Literal["telnyx", "minimax", "Telnyx", "Minimax"]
     """Voice synthesis provider. Case-insensitive. Defaults to `telnyx`."""
 
     ref_text: str

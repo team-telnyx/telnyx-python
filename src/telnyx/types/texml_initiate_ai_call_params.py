@@ -2,20 +2,21 @@
 
 from __future__ import annotations
 
-from typing import Iterable
+from typing import Dict, Iterable
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
-from ...._utils import PropertyInfo
+from .._types import SequenceNotStr
+from .._utils import PropertyInfo
 
-__all__ = ["CallCallsParams", "CustomHeader"]
+__all__ = ["TexmlInitiateAICallParams", "CustomHeader"]
 
 
-class CallCallsParams(TypedDict, total=False):
-    application_sid: Required[Annotated[str, PropertyInfo(alias="ApplicationSid")]]
-    """The ID of the TeXML Application."""
+class TexmlInitiateAICallParams(TypedDict, total=False):
+    ai_assistant_id: Required[Annotated[str, PropertyInfo(alias="AIAssistantId")]]
+    """The ID of the AI assistant to use for the call."""
 
     from_: Required[Annotated[str, PropertyInfo(alias="From")]]
-    """The phone number of the party that initiated the call.
+    """The phone number of the party initiating the call.
 
     Phone numbers are formatted with a `+` and country code.
     """
@@ -25,6 +26,12 @@ class CallCallsParams(TypedDict, total=False):
 
     Phone numbers are formatted with a `+` and country code.
     """
+
+    ai_assistant_dynamic_variables: Annotated[Dict[str, str], PropertyInfo(alias="AIAssistantDynamicVariables")]
+    """Key-value map of dynamic variables to pass to the AI assistant."""
+
+    ai_assistant_version: Annotated[str, PropertyInfo(alias="AIAssistantVersion")]
+    """The version of the AI assistant to use."""
 
     async_amd: Annotated[bool, PropertyInfo(alias="AsyncAmd")]
     """Select whether to perform answering machine detection in the background.
@@ -38,27 +45,24 @@ class CallCallsParams(TypedDict, total=False):
     async_amd_status_callback_method: Annotated[
         Literal["GET", "POST"], PropertyInfo(alias="AsyncAmdStatusCallbackMethod")
     ]
-    """HTTP request type used for `AsyncAmdStatusCallback`.
-
-    The default value is inherited from TeXML Application setting.
-    """
+    """HTTP request type used for `AsyncAmdStatusCallback`."""
 
     caller_id: Annotated[str, PropertyInfo(alias="CallerId")]
     """
     To be used as the caller id name (SIP From Display Name) presented to the
     destination (`To` number). The string should have a maximum of 128 characters,
     containing only letters, numbers, spaces, and `-_~!.+` special characters. If
-    ommited, the display name will be the same as the number in the `From` field.
+    omitted, the display name will be the same as the number in the `From` field.
     """
 
-    cancel_playback_on_detect_message_end: Annotated[bool, PropertyInfo(alias="CancelPlaybackOnDetectMessageEnd")]
-    """Whether to cancel ongoing playback on `greeting ended` detection.
+    conversation_callback: Annotated[str, PropertyInfo(alias="ConversationCallback")]
+    """URL destination for Telnyx to send conversation callback events to."""
 
-    Defaults to `true`.
-    """
+    conversation_callback_method: Annotated[Literal["GET", "POST"], PropertyInfo(alias="ConversationCallbackMethod")]
+    """HTTP request type used for `ConversationCallback`."""
 
-    cancel_playback_on_machine_detection: Annotated[bool, PropertyInfo(alias="CancelPlaybackOnMachineDetection")]
-    """Whether to cancel ongoing playback on `machine` detection. Defaults to `true`."""
+    conversation_callbacks: Annotated[SequenceNotStr[str], PropertyInfo(alias="ConversationCallbacks")]
+    """An array of URL destinations for conversation callback events."""
 
     custom_headers: Annotated[Iterable[CustomHeader], PropertyInfo(alias="CustomHeaders")]
     """Custom HTTP headers to be sent with the call.
@@ -67,13 +71,7 @@ class CallCallsParams(TypedDict, total=False):
     """
 
     detection_mode: Annotated[Literal["Premium", "Regular"], PropertyInfo(alias="DetectionMode")]
-    """Allows you to chose between Premium and Standard detections."""
-
-    fallback_url: Annotated[str, PropertyInfo(alias="FallbackUrl")]
-    """
-    A failover URL for which Telnyx will retrieve the TeXML call instructions if the
-    `Url` is not responding.
-    """
+    """Allows you to choose between Premium and Standard detections."""
 
     machine_detection: Annotated[
         Literal["Enable", "Disable", "DetectMessageEnd"], PropertyInfo(alias="MachineDetection")
@@ -102,13 +100,8 @@ class CallCallsParams(TypedDict, total=False):
     machine_detection_timeout: Annotated[int, PropertyInfo(alias="MachineDetectionTimeout")]
     """Maximum timeout threshold in milliseconds for overall detection."""
 
-    media_encryption: Annotated[Literal["disabled", "SRTP", "DTLS"], PropertyInfo(alias="MediaEncryption")]
-    """Defines whether media should be encrypted on the call.
-
-    When set to `SRTP`, the call will use Secure Real-time Transport Protocol for
-    media encryption. When set to `DTLS`, the call will use DTLS for media
-    encryption. Only supported for SIP destinations.
-    """
+    passports: Annotated[str, PropertyInfo(alias="Passports")]
+    """A string of passport identifiers to associate with the call."""
 
     preferred_codecs: Annotated[str, PropertyInfo(alias="PreferredCodecs")]
     """The list of comma-separated codecs to be offered on a call."""
@@ -125,7 +118,7 @@ class CallCallsParams(TypedDict, total=False):
     recording_status_callback_event: Annotated[str, PropertyInfo(alias="RecordingStatusCallbackEvent")]
     """
     The changes to the recording's state that should generate a call to
-    `RecoridngStatusCallback`. Can be: `in-progress`, `completed` and `absent`.
+    `RecordingStatusCallback`. Can be: `in-progress`, `completed` and `absent`.
     Separate multiple values with a space. Defaults to `completed`.
     """
 
@@ -137,9 +130,8 @@ class CallCallsParams(TypedDict, total=False):
     recording_timeout: Annotated[int, PropertyInfo(alias="RecordingTimeout")]
     """
     The number of seconds that Telnyx will wait for the recording to be stopped if
-    silence is detected. The timer only starts when the speech is detected. Please
-    note that the transcription is used to detect silence and the related charge
-    will be applied. The minimum value is 0. The default value is 0 (infinite)
+    silence is detected. The timer only starts when the speech is detected. The
+    minimum value is 0. The default value is 0 (infinite).
     """
 
     recording_track: Annotated[Literal["inbound", "outbound", "both"], PropertyInfo(alias="RecordingTrack")]
@@ -162,37 +154,20 @@ class CallCallsParams(TypedDict, total=False):
     status_callback: Annotated[str, PropertyInfo(alias="StatusCallback")]
     """URL destination for Telnyx to send status callback events to for the call."""
 
-    status_callback_event: Annotated[
-        Literal["initiated", "ringing", "answered", "completed"], PropertyInfo(alias="StatusCallbackEvent")
-    ]
+    status_callback_event: Annotated[str, PropertyInfo(alias="StatusCallbackEvent")]
     """The call events for which Telnyx should send a webhook.
 
-    Multiple events can be defined when separated by a space.
+    Multiple events can be defined when separated by a space. Valid values:
+    initiated, ringing, answered, completed.
     """
 
     status_callback_method: Annotated[Literal["GET", "POST"], PropertyInfo(alias="StatusCallbackMethod")]
     """HTTP request type used for `StatusCallback`."""
 
-    supervise_call_sid: Annotated[str, PropertyInfo(alias="SuperviseCallSid")]
-    """The call control ID of the existing call to supervise.
-
-    When provided, the created leg will be added to the specified call in
-    supervising mode. Status callbacks and action callbacks will NOT be sent for the
-    supervising leg.
+    status_callbacks: Annotated[SequenceNotStr[str], PropertyInfo(alias="StatusCallbacks")]
     """
-
-    supervising_role: Annotated[Literal["barge", "whisper", "monitor"], PropertyInfo(alias="SupervisingRole")]
-    """The supervising role for the new leg.
-
-    Determines the audio behavior: barge (hear both sides), whisper (only hear
-    supervisor), monitor (hear both sides but supervisor muted). Default: barge
-    """
-
-    texml: Annotated[str, PropertyInfo(alias="Texml")]
-    """TeXML to be used as instructions for the call.
-
-    If provided, the call will execute these instructions instead of fetching from
-    the Url.
+    An array of URL destinations for Telnyx to send status callback events to for
+    the call.
     """
 
     time_limit: Annotated[int, PropertyInfo(alias="TimeLimit")]
@@ -213,15 +188,6 @@ class CallCallsParams(TypedDict, total=False):
     """Whether to trim any leading and trailing silence from the recording.
 
     Defaults to `trim-silence`.
-    """
-
-    url: Annotated[str, PropertyInfo(alias="Url")]
-    """The URL from which Telnyx will retrieve the TeXML call instructions."""
-
-    url_method: Annotated[Literal["GET", "POST"], PropertyInfo(alias="UrlMethod")]
-    """HTTP request type used for `Url`.
-
-    The default value is inherited from TeXML Application setting.
     """
 
 
