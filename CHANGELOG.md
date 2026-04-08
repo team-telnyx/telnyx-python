@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.98.0 (2026-04-08)
+
+Full Changelog: [v4.97.0...v4.98.0](https://github.com/team-telnyx/telnyx-python/compare/v4.97.0...v4.98.0)
+
+### Features
+
+* TELAPPS-5689: Pronunciation dictionaries API docs ([eb1bebf](https://github.com/team-telnyx/telnyx-python/commit/eb1bebfd40a114d54025e1b151f28d55de88ffa6))
+
 ## 4.97.0 (2026-04-08)
 
 Full Changelog: [v4.96.0...v4.97.0](https://github.com/team-telnyx/telnyx-python/compare/v4.96.0...v4.97.0)

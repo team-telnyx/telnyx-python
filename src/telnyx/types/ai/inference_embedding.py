@@ -2,9 +2,9 @@
 
 from typing import Dict, List, Optional
 from datetime import datetime
+from typing_extensions import Literal
 
 from ..._models import BaseModel
-from .observability import Observability
 from .assistant_tool import AssistantTool
 from .voice_settings import VoiceSettings
 from .import_metadata import ImportMetadata
@@ -16,7 +16,17 @@ from .messaging_settings import MessagingSettings
 from .telephony_settings import TelephonySettings
 from .transcription_settings import TranscriptionSettings
 
-__all__ = ["InferenceEmbedding"]
+__all__ = ["InferenceEmbedding", "ObservabilitySettings"]
+
+
+class ObservabilitySettings(BaseModel):
+    host: Optional[str] = None
+
+    public_key_ref: Optional[str] = None
+
+    secret_key_ref: Optional[str] = None
+
+    status: Optional[Literal["enabled", "disabled"]] = None
 
 
 class InferenceEmbedding(BaseModel):
@@ -81,7 +91,7 @@ class InferenceEmbedding(BaseModel):
 
     messaging_settings: Optional[MessagingSettings] = None
 
-    observability_settings: Optional[Observability] = None
+    observability_settings: Optional[ObservabilitySettings] = None
 
     privacy_settings: Optional[PrivacySettings] = None
 

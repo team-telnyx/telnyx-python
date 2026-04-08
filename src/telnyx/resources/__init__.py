@@ -857,6 +857,14 @@ from .phone_number_blocks import (
     PhoneNumberBlocksResourceWithStreamingResponse,
     AsyncPhoneNumberBlocksResourceWithStreamingResponse,
 )
+from .pronunciation_dicts import (
+    PronunciationDictsResource,
+    AsyncPronunciationDictsResource,
+    PronunciationDictsResourceWithRawResponse,
+    AsyncPronunciationDictsResourceWithRawResponse,
+    PronunciationDictsResourceWithStreamingResponse,
+    AsyncPronunciationDictsResourceWithStreamingResponse,
+)
 from .wireless_blocklists import (
     WirelessBlocklistsResource,
     AsyncWirelessBlocklistsResource,
@@ -2245,4 +2253,10 @@ __all__ = [
     "AsyncTermsOfServiceResourceWithRawResponse",
     "TermsOfServiceResourceWithStreamingResponse",
     "AsyncTermsOfServiceResourceWithStreamingResponse",
+    "PronunciationDictsResource",
+    "AsyncPronunciationDictsResource",
+    "PronunciationDictsResourceWithRawResponse",
+    "AsyncPronunciationDictsResourceWithRawResponse",
+    "PronunciationDictsResourceWithStreamingResponse",
+    "AsyncPronunciationDictsResourceWithStreamingResponse",
 ]
