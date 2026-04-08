@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Iterable
-from typing_extensions import Literal
+from typing_extensions import Literal, overload
 
 import httpx
 
@@ -225,22 +225,23 @@ class CallsResource(SyncAPIResource):
             cast_to=CallUpdateResponse,
         )
 
+    @overload
     def calls(
         self,
         account_sid: str,
         *,
-        application_sid: str,
-        from_: str,
-        to: str,
+        url: str,
+        application_sid: str | Omit = omit,
         async_amd: bool | Omit = omit,
         async_amd_status_callback: str | Omit = omit,
         async_amd_status_callback_method: Literal["GET", "POST"] | Omit = omit,
         caller_id: str | Omit = omit,
         cancel_playback_on_detect_message_end: bool | Omit = omit,
         cancel_playback_on_machine_detection: bool | Omit = omit,
-        custom_headers: Iterable[call_calls_params.CustomHeader] | Omit = omit,
+        custom_headers: Iterable[call_calls_params.WithURLCustomHeader] | Omit = omit,
         detection_mode: Literal["Premium", "Regular"] | Omit = omit,
         fallback_url: str | Omit = omit,
+        from_: str | Omit = omit,
         machine_detection: Literal["Enable", "Disable", "DetectMessageEnd"] | Omit = omit,
         machine_detection_silence_timeout: int | Omit = omit,
         machine_detection_speech_end_threshold: int | Omit = omit,
@@ -264,11 +265,11 @@ class CallsResource(SyncAPIResource):
         status_callback_method: Literal["GET", "POST"] | Omit = omit,
         supervise_call_sid: str | Omit = omit,
         supervising_role: Literal["barge", "whisper", "monitor"] | Omit = omit,
-        texml: str | Omit = omit,
+        texml: object | Omit = omit,
         time_limit: int | Omit = omit,
         timeout_seconds: int | Omit = omit,
+        to: str | Omit = omit,
         trim: Literal["trim-silence", "do-not-trim"] | Omit = omit,
-        url: str | Omit = omit,
         url_method: Literal["GET", "POST"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -283,13 +284,9 @@ class CallsResource(SyncAPIResource):
         URL configured for the connection in the Mission Control Portal.
 
         Args:
+          url: The URL from which Telnyx will retrieve the TeXML call instructions.
+
           application_sid: The ID of the TeXML Application.
-
-          from_: The phone number of the party that initiated the call. Phone numbers are
-              formatted with a `+` and country code.
-
-          to: The phone number of the called party. Phone numbers are formatted with a `+` and
-              country code.
 
           async_amd: Select whether to perform answering machine detection in the background. By
               default execution is blocked until Answering Machine Detection is completed.
@@ -316,6 +313,9 @@ class CallsResource(SyncAPIResource):
 
           fallback_url: A failover URL for which Telnyx will retrieve the TeXML call instructions if the
               `Url` is not responding.
+
+          from_: The phone number of the party that initiated the call. Phone numbers are
+              formatted with a `+` and country code.
 
           machine_detection: Enables Answering Machine Detection.
 
@@ -379,9 +379,6 @@ class CallsResource(SyncAPIResource):
               both sides), whisper (only hear supervisor), monitor (hear both sides but
               supervisor muted). Default: barge
 
-          texml: TeXML to be used as instructions for the call. If provided, the call will
-              execute these instructions instead of fetching from the Url.
-
           time_limit: The maximum duration of the call in seconds. The minimum value is 30 and the
               maximum value is 14400 (4 hours). Default is 14400 seconds.
 
@@ -389,10 +386,11 @@ class CallsResource(SyncAPIResource):
               call is canceled. The minimum value is 5 and the maximum value is 120. Default
               is 30 seconds.
 
+          to: The phone number of the called party. Phone numbers are formatted with a `+` and
+              country code.
+
           trim: Whether to trim any leading and trailing silence from the recording. Defaults to
               `trim-silence`.
-
-          url: The URL from which Telnyx will retrieve the TeXML call instructions.
 
           url_method: HTTP request type used for `Url`. The default value is inherited from TeXML
               Application setting.
@@ -405,15 +403,430 @@ class CallsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @overload
+    def calls(
+        self,
+        account_sid: str,
+        *,
+        texml: str,
+        application_sid: str | Omit = omit,
+        async_amd: bool | Omit = omit,
+        async_amd_status_callback: str | Omit = omit,
+        async_amd_status_callback_method: Literal["GET", "POST"] | Omit = omit,
+        caller_id: str | Omit = omit,
+        cancel_playback_on_detect_message_end: bool | Omit = omit,
+        cancel_playback_on_machine_detection: bool | Omit = omit,
+        custom_headers: Iterable[call_calls_params.WithTeXmlCustomHeader] | Omit = omit,
+        detection_mode: Literal["Premium", "Regular"] | Omit = omit,
+        fallback_url: str | Omit = omit,
+        from_: str | Omit = omit,
+        machine_detection: Literal["Enable", "Disable", "DetectMessageEnd"] | Omit = omit,
+        machine_detection_silence_timeout: int | Omit = omit,
+        machine_detection_speech_end_threshold: int | Omit = omit,
+        machine_detection_speech_threshold: int | Omit = omit,
+        machine_detection_timeout: int | Omit = omit,
+        media_encryption: Literal["disabled", "SRTP", "DTLS"] | Omit = omit,
+        preferred_codecs: str | Omit = omit,
+        record: bool | Omit = omit,
+        recording_channels: Literal["mono", "dual"] | Omit = omit,
+        recording_status_callback: str | Omit = omit,
+        recording_status_callback_event: str | Omit = omit,
+        recording_status_callback_method: Literal["GET", "POST"] | Omit = omit,
+        recording_timeout: int | Omit = omit,
+        recording_track: Literal["inbound", "outbound", "both"] | Omit = omit,
+        send_recording_url: bool | Omit = omit,
+        sip_auth_password: str | Omit = omit,
+        sip_auth_username: str | Omit = omit,
+        sip_region: Literal["US", "Europe", "Canada", "Australia", "Middle East"] | Omit = omit,
+        status_callback: str | Omit = omit,
+        status_callback_event: Literal["initiated", "ringing", "answered", "completed"] | Omit = omit,
+        status_callback_method: Literal["GET", "POST"] | Omit = omit,
+        supervise_call_sid: str | Omit = omit,
+        supervising_role: Literal["barge", "whisper", "monitor"] | Omit = omit,
+        time_limit: int | Omit = omit,
+        timeout_seconds: int | Omit = omit,
+        to: str | Omit = omit,
+        trim: Literal["trim-silence", "do-not-trim"] | Omit = omit,
+        url: object | Omit = omit,
+        url_method: Literal["GET", "POST"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> CallCallsResponse:
+        """Initiate an outbound TeXML call.
+
+        Telnyx will request TeXML from the XML Request
+        URL configured for the connection in the Mission Control Portal.
+
+        Args:
+          texml: TeXML to be used as instructions for the call. If provided, the call will
+              execute these instructions instead of fetching from the Url.
+
+          application_sid: The ID of the TeXML Application.
+
+          async_amd: Select whether to perform answering machine detection in the background. By
+              default execution is blocked until Answering Machine Detection is completed.
+
+          async_amd_status_callback: URL destination for Telnyx to send AMD callback events to for the call.
+
+          async_amd_status_callback_method: HTTP request type used for `AsyncAmdStatusCallback`. The default value is
+              inherited from TeXML Application setting.
+
+          caller_id: To be used as the caller id name (SIP From Display Name) presented to the
+              destination (`To` number). The string should have a maximum of 128 characters,
+              containing only letters, numbers, spaces, and `-_~!.+` special characters. If
+              ommited, the display name will be the same as the number in the `From` field.
+
+          cancel_playback_on_detect_message_end: Whether to cancel ongoing playback on `greeting ended` detection. Defaults to
+              `true`.
+
+          cancel_playback_on_machine_detection: Whether to cancel ongoing playback on `machine` detection. Defaults to `true`.
+
+          custom_headers: Custom HTTP headers to be sent with the call. Each header should be an object
+              with 'name' and 'value' properties.
+
+          detection_mode: Allows you to chose between Premium and Standard detections.
+
+          fallback_url: A failover URL for which Telnyx will retrieve the TeXML call instructions if the
+              `Url` is not responding.
+
+          from_: The phone number of the party that initiated the call. Phone numbers are
+              formatted with a `+` and country code.
+
+          machine_detection: Enables Answering Machine Detection.
+
+          machine_detection_silence_timeout: If initial silence duration is greater than this value, consider it a machine.
+              Ignored when `premium` detection is used.
+
+          machine_detection_speech_end_threshold: Silence duration threshold after a greeting message or voice for it be
+              considered human. Ignored when `premium` detection is used.
+
+          machine_detection_speech_threshold: Maximum threshold of a human greeting. If greeting longer than this value,
+              considered machine. Ignored when `premium` detection is used.
+
+          machine_detection_timeout: Maximum timeout threshold in milliseconds for overall detection.
+
+          media_encryption: Defines whether media should be encrypted on the call. When set to `SRTP`, the
+              call will use Secure Real-time Transport Protocol for media encryption. When set
+              to `DTLS`, the call will use DTLS for media encryption. Only supported for SIP
+              destinations.
+
+          preferred_codecs: The list of comma-separated codecs to be offered on a call.
+
+          record: Whether to record the entire participant's call leg. Defaults to `false`.
+
+          recording_channels: The number of channels in the final recording. Defaults to `mono`.
+
+          recording_status_callback: The URL the recording callbacks will be sent to.
+
+          recording_status_callback_event: The changes to the recording's state that should generate a call to
+              `RecoridngStatusCallback`. Can be: `in-progress`, `completed` and `absent`.
+              Separate multiple values with a space. Defaults to `completed`.
+
+          recording_status_callback_method: HTTP request type used for `RecordingStatusCallback`. Defaults to `POST`.
+
+          recording_timeout: The number of seconds that Telnyx will wait for the recording to be stopped if
+              silence is detected. The timer only starts when the speech is detected. Please
+              note that the transcription is used to detect silence and the related charge
+              will be applied. The minimum value is 0. The default value is 0 (infinite)
+
+          recording_track: The audio track to record for the call. The default is `both`.
+
+          send_recording_url: Whether to send RecordingUrl in webhooks.
+
+          sip_auth_password: The password to use for SIP authentication.
+
+          sip_auth_username: The username to use for SIP authentication.
+
+          sip_region: Defines the SIP region to be used for the call.
+
+          status_callback: URL destination for Telnyx to send status callback events to for the call.
+
+          status_callback_event: The call events for which Telnyx should send a webhook. Multiple events can be
+              defined when separated by a space.
+
+          status_callback_method: HTTP request type used for `StatusCallback`.
+
+          supervise_call_sid: The call control ID of the existing call to supervise. When provided, the
+              created leg will be added to the specified call in supervising mode. Status
+              callbacks and action callbacks will NOT be sent for the supervising leg.
+
+          supervising_role: The supervising role for the new leg. Determines the audio behavior: barge (hear
+              both sides), whisper (only hear supervisor), monitor (hear both sides but
+              supervisor muted). Default: barge
+
+          time_limit: The maximum duration of the call in seconds. The minimum value is 30 and the
+              maximum value is 14400 (4 hours). Default is 14400 seconds.
+
+          timeout_seconds: The number of seconds to wait for the called party to answer the call before the
+              call is canceled. The minimum value is 5 and the maximum value is 120. Default
+              is 30 seconds.
+
+          to: The phone number of the called party. Phone numbers are formatted with a `+` and
+              country code.
+
+          trim: Whether to trim any leading and trailing silence from the recording. Defaults to
+              `trim-silence`.
+
+          url_method: HTTP request type used for `Url`. The default value is inherited from TeXML
+              Application setting.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def calls(
+        self,
+        account_sid: str,
+        *,
+        application_sid: str | Omit = omit,
+        async_amd: bool | Omit = omit,
+        async_amd_status_callback: str | Omit = omit,
+        async_amd_status_callback_method: Literal["GET", "POST"] | Omit = omit,
+        caller_id: str | Omit = omit,
+        cancel_playback_on_detect_message_end: bool | Omit = omit,
+        cancel_playback_on_machine_detection: bool | Omit = omit,
+        custom_headers: Iterable[call_calls_params.ApplicationDefaultCustomHeader] | Omit = omit,
+        detection_mode: Literal["Premium", "Regular"] | Omit = omit,
+        fallback_url: str | Omit = omit,
+        from_: str | Omit = omit,
+        machine_detection: Literal["Enable", "Disable", "DetectMessageEnd"] | Omit = omit,
+        machine_detection_silence_timeout: int | Omit = omit,
+        machine_detection_speech_end_threshold: int | Omit = omit,
+        machine_detection_speech_threshold: int | Omit = omit,
+        machine_detection_timeout: int | Omit = omit,
+        media_encryption: Literal["disabled", "SRTP", "DTLS"] | Omit = omit,
+        preferred_codecs: str | Omit = omit,
+        record: bool | Omit = omit,
+        recording_channels: Literal["mono", "dual"] | Omit = omit,
+        recording_status_callback: str | Omit = omit,
+        recording_status_callback_event: str | Omit = omit,
+        recording_status_callback_method: Literal["GET", "POST"] | Omit = omit,
+        recording_timeout: int | Omit = omit,
+        recording_track: Literal["inbound", "outbound", "both"] | Omit = omit,
+        send_recording_url: bool | Omit = omit,
+        sip_auth_password: str | Omit = omit,
+        sip_auth_username: str | Omit = omit,
+        sip_region: Literal["US", "Europe", "Canada", "Australia", "Middle East"] | Omit = omit,
+        status_callback: str | Omit = omit,
+        status_callback_event: Literal["initiated", "ringing", "answered", "completed"] | Omit = omit,
+        status_callback_method: Literal["GET", "POST"] | Omit = omit,
+        supervise_call_sid: str | Omit = omit,
+        supervising_role: Literal["barge", "whisper", "monitor"] | Omit = omit,
+        texml: object | Omit = omit,
+        time_limit: int | Omit = omit,
+        timeout_seconds: int | Omit = omit,
+        to: str | Omit = omit,
+        trim: Literal["trim-silence", "do-not-trim"] | Omit = omit,
+        url: object | Omit = omit,
+        url_method: Literal["GET", "POST"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> CallCallsResponse:
+        """Initiate an outbound TeXML call.
+
+        Telnyx will request TeXML from the XML Request
+        URL configured for the connection in the Mission Control Portal.
+
+        Args:
+          application_sid: The ID of the TeXML Application.
+
+          async_amd: Select whether to perform answering machine detection in the background. By
+              default execution is blocked until Answering Machine Detection is completed.
+
+          async_amd_status_callback: URL destination for Telnyx to send AMD callback events to for the call.
+
+          async_amd_status_callback_method: HTTP request type used for `AsyncAmdStatusCallback`. The default value is
+              inherited from TeXML Application setting.
+
+          caller_id: To be used as the caller id name (SIP From Display Name) presented to the
+              destination (`To` number). The string should have a maximum of 128 characters,
+              containing only letters, numbers, spaces, and `-_~!.+` special characters. If
+              ommited, the display name will be the same as the number in the `From` field.
+
+          cancel_playback_on_detect_message_end: Whether to cancel ongoing playback on `greeting ended` detection. Defaults to
+              `true`.
+
+          cancel_playback_on_machine_detection: Whether to cancel ongoing playback on `machine` detection. Defaults to `true`.
+
+          custom_headers: Custom HTTP headers to be sent with the call. Each header should be an object
+              with 'name' and 'value' properties.
+
+          detection_mode: Allows you to chose between Premium and Standard detections.
+
+          fallback_url: A failover URL for which Telnyx will retrieve the TeXML call instructions if the
+              `Url` is not responding.
+
+          from_: The phone number of the party that initiated the call. Phone numbers are
+              formatted with a `+` and country code.
+
+          machine_detection: Enables Answering Machine Detection.
+
+          machine_detection_silence_timeout: If initial silence duration is greater than this value, consider it a machine.
+              Ignored when `premium` detection is used.
+
+          machine_detection_speech_end_threshold: Silence duration threshold after a greeting message or voice for it be
+              considered human. Ignored when `premium` detection is used.
+
+          machine_detection_speech_threshold: Maximum threshold of a human greeting. If greeting longer than this value,
+              considered machine. Ignored when `premium` detection is used.
+
+          machine_detection_timeout: Maximum timeout threshold in milliseconds for overall detection.
+
+          media_encryption: Defines whether media should be encrypted on the call. When set to `SRTP`, the
+              call will use Secure Real-time Transport Protocol for media encryption. When set
+              to `DTLS`, the call will use DTLS for media encryption. Only supported for SIP
+              destinations.
+
+          preferred_codecs: The list of comma-separated codecs to be offered on a call.
+
+          record: Whether to record the entire participant's call leg. Defaults to `false`.
+
+          recording_channels: The number of channels in the final recording. Defaults to `mono`.
+
+          recording_status_callback: The URL the recording callbacks will be sent to.
+
+          recording_status_callback_event: The changes to the recording's state that should generate a call to
+              `RecoridngStatusCallback`. Can be: `in-progress`, `completed` and `absent`.
+              Separate multiple values with a space. Defaults to `completed`.
+
+          recording_status_callback_method: HTTP request type used for `RecordingStatusCallback`. Defaults to `POST`.
+
+          recording_timeout: The number of seconds that Telnyx will wait for the recording to be stopped if
+              silence is detected. The timer only starts when the speech is detected. Please
+              note that the transcription is used to detect silence and the related charge
+              will be applied. The minimum value is 0. The default value is 0 (infinite)
+
+          recording_track: The audio track to record for the call. The default is `both`.
+
+          send_recording_url: Whether to send RecordingUrl in webhooks.
+
+          sip_auth_password: The password to use for SIP authentication.
+
+          sip_auth_username: The username to use for SIP authentication.
+
+          sip_region: Defines the SIP region to be used for the call.
+
+          status_callback: URL destination for Telnyx to send status callback events to for the call.
+
+          status_callback_event: The call events for which Telnyx should send a webhook. Multiple events can be
+              defined when separated by a space.
+
+          status_callback_method: HTTP request type used for `StatusCallback`.
+
+          supervise_call_sid: The call control ID of the existing call to supervise. When provided, the
+              created leg will be added to the specified call in supervising mode. Status
+              callbacks and action callbacks will NOT be sent for the supervising leg.
+
+          supervising_role: The supervising role for the new leg. Determines the audio behavior: barge (hear
+              both sides), whisper (only hear supervisor), monitor (hear both sides but
+              supervisor muted). Default: barge
+
+          time_limit: The maximum duration of the call in seconds. The minimum value is 30 and the
+              maximum value is 14400 (4 hours). Default is 14400 seconds.
+
+          timeout_seconds: The number of seconds to wait for the called party to answer the call before the
+              call is canceled. The minimum value is 5 and the maximum value is 120. Default
+              is 30 seconds.
+
+          to: The phone number of the called party. Phone numbers are formatted with a `+` and
+              country code.
+
+          trim: Whether to trim any leading and trailing silence from the recording. Defaults to
+              `trim-silence`.
+
+          url_method: HTTP request type used for `Url`. The default value is inherited from TeXML
+              Application setting.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    def calls(
+        self,
+        account_sid: str,
+        *,
+        url: str | object | Omit = omit,
+        application_sid: str | Omit = omit,
+        async_amd: bool | Omit = omit,
+        async_amd_status_callback: str | Omit = omit,
+        async_amd_status_callback_method: Literal["GET", "POST"] | Omit = omit,
+        caller_id: str | Omit = omit,
+        cancel_playback_on_detect_message_end: bool | Omit = omit,
+        cancel_playback_on_machine_detection: bool | Omit = omit,
+        custom_headers: Iterable[call_calls_params.WithURLCustomHeader]
+        | Iterable[call_calls_params.WithTeXmlCustomHeader]
+        | Iterable[call_calls_params.ApplicationDefaultCustomHeader]
+        | Omit = omit,
+        detection_mode: Literal["Premium", "Regular"] | Omit = omit,
+        fallback_url: str | Omit = omit,
+        from_: str | Omit = omit,
+        machine_detection: Literal["Enable", "Disable", "DetectMessageEnd"] | Omit = omit,
+        machine_detection_silence_timeout: int | Omit = omit,
+        machine_detection_speech_end_threshold: int | Omit = omit,
+        machine_detection_speech_threshold: int | Omit = omit,
+        machine_detection_timeout: int | Omit = omit,
+        media_encryption: Literal["disabled", "SRTP", "DTLS"] | Omit = omit,
+        preferred_codecs: str | Omit = omit,
+        record: bool | Omit = omit,
+        recording_channels: Literal["mono", "dual"] | Omit = omit,
+        recording_status_callback: str | Omit = omit,
+        recording_status_callback_event: str | Omit = omit,
+        recording_status_callback_method: Literal["GET", "POST"] | Omit = omit,
+        recording_timeout: int | Omit = omit,
+        recording_track: Literal["inbound", "outbound", "both"] | Omit = omit,
+        send_recording_url: bool | Omit = omit,
+        sip_auth_password: str | Omit = omit,
+        sip_auth_username: str | Omit = omit,
+        sip_region: Literal["US", "Europe", "Canada", "Australia", "Middle East"] | Omit = omit,
+        status_callback: str | Omit = omit,
+        status_callback_event: Literal["initiated", "ringing", "answered", "completed"] | Omit = omit,
+        status_callback_method: Literal["GET", "POST"] | Omit = omit,
+        supervise_call_sid: str | Omit = omit,
+        supervising_role: Literal["barge", "whisper", "monitor"] | Omit = omit,
+        texml: object | str | Omit = omit,
+        time_limit: int | Omit = omit,
+        timeout_seconds: int | Omit = omit,
+        to: str | Omit = omit,
+        trim: Literal["trim-silence", "do-not-trim"] | Omit = omit,
+        url_method: Literal["GET", "POST"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> CallCallsResponse:
         if not account_sid:
             raise ValueError(f"Expected a non-empty value for `account_sid` but received {account_sid!r}")
         return self._post(
             path_template("/texml/Accounts/{account_sid}/Calls", account_sid=account_sid),
             body=maybe_transform(
                 {
+                    "url": url,
                     "application_sid": application_sid,
-                    "from_": from_,
-                    "to": to,
                     "async_amd": async_amd,
                     "async_amd_status_callback": async_amd_status_callback,
                     "async_amd_status_callback_method": async_amd_status_callback_method,
@@ -423,6 +836,7 @@ class CallsResource(SyncAPIResource):
                     "custom_headers": custom_headers,
                     "detection_mode": detection_mode,
                     "fallback_url": fallback_url,
+                    "from_": from_,
                     "machine_detection": machine_detection,
                     "machine_detection_silence_timeout": machine_detection_silence_timeout,
                     "machine_detection_speech_end_threshold": machine_detection_speech_end_threshold,
@@ -449,8 +863,8 @@ class CallsResource(SyncAPIResource):
                     "texml": texml,
                     "time_limit": time_limit,
                     "timeout_seconds": timeout_seconds,
+                    "to": to,
                     "trim": trim,
-                    "url": url,
                     "url_method": url_method,
                 },
                 call_calls_params.CallCallsParams,
@@ -874,22 +1288,23 @@ class AsyncCallsResource(AsyncAPIResource):
             cast_to=CallUpdateResponse,
         )
 
+    @overload
     async def calls(
         self,
         account_sid: str,
         *,
-        application_sid: str,
-        from_: str,
-        to: str,
+        url: str,
+        application_sid: str | Omit = omit,
         async_amd: bool | Omit = omit,
         async_amd_status_callback: str | Omit = omit,
         async_amd_status_callback_method: Literal["GET", "POST"] | Omit = omit,
         caller_id: str | Omit = omit,
         cancel_playback_on_detect_message_end: bool | Omit = omit,
         cancel_playback_on_machine_detection: bool | Omit = omit,
-        custom_headers: Iterable[call_calls_params.CustomHeader] | Omit = omit,
+        custom_headers: Iterable[call_calls_params.WithURLCustomHeader] | Omit = omit,
         detection_mode: Literal["Premium", "Regular"] | Omit = omit,
         fallback_url: str | Omit = omit,
+        from_: str | Omit = omit,
         machine_detection: Literal["Enable", "Disable", "DetectMessageEnd"] | Omit = omit,
         machine_detection_silence_timeout: int | Omit = omit,
         machine_detection_speech_end_threshold: int | Omit = omit,
@@ -913,11 +1328,11 @@ class AsyncCallsResource(AsyncAPIResource):
         status_callback_method: Literal["GET", "POST"] | Omit = omit,
         supervise_call_sid: str | Omit = omit,
         supervising_role: Literal["barge", "whisper", "monitor"] | Omit = omit,
-        texml: str | Omit = omit,
+        texml: object | Omit = omit,
         time_limit: int | Omit = omit,
         timeout_seconds: int | Omit = omit,
+        to: str | Omit = omit,
         trim: Literal["trim-silence", "do-not-trim"] | Omit = omit,
-        url: str | Omit = omit,
         url_method: Literal["GET", "POST"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -932,13 +1347,9 @@ class AsyncCallsResource(AsyncAPIResource):
         URL configured for the connection in the Mission Control Portal.
 
         Args:
+          url: The URL from which Telnyx will retrieve the TeXML call instructions.
+
           application_sid: The ID of the TeXML Application.
-
-          from_: The phone number of the party that initiated the call. Phone numbers are
-              formatted with a `+` and country code.
-
-          to: The phone number of the called party. Phone numbers are formatted with a `+` and
-              country code.
 
           async_amd: Select whether to perform answering machine detection in the background. By
               default execution is blocked until Answering Machine Detection is completed.
@@ -965,6 +1376,9 @@ class AsyncCallsResource(AsyncAPIResource):
 
           fallback_url: A failover URL for which Telnyx will retrieve the TeXML call instructions if the
               `Url` is not responding.
+
+          from_: The phone number of the party that initiated the call. Phone numbers are
+              formatted with a `+` and country code.
 
           machine_detection: Enables Answering Machine Detection.
 
@@ -1028,9 +1442,6 @@ class AsyncCallsResource(AsyncAPIResource):
               both sides), whisper (only hear supervisor), monitor (hear both sides but
               supervisor muted). Default: barge
 
-          texml: TeXML to be used as instructions for the call. If provided, the call will
-              execute these instructions instead of fetching from the Url.
-
           time_limit: The maximum duration of the call in seconds. The minimum value is 30 and the
               maximum value is 14400 (4 hours). Default is 14400 seconds.
 
@@ -1038,10 +1449,11 @@ class AsyncCallsResource(AsyncAPIResource):
               call is canceled. The minimum value is 5 and the maximum value is 120. Default
               is 30 seconds.
 
+          to: The phone number of the called party. Phone numbers are formatted with a `+` and
+              country code.
+
           trim: Whether to trim any leading and trailing silence from the recording. Defaults to
               `trim-silence`.
-
-          url: The URL from which Telnyx will retrieve the TeXML call instructions.
 
           url_method: HTTP request type used for `Url`. The default value is inherited from TeXML
               Application setting.
@@ -1054,15 +1466,430 @@ class AsyncCallsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @overload
+    async def calls(
+        self,
+        account_sid: str,
+        *,
+        texml: str,
+        application_sid: str | Omit = omit,
+        async_amd: bool | Omit = omit,
+        async_amd_status_callback: str | Omit = omit,
+        async_amd_status_callback_method: Literal["GET", "POST"] | Omit = omit,
+        caller_id: str | Omit = omit,
+        cancel_playback_on_detect_message_end: bool | Omit = omit,
+        cancel_playback_on_machine_detection: bool | Omit = omit,
+        custom_headers: Iterable[call_calls_params.WithTeXmlCustomHeader] | Omit = omit,
+        detection_mode: Literal["Premium", "Regular"] | Omit = omit,
+        fallback_url: str | Omit = omit,
+        from_: str | Omit = omit,
+        machine_detection: Literal["Enable", "Disable", "DetectMessageEnd"] | Omit = omit,
+        machine_detection_silence_timeout: int | Omit = omit,
+        machine_detection_speech_end_threshold: int | Omit = omit,
+        machine_detection_speech_threshold: int | Omit = omit,
+        machine_detection_timeout: int | Omit = omit,
+        media_encryption: Literal["disabled", "SRTP", "DTLS"] | Omit = omit,
+        preferred_codecs: str | Omit = omit,
+        record: bool | Omit = omit,
+        recording_channels: Literal["mono", "dual"] | Omit = omit,
+        recording_status_callback: str | Omit = omit,
+        recording_status_callback_event: str | Omit = omit,
+        recording_status_callback_method: Literal["GET", "POST"] | Omit = omit,
+        recording_timeout: int | Omit = omit,
+        recording_track: Literal["inbound", "outbound", "both"] | Omit = omit,
+        send_recording_url: bool | Omit = omit,
+        sip_auth_password: str | Omit = omit,
+        sip_auth_username: str | Omit = omit,
+        sip_region: Literal["US", "Europe", "Canada", "Australia", "Middle East"] | Omit = omit,
+        status_callback: str | Omit = omit,
+        status_callback_event: Literal["initiated", "ringing", "answered", "completed"] | Omit = omit,
+        status_callback_method: Literal["GET", "POST"] | Omit = omit,
+        supervise_call_sid: str | Omit = omit,
+        supervising_role: Literal["barge", "whisper", "monitor"] | Omit = omit,
+        time_limit: int | Omit = omit,
+        timeout_seconds: int | Omit = omit,
+        to: str | Omit = omit,
+        trim: Literal["trim-silence", "do-not-trim"] | Omit = omit,
+        url: object | Omit = omit,
+        url_method: Literal["GET", "POST"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> CallCallsResponse:
+        """Initiate an outbound TeXML call.
+
+        Telnyx will request TeXML from the XML Request
+        URL configured for the connection in the Mission Control Portal.
+
+        Args:
+          texml: TeXML to be used as instructions for the call. If provided, the call will
+              execute these instructions instead of fetching from the Url.
+
+          application_sid: The ID of the TeXML Application.
+
+          async_amd: Select whether to perform answering machine detection in the background. By
+              default execution is blocked until Answering Machine Detection is completed.
+
+          async_amd_status_callback: URL destination for Telnyx to send AMD callback events to for the call.
+
+          async_amd_status_callback_method: HTTP request type used for `AsyncAmdStatusCallback`. The default value is
+              inherited from TeXML Application setting.
+
+          caller_id: To be used as the caller id name (SIP From Display Name) presented to the
+              destination (`To` number). The string should have a maximum of 128 characters,
+              containing only letters, numbers, spaces, and `-_~!.+` special characters. If
+              ommited, the display name will be the same as the number in the `From` field.
+
+          cancel_playback_on_detect_message_end: Whether to cancel ongoing playback on `greeting ended` detection. Defaults to
+              `true`.
+
+          cancel_playback_on_machine_detection: Whether to cancel ongoing playback on `machine` detection. Defaults to `true`.
+
+          custom_headers: Custom HTTP headers to be sent with the call. Each header should be an object
+              with 'name' and 'value' properties.
+
+          detection_mode: Allows you to chose between Premium and Standard detections.
+
+          fallback_url: A failover URL for which Telnyx will retrieve the TeXML call instructions if the
+              `Url` is not responding.
+
+          from_: The phone number of the party that initiated the call. Phone numbers are
+              formatted with a `+` and country code.
+
+          machine_detection: Enables Answering Machine Detection.
+
+          machine_detection_silence_timeout: If initial silence duration is greater than this value, consider it a machine.
+              Ignored when `premium` detection is used.
+
+          machine_detection_speech_end_threshold: Silence duration threshold after a greeting message or voice for it be
+              considered human. Ignored when `premium` detection is used.
+
+          machine_detection_speech_threshold: Maximum threshold of a human greeting. If greeting longer than this value,
+              considered machine. Ignored when `premium` detection is used.
+
+          machine_detection_timeout: Maximum timeout threshold in milliseconds for overall detection.
+
+          media_encryption: Defines whether media should be encrypted on the call. When set to `SRTP`, the
+              call will use Secure Real-time Transport Protocol for media encryption. When set
+              to `DTLS`, the call will use DTLS for media encryption. Only supported for SIP
+              destinations.
+
+          preferred_codecs: The list of comma-separated codecs to be offered on a call.
+
+          record: Whether to record the entire participant's call leg. Defaults to `false`.
+
+          recording_channels: The number of channels in the final recording. Defaults to `mono`.
+
+          recording_status_callback: The URL the recording callbacks will be sent to.
+
+          recording_status_callback_event: The changes to the recording's state that should generate a call to
+              `RecoridngStatusCallback`. Can be: `in-progress`, `completed` and `absent`.
+              Separate multiple values with a space. Defaults to `completed`.
+
+          recording_status_callback_method: HTTP request type used for `RecordingStatusCallback`. Defaults to `POST`.
+
+          recording_timeout: The number of seconds that Telnyx will wait for the recording to be stopped if
+              silence is detected. The timer only starts when the speech is detected. Please
+              note that the transcription is used to detect silence and the related charge
+              will be applied. The minimum value is 0. The default value is 0 (infinite)
+
+          recording_track: The audio track to record for the call. The default is `both`.
+
+          send_recording_url: Whether to send RecordingUrl in webhooks.
+
+          sip_auth_password: The password to use for SIP authentication.
+
+          sip_auth_username: The username to use for SIP authentication.
+
+          sip_region: Defines the SIP region to be used for the call.
+
+          status_callback: URL destination for Telnyx to send status callback events to for the call.
+
+          status_callback_event: The call events for which Telnyx should send a webhook. Multiple events can be
+              defined when separated by a space.
+
+          status_callback_method: HTTP request type used for `StatusCallback`.
+
+          supervise_call_sid: The call control ID of the existing call to supervise. When provided, the
+              created leg will be added to the specified call in supervising mode. Status
+              callbacks and action callbacks will NOT be sent for the supervising leg.
+
+          supervising_role: The supervising role for the new leg. Determines the audio behavior: barge (hear
+              both sides), whisper (only hear supervisor), monitor (hear both sides but
+              supervisor muted). Default: barge
+
+          time_limit: The maximum duration of the call in seconds. The minimum value is 30 and the
+              maximum value is 14400 (4 hours). Default is 14400 seconds.
+
+          timeout_seconds: The number of seconds to wait for the called party to answer the call before the
+              call is canceled. The minimum value is 5 and the maximum value is 120. Default
+              is 30 seconds.
+
+          to: The phone number of the called party. Phone numbers are formatted with a `+` and
+              country code.
+
+          trim: Whether to trim any leading and trailing silence from the recording. Defaults to
+              `trim-silence`.
+
+          url_method: HTTP request type used for `Url`. The default value is inherited from TeXML
+              Application setting.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def calls(
+        self,
+        account_sid: str,
+        *,
+        application_sid: str | Omit = omit,
+        async_amd: bool | Omit = omit,
+        async_amd_status_callback: str | Omit = omit,
+        async_amd_status_callback_method: Literal["GET", "POST"] | Omit = omit,
+        caller_id: str | Omit = omit,
+        cancel_playback_on_detect_message_end: bool | Omit = omit,
+        cancel_playback_on_machine_detection: bool | Omit = omit,
+        custom_headers: Iterable[call_calls_params.ApplicationDefaultCustomHeader] | Omit = omit,
+        detection_mode: Literal["Premium", "Regular"] | Omit = omit,
+        fallback_url: str | Omit = omit,
+        from_: str | Omit = omit,
+        machine_detection: Literal["Enable", "Disable", "DetectMessageEnd"] | Omit = omit,
+        machine_detection_silence_timeout: int | Omit = omit,
+        machine_detection_speech_end_threshold: int | Omit = omit,
+        machine_detection_speech_threshold: int | Omit = omit,
+        machine_detection_timeout: int | Omit = omit,
+        media_encryption: Literal["disabled", "SRTP", "DTLS"] | Omit = omit,
+        preferred_codecs: str | Omit = omit,
+        record: bool | Omit = omit,
+        recording_channels: Literal["mono", "dual"] | Omit = omit,
+        recording_status_callback: str | Omit = omit,
+        recording_status_callback_event: str | Omit = omit,
+        recording_status_callback_method: Literal["GET", "POST"] | Omit = omit,
+        recording_timeout: int | Omit = omit,
+        recording_track: Literal["inbound", "outbound", "both"] | Omit = omit,
+        send_recording_url: bool | Omit = omit,
+        sip_auth_password: str | Omit = omit,
+        sip_auth_username: str | Omit = omit,
+        sip_region: Literal["US", "Europe", "Canada", "Australia", "Middle East"] | Omit = omit,
+        status_callback: str | Omit = omit,
+        status_callback_event: Literal["initiated", "ringing", "answered", "completed"] | Omit = omit,
+        status_callback_method: Literal["GET", "POST"] | Omit = omit,
+        supervise_call_sid: str | Omit = omit,
+        supervising_role: Literal["barge", "whisper", "monitor"] | Omit = omit,
+        texml: object | Omit = omit,
+        time_limit: int | Omit = omit,
+        timeout_seconds: int | Omit = omit,
+        to: str | Omit = omit,
+        trim: Literal["trim-silence", "do-not-trim"] | Omit = omit,
+        url: object | Omit = omit,
+        url_method: Literal["GET", "POST"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> CallCallsResponse:
+        """Initiate an outbound TeXML call.
+
+        Telnyx will request TeXML from the XML Request
+        URL configured for the connection in the Mission Control Portal.
+
+        Args:
+          application_sid: The ID of the TeXML Application.
+
+          async_amd: Select whether to perform answering machine detection in the background. By
+              default execution is blocked until Answering Machine Detection is completed.
+
+          async_amd_status_callback: URL destination for Telnyx to send AMD callback events to for the call.
+
+          async_amd_status_callback_method: HTTP request type used for `AsyncAmdStatusCallback`. The default value is
+              inherited from TeXML Application setting.
+
+          caller_id: To be used as the caller id name (SIP From Display Name) presented to the
+              destination (`To` number). The string should have a maximum of 128 characters,
+              containing only letters, numbers, spaces, and `-_~!.+` special characters. If
+              ommited, the display name will be the same as the number in the `From` field.
+
+          cancel_playback_on_detect_message_end: Whether to cancel ongoing playback on `greeting ended` detection. Defaults to
+              `true`.
+
+          cancel_playback_on_machine_detection: Whether to cancel ongoing playback on `machine` detection. Defaults to `true`.
+
+          custom_headers: Custom HTTP headers to be sent with the call. Each header should be an object
+              with 'name' and 'value' properties.
+
+          detection_mode: Allows you to chose between Premium and Standard detections.
+
+          fallback_url: A failover URL for which Telnyx will retrieve the TeXML call instructions if the
+              `Url` is not responding.
+
+          from_: The phone number of the party that initiated the call. Phone numbers are
+              formatted with a `+` and country code.
+
+          machine_detection: Enables Answering Machine Detection.
+
+          machine_detection_silence_timeout: If initial silence duration is greater than this value, consider it a machine.
+              Ignored when `premium` detection is used.
+
+          machine_detection_speech_end_threshold: Silence duration threshold after a greeting message or voice for it be
+              considered human. Ignored when `premium` detection is used.
+
+          machine_detection_speech_threshold: Maximum threshold of a human greeting. If greeting longer than this value,
+              considered machine. Ignored when `premium` detection is used.
+
+          machine_detection_timeout: Maximum timeout threshold in milliseconds for overall detection.
+
+          media_encryption: Defines whether media should be encrypted on the call. When set to `SRTP`, the
+              call will use Secure Real-time Transport Protocol for media encryption. When set
+              to `DTLS`, the call will use DTLS for media encryption. Only supported for SIP
+              destinations.
+
+          preferred_codecs: The list of comma-separated codecs to be offered on a call.
+
+          record: Whether to record the entire participant's call leg. Defaults to `false`.
+
+          recording_channels: The number of channels in the final recording. Defaults to `mono`.
+
+          recording_status_callback: The URL the recording callbacks will be sent to.
+
+          recording_status_callback_event: The changes to the recording's state that should generate a call to
+              `RecoridngStatusCallback`. Can be: `in-progress`, `completed` and `absent`.
+              Separate multiple values with a space. Defaults to `completed`.
+
+          recording_status_callback_method: HTTP request type used for `RecordingStatusCallback`. Defaults to `POST`.
+
+          recording_timeout: The number of seconds that Telnyx will wait for the recording to be stopped if
+              silence is detected. The timer only starts when the speech is detected. Please
+              note that the transcription is used to detect silence and the related charge
+              will be applied. The minimum value is 0. The default value is 0 (infinite)
+
+          recording_track: The audio track to record for the call. The default is `both`.
+
+          send_recording_url: Whether to send RecordingUrl in webhooks.
+
+          sip_auth_password: The password to use for SIP authentication.
+
+          sip_auth_username: The username to use for SIP authentication.
+
+          sip_region: Defines the SIP region to be used for the call.
+
+          status_callback: URL destination for Telnyx to send status callback events to for the call.
+
+          status_callback_event: The call events for which Telnyx should send a webhook. Multiple events can be
+              defined when separated by a space.
+
+          status_callback_method: HTTP request type used for `StatusCallback`.
+
+          supervise_call_sid: The call control ID of the existing call to supervise. When provided, the
+              created leg will be added to the specified call in supervising mode. Status
+              callbacks and action callbacks will NOT be sent for the supervising leg.
+
+          supervising_role: The supervising role for the new leg. Determines the audio behavior: barge (hear
+              both sides), whisper (only hear supervisor), monitor (hear both sides but
+              supervisor muted). Default: barge
+
+          time_limit: The maximum duration of the call in seconds. The minimum value is 30 and the
+              maximum value is 14400 (4 hours). Default is 14400 seconds.
+
+          timeout_seconds: The number of seconds to wait for the called party to answer the call before the
+              call is canceled. The minimum value is 5 and the maximum value is 120. Default
+              is 30 seconds.
+
+          to: The phone number of the called party. Phone numbers are formatted with a `+` and
+              country code.
+
+          trim: Whether to trim any leading and trailing silence from the recording. Defaults to
+              `trim-silence`.
+
+          url_method: HTTP request type used for `Url`. The default value is inherited from TeXML
+              Application setting.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    async def calls(
+        self,
+        account_sid: str,
+        *,
+        url: str | object | Omit = omit,
+        application_sid: str | Omit = omit,
+        async_amd: bool | Omit = omit,
+        async_amd_status_callback: str | Omit = omit,
+        async_amd_status_callback_method: Literal["GET", "POST"] | Omit = omit,
+        caller_id: str | Omit = omit,
+        cancel_playback_on_detect_message_end: bool | Omit = omit,
+        cancel_playback_on_machine_detection: bool | Omit = omit,
+        custom_headers: Iterable[call_calls_params.WithURLCustomHeader]
+        | Iterable[call_calls_params.WithTeXmlCustomHeader]
+        | Iterable[call_calls_params.ApplicationDefaultCustomHeader]
+        | Omit = omit,
+        detection_mode: Literal["Premium", "Regular"] | Omit = omit,
+        fallback_url: str | Omit = omit,
+        from_: str | Omit = omit,
+        machine_detection: Literal["Enable", "Disable", "DetectMessageEnd"] | Omit = omit,
+        machine_detection_silence_timeout: int | Omit = omit,
+        machine_detection_speech_end_threshold: int | Omit = omit,
+        machine_detection_speech_threshold: int | Omit = omit,
+        machine_detection_timeout: int | Omit = omit,
+        media_encryption: Literal["disabled", "SRTP", "DTLS"] | Omit = omit,
+        preferred_codecs: str | Omit = omit,
+        record: bool | Omit = omit,
+        recording_channels: Literal["mono", "dual"] | Omit = omit,
+        recording_status_callback: str | Omit = omit,
+        recording_status_callback_event: str | Omit = omit,
+        recording_status_callback_method: Literal["GET", "POST"] | Omit = omit,
+        recording_timeout: int | Omit = omit,
+        recording_track: Literal["inbound", "outbound", "both"] | Omit = omit,
+        send_recording_url: bool | Omit = omit,
+        sip_auth_password: str | Omit = omit,
+        sip_auth_username: str | Omit = omit,
+        sip_region: Literal["US", "Europe", "Canada", "Australia", "Middle East"] | Omit = omit,
+        status_callback: str | Omit = omit,
+        status_callback_event: Literal["initiated", "ringing", "answered", "completed"] | Omit = omit,
+        status_callback_method: Literal["GET", "POST"] | Omit = omit,
+        supervise_call_sid: str | Omit = omit,
+        supervising_role: Literal["barge", "whisper", "monitor"] | Omit = omit,
+        texml: object | str | Omit = omit,
+        time_limit: int | Omit = omit,
+        timeout_seconds: int | Omit = omit,
+        to: str | Omit = omit,
+        trim: Literal["trim-silence", "do-not-trim"] | Omit = omit,
+        url_method: Literal["GET", "POST"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> CallCallsResponse:
         if not account_sid:
             raise ValueError(f"Expected a non-empty value for `account_sid` but received {account_sid!r}")
         return await self._post(
             path_template("/texml/Accounts/{account_sid}/Calls", account_sid=account_sid),
             body=await async_maybe_transform(
                 {
+                    "url": url,
                     "application_sid": application_sid,
-                    "from_": from_,
-                    "to": to,
                     "async_amd": async_amd,
                     "async_amd_status_callback": async_amd_status_callback,
                     "async_amd_status_callback_method": async_amd_status_callback_method,
@@ -1072,6 +1899,7 @@ class AsyncCallsResource(AsyncAPIResource):
                     "custom_headers": custom_headers,
                     "detection_mode": detection_mode,
                     "fallback_url": fallback_url,
+                    "from_": from_,
                     "machine_detection": machine_detection,
                     "machine_detection_silence_timeout": machine_detection_silence_timeout,
                     "machine_detection_speech_end_threshold": machine_detection_speech_end_threshold,
@@ -1098,8 +1926,8 @@ class AsyncCallsResource(AsyncAPIResource):
                     "texml": texml,
                     "time_limit": time_limit,
                     "timeout_seconds": timeout_seconds,
+                    "to": to,
                     "trim": trim,
-                    "url": url,
                     "url_method": url_method,
                 },
                 call_calls_params.CallCallsParams,
