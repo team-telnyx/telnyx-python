@@ -109,15 +109,17 @@ class TestWirelessBlocklists:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_update(self, client: Telnyx) -> None:
-        wireless_blocklist = client.wireless_blocklists.update()
+        wireless_blocklist = client.wireless_blocklists.update(
+            id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+        )
         assert_matches_type(WirelessBlocklistUpdateResponse, wireless_blocklist, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_update_with_all_params(self, client: Telnyx) -> None:
         wireless_blocklist = client.wireless_blocklists.update(
+            id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
             name="My Wireless Blocklist",
-            type="country",
             values=["CA", "US"],
         )
         assert_matches_type(WirelessBlocklistUpdateResponse, wireless_blocklist, path=["response"])
@@ -125,7 +127,9 @@ class TestWirelessBlocklists:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_update(self, client: Telnyx) -> None:
-        response = client.wireless_blocklists.with_raw_response.update()
+        response = client.wireless_blocklists.with_raw_response.update(
+            id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+        )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -135,7 +139,9 @@ class TestWirelessBlocklists:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_update(self, client: Telnyx) -> None:
-        with client.wireless_blocklists.with_streaming_response.update() as response:
+        with client.wireless_blocklists.with_streaming_response.update(
+            id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+        ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -143,6 +149,14 @@ class TestWirelessBlocklists:
             assert_matches_type(WirelessBlocklistUpdateResponse, wireless_blocklist, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_path_params_update(self, client: Telnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.wireless_blocklists.with_raw_response.update(
+                id="",
+            )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -317,15 +331,17 @@ class TestAsyncWirelessBlocklists:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_update(self, async_client: AsyncTelnyx) -> None:
-        wireless_blocklist = await async_client.wireless_blocklists.update()
+        wireless_blocklist = await async_client.wireless_blocklists.update(
+            id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+        )
         assert_matches_type(WirelessBlocklistUpdateResponse, wireless_blocklist, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncTelnyx) -> None:
         wireless_blocklist = await async_client.wireless_blocklists.update(
+            id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
             name="My Wireless Blocklist",
-            type="country",
             values=["CA", "US"],
         )
         assert_matches_type(WirelessBlocklistUpdateResponse, wireless_blocklist, path=["response"])
@@ -333,7 +349,9 @@ class TestAsyncWirelessBlocklists:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncTelnyx) -> None:
-        response = await async_client.wireless_blocklists.with_raw_response.update()
+        response = await async_client.wireless_blocklists.with_raw_response.update(
+            id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+        )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -343,7 +361,9 @@ class TestAsyncWirelessBlocklists:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncTelnyx) -> None:
-        async with async_client.wireless_blocklists.with_streaming_response.update() as response:
+        async with async_client.wireless_blocklists.with_streaming_response.update(
+            id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+        ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -351,6 +371,14 @@ class TestAsyncWirelessBlocklists:
             assert_matches_type(WirelessBlocklistUpdateResponse, wireless_blocklist, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_path_params_update(self, async_client: AsyncTelnyx) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.wireless_blocklists.with_raw_response.update(
+                id="",
+            )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
