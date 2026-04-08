@@ -132,9 +132,9 @@ class WirelessBlocklistsResource(SyncAPIResource):
 
     def update(
         self,
+        id: str,
         *,
         name: str | Omit = omit,
-        type: Literal["country", "mcc", "plmn"] | Omit = omit,
         values: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -149,8 +149,6 @@ class WirelessBlocklistsResource(SyncAPIResource):
         Args:
           name: The name of the Wireless Blocklist.
 
-          type: The type of wireless blocklist.
-
           values: Values to block. The values here depend on the `type` of Wireless Blocklist.
 
           extra_headers: Send extra headers
@@ -161,12 +159,13 @@ class WirelessBlocklistsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._patch(
-            "/wireless_blocklists",
+            path_template("/wireless_blocklists/{id}", id=id),
             body=maybe_transform(
                 {
                     "name": name,
-                    "type": type,
                     "values": values,
                 },
                 wireless_blocklist_update_params.WirelessBlocklistUpdateParams,
@@ -374,9 +373,9 @@ class AsyncWirelessBlocklistsResource(AsyncAPIResource):
 
     async def update(
         self,
+        id: str,
         *,
         name: str | Omit = omit,
-        type: Literal["country", "mcc", "plmn"] | Omit = omit,
         values: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -391,8 +390,6 @@ class AsyncWirelessBlocklistsResource(AsyncAPIResource):
         Args:
           name: The name of the Wireless Blocklist.
 
-          type: The type of wireless blocklist.
-
           values: Values to block. The values here depend on the `type` of Wireless Blocklist.
 
           extra_headers: Send extra headers
@@ -403,12 +400,13 @@ class AsyncWirelessBlocklistsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._patch(
-            "/wireless_blocklists",
+            path_template("/wireless_blocklists/{id}", id=id),
             body=await async_maybe_transform(
                 {
                     "name": name,
-                    "type": type,
                     "values": values,
                 },
                 wireless_blocklist_update_params.WirelessBlocklistUpdateParams,
