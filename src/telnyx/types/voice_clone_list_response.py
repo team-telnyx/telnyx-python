@@ -6,10 +6,10 @@ from typing_extensions import Literal
 
 from .._models import BaseModel
 
-__all__ = ["VoiceCloneData"]
+__all__ = ["VoiceCloneListResponse"]
 
 
-class VoiceCloneData(BaseModel):
+class VoiceCloneListResponse(BaseModel):
     """A voice clone object."""
 
     id: Optional[str] = None
@@ -33,7 +33,7 @@ class VoiceCloneData(BaseModel):
     name: Optional[str] = None
     """Name of the voice clone."""
 
-    provider: Optional[Literal["telnyx", "minimax"]] = None
+    provider: Optional[Literal["telnyx", "minimax", "Telnyx", "Minimax"]] = None
     """Voice synthesis provider used for this clone."""
 
     provider_supported_models: Optional[List[str]] = None

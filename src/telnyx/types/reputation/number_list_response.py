@@ -6,10 +6,10 @@ from typing_extensions import Literal, TypeAlias
 
 from ..._models import BaseModel
 
-__all__ = ["NumberRetrieveResponse", "Data", "DataReputationData", "DataReputationDataReputationData"]
+__all__ = ["NumberListResponse", "ReputationData", "ReputationDataReputationData"]
 
 
-class DataReputationDataReputationData(BaseModel):
+class ReputationDataReputationData(BaseModel):
     """Reputation metrics"""
 
     connection_score: Optional[int] = None
@@ -34,10 +34,10 @@ class DataReputationDataReputationData(BaseModel):
     """Overall spam risk level"""
 
 
-DataReputationData: TypeAlias = Union[DataReputationDataReputationData, Optional[object]]
+ReputationData: TypeAlias = Union[ReputationDataReputationData, Optional[object]]
 
 
-class Data(BaseModel):
+class NumberListResponse(BaseModel):
     id: Optional[str] = None
     """Unique identifier"""
 
@@ -50,12 +50,8 @@ class Data(BaseModel):
     phone_number: Optional[str] = None
     """Phone number in E.164 format"""
 
-    reputation_data: Optional[DataReputationData] = None
+    reputation_data: Optional[ReputationData] = None
     """Reputation metrics (null if not yet fetched)"""
 
     updated_at: Optional[datetime] = None
     """When the record was last updated"""
-
-
-class NumberRetrieveResponse(BaseModel):
-    data: Optional[Data] = None

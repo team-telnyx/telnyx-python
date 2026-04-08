@@ -246,6 +246,7 @@ class CallsResource(SyncAPIResource):
         machine_detection_speech_end_threshold: int | Omit = omit,
         machine_detection_speech_threshold: int | Omit = omit,
         machine_detection_timeout: int | Omit = omit,
+        media_encryption: Literal["disabled", "SRTP", "DTLS"] | Omit = omit,
         preferred_codecs: str | Omit = omit,
         record: bool | Omit = omit,
         recording_channels: Literal["mono", "dual"] | Omit = omit,
@@ -328,6 +329,11 @@ class CallsResource(SyncAPIResource):
               considered machine. Ignored when `premium` detection is used.
 
           machine_detection_timeout: Maximum timeout threshold in milliseconds for overall detection.
+
+          media_encryption: Defines whether media should be encrypted on the call. When set to `SRTP`, the
+              call will use Secure Real-time Transport Protocol for media encryption. When set
+              to `DTLS`, the call will use DTLS for media encryption. Only supported for SIP
+              destinations.
 
           preferred_codecs: The list of comma-separated codecs to be offered on a call.
 
@@ -422,6 +428,7 @@ class CallsResource(SyncAPIResource):
                     "machine_detection_speech_end_threshold": machine_detection_speech_end_threshold,
                     "machine_detection_speech_threshold": machine_detection_speech_threshold,
                     "machine_detection_timeout": machine_detection_timeout,
+                    "media_encryption": media_encryption,
                     "preferred_codecs": preferred_codecs,
                     "record": record,
                     "recording_channels": recording_channels,
@@ -888,6 +895,7 @@ class AsyncCallsResource(AsyncAPIResource):
         machine_detection_speech_end_threshold: int | Omit = omit,
         machine_detection_speech_threshold: int | Omit = omit,
         machine_detection_timeout: int | Omit = omit,
+        media_encryption: Literal["disabled", "SRTP", "DTLS"] | Omit = omit,
         preferred_codecs: str | Omit = omit,
         record: bool | Omit = omit,
         recording_channels: Literal["mono", "dual"] | Omit = omit,
@@ -970,6 +978,11 @@ class AsyncCallsResource(AsyncAPIResource):
               considered machine. Ignored when `premium` detection is used.
 
           machine_detection_timeout: Maximum timeout threshold in milliseconds for overall detection.
+
+          media_encryption: Defines whether media should be encrypted on the call. When set to `SRTP`, the
+              call will use Secure Real-time Transport Protocol for media encryption. When set
+              to `DTLS`, the call will use DTLS for media encryption. Only supported for SIP
+              destinations.
 
           preferred_codecs: The list of comma-separated codecs to be offered on a call.
 
@@ -1064,6 +1077,7 @@ class AsyncCallsResource(AsyncAPIResource):
                     "machine_detection_speech_end_threshold": machine_detection_speech_end_threshold,
                     "machine_detection_speech_threshold": machine_detection_speech_threshold,
                     "machine_detection_timeout": machine_detection_timeout,
+                    "media_encryption": media_encryption,
                     "preferred_codecs": preferred_codecs,
                     "record": record,
                     "recording_channels": recording_channels,

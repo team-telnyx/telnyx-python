@@ -16,12 +16,10 @@ from .shared import (
     Feature as Feature,
     APIError as APIError,
     Metadata as Metadata,
-    MetaInfo as MetaInfo,
     ShortCode as ShortCode,
     HostedNumber as HostedNumber,
     SimCardStatus as SimCardStatus,
     SimpleSimCard as SimpleSimCard,
-    ReputationData as ReputationData,
     CostInformation as CostInformation,
     NetappsLocation as NetappsLocation,
     RoomParticipant as RoomParticipant,
@@ -45,7 +43,6 @@ from .shared import (
     AvailablePhoneNumbersMetadata as AvailablePhoneNumbersMetadata,
     PhoneNumberWithMessagingSettings as PhoneNumberWithMessagingSettings,
     ConnectionNoiseSuppressionDetails as ConnectionNoiseSuppressionDetails,
-    ReputationPhoneNumberWithReputationData as ReputationPhoneNumberWithReputationData,
     SubNumberOrderRegulatoryRequirementWithValue as SubNumberOrderRegulatoryRequirementWithValue,
 )
 from .address import Address as Address
@@ -96,8 +93,6 @@ from .verify_profile import VerifyProfile as VerifyProfile
 from .whatsapp_media import WhatsappMedia as WhatsappMedia
 from .wireless_error import WirelessError as WirelessError
 from .access_ip_range import AccessIPRange as AccessIPRange
-from .billing_address import BillingAddress as BillingAddress
-from .billing_contact import BillingContact as BillingContact
 from .call_left_queue import CallLeftQueue as CallLeftQueue
 from .encrypted_media import EncryptedMedia as EncryptedMedia
 from .fax_application import FaxApplication as FaxApplication
@@ -121,7 +116,6 @@ from .ip_create_params import IPCreateParams as IPCreateParams
 from .ip_update_params import IPUpdateParams as IPUpdateParams
 from .message_template import MessageTemplate as MessageTemplate
 from .outbound_message import OutboundMessage as OutboundMessage
-from .physical_address import PhysicalAddress as PhysicalAddress
 from .rcs_card_content import RcsCardContent as RcsCardContent
 from .rcs_content_info import RcsContentInfo as RcsContentInfo
 from .room_composition import RoomComposition as RoomComposition
@@ -129,7 +123,6 @@ from .room_list_params import RoomListParams as RoomListParams
 from .sip_header_param import SipHeaderParam as SipHeaderParam
 from .sub_number_order import SubNumberOrder as SubNumberOrder
 from .user_requirement import UserRequirement as UserRequirement
-from .voice_clone_data import VoiceCloneData as VoiceCloneData
 from .whatsapp_contact import WhatsappContact as WhatsappContact
 from .available_service import AvailableService as AvailableService
 from .call_fork_started import CallForkStarted as CallForkStarted
@@ -137,7 +130,6 @@ from .call_fork_stopped import CallForkStopped as CallForkStopped
 from .call_gather_ended import CallGatherEnded as CallGatherEnded
 from .call_refer_failed import CallReferFailed as CallReferFailed
 from .custom_sip_header import CustomSipHeader as CustomSipHeader
-from .enterprise_public import EnterprisePublic as EnterprisePublic
 from .fax_create_params import FaxCreateParams as FaxCreateParams
 from .media_list_params import MediaListParams as MediaListParams
 from .messaging_profile import MessagingProfile as MessagingProfile
@@ -147,7 +139,6 @@ from .queue_list_params import QueueListParams as QueueListParams
 from .rcs_agent_message import RcsAgentMessage as RcsAgentMessage
 from .requirement_group import RequirementGroup as RequirementGroup
 from .texml_application import TexmlApplication as TexmlApplication
-from .voice_design_data import VoiceDesignData as VoiceDesignData
 from .whatsapp_location import WhatsappLocation as WhatsappLocation
 from .whatsapp_reaction import WhatsappReaction as WhatsappReaction
 from .call_dial_response import CallDialResponse as CallDialResponse
@@ -220,7 +211,6 @@ from .notification_profile import NotificationProfile as NotificationProfile
 from .notification_setting import NotificationSetting as NotificationSetting
 from .number_pool_settings import NumberPoolSettings as NumberPoolSettings
 from .oauth_token_response import OAuthTokenResponse as OAuthTokenResponse
-from .organization_contact import OrganizationContact as OrganizationContact
 from .rcs_suggestion_param import RcsSuggestionParam as RcsSuggestionParam
 from .region_list_response import RegionListResponse as RegionListResponse
 from .room_create_response import RoomCreateResponse as RoomCreateResponse
@@ -236,8 +226,6 @@ from .whatsapp_interactive import WhatsappInteractive as WhatsappInteractive
 from .whatsapp_media_param import WhatsappMediaParam as WhatsappMediaParam
 from .address_create_params import AddressCreateParams as AddressCreateParams
 from .ai_summarize_response import AISummarizeResponse as AISummarizeResponse
-from .billing_address_param import BillingAddressParam as BillingAddressParam
-from .billing_contact_param import BillingContactParam as BillingContactParam
 from .call_playback_started import CallPlaybackStarted as CallPlaybackStarted
 from .call_streaming_failed import CallStreamingFailed as CallStreamingFailed
 from .comment_create_params import CommentCreateParams as CommentCreateParams
@@ -278,7 +266,6 @@ from .fqdn_retrieve_response import FqdnRetrieveResponse as FqdnRetrieveResponse
 from .gcs_configuration_data import GcsConfigurationData as GcsConfigurationData
 from .ota_update_list_params import OtaUpdateListParams as OtaUpdateListParams
 from .outbound_voice_profile import OutboundVoiceProfile as OutboundVoiceProfile
-from .physical_address_param import PhysicalAddressParam as PhysicalAddressParam
 from .porting_order_end_user import PortingOrderEndUser as PortingOrderEndUser
 from .rcs_card_content_param import RcsCardContentParam as RcsCardContentParam
 from .rcs_content_info_param import RcsContentInfoParam as RcsContentInfoParam
@@ -287,7 +274,6 @@ from .short_code_list_params import ShortCodeListParams as ShortCodeListParams
 from .sim_card_delete_params import SimCardDeleteParams as SimCardDeleteParams
 from .sim_card_update_params import SimCardUpdateParams as SimCardUpdateParams
 from .texml_secrets_response import TexmlSecretsResponse as TexmlSecretsResponse
-from .traffic_policy_profile import TrafficPolicyProfile as TrafficPolicyProfile
 from .url_shortener_settings import URLShortenerSettings as URLShortenerSettings
 from .user_tag_list_response import UserTagListResponse as UserTagListResponse
 from .whatsapp_contact_param import WhatsappContactParam as WhatsappContactParam
@@ -342,6 +328,7 @@ from .document_delete_response import DocumentDeleteResponse as DocumentDeleteRe
 from .document_update_response import DocumentUpdateResponse as DocumentUpdateResponse
 from .document_upload_response import DocumentUploadResponse as DocumentUploadResponse
 from .enterprise_create_params import EnterpriseCreateParams as EnterpriseCreateParams
+from .enterprise_list_response import EnterpriseListResponse as EnterpriseListResponse
 from .enterprise_update_params import EnterpriseUpdateParams as EnterpriseUpdateParams
 from .number_order_list_params import NumberOrderListParams as NumberOrderListParams
 from .oauth_client_list_params import OAuthClientListParams as OAuthClientListParams
@@ -392,6 +379,7 @@ from .sound_modifications_param import SoundModificationsParam as SoundModificat
 from .stream_bidirectional_mode import StreamBidirectionalMode as StreamBidirectionalMode
 from .stream_client_event_param import StreamClientEventParam as StreamClientEventParam
 from .voice_clone_create_params import VoiceCloneCreateParams as VoiceCloneCreateParams
+from .voice_clone_list_response import VoiceCloneListResponse as VoiceCloneListResponse
 from .voice_clone_update_params import VoiceCloneUpdateParams as VoiceCloneUpdateParams
 from .access_ip_address_response import AccessIPAddressResponse as AccessIPAddressResponse
 from .call_bridged_webhook_event import CallBridgedWebhookEvent as CallBridgedWebhookEvent
@@ -413,7 +401,6 @@ from .number_order_update_params import NumberOrderUpdateParams as NumberOrderUp
 from .number_pool_settings_param import NumberPoolSettingsParam as NumberPoolSettingsParam
 from .oauth_client_create_params import OAuthClientCreateParams as OAuthClientCreateParams
 from .oauth_client_update_params import OAuthClientUpdateParams as OAuthClientUpdateParams
-from .organization_contact_param import OrganizationContactParam as OrganizationContactParam
 from .phone_number_update_params import PhoneNumberUpdateParams as PhoneNumberUpdateParams
 from .room_recording_list_params import RoomRecordingListParams as RoomRecordingListParams
 from .short_code_update_response import ShortCodeUpdateResponse as ShortCodeUpdateResponse
@@ -549,6 +536,7 @@ from .porting_orders_activation_job import PortingOrdersActivationJob as Porting
 from .requirement_group_list_params import RequirementGroupListParams as RequirementGroupListParams
 from .requirement_retrieve_response import RequirementRetrieveResponse as RequirementRetrieveResponse
 from .texml_application_list_params import TexmlApplicationListParams as TexmlApplicationListParams
+from .texml_initiate_ai_call_params import TexmlInitiateAICallParams as TexmlInitiateAICallParams
 from .verified_number_create_params import VerifiedNumberCreateParams as VerifiedNumberCreateParams
 from .advanced_order_create_response import AdvancedOrderCreateResponse as AdvancedOrderCreateResponse
 from .azure_configuration_data_param import AzureConfigurationDataParam as AzureConfigurationDataParam
@@ -633,6 +621,7 @@ from .requirement_group_update_params import RequirementGroupUpdateParams as Req
 from .sim_card_get_public_ip_response import SimCardGetPublicIPResponse as SimCardGetPublicIPResponse
 from .texml_application_create_params import TexmlApplicationCreateParams as TexmlApplicationCreateParams
 from .texml_application_update_params import TexmlApplicationUpdateParams as TexmlApplicationUpdateParams
+from .texml_initiate_ai_call_response import TexmlInitiateAICallResponse as TexmlInitiateAICallResponse
 from .usage_report_get_options_params import UsageReportGetOptionsParams as UsageReportGetOptionsParams
 from .verification_trigger_sms_params import VerificationTriggerSMSParams as VerificationTriggerSMSParams
 from .verified_number_create_response import VerifiedNumberCreateResponse as VerifiedNumberCreateResponse
@@ -824,6 +813,7 @@ from .telephony_credential_create_response import TelephonyCredentialCreateRespo
 from .telephony_credential_delete_response import TelephonyCredentialDeleteResponse as TelephonyCredentialDeleteResponse
 from .telephony_credential_update_response import TelephonyCredentialUpdateResponse as TelephonyCredentialUpdateResponse
 from .traffic_policy_profile_create_params import TrafficPolicyProfileCreateParams as TrafficPolicyProfileCreateParams
+from .traffic_policy_profile_list_response import TrafficPolicyProfileListResponse as TrafficPolicyProfileListResponse
 from .traffic_policy_profile_update_params import TrafficPolicyProfileUpdateParams as TrafficPolicyProfileUpdateParams
 from .wireless_blocklist_retrieve_response import WirelessBlocklistRetrieveResponse as WirelessBlocklistRetrieveResponse
 from .wireless_blocklist_value_list_params import WirelessBlocklistValueListParams as WirelessBlocklistValueListParams

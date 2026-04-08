@@ -4,9 +4,8 @@ from typing import List, Optional
 from datetime import datetime
 
 from ...._models import BaseModel
-from ...shared.meta_info import MetaInfo
 
-__all__ = ["NumberCreateResponse", "Data"]
+__all__ = ["NumberAssociateResponse", "Data", "Meta"]
 
 
 class Data(BaseModel):
@@ -26,7 +25,21 @@ class Data(BaseModel):
     """When the record was last updated"""
 
 
-class NumberCreateResponse(BaseModel):
+class Meta(BaseModel):
+    page_number: Optional[int] = None
+    """Current page number"""
+
+    page_size: Optional[int] = None
+    """Items per page"""
+
+    total_pages: Optional[int] = None
+    """Total number of pages"""
+
+    total_results: Optional[int] = None
+    """Total number of results"""
+
+
+class NumberAssociateResponse(BaseModel):
     data: Optional[List[Data]] = None
 
-    meta: Optional[MetaInfo] = None
+    meta: Optional[Meta] = None

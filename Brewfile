@@ -1,2 +1,2 @@
-brew "uv"
+brew "rye"
 

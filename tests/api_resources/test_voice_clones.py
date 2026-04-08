@@ -12,7 +12,7 @@ from respx import MockRouter
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types import (
-    VoiceCloneData,
+    VoiceCloneListResponse,
     VoiceCloneCreateResponse,
     VoiceCloneUpdateResponse,
     VoiceCloneCreateFromUploadResponse,
@@ -147,7 +147,7 @@ class TestVoiceClones:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         voice_clone = client.voice_clones.list()
-        assert_matches_type(SyncDefaultFlatPagination[VoiceCloneData], voice_clone, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[VoiceCloneListResponse], voice_clone, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -159,7 +159,7 @@ class TestVoiceClones:
             page_size=1,
             sort="name",
         )
-        assert_matches_type(SyncDefaultFlatPagination[VoiceCloneData], voice_clone, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[VoiceCloneListResponse], voice_clone, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -169,7 +169,7 @@ class TestVoiceClones:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         voice_clone = response.parse()
-        assert_matches_type(SyncDefaultFlatPagination[VoiceCloneData], voice_clone, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[VoiceCloneListResponse], voice_clone, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -179,7 +179,7 @@ class TestVoiceClones:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             voice_clone = response.parse()
-            assert_matches_type(SyncDefaultFlatPagination[VoiceCloneData], voice_clone, path=["response"])
+            assert_matches_type(SyncDefaultFlatPagination[VoiceCloneListResponse], voice_clone, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -457,7 +457,7 @@ class TestAsyncVoiceClones:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         voice_clone = await async_client.voice_clones.list()
-        assert_matches_type(AsyncDefaultFlatPagination[VoiceCloneData], voice_clone, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[VoiceCloneListResponse], voice_clone, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -469,7 +469,7 @@ class TestAsyncVoiceClones:
             page_size=1,
             sort="name",
         )
-        assert_matches_type(AsyncDefaultFlatPagination[VoiceCloneData], voice_clone, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[VoiceCloneListResponse], voice_clone, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -479,7 +479,7 @@ class TestAsyncVoiceClones:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         voice_clone = await response.parse()
-        assert_matches_type(AsyncDefaultFlatPagination[VoiceCloneData], voice_clone, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[VoiceCloneListResponse], voice_clone, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -489,7 +489,7 @@ class TestAsyncVoiceClones:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             voice_clone = await response.parse()
-            assert_matches_type(AsyncDefaultFlatPagination[VoiceCloneData], voice_clone, path=["response"])
+            assert_matches_type(AsyncDefaultFlatPagination[VoiceCloneListResponse], voice_clone, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
