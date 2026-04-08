@@ -26,6 +26,7 @@ from ....types.ai.voice_settings_param import VoiceSettingsParam
 from ....types.ai.widget_settings_param import WidgetSettingsParam
 from ....types.ai.insight_settings_param import InsightSettingsParam
 from ....types.ai.privacy_settings_param import PrivacySettingsParam
+from ....types.ai.observability_req_param import ObservabilityReqParam
 from ....types.ai.messaging_settings_param import MessagingSettingsParam
 from ....types.ai.telephony_settings_param import TelephonySettingsParam
 from ....types.ai.transcription_settings_param import TranscriptionSettingsParam
@@ -116,7 +117,7 @@ class VersionsResource(SyncAPIResource):
         messaging_settings: MessagingSettingsParam | Omit = omit,
         model: str | Omit = omit,
         name: str | Omit = omit,
-        observability_settings: version_update_params.ObservabilitySettings | Omit = omit,
+        observability_settings: ObservabilityReqParam | Omit = omit,
         privacy_settings: PrivacySettingsParam | Omit = omit,
         telephony_settings: TelephonySettingsParam | Omit = omit,
         tool_ids: SequenceNotStr[str] | Omit = omit,
@@ -416,7 +417,7 @@ class AsyncVersionsResource(AsyncAPIResource):
         messaging_settings: MessagingSettingsParam | Omit = omit,
         model: str | Omit = omit,
         name: str | Omit = omit,
-        observability_settings: version_update_params.ObservabilitySettings | Omit = omit,
+        observability_settings: ObservabilityReqParam | Omit = omit,
         privacy_settings: PrivacySettingsParam | Omit = omit,
         telephony_settings: TelephonySettingsParam | Omit = omit,
         tool_ids: SequenceNotStr[str] | Omit = omit,
