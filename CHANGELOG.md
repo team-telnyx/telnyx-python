@@ -1,5 +1,22 @@
 # Changelog
 
+## 4.97.0 (2026-04-08)
+
+Full Changelog: [v4.96.0...v4.97.0](https://github.com/team-telnyx/telnyx-python/compare/v4.96.0...v4.97.0)
+
+### Features
+
+* Add ai_calls endpoint documentation to OpenAPI spec ([586c445](https://github.com/team-telnyx/telnyx-python/commit/586c44557cec717765f9aff0e7f67b4f81a2d50a))
+* Add oneOf constraint for Url/Texml mutual exclusivity in InitiateCallRequest ([a444d3a](https://github.com/team-telnyx/telnyx-python/commit/a444d3a66987f8d6625e3dbce7ab69625e21e7ae))
+* **api:** Merge pull request [#39](https://github.com/team-telnyx/telnyx-python/issues/39) from stainless-sdks/revert-a988c49-stainless-changes ([75ee85b](https://github.com/team-telnyx/telnyx-python/commit/75ee85b1f03acee3d5a759ab13503c8ac5da729b))
+* **client:** support sending raw data over websockets ([f475022](https://github.com/team-telnyx/telnyx-python/commit/f4750222c54658dfa0e2a43bc54758e7128f6275))
+* CW-3815 fix PATCH /wirelss_blocklists/{id} endpoint ([5b7eb9f](https://github.com/team-telnyx/telnyx-python/commit/5b7eb9f2335152f2ba68a4a06c578e95761b6c41))
+
+
+### Reverts
+
+* restore stainless.yml SDK generation fixes ([75ee85b](https://github.com/team-telnyx/telnyx-python/commit/75ee85b1f03acee3d5a759ab13503c8ac5da729b))
+
 ## 4.96.0 (2026-04-07)
 
 Full Changelog: [v4.95.0...v4.96.0](https://github.com/team-telnyx/telnyx-python/compare/v4.95.0...v4.96.0)
