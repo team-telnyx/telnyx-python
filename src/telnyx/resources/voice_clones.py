@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Mapping, cast
-from typing_extensions import Literal
+from typing import Mapping, Optional, cast
+from typing_extensions import Literal, overload
 
 import httpx
 
@@ -14,7 +14,14 @@ from ..types import (
     voice_clone_create_from_upload_params,
 )
 from .._types import Body, Omit, Query, Headers, NoneType, NotGiven, FileTypes, omit, not_given
-from .._utils import extract_files, path_template, maybe_transform, deepcopy_minimal, async_maybe_transform
+from .._utils import (
+    extract_files,
+    path_template,
+    required_args,
+    maybe_transform,
+    deepcopy_minimal,
+    async_maybe_transform,
+)
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -65,6 +72,7 @@ class VoiceClonesResource(SyncAPIResource):
         """
         return VoiceClonesResourceWithStreamingResponse(self)
 
+    @overload
     def create(
         self,
         *,
@@ -72,7 +80,7 @@ class VoiceClonesResource(SyncAPIResource):
         language: str,
         name: str,
         voice_design_id: str,
-        provider: Literal["telnyx", "minimax"] | Omit = omit,
+        provider: Literal["telnyx", "Telnyx"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -87,13 +95,14 @@ class VoiceClonesResource(SyncAPIResource):
         Args:
           gender: Gender of the voice clone.
 
-          language: ISO 639-1 language code for the clone (e.g. `en`, `fr`, `de`).
+          language: ISO 639-1 language code for the clone. Supports the combined Telnyx language
+              set.
 
           name: Name for the voice clone.
 
           voice_design_id: UUID of the source voice design to clone.
 
-          provider: Voice synthesis provider. Case-insensitive. Defaults to `telnyx`.
+          provider: Voice synthesis provider. Defaults to `telnyx`.
 
           extra_headers: Send extra headers
 
@@ -103,6 +112,67 @@ class VoiceClonesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
+        gender: Literal["male", "female", "neutral"],
+        language: str,
+        name: str,
+        provider: Literal["minimax", "Minimax"],
+        voice_design_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> VoiceCloneCreateResponse:
+        """
+        Creates a new voice clone by capturing the voice identity of an existing voice
+        design. The clone can then be used for text-to-speech synthesis.
+
+        Args:
+          gender: Gender of the voice clone.
+
+          language: ISO 639-1 language code for the clone. Supports the Minimax language set.
+
+          name: Name for the voice clone.
+
+          provider: Voice synthesis provider. Must be `minimax`.
+
+          voice_design_id: UUID of the source voice design to clone.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(
+        ["gender", "language", "name", "voice_design_id"], ["gender", "language", "name", "provider", "voice_design_id"]
+    )
+    def create(
+        self,
+        *,
+        gender: Literal["male", "female", "neutral"],
+        language: str,
+        name: str,
+        voice_design_id: str,
+        provider: Literal["telnyx", "Telnyx"] | Literal["minimax", "Minimax"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> VoiceCloneCreateResponse:
         return self._post(
             "/voice_clones",
             body=maybe_transform(
@@ -265,15 +335,17 @@ class VoiceClonesResource(SyncAPIResource):
             cast_to=NoneType,
         )
 
+    @overload
     def create_from_upload(
         self,
         *,
         audio_file: FileTypes,
+        gender: Literal["male", "female", "neutral"],
         language: str,
         name: str,
-        gender: Literal["male", "female", "neutral"] | Omit = omit,
+        provider: Literal["telnyx", "Telnyx"],
         label: str | Omit = omit,
-        provider: Literal["telnyx", "minimax"] | Omit = omit,
+        model_id: Optional[Literal["Qwen3TTS"]] | Omit = omit,
         ref_text: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -286,23 +358,24 @@ class VoiceClonesResource(SyncAPIResource):
 
         Supported
         formats: WAV, MP3, FLAC, OGG, M4A. For best results, provide 5–10 seconds of
-        clear speech. Maximum file size: 2MB.
+        clear speech. Maximum file size: 5MB for Telnyx, 20MB for Minimax.
 
         Args:
           audio_file: Audio file to clone the voice from. Supported formats: WAV, MP3, FLAC, OGG, M4A.
               For best quality, provide 5–10 seconds of clear, uninterrupted speech. Maximum
-              size: 5MB for Telnyx, 20MB for Minimax.
-
-          language: ISO 639-1 language code (e.g. `en`, `fr`) or `auto` for automatic detection.
-
-          name: Name for the voice clone.
+              size: 5MB.
 
           gender: Gender of the voice clone.
 
-          label: Optional custom label describing the voice style. If omitted, falls back to the
-              source design's prompt text.
+          language: ISO 639-1 language code from the Qwen language set.
 
-          provider: Voice synthesis provider. Case-insensitive. Defaults to `telnyx`.
+          name: Name for the voice clone.
+
+          provider: Voice synthesis provider. Must be `telnyx`.
+
+          label: Optional custom label describing the voice style.
+
+          model_id: TTS model identifier. Nullable/omittable — defaults to Qwen3TTS.
 
           ref_text: Optional transcript of the audio file. Providing this improves clone quality.
 
@@ -314,18 +387,151 @@ class VoiceClonesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @overload
+    def create_from_upload(
+        self,
+        *,
+        audio_file: FileTypes,
+        gender: Literal["male", "female", "neutral"],
+        language: str,
+        model_id: Literal["Ultra"],
+        name: str,
+        provider: Literal["telnyx", "Telnyx"],
+        label: str | Omit = omit,
+        ref_text: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> VoiceCloneCreateFromUploadResponse:
+        """Creates a new voice clone by uploading an audio file directly.
+
+        Supported
+        formats: WAV, MP3, FLAC, OGG, M4A. For best results, provide 5–10 seconds of
+        clear speech. Maximum file size: 5MB for Telnyx, 20MB for Minimax.
+
+        Args:
+          audio_file: Audio file to clone the voice from. Supported formats: WAV, MP3, FLAC, OGG, M4A.
+              For best quality, provide 5–10 seconds of clear, uninterrupted speech. Maximum
+              size: 5MB.
+
+          gender: Gender of the voice clone.
+
+          language: ISO 639-1 language code from the Ultra language set (40 languages).
+
+          model_id: TTS model identifier. Must be `Ultra`.
+
+          name: Name for the voice clone.
+
+          provider: Voice synthesis provider. Must be `telnyx`.
+
+          label: Optional custom label describing the voice style.
+
+          ref_text: Optional transcript of the audio file. Providing this improves clone quality.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create_from_upload(
+        self,
+        *,
+        audio_file: FileTypes,
+        gender: Literal["male", "female", "neutral"],
+        language: str,
+        name: str,
+        provider: Literal["minimax", "Minimax"],
+        label: str | Omit = omit,
+        model_id: Optional[Literal["speech-2.8-turbo"]] | Omit = omit,
+        ref_text: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> VoiceCloneCreateFromUploadResponse:
+        """Creates a new voice clone by uploading an audio file directly.
+
+        Supported
+        formats: WAV, MP3, FLAC, OGG, M4A. For best results, provide 5–10 seconds of
+        clear speech. Maximum file size: 5MB for Telnyx, 20MB for Minimax.
+
+        Args:
+          audio_file: Audio file to clone the voice from. Supported formats: WAV, MP3, FLAC, OGG, M4A.
+              For best quality, provide 5–10 seconds of clear, uninterrupted speech. Maximum
+              size: 20MB.
+
+          gender: Gender of the voice clone.
+
+          language: ISO 639-1 language code from the Minimax language set.
+
+          name: Name for the voice clone.
+
+          provider: Voice synthesis provider. Must be `minimax`.
+
+          label: Optional custom label describing the voice style.
+
+          model_id: TTS model identifier. Nullable — defaults to speech-2.8-turbo.
+
+          ref_text: Optional transcript of the audio file. Providing this improves clone quality.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(
+        ["audio_file", "gender", "language", "name", "provider"],
+        ["audio_file", "gender", "language", "model_id", "name", "provider"],
+    )
+    def create_from_upload(
+        self,
+        *,
+        audio_file: FileTypes,
+        gender: Literal["male", "female", "neutral"],
+        language: str,
+        name: str,
+        provider: Literal["telnyx", "Telnyx"] | Literal["minimax", "Minimax"],
+        label: str | Omit = omit,
+        model_id: Optional[Literal["Qwen3TTS"]] | Literal["Ultra"] | Omit = omit,
+        ref_text: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> VoiceCloneCreateFromUploadResponse:
         body = deepcopy_minimal(
             {
                 "audio_file": audio_file,
+                "gender": gender,
                 "language": language,
                 "name": name,
-                "gender": gender,
-                "label": label,
                 "provider": provider,
+                "label": label,
+                "model_id": model_id,
                 "ref_text": ref_text,
             }
         )
-        files = extract_files(cast(Mapping[str, object], body), paths=[["audio_file"]])
+        files = extract_files(cast(Mapping[str, object], body), paths=[["audio_file"], ["audio_file"], ["audio_file"]])
         # It should be noted that the actual Content-Type header that will be
         # sent to the server will contain a `boundary` parameter, e.g.
         # multipart/form-data; boundary=---abc--
@@ -399,6 +605,7 @@ class AsyncVoiceClonesResource(AsyncAPIResource):
         """
         return AsyncVoiceClonesResourceWithStreamingResponse(self)
 
+    @overload
     async def create(
         self,
         *,
@@ -406,7 +613,7 @@ class AsyncVoiceClonesResource(AsyncAPIResource):
         language: str,
         name: str,
         voice_design_id: str,
-        provider: Literal["telnyx", "minimax"] | Omit = omit,
+        provider: Literal["telnyx", "Telnyx"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -421,13 +628,14 @@ class AsyncVoiceClonesResource(AsyncAPIResource):
         Args:
           gender: Gender of the voice clone.
 
-          language: ISO 639-1 language code for the clone (e.g. `en`, `fr`, `de`).
+          language: ISO 639-1 language code for the clone. Supports the combined Telnyx language
+              set.
 
           name: Name for the voice clone.
 
           voice_design_id: UUID of the source voice design to clone.
 
-          provider: Voice synthesis provider. Case-insensitive. Defaults to `telnyx`.
+          provider: Voice synthesis provider. Defaults to `telnyx`.
 
           extra_headers: Send extra headers
 
@@ -437,6 +645,67 @@ class AsyncVoiceClonesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
+        gender: Literal["male", "female", "neutral"],
+        language: str,
+        name: str,
+        provider: Literal["minimax", "Minimax"],
+        voice_design_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> VoiceCloneCreateResponse:
+        """
+        Creates a new voice clone by capturing the voice identity of an existing voice
+        design. The clone can then be used for text-to-speech synthesis.
+
+        Args:
+          gender: Gender of the voice clone.
+
+          language: ISO 639-1 language code for the clone. Supports the Minimax language set.
+
+          name: Name for the voice clone.
+
+          provider: Voice synthesis provider. Must be `minimax`.
+
+          voice_design_id: UUID of the source voice design to clone.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(
+        ["gender", "language", "name", "voice_design_id"], ["gender", "language", "name", "provider", "voice_design_id"]
+    )
+    async def create(
+        self,
+        *,
+        gender: Literal["male", "female", "neutral"],
+        language: str,
+        name: str,
+        voice_design_id: str,
+        provider: Literal["telnyx", "Telnyx"] | Literal["minimax", "Minimax"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> VoiceCloneCreateResponse:
         return await self._post(
             "/voice_clones",
             body=await async_maybe_transform(
@@ -599,15 +868,17 @@ class AsyncVoiceClonesResource(AsyncAPIResource):
             cast_to=NoneType,
         )
 
+    @overload
     async def create_from_upload(
         self,
         *,
         audio_file: FileTypes,
+        gender: Literal["male", "female", "neutral"],
         language: str,
         name: str,
-        gender: Literal["male", "female", "neutral"] | Omit = omit,
+        provider: Literal["telnyx", "Telnyx"],
         label: str | Omit = omit,
-        provider: Literal["telnyx", "minimax"] | Omit = omit,
+        model_id: Optional[Literal["Qwen3TTS"]] | Omit = omit,
         ref_text: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -620,23 +891,24 @@ class AsyncVoiceClonesResource(AsyncAPIResource):
 
         Supported
         formats: WAV, MP3, FLAC, OGG, M4A. For best results, provide 5–10 seconds of
-        clear speech. Maximum file size: 2MB.
+        clear speech. Maximum file size: 5MB for Telnyx, 20MB for Minimax.
 
         Args:
           audio_file: Audio file to clone the voice from. Supported formats: WAV, MP3, FLAC, OGG, M4A.
               For best quality, provide 5–10 seconds of clear, uninterrupted speech. Maximum
-              size: 5MB for Telnyx, 20MB for Minimax.
-
-          language: ISO 639-1 language code (e.g. `en`, `fr`) or `auto` for automatic detection.
-
-          name: Name for the voice clone.
+              size: 5MB.
 
           gender: Gender of the voice clone.
 
-          label: Optional custom label describing the voice style. If omitted, falls back to the
-              source design's prompt text.
+          language: ISO 639-1 language code from the Qwen language set.
 
-          provider: Voice synthesis provider. Case-insensitive. Defaults to `telnyx`.
+          name: Name for the voice clone.
+
+          provider: Voice synthesis provider. Must be `telnyx`.
+
+          label: Optional custom label describing the voice style.
+
+          model_id: TTS model identifier. Nullable/omittable — defaults to Qwen3TTS.
 
           ref_text: Optional transcript of the audio file. Providing this improves clone quality.
 
@@ -648,18 +920,151 @@ class AsyncVoiceClonesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @overload
+    async def create_from_upload(
+        self,
+        *,
+        audio_file: FileTypes,
+        gender: Literal["male", "female", "neutral"],
+        language: str,
+        model_id: Literal["Ultra"],
+        name: str,
+        provider: Literal["telnyx", "Telnyx"],
+        label: str | Omit = omit,
+        ref_text: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> VoiceCloneCreateFromUploadResponse:
+        """Creates a new voice clone by uploading an audio file directly.
+
+        Supported
+        formats: WAV, MP3, FLAC, OGG, M4A. For best results, provide 5–10 seconds of
+        clear speech. Maximum file size: 5MB for Telnyx, 20MB for Minimax.
+
+        Args:
+          audio_file: Audio file to clone the voice from. Supported formats: WAV, MP3, FLAC, OGG, M4A.
+              For best quality, provide 5–10 seconds of clear, uninterrupted speech. Maximum
+              size: 5MB.
+
+          gender: Gender of the voice clone.
+
+          language: ISO 639-1 language code from the Ultra language set (40 languages).
+
+          model_id: TTS model identifier. Must be `Ultra`.
+
+          name: Name for the voice clone.
+
+          provider: Voice synthesis provider. Must be `telnyx`.
+
+          label: Optional custom label describing the voice style.
+
+          ref_text: Optional transcript of the audio file. Providing this improves clone quality.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create_from_upload(
+        self,
+        *,
+        audio_file: FileTypes,
+        gender: Literal["male", "female", "neutral"],
+        language: str,
+        name: str,
+        provider: Literal["minimax", "Minimax"],
+        label: str | Omit = omit,
+        model_id: Optional[Literal["speech-2.8-turbo"]] | Omit = omit,
+        ref_text: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> VoiceCloneCreateFromUploadResponse:
+        """Creates a new voice clone by uploading an audio file directly.
+
+        Supported
+        formats: WAV, MP3, FLAC, OGG, M4A. For best results, provide 5–10 seconds of
+        clear speech. Maximum file size: 5MB for Telnyx, 20MB for Minimax.
+
+        Args:
+          audio_file: Audio file to clone the voice from. Supported formats: WAV, MP3, FLAC, OGG, M4A.
+              For best quality, provide 5–10 seconds of clear, uninterrupted speech. Maximum
+              size: 20MB.
+
+          gender: Gender of the voice clone.
+
+          language: ISO 639-1 language code from the Minimax language set.
+
+          name: Name for the voice clone.
+
+          provider: Voice synthesis provider. Must be `minimax`.
+
+          label: Optional custom label describing the voice style.
+
+          model_id: TTS model identifier. Nullable — defaults to speech-2.8-turbo.
+
+          ref_text: Optional transcript of the audio file. Providing this improves clone quality.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(
+        ["audio_file", "gender", "language", "name", "provider"],
+        ["audio_file", "gender", "language", "model_id", "name", "provider"],
+    )
+    async def create_from_upload(
+        self,
+        *,
+        audio_file: FileTypes,
+        gender: Literal["male", "female", "neutral"],
+        language: str,
+        name: str,
+        provider: Literal["telnyx", "Telnyx"] | Literal["minimax", "Minimax"],
+        label: str | Omit = omit,
+        model_id: Optional[Literal["Qwen3TTS"]] | Literal["Ultra"] | Omit = omit,
+        ref_text: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> VoiceCloneCreateFromUploadResponse:
         body = deepcopy_minimal(
             {
                 "audio_file": audio_file,
+                "gender": gender,
                 "language": language,
                 "name": name,
-                "gender": gender,
-                "label": label,
                 "provider": provider,
+                "label": label,
+                "model_id": model_id,
                 "ref_text": ref_text,
             }
         )
-        files = extract_files(cast(Mapping[str, object], body), paths=[["audio_file"]])
+        files = extract_files(cast(Mapping[str, object], body), paths=[["audio_file"], ["audio_file"], ["audio_file"]])
         # It should be noted that the actual Content-Type header that will be
         # sent to the server will contain a `boundary` parameter, e.g.
         # multipart/form-data; boundary=---abc--
