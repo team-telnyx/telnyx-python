@@ -6,9 +6,9 @@ from typing_extensions import Required, TypedDict
 
 from ...._types import SequenceNotStr
 
-__all__ = ["NumberCreateParams"]
+__all__ = ["NumberAssociateParams"]
 
 
-class NumberCreateParams(TypedDict, total=False):
+class NumberAssociateParams(TypedDict, total=False):
     phone_numbers: Required[SequenceNotStr[str]]
     """List of phone numbers to associate for reputation monitoring (max 100)"""
