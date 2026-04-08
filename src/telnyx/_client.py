@@ -140,6 +140,7 @@ if TYPE_CHECKING:
         number_block_orders,
         number_reservations,
         phone_number_blocks,
+        pronunciation_dicts,
         wireless_blocklists,
         external_connections,
         mobile_phone_numbers,
@@ -281,6 +282,7 @@ if TYPE_CHECKING:
     from .resources.messaging.messaging import MessagingResource, AsyncMessagingResource
     from .resources.notification_events import NotificationEventsResource, AsyncNotificationEventsResource
     from .resources.number_block_orders import NumberBlockOrdersResource, AsyncNumberBlockOrdersResource
+    from .resources.pronunciation_dicts import PronunciationDictsResource, AsyncPronunciationDictsResource
     from .resources.sim_cards.sim_cards import SimCardsResource, AsyncSimCardsResource
     from .resources.wireless_blocklists import WirelessBlocklistsResource, AsyncWirelessBlocklistsResource
     from .resources.wireguard_interfaces import WireguardInterfacesResource, AsyncWireguardInterfacesResource
@@ -1632,6 +1634,16 @@ class Telnyx(SyncAPIClient):
         return TermsOfServiceResource(self)
 
     @cached_property
+    def pronunciation_dicts(self) -> PronunciationDictsResource:
+        """Manage pronunciation dictionaries for text-to-speech synthesis.
+
+        Dictionaries contain alias items (text replacement) and phoneme items (IPA pronunciation notation) that control how specific words are spoken.
+        """
+        from .resources.pronunciation_dicts import PronunciationDictsResource
+
+        return PronunciationDictsResource(self)
+
+    @cached_property
     def with_raw_response(self) -> TelnyxWithRawResponse:
         return TelnyxWithRawResponse(self)
 
@@ -2963,6 +2975,16 @@ class AsyncTelnyx(AsyncAPIClient):
         return AsyncTermsOfServiceResource(self)
 
     @cached_property
+    def pronunciation_dicts(self) -> AsyncPronunciationDictsResource:
+        """Manage pronunciation dictionaries for text-to-speech synthesis.
+
+        Dictionaries contain alias items (text replacement) and phoneme items (IPA pronunciation notation) that control how specific words are spoken.
+        """
+        from .resources.pronunciation_dicts import AsyncPronunciationDictsResource
+
+        return AsyncPronunciationDictsResource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncTelnyxWithRawResponse:
         return AsyncTelnyxWithRawResponse(self)
 
@@ -4238,6 +4260,16 @@ class TelnyxWithRawResponse:
 
         return TermsOfServiceResourceWithRawResponse(self._client.terms_of_service)
 
+    @cached_property
+    def pronunciation_dicts(self) -> pronunciation_dicts.PronunciationDictsResourceWithRawResponse:
+        """Manage pronunciation dictionaries for text-to-speech synthesis.
+
+        Dictionaries contain alias items (text replacement) and phoneme items (IPA pronunciation notation) that control how specific words are spoken.
+        """
+        from .resources.pronunciation_dicts import PronunciationDictsResourceWithRawResponse
+
+        return PronunciationDictsResourceWithRawResponse(self._client.pronunciation_dicts)
+
 
 class AsyncTelnyxWithRawResponse:
     _client: AsyncTelnyx
@@ -5384,6 +5416,16 @@ class AsyncTelnyxWithRawResponse:
         from .resources.terms_of_service import AsyncTermsOfServiceResourceWithRawResponse
 
         return AsyncTermsOfServiceResourceWithRawResponse(self._client.terms_of_service)
+
+    @cached_property
+    def pronunciation_dicts(self) -> pronunciation_dicts.AsyncPronunciationDictsResourceWithRawResponse:
+        """Manage pronunciation dictionaries for text-to-speech synthesis.
+
+        Dictionaries contain alias items (text replacement) and phoneme items (IPA pronunciation notation) that control how specific words are spoken.
+        """
+        from .resources.pronunciation_dicts import AsyncPronunciationDictsResourceWithRawResponse
+
+        return AsyncPronunciationDictsResourceWithRawResponse(self._client.pronunciation_dicts)
 
 
 class TelnyxWithStreamedResponse:
@@ -6533,6 +6575,16 @@ class TelnyxWithStreamedResponse:
         from .resources.terms_of_service import TermsOfServiceResourceWithStreamingResponse
 
         return TermsOfServiceResourceWithStreamingResponse(self._client.terms_of_service)
+
+    @cached_property
+    def pronunciation_dicts(self) -> pronunciation_dicts.PronunciationDictsResourceWithStreamingResponse:
+        """Manage pronunciation dictionaries for text-to-speech synthesis.
+
+        Dictionaries contain alias items (text replacement) and phoneme items (IPA pronunciation notation) that control how specific words are spoken.
+        """
+        from .resources.pronunciation_dicts import PronunciationDictsResourceWithStreamingResponse
+
+        return PronunciationDictsResourceWithStreamingResponse(self._client.pronunciation_dicts)
 
 
 class AsyncTelnyxWithStreamedResponse:
@@ -7728,6 +7780,16 @@ class AsyncTelnyxWithStreamedResponse:
         from .resources.terms_of_service import AsyncTermsOfServiceResourceWithStreamingResponse
 
         return AsyncTermsOfServiceResourceWithStreamingResponse(self._client.terms_of_service)
+
+    @cached_property
+    def pronunciation_dicts(self) -> pronunciation_dicts.AsyncPronunciationDictsResourceWithStreamingResponse:
+        """Manage pronunciation dictionaries for text-to-speech synthesis.
+
+        Dictionaries contain alias items (text replacement) and phoneme items (IPA pronunciation notation) that control how specific words are spoken.
+        """
+        from .resources.pronunciation_dicts import AsyncPronunciationDictsResourceWithStreamingResponse
+
+        return AsyncPronunciationDictsResourceWithStreamingResponse(self._client.pronunciation_dicts)
 
 
 Client = Telnyx
