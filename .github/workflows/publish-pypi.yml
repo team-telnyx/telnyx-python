@@ -12,20 +12,18 @@ jobs:
   publish:
     name: publish
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
 
     steps:
       - uses: actions/checkout@v6
 
-      - name: Install Rye
-        run: |
-          curl -sSf https://rye.astral.sh/get | bash
-          echo "$HOME/.rye/shims" >> $GITHUB_PATH
-        env:
-          RYE_VERSION: '0.44.0'
-          RYE_INSTALL_OPTION: '--yes'
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          version: '0.9.13'
 
       - name: Publish to PyPI
         run: |
           bash ./bin/publish-pypi
-        env:
-          PYPI_TOKEN: ${{ secrets.TELNYX_PYPI_TOKEN || secrets.PYPI_TOKEN }}

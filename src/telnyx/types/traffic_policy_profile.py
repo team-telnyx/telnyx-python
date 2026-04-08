@@ -5,10 +5,10 @@ from typing_extensions import Literal
 
 from .._models import BaseModel
 
-__all__ = ["TrafficPolicyProfileListResponse"]
+__all__ = ["TrafficPolicyProfile"]
 
 
-class TrafficPolicyProfileListResponse(BaseModel):
+class TrafficPolicyProfile(BaseModel):
     id: Optional[str] = None
     """Identifies the resource."""
 
