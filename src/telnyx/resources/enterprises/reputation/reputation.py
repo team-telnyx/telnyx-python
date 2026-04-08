@@ -25,9 +25,9 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
-from ....types.enterprises import reputation_enable_params, reputation_update_frequency_params
-from ....types.enterprises.reputation_enable_response import ReputationEnableResponse
-from ....types.enterprises.reputation_retrieve_response import ReputationRetrieveResponse
+from ....types.enterprises import reputation_create_params, reputation_update_frequency_params
+from ....types.enterprises.reputation_list_response import ReputationListResponse
+from ....types.enterprises.reputation_create_response import ReputationCreateResponse
 from ....types.enterprises.reputation_update_frequency_response import ReputationUpdateFrequencyResponse
 
 __all__ = ["ReputationResource", "AsyncReputationResource"]
@@ -64,87 +64,7 @@ class ReputationResource(SyncAPIResource):
         """
         return ReputationResourceWithStreamingResponse(self)
 
-    def retrieve(
-        self,
-        enterprise_id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ReputationRetrieveResponse:
-        """
-        Retrieve the current Number Reputation settings for an enterprise.
-
-        Returns the enrollment status (`pending`, `approved`, `rejected`, `deleted`),
-        check frequency, and any rejection reasons.
-
-        Returns `404` if reputation has not been enabled for this enterprise.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not enterprise_id:
-            raise ValueError(f"Expected a non-empty value for `enterprise_id` but received {enterprise_id!r}")
-        return self._get(
-            path_template("/enterprises/{enterprise_id}/reputation", enterprise_id=enterprise_id),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=ReputationRetrieveResponse,
-        )
-
-    def disable(
-        self,
-        enterprise_id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
-        """
-        Disable Number Reputation for an enterprise.
-
-        This will:
-
-        - Delete the reputation settings record
-        - Log the deletion for audit purposes
-        - Stop all future automated reputation checks
-
-        **Note:** Can only be performed on `approved` reputation settings.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not enterprise_id:
-            raise ValueError(f"Expected a non-empty value for `enterprise_id` but received {enterprise_id!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
-        return self._delete(
-            path_template("/enterprises/{enterprise_id}/reputation", enterprise_id=enterprise_id),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=NoneType,
-        )
-
-    def enable(
+    def create(
         self,
         enterprise_id: str,
         *,
@@ -156,7 +76,7 @@ class ReputationResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ReputationEnableResponse:
+    ) -> ReputationCreateResponse:
         """
         Enable Number Reputation service for an enterprise.
 
@@ -207,12 +127,92 @@ class ReputationResource(SyncAPIResource):
                     "loa_document_id": loa_document_id,
                     "check_frequency": check_frequency,
                 },
-                reputation_enable_params.ReputationEnableParams,
+                reputation_create_params.ReputationCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ReputationEnableResponse,
+            cast_to=ReputationCreateResponse,
+        )
+
+    def list(
+        self,
+        enterprise_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ReputationListResponse:
+        """
+        Retrieve the current Number Reputation settings for an enterprise.
+
+        Returns the enrollment status (`pending`, `approved`, `rejected`, `deleted`),
+        check frequency, and any rejection reasons.
+
+        Returns `404` if reputation has not been enabled for this enterprise.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not enterprise_id:
+            raise ValueError(f"Expected a non-empty value for `enterprise_id` but received {enterprise_id!r}")
+        return self._get(
+            path_template("/enterprises/{enterprise_id}/reputation", enterprise_id=enterprise_id),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ReputationListResponse,
+        )
+
+    def delete_all(
+        self,
+        enterprise_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> None:
+        """
+        Disable Number Reputation for an enterprise.
+
+        This will:
+
+        - Delete the reputation settings record
+        - Log the deletion for audit purposes
+        - Stop all future automated reputation checks
+
+        **Note:** Can only be performed on `approved` reputation settings.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not enterprise_id:
+            raise ValueError(f"Expected a non-empty value for `enterprise_id` but received {enterprise_id!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        return self._delete(
+            path_template("/enterprises/{enterprise_id}/reputation", enterprise_id=enterprise_id),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=NoneType,
         )
 
     def update_frequency(
@@ -298,87 +298,7 @@ class AsyncReputationResource(AsyncAPIResource):
         """
         return AsyncReputationResourceWithStreamingResponse(self)
 
-    async def retrieve(
-        self,
-        enterprise_id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ReputationRetrieveResponse:
-        """
-        Retrieve the current Number Reputation settings for an enterprise.
-
-        Returns the enrollment status (`pending`, `approved`, `rejected`, `deleted`),
-        check frequency, and any rejection reasons.
-
-        Returns `404` if reputation has not been enabled for this enterprise.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not enterprise_id:
-            raise ValueError(f"Expected a non-empty value for `enterprise_id` but received {enterprise_id!r}")
-        return await self._get(
-            path_template("/enterprises/{enterprise_id}/reputation", enterprise_id=enterprise_id),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=ReputationRetrieveResponse,
-        )
-
-    async def disable(
-        self,
-        enterprise_id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
-        """
-        Disable Number Reputation for an enterprise.
-
-        This will:
-
-        - Delete the reputation settings record
-        - Log the deletion for audit purposes
-        - Stop all future automated reputation checks
-
-        **Note:** Can only be performed on `approved` reputation settings.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not enterprise_id:
-            raise ValueError(f"Expected a non-empty value for `enterprise_id` but received {enterprise_id!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
-        return await self._delete(
-            path_template("/enterprises/{enterprise_id}/reputation", enterprise_id=enterprise_id),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=NoneType,
-        )
-
-    async def enable(
+    async def create(
         self,
         enterprise_id: str,
         *,
@@ -390,7 +310,7 @@ class AsyncReputationResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ReputationEnableResponse:
+    ) -> ReputationCreateResponse:
         """
         Enable Number Reputation service for an enterprise.
 
@@ -441,12 +361,92 @@ class AsyncReputationResource(AsyncAPIResource):
                     "loa_document_id": loa_document_id,
                     "check_frequency": check_frequency,
                 },
-                reputation_enable_params.ReputationEnableParams,
+                reputation_create_params.ReputationCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ReputationEnableResponse,
+            cast_to=ReputationCreateResponse,
+        )
+
+    async def list(
+        self,
+        enterprise_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ReputationListResponse:
+        """
+        Retrieve the current Number Reputation settings for an enterprise.
+
+        Returns the enrollment status (`pending`, `approved`, `rejected`, `deleted`),
+        check frequency, and any rejection reasons.
+
+        Returns `404` if reputation has not been enabled for this enterprise.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not enterprise_id:
+            raise ValueError(f"Expected a non-empty value for `enterprise_id` but received {enterprise_id!r}")
+        return await self._get(
+            path_template("/enterprises/{enterprise_id}/reputation", enterprise_id=enterprise_id),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ReputationListResponse,
+        )
+
+    async def delete_all(
+        self,
+        enterprise_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> None:
+        """
+        Disable Number Reputation for an enterprise.
+
+        This will:
+
+        - Delete the reputation settings record
+        - Log the deletion for audit purposes
+        - Stop all future automated reputation checks
+
+        **Note:** Can only be performed on `approved` reputation settings.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not enterprise_id:
+            raise ValueError(f"Expected a non-empty value for `enterprise_id` but received {enterprise_id!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        return await self._delete(
+            path_template("/enterprises/{enterprise_id}/reputation", enterprise_id=enterprise_id),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=NoneType,
         )
 
     async def update_frequency(
@@ -505,14 +505,14 @@ class ReputationResourceWithRawResponse:
     def __init__(self, reputation: ReputationResource) -> None:
         self._reputation = reputation
 
-        self.retrieve = to_raw_response_wrapper(
-            reputation.retrieve,
+        self.create = to_raw_response_wrapper(
+            reputation.create,
         )
-        self.disable = to_raw_response_wrapper(
-            reputation.disable,
+        self.list = to_raw_response_wrapper(
+            reputation.list,
         )
-        self.enable = to_raw_response_wrapper(
-            reputation.enable,
+        self.delete_all = to_raw_response_wrapper(
+            reputation.delete_all,
         )
         self.update_frequency = to_raw_response_wrapper(
             reputation.update_frequency,
@@ -530,14 +530,14 @@ class AsyncReputationResourceWithRawResponse:
     def __init__(self, reputation: AsyncReputationResource) -> None:
         self._reputation = reputation
 
-        self.retrieve = async_to_raw_response_wrapper(
-            reputation.retrieve,
+        self.create = async_to_raw_response_wrapper(
+            reputation.create,
         )
-        self.disable = async_to_raw_response_wrapper(
-            reputation.disable,
+        self.list = async_to_raw_response_wrapper(
+            reputation.list,
         )
-        self.enable = async_to_raw_response_wrapper(
-            reputation.enable,
+        self.delete_all = async_to_raw_response_wrapper(
+            reputation.delete_all,
         )
         self.update_frequency = async_to_raw_response_wrapper(
             reputation.update_frequency,
@@ -555,14 +555,14 @@ class ReputationResourceWithStreamingResponse:
     def __init__(self, reputation: ReputationResource) -> None:
         self._reputation = reputation
 
-        self.retrieve = to_streamed_response_wrapper(
-            reputation.retrieve,
+        self.create = to_streamed_response_wrapper(
+            reputation.create,
         )
-        self.disable = to_streamed_response_wrapper(
-            reputation.disable,
+        self.list = to_streamed_response_wrapper(
+            reputation.list,
         )
-        self.enable = to_streamed_response_wrapper(
-            reputation.enable,
+        self.delete_all = to_streamed_response_wrapper(
+            reputation.delete_all,
         )
         self.update_frequency = to_streamed_response_wrapper(
             reputation.update_frequency,
@@ -580,14 +580,14 @@ class AsyncReputationResourceWithStreamingResponse:
     def __init__(self, reputation: AsyncReputationResource) -> None:
         self._reputation = reputation
 
-        self.retrieve = async_to_streamed_response_wrapper(
-            reputation.retrieve,
+        self.create = async_to_streamed_response_wrapper(
+            reputation.create,
         )
-        self.disable = async_to_streamed_response_wrapper(
-            reputation.disable,
+        self.list = async_to_streamed_response_wrapper(
+            reputation.list,
         )
-        self.enable = async_to_streamed_response_wrapper(
-            reputation.enable,
+        self.delete_all = async_to_streamed_response_wrapper(
+            reputation.delete_all,
         )
         self.update_frequency = async_to_streamed_response_wrapper(
             reputation.update_frequency,

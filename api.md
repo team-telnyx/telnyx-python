@@ -581,8 +581,6 @@ from telnyx.types.ai import (
     InferenceEmbeddingWebhookToolParams,
     InsightSettings,
     MessagingSettings,
-    Observability,
-    ObservabilityReq,
     PrivacySettings,
     RetrievalTool,
     TelephonySettings,
@@ -5522,17 +5520,17 @@ Types:
 ```python
 from telnyx.types.enterprises import (
     EnterpriseReputationPublic,
-    ReputationRetrieveResponse,
-    ReputationEnableResponse,
+    ReputationCreateResponse,
+    ReputationListResponse,
     ReputationUpdateFrequencyResponse,
 )
 ```
 
 Methods:
 
-- <code title="get /enterprises/{enterprise_id}/reputation">client.enterprises.reputation.<a href="./src/telnyx/resources/enterprises/reputation/reputation.py">retrieve</a>(enterprise_id) -> <a href="./src/telnyx/types/enterprises/reputation_retrieve_response.py">ReputationRetrieveResponse</a></code>
-- <code title="delete /enterprises/{enterprise_id}/reputation">client.enterprises.reputation.<a href="./src/telnyx/resources/enterprises/reputation/reputation.py">disable</a>(enterprise_id) -> None</code>
-- <code title="post /enterprises/{enterprise_id}/reputation">client.enterprises.reputation.<a href="./src/telnyx/resources/enterprises/reputation/reputation.py">enable</a>(enterprise_id, \*\*<a href="src/telnyx/types/enterprises/reputation_enable_params.py">params</a>) -> <a href="./src/telnyx/types/enterprises/reputation_enable_response.py">ReputationEnableResponse</a></code>
+- <code title="post /enterprises/{enterprise_id}/reputation">client.enterprises.reputation.<a href="./src/telnyx/resources/enterprises/reputation/reputation.py">create</a>(enterprise_id, \*\*<a href="src/telnyx/types/enterprises/reputation_create_params.py">params</a>) -> <a href="./src/telnyx/types/enterprises/reputation_create_response.py">ReputationCreateResponse</a></code>
+- <code title="get /enterprises/{enterprise_id}/reputation">client.enterprises.reputation.<a href="./src/telnyx/resources/enterprises/reputation/reputation.py">list</a>(enterprise_id) -> <a href="./src/telnyx/types/enterprises/reputation_list_response.py">ReputationListResponse</a></code>
+- <code title="delete /enterprises/{enterprise_id}/reputation">client.enterprises.reputation.<a href="./src/telnyx/resources/enterprises/reputation/reputation.py">delete_all</a>(enterprise_id) -> None</code>
 - <code title="patch /enterprises/{enterprise_id}/reputation/frequency">client.enterprises.reputation.<a href="./src/telnyx/resources/enterprises/reputation/reputation.py">update_frequency</a>(enterprise_id, \*\*<a href="src/telnyx/types/enterprises/reputation_update_frequency_params.py">params</a>) -> <a href="./src/telnyx/types/enterprises/reputation_update_frequency_response.py">ReputationUpdateFrequencyResponse</a></code>
 
 ### Numbers
@@ -5540,15 +5538,15 @@ Methods:
 Types:
 
 ```python
-from telnyx.types.enterprises.reputation import NumberRetrieveResponse, NumberAssociateResponse
+from telnyx.types.enterprises.reputation import NumberCreateResponse, NumberRetrieveResponse
 ```
 
 Methods:
 
+- <code title="post /enterprises/{enterprise_id}/reputation/numbers">client.enterprises.reputation.numbers.<a href="./src/telnyx/resources/enterprises/reputation/numbers.py">create</a>(enterprise_id, \*\*<a href="src/telnyx/types/enterprises/reputation/number_create_params.py">params</a>) -> <a href="./src/telnyx/types/enterprises/reputation/number_create_response.py">NumberCreateResponse</a></code>
 - <code title="get /enterprises/{enterprise_id}/reputation/numbers/{phone_number}">client.enterprises.reputation.numbers.<a href="./src/telnyx/resources/enterprises/reputation/numbers.py">retrieve</a>(phone_number, \*, enterprise_id, \*\*<a href="src/telnyx/types/enterprises/reputation/number_retrieve_params.py">params</a>) -> <a href="./src/telnyx/types/enterprises/reputation/number_retrieve_response.py">NumberRetrieveResponse</a></code>
 - <code title="get /enterprises/{enterprise_id}/reputation/numbers">client.enterprises.reputation.numbers.<a href="./src/telnyx/resources/enterprises/reputation/numbers.py">list</a>(enterprise_id, \*\*<a href="src/telnyx/types/enterprises/reputation/number_list_params.py">params</a>) -> <a href="./src/telnyx/types/shared/reputation_phone_number_with_reputation_data.py">SyncDefaultFlatPagination[ReputationPhoneNumberWithReputationData]</a></code>
-- <code title="post /enterprises/{enterprise_id}/reputation/numbers">client.enterprises.reputation.numbers.<a href="./src/telnyx/resources/enterprises/reputation/numbers.py">associate</a>(enterprise_id, \*\*<a href="src/telnyx/types/enterprises/reputation/number_associate_params.py">params</a>) -> <a href="./src/telnyx/types/enterprises/reputation/number_associate_response.py">NumberAssociateResponse</a></code>
-- <code title="delete /enterprises/{enterprise_id}/reputation/numbers/{phone_number}">client.enterprises.reputation.numbers.<a href="./src/telnyx/resources/enterprises/reputation/numbers.py">disassociate</a>(phone_number, \*, enterprise_id) -> None</code>
+- <code title="delete /enterprises/{enterprise_id}/reputation/numbers/{phone_number}">client.enterprises.reputation.numbers.<a href="./src/telnyx/resources/enterprises/reputation/numbers.py">delete</a>(phone_number, \*, enterprise_id) -> None</code>
 
 # Reputation
 
@@ -5573,3 +5571,24 @@ Methods:
 Methods:
 
 - <code title="post /terms_of_service/number_reputation/agree">client.terms_of_service.number_reputation.<a href="./src/telnyx/resources/terms_of_service/number_reputation.py">agree</a>() -> None</code>
+
+# PronunciationDicts
+
+Types:
+
+```python
+from telnyx.types import (
+    PronunciationDictCreateResponse,
+    PronunciationDictRetrieveResponse,
+    PronunciationDictUpdateResponse,
+    PronunciationDictListResponse,
+)
+```
+
+Methods:
+
+- <code title="post /pronunciation_dicts">client.pronunciation_dicts.<a href="./src/telnyx/resources/pronunciation_dicts.py">create</a>(\*\*<a href="src/telnyx/types/pronunciation_dict_create_params.py">params</a>) -> <a href="./src/telnyx/types/pronunciation_dict_create_response.py">PronunciationDictCreateResponse</a></code>
+- <code title="get /pronunciation_dicts/{id}">client.pronunciation_dicts.<a href="./src/telnyx/resources/pronunciation_dicts.py">retrieve</a>(id) -> <a href="./src/telnyx/types/pronunciation_dict_retrieve_response.py">PronunciationDictRetrieveResponse</a></code>
+- <code title="patch /pronunciation_dicts/{id}">client.pronunciation_dicts.<a href="./src/telnyx/resources/pronunciation_dicts.py">update</a>(id, \*\*<a href="src/telnyx/types/pronunciation_dict_update_params.py">params</a>) -> <a href="./src/telnyx/types/pronunciation_dict_update_response.py">PronunciationDictUpdateResponse</a></code>
+- <code title="get /pronunciation_dicts">client.pronunciation_dicts.<a href="./src/telnyx/resources/pronunciation_dicts.py">list</a>(\*\*<a href="src/telnyx/types/pronunciation_dict_list_params.py">params</a>) -> <a href="./src/telnyx/types/pronunciation_dict_list_response.py">SyncDefaultFlatPagination[PronunciationDictListResponse]</a></code>
+- <code title="delete /pronunciation_dicts/{id}">client.pronunciation_dicts.<a href="./src/telnyx/resources/pronunciation_dicts.py">delete</a>(id) -> None</code>
