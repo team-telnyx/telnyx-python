@@ -199,7 +199,7 @@ class TestCalls:
             status_callback_method="GET",
             supervise_call_sid="v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg",
             supervising_role="monitor",
-            texml={},
+            texml="Texml",
             time_limit=3600,
             timeout_seconds=60,
             to="+16175551212",
@@ -303,7 +303,7 @@ class TestCalls:
             timeout_seconds=60,
             to="+16175551212",
             trim="trim-silence",
-            url={},
+            url="Url",
             url_method="GET",
         )
         assert_matches_type(CallCallsResponse, call, path=["response"])
@@ -397,12 +397,12 @@ class TestCalls:
             status_callback_method="GET",
             supervise_call_sid="v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg",
             supervising_role="monitor",
-            texml={},
+            texml="Texml",
             time_limit=3600,
             timeout_seconds=60,
             to="+16175551212",
             trim="trim-silence",
-            url={},
+            url="Url",
             url_method="GET",
         )
         assert_matches_type(CallCallsResponse, call, path=["response"])
@@ -822,7 +822,7 @@ class TestAsyncCalls:
             status_callback_method="GET",
             supervise_call_sid="v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg",
             supervising_role="monitor",
-            texml={},
+            texml="Texml",
             time_limit=3600,
             timeout_seconds=60,
             to="+16175551212",
@@ -926,7 +926,7 @@ class TestAsyncCalls:
             timeout_seconds=60,
             to="+16175551212",
             trim="trim-silence",
-            url={},
+            url="Url",
             url_method="GET",
         )
         assert_matches_type(CallCallsResponse, call, path=["response"])
@@ -1020,12 +1020,12 @@ class TestAsyncCalls:
             status_callback_method="GET",
             supervise_call_sid="v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg",
             supervising_role="monitor",
-            texml={},
+            texml="Texml",
             time_limit=3600,
             timeout_seconds=60,
             to="+16175551212",
             trim="trim-silence",
-            url={},
+            url="Url",
             url_method="GET",
         )
         assert_matches_type(CallCallsResponse, call, path=["response"])

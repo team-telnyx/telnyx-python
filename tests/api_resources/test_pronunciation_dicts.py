@@ -10,7 +10,7 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types import (
-    PronunciationDictListResponse,
+    PronunciationDictData,
     PronunciationDictCreateResponse,
     PronunciationDictUpdateResponse,
     PronunciationDictRetrieveResponse,
@@ -182,9 +182,7 @@ class TestPronunciationDicts:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         pronunciation_dict = client.pronunciation_dicts.list()
-        assert_matches_type(
-            SyncDefaultFlatPagination[PronunciationDictListResponse], pronunciation_dict, path=["response"]
-        )
+        assert_matches_type(SyncDefaultFlatPagination[PronunciationDictData], pronunciation_dict, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -193,9 +191,7 @@ class TestPronunciationDicts:
             page_number=1,
             page_size=1,
         )
-        assert_matches_type(
-            SyncDefaultFlatPagination[PronunciationDictListResponse], pronunciation_dict, path=["response"]
-        )
+        assert_matches_type(SyncDefaultFlatPagination[PronunciationDictData], pronunciation_dict, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -205,9 +201,7 @@ class TestPronunciationDicts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         pronunciation_dict = response.parse()
-        assert_matches_type(
-            SyncDefaultFlatPagination[PronunciationDictListResponse], pronunciation_dict, path=["response"]
-        )
+        assert_matches_type(SyncDefaultFlatPagination[PronunciationDictData], pronunciation_dict, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -217,9 +211,7 @@ class TestPronunciationDicts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             pronunciation_dict = response.parse()
-            assert_matches_type(
-                SyncDefaultFlatPagination[PronunciationDictListResponse], pronunciation_dict, path=["response"]
-            )
+            assert_matches_type(SyncDefaultFlatPagination[PronunciationDictData], pronunciation_dict, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -430,9 +422,7 @@ class TestAsyncPronunciationDicts:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         pronunciation_dict = await async_client.pronunciation_dicts.list()
-        assert_matches_type(
-            AsyncDefaultFlatPagination[PronunciationDictListResponse], pronunciation_dict, path=["response"]
-        )
+        assert_matches_type(AsyncDefaultFlatPagination[PronunciationDictData], pronunciation_dict, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -441,9 +431,7 @@ class TestAsyncPronunciationDicts:
             page_number=1,
             page_size=1,
         )
-        assert_matches_type(
-            AsyncDefaultFlatPagination[PronunciationDictListResponse], pronunciation_dict, path=["response"]
-        )
+        assert_matches_type(AsyncDefaultFlatPagination[PronunciationDictData], pronunciation_dict, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -453,9 +441,7 @@ class TestAsyncPronunciationDicts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         pronunciation_dict = await response.parse()
-        assert_matches_type(
-            AsyncDefaultFlatPagination[PronunciationDictListResponse], pronunciation_dict, path=["response"]
-        )
+        assert_matches_type(AsyncDefaultFlatPagination[PronunciationDictData], pronunciation_dict, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -466,7 +452,7 @@ class TestAsyncPronunciationDicts:
 
             pronunciation_dict = await response.parse()
             assert_matches_type(
-                AsyncDefaultFlatPagination[PronunciationDictListResponse], pronunciation_dict, path=["response"]
+                AsyncDefaultFlatPagination[PronunciationDictData], pronunciation_dict, path=["response"]
             )
 
         assert cast(Any, response.is_closed) is True

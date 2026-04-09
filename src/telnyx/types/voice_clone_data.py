@@ -4,6 +4,8 @@ from typing import List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
+from pydantic import Field as FieldInfo
+
 from .._models import BaseModel
 
 __all__ = ["VoiceCloneData"]
@@ -30,6 +32,9 @@ class VoiceCloneData(BaseModel):
     language: Optional[str] = None
     """ISO 639-1 language code of the voice clone."""
 
+    api_model_id: Optional[Literal["Qwen3TTS", "Ultra", "speech-2.8-turbo"]] = FieldInfo(alias="model_id", default=None)
+    """TTS model identifier for the voice clone."""
+
     name: Optional[str] = None
     """Name of the voice clone."""
 
@@ -42,8 +47,7 @@ class VoiceCloneData(BaseModel):
     provider_voice_id: Optional[str] = None
     """Provider-specific voice identifier used for TTS synthesis.
 
-    For Telnyx clones this equals the clone ID; for Minimax it is the
-    Minimax-assigned voice ID.
+    May differ from the clone UUID depending on the provider and model.
     """
 
     record_type: Optional[Literal["voice_clone"]] = None
@@ -54,6 +58,13 @@ class VoiceCloneData(BaseModel):
 
     source_voice_design_version: Optional[int] = None
     """Version of the source voice design used. `null` for upload-based clones."""
+
+    status: Optional[Literal["active", "pending", "failed", "expired"]] = None
+    """Clone status.
+
+    pending for Ultra clones while on-prem import is in progress, active once ready,
+    failed if verification timed out, expired if not kept alive.
+    """
 
     updated_at: Optional[datetime] = None
     """Timestamp when the voice clone was last updated."""

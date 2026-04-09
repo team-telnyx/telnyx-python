@@ -1,5 +1,23 @@
 # Changelog
 
+## 4.100.0 (2026-04-09)
+
+Full Changelog: [v4.99.0...v4.100.0](https://github.com/team-telnyx/telnyx-python/compare/v4.99.0...v4.100.0)
+
+### Features
+
+* **client:** support reconnection in websockets ([4f8ca17](https://github.com/team-telnyx/telnyx-python/commit/4f8ca177181fe2c0747bdd045356f7841b70690f))
+
+
+### Reverts
+
+* revert stainless.yml changes from 9c5e8d8 ([9930faa](https://github.com/team-telnyx/telnyx-python/commit/9930faa7d2d54bb6b50e100c6fbfb96bea0a1043))
+
+
+### Documentation
+
+* update voice clone schemas to match Ultra/model_id implementation ([f370dde](https://github.com/team-telnyx/telnyx-python/commit/f370dde4582bfe7714d7efc8be3571028a8cf7aa))
+
 ## 4.99.0 (2026-04-08)
 
 Full Changelog: [v4.98.0...v4.99.0](https://github.com/team-telnyx/telnyx-python/compare/v4.98.0...v4.99.0)
