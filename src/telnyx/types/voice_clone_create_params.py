@@ -31,7 +31,7 @@ class ParamsTelnyxDesignClone(TypedDict, total=False):
     voice_design_id: Required[str]
     """UUID of the source voice design to clone."""
 
-    provider: Literal["telnyx", "Telnyx"]
+    provider: Literal["telnyx", "minimax"]
     """Voice synthesis provider. Defaults to `telnyx`."""
 
 
@@ -47,7 +47,7 @@ class ParamsMinimaxDesignClone(TypedDict, total=False):
     name: Required[str]
     """Name for the voice clone."""
 
-    provider: Required[Literal["minimax", "Minimax"]]
+    provider: Required[Literal["telnyx", "minimax"]]
     """Voice synthesis provider. Must be `minimax`."""
 
     voice_design_id: Required[str]
