@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.101.0 (2026-04-09)
+
+Full Changelog: [v4.100.0...v4.101.0](https://github.com/team-telnyx/telnyx-python/compare/v4.100.0...v4.101.0)
+
+### Features
+
+* **api:** Merge pull request [#44](https://github.com/team-telnyx/telnyx-python/issues/44) from stainless-sdks/fix-NameNotAllowed ([a19231b](https://github.com/team-telnyx/telnyx-python/commit/a19231bd8d47f96fbf45dde2b87adf588522a3e7))
+
 ## 4.100.0 (2026-04-09)
 
 Full Changelog: [v4.99.0...v4.100.0](https://github.com/team-telnyx/telnyx-python/compare/v4.99.0...v4.100.0)
