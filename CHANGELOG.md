@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.102.0 (2026-04-09)
+
+Full Changelog: [v4.101.0...v4.102.0](https://github.com/team-telnyx/telnyx-python/compare/v4.101.0...v4.102.0)
+
+### Features
+
+* add shared CallAssistantRequest schema for call-control assistant object ([b24aecf](https://github.com/team-telnyx/telnyx-python/commit/b24aecff912822fadd885d4be7319b2817d48a95))
+
 ## 4.101.0 (2026-04-09)
 
 Full Changelog: [v4.100.0...v4.101.0](https://github.com/team-telnyx/telnyx-python/compare/v4.100.0...v4.101.0)
