@@ -290,6 +290,10 @@ from .texml_secrets_response import TexmlSecretsResponse as TexmlSecretsResponse
 from .traffic_policy_profile import TrafficPolicyProfile as TrafficPolicyProfile
 from .url_shortener_settings import URLShortenerSettings as URLShortenerSettings
 from .user_tag_list_response import UserTagListResponse as UserTagListResponse
+from .websocket_reconnection import (
+    ReconnectingEvent as ReconnectingEvent,
+    ReconnectingOverrides as ReconnectingOverrides,
+)
 from .whatsapp_contact_param import WhatsappContactParam as WhatsappContactParam
 from .address_create_response import AddressCreateResponse as AddressCreateResponse
 from .address_delete_response import AddressDeleteResponse as AddressDeleteResponse
