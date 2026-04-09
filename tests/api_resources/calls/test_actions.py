@@ -128,6 +128,29 @@ class TestActions:
     def test_method_answer_with_all_params(self, client: Telnyx) -> None:
         action = client.calls.actions.answer(
             call_control_id="call_control_id",
+            assistant={
+                "id": "asst_123",
+                "dynamic_variables": {
+                    "customer_name": "John",
+                    "account_id": "ACC-12345",
+                },
+                "external_llm": {},
+                "fallback_config": {},
+                "greeting": "Hi, I'm your assistant. How can I help?",
+                "instructions": "You are a friendly voice assistant.",
+                "llm_api_key_ref": "my_llm_api_key",
+                "mcp_servers": [{}],
+                "model": "gpt-4o",
+                "name": "name",
+                "observability_settings": {},
+                "openai_api_key_ref": "my_openai_api_key",
+                "tools": [
+                    {
+                        "hangup": {"description": "description"},
+                        "type": "hangup",
+                    }
+                ],
+            },
             billing_group_id="f5586561-8ff0-4291-a0ac-84fe544797bd",
             client_state="aGF2ZSBhIG5pY2UgZGF5ID1d",
             command_id="891510ac-f3e4-11e8-af5b-de00688a4901",
@@ -1329,8 +1352,31 @@ class TestActions:
             call_control_id="call_control_id",
             assistant={
                 "id": "id",
+                "dynamic_variables": {
+                    "customer_name": "John",
+                    "account_id": "ACC-12345",
+                },
+                "external_llm": {},
+                "fallback_config": {},
+                "greeting": "greeting",
                 "instructions": "You are a friendly voice assistant.",
-                "openai_api_key_ref": "openai_api_key_ref",
+                "llm_api_key_ref": "my_llm_api_key",
+                "mcp_servers": [{}],
+                "model": "gpt-4o",
+                "name": "name",
+                "observability_settings": {},
+                "openai_api_key_ref": "my_openai_api_key",
+                "tools": [
+                    {
+                        "book_appointment": {
+                            "api_key_ref": "my_calcom_api_key",
+                            "event_type_id": 0,
+                            "attendee_name": "attendee_name",
+                            "attendee_timezone": "attendee_timezone",
+                        },
+                        "type": "book_appointment",
+                    }
+                ],
             },
             client_state="aGF2ZSBhIG5pY2UgZGF5ID1d",
             command_id="891510ac-f3e4-11e8-af5b-de00688a4901",
@@ -2622,6 +2668,29 @@ class TestAsyncActions:
     async def test_method_answer_with_all_params(self, async_client: AsyncTelnyx) -> None:
         action = await async_client.calls.actions.answer(
             call_control_id="call_control_id",
+            assistant={
+                "id": "asst_123",
+                "dynamic_variables": {
+                    "customer_name": "John",
+                    "account_id": "ACC-12345",
+                },
+                "external_llm": {},
+                "fallback_config": {},
+                "greeting": "Hi, I'm your assistant. How can I help?",
+                "instructions": "You are a friendly voice assistant.",
+                "llm_api_key_ref": "my_llm_api_key",
+                "mcp_servers": [{}],
+                "model": "gpt-4o",
+                "name": "name",
+                "observability_settings": {},
+                "openai_api_key_ref": "my_openai_api_key",
+                "tools": [
+                    {
+                        "hangup": {"description": "description"},
+                        "type": "hangup",
+                    }
+                ],
+            },
             billing_group_id="f5586561-8ff0-4291-a0ac-84fe544797bd",
             client_state="aGF2ZSBhIG5pY2UgZGF5ID1d",
             command_id="891510ac-f3e4-11e8-af5b-de00688a4901",
@@ -3823,8 +3892,31 @@ class TestAsyncActions:
             call_control_id="call_control_id",
             assistant={
                 "id": "id",
+                "dynamic_variables": {
+                    "customer_name": "John",
+                    "account_id": "ACC-12345",
+                },
+                "external_llm": {},
+                "fallback_config": {},
+                "greeting": "greeting",
                 "instructions": "You are a friendly voice assistant.",
-                "openai_api_key_ref": "openai_api_key_ref",
+                "llm_api_key_ref": "my_llm_api_key",
+                "mcp_servers": [{}],
+                "model": "gpt-4o",
+                "name": "name",
+                "observability_settings": {},
+                "openai_api_key_ref": "my_openai_api_key",
+                "tools": [
+                    {
+                        "book_appointment": {
+                            "api_key_ref": "my_calcom_api_key",
+                            "event_type_id": 0,
+                            "attendee_name": "attendee_name",
+                            "attendee_timezone": "attendee_timezone",
+                        },
+                        "type": "book_appointment",
+                    }
+                ],
             },
             client_state="aGF2ZSBhIG5pY2UgZGF5ID1d",
             command_id="891510ac-f3e4-11e8-af5b-de00688a4901",
