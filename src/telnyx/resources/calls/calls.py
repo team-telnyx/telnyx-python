@@ -86,6 +86,7 @@ class CallsResource(SyncAPIResource):
         ]
         | Omit = omit,
         answering_machine_detection_config: call_dial_params.AnsweringMachineDetectionConfig | Omit = omit,
+        assistant: call_dial_params.Assistant | Omit = omit,
         audio_url: str | Omit = omit,
         billing_group_id: str | Omit = omit,
         bridge_intent: bool | Omit = omit,
@@ -196,6 +197,10 @@ class CallsResource(SyncAPIResource):
 
           answering_machine_detection_config: Optional configuration parameters to modify 'answering_machine_detection'
               performance.
+
+          assistant: AI Assistant configuration. All fields except `id` are optional — the
+              assistant's stored configuration will be used as fallback for any omitted
+              fields.
 
           audio_url: The URL of a file to be played back to the callee when the call is answered. The
               URL can point to either a WAV or MP3 file. media_name and audio_url cannot be
@@ -361,6 +366,7 @@ class CallsResource(SyncAPIResource):
                     "to": to,
                     "answering_machine_detection": answering_machine_detection,
                     "answering_machine_detection_config": answering_machine_detection_config,
+                    "assistant": assistant,
                     "audio_url": audio_url,
                     "billing_group_id": billing_group_id,
                     "bridge_intent": bridge_intent,
@@ -490,6 +496,7 @@ class AsyncCallsResource(AsyncAPIResource):
         ]
         | Omit = omit,
         answering_machine_detection_config: call_dial_params.AnsweringMachineDetectionConfig | Omit = omit,
+        assistant: call_dial_params.Assistant | Omit = omit,
         audio_url: str | Omit = omit,
         billing_group_id: str | Omit = omit,
         bridge_intent: bool | Omit = omit,
@@ -600,6 +607,10 @@ class AsyncCallsResource(AsyncAPIResource):
 
           answering_machine_detection_config: Optional configuration parameters to modify 'answering_machine_detection'
               performance.
+
+          assistant: AI Assistant configuration. All fields except `id` are optional — the
+              assistant's stored configuration will be used as fallback for any omitted
+              fields.
 
           audio_url: The URL of a file to be played back to the callee when the call is answered. The
               URL can point to either a WAV or MP3 file. media_name and audio_url cannot be
@@ -765,6 +776,7 @@ class AsyncCallsResource(AsyncAPIResource):
                     "to": to,
                     "answering_machine_detection": answering_machine_detection,
                     "answering_machine_detection_config": answering_machine_detection_config,
+                    "assistant": assistant,
                     "audio_url": audio_url,
                     "billing_group_id": billing_group_id,
                     "bridge_intent": bridge_intent,

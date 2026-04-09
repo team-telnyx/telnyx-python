@@ -203,6 +203,7 @@ class ActionsResource(SyncAPIResource):
         self,
         call_control_id: str,
         *,
+        assistant: action_answer_params.Assistant | Omit = omit,
         billing_group_id: str | Omit = omit,
         client_state: str | Omit = omit,
         command_id: str | Omit = omit,
@@ -254,6 +255,10 @@ class ActionsResource(SyncAPIResource):
         include a `recording_id` field.
 
         Args:
+          assistant: AI Assistant configuration. All fields except `id` are optional — the
+              assistant's stored configuration will be used as fallback for any omitted
+              fields.
+
           billing_group_id: Use this field to set the Billing Group ID for the call. Must be a valid and
               existing Billing Group ID.
 
@@ -347,6 +352,7 @@ class ActionsResource(SyncAPIResource):
             path_template("/calls/{call_control_id}/actions/answer", call_control_id=call_control_id),
             body=maybe_transform(
                 {
+                    "assistant": assistant,
                     "billing_group_id": billing_group_id,
                     "client_state": client_state,
                     "command_id": command_id,
@@ -1943,7 +1949,9 @@ class ActionsResource(SyncAPIResource):
         - `call.conversation_insights.generated`
 
         Args:
-          assistant: AI Assistant configuration
+          assistant: AI Assistant configuration. All fields except `id` are optional — the
+              assistant's stored configuration will be used as fallback for any omitted
+              fields.
 
           client_state: Use this field to add state to every subsequent webhook. It must be a valid
               Base-64 encoded string.
@@ -3807,6 +3815,7 @@ class AsyncActionsResource(AsyncAPIResource):
         self,
         call_control_id: str,
         *,
+        assistant: action_answer_params.Assistant | Omit = omit,
         billing_group_id: str | Omit = omit,
         client_state: str | Omit = omit,
         command_id: str | Omit = omit,
@@ -3858,6 +3867,10 @@ class AsyncActionsResource(AsyncAPIResource):
         include a `recording_id` field.
 
         Args:
+          assistant: AI Assistant configuration. All fields except `id` are optional — the
+              assistant's stored configuration will be used as fallback for any omitted
+              fields.
+
           billing_group_id: Use this field to set the Billing Group ID for the call. Must be a valid and
               existing Billing Group ID.
 
@@ -3951,6 +3964,7 @@ class AsyncActionsResource(AsyncAPIResource):
             path_template("/calls/{call_control_id}/actions/answer", call_control_id=call_control_id),
             body=await async_maybe_transform(
                 {
+                    "assistant": assistant,
                     "billing_group_id": billing_group_id,
                     "client_state": client_state,
                     "command_id": command_id,
@@ -5547,7 +5561,9 @@ class AsyncActionsResource(AsyncAPIResource):
         - `call.conversation_insights.generated`
 
         Args:
-          assistant: AI Assistant configuration
+          assistant: AI Assistant configuration. All fields except `id` are optional — the
+              assistant's stored configuration will be used as fallback for any omitted
+              fields.
 
           client_state: Use this field to add state to every subsequent webhook. It must be a valid
               Base-64 encoded string.
