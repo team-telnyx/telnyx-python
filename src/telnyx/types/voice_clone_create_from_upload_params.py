@@ -43,7 +43,7 @@ class ParamsTelnyxQwen3TtsClone(TypedDict, total=False):
     name: Required[str]
     """Name for the voice clone."""
 
-    provider: Required[Literal["telnyx", "minimax"]]
+    provider: Required[Literal["telnyx", "Telnyx"]]
     """Voice synthesis provider. Must be `telnyx`."""
 
     label: str
@@ -78,7 +78,7 @@ class ParamsTelnyxUltraClone(TypedDict, total=False):
     name: Required[str]
     """Name for the voice clone."""
 
-    provider: Required[Literal["telnyx", "minimax"]]
+    provider: Required[Literal["telnyx", "Telnyx"]]
     """Voice synthesis provider. Must be `telnyx`."""
 
     label: str
@@ -107,7 +107,7 @@ class ParamsMinimaxClone(TypedDict, total=False):
     name: Required[str]
     """Name for the voice clone."""
 
-    provider: Required[Literal["telnyx", "minimax"]]
+    provider: Required[Literal["minimax", "Minimax"]]
     """Voice synthesis provider. Must be `minimax`."""
 
     label: str
