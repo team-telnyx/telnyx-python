@@ -19,6 +19,7 @@ from ....._response import (
 from ....._base_client import make_request_options
 from .....types.whatsapp.phone_numbers.profile import photo_upload_params
 from .....types.whatsapp.phone_numbers.profile.photo_upload_response import PhotoUploadResponse
+from .....types.whatsapp.phone_numbers.profile.photo_retrieve_response import PhotoRetrieveResponse
 
 __all__ = ["PhotoResource", "AsyncPhotoResource"]
 
@@ -44,6 +45,39 @@ class PhotoResource(SyncAPIResource):
         For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
         return PhotoResourceWithStreamingResponse(self)
+
+    def retrieve(
+        self,
+        phone_number: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> PhotoRetrieveResponse:
+        """
+        Get Whatsapp profile photo
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not phone_number:
+            raise ValueError(f"Expected a non-empty value for `phone_number` but received {phone_number!r}")
+        return self._get(
+            path_template("/v2/whatsapp/phone_numbers/{phone_number}/profile/photo", phone_number=phone_number),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=PhotoRetrieveResponse,
+        )
 
     def delete(
         self,
@@ -146,6 +180,39 @@ class AsyncPhotoResource(AsyncAPIResource):
         """
         return AsyncPhotoResourceWithStreamingResponse(self)
 
+    async def retrieve(
+        self,
+        phone_number: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> PhotoRetrieveResponse:
+        """
+        Get Whatsapp profile photo
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not phone_number:
+            raise ValueError(f"Expected a non-empty value for `phone_number` but received {phone_number!r}")
+        return await self._get(
+            path_template("/v2/whatsapp/phone_numbers/{phone_number}/profile/photo", phone_number=phone_number),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=PhotoRetrieveResponse,
+        )
+
     async def delete(
         self,
         phone_number: str,
@@ -229,6 +296,9 @@ class PhotoResourceWithRawResponse:
     def __init__(self, photo: PhotoResource) -> None:
         self._photo = photo
 
+        self.retrieve = to_raw_response_wrapper(
+            photo.retrieve,
+        )
         self.delete = to_raw_response_wrapper(
             photo.delete,
         )
@@ -241,6 +311,9 @@ class AsyncPhotoResourceWithRawResponse:
     def __init__(self, photo: AsyncPhotoResource) -> None:
         self._photo = photo
 
+        self.retrieve = async_to_raw_response_wrapper(
+            photo.retrieve,
+        )
         self.delete = async_to_raw_response_wrapper(
             photo.delete,
         )
@@ -253,6 +326,9 @@ class PhotoResourceWithStreamingResponse:
     def __init__(self, photo: PhotoResource) -> None:
         self._photo = photo
 
+        self.retrieve = to_streamed_response_wrapper(
+            photo.retrieve,
+        )
         self.delete = to_streamed_response_wrapper(
             photo.delete,
         )
@@ -265,6 +341,9 @@ class AsyncPhotoResourceWithStreamingResponse:
     def __init__(self, photo: AsyncPhotoResource) -> None:
         self._photo = photo
 
+        self.retrieve = async_to_streamed_response_wrapper(
+            photo.retrieve,
+        )
         self.delete = async_to_streamed_response_wrapper(
             photo.delete,
         )
