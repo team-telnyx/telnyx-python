@@ -77,6 +77,7 @@ from ...types.stream_bidirectional_mode import StreamBidirectionalMode
 from ...types.stream_bidirectional_codec import StreamBidirectionalCodec
 from ...types.calls.action_refer_response import ActionReferResponse
 from ...types.calls.action_speak_response import ActionSpeakResponse
+from ...types.call_assistant_request_param import CallAssistantRequestParam
 from ...types.calls.action_answer_response import ActionAnswerResponse
 from ...types.calls.action_bridge_response import ActionBridgeResponse
 from ...types.calls.action_gather_response import ActionGatherResponse
@@ -203,7 +204,7 @@ class ActionsResource(SyncAPIResource):
         self,
         call_control_id: str,
         *,
-        assistant: action_answer_params.Assistant | Omit = omit,
+        assistant: CallAssistantRequestParam | Omit = omit,
         billing_group_id: str | Omit = omit,
         client_state: str | Omit = omit,
         command_id: str | Omit = omit,
@@ -1922,7 +1923,7 @@ class ActionsResource(SyncAPIResource):
         self,
         call_control_id: str,
         *,
-        assistant: action_start_ai_assistant_params.Assistant | Omit = omit,
+        assistant: CallAssistantRequestParam | Omit = omit,
         client_state: str | Omit = omit,
         command_id: str | Omit = omit,
         greeting: str | Omit = omit,
@@ -3815,7 +3816,7 @@ class AsyncActionsResource(AsyncAPIResource):
         self,
         call_control_id: str,
         *,
-        assistant: action_answer_params.Assistant | Omit = omit,
+        assistant: CallAssistantRequestParam | Omit = omit,
         billing_group_id: str | Omit = omit,
         client_state: str | Omit = omit,
         command_id: str | Omit = omit,
@@ -5534,7 +5535,7 @@ class AsyncActionsResource(AsyncAPIResource):
         self,
         call_control_id: str,
         *,
-        assistant: action_start_ai_assistant_params.Assistant | Omit = omit,
+        assistant: CallAssistantRequestParam | Omit = omit,
         client_state: str | Omit = omit,
         command_id: str | Omit = omit,
         greeting: str | Omit = omit,

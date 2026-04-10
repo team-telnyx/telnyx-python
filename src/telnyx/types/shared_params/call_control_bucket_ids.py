@@ -1,0 +1,16 @@
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+from __future__ import annotations
+
+from typing_extensions import Required, TypedDict
+
+from ..._types import SequenceNotStr
+
+__all__ = ["CallControlBucketIDs"]
+
+
+class CallControlBucketIDs(TypedDict, total=False):
+    bucket_ids: Required[SequenceNotStr[str]]
+
+    max_num_results: int
+    """The maximum number of results to retrieve as context for the language model."""
