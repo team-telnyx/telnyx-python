@@ -47,8 +47,10 @@ class EventHandlerRegistry:
         finally:
             self._release()
 
-    def get_handlers(self, event_type: str) -> list[EventHandler]:
+    def get_handlers(self, event_type: str | None) -> list[EventHandler]:
         """Return a snapshot of handlers for the given event type, removing once-handlers."""
+        if event_type is None:
+            return []
         self._acquire()
         try:
             handlers = self._handlers.get(event_type)
@@ -63,7 +65,9 @@ class EventHandlerRegistry:
         finally:
             self._release()
 
-    def has_handlers(self, event_type: str) -> bool:
+    def has_handlers(self, event_type: str | None) -> bool:
+        if event_type is None:
+            return False
         self._acquire()
         try:
             handlers = self._handlers.get(event_type)
