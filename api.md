@@ -5,6 +5,12 @@ from telnyx.types import (
     APIError,
     AvailablePhoneNumbersMetadata,
     AzureVoiceSettings,
+    BookAppointmentTool,
+    BookAppointmentToolParams,
+    CallControlBucketIDs,
+    CallControlRetrievalTool,
+    CheckAvailabilityTool,
+    CheckAvailabilityToolParams,
     ConnectionJitterBuffer,
     ConnectionNoiseSuppressionDetails,
     ConnectionsPaginationMeta,
@@ -1348,6 +1354,7 @@ Types:
 
 ```python
 from telnyx.types import (
+    CallAssistantRequest,
     CustomSipHeader,
     DialogflowConfig,
     SipHeader,

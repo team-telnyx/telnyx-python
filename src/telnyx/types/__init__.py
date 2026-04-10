@@ -29,19 +29,25 @@ from .shared import (
     RimeVoiceSettings as RimeVoiceSettings,
     AzureVoiceSettings as AzureVoiceSettings,
     PortingOrderStatus as PortingOrderStatus,
+    BookAppointmentTool as BookAppointmentTool,
     MessagingFeatureSet as MessagingFeatureSet,
     NumberHealthMetrics as NumberHealthMetrics,
+    CallControlBucketIDs as CallControlBucketIDs,
     MinimaxVoiceSettings as MinimaxVoiceSettings,
     WhatsappTemplateData as WhatsappTemplateData,
+    CheckAvailabilityTool as CheckAvailabilityTool,
     InboundMessagePayload as InboundMessagePayload,
     ResembleVoiceSettings as ResembleVoiceSettings,
     ConnectionJitterBuffer as ConnectionJitterBuffer,
     DocReqsRequirementType as DocReqsRequirementType,
     MessagingPaginationMeta as MessagingPaginationMeta,
+    CallControlRetrievalTool as CallControlRetrievalTool,
+    BookAppointmentToolParams as BookAppointmentToolParams,
     ConnectionsPaginationMeta as ConnectionsPaginationMeta,
     MessagingHostedNumberOrder as MessagingHostedNumberOrder,
     PhoneNumbersJobPhoneNumber as PhoneNumbersJobPhoneNumber,
     PortingOrdersExceptionType as PortingOrdersExceptionType,
+    CheckAvailabilityToolParams as CheckAvailabilityToolParams,
     AvailablePhoneNumbersMetadata as AvailablePhoneNumbersMetadata,
     PhoneNumberWithMessagingSettings as PhoneNumberWithMessagingSettings,
     ConnectionNoiseSuppressionDetails as ConnectionNoiseSuppressionDetails,
@@ -467,6 +473,7 @@ from .voice_clone_create_response import VoiceCloneCreateResponse as VoiceCloneC
 from .voice_clone_update_response import VoiceCloneUpdateResponse as VoiceCloneUpdateResponse
 from .advanced_order_create_params import AdvancedOrderCreateParams as AdvancedOrderCreateParams
 from .advanced_order_list_response import AdvancedOrderListResponse as AdvancedOrderListResponse
+from .call_assistant_request_param import CallAssistantRequestParam as CallAssistantRequestParam
 from .call_initiated_webhook_event import CallInitiatedWebhookEvent as CallInitiatedWebhookEvent
 from .call_machine_detection_ended import CallMachineDetectionEnded as CallMachineDetectionEnded
 from .channel_zone_update_response import ChannelZoneUpdateResponse as ChannelZoneUpdateResponse

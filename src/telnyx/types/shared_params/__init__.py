@@ -3,7 +3,13 @@
 from .sim_card_status import SimCardStatus as SimCardStatus
 from .rime_voice_settings import RimeVoiceSettings as RimeVoiceSettings
 from .azure_voice_settings import AzureVoiceSettings as AzureVoiceSettings
+from .book_appointment_tool import BookAppointmentTool as BookAppointmentTool
 from .minimax_voice_settings import MinimaxVoiceSettings as MinimaxVoiceSettings
+from .call_control_bucket_ids import CallControlBucketIDs as CallControlBucketIDs
+from .check_availability_tool import CheckAvailabilityTool as CheckAvailabilityTool
 from .resemble_voice_settings import ResembleVoiceSettings as ResembleVoiceSettings
 from .connection_jitter_buffer import ConnectionJitterBuffer as ConnectionJitterBuffer
+from .call_control_retrieval_tool import CallControlRetrievalTool as CallControlRetrievalTool
+from .book_appointment_tool_params import BookAppointmentToolParams as BookAppointmentToolParams
+from .check_availability_tool_params import CheckAvailabilityToolParams as CheckAvailabilityToolParams
 from .connection_noise_suppression_details import ConnectionNoiseSuppressionDetails as ConnectionNoiseSuppressionDetails

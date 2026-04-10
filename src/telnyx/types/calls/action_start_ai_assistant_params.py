@@ -5,14 +5,11 @@ from __future__ import annotations
 from typing import Dict, Union, Iterable
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
-from ..._types import SequenceNotStr
-from ..ai.hangup_tool_param import HangupToolParam
-from ..ai.webhook_tool_param import WebhookToolParam
-from ..ai.transfer_tool_param import TransferToolParam
 from .aws_voice_settings_param import AwsVoiceSettingsParam
 from .transcription_config_param import TranscriptionConfigParam
 from .interruption_settings_param import InterruptionSettingsParam
 from .telnyx_voice_settings_param import TelnyxVoiceSettingsParam
+from ..call_assistant_request_param import CallAssistantRequestParam
 from .eleven_labs_voice_settings_param import ElevenLabsVoiceSettingsParam
 from ..shared_params.rime_voice_settings import RimeVoiceSettings
 from ..shared_params.azure_voice_settings import AzureVoiceSettings
@@ -20,14 +17,6 @@ from ..shared_params.resemble_voice_settings import ResembleVoiceSettings
 
 __all__ = [
     "ActionStartAIAssistantParams",
-    "Assistant",
-    "AssistantTool",
-    "AssistantToolBookAppointmentTool",
-    "AssistantToolBookAppointmentToolBookAppointment",
-    "AssistantToolCheckAvailabilityTool",
-    "AssistantToolCheckAvailabilityToolCheckAvailability",
-    "AssistantToolCallControlRetrievalTool",
-    "AssistantToolCallControlRetrievalToolRetrieval",
     "MessageHistory",
     "MessageHistoryUserMessage",
     "MessageHistoryAssistantMessage",
@@ -42,7 +31,7 @@ __all__ = [
 
 
 class ActionStartAIAssistantParams(TypedDict, total=False):
-    assistant: Assistant
+    assistant: CallAssistantRequestParam
     """AI Assistant configuration.
 
     All fields except `id` are optional — the assistant's stored configuration will
@@ -125,172 +114,6 @@ class ActionStartAIAssistantParams(TypedDict, total=False):
 
     voice_settings: VoiceSettings
     """The settings associated with the voice selected"""
-
-
-class AssistantToolBookAppointmentToolBookAppointment(TypedDict, total=False):
-    api_key_ref: Required[str]
-    """Reference to an integration secret that contains your Cal.com API key.
-
-    You would pass the `identifier` for an integration secret
-    [/v2/integration_secrets](https://developers.telnyx.com/api/secrets-manager/integration-secrets/create-integration-secret)
-    that refers to your Cal.com API key.
-    """
-
-    event_type_id: Required[int]
-    """Event Type ID for which slots are being fetched.
-
-    [cal.com](https://cal.com/docs/api-reference/v2/bookings/create-a-booking#body-event-type-id)
-    """
-
-    attendee_name: str
-    """
-    The name of the attendee
-    [cal.com](https://cal.com/docs/api-reference/v2/bookings/create-a-booking#body-attendee-name).
-    If not provided, the assistant will ask for the attendee's name.
-    """
-
-    attendee_timezone: str
-    """
-    The timezone of the attendee
-    [cal.com](https://cal.com/docs/api-reference/v2/bookings/create-a-booking#body-attendee-timezone).
-    If not provided, the assistant will ask for the attendee's timezone.
-    """
-
-
-class AssistantToolBookAppointmentTool(TypedDict, total=False):
-    book_appointment: Required[AssistantToolBookAppointmentToolBookAppointment]
-
-    type: Required[Literal["book_appointment"]]
-
-
-class AssistantToolCheckAvailabilityToolCheckAvailability(TypedDict, total=False):
-    api_key_ref: Required[str]
-    """Reference to an integration secret that contains your Cal.com API key.
-
-    You would pass the `identifier` for an integration secret
-    [/v2/integration_secrets](https://developers.telnyx.com/api/secrets-manager/integration-secrets/create-integration-secret)
-    that refers to your Cal.com API key.
-    """
-
-    event_type_id: Required[int]
-    """Event Type ID for which slots are being fetched.
-
-    [cal.com](https://cal.com/docs/api-reference/v2/slots/get-available-slots#parameter-event-type-id)
-    """
-
-
-class AssistantToolCheckAvailabilityTool(TypedDict, total=False):
-    check_availability: Required[AssistantToolCheckAvailabilityToolCheckAvailability]
-
-    type: Required[Literal["check_availability"]]
-
-
-class AssistantToolCallControlRetrievalToolRetrieval(TypedDict, total=False):
-    bucket_ids: Required[SequenceNotStr[str]]
-
-    max_num_results: int
-    """The maximum number of results to retrieve as context for the language model."""
-
-
-class AssistantToolCallControlRetrievalTool(TypedDict, total=False):
-    retrieval: Required[AssistantToolCallControlRetrievalToolRetrieval]
-
-    type: Required[Literal["retrieval"]]
-
-
-AssistantTool: TypeAlias = Union[
-    AssistantToolBookAppointmentTool,
-    AssistantToolCheckAvailabilityTool,
-    WebhookToolParam,
-    HangupToolParam,
-    TransferToolParam,
-    AssistantToolCallControlRetrievalTool,
-]
-
-
-class Assistant(TypedDict, total=False):
-    """AI Assistant configuration.
-
-    All fields except `id` are optional — the assistant's stored configuration will be used as fallback for any omitted fields.
-    """
-
-    id: Required[str]
-    """The identifier of the AI assistant to use."""
-
-    dynamic_variables: Dict[str, Union[str, float, bool]]
-    """Map of dynamic variables and their default values.
-
-    Dynamic variables can be referenced in instructions, greeting, and tool
-    definitions using the `{{variable_name}}` syntax. Call-control-agent
-    automatically merges in `telnyx_call_*` variables (telnyx_call_to,
-    telnyx_call_from, telnyx_conversation_channel, telnyx_agent_target,
-    telnyx_end_user_target, telnyx_call_caller_id_name) and custom header variables.
-    """
-
-    external_llm: object
-    """External LLM configuration for bringing your own LLM endpoint."""
-
-    fallback_config: object
-    """Fallback LLM configuration used when the primary LLM provider is unavailable."""
-
-    greeting: str
-    """Initial greeting text spoken when the assistant starts.
-
-    Can be plain text for any voice or SSML for `AWS.Polly.<voice_id>` voices. There
-    is a 3,000 character limit.
-    """
-
-    instructions: str
-    """System instructions for the voice assistant.
-
-    Can be templated with
-    [dynamic variables](https://developers.telnyx.com/docs/inference/ai-assistants/dynamic-variables).
-    This will overwrite the instructions set in the assistant configuration.
-    """
-
-    llm_api_key_ref: str
-    """Integration secret identifier for the LLM provider API key.
-
-    Use this field to reference an
-    [integration secret](https://developers.telnyx.com/api/secrets-manager/integration-secrets/create-integration-secret)
-    containing your LLM provider API key. Supports any LLM provider (OpenAI,
-    Anthropic, etc.).
-    """
-
-    mcp_servers: Iterable[object]
-    """
-    MCP (Model Context Protocol) server configurations for extending the assistant's
-    capabilities with external tools and data sources.
-    """
-
-    model: str
-    """LLM model override for this call.
-
-    If omitted, the assistant's configured model is used.
-    """
-
-    name: str
-    """Assistant name override for this call."""
-
-    observability_settings: object
-    """
-    Observability configuration for the assistant session, including Langfuse
-    integration for tracing and monitoring.
-    """
-
-    openai_api_key_ref: str
-    """Deprecated — use `llm_api_key_ref` instead.
-
-    Integration secret identifier for the OpenAI API key. This field is maintained
-    for backward compatibility; `llm_api_key_ref` is the canonical field name and
-    supports all LLM providers.
-    """
-
-    tools: Iterable[AssistantTool]
-    """
-    Inline tool definitions available to the assistant (webhook, retrieval,
-    transfer, hangup, etc.). Overrides the assistant's stored tools if provided.
-    """
 
 
 class MessageHistoryUserMessage(TypedDict, total=False):
