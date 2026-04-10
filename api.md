@@ -5380,11 +5380,12 @@ Methods:
 Types:
 
 ```python
-from telnyx.types.whatsapp.phone_numbers.profile import PhotoUploadResponse
+from telnyx.types.whatsapp.phone_numbers.profile import PhotoRetrieveResponse, PhotoUploadResponse
 ```
 
 Methods:
 
+- <code title="get /v2/whatsapp/phone_numbers/{phone_number}/profile/photo">client.whatsapp.phone_numbers.profile.photo.<a href="./src/telnyx/resources/whatsapp/phone_numbers/profile/photo.py">retrieve</a>(phone_number) -> <a href="./src/telnyx/types/whatsapp/phone_numbers/profile/photo_retrieve_response.py">PhotoRetrieveResponse</a></code>
 - <code title="delete /v2/whatsapp/phone_numbers/{phone_number}/profile/photo">client.whatsapp.phone_numbers.profile.photo.<a href="./src/telnyx/resources/whatsapp/phone_numbers/profile/photo.py">delete</a>(phone_number) -> None</code>
 - <code title="post /v2/whatsapp/phone_numbers/{phone_number}/profile/photo">client.whatsapp.phone_numbers.profile.photo.<a href="./src/telnyx/resources/whatsapp/phone_numbers/profile/photo.py">upload</a>(phone_number, \*\*<a href="src/telnyx/types/whatsapp/phone_numbers/profile/photo_upload_params.py">params</a>) -> <a href="./src/telnyx/types/whatsapp/phone_numbers/profile/photo_upload_response.py">PhotoUploadResponse</a></code>
 
