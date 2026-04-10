@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.104.0 (2026-04-10)
+
+Full Changelog: [v4.103.0...v4.104.0](https://github.com/team-telnyx/telnyx-python/compare/v4.103.0...v4.104.0)
+
+### Features
+
+* **api:** Merge pull request [#46](https://github.com/team-telnyx/telnyx-python/issues/46) from stainless-sdks/FixModelRecommendation ([911071c](https://github.com/team-telnyx/telnyx-python/commit/911071c8cf4c85514d0730be91dbb93d65a61ebf))
+
 ## 4.103.0 (2026-04-10)
 
 Full Changelog: [v4.102.0...v4.103.0](https://github.com/team-telnyx/telnyx-python/compare/v4.102.0...v4.103.0)

@@ -42,6 +42,7 @@ from ...types.dialogflow_config_param import DialogflowConfigParam
 from ...types.sound_modifications_param import SoundModificationsParam
 from ...types.stream_bidirectional_mode import StreamBidirectionalMode
 from ...types.stream_bidirectional_codec import StreamBidirectionalCodec
+from ...types.call_assistant_request_param import CallAssistantRequestParam
 from ...types.call_retrieve_status_response import CallRetrieveStatusResponse
 from ...types.stream_bidirectional_target_legs import StreamBidirectionalTargetLegs
 from ...types.stream_bidirectional_sampling_rate import StreamBidirectionalSamplingRate
@@ -86,7 +87,7 @@ class CallsResource(SyncAPIResource):
         ]
         | Omit = omit,
         answering_machine_detection_config: call_dial_params.AnsweringMachineDetectionConfig | Omit = omit,
-        assistant: call_dial_params.Assistant | Omit = omit,
+        assistant: CallAssistantRequestParam | Omit = omit,
         audio_url: str | Omit = omit,
         billing_group_id: str | Omit = omit,
         bridge_intent: bool | Omit = omit,
@@ -496,7 +497,7 @@ class AsyncCallsResource(AsyncAPIResource):
         ]
         | Omit = omit,
         answering_machine_detection_config: call_dial_params.AnsweringMachineDetectionConfig | Omit = omit,
-        assistant: call_dial_params.Assistant | Omit = omit,
+        assistant: CallAssistantRequestParam | Omit = omit,
         audio_url: str | Omit = omit,
         billing_group_id: str | Omit = omit,
         bridge_intent: bool | Omit = omit,
