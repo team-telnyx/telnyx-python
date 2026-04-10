@@ -1,5 +1,18 @@
 # Changelog
 
+## 4.103.0 (2026-04-10)
+
+Full Changelog: [v4.102.0...v4.103.0](https://github.com/team-telnyx/telnyx-python/compare/v4.102.0...v4.103.0)
+
+### Features
+
+* MSG-6846: add GET /profile/photo docs for whatsapp API ([47e8f01](https://github.com/team-telnyx/telnyx-python/commit/47e8f018531b5c4a702e5185e144df004fe7cfab))
+
+
+### Reverts
+
+* restore stainless.yml to pre-6a6df5b state ([4f9838b](https://github.com/team-telnyx/telnyx-python/commit/4f9838bfc30b134a842f4313ea784121821b31c7))
+
 ## 4.102.0 (2026-04-09)
 
 Full Changelog: [v4.101.0...v4.102.0](https://github.com/team-telnyx/telnyx-python/compare/v4.101.0...v4.102.0)
