@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.104.1 (2026-04-10)
+
+Full Changelog: [v4.104.0...v4.104.1](https://github.com/team-telnyx/telnyx-python/compare/v4.104.0...v4.104.1)
+
+### Bug Fixes
+
+* ensure file data are only sent as 1 parameter ([f0cb6ac](https://github.com/team-telnyx/telnyx-python/commit/f0cb6ac811a97399d137852b207e3b18822297b1))
+
 ## 4.104.0 (2026-04-10)
 
 Full Changelog: [v4.103.0...v4.104.0](https://github.com/team-telnyx/telnyx-python/compare/v4.103.0...v4.104.0)
