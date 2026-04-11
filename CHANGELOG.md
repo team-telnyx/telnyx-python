@@ -1,5 +1,25 @@
 # Changelog
 
+## 4.105.0 (2026-04-11)
+
+Full Changelog: [v4.104.1...v4.105.0](https://github.com/team-telnyx/telnyx-python/compare/v4.104.1...v4.105.0)
+
+### Features
+
+* **api:** manual updates ([143b22e](https://github.com/team-telnyx/telnyx-python/commit/143b22e1d3a24c65aab638bcb868f5dfcd940549))
+* **client:** add event handler implementation for websockets ([137bcc6](https://github.com/team-telnyx/telnyx-python/commit/137bcc63bc09f9a01e958a463a42144d46726e65))
+* **lib:** make ED25519 the default webhook verification ([5116ac8](https://github.com/team-telnyx/telnyx-python/commit/5116ac876f2a99d3664d59d2ee9bf50a0c9c3387))
+
+
+### Bug Fixes
+
+* resolve pyright type error in text_to_speech event handler ([e209866](https://github.com/team-telnyx/telnyx-python/commit/e209866009201d11ac5aabaf49bfe66cb67ec885))
+
+
+### Documentation
+
+* improve examples ([4e53d34](https://github.com/team-telnyx/telnyx-python/commit/4e53d34555a18b433d5f5eff075057387fd5ecb7))
+
 ## 4.104.1 (2026-04-10)
 
 Full Changelog: [v4.104.0...v4.104.1](https://github.com/team-telnyx/telnyx-python/compare/v4.104.0...v4.104.1)
