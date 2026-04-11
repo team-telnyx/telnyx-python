@@ -9,22 +9,22 @@ from .._types import FileTypes
 
 __all__ = [
     "VoiceCloneCreateFromUploadParams",
-    "Params",
-    "ParamsTelnyxQwen3TtsClone",
-    "ParamsTelnyxUltraClone",
-    "ParamsMinimaxClone",
+    "UploadParams",
+    "UploadParamsTelnyxQwen3TtsClone",
+    "UploadParamsTelnyxUltraClone",
+    "UploadParamsMinimaxClone",
 ]
 
 
 class VoiceCloneCreateFromUploadParams(TypedDict, total=False):
-    params: Required[Params]
+    upload_params: Required[UploadParams]
     """Multipart form data for creating a voice clone from a direct audio upload.
 
     Maximum file size: 5MB for Telnyx, 20MB for Minimax.
     """
 
 
-class ParamsTelnyxQwen3TtsClone(TypedDict, total=False):
+class UploadParamsTelnyxQwen3TtsClone(TypedDict, total=False):
     """Upload-based voice clone using the Telnyx Qwen3TTS model (default)."""
 
     audio_file: Required[FileTypes]
@@ -56,7 +56,7 @@ class ParamsTelnyxQwen3TtsClone(TypedDict, total=False):
     """Optional transcript of the audio file. Providing this improves clone quality."""
 
 
-class ParamsTelnyxUltraClone(TypedDict, total=False):
+class UploadParamsTelnyxUltraClone(TypedDict, total=False):
     """Upload-based voice clone using the Telnyx Ultra model."""
 
     audio_file: Required[FileTypes]
@@ -88,7 +88,7 @@ class ParamsTelnyxUltraClone(TypedDict, total=False):
     """Optional transcript of the audio file. Providing this improves clone quality."""
 
 
-class ParamsMinimaxClone(TypedDict, total=False):
+class UploadParamsMinimaxClone(TypedDict, total=False):
     """Upload-based voice clone using the Minimax provider."""
 
     audio_file: Required[FileTypes]
@@ -120,4 +120,4 @@ class ParamsMinimaxClone(TypedDict, total=False):
     """Optional transcript of the audio file. Providing this improves clone quality."""
 
 
-Params: TypeAlias = Union[ParamsTelnyxQwen3TtsClone, ParamsTelnyxUltraClone, ParamsMinimaxClone]
+UploadParams: TypeAlias = Union[UploadParamsTelnyxQwen3TtsClone, UploadParamsTelnyxUltraClone, UploadParamsMinimaxClone]
