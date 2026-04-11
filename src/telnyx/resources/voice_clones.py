@@ -247,7 +247,7 @@ class VoiceClonesResource(SyncAPIResource):
     def create_from_upload(
         self,
         *,
-        params: voice_clone_create_from_upload_params.Params,
+        upload_params: voice_clone_create_from_upload_params.UploadParams,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -262,7 +262,7 @@ class VoiceClonesResource(SyncAPIResource):
         clear speech. Maximum file size: 5MB for Telnyx, 20MB for Minimax.
 
         Args:
-          params: Multipart form data for creating a voice clone from a direct audio upload.
+          upload_params: Multipart form data for creating a voice clone from a direct audio upload.
               Maximum file size: 5MB for Telnyx, 20MB for Minimax.
 
           extra_headers: Send extra headers
@@ -273,7 +273,7 @@ class VoiceClonesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        body = deepcopy_minimal(params)
+        body = deepcopy_minimal(upload_params)
         files = extract_files(cast(Mapping[str, object], body), paths=[["audio_file"], ["audio_file"], ["audio_file"]])
         # It should be noted that the actual Content-Type header that will be
         # sent to the server will contain a `boundary` parameter, e.g.
@@ -530,7 +530,7 @@ class AsyncVoiceClonesResource(AsyncAPIResource):
     async def create_from_upload(
         self,
         *,
-        params: voice_clone_create_from_upload_params.Params,
+        upload_params: voice_clone_create_from_upload_params.UploadParams,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -545,7 +545,7 @@ class AsyncVoiceClonesResource(AsyncAPIResource):
         clear speech. Maximum file size: 5MB for Telnyx, 20MB for Minimax.
 
         Args:
-          params: Multipart form data for creating a voice clone from a direct audio upload.
+          upload_params: Multipart form data for creating a voice clone from a direct audio upload.
               Maximum file size: 5MB for Telnyx, 20MB for Minimax.
 
           extra_headers: Send extra headers
@@ -556,7 +556,7 @@ class AsyncVoiceClonesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        body = deepcopy_minimal(params)
+        body = deepcopy_minimal(upload_params)
         files = extract_files(cast(Mapping[str, object], body), paths=[["audio_file"], ["audio_file"], ["audio_file"]])
         # It should be noted that the actual Content-Type header that will be
         # sent to the server will contain a `boundary` parameter, e.g.
