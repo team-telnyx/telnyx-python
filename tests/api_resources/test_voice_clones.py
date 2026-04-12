@@ -240,30 +240,7 @@ class TestVoiceClones:
     @parametrize
     def test_method_create_from_upload(self, client: Telnyx) -> None:
         voice_clone = client.voice_clones.create_from_upload(
-            upload_params={
-                "audio_file": b"Example data",
-                "gender": "male",
-                "language": "lkf-Lz1vLbBu-9uDh-9AHaOS2D-Cbf",
-                "name": "name",
-                "provider": "telnyx",
-            },
-        )
-        assert_matches_type(VoiceCloneCreateFromUploadResponse, voice_clone, path=["response"])
-
-    @pytest.mark.skip(reason="Mock server tests are disabled")
-    @parametrize
-    def test_method_create_from_upload_with_all_params(self, client: Telnyx) -> None:
-        voice_clone = client.voice_clones.create_from_upload(
-            upload_params={
-                "audio_file": b"Example data",
-                "gender": "male",
-                "language": "lkf-Lz1vLbBu-9uDh-9AHaOS2D-Cbf",
-                "name": "name",
-                "provider": "telnyx",
-                "label": "label",
-                "model_id": "Qwen3TTS",
-                "ref_text": "ref_text",
-            },
+            upload_params={},
         )
         assert_matches_type(VoiceCloneCreateFromUploadResponse, voice_clone, path=["response"])
 
@@ -271,13 +248,7 @@ class TestVoiceClones:
     @parametrize
     def test_raw_response_create_from_upload(self, client: Telnyx) -> None:
         response = client.voice_clones.with_raw_response.create_from_upload(
-            upload_params={
-                "audio_file": b"Example data",
-                "gender": "male",
-                "language": "lkf-Lz1vLbBu-9uDh-9AHaOS2D-Cbf",
-                "name": "name",
-                "provider": "telnyx",
-            },
+            upload_params={},
         )
 
         assert response.is_closed is True
@@ -289,13 +260,7 @@ class TestVoiceClones:
     @parametrize
     def test_streaming_response_create_from_upload(self, client: Telnyx) -> None:
         with client.voice_clones.with_streaming_response.create_from_upload(
-            upload_params={
-                "audio_file": b"Example data",
-                "gender": "male",
-                "language": "lkf-Lz1vLbBu-9uDh-9AHaOS2D-Cbf",
-                "name": "name",
-                "provider": "telnyx",
-            },
+            upload_params={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -576,30 +541,7 @@ class TestAsyncVoiceClones:
     @parametrize
     async def test_method_create_from_upload(self, async_client: AsyncTelnyx) -> None:
         voice_clone = await async_client.voice_clones.create_from_upload(
-            upload_params={
-                "audio_file": b"Example data",
-                "gender": "male",
-                "language": "lkf-Lz1vLbBu-9uDh-9AHaOS2D-Cbf",
-                "name": "name",
-                "provider": "telnyx",
-            },
-        )
-        assert_matches_type(VoiceCloneCreateFromUploadResponse, voice_clone, path=["response"])
-
-    @pytest.mark.skip(reason="Mock server tests are disabled")
-    @parametrize
-    async def test_method_create_from_upload_with_all_params(self, async_client: AsyncTelnyx) -> None:
-        voice_clone = await async_client.voice_clones.create_from_upload(
-            upload_params={
-                "audio_file": b"Example data",
-                "gender": "male",
-                "language": "lkf-Lz1vLbBu-9uDh-9AHaOS2D-Cbf",
-                "name": "name",
-                "provider": "telnyx",
-                "label": "label",
-                "model_id": "Qwen3TTS",
-                "ref_text": "ref_text",
-            },
+            upload_params={},
         )
         assert_matches_type(VoiceCloneCreateFromUploadResponse, voice_clone, path=["response"])
 
@@ -607,13 +549,7 @@ class TestAsyncVoiceClones:
     @parametrize
     async def test_raw_response_create_from_upload(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.voice_clones.with_raw_response.create_from_upload(
-            upload_params={
-                "audio_file": b"Example data",
-                "gender": "male",
-                "language": "lkf-Lz1vLbBu-9uDh-9AHaOS2D-Cbf",
-                "name": "name",
-                "provider": "telnyx",
-            },
+            upload_params={},
         )
 
         assert response.is_closed is True
@@ -625,13 +561,7 @@ class TestAsyncVoiceClones:
     @parametrize
     async def test_streaming_response_create_from_upload(self, async_client: AsyncTelnyx) -> None:
         async with async_client.voice_clones.with_streaming_response.create_from_upload(
-            upload_params={
-                "audio_file": b"Example data",
-                "gender": "male",
-                "language": "lkf-Lz1vLbBu-9uDh-9AHaOS2D-Cbf",
-                "name": "name",
-                "provider": "telnyx",
-            },
+            upload_params={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
