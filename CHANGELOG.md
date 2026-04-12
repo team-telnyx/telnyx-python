@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.105.1 (2026-04-12)
+
+Full Changelog: [v4.105.0...v4.105.1](https://github.com/team-telnyx/telnyx-python/compare/v4.105.0...v4.105.1)
+
+### Bug Fixes
+
+* set additionalProperties=false on VoiceCloneUploadRequest to prevent codegen errors ([b4e8552](https://github.com/team-telnyx/telnyx-python/commit/b4e8552574460926bbcf98ba3cc0a328f9e5cedd))
+
 ## 4.105.0 (2026-04-11)
 
 Full Changelog: [v4.104.1...v4.105.0](https://github.com/team-telnyx/telnyx-python/compare/v4.104.1...v4.105.0)
