@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Mapping, cast
 from typing_extensions import Literal
 
 import httpx
@@ -14,7 +13,7 @@ from ..types import (
     voice_clone_create_from_upload_params,
 )
 from .._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from .._utils import extract_files, path_template, maybe_transform, deepcopy_minimal, async_maybe_transform
+from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -247,7 +246,7 @@ class VoiceClonesResource(SyncAPIResource):
     def create_from_upload(
         self,
         *,
-        upload_params: voice_clone_create_from_upload_params.UploadParams,
+        upload_params: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -262,9 +261,6 @@ class VoiceClonesResource(SyncAPIResource):
         clear speech. Maximum file size: 5MB for Telnyx, 20MB for Minimax.
 
         Args:
-          upload_params: Multipart form data for creating a voice clone from a direct audio upload.
-              Maximum file size: 5MB for Telnyx, 20MB for Minimax.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -273,16 +269,13 @@ class VoiceClonesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        body = deepcopy_minimal(upload_params)
-        files = extract_files(cast(Mapping[str, object], body), paths=[["audio_file"], ["audio_file"], ["audio_file"]])
         # It should be noted that the actual Content-Type header that will be
         # sent to the server will contain a `boundary` parameter, e.g.
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return self._post(
             "/voice_clones/from_upload",
-            body=maybe_transform(body, voice_clone_create_from_upload_params.VoiceCloneCreateFromUploadParams),
-            files=files,
+            body=maybe_transform(upload_params, voice_clone_create_from_upload_params.VoiceCloneCreateFromUploadParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -530,7 +523,7 @@ class AsyncVoiceClonesResource(AsyncAPIResource):
     async def create_from_upload(
         self,
         *,
-        upload_params: voice_clone_create_from_upload_params.UploadParams,
+        upload_params: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -545,9 +538,6 @@ class AsyncVoiceClonesResource(AsyncAPIResource):
         clear speech. Maximum file size: 5MB for Telnyx, 20MB for Minimax.
 
         Args:
-          upload_params: Multipart form data for creating a voice clone from a direct audio upload.
-              Maximum file size: 5MB for Telnyx, 20MB for Minimax.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -556,8 +546,6 @@ class AsyncVoiceClonesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        body = deepcopy_minimal(upload_params)
-        files = extract_files(cast(Mapping[str, object], body), paths=[["audio_file"], ["audio_file"], ["audio_file"]])
         # It should be noted that the actual Content-Type header that will be
         # sent to the server will contain a `boundary` parameter, e.g.
         # multipart/form-data; boundary=---abc--
@@ -565,9 +553,8 @@ class AsyncVoiceClonesResource(AsyncAPIResource):
         return await self._post(
             "/voice_clones/from_upload",
             body=await async_maybe_transform(
-                body, voice_clone_create_from_upload_params.VoiceCloneCreateFromUploadParams
+                upload_params, voice_clone_create_from_upload_params.VoiceCloneCreateFromUploadParams
             ),
-            files=files,
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
