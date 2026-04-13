@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Union, Iterable
+from typing import Dict, Union, Iterable
 from typing_extensions import Literal
 
 import httpx
@@ -136,8 +136,11 @@ class CallsResource(SyncAPIResource):
         timeout_secs: int | Omit = omit,
         transcription: bool | Omit = omit,
         transcription_config: TranscriptionStartRequestParam | Omit = omit,
+        webhook_retries_policies: Dict[str, call_dial_params.WebhookRetriesPolicies] | Omit = omit,
         webhook_url: str | Omit = omit,
         webhook_url_method: Literal["POST", "GET"] | Omit = omit,
+        webhook_urls: Dict[str, str] | Omit = omit,
+        webhook_urls_method: Literal["POST", "GET"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -345,10 +348,21 @@ class CallsResource(SyncAPIResource):
 
           transcription: Enable transcription upon call answer. The default value is false.
 
+          webhook_retries_policies: A map of event types to retry policies. Each retry policy contains an array of
+              `retries_ms` specifying the delays between retry attempts in milliseconds.
+              Maximum 5 retries, total delay cannot exceed 60 seconds.
+
           webhook_url: Use this field to override the URL for which Telnyx will send subsequent
               webhooks to for this call.
 
           webhook_url_method: HTTP request type used for `webhook_url`.
+
+          webhook_urls: A map of event types to webhook URLs. When an event of the specified type
+              occurs, the webhook URL associated with that event type will be called instead
+              of the default webhook URL. Events not mapped here will use the default webhook
+              URL.
+
+          webhook_urls_method: HTTP request method to invoke `webhook_urls`.
 
           extra_headers: Send extra headers
 
@@ -416,8 +430,11 @@ class CallsResource(SyncAPIResource):
                     "timeout_secs": timeout_secs,
                     "transcription": transcription,
                     "transcription_config": transcription_config,
+                    "webhook_retries_policies": webhook_retries_policies,
                     "webhook_url": webhook_url,
                     "webhook_url_method": webhook_url_method,
+                    "webhook_urls": webhook_urls,
+                    "webhook_urls_method": webhook_urls_method,
                 },
                 call_dial_params.CallDialParams,
             ),
@@ -546,8 +563,11 @@ class AsyncCallsResource(AsyncAPIResource):
         timeout_secs: int | Omit = omit,
         transcription: bool | Omit = omit,
         transcription_config: TranscriptionStartRequestParam | Omit = omit,
+        webhook_retries_policies: Dict[str, call_dial_params.WebhookRetriesPolicies] | Omit = omit,
         webhook_url: str | Omit = omit,
         webhook_url_method: Literal["POST", "GET"] | Omit = omit,
+        webhook_urls: Dict[str, str] | Omit = omit,
+        webhook_urls_method: Literal["POST", "GET"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -755,10 +775,21 @@ class AsyncCallsResource(AsyncAPIResource):
 
           transcription: Enable transcription upon call answer. The default value is false.
 
+          webhook_retries_policies: A map of event types to retry policies. Each retry policy contains an array of
+              `retries_ms` specifying the delays between retry attempts in milliseconds.
+              Maximum 5 retries, total delay cannot exceed 60 seconds.
+
           webhook_url: Use this field to override the URL for which Telnyx will send subsequent
               webhooks to for this call.
 
           webhook_url_method: HTTP request type used for `webhook_url`.
+
+          webhook_urls: A map of event types to webhook URLs. When an event of the specified type
+              occurs, the webhook URL associated with that event type will be called instead
+              of the default webhook URL. Events not mapped here will use the default webhook
+              URL.
+
+          webhook_urls_method: HTTP request method to invoke `webhook_urls`.
 
           extra_headers: Send extra headers
 
@@ -826,8 +857,11 @@ class AsyncCallsResource(AsyncAPIResource):
                     "timeout_secs": timeout_secs,
                     "transcription": transcription,
                     "transcription_config": transcription_config,
+                    "webhook_retries_policies": webhook_retries_policies,
                     "webhook_url": webhook_url,
                     "webhook_url_method": webhook_url_method,
+                    "webhook_urls": webhook_urls,
+                    "webhook_urls_method": webhook_urls_method,
                 },
                 call_dial_params.CallDialParams,
             ),

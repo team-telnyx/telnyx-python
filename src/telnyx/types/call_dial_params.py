@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Union, Iterable
+from typing import Dict, Union, Iterable
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from .._types import SequenceNotStr
@@ -19,7 +19,7 @@ from .stream_bidirectional_target_legs import StreamBidirectionalTargetLegs
 from .stream_bidirectional_sampling_rate import StreamBidirectionalSamplingRate
 from .calls.transcription_start_request_param import TranscriptionStartRequestParam
 
-__all__ = ["CallDialParams", "AnsweringMachineDetectionConfig", "ConferenceConfig"]
+__all__ = ["CallDialParams", "AnsweringMachineDetectionConfig", "ConferenceConfig", "WebhookRetriesPolicies"]
 
 
 class CallDialParams(TypedDict, total=False):
@@ -327,6 +327,14 @@ class CallDialParams(TypedDict, total=False):
 
     transcription_config: TranscriptionStartRequestParam
 
+    webhook_retries_policies: Dict[str, WebhookRetriesPolicies]
+    """A map of event types to retry policies.
+
+    Each retry policy contains an array of `retries_ms` specifying the delays
+    between retry attempts in milliseconds. Maximum 5 retries, total delay cannot
+    exceed 60 seconds.
+    """
+
     webhook_url: str
     """
     Use this field to override the URL for which Telnyx will send subsequent
@@ -335,6 +343,17 @@ class CallDialParams(TypedDict, total=False):
 
     webhook_url_method: Literal["POST", "GET"]
     """HTTP request type used for `webhook_url`."""
+
+    webhook_urls: Dict[str, str]
+    """A map of event types to webhook URLs.
+
+    When an event of the specified type occurs, the webhook URL associated with that
+    event type will be called instead of the default webhook URL. Events not mapped
+    here will use the default webhook URL.
+    """
+
+    webhook_urls_method: Literal["POST", "GET"]
+    """HTTP request method to invoke `webhook_urls`."""
 
 
 class AnsweringMachineDetectionConfig(TypedDict, total=False):
@@ -478,4 +497,12 @@ class ConferenceConfig(TypedDict, total=False):
 
     If none provided, the supervisor will join the conference as a monitoring
     participant only.
+    """
+
+
+class WebhookRetriesPolicies(TypedDict, total=False):
+    retries_ms: Iterable[int]
+    """Array of delays in milliseconds between retry attempts.
+
+    Total sum cannot exceed 60000ms.
     """
