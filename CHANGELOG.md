@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.106.0 (2026-04-13)
+
+Full Changelog: [v4.105.1...v4.106.0](https://github.com/team-telnyx/telnyx-python/compare/v4.105.1...v4.106.0)
+
+### Features
+
+* Add webhook_urls, webhook_urls_method, webhook_retries_policies to Dial endpoint ([eaa792a](https://github.com/team-telnyx/telnyx-python/commit/eaa792a19419987b458d06abcf0174ba51e3d198))
+
 ## 4.105.1 (2026-04-12)
 
 Full Changelog: [v4.105.0...v4.105.1](https://github.com/team-telnyx/telnyx-python/compare/v4.105.0...v4.105.1)
