@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.108.0 (2026-04-13)
+
+Full Changelog: [v4.107.0...v4.108.0](https://github.com/team-telnyx/telnyx-python/compare/v4.107.0...v4.108.0)
+
+### Features
+
+* [TDA-6425] Fix session analysis API spec: relaxed date_time, remove status & completed_at ([93c33c4](https://github.com/team-telnyx/telnyx-python/commit/93c33c471f0221026f65e411ac34ca14b360175d))
+
 ## 4.107.0 (2026-04-13)
 
 Full Changelog: [v4.106.0...v4.107.0](https://github.com/team-telnyx/telnyx-python/compare/v4.106.0...v4.107.0)
