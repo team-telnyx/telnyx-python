@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.107.0 (2026-04-13)
+
+Full Changelog: [v4.106.0...v4.107.0](https://github.com/team-telnyx/telnyx-python/compare/v4.106.0...v4.107.0)
+
+### Features
+
+* **client:** allow enqueuing to websockets even when not connected ([5878b59](https://github.com/team-telnyx/telnyx-python/commit/5878b59e47bab464ad7d17e1b658a7869303642a))
+
 ## 4.106.0 (2026-04-13)
 
 Full Changelog: [v4.105.1...v4.106.0](https://github.com/team-telnyx/telnyx-python/compare/v4.105.1...v4.106.0)
