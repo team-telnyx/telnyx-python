@@ -25,7 +25,8 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._exceptions import TelnyxError
+from .._exceptions import TelnyxError, WebSocketConnectionClosedError
+from .._send_queue import SendQueue
 from .._base_client import _merge_mappings, make_request_options
 from .._event_handler import EventHandlerRegistry
 from ..types.stream_client_event import StreamClientEvent
@@ -251,6 +252,7 @@ class TextToSpeechResource(SyncAPIResource):
         max_retries: int = 5,
         initial_delay: float = 0.5,
         max_delay: float = 8.0,
+        max_queue_size: int = 1_048_576,
     ) -> TextToSpeechResourceConnectionManager:
         return TextToSpeechResourceConnectionManager(
             client=self._client,
@@ -261,6 +263,7 @@ class TextToSpeechResource(SyncAPIResource):
             max_retries=max_retries,
             initial_delay=initial_delay,
             max_delay=max_delay,
+            max_queue_size=max_queue_size,
         )
 
 
@@ -468,6 +471,7 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
         max_retries: int = 5,
         initial_delay: float = 0.5,
         max_delay: float = 8.0,
+        max_queue_size: int = 1_048_576,
     ) -> AsyncTextToSpeechResourceConnectionManager:
         return AsyncTextToSpeechResourceConnectionManager(
             client=self._client,
@@ -478,6 +482,7 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
             max_retries=max_retries,
             initial_delay=initial_delay,
             max_delay=max_delay,
+            max_queue_size=max_queue_size,
         )
 
 
@@ -545,6 +550,7 @@ class AsyncTextToSpeechResourceConnection:
         max_delay: float = 8.0,
         extra_query: Query = {},
         extra_headers: Headers = {},
+        send_queue: SendQueue | None = None,
     ) -> None:
         self._connection = connection
         self._make_ws = make_ws
@@ -555,6 +561,8 @@ class AsyncTextToSpeechResourceConnection:
         self._extra_query = extra_query
         self._extra_headers = extra_headers
         self._intentionally_closed = False
+        self._is_reconnecting = False
+        self._send_queue = send_queue or SendQueue()
         self._event_handler_registry = EventHandlerRegistry(use_lock=False)
 
     async def __aiter__(self) -> AsyncIterator[StreamServerEvent]:
@@ -571,6 +579,12 @@ class AsyncTextToSpeechResourceConnection:
                 return
             except ConnectionClosedError as exc:
                 if not await self._reconnect(exc):
+                    unsent = self._send_queue.drain()
+                    if unsent:
+                        raise WebSocketConnectionClosedError(
+                            "WebSocket connection closed with unsent messages",
+                            unsent_messages=unsent,
+                        ) from exc
                     raise
 
     async def recv(self) -> StreamServerEvent:
@@ -599,9 +613,20 @@ class AsyncTextToSpeechResourceConnection:
             if isinstance(event, BaseModel)
             else json.dumps(await async_maybe_transform(event, StreamClientEventParam))
         )
-        await self._connection.send(data)
+        if self._is_reconnecting:
+            self._send_queue.enqueue(data)
+            return
+        try:
+            await self._connection.send(data)
+        except Exception:
+            self._send_queue.enqueue(data)
+            raise
 
     async def send_raw(self, data: bytes | str) -> None:
+        if self._is_reconnecting:
+            raw = data if isinstance(data, str) else data.decode("utf-8")
+            self._send_queue.enqueue(raw)
+            return
         await self._connection.send(data)
 
     async def close(self, *, code: int = 1000, reason: str = "") -> None:
@@ -638,6 +663,8 @@ class AsyncTextToSpeechResourceConnection:
         if not is_recoverable_close(close_code):
             return False
 
+        self._is_reconnecting = True
+
         for attempt in range(1, self._max_retries + 1):
             base_delay = min(self._initial_delay * (2 ** (attempt - 1)), self._max_delay)
             jitter = 0.75 + random.random() * 0.25
@@ -655,9 +682,11 @@ class AsyncTextToSpeechResourceConnection:
             try:
                 result = self._on_reconnecting(event)
             except Exception:
+                self._is_reconnecting = False
                 return False
 
             if result is not None and result.get("abort"):
+                self._is_reconnecting = False
                 return False
 
             if result is not None:
@@ -675,16 +704,31 @@ class AsyncTextToSpeechResourceConnection:
             await asyncio.sleep(delay)
 
             if self._intentionally_closed:
+                self._is_reconnecting = False
                 return False
 
             try:
                 self._connection = await self._make_ws(self._extra_query, self._extra_headers)
                 log.info("Reconnected to WebSocket API")
+                self._is_reconnecting = False
+                await self._flush_send_queue()
                 return True
             except Exception:
                 pass
 
+        self._is_reconnecting = False
         return False
+
+    async def _flush_send_queue(self) -> None:
+        """Send all queued messages over the current connection."""
+
+        async def _send(data: str) -> None:
+            await self._connection.send(data)
+
+        try:
+            await self._send_queue.flush_async(_send)
+        except Exception:
+            log.warning("Failed to flush send queue after reconnect", exc_info=True)
 
     def on(
         self, event_type: str, handler: Callable[..., Any] | None = None
@@ -798,6 +842,7 @@ class AsyncTextToSpeechResourceConnectionManager:
         max_retries: int = 5,
         initial_delay: float = 0.5,
         max_delay: float = 8.0,
+        max_queue_size: int = 1_048_576,
     ) -> None:
         self.__client = client
         self.__connection: AsyncTextToSpeechResourceConnection | None = None
@@ -808,6 +853,58 @@ class AsyncTextToSpeechResourceConnectionManager:
         self.__max_retries = max_retries
         self.__initial_delay = initial_delay
         self.__max_delay = max_delay
+        self.__send_queue = SendQueue(max_bytes=max_queue_size)
+        self.__event_handler_registry = EventHandlerRegistry(use_lock=False)
+
+    def send(self, event: StreamClientEvent | StreamClientEventParam) -> None:
+        """Queue a message to be sent when the connection is established.
+
+        This can be called before entering the context manager. Queued messages
+        are automatically sent once the WebSocket connection opens.
+        """
+        data = (
+            event.to_json(use_api_names=True, exclude_defaults=True, exclude_unset=True)
+            if isinstance(event, BaseModel)
+            else json.dumps(event)
+        )
+        self.__send_queue.enqueue(data)
+
+    def on(
+        self, event_type: str, handler: Callable[..., Any] | None = None
+    ) -> Union[AsyncTextToSpeechResourceConnectionManager, Callable[[Callable[..., Any]], Callable[..., Any]]]:
+        """Register an event handler before the connection is established.
+
+        Handlers are transferred to the connection on enter. Supports the
+        same method and decorator forms as ``AsyncTextToSpeechResourceConnection.on``.
+        """
+        if handler is not None:
+            self.__event_handler_registry.add(event_type, handler)
+            return self
+
+        def decorator(fn: Callable[..., Any]) -> Callable[..., Any]:
+            self.__event_handler_registry.add(event_type, fn)
+            return fn
+
+        return decorator
+
+    def off(self, event_type: str, handler: Callable[..., Any]) -> AsyncTextToSpeechResourceConnectionManager:
+        """Remove a previously registered event handler."""
+        self.__event_handler_registry.remove(event_type, handler)
+        return self
+
+    def once(
+        self, event_type: str, handler: Callable[..., Any] | None = None
+    ) -> Union[AsyncTextToSpeechResourceConnectionManager, Callable[[Callable[..., Any]], Callable[..., Any]]]:
+        """Register a one-time event handler before the connection is established."""
+        if handler is not None:
+            self.__event_handler_registry.add(event_type, handler, once=True)
+            return self
+
+        def decorator(fn: Callable[..., Any]) -> Callable[..., Any]:
+            self.__event_handler_registry.add(event_type, fn, once=True)
+            return fn
+
+        return decorator
 
     async def __aenter__(self) -> AsyncTextToSpeechResourceConnection:
         """
@@ -833,7 +930,11 @@ class AsyncTextToSpeechResourceConnectionManager:
             max_delay=self.__max_delay,
             extra_query=self.__extra_query,
             extra_headers=self.__extra_headers,
+            send_queue=self.__send_queue,
         )
+
+        self.__event_handler_registry.merge_into(self.__connection._event_handler_registry)
+        await self.__connection._flush_send_queue()
 
         return self.__connection
 
@@ -901,6 +1002,7 @@ class TextToSpeechResourceConnection:
         max_delay: float = 8.0,
         extra_query: Query = {},
         extra_headers: Headers = {},
+        send_queue: SendQueue | None = None,
     ) -> None:
         self._connection = connection
         self._make_ws = make_ws
@@ -911,6 +1013,8 @@ class TextToSpeechResourceConnection:
         self._extra_query = extra_query
         self._extra_headers = extra_headers
         self._intentionally_closed = False
+        self._is_reconnecting = False
+        self._send_queue = send_queue or SendQueue()
         self._event_handler_registry = EventHandlerRegistry(use_lock=True)
 
     def __iter__(self) -> Iterator[StreamServerEvent]:
@@ -927,6 +1031,12 @@ class TextToSpeechResourceConnection:
                 return
             except ConnectionClosedError as exc:
                 if not self._reconnect(exc):
+                    unsent = self._send_queue.drain()
+                    if unsent:
+                        raise WebSocketConnectionClosedError(
+                            "WebSocket connection closed with unsent messages",
+                            unsent_messages=unsent,
+                        ) from exc
                     raise
 
     def recv(self) -> StreamServerEvent:
@@ -955,9 +1065,20 @@ class TextToSpeechResourceConnection:
             if isinstance(event, BaseModel)
             else json.dumps(maybe_transform(event, StreamClientEventParam))
         )
-        self._connection.send(data)
+        if self._is_reconnecting:
+            self._send_queue.enqueue(data)
+            return
+        try:
+            self._connection.send(data)
+        except Exception:
+            self._send_queue.enqueue(data)
+            raise
 
     def send_raw(self, data: bytes | str) -> None:
+        if self._is_reconnecting:
+            raw = data if isinstance(data, str) else data.decode("utf-8")
+            self._send_queue.enqueue(raw)
+            return
         self._connection.send(data)
 
     def close(self, *, code: int = 1000, reason: str = "") -> None:
@@ -992,6 +1113,8 @@ class TextToSpeechResourceConnection:
         if not is_recoverable_close(close_code):
             return False
 
+        self._is_reconnecting = True
+
         for attempt in range(1, self._max_retries + 1):
             base_delay = min(self._initial_delay * (2 ** (attempt - 1)), self._max_delay)
             jitter = 0.75 + random.random() * 0.25
@@ -1009,9 +1132,11 @@ class TextToSpeechResourceConnection:
             try:
                 result = self._on_reconnecting(event)
             except Exception:
+                self._is_reconnecting = False
                 return False
 
             if result is not None and result.get("abort"):
+                self._is_reconnecting = False
                 return False
 
             if result is not None:
@@ -1029,16 +1154,27 @@ class TextToSpeechResourceConnection:
             time.sleep(delay)
 
             if self._intentionally_closed:
+                self._is_reconnecting = False
                 return False
 
             try:
                 self._connection = self._make_ws(self._extra_query, self._extra_headers)
                 log.info("Reconnected to WebSocket API")
+                self._is_reconnecting = False
+                self._flush_send_queue()
                 return True
             except Exception:
                 pass
 
+        self._is_reconnecting = False
         return False
+
+    def _flush_send_queue(self) -> None:
+        """Send all queued messages over the current connection."""
+        try:
+            self._send_queue.flush_sync(lambda data: self._connection.send(data))
+        except Exception:
+            log.warning("Failed to flush send queue after reconnect", exc_info=True)
 
     def on(
         self, event_type: str, handler: Callable[..., Any] | None = None
@@ -1146,6 +1282,7 @@ class TextToSpeechResourceConnectionManager:
         max_retries: int = 5,
         initial_delay: float = 0.5,
         max_delay: float = 8.0,
+        max_queue_size: int = 1_048_576,
     ) -> None:
         self.__client = client
         self.__connection: TextToSpeechResourceConnection | None = None
@@ -1156,6 +1293,58 @@ class TextToSpeechResourceConnectionManager:
         self.__max_retries = max_retries
         self.__initial_delay = initial_delay
         self.__max_delay = max_delay
+        self.__send_queue = SendQueue(max_bytes=max_queue_size)
+        self.__event_handler_registry = EventHandlerRegistry(use_lock=True)
+
+    def send(self, event: StreamClientEvent | StreamClientEventParam) -> None:
+        """Queue a message to be sent when the connection is established.
+
+        This can be called before entering the context manager. Queued messages
+        are automatically sent once the WebSocket connection opens.
+        """
+        data = (
+            event.to_json(use_api_names=True, exclude_defaults=True, exclude_unset=True)
+            if isinstance(event, BaseModel)
+            else json.dumps(event)
+        )
+        self.__send_queue.enqueue(data)
+
+    def on(
+        self, event_type: str, handler: Callable[..., Any] | None = None
+    ) -> Union[TextToSpeechResourceConnectionManager, Callable[[Callable[..., Any]], Callable[..., Any]]]:
+        """Register an event handler before the connection is established.
+
+        Handlers are transferred to the connection on enter. Supports the
+        same method and decorator forms as ``TextToSpeechResourceConnection.on``.
+        """
+        if handler is not None:
+            self.__event_handler_registry.add(event_type, handler)
+            return self
+
+        def decorator(fn: Callable[..., Any]) -> Callable[..., Any]:
+            self.__event_handler_registry.add(event_type, fn)
+            return fn
+
+        return decorator
+
+    def off(self, event_type: str, handler: Callable[..., Any]) -> TextToSpeechResourceConnectionManager:
+        """Remove a previously registered event handler."""
+        self.__event_handler_registry.remove(event_type, handler)
+        return self
+
+    def once(
+        self, event_type: str, handler: Callable[..., Any] | None = None
+    ) -> Union[TextToSpeechResourceConnectionManager, Callable[[Callable[..., Any]], Callable[..., Any]]]:
+        """Register a one-time event handler before the connection is established."""
+        if handler is not None:
+            self.__event_handler_registry.add(event_type, handler, once=True)
+            return self
+
+        def decorator(fn: Callable[..., Any]) -> Callable[..., Any]:
+            self.__event_handler_registry.add(event_type, fn, once=True)
+            return fn
+
+        return decorator
 
     def __enter__(self) -> TextToSpeechResourceConnection:
         """
@@ -1181,7 +1370,11 @@ class TextToSpeechResourceConnectionManager:
             max_delay=self.__max_delay,
             extra_query=self.__extra_query,
             extra_headers=self.__extra_headers,
+            send_queue=self.__send_queue,
         )
+
+        self.__event_handler_registry.merge_into(self.__connection._event_handler_registry)
+        self.__connection._flush_send_queue()
 
         return self.__connection
 
