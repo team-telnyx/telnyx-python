@@ -2,8 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
-from datetime import datetime
+from typing import List
 
 from .._models import BaseModel
 
@@ -29,21 +28,12 @@ class Meta(BaseModel):
 class SessionAnalysisRetrieveResponse(BaseModel):
     cost: Cost
 
-    created_at: datetime
-    """When the session started."""
-
     meta: Meta
 
     root: "EventNode"
 
     session_id: str
     """Identifier for the analyzed session."""
-
-    status: str
-    """Analysis status (e.g. "completed")."""
-
-    completed_at: Optional[datetime] = None
-    """When the session completed."""
 
 
 from .event_node import EventNode

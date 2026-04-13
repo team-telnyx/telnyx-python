@@ -15,7 +15,11 @@ class SessionAnalysisRetrieveParams(TypedDict, total=False):
     record_type: Required[str]
 
     date_time: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
-    """ISO 8601 timestamp to narrow index selection for faster lookups."""
+    """ISO 8601 timestamp or date to narrow index selection for faster lookups.
+
+    Accepts full datetime (e.g., 2026-03-17T10:00:00Z) or date-only format (e.g.,
+    2026-03-17).
+    """
 
     expand: Literal["record", "none"]
     """Controls what data to expand on each event node."""
