@@ -113,6 +113,11 @@ class TestCalls:
                     "value": "val_2",
                 },
             ],
+            deepfake_detection={
+                "enabled": True,
+                "rtp_timeout": 30,
+                "timeout": 15,
+            },
             dialogflow_config={
                 "analyze_sentiment": False,
                 "partial_automated_agent_reply": False,
@@ -371,6 +376,11 @@ class TestAsyncCalls:
                     "value": "val_2",
                 },
             ],
+            deepfake_detection={
+                "enabled": True,
+                "rtp_timeout": 30,
+                "timeout": 15,
+            },
             dialogflow_config={
                 "analyze_sentiment": False,
                 "partial_automated_agent_reply": False,

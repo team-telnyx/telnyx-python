@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Dict, Iterable
-from typing_extensions import Literal, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
 from ..stream_codec import StreamCodec
 from ..sip_header_param import SipHeaderParam
@@ -15,7 +15,7 @@ from ..call_assistant_request_param import CallAssistantRequestParam
 from ..stream_bidirectional_target_legs import StreamBidirectionalTargetLegs
 from .transcription_start_request_param import TranscriptionStartRequestParam
 
-__all__ = ["ActionAnswerParams", "WebhookRetriesPolicies"]
+__all__ = ["ActionAnswerParams", "DeepfakeDetection", "WebhookRetriesPolicies"]
 
 
 class ActionAnswerParams(TypedDict, total=False):
@@ -47,6 +47,14 @@ class ActionAnswerParams(TypedDict, total=False):
 
     custom_headers: Iterable[CustomSipHeaderParam]
     """Custom headers to be added to the SIP INVITE response."""
+
+    deepfake_detection: DeepfakeDetection
+    """Enables deepfake detection on the call.
+
+    When enabled, audio from the remote party is streamed to a detection service
+    that analyzes whether the voice is AI-generated. Results are delivered via the
+    `call.deepfake_detection.result` webhook.
+    """
 
     preferred_codecs: Literal["G722,PCMU,PCMA,G729,OPUS,VP8,H264"]
     """
@@ -173,6 +181,25 @@ class ActionAnswerParams(TypedDict, total=False):
 
     webhook_urls_method: Literal["POST", "GET"]
     """HTTP request method to invoke `webhook_urls`."""
+
+
+class DeepfakeDetection(TypedDict, total=False):
+    """Enables deepfake detection on the call.
+
+    When enabled, audio from the remote party is streamed to a detection service that analyzes whether the voice is AI-generated. Results are delivered via the `call.deepfake_detection.result` webhook.
+    """
+
+    enabled: Required[bool]
+    """Whether deepfake detection is enabled."""
+
+    rtp_timeout: int
+    """Maximum time in seconds to wait for RTP audio before timing out.
+
+    If no audio is received within this window, detection stops with an error.
+    """
+
+    timeout: int
+    """Maximum time in seconds to wait for a detection result before timing out."""
 
 
 class WebhookRetriesPolicies(TypedDict, total=False):

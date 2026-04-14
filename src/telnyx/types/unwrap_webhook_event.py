@@ -53,8 +53,10 @@ from .call_machine_greeting_ended_webhook_event import CallMachineGreetingEndedW
 from .conference_participant_left_webhook_event import ConferenceParticipantLeftWebhookEvent
 from .conference_playback_started_webhook_event import ConferencePlaybackStartedWebhookEvent
 from .call_machine_detection_ended_webhook_event import CallMachineDetectionEndedWebhookEvent
+from .call_deepfake_detection_error_webhook_event import CallDeepfakeDetectionErrorWebhookEvent
 from .conference_participant_joined_webhook_event import ConferenceParticipantJoinedWebhookEvent
 from .call_ai_gather_partial_results_webhook_event import CallAIGatherPartialResultsWebhookEvent
+from .call_deepfake_detection_result_webhook_event import CallDeepfakeDetectionResultWebhookEvent
 from .call_recording_transcription_saved_webhook_event import CallRecordingTranscriptionSavedWebhookEvent
 from .conference_participant_speak_ended_webhook_event import ConferenceParticipantSpeakEndedWebhookEvent
 from .call_machine_premium_greeting_ended_webhook_event import CallMachinePremiumGreetingEndedWebhookEvent
@@ -76,6 +78,8 @@ UnwrapWebhookEvent: TypeAlias = Union[
     CallConversationEndedWebhookEvent,
     CallConversationInsightsGeneratedWebhookEvent,
     CallCostWebhookEvent,
+    CallDeepfakeDetectionErrorWebhookEvent,
+    CallDeepfakeDetectionResultWebhookEvent,
     CallDtmfReceivedWebhookEvent,
     CallEnqueuedWebhookEvent,
     CallForkStartedWebhookEvent,

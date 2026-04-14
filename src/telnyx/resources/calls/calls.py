@@ -96,6 +96,7 @@ class CallsResource(SyncAPIResource):
         command_id: str | Omit = omit,
         conference_config: call_dial_params.ConferenceConfig | Omit = omit,
         custom_headers: Iterable[CustomSipHeaderParam] | Omit = omit,
+        deepfake_detection: call_dial_params.DeepfakeDetection | Omit = omit,
         dialogflow_config: DialogflowConfigParam | Omit = omit,
         enable_dialogflow: bool | Omit = omit,
         from_display_name: str | Omit = omit,
@@ -165,6 +166,9 @@ class CallsResource(SyncAPIResource):
           `answering_machine_detection=premium` was requested
         - `call.machine.premium.greeting.ended` if `answering_machine_detection=premium`
           was requested and a beep was detected
+        - `call.deepfake_detection.result` if `deepfake_detection` was enabled
+        - `call.deepfake_detection.error` if `deepfake_detection` was enabled and an
+          error occurred
         - `streaming.started`, `streaming.stopped` or `streaming.failed` if `stream_url`
           was set
 
@@ -229,6 +233,11 @@ class CallsResource(SyncAPIResource):
           conference_config: Optional configuration parameters to dial new participant into a conference.
 
           custom_headers: Custom headers to be added to the SIP INVITE.
+
+          deepfake_detection: Enables deepfake detection on the call. When enabled, audio from the remote
+              party is streamed to a detection service that analyzes whether the voice is
+              AI-generated. Results are delivered via the `call.deepfake_detection.result`
+              webhook.
 
           enable_dialogflow: Enables Dialogflow for the current call. The default value is false.
 
@@ -390,6 +399,7 @@ class CallsResource(SyncAPIResource):
                     "command_id": command_id,
                     "conference_config": conference_config,
                     "custom_headers": custom_headers,
+                    "deepfake_detection": deepfake_detection,
                     "dialogflow_config": dialogflow_config,
                     "enable_dialogflow": enable_dialogflow,
                     "from_display_name": from_display_name,
@@ -523,6 +533,7 @@ class AsyncCallsResource(AsyncAPIResource):
         command_id: str | Omit = omit,
         conference_config: call_dial_params.ConferenceConfig | Omit = omit,
         custom_headers: Iterable[CustomSipHeaderParam] | Omit = omit,
+        deepfake_detection: call_dial_params.DeepfakeDetection | Omit = omit,
         dialogflow_config: DialogflowConfigParam | Omit = omit,
         enable_dialogflow: bool | Omit = omit,
         from_display_name: str | Omit = omit,
@@ -592,6 +603,9 @@ class AsyncCallsResource(AsyncAPIResource):
           `answering_machine_detection=premium` was requested
         - `call.machine.premium.greeting.ended` if `answering_machine_detection=premium`
           was requested and a beep was detected
+        - `call.deepfake_detection.result` if `deepfake_detection` was enabled
+        - `call.deepfake_detection.error` if `deepfake_detection` was enabled and an
+          error occurred
         - `streaming.started`, `streaming.stopped` or `streaming.failed` if `stream_url`
           was set
 
@@ -656,6 +670,11 @@ class AsyncCallsResource(AsyncAPIResource):
           conference_config: Optional configuration parameters to dial new participant into a conference.
 
           custom_headers: Custom headers to be added to the SIP INVITE.
+
+          deepfake_detection: Enables deepfake detection on the call. When enabled, audio from the remote
+              party is streamed to a detection service that analyzes whether the voice is
+              AI-generated. Results are delivered via the `call.deepfake_detection.result`
+              webhook.
 
           enable_dialogflow: Enables Dialogflow for the current call. The default value is false.
 
@@ -817,6 +836,7 @@ class AsyncCallsResource(AsyncAPIResource):
                     "command_id": command_id,
                     "conference_config": conference_config,
                     "custom_headers": custom_headers,
+                    "deepfake_detection": deepfake_detection,
                     "dialogflow_config": dialogflow_config,
                     "enable_dialogflow": enable_dialogflow,
                     "from_display_name": from_display_name,

@@ -19,7 +19,13 @@ from .stream_bidirectional_target_legs import StreamBidirectionalTargetLegs
 from .stream_bidirectional_sampling_rate import StreamBidirectionalSamplingRate
 from .calls.transcription_start_request_param import TranscriptionStartRequestParam
 
-__all__ = ["CallDialParams", "AnsweringMachineDetectionConfig", "ConferenceConfig", "WebhookRetriesPolicies"]
+__all__ = [
+    "CallDialParams",
+    "AnsweringMachineDetectionConfig",
+    "ConferenceConfig",
+    "DeepfakeDetection",
+    "WebhookRetriesPolicies",
+]
 
 
 class CallDialParams(TypedDict, total=False):
@@ -119,6 +125,14 @@ class CallDialParams(TypedDict, total=False):
 
     custom_headers: Iterable[CustomSipHeaderParam]
     """Custom headers to be added to the SIP INVITE."""
+
+    deepfake_detection: DeepfakeDetection
+    """Enables deepfake detection on the call.
+
+    When enabled, audio from the remote party is streamed to a detection service
+    that analyzes whether the voice is AI-generated. Results are delivered via the
+    `call.deepfake_detection.result` webhook.
+    """
 
     dialogflow_config: DialogflowConfigParam
 
@@ -498,6 +512,25 @@ class ConferenceConfig(TypedDict, total=False):
     If none provided, the supervisor will join the conference as a monitoring
     participant only.
     """
+
+
+class DeepfakeDetection(TypedDict, total=False):
+    """Enables deepfake detection on the call.
+
+    When enabled, audio from the remote party is streamed to a detection service that analyzes whether the voice is AI-generated. Results are delivered via the `call.deepfake_detection.result` webhook.
+    """
+
+    enabled: Required[bool]
+    """Whether deepfake detection is enabled."""
+
+    rtp_timeout: int
+    """Maximum time in seconds to wait for RTP audio before timing out.
+
+    If no audio is received within this window, detection stops with an error.
+    """
+
+    timeout: int
+    """Maximum time in seconds to wait for a detection result before timing out."""
 
 
 class WebhookRetriesPolicies(TypedDict, total=False):
