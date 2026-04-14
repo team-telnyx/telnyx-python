@@ -209,6 +209,7 @@ class ActionsResource(SyncAPIResource):
         client_state: str | Omit = omit,
         command_id: str | Omit = omit,
         custom_headers: Iterable[CustomSipHeaderParam] | Omit = omit,
+        deepfake_detection: action_answer_params.DeepfakeDetection | Omit = omit,
         preferred_codecs: Literal["G722,PCMU,PCMA,G729,OPUS,VP8,H264"] | Omit = omit,
         record: Literal["record-from-answer"] | Omit = omit,
         record_channels: Literal["single", "dual"] | Omit = omit,
@@ -249,6 +250,9 @@ class ActionsResource(SyncAPIResource):
         **Expected Webhooks:**
 
         - `call.answered`
+        - `call.deepfake_detection.result` if `deepfake_detection` was enabled
+        - `call.deepfake_detection.error` if `deepfake_detection` was enabled and an
+          error occurred
         - `streaming.started`, `streaming.stopped` or `streaming.failed` if `stream_url`
           was set
 
@@ -270,6 +274,11 @@ class ActionsResource(SyncAPIResource):
               the same `command_id` for the same `call_control_id`.
 
           custom_headers: Custom headers to be added to the SIP INVITE response.
+
+          deepfake_detection: Enables deepfake detection on the call. When enabled, audio from the remote
+              party is streamed to a detection service that analyzes whether the voice is
+              AI-generated. Results are delivered via the `call.deepfake_detection.result`
+              webhook.
 
           preferred_codecs: The list of comma-separated codecs in a preferred order for the forked media to
               be received.
@@ -358,6 +367,7 @@ class ActionsResource(SyncAPIResource):
                     "client_state": client_state,
                     "command_id": command_id,
                     "custom_headers": custom_headers,
+                    "deepfake_detection": deepfake_detection,
                     "preferred_codecs": preferred_codecs,
                     "record": record,
                     "record_channels": record_channels,
@@ -3821,6 +3831,7 @@ class AsyncActionsResource(AsyncAPIResource):
         client_state: str | Omit = omit,
         command_id: str | Omit = omit,
         custom_headers: Iterable[CustomSipHeaderParam] | Omit = omit,
+        deepfake_detection: action_answer_params.DeepfakeDetection | Omit = omit,
         preferred_codecs: Literal["G722,PCMU,PCMA,G729,OPUS,VP8,H264"] | Omit = omit,
         record: Literal["record-from-answer"] | Omit = omit,
         record_channels: Literal["single", "dual"] | Omit = omit,
@@ -3861,6 +3872,9 @@ class AsyncActionsResource(AsyncAPIResource):
         **Expected Webhooks:**
 
         - `call.answered`
+        - `call.deepfake_detection.result` if `deepfake_detection` was enabled
+        - `call.deepfake_detection.error` if `deepfake_detection` was enabled and an
+          error occurred
         - `streaming.started`, `streaming.stopped` or `streaming.failed` if `stream_url`
           was set
 
@@ -3882,6 +3896,11 @@ class AsyncActionsResource(AsyncAPIResource):
               the same `command_id` for the same `call_control_id`.
 
           custom_headers: Custom headers to be added to the SIP INVITE response.
+
+          deepfake_detection: Enables deepfake detection on the call. When enabled, audio from the remote
+              party is streamed to a detection service that analyzes whether the voice is
+              AI-generated. Results are delivered via the `call.deepfake_detection.result`
+              webhook.
 
           preferred_codecs: The list of comma-separated codecs in a preferred order for the forked media to
               be received.
@@ -3970,6 +3989,7 @@ class AsyncActionsResource(AsyncAPIResource):
                     "client_state": client_state,
                     "command_id": command_id,
                     "custom_headers": custom_headers,
+                    "deepfake_detection": deepfake_detection,
                     "preferred_codecs": preferred_codecs,
                     "record": record,
                     "record_channels": record_channels,
