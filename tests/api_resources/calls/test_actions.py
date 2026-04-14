@@ -164,6 +164,11 @@ class TestActions:
                     "value": "val_2",
                 },
             ],
+            deepfake_detection={
+                "enabled": True,
+                "rtp_timeout": 30,
+                "timeout": 15,
+            },
             preferred_codecs="G722,PCMU,PCMA,G729,OPUS,VP8,H264",
             record="record-from-answer",
             record_channels="single",
@@ -2704,6 +2709,11 @@ class TestAsyncActions:
                     "value": "val_2",
                 },
             ],
+            deepfake_detection={
+                "enabled": True,
+                "rtp_timeout": 30,
+                "timeout": 15,
+            },
             preferred_codecs="G722,PCMU,PCMA,G729,OPUS,VP8,H264",
             record="record-from-answer",
             record_channels="single",

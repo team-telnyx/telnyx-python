@@ -1284,6 +1284,9 @@ from .telephony_credential_create_token_response import (
 from .verify_profile_retrieve_templates_response import (
     VerifyProfileRetrieveTemplatesResponse as VerifyProfileRetrieveTemplatesResponse,
 )
+from .call_deepfake_detection_error_webhook_event import (
+    CallDeepfakeDetectionErrorWebhookEvent as CallDeepfakeDetectionErrorWebhookEvent,
+)
 from .conference_participant_joined_webhook_event import (
     ConferenceParticipantJoinedWebhookEvent as ConferenceParticipantJoinedWebhookEvent,
 )
@@ -1340,6 +1343,9 @@ from .bulk_messaging_settings_update_phone_numbers import (
 )
 from .call_ai_gather_partial_results_webhook_event import (
     CallAIGatherPartialResultsWebhookEvent as CallAIGatherPartialResultsWebhookEvent,
+)
+from .call_deepfake_detection_result_webhook_event import (
+    CallDeepfakeDetectionResultWebhookEvent as CallDeepfakeDetectionResultWebhookEvent,
 )
 from .dynamic_emergency_endpoint_retrieve_response import (
     DynamicEmergencyEndpointRetrieveResponse as DynamicEmergencyEndpointRetrieveResponse,
