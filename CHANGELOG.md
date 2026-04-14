@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.109.0 (2026-04-14)
+
+Full Changelog: [v4.108.0...v4.109.0](https://github.com/team-telnyx/telnyx-python/compare/v4.108.0...v4.109.0)
+
+### Features
+
+* TELAPPS-5712: Add deepfake detection to call-control API spec ([a645d7e](https://github.com/team-telnyx/telnyx-python/commit/a645d7efa72197125e8bd7b71c2a70754be92d7e))
+
 ## 4.108.0 (2026-04-13)
 
 Full Changelog: [v4.107.0...v4.108.0](https://github.com/team-telnyx/telnyx-python/compare/v4.107.0...v4.108.0)
