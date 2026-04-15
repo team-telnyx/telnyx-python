@@ -5,12 +5,11 @@ from datetime import datetime
 from typing_extensions import Literal
 
 from ...._models import BaseModel
-from ..assistants.tests.test_suites.meta import Meta
 
-__all__ = ["MessageListResponse", "Data", "DataToolCall", "DataToolCallFunction"]
+__all__ = ["MessageListResponse", "ToolCall", "ToolCallFunction"]
 
 
-class DataToolCallFunction(BaseModel):
+class ToolCallFunction(BaseModel):
     arguments: str
     """JSON-formatted arguments to pass to the function."""
 
@@ -18,17 +17,17 @@ class DataToolCallFunction(BaseModel):
     """Name of the function to call."""
 
 
-class DataToolCall(BaseModel):
+class ToolCall(BaseModel):
     id: str
     """Unique identifier for the tool call."""
 
-    function: DataToolCallFunction
+    function: ToolCallFunction
 
     type: Literal["function"]
     """Type of the tool call."""
 
 
-class Data(BaseModel):
+class MessageListResponse(BaseModel):
     role: Literal["user", "assistant", "tool"]
     """The role of the message sender."""
 
@@ -46,11 +45,5 @@ class Data(BaseModel):
     sent_at: Optional[datetime] = None
     """The datetime the message was sent to the end user."""
 
-    tool_calls: Optional[List[DataToolCall]] = None
+    tool_calls: Optional[List[ToolCall]] = None
     """Optional tool calls made by the assistant."""
-
-
-class MessageListResponse(BaseModel):
-    data: List[Data]
-
-    meta: Meta

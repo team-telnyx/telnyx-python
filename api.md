@@ -880,7 +880,7 @@ from telnyx.types.ai.conversations import MessageListResponse
 
 Methods:
 
-- <code title="get /ai/conversations/{conversation_id}/messages">client.ai.conversations.messages.<a href="./src/telnyx/resources/ai/conversations/messages.py">list</a>(conversation_id) -> <a href="./src/telnyx/types/ai/conversations/message_list_response.py">MessageListResponse</a></code>
+- <code title="get /ai/conversations/{conversation_id}/messages">client.ai.conversations.messages.<a href="./src/telnyx/resources/ai/conversations/messages.py">list</a>(conversation_id, \*\*<a href="src/telnyx/types/ai/conversations/message_list_params.py">params</a>) -> <a href="./src/telnyx/types/ai/conversations/message_list_response.py">SyncDefaultFlatPagination[MessageListResponse]</a></code>
 
 ## Embeddings
 
