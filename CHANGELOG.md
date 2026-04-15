@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.110.0 (2026-04-15)
+
+Full Changelog: [v4.109.0...v4.110.0](https://github.com/team-telnyx/telnyx-python/compare/v4.109.0...v4.110.0)
+
+### Features
+
+* MSG-6868: document whitelisted_destinations as conditionally required ([ceaaffb](https://github.com/team-telnyx/telnyx-python/commit/ceaaffb4f9d116f57d5b5fe96554acb2c96eea08))
+
 ## 4.109.0 (2026-04-14)
 
 Full Changelog: [v4.108.0...v4.109.0](https://github.com/team-telnyx/telnyx-python/compare/v4.108.0...v4.109.0)
