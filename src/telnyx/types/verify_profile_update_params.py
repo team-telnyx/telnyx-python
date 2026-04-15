@@ -55,7 +55,9 @@ class Call(TypedDict, total=False, extra_items=object):  # type: ignore[call-arg
     """Enabled country destinations to send verification codes.
 
     The elements in the list must be valid ISO 3166-1 alpha-2 country codes. If set
-    to `["*"]`, all destinations will be allowed.
+    to `["*"]`, all destinations will be allowed. **Conditionally required:** this
+    field must be provided when your organization is configured to require explicit
+    whitelisted destinations; otherwise it is optional.
     """
 
 
@@ -78,7 +80,9 @@ class Flashcall(TypedDict, total=False, extra_items=object):  # type: ignore[cal
     """Enabled country destinations to send verification codes.
 
     The elements in the list must be valid ISO 3166-1 alpha-2 country codes. If set
-    to `["*"]`, all destinations will be allowed.
+    to `["*"]`, all destinations will be allowed. **Conditionally required:** this
+    field must be provided when your organization is configured to require explicit
+    whitelisted destinations; otherwise it is optional.
     """
 
 
@@ -110,7 +114,9 @@ class Rcs(TypedDict, total=False, extra_items=object):  # type: ignore[call-arg]
     """Enabled country destinations to send verification codes.
 
     The elements in the list must be valid ISO 3166-1 alpha-2 country codes. If set
-    to `["*"]`, all destinations will be allowed.
+    to `["*"]`, all destinations will be allowed. **Conditionally required:** this
+    field must be provided when your organization is configured to require explicit
+    whitelisted destinations; otherwise it is optional.
     """
 
 
@@ -145,7 +151,9 @@ class SMS(TypedDict, total=False, extra_items=object):  # type: ignore[call-arg]
     """Enabled country destinations to send verification codes.
 
     The elements in the list must be valid ISO 3166-1 alpha-2 country codes. If set
-    to `["*"]`, all destinations will be allowed.
+    to `["*"]`, all destinations will be allowed. **Conditionally required:** this
+    field must be provided when your organization is configured to require explicit
+    whitelisted destinations; otherwise it is optional.
     """
 
 
@@ -168,5 +176,7 @@ class Whatsapp(TypedDict, total=False, extra_items=object):  # type: ignore[call
     """Enabled country destinations to send verification codes.
 
     The elements in the list must be valid ISO 3166-1 alpha-2 country codes. If set
-    to `["*"]`, all destinations will be allowed.
+    to `["*"]`, all destinations will be allowed. **Conditionally required:** this
+    field must be provided when your organization is configured to require explicit
+    whitelisted destinations; otherwise it is optional.
     """
