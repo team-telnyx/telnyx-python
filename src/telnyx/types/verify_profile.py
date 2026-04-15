@@ -35,7 +35,9 @@ class Call(BaseModel):
     """Enabled country destinations to send verification codes.
 
     The elements in the list must be valid ISO 3166-1 alpha-2 country codes. If set
-    to `["*"]`, all destinations will be allowed.
+    to `["*"]`, all destinations will be allowed. **Conditionally required:** this
+    field must be provided when your organization is configured to require explicit
+    whitelisted destinations; otherwise it is optional.
     """
 
     if TYPE_CHECKING:
@@ -107,7 +109,9 @@ class Rcs(BaseModel):
     """Enabled country destinations to send verification codes.
 
     The elements in the list must be valid ISO 3166-1 alpha-2 country codes. If set
-    to `["*"]`, all destinations will be allowed.
+    to `["*"]`, all destinations will be allowed. **Conditionally required:** this
+    field must be provided when your organization is configured to require explicit
+    whitelisted destinations; otherwise it is optional.
     """
 
     if TYPE_CHECKING:
@@ -154,7 +158,9 @@ class SMS(BaseModel):
     """Enabled country destinations to send verification codes.
 
     The elements in the list must be valid ISO 3166-1 alpha-2 country codes. If set
-    to `["*"]`, all destinations will be allowed.
+    to `["*"]`, all destinations will be allowed. **Conditionally required:** this
+    field must be provided when your organization is configured to require explicit
+    whitelisted destinations; otherwise it is optional.
     """
 
     if TYPE_CHECKING:
