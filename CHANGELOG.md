@@ -1,5 +1,18 @@
 # Changelog
 
+## 4.111.0 (2026-04-16)
+
+Full Changelog: [v4.110.0...v4.111.0](https://github.com/team-telnyx/telnyx-python/compare/v4.110.0...v4.111.0)
+
+### Features
+
+* Lower user_idle_timeout_secs minimum from 30s to 10s ([a0a79df](https://github.com/team-telnyx/telnyx-python/commit/a0a79dfcbe1de9ae8aafcc6bc5fbf4ee94eba4a1))
+
+
+### Documentation
+
+* add pagination params to conversation messages endpoint ([b9d0fae](https://github.com/team-telnyx/telnyx-python/commit/b9d0fae98af124d3c96e11eecb15d665de6a5ca9))
+
 ## 4.110.0 (2026-04-15)
 
 Full Changelog: [v4.109.0...v4.110.0](https://github.com/team-telnyx/telnyx-python/compare/v4.109.0...v4.110.0)
