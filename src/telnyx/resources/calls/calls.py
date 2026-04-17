@@ -204,7 +204,9 @@ class CallsResource(SyncAPIResource):
               receive `call.machine.greeting.ended` if a beep is detected.
 
           answering_machine_detection_config: Optional configuration parameters to modify 'answering_machine_detection'
-              performance.
+              performance. Only `total_analysis_time_millis` and `greeting_duration_millis`
+              parameters are applicable when `premium` is selected as
+              answering_machine_detection.
 
           assistant: AI Assistant configuration. All fields except `id` are optional — the
               assistant's stored configuration will be used as fallback for any omitted
@@ -641,7 +643,9 @@ class AsyncCallsResource(AsyncAPIResource):
               receive `call.machine.greeting.ended` if a beep is detected.
 
           answering_machine_detection_config: Optional configuration parameters to modify 'answering_machine_detection'
-              performance.
+              performance. Only `total_analysis_time_millis` and `greeting_duration_millis`
+              parameters are applicable when `premium` is selected as
+              answering_machine_detection.
 
           assistant: AI Assistant configuration. All fields except `id` are optional — the
               assistant's stored configuration will be used as fallback for any omitted
