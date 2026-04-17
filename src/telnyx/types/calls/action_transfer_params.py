@@ -32,7 +32,9 @@ class ActionTransferParams(TypedDict, total=False):
     answering_machine_detection_config: AnsweringMachineDetectionConfig
     """
     Optional configuration parameters to modify 'answering_machine_detection'
-    performance.
+    performance. Only `total_analysis_time_millis` and `greeting_duration_millis`
+    parameters are applicable when `premium` is selected as
+    answering_machine_detection.
     """
 
     audio_url: str
@@ -244,7 +246,7 @@ class ActionTransferParams(TypedDict, total=False):
 
 class AnsweringMachineDetectionConfig(TypedDict, total=False):
     """
-    Optional configuration parameters to modify 'answering_machine_detection' performance.
+    Optional configuration parameters to modify 'answering_machine_detection' performance. Only `total_analysis_time_millis` and `greeting_duration_millis` parameters are applicable when `premium` is selected as answering_machine_detection.
     """
 
     after_greeting_silence_millis: int
