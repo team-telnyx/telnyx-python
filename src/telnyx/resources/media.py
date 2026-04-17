@@ -7,8 +7,9 @@ from typing import Mapping, cast
 import httpx
 
 from ..types import media_list_params, media_update_params, media_upload_params
+from .._files import deepcopy_with_paths
 from .._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from .._utils import extract_files, path_template, maybe_transform, deepcopy_minimal, async_maybe_transform
+from .._utils import extract_files, path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -122,11 +123,12 @@ class MediaResource(SyncAPIResource):
         """
         if not media_name:
             raise ValueError(f"Expected a non-empty value for `media_name` but received {media_name!r}")
-        body = deepcopy_minimal(
+        body = deepcopy_with_paths(
             {
                 "media_url": media_url,
                 "ttl_secs": ttl_secs,
-            }
+            },
+            [["media"]],
         )
         files = extract_files(cast(Mapping[str, object], body), paths=[["media"]])
         if files:
@@ -284,12 +286,13 @@ class MediaResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        body = deepcopy_minimal(
+        body = deepcopy_with_paths(
             {
                 "media_url": media_url,
                 "media_name": media_name,
                 "ttl_secs": ttl_secs,
-            }
+            },
+            [["media"]],
         )
         files = extract_files(cast(Mapping[str, object], body), paths=[["media"]])
         if files:
@@ -396,11 +399,12 @@ class AsyncMediaResource(AsyncAPIResource):
         """
         if not media_name:
             raise ValueError(f"Expected a non-empty value for `media_name` but received {media_name!r}")
-        body = deepcopy_minimal(
+        body = deepcopy_with_paths(
             {
                 "media_url": media_url,
                 "ttl_secs": ttl_secs,
-            }
+            },
+            [["media"]],
         )
         files = extract_files(cast(Mapping[str, object], body), paths=[["media"]])
         if files:
@@ -558,12 +562,13 @@ class AsyncMediaResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        body = deepcopy_minimal(
+        body = deepcopy_with_paths(
             {
                 "media_url": media_url,
                 "media_name": media_name,
                 "ttl_secs": ttl_secs,
-            }
+            },
+            [["media"]],
         )
         files = extract_files(cast(Mapping[str, object], body), paths=[["media"]])
         if files:

@@ -16,8 +16,9 @@ from .actions import (
     ActionsResourceWithStreamingResponse,
     AsyncActionsResourceWithStreamingResponse,
 )
+from ..._files import deepcopy_with_paths
 from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from ..._utils import extract_files, path_template, maybe_transform, deepcopy_minimal, async_maybe_transform
+from ..._utils import extract_files, path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -153,7 +154,7 @@ class FaxesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        body = deepcopy_minimal(
+        body = deepcopy_with_paths(
             {
                 "connection_id": connection_id,
                 "from_": from_,
@@ -170,7 +171,8 @@ class FaxesResource(SyncAPIResource):
                 "store_preview": store_preview,
                 "t38_enabled": t38_enabled,
                 "webhook_url": webhook_url,
-            }
+            },
+            [["contents"]],
         )
         files = extract_files(cast(Mapping[str, object], body), paths=[["contents"]])
         if files:
@@ -424,7 +426,7 @@ class AsyncFaxesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        body = deepcopy_minimal(
+        body = deepcopy_with_paths(
             {
                 "connection_id": connection_id,
                 "from_": from_,
@@ -441,7 +443,8 @@ class AsyncFaxesResource(AsyncAPIResource):
                 "store_preview": store_preview,
                 "t38_enabled": t38_enabled,
                 "webhook_url": webhook_url,
-            }
+            },
+            [["contents"]],
         )
         files = extract_files(cast(Mapping[str, object], body), paths=[["contents"]])
         if files:

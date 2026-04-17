@@ -13,8 +13,9 @@ from ..types import (
     voice_clone_update_params,
     voice_clone_create_from_upload_params,
 )
+from .._files import deepcopy_with_paths
 from .._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from .._utils import extract_files, path_template, maybe_transform, deepcopy_minimal, async_maybe_transform
+from .._utils import extract_files, path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -273,7 +274,7 @@ class VoiceClonesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        body = deepcopy_minimal(params)
+        body = deepcopy_with_paths(params, [["audio_file"], ["audio_file"], ["audio_file"]])
         files = extract_files(cast(Mapping[str, object], body), paths=[["audio_file"], ["audio_file"], ["audio_file"]])
         # It should be noted that the actual Content-Type header that will be
         # sent to the server will contain a `boundary` parameter, e.g.
@@ -556,7 +557,7 @@ class AsyncVoiceClonesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        body = deepcopy_minimal(params)
+        body = deepcopy_with_paths(params, [["audio_file"], ["audio_file"], ["audio_file"]])
         files = extract_files(cast(Mapping[str, object], body), paths=[["audio_file"], ["audio_file"], ["audio_file"]])
         # It should be noted that the actual Content-Type header that will be
         # sent to the server will contain a `boundary` parameter, e.g.

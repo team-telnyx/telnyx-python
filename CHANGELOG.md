@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.113.1 (2026-04-17)
+
+Full Changelog: [v4.113.0...v4.113.1](https://github.com/team-telnyx/telnyx-python/compare/v4.113.0...v4.113.1)
+
+### Performance Improvements
+
+* **client:** optimize file structure copying in multipart requests ([3536049](https://github.com/team-telnyx/telnyx-python/commit/3536049e8e7b42760fd33a962ad0eec146a6fe9d))
+
 ## 4.113.0 (2026-04-17)
 
 Full Changelog: [v4.112.0...v4.113.0](https://github.com/team-telnyx/telnyx-python/compare/v4.112.0...v4.113.0)
