@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.113.0 (2026-04-17)
+
+Full Changelog: [v4.112.0...v4.113.0](https://github.com/team-telnyx/telnyx-python/compare/v4.112.0...v4.113.0)
+
+### Features
+
+* Add user_idle_reply_secs to TelephonySettings spec ([d3c21b4](https://github.com/team-telnyx/telnyx-python/commit/d3c21b472b54ea2799e204d63a31388aed11738a))
+
 ## 4.112.0 (2026-04-17)
 
 Full Changelog: [v4.111.0...v4.112.0](https://github.com/team-telnyx/telnyx-python/compare/v4.111.0...v4.112.0)
