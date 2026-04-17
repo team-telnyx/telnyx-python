@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.112.0 (2026-04-17)
+
+Full Changelog: [v4.111.0...v4.112.0](https://github.com/team-telnyx/telnyx-python/compare/v4.111.0...v4.112.0)
+
+### Features
+
+* TELAPPS Provide description what params can be used for premium amd ([55f901d](https://github.com/team-telnyx/telnyx-python/commit/55f901d472c995ce062360543b98ef44c3913267))
+
 ## 4.111.0 (2026-04-16)
 
 Full Changelog: [v4.110.0...v4.111.0](https://github.com/team-telnyx/telnyx-python/compare/v4.110.0...v4.111.0)
