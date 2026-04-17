@@ -73,6 +73,7 @@ class TestAssistants:
                 },
                 "supports_unauthenticated_web_calls": True,
                 "time_limit_secs": 30,
+                "user_idle_reply_secs": 0,
                 "user_idle_timeout_secs": 10,
                 "voicemail_detection": {
                     "on_voicemail_detected": {
@@ -310,6 +311,7 @@ class TestAssistants:
                 },
                 "supports_unauthenticated_web_calls": True,
                 "time_limit_secs": 30,
+                "user_idle_reply_secs": 0,
                 "user_idle_timeout_secs": 10,
                 "voicemail_detection": {
                     "on_voicemail_detected": {
@@ -828,6 +830,7 @@ class TestAsyncAssistants:
                 },
                 "supports_unauthenticated_web_calls": True,
                 "time_limit_secs": 30,
+                "user_idle_reply_secs": 0,
                 "user_idle_timeout_secs": 10,
                 "voicemail_detection": {
                     "on_voicemail_detected": {
@@ -1065,6 +1068,7 @@ class TestAsyncAssistants:
                 },
                 "supports_unauthenticated_web_calls": True,
                 "time_limit_secs": 30,
+                "user_idle_reply_secs": 0,
                 "user_idle_timeout_secs": 10,
                 "voicemail_detection": {
                     "on_voicemail_detected": {
