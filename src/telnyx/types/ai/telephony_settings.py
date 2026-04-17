@@ -130,6 +130,13 @@ class TelephonySettings(BaseModel):
     transferred to a human representative).
     """
 
+    user_idle_reply_secs: Optional[int] = None
+    """
+    Duration in seconds of end user silence before the assistant checks in on the
+    user. When this limit is reached the assistant will prompt the user to respond.
+    This is distinct from user_idle_timeout_secs which stops the assistant entirely.
+    """
+
     user_idle_timeout_secs: Optional[int] = None
     """Maximum duration in seconds of end user silence on the call.
 
