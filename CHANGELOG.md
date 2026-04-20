@@ -1,5 +1,18 @@
 # Changelog
 
+## 4.114.0 (2026-04-20)
+
+Full Changelog: [v4.113.0...v4.114.0](https://github.com/team-telnyx/telnyx-python/compare/v4.113.0...v4.114.0)
+
+### Features
+
+* Add keyterm field to TranscriptionSettingsConfig ([61a6be9](https://github.com/team-telnyx/telnyx-python/commit/61a6be932105a04755f349e343b70bb06963d529))
+
+
+### Performance Improvements
+
+* **client:** optimize file structure copying in multipart requests ([3536049](https://github.com/team-telnyx/telnyx-python/commit/3536049e8e7b42760fd33a962ad0eec146a6fe9d))
+
 ## 4.113.0 (2026-04-17)
 
 Full Changelog: [v4.112.0...v4.113.0](https://github.com/team-telnyx/telnyx-python/compare/v4.112.0...v4.113.0)
