@@ -30,6 +30,14 @@ class TranscriptionSettingsConfigParam(TypedDict, total=False):
     confidence.
     """
 
+    keyterm: str
+    """Available only for deepgram/nova-3 and deepgram/flux.
+
+    A comma-separated list of key terms to boost for recognition during
+    transcription. Helps improve accuracy for domain-specific terminology, proper
+    nouns, or uncommon words.
+    """
+
     numerals: bool
 
     smart_format: bool
