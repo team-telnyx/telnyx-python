@@ -58,6 +58,7 @@ class TestAssistants:
                 "secret_key_ref": "secret_key_ref",
                 "status": "enabled",
             },
+            post_conversation_settings={"enabled": True},
             privacy_settings={"data_retention": True},
             telephony_settings={
                 "default_texml_app_id": "default_texml_app_id",
@@ -296,6 +297,7 @@ class TestAssistants:
                 "secret_key_ref": "secret_key_ref",
                 "status": "enabled",
             },
+            post_conversation_settings={"enabled": True},
             privacy_settings={"data_retention": True},
             promote_to_main=True,
             telephony_settings={
@@ -817,6 +819,7 @@ class TestAsyncAssistants:
                 "secret_key_ref": "secret_key_ref",
                 "status": "enabled",
             },
+            post_conversation_settings={"enabled": True},
             privacy_settings={"data_retention": True},
             telephony_settings={
                 "default_texml_app_id": "default_texml_app_id",
@@ -1055,6 +1058,7 @@ class TestAsyncAssistants:
                 "secret_key_ref": "secret_key_ref",
                 "status": "enabled",
             },
+            post_conversation_settings={"enabled": True},
             privacy_settings={"data_retention": True},
             promote_to_main=True,
             telephony_settings={

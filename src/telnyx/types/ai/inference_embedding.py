@@ -16,7 +16,21 @@ from .messaging_settings import MessagingSettings
 from .telephony_settings import TelephonySettings
 from .transcription_settings import TranscriptionSettings
 
-__all__ = ["InferenceEmbedding"]
+__all__ = ["InferenceEmbedding", "PostConversationSettings"]
+
+
+class PostConversationSettings(BaseModel):
+    """Configuration for post-conversation processing.
+
+    When enabled, the assistant receives one additional LLM turn after the conversation ends, allowing it to execute tool calls such as logging to a CRM or sending a summary. The assistant can execute multiple parallel or sequential tools during this phase. Telephony-control tools (e.g. hangup, transfer) are unavailable post-conversation. Beta feature.
+    """
+
+    enabled: Optional[bool] = None
+    """Whether post-conversation processing is enabled.
+
+    When true, the assistant will be invoked after the conversation ends to perform
+    any final tool calls. Defaults to false.
+    """
 
 
 class InferenceEmbedding(BaseModel):
@@ -82,6 +96,16 @@ class InferenceEmbedding(BaseModel):
     messaging_settings: Optional[MessagingSettings] = None
 
     observability_settings: Optional[Observability] = None
+
+    post_conversation_settings: Optional[PostConversationSettings] = None
+    """Configuration for post-conversation processing.
+
+    When enabled, the assistant receives one additional LLM turn after the
+    conversation ends, allowing it to execute tool calls such as logging to a CRM or
+    sending a summary. The assistant can execute multiple parallel or sequential
+    tools during this phase. Telephony-control tools (e.g. hangup, transfer) are
+    unavailable post-conversation. Beta feature.
+    """
 
     privacy_settings: Optional[PrivacySettings] = None
 

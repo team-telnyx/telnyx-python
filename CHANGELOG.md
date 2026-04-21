@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.115.0 (2026-04-21)
+
+Full Changelog: [v4.114.0...v4.115.0](https://github.com/team-telnyx/telnyx-python/compare/v4.114.0...v4.115.0)
+
+### Features
+
+* Add post_conversation_settings to AI Assistants API spec ([2c39b03](https://github.com/team-telnyx/telnyx-python/commit/2c39b03805e27202659f8c9c1edaa86e5dbb1573))
+
 ## 4.114.0 (2026-04-20)
 
 Full Changelog: [v4.113.0...v4.114.0](https://github.com/team-telnyx/telnyx-python/compare/v4.113.0...v4.114.0)
