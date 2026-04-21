@@ -17,7 +17,7 @@ from ..messaging_settings_param import MessagingSettingsParam
 from ..telephony_settings_param import TelephonySettingsParam
 from ..transcription_settings_param import TranscriptionSettingsParam
 
-__all__ = ["VersionUpdateParams"]
+__all__ = ["VersionUpdateParams", "PostConversationSettings"]
 
 
 class VersionUpdateParams(TypedDict, total=False):
@@ -80,6 +80,16 @@ class VersionUpdateParams(TypedDict, total=False):
 
     observability_settings: ObservabilityReqParam
 
+    post_conversation_settings: PostConversationSettings
+    """Configuration for post-conversation processing.
+
+    When enabled, the assistant receives one additional LLM turn after the
+    conversation ends, allowing it to execute tool calls such as logging to a CRM or
+    sending a summary. The assistant can execute multiple parallel or sequential
+    tools during this phase. Telephony-control tools (e.g. hangup, transfer) are
+    unavailable post-conversation. Beta feature.
+    """
+
     privacy_settings: PrivacySettingsParam
 
     telephony_settings: TelephonySettingsParam
@@ -99,3 +109,17 @@ class VersionUpdateParams(TypedDict, total=False):
 
     widget_settings: WidgetSettingsParam
     """Configuration settings for the assistant's web widget."""
+
+
+class PostConversationSettings(TypedDict, total=False):
+    """Configuration for post-conversation processing.
+
+    When enabled, the assistant receives one additional LLM turn after the conversation ends, allowing it to execute tool calls such as logging to a CRM or sending a summary. The assistant can execute multiple parallel or sequential tools during this phase. Telephony-control tools (e.g. hangup, transfer) are unavailable post-conversation. Beta feature.
+    """
+
+    enabled: bool
+    """Whether post-conversation processing is enabled.
+
+    When true, the assistant will be invoked after the conversation ends to perform
+    any final tool calls. Defaults to false.
+    """
