@@ -118,6 +118,7 @@ class TestVersions:
                 "secret_key_ref": "secret_key_ref",
                 "status": "enabled",
             },
+            post_conversation_settings={"enabled": True},
             privacy_settings={"data_retention": True},
             telephony_settings={
                 "default_texml_app_id": "default_texml_app_id",
@@ -531,6 +532,7 @@ class TestAsyncVersions:
                 "secret_key_ref": "secret_key_ref",
                 "status": "enabled",
             },
+            post_conversation_settings={"enabled": True},
             privacy_settings={"data_retention": True},
             telephony_settings={
                 "default_texml_app_id": "default_texml_app_id",

@@ -160,6 +160,7 @@ class AssistantsResource(SyncAPIResource):
         llm_api_key_ref: str | Omit = omit,
         messaging_settings: MessagingSettingsParam | Omit = omit,
         observability_settings: ObservabilityReqParam | Omit = omit,
+        post_conversation_settings: assistant_create_params.PostConversationSettings | Omit = omit,
         privacy_settings: PrivacySettingsParam | Omit = omit,
         telephony_settings: TelephonySettingsParam | Omit = omit,
         tool_ids: SequenceNotStr[str] | Omit = omit,
@@ -205,6 +206,13 @@ class AssistantsResource(SyncAPIResource):
               that refers to your LLM provider's API key. Warning: Free plans are unlikely to
               work with this integration.
 
+          post_conversation_settings: Configuration for post-conversation processing. When enabled, the assistant
+              receives one additional LLM turn after the conversation ends, allowing it to
+              execute tool calls such as logging to a CRM or sending a summary. The assistant
+              can execute multiple parallel or sequential tools during this phase.
+              Telephony-control tools (e.g. hangup, transfer) are unavailable
+              post-conversation. Beta feature.
+
           tools: The tools that the assistant can use. These may be templated with
               [dynamic variables](https://developers.telnyx.com/docs/inference/ai-assistants/dynamic-variables)
 
@@ -234,6 +242,7 @@ class AssistantsResource(SyncAPIResource):
                     "llm_api_key_ref": llm_api_key_ref,
                     "messaging_settings": messaging_settings,
                     "observability_settings": observability_settings,
+                    "post_conversation_settings": post_conversation_settings,
                     "privacy_settings": privacy_settings,
                     "telephony_settings": telephony_settings,
                     "tool_ids": tool_ids,
@@ -315,6 +324,7 @@ class AssistantsResource(SyncAPIResource):
         model: str | Omit = omit,
         name: str | Omit = omit,
         observability_settings: ObservabilityReqParam | Omit = omit,
+        post_conversation_settings: assistant_update_params.PostConversationSettings | Omit = omit,
         privacy_settings: PrivacySettingsParam | Omit = omit,
         promote_to_main: bool | Omit = omit,
         telephony_settings: TelephonySettingsParam | Omit = omit,
@@ -361,6 +371,13 @@ class AssistantsResource(SyncAPIResource):
               [Get models API](https://developers.telnyx.com/api-reference/chat/get-available-models)
               to see all of your available models,
 
+          post_conversation_settings: Configuration for post-conversation processing. When enabled, the assistant
+              receives one additional LLM turn after the conversation ends, allowing it to
+              execute tool calls such as logging to a CRM or sending a summary. The assistant
+              can execute multiple parallel or sequential tools during this phase.
+              Telephony-control tools (e.g. hangup, transfer) are unavailable
+              post-conversation. Beta feature.
+
           promote_to_main: Indicates whether the assistant should be promoted to the main version. Defaults
               to true.
 
@@ -395,6 +412,7 @@ class AssistantsResource(SyncAPIResource):
                     "model": model,
                     "name": name,
                     "observability_settings": observability_settings,
+                    "post_conversation_settings": post_conversation_settings,
                     "privacy_settings": privacy_settings,
                     "promote_to_main": promote_to_main,
                     "telephony_settings": telephony_settings,
@@ -767,6 +785,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
         llm_api_key_ref: str | Omit = omit,
         messaging_settings: MessagingSettingsParam | Omit = omit,
         observability_settings: ObservabilityReqParam | Omit = omit,
+        post_conversation_settings: assistant_create_params.PostConversationSettings | Omit = omit,
         privacy_settings: PrivacySettingsParam | Omit = omit,
         telephony_settings: TelephonySettingsParam | Omit = omit,
         tool_ids: SequenceNotStr[str] | Omit = omit,
@@ -812,6 +831,13 @@ class AsyncAssistantsResource(AsyncAPIResource):
               that refers to your LLM provider's API key. Warning: Free plans are unlikely to
               work with this integration.
 
+          post_conversation_settings: Configuration for post-conversation processing. When enabled, the assistant
+              receives one additional LLM turn after the conversation ends, allowing it to
+              execute tool calls such as logging to a CRM or sending a summary. The assistant
+              can execute multiple parallel or sequential tools during this phase.
+              Telephony-control tools (e.g. hangup, transfer) are unavailable
+              post-conversation. Beta feature.
+
           tools: The tools that the assistant can use. These may be templated with
               [dynamic variables](https://developers.telnyx.com/docs/inference/ai-assistants/dynamic-variables)
 
@@ -841,6 +867,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
                     "llm_api_key_ref": llm_api_key_ref,
                     "messaging_settings": messaging_settings,
                     "observability_settings": observability_settings,
+                    "post_conversation_settings": post_conversation_settings,
                     "privacy_settings": privacy_settings,
                     "telephony_settings": telephony_settings,
                     "tool_ids": tool_ids,
@@ -922,6 +949,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
         model: str | Omit = omit,
         name: str | Omit = omit,
         observability_settings: ObservabilityReqParam | Omit = omit,
+        post_conversation_settings: assistant_update_params.PostConversationSettings | Omit = omit,
         privacy_settings: PrivacySettingsParam | Omit = omit,
         promote_to_main: bool | Omit = omit,
         telephony_settings: TelephonySettingsParam | Omit = omit,
@@ -968,6 +996,13 @@ class AsyncAssistantsResource(AsyncAPIResource):
               [Get models API](https://developers.telnyx.com/api-reference/chat/get-available-models)
               to see all of your available models,
 
+          post_conversation_settings: Configuration for post-conversation processing. When enabled, the assistant
+              receives one additional LLM turn after the conversation ends, allowing it to
+              execute tool calls such as logging to a CRM or sending a summary. The assistant
+              can execute multiple parallel or sequential tools during this phase.
+              Telephony-control tools (e.g. hangup, transfer) are unavailable
+              post-conversation. Beta feature.
+
           promote_to_main: Indicates whether the assistant should be promoted to the main version. Defaults
               to true.
 
@@ -1002,6 +1037,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
                     "model": model,
                     "name": name,
                     "observability_settings": observability_settings,
+                    "post_conversation_settings": post_conversation_settings,
                     "privacy_settings": privacy_settings,
                     "promote_to_main": promote_to_main,
                     "telephony_settings": telephony_settings,
