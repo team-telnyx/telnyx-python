@@ -158,12 +158,6 @@ class SMS(TypedDict, total=False, extra_items=object):  # type: ignore[call-arg]
 
 
 class Whatsapp(TypedDict, total=False, extra_items=object):  # type: ignore[call-arg]
-    app_name: str
-    """
-    The name that identifies the application requesting 2fa in the verification
-    message.
-    """
-
     default_verification_timeout_secs: int
     """
     For every request that is initiated via this Verify profile, this sets the
@@ -171,6 +165,15 @@ class Whatsapp(TypedDict, total=False, extra_items=object):  # type: ignore[call
     verification request expires, the user cannot use the code to verify their
     identity.
     """
+
+    sender_phone_number: Optional[str]
+    """Phone number registered on the customer WABA to send OTPs from"""
+
+    template_id: Optional[str]
+    """Customer pre-approved authentication template name registered on Meta"""
+
+    waba_id: Optional[str]
+    """Customer Meta WABA ID for Bring-Your-Own-WABA sending"""
 
     whitelisted_destinations: SequenceNotStr[str]
     """Enabled country destinations to send verification codes.
