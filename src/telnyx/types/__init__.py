@@ -1068,6 +1068,9 @@ from .dialogflow_connection_retrieve_response import (
 from .dynamic_emergency_address_create_params import (
     DynamicEmergencyAddressCreateParams as DynamicEmergencyAddressCreateParams,
 )
+from .hosted_number_order_event_webhook_event import (
+    HostedNumberOrderEventWebhookEvent as HostedNumberOrderEventWebhookEvent,
+)
 from .inexplicit_number_order_create_response import (
     InexplicitNumberOrderCreateResponse as InexplicitNumberOrderCreateResponse,
 )
