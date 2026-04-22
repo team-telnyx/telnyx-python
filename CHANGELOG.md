@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.117.0 (2026-04-22)
+
+Full Changelog: [v4.116.0...v4.117.0](https://github.com/team-telnyx/telnyx-python/compare/v4.116.0...v4.117.0)
+
+### Features
+
+* MSG-6857: ([0075322](https://github.com/team-telnyx/telnyx-python/commit/0075322ba22bce4b8c7de269ab17185d82e835a8))
+
 ## 4.116.0 (2026-04-22)
 
 Full Changelog: [v4.115.0...v4.116.0](https://github.com/team-telnyx/telnyx-python/compare/v4.115.0...v4.116.0)
