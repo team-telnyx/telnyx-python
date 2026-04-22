@@ -7,7 +7,7 @@ from pydantic import Field as FieldInfo
 
 from .._models import BaseModel
 
-__all__ = ["VerifyProfile", "Call", "Flashcall", "Rcs", "SMS"]
+__all__ = ["VerifyProfile", "Call", "Flashcall", "Rcs", "SMS", "Whatsapp"]
 
 
 class Call(BaseModel):
@@ -176,6 +176,58 @@ class SMS(BaseModel):
         __pydantic_extra__: Dict[str, object]
 
 
+class Whatsapp(BaseModel):
+    app_name: Optional[str] = None
+    """
+    The name that identifies the application requesting 2fa in the verification
+    message.
+    """
+
+    code_length: Optional[int] = None
+    """The length of the verify code to generate."""
+
+    default_verification_timeout_secs: Optional[int] = None
+    """
+    For every request that is initiated via this Verify profile, this sets the
+    number of seconds before a verification request code expires. Once the
+    verification request expires, the user cannot use the code to verify their
+    identity.
+    """
+
+    messaging_template_id: Optional[str] = None
+    """The message template identifier selected from /verify_profiles/templates"""
+
+    sender_phone_number: Optional[str] = None
+    """Phone number registered on the customer WABA to send OTPs from"""
+
+    template_id: Optional[str] = None
+    """Customer pre-approved authentication template name registered on Meta"""
+
+    waba_id: Optional[str] = None
+    """Customer Meta WABA ID for Bring-Your-Own-WABA sending"""
+
+    whitelisted_destinations: Optional[List[str]] = None
+    """Enabled country destinations to send verification codes.
+
+    The elements in the list must be valid ISO 3166-1 alpha-2 country codes. If set
+    to `["*"]`, all destinations will be allowed. **Conditionally required:** this
+    field must be provided when your organization is configured to require explicit
+    whitelisted destinations; otherwise it is optional.
+    """
+
+    if TYPE_CHECKING:
+        # Some versions of Pydantic <2.8.0 have a bug and don’t allow assigning a
+        # value to this field, so for compatibility we avoid doing it at runtime.
+        __pydantic_extra__: Dict[str, object] = FieldInfo(init=False)  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        # Stub to indicate that arbitrary properties are accepted.
+        # To access properties that are not valid identifiers you can use `getattr`, e.g.
+        # `getattr(obj, '$type')`
+        def __getattr__(self, attr: str) -> object: ...
+    else:
+        __pydantic_extra__: Dict[str, object]
+
+
 class VerifyProfile(BaseModel):
     id: Optional[str] = None
 
@@ -201,3 +253,5 @@ class VerifyProfile(BaseModel):
     webhook_failover_url: Optional[str] = None
 
     webhook_url: Optional[str] = None
+
+    whatsapp: Optional[Whatsapp] = None
