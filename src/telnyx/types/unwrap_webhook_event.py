@@ -48,6 +48,7 @@ from .conference_speak_ended_webhook_event import ConferenceSpeakEndedWebhookEve
 from .call_conversation_ended_webhook_event import CallConversationEndedWebhookEvent
 from .conference_speak_started_webhook_event import ConferenceSpeakStartedWebhookEvent
 from .conference_playback_ended_webhook_event import ConferencePlaybackEndedWebhookEvent
+from .hosted_number_order_event_webhook_event import HostedNumberOrderEventWebhookEvent
 from .conference_recording_saved_webhook_event import ConferenceRecordingSavedWebhookEvent
 from .call_machine_greeting_ended_webhook_event import CallMachineGreetingEndedWebhookEvent
 from .conference_participant_left_webhook_event import ConferenceParticipantLeftWebhookEvent
@@ -129,6 +130,7 @@ UnwrapWebhookEvent: TypeAlias = Union[
     FaxMediaProcessed,
     FaxQueued,
     FaxSendingStarted,
+    HostedNumberOrderEventWebhookEvent,
     InboundMessageWebhookEvent,
     NumberOrderStatusUpdate,
     ReplacedLinkClickWebhookEvent,
