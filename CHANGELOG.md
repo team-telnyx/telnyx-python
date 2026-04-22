@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.116.0 (2026-04-22)
+
+Full Changelog: [v4.115.0...v4.116.0](https://github.com/team-telnyx/telnyx-python/compare/v4.115.0...v4.116.0)
+
+### Features
+
+* MSG-6841: add missing whatsapp api docs ([3c7d680](https://github.com/team-telnyx/telnyx-python/commit/3c7d6804e410b4bd36ee2083efbe5b6f61d9de39))
+
 ## 4.115.0 (2026-04-21)
 
 Full Changelog: [v4.114.0...v4.115.0](https://github.com/team-telnyx/telnyx-python/compare/v4.114.0...v4.115.0)
