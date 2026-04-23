@@ -86,6 +86,12 @@ class TestTextToSpeech:
             text_type="text",
             voice="voice",
             voice_settings={"foo": "bar"},
+            xai={
+                "voice_id": "eve",
+                "language": "language",
+                "output_format": "mp3",
+                "sample_rate": 8000,
+            },
         )
         assert_matches_type(TextToSpeechGenerateResponse, text_to_speech, path=["response"])
 
@@ -220,6 +226,12 @@ class TestAsyncTextToSpeech:
             text_type="text",
             voice="voice",
             voice_settings={"foo": "bar"},
+            xai={
+                "voice_id": "eve",
+                "language": "language",
+                "output_format": "mp3",
+                "sample_rate": 8000,
+            },
         )
         assert_matches_type(TextToSpeechGenerateResponse, text_to_speech, path=["response"])
 
