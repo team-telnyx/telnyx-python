@@ -1,5 +1,18 @@
 # Changelog
 
+## 4.118.0 (2026-04-23)
+
+Full Changelog: [v4.117.0...v4.118.0](https://github.com/team-telnyx/telnyx-python/compare/v4.117.0...v4.118.0)
+
+### Features
+
+* Add xAI provider to standalone STT and TTS specs ([a82e445](https://github.com/team-telnyx/telnyx-python/commit/a82e4456ecd17b9fcd36c2ac794bc3839af517b4))
+
+
+### Chores
+
+* **internal:** more robust bootstrap script ([7071772](https://github.com/team-telnyx/telnyx-python/commit/7071772b854d997669c5e692057e969c1d017c7b))
+
 ## 4.117.0 (2026-04-22)
 
 Full Changelog: [v4.116.0...v4.117.0](https://github.com/team-telnyx/telnyx-python/compare/v4.116.0...v4.117.0)
