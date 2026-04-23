@@ -3,11 +3,11 @@
 from __future__ import annotations
 
 from typing import Dict
-from typing_extensions import Literal, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
 from .._types import SequenceNotStr
 
-__all__ = ["TextToSpeechGenerateParams", "Aws", "Azure", "Elevenlabs", "Minimax", "Resemble", "Rime", "Telnyx"]
+__all__ = ["TextToSpeechGenerateParams", "Aws", "Azure", "Elevenlabs", "Minimax", "Resemble", "Rime", "Telnyx", "Xai"]
 
 
 class TextToSpeechGenerateParams(TypedDict, total=False):
@@ -36,7 +36,7 @@ class TextToSpeechGenerateParams(TypedDict, total=False):
     audio in JSON.
     """
 
-    provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "rime", "resemble"]
+    provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "rime", "resemble", "xai"]
     """TTS provider. Required unless `voice` is provided."""
 
     resemble: Resemble
@@ -73,6 +73,9 @@ class TextToSpeechGenerateParams(TypedDict, total=False):
 
     Contents vary by provider — see provider-specific parameter objects below.
     """
+
+    xai: Xai
+    """xAI provider-specific parameters."""
 
 
 class Aws(TypedDict, total=False):
@@ -209,3 +212,19 @@ class Telnyx(TypedDict, total=False):
 
     volume: float
     """Volume level for the Ultra model. Range: 0.0 to 2.0."""
+
+
+class Xai(TypedDict, total=False):
+    """xAI provider-specific parameters."""
+
+    voice_id: Required[Literal["eve", "ara", "rex", "sal", "leo"]]
+    """xAI voice identifier."""
+
+    language: str
+    """Language code, or `auto` to detect."""
+
+    output_format: Literal["mp3", "wav", "pcm", "mulaw", "alaw"]
+    """Audio output format."""
+
+    sample_rate: Literal[8000, 16000, 22050, 24000, 44100, 48000]
+    """Audio sample rate in Hz."""

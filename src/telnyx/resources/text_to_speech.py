@@ -80,7 +80,7 @@ class TextToSpeechResource(SyncAPIResource):
         language: str | Omit = omit,
         minimax: text_to_speech_generate_params.Minimax | Omit = omit,
         output_type: Literal["binary_output", "base64_output"] | Omit = omit,
-        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "rime", "resemble"] | Omit = omit,
+        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "rime", "resemble", "xai"] | Omit = omit,
         resemble: text_to_speech_generate_params.Resemble | Omit = omit,
         rime: text_to_speech_generate_params.Rime | Omit = omit,
         telnyx: text_to_speech_generate_params.Telnyx | Omit = omit,
@@ -88,6 +88,7 @@ class TextToSpeechResource(SyncAPIResource):
         text_type: Literal["text", "ssml"] | Omit = omit,
         voice: str | Omit = omit,
         voice_settings: Dict[str, object] | Omit = omit,
+        xai: text_to_speech_generate_params.Xai | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -110,7 +111,7 @@ class TextToSpeechResource(SyncAPIResource):
         with provider-specific parameters.
 
         Supported providers: `aws`, `telnyx`, `azure`, `elevenlabs`, `minimax`, `rime`,
-        `resemble`.
+        `resemble`, `xai`.
 
         The Telnyx `Ultra` model supports 44 languages with emotion control, speed
         adjustment, and volume control. Use the `telnyx` provider-specific parameters to
@@ -156,6 +157,8 @@ class TextToSpeechResource(SyncAPIResource):
           voice_settings: Provider-specific voice settings. Contents vary by provider — see
               provider-specific parameter objects below.
 
+          xai: xAI provider-specific parameters.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -183,6 +186,7 @@ class TextToSpeechResource(SyncAPIResource):
                     "text_type": text_type,
                     "voice": voice,
                     "voice_settings": voice_settings,
+                    "xai": xai,
                 },
                 text_to_speech_generate_params.TextToSpeechGenerateParams,
             ),
@@ -196,7 +200,7 @@ class TextToSpeechResource(SyncAPIResource):
         self,
         *,
         api_key: str | Omit = omit,
-        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "rime", "resemble"] | Omit = omit,
+        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "rime", "resemble", "xai"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -299,7 +303,7 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
         language: str | Omit = omit,
         minimax: text_to_speech_generate_params.Minimax | Omit = omit,
         output_type: Literal["binary_output", "base64_output"] | Omit = omit,
-        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "rime", "resemble"] | Omit = omit,
+        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "rime", "resemble", "xai"] | Omit = omit,
         resemble: text_to_speech_generate_params.Resemble | Omit = omit,
         rime: text_to_speech_generate_params.Rime | Omit = omit,
         telnyx: text_to_speech_generate_params.Telnyx | Omit = omit,
@@ -307,6 +311,7 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
         text_type: Literal["text", "ssml"] | Omit = omit,
         voice: str | Omit = omit,
         voice_settings: Dict[str, object] | Omit = omit,
+        xai: text_to_speech_generate_params.Xai | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -329,7 +334,7 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
         with provider-specific parameters.
 
         Supported providers: `aws`, `telnyx`, `azure`, `elevenlabs`, `minimax`, `rime`,
-        `resemble`.
+        `resemble`, `xai`.
 
         The Telnyx `Ultra` model supports 44 languages with emotion control, speed
         adjustment, and volume control. Use the `telnyx` provider-specific parameters to
@@ -375,6 +380,8 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
           voice_settings: Provider-specific voice settings. Contents vary by provider — see
               provider-specific parameter objects below.
 
+          xai: xAI provider-specific parameters.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -402,6 +409,7 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
                     "text_type": text_type,
                     "voice": voice,
                     "voice_settings": voice_settings,
+                    "xai": xai,
                 },
                 text_to_speech_generate_params.TextToSpeechGenerateParams,
             ),
@@ -415,7 +423,7 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
         self,
         *,
         api_key: str | Omit = omit,
-        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "rime", "resemble"] | Omit = omit,
+        provider: Literal["aws", "telnyx", "azure", "elevenlabs", "minimax", "rime", "resemble", "xai"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
