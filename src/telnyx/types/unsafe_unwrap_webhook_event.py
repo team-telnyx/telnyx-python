@@ -10,8 +10,10 @@ from .fax_media_processed import FaxMediaProcessed
 from .fax_sending_started import FaxSendingStarted
 from .campaign_status_update import CampaignStatusUpdate
 from .call_cost_webhook_event import CallCostWebhookEvent
+from .call_hold_webhook_event import CallHoldWebhookEvent
 from .conference_floor_changed import ConferenceFloorChanged
 from .call_hangup_webhook_event import CallHangupWebhookEvent
+from .call_unhold_webhook_event import CallUnholdWebhookEvent
 from .call_bridged_webhook_event import CallBridgedWebhookEvent
 from .number_order_status_update import NumberOrderStatusUpdate
 from .call_answered_webhook_event import CallAnsweredWebhookEvent
@@ -87,6 +89,7 @@ UnsafeUnwrapWebhookEvent: TypeAlias = Union[
     CallForkStoppedWebhookEvent,
     CallGatherEndedWebhookEvent,
     CallHangupWebhookEvent,
+    CallHoldWebhookEvent,
     CallInitiatedWebhookEvent,
     CallLeftQueueWebhookEvent,
     CallMachineDetectionEndedWebhookEvent,
@@ -109,6 +112,7 @@ UnsafeUnwrapWebhookEvent: TypeAlias = Union[
     CallStreamingFailedWebhookEvent,
     CallStreamingStartedWebhookEvent,
     CallStreamingStoppedWebhookEvent,
+    CallUnholdWebhookEvent,
     CampaignStatusUpdate,
     ConferenceCreatedWebhookEvent,
     ConferenceEndedWebhookEvent,
