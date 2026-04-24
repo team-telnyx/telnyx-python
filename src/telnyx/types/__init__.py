@@ -307,6 +307,7 @@ from .audit_event_list_params import AuditEventListParams as AuditEventListParam
 from .authentication_provider import AuthenticationProvider as AuthenticationProvider
 from .call_conversation_ended import CallConversationEnded as CallConversationEnded
 from .call_cost_webhook_event import CallCostWebhookEvent as CallCostWebhookEvent
+from .call_hold_webhook_event import CallHoldWebhookEvent as CallHoldWebhookEvent
 from .comment_create_response import CommentCreateResponse as CommentCreateResponse
 from .custom_sip_header_param import CustomSipHeaderParam as CustomSipHeaderParam
 from .customer_service_record import CustomerServiceRecord as CustomerServiceRecord
@@ -377,6 +378,7 @@ from .audit_event_list_response import AuditEventListResponse as AuditEventListR
 from .balance_retrieve_response import BalanceRetrieveResponse as BalanceRetrieveResponse
 from .billing_group_list_params import BillingGroupListParams as BillingGroupListParams
 from .call_hangup_webhook_event import CallHangupWebhookEvent as CallHangupWebhookEvent
+from .call_unhold_webhook_event import CallUnholdWebhookEvent as CallUnholdWebhookEvent
 from .comment_retrieve_response import CommentRetrieveResponse as CommentRetrieveResponse
 from .conference_playback_ended import ConferencePlaybackEnded as ConferencePlaybackEnded
 from .credential_outbound_param import CredentialOutboundParam as CredentialOutboundParam
