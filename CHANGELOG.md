@@ -1,5 +1,18 @@
 # Changelog
 
+## 4.119.0 (2026-04-24)
+
+Full Changelog: [v4.118.0...v4.119.0](https://github.com/team-telnyx/telnyx-python/compare/v4.118.0...v4.119.0)
+
+### Features
+
+* Add call.hold and call.unhold webhook event documentation ([77aff88](https://github.com/team-telnyx/telnyx-python/commit/77aff884eb5102e5ed83397f4d3e62ba49eb5717))
+
+
+### Documentation
+
+* document dynamic variable support for voice_settings.voice ([d10475e](https://github.com/team-telnyx/telnyx-python/commit/d10475e9afc610f3a5c7aba4c7660acf7ebd8081))
+
 ## 4.118.0 (2026-04-23)
 
 Full Changelog: [v4.117.0...v4.118.0](https://github.com/team-telnyx/telnyx-python/compare/v4.117.0...v4.118.0)
