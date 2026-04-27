@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.119.1 (2026-04-27)
+
+Full Changelog: [v4.119.0...v4.119.1](https://github.com/team-telnyx/telnyx-python/compare/v4.119.0...v4.119.1)
+
+### Bug Fixes
+
+* use correct field name format for multipart file arrays ([28f1f94](https://github.com/team-telnyx/telnyx-python/commit/28f1f9420361be4f903a2796c2bfdd925545e84b))
+
 ## 4.119.0 (2026-04-24)
 
 Full Changelog: [v4.118.0...v4.119.0](https://github.com/team-telnyx/telnyx-python/compare/v4.118.0...v4.119.0)
