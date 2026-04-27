@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.120.0 (2026-04-27)
+
+Full Changelog: [v4.119.1...v4.120.0](https://github.com/team-telnyx/telnyx-python/compare/v4.119.1...v4.120.0)
+
+### Features
+
+* support setting headers via env ([4183f80](https://github.com/team-telnyx/telnyx-python/commit/4183f8022963b87125cb305254eaeb16301f96dd))
+
 ## 4.119.1 (2026-04-27)
 
 Full Changelog: [v4.119.0...v4.119.1](https://github.com/team-telnyx/telnyx-python/compare/v4.119.0...v4.119.1)
