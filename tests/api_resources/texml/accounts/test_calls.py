@@ -174,6 +174,9 @@ class TestCalls:
                         "value": "custom-value",
                     }
                 ],
+                "deepfake_detection": "Enable",
+                "deepfake_detection_callback_method": "GET",
+                "deepfake_detection_callback_url": "https://www.example.com/deepfake-callback",
                 "detection_mode": "Premium",
                 "fallback_url": "https://www.example.com/instructions-fallback.xml",
                 "from_": "+13120001234",
@@ -603,6 +606,9 @@ class TestAsyncCalls:
                         "value": "custom-value",
                     }
                 ],
+                "deepfake_detection": "Enable",
+                "deepfake_detection_callback_method": "GET",
+                "deepfake_detection_callback_url": "https://www.example.com/deepfake-callback",
                 "detection_mode": "Premium",
                 "fallback_url": "https://www.example.com/instructions-fallback.xml",
                 "from_": "+13120001234",
