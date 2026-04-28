@@ -78,6 +78,7 @@ class TestProfile:
             description="description",
             display_name="display_name",
             email="email",
+            profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             website="website",
         )
         assert_matches_type(ProfileUpdateResponse, profile, path=["response"])
@@ -183,6 +184,7 @@ class TestAsyncProfile:
             description="description",
             display_name="display_name",
             email="email",
+            profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             website="website",
         )
         assert_matches_type(ProfileUpdateResponse, profile, path=["response"])
