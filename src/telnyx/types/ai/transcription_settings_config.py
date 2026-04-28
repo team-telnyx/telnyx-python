@@ -16,6 +16,13 @@ class TranscriptionSettingsConfig(BaseModel):
     eager end of turn.
     """
 
+    end_of_turn_confidence_threshold: Optional[float] = None
+    """Available only for assemblyai/universal-streaming.
+
+    Confidence level required to trigger an end of turn. Higher values require more
+    certainty before ending a turn.
+    """
+
     eot_threshold: Optional[float] = None
     """Available only for deepgram/flux.
 
@@ -36,6 +43,19 @@ class TranscriptionSettingsConfig(BaseModel):
     A comma-separated list of key terms to boost for recognition during
     transcription. Helps improve accuracy for domain-specific terminology, proper
     nouns, or uncommon words.
+    """
+
+    max_turn_silence: Optional[int] = None
+    """Available only for assemblyai/universal-streaming.
+
+    Maximum duration of silence in milliseconds before forcing an end of turn.
+    """
+
+    min_turn_silence: Optional[int] = None
+    """Available only for assemblyai/universal-streaming.
+
+    Minimum duration of silence in milliseconds before a turn can end. Must be less
+    than or equal to max_turn_silence.
     """
 
     numerals: Optional[bool] = None
