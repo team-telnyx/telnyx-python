@@ -132,14 +132,18 @@ class TestAssistants:
                 }
             ],
             transcription={
+                "api_key_ref": "api_key_ref",
                 "language": "language",
                 "model": "deepgram/flux",
                 "region": "region",
                 "settings": {
                     "eager_eot_threshold": 0.3,
-                    "eot_threshold": 0,
-                    "eot_timeout_ms": 0,
+                    "end_of_turn_confidence_threshold": 0,
+                    "eot_threshold": 0.5,
+                    "eot_timeout_ms": 500,
                     "keyterm": "keyterm",
+                    "max_turn_silence": 100,
+                    "min_turn_silence": 100,
                     "numerals": True,
                     "smart_format": True,
                 },
@@ -372,14 +376,18 @@ class TestAssistants:
                 }
             ],
             transcription={
+                "api_key_ref": "api_key_ref",
                 "language": "language",
                 "model": "deepgram/flux",
                 "region": "region",
                 "settings": {
                     "eager_eot_threshold": 0.3,
-                    "eot_threshold": 0,
-                    "eot_timeout_ms": 0,
+                    "end_of_turn_confidence_threshold": 0,
+                    "eot_threshold": 0.5,
+                    "eot_timeout_ms": 500,
                     "keyterm": "keyterm",
+                    "max_turn_silence": 100,
+                    "min_turn_silence": 100,
                     "numerals": True,
                     "smart_format": True,
                 },
@@ -893,14 +901,18 @@ class TestAsyncAssistants:
                 }
             ],
             transcription={
+                "api_key_ref": "api_key_ref",
                 "language": "language",
                 "model": "deepgram/flux",
                 "region": "region",
                 "settings": {
                     "eager_eot_threshold": 0.3,
-                    "eot_threshold": 0,
-                    "eot_timeout_ms": 0,
+                    "end_of_turn_confidence_threshold": 0,
+                    "eot_threshold": 0.5,
+                    "eot_timeout_ms": 500,
                     "keyterm": "keyterm",
+                    "max_turn_silence": 100,
+                    "min_turn_silence": 100,
                     "numerals": True,
                     "smart_format": True,
                 },
@@ -1133,14 +1145,18 @@ class TestAsyncAssistants:
                 }
             ],
             transcription={
+                "api_key_ref": "api_key_ref",
                 "language": "language",
                 "model": "deepgram/flux",
                 "region": "region",
                 "settings": {
                     "eager_eot_threshold": 0.3,
-                    "eot_threshold": 0,
-                    "eot_timeout_ms": 0,
+                    "end_of_turn_confidence_threshold": 0,
+                    "eot_threshold": 0.5,
+                    "eot_timeout_ms": 500,
                     "keyterm": "keyterm",
+                    "max_turn_silence": 100,
+                    "min_turn_silence": 100,
                     "numerals": True,
                     "smart_format": True,
                 },
