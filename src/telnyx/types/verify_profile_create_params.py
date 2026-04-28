@@ -7,7 +7,7 @@ from typing_extensions import Required, TypedDict
 
 from .._types import SequenceNotStr
 
-__all__ = ["VerifyProfileCreateParams", "Call", "Flashcall", "Rcs", "SMS", "Whatsapp"]
+__all__ = ["VerifyProfileCreateParams", "Call", "Flashcall", "SMS", "Whatsapp"]
 
 
 class VerifyProfileCreateParams(TypedDict, total=False):
@@ -15,11 +15,15 @@ class VerifyProfileCreateParams(TypedDict, total=False):
 
     call: Call
 
+    daily_spend_limit: float
+    """The maximum daily spend allowed on this verify profile, in USD."""
+
+    daily_spend_limit_enabled: bool
+    """Whether the daily spend limit is enforced for this verify profile."""
+
     flashcall: Flashcall
 
     language: str
-
-    rcs: Rcs
 
     sms: SMS
 
@@ -75,40 +79,6 @@ class Flashcall(TypedDict, total=False, extra_items=object):  # type: ignore[cal
     verification request expires, the user cannot use the code to verify their
     identity.
     """
-
-    whitelisted_destinations: SequenceNotStr[str]
-    """Enabled country destinations to send verification codes.
-
-    The elements in the list must be valid ISO 3166-1 alpha-2 country codes. If set
-    to `["*"]`, all destinations will be allowed. **Conditionally required:** this
-    field must be provided when your organization is configured to require explicit
-    whitelisted destinations; otherwise it is optional.
-    """
-
-
-class Rcs(TypedDict, total=False, extra_items=object):  # type: ignore[call-arg]
-    app_name: str
-    """
-    The name that identifies the application requesting 2fa in the verification
-    message.
-    """
-
-    code_length: int
-    """The length of the verify code to generate."""
-
-    default_verification_timeout_secs: int
-    """
-    For every request that is initiated via this Verify profile, this sets the
-    number of seconds before a verification request code expires. Once the
-    verification request expires, the user cannot use the code to verify their
-    identity.
-    """
-
-    messaging_template_id: str
-    """The message template identifier selected from /verify_profiles/templates"""
-
-    sms_fallback: bool
-    """Enable SMS fallback when RCS delivery fails."""
 
     whitelisted_destinations: SequenceNotStr[str]
     """Enabled country destinations to send verification codes.

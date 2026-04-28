@@ -58,9 +58,10 @@ class VerifyProfilesResource(SyncAPIResource):
         *,
         name: str,
         call: verify_profile_create_params.Call | Omit = omit,
+        daily_spend_limit: float | Omit = omit,
+        daily_spend_limit_enabled: bool | Omit = omit,
         flashcall: verify_profile_create_params.Flashcall | Omit = omit,
         language: str | Omit = omit,
-        rcs: verify_profile_create_params.Rcs | Omit = omit,
         sms: verify_profile_create_params.SMS | Omit = omit,
         webhook_failover_url: str | Omit = omit,
         webhook_url: str | Omit = omit,
@@ -76,6 +77,10 @@ class VerifyProfilesResource(SyncAPIResource):
         Creates a new Verify profile to associate verifications with.
 
         Args:
+          daily_spend_limit: The maximum daily spend allowed on this verify profile, in USD.
+
+          daily_spend_limit_enabled: Whether the daily spend limit is enforced for this verify profile.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -90,9 +95,10 @@ class VerifyProfilesResource(SyncAPIResource):
                 {
                     "name": name,
                     "call": call,
+                    "daily_spend_limit": daily_spend_limit,
+                    "daily_spend_limit_enabled": daily_spend_limit_enabled,
                     "flashcall": flashcall,
                     "language": language,
-                    "rcs": rcs,
                     "sms": sms,
                     "webhook_failover_url": webhook_failover_url,
                     "webhook_url": webhook_url,
@@ -144,10 +150,10 @@ class VerifyProfilesResource(SyncAPIResource):
         verify_profile_id: str,
         *,
         call: verify_profile_update_params.Call | Omit = omit,
-        flashcall: verify_profile_update_params.Flashcall | Omit = omit,
+        daily_spend_limit: float | Omit = omit,
+        daily_spend_limit_enabled: bool | Omit = omit,
         language: str | Omit = omit,
         name: str | Omit = omit,
-        rcs: verify_profile_update_params.Rcs | Omit = omit,
         sms: verify_profile_update_params.SMS | Omit = omit,
         webhook_failover_url: str | Omit = omit,
         webhook_url: str | Omit = omit,
@@ -163,6 +169,10 @@ class VerifyProfilesResource(SyncAPIResource):
         Update Verify profile
 
         Args:
+          daily_spend_limit: The maximum daily spend allowed on this verify profile, in USD.
+
+          daily_spend_limit_enabled: Whether the daily spend limit is enforced for this verify profile.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -178,10 +188,10 @@ class VerifyProfilesResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "call": call,
-                    "flashcall": flashcall,
+                    "daily_spend_limit": daily_spend_limit,
+                    "daily_spend_limit_enabled": daily_spend_limit_enabled,
                     "language": language,
                     "name": name,
-                    "rcs": rcs,
                     "sms": sms,
                     "webhook_failover_url": webhook_failover_url,
                     "webhook_url": webhook_url,
@@ -397,9 +407,10 @@ class AsyncVerifyProfilesResource(AsyncAPIResource):
         *,
         name: str,
         call: verify_profile_create_params.Call | Omit = omit,
+        daily_spend_limit: float | Omit = omit,
+        daily_spend_limit_enabled: bool | Omit = omit,
         flashcall: verify_profile_create_params.Flashcall | Omit = omit,
         language: str | Omit = omit,
-        rcs: verify_profile_create_params.Rcs | Omit = omit,
         sms: verify_profile_create_params.SMS | Omit = omit,
         webhook_failover_url: str | Omit = omit,
         webhook_url: str | Omit = omit,
@@ -415,6 +426,10 @@ class AsyncVerifyProfilesResource(AsyncAPIResource):
         Creates a new Verify profile to associate verifications with.
 
         Args:
+          daily_spend_limit: The maximum daily spend allowed on this verify profile, in USD.
+
+          daily_spend_limit_enabled: Whether the daily spend limit is enforced for this verify profile.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -429,9 +444,10 @@ class AsyncVerifyProfilesResource(AsyncAPIResource):
                 {
                     "name": name,
                     "call": call,
+                    "daily_spend_limit": daily_spend_limit,
+                    "daily_spend_limit_enabled": daily_spend_limit_enabled,
                     "flashcall": flashcall,
                     "language": language,
-                    "rcs": rcs,
                     "sms": sms,
                     "webhook_failover_url": webhook_failover_url,
                     "webhook_url": webhook_url,
@@ -483,10 +499,10 @@ class AsyncVerifyProfilesResource(AsyncAPIResource):
         verify_profile_id: str,
         *,
         call: verify_profile_update_params.Call | Omit = omit,
-        flashcall: verify_profile_update_params.Flashcall | Omit = omit,
+        daily_spend_limit: float | Omit = omit,
+        daily_spend_limit_enabled: bool | Omit = omit,
         language: str | Omit = omit,
         name: str | Omit = omit,
-        rcs: verify_profile_update_params.Rcs | Omit = omit,
         sms: verify_profile_update_params.SMS | Omit = omit,
         webhook_failover_url: str | Omit = omit,
         webhook_url: str | Omit = omit,
@@ -502,6 +518,10 @@ class AsyncVerifyProfilesResource(AsyncAPIResource):
         Update Verify profile
 
         Args:
+          daily_spend_limit: The maximum daily spend allowed on this verify profile, in USD.
+
+          daily_spend_limit_enabled: Whether the daily spend limit is enforced for this verify profile.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -517,10 +537,10 @@ class AsyncVerifyProfilesResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "call": call,
-                    "flashcall": flashcall,
+                    "daily_spend_limit": daily_spend_limit,
+                    "daily_spend_limit_enabled": daily_spend_limit_enabled,
                     "language": language,
                     "name": name,
-                    "rcs": rcs,
                     "sms": sms,
                     "webhook_failover_url": webhook_failover_url,
                     "webhook_url": webhook_url,
