@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.122.0 (2026-04-28)
+
+Full Changelog: [v4.121.0...v4.122.0](https://github.com/team-telnyx/telnyx-python/compare/v4.121.0...v4.122.0)
+
+### Features
+
+* Fix CreateVerifyProfileRequest to match messaging-2fa schema ([b7cf6d2](https://github.com/team-telnyx/telnyx-python/commit/b7cf6d231849e9171d0b7cc06acd540301ca2a9a))
+
 ## 4.121.0 (2026-04-28)
 
 Full Changelog: [v4.120.0...v4.121.0](https://github.com/team-telnyx/telnyx-python/compare/v4.120.0...v4.121.0)
