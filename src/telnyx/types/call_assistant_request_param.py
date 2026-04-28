@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Dict, Union, Iterable
-from typing_extensions import Required, TypeAlias, TypedDict
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from .ai.hangup_tool_param import HangupToolParam
 from .ai.webhook_tool_param import WebhookToolParam
@@ -12,7 +12,96 @@ from .shared_params.book_appointment_tool import BookAppointmentTool
 from .shared_params.check_availability_tool import CheckAvailabilityTool
 from .shared_params.call_control_retrieval_tool import CallControlRetrievalTool
 
-__all__ = ["CallAssistantRequestParam", "Tool"]
+__all__ = ["CallAssistantRequestParam", "ExternalLlm", "FallbackConfig", "FallbackConfigExternalLlm", "Tool"]
+
+
+class ExternalLlm(TypedDict, total=False, extra_items=object):  # type: ignore[call-arg]
+    """External LLM configuration for bringing your own LLM endpoint."""
+
+    authentication_method: Literal["token", "certificate"]
+    """Authentication method used when connecting to the external LLM endpoint."""
+
+    base_url: str
+    """Base URL for the external LLM endpoint."""
+
+    certificate_ref: str
+    """
+    Integration secret identifier for the client certificate used with certificate
+    authentication.
+    """
+
+    forward_metadata: bool
+    """
+    When enabled, Telnyx forwards conversation metadata and dynamic variables to the
+    external LLM endpoint. Defaults to false. The external endpoint receives the
+    standard chat completions payload with top-level `metadata` and
+    `dynamic_variables` objects when values are available. For example:
+    `{"metadata":{"conversation_id":"conv_123","assistant_id":"assistant_456","call_control_id":"v3:abc123","telnyx_conversation_channel":"phone_call"},"dynamic_variables":{"customer_name":"Jane","account_id":"acct_789","telnyx_agent_target":"+13125550100","telnyx_end_user_target":"+13125550123"}}`.
+    """
+
+    llm_api_key_ref: str
+    """Integration secret identifier for the external LLM API key."""
+
+    model: str
+    """Model identifier to use with the external LLM endpoint."""
+
+    token_retrieval_url: str
+    """
+    URL used to retrieve an access token when certificate authentication is enabled.
+    """
+
+
+class FallbackConfigExternalLlm(TypedDict, total=False):
+    """External LLM fallback configuration."""
+
+    authentication_method: Literal["token", "certificate"]
+    """Authentication method used when connecting to the external LLM endpoint."""
+
+    base_url: str
+    """Base URL for the external LLM endpoint."""
+
+    certificate_ref: str
+    """
+    Integration secret identifier for the client certificate used with certificate
+    authentication.
+    """
+
+    forward_metadata: bool
+    """
+    When enabled, Telnyx forwards conversation metadata and dynamic variables to the
+    external LLM endpoint. Defaults to false. The external endpoint receives the
+    standard chat completions payload with top-level `metadata` and
+    `dynamic_variables` objects when values are available. For example:
+    `{"metadata":{"conversation_id":"conv_123","assistant_id":"assistant_456","call_control_id":"v3:abc123","telnyx_conversation_channel":"phone_call"},"dynamic_variables":{"customer_name":"Jane","account_id":"acct_789","telnyx_agent_target":"+13125550100","telnyx_end_user_target":"+13125550123"}}`.
+    """
+
+    llm_api_key_ref: str
+    """Integration secret identifier for the external LLM API key."""
+
+    model: str
+    """Model identifier to use with the external LLM endpoint."""
+
+    token_retrieval_url: str
+    """
+    URL used to retrieve an access token when certificate authentication is enabled.
+    """
+
+
+class FallbackConfig(TypedDict, total=False, extra_items=object):  # type: ignore[call-arg]
+    """Fallback LLM configuration used when the primary LLM provider is unavailable."""
+
+    external_llm: FallbackConfigExternalLlm
+    """External LLM fallback configuration."""
+
+    llm_api_key_ref: str
+    """Integration secret identifier for the fallback model API key."""
+
+    model: str
+    """
+    Fallback Telnyx-hosted model to use when the primary LLM provider is
+    unavailable.
+    """
+
 
 Tool: TypeAlias = Union[
     BookAppointmentTool,
@@ -43,10 +132,10 @@ class CallAssistantRequestParam(TypedDict, total=False):
     telnyx_end_user_target, telnyx_call_caller_id_name) and custom header variables.
     """
 
-    external_llm: Dict[str, object]
+    external_llm: ExternalLlm
     """External LLM configuration for bringing your own LLM endpoint."""
 
-    fallback_config: Dict[str, object]
+    fallback_config: FallbackConfig
     """Fallback LLM configuration used when the primary LLM provider is unavailable."""
 
     greeting: str

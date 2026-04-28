@@ -2,6 +2,7 @@
 
 from typing import Dict, List, Optional
 from datetime import datetime
+from typing_extensions import Literal
 
 from ..._models import BaseModel
 from .observability import Observability
@@ -16,7 +17,94 @@ from .messaging_settings import MessagingSettings
 from .telephony_settings import TelephonySettings
 from .transcription_settings import TranscriptionSettings
 
-__all__ = ["InferenceEmbedding", "PostConversationSettings"]
+__all__ = [
+    "InferenceEmbedding",
+    "ExternalLlm",
+    "FallbackConfig",
+    "FallbackConfigExternalLlm",
+    "PostConversationSettings",
+]
+
+
+class ExternalLlm(BaseModel):
+    base_url: str
+    """Base URL for the external LLM endpoint."""
+
+    model: str
+    """Model identifier to use with the external LLM endpoint."""
+
+    authentication_method: Optional[Literal["token", "certificate"]] = None
+    """Authentication method used when connecting to the external LLM endpoint."""
+
+    certificate_ref: Optional[str] = None
+    """
+    Integration secret identifier for the client certificate used with certificate
+    authentication.
+    """
+
+    forward_metadata: Optional[bool] = None
+    """
+    When enabled, Telnyx forwards conversation metadata and dynamic variables to the
+    external LLM endpoint. Defaults to false. The external endpoint receives the
+    standard chat completions payload with top-level `metadata` and
+    `dynamic_variables` objects when values are available. For example:
+    `{"metadata":{"conversation_id":"conv_123","assistant_id":"assistant_456","call_control_id":"v3:abc123","telnyx_conversation_channel":"phone_call"},"dynamic_variables":{"customer_name":"Jane","account_id":"acct_789","telnyx_agent_target":"+13125550100","telnyx_end_user_target":"+13125550123"}}`.
+    """
+
+    llm_api_key_ref: Optional[str] = None
+    """Integration secret identifier for the external LLM API key."""
+
+    token_retrieval_url: Optional[str] = None
+    """
+    URL used to retrieve an access token when certificate authentication is enabled.
+    """
+
+
+class FallbackConfigExternalLlm(BaseModel):
+    base_url: str
+    """Base URL for the external LLM endpoint."""
+
+    model: str
+    """Model identifier to use with the external LLM endpoint."""
+
+    authentication_method: Optional[Literal["token", "certificate"]] = None
+    """Authentication method used when connecting to the external LLM endpoint."""
+
+    certificate_ref: Optional[str] = None
+    """
+    Integration secret identifier for the client certificate used with certificate
+    authentication.
+    """
+
+    forward_metadata: Optional[bool] = None
+    """
+    When enabled, Telnyx forwards conversation metadata and dynamic variables to the
+    external LLM endpoint. Defaults to false. The external endpoint receives the
+    standard chat completions payload with top-level `metadata` and
+    `dynamic_variables` objects when values are available. For example:
+    `{"metadata":{"conversation_id":"conv_123","assistant_id":"assistant_456","call_control_id":"v3:abc123","telnyx_conversation_channel":"phone_call"},"dynamic_variables":{"customer_name":"Jane","account_id":"acct_789","telnyx_agent_target":"+13125550100","telnyx_end_user_target":"+13125550123"}}`.
+    """
+
+    llm_api_key_ref: Optional[str] = None
+    """Integration secret identifier for the external LLM API key."""
+
+    token_retrieval_url: Optional[str] = None
+    """
+    URL used to retrieve an access token when certificate authentication is enabled.
+    """
+
+
+class FallbackConfig(BaseModel):
+    external_llm: Optional[FallbackConfigExternalLlm] = None
+
+    llm_api_key_ref: Optional[str] = None
+    """Integration secret identifier for the fallback model API key."""
+
+    model: Optional[str] = None
+    """
+    Fallback Telnyx-hosted model to use when the primary LLM provider is
+    unavailable.
+    """
 
 
 class PostConversationSettings(BaseModel):
@@ -69,6 +157,10 @@ class InferenceEmbedding(BaseModel):
     """
 
     enabled_features: Optional[List[EnabledFeatures]] = None
+
+    external_llm: Optional[ExternalLlm] = None
+
+    fallback_config: Optional[FallbackConfig] = None
 
     greeting: Optional[str] = None
     """Text that the assistant will use to start the conversation.
