@@ -20,8 +20,11 @@ class TranscriptionSettingsParam(TypedDict, total=False):
     language: str
     """The language of the audio to be transcribed.
 
-    If not set, or if set to `auto`, the model will automatically detect the
-    language.
+    If not set, or if set to `auto`, supported models will automatically detect the
+    language. For `deepgram/flux`, supported values are: `auto` (Telnyx language
+    detection controls the language hint), `multi` (no language hint), and
+    language-specific hints `en`, `es`, `fr`, `de`, `hi`, `ru`, `pt`, `ja`, `it`,
+    and `nl`.
     """
 
     model: Literal[
@@ -38,7 +41,7 @@ class TranscriptionSettingsParam(TypedDict, total=False):
 
     All Deepgram models are run on-premise.
 
-    - `deepgram/flux` is optimized for turn-taking but is English-only.
+    - `deepgram/flux` is optimized for turn-taking with multilingual language hints.
     - `deepgram/nova-3` is multilingual with automatic language detection.
     - `deepgram/nova-2` is Deepgram's previous-generation multilingual model.
     - `azure/fast` is a multilingual Azure transcription model.
