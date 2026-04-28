@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.121.0 (2026-04-28)
+
+Full Changelog: [v4.120.0...v4.121.0](https://github.com/team-telnyx/telnyx-python/compare/v4.120.0...v4.121.0)
+
+### Features
+
+* Update assistant transcription settings spec ([29d057f](https://github.com/team-telnyx/telnyx-python/commit/29d057f2d6a921aa0e6e9a64ceb8be7a4ca7cff4))
+
 ## 4.120.0 (2026-04-27)
 
 Full Changelog: [v4.119.1...v4.120.0](https://github.com/team-telnyx/telnyx-python/compare/v4.119.1...v4.120.0)
