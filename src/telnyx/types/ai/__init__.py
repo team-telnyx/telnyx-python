@@ -5,7 +5,6 @@ from __future__ import annotations
 from .bucket_ids import BucketIDs as BucketIDs
 from .hangup_tool import HangupTool as HangupTool
 from .conversation import Conversation as Conversation
-from .external_llm import ExternalLlm as ExternalLlm
 from .mission_data import MissionData as MissionData
 from .observability import Observability as Observability
 from .assistant_tool import AssistantTool as AssistantTool
@@ -13,7 +12,6 @@ from .retrieval_tool import RetrievalTool as RetrievalTool
 from .voice_settings import VoiceSettings as VoiceSettings
 from .assistant_param import AssistantParam as AssistantParam
 from .assistants_list import AssistantsList as AssistantsList
-from .fallback_config import FallbackConfig as FallbackConfig
 from .import_metadata import ImportMetadata as ImportMetadata
 from .widget_settings import WidgetSettings as WidgetSettings
 from .bucket_ids_param import BucketIDsParam as BucketIDsParam
@@ -48,7 +46,6 @@ from .mission_create_params import MissionCreateParams as MissionCreateParams
 from .widget_settings_param import WidgetSettingsParam as WidgetSettingsParam
 from .background_task_status import BackgroundTaskStatus as BackgroundTaskStatus
 from .cluster_compute_params import ClusterComputeParams as ClusterComputeParams
-from .external_llm_req_param import ExternalLlmReqParam as ExternalLlmReqParam
 from .insight_settings_param import InsightSettingsParam as InsightSettingsParam
 from .mcp_server_list_params import McpServerListParams as McpServerListParams
 from .privacy_settings_param import PrivacySettingsParam as PrivacySettingsParam
@@ -78,7 +75,6 @@ from .assistant_retrieve_params import AssistantRetrieveParams as AssistantRetri
 from .assistant_send_sms_params import AssistantSendSMSParams as AssistantSendSMSParams
 from .audio_transcribe_response import AudioTranscribeResponse as AudioTranscribeResponse
 from .cluster_retrieve_response import ClusterRetrieveResponse as ClusterRetrieveResponse
-from .fallback_config_req_param import FallbackConfigReqParam as FallbackConfigReqParam
 from .integration_list_response import IntegrationListResponse as IntegrationListResponse
 from .mission_retrieve_response import MissionRetrieveResponse as MissionRetrieveResponse
 from .cluster_fetch_graph_params import ClusterFetchGraphParams as ClusterFetchGraphParams
@@ -88,7 +84,6 @@ from .conversation_update_params import ConversationUpdateParams as Conversation
 from .mcp_server_create_response import McpServerCreateResponse as McpServerCreateResponse
 from .mcp_server_update_response import McpServerUpdateResponse as McpServerUpdateResponse
 from .mission_list_events_params import MissionListEventsParams as MissionListEventsParams
-from .post_conversation_settings import PostConversationSettings as PostConversationSettings
 from .assistant_send_sms_response import AssistantSendSMSResponse as AssistantSendSMSResponse
 from .embedding_retrieve_response import EmbeddingRetrieveResponse as EmbeddingRetrieveResponse
 from .assistant_get_texml_response import AssistantGetTexmlResponse as AssistantGetTexmlResponse
@@ -107,7 +102,6 @@ from .mission_update_mission_response import MissionUpdateMissionResponse as Mis
 from .embedding_similarity_search_params import EmbeddingSimilaritySearchParams as EmbeddingSimilaritySearchParams
 from .transcription_settings_config_param import TranscriptionSettingsConfigParam as TranscriptionSettingsConfigParam
 from .embedding_similarity_search_response import EmbeddingSimilaritySearchResponse as EmbeddingSimilaritySearchResponse
-from .post_conversation_settings_req_param import PostConversationSettingsReqParam as PostConversationSettingsReqParam
 from .inference_embedding_webhook_tool_params import (
     InferenceEmbeddingWebhookToolParams as InferenceEmbeddingWebhookToolParams,
 )

@@ -2,13 +2,12 @@
 
 from typing import Dict, List, Optional
 from datetime import datetime
+from typing_extensions import Literal
 
 from ..._models import BaseModel
-from .external_llm import ExternalLlm
 from .observability import Observability
 from .assistant_tool import AssistantTool
 from .voice_settings import VoiceSettings
-from .fallback_config import FallbackConfig
 from .import_metadata import ImportMetadata
 from .widget_settings import WidgetSettings
 from .enabled_features import EnabledFeatures
@@ -17,9 +16,109 @@ from .privacy_settings import PrivacySettings
 from .messaging_settings import MessagingSettings
 from .telephony_settings import TelephonySettings
 from .transcription_settings import TranscriptionSettings
-from .post_conversation_settings import PostConversationSettings
 
-__all__ = ["InferenceEmbedding"]
+__all__ = [
+    "InferenceEmbedding",
+    "ExternalLlm",
+    "FallbackConfig",
+    "FallbackConfigExternalLlm",
+    "PostConversationSettings",
+]
+
+
+class ExternalLlm(BaseModel):
+    base_url: str
+    """Base URL for the external LLM endpoint."""
+
+    model: str
+    """Model identifier to use with the external LLM endpoint."""
+
+    authentication_method: Optional[Literal["token", "certificate"]] = None
+    """Authentication method used when connecting to the external LLM endpoint."""
+
+    certificate_ref: Optional[str] = None
+    """
+    Integration secret identifier for the client certificate used with certificate
+    authentication.
+    """
+
+    forward_metadata: Optional[bool] = None
+    """
+    When enabled, Telnyx forwards the assistant's dynamic variables to the external
+    LLM endpoint. Defaults to false. The chat completion request includes a
+    top-level `extra_metadata` object when dynamic variables are available. For
+    example:
+    `{"extra_metadata":{"customer_name":"Jane","account_id":"acct_789","telnyx_agent_target":"+13125550100","telnyx_end_user_target":"+13125550123"}}`.
+    """
+
+    llm_api_key_ref: Optional[str] = None
+    """Integration secret identifier for the external LLM API key."""
+
+    token_retrieval_url: Optional[str] = None
+    """
+    URL used to retrieve an access token when certificate authentication is enabled.
+    """
+
+
+class FallbackConfigExternalLlm(BaseModel):
+    base_url: str
+    """Base URL for the external LLM endpoint."""
+
+    model: str
+    """Model identifier to use with the external LLM endpoint."""
+
+    authentication_method: Optional[Literal["token", "certificate"]] = None
+    """Authentication method used when connecting to the external LLM endpoint."""
+
+    certificate_ref: Optional[str] = None
+    """
+    Integration secret identifier for the client certificate used with certificate
+    authentication.
+    """
+
+    forward_metadata: Optional[bool] = None
+    """
+    When enabled, Telnyx forwards the assistant's dynamic variables to the external
+    LLM endpoint. Defaults to false. The chat completion request includes a
+    top-level `extra_metadata` object when dynamic variables are available. For
+    example:
+    `{"extra_metadata":{"customer_name":"Jane","account_id":"acct_789","telnyx_agent_target":"+13125550100","telnyx_end_user_target":"+13125550123"}}`.
+    """
+
+    llm_api_key_ref: Optional[str] = None
+    """Integration secret identifier for the external LLM API key."""
+
+    token_retrieval_url: Optional[str] = None
+    """
+    URL used to retrieve an access token when certificate authentication is enabled.
+    """
+
+
+class FallbackConfig(BaseModel):
+    external_llm: Optional[FallbackConfigExternalLlm] = None
+
+    llm_api_key_ref: Optional[str] = None
+    """Integration secret identifier for the fallback model API key."""
+
+    model: Optional[str] = None
+    """
+    Fallback Telnyx-hosted model to use when the primary LLM provider is
+    unavailable.
+    """
+
+
+class PostConversationSettings(BaseModel):
+    """Configuration for post-conversation processing.
+
+    When enabled, the assistant receives one additional LLM turn after the conversation ends, allowing it to execute tool calls such as logging to a CRM or sending a summary. The assistant can execute multiple parallel or sequential tools during this phase. Telephony-control tools (e.g. hangup, transfer) are unavailable post-conversation. Beta feature.
+    """
+
+    enabled: Optional[bool] = None
+    """Whether post-conversation processing is enabled.
+
+    When true, the assistant will be invoked after the conversation ends to perform
+    any final tool calls. Defaults to false.
+    """
 
 
 class InferenceEmbedding(BaseModel):
