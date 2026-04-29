@@ -80,6 +80,7 @@ from ....types.ai.inference_embedding import InferenceEmbedding
 from ....types.ai.assistant_tool_param import AssistantToolParam
 from ....types.ai.voice_settings_param import VoiceSettingsParam
 from ....types.ai.widget_settings_param import WidgetSettingsParam
+from ....types.ai.external_llm_req_param import ExternalLlmReqParam
 from ....types.ai.insight_settings_param import InsightSettingsParam
 from ....types.ai.privacy_settings_param import PrivacySettingsParam
 from ....types.ai.assistant_chat_response import AssistantChatResponse
@@ -87,8 +88,10 @@ from ....types.ai.observability_req_param import ObservabilityReqParam
 from ....types.ai.messaging_settings_param import MessagingSettingsParam
 from ....types.ai.telephony_settings_param import TelephonySettingsParam
 from ....types.ai.assistant_delete_response import AssistantDeleteResponse
+from ....types.ai.fallback_config_req_param import FallbackConfigReqParam
 from ....types.ai.assistant_send_sms_response import AssistantSendSMSResponse
 from ....types.ai.transcription_settings_param import TranscriptionSettingsParam
+from ....types.ai.post_conversation_settings_req_param import PostConversationSettingsReqParam
 
 __all__ = ["AssistantsResource", "AsyncAssistantsResource"]
 
@@ -155,14 +158,14 @@ class AssistantsResource(SyncAPIResource):
         dynamic_variables: Dict[str, object] | Omit = omit,
         dynamic_variables_webhook_url: str | Omit = omit,
         enabled_features: List[EnabledFeatures] | Omit = omit,
-        external_llm: assistant_create_params.ExternalLlm | Omit = omit,
-        fallback_config: assistant_create_params.FallbackConfig | Omit = omit,
+        external_llm: ExternalLlmReqParam | Omit = omit,
+        fallback_config: FallbackConfigReqParam | Omit = omit,
         greeting: str | Omit = omit,
         insight_settings: InsightSettingsParam | Omit = omit,
         llm_api_key_ref: str | Omit = omit,
         messaging_settings: MessagingSettingsParam | Omit = omit,
         observability_settings: ObservabilityReqParam | Omit = omit,
-        post_conversation_settings: assistant_create_params.PostConversationSettings | Omit = omit,
+        post_conversation_settings: PostConversationSettingsReqParam | Omit = omit,
         privacy_settings: PrivacySettingsParam | Omit = omit,
         telephony_settings: TelephonySettingsParam | Omit = omit,
         tool_ids: SequenceNotStr[str] | Omit = omit,
@@ -320,8 +323,8 @@ class AssistantsResource(SyncAPIResource):
         dynamic_variables: Dict[str, object] | Omit = omit,
         dynamic_variables_webhook_url: str | Omit = omit,
         enabled_features: List[EnabledFeatures] | Omit = omit,
-        external_llm: assistant_update_params.ExternalLlm | Omit = omit,
-        fallback_config: assistant_update_params.FallbackConfig | Omit = omit,
+        external_llm: ExternalLlmReqParam | Omit = omit,
+        fallback_config: FallbackConfigReqParam | Omit = omit,
         greeting: str | Omit = omit,
         insight_settings: InsightSettingsParam | Omit = omit,
         instructions: str | Omit = omit,
@@ -330,7 +333,7 @@ class AssistantsResource(SyncAPIResource):
         model: str | Omit = omit,
         name: str | Omit = omit,
         observability_settings: ObservabilityReqParam | Omit = omit,
-        post_conversation_settings: assistant_update_params.PostConversationSettings | Omit = omit,
+        post_conversation_settings: PostConversationSettingsReqParam | Omit = omit,
         privacy_settings: PrivacySettingsParam | Omit = omit,
         promote_to_main: bool | Omit = omit,
         telephony_settings: TelephonySettingsParam | Omit = omit,
@@ -788,14 +791,14 @@ class AsyncAssistantsResource(AsyncAPIResource):
         dynamic_variables: Dict[str, object] | Omit = omit,
         dynamic_variables_webhook_url: str | Omit = omit,
         enabled_features: List[EnabledFeatures] | Omit = omit,
-        external_llm: assistant_create_params.ExternalLlm | Omit = omit,
-        fallback_config: assistant_create_params.FallbackConfig | Omit = omit,
+        external_llm: ExternalLlmReqParam | Omit = omit,
+        fallback_config: FallbackConfigReqParam | Omit = omit,
         greeting: str | Omit = omit,
         insight_settings: InsightSettingsParam | Omit = omit,
         llm_api_key_ref: str | Omit = omit,
         messaging_settings: MessagingSettingsParam | Omit = omit,
         observability_settings: ObservabilityReqParam | Omit = omit,
-        post_conversation_settings: assistant_create_params.PostConversationSettings | Omit = omit,
+        post_conversation_settings: PostConversationSettingsReqParam | Omit = omit,
         privacy_settings: PrivacySettingsParam | Omit = omit,
         telephony_settings: TelephonySettingsParam | Omit = omit,
         tool_ids: SequenceNotStr[str] | Omit = omit,
@@ -953,8 +956,8 @@ class AsyncAssistantsResource(AsyncAPIResource):
         dynamic_variables: Dict[str, object] | Omit = omit,
         dynamic_variables_webhook_url: str | Omit = omit,
         enabled_features: List[EnabledFeatures] | Omit = omit,
-        external_llm: assistant_update_params.ExternalLlm | Omit = omit,
-        fallback_config: assistant_update_params.FallbackConfig | Omit = omit,
+        external_llm: ExternalLlmReqParam | Omit = omit,
+        fallback_config: FallbackConfigReqParam | Omit = omit,
         greeting: str | Omit = omit,
         insight_settings: InsightSettingsParam | Omit = omit,
         instructions: str | Omit = omit,
@@ -963,7 +966,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
         model: str | Omit = omit,
         name: str | Omit = omit,
         observability_settings: ObservabilityReqParam | Omit = omit,
-        post_conversation_settings: assistant_update_params.PostConversationSettings | Omit = omit,
+        post_conversation_settings: PostConversationSettingsReqParam | Omit = omit,
         privacy_settings: PrivacySettingsParam | Omit = omit,
         promote_to_main: bool | Omit = omit,
         telephony_settings: TelephonySettingsParam | Omit = omit,
