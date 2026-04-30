@@ -16,7 +16,7 @@ __all__ = [
     "HandoffHandoffAIAssistant",
     "Transfer",
     "TransferTransfer",
-    "TransferTransferTarget",
+    "TransferTransferTargetsUnionMember0",
     "TransferTransferCustomHeader",
     "TransferTransferVoicemailDetection",
     "TransferTransferVoicemailDetectionDetectionConfig",
@@ -25,6 +25,7 @@ __all__ = [
     "Invite",
     "InviteInviteConfig",
     "InviteInviteConfigCustomHeader",
+    "InviteInviteConfigTargetsUnionMember0",
     "InviteInviteConfigVoicemailDetection",
     "InviteInviteConfigVoicemailDetectionOnVoicemailDetected",
     "Refer",
@@ -71,12 +72,12 @@ class Handoff(TypedDict, total=False):
     type: Required[Literal["handoff"]]
 
 
-class TransferTransferTarget(TypedDict, total=False):
+class TransferTransferTargetsUnionMember0(TypedDict, total=False):
+    to: Required[str]
+    """The destination number or SIP URI of the call."""
+
     name: str
     """The name of the target."""
-
-    to: str
-    """The destination number or SIP URI of the call."""
 
 
 class TransferTransferCustomHeader(TypedDict, total=False):
@@ -203,10 +204,13 @@ _TransferTransferReservedKeywords = TypedDict(
 
 
 class TransferTransfer(_TransferTransferReservedKeywords, total=False):
-    targets: Required[Iterable[TransferTransferTarget]]
+    targets: Required[Union[Iterable[TransferTransferTargetsUnionMember0], str]]
     """The different possible targets of the transfer.
 
     The assistant will be able to choose one of the targets to transfer the call to.
+    This can also be a dynamic variable string like `{{ targets }}` where `targets`
+    is returned by the dynamic variables webhook and resolves to an array of target
+    objects at runtime.
     """
 
     custom_headers: Iterable[TransferTransferCustomHeader]
@@ -252,6 +256,14 @@ class InviteInviteConfigCustomHeader(TypedDict, total=False):
     """
 
 
+class InviteInviteConfigTargetsUnionMember0(TypedDict, total=False):
+    to: Required[str]
+    """The destination number or SIP URI of the call."""
+
+    name: str
+    """The name of the target."""
+
+
 class InviteInviteConfigVoicemailDetectionOnVoicemailDetected(TypedDict, total=False):
     """Action to take when voicemail is detected on the invited call."""
 
@@ -287,6 +299,16 @@ _InviteInviteConfigReservedKeywords = TypedDict(
 class InviteInviteConfig(_InviteInviteConfigReservedKeywords, total=False):
     custom_headers: Iterable[InviteInviteConfigCustomHeader]
     """Custom headers to be added to the SIP INVITE for the invite command."""
+
+    targets: Union[Iterable[InviteInviteConfigTargetsUnionMember0], str, None]
+    """The different possible targets of the invite.
+
+    The assistant will be able to choose one of the targets to invite to the call.
+    This can also be a dynamic variable string like `{{ targets }}` where `targets`
+    is returned by the dynamic variables webhook and resolves to an array of target
+    objects at runtime. If omitted or null, the invite tool can still be configured
+    and targets may be supplied dynamically at runtime.
+    """
 
     voicemail_detection: InviteInviteConfigVoicemailDetection
     """
