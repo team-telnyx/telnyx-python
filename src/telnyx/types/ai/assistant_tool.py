@@ -284,11 +284,11 @@ class InviteInviteVoicemailDetection(BaseModel):
 
 
 class InviteInvite(BaseModel):
+    from_: str = FieldInfo(alias="from")
+    """Number or SIP URI placing the call."""
+
     custom_headers: Optional[List[InviteInviteCustomHeader]] = None
     """Custom headers to be added to the SIP INVITE for the invite command."""
-
-    from_: Optional[str] = FieldInfo(alias="from", default=None)
-    """Number or SIP URI placing the call."""
 
     targets: Union[List[InviteInviteTargetsUnionMember0], str, None] = None
     """The different possible targets of the invite.
