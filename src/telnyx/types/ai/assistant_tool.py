@@ -18,7 +18,7 @@ __all__ = [
     "HandoffHandoffAIAssistant",
     "Transfer",
     "TransferTransfer",
-    "TransferTransferTarget",
+    "TransferTransferTargetsUnionMember0",
     "TransferTransferCustomHeader",
     "TransferTransferVoicemailDetection",
     "TransferTransferVoicemailDetectionDetectionConfig",
@@ -27,6 +27,7 @@ __all__ = [
     "Invite",
     "InviteInviteConfig",
     "InviteInviteConfigCustomHeader",
+    "InviteInviteConfigTargetsUnionMember0",
     "InviteInviteConfigVoicemailDetection",
     "InviteInviteConfigVoicemailDetectionOnVoicemailDetected",
     "Refer",
@@ -73,12 +74,12 @@ class Handoff(BaseModel):
     type: Literal["handoff"]
 
 
-class TransferTransferTarget(BaseModel):
+class TransferTransferTargetsUnionMember0(BaseModel):
+    to: str
+    """The destination number or SIP URI of the call."""
+
     name: Optional[str] = None
     """The name of the target."""
-
-    to: Optional[str] = None
-    """The destination number or SIP URI of the call."""
 
 
 class TransferTransferCustomHeader(BaseModel):
@@ -199,10 +200,13 @@ class TransferTransfer(BaseModel):
     from_: str = FieldInfo(alias="from")
     """Number or SIP URI placing the call."""
 
-    targets: List[TransferTransferTarget]
+    targets: Union[List[TransferTransferTargetsUnionMember0], str]
     """The different possible targets of the transfer.
 
     The assistant will be able to choose one of the targets to transfer the call to.
+    This can also be a dynamic variable string like `{{ targets }}` where `targets`
+    is returned by the dynamic variables webhook and resolves to an array of target
+    objects at runtime.
     """
 
     custom_headers: Optional[List[TransferTransferCustomHeader]] = None
@@ -248,6 +252,14 @@ class InviteInviteConfigCustomHeader(BaseModel):
     """
 
 
+class InviteInviteConfigTargetsUnionMember0(BaseModel):
+    to: str
+    """The destination number or SIP URI of the call."""
+
+    name: Optional[str] = None
+    """The name of the target."""
+
+
 class InviteInviteConfigVoicemailDetectionOnVoicemailDetected(BaseModel):
     """Action to take when voicemail is detected on the invited call."""
 
@@ -277,6 +289,16 @@ class InviteInviteConfig(BaseModel):
 
     from_: Optional[str] = FieldInfo(alias="from", default=None)
     """Number or SIP URI placing the call."""
+
+    targets: Union[List[InviteInviteConfigTargetsUnionMember0], str, None] = None
+    """The different possible targets of the invite.
+
+    The assistant will be able to choose one of the targets to invite to the call.
+    This can also be a dynamic variable string like `{{ targets }}` where `targets`
+    is returned by the dynamic variables webhook and resolves to an array of target
+    objects at runtime. If omitted or null, the invite tool can still be configured
+    and targets may be supplied dynamically at runtime.
+    """
 
     voicemail_detection: Optional[InviteInviteConfigVoicemailDetection] = None
     """
