@@ -16,7 +16,7 @@ from ..shared_params.rime_voice_settings import RimeVoiceSettings
 from ..shared_params.azure_voice_settings import AzureVoiceSettings
 from ..shared_params.resemble_voice_settings import ResembleVoiceSettings
 
-__all__ = ["ActionGatherUsingAIParams", "MessageHistory", "VoiceSettings"]
+__all__ = ["ActionGatherUsingAIParams", "MessageHistory", "VoiceSettings", "VoiceSettingsXaiVoiceSettings"]
 
 
 class ActionGatherUsingAIParams(TypedDict, total=False):
@@ -126,6 +126,8 @@ class ActionGatherUsingAIParams(TypedDict, total=False):
     - **Telnyx:** Use `Telnyx.<model_id>.<voice_id>`
     - **Inworld:** Use `Inworld.<ModelId>.<VoiceId>` (e.g., `Inworld.Mini.Loretta`,
       `Inworld.Max.Oliver`). Supported models: `Mini`, `Max`.
+    - **xAI:** Use `xAI.<VoiceId>` (e.g., `xAI.eve`). Available voices: `eve`,
+      `ara`, `rex`, `sal`, `leo`.
     """
 
     voice_settings: VoiceSettings
@@ -140,6 +142,14 @@ class MessageHistory(TypedDict, total=False):
     """The role of the message sender"""
 
 
+class VoiceSettingsXaiVoiceSettings(TypedDict, total=False):
+    type: Required[Literal["xai"]]
+    """Voice settings provider type"""
+
+    language: str
+    """Language code, or `auto` to detect automatically."""
+
+
 VoiceSettings: TypeAlias = Union[
     ElevenLabsVoiceSettingsParam,
     TelnyxVoiceSettingsParam,
@@ -147,4 +157,5 @@ VoiceSettings: TypeAlias = Union[
     AzureVoiceSettings,
     RimeVoiceSettings,
     ResembleVoiceSettings,
+    VoiceSettingsXaiVoiceSettings,
 ]

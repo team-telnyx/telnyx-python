@@ -1053,6 +1053,8 @@ class ActionsResource(SyncAPIResource):
                 `voice_settings` to configure precision, sample_rate, and format.
               - **Inworld:** Use `Inworld.<ModelId>.<VoiceId>` (e.g., `Inworld.Mini.Loretta`,
                 `Inworld.Max.Oliver`). Supported models: `Mini`, `Max`.
+              - **xAI:** Use `xAI.<VoiceId>` (e.g., `xAI.eve`). Available voices: `eve`,
+                `ara`, `rex`, `sal`, `leo`.
 
               For service_level basic, you may define the gender of the speaker (male or
               female).
@@ -2248,6 +2250,8 @@ class AsyncActionsResource(AsyncAPIResource):
                 `voice_settings` to configure precision, sample_rate, and format.
               - **Inworld:** Use `Inworld.<ModelId>.<VoiceId>` (e.g., `Inworld.Mini.Loretta`,
                 `Inworld.Max.Oliver`). Supported models: `Mini`, `Max`.
+              - **xAI:** Use `xAI.<VoiceId>` (e.g., `xAI.eve`). Available voices: `eve`,
+                `ara`, `rex`, `sal`, `leo`.
 
               For service_level basic, you may define the gender of the speaker (male or
               female).
