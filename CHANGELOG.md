@@ -1,5 +1,31 @@
 # Changelog
 
+## 4.123.0 (2026-05-04)
+
+Full Changelog: [v4.122.0...v4.123.0](https://github.com/team-telnyx/telnyx-python/compare/v4.122.0...v4.123.0)
+
+### Features
+
+* Add assistant external LLM forward metadata to OpenAPI ([8757bf7](https://github.com/team-telnyx/telnyx-python/commit/8757bf72210ec2f67eb8f9dc7b124cca3ee51690))
+* Add xAI and AssemblyAI transcription engines to call-control API docs ([e7162ca](https://github.com/team-telnyx/telnyx-python/commit/e7162ca12b956ce7192954979c5db09d9224c356))
+* Add xAI and missing voice providers to Call Control API ([f1e4af5](https://github.com/team-telnyx/telnyx-python/commit/f1e4af5583447e52eecbd655f53d9aeee454c261))
+* AI-2183: Document dynamic variable support for transcription keyterm ([74accfa](https://github.com/team-telnyx/telnyx-python/commit/74accfab45c00835cb24d2340980a568106ddfe7))
+* **api:** manual updates ([f4f9625](https://github.com/team-telnyx/telnyx-python/commit/f4f9625aeb8a403a57163dcec431abe0a0b488cb))
+* Assistant tool targets master ([18b768b](https://github.com/team-telnyx/telnyx-python/commit/18b768b4ee9a3a55c940b66583cf2b6efa7d5361))
+* Correct external LLM forwarded metadata docs ([83f49da](https://github.com/team-telnyx/telnyx-python/commit/83f49dafcfcef5eaa50be7a66e113a4c80e4b602))
+* Document assistant CRUD fields ([cfeda22](https://github.com/team-telnyx/telnyx-python/commit/cfeda22ea5cbd82ddf484b1c24bb34b1d2bcb806))
+* Document Flux transcription language hints ([8806843](https://github.com/team-telnyx/telnyx-python/commit/88068433da34bf940f965d181175ee3ad79c2077))
+* ENGDESK-51445: added profile ID fields to Whatsapp messages ([94a0b8c](https://github.com/team-telnyx/telnyx-python/commit/94a0b8c6c4053e048dc4516ae01e5902b217d27d))
+* Mark 'from' as required on InviteToolConfig ([2e76296](https://github.com/team-telnyx/telnyx-python/commit/2e7629665addfeb690c522984804a2cf38289306))
+* Revert "fix: stainless ([#2371](https://github.com/team-telnyx/telnyx-python/issues/2371))" ([c3fd1fe](https://github.com/team-telnyx/telnyx-python/commit/c3fd1fe7f6d0192c5c2fd2558d0bfa4eab1532c2))
+* TELAPPS-5725: Add deepfake detection params to call-scripting API docs ([ffe5768](https://github.com/team-telnyx/telnyx-python/commit/ffe5768681f7f883c7570061c026c727e4e25fc5))
+* Update observability ([e82e1bc](https://github.com/team-telnyx/telnyx-python/commit/e82e1bc5e445eacd4b9e8fbb791df76e4acb4192))
+
+
+### Chores
+
+* **internal:** reformat pyproject.toml ([c783eb7](https://github.com/team-telnyx/telnyx-python/commit/c783eb7d32f8dc9b8b76ebf957c84a181850fd09))
+
 ## 4.122.0 (2026-04-28)
 
 Full Changelog: [v4.121.0...v4.122.0](https://github.com/team-telnyx/telnyx-python/compare/v4.121.0...v4.122.0)

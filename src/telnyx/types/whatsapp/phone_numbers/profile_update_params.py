@@ -20,4 +20,7 @@ class ProfileUpdateParams(TypedDict, total=False):
 
     email: str
 
+    profile_id: str
+    """Messaging profile ID for inbound messages"""
+
     website: str

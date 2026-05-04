@@ -869,6 +869,8 @@ class ActionsResource(SyncAPIResource):
               - **Telnyx:** Use `Telnyx.<model_id>.<voice_id>`
               - **Inworld:** Use `Inworld.<ModelId>.<VoiceId>` (e.g., `Inworld.Mini.Loretta`,
                 `Inworld.Max.Oliver`). Supported models: `Mini`, `Max`.
+              - **xAI:** Use `xAI.<VoiceId>` (e.g., `xAI.eve`). Available voices: `eve`,
+                `ara`, `rex`, `sal`, `leo`.
 
           voice_settings: The settings associated with the voice selected
 
@@ -1144,6 +1146,8 @@ class ActionsResource(SyncAPIResource):
                 `voice_settings` to configure precision, sample_rate, and format.
               - **Inworld:** Use `Inworld.<ModelId>.<VoiceId>` (e.g., `Inworld.Mini.Loretta`,
                 `Inworld.Max.Oliver`). Supported models: `Mini`, `Max`.
+              - **xAI:** Use `xAI.<VoiceId>` (e.g., `xAI.eve`). Available voices: `eve`,
+                `ara`, `rex`, `sal`, `leo`.
 
               For service_level basic, you may define the gender of the speaker (male or
               female).
@@ -1865,6 +1869,8 @@ class ActionsResource(SyncAPIResource):
                 `voice_settings` to configure precision, sample_rate, and format.
               - **Inworld:** Use `Inworld.<ModelId>.<VoiceId>` (e.g., `Inworld.Mini.Loretta`,
                 `Inworld.Max.Oliver`). Supported models: `Mini`, `Max`.
+              - **xAI:** Use `xAI.<VoiceId>` (e.g., `xAI.eve`). Available voices: `eve`,
+                `ara`, `rex`, `sal`, `leo`.
 
               For service_level basic, you may define the gender of the speaker (male or
               female).
@@ -2014,6 +2020,8 @@ class ActionsResource(SyncAPIResource):
               - **Telnyx:** Use `Telnyx.<model_id>.<voice_id>`
               - **Inworld:** Use `Inworld.<ModelId>.<VoiceId>` (e.g., `Inworld.Mini.Loretta`,
                 `Inworld.Max.Oliver`). Supported models: `Mini`, `Max`.
+              - **xAI:** Use `xAI.<VoiceId>` (e.g., `xAI.eve`). Available voices: `eve`,
+                `ara`, `rex`, `sal`, `leo`.
 
           voice_settings: The settings associated with the voice selected
 
@@ -2861,7 +2869,8 @@ class ActionsResource(SyncAPIResource):
         *,
         client_state: str | Omit = omit,
         command_id: str | Omit = omit,
-        transcription_engine: Literal["Google", "Telnyx", "Deepgram", "Azure", "A", "B"] | Omit = omit,
+        transcription_engine: Literal["Google", "Telnyx", "Deepgram", "Azure", "xAI", "AssemblyAI", "A", "B"]
+        | Omit = omit,
         transcription_engine_config: action_start_transcription_params.TranscriptionEngineConfig | Omit = omit,
         transcription_tracks: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -4494,6 +4503,8 @@ class AsyncActionsResource(AsyncAPIResource):
               - **Telnyx:** Use `Telnyx.<model_id>.<voice_id>`
               - **Inworld:** Use `Inworld.<ModelId>.<VoiceId>` (e.g., `Inworld.Mini.Loretta`,
                 `Inworld.Max.Oliver`). Supported models: `Mini`, `Max`.
+              - **xAI:** Use `xAI.<VoiceId>` (e.g., `xAI.eve`). Available voices: `eve`,
+                `ara`, `rex`, `sal`, `leo`.
 
           voice_settings: The settings associated with the voice selected
 
@@ -4769,6 +4780,8 @@ class AsyncActionsResource(AsyncAPIResource):
                 `voice_settings` to configure precision, sample_rate, and format.
               - **Inworld:** Use `Inworld.<ModelId>.<VoiceId>` (e.g., `Inworld.Mini.Loretta`,
                 `Inworld.Max.Oliver`). Supported models: `Mini`, `Max`.
+              - **xAI:** Use `xAI.<VoiceId>` (e.g., `xAI.eve`). Available voices: `eve`,
+                `ara`, `rex`, `sal`, `leo`.
 
               For service_level basic, you may define the gender of the speaker (male or
               female).
@@ -5490,6 +5503,8 @@ class AsyncActionsResource(AsyncAPIResource):
                 `voice_settings` to configure precision, sample_rate, and format.
               - **Inworld:** Use `Inworld.<ModelId>.<VoiceId>` (e.g., `Inworld.Mini.Loretta`,
                 `Inworld.Max.Oliver`). Supported models: `Mini`, `Max`.
+              - **xAI:** Use `xAI.<VoiceId>` (e.g., `xAI.eve`). Available voices: `eve`,
+                `ara`, `rex`, `sal`, `leo`.
 
               For service_level basic, you may define the gender of the speaker (male or
               female).
@@ -5639,6 +5654,8 @@ class AsyncActionsResource(AsyncAPIResource):
               - **Telnyx:** Use `Telnyx.<model_id>.<voice_id>`
               - **Inworld:** Use `Inworld.<ModelId>.<VoiceId>` (e.g., `Inworld.Mini.Loretta`,
                 `Inworld.Max.Oliver`). Supported models: `Mini`, `Max`.
+              - **xAI:** Use `xAI.<VoiceId>` (e.g., `xAI.eve`). Available voices: `eve`,
+                `ara`, `rex`, `sal`, `leo`.
 
           voice_settings: The settings associated with the voice selected
 
@@ -6486,7 +6503,8 @@ class AsyncActionsResource(AsyncAPIResource):
         *,
         client_state: str | Omit = omit,
         command_id: str | Omit = omit,
-        transcription_engine: Literal["Google", "Telnyx", "Deepgram", "Azure", "A", "B"] | Omit = omit,
+        transcription_engine: Literal["Google", "Telnyx", "Deepgram", "Azure", "xAI", "AssemblyAI", "A", "B"]
+        | Omit = omit,
         transcription_engine_config: action_start_transcription_params.TranscriptionEngineConfig | Omit = omit,
         transcription_tracks: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

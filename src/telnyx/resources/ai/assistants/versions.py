@@ -24,12 +24,15 @@ from ....types.ai.inference_embedding import InferenceEmbedding
 from ....types.ai.assistant_tool_param import AssistantToolParam
 from ....types.ai.voice_settings_param import VoiceSettingsParam
 from ....types.ai.widget_settings_param import WidgetSettingsParam
+from ....types.ai.external_llm_req_param import ExternalLlmReqParam
 from ....types.ai.insight_settings_param import InsightSettingsParam
 from ....types.ai.privacy_settings_param import PrivacySettingsParam
 from ....types.ai.observability_req_param import ObservabilityReqParam
 from ....types.ai.messaging_settings_param import MessagingSettingsParam
 from ....types.ai.telephony_settings_param import TelephonySettingsParam
+from ....types.ai.fallback_config_req_param import FallbackConfigReqParam
 from ....types.ai.transcription_settings_param import TranscriptionSettingsParam
+from ....types.ai.post_conversation_settings_req_param import PostConversationSettingsReqParam
 
 __all__ = ["VersionsResource", "AsyncVersionsResource"]
 
@@ -108,22 +111,30 @@ class VersionsResource(SyncAPIResource):
         assistant_id: str,
         description: str | Omit = omit,
         dynamic_variables: Dict[str, object] | Omit = omit,
+        dynamic_variables_webhook_timeout_ms: int | Omit = omit,
         dynamic_variables_webhook_url: str | Omit = omit,
         enabled_features: List[EnabledFeatures] | Omit = omit,
+        external_llm: ExternalLlmReqParam | Omit = omit,
+        fallback_config: FallbackConfigReqParam | Omit = omit,
         greeting: str | Omit = omit,
         insight_settings: InsightSettingsParam | Omit = omit,
         instructions: str | Omit = omit,
+        integrations: Iterable[version_update_params.Integration] | Omit = omit,
+        interruption_settings: version_update_params.InterruptionSettings | Omit = omit,
         llm_api_key_ref: str | Omit = omit,
+        mcp_servers: Iterable[version_update_params.McpServer] | Omit = omit,
         messaging_settings: MessagingSettingsParam | Omit = omit,
         model: str | Omit = omit,
         name: str | Omit = omit,
         observability_settings: ObservabilityReqParam | Omit = omit,
-        post_conversation_settings: version_update_params.PostConversationSettings | Omit = omit,
+        post_conversation_settings: PostConversationSettingsReqParam | Omit = omit,
         privacy_settings: PrivacySettingsParam | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
         telephony_settings: TelephonySettingsParam | Omit = omit,
         tool_ids: SequenceNotStr[str] | Omit = omit,
         tools: Iterable[AssistantToolParam] | Omit = omit,
         transcription: TranscriptionSettingsParam | Omit = omit,
+        version_name: str | Omit = omit,
         voice_settings: VoiceSettingsParam | Omit = omit,
         widget_settings: WidgetSettingsParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -141,10 +152,19 @@ class VersionsResource(SyncAPIResource):
         Args:
           dynamic_variables: Map of dynamic variables and their default values
 
-          dynamic_variables_webhook_url: If the dynamic_variables_webhook_url is set for the assistant, we will send a
-              request at the start of the conversation. See our
-              [guide](https://developers.telnyx.com/docs/inference/ai-assistants/dynamic-variables)
-              for more information.
+          dynamic_variables_webhook_timeout_ms: Timeout in milliseconds for the dynamic variables webhook. Must be between 1 and
+              10000 ms. If the webhook does not respond within this timeout, the call proceeds
+              with default values. See the
+              [dynamic variables guide](https://developers.telnyx.com/docs/inference/ai-assistants/dynamic-variables).
+
+          dynamic_variables_webhook_url: If `dynamic_variables_webhook_url` is set, Telnyx sends a POST request to this
+              URL at the start of the conversation to resolve dynamic variables. **Gotcha:**
+              the webhook response must wrap variables under a top-level `dynamic_variables`
+              object, e.g. `{"dynamic_variables": {"customer_name": "Jane"}}`. Returning a
+              flat object will be ignored and variables will fall back to their defaults. See
+              the
+              [dynamic variables guide](https://developers.telnyx.com/docs/inference/ai-assistants/dynamic-variables)
+              for the full request/response format and timeout behavior.
 
           greeting: Text that the assistant will use to start the conversation. This may be
               templated with
@@ -156,15 +176,33 @@ class VersionsResource(SyncAPIResource):
           instructions: System instructions for the assistant. These may be templated with
               [dynamic variables](https://developers.telnyx.com/docs/inference/ai-assistants/dynamic-variables)
 
-          llm_api_key_ref: This is only needed when using third-party inference providers. The `identifier`
-              for an integration secret
-              [/v2/integration_secrets](https://developers.telnyx.com/api-reference/integration-secrets/create-a-secret)
-              that refers to your LLM provider's API key. Warning: Free plans are unlikely to
-              work with this integration.
+          integrations: Connected integrations attached to the assistant. The catalog of available
+              integrations is at `/ai/integrations`; the user's connected integrations are at
+              `/ai/integrations/connections`. Each item references a catalog integration by
+              `integration_id`.
 
-          model: ID of the model to use. You can use the
+          interruption_settings: Settings for interruptions and how the assistant decides the user has finished
+              speaking. These timings are most relevant when using non turn-taking
+              transcription models. For turn-taking models like `deepgram/flux`, end-of-turn
+              behavior is controlled by the transcription end-of-turn settings under
+              `transcription.settings` (`eot_threshold`, `eot_timeout_ms`,
+              `eager_eot_threshold`).
+
+          llm_api_key_ref: This is only needed when using third-party inference providers selected by
+              `model`. The `identifier` for an integration secret
+              [/v2/integration_secrets](https://developers.telnyx.com/api-reference/integration-secrets/create-a-secret)
+              that refers to your LLM provider's API key. For bring-your-own endpoint
+              authentication, use `external_llm.llm_api_key_ref` instead. Warning: Free plans
+              are unlikely to work with this integration.
+
+          mcp_servers: MCP servers attached to the assistant. Create MCP servers with
+              `/ai/mcp_servers`, then reference them by `id` here.
+
+          model: ID of the model to use when `external_llm` is not set. You can use the
               [Get models API](https://developers.telnyx.com/api-reference/chat/get-available-models)
-              to see all of your available models,
+              to see available models. If `external_llm` is provided, the assistant uses
+              `external_llm` instead of this field. If neither `model` nor `external_llm` is
+              provided, Telnyx applies the default model.
 
           post_conversation_settings: Configuration for post-conversation processing. When enabled, the assistant
               receives one additional LLM turn after the conversation ends, allowing it to
@@ -173,8 +211,17 @@ class VersionsResource(SyncAPIResource):
               Telephony-control tools (e.g. hangup, transfer) are unavailable
               post-conversation. Beta feature.
 
-          tools: The tools that the assistant can use. These may be templated with
-              [dynamic variables](https://developers.telnyx.com/docs/inference/ai-assistants/dynamic-variables)
+          tags: Tags associated with the assistant. Tags can also be managed with the assistant
+              tag endpoints.
+
+          tool_ids: IDs of shared tools to attach to the assistant. New integrations should prefer
+              `tool_ids` over inline `tools`.
+
+          tools: Deprecated for new integrations. Inline tool definitions available to the
+              assistant. Prefer `tool_ids` to attach shared tools created with the AI Tools
+              endpoints.
+
+          version_name: Human-readable name for the assistant version.
 
           widget_settings: Configuration settings for the assistant's web widget.
 
@@ -198,22 +245,30 @@ class VersionsResource(SyncAPIResource):
                 {
                     "description": description,
                     "dynamic_variables": dynamic_variables,
+                    "dynamic_variables_webhook_timeout_ms": dynamic_variables_webhook_timeout_ms,
                     "dynamic_variables_webhook_url": dynamic_variables_webhook_url,
                     "enabled_features": enabled_features,
+                    "external_llm": external_llm,
+                    "fallback_config": fallback_config,
                     "greeting": greeting,
                     "insight_settings": insight_settings,
                     "instructions": instructions,
+                    "integrations": integrations,
+                    "interruption_settings": interruption_settings,
                     "llm_api_key_ref": llm_api_key_ref,
+                    "mcp_servers": mcp_servers,
                     "messaging_settings": messaging_settings,
                     "model": model,
                     "name": name,
                     "observability_settings": observability_settings,
                     "post_conversation_settings": post_conversation_settings,
                     "privacy_settings": privacy_settings,
+                    "tags": tags,
                     "telephony_settings": telephony_settings,
                     "tool_ids": tool_ids,
                     "tools": tools,
                     "transcription": transcription,
+                    "version_name": version_name,
                     "voice_settings": voice_settings,
                     "widget_settings": widget_settings,
                 },
@@ -417,22 +472,30 @@ class AsyncVersionsResource(AsyncAPIResource):
         assistant_id: str,
         description: str | Omit = omit,
         dynamic_variables: Dict[str, object] | Omit = omit,
+        dynamic_variables_webhook_timeout_ms: int | Omit = omit,
         dynamic_variables_webhook_url: str | Omit = omit,
         enabled_features: List[EnabledFeatures] | Omit = omit,
+        external_llm: ExternalLlmReqParam | Omit = omit,
+        fallback_config: FallbackConfigReqParam | Omit = omit,
         greeting: str | Omit = omit,
         insight_settings: InsightSettingsParam | Omit = omit,
         instructions: str | Omit = omit,
+        integrations: Iterable[version_update_params.Integration] | Omit = omit,
+        interruption_settings: version_update_params.InterruptionSettings | Omit = omit,
         llm_api_key_ref: str | Omit = omit,
+        mcp_servers: Iterable[version_update_params.McpServer] | Omit = omit,
         messaging_settings: MessagingSettingsParam | Omit = omit,
         model: str | Omit = omit,
         name: str | Omit = omit,
         observability_settings: ObservabilityReqParam | Omit = omit,
-        post_conversation_settings: version_update_params.PostConversationSettings | Omit = omit,
+        post_conversation_settings: PostConversationSettingsReqParam | Omit = omit,
         privacy_settings: PrivacySettingsParam | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
         telephony_settings: TelephonySettingsParam | Omit = omit,
         tool_ids: SequenceNotStr[str] | Omit = omit,
         tools: Iterable[AssistantToolParam] | Omit = omit,
         transcription: TranscriptionSettingsParam | Omit = omit,
+        version_name: str | Omit = omit,
         voice_settings: VoiceSettingsParam | Omit = omit,
         widget_settings: WidgetSettingsParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -450,10 +513,19 @@ class AsyncVersionsResource(AsyncAPIResource):
         Args:
           dynamic_variables: Map of dynamic variables and their default values
 
-          dynamic_variables_webhook_url: If the dynamic_variables_webhook_url is set for the assistant, we will send a
-              request at the start of the conversation. See our
-              [guide](https://developers.telnyx.com/docs/inference/ai-assistants/dynamic-variables)
-              for more information.
+          dynamic_variables_webhook_timeout_ms: Timeout in milliseconds for the dynamic variables webhook. Must be between 1 and
+              10000 ms. If the webhook does not respond within this timeout, the call proceeds
+              with default values. See the
+              [dynamic variables guide](https://developers.telnyx.com/docs/inference/ai-assistants/dynamic-variables).
+
+          dynamic_variables_webhook_url: If `dynamic_variables_webhook_url` is set, Telnyx sends a POST request to this
+              URL at the start of the conversation to resolve dynamic variables. **Gotcha:**
+              the webhook response must wrap variables under a top-level `dynamic_variables`
+              object, e.g. `{"dynamic_variables": {"customer_name": "Jane"}}`. Returning a
+              flat object will be ignored and variables will fall back to their defaults. See
+              the
+              [dynamic variables guide](https://developers.telnyx.com/docs/inference/ai-assistants/dynamic-variables)
+              for the full request/response format and timeout behavior.
 
           greeting: Text that the assistant will use to start the conversation. This may be
               templated with
@@ -465,15 +537,33 @@ class AsyncVersionsResource(AsyncAPIResource):
           instructions: System instructions for the assistant. These may be templated with
               [dynamic variables](https://developers.telnyx.com/docs/inference/ai-assistants/dynamic-variables)
 
-          llm_api_key_ref: This is only needed when using third-party inference providers. The `identifier`
-              for an integration secret
-              [/v2/integration_secrets](https://developers.telnyx.com/api-reference/integration-secrets/create-a-secret)
-              that refers to your LLM provider's API key. Warning: Free plans are unlikely to
-              work with this integration.
+          integrations: Connected integrations attached to the assistant. The catalog of available
+              integrations is at `/ai/integrations`; the user's connected integrations are at
+              `/ai/integrations/connections`. Each item references a catalog integration by
+              `integration_id`.
 
-          model: ID of the model to use. You can use the
+          interruption_settings: Settings for interruptions and how the assistant decides the user has finished
+              speaking. These timings are most relevant when using non turn-taking
+              transcription models. For turn-taking models like `deepgram/flux`, end-of-turn
+              behavior is controlled by the transcription end-of-turn settings under
+              `transcription.settings` (`eot_threshold`, `eot_timeout_ms`,
+              `eager_eot_threshold`).
+
+          llm_api_key_ref: This is only needed when using third-party inference providers selected by
+              `model`. The `identifier` for an integration secret
+              [/v2/integration_secrets](https://developers.telnyx.com/api-reference/integration-secrets/create-a-secret)
+              that refers to your LLM provider's API key. For bring-your-own endpoint
+              authentication, use `external_llm.llm_api_key_ref` instead. Warning: Free plans
+              are unlikely to work with this integration.
+
+          mcp_servers: MCP servers attached to the assistant. Create MCP servers with
+              `/ai/mcp_servers`, then reference them by `id` here.
+
+          model: ID of the model to use when `external_llm` is not set. You can use the
               [Get models API](https://developers.telnyx.com/api-reference/chat/get-available-models)
-              to see all of your available models,
+              to see available models. If `external_llm` is provided, the assistant uses
+              `external_llm` instead of this field. If neither `model` nor `external_llm` is
+              provided, Telnyx applies the default model.
 
           post_conversation_settings: Configuration for post-conversation processing. When enabled, the assistant
               receives one additional LLM turn after the conversation ends, allowing it to
@@ -482,8 +572,17 @@ class AsyncVersionsResource(AsyncAPIResource):
               Telephony-control tools (e.g. hangup, transfer) are unavailable
               post-conversation. Beta feature.
 
-          tools: The tools that the assistant can use. These may be templated with
-              [dynamic variables](https://developers.telnyx.com/docs/inference/ai-assistants/dynamic-variables)
+          tags: Tags associated with the assistant. Tags can also be managed with the assistant
+              tag endpoints.
+
+          tool_ids: IDs of shared tools to attach to the assistant. New integrations should prefer
+              `tool_ids` over inline `tools`.
+
+          tools: Deprecated for new integrations. Inline tool definitions available to the
+              assistant. Prefer `tool_ids` to attach shared tools created with the AI Tools
+              endpoints.
+
+          version_name: Human-readable name for the assistant version.
 
           widget_settings: Configuration settings for the assistant's web widget.
 
@@ -507,22 +606,30 @@ class AsyncVersionsResource(AsyncAPIResource):
                 {
                     "description": description,
                     "dynamic_variables": dynamic_variables,
+                    "dynamic_variables_webhook_timeout_ms": dynamic_variables_webhook_timeout_ms,
                     "dynamic_variables_webhook_url": dynamic_variables_webhook_url,
                     "enabled_features": enabled_features,
+                    "external_llm": external_llm,
+                    "fallback_config": fallback_config,
                     "greeting": greeting,
                     "insight_settings": insight_settings,
                     "instructions": instructions,
+                    "integrations": integrations,
+                    "interruption_settings": interruption_settings,
                     "llm_api_key_ref": llm_api_key_ref,
+                    "mcp_servers": mcp_servers,
                     "messaging_settings": messaging_settings,
                     "model": model,
                     "name": name,
                     "observability_settings": observability_settings,
                     "post_conversation_settings": post_conversation_settings,
                     "privacy_settings": privacy_settings,
+                    "tags": tags,
                     "telephony_settings": telephony_settings,
                     "tool_ids": tool_ids,
                     "tools": tools,
                     "transcription": transcription,
+                    "version_name": version_name,
                     "voice_settings": voice_settings,
                     "widget_settings": widget_settings,
                 },

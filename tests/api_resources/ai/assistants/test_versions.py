@@ -99,12 +99,58 @@ class TestVersions:
             assistant_id="assistant_id",
             description="description",
             dynamic_variables={"foo": "bar"},
+            dynamic_variables_webhook_timeout_ms=1,
             dynamic_variables_webhook_url="dynamic_variables_webhook_url",
             enabled_features=["telephony"],
+            external_llm={
+                "base_url": "base_url",
+                "model": "model",
+                "authentication_method": "token",
+                "certificate_ref": "certificate_ref",
+                "forward_metadata": True,
+                "llm_api_key_ref": "llm_api_key_ref",
+                "token_retrieval_url": "token_retrieval_url",
+            },
+            fallback_config={
+                "external_llm": {
+                    "base_url": "base_url",
+                    "model": "model",
+                    "authentication_method": "token",
+                    "certificate_ref": "certificate_ref",
+                    "forward_metadata": True,
+                    "llm_api_key_ref": "llm_api_key_ref",
+                    "token_retrieval_url": "token_retrieval_url",
+                },
+                "llm_api_key_ref": "llm_api_key_ref",
+                "model": "model",
+            },
             greeting="greeting",
             insight_settings={"insight_group_id": "insight_group_id"},
             instructions="instructions",
+            integrations=[
+                {
+                    "integration_id": "integration_id",
+                    "allowed_list": ["string"],
+                }
+            ],
+            interruption_settings={
+                "enable": True,
+                "start_speaking_plan": {
+                    "transcription_endpointing_plan": {
+                        "on_no_punctuation_seconds": 0,
+                        "on_number_seconds": 0,
+                        "on_punctuation_seconds": 0,
+                    },
+                    "wait_seconds": 0,
+                },
+            },
             llm_api_key_ref="llm_api_key_ref",
+            mcp_servers=[
+                {
+                    "id": "id",
+                    "allowed_tools": ["string"],
+                }
+            ],
             messaging_settings={
                 "conversation_inactivity_minutes": 1,
                 "default_messaging_profile_id": "default_messaging_profile_id",
@@ -114,12 +160,17 @@ class TestVersions:
             name="name",
             observability_settings={
                 "host": "host",
+                "prompt_label": "prompt_label",
+                "prompt_name": "prompt_name",
+                "prompt_sync": "enabled",
+                "prompt_version": 1,
                 "public_key_ref": "public_key_ref",
                 "secret_key_ref": "secret_key_ref",
                 "status": "enabled",
             },
             post_conversation_settings={"enabled": True},
             privacy_settings={"data_retention": True},
+            tags=["string"],
             telephony_settings={
                 "default_texml_app_id": "default_texml_app_id",
                 "noise_suppression": "krisp",
@@ -208,6 +259,7 @@ class TestVersions:
                     "smart_format": True,
                 },
             },
+            version_name="version_name",
             voice_settings={
                 "voice": "voice",
                 "api_key_ref": "api_key_ref",
@@ -517,12 +569,58 @@ class TestAsyncVersions:
             assistant_id="assistant_id",
             description="description",
             dynamic_variables={"foo": "bar"},
+            dynamic_variables_webhook_timeout_ms=1,
             dynamic_variables_webhook_url="dynamic_variables_webhook_url",
             enabled_features=["telephony"],
+            external_llm={
+                "base_url": "base_url",
+                "model": "model",
+                "authentication_method": "token",
+                "certificate_ref": "certificate_ref",
+                "forward_metadata": True,
+                "llm_api_key_ref": "llm_api_key_ref",
+                "token_retrieval_url": "token_retrieval_url",
+            },
+            fallback_config={
+                "external_llm": {
+                    "base_url": "base_url",
+                    "model": "model",
+                    "authentication_method": "token",
+                    "certificate_ref": "certificate_ref",
+                    "forward_metadata": True,
+                    "llm_api_key_ref": "llm_api_key_ref",
+                    "token_retrieval_url": "token_retrieval_url",
+                },
+                "llm_api_key_ref": "llm_api_key_ref",
+                "model": "model",
+            },
             greeting="greeting",
             insight_settings={"insight_group_id": "insight_group_id"},
             instructions="instructions",
+            integrations=[
+                {
+                    "integration_id": "integration_id",
+                    "allowed_list": ["string"],
+                }
+            ],
+            interruption_settings={
+                "enable": True,
+                "start_speaking_plan": {
+                    "transcription_endpointing_plan": {
+                        "on_no_punctuation_seconds": 0,
+                        "on_number_seconds": 0,
+                        "on_punctuation_seconds": 0,
+                    },
+                    "wait_seconds": 0,
+                },
+            },
             llm_api_key_ref="llm_api_key_ref",
+            mcp_servers=[
+                {
+                    "id": "id",
+                    "allowed_tools": ["string"],
+                }
+            ],
             messaging_settings={
                 "conversation_inactivity_minutes": 1,
                 "default_messaging_profile_id": "default_messaging_profile_id",
@@ -532,12 +630,17 @@ class TestAsyncVersions:
             name="name",
             observability_settings={
                 "host": "host",
+                "prompt_label": "prompt_label",
+                "prompt_name": "prompt_name",
+                "prompt_sync": "enabled",
+                "prompt_version": 1,
                 "public_key_ref": "public_key_ref",
                 "secret_key_ref": "secret_key_ref",
                 "status": "enabled",
             },
             post_conversation_settings={"enabled": True},
             privacy_settings={"data_retention": True},
+            tags=["string"],
             telephony_settings={
                 "default_texml_app_id": "default_texml_app_id",
                 "noise_suppression": "krisp",
@@ -626,6 +729,7 @@ class TestAsyncVersions:
                     "smart_format": True,
                 },
             },
+            version_name="version_name",
             voice_settings={
                 "voice": "voice",
                 "api_key_ref": "api_key_ref",
