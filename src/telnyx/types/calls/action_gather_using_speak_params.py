@@ -13,7 +13,12 @@ from ..shared_params.azure_voice_settings import AzureVoiceSettings
 from ..shared_params.minimax_voice_settings import MinimaxVoiceSettings
 from ..shared_params.resemble_voice_settings import ResembleVoiceSettings
 
-__all__ = ["ActionGatherUsingSpeakParams", "VoiceSettings", "VoiceSettingsInworldVoiceSettings"]
+__all__ = [
+    "ActionGatherUsingSpeakParams",
+    "VoiceSettings",
+    "VoiceSettingsInworldVoiceSettings",
+    "VoiceSettingsXaiVoiceSettings",
+]
 
 
 class ActionGatherUsingSpeakParams(TypedDict, total=False):
@@ -60,6 +65,8 @@ class ActionGatherUsingSpeakParams(TypedDict, total=False):
       `voice_settings` to configure precision, sample_rate, and format.
     - **Inworld:** Use `Inworld.<ModelId>.<VoiceId>` (e.g., `Inworld.Mini.Loretta`,
       `Inworld.Max.Oliver`). Supported models: `Mini`, `Max`.
+    - **xAI:** Use `xAI.<VoiceId>` (e.g., `xAI.eve`). Available voices: `eve`,
+      `ara`, `rex`, `sal`, `leo`.
 
     For service_level basic, you may define the gender of the speaker (male or
     female).
@@ -177,6 +184,14 @@ class VoiceSettingsInworldVoiceSettings(TypedDict, total=False):
     """Voice settings provider type"""
 
 
+class VoiceSettingsXaiVoiceSettings(TypedDict, total=False):
+    type: Required[Literal["xai"]]
+    """Voice settings provider type"""
+
+    language: str
+    """Language code, or `auto` to detect automatically."""
+
+
 VoiceSettings: TypeAlias = Union[
     ElevenLabsVoiceSettingsParam,
     TelnyxVoiceSettingsParam,
@@ -186,4 +201,5 @@ VoiceSettings: TypeAlias = Union[
     RimeVoiceSettings,
     ResembleVoiceSettings,
     VoiceSettingsInworldVoiceSettings,
+    VoiceSettingsXaiVoiceSettings,
 ]

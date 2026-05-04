@@ -27,6 +27,7 @@ __all__ = [
     "MessageHistoryDeveloperMessage",
     "Participant",
     "VoiceSettings",
+    "VoiceSettingsXaiVoiceSettings",
 ]
 
 
@@ -110,6 +111,8 @@ class ActionStartAIAssistantParams(TypedDict, total=False):
     - **Telnyx:** Use `Telnyx.<model_id>.<voice_id>`
     - **Inworld:** Use `Inworld.<ModelId>.<VoiceId>` (e.g., `Inworld.Mini.Loretta`,
       `Inworld.Max.Oliver`). Supported models: `Mini`, `Max`.
+    - **xAI:** Use `xAI.<VoiceId>` (e.g., `xAI.eve`). Available voices: `eve`,
+      `ara`, `rex`, `sal`, `leo`.
     """
 
     voice_settings: VoiceSettings
@@ -232,6 +235,14 @@ class Participant(TypedDict, total=False):
     """Determines what happens to the conversation when this participant hangs up."""
 
 
+class VoiceSettingsXaiVoiceSettings(TypedDict, total=False):
+    type: Required[Literal["xai"]]
+    """Voice settings provider type"""
+
+    language: str
+    """Language code, or `auto` to detect automatically."""
+
+
 VoiceSettings: TypeAlias = Union[
     ElevenLabsVoiceSettingsParam,
     TelnyxVoiceSettingsParam,
@@ -239,4 +250,5 @@ VoiceSettings: TypeAlias = Union[
     AzureVoiceSettings,
     RimeVoiceSettings,
     ResembleVoiceSettings,
+    VoiceSettingsXaiVoiceSettings,
 ]
