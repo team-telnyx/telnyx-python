@@ -108,6 +108,7 @@ if TYPE_CHECKING:
         room_recordings,
         sim_card_groups,
         sim_card_orders,
+        uac_connections,
         verify_profiles,
         wireguard_peers,
         access_ip_ranges,
@@ -399,6 +400,7 @@ if TYPE_CHECKING:
     )
     from .resources.messaging_10dlc.messaging_10dlc import Messaging10dlcResource, AsyncMessaging10dlcResource
     from .resources.sim_card_groups.sim_card_groups import SimCardGroupsResource, AsyncSimCardGroupsResource
+    from .resources.uac_connections.uac_connections import UacConnectionsResource, AsyncUacConnectionsResource
     from .resources.virtual_cross_connects_coverage import (
         VirtualCrossConnectsCoverageResource,
         AsyncVirtualCrossConnectsCoverageResource,
@@ -1655,6 +1657,13 @@ class Telnyx(SyncAPIClient):
         from .resources.pronunciation_dicts import PronunciationDictsResource
 
         return PronunciationDictsResource(self)
+
+    @cached_property
+    def uac_connections(self) -> UacConnectionsResource:
+        """UAC connection operations"""
+        from .resources.uac_connections import UacConnectionsResource
+
+        return UacConnectionsResource(self)
 
     @cached_property
     def with_raw_response(self) -> TelnyxWithRawResponse:
@@ -3007,6 +3016,13 @@ class AsyncTelnyx(AsyncAPIClient):
         return AsyncPronunciationDictsResource(self)
 
     @cached_property
+    def uac_connections(self) -> AsyncUacConnectionsResource:
+        """UAC connection operations"""
+        from .resources.uac_connections import AsyncUacConnectionsResource
+
+        return AsyncUacConnectionsResource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncTelnyxWithRawResponse:
         return AsyncTelnyxWithRawResponse(self)
 
@@ -4292,6 +4308,13 @@ class TelnyxWithRawResponse:
 
         return PronunciationDictsResourceWithRawResponse(self._client.pronunciation_dicts)
 
+    @cached_property
+    def uac_connections(self) -> uac_connections.UacConnectionsResourceWithRawResponse:
+        """UAC connection operations"""
+        from .resources.uac_connections import UacConnectionsResourceWithRawResponse
+
+        return UacConnectionsResourceWithRawResponse(self._client.uac_connections)
+
 
 class AsyncTelnyxWithRawResponse:
     _client: AsyncTelnyx
@@ -5448,6 +5471,13 @@ class AsyncTelnyxWithRawResponse:
         from .resources.pronunciation_dicts import AsyncPronunciationDictsResourceWithRawResponse
 
         return AsyncPronunciationDictsResourceWithRawResponse(self._client.pronunciation_dicts)
+
+    @cached_property
+    def uac_connections(self) -> uac_connections.AsyncUacConnectionsResourceWithRawResponse:
+        """UAC connection operations"""
+        from .resources.uac_connections import AsyncUacConnectionsResourceWithRawResponse
+
+        return AsyncUacConnectionsResourceWithRawResponse(self._client.uac_connections)
 
 
 class TelnyxWithStreamedResponse:
@@ -6607,6 +6637,13 @@ class TelnyxWithStreamedResponse:
         from .resources.pronunciation_dicts import PronunciationDictsResourceWithStreamingResponse
 
         return PronunciationDictsResourceWithStreamingResponse(self._client.pronunciation_dicts)
+
+    @cached_property
+    def uac_connections(self) -> uac_connections.UacConnectionsResourceWithStreamingResponse:
+        """UAC connection operations"""
+        from .resources.uac_connections import UacConnectionsResourceWithStreamingResponse
+
+        return UacConnectionsResourceWithStreamingResponse(self._client.uac_connections)
 
 
 class AsyncTelnyxWithStreamedResponse:
@@ -7812,6 +7849,13 @@ class AsyncTelnyxWithStreamedResponse:
         from .resources.pronunciation_dicts import AsyncPronunciationDictsResourceWithStreamingResponse
 
         return AsyncPronunciationDictsResourceWithStreamingResponse(self._client.pronunciation_dicts)
+
+    @cached_property
+    def uac_connections(self) -> uac_connections.AsyncUacConnectionsResourceWithStreamingResponse:
+        """UAC connection operations"""
+        from .resources.uac_connections import AsyncUacConnectionsResourceWithStreamingResponse
+
+        return AsyncUacConnectionsResourceWithStreamingResponse(self._client.uac_connections)
 
 
 Client = Telnyx

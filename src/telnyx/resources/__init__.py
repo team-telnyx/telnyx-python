@@ -569,6 +569,14 @@ from .sim_card_orders import (
     SimCardOrdersResourceWithStreamingResponse,
     AsyncSimCardOrdersResourceWithStreamingResponse,
 )
+from .uac_connections import (
+    UacConnectionsResource,
+    AsyncUacConnectionsResource,
+    UacConnectionsResourceWithRawResponse,
+    AsyncUacConnectionsResourceWithRawResponse,
+    UacConnectionsResourceWithStreamingResponse,
+    AsyncUacConnectionsResourceWithStreamingResponse,
+)
 from .verify_profiles import (
     VerifyProfilesResource,
     AsyncVerifyProfilesResource,
@@ -2259,4 +2267,10 @@ __all__ = [
     "AsyncPronunciationDictsResourceWithRawResponse",
     "PronunciationDictsResourceWithStreamingResponse",
     "AsyncPronunciationDictsResourceWithStreamingResponse",
+    "UacConnectionsResource",
+    "AsyncUacConnectionsResource",
+    "UacConnectionsResourceWithRawResponse",
+    "AsyncUacConnectionsResourceWithRawResponse",
+    "UacConnectionsResourceWithStreamingResponse",
+    "AsyncUacConnectionsResourceWithStreamingResponse",
 ]
