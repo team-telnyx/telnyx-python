@@ -22,10 +22,32 @@ class TestCanaryDeploys:
     def test_method_create(self, client: Telnyx) -> None:
         canary_deploy = client.ai.assistants.canary_deploys.create(
             assistant_id="assistant_id",
-            versions=[
+        )
+        assert_matches_type(CanaryDeployResponse, canary_deploy, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_create_with_all_params(self, client: Telnyx) -> None:
+        canary_deploy = client.ai.assistants.canary_deploys.create(
+            assistant_id="assistant_id",
+            rules=[
                 {
-                    "percentage": 1,
-                    "version_id": "version_id",
+                    "serve": {
+                        "rollout": [
+                            {
+                                "version_id": "version_id",
+                                "weight": 0,
+                            }
+                        ],
+                        "version_id": "version_id",
+                    },
+                    "match": [
+                        {
+                            "attribute": "attribute",
+                            "operator": "in",
+                            "values": ["string"],
+                        }
+                    ],
                 }
             ],
         )
@@ -36,12 +58,6 @@ class TestCanaryDeploys:
     def test_raw_response_create(self, client: Telnyx) -> None:
         response = client.ai.assistants.canary_deploys.with_raw_response.create(
             assistant_id="assistant_id",
-            versions=[
-                {
-                    "percentage": 1,
-                    "version_id": "version_id",
-                }
-            ],
         )
 
         assert response.is_closed is True
@@ -54,12 +70,6 @@ class TestCanaryDeploys:
     def test_streaming_response_create(self, client: Telnyx) -> None:
         with client.ai.assistants.canary_deploys.with_streaming_response.create(
             assistant_id="assistant_id",
-            versions=[
-                {
-                    "percentage": 1,
-                    "version_id": "version_id",
-                }
-            ],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -75,12 +85,6 @@ class TestCanaryDeploys:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `assistant_id` but received ''"):
             client.ai.assistants.canary_deploys.with_raw_response.create(
                 assistant_id="",
-                versions=[
-                    {
-                        "percentage": 1,
-                        "version_id": "version_id",
-                    }
-                ],
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -130,10 +134,32 @@ class TestCanaryDeploys:
     def test_method_update(self, client: Telnyx) -> None:
         canary_deploy = client.ai.assistants.canary_deploys.update(
             assistant_id="assistant_id",
-            versions=[
+        )
+        assert_matches_type(CanaryDeployResponse, canary_deploy, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_update_with_all_params(self, client: Telnyx) -> None:
+        canary_deploy = client.ai.assistants.canary_deploys.update(
+            assistant_id="assistant_id",
+            rules=[
                 {
-                    "percentage": 1,
-                    "version_id": "version_id",
+                    "serve": {
+                        "rollout": [
+                            {
+                                "version_id": "version_id",
+                                "weight": 0,
+                            }
+                        ],
+                        "version_id": "version_id",
+                    },
+                    "match": [
+                        {
+                            "attribute": "attribute",
+                            "operator": "in",
+                            "values": ["string"],
+                        }
+                    ],
                 }
             ],
         )
@@ -144,12 +170,6 @@ class TestCanaryDeploys:
     def test_raw_response_update(self, client: Telnyx) -> None:
         response = client.ai.assistants.canary_deploys.with_raw_response.update(
             assistant_id="assistant_id",
-            versions=[
-                {
-                    "percentage": 1,
-                    "version_id": "version_id",
-                }
-            ],
         )
 
         assert response.is_closed is True
@@ -162,12 +182,6 @@ class TestCanaryDeploys:
     def test_streaming_response_update(self, client: Telnyx) -> None:
         with client.ai.assistants.canary_deploys.with_streaming_response.update(
             assistant_id="assistant_id",
-            versions=[
-                {
-                    "percentage": 1,
-                    "version_id": "version_id",
-                }
-            ],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -183,12 +197,6 @@ class TestCanaryDeploys:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `assistant_id` but received ''"):
             client.ai.assistants.canary_deploys.with_raw_response.update(
                 assistant_id="",
-                versions=[
-                    {
-                        "percentage": 1,
-                        "version_id": "version_id",
-                    }
-                ],
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -244,10 +252,32 @@ class TestAsyncCanaryDeploys:
     async def test_method_create(self, async_client: AsyncTelnyx) -> None:
         canary_deploy = await async_client.ai.assistants.canary_deploys.create(
             assistant_id="assistant_id",
-            versions=[
+        )
+        assert_matches_type(CanaryDeployResponse, canary_deploy, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_create_with_all_params(self, async_client: AsyncTelnyx) -> None:
+        canary_deploy = await async_client.ai.assistants.canary_deploys.create(
+            assistant_id="assistant_id",
+            rules=[
                 {
-                    "percentage": 1,
-                    "version_id": "version_id",
+                    "serve": {
+                        "rollout": [
+                            {
+                                "version_id": "version_id",
+                                "weight": 0,
+                            }
+                        ],
+                        "version_id": "version_id",
+                    },
+                    "match": [
+                        {
+                            "attribute": "attribute",
+                            "operator": "in",
+                            "values": ["string"],
+                        }
+                    ],
                 }
             ],
         )
@@ -258,12 +288,6 @@ class TestAsyncCanaryDeploys:
     async def test_raw_response_create(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.ai.assistants.canary_deploys.with_raw_response.create(
             assistant_id="assistant_id",
-            versions=[
-                {
-                    "percentage": 1,
-                    "version_id": "version_id",
-                }
-            ],
         )
 
         assert response.is_closed is True
@@ -276,12 +300,6 @@ class TestAsyncCanaryDeploys:
     async def test_streaming_response_create(self, async_client: AsyncTelnyx) -> None:
         async with async_client.ai.assistants.canary_deploys.with_streaming_response.create(
             assistant_id="assistant_id",
-            versions=[
-                {
-                    "percentage": 1,
-                    "version_id": "version_id",
-                }
-            ],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -297,12 +315,6 @@ class TestAsyncCanaryDeploys:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `assistant_id` but received ''"):
             await async_client.ai.assistants.canary_deploys.with_raw_response.create(
                 assistant_id="",
-                versions=[
-                    {
-                        "percentage": 1,
-                        "version_id": "version_id",
-                    }
-                ],
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -352,10 +364,32 @@ class TestAsyncCanaryDeploys:
     async def test_method_update(self, async_client: AsyncTelnyx) -> None:
         canary_deploy = await async_client.ai.assistants.canary_deploys.update(
             assistant_id="assistant_id",
-            versions=[
+        )
+        assert_matches_type(CanaryDeployResponse, canary_deploy, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_update_with_all_params(self, async_client: AsyncTelnyx) -> None:
+        canary_deploy = await async_client.ai.assistants.canary_deploys.update(
+            assistant_id="assistant_id",
+            rules=[
                 {
-                    "percentage": 1,
-                    "version_id": "version_id",
+                    "serve": {
+                        "rollout": [
+                            {
+                                "version_id": "version_id",
+                                "weight": 0,
+                            }
+                        ],
+                        "version_id": "version_id",
+                    },
+                    "match": [
+                        {
+                            "attribute": "attribute",
+                            "operator": "in",
+                            "values": ["string"],
+                        }
+                    ],
                 }
             ],
         )
@@ -366,12 +400,6 @@ class TestAsyncCanaryDeploys:
     async def test_raw_response_update(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.ai.assistants.canary_deploys.with_raw_response.update(
             assistant_id="assistant_id",
-            versions=[
-                {
-                    "percentage": 1,
-                    "version_id": "version_id",
-                }
-            ],
         )
 
         assert response.is_closed is True
@@ -384,12 +412,6 @@ class TestAsyncCanaryDeploys:
     async def test_streaming_response_update(self, async_client: AsyncTelnyx) -> None:
         async with async_client.ai.assistants.canary_deploys.with_streaming_response.update(
             assistant_id="assistant_id",
-            versions=[
-                {
-                    "percentage": 1,
-                    "version_id": "version_id",
-                }
-            ],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -405,12 +427,6 @@ class TestAsyncCanaryDeploys:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `assistant_id` but received ''"):
             await async_client.ai.assistants.canary_deploys.with_raw_response.update(
                 assistant_id="",
-                versions=[
-                    {
-                        "percentage": 1,
-                        "version_id": "version_id",
-                    }
-                ],
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")

@@ -6,7 +6,7 @@ from typing import Iterable
 
 import httpx
 
-from ...._types import Body, Query, Headers, NoneType, NotGiven, not_given
+from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -18,7 +18,6 @@ from ...._response import (
 )
 from ...._base_client import make_request_options
 from ....types.ai.assistants import canary_deploy_create_params, canary_deploy_update_params
-from ....types.ai.assistants.version_config_param import VersionConfigParam
 from ....types.ai.assistants.canary_deploy_response import CanaryDeployResponse
 
 __all__ = ["CanaryDeploysResource", "AsyncCanaryDeploysResource"]
@@ -50,7 +49,7 @@ class CanaryDeploysResource(SyncAPIResource):
         self,
         assistant_id: str,
         *,
-        versions: Iterable[VersionConfigParam],
+        rules: Iterable[canary_deploy_create_params.Rule] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -65,8 +64,6 @@ class CanaryDeploysResource(SyncAPIResource):
         traffic percentages for A/B testing or gradual rollouts of assistant versions.
 
         Args:
-          versions: List of version configurations
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -79,7 +76,7 @@ class CanaryDeploysResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `assistant_id` but received {assistant_id!r}")
         return self._post(
             path_template("/ai/assistants/{assistant_id}/canary-deploys", assistant_id=assistant_id),
-            body=maybe_transform({"versions": versions}, canary_deploy_create_params.CanaryDeployCreateParams),
+            body=maybe_transform({"rules": rules}, canary_deploy_create_params.CanaryDeployCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -126,7 +123,7 @@ class CanaryDeploysResource(SyncAPIResource):
         self,
         assistant_id: str,
         *,
-        versions: Iterable[VersionConfigParam],
+        rules: Iterable[canary_deploy_update_params.Rule] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -142,8 +139,6 @@ class CanaryDeploysResource(SyncAPIResource):
         request.
 
         Args:
-          versions: List of version configurations
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -156,7 +151,7 @@ class CanaryDeploysResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `assistant_id` but received {assistant_id!r}")
         return self._put(
             path_template("/ai/assistants/{assistant_id}/canary-deploys", assistant_id=assistant_id),
-            body=maybe_transform({"versions": versions}, canary_deploy_update_params.CanaryDeployUpdateParams),
+            body=maybe_transform({"rules": rules}, canary_deploy_update_params.CanaryDeployUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -226,7 +221,7 @@ class AsyncCanaryDeploysResource(AsyncAPIResource):
         self,
         assistant_id: str,
         *,
-        versions: Iterable[VersionConfigParam],
+        rules: Iterable[canary_deploy_create_params.Rule] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -241,8 +236,6 @@ class AsyncCanaryDeploysResource(AsyncAPIResource):
         traffic percentages for A/B testing or gradual rollouts of assistant versions.
 
         Args:
-          versions: List of version configurations
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -255,9 +248,7 @@ class AsyncCanaryDeploysResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `assistant_id` but received {assistant_id!r}")
         return await self._post(
             path_template("/ai/assistants/{assistant_id}/canary-deploys", assistant_id=assistant_id),
-            body=await async_maybe_transform(
-                {"versions": versions}, canary_deploy_create_params.CanaryDeployCreateParams
-            ),
+            body=await async_maybe_transform({"rules": rules}, canary_deploy_create_params.CanaryDeployCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -304,7 +295,7 @@ class AsyncCanaryDeploysResource(AsyncAPIResource):
         self,
         assistant_id: str,
         *,
-        versions: Iterable[VersionConfigParam],
+        rules: Iterable[canary_deploy_update_params.Rule] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -320,8 +311,6 @@ class AsyncCanaryDeploysResource(AsyncAPIResource):
         request.
 
         Args:
-          versions: List of version configurations
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -334,9 +323,7 @@ class AsyncCanaryDeploysResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `assistant_id` but received {assistant_id!r}")
         return await self._put(
             path_template("/ai/assistants/{assistant_id}/canary-deploys", assistant_id=assistant_id),
-            body=await async_maybe_transform(
-                {"versions": versions}, canary_deploy_update_params.CanaryDeployUpdateParams
-            ),
+            body=await async_maybe_transform({"rules": rules}, canary_deploy_update_params.CanaryDeployUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

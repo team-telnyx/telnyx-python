@@ -698,7 +698,7 @@ Methods:
 Types:
 
 ```python
-from telnyx.types.ai.assistants import CanaryDeploy, CanaryDeployResponse, VersionConfig
+from telnyx.types.ai.assistants import CanaryDeploy, CanaryDeployResponse
 ```
 
 Methods:
