@@ -5620,3 +5620,37 @@ Methods:
 - <code title="patch /pronunciation_dicts/{id}">client.pronunciation_dicts.<a href="./src/telnyx/resources/pronunciation_dicts.py">update</a>(id, \*\*<a href="src/telnyx/types/pronunciation_dict_update_params.py">params</a>) -> <a href="./src/telnyx/types/pronunciation_dict_update_response.py">PronunciationDictUpdateResponse</a></code>
 - <code title="get /pronunciation_dicts">client.pronunciation_dicts.<a href="./src/telnyx/resources/pronunciation_dicts.py">list</a>(\*\*<a href="src/telnyx/types/pronunciation_dict_list_params.py">params</a>) -> <a href="./src/telnyx/types/pronunciation_dict_data.py">SyncDefaultFlatPagination[PronunciationDictData]</a></code>
 - <code title="delete /pronunciation_dicts/{id}">client.pronunciation_dicts.<a href="./src/telnyx/resources/pronunciation_dicts.py">delete</a>(id) -> None</code>
+
+# UacConnections
+
+Types:
+
+```python
+from telnyx.types import (
+    UacConnectionCreateResponse,
+    UacConnectionRetrieveResponse,
+    UacConnectionUpdateResponse,
+    UacConnectionListResponse,
+    UacConnectionDeleteResponse,
+)
+```
+
+Methods:
+
+- <code title="post /uac_connections">client.uac_connections.<a href="./src/telnyx/resources/uac_connections/uac_connections.py">create</a>(\*\*<a href="src/telnyx/types/uac_connection_create_params.py">params</a>) -> <a href="./src/telnyx/types/uac_connection_create_response.py">UacConnectionCreateResponse</a></code>
+- <code title="get /uac_connections/{id}">client.uac_connections.<a href="./src/telnyx/resources/uac_connections/uac_connections.py">retrieve</a>(id) -> <a href="./src/telnyx/types/uac_connection_retrieve_response.py">UacConnectionRetrieveResponse</a></code>
+- <code title="patch /uac_connections/{id}">client.uac_connections.<a href="./src/telnyx/resources/uac_connections/uac_connections.py">update</a>(id, \*\*<a href="src/telnyx/types/uac_connection_update_params.py">params</a>) -> <a href="./src/telnyx/types/uac_connection_update_response.py">UacConnectionUpdateResponse</a></code>
+- <code title="get /uac_connections">client.uac_connections.<a href="./src/telnyx/resources/uac_connections/uac_connections.py">list</a>(\*\*<a href="src/telnyx/types/uac_connection_list_params.py">params</a>) -> <a href="./src/telnyx/types/uac_connection_list_response.py">SyncDefaultFlatPagination[UacConnectionListResponse]</a></code>
+- <code title="delete /uac_connections/{id}">client.uac_connections.<a href="./src/telnyx/resources/uac_connections/uac_connections.py">delete</a>(id) -> <a href="./src/telnyx/types/uac_connection_delete_response.py">UacConnectionDeleteResponse</a></code>
+
+## Actions
+
+Types:
+
+```python
+from telnyx.types.uac_connections import ActionCheckRegistrationStatusResponse
+```
+
+Methods:
+
+- <code title="post /uac_connections/{id}/actions/check_registration_status">client.uac_connections.actions.<a href="./src/telnyx/resources/uac_connections/actions.py">check_registration_status</a>(id) -> <a href="./src/telnyx/types/uac_connections/action_check_registration_status_response.py">ActionCheckRegistrationStatusResponse</a></code>
