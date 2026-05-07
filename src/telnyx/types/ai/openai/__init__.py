@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from .chat_create_completion_params import ChatCreateCompletionParams as ChatCreateCompletionParams
+from .chat_create_completion_response import ChatCreateCompletionResponse as ChatCreateCompletionResponse
 from .embedding_create_embeddings_params import EmbeddingCreateEmbeddingsParams as EmbeddingCreateEmbeddingsParams
 from .embedding_create_embeddings_response import EmbeddingCreateEmbeddingsResponse as EmbeddingCreateEmbeddingsResponse
 from .embedding_list_embedding_models_response import (

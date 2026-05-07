@@ -1,5 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from .chat import (
+    ChatResource,
+    AsyncChatResource,
+    ChatResourceWithRawResponse,
+    AsyncChatResourceWithRawResponse,
+    ChatResourceWithStreamingResponse,
+    AsyncChatResourceWithStreamingResponse,
+)
 from .openai import (
     OpenAIResource,
     AsyncOpenAIResource,
@@ -24,6 +32,12 @@ __all__ = [
     "AsyncEmbeddingsResourceWithRawResponse",
     "EmbeddingsResourceWithStreamingResponse",
     "AsyncEmbeddingsResourceWithStreamingResponse",
+    "ChatResource",
+    "AsyncChatResource",
+    "ChatResourceWithRawResponse",
+    "AsyncChatResourceWithRawResponse",
+    "ChatResourceWithStreamingResponse",
+    "AsyncChatResourceWithStreamingResponse",
     "OpenAIResource",
     "AsyncOpenAIResource",
     "OpenAIResourceWithRawResponse",
