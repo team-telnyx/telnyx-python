@@ -11,6 +11,8 @@ from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types import AISummarizeResponse, AIRetrieveModelsResponse
 
+# pyright: reportDeprecated=false
+
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
@@ -20,13 +22,16 @@ class TestAI:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_retrieve_models(self, client: Telnyx) -> None:
-        ai = client.ai.retrieve_models()
+        with pytest.warns(DeprecationWarning):
+            ai = client.ai.retrieve_models()
+
         assert_matches_type(AIRetrieveModelsResponse, ai, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_retrieve_models(self, client: Telnyx) -> None:
-        response = client.ai.with_raw_response.retrieve_models()
+        with pytest.warns(DeprecationWarning):
+            response = client.ai.with_raw_response.retrieve_models()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -36,12 +41,13 @@ class TestAI:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_retrieve_models(self, client: Telnyx) -> None:
-        with client.ai.with_streaming_response.retrieve_models() as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            with client.ai.with_streaming_response.retrieve_models() as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            ai = response.parse()
-            assert_matches_type(AIRetrieveModelsResponse, ai, path=["response"])
+                ai = response.parse()
+                assert_matches_type(AIRetrieveModelsResponse, ai, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -101,13 +107,16 @@ class TestAsyncAI:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_retrieve_models(self, async_client: AsyncTelnyx) -> None:
-        ai = await async_client.ai.retrieve_models()
+        with pytest.warns(DeprecationWarning):
+            ai = await async_client.ai.retrieve_models()
+
         assert_matches_type(AIRetrieveModelsResponse, ai, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_retrieve_models(self, async_client: AsyncTelnyx) -> None:
-        response = await async_client.ai.with_raw_response.retrieve_models()
+        with pytest.warns(DeprecationWarning):
+            response = await async_client.ai.with_raw_response.retrieve_models()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -117,12 +126,13 @@ class TestAsyncAI:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve_models(self, async_client: AsyncTelnyx) -> None:
-        async with async_client.ai.with_streaming_response.retrieve_models() as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            async with async_client.ai.with_streaming_response.retrieve_models() as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            ai = await response.parse()
-            assert_matches_type(AIRetrieveModelsResponse, ai, path=["response"])
+                ai = await response.parse()
+                assert_matches_type(AIRetrieveModelsResponse, ai, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

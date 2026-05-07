@@ -1136,6 +1136,16 @@ Methods:
 
 ## OpenAI
 
+Types:
+
+```python
+from telnyx.types.ai import OpenAIListModelsResponse
+```
+
+Methods:
+
+- <code title="get /ai/openai/models">client.ai.openai.<a href="./src/telnyx/resources/ai/openai/openai.py">list_models</a>() -> <a href="./src/telnyx/types/ai/openai_list_models_response.py">OpenAIListModelsResponse</a></code>
+
 ### Embeddings
 
 Types:
@@ -1151,6 +1161,18 @@ Methods:
 
 - <code title="post /ai/openai/embeddings">client.ai.openai.embeddings.<a href="./src/telnyx/resources/ai/openai/embeddings.py">create_embeddings</a>(\*\*<a href="src/telnyx/types/ai/openai/embedding_create_embeddings_params.py">params</a>) -> <a href="./src/telnyx/types/ai/openai/embedding_create_embeddings_response.py">EmbeddingCreateEmbeddingsResponse</a></code>
 - <code title="get /ai/openai/embeddings/models">client.ai.openai.embeddings.<a href="./src/telnyx/resources/ai/openai/embeddings.py">list_embedding_models</a>() -> <a href="./src/telnyx/types/ai/openai/embedding_list_embedding_models_response.py">EmbeddingListEmbeddingModelsResponse</a></code>
+
+### Chat
+
+Types:
+
+```python
+from telnyx.types.ai.openai import ChatCreateCompletionResponse
+```
+
+Methods:
+
+- <code title="post /ai/openai/chat/completions">client.ai.openai.chat.<a href="./src/telnyx/resources/ai/openai/chat.py">create_completion</a>(\*\*<a href="src/telnyx/types/ai/openai/chat_create_completion_params.py">params</a>) -> <a href="./src/telnyx/types/ai/openai/chat_create_completion_response.py">ChatCreateCompletionResponse</a></code>
 
 ## Tools
 

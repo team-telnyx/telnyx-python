@@ -11,6 +11,8 @@ from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types.ai import ChatCreateCompletionResponse
 
+# pyright: reportDeprecated=false
+
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
@@ -20,84 +22,91 @@ class TestChat:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create_completion(self, client: Telnyx) -> None:
-        chat = client.ai.chat.create_completion(
-            messages=[
-                {
-                    "content": "You are a friendly chatbot.",
-                    "role": "system",
-                },
-                {
-                    "content": "Hello, world!",
-                    "role": "user",
-                },
-            ],
-        )
+        with pytest.warns(DeprecationWarning):
+            chat = client.ai.chat.create_completion(
+                messages=[
+                    {
+                        "content": "You are a friendly chatbot.",
+                        "role": "system",
+                    },
+                    {
+                        "content": "Hello, world!",
+                        "role": "user",
+                    },
+                ],
+            )
+
         assert_matches_type(ChatCreateCompletionResponse, chat, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create_completion_with_all_params(self, client: Telnyx) -> None:
-        chat = client.ai.chat.create_completion(
-            messages=[
-                {
-                    "content": "You are a friendly chatbot.",
-                    "role": "system",
-                },
-                {
-                    "content": "Hello, world!",
-                    "role": "user",
-                },
-            ],
-            api_key_ref="api_key_ref",
-            best_of=0,
-            early_stopping=True,
-            enable_thinking=True,
-            frequency_penalty=0,
-            guided_choice=["string"],
-            guided_json={"foo": "bar"},
-            guided_regex="guided_regex",
-            length_penalty=0,
-            logprobs=True,
-            max_tokens=0,
-            min_p=0,
-            model="model",
-            n=0,
-            presence_penalty=0,
-            response_format={"type": "text"},
-            stream=True,
-            temperature=0,
-            tool_choice="none",
-            tools=[
-                {
-                    "function": {
-                        "name": "name",
-                        "description": "description",
-                        "parameters": {"foo": "bar"},
+        with pytest.warns(DeprecationWarning):
+            chat = client.ai.chat.create_completion(
+                messages=[
+                    {
+                        "content": "You are a friendly chatbot.",
+                        "role": "system",
                     },
-                    "type": "function",
-                }
-            ],
-            top_logprobs=0,
-            top_p=0,
-            use_beam_search=True,
-        )
+                    {
+                        "content": "Hello, world!",
+                        "role": "user",
+                    },
+                ],
+                api_key_ref="api_key_ref",
+                best_of=0,
+                early_stopping=True,
+                enable_thinking=True,
+                frequency_penalty=0,
+                guided_choice=["string"],
+                guided_json={"foo": "bar"},
+                guided_regex="guided_regex",
+                length_penalty=0,
+                logprobs=True,
+                max_tokens=0,
+                min_p=0,
+                model="model",
+                n=0,
+                presence_penalty=0,
+                response_format={"type": "text"},
+                seed=0,
+                stop="string",
+                stream=True,
+                temperature=0,
+                tool_choice="none",
+                tools=[
+                    {
+                        "function": {
+                            "name": "name",
+                            "description": "description",
+                            "parameters": {"foo": "bar"},
+                        },
+                        "type": "function",
+                    }
+                ],
+                top_logprobs=0,
+                top_p=0,
+                use_beam_search=True,
+            )
+
         assert_matches_type(ChatCreateCompletionResponse, chat, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_create_completion(self, client: Telnyx) -> None:
-        response = client.ai.chat.with_raw_response.create_completion(
-            messages=[
-                {
-                    "content": "You are a friendly chatbot.",
-                    "role": "system",
-                },
-                {
-                    "content": "Hello, world!",
-                    "role": "user",
-                },
-            ],
-        )
+        with pytest.warns(DeprecationWarning):
+            response = client.ai.chat.with_raw_response.create_completion(
+                messages=[
+                    {
+                        "content": "You are a friendly chatbot.",
+                        "role": "system",
+                    },
+                    {
+                        "content": "Hello, world!",
+                        "role": "user",
+                    },
+                ],
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -107,23 +116,24 @@ class TestChat:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_create_completion(self, client: Telnyx) -> None:
-        with client.ai.chat.with_streaming_response.create_completion(
-            messages=[
-                {
-                    "content": "You are a friendly chatbot.",
-                    "role": "system",
-                },
-                {
-                    "content": "Hello, world!",
-                    "role": "user",
-                },
-            ],
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            with client.ai.chat.with_streaming_response.create_completion(
+                messages=[
+                    {
+                        "content": "You are a friendly chatbot.",
+                        "role": "system",
+                    },
+                    {
+                        "content": "Hello, world!",
+                        "role": "user",
+                    },
+                ],
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            chat = response.parse()
-            assert_matches_type(ChatCreateCompletionResponse, chat, path=["response"])
+                chat = response.parse()
+                assert_matches_type(ChatCreateCompletionResponse, chat, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -136,84 +146,91 @@ class TestAsyncChat:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create_completion(self, async_client: AsyncTelnyx) -> None:
-        chat = await async_client.ai.chat.create_completion(
-            messages=[
-                {
-                    "content": "You are a friendly chatbot.",
-                    "role": "system",
-                },
-                {
-                    "content": "Hello, world!",
-                    "role": "user",
-                },
-            ],
-        )
+        with pytest.warns(DeprecationWarning):
+            chat = await async_client.ai.chat.create_completion(
+                messages=[
+                    {
+                        "content": "You are a friendly chatbot.",
+                        "role": "system",
+                    },
+                    {
+                        "content": "Hello, world!",
+                        "role": "user",
+                    },
+                ],
+            )
+
         assert_matches_type(ChatCreateCompletionResponse, chat, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create_completion_with_all_params(self, async_client: AsyncTelnyx) -> None:
-        chat = await async_client.ai.chat.create_completion(
-            messages=[
-                {
-                    "content": "You are a friendly chatbot.",
-                    "role": "system",
-                },
-                {
-                    "content": "Hello, world!",
-                    "role": "user",
-                },
-            ],
-            api_key_ref="api_key_ref",
-            best_of=0,
-            early_stopping=True,
-            enable_thinking=True,
-            frequency_penalty=0,
-            guided_choice=["string"],
-            guided_json={"foo": "bar"},
-            guided_regex="guided_regex",
-            length_penalty=0,
-            logprobs=True,
-            max_tokens=0,
-            min_p=0,
-            model="model",
-            n=0,
-            presence_penalty=0,
-            response_format={"type": "text"},
-            stream=True,
-            temperature=0,
-            tool_choice="none",
-            tools=[
-                {
-                    "function": {
-                        "name": "name",
-                        "description": "description",
-                        "parameters": {"foo": "bar"},
+        with pytest.warns(DeprecationWarning):
+            chat = await async_client.ai.chat.create_completion(
+                messages=[
+                    {
+                        "content": "You are a friendly chatbot.",
+                        "role": "system",
                     },
-                    "type": "function",
-                }
-            ],
-            top_logprobs=0,
-            top_p=0,
-            use_beam_search=True,
-        )
+                    {
+                        "content": "Hello, world!",
+                        "role": "user",
+                    },
+                ],
+                api_key_ref="api_key_ref",
+                best_of=0,
+                early_stopping=True,
+                enable_thinking=True,
+                frequency_penalty=0,
+                guided_choice=["string"],
+                guided_json={"foo": "bar"},
+                guided_regex="guided_regex",
+                length_penalty=0,
+                logprobs=True,
+                max_tokens=0,
+                min_p=0,
+                model="model",
+                n=0,
+                presence_penalty=0,
+                response_format={"type": "text"},
+                seed=0,
+                stop="string",
+                stream=True,
+                temperature=0,
+                tool_choice="none",
+                tools=[
+                    {
+                        "function": {
+                            "name": "name",
+                            "description": "description",
+                            "parameters": {"foo": "bar"},
+                        },
+                        "type": "function",
+                    }
+                ],
+                top_logprobs=0,
+                top_p=0,
+                use_beam_search=True,
+            )
+
         assert_matches_type(ChatCreateCompletionResponse, chat, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_create_completion(self, async_client: AsyncTelnyx) -> None:
-        response = await async_client.ai.chat.with_raw_response.create_completion(
-            messages=[
-                {
-                    "content": "You are a friendly chatbot.",
-                    "role": "system",
-                },
-                {
-                    "content": "Hello, world!",
-                    "role": "user",
-                },
-            ],
-        )
+        with pytest.warns(DeprecationWarning):
+            response = await async_client.ai.chat.with_raw_response.create_completion(
+                messages=[
+                    {
+                        "content": "You are a friendly chatbot.",
+                        "role": "system",
+                    },
+                    {
+                        "content": "Hello, world!",
+                        "role": "user",
+                    },
+                ],
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -223,22 +240,23 @@ class TestAsyncChat:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_create_completion(self, async_client: AsyncTelnyx) -> None:
-        async with async_client.ai.chat.with_streaming_response.create_completion(
-            messages=[
-                {
-                    "content": "You are a friendly chatbot.",
-                    "role": "system",
-                },
-                {
-                    "content": "Hello, world!",
-                    "role": "user",
-                },
-            ],
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            async with async_client.ai.chat.with_streaming_response.create_completion(
+                messages=[
+                    {
+                        "content": "You are a friendly chatbot.",
+                        "role": "system",
+                    },
+                    {
+                        "content": "Hello, world!",
+                        "role": "user",
+                    },
+                ],
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            chat = await response.parse()
-            assert_matches_type(ChatCreateCompletionResponse, chat, path=["response"])
+                chat = await response.parse()
+                assert_matches_type(ChatCreateCompletionResponse, chat, path=["response"])
 
         assert cast(Any, response.is_closed) is True

@@ -2,32 +2,29 @@
 
 from __future__ import annotations
 
-import typing_extensions
 from typing import Dict, Union, Iterable
 from typing_extensions import Literal
 
 import httpx
 
-from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
-from ..._compat import cached_property
-from ...types.ai import chat_create_completion_params
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import (
+from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
+from ...._utils import maybe_transform, async_maybe_transform
+from ...._compat import cached_property
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._base_client import make_request_options
-from ...types.ai.chat_create_completion_response import ChatCreateCompletionResponse
+from ...._base_client import make_request_options
+from ....types.ai.openai import chat_create_completion_params
+from ....types.ai.openai.chat_create_completion_response import ChatCreateCompletionResponse
 
 __all__ = ["ChatResource", "AsyncChatResource"]
 
 
 class ChatResource(SyncAPIResource):
-    """Generate text with LLMs"""
-
     @cached_property
     def with_raw_response(self) -> ChatResourceWithRawResponse:
         """
@@ -47,7 +44,6 @@ class ChatResource(SyncAPIResource):
         """
         return ChatResourceWithStreamingResponse(self)
 
-    @typing_extensions.deprecated("deprecated")
     def create_completion(
         self,
         *,
@@ -84,12 +80,12 @@ class ChatResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ChatCreateCompletionResponse:
-        """**Deprecated**: Use `POST /v2/ai/openai/chat/completions` instead.
+        """Chat with a language model.
 
-        Chat with a
-        language model. This endpoint is consistent with the
+        This endpoint is consistent with the
         [OpenAI Chat Completions API](https://platform.openai.com/docs/api-reference/chat)
-        and may be used with the OpenAI JS or Python SDK.
+        and may be used with the OpenAI JS or Python SDK by setting the base URL to
+        `https://api.telnyx.com/v2/ai/openai`.
 
         Args:
           messages: A list of the previous chat messages for context.
@@ -179,7 +175,7 @@ class ChatResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/ai/chat/completions",
+            "/ai/openai/chat/completions",
             body=maybe_transform(
                 {
                     "messages": messages,
@@ -219,8 +215,6 @@ class ChatResource(SyncAPIResource):
 
 
 class AsyncChatResource(AsyncAPIResource):
-    """Generate text with LLMs"""
-
     @cached_property
     def with_raw_response(self) -> AsyncChatResourceWithRawResponse:
         """
@@ -240,7 +234,6 @@ class AsyncChatResource(AsyncAPIResource):
         """
         return AsyncChatResourceWithStreamingResponse(self)
 
-    @typing_extensions.deprecated("deprecated")
     async def create_completion(
         self,
         *,
@@ -277,12 +270,12 @@ class AsyncChatResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ChatCreateCompletionResponse:
-        """**Deprecated**: Use `POST /v2/ai/openai/chat/completions` instead.
+        """Chat with a language model.
 
-        Chat with a
-        language model. This endpoint is consistent with the
+        This endpoint is consistent with the
         [OpenAI Chat Completions API](https://platform.openai.com/docs/api-reference/chat)
-        and may be used with the OpenAI JS or Python SDK.
+        and may be used with the OpenAI JS or Python SDK by setting the base URL to
+        `https://api.telnyx.com/v2/ai/openai`.
 
         Args:
           messages: A list of the previous chat messages for context.
@@ -372,7 +365,7 @@ class AsyncChatResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/ai/chat/completions",
+            "/ai/openai/chat/completions",
             body=await async_maybe_transform(
                 {
                     "messages": messages,
@@ -415,10 +408,8 @@ class ChatResourceWithRawResponse:
     def __init__(self, chat: ChatResource) -> None:
         self._chat = chat
 
-        self.create_completion = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                chat.create_completion,  # pyright: ignore[reportDeprecated],
-            )
+        self.create_completion = to_raw_response_wrapper(
+            chat.create_completion,
         )
 
 
@@ -426,10 +417,8 @@ class AsyncChatResourceWithRawResponse:
     def __init__(self, chat: AsyncChatResource) -> None:
         self._chat = chat
 
-        self.create_completion = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                chat.create_completion,  # pyright: ignore[reportDeprecated],
-            )
+        self.create_completion = async_to_raw_response_wrapper(
+            chat.create_completion,
         )
 
 
@@ -437,10 +426,8 @@ class ChatResourceWithStreamingResponse:
     def __init__(self, chat: ChatResource) -> None:
         self._chat = chat
 
-        self.create_completion = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                chat.create_completion,  # pyright: ignore[reportDeprecated],
-            )
+        self.create_completion = to_streamed_response_wrapper(
+            chat.create_completion,
         )
 
 
@@ -448,8 +435,6 @@ class AsyncChatResourceWithStreamingResponse:
     def __init__(self, chat: AsyncChatResource) -> None:
         self._chat = chat
 
-        self.create_completion = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                chat.create_completion,  # pyright: ignore[reportDeprecated],
-            )
+        self.create_completion = async_to_streamed_response_wrapper(
+            chat.create_completion,
         )
