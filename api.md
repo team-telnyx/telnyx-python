@@ -43,6 +43,7 @@ from telnyx.types import (
     SimpleSimCard,
     SubNumberOrderRegulatoryRequirementWithValue,
     WhatsappTemplateData,
+    XaiVoiceSettings,
 )
 ```
 
@@ -571,7 +572,7 @@ Methods:
 Types:
 
 ```python
-from telnyx.types import AIRetrieveModelsResponse, AISummarizeResponse
+from telnyx.types import ModelMetadata, AIRetrieveModelsResponse, AISummarizeResponse
 ```
 
 Methods:
@@ -586,6 +587,8 @@ Types:
 ```python
 from telnyx.types.ai import (
     Assistant,
+    AssistantIntegration,
+    AssistantMcpServer,
     AssistantTool,
     AssistantsList,
     AudioVisualizerConfig,
@@ -598,6 +601,7 @@ from telnyx.types.ai import (
     HangupToolParams,
     ImportMetadata,
     InferenceEmbedding,
+    InferenceEmbeddingInterruptionSettings,
     InferenceEmbeddingWebhookToolParams,
     InsightSettings,
     MessagingSettings,
@@ -607,7 +611,9 @@ from telnyx.types.ai import (
     PostConversationSettingsReq,
     PrivacySettings,
     RetrievalTool,
+    StartSpeakingPlan,
     TelephonySettings,
+    TranscriptionEndpointingPlan,
     TranscriptionSettings,
     TranscriptionSettingsConfig,
     TransferTool,
@@ -698,7 +704,15 @@ Methods:
 Types:
 
 ```python
-from telnyx.types.ai.assistants import CanaryDeploy, CanaryDeployResponse
+from telnyx.types.ai.assistants import (
+    CanaryDeploy,
+    CanaryDeployResponse,
+    Clause,
+    RolloutSlot,
+    RuleInput,
+    RuleOutput,
+    Serve,
+)
 ```
 
 Methods:
@@ -1432,11 +1446,13 @@ from telnyx.types.calls import (
     TelnyxVoiceSettings,
     TranscriptionConfig,
     TranscriptionEngineAConfig,
+    TranscriptionEngineAssemblyaiConfig,
     TranscriptionEngineAzureConfig,
     TranscriptionEngineBConfig,
     TranscriptionEngineDeepgramConfig,
     TranscriptionEngineGoogleConfig,
     TranscriptionEngineTelnyxConfig,
+    TranscriptionEngineXaiConfig,
     TranscriptionStartRequest,
     ActionAddAIAssistantMessagesResponse,
     ActionAnswerResponse,
@@ -5649,10 +5665,14 @@ Types:
 
 ```python
 from telnyx.types import (
+    UacConnection,
+    UacExternalSettings,
+    UacInbound,
+    UacInternalSettings,
+    UacOutbound,
     UacConnectionCreateResponse,
     UacConnectionRetrieveResponse,
     UacConnectionUpdateResponse,
-    UacConnectionListResponse,
     UacConnectionDeleteResponse,
 )
 ```
@@ -5662,7 +5682,7 @@ Methods:
 - <code title="post /uac_connections">client.uac_connections.<a href="./src/telnyx/resources/uac_connections/uac_connections.py">create</a>(\*\*<a href="src/telnyx/types/uac_connection_create_params.py">params</a>) -> <a href="./src/telnyx/types/uac_connection_create_response.py">UacConnectionCreateResponse</a></code>
 - <code title="get /uac_connections/{id}">client.uac_connections.<a href="./src/telnyx/resources/uac_connections/uac_connections.py">retrieve</a>(id) -> <a href="./src/telnyx/types/uac_connection_retrieve_response.py">UacConnectionRetrieveResponse</a></code>
 - <code title="patch /uac_connections/{id}">client.uac_connections.<a href="./src/telnyx/resources/uac_connections/uac_connections.py">update</a>(id, \*\*<a href="src/telnyx/types/uac_connection_update_params.py">params</a>) -> <a href="./src/telnyx/types/uac_connection_update_response.py">UacConnectionUpdateResponse</a></code>
-- <code title="get /uac_connections">client.uac_connections.<a href="./src/telnyx/resources/uac_connections/uac_connections.py">list</a>(\*\*<a href="src/telnyx/types/uac_connection_list_params.py">params</a>) -> <a href="./src/telnyx/types/uac_connection_list_response.py">SyncDefaultFlatPagination[UacConnectionListResponse]</a></code>
+- <code title="get /uac_connections">client.uac_connections.<a href="./src/telnyx/resources/uac_connections/uac_connections.py">list</a>(\*\*<a href="src/telnyx/types/uac_connection_list_params.py">params</a>) -> <a href="./src/telnyx/types/uac_connection.py">SyncDefaultFlatPagination[UacConnection]</a></code>
 - <code title="delete /uac_connections/{id}">client.uac_connections.<a href="./src/telnyx/resources/uac_connections/uac_connections.py">delete</a>(id) -> <a href="./src/telnyx/types/uac_connection_delete_response.py">UacConnectionDeleteResponse</a></code>
 
 ## Actions
