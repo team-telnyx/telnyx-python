@@ -25,6 +25,7 @@ from .shared import (
     CostInformation as CostInformation,
     NetappsLocation as NetappsLocation,
     RoomParticipant as RoomParticipant,
+    XaiVoiceSettings as XaiVoiceSettings,
     RegionInformation as RegionInformation,
     RimeVoiceSettings as RimeVoiceSettings,
     AzureVoiceSettings as AzureVoiceSettings,
@@ -70,6 +71,7 @@ from .call_hangup import CallHangup as CallHangup
 from .oauth_grant import OAuthGrant as OAuthGrant
 from .outbound_ip import OutboundIP as OutboundIP
 from .rcs_to_item import RcsToItem as RcsToItem
+from .uac_inbound import UacInbound as UacInbound
 from .call_bridged import CallBridged as CallBridged
 from .inbound_fqdn import InboundFqdn as InboundFqdn
 from .month_detail import MonthDetail as MonthDetail
@@ -79,6 +81,7 @@ from .room_session import RoomSession as RoomSession
 from .service_plan import ServicePlan as ServicePlan
 from .stream_codec import StreamCodec as StreamCodec
 from .traffic_type import TrafficType as TrafficType
+from .uac_outbound import UacOutbound as UacOutbound
 from .user_address import UserAddress as UserAddress
 from .verification import Verification as Verification
 from .video_region import VideoRegion as VideoRegion
@@ -94,10 +97,12 @@ from .transcription import Transcription as Transcription
 from .call_initiated import CallInitiated as CallInitiated
 from .ip_list_params import IPListParams as IPListParams
 from .media_resource import MediaResource as MediaResource
+from .model_metadata import ModelMetadata as ModelMetadata
 from .rcs_suggestion import RcsSuggestion as RcsSuggestion
 from .settings_param import SettingsParam as SettingsParam
 from .sim_card_group import SimCardGroup as SimCardGroup
 from .sim_card_order import SimCardOrder as SimCardOrder
+from .uac_connection import UacConnection as UacConnection
 from .verify_profile import VerifyProfile as VerifyProfile
 from .whatsapp_media import WhatsappMedia as WhatsappMedia
 from .wireless_error import WirelessError as WirelessError
@@ -179,6 +184,7 @@ from .rcs_agent_response import RcsAgentResponse as RcsAgentResponse
 from .room_create_params import RoomCreateParams as RoomCreateParams
 from .room_update_params import RoomUpdateParams as RoomUpdateParams
 from .transport_protocol import TransportProtocol as TransportProtocol
+from .uac_outbound_param import UacOutboundParam as UacOutboundParam
 from .video_region_param import VideoRegionParam as VideoRegionParam
 from .wireless_blocklist import WirelessBlocklist as WirelessBlocklist
 from .address_list_params import AddressListParams as AddressListParams
@@ -267,6 +273,8 @@ from .queue_update_response import QueueUpdateResponse as QueueUpdateResponse
 from .recording_list_params import RecordingListParams as RecordingListParams
 from .reserved_phone_number import ReservedPhoneNumber as ReservedPhoneNumber
 from .s3_configuration_data import S3ConfigurationData as S3ConfigurationData
+from .uac_external_settings import UacExternalSettings as UacExternalSettings
+from .uac_internal_settings import UacInternalSettings as UacInternalSettings
 from .alphanumeric_sender_id import AlphanumericSenderID as AlphanumericSenderID
 from .call_event_list_params import CallEventListParams as CallEventListParams
 from .call_streaming_started import CallStreamingStarted as CallStreamingStarted
@@ -470,6 +478,8 @@ from .recording_retrieve_response import RecordingRetrieveResponse as RecordingR
 from .reserved_phone_number_param import ReservedPhoneNumberParam as ReservedPhoneNumberParam
 from .s3_configuration_data_param import S3ConfigurationDataParam as S3ConfigurationDataParam
 from .transcription_webhook_event import TranscriptionWebhookEvent as TranscriptionWebhookEvent
+from .uac_external_settings_param import UacExternalSettingsParam as UacExternalSettingsParam
+from .uac_internal_settings_param import UacInternalSettingsParam as UacInternalSettingsParam
 from .unsafe_unwrap_webhook_event import UnsafeUnwrapWebhookEvent as UnsafeUnwrapWebhookEvent
 from .verified_number_list_params import VerifiedNumberListParams as VerifiedNumberListParams
 from .voice_clone_create_response import VoiceCloneCreateResponse as VoiceCloneCreateResponse
@@ -512,7 +522,6 @@ from .sim_card_group_update_params import SimCardGroupUpdateParams as SimCardGro
 from .sim_card_order_create_params import SimCardOrderCreateParams as SimCardOrderCreateParams
 from .sub_number_order_list_params import SubNumberOrderListParams as SubNumberOrderListParams
 from .uac_connection_create_params import UacConnectionCreateParams as UacConnectionCreateParams
-from .uac_connection_list_response import UacConnectionListResponse as UacConnectionListResponse
 from .uac_connection_update_params import UacConnectionUpdateParams as UacConnectionUpdateParams
 from .url_shortener_settings_param import URLShortenerSettingsParam as URLShortenerSettingsParam
 from .user_address_create_response import UserAddressCreateResponse as UserAddressCreateResponse
