@@ -6,7 +6,7 @@ from typing_extensions import Literal
 from .._models import BaseModel
 from .interface_status import InterfaceStatus
 
-__all__ = ["VirtualCrossConnectListResponse", "Region"]
+__all__ = ["VirtualCrossConnectCombined", "Region"]
 
 
 class Region(BaseModel):
@@ -20,7 +20,7 @@ class Region(BaseModel):
     """Identifies the type of the resource."""
 
 
-class VirtualCrossConnectListResponse(BaseModel):
+class VirtualCrossConnectCombined(BaseModel):
     id: Optional[str] = None
     """Identifies the resource."""
 
