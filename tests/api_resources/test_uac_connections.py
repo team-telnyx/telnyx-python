@@ -10,7 +10,7 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types import (
-    UacConnectionListResponse,
+    UacConnection,
     UacConnectionCreateResponse,
     UacConnectionDeleteResponse,
     UacConnectionUpdateResponse,
@@ -303,7 +303,7 @@ class TestUacConnections:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         uac_connection = client.uac_connections.list()
-        assert_matches_type(SyncDefaultFlatPagination[UacConnectionListResponse], uac_connection, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[UacConnection], uac_connection, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -318,7 +318,7 @@ class TestUacConnections:
             page_size=0,
             sort="connection_name",
         )
-        assert_matches_type(SyncDefaultFlatPagination[UacConnectionListResponse], uac_connection, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[UacConnection], uac_connection, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -328,7 +328,7 @@ class TestUacConnections:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         uac_connection = response.parse()
-        assert_matches_type(SyncDefaultFlatPagination[UacConnectionListResponse], uac_connection, path=["response"])
+        assert_matches_type(SyncDefaultFlatPagination[UacConnection], uac_connection, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -338,7 +338,7 @@ class TestUacConnections:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             uac_connection = response.parse()
-            assert_matches_type(SyncDefaultFlatPagination[UacConnectionListResponse], uac_connection, path=["response"])
+            assert_matches_type(SyncDefaultFlatPagination[UacConnection], uac_connection, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -669,7 +669,7 @@ class TestAsyncUacConnections:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         uac_connection = await async_client.uac_connections.list()
-        assert_matches_type(AsyncDefaultFlatPagination[UacConnectionListResponse], uac_connection, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[UacConnection], uac_connection, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -684,7 +684,7 @@ class TestAsyncUacConnections:
             page_size=0,
             sort="connection_name",
         )
-        assert_matches_type(AsyncDefaultFlatPagination[UacConnectionListResponse], uac_connection, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[UacConnection], uac_connection, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -694,7 +694,7 @@ class TestAsyncUacConnections:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         uac_connection = await response.parse()
-        assert_matches_type(AsyncDefaultFlatPagination[UacConnectionListResponse], uac_connection, path=["response"])
+        assert_matches_type(AsyncDefaultFlatPagination[UacConnection], uac_connection, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -704,9 +704,7 @@ class TestAsyncUacConnections:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             uac_connection = await response.parse()
-            assert_matches_type(
-                AsyncDefaultFlatPagination[UacConnectionListResponse], uac_connection, path=["response"]
-            )
+            assert_matches_type(AsyncDefaultFlatPagination[UacConnection], uac_connection, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
