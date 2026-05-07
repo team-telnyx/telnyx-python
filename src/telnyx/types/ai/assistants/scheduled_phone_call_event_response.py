@@ -7,7 +7,25 @@ from ...._models import BaseModel
 from .event_status import EventStatus
 from .conversation_channel_type import ConversationChannelType
 
-__all__ = ["ScheduledPhoneCallEventResponse"]
+__all__ = ["ScheduledPhoneCallEventResponse", "CallAttempt"]
+
+
+class CallAttempt(BaseModel):
+    """
+    One row in `call_attempts` — captures the terminal outcome of a single dispatch.
+    """
+
+    attempt_number: int
+
+    attempted_at: datetime
+
+    call_status: str
+    """Values: busy, canceled, no-answer, ringing, completed, failed, in-progress"""
+
+    call_duration: Optional[int] = None
+    """Duration of the call in seconds"""
+
+    telnyx_call_control_id: Optional[str] = None
 
 
 class ScheduledPhoneCallEventResponse(BaseModel):
@@ -21,11 +39,22 @@ class ScheduledPhoneCallEventResponse(BaseModel):
 
     telnyx_end_user_target: str
 
+    call_attempts: Optional[List[CallAttempt]] = None
+
+    call_duration: Optional[int] = None
+    """Duration of the call in seconds"""
+
+    call_status: Optional[str] = None
+    """Values: busy, canceled, no-answer, ringing, completed, failed, in-progress"""
+
     conversation_id: Optional[str] = None
 
     conversation_metadata: Optional[Dict[str, Union[str, int, bool]]] = None
 
     created_at: Optional[datetime] = None
+
+    dispatched_at: Optional[datetime] = None
+    """Date time at which call was sent"""
 
     dynamic_variables: Optional[Dict[str, str]] = None
     """A map of dynamic variable names to values.
@@ -36,9 +65,17 @@ class ScheduledPhoneCallEventResponse(BaseModel):
 
     errors: Optional[List[str]] = None
 
+    max_retries_client_errors: Optional[int] = None
+    """
+    Configure number of retries on client errors: busy, no-answer, failed, canceled
+    (caller hung up before the callee answered)
+    """
+
     retry_attempts: Optional[int] = None
 
     retry_count: Optional[int] = None
+
+    retry_interval_secs: Optional[int] = None
 
     scheduled_event_id: Optional[str] = None
 

@@ -7,10 +7,10 @@ from .record import Record
 from .._models import BaseModel
 from .network_interface import NetworkInterface
 
-__all__ = ["VirtualCrossConnectCreateResponse", "Data", "DataRegion"]
+__all__ = ["VirtualCrossConnectListResponse", "VirtualCrossConnectListResponseRegion"]
 
 
-class DataRegion(BaseModel):
+class VirtualCrossConnectListResponseRegion(BaseModel):
     code: Optional[str] = None
     """Region code of the interface."""
 
@@ -21,7 +21,7 @@ class DataRegion(BaseModel):
     """Identifies the type of the resource."""
 
 
-class Data(Record, NetworkInterface):
+class VirtualCrossConnectListResponse(Record, NetworkInterface):
     region_code: str
     """The region interface is deployed to."""
 
@@ -84,7 +84,7 @@ class Data(Record, NetworkInterface):
     of your assigned IP once the connection has been accepted.
     """
 
-    region: Optional[DataRegion] = None
+    region: Optional[VirtualCrossConnectListResponseRegion] = None
 
     secondary_bgp_key: Optional[str] = None
     """The authentication key for BGP peer configuration."""
@@ -119,7 +119,3 @@ class Data(Record, NetworkInterface):
     you.<br /><br />This value should be null for GCE as Google will only inform you
     of your assigned IP once the connection has been accepted.
     """
-
-
-class VirtualCrossConnectCreateResponse(BaseModel):
-    data: Optional[Data] = None

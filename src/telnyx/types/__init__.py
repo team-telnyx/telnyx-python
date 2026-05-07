@@ -25,7 +25,6 @@ from .shared import (
     CostInformation as CostInformation,
     NetappsLocation as NetappsLocation,
     RoomParticipant as RoomParticipant,
-    XaiVoiceSettings as XaiVoiceSettings,
     RegionInformation as RegionInformation,
     RimeVoiceSettings as RimeVoiceSettings,
     AzureVoiceSettings as AzureVoiceSettings,
@@ -71,7 +70,6 @@ from .call_hangup import CallHangup as CallHangup
 from .oauth_grant import OAuthGrant as OAuthGrant
 from .outbound_ip import OutboundIP as OutboundIP
 from .rcs_to_item import RcsToItem as RcsToItem
-from .uac_inbound import UacInbound as UacInbound
 from .call_bridged import CallBridged as CallBridged
 from .inbound_fqdn import InboundFqdn as InboundFqdn
 from .month_detail import MonthDetail as MonthDetail
@@ -81,7 +79,6 @@ from .room_session import RoomSession as RoomSession
 from .service_plan import ServicePlan as ServicePlan
 from .stream_codec import StreamCodec as StreamCodec
 from .traffic_type import TrafficType as TrafficType
-from .uac_outbound import UacOutbound as UacOutbound
 from .user_address import UserAddress as UserAddress
 from .verification import Verification as Verification
 from .video_region import VideoRegion as VideoRegion
@@ -97,12 +94,10 @@ from .transcription import Transcription as Transcription
 from .call_initiated import CallInitiated as CallInitiated
 from .ip_list_params import IPListParams as IPListParams
 from .media_resource import MediaResource as MediaResource
-from .model_metadata import ModelMetadata as ModelMetadata
 from .rcs_suggestion import RcsSuggestion as RcsSuggestion
 from .settings_param import SettingsParam as SettingsParam
 from .sim_card_group import SimCardGroup as SimCardGroup
 from .sim_card_order import SimCardOrder as SimCardOrder
-from .uac_connection import UacConnection as UacConnection
 from .verify_profile import VerifyProfile as VerifyProfile
 from .whatsapp_media import WhatsappMedia as WhatsappMedia
 from .wireless_error import WirelessError as WirelessError
@@ -152,6 +147,7 @@ from .enterprise_public import EnterprisePublic as EnterprisePublic
 from .fax_create_params import FaxCreateParams as FaxCreateParams
 from .media_list_params import MediaListParams as MediaListParams
 from .messaging_profile import MessagingProfile as MessagingProfile
+from .network_interface import NetworkInterface as NetworkInterface
 from .outbound_ip_param import OutboundIPParam as OutboundIPParam
 from .queue_list_params import QueueListParams as QueueListParams
 from .rcs_agent_message import RcsAgentMessage as RcsAgentMessage
@@ -183,7 +179,6 @@ from .rcs_agent_response import RcsAgentResponse as RcsAgentResponse
 from .room_create_params import RoomCreateParams as RoomCreateParams
 from .room_update_params import RoomUpdateParams as RoomUpdateParams
 from .transport_protocol import TransportProtocol as TransportProtocol
-from .uac_outbound_param import UacOutboundParam as UacOutboundParam
 from .video_region_param import VideoRegionParam as VideoRegionParam
 from .wireless_blocklist import WirelessBlocklist as WirelessBlocklist
 from .address_list_params import AddressListParams as AddressListParams
@@ -272,8 +267,6 @@ from .queue_update_response import QueueUpdateResponse as QueueUpdateResponse
 from .recording_list_params import RecordingListParams as RecordingListParams
 from .reserved_phone_number import ReservedPhoneNumber as ReservedPhoneNumber
 from .s3_configuration_data import S3ConfigurationData as S3ConfigurationData
-from .uac_external_settings import UacExternalSettings as UacExternalSettings
-from .uac_internal_settings import UacInternalSettings as UacInternalSettings
 from .alphanumeric_sender_id import AlphanumericSenderID as AlphanumericSenderID
 from .call_event_list_params import CallEventListParams as CallEventListParams
 from .call_streaming_started import CallStreamingStarted as CallStreamingStarted
@@ -380,7 +373,6 @@ from .usage_report_list_params import UsageReportListParams as UsageReportListPa
 from .user_address_list_params import UserAddressListParams as UserAddressListParams
 from .voice_design_list_params import VoiceDesignListParams as VoiceDesignListParams
 from .whatsapp_message_content import WhatsappMessageContent as WhatsappMessageContent
-from .wireguard_interface_read import WireguardInterfaceRead as WireguardInterfaceRead
 from .address_retrieve_response import AddressRetrieveResponse as AddressRetrieveResponse
 from .audit_event_list_response import AuditEventListResponse as AuditEventListResponse
 from .balance_retrieve_response import BalanceRetrieveResponse as BalanceRetrieveResponse
@@ -478,8 +470,6 @@ from .recording_retrieve_response import RecordingRetrieveResponse as RecordingR
 from .reserved_phone_number_param import ReservedPhoneNumberParam as ReservedPhoneNumberParam
 from .s3_configuration_data_param import S3ConfigurationDataParam as S3ConfigurationDataParam
 from .transcription_webhook_event import TranscriptionWebhookEvent as TranscriptionWebhookEvent
-from .uac_external_settings_param import UacExternalSettingsParam as UacExternalSettingsParam
-from .uac_internal_settings_param import UacInternalSettingsParam as UacInternalSettingsParam
 from .unsafe_unwrap_webhook_event import UnsafeUnwrapWebhookEvent as UnsafeUnwrapWebhookEvent
 from .verified_number_list_params import VerifiedNumberListParams as VerifiedNumberListParams
 from .voice_clone_create_response import VoiceCloneCreateResponse as VoiceCloneCreateResponse
@@ -511,7 +501,6 @@ from .portability_check_run_params import PortabilityCheckRunParams as Portabili
 from .porting_order_end_user_admin import PortingOrderEndUserAdmin as PortingOrderEndUserAdmin
 from .porting_order_end_user_param import PortingOrderEndUserParam as PortingOrderEndUserParam
 from .portout_update_status_params import PortoutUpdateStatusParams as PortoutUpdateStatusParams
-from .public_internet_gateway_read import PublicInternetGatewayRead as PublicInternetGatewayRead
 from .requirement_type_list_params import RequirementTypeListParams as RequirementTypeListParams
 from .room_composition_list_params import RoomCompositionListParams as RoomCompositionListParams
 from .room_participant_list_params import RoomParticipantListParams as RoomParticipantListParams
@@ -523,6 +512,7 @@ from .sim_card_group_update_params import SimCardGroupUpdateParams as SimCardGro
 from .sim_card_order_create_params import SimCardOrderCreateParams as SimCardOrderCreateParams
 from .sub_number_order_list_params import SubNumberOrderListParams as SubNumberOrderListParams
 from .uac_connection_create_params import UacConnectionCreateParams as UacConnectionCreateParams
+from .uac_connection_list_response import UacConnectionListResponse as UacConnectionListResponse
 from .uac_connection_update_params import UacConnectionUpdateParams as UacConnectionUpdateParams
 from .url_shortener_settings_param import URLShortenerSettingsParam as URLShortenerSettingsParam
 from .user_address_create_response import UserAddressCreateResponse as UserAddressCreateResponse
@@ -621,7 +611,6 @@ from .uac_connection_delete_response import UacConnectionDeleteResponse as UacCo
 from .uac_connection_update_response import UacConnectionUpdateResponse as UacConnectionUpdateResponse
 from .user_address_retrieve_response import UserAddressRetrieveResponse as UserAddressRetrieveResponse
 from .verification_retrieve_response import VerificationRetrieveResponse as VerificationRetrieveResponse
-from .virtual_cross_connect_combined import VirtualCrossConnectCombined as VirtualCrossConnectCombined
 from .voice_design_retrieve_response import VoiceDesignRetrieveResponse as VoiceDesignRetrieveResponse
 from .webhook_delivery_list_response import WebhookDeliveryListResponse as WebhookDeliveryListResponse
 from .whatsapp_message_content_param import WhatsappMessageContentParam as WhatsappMessageContentParam
@@ -752,6 +741,7 @@ from .text_to_speech_list_voices_params import TextToSpeechListVoicesParams as T
 from .usage_report_get_options_response import UsageReportGetOptionsResponse as UsageReportGetOptionsResponse
 from .virtual_cross_connect_list_params import VirtualCrossConnectListParams as VirtualCrossConnectListParams
 from .wireguard_interface_create_params import WireguardInterfaceCreateParams as WireguardInterfaceCreateParams
+from .wireguard_interface_list_response import WireguardInterfaceListResponse as WireguardInterfaceListResponse
 from .alphanumeric_sender_id_list_params import AlphanumericSenderIDListParams as AlphanumericSenderIDListParams
 from .available_phone_number_list_params import AvailablePhoneNumberListParams as AvailablePhoneNumberListParams
 from .bulk_sim_card_action_list_response import BulkSimCardActionListResponse as BulkSimCardActionListResponse
@@ -825,6 +815,7 @@ from .texml_application_retrieve_response import TexmlApplicationRetrieveRespons
 from .text_to_speech_list_voices_response import TextToSpeechListVoicesResponse as TextToSpeechListVoicesResponse
 from .update_regulatory_requirement_param import UpdateRegulatoryRequirementParam as UpdateRegulatoryRequirementParam
 from .virtual_cross_connect_create_params import VirtualCrossConnectCreateParams as VirtualCrossConnectCreateParams
+from .virtual_cross_connect_list_response import VirtualCrossConnectListResponse as VirtualCrossConnectListResponse
 from .virtual_cross_connect_update_params import VirtualCrossConnectUpdateParams as VirtualCrossConnectUpdateParams
 from .voice_design_download_sample_params import VoiceDesignDownloadSampleParams as VoiceDesignDownloadSampleParams
 from .wireguard_interface_create_response import WireguardInterfaceCreateResponse as WireguardInterfaceCreateResponse
@@ -939,6 +930,9 @@ from .pronunciation_dict_phoneme_item_param import (
 )
 from .public_internet_gateway_create_params import (
     PublicInternetGatewayCreateParams as PublicInternetGatewayCreateParams,
+)
+from .public_internet_gateway_list_response import (
+    PublicInternetGatewayListResponse as PublicInternetGatewayListResponse,
 )
 from .sim_card_get_activation_code_response import SimCardGetActivationCodeResponse as SimCardGetActivationCodeResponse
 from .sim_card_order_preview_preview_params import SimCardOrderPreviewPreviewParams as SimCardOrderPreviewPreviewParams
