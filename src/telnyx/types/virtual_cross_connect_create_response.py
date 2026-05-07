@@ -3,9 +3,8 @@
 from typing import Optional
 from typing_extensions import Literal
 
-from .record import Record
 from .._models import BaseModel
-from .network_interface import NetworkInterface
+from .interface_status import InterfaceStatus
 
 __all__ = ["VirtualCrossConnectCreateResponse", "Data", "DataRegion"]
 
@@ -21,22 +20,18 @@ class DataRegion(BaseModel):
     """Identifies the type of the resource."""
 
 
-class Data(Record, NetworkInterface):
-    region_code: str
-    """The region interface is deployed to."""
+class Data(BaseModel):
+    id: Optional[str] = None
+    """Identifies the resource."""
 
     bandwidth_mbps: Optional[float] = None
     """
     The desired throughput in Megabits per Second (Mbps) for your Virtual Cross
-    Connect.<br /><br />The available bandwidths can be found using the
-    /virtual_cross_connect_regions endpoint.
+    Connect.
     """
 
     bgp_asn: Optional[float] = None
-    """The Border Gateway Protocol (BGP) Autonomous System Number (ASN).
-
-    If null, value will be assigned by Telnyx.
-    """
+    """The Border Gateway Protocol (BGP) Autonomous System Number (ASN)."""
 
     cloud_provider: Optional[Literal["aws", "azure", "gce"]] = None
     """
@@ -45,80 +40,48 @@ class Data(Record, NetworkInterface):
     """
 
     cloud_provider_region: Optional[str] = None
-    """
-    The region where your Virtual Private Cloud hosts are located.<br /><br />The
-    available regions can be found using the /virtual_cross_connect_regions
-    endpoint.
-    """
+    """The region where your Virtual Private Cloud hosts are located."""
+
+    created_at: Optional[str] = None
+    """ISO 8601 formatted date-time indicating when the resource was created."""
+
+    name: Optional[str] = None
+    """A user specified name for the interface."""
+
+    network_id: Optional[str] = None
+    """The id of the network associated with the interface."""
 
     primary_bgp_key: Optional[str] = None
     """The authentication key for BGP peer configuration."""
 
     primary_cloud_account_id: Optional[str] = None
-    """The identifier for your Virtual Private Cloud.
-
-    The number will be different based upon your Cloud provider.
-    """
+    """The identifier for your Virtual Private Cloud."""
 
     primary_cloud_ip: Optional[str] = None
-    """
-    The IP address assigned for your side of the Virtual Cross
-    Connect.<br /><br />If none is provided, one will be generated for
-    you.<br /><br />This value can not be patched once the VXC has bene provisioned.
-    """
+    """The IP address assigned for your side of the Virtual Cross Connect."""
 
     primary_enabled: Optional[bool] = None
-    """Indicates whether the primary circuit is enabled.
-
-    Setting this to `false` will disable the circuit.
-    """
+    """Indicates whether the primary circuit is enabled."""
 
     primary_routing_announcement: Optional[bool] = None
-    """Whether the primary BGP route is being announced."""
+    """Whether"""
 
     primary_telnyx_ip: Optional[str] = None
-    """
-    The IP address assigned to the Telnyx side of the Virtual Cross
-    Connect.<br /><br />If none is provided, one will be generated for
-    you.<br /><br />This value should be null for GCE as Google will only inform you
-    of your assigned IP once the connection has been accepted.
-    """
+    """The IP address assigned to the Telnyx side of the Virtual Cross Connect."""
+
+    record_type: Optional[str] = None
+    """Identifies the type of the resource."""
 
     region: Optional[DataRegion] = None
 
-    secondary_bgp_key: Optional[str] = None
-    """The authentication key for BGP peer configuration."""
+    region_code: Optional[str] = None
+    """The region interface is deployed to."""
 
-    secondary_cloud_account_id: Optional[str] = None
-    """The identifier for your Virtual Private Cloud.
+    status: Optional[InterfaceStatus] = None
+    """The current status of the interface deployment."""
 
-    The number will be different based upon your Cloud provider.<br /><br />This
-    attribute is only necessary for GCE.
-    """
-
-    secondary_cloud_ip: Optional[str] = None
-    """
-    The IP address assigned for your side of the Virtual Cross
-    Connect.<br /><br />If none is provided, one will be generated for
-    you.<br /><br />This value can not be patched once the VXC has bene provisioned.
-    """
-
-    secondary_enabled: Optional[bool] = None
-    """Indicates whether the secondary circuit is enabled.
-
-    Setting this to `false` will disable the circuit.
-    """
-
-    secondary_routing_announcement: Optional[bool] = None
-    """Whether the secondary BGP route is being announced."""
-
-    secondary_telnyx_ip: Optional[str] = None
-    """
-    The IP address assigned to the Telnyx side of the Virtual Cross
-    Connect.<br /><br />If none is provided, one will be generated for
-    you.<br /><br />This value should be null for GCE as Google will only inform you
-    of your assigned IP once the connection has been accepted.
-    """
+    updated_at: Optional[str] = None
+    """ISO 8601 formatted date-time indicating when the resource was updated."""
 
 
 class VirtualCrossConnectCreateResponse(BaseModel):

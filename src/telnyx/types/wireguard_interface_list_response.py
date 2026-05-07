@@ -2,14 +2,13 @@
 
 from typing import Optional
 
-from .record import Record
 from .._models import BaseModel
-from .network_interface import NetworkInterface
+from .interface_status import InterfaceStatus
 
-__all__ = ["WireguardInterfaceListResponse", "WireguardInterfaceListResponseRegion"]
+__all__ = ["WireguardInterfaceListResponse", "Region"]
 
 
-class WireguardInterfaceListResponseRegion(BaseModel):
+class Region(BaseModel):
     code: Optional[str] = None
     """Region code of the interface."""
 
@@ -20,17 +19,38 @@ class WireguardInterfaceListResponseRegion(BaseModel):
     """Identifies the type of the resource."""
 
 
-class WireguardInterfaceListResponse(Record, NetworkInterface):
+class WireguardInterfaceListResponse(BaseModel):
+    id: Optional[str] = None
+    """Identifies the resource."""
+
+    created_at: Optional[str] = None
+    """ISO 8601 formatted date-time indicating when the resource was created."""
+
     enable_sip_trunking: Optional[bool] = None
     """Enable SIP traffic forwarding over VPN interface."""
 
     endpoint: Optional[str] = None
     """The Telnyx WireGuard peers `Peer.endpoint` value."""
 
+    name: Optional[str] = None
+    """A user specified name for the interface."""
+
+    network_id: Optional[str] = None
+    """The id of the network associated with the interface."""
+
     public_key: Optional[str] = None
     """The Telnyx WireGuard peers `Peer.PublicKey`."""
 
-    region: Optional[WireguardInterfaceListResponseRegion] = None
+    record_type: Optional[str] = None
+    """Identifies the type of the resource."""
+
+    region: Optional[Region] = None
 
     region_code: Optional[str] = None
     """The region interface is deployed to."""
+
+    status: Optional[InterfaceStatus] = None
+    """The current status of the interface deployment."""
+
+    updated_at: Optional[str] = None
+    """ISO 8601 formatted date-time indicating when the resource was updated."""
