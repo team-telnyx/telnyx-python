@@ -5,10 +5,10 @@ from typing import Optional
 from .._models import BaseModel
 from .interface_status import InterfaceStatus
 
-__all__ = ["PublicInternetGatewayListResponse"]
+__all__ = ["PublicInternetGatewayRead"]
 
 
-class PublicInternetGatewayListResponse(BaseModel):
+class PublicInternetGatewayRead(BaseModel):
     id: Optional[str] = None
     """Identifies the resource."""
 

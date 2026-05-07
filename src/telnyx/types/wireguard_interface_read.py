@@ -5,7 +5,7 @@ from typing import Optional
 from .._models import BaseModel
 from .interface_status import InterfaceStatus
 
-__all__ = ["WireguardInterfaceListResponse", "Region"]
+__all__ = ["WireguardInterfaceRead", "Region"]
 
 
 class Region(BaseModel):
@@ -19,7 +19,7 @@ class Region(BaseModel):
     """Identifies the type of the resource."""
 
 
-class WireguardInterfaceListResponse(BaseModel):
+class WireguardInterfaceRead(BaseModel):
     id: Optional[str] = None
     """Identifies the resource."""
 
