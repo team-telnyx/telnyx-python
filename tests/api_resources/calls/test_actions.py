@@ -540,7 +540,10 @@ class TestActions:
             ],
             send_message_history_updates=True,
             send_partial_results=True,
-            transcription={"model": "distil-whisper/distil-large-v2"},
+            transcription={
+                "language": "auto",
+                "model": "distil-whisper/distil-large-v2",
+            },
             user_response_timeout_ms=5000,
             voice="Telnyx.KokoroTTS.af",
             voice_settings={
@@ -1443,7 +1446,10 @@ class TestActions:
                 }
             ],
             send_message_history_updates=True,
-            transcription={"model": "distil-whisper/distil-large-v2"},
+            transcription={
+                "language": "auto",
+                "model": "distil-whisper/distil-large-v2",
+            },
             voice="Telnyx.KokoroTTS.af",
             voice_settings={
                 "type": "elevenlabs",
@@ -3125,7 +3131,10 @@ class TestAsyncActions:
             ],
             send_message_history_updates=True,
             send_partial_results=True,
-            transcription={"model": "distil-whisper/distil-large-v2"},
+            transcription={
+                "language": "auto",
+                "model": "distil-whisper/distil-large-v2",
+            },
             user_response_timeout_ms=5000,
             voice="Telnyx.KokoroTTS.af",
             voice_settings={
@@ -4028,7 +4037,10 @@ class TestAsyncActions:
                 }
             ],
             send_message_history_updates=True,
-            transcription={"model": "distil-whisper/distil-large-v2"},
+            transcription={
+                "language": "auto",
+                "model": "distil-whisper/distil-large-v2",
+            },
             voice="Telnyx.KokoroTTS.af",
             voice_settings={
                 "type": "elevenlabs",
