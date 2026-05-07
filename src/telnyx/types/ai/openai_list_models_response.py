@@ -3,21 +3,12 @@
 from typing import List, Optional
 
 from ..._models import BaseModel
+from ..model_metadata import ModelMetadata
 
-__all__ = ["OpenAIListModelsResponse", "Data"]
-
-
-class Data(BaseModel):
-    id: str
-
-    created: int
-
-    owned_by: str
-
-    object: Optional[str] = None
+__all__ = ["OpenAIListModelsResponse"]
 
 
 class OpenAIListModelsResponse(BaseModel):
-    data: List[Data]
+    data: List[ModelMetadata]
 
     object: Optional[str] = None
