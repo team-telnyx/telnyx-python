@@ -45,6 +45,8 @@ class TestScheduledEvents:
             telnyx_end_user_target="telnyx_end_user_target",
             conversation_metadata={"foo": "string"},
             dynamic_variables={"foo": "string"},
+            max_retries_client_errors=0,
+            retry_interval_secs=60,
             text="text",
         )
         assert_matches_type(ScheduledEventResponse, scheduled_event, path=["response"])
@@ -285,6 +287,8 @@ class TestAsyncScheduledEvents:
             telnyx_end_user_target="telnyx_end_user_target",
             conversation_metadata={"foo": "string"},
             dynamic_variables={"foo": "string"},
+            max_retries_client_errors=0,
+            retry_interval_secs=60,
             text="text",
         )
         assert_matches_type(ScheduledEventResponse, scheduled_event, path=["response"])

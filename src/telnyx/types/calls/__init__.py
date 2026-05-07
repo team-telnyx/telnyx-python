@@ -89,9 +89,6 @@ from .action_switch_supervisor_role_params import ActionSwitchSupervisorRolePara
 from .action_start_noise_suppression_params import (
     ActionStartNoiseSuppressionParams as ActionStartNoiseSuppressionParams,
 )
-from .transcription_engine_xai_config_param import (
-    TranscriptionEngineXaiConfigParam as TranscriptionEngineXaiConfigParam,
-)
 from .action_stop_noise_suppression_response import (
     ActionStopNoiseSuppressionResponse as ActionStopNoiseSuppressionResponse,
 )
@@ -115,9 +112,6 @@ from .transcription_engine_telnyx_config_param import (
 )
 from .action_add_ai_assistant_messages_response import (
     ActionAddAIAssistantMessagesResponse as ActionAddAIAssistantMessagesResponse,
-)
-from .transcription_engine_assemblyai_config_param import (
-    TranscriptionEngineAssemblyaiConfigParam as TranscriptionEngineAssemblyaiConfigParam,
 )
 from .call_control_command_result_with_conversation_id import (
     CallControlCommandResultWithConversationID as CallControlCommandResultWithConversationID,
