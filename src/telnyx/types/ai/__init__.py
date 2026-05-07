@@ -34,9 +34,7 @@ from .webhook_tool_param import WebhookToolParam as WebhookToolParam
 from .cluster_list_params import ClusterListParams as ClusterListParams
 from .inference_embedding import InferenceEmbedding as InferenceEmbedding
 from .mission_list_params import MissionListParams as MissionListParams
-from .start_speaking_plan import StartSpeakingPlan as StartSpeakingPlan
 from .transfer_tool_param import TransferToolParam as TransferToolParam
-from .assistant_mcp_server import AssistantMcpServer as AssistantMcpServer
 from .assistant_tool_param import AssistantToolParam as AssistantToolParam
 from .embedding_url_params import EmbeddingURLParams as EmbeddingURLParams
 from .retrieval_tool_param import RetrievalToolParam as RetrievalToolParam
@@ -44,7 +42,6 @@ from .tool_create_response import ToolCreateResponse as ToolCreateResponse
 from .tool_update_response import ToolUpdateResponse as ToolUpdateResponse
 from .voice_settings_param import VoiceSettingsParam as VoiceSettingsParam
 from .assistant_chat_params import AssistantChatParams as AssistantChatParams
-from .assistant_integration import AssistantIntegration as AssistantIntegration
 from .cluster_list_response import ClusterListResponse as ClusterListResponse
 from .embedding_list_params import EmbeddingListParams as EmbeddingListParams
 from .mission_create_params import MissionCreateParams as MissionCreateParams
@@ -84,8 +81,6 @@ from .cluster_retrieve_response import ClusterRetrieveResponse as ClusterRetriev
 from .fallback_config_req_param import FallbackConfigReqParam as FallbackConfigReqParam
 from .integration_list_response import IntegrationListResponse as IntegrationListResponse
 from .mission_retrieve_response import MissionRetrieveResponse as MissionRetrieveResponse
-from .start_speaking_plan_param import StartSpeakingPlanParam as StartSpeakingPlanParam
-from .assistant_mcp_server_param import AssistantMcpServerParam as AssistantMcpServerParam
 from .cluster_fetch_graph_params import ClusterFetchGraphParams as ClusterFetchGraphParams
 from .conversation_create_params import ConversationCreateParams as ConversationCreateParams
 from .conversation_list_response import ConversationListResponse as ConversationListResponse
@@ -94,7 +89,6 @@ from .mcp_server_create_response import McpServerCreateResponse as McpServerCrea
 from .mcp_server_update_response import McpServerUpdateResponse as McpServerUpdateResponse
 from .mission_list_events_params import MissionListEventsParams as MissionListEventsParams
 from .post_conversation_settings import PostConversationSettings as PostConversationSettings
-from .assistant_integration_param import AssistantIntegrationParam as AssistantIntegrationParam
 from .assistant_send_sms_response import AssistantSendSMSResponse as AssistantSendSMSResponse
 from .embedding_retrieve_response import EmbeddingRetrieveResponse as EmbeddingRetrieveResponse
 from .openai_list_models_response import OpenAIListModelsResponse as OpenAIListModelsResponse
@@ -108,7 +102,6 @@ from .integration_retrieve_response import IntegrationRetrieveResponse as Integr
 from .mission_update_mission_params import MissionUpdateMissionParams as MissionUpdateMissionParams
 from .transcription_settings_config import TranscriptionSettingsConfig as TranscriptionSettingsConfig
 from .conversation_retrieve_response import ConversationRetrieveResponse as ConversationRetrieveResponse
-from .transcription_endpointing_plan import TranscriptionEndpointingPlan as TranscriptionEndpointingPlan
 from .chat_create_completion_response import ChatCreateCompletionResponse as ChatCreateCompletionResponse
 from .conversation_add_message_params import ConversationAddMessageParams as ConversationAddMessageParams
 from .mission_update_mission_response import MissionUpdateMissionResponse as MissionUpdateMissionResponse
@@ -116,18 +109,11 @@ from .embedding_similarity_search_params import EmbeddingSimilaritySearchParams 
 from .transcription_settings_config_param import TranscriptionSettingsConfigParam as TranscriptionSettingsConfigParam
 from .embedding_similarity_search_response import EmbeddingSimilaritySearchResponse as EmbeddingSimilaritySearchResponse
 from .post_conversation_settings_req_param import PostConversationSettingsReqParam as PostConversationSettingsReqParam
-from .transcription_endpointing_plan_param import TranscriptionEndpointingPlanParam as TranscriptionEndpointingPlanParam
 from .inference_embedding_webhook_tool_params import (
     InferenceEmbeddingWebhookToolParams as InferenceEmbeddingWebhookToolParams,
 )
-from .inference_embedding_interruption_settings import (
-    InferenceEmbeddingInterruptionSettings as InferenceEmbeddingInterruptionSettings,
-)
 from .inference_embedding_webhook_tool_params_param import (
     InferenceEmbeddingWebhookToolParamsParam as InferenceEmbeddingWebhookToolParamsParam,
-)
-from .inference_embedding_interruption_settings_param import (
-    InferenceEmbeddingInterruptionSettingsParam as InferenceEmbeddingInterruptionSettingsParam,
 )
 from .conversation_retrieve_conversations_insights_response import (
     ConversationRetrieveConversationsInsightsResponse as ConversationRetrieveConversationsInsightsResponse,

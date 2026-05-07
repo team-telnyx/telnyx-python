@@ -12,17 +12,10 @@ from .connection_rtcp_settings import ConnectionRtcpSettings
 from .shared.connection_jitter_buffer import ConnectionJitterBuffer
 from .shared.connection_noise_suppression_details import ConnectionNoiseSuppressionDetails
 
-__all__ = [
-    "UacConnectionUpdateResponse",
-    "Data",
-    "DataExternalUacSettings",
-    "DataInbound",
-    "DataInternalUacSettings",
-    "DataOutbound",
-]
+__all__ = ["UacConnectionListResponse", "ExternalUacSettings", "Inbound", "InternalUacSettings", "Outbound"]
 
 
-class DataExternalUacSettings(BaseModel):
+class ExternalUacSettings(BaseModel):
     """
     External SIP peer settings used by Telnyx when registering to your PBX and routing outbound calls.
     """
@@ -74,7 +67,7 @@ class DataExternalUacSettings(BaseModel):
     """
 
 
-class DataInbound(BaseModel):
+class Inbound(BaseModel):
     ani_number_format: Optional[Literal["+E.164", "E.164", "+E.164-national", "E.164-national"]] = None
     """
     This setting allows you to set the format with which the caller's number (ANI)
@@ -142,7 +135,7 @@ class DataInbound(BaseModel):
     """Time(sec) before aborting if call is unanswered (min: 1, max: 600)."""
 
 
-class DataInternalUacSettings(BaseModel):
+class InternalUacSettings(BaseModel):
     """Internal Telnyx-side settings for a UAC connection."""
 
     destination_uri: Optional[str] = None
@@ -155,7 +148,7 @@ class DataInternalUacSettings(BaseModel):
     """
 
 
-class DataOutbound(BaseModel):
+class Outbound(BaseModel):
     ani_override: Optional[str] = None
     """
     Set a phone number as the ani_override value to override caller id number on
@@ -213,7 +206,7 @@ class DataOutbound(BaseModel):
     """
 
 
-class Data(BaseModel):
+class UacConnectionListResponse(BaseModel):
     """
     A UAC (User Agent Client) Connection registers Telnyx to your PBX — the opposite of a standard SIP trunk, where the PBX registers to Telnyx. Use UAC when your PBX doesn’t support outbound SIP registration or you need Telnyx to maintain the registration.
     """
@@ -271,7 +264,7 @@ class Data(BaseModel):
     Cannot be set if the transport_portocol is TLS.
     """
 
-    external_uac_settings: Optional[DataExternalUacSettings] = None
+    external_uac_settings: Optional[ExternalUacSettings] = None
     """
     External SIP peer settings used by Telnyx when registering to your PBX and
     routing outbound calls.
@@ -286,9 +279,9 @@ class Data(BaseModel):
     fqdns: Optional[List[Fqdn]] = None
     """FQDN records managed automatically by the UAC connection lifecycle."""
 
-    inbound: Optional[DataInbound] = None
+    inbound: Optional[Inbound] = None
 
-    internal_uac_settings: Optional[DataInternalUacSettings] = None
+    internal_uac_settings: Optional[InternalUacSettings] = None
     """Internal Telnyx-side settings for a UAC connection."""
 
     ios_push_credential_id: Optional[str] = None
@@ -327,7 +320,7 @@ class Data(BaseModel):
     use T38 on just one leg of the call depending on each leg's settings.
     """
 
-    outbound: Optional[DataOutbound] = None
+    outbound: Optional[Outbound] = None
 
     password: Optional[str] = None
     """The password to be used as part of the credentials.
@@ -388,13 +381,3 @@ class Data(BaseModel):
 
     webhook_timeout_secs: Optional[int] = None
     """Specifies how many seconds to wait before timing out a webhook."""
-
-
-class UacConnectionUpdateResponse(BaseModel):
-    data: Optional[Data] = None
-    """
-    A UAC (User Agent Client) Connection registers Telnyx to your PBX — the opposite
-    of a standard SIP trunk, where the PBX registers to Telnyx. Use UAC when your
-    PBX doesn’t support outbound SIP registration or you need Telnyx to maintain the
-    registration.
-    """
