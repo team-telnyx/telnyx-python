@@ -3,12 +3,21 @@
 from typing import List, Optional
 
 from .._models import BaseModel
-from .model_metadata import ModelMetadata
 
-__all__ = ["AIRetrieveModelsResponse"]
+__all__ = ["AIRetrieveModelsResponse", "Data"]
+
+
+class Data(BaseModel):
+    id: str
+
+    created: int
+
+    owned_by: str
+
+    object: Optional[str] = None
 
 
 class AIRetrieveModelsResponse(BaseModel):
-    data: List[ModelMetadata]
+    data: List[Data]
 
     object: Optional[str] = None
