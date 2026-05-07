@@ -31,11 +31,8 @@ from ....types.ai.observability_req_param import ObservabilityReqParam
 from ....types.ai.messaging_settings_param import MessagingSettingsParam
 from ....types.ai.telephony_settings_param import TelephonySettingsParam
 from ....types.ai.fallback_config_req_param import FallbackConfigReqParam
-from ....types.ai.assistant_mcp_server_param import AssistantMcpServerParam
-from ....types.ai.assistant_integration_param import AssistantIntegrationParam
 from ....types.ai.transcription_settings_param import TranscriptionSettingsParam
 from ....types.ai.post_conversation_settings_req_param import PostConversationSettingsReqParam
-from ....types.ai.inference_embedding_interruption_settings_param import InferenceEmbeddingInterruptionSettingsParam
 
 __all__ = ["VersionsResource", "AsyncVersionsResource"]
 
@@ -122,10 +119,10 @@ class VersionsResource(SyncAPIResource):
         greeting: str | Omit = omit,
         insight_settings: InsightSettingsParam | Omit = omit,
         instructions: str | Omit = omit,
-        integrations: Iterable[AssistantIntegrationParam] | Omit = omit,
-        interruption_settings: InferenceEmbeddingInterruptionSettingsParam | Omit = omit,
+        integrations: Iterable[version_update_params.Integration] | Omit = omit,
+        interruption_settings: version_update_params.InterruptionSettings | Omit = omit,
         llm_api_key_ref: str | Omit = omit,
-        mcp_servers: Iterable[AssistantMcpServerParam] | Omit = omit,
+        mcp_servers: Iterable[version_update_params.McpServer] | Omit = omit,
         messaging_settings: MessagingSettingsParam | Omit = omit,
         model: str | Omit = omit,
         name: str | Omit = omit,
@@ -483,10 +480,10 @@ class AsyncVersionsResource(AsyncAPIResource):
         greeting: str | Omit = omit,
         insight_settings: InsightSettingsParam | Omit = omit,
         instructions: str | Omit = omit,
-        integrations: Iterable[AssistantIntegrationParam] | Omit = omit,
-        interruption_settings: InferenceEmbeddingInterruptionSettingsParam | Omit = omit,
+        integrations: Iterable[version_update_params.Integration] | Omit = omit,
+        interruption_settings: version_update_params.InterruptionSettings | Omit = omit,
         llm_api_key_ref: str | Omit = omit,
-        mcp_servers: Iterable[AssistantMcpServerParam] | Omit = omit,
+        mcp_servers: Iterable[version_update_params.McpServer] | Omit = omit,
         messaging_settings: MessagingSettingsParam | Omit = omit,
         model: str | Omit = omit,
         name: str | Omit = omit,
