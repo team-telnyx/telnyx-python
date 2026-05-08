@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.124.0 (2026-05-08)
+
+Full Changelog: [v4.123.1...v4.124.0](https://github.com/team-telnyx/telnyx-python/compare/v4.123.1...v4.124.0)
+
+### Features
+
+* AI-2294: document /ai/openai/models response and refresh LLM examples ([d03c497](https://github.com/team-telnyx/telnyx-python/commit/d03c497295687da246abea9c967acdcea4d0c4aa))
+
 ## 4.123.1 (2026-05-08)
 
 Full Changelog: [v4.123.0...v4.123.1](https://github.com/team-telnyx/telnyx-python/compare/v4.123.0...v4.123.1)
