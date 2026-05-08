@@ -217,7 +217,7 @@ client = Telnyx()
 response = client.calls.dial(
     connection_id="7267xxxxxxxxxxxxxx",
     from_="+18005550101",
-    to="+18005550100 or sip:username@sip.telnyx.com",
+    to="+18005550100 or sip:username@sip.telnyx.com;secure=srtp",
     answering_machine_detection_config={
         "after_greeting_silence_millis": 1000,
         "between_words_silence_millis": 1000,

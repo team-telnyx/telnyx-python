@@ -184,7 +184,11 @@ class CallsResource(SyncAPIResource):
               number). The number should be in +E164 format.
 
           to: The DID or SIP URI to dial out to. Multiple DID or SIP URIs can be provided
-              using an array of strings
+              using an array of strings. For SIP URI destinations, append `;secure=true` or
+              `;secure=srtp` to enable SRTP media encryption for that endpoint, or
+              `;secure=dtls` to enable DTLS media encryption for that endpoint. If
+              `media_encryption` is set to `SRTP` or `DTLS`, it takes precedence over any
+              per-endpoint `secure` URI parameter.
 
           answering_machine_detection: Enables Answering Machine Detection. Telnyx offers Premium and Standard
               detections. With Premium detection, when a call is answered, Telnyx runs
@@ -252,7 +256,11 @@ class CallsResource(SyncAPIResource):
 
           link_to: Use another call's control id for sharing the same call session id
 
-          media_encryption: Defines whether media should be encrypted on the call.
+          media_encryption: Defines whether media should be encrypted on the call. For SIP URI destinations,
+              media encryption can also be requested per endpoint with the `secure` URI
+              parameter: `;secure=true` or `;secure=srtp` enables SRTP, and `;secure=dtls`
+              enables DTLS. This parameter, when set to `SRTP` or `DTLS`, takes precedence
+              over the per-endpoint `secure` value.
 
           media_name: The media_name of a file to be played back to the callee when the call is
               answered. The media_name must point to a file previously uploaded to
@@ -624,7 +632,11 @@ class AsyncCallsResource(AsyncAPIResource):
               number). The number should be in +E164 format.
 
           to: The DID or SIP URI to dial out to. Multiple DID or SIP URIs can be provided
-              using an array of strings
+              using an array of strings. For SIP URI destinations, append `;secure=true` or
+              `;secure=srtp` to enable SRTP media encryption for that endpoint, or
+              `;secure=dtls` to enable DTLS media encryption for that endpoint. If
+              `media_encryption` is set to `SRTP` or `DTLS`, it takes precedence over any
+              per-endpoint `secure` URI parameter.
 
           answering_machine_detection: Enables Answering Machine Detection. Telnyx offers Premium and Standard
               detections. With Premium detection, when a call is answered, Telnyx runs
@@ -692,7 +704,11 @@ class AsyncCallsResource(AsyncAPIResource):
 
           link_to: Use another call's control id for sharing the same call session id
 
-          media_encryption: Defines whether media should be encrypted on the call.
+          media_encryption: Defines whether media should be encrypted on the call. For SIP URI destinations,
+              media encryption can also be requested per endpoint with the `secure` URI
+              parameter: `;secure=true` or `;secure=srtp` enables SRTP, and `;secure=dtls`
+              enables DTLS. This parameter, when set to `SRTP` or `DTLS`, takes precedence
+              over the per-endpoint `secure` value.
 
           media_name: The media_name of a file to be played back to the callee when the call is
               answered. The media_name must point to a file previously uploaded to

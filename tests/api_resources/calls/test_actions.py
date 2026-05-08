@@ -2475,7 +2475,7 @@ class TestActions:
     def test_method_transfer(self, client: Telnyx) -> None:
         action = client.calls.actions.transfer(
             call_control_id="call_control_id",
-            to="+18005550100 or sip:username@sip.telnyx.com",
+            to="+18005550100 or sip:username@sip.telnyx.com;secure=srtp",
         )
         assert_matches_type(ActionTransferResponse, action, path=["response"])
 
@@ -2484,7 +2484,7 @@ class TestActions:
     def test_method_transfer_with_all_params(self, client: Telnyx) -> None:
         action = client.calls.actions.transfer(
             call_control_id="call_control_id",
-            to="+18005550100 or sip:username@sip.telnyx.com",
+            to="+18005550100 or sip:username@sip.telnyx.com;secure=srtp",
             answering_machine_detection="detect",
             answering_machine_detection_config={
                 "after_greeting_silence_millis": 1000,
@@ -2563,7 +2563,7 @@ class TestActions:
     def test_raw_response_transfer(self, client: Telnyx) -> None:
         response = client.calls.actions.with_raw_response.transfer(
             call_control_id="call_control_id",
-            to="+18005550100 or sip:username@sip.telnyx.com",
+            to="+18005550100 or sip:username@sip.telnyx.com;secure=srtp",
         )
 
         assert response.is_closed is True
@@ -2576,7 +2576,7 @@ class TestActions:
     def test_streaming_response_transfer(self, client: Telnyx) -> None:
         with client.calls.actions.with_streaming_response.transfer(
             call_control_id="call_control_id",
-            to="+18005550100 or sip:username@sip.telnyx.com",
+            to="+18005550100 or sip:username@sip.telnyx.com;secure=srtp",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2592,7 +2592,7 @@ class TestActions:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `call_control_id` but received ''"):
             client.calls.actions.with_raw_response.transfer(
                 call_control_id="",
-                to="+18005550100 or sip:username@sip.telnyx.com",
+                to="+18005550100 or sip:username@sip.telnyx.com;secure=srtp",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -5066,7 +5066,7 @@ class TestAsyncActions:
     async def test_method_transfer(self, async_client: AsyncTelnyx) -> None:
         action = await async_client.calls.actions.transfer(
             call_control_id="call_control_id",
-            to="+18005550100 or sip:username@sip.telnyx.com",
+            to="+18005550100 or sip:username@sip.telnyx.com;secure=srtp",
         )
         assert_matches_type(ActionTransferResponse, action, path=["response"])
 
@@ -5075,7 +5075,7 @@ class TestAsyncActions:
     async def test_method_transfer_with_all_params(self, async_client: AsyncTelnyx) -> None:
         action = await async_client.calls.actions.transfer(
             call_control_id="call_control_id",
-            to="+18005550100 or sip:username@sip.telnyx.com",
+            to="+18005550100 or sip:username@sip.telnyx.com;secure=srtp",
             answering_machine_detection="detect",
             answering_machine_detection_config={
                 "after_greeting_silence_millis": 1000,
@@ -5154,7 +5154,7 @@ class TestAsyncActions:
     async def test_raw_response_transfer(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.calls.actions.with_raw_response.transfer(
             call_control_id="call_control_id",
-            to="+18005550100 or sip:username@sip.telnyx.com",
+            to="+18005550100 or sip:username@sip.telnyx.com;secure=srtp",
         )
 
         assert response.is_closed is True
@@ -5167,7 +5167,7 @@ class TestAsyncActions:
     async def test_streaming_response_transfer(self, async_client: AsyncTelnyx) -> None:
         async with async_client.calls.actions.with_streaming_response.transfer(
             call_control_id="call_control_id",
-            to="+18005550100 or sip:username@sip.telnyx.com",
+            to="+18005550100 or sip:username@sip.telnyx.com;secure=srtp",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -5183,7 +5183,7 @@ class TestAsyncActions:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `call_control_id` but received ''"):
             await async_client.calls.actions.with_raw_response.transfer(
                 call_control_id="",
-                to="+18005550100 or sip:username@sip.telnyx.com",
+                to="+18005550100 or sip:username@sip.telnyx.com;secure=srtp",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
