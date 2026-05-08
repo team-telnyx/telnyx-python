@@ -207,13 +207,16 @@ class AIResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AIRetrieveModelsResponse:
-        """**Deprecated**: Use `GET /v2/ai/openai/models` instead.
+        """
+        **Deprecated**: Use `GET /v2/ai/openai/models` instead.
 
-        This endpoint returns a
-        list of Open Source and OpenAI models that are available for use. <br /><br />
-        **Note**: Model `id`'s will be in the form `{source}/{model_name}`. For example
-        `openai/gpt-4` or `mistralai/Mistral-7B-Instruct-v0.1` consistent with
-        HuggingFace naming conventions.
+        Returns the same `ModelsResponse` payload as the OpenAI-compatible endpoint —
+        open-source LLMs hosted on Telnyx (e.g. `moonshotai/Kimi-K2.6`,
+        `zai-org/GLM-5.1-FP8`, `MiniMaxAI/MiniMax-M2.7`), embedding models, and
+        fine-tuned models — kept around for backwards compatibility. New integrations
+        should use `/v2/ai/openai/models`.
+
+        Model ids follow the `{organization}/{model_name}` convention from Hugging Face.
         """
         return self._get(
             "/ai/models",
@@ -368,13 +371,16 @@ class AsyncAIResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AIRetrieveModelsResponse:
-        """**Deprecated**: Use `GET /v2/ai/openai/models` instead.
+        """
+        **Deprecated**: Use `GET /v2/ai/openai/models` instead.
 
-        This endpoint returns a
-        list of Open Source and OpenAI models that are available for use. <br /><br />
-        **Note**: Model `id`'s will be in the form `{source}/{model_name}`. For example
-        `openai/gpt-4` or `mistralai/Mistral-7B-Instruct-v0.1` consistent with
-        HuggingFace naming conventions.
+        Returns the same `ModelsResponse` payload as the OpenAI-compatible endpoint —
+        open-source LLMs hosted on Telnyx (e.g. `moonshotai/Kimi-K2.6`,
+        `zai-org/GLM-5.1-FP8`, `MiniMaxAI/MiniMax-M2.7`), embedding models, and
+        fine-tuned models — kept around for backwards compatibility. New integrations
+        should use `/v2/ai/openai/models`.
+
+        Model ids follow the `{organization}/{model_name}` convention from Hugging Face.
         """
         return await self._get(
             "/ai/models",
