@@ -24,7 +24,7 @@ from .streams import (
     AsyncStreamsResourceWithStreamingResponse,
 )
 from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ....._utils import path_template, maybe_transform, async_maybe_transform
+from ....._utils import is_given, path_template, maybe_transform, async_maybe_transform
 from .recordings import (
     RecordingsResource,
     AsyncRecordingsResource,
@@ -230,6 +230,20 @@ class CallsResource(SyncAPIResource):
         self,
         account_sid: str,
         *,
+        params: object,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> CallCallsResponse: ...
+
+    @overload
+    def calls(
+        self,
+        account_sid: str,
+        *,
         url: str,
         application_sid: str | Omit = omit,
         async_amd: bool | Omit = omit,
@@ -239,6 +253,9 @@ class CallsResource(SyncAPIResource):
         cancel_playback_on_detect_message_end: bool | Omit = omit,
         cancel_playback_on_machine_detection: bool | Omit = omit,
         custom_headers: Iterable[call_calls_params.WithURLCustomHeader] | Omit = omit,
+        deepfake_detection: Literal["Enable"] | Omit = omit,
+        deepfake_detection_sensitivity: Literal["Low", "Medium", "High"] | Omit = omit,
+        deepfake_detection_use_case: str | Omit = omit,
         detection_mode: Literal["Premium", "Regular"] | Omit = omit,
         fallback_url: str | Omit = omit,
         from_: str | Omit = omit,
@@ -419,6 +436,9 @@ class CallsResource(SyncAPIResource):
         cancel_playback_on_detect_message_end: bool | Omit = omit,
         cancel_playback_on_machine_detection: bool | Omit = omit,
         custom_headers: Iterable[call_calls_params.WithTeXmlCustomHeader] | Omit = omit,
+        deepfake_detection: Literal["Enable"] | Omit = omit,
+        deepfake_detection_sensitivity: Literal["Low", "Medium", "High"] | Omit = omit,
+        deepfake_detection_use_case: str | Omit = omit,
         detection_mode: Literal["Premium", "Regular"] | Omit = omit,
         fallback_url: str | Omit = omit,
         from_: str | Omit = omit,
@@ -599,6 +619,9 @@ class CallsResource(SyncAPIResource):
         cancel_playback_on_detect_message_end: bool | Omit = omit,
         cancel_playback_on_machine_detection: bool | Omit = omit,
         custom_headers: Iterable[call_calls_params.ApplicationDefaultCustomHeader] | Omit = omit,
+        deepfake_detection: Literal["Enable"] | Omit = omit,
+        deepfake_detection_sensitivity: Literal["Low", "Medium", "High"] | Omit = omit,
+        deepfake_detection_use_case: str | Omit = omit,
         detection_mode: Literal["Premium", "Regular"] | Omit = omit,
         fallback_url: str | Omit = omit,
         from_: str | Omit = omit,
@@ -768,6 +791,7 @@ class CallsResource(SyncAPIResource):
         self,
         account_sid: str,
         *,
+        params: object | Omit = omit,
         url: str | Optional[str] | Omit = omit,
         application_sid: str | Omit = omit,
         async_amd: bool | Omit = omit,
@@ -780,6 +804,9 @@ class CallsResource(SyncAPIResource):
         | Iterable[call_calls_params.WithTeXmlCustomHeader]
         | Iterable[call_calls_params.ApplicationDefaultCustomHeader]
         | Omit = omit,
+        deepfake_detection: Literal["Enable"] | Omit = omit,
+        deepfake_detection_sensitivity: Literal["Low", "Medium", "High"] | Omit = omit,
+        deepfake_detection_use_case: str | Omit = omit,
         detection_mode: Literal["Premium", "Regular"] | Omit = omit,
         fallback_url: str | Omit = omit,
         from_: str | Omit = omit,
@@ -824,7 +851,9 @@ class CallsResource(SyncAPIResource):
         return self._post(
             path_template("/texml/Accounts/{account_sid}/Calls", account_sid=account_sid),
             body=maybe_transform(
-                {
+                params
+                if is_given(params)
+                else {
                     "url": url,
                     "application_sid": application_sid,
                     "async_amd": async_amd,
@@ -834,6 +863,9 @@ class CallsResource(SyncAPIResource):
                     "cancel_playback_on_detect_message_end": cancel_playback_on_detect_message_end,
                     "cancel_playback_on_machine_detection": cancel_playback_on_machine_detection,
                     "custom_headers": custom_headers,
+                    "deepfake_detection": deepfake_detection,
+                    "deepfake_detection_sensitivity": deepfake_detection_sensitivity,
+                    "deepfake_detection_use_case": deepfake_detection_use_case,
                     "detection_mode": detection_mode,
                     "fallback_url": fallback_url,
                     "from_": from_,
@@ -1293,6 +1325,20 @@ class AsyncCallsResource(AsyncAPIResource):
         self,
         account_sid: str,
         *,
+        params: object,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> CallCallsResponse: ...
+
+    @overload
+    async def calls(
+        self,
+        account_sid: str,
+        *,
         url: str,
         application_sid: str | Omit = omit,
         async_amd: bool | Omit = omit,
@@ -1302,6 +1348,9 @@ class AsyncCallsResource(AsyncAPIResource):
         cancel_playback_on_detect_message_end: bool | Omit = omit,
         cancel_playback_on_machine_detection: bool | Omit = omit,
         custom_headers: Iterable[call_calls_params.WithURLCustomHeader] | Omit = omit,
+        deepfake_detection: Literal["Enable"] | Omit = omit,
+        deepfake_detection_sensitivity: Literal["Low", "Medium", "High"] | Omit = omit,
+        deepfake_detection_use_case: str | Omit = omit,
         detection_mode: Literal["Premium", "Regular"] | Omit = omit,
         fallback_url: str | Omit = omit,
         from_: str | Omit = omit,
@@ -1482,6 +1531,9 @@ class AsyncCallsResource(AsyncAPIResource):
         cancel_playback_on_detect_message_end: bool | Omit = omit,
         cancel_playback_on_machine_detection: bool | Omit = omit,
         custom_headers: Iterable[call_calls_params.WithTeXmlCustomHeader] | Omit = omit,
+        deepfake_detection: Literal["Enable"] | Omit = omit,
+        deepfake_detection_sensitivity: Literal["Low", "Medium", "High"] | Omit = omit,
+        deepfake_detection_use_case: str | Omit = omit,
         detection_mode: Literal["Premium", "Regular"] | Omit = omit,
         fallback_url: str | Omit = omit,
         from_: str | Omit = omit,
@@ -1662,6 +1714,9 @@ class AsyncCallsResource(AsyncAPIResource):
         cancel_playback_on_detect_message_end: bool | Omit = omit,
         cancel_playback_on_machine_detection: bool | Omit = omit,
         custom_headers: Iterable[call_calls_params.ApplicationDefaultCustomHeader] | Omit = omit,
+        deepfake_detection: Literal["Enable"] | Omit = omit,
+        deepfake_detection_sensitivity: Literal["Low", "Medium", "High"] | Omit = omit,
+        deepfake_detection_use_case: str | Omit = omit,
         detection_mode: Literal["Premium", "Regular"] | Omit = omit,
         fallback_url: str | Omit = omit,
         from_: str | Omit = omit,
@@ -1831,6 +1886,7 @@ class AsyncCallsResource(AsyncAPIResource):
         self,
         account_sid: str,
         *,
+        params: object | Omit = omit,
         url: str | Optional[str] | Omit = omit,
         application_sid: str | Omit = omit,
         async_amd: bool | Omit = omit,
@@ -1843,6 +1899,9 @@ class AsyncCallsResource(AsyncAPIResource):
         | Iterable[call_calls_params.WithTeXmlCustomHeader]
         | Iterable[call_calls_params.ApplicationDefaultCustomHeader]
         | Omit = omit,
+        deepfake_detection: Literal["Enable"] | Omit = omit,
+        deepfake_detection_sensitivity: Literal["Low", "Medium", "High"] | Omit = omit,
+        deepfake_detection_use_case: str | Omit = omit,
         detection_mode: Literal["Premium", "Regular"] | Omit = omit,
         fallback_url: str | Omit = omit,
         from_: str | Omit = omit,
@@ -1887,7 +1946,9 @@ class AsyncCallsResource(AsyncAPIResource):
         return await self._post(
             path_template("/texml/Accounts/{account_sid}/Calls", account_sid=account_sid),
             body=await async_maybe_transform(
-                {
+                params
+                if is_given(params)
+                else {
                     "url": url,
                     "application_sid": application_sid,
                     "async_amd": async_amd,
@@ -1897,6 +1958,9 @@ class AsyncCallsResource(AsyncAPIResource):
                     "cancel_playback_on_detect_message_end": cancel_playback_on_detect_message_end,
                     "cancel_playback_on_machine_detection": cancel_playback_on_machine_detection,
                     "custom_headers": custom_headers,
+                    "deepfake_detection": deepfake_detection,
+                    "deepfake_detection_sensitivity": deepfake_detection_sensitivity,
+                    "deepfake_detection_use_case": deepfake_detection_use_case,
                     "detection_mode": detection_mode,
                     "fallback_url": fallback_url,
                     "from_": from_,
