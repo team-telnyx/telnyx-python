@@ -1,6 +1,6 @@
 [project]
 name = "telnyx"
-version = "4.122.0"
+version = "4.123.0"
 description = "The official Python library for the telnyx API"
 dynamic = ["readme"]
 license = "MIT"
@@ -156,7 +156,7 @@ show_error_codes = true
 #
 # We also exclude our `tests` as mypy doesn't always infer
 # types correctly and Pyright will still catch any type errors.
-exclude = ['src/telnyx/_files.py', '_dev/.*.py', 'tests/.*']
+exclude = ["src/telnyx/_files.py", "_dev/.*.py", "tests/.*"]
 
 strict_equality = true
 implicit_reexport = true

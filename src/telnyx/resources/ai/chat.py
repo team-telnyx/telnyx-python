@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Dict, Iterable
+import typing_extensions
+from typing import Dict, Union, Iterable
 from typing_extensions import Literal
 
 import httpx
@@ -46,6 +47,7 @@ class ChatResource(SyncAPIResource):
         """
         return ChatResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     def create_completion(
         self,
         *,
@@ -66,6 +68,8 @@ class ChatResource(SyncAPIResource):
         n: float | Omit = omit,
         presence_penalty: float | Omit = omit,
         response_format: chat_create_completion_params.ResponseFormat | Omit = omit,
+        seed: int | Omit = omit,
+        stop: Union[str, SequenceNotStr[str]] | Omit = omit,
         stream: bool | Omit = omit,
         temperature: float | Omit = omit,
         tool_choice: Literal["none", "auto", "required"] | Omit = omit,
@@ -80,9 +84,10 @@ class ChatResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ChatCreateCompletionResponse:
-        """Chat with a language model.
+        """**Deprecated**: Use `POST /v2/ai/openai/chat/completions` instead.
 
-        This endpoint is consistent with the
+        Chat with a
+        language model. This endpoint is consistent with the
         [OpenAI Chat Completions API](https://platform.openai.com/docs/api-reference/chat)
         and may be used with the OpenAI JS or Python SDK.
 
@@ -134,6 +139,13 @@ class ChatResource(SyncAPIResource):
 
           response_format: Use this is you want to guarantee a JSON output without defining a schema. For
               control over the schema, use `guided_json`.
+
+          seed: If specified, the system will make a best effort to sample deterministically,
+              such that repeated requests with the same `seed` and parameters should return
+              the same result.
+
+          stop: Up to 4 sequences where the API will stop generating further tokens. The
+              returned text will not contain the stop sequence.
 
           stream: Whether or not to stream data-only server-sent events as they become available.
 
@@ -187,6 +199,8 @@ class ChatResource(SyncAPIResource):
                     "n": n,
                     "presence_penalty": presence_penalty,
                     "response_format": response_format,
+                    "seed": seed,
+                    "stop": stop,
                     "stream": stream,
                     "temperature": temperature,
                     "tool_choice": tool_choice,
@@ -226,6 +240,7 @@ class AsyncChatResource(AsyncAPIResource):
         """
         return AsyncChatResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     async def create_completion(
         self,
         *,
@@ -246,6 +261,8 @@ class AsyncChatResource(AsyncAPIResource):
         n: float | Omit = omit,
         presence_penalty: float | Omit = omit,
         response_format: chat_create_completion_params.ResponseFormat | Omit = omit,
+        seed: int | Omit = omit,
+        stop: Union[str, SequenceNotStr[str]] | Omit = omit,
         stream: bool | Omit = omit,
         temperature: float | Omit = omit,
         tool_choice: Literal["none", "auto", "required"] | Omit = omit,
@@ -260,9 +277,10 @@ class AsyncChatResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ChatCreateCompletionResponse:
-        """Chat with a language model.
+        """**Deprecated**: Use `POST /v2/ai/openai/chat/completions` instead.
 
-        This endpoint is consistent with the
+        Chat with a
+        language model. This endpoint is consistent with the
         [OpenAI Chat Completions API](https://platform.openai.com/docs/api-reference/chat)
         and may be used with the OpenAI JS or Python SDK.
 
@@ -314,6 +332,13 @@ class AsyncChatResource(AsyncAPIResource):
 
           response_format: Use this is you want to guarantee a JSON output without defining a schema. For
               control over the schema, use `guided_json`.
+
+          seed: If specified, the system will make a best effort to sample deterministically,
+              such that repeated requests with the same `seed` and parameters should return
+              the same result.
+
+          stop: Up to 4 sequences where the API will stop generating further tokens. The
+              returned text will not contain the stop sequence.
 
           stream: Whether or not to stream data-only server-sent events as they become available.
 
@@ -367,6 +392,8 @@ class AsyncChatResource(AsyncAPIResource):
                     "n": n,
                     "presence_penalty": presence_penalty,
                     "response_format": response_format,
+                    "seed": seed,
+                    "stop": stop,
                     "stream": stream,
                     "temperature": temperature,
                     "tool_choice": tool_choice,
@@ -388,8 +415,10 @@ class ChatResourceWithRawResponse:
     def __init__(self, chat: ChatResource) -> None:
         self._chat = chat
 
-        self.create_completion = to_raw_response_wrapper(
-            chat.create_completion,
+        self.create_completion = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                chat.create_completion,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -397,8 +426,10 @@ class AsyncChatResourceWithRawResponse:
     def __init__(self, chat: AsyncChatResource) -> None:
         self._chat = chat
 
-        self.create_completion = async_to_raw_response_wrapper(
-            chat.create_completion,
+        self.create_completion = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                chat.create_completion,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -406,8 +437,10 @@ class ChatResourceWithStreamingResponse:
     def __init__(self, chat: ChatResource) -> None:
         self._chat = chat
 
-        self.create_completion = to_streamed_response_wrapper(
-            chat.create_completion,
+        self.create_completion = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                chat.create_completion,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -415,6 +448,8 @@ class AsyncChatResourceWithStreamingResponse:
     def __init__(self, chat: AsyncChatResource) -> None:
         self._chat = chat
 
-        self.create_completion = async_to_streamed_response_wrapper(
-            chat.create_completion,
+        self.create_completion = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                chat.create_completion,  # pyright: ignore[reportDeprecated],
+            )
         )

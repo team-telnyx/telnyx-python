@@ -100,6 +100,7 @@ class ProfileResource(SyncAPIResource):
         description: str | Omit = omit,
         display_name: str | Omit = omit,
         email: str | Omit = omit,
+        profile_id: str | Omit = omit,
         website: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -112,6 +113,8 @@ class ProfileResource(SyncAPIResource):
         Update phone number business profile
 
         Args:
+          profile_id: Messaging profile ID for inbound messages
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -132,6 +135,7 @@ class ProfileResource(SyncAPIResource):
                     "description": description,
                     "display_name": display_name,
                     "email": email,
+                    "profile_id": profile_id,
                     "website": website,
                 },
                 profile_update_params.ProfileUpdateParams,
@@ -213,6 +217,7 @@ class AsyncProfileResource(AsyncAPIResource):
         description: str | Omit = omit,
         display_name: str | Omit = omit,
         email: str | Omit = omit,
+        profile_id: str | Omit = omit,
         website: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -225,6 +230,8 @@ class AsyncProfileResource(AsyncAPIResource):
         Update phone number business profile
 
         Args:
+          profile_id: Messaging profile ID for inbound messages
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -245,6 +252,7 @@ class AsyncProfileResource(AsyncAPIResource):
                     "description": description,
                     "display_name": display_name,
                     "email": email,
+                    "profile_id": profile_id,
                     "website": website,
                 },
                 profile_update_params.ProfileUpdateParams,

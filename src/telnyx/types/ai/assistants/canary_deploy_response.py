@@ -4,18 +4,21 @@ from typing import List
 from datetime import datetime
 
 from ...._models import BaseModel
-from .version_config import VersionConfig
+from .rule_output import RuleOutput
 
 __all__ = ["CanaryDeployResponse"]
 
 
 class CanaryDeployResponse(BaseModel):
-    """Response model for canary deploy operations."""
+    """Response shape.
+
+    Always carries ``rules`` (canonical).
+    """
 
     assistant_id: str
 
     created_at: datetime
 
-    updated_at: datetime
+    rules: List[RuleOutput]
 
-    versions: List[VersionConfig]
+    updated_at: datetime

@@ -3,13 +3,12 @@
 from __future__ import annotations
 
 from typing import Iterable
-from typing_extensions import Required, TypedDict
+from typing_extensions import TypedDict
 
-from .version_config_param import VersionConfigParam
+from .rule_input_param import RuleInputParam
 
 __all__ = ["CanaryDeployCreateParams"]
 
 
 class CanaryDeployCreateParams(TypedDict, total=False):
-    versions: Required[Iterable[VersionConfigParam]]
-    """List of version configurations"""
+    rules: Iterable[RuleInputParam]

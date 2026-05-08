@@ -14,6 +14,7 @@ from .cost_information import CostInformation as CostInformation
 from .netapps_location import NetappsLocation as NetappsLocation
 from .room_participant import RoomParticipant as RoomParticipant
 from .region_information import RegionInformation as RegionInformation
+from .xai_voice_settings import XaiVoiceSettings as XaiVoiceSettings
 from .rime_voice_settings import RimeVoiceSettings as RimeVoiceSettings
 from .azure_voice_settings import AzureVoiceSettings as AzureVoiceSettings
 from .porting_order_status import PortingOrderStatus as PortingOrderStatus

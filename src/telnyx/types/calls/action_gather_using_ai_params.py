@@ -12,6 +12,7 @@ from .interruption_settings_param import InterruptionSettingsParam
 from .telnyx_voice_settings_param import TelnyxVoiceSettingsParam
 from .google_transcription_language import GoogleTranscriptionLanguage
 from .eleven_labs_voice_settings_param import ElevenLabsVoiceSettingsParam
+from ..shared_params.xai_voice_settings import XaiVoiceSettings
 from ..shared_params.rime_voice_settings import RimeVoiceSettings
 from ..shared_params.azure_voice_settings import AzureVoiceSettings
 from ..shared_params.resemble_voice_settings import ResembleVoiceSettings
@@ -126,6 +127,8 @@ class ActionGatherUsingAIParams(TypedDict, total=False):
     - **Telnyx:** Use `Telnyx.<model_id>.<voice_id>`
     - **Inworld:** Use `Inworld.<ModelId>.<VoiceId>` (e.g., `Inworld.Mini.Loretta`,
       `Inworld.Max.Oliver`). Supported models: `Mini`, `Max`.
+    - **xAI:** Use `xAI.<VoiceId>` (e.g., `xAI.eve`). Available voices: `eve`,
+      `ara`, `rex`, `sal`, `leo`.
     """
 
     voice_settings: VoiceSettings
@@ -147,4 +150,5 @@ VoiceSettings: TypeAlias = Union[
     AzureVoiceSettings,
     RimeVoiceSettings,
     ResembleVoiceSettings,
+    XaiVoiceSettings,
 ]

@@ -134,8 +134,28 @@ class TestActions:
                     "customer_name": "John",
                     "account_id": "ACC-12345",
                 },
-                "external_llm": {"foo": "bar"},
-                "fallback_config": {"foo": "bar"},
+                "external_llm": {
+                    "authentication_method": "token",
+                    "base_url": "base_url",
+                    "certificate_ref": "certificate_ref",
+                    "forward_metadata": True,
+                    "llm_api_key_ref": "llm_api_key_ref",
+                    "model": "model",
+                    "token_retrieval_url": "token_retrieval_url",
+                },
+                "fallback_config": {
+                    "external_llm": {
+                        "authentication_method": "token",
+                        "base_url": "base_url",
+                        "certificate_ref": "certificate_ref",
+                        "forward_metadata": True,
+                        "llm_api_key_ref": "llm_api_key_ref",
+                        "model": "model",
+                        "token_retrieval_url": "token_retrieval_url",
+                    },
+                    "llm_api_key_ref": "llm_api_key_ref",
+                    "model": "model",
+                },
                 "greeting": "Hi, I'm your assistant. How can I help?",
                 "instructions": "You are a friendly voice assistant.",
                 "llm_api_key_ref": "my_llm_api_key",
@@ -520,7 +540,10 @@ class TestActions:
             ],
             send_message_history_updates=True,
             send_partial_results=True,
-            transcription={"model": "distil-whisper/distil-large-v2"},
+            transcription={
+                "language": "auto",
+                "model": "distil-whisper/distil-large-v2",
+            },
             user_response_timeout_ms=5000,
             voice="Telnyx.KokoroTTS.af",
             voice_settings={
@@ -1361,8 +1384,28 @@ class TestActions:
                     "customer_name": "John",
                     "account_id": "ACC-12345",
                 },
-                "external_llm": {"foo": "bar"},
-                "fallback_config": {"foo": "bar"},
+                "external_llm": {
+                    "authentication_method": "token",
+                    "base_url": "base_url",
+                    "certificate_ref": "certificate_ref",
+                    "forward_metadata": True,
+                    "llm_api_key_ref": "llm_api_key_ref",
+                    "model": "model",
+                    "token_retrieval_url": "token_retrieval_url",
+                },
+                "fallback_config": {
+                    "external_llm": {
+                        "authentication_method": "token",
+                        "base_url": "base_url",
+                        "certificate_ref": "certificate_ref",
+                        "forward_metadata": True,
+                        "llm_api_key_ref": "llm_api_key_ref",
+                        "model": "model",
+                        "token_retrieval_url": "token_retrieval_url",
+                    },
+                    "llm_api_key_ref": "llm_api_key_ref",
+                    "model": "model",
+                },
                 "greeting": "greeting",
                 "instructions": "You are a friendly voice assistant.",
                 "llm_api_key_ref": "my_llm_api_key",
@@ -1403,7 +1446,10 @@ class TestActions:
                 }
             ],
             send_message_history_updates=True,
-            transcription={"model": "distil-whisper/distil-large-v2"},
+            transcription={
+                "language": "auto",
+                "model": "distil-whisper/distil-large-v2",
+            },
             voice="Telnyx.KokoroTTS.af",
             voice_settings={
                 "type": "elevenlabs",
@@ -2429,7 +2475,7 @@ class TestActions:
     def test_method_transfer(self, client: Telnyx) -> None:
         action = client.calls.actions.transfer(
             call_control_id="call_control_id",
-            to="+18005550100 or sip:username@sip.telnyx.com",
+            to="+18005550100 or sip:username@sip.telnyx.com;secure=srtp",
         )
         assert_matches_type(ActionTransferResponse, action, path=["response"])
 
@@ -2438,7 +2484,7 @@ class TestActions:
     def test_method_transfer_with_all_params(self, client: Telnyx) -> None:
         action = client.calls.actions.transfer(
             call_control_id="call_control_id",
-            to="+18005550100 or sip:username@sip.telnyx.com",
+            to="+18005550100 or sip:username@sip.telnyx.com;secure=srtp",
             answering_machine_detection="detect",
             answering_machine_detection_config={
                 "after_greeting_silence_millis": 1000,
@@ -2517,7 +2563,7 @@ class TestActions:
     def test_raw_response_transfer(self, client: Telnyx) -> None:
         response = client.calls.actions.with_raw_response.transfer(
             call_control_id="call_control_id",
-            to="+18005550100 or sip:username@sip.telnyx.com",
+            to="+18005550100 or sip:username@sip.telnyx.com;secure=srtp",
         )
 
         assert response.is_closed is True
@@ -2530,7 +2576,7 @@ class TestActions:
     def test_streaming_response_transfer(self, client: Telnyx) -> None:
         with client.calls.actions.with_streaming_response.transfer(
             call_control_id="call_control_id",
-            to="+18005550100 or sip:username@sip.telnyx.com",
+            to="+18005550100 or sip:username@sip.telnyx.com;secure=srtp",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2546,7 +2592,7 @@ class TestActions:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `call_control_id` but received ''"):
             client.calls.actions.with_raw_response.transfer(
                 call_control_id="",
-                to="+18005550100 or sip:username@sip.telnyx.com",
+                to="+18005550100 or sip:username@sip.telnyx.com;secure=srtp",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -2679,8 +2725,28 @@ class TestAsyncActions:
                     "customer_name": "John",
                     "account_id": "ACC-12345",
                 },
-                "external_llm": {"foo": "bar"},
-                "fallback_config": {"foo": "bar"},
+                "external_llm": {
+                    "authentication_method": "token",
+                    "base_url": "base_url",
+                    "certificate_ref": "certificate_ref",
+                    "forward_metadata": True,
+                    "llm_api_key_ref": "llm_api_key_ref",
+                    "model": "model",
+                    "token_retrieval_url": "token_retrieval_url",
+                },
+                "fallback_config": {
+                    "external_llm": {
+                        "authentication_method": "token",
+                        "base_url": "base_url",
+                        "certificate_ref": "certificate_ref",
+                        "forward_metadata": True,
+                        "llm_api_key_ref": "llm_api_key_ref",
+                        "model": "model",
+                        "token_retrieval_url": "token_retrieval_url",
+                    },
+                    "llm_api_key_ref": "llm_api_key_ref",
+                    "model": "model",
+                },
                 "greeting": "Hi, I'm your assistant. How can I help?",
                 "instructions": "You are a friendly voice assistant.",
                 "llm_api_key_ref": "my_llm_api_key",
@@ -3065,7 +3131,10 @@ class TestAsyncActions:
             ],
             send_message_history_updates=True,
             send_partial_results=True,
-            transcription={"model": "distil-whisper/distil-large-v2"},
+            transcription={
+                "language": "auto",
+                "model": "distil-whisper/distil-large-v2",
+            },
             user_response_timeout_ms=5000,
             voice="Telnyx.KokoroTTS.af",
             voice_settings={
@@ -3906,8 +3975,28 @@ class TestAsyncActions:
                     "customer_name": "John",
                     "account_id": "ACC-12345",
                 },
-                "external_llm": {"foo": "bar"},
-                "fallback_config": {"foo": "bar"},
+                "external_llm": {
+                    "authentication_method": "token",
+                    "base_url": "base_url",
+                    "certificate_ref": "certificate_ref",
+                    "forward_metadata": True,
+                    "llm_api_key_ref": "llm_api_key_ref",
+                    "model": "model",
+                    "token_retrieval_url": "token_retrieval_url",
+                },
+                "fallback_config": {
+                    "external_llm": {
+                        "authentication_method": "token",
+                        "base_url": "base_url",
+                        "certificate_ref": "certificate_ref",
+                        "forward_metadata": True,
+                        "llm_api_key_ref": "llm_api_key_ref",
+                        "model": "model",
+                        "token_retrieval_url": "token_retrieval_url",
+                    },
+                    "llm_api_key_ref": "llm_api_key_ref",
+                    "model": "model",
+                },
                 "greeting": "greeting",
                 "instructions": "You are a friendly voice assistant.",
                 "llm_api_key_ref": "my_llm_api_key",
@@ -3948,7 +4037,10 @@ class TestAsyncActions:
                 }
             ],
             send_message_history_updates=True,
-            transcription={"model": "distil-whisper/distil-large-v2"},
+            transcription={
+                "language": "auto",
+                "model": "distil-whisper/distil-large-v2",
+            },
             voice="Telnyx.KokoroTTS.af",
             voice_settings={
                 "type": "elevenlabs",
@@ -4974,7 +5066,7 @@ class TestAsyncActions:
     async def test_method_transfer(self, async_client: AsyncTelnyx) -> None:
         action = await async_client.calls.actions.transfer(
             call_control_id="call_control_id",
-            to="+18005550100 or sip:username@sip.telnyx.com",
+            to="+18005550100 or sip:username@sip.telnyx.com;secure=srtp",
         )
         assert_matches_type(ActionTransferResponse, action, path=["response"])
 
@@ -4983,7 +5075,7 @@ class TestAsyncActions:
     async def test_method_transfer_with_all_params(self, async_client: AsyncTelnyx) -> None:
         action = await async_client.calls.actions.transfer(
             call_control_id="call_control_id",
-            to="+18005550100 or sip:username@sip.telnyx.com",
+            to="+18005550100 or sip:username@sip.telnyx.com;secure=srtp",
             answering_machine_detection="detect",
             answering_machine_detection_config={
                 "after_greeting_silence_millis": 1000,
@@ -5062,7 +5154,7 @@ class TestAsyncActions:
     async def test_raw_response_transfer(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.calls.actions.with_raw_response.transfer(
             call_control_id="call_control_id",
-            to="+18005550100 or sip:username@sip.telnyx.com",
+            to="+18005550100 or sip:username@sip.telnyx.com;secure=srtp",
         )
 
         assert response.is_closed is True
@@ -5075,7 +5167,7 @@ class TestAsyncActions:
     async def test_streaming_response_transfer(self, async_client: AsyncTelnyx) -> None:
         async with async_client.calls.actions.with_streaming_response.transfer(
             call_control_id="call_control_id",
-            to="+18005550100 or sip:username@sip.telnyx.com",
+            to="+18005550100 or sip:username@sip.telnyx.com;secure=srtp",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -5091,7 +5183,7 @@ class TestAsyncActions:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `call_control_id` but received ''"):
             await async_client.calls.actions.with_raw_response.transfer(
                 call_control_id="",
-                to="+18005550100 or sip:username@sip.telnyx.com",
+                to="+18005550100 or sip:username@sip.telnyx.com;secure=srtp",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")

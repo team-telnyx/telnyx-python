@@ -443,6 +443,65 @@ class TestCalls:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
+    def test_method_calls_with_all_params(self, client: Telnyx) -> None:
+        call = client.texml.accounts.calls.calls(
+            account_sid="account_sid",
+            params={
+                "url": "https://www.example.com/texml.xml",
+                "application_sid": "example-app-sid",
+                "async_amd": True,
+                "async_amd_status_callback": "https://www.example.com/callback",
+                "async_amd_status_callback_method": "GET",
+                "caller_id": "Info",
+                "cancel_playback_on_detect_message_end": False,
+                "cancel_playback_on_machine_detection": False,
+                "custom_headers": [
+                    {
+                        "name": "X-Custom-Header",
+                        "value": "custom-value",
+                    }
+                ],
+                "deepfake_detection": "Enable",
+                "deepfake_detection_callback_method": "GET",
+                "deepfake_detection_callback_url": "https://www.example.com/deepfake-callback",
+                "detection_mode": "Premium",
+                "fallback_url": "https://www.example.com/instructions-fallback.xml",
+                "from_": "+13120001234",
+                "machine_detection": "Enable",
+                "machine_detection_silence_timeout": 2000,
+                "machine_detection_speech_end_threshold": 2000,
+                "machine_detection_speech_threshold": 2000,
+                "machine_detection_timeout": 5000,
+                "media_encryption": "disabled",
+                "preferred_codecs": "PCMA,PCMU",
+                "record": False,
+                "recording_channels": "dual",
+                "recording_status_callback": "https://example.com/recording_status_callback",
+                "recording_status_callback_event": "in-progress completed absent",
+                "recording_status_callback_method": "GET",
+                "recording_timeout": 5,
+                "recording_track": "inbound",
+                "send_recording_url": False,
+                "sip_auth_password": "1234",
+                "sip_auth_username": "user",
+                "sip_region": "Canada",
+                "status_callback": "https://www.example.com/statuscallback-listener",
+                "status_callback_event": "initiated",
+                "status_callback_method": "GET",
+                "supervise_call_sid": "v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg",
+                "supervising_role": "monitor",
+                "texml": "Texml",
+                "time_limit": 3600,
+                "timeout": 60,
+                "to": "+13121230000",
+                "trim": "trim-silence",
+                "url_method": "GET",
+            },
+        )
+        assert_matches_type(CallCallsResponse, call, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
     def test_method_retrieve_calls(self, client: Telnyx) -> None:
         call = client.texml.accounts.calls.retrieve_calls(
             account_sid="account_sid",
@@ -1063,6 +1122,65 @@ class TestAsyncCalls:
             await async_client.texml.accounts.calls.with_raw_response.calls(
                 account_sid="",
             )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_calls_with_all_params(self, async_client: AsyncTelnyx) -> None:
+        call = await async_client.texml.accounts.calls.calls(
+            account_sid="account_sid",
+            params={
+                "url": "https://www.example.com/texml.xml",
+                "application_sid": "example-app-sid",
+                "async_amd": True,
+                "async_amd_status_callback": "https://www.example.com/callback",
+                "async_amd_status_callback_method": "GET",
+                "caller_id": "Info",
+                "cancel_playback_on_detect_message_end": False,
+                "cancel_playback_on_machine_detection": False,
+                "custom_headers": [
+                    {
+                        "name": "X-Custom-Header",
+                        "value": "custom-value",
+                    }
+                ],
+                "deepfake_detection": "Enable",
+                "deepfake_detection_callback_method": "GET",
+                "deepfake_detection_callback_url": "https://www.example.com/deepfake-callback",
+                "detection_mode": "Premium",
+                "fallback_url": "https://www.example.com/instructions-fallback.xml",
+                "from_": "+13120001234",
+                "machine_detection": "Enable",
+                "machine_detection_silence_timeout": 2000,
+                "machine_detection_speech_end_threshold": 2000,
+                "machine_detection_speech_threshold": 2000,
+                "machine_detection_timeout": 5000,
+                "media_encryption": "disabled",
+                "preferred_codecs": "PCMA,PCMU",
+                "record": False,
+                "recording_channels": "dual",
+                "recording_status_callback": "https://example.com/recording_status_callback",
+                "recording_status_callback_event": "in-progress completed absent",
+                "recording_status_callback_method": "GET",
+                "recording_timeout": 5,
+                "recording_track": "inbound",
+                "send_recording_url": False,
+                "sip_auth_password": "1234",
+                "sip_auth_username": "user",
+                "sip_region": "Canada",
+                "status_callback": "https://www.example.com/statuscallback-listener",
+                "status_callback_event": "initiated",
+                "status_callback_method": "GET",
+                "supervise_call_sid": "v3:MdI91X4lWFEs7IgbBEOT9M4AigoY08M0WWZFISt1Yw2axZ_IiE4pqg",
+                "supervising_role": "monitor",
+                "texml": "Texml",
+                "time_limit": 3600,
+                "timeout": 60,
+                "to": "+13121230000",
+                "trim": "trim-silence",
+                "url_method": "GET",
+            },
+        )
+        assert_matches_type(CallCallsResponse, call, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize

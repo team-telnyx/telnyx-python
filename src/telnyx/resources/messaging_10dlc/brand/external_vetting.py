@@ -146,7 +146,11 @@ class ExternalVettingResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ExternalVettingOrderResponse:
         """
-        Order new external vetting for a brand
+        Order new external vetting for a brand.
+
+        Duplicate orders for the same `evpId` and `vettingClass` return `400` with code
+        `10012` if a successful vetting exists within the last 180 days, or one is
+        currently being processed. Failed vettings can be retried immediately.
 
         Args:
           evp_id: External vetting provider ID for the brand.
@@ -302,7 +306,11 @@ class AsyncExternalVettingResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ExternalVettingOrderResponse:
         """
-        Order new external vetting for a brand
+        Order new external vetting for a brand.
+
+        Duplicate orders for the same `evpId` and `vettingClass` return `400` with code
+        `10012` if a successful vetting exists within the last 180 days, or one is
+        currently being processed. Failed vettings can be retried immediately.
 
         Args:
           evp_id: External vetting provider ID for the brand.

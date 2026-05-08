@@ -745,6 +745,7 @@ class MessagesResource(SyncAPIResource):
         from_: str,
         to: str,
         whatsapp_message: WhatsappMessageContentParam,
+        messaging_profile_id: str | Omit = omit,
         type: Literal["WHATSAPP"] | Omit = omit,
         webhook_url: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -761,6 +762,8 @@ class MessagesResource(SyncAPIResource):
           from_: Phone number in +E.164 format associated with Whatsapp account
 
           to: Phone number in +E.164 format
+
+          messaging_profile_id: Messaging profile ID - required if the 'from' number is not SMS-enabled
 
           type: Message type - must be set to "WHATSAPP"
 
@@ -781,6 +784,7 @@ class MessagesResource(SyncAPIResource):
                     "from_": from_,
                     "to": to,
                     "whatsapp_message": whatsapp_message,
+                    "messaging_profile_id": messaging_profile_id,
                     "type": type,
                     "webhook_url": webhook_url,
                 },
@@ -1549,6 +1553,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         from_: str,
         to: str,
         whatsapp_message: WhatsappMessageContentParam,
+        messaging_profile_id: str | Omit = omit,
         type: Literal["WHATSAPP"] | Omit = omit,
         webhook_url: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1565,6 +1570,8 @@ class AsyncMessagesResource(AsyncAPIResource):
           from_: Phone number in +E.164 format associated with Whatsapp account
 
           to: Phone number in +E.164 format
+
+          messaging_profile_id: Messaging profile ID - required if the 'from' number is not SMS-enabled
 
           type: Message type - must be set to "WHATSAPP"
 
@@ -1585,6 +1592,7 @@ class AsyncMessagesResource(AsyncAPIResource):
                     "from_": from_,
                     "to": to,
                     "whatsapp_message": whatsapp_message,
+                    "messaging_profile_id": messaging_profile_id,
                     "type": type,
                     "webhook_url": webhook_url,
                 },

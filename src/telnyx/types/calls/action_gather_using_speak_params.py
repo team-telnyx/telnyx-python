@@ -8,6 +8,7 @@ from typing_extensions import Literal, Required, TypeAlias, TypedDict
 from .aws_voice_settings_param import AwsVoiceSettingsParam
 from .telnyx_voice_settings_param import TelnyxVoiceSettingsParam
 from .eleven_labs_voice_settings_param import ElevenLabsVoiceSettingsParam
+from ..shared_params.xai_voice_settings import XaiVoiceSettings
 from ..shared_params.rime_voice_settings import RimeVoiceSettings
 from ..shared_params.azure_voice_settings import AzureVoiceSettings
 from ..shared_params.minimax_voice_settings import MinimaxVoiceSettings
@@ -60,6 +61,8 @@ class ActionGatherUsingSpeakParams(TypedDict, total=False):
       `voice_settings` to configure precision, sample_rate, and format.
     - **Inworld:** Use `Inworld.<ModelId>.<VoiceId>` (e.g., `Inworld.Mini.Loretta`,
       `Inworld.Max.Oliver`). Supported models: `Mini`, `Max`.
+    - **xAI:** Use `xAI.<VoiceId>` (e.g., `xAI.eve`). Available voices: `eve`,
+      `ara`, `rex`, `sal`, `leo`.
 
     For service_level basic, you may define the gender of the speaker (male or
     female).
@@ -186,4 +189,5 @@ VoiceSettings: TypeAlias = Union[
     RimeVoiceSettings,
     ResembleVoiceSettings,
     VoiceSettingsInworldVoiceSettings,
+    XaiVoiceSettings,
 ]

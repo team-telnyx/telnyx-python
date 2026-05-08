@@ -38,5 +38,13 @@ class ScheduledEventCreateParams(TypedDict, total=False):
     using {{variable_name}} syntax.
     """
 
+    max_retries_client_errors: int
+    """
+    Configure number of retries on client errors: busy, no-answer, failed, canceled
+    (caller hung up before the callee answered)
+    """
+
+    retry_interval_secs: int
+
     text: str
     """Required for sms scheduled events. The text to be sent to the end user."""

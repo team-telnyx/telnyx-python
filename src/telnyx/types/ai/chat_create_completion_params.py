@@ -103,6 +103,19 @@ class ChatCreateCompletionParams(TypedDict, total=False):
     For control over the schema, use `guided_json`.
     """
 
+    seed: int
+    """
+    If specified, the system will make a best effort to sample deterministically,
+    such that repeated requests with the same `seed` and parameters should return
+    the same result.
+    """
+
+    stop: Union[str, SequenceNotStr[str]]
+    """Up to 4 sequences where the API will stop generating further tokens.
+
+    The returned text will not contain the stop sequence.
+    """
+
     stream: bool
     """Whether or not to stream data-only server-sent events as they become available."""
 

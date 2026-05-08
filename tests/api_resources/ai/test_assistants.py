@@ -28,7 +28,6 @@ class TestAssistants:
     def test_method_create(self, client: Telnyx) -> None:
         assistant = client.ai.assistants.create(
             instructions="instructions",
-            model="model",
             name="name",
         )
         assert_matches_type(InferenceEmbedding, assistant, path=["response"])
@@ -38,28 +37,80 @@ class TestAssistants:
     def test_method_create_with_all_params(self, client: Telnyx) -> None:
         assistant = client.ai.assistants.create(
             instructions="instructions",
-            model="model",
             name="name",
             description="description",
             dynamic_variables={"foo": "bar"},
+            dynamic_variables_webhook_timeout_ms=1,
             dynamic_variables_webhook_url="dynamic_variables_webhook_url",
             enabled_features=["telephony"],
+            external_llm={
+                "base_url": "base_url",
+                "model": "model",
+                "authentication_method": "token",
+                "certificate_ref": "certificate_ref",
+                "forward_metadata": True,
+                "llm_api_key_ref": "llm_api_key_ref",
+                "token_retrieval_url": "token_retrieval_url",
+            },
+            fallback_config={
+                "external_llm": {
+                    "base_url": "base_url",
+                    "model": "model",
+                    "authentication_method": "token",
+                    "certificate_ref": "certificate_ref",
+                    "forward_metadata": True,
+                    "llm_api_key_ref": "llm_api_key_ref",
+                    "token_retrieval_url": "token_retrieval_url",
+                },
+                "llm_api_key_ref": "llm_api_key_ref",
+                "model": "model",
+            },
             greeting="greeting",
             insight_settings={"insight_group_id": "insight_group_id"},
+            integrations=[
+                {
+                    "integration_id": "integration_id",
+                    "allowed_list": ["string"],
+                }
+            ],
+            interruption_settings={
+                "disable_greeting_interruption": True,
+                "enable": True,
+                "start_speaking_plan": {
+                    "transcription_endpointing_plan": {
+                        "on_no_punctuation_seconds": 0,
+                        "on_number_seconds": 0,
+                        "on_punctuation_seconds": 0,
+                    },
+                    "wait_seconds": 0,
+                },
+            },
             llm_api_key_ref="llm_api_key_ref",
+            mcp_servers=[
+                {
+                    "id": "id",
+                    "allowed_tools": ["string"],
+                }
+            ],
             messaging_settings={
                 "conversation_inactivity_minutes": 1,
                 "default_messaging_profile_id": "default_messaging_profile_id",
                 "delivery_status_webhook_url": "delivery_status_webhook_url",
             },
+            model="model",
             observability_settings={
                 "host": "host",
+                "prompt_label": "prompt_label",
+                "prompt_name": "prompt_name",
+                "prompt_sync": "enabled",
+                "prompt_version": 1,
                 "public_key_ref": "public_key_ref",
                 "secret_key_ref": "secret_key_ref",
                 "status": "enabled",
             },
             post_conversation_settings={"enabled": True},
             privacy_settings={"data_retention": True},
+            tags=["string"],
             telephony_settings={
                 "default_texml_app_id": "default_texml_app_id",
                 "noise_suppression": "krisp",
@@ -188,7 +239,6 @@ class TestAssistants:
     def test_raw_response_create(self, client: Telnyx) -> None:
         response = client.ai.assistants.with_raw_response.create(
             instructions="instructions",
-            model="model",
             name="name",
         )
 
@@ -202,7 +252,6 @@ class TestAssistants:
     def test_streaming_response_create(self, client: Telnyx) -> None:
         with client.ai.assistants.with_streaming_response.create(
             instructions="instructions",
-            model="model",
             name="name",
         ) as response:
             assert not response.is_closed
@@ -282,12 +331,59 @@ class TestAssistants:
             assistant_id="assistant_id",
             description="description",
             dynamic_variables={"foo": "bar"},
+            dynamic_variables_webhook_timeout_ms=1,
             dynamic_variables_webhook_url="dynamic_variables_webhook_url",
             enabled_features=["telephony"],
+            external_llm={
+                "base_url": "base_url",
+                "model": "model",
+                "authentication_method": "token",
+                "certificate_ref": "certificate_ref",
+                "forward_metadata": True,
+                "llm_api_key_ref": "llm_api_key_ref",
+                "token_retrieval_url": "token_retrieval_url",
+            },
+            fallback_config={
+                "external_llm": {
+                    "base_url": "base_url",
+                    "model": "model",
+                    "authentication_method": "token",
+                    "certificate_ref": "certificate_ref",
+                    "forward_metadata": True,
+                    "llm_api_key_ref": "llm_api_key_ref",
+                    "token_retrieval_url": "token_retrieval_url",
+                },
+                "llm_api_key_ref": "llm_api_key_ref",
+                "model": "model",
+            },
             greeting="greeting",
             insight_settings={"insight_group_id": "insight_group_id"},
             instructions="instructions",
+            integrations=[
+                {
+                    "integration_id": "integration_id",
+                    "allowed_list": ["string"],
+                }
+            ],
+            interruption_settings={
+                "disable_greeting_interruption": True,
+                "enable": True,
+                "start_speaking_plan": {
+                    "transcription_endpointing_plan": {
+                        "on_no_punctuation_seconds": 0,
+                        "on_number_seconds": 0,
+                        "on_punctuation_seconds": 0,
+                    },
+                    "wait_seconds": 0,
+                },
+            },
             llm_api_key_ref="llm_api_key_ref",
+            mcp_servers=[
+                {
+                    "id": "id",
+                    "allowed_tools": ["string"],
+                }
+            ],
             messaging_settings={
                 "conversation_inactivity_minutes": 1,
                 "default_messaging_profile_id": "default_messaging_profile_id",
@@ -297,6 +393,10 @@ class TestAssistants:
             name="name",
             observability_settings={
                 "host": "host",
+                "prompt_label": "prompt_label",
+                "prompt_name": "prompt_name",
+                "prompt_sync": "enabled",
+                "prompt_version": 1,
                 "public_key_ref": "public_key_ref",
                 "secret_key_ref": "secret_key_ref",
                 "status": "enabled",
@@ -304,6 +404,7 @@ class TestAssistants:
             post_conversation_settings={"enabled": True},
             privacy_settings={"data_retention": True},
             promote_to_main=True,
+            tags=["string"],
             telephony_settings={
                 "default_texml_app_id": "default_texml_app_id",
                 "noise_suppression": "krisp",
@@ -392,6 +493,7 @@ class TestAssistants:
                     "smart_format": True,
                 },
             },
+            version_name="version_name",
             voice_settings={
                 "voice": "voice",
                 "api_key_ref": "api_key_ref",
@@ -797,7 +899,6 @@ class TestAsyncAssistants:
     async def test_method_create(self, async_client: AsyncTelnyx) -> None:
         assistant = await async_client.ai.assistants.create(
             instructions="instructions",
-            model="model",
             name="name",
         )
         assert_matches_type(InferenceEmbedding, assistant, path=["response"])
@@ -807,28 +908,80 @@ class TestAsyncAssistants:
     async def test_method_create_with_all_params(self, async_client: AsyncTelnyx) -> None:
         assistant = await async_client.ai.assistants.create(
             instructions="instructions",
-            model="model",
             name="name",
             description="description",
             dynamic_variables={"foo": "bar"},
+            dynamic_variables_webhook_timeout_ms=1,
             dynamic_variables_webhook_url="dynamic_variables_webhook_url",
             enabled_features=["telephony"],
+            external_llm={
+                "base_url": "base_url",
+                "model": "model",
+                "authentication_method": "token",
+                "certificate_ref": "certificate_ref",
+                "forward_metadata": True,
+                "llm_api_key_ref": "llm_api_key_ref",
+                "token_retrieval_url": "token_retrieval_url",
+            },
+            fallback_config={
+                "external_llm": {
+                    "base_url": "base_url",
+                    "model": "model",
+                    "authentication_method": "token",
+                    "certificate_ref": "certificate_ref",
+                    "forward_metadata": True,
+                    "llm_api_key_ref": "llm_api_key_ref",
+                    "token_retrieval_url": "token_retrieval_url",
+                },
+                "llm_api_key_ref": "llm_api_key_ref",
+                "model": "model",
+            },
             greeting="greeting",
             insight_settings={"insight_group_id": "insight_group_id"},
+            integrations=[
+                {
+                    "integration_id": "integration_id",
+                    "allowed_list": ["string"],
+                }
+            ],
+            interruption_settings={
+                "disable_greeting_interruption": True,
+                "enable": True,
+                "start_speaking_plan": {
+                    "transcription_endpointing_plan": {
+                        "on_no_punctuation_seconds": 0,
+                        "on_number_seconds": 0,
+                        "on_punctuation_seconds": 0,
+                    },
+                    "wait_seconds": 0,
+                },
+            },
             llm_api_key_ref="llm_api_key_ref",
+            mcp_servers=[
+                {
+                    "id": "id",
+                    "allowed_tools": ["string"],
+                }
+            ],
             messaging_settings={
                 "conversation_inactivity_minutes": 1,
                 "default_messaging_profile_id": "default_messaging_profile_id",
                 "delivery_status_webhook_url": "delivery_status_webhook_url",
             },
+            model="model",
             observability_settings={
                 "host": "host",
+                "prompt_label": "prompt_label",
+                "prompt_name": "prompt_name",
+                "prompt_sync": "enabled",
+                "prompt_version": 1,
                 "public_key_ref": "public_key_ref",
                 "secret_key_ref": "secret_key_ref",
                 "status": "enabled",
             },
             post_conversation_settings={"enabled": True},
             privacy_settings={"data_retention": True},
+            tags=["string"],
             telephony_settings={
                 "default_texml_app_id": "default_texml_app_id",
                 "noise_suppression": "krisp",
@@ -957,7 +1110,6 @@ class TestAsyncAssistants:
     async def test_raw_response_create(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.ai.assistants.with_raw_response.create(
             instructions="instructions",
-            model="model",
             name="name",
         )
 
@@ -971,7 +1123,6 @@ class TestAsyncAssistants:
     async def test_streaming_response_create(self, async_client: AsyncTelnyx) -> None:
         async with async_client.ai.assistants.with_streaming_response.create(
             instructions="instructions",
-            model="model",
             name="name",
         ) as response:
             assert not response.is_closed
@@ -1051,12 +1202,59 @@ class TestAsyncAssistants:
             assistant_id="assistant_id",
             description="description",
             dynamic_variables={"foo": "bar"},
+            dynamic_variables_webhook_timeout_ms=1,
             dynamic_variables_webhook_url="dynamic_variables_webhook_url",
             enabled_features=["telephony"],
+            external_llm={
+                "base_url": "base_url",
+                "model": "model",
+                "authentication_method": "token",
+                "certificate_ref": "certificate_ref",
+                "forward_metadata": True,
+                "llm_api_key_ref": "llm_api_key_ref",
+                "token_retrieval_url": "token_retrieval_url",
+            },
+            fallback_config={
+                "external_llm": {
+                    "base_url": "base_url",
+                    "model": "model",
+                    "authentication_method": "token",
+                    "certificate_ref": "certificate_ref",
+                    "forward_metadata": True,
+                    "llm_api_key_ref": "llm_api_key_ref",
+                    "token_retrieval_url": "token_retrieval_url",
+                },
+                "llm_api_key_ref": "llm_api_key_ref",
+                "model": "model",
+            },
             greeting="greeting",
             insight_settings={"insight_group_id": "insight_group_id"},
             instructions="instructions",
+            integrations=[
+                {
+                    "integration_id": "integration_id",
+                    "allowed_list": ["string"],
+                }
+            ],
+            interruption_settings={
+                "disable_greeting_interruption": True,
+                "enable": True,
+                "start_speaking_plan": {
+                    "transcription_endpointing_plan": {
+                        "on_no_punctuation_seconds": 0,
+                        "on_number_seconds": 0,
+                        "on_punctuation_seconds": 0,
+                    },
+                    "wait_seconds": 0,
+                },
+            },
             llm_api_key_ref="llm_api_key_ref",
+            mcp_servers=[
+                {
+                    "id": "id",
+                    "allowed_tools": ["string"],
+                }
+            ],
             messaging_settings={
                 "conversation_inactivity_minutes": 1,
                 "default_messaging_profile_id": "default_messaging_profile_id",
@@ -1066,6 +1264,10 @@ class TestAsyncAssistants:
             name="name",
             observability_settings={
                 "host": "host",
+                "prompt_label": "prompt_label",
+                "prompt_name": "prompt_name",
+                "prompt_sync": "enabled",
+                "prompt_version": 1,
                 "public_key_ref": "public_key_ref",
                 "secret_key_ref": "secret_key_ref",
                 "status": "enabled",
@@ -1073,6 +1275,7 @@ class TestAsyncAssistants:
             post_conversation_settings={"enabled": True},
             privacy_settings={"data_retention": True},
             promote_to_main=True,
+            tags=["string"],
             telephony_settings={
                 "default_texml_app_id": "default_texml_app_id",
                 "noise_suppression": "krisp",
@@ -1161,6 +1364,7 @@ class TestAsyncAssistants:
                     "smart_format": True,
                 },
             },
+            version_name="version_name",
             voice_settings={
                 "voice": "voice",
                 "api_key_ref": "api_key_ref",

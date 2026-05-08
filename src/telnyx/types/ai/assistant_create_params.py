@@ -10,14 +10,20 @@ from .enabled_features import EnabledFeatures
 from .assistant_tool_param import AssistantToolParam
 from .voice_settings_param import VoiceSettingsParam
 from .widget_settings_param import WidgetSettingsParam
+from .external_llm_req_param import ExternalLlmReqParam
 from .insight_settings_param import InsightSettingsParam
 from .privacy_settings_param import PrivacySettingsParam
 from .observability_req_param import ObservabilityReqParam
 from .messaging_settings_param import MessagingSettingsParam
 from .telephony_settings_param import TelephonySettingsParam
+from .fallback_config_req_param import FallbackConfigReqParam
+from .assistant_mcp_server_param import AssistantMcpServerParam
+from .assistant_integration_param import AssistantIntegrationParam
 from .transcription_settings_param import TranscriptionSettingsParam
+from .post_conversation_settings_req_param import PostConversationSettingsReqParam
+from .inference_embedding_interruption_settings_param import InferenceEmbeddingInterruptionSettingsParam
 
-__all__ = ["AssistantCreateParams", "PostConversationSettings"]
+__all__ = ["AssistantCreateParams"]
 
 
 class AssistantCreateParams(TypedDict, total=False):
@@ -28,14 +34,6 @@ class AssistantCreateParams(TypedDict, total=False):
     [dynamic variables](https://developers.telnyx.com/docs/inference/ai-assistants/dynamic-variables)
     """
 
-    model: Required[str]
-    """ID of the model to use.
-
-    You can use the
-    [Get models API](https://developers.telnyx.com/api-reference/chat/get-available-models)
-    to see all of your available models,
-    """
-
     name: Required[str]
 
     description: str
@@ -43,15 +41,31 @@ class AssistantCreateParams(TypedDict, total=False):
     dynamic_variables: Dict[str, object]
     """Map of dynamic variables and their default values"""
 
+    dynamic_variables_webhook_timeout_ms: int
+    """Timeout in milliseconds for the dynamic variables webhook.
+
+    Must be between 1 and 10000 ms. If the webhook does not respond within this
+    timeout, the call proceeds with default values. See the
+    [dynamic variables guide](https://developers.telnyx.com/docs/inference/ai-assistants/dynamic-variables).
+    """
+
     dynamic_variables_webhook_url: str
     """
-    If the dynamic_variables_webhook_url is set for the assistant, we will send a
-    request at the start of the conversation. See our
-    [guide](https://developers.telnyx.com/docs/inference/ai-assistants/dynamic-variables)
-    for more information.
+    If `dynamic_variables_webhook_url` is set, Telnyx sends a POST request to this
+    URL at the start of the conversation to resolve dynamic variables. **Gotcha:**
+    the webhook response must wrap variables under a top-level `dynamic_variables`
+    object, e.g. `{"dynamic_variables": {"customer_name": "Jane"}}`. Returning a
+    flat object will be ignored and variables will fall back to their defaults. See
+    the
+    [dynamic variables guide](https://developers.telnyx.com/docs/inference/ai-assistants/dynamic-variables)
+    for the full request/response format and timeout behavior.
     """
 
     enabled_features: List[EnabledFeatures]
+
+    external_llm: ExternalLlmReqParam
+
+    fallback_config: FallbackConfigReqParam
 
     greeting: str
     """Text that the assistant will use to start the conversation.
@@ -65,20 +79,55 @@ class AssistantCreateParams(TypedDict, total=False):
 
     insight_settings: InsightSettingsParam
 
-    llm_api_key_ref: str
-    """This is only needed when using third-party inference providers.
+    integrations: Iterable[AssistantIntegrationParam]
+    """Connected integrations attached to the assistant.
 
-    The `identifier` for an integration secret
+    The catalog of available integrations is at `/ai/integrations`; the user's
+    connected integrations are at `/ai/integrations/connections`. Each item
+    references a catalog integration by `integration_id`.
+    """
+
+    interruption_settings: InferenceEmbeddingInterruptionSettingsParam
+    """
+    Settings for interruptions and how the assistant decides the user has finished
+    speaking. These timings are most relevant when using non turn-taking
+    transcription models. For turn-taking models like `deepgram/flux`, end-of-turn
+    behavior is controlled by the transcription end-of-turn settings under
+    `transcription.settings` (`eot_threshold`, `eot_timeout_ms`,
+    `eager_eot_threshold`).
+    """
+
+    llm_api_key_ref: str
+    """
+    This is only needed when using third-party inference providers selected by
+    `model`. The `identifier` for an integration secret
     [/v2/integration_secrets](https://developers.telnyx.com/api-reference/integration-secrets/create-a-secret)
-    that refers to your LLM provider's API key. Warning: Free plans are unlikely to
-    work with this integration.
+    that refers to your LLM provider's API key. For bring-your-own endpoint
+    authentication, use `external_llm.llm_api_key_ref` instead. Warning: Free plans
+    are unlikely to work with this integration.
+    """
+
+    mcp_servers: Iterable[AssistantMcpServerParam]
+    """MCP servers attached to the assistant.
+
+    Create MCP servers with `/ai/mcp_servers`, then reference them by `id` here.
     """
 
     messaging_settings: MessagingSettingsParam
 
+    model: str
+    """ID of the model to use when `external_llm` is not set.
+
+    You can use the
+    [Get models API](https://developers.telnyx.com/api-reference/chat/get-available-models)
+    to see available models. If `external_llm` is provided, the assistant uses
+    `external_llm` instead of this field. If neither `model` nor `external_llm` is
+    provided, Telnyx applies the default model.
+    """
+
     observability_settings: ObservabilityReqParam
 
-    post_conversation_settings: PostConversationSettings
+    post_conversation_settings: PostConversationSettingsReqParam
     """Configuration for post-conversation processing.
 
     When enabled, the assistant receives one additional LLM turn after the
@@ -90,15 +139,25 @@ class AssistantCreateParams(TypedDict, total=False):
 
     privacy_settings: PrivacySettingsParam
 
+    tags: SequenceNotStr[str]
+    """Tags associated with the assistant.
+
+    Tags can also be managed with the assistant tag endpoints.
+    """
+
     telephony_settings: TelephonySettingsParam
 
     tool_ids: SequenceNotStr[str]
+    """IDs of shared tools to attach to the assistant.
+
+    New integrations should prefer `tool_ids` over inline `tools`.
+    """
 
     tools: Iterable[AssistantToolParam]
-    """The tools that the assistant can use.
+    """Deprecated for new integrations.
 
-    These may be templated with
-    [dynamic variables](https://developers.telnyx.com/docs/inference/ai-assistants/dynamic-variables)
+    Inline tool definitions available to the assistant. Prefer `tool_ids` to attach
+    shared tools created with the AI Tools endpoints.
     """
 
     transcription: TranscriptionSettingsParam
@@ -107,17 +166,3 @@ class AssistantCreateParams(TypedDict, total=False):
 
     widget_settings: WidgetSettingsParam
     """Configuration settings for the assistant's web widget."""
-
-
-class PostConversationSettings(TypedDict, total=False):
-    """Configuration for post-conversation processing.
-
-    When enabled, the assistant receives one additional LLM turn after the conversation ends, allowing it to execute tool calls such as logging to a CRM or sending a summary. The assistant can execute multiple parallel or sequential tools during this phase. Telephony-control tools (e.g. hangup, transfer) are unavailable post-conversation. Beta feature.
-    """
-
-    enabled: bool
-    """Whether post-conversation processing is enabled.
-
-    When true, the assistant will be invoked after the conversation ends to perform
-    any final tool calls. Defaults to false.
-    """

@@ -59,6 +59,8 @@ class ScheduledEventsResource(SyncAPIResource):
         telnyx_end_user_target: str,
         conversation_metadata: Dict[str, Union[str, int, bool]] | Omit = omit,
         dynamic_variables: Dict[str, str] | Omit = omit,
+        max_retries_client_errors: int | Omit = omit,
+        retry_interval_secs: int | Omit = omit,
         text: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -82,6 +84,9 @@ class ScheduledEventsResource(SyncAPIResource):
 
           dynamic_variables: A map of dynamic variable names to values. These variables can be referenced in
               the assistant's instructions and messages using {{variable_name}} syntax.
+
+          max_retries_client_errors: Configure number of retries on client errors: busy, no-answer, failed, canceled
+              (caller hung up before the callee answered)
 
           text: Required for sms scheduled events. The text to be sent to the end user.
 
@@ -107,6 +112,8 @@ class ScheduledEventsResource(SyncAPIResource):
                         "telnyx_end_user_target": telnyx_end_user_target,
                         "conversation_metadata": conversation_metadata,
                         "dynamic_variables": dynamic_variables,
+                        "max_retries_client_errors": max_retries_client_errors,
+                        "retry_interval_secs": retry_interval_secs,
                         "text": text,
                     },
                     scheduled_event_create_params.ScheduledEventCreateParams,
@@ -295,6 +302,8 @@ class AsyncScheduledEventsResource(AsyncAPIResource):
         telnyx_end_user_target: str,
         conversation_metadata: Dict[str, Union[str, int, bool]] | Omit = omit,
         dynamic_variables: Dict[str, str] | Omit = omit,
+        max_retries_client_errors: int | Omit = omit,
+        retry_interval_secs: int | Omit = omit,
         text: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -318,6 +327,9 @@ class AsyncScheduledEventsResource(AsyncAPIResource):
 
           dynamic_variables: A map of dynamic variable names to values. These variables can be referenced in
               the assistant's instructions and messages using {{variable_name}} syntax.
+
+          max_retries_client_errors: Configure number of retries on client errors: busy, no-answer, failed, canceled
+              (caller hung up before the callee answered)
 
           text: Required for sms scheduled events. The text to be sent to the end user.
 
@@ -343,6 +355,8 @@ class AsyncScheduledEventsResource(AsyncAPIResource):
                         "telnyx_end_user_target": telnyx_end_user_target,
                         "conversation_metadata": conversation_metadata,
                         "dynamic_variables": dynamic_variables,
+                        "max_retries_client_errors": max_retries_client_errors,
+                        "retry_interval_secs": retry_interval_secs,
                         "text": text,
                     },
                     scheduled_event_create_params.ScheduledEventCreateParams,

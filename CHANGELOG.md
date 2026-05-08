@@ -1,5 +1,59 @@
 # Changelog
 
+## 4.123.0 (2026-05-08)
+
+Full Changelog: [v4.122.0...v4.123.0](https://github.com/team-telnyx/telnyx-python/compare/v4.122.0...v4.123.0)
+
+### Features
+
+* Add assistant external LLM forward metadata to OpenAPI ([8757bf7](https://github.com/team-telnyx/telnyx-python/commit/8757bf72210ec2f67eb8f9dc7b124cca3ee51690))
+* Add Speechmatics provider to standalone STT spec ([a18a81b](https://github.com/team-telnyx/telnyx-python/commit/a18a81b0098201c177347fd2b7cc7571ae6e11e8))
+* Add xAI and AssemblyAI transcription engines to call-control API docs ([e7162ca](https://github.com/team-telnyx/telnyx-python/commit/e7162ca12b956ce7192954979c5db09d9224c356))
+* Add xAI and missing voice providers to Call Control API ([f1e4af5](https://github.com/team-telnyx/telnyx-python/commit/f1e4af5583447e52eecbd655f53d9aeee454c261))
+* AI-2183: Document dynamic variable support for transcription keyterm ([74accfa](https://github.com/team-telnyx/telnyx-python/commit/74accfab45c00835cb24d2340980a568106ddfe7))
+* AI-2289 add disable greeting interruption OpenAPI fields ([25cdd73](https://github.com/team-telnyx/telnyx-python/commit/25cdd73350350e122389b31c4bd723b789681171))
+* Ai-assistant: update scheduled events api ([9b7be14](https://github.com/team-telnyx/telnyx-python/commit/9b7be14eba9ecd885941a4a1e23f869bd524e470))
+* Ai-assistants: support pattern in canary deploy ([1353df1](https://github.com/team-telnyx/telnyx-python/commit/1353df199c7103b2793067a9a9b3ec3f56ecfd02))
+* **api:** manual updates ([57f4244](https://github.com/team-telnyx/telnyx-python/commit/57f4244afe93f26e1f990675c8fe421b2fb45d64))
+* **api:** manual updates ([a45c916](https://github.com/team-telnyx/telnyx-python/commit/a45c916a5760a204cf1de9c51cd7590152b7b566))
+* **api:** manual updates ([f4f9625](https://github.com/team-telnyx/telnyx-python/commit/f4f9625aeb8a403a57163dcec431abe0a0b488cb))
+* Assistant tool targets master ([18b768b](https://github.com/team-telnyx/telnyx-python/commit/18b768b4ee9a3a55c940b66583cf2b6efa7d5361))
+* Correct external LLM forwarded metadata docs ([83f49da](https://github.com/team-telnyx/telnyx-python/commit/83f49dafcfcef5eaa50be7a66e113a4c80e4b602))
+* Document assistant CRUD fields ([cfeda22](https://github.com/team-telnyx/telnyx-python/commit/cfeda22ea5cbd82ddf484b1c24bb34b1d2bcb806))
+* Document Flux transcription language hints ([8806843](https://github.com/team-telnyx/telnyx-python/commit/88068433da34bf940f965d181175ee3ad79c2077))
+* Document per-endpoint media encryption for call control ([29645d5](https://github.com/team-telnyx/telnyx-python/commit/29645d523cd683731603c61d0cf1af14bbe5357e))
+* ENGDESK-51445: added profile ID fields to Whatsapp messages ([94a0b8c](https://github.com/team-telnyx/telnyx-python/commit/94a0b8c6c4053e048dc4516ae01e5902b217d27d))
+* inference: expose chat completions and models under /ai/openai ([1021667](https://github.com/team-telnyx/telnyx-python/commit/102166782f0af2f08570c55a9407e436a264ef47))
+* Mark 'from' as required on InviteToolConfig ([2e76296](https://github.com/team-telnyx/telnyx-python/commit/2e7629665addfeb690c522984804a2cf38289306))
+* MSG-9000: document duplicate-vetting rejection on order brand external vetting ([eb04489](https://github.com/team-telnyx/telnyx-python/commit/eb044891f58a156db657b377075d55a278756d2b))
+* Revert "fix: stainless ([#2371](https://github.com/team-telnyx/telnyx-python/issues/2371))" ([c3fd1fe](https://github.com/team-telnyx/telnyx-python/commit/c3fd1fe7f6d0192c5c2fd2558d0bfa4eab1532c2))
+* TELAPPS-5725: Add deepfake detection params to call-scripting API docs ([ffe5768](https://github.com/team-telnyx/telnyx-python/commit/ffe5768681f7f883c7570061c026c727e4e25fc5))
+* Update observability ([e82e1bc](https://github.com/team-telnyx/telnyx-python/commit/e82e1bc5e445eacd4b9e8fbb791df76e4acb4192))
+
+
+### Bug Fixes
+
+* **resources:** accept TeXML call params body ([640ef55](https://github.com/team-telnyx/telnyx-python/commit/640ef551079449da1d0b37f81c7368c37f5d85c7))
+* revert stainless.yml changes from ad4f13c ([a87cc67](https://github.com/team-telnyx/telnyx-python/commit/a87cc67ed23669f7a5c984976a2fc5d8b2d40ca2))
+* update UAC internal settings URI examples ([eb0ce1b](https://github.com/team-telnyx/telnyx-python/commit/eb0ce1b391f10dfc79b0980a16031dee7105c5ff))
+
+
+### Reverts
+
+* restore stainless.yml from before 964956c ([9cbd108](https://github.com/team-telnyx/telnyx-python/commit/9cbd108c5484d0387bf945fead829a2f21ca40fa))
+* restore stainless.yml from before 9853597 ([1a62c7e](https://github.com/team-telnyx/telnyx-python/commit/1a62c7ed762ea51ce2304cf54fe5256b2263fff5))
+
+
+### Chores
+
+* **internal:** reformat pyproject.toml ([c783eb7](https://github.com/team-telnyx/telnyx-python/commit/c783eb7d32f8dc9b8b76ebf957c84a181850fd09))
+
+
+### Documentation
+
+* add UAC connection OpenAPI docs ([19eb8f1](https://github.com/team-telnyx/telnyx-python/commit/19eb8f1aa9c23335a4964519a7ef24db8a8212c8))
+* update gather_using_ai transcription models ([11e14d6](https://github.com/team-telnyx/telnyx-python/commit/11e14d63339d30845914c051fe013cd4d17e88a6))
+
 ## 4.122.0 (2026-04-28)
 
 Full Changelog: [v4.121.0...v4.122.0](https://github.com/team-telnyx/telnyx-python/compare/v4.121.0...v4.122.0)

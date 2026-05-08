@@ -28,6 +28,8 @@ class WhatsappProfileData(BaseModel):
     phone_number_id: Optional[str] = None
     """Whatsapp phone number ID"""
 
+    profile_id: Optional[str] = None
+
     profile_photo_url: Optional[str] = None
 
     record_type: Optional[str] = None

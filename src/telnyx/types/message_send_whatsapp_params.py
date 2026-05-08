@@ -19,6 +19,9 @@ class MessageSendWhatsappParams(TypedDict, total=False):
 
     whatsapp_message: Required[WhatsappMessageContentParam]
 
+    messaging_profile_id: str
+    """Messaging profile ID - required if the 'from' number is not SMS-enabled"""
+
     type: Literal["WHATSAPP"]
     """Message type - must be set to "WHATSAPP" """
 

@@ -869,6 +869,8 @@ class ActionsResource(SyncAPIResource):
               - **Telnyx:** Use `Telnyx.<model_id>.<voice_id>`
               - **Inworld:** Use `Inworld.<ModelId>.<VoiceId>` (e.g., `Inworld.Mini.Loretta`,
                 `Inworld.Max.Oliver`). Supported models: `Mini`, `Max`.
+              - **xAI:** Use `xAI.<VoiceId>` (e.g., `xAI.eve`). Available voices: `eve`,
+                `ara`, `rex`, `sal`, `leo`.
 
           voice_settings: The settings associated with the voice selected
 
@@ -1144,6 +1146,8 @@ class ActionsResource(SyncAPIResource):
                 `voice_settings` to configure precision, sample_rate, and format.
               - **Inworld:** Use `Inworld.<ModelId>.<VoiceId>` (e.g., `Inworld.Mini.Loretta`,
                 `Inworld.Max.Oliver`). Supported models: `Mini`, `Max`.
+              - **xAI:** Use `xAI.<VoiceId>` (e.g., `xAI.eve`). Available voices: `eve`,
+                `ara`, `rex`, `sal`, `leo`.
 
               For service_level basic, you may define the gender of the speaker (male or
               female).
@@ -1865,6 +1869,8 @@ class ActionsResource(SyncAPIResource):
                 `voice_settings` to configure precision, sample_rate, and format.
               - **Inworld:** Use `Inworld.<ModelId>.<VoiceId>` (e.g., `Inworld.Mini.Loretta`,
                 `Inworld.Max.Oliver`). Supported models: `Mini`, `Max`.
+              - **xAI:** Use `xAI.<VoiceId>` (e.g., `xAI.eve`). Available voices: `eve`,
+                `ara`, `rex`, `sal`, `leo`.
 
               For service_level basic, you may define the gender of the speaker (male or
               female).
@@ -2014,6 +2020,8 @@ class ActionsResource(SyncAPIResource):
               - **Telnyx:** Use `Telnyx.<model_id>.<voice_id>`
               - **Inworld:** Use `Inworld.<ModelId>.<VoiceId>` (e.g., `Inworld.Mini.Loretta`,
                 `Inworld.Max.Oliver`). Supported models: `Mini`, `Max`.
+              - **xAI:** Use `xAI.<VoiceId>` (e.g., `xAI.eve`). Available voices: `eve`,
+                `ara`, `rex`, `sal`, `leo`.
 
           voice_settings: The settings associated with the voice selected
 
@@ -2861,7 +2869,8 @@ class ActionsResource(SyncAPIResource):
         *,
         client_state: str | Omit = omit,
         command_id: str | Omit = omit,
-        transcription_engine: Literal["Google", "Telnyx", "Deepgram", "Azure", "A", "B"] | Omit = omit,
+        transcription_engine: Literal["Google", "Telnyx", "Deepgram", "Azure", "xAI", "AssemblyAI", "A", "B"]
+        | Omit = omit,
         transcription_engine_config: action_start_transcription_params.TranscriptionEngineConfig | Omit = omit,
         transcription_tracks: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -3515,7 +3524,11 @@ class ActionsResource(SyncAPIResource):
           was requested and a beep was detected
 
         Args:
-          to: The DID or SIP URI to dial out to.
+          to: The DID or SIP URI to dial out to. For SIP URI destinations, append
+              `;secure=true` or `;secure=srtp` to enable SRTP media encryption for that
+              endpoint, or `;secure=dtls` to enable DTLS media encryption for that endpoint.
+              If `media_encryption` is set to `SRTP` or `DTLS`, it takes precedence over any
+              per-endpoint `secure` URI parameter.
 
           answering_machine_detection: Enables Answering Machine Detection. When a call is answered, Telnyx runs
               real-time detection to determine if it was picked up by a human or a machine and
@@ -3554,7 +3567,11 @@ class ActionsResource(SyncAPIResource):
               -\\__~!.+ special characters. If ommited, the display name will be the same as the
               number in the `from` field.
 
-          media_encryption: Defines whether media should be encrypted on the new call leg.
+          media_encryption: Defines whether media should be encrypted on the new call leg. For SIP URI
+              destinations, media encryption can also be requested per endpoint with the
+              `secure` URI parameter: `;secure=true` or `;secure=srtp` enables SRTP, and
+              `;secure=dtls` enables DTLS. This parameter, when set to `SRTP` or `DTLS`, takes
+              precedence over the per-endpoint `secure` value.
 
           media_name: The media_name of a file to be played back when the transfer destination answers
               before bridging the call. The media_name must point to a file previously
@@ -4494,6 +4511,8 @@ class AsyncActionsResource(AsyncAPIResource):
               - **Telnyx:** Use `Telnyx.<model_id>.<voice_id>`
               - **Inworld:** Use `Inworld.<ModelId>.<VoiceId>` (e.g., `Inworld.Mini.Loretta`,
                 `Inworld.Max.Oliver`). Supported models: `Mini`, `Max`.
+              - **xAI:** Use `xAI.<VoiceId>` (e.g., `xAI.eve`). Available voices: `eve`,
+                `ara`, `rex`, `sal`, `leo`.
 
           voice_settings: The settings associated with the voice selected
 
@@ -4769,6 +4788,8 @@ class AsyncActionsResource(AsyncAPIResource):
                 `voice_settings` to configure precision, sample_rate, and format.
               - **Inworld:** Use `Inworld.<ModelId>.<VoiceId>` (e.g., `Inworld.Mini.Loretta`,
                 `Inworld.Max.Oliver`). Supported models: `Mini`, `Max`.
+              - **xAI:** Use `xAI.<VoiceId>` (e.g., `xAI.eve`). Available voices: `eve`,
+                `ara`, `rex`, `sal`, `leo`.
 
               For service_level basic, you may define the gender of the speaker (male or
               female).
@@ -5490,6 +5511,8 @@ class AsyncActionsResource(AsyncAPIResource):
                 `voice_settings` to configure precision, sample_rate, and format.
               - **Inworld:** Use `Inworld.<ModelId>.<VoiceId>` (e.g., `Inworld.Mini.Loretta`,
                 `Inworld.Max.Oliver`). Supported models: `Mini`, `Max`.
+              - **xAI:** Use `xAI.<VoiceId>` (e.g., `xAI.eve`). Available voices: `eve`,
+                `ara`, `rex`, `sal`, `leo`.
 
               For service_level basic, you may define the gender of the speaker (male or
               female).
@@ -5639,6 +5662,8 @@ class AsyncActionsResource(AsyncAPIResource):
               - **Telnyx:** Use `Telnyx.<model_id>.<voice_id>`
               - **Inworld:** Use `Inworld.<ModelId>.<VoiceId>` (e.g., `Inworld.Mini.Loretta`,
                 `Inworld.Max.Oliver`). Supported models: `Mini`, `Max`.
+              - **xAI:** Use `xAI.<VoiceId>` (e.g., `xAI.eve`). Available voices: `eve`,
+                `ara`, `rex`, `sal`, `leo`.
 
           voice_settings: The settings associated with the voice selected
 
@@ -6486,7 +6511,8 @@ class AsyncActionsResource(AsyncAPIResource):
         *,
         client_state: str | Omit = omit,
         command_id: str | Omit = omit,
-        transcription_engine: Literal["Google", "Telnyx", "Deepgram", "Azure", "A", "B"] | Omit = omit,
+        transcription_engine: Literal["Google", "Telnyx", "Deepgram", "Azure", "xAI", "AssemblyAI", "A", "B"]
+        | Omit = omit,
         transcription_engine_config: action_start_transcription_params.TranscriptionEngineConfig | Omit = omit,
         transcription_tracks: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -7142,7 +7168,11 @@ class AsyncActionsResource(AsyncAPIResource):
           was requested and a beep was detected
 
         Args:
-          to: The DID or SIP URI to dial out to.
+          to: The DID or SIP URI to dial out to. For SIP URI destinations, append
+              `;secure=true` or `;secure=srtp` to enable SRTP media encryption for that
+              endpoint, or `;secure=dtls` to enable DTLS media encryption for that endpoint.
+              If `media_encryption` is set to `SRTP` or `DTLS`, it takes precedence over any
+              per-endpoint `secure` URI parameter.
 
           answering_machine_detection: Enables Answering Machine Detection. When a call is answered, Telnyx runs
               real-time detection to determine if it was picked up by a human or a machine and
@@ -7181,7 +7211,11 @@ class AsyncActionsResource(AsyncAPIResource):
               -\\__~!.+ special characters. If ommited, the display name will be the same as the
               number in the `from` field.
 
-          media_encryption: Defines whether media should be encrypted on the new call leg.
+          media_encryption: Defines whether media should be encrypted on the new call leg. For SIP URI
+              destinations, media encryption can also be requested per endpoint with the
+              `secure` URI parameter: `;secure=true` or `;secure=srtp` enables SRTP, and
+              `;secure=dtls` enables DTLS. This parameter, when set to `SRTP` or `DTLS`, takes
+              precedence over the per-endpoint `secure` value.
 
           media_name: The media_name of a file to be played back when the transfer destination answers
               before bridging the call. The media_name must point to a file previously

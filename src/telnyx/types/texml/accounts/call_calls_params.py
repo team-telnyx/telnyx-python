@@ -65,6 +65,24 @@ class WithURL(TypedDict, total=False):
     Each header should be an object with 'name' and 'value' properties.
     """
 
+    deepfake_detection: Annotated[Literal["Enable"], PropertyInfo(alias="DeepfakeDetection")]
+    """Enables Deepfake Detection on the dialed call.
+
+    When enabled, audio from the remote party is analyzed to determine whether the
+    voice is AI-generated. Results are delivered asynchronously via a callback.
+    """
+
+    deepfake_detection_callback_method: Annotated[
+        Literal["GET", "POST"], PropertyInfo(alias="DeepfakeDetectionCallbackMethod")
+    ]
+    """HTTP request type used for `DeepfakeDetectionCallbackUrl`."""
+
+    deepfake_detection_callback_url: Annotated[str, PropertyInfo(alias="DeepfakeDetectionCallbackUrl")]
+    """
+    URL destination for Telnyx to send deepfake detection callback events to for the
+    call.
+    """
+
     detection_mode: Annotated[Literal["Premium", "Regular"], PropertyInfo(alias="DetectionMode")]
     """Allows you to chose between Premium and Standard detections."""
 
@@ -287,6 +305,24 @@ class WithTeXml(TypedDict, total=False):
     Each header should be an object with 'name' and 'value' properties.
     """
 
+    deepfake_detection: Annotated[Literal["Enable"], PropertyInfo(alias="DeepfakeDetection")]
+    """Enables Deepfake Detection on the dialed call.
+
+    When enabled, audio from the remote party is analyzed to determine whether the
+    voice is AI-generated. Results are delivered asynchronously via a callback.
+    """
+
+    deepfake_detection_callback_method: Annotated[
+        Literal["GET", "POST"], PropertyInfo(alias="DeepfakeDetectionCallbackMethod")
+    ]
+    """HTTP request type used for `DeepfakeDetectionCallbackUrl`."""
+
+    deepfake_detection_callback_url: Annotated[str, PropertyInfo(alias="DeepfakeDetectionCallbackUrl")]
+    """
+    URL destination for Telnyx to send deepfake detection callback events to for the
+    call.
+    """
+
     detection_mode: Annotated[Literal["Premium", "Regular"], PropertyInfo(alias="DetectionMode")]
     """Allows you to chose between Premium and Standard detections."""
 
@@ -500,6 +536,24 @@ class ApplicationDefault(TypedDict, total=False):
     """Custom HTTP headers to be sent with the call.
 
     Each header should be an object with 'name' and 'value' properties.
+    """
+
+    deepfake_detection: Annotated[Literal["Enable"], PropertyInfo(alias="DeepfakeDetection")]
+    """Enables Deepfake Detection on the dialed call.
+
+    When enabled, audio from the remote party is analyzed to determine whether the
+    voice is AI-generated. Results are delivered asynchronously via a callback.
+    """
+
+    deepfake_detection_callback_method: Annotated[
+        Literal["GET", "POST"], PropertyInfo(alias="DeepfakeDetectionCallbackMethod")
+    ]
+    """HTTP request type used for `DeepfakeDetectionCallbackUrl`."""
+
+    deepfake_detection_callback_url: Annotated[str, PropertyInfo(alias="DeepfakeDetectionCallbackUrl")]
+    """
+    URL destination for Telnyx to send deepfake detection callback events to for the
+    call.
     """
 
     detection_mode: Annotated[Literal["Premium", "Regular"], PropertyInfo(alias="DetectionMode")]
