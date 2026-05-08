@@ -26,7 +26,7 @@ class TestCalls:
         call = client.calls.dial(
             connection_id="7267xxxxxxxxxxxxxx",
             from_="+18005550101",
-            to="+18005550100 or sip:username@sip.telnyx.com",
+            to="+18005550100 or sip:username@sip.telnyx.com;secure=srtp",
         )
         assert_matches_type(CallDialResponse, call, path=["response"])
 
@@ -36,7 +36,7 @@ class TestCalls:
         call = client.calls.dial(
             connection_id="7267xxxxxxxxxxxxxx",
             from_="+18005550101",
-            to="+18005550100 or sip:username@sip.telnyx.com",
+            to="+18005550100 or sip:username@sip.telnyx.com;secure=srtp",
             answering_machine_detection="detect",
             answering_machine_detection_config={
                 "after_greeting_silence_millis": 1000,
@@ -231,7 +231,7 @@ class TestCalls:
         response = client.calls.with_raw_response.dial(
             connection_id="7267xxxxxxxxxxxxxx",
             from_="+18005550101",
-            to="+18005550100 or sip:username@sip.telnyx.com",
+            to="+18005550100 or sip:username@sip.telnyx.com;secure=srtp",
         )
 
         assert response.is_closed is True
@@ -245,7 +245,7 @@ class TestCalls:
         with client.calls.with_streaming_response.dial(
             connection_id="7267xxxxxxxxxxxxxx",
             from_="+18005550101",
-            to="+18005550100 or sip:username@sip.telnyx.com",
+            to="+18005550100 or sip:username@sip.telnyx.com;secure=srtp",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -309,7 +309,7 @@ class TestAsyncCalls:
         call = await async_client.calls.dial(
             connection_id="7267xxxxxxxxxxxxxx",
             from_="+18005550101",
-            to="+18005550100 or sip:username@sip.telnyx.com",
+            to="+18005550100 or sip:username@sip.telnyx.com;secure=srtp",
         )
         assert_matches_type(CallDialResponse, call, path=["response"])
 
@@ -319,7 +319,7 @@ class TestAsyncCalls:
         call = await async_client.calls.dial(
             connection_id="7267xxxxxxxxxxxxxx",
             from_="+18005550101",
-            to="+18005550100 or sip:username@sip.telnyx.com",
+            to="+18005550100 or sip:username@sip.telnyx.com;secure=srtp",
             answering_machine_detection="detect",
             answering_machine_detection_config={
                 "after_greeting_silence_millis": 1000,
@@ -514,7 +514,7 @@ class TestAsyncCalls:
         response = await async_client.calls.with_raw_response.dial(
             connection_id="7267xxxxxxxxxxxxxx",
             from_="+18005550101",
-            to="+18005550100 or sip:username@sip.telnyx.com",
+            to="+18005550100 or sip:username@sip.telnyx.com;secure=srtp",
         )
 
         assert response.is_closed is True
@@ -528,7 +528,7 @@ class TestAsyncCalls:
         async with async_client.calls.with_streaming_response.dial(
             connection_id="7267xxxxxxxxxxxxxx",
             from_="+18005550101",
-            to="+18005550100 or sip:username@sip.telnyx.com",
+            to="+18005550100 or sip:username@sip.telnyx.com;secure=srtp",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

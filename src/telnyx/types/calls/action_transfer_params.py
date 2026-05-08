@@ -15,7 +15,13 @@ __all__ = ["ActionTransferParams", "AnsweringMachineDetectionConfig", "WebhookRe
 
 class ActionTransferParams(TypedDict, total=False):
     to: Required[str]
-    """The DID or SIP URI to dial out to."""
+    """The DID or SIP URI to dial out to.
+
+    For SIP URI destinations, append `;secure=true` or `;secure=srtp` to enable SRTP
+    media encryption for that endpoint, or `;secure=dtls` to enable DTLS media
+    encryption for that endpoint. If `media_encryption` is set to `SRTP` or `DTLS`,
+    it takes precedence over any per-endpoint `secure` URI parameter.
+    """
 
     answering_machine_detection: Literal["premium", "detect", "detect_beep", "detect_words", "greeting_end", "disabled"]
     """Enables Answering Machine Detection.
@@ -80,7 +86,13 @@ class ActionTransferParams(TypedDict, total=False):
     """
 
     media_encryption: Literal["disabled", "SRTP", "DTLS"]
-    """Defines whether media should be encrypted on the new call leg."""
+    """Defines whether media should be encrypted on the new call leg.
+
+    For SIP URI destinations, media encryption can also be requested per endpoint
+    with the `secure` URI parameter: `;secure=true` or `;secure=srtp` enables SRTP,
+    and `;secure=dtls` enables DTLS. This parameter, when set to `SRTP` or `DTLS`,
+    takes precedence over the per-endpoint `secure` value.
+    """
 
     media_name: str
     """
