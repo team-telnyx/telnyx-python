@@ -74,6 +74,7 @@ class TestAssistants:
                 }
             ],
             interruption_settings={
+                "disable_greeting_interruption": True,
                 "enable": True,
                 "start_speaking_plan": {
                     "transcription_endpointing_plan": {
@@ -365,6 +366,7 @@ class TestAssistants:
                 }
             ],
             interruption_settings={
+                "disable_greeting_interruption": True,
                 "enable": True,
                 "start_speaking_plan": {
                     "transcription_endpointing_plan": {
@@ -943,6 +945,7 @@ class TestAsyncAssistants:
                 }
             ],
             interruption_settings={
+                "disable_greeting_interruption": True,
                 "enable": True,
                 "start_speaking_plan": {
                     "transcription_endpointing_plan": {
@@ -1234,6 +1237,7 @@ class TestAsyncAssistants:
                 }
             ],
             interruption_settings={
+                "disable_greeting_interruption": True,
                 "enable": True,
                 "start_speaking_plan": {
                     "transcription_endpointing_plan": {
