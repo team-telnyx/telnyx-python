@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.123.1 (2026-05-08)
+
+Full Changelog: [v4.123.0...v4.123.1](https://github.com/team-telnyx/telnyx-python/compare/v4.123.0...v4.123.1)
+
+### Bug Fixes
+
+* **client:** add missing f-string prefix in file type error message ([de93558](https://github.com/team-telnyx/telnyx-python/commit/de93558f5cebcbd39d8dcd3ca29df98dfd53d8da))
+
 ## 4.123.0 (2026-05-08)
 
 Full Changelog: [v4.122.0...v4.123.0](https://github.com/team-telnyx/telnyx-python/compare/v4.122.0...v4.123.0)
