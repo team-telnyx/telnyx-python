@@ -382,6 +382,7 @@ from .voice_design_list_params import VoiceDesignListParams as VoiceDesignListPa
 from .whatsapp_message_content import WhatsappMessageContent as WhatsappMessageContent
 from .wireguard_interface_read import WireguardInterfaceRead as WireguardInterfaceRead
 from .address_retrieve_response import AddressRetrieveResponse as AddressRetrieveResponse
+from .ai_create_response_params import AICreateResponseParams as AICreateResponseParams
 from .audit_event_list_response import AuditEventListResponse as AuditEventListResponse
 from .balance_retrieve_response import BalanceRetrieveResponse as BalanceRetrieveResponse
 from .billing_group_list_params import BillingGroupListParams as BillingGroupListParams
@@ -452,6 +453,7 @@ from .voice_design_rename_params import VoiceDesignRenameParams as VoiceDesignRe
 from .whatsapp_interactive_param import WhatsappInteractiveParam as WhatsappInteractiveParam
 from .wireguard_peer_list_params import WireguardPeerListParams as WireguardPeerListParams
 from .access_ip_range_list_params import AccessIPRangeListParams as AccessIPRangeListParams
+from .ai_create_response_response import AICreateResponseResponse as AICreateResponseResponse
 from .ai_retrieve_models_response import AIRetrieveModelsResponse as AIRetrieveModelsResponse
 from .billing_group_create_params import BillingGroupCreateParams as BillingGroupCreateParams
 from .billing_group_update_params import BillingGroupUpdateParams as BillingGroupUpdateParams

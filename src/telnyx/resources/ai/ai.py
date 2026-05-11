@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import typing_extensions
+from typing import Dict
 
 import httpx
 
@@ -30,7 +31,7 @@ from .tools import (
     ToolsResourceWithStreamingResponse,
     AsyncToolsResourceWithStreamingResponse,
 )
-from ...types import ai_summarize_params
+from ...types import ai_summarize_params, ai_create_response_params
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from .clusters import (
@@ -115,6 +116,7 @@ from .conversations.conversations import (
     AsyncConversationsResourceWithStreamingResponse,
 )
 from ...types.ai_summarize_response import AISummarizeResponse
+from ...types.ai_create_response_response import AICreateResponseResponse
 from ...types.ai_retrieve_models_response import AIRetrieveModelsResponse
 
 __all__ = ["AIResource", "AsyncAIResource"]
@@ -195,6 +197,43 @@ class AIResource(SyncAPIResource):
         For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
         return AIResourceWithStreamingResponse(self)
+
+    def create_response(
+        self,
+        *,
+        body: Dict[str, object],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AICreateResponseResponse:
+        """Chat with a language model.
+
+        This endpoint is consistent with the
+        [OpenAI Chat Completions API](https://developers.openai.com/api/reference/resources/responses)
+        and may be used with the OpenAI JS or Python SDK. Response id parameter is not
+        supported at the moment. Use 'conversation' parameter to leverage persistent
+        conversations feature.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._post(
+            "/ai/responses",
+            body=maybe_transform(body, ai_create_response_params.AICreateResponseParams),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=AICreateResponseResponse,
+        )
 
     @typing_extensions.deprecated("deprecated")
     def retrieve_models(
@@ -360,6 +399,43 @@ class AsyncAIResource(AsyncAPIResource):
         """
         return AsyncAIResourceWithStreamingResponse(self)
 
+    async def create_response(
+        self,
+        *,
+        body: Dict[str, object],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AICreateResponseResponse:
+        """Chat with a language model.
+
+        This endpoint is consistent with the
+        [OpenAI Chat Completions API](https://developers.openai.com/api/reference/resources/responses)
+        and may be used with the OpenAI JS or Python SDK. Response id parameter is not
+        supported at the moment. Use 'conversation' parameter to leverage persistent
+        conversations feature.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._post(
+            "/ai/responses",
+            body=await async_maybe_transform(body, ai_create_response_params.AICreateResponseParams),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=AICreateResponseResponse,
+        )
+
     @typing_extensions.deprecated("deprecated")
     async def retrieve_models(
         self,
@@ -452,6 +528,9 @@ class AIResourceWithRawResponse:
     def __init__(self, ai: AIResource) -> None:
         self._ai = ai
 
+        self.create_response = to_raw_response_wrapper(
+            ai.create_response,
+        )
         self.retrieve_models = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
                 ai.retrieve_models,  # pyright: ignore[reportDeprecated],
@@ -520,6 +599,9 @@ class AsyncAIResourceWithRawResponse:
     def __init__(self, ai: AsyncAIResource) -> None:
         self._ai = ai
 
+        self.create_response = async_to_raw_response_wrapper(
+            ai.create_response,
+        )
         self.retrieve_models = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
                 ai.retrieve_models,  # pyright: ignore[reportDeprecated],
@@ -588,6 +670,9 @@ class AIResourceWithStreamingResponse:
     def __init__(self, ai: AIResource) -> None:
         self._ai = ai
 
+        self.create_response = to_streamed_response_wrapper(
+            ai.create_response,
+        )
         self.retrieve_models = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
                 ai.retrieve_models,  # pyright: ignore[reportDeprecated],
@@ -656,6 +741,9 @@ class AsyncAIResourceWithStreamingResponse:
     def __init__(self, ai: AsyncAIResource) -> None:
         self._ai = ai
 
+        self.create_response = async_to_streamed_response_wrapper(
+            ai.create_response,
+        )
         self.retrieve_models = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
                 ai.retrieve_models,  # pyright: ignore[reportDeprecated],

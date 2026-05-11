@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import Dict
+
 import httpx
 
 from .chat import (
@@ -13,6 +15,7 @@ from .chat import (
     AsyncChatResourceWithStreamingResponse,
 )
 from ...._types import Body, Query, Headers, NotGiven, not_given
+from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from .embeddings import (
     EmbeddingsResource,
@@ -22,6 +25,7 @@ from .embeddings import (
     EmbeddingsResourceWithStreamingResponse,
     AsyncEmbeddingsResourceWithStreamingResponse,
 )
+from ....types.ai import openai_create_response_params
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
     to_raw_response_wrapper,
@@ -31,6 +35,7 @@ from ...._response import (
 )
 from ...._base_client import make_request_options
 from ....types.ai.openai_list_models_response import OpenAIListModelsResponse
+from ....types.ai.openai_create_response_response import OpenAICreateResponseResponse
 
 __all__ = ["OpenAIResource", "AsyncOpenAIResource"]
 
@@ -65,6 +70,43 @@ class OpenAIResource(SyncAPIResource):
         For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
         """
         return OpenAIResourceWithStreamingResponse(self)
+
+    def create_response(
+        self,
+        *,
+        body: Dict[str, object],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> OpenAICreateResponseResponse:
+        """Chat with a language model.
+
+        This endpoint is consistent with the
+        [OpenAI Chat Completions API](https://developers.openai.com/api/reference/resources/responses)
+        and may be used with the OpenAI JS or Python SDK. Response id parameter is not
+        supported at the moment. Use 'conversation' parameter to leverage persistent
+        conversations feature.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._post(
+            "/ai/openai/responses",
+            body=maybe_transform(body, openai_create_response_params.OpenAICreateResponseParams),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=OpenAICreateResponseResponse,
+        )
 
     def list_models(
         self,
@@ -133,6 +175,43 @@ class AsyncOpenAIResource(AsyncAPIResource):
         """
         return AsyncOpenAIResourceWithStreamingResponse(self)
 
+    async def create_response(
+        self,
+        *,
+        body: Dict[str, object],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> OpenAICreateResponseResponse:
+        """Chat with a language model.
+
+        This endpoint is consistent with the
+        [OpenAI Chat Completions API](https://developers.openai.com/api/reference/resources/responses)
+        and may be used with the OpenAI JS or Python SDK. Response id parameter is not
+        supported at the moment. Use 'conversation' parameter to leverage persistent
+        conversations feature.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._post(
+            "/ai/openai/responses",
+            body=await async_maybe_transform(body, openai_create_response_params.OpenAICreateResponseParams),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=OpenAICreateResponseResponse,
+        )
+
     async def list_models(
         self,
         *,
@@ -173,6 +252,9 @@ class OpenAIResourceWithRawResponse:
     def __init__(self, openai: OpenAIResource) -> None:
         self._openai = openai
 
+        self.create_response = to_raw_response_wrapper(
+            openai.create_response,
+        )
         self.list_models = to_raw_response_wrapper(
             openai.list_models,
         )
@@ -193,6 +275,9 @@ class AsyncOpenAIResourceWithRawResponse:
     def __init__(self, openai: AsyncOpenAIResource) -> None:
         self._openai = openai
 
+        self.create_response = async_to_raw_response_wrapper(
+            openai.create_response,
+        )
         self.list_models = async_to_raw_response_wrapper(
             openai.list_models,
         )
@@ -213,6 +298,9 @@ class OpenAIResourceWithStreamingResponse:
     def __init__(self, openai: OpenAIResource) -> None:
         self._openai = openai
 
+        self.create_response = to_streamed_response_wrapper(
+            openai.create_response,
+        )
         self.list_models = to_streamed_response_wrapper(
             openai.list_models,
         )
@@ -233,6 +321,9 @@ class AsyncOpenAIResourceWithStreamingResponse:
     def __init__(self, openai: AsyncOpenAIResource) -> None:
         self._openai = openai
 
+        self.create_response = async_to_streamed_response_wrapper(
+            openai.create_response,
+        )
         self.list_models = async_to_streamed_response_wrapper(
             openai.list_models,
         )
