@@ -198,6 +198,7 @@ class AIResource(SyncAPIResource):
         """
         return AIResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     def create_response(
         self,
         *,
@@ -209,10 +210,11 @@ class AIResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AICreateResponseResponse:
-        """Chat with a language model.
+        """**Deprecated**: Use `POST /v2/ai/openai/responses` instead.
 
-        This endpoint is consistent with the
-        [OpenAI Chat Completions API](https://developers.openai.com/api/reference/resources/responses)
+        Chat with a language
+        model. This endpoint is consistent with the
+        [OpenAI Responses API](https://platform.openai.com/docs/api-reference/responses)
         and may be used with the OpenAI JS or Python SDK. Response id parameter is not
         supported at the moment. Use 'conversation' parameter to leverage persistent
         conversations feature.
@@ -399,6 +401,7 @@ class AsyncAIResource(AsyncAPIResource):
         """
         return AsyncAIResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     async def create_response(
         self,
         *,
@@ -410,10 +413,11 @@ class AsyncAIResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AICreateResponseResponse:
-        """Chat with a language model.
+        """**Deprecated**: Use `POST /v2/ai/openai/responses` instead.
 
-        This endpoint is consistent with the
-        [OpenAI Chat Completions API](https://developers.openai.com/api/reference/resources/responses)
+        Chat with a language
+        model. This endpoint is consistent with the
+        [OpenAI Responses API](https://platform.openai.com/docs/api-reference/responses)
         and may be used with the OpenAI JS or Python SDK. Response id parameter is not
         supported at the moment. Use 'conversation' parameter to leverage persistent
         conversations feature.
@@ -528,8 +532,10 @@ class AIResourceWithRawResponse:
     def __init__(self, ai: AIResource) -> None:
         self._ai = ai
 
-        self.create_response = to_raw_response_wrapper(
-            ai.create_response,
+        self.create_response = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                ai.create_response,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.retrieve_models = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
@@ -599,8 +605,10 @@ class AsyncAIResourceWithRawResponse:
     def __init__(self, ai: AsyncAIResource) -> None:
         self._ai = ai
 
-        self.create_response = async_to_raw_response_wrapper(
-            ai.create_response,
+        self.create_response = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                ai.create_response,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.retrieve_models = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
@@ -670,8 +678,10 @@ class AIResourceWithStreamingResponse:
     def __init__(self, ai: AIResource) -> None:
         self._ai = ai
 
-        self.create_response = to_streamed_response_wrapper(
-            ai.create_response,
+        self.create_response = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                ai.create_response,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.retrieve_models = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
@@ -741,8 +751,10 @@ class AsyncAIResourceWithStreamingResponse:
     def __init__(self, ai: AsyncAIResource) -> None:
         self._ai = ai
 
-        self.create_response = async_to_streamed_response_wrapper(
-            ai.create_response,
+        self.create_response = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                ai.create_response,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.retrieve_models = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
