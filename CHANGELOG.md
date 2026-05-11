@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.125.0 (2026-05-11)
+
+Full Changelog: [v4.124.0...v4.125.0](https://github.com/team-telnyx/telnyx-python/compare/v4.124.0...v4.125.0)
+
+### Features
+
+* Responses endpoint ([4f46c79](https://github.com/team-telnyx/telnyx-python/commit/4f46c7970ef0d78935814d95e409a89bf78d7ad7))
+
 ## 4.124.0 (2026-05-08)
 
 Full Changelog: [v4.123.1...v4.124.0](https://github.com/team-telnyx/telnyx-python/compare/v4.123.1...v4.124.0)
