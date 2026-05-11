@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.128.0 (2026-05-11)
+
+Full Changelog: [v4.127.0...v4.128.0](https://github.com/team-telnyx/telnyx-python/compare/v4.127.0...v4.128.0)
+
+### Features
+
+* AI-2312: document currency and unit in /models pricing schema ([132d7d8](https://github.com/team-telnyx/telnyx-python/commit/132d7d8310b308408bdc1f7affc241a0722c824c))
+
 ## 4.127.0 (2026-05-11)
 
 Full Changelog: [v4.126.0...v4.127.0](https://github.com/team-telnyx/telnyx-python/compare/v4.126.0...v4.127.0)

@@ -97,10 +97,12 @@ class ModelMetadata(BaseModel):
     """Human-readable parameter count, e.g. `1.0T`, `753.9B`, `8B`."""
 
     pricing: Optional[Dict[str, str]] = None
-    """Mapping of token kind to price in USD per 1M tokens, as a string.
+    """Mapping of token kind to price, as strings to preserve precision.
 
-    Typical keys are `input` and `output`; embedding models expose `embedding`.
-    Empty object when pricing is not yet published for the model.
+    Typical keys are `prompt`, `cached_prompt`, and `completion`. When pricing is
+    available the block also includes `currency` (ISO 4217 code matching the
+    account's configured billing currency) and `unit` (the denomination the prices
+    are quoted in, currently always `1M_tokens` for token-priced models).
     """
 
     recommended_for_assistants: Optional[bool] = None
