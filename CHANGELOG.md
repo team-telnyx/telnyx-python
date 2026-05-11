@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.129.0 (2026-05-11)
+
+Full Changelog: [v4.128.0...v4.129.0](https://github.com/team-telnyx/telnyx-python/compare/v4.128.0...v4.129.0)
+
+### Features
+
+* Document OpenAI responses conversation flow ([ea1550d](https://github.com/team-telnyx/telnyx-python/commit/ea1550d55e789043b8f67da65203f468fcaf8e13))
+
 ## 4.128.0 (2026-05-11)
 
 Full Changelog: [v4.127.0...v4.128.0](https://github.com/team-telnyx/telnyx-python/compare/v4.127.0...v4.128.0)
