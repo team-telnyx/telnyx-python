@@ -572,11 +572,17 @@ Methods:
 Types:
 
 ```python
-from telnyx.types import ModelMetadata, AIRetrieveModelsResponse, AISummarizeResponse
+from telnyx.types import (
+    ModelMetadata,
+    AICreateResponseResponse,
+    AIRetrieveModelsResponse,
+    AISummarizeResponse,
+)
 ```
 
 Methods:
 
+- <code title="post /ai/responses">client.ai.<a href="./src/telnyx/resources/ai/ai.py">create_response</a>(\*\*<a href="src/telnyx/types/ai_create_response_params.py">params</a>) -> <a href="./src/telnyx/types/ai_create_response_response.py">AICreateResponseResponse</a></code>
 - <code title="get /ai/models">client.ai.<a href="./src/telnyx/resources/ai/ai.py">retrieve_models</a>() -> <a href="./src/telnyx/types/ai_retrieve_models_response.py">AIRetrieveModelsResponse</a></code>
 - <code title="post /ai/summarize">client.ai.<a href="./src/telnyx/resources/ai/ai.py">summarize</a>(\*\*<a href="src/telnyx/types/ai_summarize_params.py">params</a>) -> <a href="./src/telnyx/types/ai_summarize_response.py">AISummarizeResponse</a></code>
 
@@ -1153,11 +1159,12 @@ Methods:
 Types:
 
 ```python
-from telnyx.types.ai import OpenAIListModelsResponse
+from telnyx.types.ai import OpenAICreateResponseResponse, OpenAIListModelsResponse
 ```
 
 Methods:
 
+- <code title="post /ai/openai/responses">client.ai.openai.<a href="./src/telnyx/resources/ai/openai/openai.py">create_response</a>(\*\*<a href="src/telnyx/types/ai/openai_create_response_params.py">params</a>) -> <a href="./src/telnyx/types/ai/openai_create_response_response.py">OpenAICreateResponseResponse</a></code>
 - <code title="get /ai/openai/models">client.ai.openai.<a href="./src/telnyx/resources/ai/openai/openai.py">list_models</a>() -> <a href="./src/telnyx/types/ai/openai_list_models_response.py">OpenAIListModelsResponse</a></code>
 
 ### Embeddings
