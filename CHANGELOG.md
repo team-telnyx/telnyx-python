@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.130.0 (2026-05-11)
+
+Full Changelog: [v4.129.0...v4.130.0](https://github.com/team-telnyx/telnyx-python/compare/v4.129.0...v4.130.0)
+
+### Features
+
+* **internal/types:** support eagerly validating pydantic iterators ([2d3d6ef](https://github.com/team-telnyx/telnyx-python/commit/2d3d6ef7b62ef00e12780ccce2830f035e64222c))
+
 ## 4.129.0 (2026-05-11)
 
 Full Changelog: [v4.128.0...v4.129.0](https://github.com/team-telnyx/telnyx-python/compare/v4.128.0...v4.129.0)
