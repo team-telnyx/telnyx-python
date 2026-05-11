@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.127.0 (2026-05-11)
+
+Full Changelog: [v4.126.0...v4.127.0](https://github.com/team-telnyx/telnyx-python/compare/v4.126.0...v4.127.0)
+
+### Features
+
+* Clean up OpenAI responses API docs ([9b429fa](https://github.com/team-telnyx/telnyx-python/commit/9b429fa699dc07660e0fb5d706e09ac550e454ab))
+
 ## 4.126.0 (2026-05-11)
 
 Full Changelog: [v4.125.0...v4.126.0](https://github.com/team-telnyx/telnyx-python/compare/v4.125.0...v4.126.0)
