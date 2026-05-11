@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.126.0 (2026-05-11)
+
+Full Changelog: [v4.125.0...v4.126.0](https://github.com/team-telnyx/telnyx-python/compare/v4.125.0...v4.126.0)
+
+### Features
+
+* Fix OpenAI chat API reference links ([3b5021b](https://github.com/team-telnyx/telnyx-python/commit/3b5021b7b2bdb7636d138cd58430b097df6deeeb))
+
 ## 4.125.0 (2026-05-11)
 
 Full Changelog: [v4.124.0...v4.125.0](https://github.com/team-telnyx/telnyx-python/compare/v4.124.0...v4.125.0)
