@@ -26,23 +26,26 @@ class TestAI:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create_response(self, client: Telnyx) -> None:
-        ai = client.ai.create_response(
-            body={
-                "model": "bar",
-                "input": "bar",
-            },
-        )
+        with pytest.warns(DeprecationWarning):
+            ai = client.ai.create_response(
+                body={
+                    "model": "bar",
+                    "input": "bar",
+                },
+            )
+
         assert_matches_type(AICreateResponseResponse, ai, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_create_response(self, client: Telnyx) -> None:
-        response = client.ai.with_raw_response.create_response(
-            body={
-                "model": "bar",
-                "input": "bar",
-            },
-        )
+        with pytest.warns(DeprecationWarning):
+            response = client.ai.with_raw_response.create_response(
+                body={
+                    "model": "bar",
+                    "input": "bar",
+                },
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -52,17 +55,18 @@ class TestAI:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_create_response(self, client: Telnyx) -> None:
-        with client.ai.with_streaming_response.create_response(
-            body={
-                "model": "bar",
-                "input": "bar",
-            },
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            with client.ai.with_streaming_response.create_response(
+                body={
+                    "model": "bar",
+                    "input": "bar",
+                },
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            ai = response.parse()
-            assert_matches_type(AICreateResponseResponse, ai, path=["response"])
+                ai = response.parse()
+                assert_matches_type(AICreateResponseResponse, ai, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -154,23 +158,26 @@ class TestAsyncAI:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create_response(self, async_client: AsyncTelnyx) -> None:
-        ai = await async_client.ai.create_response(
-            body={
-                "model": "bar",
-                "input": "bar",
-            },
-        )
+        with pytest.warns(DeprecationWarning):
+            ai = await async_client.ai.create_response(
+                body={
+                    "model": "bar",
+                    "input": "bar",
+                },
+            )
+
         assert_matches_type(AICreateResponseResponse, ai, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_create_response(self, async_client: AsyncTelnyx) -> None:
-        response = await async_client.ai.with_raw_response.create_response(
-            body={
-                "model": "bar",
-                "input": "bar",
-            },
-        )
+        with pytest.warns(DeprecationWarning):
+            response = await async_client.ai.with_raw_response.create_response(
+                body={
+                    "model": "bar",
+                    "input": "bar",
+                },
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -180,17 +187,18 @@ class TestAsyncAI:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_create_response(self, async_client: AsyncTelnyx) -> None:
-        async with async_client.ai.with_streaming_response.create_response(
-            body={
-                "model": "bar",
-                "input": "bar",
-            },
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            async with async_client.ai.with_streaming_response.create_response(
+                body={
+                    "model": "bar",
+                    "input": "bar",
+                },
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            ai = await response.parse()
-            assert_matches_type(AICreateResponseResponse, ai, path=["response"])
+                ai = await response.parse()
+                assert_matches_type(AICreateResponseResponse, ai, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
