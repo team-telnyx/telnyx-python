@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.131.0 (2026-05-13)
+
+Full Changelog: [v4.130.0...v4.131.0](https://github.com/team-telnyx/telnyx-python/compare/v4.130.0...v4.131.0)
+
+### Features
+
+* Document AI call status callback overrides ([87723f8](https://github.com/team-telnyx/telnyx-python/commit/87723f8a9160be89eaf88a209c621edb3fa27e0c))
+
 ## 4.130.0 (2026-05-11)
 
 Full Changelog: [v4.129.0...v4.130.0](https://github.com/team-telnyx/telnyx-python/compare/v4.129.0...v4.130.0)
