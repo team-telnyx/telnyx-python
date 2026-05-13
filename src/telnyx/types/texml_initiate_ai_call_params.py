@@ -56,13 +56,20 @@ class TexmlInitiateAICallParams(TypedDict, total=False):
     """
 
     conversation_callback: Annotated[str, PropertyInfo(alias="ConversationCallback")]
-    """URL destination for Telnyx to send conversation callback events to."""
+    """URL destination for Telnyx to send AI conversation callback events for this
+    call.
+
+    Events include `conversation_created` and `conversation_ended`.
+    """
 
     conversation_callback_method: Annotated[Literal["GET", "POST"], PropertyInfo(alias="ConversationCallbackMethod")]
-    """HTTP request type used for `ConversationCallback`."""
+    """HTTP request type used for `ConversationCallback` and `ConversationCallbacks`."""
 
     conversation_callbacks: Annotated[SequenceNotStr[str], PropertyInfo(alias="ConversationCallbacks")]
-    """An array of URL destinations for conversation callback events."""
+    """Array of URL destinations for AI conversation callback events for this call.
+
+    Events include `conversation_created` and `conversation_ended`.
+    """
 
     custom_headers: Annotated[Iterable[CustomHeader], PropertyInfo(alias="CustomHeaders")]
     """Custom HTTP headers to be sent with the call.
@@ -152,22 +159,33 @@ class TexmlInitiateAICallParams(TypedDict, total=False):
     """Defines the SIP region to be used for the call."""
 
     status_callback: Annotated[str, PropertyInfo(alias="StatusCallback")]
-    """URL destination for Telnyx to send status callback events to for the call."""
+    """URL destination for Telnyx to send status callback events for this AI call.
+
+    When provided, this per-call value overrides the status callback URL configured
+    on the TeXML application/connection.
+    """
 
     status_callback_event: Annotated[str, PropertyInfo(alias="StatusCallbackEvent")]
-    """The call events for which Telnyx should send a webhook.
-
-    Multiple events can be defined when separated by a space. Valid values:
-    initiated, ringing, answered, completed.
+    """
+    The status callback events for which Telnyx should send a webhook for this AI
+    call. Multiple events can be defined when separated by a space. Valid values:
+    initiated, ringing, answered, completed, no-answer, busy, canceled, failed,
+    analyzed. When provided, this per-call value overrides the status callback
+    events configured on the TeXML application/connection.
     """
 
     status_callback_method: Annotated[Literal["GET", "POST"], PropertyInfo(alias="StatusCallbackMethod")]
-    """HTTP request type used for `StatusCallback`."""
+    """
+    HTTP request type used for `StatusCallback` and `StatusCallbacks` for this AI
+    call. When provided, this per-call value overrides the status callback method
+    configured on the TeXML application/connection.
+    """
 
     status_callbacks: Annotated[SequenceNotStr[str], PropertyInfo(alias="StatusCallbacks")]
     """
-    An array of URL destinations for Telnyx to send status callback events to for
-    the call.
+    Array of URL destinations for Telnyx to send status callback events for this AI
+    call. When provided, these per-call values override the status callback URL
+    configured on the TeXML application/connection.
     """
 
     time_limit: Annotated[int, PropertyInfo(alias="TimeLimit")]

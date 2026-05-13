@@ -117,6 +117,17 @@ class TexmlResource(SyncAPIResource):
         client state, and calls the dial API. The Twiml, Texml, and Url parameters are
         not allowed and will result in a 422 error.
 
+        **Expected callback events:**
+
+        Status callbacks: `initiated`, `ringing`, `answered`, one terminal status
+        (`completed`, `no-answer`, `busy`, `canceled`, or `failed`), then `analyzed`
+        after post-call processing completes.
+
+        Conversation callbacks: `conversation_created` and `conversation_ended`.
+
+        Recording, AMD, transcription, and deepfake detection callbacks are only sent
+        when those features are enabled.
+
         Args:
           ai_assistant_id: The ID of the AI assistant to use for the call.
 
@@ -142,11 +153,13 @@ class TexmlResource(SyncAPIResource):
               containing only letters, numbers, spaces, and `-_~!.+` special characters. If
               omitted, the display name will be the same as the number in the `From` field.
 
-          conversation_callback: URL destination for Telnyx to send conversation callback events to.
+          conversation_callback: URL destination for Telnyx to send AI conversation callback events for this
+              call. Events include `conversation_created` and `conversation_ended`.
 
-          conversation_callback_method: HTTP request type used for `ConversationCallback`.
+          conversation_callback_method: HTTP request type used for `ConversationCallback` and `ConversationCallbacks`.
 
-          conversation_callbacks: An array of URL destinations for conversation callback events.
+          conversation_callbacks: Array of URL destinations for AI conversation callback events for this call.
+              Events include `conversation_created` and `conversation_ended`.
 
           custom_headers: Custom HTTP headers to be sent with the call. Each header should be an object
               with 'name' and 'value' properties.
@@ -196,16 +209,23 @@ class TexmlResource(SyncAPIResource):
 
           sip_region: Defines the SIP region to be used for the call.
 
-          status_callback: URL destination for Telnyx to send status callback events to for the call.
+          status_callback: URL destination for Telnyx to send status callback events for this AI call. When
+              provided, this per-call value overrides the status callback URL configured on
+              the TeXML application/connection.
 
-          status_callback_event: The call events for which Telnyx should send a webhook. Multiple events can be
-              defined when separated by a space. Valid values: initiated, ringing, answered,
-              completed.
+          status_callback_event: The status callback events for which Telnyx should send a webhook for this AI
+              call. Multiple events can be defined when separated by a space. Valid values:
+              initiated, ringing, answered, completed, no-answer, busy, canceled, failed,
+              analyzed. When provided, this per-call value overrides the status callback
+              events configured on the TeXML application/connection.
 
-          status_callback_method: HTTP request type used for `StatusCallback`.
+          status_callback_method: HTTP request type used for `StatusCallback` and `StatusCallbacks` for this AI
+              call. When provided, this per-call value overrides the status callback method
+              configured on the TeXML application/connection.
 
-          status_callbacks: An array of URL destinations for Telnyx to send status callback events to for
-              the call.
+          status_callbacks: Array of URL destinations for Telnyx to send status callback events for this AI
+              call. When provided, these per-call values override the status callback URL
+              configured on the TeXML application/connection.
 
           time_limit: The maximum duration of the call in seconds. The minimum value is 30 and the
               maximum value is 14400 (4 hours). Default is 14400 seconds.
@@ -412,6 +432,17 @@ class AsyncTexmlResource(AsyncAPIResource):
         client state, and calls the dial API. The Twiml, Texml, and Url parameters are
         not allowed and will result in a 422 error.
 
+        **Expected callback events:**
+
+        Status callbacks: `initiated`, `ringing`, `answered`, one terminal status
+        (`completed`, `no-answer`, `busy`, `canceled`, or `failed`), then `analyzed`
+        after post-call processing completes.
+
+        Conversation callbacks: `conversation_created` and `conversation_ended`.
+
+        Recording, AMD, transcription, and deepfake detection callbacks are only sent
+        when those features are enabled.
+
         Args:
           ai_assistant_id: The ID of the AI assistant to use for the call.
 
@@ -437,11 +468,13 @@ class AsyncTexmlResource(AsyncAPIResource):
               containing only letters, numbers, spaces, and `-_~!.+` special characters. If
               omitted, the display name will be the same as the number in the `From` field.
 
-          conversation_callback: URL destination for Telnyx to send conversation callback events to.
+          conversation_callback: URL destination for Telnyx to send AI conversation callback events for this
+              call. Events include `conversation_created` and `conversation_ended`.
 
-          conversation_callback_method: HTTP request type used for `ConversationCallback`.
+          conversation_callback_method: HTTP request type used for `ConversationCallback` and `ConversationCallbacks`.
 
-          conversation_callbacks: An array of URL destinations for conversation callback events.
+          conversation_callbacks: Array of URL destinations for AI conversation callback events for this call.
+              Events include `conversation_created` and `conversation_ended`.
 
           custom_headers: Custom HTTP headers to be sent with the call. Each header should be an object
               with 'name' and 'value' properties.
@@ -491,16 +524,23 @@ class AsyncTexmlResource(AsyncAPIResource):
 
           sip_region: Defines the SIP region to be used for the call.
 
-          status_callback: URL destination for Telnyx to send status callback events to for the call.
+          status_callback: URL destination for Telnyx to send status callback events for this AI call. When
+              provided, this per-call value overrides the status callback URL configured on
+              the TeXML application/connection.
 
-          status_callback_event: The call events for which Telnyx should send a webhook. Multiple events can be
-              defined when separated by a space. Valid values: initiated, ringing, answered,
-              completed.
+          status_callback_event: The status callback events for which Telnyx should send a webhook for this AI
+              call. Multiple events can be defined when separated by a space. Valid values:
+              initiated, ringing, answered, completed, no-answer, busy, canceled, failed,
+              analyzed. When provided, this per-call value overrides the status callback
+              events configured on the TeXML application/connection.
 
-          status_callback_method: HTTP request type used for `StatusCallback`.
+          status_callback_method: HTTP request type used for `StatusCallback` and `StatusCallbacks` for this AI
+              call. When provided, this per-call value overrides the status callback method
+              configured on the TeXML application/connection.
 
-          status_callbacks: An array of URL destinations for Telnyx to send status callback events to for
-              the call.
+          status_callbacks: Array of URL destinations for Telnyx to send status callback events for this AI
+              call. When provided, these per-call values override the status callback URL
+              configured on the TeXML application/connection.
 
           time_limit: The maximum duration of the call in seconds. The minimum value is 30 and the
               maximum value is 14400 (4 hours). Default is 14400 seconds.
