@@ -9,19 +9,20 @@ from .deepgram_nova2_config_param import DeepgramNova2ConfigParam
 from .deepgram_nova3_config_param import DeepgramNova3ConfigParam
 from .transcription_engine_a_config_param import TranscriptionEngineAConfigParam
 from .transcription_engine_b_config_param import TranscriptionEngineBConfigParam
+from .transcription_engine_xai_config_param import TranscriptionEngineXaiConfigParam
 from .transcription_engine_azure_config_param import TranscriptionEngineAzureConfigParam
 from .transcription_engine_google_config_param import TranscriptionEngineGoogleConfigParam
 from .transcription_engine_telnyx_config_param import TranscriptionEngineTelnyxConfigParam
+from .transcription_engine_assemblyai_config_param import TranscriptionEngineAssemblyaiConfigParam
 
 __all__ = [
     "TranscriptionStartRequestParam",
     "TranscriptionEngineConfig",
-    "TranscriptionEngineConfigTranscriptionEngineXaiConfig",
-    "TranscriptionEngineConfigTranscriptionEngineAssemblyaiConfig",
+    "TranscriptionEngineConfigTranscriptionEngineSpeechmaticsConfig",
 ]
 
 
-class TranscriptionEngineConfigTranscriptionEngineXaiConfig(TypedDict, total=False):
+class TranscriptionEngineConfigTranscriptionEngineSpeechmaticsConfig(TypedDict, total=False):
     interim_results: bool
     """Whether to send also interim results.
 
@@ -29,52 +30,30 @@ class TranscriptionEngineConfigTranscriptionEngineXaiConfig(TypedDict, total=Fal
     """
 
     language: Literal[
-        "ar",
-        "cs",
-        "da",
-        "de",
         "en",
-        "es",
-        "fa",
-        "fil",
-        "fr",
-        "hi",
-        "id",
-        "it",
-        "ja",
-        "ko",
-        "mk",
-        "ms",
-        "nl",
-        "pl",
-        "pt",
-        "ro",
-        "ru",
-        "sv",
-        "th",
-        "tr",
-        "vi",
+        "ba",
+        "eu",
+        "gl",
+        "ga",
+        "mt",
+        "mn",
+        "sw",
+        "ug",
+        "cy",
+        "ar_en",
+        "cmn_en",
+        "en_ms",
+        "en_ta",
+        "tl",
+        "es-bilingual-en",
+        "cmn_en_ms_ta",
     ]
     """Language to use for speech recognition"""
 
-    transcription_engine: Literal["xAI"]
-    """Engine identifier for xAI transcription service"""
+    transcription_engine: Literal["Speechmatics"]
+    """Engine identifier for Speechmatics transcription service"""
 
-    transcription_model: Literal["xai/grok-stt"]
-    """The model to use for transcription."""
-
-
-class TranscriptionEngineConfigTranscriptionEngineAssemblyaiConfig(TypedDict, total=False):
-    interim_results: bool
-    """Whether to send also interim results.
-
-    If set to false, only final results will be sent.
-    """
-
-    transcription_engine: Literal["AssemblyAI"]
-    """Engine identifier for AssemblyAI transcription service"""
-
-    transcription_model: Literal["assemblyai/universal-streaming"]
+    transcription_model: Literal["speechmatics/standard"]
     """The model to use for transcription."""
 
 
@@ -82,8 +61,9 @@ TranscriptionEngineConfig: TypeAlias = Union[
     TranscriptionEngineGoogleConfigParam,
     TranscriptionEngineTelnyxConfigParam,
     TranscriptionEngineAzureConfigParam,
-    TranscriptionEngineConfigTranscriptionEngineXaiConfig,
-    TranscriptionEngineConfigTranscriptionEngineAssemblyaiConfig,
+    TranscriptionEngineXaiConfigParam,
+    TranscriptionEngineAssemblyaiConfigParam,
+    TranscriptionEngineConfigTranscriptionEngineSpeechmaticsConfig,
     TranscriptionEngineAConfigParam,
     TranscriptionEngineBConfigParam,
     DeepgramNova2ConfigParam,
@@ -105,7 +85,9 @@ class TranscriptionStartRequestParam(TypedDict, total=False):
     `call_control_id`.
     """
 
-    transcription_engine: Literal["Google", "Telnyx", "Deepgram", "Azure", "xAI", "AssemblyAI", "A", "B"]
+    transcription_engine: Literal[
+        "Google", "Telnyx", "Deepgram", "Azure", "xAI", "AssemblyAI", "Speechmatics", "A", "B"
+    ]
     """Engine to use for speech recognition.
 
     Legacy values `A` - `Google`, `B` - `Telnyx` are supported for backward

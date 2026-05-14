@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.133.0 (2026-05-14)
+
+Full Changelog: [v4.132.0...v4.133.0](https://github.com/team-telnyx/telnyx-python/compare/v4.132.0...v4.133.0)
+
+### Features
+
+* Add Speechmatics transcription engine to Call Control API ([dddb318](https://github.com/team-telnyx/telnyx-python/commit/dddb318e4706476fbe3452c920a1a95c8606abaa))
+
 ## 4.132.0 (2026-05-14)
 
 Full Changelog: [v4.131.0...v4.132.0](https://github.com/team-telnyx/telnyx-python/compare/v4.131.0...v4.132.0)
