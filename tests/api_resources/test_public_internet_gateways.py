@@ -10,7 +10,7 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types import (
-    PublicInternetGatewayListResponse,
+    PublicInternetGatewayRead,
     PublicInternetGatewayCreateResponse,
     PublicInternetGatewayDeleteResponse,
     PublicInternetGatewayRetrieveResponse,
@@ -108,7 +108,7 @@ class TestPublicInternetGateways:
     def test_method_list(self, client: Telnyx) -> None:
         public_internet_gateway = client.public_internet_gateways.list()
         assert_matches_type(
-            SyncDefaultFlatPagination[PublicInternetGatewayListResponse], public_internet_gateway, path=["response"]
+            SyncDefaultFlatPagination[PublicInternetGatewayRead], public_internet_gateway, path=["response"]
         )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -120,7 +120,7 @@ class TestPublicInternetGateways:
             page_size=0,
         )
         assert_matches_type(
-            SyncDefaultFlatPagination[PublicInternetGatewayListResponse], public_internet_gateway, path=["response"]
+            SyncDefaultFlatPagination[PublicInternetGatewayRead], public_internet_gateway, path=["response"]
         )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -132,7 +132,7 @@ class TestPublicInternetGateways:
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         public_internet_gateway = response.parse()
         assert_matches_type(
-            SyncDefaultFlatPagination[PublicInternetGatewayListResponse], public_internet_gateway, path=["response"]
+            SyncDefaultFlatPagination[PublicInternetGatewayRead], public_internet_gateway, path=["response"]
         )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -144,7 +144,7 @@ class TestPublicInternetGateways:
 
             public_internet_gateway = response.parse()
             assert_matches_type(
-                SyncDefaultFlatPagination[PublicInternetGatewayListResponse], public_internet_gateway, path=["response"]
+                SyncDefaultFlatPagination[PublicInternetGatewayRead], public_internet_gateway, path=["response"]
             )
 
         assert cast(Any, response.is_closed) is True
@@ -282,7 +282,7 @@ class TestAsyncPublicInternetGateways:
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         public_internet_gateway = await async_client.public_internet_gateways.list()
         assert_matches_type(
-            AsyncDefaultFlatPagination[PublicInternetGatewayListResponse], public_internet_gateway, path=["response"]
+            AsyncDefaultFlatPagination[PublicInternetGatewayRead], public_internet_gateway, path=["response"]
         )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -294,7 +294,7 @@ class TestAsyncPublicInternetGateways:
             page_size=0,
         )
         assert_matches_type(
-            AsyncDefaultFlatPagination[PublicInternetGatewayListResponse], public_internet_gateway, path=["response"]
+            AsyncDefaultFlatPagination[PublicInternetGatewayRead], public_internet_gateway, path=["response"]
         )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -306,7 +306,7 @@ class TestAsyncPublicInternetGateways:
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         public_internet_gateway = await response.parse()
         assert_matches_type(
-            AsyncDefaultFlatPagination[PublicInternetGatewayListResponse], public_internet_gateway, path=["response"]
+            AsyncDefaultFlatPagination[PublicInternetGatewayRead], public_internet_gateway, path=["response"]
         )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -318,9 +318,7 @@ class TestAsyncPublicInternetGateways:
 
             public_internet_gateway = await response.parse()
             assert_matches_type(
-                AsyncDefaultFlatPagination[PublicInternetGatewayListResponse],
-                public_internet_gateway,
-                path=["response"],
+                AsyncDefaultFlatPagination[PublicInternetGatewayRead], public_internet_gateway, path=["response"]
             )
 
         assert cast(Any, response.is_closed) is True

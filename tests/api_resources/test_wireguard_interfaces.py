@@ -10,7 +10,7 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types import (
-    WireguardInterfaceListResponse,
+    WireguardInterfaceRead,
     WireguardInterfaceCreateResponse,
     WireguardInterfaceDeleteResponse,
     WireguardInterfaceRetrieveResponse,
@@ -114,9 +114,7 @@ class TestWireguardInterfaces:
     @parametrize
     def test_method_list(self, client: Telnyx) -> None:
         wireguard_interface = client.wireguard_interfaces.list()
-        assert_matches_type(
-            SyncDefaultFlatPagination[WireguardInterfaceListResponse], wireguard_interface, path=["response"]
-        )
+        assert_matches_type(SyncDefaultFlatPagination[WireguardInterfaceRead], wireguard_interface, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -126,9 +124,7 @@ class TestWireguardInterfaces:
             page_number=0,
             page_size=0,
         )
-        assert_matches_type(
-            SyncDefaultFlatPagination[WireguardInterfaceListResponse], wireguard_interface, path=["response"]
-        )
+        assert_matches_type(SyncDefaultFlatPagination[WireguardInterfaceRead], wireguard_interface, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -138,9 +134,7 @@ class TestWireguardInterfaces:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         wireguard_interface = response.parse()
-        assert_matches_type(
-            SyncDefaultFlatPagination[WireguardInterfaceListResponse], wireguard_interface, path=["response"]
-        )
+        assert_matches_type(SyncDefaultFlatPagination[WireguardInterfaceRead], wireguard_interface, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -151,7 +145,7 @@ class TestWireguardInterfaces:
 
             wireguard_interface = response.parse()
             assert_matches_type(
-                SyncDefaultFlatPagination[WireguardInterfaceListResponse], wireguard_interface, path=["response"]
+                SyncDefaultFlatPagination[WireguardInterfaceRead], wireguard_interface, path=["response"]
             )
 
         assert cast(Any, response.is_closed) is True
@@ -295,9 +289,7 @@ class TestAsyncWireguardInterfaces:
     @parametrize
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         wireguard_interface = await async_client.wireguard_interfaces.list()
-        assert_matches_type(
-            AsyncDefaultFlatPagination[WireguardInterfaceListResponse], wireguard_interface, path=["response"]
-        )
+        assert_matches_type(AsyncDefaultFlatPagination[WireguardInterfaceRead], wireguard_interface, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -307,9 +299,7 @@ class TestAsyncWireguardInterfaces:
             page_number=0,
             page_size=0,
         )
-        assert_matches_type(
-            AsyncDefaultFlatPagination[WireguardInterfaceListResponse], wireguard_interface, path=["response"]
-        )
+        assert_matches_type(AsyncDefaultFlatPagination[WireguardInterfaceRead], wireguard_interface, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -319,9 +309,7 @@ class TestAsyncWireguardInterfaces:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         wireguard_interface = await response.parse()
-        assert_matches_type(
-            AsyncDefaultFlatPagination[WireguardInterfaceListResponse], wireguard_interface, path=["response"]
-        )
+        assert_matches_type(AsyncDefaultFlatPagination[WireguardInterfaceRead], wireguard_interface, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -332,7 +320,7 @@ class TestAsyncWireguardInterfaces:
 
             wireguard_interface = await response.parse()
             assert_matches_type(
-                AsyncDefaultFlatPagination[WireguardInterfaceListResponse], wireguard_interface, path=["response"]
+                AsyncDefaultFlatPagination[WireguardInterfaceRead], wireguard_interface, path=["response"]
             )
 
         assert cast(Any, response.is_closed) is True
