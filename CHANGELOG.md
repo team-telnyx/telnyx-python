@@ -1,5 +1,14 @@
 # Changelog
 
+## 4.132.0 (2026-05-14)
+
+Full Changelog: [v4.131.0...v4.132.0](https://github.com/team-telnyx/telnyx-python/compare/v4.131.0...v4.132.0)
+
+### Features
+
+* Document Conversation Relay ([5cb134d](https://github.com/team-telnyx/telnyx-python/commit/5cb134d1b06a6440f8c128297b93bdadcbfccac8))
+* Fix Conversation Relay expected webhook ([277b46d](https://github.com/team-telnyx/telnyx-python/commit/277b46d020b58b756c7c773079dac0fa08febef3))
+
 ## 4.131.0 (2026-05-13)
 
 Full Changelog: [v4.130.0...v4.131.0](https://github.com/team-telnyx/telnyx-python/compare/v4.130.0...v4.131.0)

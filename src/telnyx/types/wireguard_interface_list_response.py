@@ -6,10 +6,10 @@ from .record import Record
 from .._models import BaseModel
 from .network_interface import NetworkInterface
 
-__all__ = ["WireguardInterfaceCreateResponse", "Data", "DataRegion"]
+__all__ = ["WireguardInterfaceListResponse", "WireguardInterfaceListResponseRegion"]
 
 
-class DataRegion(BaseModel):
+class WireguardInterfaceListResponseRegion(BaseModel):
     code: Optional[str] = None
     """Region code of the interface."""
 
@@ -20,7 +20,7 @@ class DataRegion(BaseModel):
     """Identifies the type of the resource."""
 
 
-class Data(Record, NetworkInterface):
+class WireguardInterfaceListResponse(Record, NetworkInterface):
     enable_sip_trunking: Optional[bool] = None
     """Enable SIP traffic forwarding over VPN interface."""
 
@@ -30,11 +30,7 @@ class Data(Record, NetworkInterface):
     public_key: Optional[str] = None
     """The Telnyx WireGuard peers `Peer.PublicKey`."""
 
-    region: Optional[DataRegion] = None
+    region: Optional[WireguardInterfaceListResponseRegion] = None
 
     region_code: Optional[str] = None
     """The region interface is deployed to."""
-
-
-class WireguardInterfaceCreateResponse(BaseModel):
-    data: Optional[Data] = None

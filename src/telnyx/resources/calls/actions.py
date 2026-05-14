@@ -63,6 +63,8 @@ from ...types.calls import (
     action_stop_noise_suppression_params,
     action_switch_supervisor_role_params,
     action_start_noise_suppression_params,
+    action_stop_conversation_relay_params,
+    action_start_conversation_relay_params,
     action_add_ai_assistant_messages_params,
 )
 from ..._base_client import make_request_options
@@ -119,6 +121,8 @@ from ...types.calls.action_update_client_state_response import ActionUpdateClien
 from ...types.calls.action_stop_noise_suppression_response import ActionStopNoiseSuppressionResponse
 from ...types.calls.action_switch_supervisor_role_response import ActionSwitchSupervisorRoleResponse
 from ...types.calls.action_start_noise_suppression_response import ActionStartNoiseSuppressionResponse
+from ...types.calls.action_stop_conversation_relay_response import ActionStopConversationRelayResponse
+from ...types.calls.action_start_conversation_relay_response import ActionStartConversationRelayResponse
 from ...types.calls.action_add_ai_assistant_messages_response import ActionAddAIAssistantMessagesResponse
 
 __all__ = ["ActionsResource", "AsyncActionsResource"]
@@ -2059,6 +2063,156 @@ class ActionsResource(SyncAPIResource):
             cast_to=ActionStartAIAssistantResponse,
         )
 
+    def start_conversation_relay(
+        self,
+        call_control_id: str,
+        *,
+        conversation_relay_url: str,
+        assistant: action_start_conversation_relay_params.Assistant | Omit = omit,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
+        conversation_relay_dtmf_detection: bool | Omit = omit,
+        greeting: str | Omit = omit,
+        interruption_settings: action_start_conversation_relay_params.InterruptionSettings | Omit = omit,
+        language: str | Omit = omit,
+        languages: Iterable[action_start_conversation_relay_params.Language] | Omit = omit,
+        participants: Iterable[action_start_conversation_relay_params.Participant] | Omit = omit,
+        send_message_history_updates: bool | Omit = omit,
+        transcription: action_start_conversation_relay_params.Transcription | Omit = omit,
+        transcription_language: str | Omit = omit,
+        tts_language: str | Omit = omit,
+        user_response_timeout_ms: int | Omit = omit,
+        voice: str | Omit = omit,
+        voice_settings: action_start_conversation_relay_params.VoiceSettings | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ActionStartConversationRelayResponse:
+        """Start a Conversation Relay session on an active call.
+
+        Conversation Relay
+        connects the call audio to your WebSocket so your application can exchange
+        realtime messages with the caller while Telnyx handles speech recognition and
+        text-to-speech. Only one AI Assistant or Conversation Relay session can be
+        active on a call at a time.
+
+        **Expected Webhooks:**
+
+        - `call.conversation.ended` - Sent when the Conversation Relay session ends. If
+          the customer WebSocket disconnects, the webhook payload `reason` is
+          `customer_disconnect`.
+
+        Args:
+          conversation_relay_url: WebSocket URL for your Conversation Relay server. Must start with `ws://` or
+              `wss://`.
+
+          assistant: Custom parameters for the Conversation Relay session. Pass key-value data as
+              `assistant.dynamic_variables` to make it available to the relay session.
+
+          client_state: Use this field to add state to subsequent webhooks. It must be a valid Base-64
+              encoded string.
+
+          command_id: Use this field to avoid duplicate commands. Telnyx will ignore any command with
+              the same `command_id` for the same `call_control_id`.
+
+          conversation_relay_dtmf_detection: Enable DTMF detection for the relay session.
+
+          greeting: Text played when the relay session starts.
+
+          interruption_settings: Settings for handling caller interruptions during Conversation Relay speech.
+
+          language: Default language for the relay session. This value is used for both
+              text-to-speech and speech recognition unless `tts_language` or
+              `transcription_language` are provided.
+
+          languages: Language-specific TTS and transcription settings. Use this when the relay
+              session needs per-language provider, voice, or speech model configuration.
+
+          participants: Participants to add to the conversation.
+
+          send_message_history_updates: When true, sends message history update webhooks.
+
+          transcription: Speech-to-text settings for Conversation Relay.
+
+          transcription_language: Language to use for speech recognition. Overrides `language` for transcription
+              when provided.
+
+          tts_language: Language to use for text-to-speech. Overrides `language` for TTS when provided.
+
+          user_response_timeout_ms: Time in milliseconds to wait for caller input before timing out.
+
+          voice: The voice to be used by the voice assistant. Currently we support ElevenLabs,
+              Telnyx and AWS voices.
+
+              **Supported Providers:**
+
+              - **AWS:** Use `AWS.Polly.<VoiceId>` (e.g., `AWS.Polly.Joanna`). For neural
+                voices, which provide more realistic, human-like speech, append `-Neural` to
+                the `VoiceId` (e.g., `AWS.Polly.Joanna-Neural`). Check the
+                [available voices](https://docs.aws.amazon.com/polly/latest/dg/available-voices.html)
+                for compatibility.
+              - **Azure:** Use `Azure.<VoiceId>. (e.g. Azure.en-CA-ClaraNeural,
+                Azure.en-CA-LiamNeural, Azure.en-US-BrianMultilingualNeural,
+                Azure.en-US-Ava:DragonHDLatestNeural. For a complete list of voices, go to
+                [Azure Voice Gallery](https://speech.microsoft.com/portal/voicegallery).)
+              - **ElevenLabs:** Use `ElevenLabs.<ModelId>.<VoiceId>` (e.g.,
+                `ElevenLabs.BaseModel.John`). The `ModelId` part is optional. To use
+                ElevenLabs, you must provide your ElevenLabs API key as an integration secret
+                under `"voice_settings": {"api_key_ref": "<secret_id>"}`. See
+                [integration secrets documentation](https://developers.telnyx.com/api/secrets-manager/integration-secrets/create-integration-secret)
+                for details. Check
+                [available voices](https://elevenlabs.io/docs/api-reference/get-voices).
+              - **Telnyx:** Use `Telnyx.<model_id>.<voice_id>`
+              - **Inworld:** Use `Inworld.<ModelId>.<VoiceId>` (e.g., `Inworld.Mini.Loretta`,
+                `Inworld.Max.Oliver`). Supported models: `Mini`, `Max`.
+              - **xAI:** Use `xAI.<VoiceId>` (e.g., `xAI.eve`). Available voices: `eve`,
+                `ara`, `rex`, `sal`, `leo`.
+
+          voice_settings: The settings associated with the voice selected
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not call_control_id:
+            raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
+        return self._post(
+            path_template("/calls/{call_control_id}/actions/conversation_relay_start", call_control_id=call_control_id),
+            body=maybe_transform(
+                {
+                    "conversation_relay_url": conversation_relay_url,
+                    "assistant": assistant,
+                    "client_state": client_state,
+                    "command_id": command_id,
+                    "conversation_relay_dtmf_detection": conversation_relay_dtmf_detection,
+                    "greeting": greeting,
+                    "interruption_settings": interruption_settings,
+                    "language": language,
+                    "languages": languages,
+                    "participants": participants,
+                    "send_message_history_updates": send_message_history_updates,
+                    "transcription": transcription,
+                    "transcription_language": transcription_language,
+                    "tts_language": tts_language,
+                    "user_response_timeout_ms": user_response_timeout_ms,
+                    "voice": voice,
+                    "voice_settings": voice_settings,
+                },
+                action_start_conversation_relay_params.ActionStartConversationRelayParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ActionStartConversationRelayResponse,
+        )
+
     def start_forking(
         self,
         call_control_id: str,
@@ -2977,6 +3131,54 @@ class ActionsResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=ActionStopAIAssistantResponse,
+        )
+
+    def stop_conversation_relay(
+        self,
+        call_control_id: str,
+        *,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ActionStopConversationRelayResponse:
+        """
+        Stop the active Conversation Relay session on a call.
+
+        Args:
+          client_state: Use this field to add state to subsequent webhooks. It must be a valid Base-64
+              encoded string.
+
+          command_id: Use this field to avoid duplicate commands. Telnyx will ignore any command with
+              the same `command_id` for the same `call_control_id`.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not call_control_id:
+            raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
+        return self._post(
+            path_template("/calls/{call_control_id}/actions/conversation_relay_stop", call_control_id=call_control_id),
+            body=maybe_transform(
+                {
+                    "client_state": client_state,
+                    "command_id": command_id,
+                },
+                action_stop_conversation_relay_params.ActionStopConversationRelayParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ActionStopConversationRelayResponse,
         )
 
     def stop_forking(
@@ -5701,6 +5903,156 @@ class AsyncActionsResource(AsyncAPIResource):
             cast_to=ActionStartAIAssistantResponse,
         )
 
+    async def start_conversation_relay(
+        self,
+        call_control_id: str,
+        *,
+        conversation_relay_url: str,
+        assistant: action_start_conversation_relay_params.Assistant | Omit = omit,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
+        conversation_relay_dtmf_detection: bool | Omit = omit,
+        greeting: str | Omit = omit,
+        interruption_settings: action_start_conversation_relay_params.InterruptionSettings | Omit = omit,
+        language: str | Omit = omit,
+        languages: Iterable[action_start_conversation_relay_params.Language] | Omit = omit,
+        participants: Iterable[action_start_conversation_relay_params.Participant] | Omit = omit,
+        send_message_history_updates: bool | Omit = omit,
+        transcription: action_start_conversation_relay_params.Transcription | Omit = omit,
+        transcription_language: str | Omit = omit,
+        tts_language: str | Omit = omit,
+        user_response_timeout_ms: int | Omit = omit,
+        voice: str | Omit = omit,
+        voice_settings: action_start_conversation_relay_params.VoiceSettings | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ActionStartConversationRelayResponse:
+        """Start a Conversation Relay session on an active call.
+
+        Conversation Relay
+        connects the call audio to your WebSocket so your application can exchange
+        realtime messages with the caller while Telnyx handles speech recognition and
+        text-to-speech. Only one AI Assistant or Conversation Relay session can be
+        active on a call at a time.
+
+        **Expected Webhooks:**
+
+        - `call.conversation.ended` - Sent when the Conversation Relay session ends. If
+          the customer WebSocket disconnects, the webhook payload `reason` is
+          `customer_disconnect`.
+
+        Args:
+          conversation_relay_url: WebSocket URL for your Conversation Relay server. Must start with `ws://` or
+              `wss://`.
+
+          assistant: Custom parameters for the Conversation Relay session. Pass key-value data as
+              `assistant.dynamic_variables` to make it available to the relay session.
+
+          client_state: Use this field to add state to subsequent webhooks. It must be a valid Base-64
+              encoded string.
+
+          command_id: Use this field to avoid duplicate commands. Telnyx will ignore any command with
+              the same `command_id` for the same `call_control_id`.
+
+          conversation_relay_dtmf_detection: Enable DTMF detection for the relay session.
+
+          greeting: Text played when the relay session starts.
+
+          interruption_settings: Settings for handling caller interruptions during Conversation Relay speech.
+
+          language: Default language for the relay session. This value is used for both
+              text-to-speech and speech recognition unless `tts_language` or
+              `transcription_language` are provided.
+
+          languages: Language-specific TTS and transcription settings. Use this when the relay
+              session needs per-language provider, voice, or speech model configuration.
+
+          participants: Participants to add to the conversation.
+
+          send_message_history_updates: When true, sends message history update webhooks.
+
+          transcription: Speech-to-text settings for Conversation Relay.
+
+          transcription_language: Language to use for speech recognition. Overrides `language` for transcription
+              when provided.
+
+          tts_language: Language to use for text-to-speech. Overrides `language` for TTS when provided.
+
+          user_response_timeout_ms: Time in milliseconds to wait for caller input before timing out.
+
+          voice: The voice to be used by the voice assistant. Currently we support ElevenLabs,
+              Telnyx and AWS voices.
+
+              **Supported Providers:**
+
+              - **AWS:** Use `AWS.Polly.<VoiceId>` (e.g., `AWS.Polly.Joanna`). For neural
+                voices, which provide more realistic, human-like speech, append `-Neural` to
+                the `VoiceId` (e.g., `AWS.Polly.Joanna-Neural`). Check the
+                [available voices](https://docs.aws.amazon.com/polly/latest/dg/available-voices.html)
+                for compatibility.
+              - **Azure:** Use `Azure.<VoiceId>. (e.g. Azure.en-CA-ClaraNeural,
+                Azure.en-CA-LiamNeural, Azure.en-US-BrianMultilingualNeural,
+                Azure.en-US-Ava:DragonHDLatestNeural. For a complete list of voices, go to
+                [Azure Voice Gallery](https://speech.microsoft.com/portal/voicegallery).)
+              - **ElevenLabs:** Use `ElevenLabs.<ModelId>.<VoiceId>` (e.g.,
+                `ElevenLabs.BaseModel.John`). The `ModelId` part is optional. To use
+                ElevenLabs, you must provide your ElevenLabs API key as an integration secret
+                under `"voice_settings": {"api_key_ref": "<secret_id>"}`. See
+                [integration secrets documentation](https://developers.telnyx.com/api/secrets-manager/integration-secrets/create-integration-secret)
+                for details. Check
+                [available voices](https://elevenlabs.io/docs/api-reference/get-voices).
+              - **Telnyx:** Use `Telnyx.<model_id>.<voice_id>`
+              - **Inworld:** Use `Inworld.<ModelId>.<VoiceId>` (e.g., `Inworld.Mini.Loretta`,
+                `Inworld.Max.Oliver`). Supported models: `Mini`, `Max`.
+              - **xAI:** Use `xAI.<VoiceId>` (e.g., `xAI.eve`). Available voices: `eve`,
+                `ara`, `rex`, `sal`, `leo`.
+
+          voice_settings: The settings associated with the voice selected
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not call_control_id:
+            raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
+        return await self._post(
+            path_template("/calls/{call_control_id}/actions/conversation_relay_start", call_control_id=call_control_id),
+            body=await async_maybe_transform(
+                {
+                    "conversation_relay_url": conversation_relay_url,
+                    "assistant": assistant,
+                    "client_state": client_state,
+                    "command_id": command_id,
+                    "conversation_relay_dtmf_detection": conversation_relay_dtmf_detection,
+                    "greeting": greeting,
+                    "interruption_settings": interruption_settings,
+                    "language": language,
+                    "languages": languages,
+                    "participants": participants,
+                    "send_message_history_updates": send_message_history_updates,
+                    "transcription": transcription,
+                    "transcription_language": transcription_language,
+                    "tts_language": tts_language,
+                    "user_response_timeout_ms": user_response_timeout_ms,
+                    "voice": voice,
+                    "voice_settings": voice_settings,
+                },
+                action_start_conversation_relay_params.ActionStartConversationRelayParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ActionStartConversationRelayResponse,
+        )
+
     async def start_forking(
         self,
         call_control_id: str,
@@ -6621,6 +6973,54 @@ class AsyncActionsResource(AsyncAPIResource):
             cast_to=ActionStopAIAssistantResponse,
         )
 
+    async def stop_conversation_relay(
+        self,
+        call_control_id: str,
+        *,
+        client_state: str | Omit = omit,
+        command_id: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ActionStopConversationRelayResponse:
+        """
+        Stop the active Conversation Relay session on a call.
+
+        Args:
+          client_state: Use this field to add state to subsequent webhooks. It must be a valid Base-64
+              encoded string.
+
+          command_id: Use this field to avoid duplicate commands. Telnyx will ignore any command with
+              the same `command_id` for the same `call_control_id`.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not call_control_id:
+            raise ValueError(f"Expected a non-empty value for `call_control_id` but received {call_control_id!r}")
+        return await self._post(
+            path_template("/calls/{call_control_id}/actions/conversation_relay_stop", call_control_id=call_control_id),
+            body=await async_maybe_transform(
+                {
+                    "client_state": client_state,
+                    "command_id": command_id,
+                },
+                action_stop_conversation_relay_params.ActionStopConversationRelayParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ActionStopConversationRelayResponse,
+        )
+
     async def stop_forking(
         self,
         call_control_id: str,
@@ -7471,6 +7871,9 @@ class ActionsResourceWithRawResponse:
         self.start_ai_assistant = to_raw_response_wrapper(
             actions.start_ai_assistant,
         )
+        self.start_conversation_relay = to_raw_response_wrapper(
+            actions.start_conversation_relay,
+        )
         self.start_forking = to_raw_response_wrapper(
             actions.start_forking,
         )
@@ -7494,6 +7897,9 @@ class ActionsResourceWithRawResponse:
         )
         self.stop_ai_assistant = to_raw_response_wrapper(
             actions.stop_ai_assistant,
+        )
+        self.stop_conversation_relay = to_raw_response_wrapper(
+            actions.stop_conversation_relay,
         )
         self.stop_forking = to_raw_response_wrapper(
             actions.stop_forking,
@@ -7591,6 +7997,9 @@ class AsyncActionsResourceWithRawResponse:
         self.start_ai_assistant = async_to_raw_response_wrapper(
             actions.start_ai_assistant,
         )
+        self.start_conversation_relay = async_to_raw_response_wrapper(
+            actions.start_conversation_relay,
+        )
         self.start_forking = async_to_raw_response_wrapper(
             actions.start_forking,
         )
@@ -7614,6 +8023,9 @@ class AsyncActionsResourceWithRawResponse:
         )
         self.stop_ai_assistant = async_to_raw_response_wrapper(
             actions.stop_ai_assistant,
+        )
+        self.stop_conversation_relay = async_to_raw_response_wrapper(
+            actions.stop_conversation_relay,
         )
         self.stop_forking = async_to_raw_response_wrapper(
             actions.stop_forking,
@@ -7711,6 +8123,9 @@ class ActionsResourceWithStreamingResponse:
         self.start_ai_assistant = to_streamed_response_wrapper(
             actions.start_ai_assistant,
         )
+        self.start_conversation_relay = to_streamed_response_wrapper(
+            actions.start_conversation_relay,
+        )
         self.start_forking = to_streamed_response_wrapper(
             actions.start_forking,
         )
@@ -7734,6 +8149,9 @@ class ActionsResourceWithStreamingResponse:
         )
         self.stop_ai_assistant = to_streamed_response_wrapper(
             actions.stop_ai_assistant,
+        )
+        self.stop_conversation_relay = to_streamed_response_wrapper(
+            actions.stop_conversation_relay,
         )
         self.stop_forking = to_streamed_response_wrapper(
             actions.stop_forking,
@@ -7831,6 +8249,9 @@ class AsyncActionsResourceWithStreamingResponse:
         self.start_ai_assistant = async_to_streamed_response_wrapper(
             actions.start_ai_assistant,
         )
+        self.start_conversation_relay = async_to_streamed_response_wrapper(
+            actions.start_conversation_relay,
+        )
         self.start_forking = async_to_streamed_response_wrapper(
             actions.start_forking,
         )
@@ -7854,6 +8275,9 @@ class AsyncActionsResourceWithStreamingResponse:
         )
         self.stop_ai_assistant = async_to_streamed_response_wrapper(
             actions.stop_ai_assistant,
+        )
+        self.stop_conversation_relay = async_to_streamed_response_wrapper(
+            actions.stop_conversation_relay,
         )
         self.stop_forking = async_to_streamed_response_wrapper(
             actions.stop_forking,
