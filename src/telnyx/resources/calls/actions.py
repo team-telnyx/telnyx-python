@@ -3023,7 +3023,9 @@ class ActionsResource(SyncAPIResource):
         *,
         client_state: str | Omit = omit,
         command_id: str | Omit = omit,
-        transcription_engine: Literal["Google", "Telnyx", "Deepgram", "Azure", "xAI", "AssemblyAI", "A", "B"]
+        transcription_engine: Literal[
+            "Google", "Telnyx", "Deepgram", "Azure", "xAI", "AssemblyAI", "Speechmatics", "A", "B"
+        ]
         | Omit = omit,
         transcription_engine_config: action_start_transcription_params.TranscriptionEngineConfig | Omit = omit,
         transcription_tracks: str | Omit = omit,
@@ -6863,7 +6865,9 @@ class AsyncActionsResource(AsyncAPIResource):
         *,
         client_state: str | Omit = omit,
         command_id: str | Omit = omit,
-        transcription_engine: Literal["Google", "Telnyx", "Deepgram", "Azure", "xAI", "AssemblyAI", "A", "B"]
+        transcription_engine: Literal[
+            "Google", "Telnyx", "Deepgram", "Azure", "xAI", "AssemblyAI", "Speechmatics", "A", "B"
+        ]
         | Omit = omit,
         transcription_engine_config: action_start_transcription_params.TranscriptionEngineConfig | Omit = omit,
         transcription_tracks: str | Omit = omit,
