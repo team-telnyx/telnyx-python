@@ -2101,7 +2101,9 @@ class ActionsResource(SyncAPIResource):
 
         **Expected Webhooks:**
 
-        - `conversation_relay.disconnected`
+        - `call.conversation.ended` - Sent when the Conversation Relay session ends. If
+          the customer WebSocket disconnects, the webhook payload `reason` is
+          `customer_disconnect`.
 
         Args:
           conversation_relay_url: WebSocket URL for your Conversation Relay server. Must start with `ws://` or
@@ -5939,7 +5941,9 @@ class AsyncActionsResource(AsyncAPIResource):
 
         **Expected Webhooks:**
 
-        - `conversation_relay.disconnected`
+        - `call.conversation.ended` - Sent when the Conversation Relay session ends. If
+          the customer WebSocket disconnects, the webhook payload `reason` is
+          `customer_disconnect`.
 
         Args:
           conversation_relay_url: WebSocket URL for your Conversation Relay server. Must start with `ws://` or

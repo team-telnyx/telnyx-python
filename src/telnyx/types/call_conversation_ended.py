@@ -45,6 +45,13 @@ class Payload(BaseModel):
     llm_model: Optional[str] = None
     """The large language model used during the conversation."""
 
+    reason: Optional[str] = None
+    """Reason the conversation ended.
+
+    For Conversation Relay, `customer_disconnect` indicates that the customer
+    WebSocket disconnected.
+    """
+
     stt_model: Optional[str] = None
     """The speech-to-text model used in the conversation."""
 
