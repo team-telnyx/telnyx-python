@@ -1499,7 +1499,6 @@ class TestActions:
     def test_method_start_conversation_relay(self, client: Telnyx) -> None:
         action = client.calls.actions.start_conversation_relay(
             call_control_id="call_control_id",
-            conversation_relay_url="wss://example.com/conversation-relay",
         )
         assert_matches_type(ActionStartConversationRelayResponse, action, path=["response"])
 
@@ -1508,16 +1507,26 @@ class TestActions:
     def test_method_start_conversation_relay_with_all_params(self, client: Telnyx) -> None:
         action = client.calls.actions.start_conversation_relay(
             call_control_id="call_control_id",
-            conversation_relay_url="wss://example.com/conversation-relay",
-            assistant={
-                "dynamic_variables": {
-                    "customer_id": "12345",
-                    "tier": "premium",
-                }
-            },
+            assistant={"dynamic_variables": {"customer_id": "12345"}},
             client_state="aGF2ZSBhIG5pY2UgZGF5ID1d",
             command_id="891510ac-f3e4-11e8-af5b-de00688a4901",
             conversation_relay_dtmf_detection=True,
+            conversation_relay_settings={
+                "url": "wss://example.com/conversation-relay",
+                "dtmf_detection": True,
+                "interruptible": "speech",
+                "interruptible_greeting": "any",
+                "languages": [
+                    {
+                        "code": "en-US",
+                        "speech_model": "nova-2",
+                        "transcription_provider": "Deepgram",
+                        "tts_provider": "ElevenLabs",
+                        "voice": "alice",
+                    }
+                ],
+            },
+            conversation_relay_url="wss://example.com/conversation-relay",
             greeting="Hi! Ask me anything!",
             interruption_settings={
                 "enable": True,
@@ -1535,15 +1544,6 @@ class TestActions:
                     "voice": "alice",
                 }
             ],
-            participants=[
-                {
-                    "id": "v3:abc123def456",
-                    "role": "user",
-                    "name": "John Doe",
-                    "on_hangup": "continue_conversation",
-                }
-            ],
-            send_message_history_updates=True,
             transcription={
                 "language": "en-US",
                 "model": "nova-2",
@@ -1551,7 +1551,6 @@ class TestActions:
             },
             transcription_language="en-US",
             tts_language="es",
-            user_response_timeout_ms=10000,
             voice="Telnyx.KokoroTTS.af",
             voice_settings={
                 "type": "elevenlabs",
@@ -1565,7 +1564,6 @@ class TestActions:
     def test_raw_response_start_conversation_relay(self, client: Telnyx) -> None:
         response = client.calls.actions.with_raw_response.start_conversation_relay(
             call_control_id="call_control_id",
-            conversation_relay_url="wss://example.com/conversation-relay",
         )
 
         assert response.is_closed is True
@@ -1578,7 +1576,6 @@ class TestActions:
     def test_streaming_response_start_conversation_relay(self, client: Telnyx) -> None:
         with client.calls.actions.with_streaming_response.start_conversation_relay(
             call_control_id="call_control_id",
-            conversation_relay_url="wss://example.com/conversation-relay",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1594,7 +1591,6 @@ class TestActions:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `call_control_id` but received ''"):
             client.calls.actions.with_raw_response.start_conversation_relay(
                 call_control_id="",
-                conversation_relay_url="wss://example.com/conversation-relay",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -4245,7 +4241,6 @@ class TestAsyncActions:
     async def test_method_start_conversation_relay(self, async_client: AsyncTelnyx) -> None:
         action = await async_client.calls.actions.start_conversation_relay(
             call_control_id="call_control_id",
-            conversation_relay_url="wss://example.com/conversation-relay",
         )
         assert_matches_type(ActionStartConversationRelayResponse, action, path=["response"])
 
@@ -4254,16 +4249,26 @@ class TestAsyncActions:
     async def test_method_start_conversation_relay_with_all_params(self, async_client: AsyncTelnyx) -> None:
         action = await async_client.calls.actions.start_conversation_relay(
             call_control_id="call_control_id",
-            conversation_relay_url="wss://example.com/conversation-relay",
-            assistant={
-                "dynamic_variables": {
-                    "customer_id": "12345",
-                    "tier": "premium",
-                }
-            },
+            assistant={"dynamic_variables": {"customer_id": "12345"}},
             client_state="aGF2ZSBhIG5pY2UgZGF5ID1d",
             command_id="891510ac-f3e4-11e8-af5b-de00688a4901",
             conversation_relay_dtmf_detection=True,
+            conversation_relay_settings={
+                "url": "wss://example.com/conversation-relay",
+                "dtmf_detection": True,
+                "interruptible": "speech",
+                "interruptible_greeting": "any",
+                "languages": [
+                    {
+                        "code": "en-US",
+                        "speech_model": "nova-2",
+                        "transcription_provider": "Deepgram",
+                        "tts_provider": "ElevenLabs",
+                        "voice": "alice",
+                    }
+                ],
+            },
+            conversation_relay_url="wss://example.com/conversation-relay",
             greeting="Hi! Ask me anything!",
             interruption_settings={
                 "enable": True,
@@ -4281,15 +4286,6 @@ class TestAsyncActions:
                     "voice": "alice",
                 }
             ],
-            participants=[
-                {
-                    "id": "v3:abc123def456",
-                    "role": "user",
-                    "name": "John Doe",
-                    "on_hangup": "continue_conversation",
-                }
-            ],
-            send_message_history_updates=True,
             transcription={
                 "language": "en-US",
                 "model": "nova-2",
@@ -4297,7 +4293,6 @@ class TestAsyncActions:
             },
             transcription_language="en-US",
             tts_language="es",
-            user_response_timeout_ms=10000,
             voice="Telnyx.KokoroTTS.af",
             voice_settings={
                 "type": "elevenlabs",
@@ -4311,7 +4306,6 @@ class TestAsyncActions:
     async def test_raw_response_start_conversation_relay(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.calls.actions.with_raw_response.start_conversation_relay(
             call_control_id="call_control_id",
-            conversation_relay_url="wss://example.com/conversation-relay",
         )
 
         assert response.is_closed is True
@@ -4324,7 +4318,6 @@ class TestAsyncActions:
     async def test_streaming_response_start_conversation_relay(self, async_client: AsyncTelnyx) -> None:
         async with async_client.calls.actions.with_streaming_response.start_conversation_relay(
             call_control_id="call_control_id",
-            conversation_relay_url="wss://example.com/conversation-relay",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -4340,7 +4333,6 @@ class TestAsyncActions:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `call_control_id` but received ''"):
             await async_client.calls.actions.with_raw_response.start_conversation_relay(
                 call_control_id="",
-                conversation_relay_url="wss://example.com/conversation-relay",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
