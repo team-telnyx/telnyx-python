@@ -9,4 +9,4 @@ __all__ = ["AICreateResponseParams"]
 
 
 class AICreateResponseParams(TypedDict, total=False):
-    body: Required[Dict[str, object]]
+    params: Required[Dict[str, object]]
