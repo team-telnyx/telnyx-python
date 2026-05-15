@@ -1458,6 +1458,7 @@ from telnyx.types.calls import (
     TranscriptionEngineBConfig,
     TranscriptionEngineDeepgramConfig,
     TranscriptionEngineGoogleConfig,
+    TranscriptionEngineSpeechmaticsConfig,
     TranscriptionEngineTelnyxConfig,
     TranscriptionEngineXaiConfig,
     TranscriptionStartRequest,

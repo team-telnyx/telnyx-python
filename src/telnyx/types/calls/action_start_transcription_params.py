@@ -14,12 +14,9 @@ from .transcription_engine_azure_config_param import TranscriptionEngineAzureCon
 from .transcription_engine_google_config_param import TranscriptionEngineGoogleConfigParam
 from .transcription_engine_telnyx_config_param import TranscriptionEngineTelnyxConfigParam
 from .transcription_engine_assemblyai_config_param import TranscriptionEngineAssemblyaiConfigParam
+from .transcription_engine_speechmatics_config_param import TranscriptionEngineSpeechmaticsConfigParam
 
-__all__ = [
-    "ActionStartTranscriptionParams",
-    "TranscriptionEngineConfig",
-    "TranscriptionEngineConfigTranscriptionEngineSpeechmaticsConfig",
-]
+__all__ = ["ActionStartTranscriptionParams", "TranscriptionEngineConfig"]
 
 
 class ActionStartTranscriptionParams(TypedDict, total=False):
@@ -55,48 +52,13 @@ class ActionStartTranscriptionParams(TypedDict, total=False):
     """
 
 
-class TranscriptionEngineConfigTranscriptionEngineSpeechmaticsConfig(TypedDict, total=False):
-    interim_results: bool
-    """Whether to send also interim results.
-
-    If set to false, only final results will be sent.
-    """
-
-    language: Literal[
-        "en",
-        "ba",
-        "eu",
-        "gl",
-        "ga",
-        "mt",
-        "mn",
-        "sw",
-        "ug",
-        "cy",
-        "ar_en",
-        "cmn_en",
-        "en_ms",
-        "en_ta",
-        "tl",
-        "es-bilingual-en",
-        "cmn_en_ms_ta",
-    ]
-    """Language to use for speech recognition"""
-
-    transcription_engine: Literal["Speechmatics"]
-    """Engine identifier for Speechmatics transcription service"""
-
-    transcription_model: Literal["speechmatics/standard"]
-    """The model to use for transcription."""
-
-
 TranscriptionEngineConfig: TypeAlias = Union[
     TranscriptionEngineGoogleConfigParam,
     TranscriptionEngineTelnyxConfigParam,
     TranscriptionEngineAzureConfigParam,
     TranscriptionEngineXaiConfigParam,
     TranscriptionEngineAssemblyaiConfigParam,
-    TranscriptionEngineConfigTranscriptionEngineSpeechmaticsConfig,
+    TranscriptionEngineSpeechmaticsConfigParam,
     TranscriptionEngineAConfigParam,
     TranscriptionEngineBConfigParam,
     DeepgramNova2ConfigParam,
