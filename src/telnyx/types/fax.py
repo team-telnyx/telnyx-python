@@ -40,14 +40,15 @@ class Fax(BaseModel):
     """The media_name used for the fax's media.
 
     Must point to a file previously uploaded to api.telnyx.com/v2/media by the same
-    user/organization. media_name and media_url/contents can't be submitted
-    together.
+    user/organization. Supported formats: PDF, TIFF, JPEG, PNG, DOC, DOCX, RTF, and
+    TXT. media_name and media_url/contents can't be submitted together.
     """
 
     media_url: Optional[str] = None
-    """The URL (or list of URLs) to the PDF used for the fax's media.
+    """The URL (or list of URLs) to the fax document.
 
-    media_url and media_name/contents can't be submitted together.
+    Supported formats: PDF, TIFF, JPEG, PNG, DOC, DOCX, RTF, and TXT. media_url and
+    media_name/contents can't be submitted together.
     """
 
     preview_url: Optional[str] = None

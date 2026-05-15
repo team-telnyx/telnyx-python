@@ -94,6 +94,18 @@ class FaxesResource(SyncAPIResource):
         is bigger than 50MB or has more than 350 pages it will fail with
         `file_size_limit_exceeded` and `page_count_limit_exceeded` respectively.
 
+        **Supported file formats:**
+
+        - PDF (`application/pdf`)
+        - TIFF (`application/tiff`, `image/tiff`)
+        - JPEG (`image/jpeg`)
+        - PNG (`image/png`)
+        - Microsoft Word `.doc` (`application/msword`)
+        - Microsoft Word `.docx`
+          (`application/vnd.openxmlformats-officedocument.wordprocessingml.document`)
+        - Rich Text Format `.rtf` (`application/rtf`)
+        - Plain text `.txt` (`text/plain`)
+
         **Expected Webhooks:**
 
         - `fax.queued`
@@ -122,11 +134,13 @@ class FaxesResource(SyncAPIResource):
               number in the `from` field.
 
           media_name: The media_name used for the fax's media. Must point to a file previously
-              uploaded to api.telnyx.com/v2/media by the same user/organization. media_name
-              and media_url/contents can't be submitted together.
+              uploaded to api.telnyx.com/v2/media by the same user/organization. Supported
+              formats: PDF, TIFF, JPEG, PNG, DOC, DOCX, RTF, and TXT. media_name and
+              media_url/contents can't be submitted together.
 
-          media_url: The URL (or list of URLs) to the PDF used for the fax's media. media_url and
-              media_name/contents can't be submitted together.
+          media_url: The URL (or list of URLs) to the fax document. Supported formats: PDF, TIFF,
+              JPEG, PNG, DOC, DOCX, RTF, and TXT. media_url and media_name/contents can't be
+              submitted together.
 
           monochrome: The flag to enable monochrome, true black and white fax results.
 
@@ -366,6 +380,18 @@ class AsyncFaxesResource(AsyncAPIResource):
         is bigger than 50MB or has more than 350 pages it will fail with
         `file_size_limit_exceeded` and `page_count_limit_exceeded` respectively.
 
+        **Supported file formats:**
+
+        - PDF (`application/pdf`)
+        - TIFF (`application/tiff`, `image/tiff`)
+        - JPEG (`image/jpeg`)
+        - PNG (`image/png`)
+        - Microsoft Word `.doc` (`application/msword`)
+        - Microsoft Word `.docx`
+          (`application/vnd.openxmlformats-officedocument.wordprocessingml.document`)
+        - Rich Text Format `.rtf` (`application/rtf`)
+        - Plain text `.txt` (`text/plain`)
+
         **Expected Webhooks:**
 
         - `fax.queued`
@@ -394,11 +420,13 @@ class AsyncFaxesResource(AsyncAPIResource):
               number in the `from` field.
 
           media_name: The media_name used for the fax's media. Must point to a file previously
-              uploaded to api.telnyx.com/v2/media by the same user/organization. media_name
-              and media_url/contents can't be submitted together.
+              uploaded to api.telnyx.com/v2/media by the same user/organization. Supported
+              formats: PDF, TIFF, JPEG, PNG, DOC, DOCX, RTF, and TXT. media_name and
+              media_url/contents can't be submitted together.
 
-          media_url: The URL (or list of URLs) to the PDF used for the fax's media. media_url and
-              media_name/contents can't be submitted together.
+          media_url: The URL (or list of URLs) to the fax document. Supported formats: PDF, TIFF,
+              JPEG, PNG, DOC, DOCX, RTF, and TXT. media_url and media_name/contents can't be
+              submitted together.
 
           monochrome: The flag to enable monochrome, true black and white fax results.
 

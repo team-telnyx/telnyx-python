@@ -1,5 +1,18 @@
 # Changelog
 
+## 4.135.0 (2026-05-15)
+
+Full Changelog: [v4.134.0...v4.135.0](https://github.com/team-telnyx/telnyx-python/compare/v4.134.0...v4.135.0)
+
+### Features
+
+* Document PremiumCallScreening detection mode ([77ffa1b](https://github.com/team-telnyx/telnyx-python/commit/77ffa1bd62e2b1454fc1e12079d740a06063a0b3))
+
+
+### Documentation
+
+* add supported file formats to Send Fax endpoint ([8f73895](https://github.com/team-telnyx/telnyx-python/commit/8f738952250095e0f421edbaae93ccfa2b26094b))
+
 ## 4.134.0 (2026-05-15)
 
 Full Changelog: [v4.133.0...v4.134.0](https://github.com/team-telnyx/telnyx-python/compare/v4.133.0...v4.134.0)

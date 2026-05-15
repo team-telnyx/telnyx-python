@@ -77,8 +77,9 @@ class TexmlResource(SyncAPIResource):
         conversation_callback_method: Literal["GET", "POST"] | Omit = omit,
         conversation_callbacks: SequenceNotStr[str] | Omit = omit,
         custom_headers: Iterable[texml_initiate_ai_call_params.CustomHeader] | Omit = omit,
-        detection_mode: Literal["Premium", "Regular"] | Omit = omit,
+        detection_mode: Literal["Premium", "Regular", "PremiumCallScreening"] | Omit = omit,
         machine_detection: Literal["Enable", "Disable", "DetectMessageEnd"] | Omit = omit,
+        machine_detection_prompt_end_timeout: int | Omit = omit,
         machine_detection_silence_timeout: int | Omit = omit,
         machine_detection_speech_end_threshold: int | Omit = omit,
         machine_detection_speech_threshold: int | Omit = omit,
@@ -164,9 +165,14 @@ class TexmlResource(SyncAPIResource):
           custom_headers: Custom HTTP headers to be sent with the call. Each header should be an object
               with 'name' and 'value' properties.
 
-          detection_mode: Allows you to choose between Premium and Standard detections.
+          detection_mode: Allows you to choose between Regular, Premium, and PremiumCallScreening
+              detections. See
+              https://developers.telnyx.com/docs/voice/programmable-voice/answering-machine-detection
 
           machine_detection: Enables Answering Machine Detection.
+
+          machine_detection_prompt_end_timeout: Silence duration threshold after a call screening prompt before ending prompt
+              detection, in milliseconds. Used when `DetectionMode` is `PremiumCallScreening`.
 
           machine_detection_silence_timeout: If initial silence duration is greater than this value, consider it a machine.
               Ignored when `premium` detection is used.
@@ -266,6 +272,7 @@ class TexmlResource(SyncAPIResource):
                     "custom_headers": custom_headers,
                     "detection_mode": detection_mode,
                     "machine_detection": machine_detection,
+                    "machine_detection_prompt_end_timeout": machine_detection_prompt_end_timeout,
                     "machine_detection_silence_timeout": machine_detection_silence_timeout,
                     "machine_detection_speech_end_threshold": machine_detection_speech_end_threshold,
                     "machine_detection_speech_threshold": machine_detection_speech_threshold,
@@ -392,8 +399,9 @@ class AsyncTexmlResource(AsyncAPIResource):
         conversation_callback_method: Literal["GET", "POST"] | Omit = omit,
         conversation_callbacks: SequenceNotStr[str] | Omit = omit,
         custom_headers: Iterable[texml_initiate_ai_call_params.CustomHeader] | Omit = omit,
-        detection_mode: Literal["Premium", "Regular"] | Omit = omit,
+        detection_mode: Literal["Premium", "Regular", "PremiumCallScreening"] | Omit = omit,
         machine_detection: Literal["Enable", "Disable", "DetectMessageEnd"] | Omit = omit,
+        machine_detection_prompt_end_timeout: int | Omit = omit,
         machine_detection_silence_timeout: int | Omit = omit,
         machine_detection_speech_end_threshold: int | Omit = omit,
         machine_detection_speech_threshold: int | Omit = omit,
@@ -479,9 +487,14 @@ class AsyncTexmlResource(AsyncAPIResource):
           custom_headers: Custom HTTP headers to be sent with the call. Each header should be an object
               with 'name' and 'value' properties.
 
-          detection_mode: Allows you to choose between Premium and Standard detections.
+          detection_mode: Allows you to choose between Regular, Premium, and PremiumCallScreening
+              detections. See
+              https://developers.telnyx.com/docs/voice/programmable-voice/answering-machine-detection
 
           machine_detection: Enables Answering Machine Detection.
+
+          machine_detection_prompt_end_timeout: Silence duration threshold after a call screening prompt before ending prompt
+              detection, in milliseconds. Used when `DetectionMode` is `PremiumCallScreening`.
 
           machine_detection_silence_timeout: If initial silence duration is greater than this value, consider it a machine.
               Ignored when `premium` detection is used.
@@ -581,6 +594,7 @@ class AsyncTexmlResource(AsyncAPIResource):
                     "custom_headers": custom_headers,
                     "detection_mode": detection_mode,
                     "machine_detection": machine_detection,
+                    "machine_detection_prompt_end_timeout": machine_detection_prompt_end_timeout,
                     "machine_detection_silence_timeout": machine_detection_silence_timeout,
                     "machine_detection_speech_end_threshold": machine_detection_speech_end_threshold,
                     "machine_detection_speech_threshold": machine_detection_speech_threshold,
