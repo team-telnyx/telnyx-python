@@ -77,13 +77,25 @@ class TexmlInitiateAICallParams(TypedDict, total=False):
     Each header should be an object with 'name' and 'value' properties.
     """
 
-    detection_mode: Annotated[Literal["Premium", "Regular"], PropertyInfo(alias="DetectionMode")]
-    """Allows you to choose between Premium and Standard detections."""
+    detection_mode: Annotated[
+        Literal["Premium", "Regular", "PremiumCallScreening"], PropertyInfo(alias="DetectionMode")
+    ]
+    """
+    Allows you to choose between Regular, Premium, and PremiumCallScreening
+    detections. See
+    https://developers.telnyx.com/docs/voice/programmable-voice/answering-machine-detection
+    """
 
     machine_detection: Annotated[
         Literal["Enable", "Disable", "DetectMessageEnd"], PropertyInfo(alias="MachineDetection")
     ]
     """Enables Answering Machine Detection."""
+
+    machine_detection_prompt_end_timeout: Annotated[int, PropertyInfo(alias="MachineDetectionPromptEndTimeout")]
+    """
+    Silence duration threshold after a call screening prompt before ending prompt
+    detection, in milliseconds. Used when `DetectionMode` is `PremiumCallScreening`.
+    """
 
     machine_detection_silence_timeout: Annotated[int, PropertyInfo(alias="MachineDetectionSilenceTimeout")]
     """If initial silence duration is greater than this value, consider it a machine.
