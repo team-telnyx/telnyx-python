@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import Dict
+
 import httpx
 
 from .chat import (
@@ -73,7 +75,7 @@ class OpenAIResource(SyncAPIResource):
         self,
         *,
         conversation: str | Omit = omit,
-        input: object | Omit = omit,
+        input: Dict[str, object] | Omit = omit,
         instructions: str | Omit = omit,
         model: str | Omit = omit,
         stream: bool | Omit = omit,
@@ -229,7 +231,7 @@ class AsyncOpenAIResource(AsyncAPIResource):
         self,
         *,
         conversation: str | Omit = omit,
-        input: object | Omit = omit,
+        input: Dict[str, object] | Omit = omit,
         instructions: str | Omit = omit,
         model: str | Omit = omit,
         stream: bool | Omit = omit,
