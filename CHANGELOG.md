@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.134.0 (2026-05-15)
+
+Full Changelog: [v4.133.0...v4.134.0](https://github.com/team-telnyx/telnyx-python/compare/v4.133.0...v4.134.0)
+
+### Features
+
+* Update Conversation Relay start parameters ([2121536](https://github.com/team-telnyx/telnyx-python/commit/21215362636bf962851b75e80ff38d594812aa2e))
+
 ## 4.133.0 (2026-05-14)
 
 Full Changelog: [v4.132.0...v4.133.0](https://github.com/team-telnyx/telnyx-python/compare/v4.132.0...v4.133.0)
