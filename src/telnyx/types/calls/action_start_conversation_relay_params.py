@@ -16,21 +16,16 @@ from ..shared_params.resemble_voice_settings import ResembleVoiceSettings
 __all__ = [
     "ActionStartConversationRelayParams",
     "Assistant",
+    "ConversationRelaySettings",
+    "ConversationRelaySettingsLanguage",
     "InterruptionSettings",
     "Language",
-    "Participant",
     "Transcription",
     "VoiceSettings",
 ]
 
 
 class ActionStartConversationRelayParams(TypedDict, total=False):
-    conversation_relay_url: Required[str]
-    """WebSocket URL for your Conversation Relay server.
-
-    Must start with `ws://` or `wss://`.
-    """
-
     assistant: Assistant
     """Custom parameters for the Conversation Relay session.
 
@@ -54,6 +49,22 @@ class ActionStartConversationRelayParams(TypedDict, total=False):
     conversation_relay_dtmf_detection: bool
     """Enable DTMF detection for the relay session."""
 
+    conversation_relay_settings: ConversationRelaySettings
+    """Conversation Relay connection settings.
+
+    This object is used by TeXML Call Scripting's `<ConversationRelay>` verb. The
+    `interruptible` and `interruptible_greeting` fields are shorthand for
+    `interruption_settings.interruptible` and
+    `interruption_settings.interruptible_greeting`; use top-level
+    `interruption_settings` for the full interruption settings shape.
+    """
+
+    conversation_relay_url: str
+    """WebSocket URL for your Conversation Relay server.
+
+    Must start with `ws://` or `wss://`.
+    """
+
     greeting: str
     """Text played when the relay session starts."""
 
@@ -74,12 +85,6 @@ class ActionStartConversationRelayParams(TypedDict, total=False):
     model configuration.
     """
 
-    participants: Iterable[Participant]
-    """Participants to add to the conversation."""
-
-    send_message_history_updates: bool
-    """When true, sends message history update webhooks."""
-
     transcription: Transcription
     """Speech-to-text settings for Conversation Relay."""
 
@@ -91,9 +96,6 @@ class ActionStartConversationRelayParams(TypedDict, total=False):
 
     tts_language: str
     """Language to use for text-to-speech. Overrides `language` for TTS when provided."""
-
-    user_response_timeout_ms: int
-    """Time in milliseconds to wait for caller input before timing out."""
 
     voice: str
     """The voice to be used by the voice assistant.
@@ -137,6 +139,58 @@ class Assistant(TypedDict, total=False, extra_items=object):  # type: ignore[cal
 
     dynamic_variables: Dict[str, str]
     """Custom key-value parameters forwarded to the Conversation Relay session."""
+
+
+class ConversationRelaySettingsLanguage(TypedDict, total=False):
+    """Language-specific speech and transcription settings for Conversation Relay."""
+
+    code: str
+    """BCP 47 language code."""
+
+    speech_model: str
+    """Speech recognition model for this language."""
+
+    transcription_provider: str
+    """Speech-to-text provider for this language."""
+
+    tts_provider: str
+    """Text-to-speech provider for this language."""
+
+    voice: str
+    """Voice identifier for this language."""
+
+
+class ConversationRelaySettings(TypedDict, total=False):
+    """Conversation Relay connection settings.
+
+    This object is used by TeXML Call Scripting's `<ConversationRelay>` verb. The `interruptible` and `interruptible_greeting` fields are shorthand for `interruption_settings.interruptible` and `interruption_settings.interruptible_greeting`; use top-level `interruption_settings` for the full interruption settings shape.
+    """
+
+    url: Required[str]
+    """WebSocket URL for your Conversation Relay server.
+
+    Must start with `ws://` or `wss://`.
+    """
+
+    dtmf_detection: bool
+    """Whether to enable DTMF detection during the relay session."""
+
+    interruptible: Literal["none", "any", "speech", "dtmf"]
+    """Controls when caller input can interrupt assistant speech.
+
+    `any` allows speech or DTMF interruptions; `none` disables interruptions;
+    `speech` allows speech only; `dtmf` allows DTMF only.
+    """
+
+    interruptible_greeting: Literal["none", "any", "speech", "dtmf"]
+    """Controls when caller input can interrupt assistant speech.
+
+    `any` allows speech or DTMF interruptions; `none` disables interruptions;
+    `speech` allows speech only; `dtmf` allows DTMF only.
+    """
+
+    languages: Iterable[ConversationRelaySettingsLanguage]
+    """Language-specific TTS and transcription settings."""
 
 
 class InterruptionSettings(TypedDict, total=False):
@@ -188,20 +242,6 @@ class Language(TypedDict, total=False):
 
     voice: str
     """Voice identifier for this language."""
-
-
-class Participant(TypedDict, total=False):
-    id: Required[str]
-    """The call_control_id of the participant to add to the conversation."""
-
-    role: Required[Literal["user"]]
-    """The role of the participant in the conversation."""
-
-    name: str
-    """Display name for the participant."""
-
-    on_hangup: Literal["continue_conversation", "end_conversation"]
-    """Determines what happens to the conversation when this participant hangs up."""
 
 
 class Transcription(TypedDict, total=False):
