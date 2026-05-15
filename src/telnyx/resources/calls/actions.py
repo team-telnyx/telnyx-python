@@ -2067,21 +2067,19 @@ class ActionsResource(SyncAPIResource):
         self,
         call_control_id: str,
         *,
-        conversation_relay_url: str,
         assistant: action_start_conversation_relay_params.Assistant | Omit = omit,
         client_state: str | Omit = omit,
         command_id: str | Omit = omit,
         conversation_relay_dtmf_detection: bool | Omit = omit,
+        conversation_relay_settings: action_start_conversation_relay_params.ConversationRelaySettings | Omit = omit,
+        conversation_relay_url: str | Omit = omit,
         greeting: str | Omit = omit,
         interruption_settings: action_start_conversation_relay_params.InterruptionSettings | Omit = omit,
         language: str | Omit = omit,
         languages: Iterable[action_start_conversation_relay_params.Language] | Omit = omit,
-        participants: Iterable[action_start_conversation_relay_params.Participant] | Omit = omit,
-        send_message_history_updates: bool | Omit = omit,
         transcription: action_start_conversation_relay_params.Transcription | Omit = omit,
         transcription_language: str | Omit = omit,
         tts_language: str | Omit = omit,
-        user_response_timeout_ms: int | Omit = omit,
         voice: str | Omit = omit,
         voice_settings: action_start_conversation_relay_params.VoiceSettings | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -2106,9 +2104,6 @@ class ActionsResource(SyncAPIResource):
           `customer_disconnect`.
 
         Args:
-          conversation_relay_url: WebSocket URL for your Conversation Relay server. Must start with `ws://` or
-              `wss://`.
-
           assistant: Custom parameters for the Conversation Relay session. Pass key-value data as
               `assistant.dynamic_variables` to make it available to the relay session.
 
@@ -2119,6 +2114,16 @@ class ActionsResource(SyncAPIResource):
               the same `command_id` for the same `call_control_id`.
 
           conversation_relay_dtmf_detection: Enable DTMF detection for the relay session.
+
+          conversation_relay_settings: Conversation Relay connection settings. This object is used by TeXML Call
+              Scripting's `<ConversationRelay>` verb. The `interruptible` and
+              `interruptible_greeting` fields are shorthand for
+              `interruption_settings.interruptible` and
+              `interruption_settings.interruptible_greeting`; use top-level
+              `interruption_settings` for the full interruption settings shape.
+
+          conversation_relay_url: WebSocket URL for your Conversation Relay server. Must start with `ws://` or
+              `wss://`.
 
           greeting: Text played when the relay session starts.
 
@@ -2131,18 +2136,12 @@ class ActionsResource(SyncAPIResource):
           languages: Language-specific TTS and transcription settings. Use this when the relay
               session needs per-language provider, voice, or speech model configuration.
 
-          participants: Participants to add to the conversation.
-
-          send_message_history_updates: When true, sends message history update webhooks.
-
           transcription: Speech-to-text settings for Conversation Relay.
 
           transcription_language: Language to use for speech recognition. Overrides `language` for transcription
               when provided.
 
           tts_language: Language to use for text-to-speech. Overrides `language` for TTS when provided.
-
-          user_response_timeout_ms: Time in milliseconds to wait for caller input before timing out.
 
           voice: The voice to be used by the voice assistant. Currently we support ElevenLabs,
               Telnyx and AWS voices.
@@ -2187,21 +2186,19 @@ class ActionsResource(SyncAPIResource):
             path_template("/calls/{call_control_id}/actions/conversation_relay_start", call_control_id=call_control_id),
             body=maybe_transform(
                 {
-                    "conversation_relay_url": conversation_relay_url,
                     "assistant": assistant,
                     "client_state": client_state,
                     "command_id": command_id,
                     "conversation_relay_dtmf_detection": conversation_relay_dtmf_detection,
+                    "conversation_relay_settings": conversation_relay_settings,
+                    "conversation_relay_url": conversation_relay_url,
                     "greeting": greeting,
                     "interruption_settings": interruption_settings,
                     "language": language,
                     "languages": languages,
-                    "participants": participants,
-                    "send_message_history_updates": send_message_history_updates,
                     "transcription": transcription,
                     "transcription_language": transcription_language,
                     "tts_language": tts_language,
-                    "user_response_timeout_ms": user_response_timeout_ms,
                     "voice": voice,
                     "voice_settings": voice_settings,
                 },
@@ -5909,21 +5906,19 @@ class AsyncActionsResource(AsyncAPIResource):
         self,
         call_control_id: str,
         *,
-        conversation_relay_url: str,
         assistant: action_start_conversation_relay_params.Assistant | Omit = omit,
         client_state: str | Omit = omit,
         command_id: str | Omit = omit,
         conversation_relay_dtmf_detection: bool | Omit = omit,
+        conversation_relay_settings: action_start_conversation_relay_params.ConversationRelaySettings | Omit = omit,
+        conversation_relay_url: str | Omit = omit,
         greeting: str | Omit = omit,
         interruption_settings: action_start_conversation_relay_params.InterruptionSettings | Omit = omit,
         language: str | Omit = omit,
         languages: Iterable[action_start_conversation_relay_params.Language] | Omit = omit,
-        participants: Iterable[action_start_conversation_relay_params.Participant] | Omit = omit,
-        send_message_history_updates: bool | Omit = omit,
         transcription: action_start_conversation_relay_params.Transcription | Omit = omit,
         transcription_language: str | Omit = omit,
         tts_language: str | Omit = omit,
-        user_response_timeout_ms: int | Omit = omit,
         voice: str | Omit = omit,
         voice_settings: action_start_conversation_relay_params.VoiceSettings | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -5948,9 +5943,6 @@ class AsyncActionsResource(AsyncAPIResource):
           `customer_disconnect`.
 
         Args:
-          conversation_relay_url: WebSocket URL for your Conversation Relay server. Must start with `ws://` or
-              `wss://`.
-
           assistant: Custom parameters for the Conversation Relay session. Pass key-value data as
               `assistant.dynamic_variables` to make it available to the relay session.
 
@@ -5961,6 +5953,16 @@ class AsyncActionsResource(AsyncAPIResource):
               the same `command_id` for the same `call_control_id`.
 
           conversation_relay_dtmf_detection: Enable DTMF detection for the relay session.
+
+          conversation_relay_settings: Conversation Relay connection settings. This object is used by TeXML Call
+              Scripting's `<ConversationRelay>` verb. The `interruptible` and
+              `interruptible_greeting` fields are shorthand for
+              `interruption_settings.interruptible` and
+              `interruption_settings.interruptible_greeting`; use top-level
+              `interruption_settings` for the full interruption settings shape.
+
+          conversation_relay_url: WebSocket URL for your Conversation Relay server. Must start with `ws://` or
+              `wss://`.
 
           greeting: Text played when the relay session starts.
 
@@ -5973,18 +5975,12 @@ class AsyncActionsResource(AsyncAPIResource):
           languages: Language-specific TTS and transcription settings. Use this when the relay
               session needs per-language provider, voice, or speech model configuration.
 
-          participants: Participants to add to the conversation.
-
-          send_message_history_updates: When true, sends message history update webhooks.
-
           transcription: Speech-to-text settings for Conversation Relay.
 
           transcription_language: Language to use for speech recognition. Overrides `language` for transcription
               when provided.
 
           tts_language: Language to use for text-to-speech. Overrides `language` for TTS when provided.
-
-          user_response_timeout_ms: Time in milliseconds to wait for caller input before timing out.
 
           voice: The voice to be used by the voice assistant. Currently we support ElevenLabs,
               Telnyx and AWS voices.
@@ -6029,21 +6025,19 @@ class AsyncActionsResource(AsyncAPIResource):
             path_template("/calls/{call_control_id}/actions/conversation_relay_start", call_control_id=call_control_id),
             body=await async_maybe_transform(
                 {
-                    "conversation_relay_url": conversation_relay_url,
                     "assistant": assistant,
                     "client_state": client_state,
                     "command_id": command_id,
                     "conversation_relay_dtmf_detection": conversation_relay_dtmf_detection,
+                    "conversation_relay_settings": conversation_relay_settings,
+                    "conversation_relay_url": conversation_relay_url,
                     "greeting": greeting,
                     "interruption_settings": interruption_settings,
                     "language": language,
                     "languages": languages,
-                    "participants": participants,
-                    "send_message_history_updates": send_message_history_updates,
                     "transcription": transcription,
                     "transcription_language": transcription_language,
                     "tts_language": tts_language,
-                    "user_response_timeout_ms": user_response_timeout_ms,
                     "voice": voice,
                     "voice_settings": voice_settings,
                 },
