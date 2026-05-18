@@ -28,7 +28,17 @@ class TestOpenAI:
     def test_method_create_response_with_all_params(self, client: Telnyx) -> None:
         openai = client.ai.openai.create_response(
             conversation="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
-            input={"0": "bar"},
+            input=[
+                {
+                    "role": "user",
+                    "content": [
+                        {
+                            "type": "input_text",
+                            "text": "Hello, world!",
+                        }
+                    ],
+                }
+            ],
             instructions="You are a friendly chatbot.",
             model="zai-org/GLM-5.1-FP8",
             stream=True,
@@ -102,7 +112,17 @@ class TestAsyncOpenAI:
     async def test_method_create_response_with_all_params(self, async_client: AsyncTelnyx) -> None:
         openai = await async_client.ai.openai.create_response(
             conversation="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
-            input={"0": "bar"},
+            input=[
+                {
+                    "role": "user",
+                    "content": [
+                        {
+                            "type": "input_text",
+                            "text": "Hello, world!",
+                        }
+                    ],
+                }
+            ],
             instructions="You are a friendly chatbot.",
             model="zai-org/GLM-5.1-FP8",
             stream=True,

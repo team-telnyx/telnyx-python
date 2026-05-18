@@ -1,5 +1,14 @@
 # Changelog
 
+## 4.137.0 (2026-05-18)
+
+Full Changelog: [v4.136.0...v4.137.0](https://github.com/team-telnyx/telnyx-python/compare/v4.136.0...v4.137.0)
+
+### Features
+
+* Add assistant background audio volume to OpenAPI spec ([8d15e8b](https://github.com/team-telnyx/telnyx-python/commit/8d15e8b6fffe01fa1e3fa241502603d7e9287fd4))
+* Telapps 101 soniox spec ([8830219](https://github.com/team-telnyx/telnyx-python/commit/8830219ba9aa47ebad7baeab25afe0cd8ffe8027))
+
 ## 4.136.0 (2026-05-15)
 
 Full Changelog: [v4.135.0...v4.136.0](https://github.com/team-telnyx/telnyx-python/compare/v4.135.0...v4.136.0)

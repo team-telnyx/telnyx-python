@@ -16,6 +16,13 @@ class TranscriptionSettingsConfig(BaseModel):
     eager end of turn.
     """
 
+    enable_endpoint_detection: Optional[bool] = None
+    """Available only for soniox/stt-rt-v4.
+
+    When true, Soniox emits end-of-utterance events at the cadence configured by
+    `max_endpoint_delay_ms`.
+    """
+
     end_of_turn_confidence_threshold: Optional[float] = None
     """Available only for assemblyai/universal-streaming.
 
@@ -37,6 +44,13 @@ class TranscriptionSettingsConfig(BaseModel):
     confidence.
     """
 
+    interim_results: Optional[bool] = None
+    """Available only for soniox/stt-rt-v4.
+
+    When true, Soniox streams interim (non-final) results in addition to finalized
+    transcripts.
+    """
+
     keyterm: Optional[str] = None
     """Available only for deepgram/nova-3 and deepgram/flux.
 
@@ -46,6 +60,13 @@ class TranscriptionSettingsConfig(BaseModel):
     [dynamic variables](https://developers.telnyx.com/docs/inference/ai-assistants/dynamic-variables)
     using mustache syntax (e.g. `Telnyx,{{customer_name}},VoIP`). Variables are
     resolved at call time before the value is sent to the speech-to-text engine.
+    """
+
+    max_endpoint_delay_ms: Optional[int] = None
+    """Available only for soniox/stt-rt-v4.
+
+    Maximum silence (in milliseconds) before Soniox emits an end-of-utterance event.
+    Only honored when `enable_endpoint_detection` is true.
     """
 
     max_turn_silence: Optional[int] = None

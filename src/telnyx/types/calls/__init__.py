@@ -131,9 +131,6 @@ from .action_add_ai_assistant_messages_response import (
 from .transcription_engine_assemblyai_config_param import (
     TranscriptionEngineAssemblyaiConfigParam as TranscriptionEngineAssemblyaiConfigParam,
 )
-from .transcription_engine_speechmatics_config_param import (
-    TranscriptionEngineSpeechmaticsConfigParam as TranscriptionEngineSpeechmaticsConfigParam,
-)
 from .call_control_command_result_with_conversation_id import (
     CallControlCommandResultWithConversationID as CallControlCommandResultWithConversationID,
 )

@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Dict
 from typing_extensions import TypedDict
 
 __all__ = ["OpenAICreateResponseParams"]
@@ -17,7 +16,7 @@ class OpenAICreateResponseParams(TypedDict, total=False):
     and tool-result followups. Omit it for a non-persisted, stateless response.
     """
 
-    input: Dict[str, object]
+    input: object
     """The input items for this turn, using the OpenAI Responses API input format."""
 
     instructions: str

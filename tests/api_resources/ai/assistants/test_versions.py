@@ -250,10 +250,13 @@ class TestVersions:
                 "region": "region",
                 "settings": {
                     "eager_eot_threshold": 0.3,
+                    "enable_endpoint_detection": True,
                     "end_of_turn_confidence_threshold": 0,
                     "eot_threshold": 0.5,
                     "eot_timeout_ms": 500,
+                    "interim_results": True,
                     "keyterm": "keyterm",
+                    "max_endpoint_delay_ms": 500,
                     "max_turn_silence": 100,
                     "min_turn_silence": 100,
                     "numerals": True,
@@ -267,6 +270,7 @@ class TestVersions:
                 "background_audio": {
                     "type": "predefined_media",
                     "value": "silence",
+                    "volume": 0.1,
                 },
                 "expressive_mode": True,
                 "language_boost": "auto",
@@ -721,10 +725,13 @@ class TestAsyncVersions:
                 "region": "region",
                 "settings": {
                     "eager_eot_threshold": 0.3,
+                    "enable_endpoint_detection": True,
                     "end_of_turn_confidence_threshold": 0,
                     "eot_threshold": 0.5,
                     "eot_timeout_ms": 500,
+                    "interim_results": True,
                     "keyterm": "keyterm",
+                    "max_endpoint_delay_ms": 500,
                     "max_turn_silence": 100,
                     "min_turn_silence": 100,
                     "numerals": True,
@@ -738,6 +745,7 @@ class TestAsyncVersions:
                 "background_audio": {
                     "type": "predefined_media",
                     "value": "silence",
+                    "volume": 0.1,
                 },
                 "expressive_mode": True,
                 "language_boost": "auto",
