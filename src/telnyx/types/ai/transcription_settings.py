@@ -24,7 +24,9 @@ class TranscriptionSettings(BaseModel):
     language. For `deepgram/flux`, supported values are: `auto` (Telnyx language
     detection controls the language hint), `multi` (no language hint), and
     language-specific hints `en`, `es`, `fr`, `de`, `hi`, `ru`, `pt`, `ja`, `it`,
-    and `nl`.
+    and `nl`. For `soniox/stt-rt-v4`, `auto` omits the language hint and lets Soniox
+    auto-detect; ISO 639-1 codes (e.g. `en`, `es`) bias detection toward that
+    language.
     """
 
     model: Optional[
@@ -35,6 +37,7 @@ class TranscriptionSettings(BaseModel):
             "azure/fast",
             "assemblyai/universal-streaming",
             "xai/grok-stt",
+            "soniox/stt-rt-v4",
             "distil-whisper/distil-large-v2",
             "openai/whisper-large-v3-turbo",
         ]
@@ -50,6 +53,8 @@ class TranscriptionSettings(BaseModel):
     - `assemblyai/universal-streaming` is a multilingual streaming model with
       configurable turn detection.
     - `xai/grok-stt` is a multilingual Grok STT model.
+    - `soniox/stt-rt-v4` is a multilingual streaming model with automatic language
+      detection and configurable endpointing.
     """
 
     region: Optional[str] = None

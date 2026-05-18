@@ -21,7 +21,9 @@ class TranscriptionConfigParam(TypedDict, total=False):
     `model`. For `deepgram/flux`, supported values are: `auto` (Telnyx language
     detection controls the language hint), `multi` (no language hint), and
     language-specific hints `en`, `es`, `fr`, `de`, `hi`, `ru`, `pt`, `ja`, `it`,
-    and `nl`.
+    and `nl`. For `soniox/stt-rt-v4`, `auto` omits the language hint and lets Soniox
+    auto-detect; ISO 639-1 codes (e.g. `en`, `es`) bias detection toward that
+    language.
     """
 
     model: Literal[
@@ -33,6 +35,7 @@ class TranscriptionConfigParam(TypedDict, total=False):
         "speechmatics/enhanced",
         "assemblyai/universal-streaming",
         "xai/grok-stt",
+        "soniox/stt-rt-v4",
         "azure/fast",
         "azure/realtime",
         "google/latest_long",
@@ -49,6 +52,8 @@ class TranscriptionConfigParam(TypedDict, total=False):
       transcription.
     - `assemblyai/universal-streaming` for live streaming transcription.
     - `xai/grok-stt` for live streaming transcription.
+    - `soniox/stt-rt-v4` for live streaming multilingual transcription with
+      automatic language detection.
     - `azure/fast` and `azure/realtime`; Azure models require `region`, and
       unsupported regions require `api_key_ref`.
     - `google/latest_long` for non-streaming multilingual transcription.
