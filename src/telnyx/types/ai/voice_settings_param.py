@@ -21,6 +21,12 @@ class BackgroundAudioPredefinedMedia(TypedDict, total=False):
     value: Required[Literal["silence", "office"]]
     """The predefined media to use. `silence` disables background audio."""
 
+    volume: float
+    """Volume level for the predefined background audio.
+
+    Supports values from 0.1 to 1.0 in 0.1 increments.
+    """
+
 
 class BackgroundAudioMediaURL(TypedDict, total=False):
     type: Required[Literal["media_url"]]

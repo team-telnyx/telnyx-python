@@ -22,6 +22,12 @@ class BackgroundAudioPredefinedMedia(BaseModel):
     value: Literal["silence", "office"]
     """The predefined media to use. `silence` disables background audio."""
 
+    volume: Optional[float] = None
+    """Volume level for the predefined background audio.
+
+    Supports values from 0.1 to 1.0 in 0.1 increments.
+    """
+
 
 class BackgroundAudioMediaURL(BaseModel):
     type: Literal["media_url"]

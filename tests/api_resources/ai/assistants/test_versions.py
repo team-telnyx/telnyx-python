@@ -267,6 +267,7 @@ class TestVersions:
                 "background_audio": {
                     "type": "predefined_media",
                     "value": "silence",
+                    "volume": 0.1,
                 },
                 "expressive_mode": True,
                 "language_boost": "auto",
@@ -738,6 +739,7 @@ class TestAsyncVersions:
                 "background_audio": {
                     "type": "predefined_media",
                     "value": "silence",
+                    "volume": 0.1,
                 },
                 "expressive_mode": True,
                 "language_boost": "auto",
