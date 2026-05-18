@@ -205,6 +205,7 @@ class TestAssistants:
                 "background_audio": {
                     "type": "predefined_media",
                     "value": "silence",
+                    "volume": 0.1,
                 },
                 "expressive_mode": True,
                 "language_boost": "auto",
@@ -500,6 +501,7 @@ class TestAssistants:
                 "background_audio": {
                     "type": "predefined_media",
                     "value": "silence",
+                    "volume": 0.1,
                 },
                 "expressive_mode": True,
                 "language_boost": "auto",
@@ -1076,6 +1078,7 @@ class TestAsyncAssistants:
                 "background_audio": {
                     "type": "predefined_media",
                     "value": "silence",
+                    "volume": 0.1,
                 },
                 "expressive_mode": True,
                 "language_boost": "auto",
@@ -1371,6 +1374,7 @@ class TestAsyncAssistants:
                 "background_audio": {
                     "type": "predefined_media",
                     "value": "silence",
+                    "volume": 0.1,
                 },
                 "expressive_mode": True,
                 "language_boost": "auto",
