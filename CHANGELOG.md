@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.138.0 (2026-05-20)
+
+Full Changelog: [v4.137.0...v4.138.0](https://github.com/team-telnyx/telnyx-python/compare/v4.137.0...v4.138.0)
+
+### Features
+
+* TELAPPS-483: Add async webhook timeout to OpenAPI ([389886a](https://github.com/team-telnyx/telnyx-python/commit/389886a0eac81a9425aab27fb34709abbb9a4424))
+
 ## 4.137.0 (2026-05-18)
 
 Full Changelog: [v4.136.0...v4.137.0](https://github.com/team-telnyx/telnyx-python/compare/v4.136.0...v4.137.0)
