@@ -208,6 +208,7 @@ class TestVersions:
                         "name": "name",
                         "url": "https://example.com/api/v1/function",
                         "async": True,
+                        "async_timeout_ms": 1,
                         "body_parameters": {
                             "properties": {
                                 "age": "bar",
@@ -683,6 +684,7 @@ class TestAsyncVersions:
                         "name": "name",
                         "url": "https://example.com/api/v1/function",
                         "async": True,
+                        "async_timeout_ms": 1,
                         "body_parameters": {
                             "properties": {
                                 "age": "bar",

@@ -110,6 +110,13 @@ class Webhook(BaseModel):
     respond.
     """
 
+    async_timeout_ms: Optional[int] = None
+    """
+    Maximum time in milliseconds that the conversation worker waits for an async
+    webhook response before returning "Submitted" to the LLM. If unset, the platform
+    default (currently 300ms) is used.
+    """
+
     body_parameters: Optional[WebhookBodyParameters] = None
     """The body parameters the webhook tool accepts, described as a JSON Schema object.
 
