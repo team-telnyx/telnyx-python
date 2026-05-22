@@ -2681,6 +2681,7 @@ class TestActions:
             record_timeout_secs=100,
             record_track="outbound",
             record_trim="trim-silence",
+            send_digits_on_answer="wwww200",
             sip_auth_password="password",
             sip_auth_username="username",
             sip_headers=[
@@ -5423,6 +5424,7 @@ class TestAsyncActions:
             record_timeout_secs=100,
             record_track="outbound",
             record_trim="trim-silence",
+            send_digits_on_answer="wwww200",
             sip_auth_password="password",
             sip_auth_username="username",
             sip_headers=[
