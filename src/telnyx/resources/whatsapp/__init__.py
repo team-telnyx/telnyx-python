@@ -16,6 +16,14 @@ from .templates import (
     TemplatesResourceWithStreamingResponse,
     AsyncTemplatesResourceWithStreamingResponse,
 )
+from .user_data import (
+    UserDataResource,
+    AsyncUserDataResource,
+    UserDataResourceWithRawResponse,
+    AsyncUserDataResourceWithRawResponse,
+    UserDataResourceWithStreamingResponse,
+    AsyncUserDataResourceWithStreamingResponse,
+)
 from .phone_numbers import (
     PhoneNumbersResource,
     AsyncPhoneNumbersResource,
@@ -52,6 +60,12 @@ __all__ = [
     "AsyncPhoneNumbersResourceWithRawResponse",
     "PhoneNumbersResourceWithStreamingResponse",
     "AsyncPhoneNumbersResourceWithStreamingResponse",
+    "UserDataResource",
+    "AsyncUserDataResource",
+    "UserDataResourceWithRawResponse",
+    "AsyncUserDataResourceWithRawResponse",
+    "UserDataResourceWithStreamingResponse",
+    "AsyncUserDataResourceWithStreamingResponse",
     "WhatsappResource",
     "AsyncWhatsappResource",
     "WhatsappResourceWithRawResponse",

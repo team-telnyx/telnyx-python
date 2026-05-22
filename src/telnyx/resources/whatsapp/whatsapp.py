@@ -11,6 +11,14 @@ from .templates import (
     TemplatesResourceWithStreamingResponse,
     AsyncTemplatesResourceWithStreamingResponse,
 )
+from .user_data import (
+    UserDataResource,
+    AsyncUserDataResource,
+    UserDataResourceWithRawResponse,
+    AsyncUserDataResourceWithRawResponse,
+    UserDataResourceWithStreamingResponse,
+    AsyncUserDataResourceWithStreamingResponse,
+)
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from .phone_numbers.phone_numbers import (
     PhoneNumbersResource,
@@ -49,6 +57,11 @@ class WhatsappResource(SyncAPIResource):
         return PhoneNumbersResource(self._client)
 
     @cached_property
+    def user_data(self) -> UserDataResource:
+        """Manage Whatsapp business accounts"""
+        return UserDataResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> WhatsappResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
@@ -83,6 +96,11 @@ class AsyncWhatsappResource(AsyncAPIResource):
     def phone_numbers(self) -> AsyncPhoneNumbersResource:
         """Manage Whatsapp phone numbers"""
         return AsyncPhoneNumbersResource(self._client)
+
+    @cached_property
+    def user_data(self) -> AsyncUserDataResource:
+        """Manage Whatsapp business accounts"""
+        return AsyncUserDataResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncWhatsappResourceWithRawResponse:
@@ -123,6 +141,11 @@ class WhatsappResourceWithRawResponse:
         """Manage Whatsapp phone numbers"""
         return PhoneNumbersResourceWithRawResponse(self._whatsapp.phone_numbers)
 
+    @cached_property
+    def user_data(self) -> UserDataResourceWithRawResponse:
+        """Manage Whatsapp business accounts"""
+        return UserDataResourceWithRawResponse(self._whatsapp.user_data)
+
 
 class AsyncWhatsappResourceWithRawResponse:
     def __init__(self, whatsapp: AsyncWhatsappResource) -> None:
@@ -142,6 +165,11 @@ class AsyncWhatsappResourceWithRawResponse:
     def phone_numbers(self) -> AsyncPhoneNumbersResourceWithRawResponse:
         """Manage Whatsapp phone numbers"""
         return AsyncPhoneNumbersResourceWithRawResponse(self._whatsapp.phone_numbers)
+
+    @cached_property
+    def user_data(self) -> AsyncUserDataResourceWithRawResponse:
+        """Manage Whatsapp business accounts"""
+        return AsyncUserDataResourceWithRawResponse(self._whatsapp.user_data)
 
 
 class WhatsappResourceWithStreamingResponse:
@@ -163,6 +191,11 @@ class WhatsappResourceWithStreamingResponse:
         """Manage Whatsapp phone numbers"""
         return PhoneNumbersResourceWithStreamingResponse(self._whatsapp.phone_numbers)
 
+    @cached_property
+    def user_data(self) -> UserDataResourceWithStreamingResponse:
+        """Manage Whatsapp business accounts"""
+        return UserDataResourceWithStreamingResponse(self._whatsapp.user_data)
+
 
 class AsyncWhatsappResourceWithStreamingResponse:
     def __init__(self, whatsapp: AsyncWhatsappResource) -> None:
@@ -182,3 +215,8 @@ class AsyncWhatsappResourceWithStreamingResponse:
     def phone_numbers(self) -> AsyncPhoneNumbersResourceWithStreamingResponse:
         """Manage Whatsapp phone numbers"""
         return AsyncPhoneNumbersResourceWithStreamingResponse(self._whatsapp.phone_numbers)
+
+    @cached_property
+    def user_data(self) -> AsyncUserDataResourceWithStreamingResponse:
+        """Manage Whatsapp business accounts"""
+        return AsyncUserDataResourceWithStreamingResponse(self._whatsapp.user_data)
