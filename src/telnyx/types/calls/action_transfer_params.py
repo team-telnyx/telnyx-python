@@ -20,7 +20,11 @@ class ActionTransferParams(TypedDict, total=False):
     For SIP URI destinations, append `;secure=true` or `;secure=srtp` to enable SRTP
     media encryption for that endpoint, or `;secure=dtls` to enable DTLS media
     encryption for that endpoint. If `media_encryption` is set to `SRTP` or `DTLS`,
-    it takes precedence over any per-endpoint `secure` URI parameter.
+    it takes precedence over any per-endpoint `secure` URI parameter. You may also
+    append a comma followed by DTMF digits (e.g. `+18004247767,200`) to play those
+    digits as DTMF once the transfer destination answers — equivalent to setting
+    `send_digits_on_answer` separately. If both are present, the explicit
+    `send_digits_on_answer` parameter takes precedence.
     """
 
     answering_machine_detection: Literal["premium", "detect", "detect_beep", "detect_words", "greeting_end", "disabled"]
@@ -179,6 +183,17 @@ class ActionTransferParams(TypedDict, total=False):
     """
     When set to `trim-silence`, silence will be removed from the beginning and end
     of the recording.
+    """
+
+    send_digits_on_answer: str
+    """DTMF digits to send automatically after the transfer destination answers.
+
+    Useful for reaching an extension behind an IVR (e.g. `"200"` to dial extension
+    200 once the called party picks up). Allowed characters: `0-9`, `A-D`, `w` (0.5s
+    pause), `W` (1s pause), `*`, `#`. Maximum 64 characters. When omitted, no
+    automatic DTMF is sent. May also be supplied inline by appending `,<digits>` to
+    `to` (e.g. `to=+18004247767,200`); if both forms are present, this explicit
+    field takes precedence.
     """
 
     sip_auth_password: str

@@ -5461,6 +5461,19 @@ Methods:
 - <code title="delete /v2/whatsapp/phone_numbers/{phone_number}/profile/photo">client.whatsapp.phone_numbers.profile.photo.<a href="./src/telnyx/resources/whatsapp/phone_numbers/profile/photo.py">delete</a>(phone_number) -> None</code>
 - <code title="post /v2/whatsapp/phone_numbers/{phone_number}/profile/photo">client.whatsapp.phone_numbers.profile.photo.<a href="./src/telnyx/resources/whatsapp/phone_numbers/profile/photo.py">upload</a>(phone_number, \*\*<a href="src/telnyx/types/whatsapp/phone_numbers/profile/photo_upload_params.py">params</a>) -> <a href="./src/telnyx/types/whatsapp/phone_numbers/profile/photo_upload_response.py">PhotoUploadResponse</a></code>
 
+## UserData
+
+Types:
+
+```python
+from telnyx.types.whatsapp import UserDataRetrieveResponse, UserDataUpdateResponse
+```
+
+Methods:
+
+- <code title="get /v2/whatsapp/user_data">client.whatsapp.user_data.<a href="./src/telnyx/resources/whatsapp/user_data.py">retrieve</a>() -> <a href="./src/telnyx/types/whatsapp/user_data_retrieve_response.py">UserDataRetrieveResponse</a></code>
+- <code title="patch /v2/whatsapp/user_data">client.whatsapp.user_data.<a href="./src/telnyx/resources/whatsapp/user_data.py">update</a>(\*\*<a href="src/telnyx/types/whatsapp/user_data_update_params.py">params</a>) -> <a href="./src/telnyx/types/whatsapp/user_data_update_response.py">UserDataUpdateResponse</a></code>
+
 # WhatsappMessageTemplates
 
 Types:

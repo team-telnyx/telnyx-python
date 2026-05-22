@@ -1,5 +1,14 @@
 # Changelog
 
+## 4.139.0 (2026-05-22)
+
+Full Changelog: [v4.138.0...v4.139.0](https://github.com/team-telnyx/telnyx-python/compare/v4.138.0...v4.139.0)
+
+### Features
+
+* MSG-919: documentation for Whatsapp user data ([731f3b5](https://github.com/team-telnyx/telnyx-python/commit/731f3b5af57c7e969fde86ff2a389c53160e2f1d))
+* TELAPPS-72: document send_digits_on_answer on Dial + Transfer ([0a1af0a](https://github.com/team-telnyx/telnyx-python/commit/0a1af0adcce436122ebd7183a23e9664f4e37311))
+
 ## 4.138.0 (2026-05-20)
 
 Full Changelog: [v4.137.0...v4.138.0](https://github.com/team-telnyx/telnyx-python/compare/v4.137.0...v4.138.0)
