@@ -3682,6 +3682,7 @@ class ActionsResource(SyncAPIResource):
         record_timeout_secs: int | Omit = omit,
         record_track: Literal["both", "inbound", "outbound"] | Omit = omit,
         record_trim: Literal["trim-silence"] | Omit = omit,
+        send_digits_on_answer: str | Omit = omit,
         sip_auth_password: str | Omit = omit,
         sip_auth_username: str | Omit = omit,
         sip_headers: Iterable[SipHeaderParam] | Omit = omit,
@@ -3729,7 +3730,11 @@ class ActionsResource(SyncAPIResource):
               `;secure=true` or `;secure=srtp` to enable SRTP media encryption for that
               endpoint, or `;secure=dtls` to enable DTLS media encryption for that endpoint.
               If `media_encryption` is set to `SRTP` or `DTLS`, it takes precedence over any
-              per-endpoint `secure` URI parameter.
+              per-endpoint `secure` URI parameter. You may also append a comma followed by
+              DTMF digits (e.g. `+18004247767,200`) to play those digits as DTMF once the
+              transfer destination answers — equivalent to setting `send_digits_on_answer`
+              separately. If both are present, the explicit `send_digits_on_answer` parameter
+              takes precedence.
 
           answering_machine_detection: Enables Answering Machine Detection. When a call is answered, Telnyx runs
               real-time detection to determine if it was picked up by a human or a machine and
@@ -3821,6 +3826,14 @@ class ActionsResource(SyncAPIResource):
           record_trim: When set to `trim-silence`, silence will be removed from the beginning and end
               of the recording.
 
+          send_digits_on_answer: DTMF digits to send automatically after the transfer destination answers. Useful
+              for reaching an extension behind an IVR (e.g. `"200"` to dial extension 200 once
+              the called party picks up). Allowed characters: `0-9`, `A-D`, `w` (0.5s pause),
+              `W` (1s pause), `*`, `#`. Maximum 64 characters. When omitted, no automatic DTMF
+              is sent. May also be supplied inline by appending `,<digits>` to `to` (e.g.
+              `to=+18004247767,200`); if both forms are present, this explicit field takes
+              precedence.
+
           sip_auth_password: SIP Authentication password used for SIP challenges.
 
           sip_auth_username: SIP Authentication username used for SIP challenges.
@@ -3903,6 +3916,7 @@ class ActionsResource(SyncAPIResource):
                     "record_timeout_secs": record_timeout_secs,
                     "record_track": record_track,
                     "record_trim": record_trim,
+                    "send_digits_on_answer": send_digits_on_answer,
                     "sip_auth_password": sip_auth_password,
                     "sip_auth_username": sip_auth_username,
                     "sip_headers": sip_headers,
@@ -7523,6 +7537,7 @@ class AsyncActionsResource(AsyncAPIResource):
         record_timeout_secs: int | Omit = omit,
         record_track: Literal["both", "inbound", "outbound"] | Omit = omit,
         record_trim: Literal["trim-silence"] | Omit = omit,
+        send_digits_on_answer: str | Omit = omit,
         sip_auth_password: str | Omit = omit,
         sip_auth_username: str | Omit = omit,
         sip_headers: Iterable[SipHeaderParam] | Omit = omit,
@@ -7570,7 +7585,11 @@ class AsyncActionsResource(AsyncAPIResource):
               `;secure=true` or `;secure=srtp` to enable SRTP media encryption for that
               endpoint, or `;secure=dtls` to enable DTLS media encryption for that endpoint.
               If `media_encryption` is set to `SRTP` or `DTLS`, it takes precedence over any
-              per-endpoint `secure` URI parameter.
+              per-endpoint `secure` URI parameter. You may also append a comma followed by
+              DTMF digits (e.g. `+18004247767,200`) to play those digits as DTMF once the
+              transfer destination answers — equivalent to setting `send_digits_on_answer`
+              separately. If both are present, the explicit `send_digits_on_answer` parameter
+              takes precedence.
 
           answering_machine_detection: Enables Answering Machine Detection. When a call is answered, Telnyx runs
               real-time detection to determine if it was picked up by a human or a machine and
@@ -7662,6 +7681,14 @@ class AsyncActionsResource(AsyncAPIResource):
           record_trim: When set to `trim-silence`, silence will be removed from the beginning and end
               of the recording.
 
+          send_digits_on_answer: DTMF digits to send automatically after the transfer destination answers. Useful
+              for reaching an extension behind an IVR (e.g. `"200"` to dial extension 200 once
+              the called party picks up). Allowed characters: `0-9`, `A-D`, `w` (0.5s pause),
+              `W` (1s pause), `*`, `#`. Maximum 64 characters. When omitted, no automatic DTMF
+              is sent. May also be supplied inline by appending `,<digits>` to `to` (e.g.
+              `to=+18004247767,200`); if both forms are present, this explicit field takes
+              precedence.
+
           sip_auth_password: SIP Authentication password used for SIP challenges.
 
           sip_auth_username: SIP Authentication username used for SIP challenges.
@@ -7744,6 +7771,7 @@ class AsyncActionsResource(AsyncAPIResource):
                     "record_timeout_secs": record_timeout_secs,
                     "record_track": record_track,
                     "record_trim": record_trim,
+                    "send_digits_on_answer": send_digits_on_answer,
                     "sip_auth_password": sip_auth_password,
                     "sip_auth_username": sip_auth_username,
                     "sip_headers": sip_headers,
