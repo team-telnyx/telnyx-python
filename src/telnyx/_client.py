@@ -162,6 +162,7 @@ if TYPE_CHECKING:
         dialogflow_connections,
         sim_card_order_preview,
         virtual_cross_connects,
+        voice_sdk_call_reports,
         alphanumeric_sender_ids,
         available_phone_numbers,
         global_ip_allowed_ports,
@@ -304,6 +305,7 @@ if TYPE_CHECKING:
     from .resources.dialogflow_connections import DialogflowConnectionsResource, AsyncDialogflowConnectionsResource
     from .resources.sim_card_order_preview import SimCardOrderPreviewResource, AsyncSimCardOrderPreviewResource
     from .resources.virtual_cross_connects import VirtualCrossConnectsResource, AsyncVirtualCrossConnectsResource
+    from .resources.voice_sdk_call_reports import VoiceSDKCallReportsResource, AsyncVoiceSDKCallReportsResource
     from .resources.alphanumeric_sender_ids import AlphanumericSenderIDsResource, AsyncAlphanumericSenderIDsResource
     from .resources.available_phone_numbers import AvailablePhoneNumbersResource, AsyncAvailablePhoneNumbersResource
     from .resources.conferences.conferences import ConferencesResource, AsyncConferencesResource
@@ -1666,6 +1668,15 @@ class Telnyx(SyncAPIClient):
         return UacConnectionsResource(self)
 
     @cached_property
+    def voice_sdk_call_reports(self) -> VoiceSDKCallReportsResource:
+        """
+        Retrieve raw Voice SDK call report stats payloads for WebRTC call troubleshooting.
+        """
+        from .resources.voice_sdk_call_reports import VoiceSDKCallReportsResource
+
+        return VoiceSDKCallReportsResource(self)
+
+    @cached_property
     def with_raw_response(self) -> TelnyxWithRawResponse:
         return TelnyxWithRawResponse(self)
 
@@ -3023,6 +3034,15 @@ class AsyncTelnyx(AsyncAPIClient):
         return AsyncUacConnectionsResource(self)
 
     @cached_property
+    def voice_sdk_call_reports(self) -> AsyncVoiceSDKCallReportsResource:
+        """
+        Retrieve raw Voice SDK call report stats payloads for WebRTC call troubleshooting.
+        """
+        from .resources.voice_sdk_call_reports import AsyncVoiceSDKCallReportsResource
+
+        return AsyncVoiceSDKCallReportsResource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncTelnyxWithRawResponse:
         return AsyncTelnyxWithRawResponse(self)
 
@@ -4315,6 +4335,15 @@ class TelnyxWithRawResponse:
 
         return UacConnectionsResourceWithRawResponse(self._client.uac_connections)
 
+    @cached_property
+    def voice_sdk_call_reports(self) -> voice_sdk_call_reports.VoiceSDKCallReportsResourceWithRawResponse:
+        """
+        Retrieve raw Voice SDK call report stats payloads for WebRTC call troubleshooting.
+        """
+        from .resources.voice_sdk_call_reports import VoiceSDKCallReportsResourceWithRawResponse
+
+        return VoiceSDKCallReportsResourceWithRawResponse(self._client.voice_sdk_call_reports)
+
 
 class AsyncTelnyxWithRawResponse:
     _client: AsyncTelnyx
@@ -5478,6 +5507,15 @@ class AsyncTelnyxWithRawResponse:
         from .resources.uac_connections import AsyncUacConnectionsResourceWithRawResponse
 
         return AsyncUacConnectionsResourceWithRawResponse(self._client.uac_connections)
+
+    @cached_property
+    def voice_sdk_call_reports(self) -> voice_sdk_call_reports.AsyncVoiceSDKCallReportsResourceWithRawResponse:
+        """
+        Retrieve raw Voice SDK call report stats payloads for WebRTC call troubleshooting.
+        """
+        from .resources.voice_sdk_call_reports import AsyncVoiceSDKCallReportsResourceWithRawResponse
+
+        return AsyncVoiceSDKCallReportsResourceWithRawResponse(self._client.voice_sdk_call_reports)
 
 
 class TelnyxWithStreamedResponse:
@@ -6644,6 +6682,15 @@ class TelnyxWithStreamedResponse:
         from .resources.uac_connections import UacConnectionsResourceWithStreamingResponse
 
         return UacConnectionsResourceWithStreamingResponse(self._client.uac_connections)
+
+    @cached_property
+    def voice_sdk_call_reports(self) -> voice_sdk_call_reports.VoiceSDKCallReportsResourceWithStreamingResponse:
+        """
+        Retrieve raw Voice SDK call report stats payloads for WebRTC call troubleshooting.
+        """
+        from .resources.voice_sdk_call_reports import VoiceSDKCallReportsResourceWithStreamingResponse
+
+        return VoiceSDKCallReportsResourceWithStreamingResponse(self._client.voice_sdk_call_reports)
 
 
 class AsyncTelnyxWithStreamedResponse:
@@ -7856,6 +7903,15 @@ class AsyncTelnyxWithStreamedResponse:
         from .resources.uac_connections import AsyncUacConnectionsResourceWithStreamingResponse
 
         return AsyncUacConnectionsResourceWithStreamingResponse(self._client.uac_connections)
+
+    @cached_property
+    def voice_sdk_call_reports(self) -> voice_sdk_call_reports.AsyncVoiceSDKCallReportsResourceWithStreamingResponse:
+        """
+        Retrieve raw Voice SDK call report stats payloads for WebRTC call troubleshooting.
+        """
+        from .resources.voice_sdk_call_reports import AsyncVoiceSDKCallReportsResourceWithStreamingResponse
+
+        return AsyncVoiceSDKCallReportsResourceWithStreamingResponse(self._client.voice_sdk_call_reports)
 
 
 Client = Telnyx

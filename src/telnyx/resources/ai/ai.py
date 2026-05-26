@@ -31,7 +31,7 @@ from .tools import (
     ToolsResourceWithStreamingResponse,
     AsyncToolsResourceWithStreamingResponse,
 )
-from ...types import ai_summarize_params, ai_create_response_params
+from ...types import ai_summarize_params, ai_create_response_deprecated_params
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from .clusters import (
@@ -116,8 +116,8 @@ from .conversations.conversations import (
     AsyncConversationsResourceWithStreamingResponse,
 )
 from ...types.ai_summarize_response import AISummarizeResponse
-from ...types.ai_create_response_response import AICreateResponseResponse
 from ...types.ai_retrieve_models_response import AIRetrieveModelsResponse
+from ...types.ai_create_response_deprecated_response import AICreateResponseDeprecatedResponse
 
 __all__ = ["AIResource", "AsyncAIResource"]
 
@@ -199,7 +199,7 @@ class AIResource(SyncAPIResource):
         return AIResourceWithStreamingResponse(self)
 
     @typing_extensions.deprecated("deprecated")
-    def create_response(
+    def create_response_deprecated(
         self,
         *,
         body: Dict[str, object],
@@ -209,7 +209,7 @@ class AIResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AICreateResponseResponse:
+    ) -> AICreateResponseDeprecatedResponse:
         """**Deprecated**: Use `POST /v2/ai/openai/responses` instead.
 
         This endpoint is
@@ -230,11 +230,11 @@ class AIResource(SyncAPIResource):
         """
         return self._post(
             "/ai/responses",
-            body=maybe_transform(body, ai_create_response_params.AICreateResponseParams),
+            body=maybe_transform(body, ai_create_response_deprecated_params.AICreateResponseDeprecatedParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=AICreateResponseResponse,
+            cast_to=AICreateResponseDeprecatedResponse,
         )
 
     @typing_extensions.deprecated("deprecated")
@@ -402,7 +402,7 @@ class AsyncAIResource(AsyncAPIResource):
         return AsyncAIResourceWithStreamingResponse(self)
 
     @typing_extensions.deprecated("deprecated")
-    async def create_response(
+    async def create_response_deprecated(
         self,
         *,
         body: Dict[str, object],
@@ -412,7 +412,7 @@ class AsyncAIResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AICreateResponseResponse:
+    ) -> AICreateResponseDeprecatedResponse:
         """**Deprecated**: Use `POST /v2/ai/openai/responses` instead.
 
         This endpoint is
@@ -433,11 +433,13 @@ class AsyncAIResource(AsyncAPIResource):
         """
         return await self._post(
             "/ai/responses",
-            body=await async_maybe_transform(body, ai_create_response_params.AICreateResponseParams),
+            body=await async_maybe_transform(
+                body, ai_create_response_deprecated_params.AICreateResponseDeprecatedParams
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=AICreateResponseResponse,
+            cast_to=AICreateResponseDeprecatedResponse,
         )
 
     @typing_extensions.deprecated("deprecated")
@@ -532,9 +534,9 @@ class AIResourceWithRawResponse:
     def __init__(self, ai: AIResource) -> None:
         self._ai = ai
 
-        self.create_response = (  # pyright: ignore[reportDeprecated]
+        self.create_response_deprecated = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                ai.create_response,  # pyright: ignore[reportDeprecated],
+                ai.create_response_deprecated,  # pyright: ignore[reportDeprecated],
             )
         )
         self.retrieve_models = (  # pyright: ignore[reportDeprecated]
@@ -605,9 +607,9 @@ class AsyncAIResourceWithRawResponse:
     def __init__(self, ai: AsyncAIResource) -> None:
         self._ai = ai
 
-        self.create_response = (  # pyright: ignore[reportDeprecated]
+        self.create_response_deprecated = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                ai.create_response,  # pyright: ignore[reportDeprecated],
+                ai.create_response_deprecated,  # pyright: ignore[reportDeprecated],
             )
         )
         self.retrieve_models = (  # pyright: ignore[reportDeprecated]
@@ -678,9 +680,9 @@ class AIResourceWithStreamingResponse:
     def __init__(self, ai: AIResource) -> None:
         self._ai = ai
 
-        self.create_response = (  # pyright: ignore[reportDeprecated]
+        self.create_response_deprecated = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                ai.create_response,  # pyright: ignore[reportDeprecated],
+                ai.create_response_deprecated,  # pyright: ignore[reportDeprecated],
             )
         )
         self.retrieve_models = (  # pyright: ignore[reportDeprecated]
@@ -751,9 +753,9 @@ class AsyncAIResourceWithStreamingResponse:
     def __init__(self, ai: AsyncAIResource) -> None:
         self._ai = ai
 
-        self.create_response = (  # pyright: ignore[reportDeprecated]
+        self.create_response_deprecated = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                ai.create_response,  # pyright: ignore[reportDeprecated],
+                ai.create_response_deprecated,  # pyright: ignore[reportDeprecated],
             )
         )
         self.retrieve_models = (  # pyright: ignore[reportDeprecated]

@@ -18,7 +18,7 @@ __all__ = [
     "HandoffHandoffAIAssistant",
     "Transfer",
     "TransferTransfer",
-    "TransferTransferTargetsTargetsList",
+    "TransferTransferTargetsUnionMember0",
     "TransferTransferCustomHeader",
     "TransferTransferVoicemailDetection",
     "TransferTransferVoicemailDetectionDetectionConfig",
@@ -27,7 +27,7 @@ __all__ = [
     "Invite",
     "InviteInvite",
     "InviteInviteCustomHeader",
-    "InviteInviteTargetsTargetsList",
+    "InviteInviteTargetsUnionMember0",
     "InviteInviteVoicemailDetection",
     "InviteInviteVoicemailDetectionOnVoicemailDetected",
     "Refer",
@@ -74,7 +74,7 @@ class Handoff(BaseModel):
     type: Literal["handoff"]
 
 
-class TransferTransferTargetsTargetsList(BaseModel):
+class TransferTransferTargetsUnionMember0(BaseModel):
     to: str
     """The destination number or SIP URI of the call."""
 
@@ -200,7 +200,7 @@ class TransferTransfer(BaseModel):
     from_: str = FieldInfo(alias="from")
     """Number or SIP URI placing the call."""
 
-    targets: Union[List[TransferTransferTargetsTargetsList], str]
+    targets: Union[List[TransferTransferTargetsUnionMember0], str]
     """The different possible targets of the transfer.
 
     The assistant will be able to choose one of the targets to transfer the call to.
@@ -252,7 +252,7 @@ class InviteInviteCustomHeader(BaseModel):
     """
 
 
-class InviteInviteTargetsTargetsList(BaseModel):
+class InviteInviteTargetsUnionMember0(BaseModel):
     to: str
     """The destination number or SIP URI of the call."""
 
@@ -290,7 +290,7 @@ class InviteInvite(BaseModel):
     custom_headers: Optional[List[InviteInviteCustomHeader]] = None
     """Custom headers to be added to the SIP INVITE for the invite command."""
 
-    targets: Union[List[InviteInviteTargetsTargetsList], str, None] = None
+    targets: Union[List[InviteInviteTargetsUnionMember0], str, None] = None
     """The different possible targets of the invite.
 
     The assistant will be able to choose one of the targets to invite to the call.

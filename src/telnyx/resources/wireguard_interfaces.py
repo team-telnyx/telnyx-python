@@ -17,7 +17,7 @@ from .._response import (
 )
 from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from .._base_client import AsyncPaginator, make_request_options
-from ..types.wireguard_interface_read import WireguardInterfaceRead
+from ..types.wireguard_interface_list_response import WireguardInterfaceListResponse
 from ..types.wireguard_interface_create_response import WireguardInterfaceCreateResponse
 from ..types.wireguard_interface_delete_response import WireguardInterfaceDeleteResponse
 from ..types.wireguard_interface_retrieve_response import WireguardInterfaceRetrieveResponse
@@ -145,7 +145,7 @@ class WireguardInterfacesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[WireguardInterfaceRead]:
+    ) -> SyncDefaultFlatPagination[WireguardInterfaceListResponse]:
         """
         List all WireGuard Interfaces.
 
@@ -162,7 +162,7 @@ class WireguardInterfacesResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/wireguard_interfaces",
-            page=SyncDefaultFlatPagination[WireguardInterfaceRead],
+            page=SyncDefaultFlatPagination[WireguardInterfaceListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -177,7 +177,7 @@ class WireguardInterfacesResource(SyncAPIResource):
                     wireguard_interface_list_params.WireguardInterfaceListParams,
                 ),
             ),
-            model=WireguardInterfaceRead,
+            model=WireguardInterfaceListResponse,
         )
 
     def delete(
@@ -334,7 +334,7 @@ class AsyncWireguardInterfacesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[WireguardInterfaceRead, AsyncDefaultFlatPagination[WireguardInterfaceRead]]:
+    ) -> AsyncPaginator[WireguardInterfaceListResponse, AsyncDefaultFlatPagination[WireguardInterfaceListResponse]]:
         """
         List all WireGuard Interfaces.
 
@@ -351,7 +351,7 @@ class AsyncWireguardInterfacesResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/wireguard_interfaces",
-            page=AsyncDefaultFlatPagination[WireguardInterfaceRead],
+            page=AsyncDefaultFlatPagination[WireguardInterfaceListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -366,7 +366,7 @@ class AsyncWireguardInterfacesResource(AsyncAPIResource):
                     wireguard_interface_list_params.WireguardInterfaceListParams,
                 ),
             ),
-            model=WireguardInterfaceRead,
+            model=WireguardInterfaceListResponse,
         )
 
     async def delete(
