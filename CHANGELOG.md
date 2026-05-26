@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.140.0 (2026-05-26)
+
+Full Changelog: [v4.139.0...v4.140.0](https://github.com/team-telnyx/telnyx-python/compare/v4.139.0...v4.140.0)
+
+### Features
+
+* TELAPPS-523: document stop_on_conversation_end on assistant recording_settings ([f34efda](https://github.com/team-telnyx/telnyx-python/commit/f34efdaa5e6e373976a539915c4b302c3263847f))
+
 ## 4.139.0 (2026-05-22)
 
 Full Changelog: [v4.138.0...v4.139.0](https://github.com/team-telnyx/telnyx-python/compare/v4.138.0...v4.139.0)
