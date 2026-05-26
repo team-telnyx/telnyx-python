@@ -17,7 +17,7 @@ from .._response import (
 )
 from ..pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from .._base_client import AsyncPaginator, make_request_options
-from ..types.public_internet_gateway_read import PublicInternetGatewayRead
+from ..types.public_internet_gateway_list_response import PublicInternetGatewayListResponse
 from ..types.public_internet_gateway_create_response import PublicInternetGatewayCreateResponse
 from ..types.public_internet_gateway_delete_response import PublicInternetGatewayDeleteResponse
 from ..types.public_internet_gateway_retrieve_response import PublicInternetGatewayRetrieveResponse
@@ -139,7 +139,7 @@ class PublicInternetGatewaysResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[PublicInternetGatewayRead]:
+    ) -> SyncDefaultFlatPagination[PublicInternetGatewayListResponse]:
         """
         List all Public Internet Gateways.
 
@@ -156,7 +156,7 @@ class PublicInternetGatewaysResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/public_internet_gateways",
-            page=SyncDefaultFlatPagination[PublicInternetGatewayRead],
+            page=SyncDefaultFlatPagination[PublicInternetGatewayListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -171,7 +171,7 @@ class PublicInternetGatewaysResource(SyncAPIResource):
                     public_internet_gateway_list_params.PublicInternetGatewayListParams,
                 ),
             ),
-            model=PublicInternetGatewayRead,
+            model=PublicInternetGatewayListResponse,
         )
 
     def delete(
@@ -322,7 +322,9 @@ class AsyncPublicInternetGatewaysResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[PublicInternetGatewayRead, AsyncDefaultFlatPagination[PublicInternetGatewayRead]]:
+    ) -> AsyncPaginator[
+        PublicInternetGatewayListResponse, AsyncDefaultFlatPagination[PublicInternetGatewayListResponse]
+    ]:
         """
         List all Public Internet Gateways.
 
@@ -339,7 +341,7 @@ class AsyncPublicInternetGatewaysResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/public_internet_gateways",
-            page=AsyncDefaultFlatPagination[PublicInternetGatewayRead],
+            page=AsyncDefaultFlatPagination[PublicInternetGatewayListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -354,7 +356,7 @@ class AsyncPublicInternetGatewaysResource(AsyncAPIResource):
                     public_internet_gateway_list_params.PublicInternetGatewayListParams,
                 ),
             ),
-            model=PublicInternetGatewayRead,
+            model=PublicInternetGatewayListResponse,
         )
 
     async def delete(
