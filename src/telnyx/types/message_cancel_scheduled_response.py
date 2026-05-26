@@ -172,6 +172,9 @@ class MessageCancelScheduledResponse(BaseModel):
     messaging_profile_id: Optional[str] = None
     """Unique identifier for a messaging profile."""
 
+    num_chars: Optional[int] = None
+    """The number of characters in the message text"""
+
     organization_id: Optional[str] = None
     """The id of the organization the messaging profile belongs to."""
 

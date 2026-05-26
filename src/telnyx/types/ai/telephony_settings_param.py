@@ -43,6 +43,13 @@ class RecordingSettings(TypedDict, total=False):
     format: Literal["wav", "mp3"]
     """The format of the recording file."""
 
+    stop_on_conversation_end: bool
+    """
+    When enabled, the call recording will stop when the conversation ends (for
+    example, when the assistant hangs up or the call is transferred). When disabled,
+    recording continues until the call itself ends.
+    """
+
 
 class VoicemailDetectionOnVoicemailDetectedVoicemailMessage(TypedDict, total=False):
     """Configuration for the voicemail message to leave.
