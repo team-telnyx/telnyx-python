@@ -5721,6 +5721,18 @@ Methods:
 
 - <code title="post /uac_connections/{id}/actions/check_registration_status">client.uac_connections.actions.<a href="./src/telnyx/resources/uac_connections/actions.py">check_registration_status</a>(id) -> <a href="./src/telnyx/types/uac_connections/action_check_registration_status_response.py">ActionCheckRegistrationStatusResponse</a></code>
 
+# SpeechToText
+
+Types:
+
+```python
+from telnyx.types import SpeechToTextListProvidersResponse
+```
+
+Methods:
+
+- <code title="get /speech-to-text/providers">client.speech_to_text.<a href="./src/telnyx/resources/speech_to_text.py">list_providers</a>(\*\*<a href="src/telnyx/types/speech_to_text_list_providers_params.py">params</a>) -> <a href="./src/telnyx/types/speech_to_text_list_providers_response.py">SpeechToTextListProvidersResponse</a></code>
+
 # VoiceSDKCallReports
 
 Types:

@@ -99,6 +99,7 @@ if TYPE_CHECKING:
         document_links,
         ip_connections,
         porting_orders,
+        speech_to_text,
         text_to_speech,
         user_addresses,
         advanced_orders,
@@ -242,6 +243,7 @@ if TYPE_CHECKING:
     from .resources.detail_records import DetailRecordsResource, AsyncDetailRecordsResource
     from .resources.document_links import DocumentLinksResource, AsyncDocumentLinksResource
     from .resources.ip_connections import IPConnectionsResource, AsyncIPConnectionsResource
+    from .resources.speech_to_text import SpeechToTextResource, AsyncSpeechToTextResource
     from .resources.text_to_speech import TextToSpeechResource, AsyncTextToSpeechResource
     from .resources.user_addresses import UserAddressesResource, AsyncUserAddressesResource
     from .resources.actions.actions import ActionsResource, AsyncActionsResource
@@ -1668,6 +1670,13 @@ class Telnyx(SyncAPIClient):
         return UacConnectionsResource(self)
 
     @cached_property
+    def speech_to_text(self) -> SpeechToTextResource:
+        """Discover available speech-to-text providers, models, and supported languages."""
+        from .resources.speech_to_text import SpeechToTextResource
+
+        return SpeechToTextResource(self)
+
+    @cached_property
     def voice_sdk_call_reports(self) -> VoiceSDKCallReportsResource:
         """
         Retrieve raw Voice SDK call report stats payloads for WebRTC call troubleshooting.
@@ -3034,6 +3043,13 @@ class AsyncTelnyx(AsyncAPIClient):
         return AsyncUacConnectionsResource(self)
 
     @cached_property
+    def speech_to_text(self) -> AsyncSpeechToTextResource:
+        """Discover available speech-to-text providers, models, and supported languages."""
+        from .resources.speech_to_text import AsyncSpeechToTextResource
+
+        return AsyncSpeechToTextResource(self)
+
+    @cached_property
     def voice_sdk_call_reports(self) -> AsyncVoiceSDKCallReportsResource:
         """
         Retrieve raw Voice SDK call report stats payloads for WebRTC call troubleshooting.
@@ -4336,6 +4352,13 @@ class TelnyxWithRawResponse:
         return UacConnectionsResourceWithRawResponse(self._client.uac_connections)
 
     @cached_property
+    def speech_to_text(self) -> speech_to_text.SpeechToTextResourceWithRawResponse:
+        """Discover available speech-to-text providers, models, and supported languages."""
+        from .resources.speech_to_text import SpeechToTextResourceWithRawResponse
+
+        return SpeechToTextResourceWithRawResponse(self._client.speech_to_text)
+
+    @cached_property
     def voice_sdk_call_reports(self) -> voice_sdk_call_reports.VoiceSDKCallReportsResourceWithRawResponse:
         """
         Retrieve raw Voice SDK call report stats payloads for WebRTC call troubleshooting.
@@ -5507,6 +5530,13 @@ class AsyncTelnyxWithRawResponse:
         from .resources.uac_connections import AsyncUacConnectionsResourceWithRawResponse
 
         return AsyncUacConnectionsResourceWithRawResponse(self._client.uac_connections)
+
+    @cached_property
+    def speech_to_text(self) -> speech_to_text.AsyncSpeechToTextResourceWithRawResponse:
+        """Discover available speech-to-text providers, models, and supported languages."""
+        from .resources.speech_to_text import AsyncSpeechToTextResourceWithRawResponse
+
+        return AsyncSpeechToTextResourceWithRawResponse(self._client.speech_to_text)
 
     @cached_property
     def voice_sdk_call_reports(self) -> voice_sdk_call_reports.AsyncVoiceSDKCallReportsResourceWithRawResponse:
@@ -6682,6 +6712,13 @@ class TelnyxWithStreamedResponse:
         from .resources.uac_connections import UacConnectionsResourceWithStreamingResponse
 
         return UacConnectionsResourceWithStreamingResponse(self._client.uac_connections)
+
+    @cached_property
+    def speech_to_text(self) -> speech_to_text.SpeechToTextResourceWithStreamingResponse:
+        """Discover available speech-to-text providers, models, and supported languages."""
+        from .resources.speech_to_text import SpeechToTextResourceWithStreamingResponse
+
+        return SpeechToTextResourceWithStreamingResponse(self._client.speech_to_text)
 
     @cached_property
     def voice_sdk_call_reports(self) -> voice_sdk_call_reports.VoiceSDKCallReportsResourceWithStreamingResponse:
@@ -7903,6 +7940,13 @@ class AsyncTelnyxWithStreamedResponse:
         from .resources.uac_connections import AsyncUacConnectionsResourceWithStreamingResponse
 
         return AsyncUacConnectionsResourceWithStreamingResponse(self._client.uac_connections)
+
+    @cached_property
+    def speech_to_text(self) -> speech_to_text.AsyncSpeechToTextResourceWithStreamingResponse:
+        """Discover available speech-to-text providers, models, and supported languages."""
+        from .resources.speech_to_text import AsyncSpeechToTextResourceWithStreamingResponse
+
+        return AsyncSpeechToTextResourceWithStreamingResponse(self._client.speech_to_text)
 
     @cached_property
     def voice_sdk_call_reports(self) -> voice_sdk_call_reports.AsyncVoiceSDKCallReportsResourceWithStreamingResponse:

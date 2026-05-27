@@ -866,6 +866,7 @@ from .outbound_voice_profile_update_params import OutboundVoiceProfileUpdatePara
 from .private_wireless_gateway_list_params import PrivateWirelessGatewayListParams as PrivateWirelessGatewayListParams
 from .pronunciation_dict_retrieve_response import PronunciationDictRetrieveResponse as PronunciationDictRetrieveResponse
 from .sim_card_get_device_details_response import SimCardGetDeviceDetailsResponse as SimCardGetDeviceDetailsResponse
+from .speech_to_text_list_providers_params import SpeechToTextListProvidersParams as SpeechToTextListProvidersParams
 from .telephony_credential_create_response import TelephonyCredentialCreateResponse as TelephonyCredentialCreateResponse
 from .telephony_credential_delete_response import TelephonyCredentialDeleteResponse as TelephonyCredentialDeleteResponse
 from .telephony_credential_update_response import TelephonyCredentialUpdateResponse as TelephonyCredentialUpdateResponse
@@ -1033,6 +1034,9 @@ from .private_wireless_gateway_create_params import (
 )
 from .regulatory_requirement_retrieve_params import (
     RegulatoryRequirementRetrieveParams as RegulatoryRequirementRetrieveParams,
+)
+from .speech_to_text_list_providers_response import (
+    SpeechToTextListProvidersResponse as SpeechToTextListProvidersResponse,
 )
 from .sub_number_orders_report_create_params import (
     SubNumberOrdersReportCreateParams as SubNumberOrdersReportCreateParams,
