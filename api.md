@@ -5720,3 +5720,16 @@ from telnyx.types.uac_connections import ActionCheckRegistrationStatusResponse
 Methods:
 
 - <code title="post /uac_connections/{id}/actions/check_registration_status">client.uac_connections.actions.<a href="./src/telnyx/resources/uac_connections/actions.py">check_registration_status</a>(id) -> <a href="./src/telnyx/types/uac_connections/action_check_registration_status_response.py">ActionCheckRegistrationStatusResponse</a></code>
+
+# VoiceSDKCallReports
+
+Types:
+
+```python
+from telnyx.types import VoiceSDKCallReportRetrieveResponse, VoiceSDKCallReportListResponse
+```
+
+Methods:
+
+- <code title="get /voice_sdk_call_reports/{call_id}">client.voice_sdk_call_reports.<a href="./src/telnyx/resources/voice_sdk_call_reports.py">retrieve</a>(call_id) -> <a href="./src/telnyx/types/voice_sdk_call_report_retrieve_response.py">VoiceSDKCallReportRetrieveResponse</a></code>
+- <code title="get /voice_sdk_call_reports">client.voice_sdk_call_reports.<a href="./src/telnyx/resources/voice_sdk_call_reports.py">list</a>(\*\*<a href="src/telnyx/types/voice_sdk_call_report_list_params.py">params</a>) -> <a href="./src/telnyx/types/voice_sdk_call_report_list_response.py">SyncDefaultFlatPagination[VoiceSDKCallReportListResponse]</a></code>

@@ -1001,6 +1001,14 @@ from .virtual_cross_connects import (
     VirtualCrossConnectsResourceWithStreamingResponse,
     AsyncVirtualCrossConnectsResourceWithStreamingResponse,
 )
+from .voice_sdk_call_reports import (
+    VoiceSDKCallReportsResource,
+    AsyncVoiceSDKCallReportsResource,
+    VoiceSDKCallReportsResourceWithRawResponse,
+    AsyncVoiceSDKCallReportsResourceWithRawResponse,
+    VoiceSDKCallReportsResourceWithStreamingResponse,
+    AsyncVoiceSDKCallReportsResourceWithStreamingResponse,
+)
 from .alphanumeric_sender_ids import (
     AlphanumericSenderIDsResource,
     AsyncAlphanumericSenderIDsResource,
@@ -2273,4 +2281,10 @@ __all__ = [
     "AsyncUacConnectionsResourceWithRawResponse",
     "UacConnectionsResourceWithStreamingResponse",
     "AsyncUacConnectionsResourceWithStreamingResponse",
+    "VoiceSDKCallReportsResource",
+    "AsyncVoiceSDKCallReportsResource",
+    "VoiceSDKCallReportsResourceWithRawResponse",
+    "AsyncVoiceSDKCallReportsResourceWithRawResponse",
+    "VoiceSDKCallReportsResourceWithStreamingResponse",
+    "AsyncVoiceSDKCallReportsResourceWithStreamingResponse",
 ]

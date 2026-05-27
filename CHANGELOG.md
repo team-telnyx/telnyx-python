@@ -1,5 +1,18 @@
 # Changelog
 
+## 4.141.0 (2026-05-27)
+
+Full Changelog: [v4.140.0...v4.141.0](https://github.com/team-telnyx/telnyx-python/compare/v4.140.0...v4.141.0)
+
+### Features
+
+* TELAPPS-531: document Rime ArcanaV3 and Coda voice models ([692f5f5](https://github.com/team-telnyx/telnyx-python/commit/692f5f5a61decc2a03260bb578b908fcb9bd5b3f))
+
+
+### Documentation
+
+* add voice sdk debug call report spec ([21240ce](https://github.com/team-telnyx/telnyx-python/commit/21240ce14f4572a458cf288ed0d63a2ea11ab4c0))
+
 ## 4.140.0 (2026-05-26)
 
 Full Changelog: [v4.139.0...v4.140.0](https://github.com/team-telnyx/telnyx-python/compare/v4.139.0...v4.140.0)
