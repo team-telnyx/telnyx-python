@@ -12,11 +12,12 @@ from .interruption_settings_param import InterruptionSettingsParam
 from .telnyx_voice_settings_param import TelnyxVoiceSettingsParam
 from .google_transcription_language import GoogleTranscriptionLanguage
 from .eleven_labs_voice_settings_param import ElevenLabsVoiceSettingsParam
+from ..shared_params.xai_voice_settings import XaiVoiceSettings
 from ..shared_params.rime_voice_settings import RimeVoiceSettings
 from ..shared_params.azure_voice_settings import AzureVoiceSettings
 from ..shared_params.resemble_voice_settings import ResembleVoiceSettings
 
-__all__ = ["ActionGatherUsingAIParams", "MessageHistory", "VoiceSettings", "VoiceSettingsXaiVoiceSettings"]
+__all__ = ["ActionGatherUsingAIParams", "MessageHistory", "VoiceSettings"]
 
 
 class ActionGatherUsingAIParams(TypedDict, total=False):
@@ -142,14 +143,6 @@ class MessageHistory(TypedDict, total=False):
     """The role of the message sender"""
 
 
-class VoiceSettingsXaiVoiceSettings(TypedDict, total=False):
-    type: Required[Literal["xai"]]
-    """Voice settings provider type"""
-
-    language: str
-    """Language code, or `auto` to detect automatically."""
-
-
 VoiceSettings: TypeAlias = Union[
     ElevenLabsVoiceSettingsParam,
     TelnyxVoiceSettingsParam,
@@ -157,5 +150,5 @@ VoiceSettings: TypeAlias = Union[
     AzureVoiceSettings,
     RimeVoiceSettings,
     ResembleVoiceSettings,
-    VoiceSettingsXaiVoiceSettings,
+    XaiVoiceSettings,
 ]

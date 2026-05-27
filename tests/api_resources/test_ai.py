@@ -11,8 +11,8 @@ from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types import (
     AISummarizeResponse,
+    AICreateResponseResponse,
     AIRetrieveModelsResponse,
-    AICreateResponseDeprecatedResponse,
 )
 
 # pyright: reportDeprecated=false
@@ -25,22 +25,22 @@ class TestAI:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_create_response_deprecated(self, client: Telnyx) -> None:
+    def test_method_create_response(self, client: Telnyx) -> None:
         with pytest.warns(DeprecationWarning):
-            ai = client.ai.create_response_deprecated(
+            ai = client.ai.create_response(
                 body={
                     "model": "bar",
                     "input": "bar",
                 },
             )
 
-        assert_matches_type(AICreateResponseDeprecatedResponse, ai, path=["response"])
+        assert_matches_type(AICreateResponseResponse, ai, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_create_response_deprecated(self, client: Telnyx) -> None:
+    def test_raw_response_create_response(self, client: Telnyx) -> None:
         with pytest.warns(DeprecationWarning):
-            response = client.ai.with_raw_response.create_response_deprecated(
+            response = client.ai.with_raw_response.create_response(
                 body={
                     "model": "bar",
                     "input": "bar",
@@ -50,13 +50,13 @@ class TestAI:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ai = response.parse()
-        assert_matches_type(AICreateResponseDeprecatedResponse, ai, path=["response"])
+        assert_matches_type(AICreateResponseResponse, ai, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_create_response_deprecated(self, client: Telnyx) -> None:
+    def test_streaming_response_create_response(self, client: Telnyx) -> None:
         with pytest.warns(DeprecationWarning):
-            with client.ai.with_streaming_response.create_response_deprecated(
+            with client.ai.with_streaming_response.create_response(
                 body={
                     "model": "bar",
                     "input": "bar",
@@ -66,7 +66,7 @@ class TestAI:
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
                 ai = response.parse()
-                assert_matches_type(AICreateResponseDeprecatedResponse, ai, path=["response"])
+                assert_matches_type(AICreateResponseResponse, ai, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -157,22 +157,22 @@ class TestAsyncAI:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_create_response_deprecated(self, async_client: AsyncTelnyx) -> None:
+    async def test_method_create_response(self, async_client: AsyncTelnyx) -> None:
         with pytest.warns(DeprecationWarning):
-            ai = await async_client.ai.create_response_deprecated(
+            ai = await async_client.ai.create_response(
                 body={
                     "model": "bar",
                     "input": "bar",
                 },
             )
 
-        assert_matches_type(AICreateResponseDeprecatedResponse, ai, path=["response"])
+        assert_matches_type(AICreateResponseResponse, ai, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_create_response_deprecated(self, async_client: AsyncTelnyx) -> None:
+    async def test_raw_response_create_response(self, async_client: AsyncTelnyx) -> None:
         with pytest.warns(DeprecationWarning):
-            response = await async_client.ai.with_raw_response.create_response_deprecated(
+            response = await async_client.ai.with_raw_response.create_response(
                 body={
                     "model": "bar",
                     "input": "bar",
@@ -182,13 +182,13 @@ class TestAsyncAI:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ai = await response.parse()
-        assert_matches_type(AICreateResponseDeprecatedResponse, ai, path=["response"])
+        assert_matches_type(AICreateResponseResponse, ai, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_create_response_deprecated(self, async_client: AsyncTelnyx) -> None:
+    async def test_streaming_response_create_response(self, async_client: AsyncTelnyx) -> None:
         with pytest.warns(DeprecationWarning):
-            async with async_client.ai.with_streaming_response.create_response_deprecated(
+            async with async_client.ai.with_streaming_response.create_response(
                 body={
                     "model": "bar",
                     "input": "bar",
@@ -198,7 +198,7 @@ class TestAsyncAI:
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
                 ai = await response.parse()
-                assert_matches_type(AICreateResponseDeprecatedResponse, ai, path=["response"])
+                assert_matches_type(AICreateResponseResponse, ai, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

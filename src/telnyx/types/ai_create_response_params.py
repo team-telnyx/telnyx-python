@@ -5,8 +5,8 @@ from __future__ import annotations
 from typing import Dict
 from typing_extensions import Required, TypedDict
 
-__all__ = ["AICreateResponseDeprecatedParams"]
+__all__ = ["AICreateResponseParams"]
 
 
-class AICreateResponseDeprecatedParams(TypedDict, total=False):
+class AICreateResponseParams(TypedDict, total=False):
     body: Required[Dict[str, object]]
