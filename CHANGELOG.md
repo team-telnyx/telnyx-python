@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.143.0 (2026-05-27)
+
+Full Changelog: [v4.142.0...v4.143.0](https://github.com/team-telnyx/telnyx-python/compare/v4.142.0...v4.143.0)
+
+### Features
+
+* TELAPPS-406: document GET /speech-to-text/providers endpoint ([53dd1b6](https://github.com/team-telnyx/telnyx-python/commit/53dd1b6a06f1b3dd83bc368a680da233fec354c1))
+
 ## 4.142.0 (2026-05-27)
 
 Full Changelog: [v4.141.0...v4.142.0](https://github.com/team-telnyx/telnyx-python/compare/v4.141.0...v4.142.0)
