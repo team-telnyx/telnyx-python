@@ -95,6 +95,7 @@ class CallsResource(SyncAPIResource):
         client_state: str | Omit = omit,
         command_id: str | Omit = omit,
         conference_config: call_dial_params.ConferenceConfig | Omit = omit,
+        conversation_relay_config: call_dial_params.ConversationRelayConfig | Omit = omit,
         custom_headers: Iterable[CustomSipHeaderParam] | Omit = omit,
         deepfake_detection: call_dial_params.DeepfakeDetection | Omit = omit,
         dialogflow_config: DialogflowConfigParam | Omit = omit,
@@ -244,6 +245,13 @@ class CallsResource(SyncAPIResource):
               commands with the same `command_id`.
 
           conference_config: Optional configuration parameters to dial new participant into a conference.
+
+          conversation_relay_config: Starts a Conversation Relay session automatically when the answered/dialed call
+              is answered. This embedded shape is supported on `answer` and `dial`. It uses
+              public field names (`url`, `dtmf_detection`, `greeting`, `voice`, `language`,
+              etc.) and maps them to the underlying Conversation Relay action. `client_state`,
+              `tts_language`, and `transcription_language` inside this object are ignored; use
+              the parent command's `client_state` and `command_id` fields instead.
 
           custom_headers: Custom headers to be added to the SIP INVITE.
 
@@ -423,6 +431,7 @@ class CallsResource(SyncAPIResource):
                     "client_state": client_state,
                     "command_id": command_id,
                     "conference_config": conference_config,
+                    "conversation_relay_config": conversation_relay_config,
                     "custom_headers": custom_headers,
                     "deepfake_detection": deepfake_detection,
                     "dialogflow_config": dialogflow_config,
@@ -558,6 +567,7 @@ class AsyncCallsResource(AsyncAPIResource):
         client_state: str | Omit = omit,
         command_id: str | Omit = omit,
         conference_config: call_dial_params.ConferenceConfig | Omit = omit,
+        conversation_relay_config: call_dial_params.ConversationRelayConfig | Omit = omit,
         custom_headers: Iterable[CustomSipHeaderParam] | Omit = omit,
         deepfake_detection: call_dial_params.DeepfakeDetection | Omit = omit,
         dialogflow_config: DialogflowConfigParam | Omit = omit,
@@ -707,6 +717,13 @@ class AsyncCallsResource(AsyncAPIResource):
               commands with the same `command_id`.
 
           conference_config: Optional configuration parameters to dial new participant into a conference.
+
+          conversation_relay_config: Starts a Conversation Relay session automatically when the answered/dialed call
+              is answered. This embedded shape is supported on `answer` and `dial`. It uses
+              public field names (`url`, `dtmf_detection`, `greeting`, `voice`, `language`,
+              etc.) and maps them to the underlying Conversation Relay action. `client_state`,
+              `tts_language`, and `transcription_language` inside this object are ignored; use
+              the parent command's `client_state` and `command_id` fields instead.
 
           custom_headers: Custom headers to be added to the SIP INVITE.
 
@@ -886,6 +903,7 @@ class AsyncCallsResource(AsyncAPIResource):
                     "client_state": client_state,
                     "command_id": command_id,
                     "conference_config": conference_config,
+                    "conversation_relay_config": conversation_relay_config,
                     "custom_headers": custom_headers,
                     "deepfake_detection": deepfake_detection,
                     "dialogflow_config": dialogflow_config,

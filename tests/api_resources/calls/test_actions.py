@@ -176,6 +176,53 @@ class TestActions:
             billing_group_id="f5586561-8ff0-4291-a0ac-84fe544797bd",
             client_state="aGF2ZSBhIG5pY2UgZGF5ID1d",
             command_id="891510ac-f3e4-11e8-af5b-de00688a4901",
+            conversation_relay_config={
+                "url": "wss://example.com/conversation-relay",
+                "custom_parameters": {"customer_id": "bar"},
+                "dtmf_detection": True,
+                "greeting": "Hi! Ask me anything!",
+                "interruptible": "speech",
+                "interruptible_greeting": "dtmf",
+                "interruption_settings": {
+                    "enable": True,
+                    "interruptible": "speech",
+                    "interruptible_greeting": "speech",
+                    "welcome_greeting_interruptible": "speech",
+                },
+                "language": "en-US",
+                "languages": [
+                    {
+                        "language": "en-US",
+                        "speech_model": "nova-3",
+                        "transcription_engine": "Deepgram",
+                        "transcription_engine_config": {"transcription_model": "bar"},
+                        "transcription_provider": "Deepgram",
+                        "tts_provider": "telnyx",
+                        "voice": "Telnyx.Ultra.alloy",
+                        "voice_settings": {
+                            "type": "elevenlabs",
+                            "api_key_ref": "my_elevenlabs_api_key",
+                        },
+                    }
+                ],
+                "provider": "elevenlabs",
+                "structured_provider": {
+                    "voice_id": "bar",
+                    "model_id": "bar",
+                },
+                "transcription_engine": "Google",
+                "transcription_engine_config": {
+                    "transcription_model": "bar",
+                    "interim_results": "bar",
+                    "keywords_boosting": "bar",
+                },
+                "tts_provider": "telnyx",
+                "voice": "Telnyx.KokoroTTS.af",
+                "voice_settings": {
+                    "type": "telnyx",
+                    "voice_speed": 1,
+                },
+            },
             custom_headers=[
                 {
                     "name": "head_1",
@@ -1507,7 +1554,12 @@ class TestActions:
     def test_method_start_conversation_relay_with_all_params(self, client: Telnyx) -> None:
         action = client.calls.actions.start_conversation_relay(
             call_control_id="call_control_id",
-            assistant={"dynamic_variables": {"customer_id": "12345"}},
+            assistant={
+                "dynamic_variables": {
+                    "customer_id": "12345",
+                    "tier": "premium",
+                }
+            },
             client_state="aGF2ZSBhIG5pY2UgZGF5ID1d",
             command_id="891510ac-f3e4-11e8-af5b-de00688a4901",
             conversation_relay_dtmf_detection=True,
@@ -1515,19 +1567,29 @@ class TestActions:
                 "url": "wss://example.com/conversation-relay",
                 "dtmf_detection": True,
                 "interruptible": "speech",
-                "interruptible_greeting": "any",
+                "interruptible_greeting": "dtmf",
                 "languages": [
                     {
-                        "code": "en-US",
-                        "speech_model": "nova-2",
+                        "language": "en-US",
+                        "speech_model": "nova-3",
+                        "transcription_engine": "Deepgram",
+                        "transcription_engine_config": {"transcription_model": "bar"},
                         "transcription_provider": "Deepgram",
-                        "tts_provider": "ElevenLabs",
-                        "voice": "alice",
+                        "tts_provider": "telnyx",
+                        "voice": "Telnyx.KokoroTTS.af",
+                        "voice_settings": {
+                            "type": "elevenlabs",
+                            "api_key_ref": "my_elevenlabs_api_key",
+                        },
                     }
                 ],
             },
             conversation_relay_url="wss://example.com/conversation-relay",
+            custom_parameters={"customer_id": "bar"},
+            dtmf_detection=True,
             greeting="Hi! Ask me anything!",
+            interruptible="speech",
+            interruptible_greeting="dtmf",
             interruption_settings={
                 "enable": True,
                 "interruptible": "speech",
@@ -1537,24 +1599,37 @@ class TestActions:
             language="en-US",
             languages=[
                 {
-                    "code": "en-US",
-                    "speech_model": "nova-2",
+                    "language": "en-US",
+                    "speech_model": "nova-3",
+                    "transcription_engine": "Deepgram",
+                    "transcription_engine_config": {"transcription_model": "bar"},
                     "transcription_provider": "Deepgram",
-                    "tts_provider": "ElevenLabs",
-                    "voice": "alice",
+                    "tts_provider": "telnyx",
+                    "voice": "Telnyx.KokoroTTS.af",
+                    "voice_settings": {
+                        "type": "elevenlabs",
+                        "api_key_ref": "my_elevenlabs_api_key",
+                    },
                 }
             ],
-            transcription={
-                "language": "en-US",
-                "model": "nova-2",
-                "provider": "deepgram",
+            provider="elevenlabs",
+            structured_provider={
+                "voice_id": "bar",
+                "model_id": "bar",
             },
-            transcription_language="en-US",
-            tts_language="es",
+            transcription={"foo": "bar"},
+            transcription_engine="Google",
+            transcription_engine_config={
+                "transcription_model": "bar",
+                "interim_results": "bar",
+                "keywords_boosting": "bar",
+            },
+            tts_provider="telnyx",
+            url="wss://example.com/conversation-relay",
             voice="Telnyx.KokoroTTS.af",
             voice_settings={
-                "type": "elevenlabs",
-                "api_key_ref": "my_elevenlabs_api_key",
+                "type": "telnyx",
+                "voice_speed": 1,
             },
         )
         assert_matches_type(ActionStartConversationRelayResponse, action, path=["response"])
@@ -2919,6 +2994,53 @@ class TestAsyncActions:
             billing_group_id="f5586561-8ff0-4291-a0ac-84fe544797bd",
             client_state="aGF2ZSBhIG5pY2UgZGF5ID1d",
             command_id="891510ac-f3e4-11e8-af5b-de00688a4901",
+            conversation_relay_config={
+                "url": "wss://example.com/conversation-relay",
+                "custom_parameters": {"customer_id": "bar"},
+                "dtmf_detection": True,
+                "greeting": "Hi! Ask me anything!",
+                "interruptible": "speech",
+                "interruptible_greeting": "dtmf",
+                "interruption_settings": {
+                    "enable": True,
+                    "interruptible": "speech",
+                    "interruptible_greeting": "speech",
+                    "welcome_greeting_interruptible": "speech",
+                },
+                "language": "en-US",
+                "languages": [
+                    {
+                        "language": "en-US",
+                        "speech_model": "nova-3",
+                        "transcription_engine": "Deepgram",
+                        "transcription_engine_config": {"transcription_model": "bar"},
+                        "transcription_provider": "Deepgram",
+                        "tts_provider": "telnyx",
+                        "voice": "Telnyx.Ultra.alloy",
+                        "voice_settings": {
+                            "type": "elevenlabs",
+                            "api_key_ref": "my_elevenlabs_api_key",
+                        },
+                    }
+                ],
+                "provider": "elevenlabs",
+                "structured_provider": {
+                    "voice_id": "bar",
+                    "model_id": "bar",
+                },
+                "transcription_engine": "Google",
+                "transcription_engine_config": {
+                    "transcription_model": "bar",
+                    "interim_results": "bar",
+                    "keywords_boosting": "bar",
+                },
+                "tts_provider": "telnyx",
+                "voice": "Telnyx.KokoroTTS.af",
+                "voice_settings": {
+                    "type": "telnyx",
+                    "voice_speed": 1,
+                },
+            },
             custom_headers=[
                 {
                     "name": "head_1",
@@ -4250,7 +4372,12 @@ class TestAsyncActions:
     async def test_method_start_conversation_relay_with_all_params(self, async_client: AsyncTelnyx) -> None:
         action = await async_client.calls.actions.start_conversation_relay(
             call_control_id="call_control_id",
-            assistant={"dynamic_variables": {"customer_id": "12345"}},
+            assistant={
+                "dynamic_variables": {
+                    "customer_id": "12345",
+                    "tier": "premium",
+                }
+            },
             client_state="aGF2ZSBhIG5pY2UgZGF5ID1d",
             command_id="891510ac-f3e4-11e8-af5b-de00688a4901",
             conversation_relay_dtmf_detection=True,
@@ -4258,19 +4385,29 @@ class TestAsyncActions:
                 "url": "wss://example.com/conversation-relay",
                 "dtmf_detection": True,
                 "interruptible": "speech",
-                "interruptible_greeting": "any",
+                "interruptible_greeting": "dtmf",
                 "languages": [
                     {
-                        "code": "en-US",
-                        "speech_model": "nova-2",
+                        "language": "en-US",
+                        "speech_model": "nova-3",
+                        "transcription_engine": "Deepgram",
+                        "transcription_engine_config": {"transcription_model": "bar"},
                         "transcription_provider": "Deepgram",
-                        "tts_provider": "ElevenLabs",
-                        "voice": "alice",
+                        "tts_provider": "telnyx",
+                        "voice": "Telnyx.KokoroTTS.af",
+                        "voice_settings": {
+                            "type": "elevenlabs",
+                            "api_key_ref": "my_elevenlabs_api_key",
+                        },
                     }
                 ],
             },
             conversation_relay_url="wss://example.com/conversation-relay",
+            custom_parameters={"customer_id": "bar"},
+            dtmf_detection=True,
             greeting="Hi! Ask me anything!",
+            interruptible="speech",
+            interruptible_greeting="dtmf",
             interruption_settings={
                 "enable": True,
                 "interruptible": "speech",
@@ -4280,24 +4417,37 @@ class TestAsyncActions:
             language="en-US",
             languages=[
                 {
-                    "code": "en-US",
-                    "speech_model": "nova-2",
+                    "language": "en-US",
+                    "speech_model": "nova-3",
+                    "transcription_engine": "Deepgram",
+                    "transcription_engine_config": {"transcription_model": "bar"},
                     "transcription_provider": "Deepgram",
-                    "tts_provider": "ElevenLabs",
-                    "voice": "alice",
+                    "tts_provider": "telnyx",
+                    "voice": "Telnyx.KokoroTTS.af",
+                    "voice_settings": {
+                        "type": "elevenlabs",
+                        "api_key_ref": "my_elevenlabs_api_key",
+                    },
                 }
             ],
-            transcription={
-                "language": "en-US",
-                "model": "nova-2",
-                "provider": "deepgram",
+            provider="elevenlabs",
+            structured_provider={
+                "voice_id": "bar",
+                "model_id": "bar",
             },
-            transcription_language="en-US",
-            tts_language="es",
+            transcription={"foo": "bar"},
+            transcription_engine="Google",
+            transcription_engine_config={
+                "transcription_model": "bar",
+                "interim_results": "bar",
+                "keywords_boosting": "bar",
+            },
+            tts_provider="telnyx",
+            url="wss://example.com/conversation-relay",
             voice="Telnyx.KokoroTTS.af",
             voice_settings={
-                "type": "elevenlabs",
-                "api_key_ref": "my_elevenlabs_api_key",
+                "type": "telnyx",
+                "voice_speed": 1,
             },
         )
         assert_matches_type(ActionStartConversationRelayResponse, action, path=["response"])
