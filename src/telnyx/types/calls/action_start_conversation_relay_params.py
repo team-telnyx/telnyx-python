@@ -11,6 +11,7 @@ from .eleven_labs_voice_settings_param import ElevenLabsVoiceSettingsParam
 from ..shared_params.xai_voice_settings import XaiVoiceSettings
 from ..shared_params.rime_voice_settings import RimeVoiceSettings
 from ..shared_params.azure_voice_settings import AzureVoiceSettings
+from ..shared_params.minimax_voice_settings import MinimaxVoiceSettings
 from ..shared_params.resemble_voice_settings import ResembleVoiceSettings
 
 __all__ = [
@@ -18,10 +19,14 @@ __all__ = [
     "Assistant",
     "ConversationRelaySettings",
     "ConversationRelaySettingsLanguage",
+    "ConversationRelaySettingsLanguageVoiceSettings",
+    "ConversationRelaySettingsLanguageVoiceSettingsInworldVoiceSettings",
     "InterruptionSettings",
     "Language",
-    "Transcription",
+    "LanguageVoiceSettings",
+    "LanguageVoiceSettingsInworldVoiceSettings",
     "VoiceSettings",
+    "VoiceSettingsInworldVoiceSettings",
 ]
 
 
@@ -52,11 +57,9 @@ class ActionStartConversationRelayParams(TypedDict, total=False):
     conversation_relay_settings: ConversationRelaySettings
     """Conversation Relay connection settings.
 
-    This object is used by TeXML Call Scripting's `<ConversationRelay>` verb. The
-    `interruptible` and `interruptible_greeting` fields are shorthand for
-    `interruption_settings.interruptible` and
-    `interruption_settings.interruptible_greeting`; use top-level
-    `interruption_settings` for the full interruption settings shape.
+    This object can provide `url`, `dtmf_detection`, `interruptible`,
+    `interruptible_greeting`, and `languages`. Top-level aliases override nested
+    values when both are present.
     """
 
     conversation_relay_url: str
@@ -65,8 +68,35 @@ class ActionStartConversationRelayParams(TypedDict, total=False):
     Must start with `ws://` or `wss://`.
     """
 
+    custom_parameters: Dict[str, object]
+    """
+    Custom key-value parameters forwarded to the relay session as
+    `assistant.dynamic_variables`. If `assistant.dynamic_variables` is also present,
+    these values are merged in.
+    """
+
+    dtmf_detection: bool
+    """Public alias for `conversation_relay_dtmf_detection`.
+
+    If both are present, this value wins.
+    """
+
     greeting: str
     """Text played when the relay session starts."""
+
+    interruptible: Literal["none", "any", "speech", "dtmf"]
+    """Controls when caller input can interrupt assistant speech.
+
+    `any` allows speech or DTMF interruptions; `none` disables interruptions;
+    `speech` allows speech only; `dtmf` allows DTMF only.
+    """
+
+    interruptible_greeting: Literal["none", "any", "speech", "dtmf"]
+    """Controls when caller input can interrupt assistant speech.
+
+    `any` allows speech or DTMF interruptions; `none` disables interruptions;
+    `speech` allows speech only; `dtmf` allows DTMF only.
+    """
 
     interruption_settings: InterruptionSettings
     """Settings for handling caller interruptions during Conversation Relay speech."""
@@ -74,28 +104,60 @@ class ActionStartConversationRelayParams(TypedDict, total=False):
     language: str
     """Default language for the relay session.
 
-    This value is used for both text-to-speech and speech recognition unless
-    `tts_language` or `transcription_language` are provided.
+    This value is used for both text-to-speech and speech recognition.
     """
 
     languages: Iterable[Language]
-    """Language-specific TTS and transcription settings.
+    """Per-language TTS and transcription settings."""
 
-    Use this when the relay session needs per-language provider, voice, or speech
-    model configuration.
+    provider: str
+    """Structured voice provider.
+
+    Must be supplied together with `structured_provider`.
     """
 
-    transcription: Transcription
-    """Speech-to-text settings for Conversation Relay."""
+    structured_provider: Dict[str, object]
+    """Provider-specific structured voice settings.
 
-    transcription_language: str
-    """Language to use for speech recognition.
-
-    Overrides `language` for transcription when provided.
+    Must be supplied together with `provider`; Telnyx sends the value as the nested
+    provider configuration for Conversation Relay.
     """
 
-    tts_language: str
-    """Language to use for text-to-speech. Overrides `language` for TTS when provided."""
+    transcription: Dict[str, object]
+    """Not supported for Conversation Relay start requests.
+
+    Use `transcription_engine` and `transcription_engine_config` instead.
+    """
+
+    transcription_engine: Literal[
+        "Google", "Telnyx", "Deepgram", "Azure", "xAI", "AssemblyAI", "Speechmatics", "Soniox", "A", "B"
+    ]
+    """Engine to use for speech recognition.
+
+    Legacy values `A` - `Google`, `B` - `Telnyx` are supported for backward
+    compatibility. For Conversation Relay, use this field with
+    `transcription_engine_config`; the `transcription` object is not supported.
+    """
+
+    transcription_engine_config: Dict[str, object]
+    """Engine-specific transcription settings for Conversation Relay.
+
+    This accepts the same provider-specific options used by the Call Transcription
+    Start command, such as `transcription_model`, without requiring the engine
+    discriminator to be repeated inside this object.
+    """
+
+    tts_provider: str
+    """Text-to-speech provider.
+
+    If omitted, Telnyx derives it from `voice` or `provider`.
+    """
+
+    url: str
+    """Public alias for `conversation_relay_url`.
+
+    Must start with `ws://` or `wss://`. If both are present, this value wins.
+    """
 
     voice: str
     """The voice to be used by the voice assistant.
@@ -141,29 +203,79 @@ class Assistant(TypedDict, total=False, extra_items=object):  # type: ignore[cal
     """Custom key-value parameters forwarded to the Conversation Relay session."""
 
 
-class ConversationRelaySettingsLanguage(TypedDict, total=False):
-    """Language-specific speech and transcription settings for Conversation Relay."""
+class ConversationRelaySettingsLanguageVoiceSettingsInworldVoiceSettings(TypedDict, total=False):
+    type: Required[Literal["inworld"]]
+    """Voice settings provider type"""
 
-    code: str
-    """BCP 47 language code."""
+
+ConversationRelaySettingsLanguageVoiceSettings: TypeAlias = Union[
+    ElevenLabsVoiceSettingsParam,
+    TelnyxVoiceSettingsParam,
+    AwsVoiceSettingsParam,
+    MinimaxVoiceSettings,
+    AzureVoiceSettings,
+    RimeVoiceSettings,
+    ResembleVoiceSettings,
+    ConversationRelaySettingsLanguageVoiceSettingsInworldVoiceSettings,
+    XaiVoiceSettings,
+]
+
+
+class ConversationRelaySettingsLanguage(TypedDict, total=False):
+    """Language-specific TTS and transcription settings for Conversation Relay."""
+
+    language: Required[str]
+    """BCP 47 language tag for this language configuration."""
 
     speech_model: str
-    """Speech recognition model for this language."""
+    """Conversation Relay speech model.
+
+    Prefer `transcription_engine_config.transcription_model` when configuring
+    speech-to-text.
+    """
+
+    transcription_engine: Literal[
+        "Google", "Telnyx", "Deepgram", "Azure", "xAI", "AssemblyAI", "Speechmatics", "Soniox", "A", "B"
+    ]
+    """Engine to use for speech recognition.
+
+    Legacy values `A` - `Google`, `B` - `Telnyx` are supported for backward
+    compatibility. When provided in a Conversation Relay language entry, Telnyx
+    derives `transcription_provider` and `speech_model` for that language.
+    """
+
+    transcription_engine_config: Dict[str, object]
+    """Engine-specific transcription settings for Conversation Relay.
+
+    This accepts the same provider-specific options used by the Call Transcription
+    Start command, such as `transcription_model`, without requiring the engine
+    discriminator to be repeated inside this object.
+    """
 
     transcription_provider: str
-    """Speech-to-text provider for this language."""
+    """Conversation Relay transcription provider name.
+
+    Prefer `transcription_engine` when configuring speech-to-text.
+    """
 
     tts_provider: str
-    """Text-to-speech provider for this language."""
+    """Text-to-speech provider for this language.
+
+    If omitted and `voice` is provided, Telnyx derives the provider from the voice
+    identifier.
+    """
 
     voice: str
     """Voice identifier for this language."""
+
+    voice_settings: ConversationRelaySettingsLanguageVoiceSettings
+    """The settings associated with the voice selected"""
 
 
 class ConversationRelaySettings(TypedDict, total=False):
     """Conversation Relay connection settings.
 
-    This object is used by TeXML Call Scripting's `<ConversationRelay>` verb. The `interruptible` and `interruptible_greeting` fields are shorthand for `interruption_settings.interruptible` and `interruption_settings.interruptible_greeting`; use top-level `interruption_settings` for the full interruption settings shape.
+    This object can provide `url`, `dtmf_detection`, `interruptible`, `interruptible_greeting`, and `languages`. Top-level aliases override nested values when both are present.
     """
 
     url: Required[str]
@@ -225,44 +337,88 @@ class InterruptionSettings(TypedDict, total=False):
     """
 
 
-class Language(TypedDict, total=False):
-    """Language-specific speech and transcription settings for Conversation Relay."""
+class LanguageVoiceSettingsInworldVoiceSettings(TypedDict, total=False):
+    type: Required[Literal["inworld"]]
+    """Voice settings provider type"""
 
-    code: str
-    """BCP 47 language code."""
+
+LanguageVoiceSettings: TypeAlias = Union[
+    ElevenLabsVoiceSettingsParam,
+    TelnyxVoiceSettingsParam,
+    AwsVoiceSettingsParam,
+    MinimaxVoiceSettings,
+    AzureVoiceSettings,
+    RimeVoiceSettings,
+    ResembleVoiceSettings,
+    LanguageVoiceSettingsInworldVoiceSettings,
+    XaiVoiceSettings,
+]
+
+
+class Language(TypedDict, total=False):
+    """Language-specific TTS and transcription settings for Conversation Relay."""
+
+    language: Required[str]
+    """BCP 47 language tag for this language configuration."""
 
     speech_model: str
-    """Speech recognition model for this language."""
+    """Conversation Relay speech model.
+
+    Prefer `transcription_engine_config.transcription_model` when configuring
+    speech-to-text.
+    """
+
+    transcription_engine: Literal[
+        "Google", "Telnyx", "Deepgram", "Azure", "xAI", "AssemblyAI", "Speechmatics", "Soniox", "A", "B"
+    ]
+    """Engine to use for speech recognition.
+
+    Legacy values `A` - `Google`, `B` - `Telnyx` are supported for backward
+    compatibility. When provided in a Conversation Relay language entry, Telnyx
+    derives `transcription_provider` and `speech_model` for that language.
+    """
+
+    transcription_engine_config: Dict[str, object]
+    """Engine-specific transcription settings for Conversation Relay.
+
+    This accepts the same provider-specific options used by the Call Transcription
+    Start command, such as `transcription_model`, without requiring the engine
+    discriminator to be repeated inside this object.
+    """
 
     transcription_provider: str
-    """Speech-to-text provider for this language."""
+    """Conversation Relay transcription provider name.
+
+    Prefer `transcription_engine` when configuring speech-to-text.
+    """
 
     tts_provider: str
-    """Text-to-speech provider for this language."""
+    """Text-to-speech provider for this language.
+
+    If omitted and `voice` is provided, Telnyx derives the provider from the voice
+    identifier.
+    """
 
     voice: str
     """Voice identifier for this language."""
 
+    voice_settings: LanguageVoiceSettings
+    """The settings associated with the voice selected"""
 
-class Transcription(TypedDict, total=False):
-    """Speech-to-text settings for Conversation Relay."""
 
-    language: str
-    """Transcription language."""
-
-    model: str
-    """Transcription model to use."""
-
-    provider: str
-    """Transcription provider to use."""
+class VoiceSettingsInworldVoiceSettings(TypedDict, total=False):
+    type: Required[Literal["inworld"]]
+    """Voice settings provider type"""
 
 
 VoiceSettings: TypeAlias = Union[
     ElevenLabsVoiceSettingsParam,
     TelnyxVoiceSettingsParam,
     AwsVoiceSettingsParam,
+    MinimaxVoiceSettings,
     AzureVoiceSettings,
     RimeVoiceSettings,
     ResembleVoiceSettings,
+    VoiceSettingsInworldVoiceSettings,
     XaiVoiceSettings,
 ]
