@@ -8,17 +8,13 @@ from typing_extensions import Literal, Required, TypeAlias, TypedDict
 from .aws_voice_settings_param import AwsVoiceSettingsParam
 from .telnyx_voice_settings_param import TelnyxVoiceSettingsParam
 from .eleven_labs_voice_settings_param import ElevenLabsVoiceSettingsParam
+from ..shared_params.xai_voice_settings import XaiVoiceSettings
 from ..shared_params.rime_voice_settings import RimeVoiceSettings
 from ..shared_params.azure_voice_settings import AzureVoiceSettings
 from ..shared_params.minimax_voice_settings import MinimaxVoiceSettings
 from ..shared_params.resemble_voice_settings import ResembleVoiceSettings
 
-__all__ = [
-    "ActionGatherUsingSpeakParams",
-    "VoiceSettings",
-    "VoiceSettingsInworldVoiceSettings",
-    "VoiceSettingsXaiVoiceSettings",
-]
+__all__ = ["ActionGatherUsingSpeakParams", "VoiceSettings", "VoiceSettingsInworldVoiceSettings"]
 
 
 class ActionGatherUsingSpeakParams(TypedDict, total=False):
@@ -58,8 +54,8 @@ class ActionGatherUsingSpeakParams(TypedDict, total=False):
       `speech-02-hd`, `speech-2.6-turbo`, `speech-2.8-turbo`. Use `voice_settings`
       to configure speed, volume, pitch, and language_boost.
     - **Rime:** Use `Rime.<model_id>.<voice_id>` (e.g., `Rime.Arcana.cove`).
-      Supported model_ids: `Arcana`, `Mist`. Use `voice_settings` to configure
-      voice_speed.
+      Supported model_ids: `Arcana`, `Mist`, `ArcanaV3`, `Coda`. Use
+      `voice_settings` to configure voice_speed.
     - **Resemble:** Use `Resemble.Turbo.<voice_id>` (e.g.,
       `Resemble.Turbo.my_voice`). Only `Turbo` model is supported. Use
       `voice_settings` to configure precision, sample_rate, and format.
@@ -184,14 +180,6 @@ class VoiceSettingsInworldVoiceSettings(TypedDict, total=False):
     """Voice settings provider type"""
 
 
-class VoiceSettingsXaiVoiceSettings(TypedDict, total=False):
-    type: Required[Literal["xai"]]
-    """Voice settings provider type"""
-
-    language: str
-    """Language code, or `auto` to detect automatically."""
-
-
 VoiceSettings: TypeAlias = Union[
     ElevenLabsVoiceSettingsParam,
     TelnyxVoiceSettingsParam,
@@ -201,5 +189,5 @@ VoiceSettings: TypeAlias = Union[
     RimeVoiceSettings,
     ResembleVoiceSettings,
     VoiceSettingsInworldVoiceSettings,
-    VoiceSettingsXaiVoiceSettings,
+    XaiVoiceSettings,
 ]

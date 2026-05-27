@@ -18,6 +18,7 @@ from ...._response import (
 )
 from ...._base_client import make_request_options
 from ....types.ai.assistants import canary_deploy_create_params, canary_deploy_update_params
+from ....types.ai.assistants.rule_input_param import RuleInputParam
 from ....types.ai.assistants.canary_deploy_response import CanaryDeployResponse
 
 __all__ = ["CanaryDeploysResource", "AsyncCanaryDeploysResource"]
@@ -49,7 +50,7 @@ class CanaryDeploysResource(SyncAPIResource):
         self,
         assistant_id: str,
         *,
-        rules: Iterable[canary_deploy_create_params.Rule] | Omit = omit,
+        rules: Iterable[RuleInputParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -123,7 +124,7 @@ class CanaryDeploysResource(SyncAPIResource):
         self,
         assistant_id: str,
         *,
-        rules: Iterable[canary_deploy_update_params.Rule] | Omit = omit,
+        rules: Iterable[RuleInputParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -221,7 +222,7 @@ class AsyncCanaryDeploysResource(AsyncAPIResource):
         self,
         assistant_id: str,
         *,
-        rules: Iterable[canary_deploy_create_params.Rule] | Omit = omit,
+        rules: Iterable[RuleInputParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -295,7 +296,7 @@ class AsyncCanaryDeploysResource(AsyncAPIResource):
         self,
         assistant_id: str,
         *,
-        rules: Iterable[canary_deploy_update_params.Rule] | Omit = omit,
+        rules: Iterable[RuleInputParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
