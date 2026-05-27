@@ -212,6 +212,7 @@ class ActionsResource(SyncAPIResource):
         billing_group_id: str | Omit = omit,
         client_state: str | Omit = omit,
         command_id: str | Omit = omit,
+        conversation_relay_config: action_answer_params.ConversationRelayConfig | Omit = omit,
         custom_headers: Iterable[CustomSipHeaderParam] | Omit = omit,
         deepfake_detection: action_answer_params.DeepfakeDetection | Omit = omit,
         preferred_codecs: Literal["G722,PCMU,PCMA,G729,OPUS,VP8,H264"] | Omit = omit,
@@ -277,6 +278,13 @@ class ActionsResource(SyncAPIResource):
 
           command_id: Use this field to avoid duplicate commands. Telnyx will ignore any command with
               the same `command_id` for the same `call_control_id`.
+
+          conversation_relay_config: Starts a Conversation Relay session automatically when the answered/dialed call
+              is answered. This embedded shape is supported on `answer` and `dial`. It uses
+              public field names (`url`, `dtmf_detection`, `greeting`, `voice`, `language`,
+              etc.) and maps them to the underlying Conversation Relay action. `client_state`,
+              `tts_language`, and `transcription_language` inside this object are ignored; use
+              the parent command's `client_state` and `command_id` fields instead.
 
           custom_headers: Custom headers to be added to the SIP INVITE response.
 
@@ -371,6 +379,7 @@ class ActionsResource(SyncAPIResource):
                     "billing_group_id": billing_group_id,
                     "client_state": client_state,
                     "command_id": command_id,
+                    "conversation_relay_config": conversation_relay_config,
                     "custom_headers": custom_headers,
                     "deepfake_detection": deepfake_detection,
                     "preferred_codecs": preferred_codecs,
@@ -2073,13 +2082,24 @@ class ActionsResource(SyncAPIResource):
         conversation_relay_dtmf_detection: bool | Omit = omit,
         conversation_relay_settings: action_start_conversation_relay_params.ConversationRelaySettings | Omit = omit,
         conversation_relay_url: str | Omit = omit,
+        custom_parameters: Dict[str, object] | Omit = omit,
+        dtmf_detection: bool | Omit = omit,
         greeting: str | Omit = omit,
+        interruptible: Literal["none", "any", "speech", "dtmf"] | Omit = omit,
+        interruptible_greeting: Literal["none", "any", "speech", "dtmf"] | Omit = omit,
         interruption_settings: action_start_conversation_relay_params.InterruptionSettings | Omit = omit,
         language: str | Omit = omit,
         languages: Iterable[action_start_conversation_relay_params.Language] | Omit = omit,
-        transcription: action_start_conversation_relay_params.Transcription | Omit = omit,
-        transcription_language: str | Omit = omit,
-        tts_language: str | Omit = omit,
+        provider: str | Omit = omit,
+        structured_provider: Dict[str, object] | Omit = omit,
+        transcription: Dict[str, object] | Omit = omit,
+        transcription_engine: Literal[
+            "Google", "Telnyx", "Deepgram", "Azure", "xAI", "AssemblyAI", "Speechmatics", "Soniox", "A", "B"
+        ]
+        | Omit = omit,
+        transcription_engine_config: Dict[str, object] | Omit = omit,
+        tts_provider: str | Omit = omit,
+        url: str | Omit = omit,
         voice: str | Omit = omit,
         voice_settings: action_start_conversation_relay_params.VoiceSettings | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -2115,33 +2135,61 @@ class ActionsResource(SyncAPIResource):
 
           conversation_relay_dtmf_detection: Enable DTMF detection for the relay session.
 
-          conversation_relay_settings: Conversation Relay connection settings. This object is used by TeXML Call
-              Scripting's `<ConversationRelay>` verb. The `interruptible` and
-              `interruptible_greeting` fields are shorthand for
-              `interruption_settings.interruptible` and
-              `interruption_settings.interruptible_greeting`; use top-level
-              `interruption_settings` for the full interruption settings shape.
+          conversation_relay_settings: Conversation Relay connection settings. This object can provide `url`,
+              `dtmf_detection`, `interruptible`, `interruptible_greeting`, and `languages`.
+              Top-level aliases override nested values when both are present.
 
           conversation_relay_url: WebSocket URL for your Conversation Relay server. Must start with `ws://` or
               `wss://`.
 
+          custom_parameters: Custom key-value parameters forwarded to the relay session as
+              `assistant.dynamic_variables`. If `assistant.dynamic_variables` is also present,
+              these values are merged in.
+
+          dtmf_detection: Public alias for `conversation_relay_dtmf_detection`. If both are present, this
+              value wins.
+
           greeting: Text played when the relay session starts.
+
+          interruptible: Controls when caller input can interrupt assistant speech. `any` allows speech
+              or DTMF interruptions; `none` disables interruptions; `speech` allows speech
+              only; `dtmf` allows DTMF only.
+
+          interruptible_greeting: Controls when caller input can interrupt assistant speech. `any` allows speech
+              or DTMF interruptions; `none` disables interruptions; `speech` allows speech
+              only; `dtmf` allows DTMF only.
 
           interruption_settings: Settings for handling caller interruptions during Conversation Relay speech.
 
           language: Default language for the relay session. This value is used for both
-              text-to-speech and speech recognition unless `tts_language` or
-              `transcription_language` are provided.
+              text-to-speech and speech recognition.
 
-          languages: Language-specific TTS and transcription settings. Use this when the relay
-              session needs per-language provider, voice, or speech model configuration.
+          languages: Per-language TTS and transcription settings.
 
-          transcription: Speech-to-text settings for Conversation Relay.
+          provider: Structured voice provider. Must be supplied together with `structured_provider`.
 
-          transcription_language: Language to use for speech recognition. Overrides `language` for transcription
-              when provided.
+          structured_provider: Provider-specific structured voice settings. Must be supplied together with
+              `provider`; Telnyx sends the value as the nested provider configuration for
+              Conversation Relay.
 
-          tts_language: Language to use for text-to-speech. Overrides `language` for TTS when provided.
+          transcription: Not supported for Conversation Relay start requests. Use `transcription_engine`
+              and `transcription_engine_config` instead.
+
+          transcription_engine: Engine to use for speech recognition. Legacy values `A` - `Google`, `B` -
+              `Telnyx` are supported for backward compatibility. For Conversation Relay, use
+              this field with `transcription_engine_config`; the `transcription` object is not
+              supported.
+
+          transcription_engine_config: Engine-specific transcription settings for Conversation Relay. This accepts the
+              same provider-specific options used by the Call Transcription Start command,
+              such as `transcription_model`, without requiring the engine discriminator to be
+              repeated inside this object.
+
+          tts_provider: Text-to-speech provider. If omitted, Telnyx derives it from `voice` or
+              `provider`.
+
+          url: Public alias for `conversation_relay_url`. Must start with `ws://` or `wss://`.
+              If both are present, this value wins.
 
           voice: The voice to be used by the voice assistant. Currently we support ElevenLabs,
               Telnyx and AWS voices.
@@ -2192,13 +2240,21 @@ class ActionsResource(SyncAPIResource):
                     "conversation_relay_dtmf_detection": conversation_relay_dtmf_detection,
                     "conversation_relay_settings": conversation_relay_settings,
                     "conversation_relay_url": conversation_relay_url,
+                    "custom_parameters": custom_parameters,
+                    "dtmf_detection": dtmf_detection,
                     "greeting": greeting,
+                    "interruptible": interruptible,
+                    "interruptible_greeting": interruptible_greeting,
                     "interruption_settings": interruption_settings,
                     "language": language,
                     "languages": languages,
+                    "provider": provider,
+                    "structured_provider": structured_provider,
                     "transcription": transcription,
-                    "transcription_language": transcription_language,
-                    "tts_language": tts_language,
+                    "transcription_engine": transcription_engine,
+                    "transcription_engine_config": transcription_engine_config,
+                    "tts_provider": tts_provider,
+                    "url": url,
                     "voice": voice,
                     "voice_settings": voice_settings,
                 },
@@ -4065,6 +4121,7 @@ class AsyncActionsResource(AsyncAPIResource):
         billing_group_id: str | Omit = omit,
         client_state: str | Omit = omit,
         command_id: str | Omit = omit,
+        conversation_relay_config: action_answer_params.ConversationRelayConfig | Omit = omit,
         custom_headers: Iterable[CustomSipHeaderParam] | Omit = omit,
         deepfake_detection: action_answer_params.DeepfakeDetection | Omit = omit,
         preferred_codecs: Literal["G722,PCMU,PCMA,G729,OPUS,VP8,H264"] | Omit = omit,
@@ -4130,6 +4187,13 @@ class AsyncActionsResource(AsyncAPIResource):
 
           command_id: Use this field to avoid duplicate commands. Telnyx will ignore any command with
               the same `command_id` for the same `call_control_id`.
+
+          conversation_relay_config: Starts a Conversation Relay session automatically when the answered/dialed call
+              is answered. This embedded shape is supported on `answer` and `dial`. It uses
+              public field names (`url`, `dtmf_detection`, `greeting`, `voice`, `language`,
+              etc.) and maps them to the underlying Conversation Relay action. `client_state`,
+              `tts_language`, and `transcription_language` inside this object are ignored; use
+              the parent command's `client_state` and `command_id` fields instead.
 
           custom_headers: Custom headers to be added to the SIP INVITE response.
 
@@ -4224,6 +4288,7 @@ class AsyncActionsResource(AsyncAPIResource):
                     "billing_group_id": billing_group_id,
                     "client_state": client_state,
                     "command_id": command_id,
+                    "conversation_relay_config": conversation_relay_config,
                     "custom_headers": custom_headers,
                     "deepfake_detection": deepfake_detection,
                     "preferred_codecs": preferred_codecs,
@@ -5926,13 +5991,24 @@ class AsyncActionsResource(AsyncAPIResource):
         conversation_relay_dtmf_detection: bool | Omit = omit,
         conversation_relay_settings: action_start_conversation_relay_params.ConversationRelaySettings | Omit = omit,
         conversation_relay_url: str | Omit = omit,
+        custom_parameters: Dict[str, object] | Omit = omit,
+        dtmf_detection: bool | Omit = omit,
         greeting: str | Omit = omit,
+        interruptible: Literal["none", "any", "speech", "dtmf"] | Omit = omit,
+        interruptible_greeting: Literal["none", "any", "speech", "dtmf"] | Omit = omit,
         interruption_settings: action_start_conversation_relay_params.InterruptionSettings | Omit = omit,
         language: str | Omit = omit,
         languages: Iterable[action_start_conversation_relay_params.Language] | Omit = omit,
-        transcription: action_start_conversation_relay_params.Transcription | Omit = omit,
-        transcription_language: str | Omit = omit,
-        tts_language: str | Omit = omit,
+        provider: str | Omit = omit,
+        structured_provider: Dict[str, object] | Omit = omit,
+        transcription: Dict[str, object] | Omit = omit,
+        transcription_engine: Literal[
+            "Google", "Telnyx", "Deepgram", "Azure", "xAI", "AssemblyAI", "Speechmatics", "Soniox", "A", "B"
+        ]
+        | Omit = omit,
+        transcription_engine_config: Dict[str, object] | Omit = omit,
+        tts_provider: str | Omit = omit,
+        url: str | Omit = omit,
         voice: str | Omit = omit,
         voice_settings: action_start_conversation_relay_params.VoiceSettings | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -5968,33 +6044,61 @@ class AsyncActionsResource(AsyncAPIResource):
 
           conversation_relay_dtmf_detection: Enable DTMF detection for the relay session.
 
-          conversation_relay_settings: Conversation Relay connection settings. This object is used by TeXML Call
-              Scripting's `<ConversationRelay>` verb. The `interruptible` and
-              `interruptible_greeting` fields are shorthand for
-              `interruption_settings.interruptible` and
-              `interruption_settings.interruptible_greeting`; use top-level
-              `interruption_settings` for the full interruption settings shape.
+          conversation_relay_settings: Conversation Relay connection settings. This object can provide `url`,
+              `dtmf_detection`, `interruptible`, `interruptible_greeting`, and `languages`.
+              Top-level aliases override nested values when both are present.
 
           conversation_relay_url: WebSocket URL for your Conversation Relay server. Must start with `ws://` or
               `wss://`.
 
+          custom_parameters: Custom key-value parameters forwarded to the relay session as
+              `assistant.dynamic_variables`. If `assistant.dynamic_variables` is also present,
+              these values are merged in.
+
+          dtmf_detection: Public alias for `conversation_relay_dtmf_detection`. If both are present, this
+              value wins.
+
           greeting: Text played when the relay session starts.
+
+          interruptible: Controls when caller input can interrupt assistant speech. `any` allows speech
+              or DTMF interruptions; `none` disables interruptions; `speech` allows speech
+              only; `dtmf` allows DTMF only.
+
+          interruptible_greeting: Controls when caller input can interrupt assistant speech. `any` allows speech
+              or DTMF interruptions; `none` disables interruptions; `speech` allows speech
+              only; `dtmf` allows DTMF only.
 
           interruption_settings: Settings for handling caller interruptions during Conversation Relay speech.
 
           language: Default language for the relay session. This value is used for both
-              text-to-speech and speech recognition unless `tts_language` or
-              `transcription_language` are provided.
+              text-to-speech and speech recognition.
 
-          languages: Language-specific TTS and transcription settings. Use this when the relay
-              session needs per-language provider, voice, or speech model configuration.
+          languages: Per-language TTS and transcription settings.
 
-          transcription: Speech-to-text settings for Conversation Relay.
+          provider: Structured voice provider. Must be supplied together with `structured_provider`.
 
-          transcription_language: Language to use for speech recognition. Overrides `language` for transcription
-              when provided.
+          structured_provider: Provider-specific structured voice settings. Must be supplied together with
+              `provider`; Telnyx sends the value as the nested provider configuration for
+              Conversation Relay.
 
-          tts_language: Language to use for text-to-speech. Overrides `language` for TTS when provided.
+          transcription: Not supported for Conversation Relay start requests. Use `transcription_engine`
+              and `transcription_engine_config` instead.
+
+          transcription_engine: Engine to use for speech recognition. Legacy values `A` - `Google`, `B` -
+              `Telnyx` are supported for backward compatibility. For Conversation Relay, use
+              this field with `transcription_engine_config`; the `transcription` object is not
+              supported.
+
+          transcription_engine_config: Engine-specific transcription settings for Conversation Relay. This accepts the
+              same provider-specific options used by the Call Transcription Start command,
+              such as `transcription_model`, without requiring the engine discriminator to be
+              repeated inside this object.
+
+          tts_provider: Text-to-speech provider. If omitted, Telnyx derives it from `voice` or
+              `provider`.
+
+          url: Public alias for `conversation_relay_url`. Must start with `ws://` or `wss://`.
+              If both are present, this value wins.
 
           voice: The voice to be used by the voice assistant. Currently we support ElevenLabs,
               Telnyx and AWS voices.
@@ -6045,13 +6149,21 @@ class AsyncActionsResource(AsyncAPIResource):
                     "conversation_relay_dtmf_detection": conversation_relay_dtmf_detection,
                     "conversation_relay_settings": conversation_relay_settings,
                     "conversation_relay_url": conversation_relay_url,
+                    "custom_parameters": custom_parameters,
+                    "dtmf_detection": dtmf_detection,
                     "greeting": greeting,
+                    "interruptible": interruptible,
+                    "interruptible_greeting": interruptible_greeting,
                     "interruption_settings": interruption_settings,
                     "language": language,
                     "languages": languages,
+                    "provider": provider,
+                    "structured_provider": structured_provider,
                     "transcription": transcription,
-                    "transcription_language": transcription_language,
-                    "tts_language": tts_language,
+                    "transcription_engine": transcription_engine,
+                    "transcription_engine_config": transcription_engine_config,
+                    "tts_provider": tts_provider,
+                    "url": url,
                     "voice": voice,
                     "voice_settings": voice_settings,
                 },

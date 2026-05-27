@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.142.0 (2026-05-27)
+
+Full Changelog: [v4.141.0...v4.142.0](https://github.com/team-telnyx/telnyx-python/compare/v4.141.0...v4.142.0)
+
+### Features
+
+* TELAPPS-5698 document conversation relay API shape ([4573d36](https://github.com/team-telnyx/telnyx-python/commit/4573d364aee2f30da464b2273d128390fa3a8123))
+
 ## 4.141.0 (2026-05-27)
 
 Full Changelog: [v4.140.0...v4.141.0](https://github.com/team-telnyx/telnyx-python/compare/v4.140.0...v4.141.0)
