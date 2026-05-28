@@ -1461,6 +1461,8 @@ from telnyx.types.calls import (
     TranscriptionEngineBConfig,
     TranscriptionEngineDeepgramConfig,
     TranscriptionEngineGoogleConfig,
+    TranscriptionEngineSonioxConfig,
+    TranscriptionEngineSpeechmaticsConfig,
     TranscriptionEngineTelnyxConfig,
     TranscriptionEngineXaiConfig,
     TranscriptionStartRequest,
