@@ -202,7 +202,7 @@ class AIResource(SyncAPIResource):
     def create_response(
         self,
         *,
-        body: Dict[str, object],
+        input: Dict[str, object],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -230,7 +230,7 @@ class AIResource(SyncAPIResource):
         """
         return self._post(
             "/ai/responses",
-            body=maybe_transform(body, ai_create_response_params.AICreateResponseParams),
+            body=maybe_transform(input, ai_create_response_params.AICreateResponseParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -405,7 +405,7 @@ class AsyncAIResource(AsyncAPIResource):
     async def create_response(
         self,
         *,
-        body: Dict[str, object],
+        input: Dict[str, object],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -433,7 +433,7 @@ class AsyncAIResource(AsyncAPIResource):
         """
         return await self._post(
             "/ai/responses",
-            body=await async_maybe_transform(body, ai_create_response_params.AICreateResponseParams),
+            body=await async_maybe_transform(input, ai_create_response_params.AICreateResponseParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

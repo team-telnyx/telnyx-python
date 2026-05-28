@@ -7,10 +7,20 @@ from typing_extensions import Literal, Required, TypedDict
 
 from .._types import SequenceNotStr
 
-__all__ = ["TextToSpeechGenerateParams", "Aws", "Azure", "Elevenlabs", "Minimax", "Resemble", "Rime", "Telnyx", "Xai"]
+__all__ = [
+    "TextToSpeechCreateSpeechParams",
+    "Aws",
+    "Azure",
+    "Elevenlabs",
+    "Minimax",
+    "Resemble",
+    "Rime",
+    "Telnyx",
+    "Xai",
+]
 
 
-class TextToSpeechGenerateParams(TypedDict, total=False):
+class TextToSpeechCreateSpeechParams(TypedDict, total=False):
     aws: Aws
     """AWS Polly provider-specific parameters."""
 
