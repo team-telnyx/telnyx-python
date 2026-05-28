@@ -1281,6 +1281,13 @@ class Telnyx(SyncAPIClient):
         return ReportsResource(self)
 
     @cached_property
+    def speech_to_text(self) -> SpeechToTextResource:
+        """Discover available speech-to-text providers, models, and supported languages."""
+        from .resources.speech_to_text import SpeechToTextResource
+
+        return SpeechToTextResource(self)
+
+    @cached_property
     def requirement_groups(self) -> RequirementGroupsResource:
         """Requirement Groups"""
         from .resources.requirement_groups import RequirementGroupsResource
@@ -1668,13 +1675,6 @@ class Telnyx(SyncAPIClient):
         from .resources.uac_connections import UacConnectionsResource
 
         return UacConnectionsResource(self)
-
-    @cached_property
-    def speech_to_text(self) -> SpeechToTextResource:
-        """Discover available speech-to-text providers, models, and supported languages."""
-        from .resources.speech_to_text import SpeechToTextResource
-
-        return SpeechToTextResource(self)
 
     @cached_property
     def voice_sdk_call_reports(self) -> VoiceSDKCallReportsResource:
@@ -2654,6 +2654,13 @@ class AsyncTelnyx(AsyncAPIClient):
         return AsyncReportsResource(self)
 
     @cached_property
+    def speech_to_text(self) -> AsyncSpeechToTextResource:
+        """Discover available speech-to-text providers, models, and supported languages."""
+        from .resources.speech_to_text import AsyncSpeechToTextResource
+
+        return AsyncSpeechToTextResource(self)
+
+    @cached_property
     def requirement_groups(self) -> AsyncRequirementGroupsResource:
         """Requirement Groups"""
         from .resources.requirement_groups import AsyncRequirementGroupsResource
@@ -3041,13 +3048,6 @@ class AsyncTelnyx(AsyncAPIClient):
         from .resources.uac_connections import AsyncUacConnectionsResource
 
         return AsyncUacConnectionsResource(self)
-
-    @cached_property
-    def speech_to_text(self) -> AsyncSpeechToTextResource:
-        """Discover available speech-to-text providers, models, and supported languages."""
-        from .resources.speech_to_text import AsyncSpeechToTextResource
-
-        return AsyncSpeechToTextResource(self)
 
     @cached_property
     def voice_sdk_call_reports(self) -> AsyncVoiceSDKCallReportsResource:
@@ -3959,6 +3959,13 @@ class TelnyxWithRawResponse:
         return ReportsResourceWithRawResponse(self._client.reports)
 
     @cached_property
+    def speech_to_text(self) -> speech_to_text.SpeechToTextResourceWithRawResponse:
+        """Discover available speech-to-text providers, models, and supported languages."""
+        from .resources.speech_to_text import SpeechToTextResourceWithRawResponse
+
+        return SpeechToTextResourceWithRawResponse(self._client.speech_to_text)
+
+    @cached_property
     def requirement_groups(self) -> requirement_groups.RequirementGroupsResourceWithRawResponse:
         """Requirement Groups"""
         from .resources.requirement_groups import RequirementGroupsResourceWithRawResponse
@@ -4350,13 +4357,6 @@ class TelnyxWithRawResponse:
         from .resources.uac_connections import UacConnectionsResourceWithRawResponse
 
         return UacConnectionsResourceWithRawResponse(self._client.uac_connections)
-
-    @cached_property
-    def speech_to_text(self) -> speech_to_text.SpeechToTextResourceWithRawResponse:
-        """Discover available speech-to-text providers, models, and supported languages."""
-        from .resources.speech_to_text import SpeechToTextResourceWithRawResponse
-
-        return SpeechToTextResourceWithRawResponse(self._client.speech_to_text)
 
     @cached_property
     def voice_sdk_call_reports(self) -> voice_sdk_call_reports.VoiceSDKCallReportsResourceWithRawResponse:
@@ -5131,6 +5131,13 @@ class AsyncTelnyxWithRawResponse:
         return AsyncReportsResourceWithRawResponse(self._client.reports)
 
     @cached_property
+    def speech_to_text(self) -> speech_to_text.AsyncSpeechToTextResourceWithRawResponse:
+        """Discover available speech-to-text providers, models, and supported languages."""
+        from .resources.speech_to_text import AsyncSpeechToTextResourceWithRawResponse
+
+        return AsyncSpeechToTextResourceWithRawResponse(self._client.speech_to_text)
+
+    @cached_property
     def requirement_groups(self) -> requirement_groups.AsyncRequirementGroupsResourceWithRawResponse:
         """Requirement Groups"""
         from .resources.requirement_groups import AsyncRequirementGroupsResourceWithRawResponse
@@ -5530,13 +5537,6 @@ class AsyncTelnyxWithRawResponse:
         from .resources.uac_connections import AsyncUacConnectionsResourceWithRawResponse
 
         return AsyncUacConnectionsResourceWithRawResponse(self._client.uac_connections)
-
-    @cached_property
-    def speech_to_text(self) -> speech_to_text.AsyncSpeechToTextResourceWithRawResponse:
-        """Discover available speech-to-text providers, models, and supported languages."""
-        from .resources.speech_to_text import AsyncSpeechToTextResourceWithRawResponse
-
-        return AsyncSpeechToTextResourceWithRawResponse(self._client.speech_to_text)
 
     @cached_property
     def voice_sdk_call_reports(self) -> voice_sdk_call_reports.AsyncVoiceSDKCallReportsResourceWithRawResponse:
@@ -6311,6 +6311,13 @@ class TelnyxWithStreamedResponse:
         return ReportsResourceWithStreamingResponse(self._client.reports)
 
     @cached_property
+    def speech_to_text(self) -> speech_to_text.SpeechToTextResourceWithStreamingResponse:
+        """Discover available speech-to-text providers, models, and supported languages."""
+        from .resources.speech_to_text import SpeechToTextResourceWithStreamingResponse
+
+        return SpeechToTextResourceWithStreamingResponse(self._client.speech_to_text)
+
+    @cached_property
     def requirement_groups(self) -> requirement_groups.RequirementGroupsResourceWithStreamingResponse:
         """Requirement Groups"""
         from .resources.requirement_groups import RequirementGroupsResourceWithStreamingResponse
@@ -6712,13 +6719,6 @@ class TelnyxWithStreamedResponse:
         from .resources.uac_connections import UacConnectionsResourceWithStreamingResponse
 
         return UacConnectionsResourceWithStreamingResponse(self._client.uac_connections)
-
-    @cached_property
-    def speech_to_text(self) -> speech_to_text.SpeechToTextResourceWithStreamingResponse:
-        """Discover available speech-to-text providers, models, and supported languages."""
-        from .resources.speech_to_text import SpeechToTextResourceWithStreamingResponse
-
-        return SpeechToTextResourceWithStreamingResponse(self._client.speech_to_text)
 
     @cached_property
     def voice_sdk_call_reports(self) -> voice_sdk_call_reports.VoiceSDKCallReportsResourceWithStreamingResponse:
@@ -7525,6 +7525,13 @@ class AsyncTelnyxWithStreamedResponse:
         return AsyncReportsResourceWithStreamingResponse(self._client.reports)
 
     @cached_property
+    def speech_to_text(self) -> speech_to_text.AsyncSpeechToTextResourceWithStreamingResponse:
+        """Discover available speech-to-text providers, models, and supported languages."""
+        from .resources.speech_to_text import AsyncSpeechToTextResourceWithStreamingResponse
+
+        return AsyncSpeechToTextResourceWithStreamingResponse(self._client.speech_to_text)
+
+    @cached_property
     def requirement_groups(self) -> requirement_groups.AsyncRequirementGroupsResourceWithStreamingResponse:
         """Requirement Groups"""
         from .resources.requirement_groups import AsyncRequirementGroupsResourceWithStreamingResponse
@@ -7940,13 +7947,6 @@ class AsyncTelnyxWithStreamedResponse:
         from .resources.uac_connections import AsyncUacConnectionsResourceWithStreamingResponse
 
         return AsyncUacConnectionsResourceWithStreamingResponse(self._client.uac_connections)
-
-    @cached_property
-    def speech_to_text(self) -> speech_to_text.AsyncSpeechToTextResourceWithStreamingResponse:
-        """Discover available speech-to-text providers, models, and supported languages."""
-        from .resources.speech_to_text import AsyncSpeechToTextResourceWithStreamingResponse
-
-        return AsyncSpeechToTextResourceWithStreamingResponse(self._client.speech_to_text)
 
     @cached_property
     def voice_sdk_call_reports(self) -> voice_sdk_call_reports.AsyncVoiceSDKCallReportsResourceWithStreamingResponse:

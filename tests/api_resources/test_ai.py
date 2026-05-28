@@ -28,7 +28,7 @@ class TestAI:
     def test_method_create_response(self, client: Telnyx) -> None:
         with pytest.warns(DeprecationWarning):
             ai = client.ai.create_response(
-                body={
+                input={
                     "model": "bar",
                     "input": "bar",
                 },
@@ -41,7 +41,7 @@ class TestAI:
     def test_raw_response_create_response(self, client: Telnyx) -> None:
         with pytest.warns(DeprecationWarning):
             response = client.ai.with_raw_response.create_response(
-                body={
+                input={
                     "model": "bar",
                     "input": "bar",
                 },
@@ -57,7 +57,7 @@ class TestAI:
     def test_streaming_response_create_response(self, client: Telnyx) -> None:
         with pytest.warns(DeprecationWarning):
             with client.ai.with_streaming_response.create_response(
-                body={
+                input={
                     "model": "bar",
                     "input": "bar",
                 },
@@ -160,7 +160,7 @@ class TestAsyncAI:
     async def test_method_create_response(self, async_client: AsyncTelnyx) -> None:
         with pytest.warns(DeprecationWarning):
             ai = await async_client.ai.create_response(
-                body={
+                input={
                     "model": "bar",
                     "input": "bar",
                 },
@@ -173,7 +173,7 @@ class TestAsyncAI:
     async def test_raw_response_create_response(self, async_client: AsyncTelnyx) -> None:
         with pytest.warns(DeprecationWarning):
             response = await async_client.ai.with_raw_response.create_response(
-                body={
+                input={
                     "model": "bar",
                     "input": "bar",
                 },
@@ -189,7 +189,7 @@ class TestAsyncAI:
     async def test_streaming_response_create_response(self, async_client: AsyncTelnyx) -> None:
         with pytest.warns(DeprecationWarning):
             async with async_client.ai.with_streaming_response.create_response(
-                body={
+                input={
                     "model": "bar",
                     "input": "bar",
                 },

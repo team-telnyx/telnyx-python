@@ -4,10 +4,10 @@ from typing import Optional
 
 from .._models import BaseModel
 
-__all__ = ["TextToSpeechGenerateResponse"]
+__all__ = ["TextToSpeechCreateSpeechResponse"]
 
 
-class TextToSpeechGenerateResponse(BaseModel):
+class TextToSpeechCreateSpeechResponse(BaseModel):
     """Response when `output_type` is `base64_output`."""
 
     base64_audio: Optional[str] = None
