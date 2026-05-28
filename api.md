@@ -20,6 +20,7 @@ from telnyx.types import (
     Feature,
     HostedNumber,
     InboundMessagePayload,
+    InworldVoiceSettings,
     MessagingFeatureSet,
     MessagingHostedNumberOrder,
     MessagingPaginationMeta,
@@ -1414,6 +1415,8 @@ Types:
 ```python
 from telnyx.types import (
     CallAssistantRequest,
+    ConversationRelayInterruptionSettings,
+    ConversationRelayLanguage,
     CustomSipHeader,
     DialogflowConfig,
     SipHeader,
@@ -1458,6 +1461,8 @@ from telnyx.types.calls import (
     TranscriptionEngineBConfig,
     TranscriptionEngineDeepgramConfig,
     TranscriptionEngineGoogleConfig,
+    TranscriptionEngineSonioxConfig,
+    TranscriptionEngineSpeechmaticsConfig,
     TranscriptionEngineTelnyxConfig,
     TranscriptionEngineXaiConfig,
     TranscriptionStartRequest,
@@ -5466,7 +5471,7 @@ Methods:
 Types:
 
 ```python
-from telnyx.types.whatsapp import UserDataRetrieveResponse, UserDataUpdateResponse
+from telnyx.types.whatsapp import WhatsappUserData, UserDataRetrieveResponse, UserDataUpdateResponse
 ```
 
 Methods:
@@ -5738,7 +5743,11 @@ Methods:
 Types:
 
 ```python
-from telnyx.types import VoiceSDKCallReportRetrieveResponse, VoiceSDKCallReportListResponse
+from telnyx.types import (
+    VoiceSDKCallReportLogEntry,
+    VoiceSDKCallReportRetrieveResponse,
+    VoiceSDKCallReportListResponse,
+)
 ```
 
 Methods:
