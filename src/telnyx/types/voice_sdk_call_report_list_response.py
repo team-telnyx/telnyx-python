@@ -2,77 +2,14 @@
 
 from typing import TYPE_CHECKING, Dict, List, Union, Optional
 from datetime import datetime
-from typing_extensions import Literal, TypeAlias
+from typing_extensions import TypeAlias
 
 from pydantic import Field as FieldInfo
 
 from .._models import BaseModel
+from .voice_sdk_call_report_log_entry import VoiceSDKCallReportLogEntry
 
-__all__ = [
-    "VoiceSDKCallReportListResponse",
-    "Logs",
-    "LogsUnionMember0",
-    "LogsEntries",
-    "LogsEntriesEntry",
-    "Stats",
-    "StatsUnionMember1",
-]
-
-
-class LogsUnionMember0(BaseModel):
-    """A raw Voice SDK log entry. Additional SDK-specific fields may be present."""
-
-    context: Optional[Dict[str, object]] = None
-    """Raw structured context attached to the log entry."""
-
-    level: Optional[Literal["debug", "info", "warn", "error"]] = None
-    """Log level emitted by the SDK."""
-
-    message: Optional[str] = None
-    """Log message."""
-
-    timestamp: Optional[datetime] = None
-    """Time when the log entry was emitted."""
-
-    if TYPE_CHECKING:
-        # Some versions of Pydantic <2.8.0 have a bug and don’t allow assigning a
-        # value to this field, so for compatibility we avoid doing it at runtime.
-        __pydantic_extra__: Dict[str, object] = FieldInfo(init=False)  # pyright: ignore[reportIncompatibleVariableOverride]
-
-        # Stub to indicate that arbitrary properties are accepted.
-        # To access properties that are not valid identifiers you can use `getattr`, e.g.
-        # `getattr(obj, '$type')`
-        def __getattr__(self, attr: str) -> object: ...
-    else:
-        __pydantic_extra__: Dict[str, object]
-
-
-class LogsEntriesEntry(BaseModel):
-    """A raw Voice SDK log entry. Additional SDK-specific fields may be present."""
-
-    context: Optional[Dict[str, object]] = None
-    """Raw structured context attached to the log entry."""
-
-    level: Optional[Literal["debug", "info", "warn", "error"]] = None
-    """Log level emitted by the SDK."""
-
-    message: Optional[str] = None
-    """Log message."""
-
-    timestamp: Optional[datetime] = None
-    """Time when the log entry was emitted."""
-
-    if TYPE_CHECKING:
-        # Some versions of Pydantic <2.8.0 have a bug and don’t allow assigning a
-        # value to this field, so for compatibility we avoid doing it at runtime.
-        __pydantic_extra__: Dict[str, object] = FieldInfo(init=False)  # pyright: ignore[reportIncompatibleVariableOverride]
-
-        # Stub to indicate that arbitrary properties are accepted.
-        # To access properties that are not valid identifiers you can use `getattr`, e.g.
-        # `getattr(obj, '$type')`
-        def __getattr__(self, attr: str) -> object: ...
-    else:
-        __pydantic_extra__: Dict[str, object]
+__all__ = ["VoiceSDKCallReportListResponse", "Logs", "LogsEntries", "Stats", "StatsUnionMember1"]
 
 
 class LogsEntries(BaseModel):
@@ -80,7 +17,7 @@ class LogsEntries(BaseModel):
     Raw logs object emitted by the Voice SDK when logs are grouped under an entries field.
     """
 
-    entries: Optional[List[LogsEntriesEntry]] = None
+    entries: Optional[List[VoiceSDKCallReportLogEntry]] = None
     """Raw log entries when the SDK groups logs under an entries field."""
 
     if TYPE_CHECKING:
@@ -96,7 +33,7 @@ class LogsEntries(BaseModel):
         __pydantic_extra__: Dict[str, object]
 
 
-Logs: TypeAlias = Union[List[LogsUnionMember0], LogsEntries]
+Logs: TypeAlias = Union[List[VoiceSDKCallReportLogEntry], LogsEntries]
 
 
 class StatsUnionMember1(BaseModel):

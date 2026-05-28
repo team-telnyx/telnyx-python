@@ -94,6 +94,7 @@ from ...types.calls.action_leave_queue_response import ActionLeaveQueueResponse
 from ...types.calls.action_stop_gather_response import ActionStopGatherResponse
 from ...types.calls.action_stop_siprec_response import ActionStopSiprecResponse
 from ...types.calls.interruption_settings_param import InterruptionSettingsParam
+from ...types.conversation_relay_language_param import ConversationRelayLanguageParam
 from ...types.calls.action_start_siprec_response import ActionStartSiprecResponse
 from ...types.calls.action_stop_forking_response import ActionStopForkingResponse
 from ...types.stream_bidirectional_sampling_rate import StreamBidirectionalSamplingRate
@@ -123,6 +124,7 @@ from ...types.calls.action_switch_supervisor_role_response import ActionSwitchSu
 from ...types.calls.action_start_noise_suppression_response import ActionStartNoiseSuppressionResponse
 from ...types.calls.action_stop_conversation_relay_response import ActionStopConversationRelayResponse
 from ...types.calls.action_start_conversation_relay_response import ActionStartConversationRelayResponse
+from ...types.conversation_relay_interruption_settings_param import ConversationRelayInterruptionSettingsParam
 from ...types.calls.action_add_ai_assistant_messages_response import ActionAddAIAssistantMessagesResponse
 
 __all__ = ["ActionsResource", "AsyncActionsResource"]
@@ -2087,9 +2089,9 @@ class ActionsResource(SyncAPIResource):
         greeting: str | Omit = omit,
         interruptible: Literal["none", "any", "speech", "dtmf"] | Omit = omit,
         interruptible_greeting: Literal["none", "any", "speech", "dtmf"] | Omit = omit,
-        interruption_settings: action_start_conversation_relay_params.InterruptionSettings | Omit = omit,
+        interruption_settings: ConversationRelayInterruptionSettingsParam | Omit = omit,
         language: str | Omit = omit,
-        languages: Iterable[action_start_conversation_relay_params.Language] | Omit = omit,
+        languages: Iterable[ConversationRelayLanguageParam] | Omit = omit,
         provider: str | Omit = omit,
         structured_provider: Dict[str, object] | Omit = omit,
         transcription: Dict[str, object] | Omit = omit,
@@ -5996,9 +5998,9 @@ class AsyncActionsResource(AsyncAPIResource):
         greeting: str | Omit = omit,
         interruptible: Literal["none", "any", "speech", "dtmf"] | Omit = omit,
         interruptible_greeting: Literal["none", "any", "speech", "dtmf"] | Omit = omit,
-        interruption_settings: action_start_conversation_relay_params.InterruptionSettings | Omit = omit,
+        interruption_settings: ConversationRelayInterruptionSettingsParam | Omit = omit,
         language: str | Omit = omit,
-        languages: Iterable[action_start_conversation_relay_params.Language] | Omit = omit,
+        languages: Iterable[ConversationRelayLanguageParam] | Omit = omit,
         provider: str | Omit = omit,
         structured_provider: Dict[str, object] | Omit = omit,
         transcription: Dict[str, object] | Omit = omit,

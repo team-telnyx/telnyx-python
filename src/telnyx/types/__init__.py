@@ -34,6 +34,7 @@ from .shared import (
     MessagingFeatureSet as MessagingFeatureSet,
     NumberHealthMetrics as NumberHealthMetrics,
     CallControlBucketIDs as CallControlBucketIDs,
+    InworldVoiceSettings as InworldVoiceSettings,
     MinimaxVoiceSettings as MinimaxVoiceSettings,
     WhatsappTemplateData as WhatsappTemplateData,
     CheckAvailabilityTool as CheckAvailabilityTool,
@@ -675,6 +676,7 @@ from .texml_initiate_ai_call_response import TexmlInitiateAICallResponse as Texm
 from .usage_report_get_options_params import UsageReportGetOptionsParams as UsageReportGetOptionsParams
 from .verification_trigger_sms_params import VerificationTriggerSMSParams as VerificationTriggerSMSParams
 from .verified_number_create_response import VerifiedNumberCreateResponse as VerifiedNumberCreateResponse
+from .voice_sdk_call_report_log_entry import VoiceSDKCallReportLogEntry as VoiceSDKCallReportLogEntry
 from .wireguard_interface_list_params import WireguardInterfaceListParams as WireguardInterfaceListParams
 from .advanced_order_retrieve_response import AdvancedOrderRetrieveResponse as AdvancedOrderRetrieveResponse
 from .bulk_sim_card_action_list_params import BulkSimCardActionListParams as BulkSimCardActionListParams
@@ -727,6 +729,7 @@ from .call_siprec_started_webhook_event import CallSiprecStartedWebhookEvent as 
 from .call_siprec_stopped_webhook_event import CallSiprecStoppedWebhookEvent as CallSiprecStoppedWebhookEvent
 from .charges_breakdown_retrieve_params import ChargesBreakdownRetrieveParams as ChargesBreakdownRetrieveParams
 from .charges_summary_retrieve_response import ChargesSummaryRetrieveResponse as ChargesSummaryRetrieveResponse
+from .conversation_relay_language_param import ConversationRelayLanguageParam as ConversationRelayLanguageParam
 from .credential_connection_list_params import CredentialConnectionListParams as CredentialConnectionListParams
 from .external_connection_create_params import ExternalConnectionCreateParams as ExternalConnectionCreateParams
 from .external_connection_update_params import ExternalConnectionUpdateParams as ExternalConnectionUpdateParams
@@ -1421,6 +1424,9 @@ from .virtual_cross_connects_coverage_list_response import (
 )
 from .advanced_order_update_requirement_group_params import (
     AdvancedOrderUpdateRequirementGroupParams as AdvancedOrderUpdateRequirementGroupParams,
+)
+from .conversation_relay_interruption_settings_param import (
+    ConversationRelayInterruptionSettingsParam as ConversationRelayInterruptionSettingsParam,
 )
 from .message_send_with_alphanumeric_sender_response import (
     MessageSendWithAlphanumericSenderResponse as MessageSendWithAlphanumericSenderResponse,
