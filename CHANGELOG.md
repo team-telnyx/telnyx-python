@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.146.0 (2026-05-29)
+
+Full Changelog: [v4.145.0...v4.146.0](https://github.com/team-telnyx/telnyx-python/compare/v4.145.0...v4.146.0)
+
+### Features
+
+* **sip-registration-status:** add OpenAPI spec for /v2/sip_registration_status ([c2f94b9](https://github.com/team-telnyx/telnyx-python/commit/c2f94b9976f22709bbea191040e50c1491eaf27d))
+
 ## 4.145.0 (2026-05-28)
 
 Full Changelog: [v4.144.0...v4.145.0](https://github.com/team-telnyx/telnyx-python/compare/v4.144.0...v4.145.0)
