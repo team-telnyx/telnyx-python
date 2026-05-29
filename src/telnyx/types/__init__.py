@@ -1137,6 +1137,9 @@ from .recording_transcription_delete_response import (
 from .sim_card_order_preview_preview_response import (
     SimCardOrderPreviewPreviewResponse as SimCardOrderPreviewPreviewResponse,
 )
+from .sip_registration_status_retrieve_params import (
+    SipRegistrationStatusRetrieveParams as SipRegistrationStatusRetrieveParams,
+)
 from .sub_number_order_regulatory_requirement import (
     SubNumberOrderRegulatoryRequirement as SubNumberOrderRegulatoryRequirement,
 )
@@ -1271,6 +1274,9 @@ from .public_internet_gateway_retrieve_response import (
 )
 from .recording_transcription_retrieve_response import (
     RecordingTranscriptionRetrieveResponse as RecordingTranscriptionRetrieveResponse,
+)
+from .sip_registration_status_retrieve_response import (
+    SipRegistrationStatusRetrieveResponse as SipRegistrationStatusRetrieveResponse,
 )
 from .whatsapp_message_template_update_response import (
     WhatsappMessageTemplateUpdateResponse as WhatsappMessageTemplateUpdateResponse,

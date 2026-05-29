@@ -5759,3 +5759,15 @@ Methods:
 
 - <code title="get /voice_sdk_call_reports/{call_id}">client.voice_sdk_call_reports.<a href="./src/telnyx/resources/voice_sdk_call_reports.py">retrieve</a>(call_id) -> <a href="./src/telnyx/types/voice_sdk_call_report_retrieve_response.py">VoiceSDKCallReportRetrieveResponse</a></code>
 - <code title="get /voice_sdk_call_reports">client.voice_sdk_call_reports.<a href="./src/telnyx/resources/voice_sdk_call_reports.py">list</a>(\*\*<a href="src/telnyx/types/voice_sdk_call_report_list_params.py">params</a>) -> <a href="./src/telnyx/types/voice_sdk_call_report_list_response.py">SyncDefaultFlatPagination[VoiceSDKCallReportListResponse]</a></code>
+
+# SipRegistrationStatus
+
+Types:
+
+```python
+from telnyx.types import SipRegistrationStatusRetrieveResponse
+```
+
+Methods:
+
+- <code title="get /sip_registration_status">client.sip_registration_status.<a href="./src/telnyx/resources/sip_registration_status.py">retrieve</a>(\*\*<a href="src/telnyx/types/sip_registration_status_retrieve_params.py">params</a>) -> <a href="./src/telnyx/types/sip_registration_status_retrieve_response.py">SipRegistrationStatusRetrieveResponse</a></code>
