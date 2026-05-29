@@ -171,6 +171,7 @@ if TYPE_CHECKING:
         mobile_push_credentials,
         outbound_voice_profiles,
         regulatory_requirements,
+        sip_registration_status,
         traffic_policy_profiles,
         authentication_providers,
         customer_service_records,
@@ -317,6 +318,7 @@ if TYPE_CHECKING:
     from .resources.mobile_push_credentials import MobilePushCredentialsResource, AsyncMobilePushCredentialsResource
     from .resources.outbound_voice_profiles import OutboundVoiceProfilesResource, AsyncOutboundVoiceProfilesResource
     from .resources.regulatory_requirements import RegulatoryRequirementsResource, AsyncRegulatoryRequirementsResource
+    from .resources.sip_registration_status import SipRegistrationStatusResource, AsyncSipRegistrationStatusResource
     from .resources.traffic_policy_profiles import TrafficPolicyProfilesResource, AsyncTrafficPolicyProfilesResource
     from .resources.authentication_providers import (
         AuthenticationProvidersResource,
@@ -1684,6 +1686,13 @@ class Telnyx(SyncAPIClient):
         from .resources.voice_sdk_call_reports import VoiceSDKCallReportsResource
 
         return VoiceSDKCallReportsResource(self)
+
+    @cached_property
+    def sip_registration_status(self) -> SipRegistrationStatusResource:
+        """Look up SIP registration status across credential types"""
+        from .resources.sip_registration_status import SipRegistrationStatusResource
+
+        return SipRegistrationStatusResource(self)
 
     @cached_property
     def with_raw_response(self) -> TelnyxWithRawResponse:
@@ -3059,6 +3068,13 @@ class AsyncTelnyx(AsyncAPIClient):
         return AsyncVoiceSDKCallReportsResource(self)
 
     @cached_property
+    def sip_registration_status(self) -> AsyncSipRegistrationStatusResource:
+        """Look up SIP registration status across credential types"""
+        from .resources.sip_registration_status import AsyncSipRegistrationStatusResource
+
+        return AsyncSipRegistrationStatusResource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncTelnyxWithRawResponse:
         return AsyncTelnyxWithRawResponse(self)
 
@@ -4367,6 +4383,13 @@ class TelnyxWithRawResponse:
 
         return VoiceSDKCallReportsResourceWithRawResponse(self._client.voice_sdk_call_reports)
 
+    @cached_property
+    def sip_registration_status(self) -> sip_registration_status.SipRegistrationStatusResourceWithRawResponse:
+        """Look up SIP registration status across credential types"""
+        from .resources.sip_registration_status import SipRegistrationStatusResourceWithRawResponse
+
+        return SipRegistrationStatusResourceWithRawResponse(self._client.sip_registration_status)
+
 
 class AsyncTelnyxWithRawResponse:
     _client: AsyncTelnyx
@@ -5546,6 +5569,13 @@ class AsyncTelnyxWithRawResponse:
         from .resources.voice_sdk_call_reports import AsyncVoiceSDKCallReportsResourceWithRawResponse
 
         return AsyncVoiceSDKCallReportsResourceWithRawResponse(self._client.voice_sdk_call_reports)
+
+    @cached_property
+    def sip_registration_status(self) -> sip_registration_status.AsyncSipRegistrationStatusResourceWithRawResponse:
+        """Look up SIP registration status across credential types"""
+        from .resources.sip_registration_status import AsyncSipRegistrationStatusResourceWithRawResponse
+
+        return AsyncSipRegistrationStatusResourceWithRawResponse(self._client.sip_registration_status)
 
 
 class TelnyxWithStreamedResponse:
@@ -6728,6 +6758,13 @@ class TelnyxWithStreamedResponse:
         from .resources.voice_sdk_call_reports import VoiceSDKCallReportsResourceWithStreamingResponse
 
         return VoiceSDKCallReportsResourceWithStreamingResponse(self._client.voice_sdk_call_reports)
+
+    @cached_property
+    def sip_registration_status(self) -> sip_registration_status.SipRegistrationStatusResourceWithStreamingResponse:
+        """Look up SIP registration status across credential types"""
+        from .resources.sip_registration_status import SipRegistrationStatusResourceWithStreamingResponse
+
+        return SipRegistrationStatusResourceWithStreamingResponse(self._client.sip_registration_status)
 
 
 class AsyncTelnyxWithStreamedResponse:
@@ -7956,6 +7993,15 @@ class AsyncTelnyxWithStreamedResponse:
         from .resources.voice_sdk_call_reports import AsyncVoiceSDKCallReportsResourceWithStreamingResponse
 
         return AsyncVoiceSDKCallReportsResourceWithStreamingResponse(self._client.voice_sdk_call_reports)
+
+    @cached_property
+    def sip_registration_status(
+        self,
+    ) -> sip_registration_status.AsyncSipRegistrationStatusResourceWithStreamingResponse:
+        """Look up SIP registration status across credential types"""
+        from .resources.sip_registration_status import AsyncSipRegistrationStatusResourceWithStreamingResponse
+
+        return AsyncSipRegistrationStatusResourceWithStreamingResponse(self._client.sip_registration_status)
 
 
 Client = Telnyx
