@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.146.1 (2026-06-01)
+
+Full Changelog: [v4.146.0...v4.146.1](https://github.com/team-telnyx/telnyx-python/compare/v4.146.0...v4.146.1)
+
+### Bug Fixes
+
+* **sip-registration-status:** scope to phase 1 uac_third-party_credential ([a505c1a](https://github.com/team-telnyx/telnyx-python/commit/a505c1ab3ea2c93d044da6b53db494d7b8b2270a))
+
 ## 4.146.0 (2026-05-29)
 
 Full Changelog: [v4.145.0...v4.146.0](https://github.com/team-telnyx/telnyx-python/compare/v4.145.0...v4.146.0)
