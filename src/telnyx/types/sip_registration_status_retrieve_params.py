@@ -9,10 +9,13 @@ __all__ = ["SipRegistrationStatusRetrieveParams"]
 
 class SipRegistrationStatusRetrieveParams(TypedDict, total=False):
     connection_id: Required[str]
-    """Identifier of the connection or credential to look up."""
+    """Identifier of the UAC connection to look up."""
 
-    credential_type: Required[Literal["uac_external_credential", "telephony_credential", "sip_credential_connection"]]
-    """The kind of credential to look up."""
+    credential_type: Required[Literal["uac_external_credential"]]
+    """The kind of credential to look up.
+
+    Only `uac_external_credential` is supported today.
+    """
 
     user_id: Required[str]
     """Owner of the connection. Used to authorize the lookup."""
