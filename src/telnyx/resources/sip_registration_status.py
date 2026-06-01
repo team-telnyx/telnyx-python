@@ -24,7 +24,7 @@ __all__ = ["SipRegistrationStatusResource", "AsyncSipRegistrationStatusResource"
 
 
 class SipRegistrationStatusResource(SyncAPIResource):
-    """Look up SIP registration status across credential types"""
+    """Look up the live SIP registration status of a UAC connection."""
 
     @cached_property
     def with_raw_response(self) -> SipRegistrationStatusResourceWithRawResponse:
@@ -49,7 +49,7 @@ class SipRegistrationStatusResource(SyncAPIResource):
         self,
         *,
         connection_id: str,
-        credential_type: Literal["uac_external_credential", "telephony_credential", "sip_credential_connection"],
+        credential_type: Literal["uac_external_credential"],
         user_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -58,16 +58,16 @@ class SipRegistrationStatusResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SipRegistrationStatusRetrieveResponse:
-        """Returns the live SIP registration state of a connection or credential.
-
-        Supports
-        UAC third-party credentials, telephony credentials, and SIP credential
-        connections.
+        """
+        Returns the live SIP registration state of a UAC connection: whether it is
+        currently registered, when it last registered, and the last response Telnyx
+        received from the registrar. Only `uac_external_credential` is supported today.
 
         Args:
-          connection_id: Identifier of the connection or credential to look up.
+          connection_id: Identifier of the UAC connection to look up.
 
-          credential_type: The kind of credential to look up.
+          credential_type: The kind of credential to look up. Only `uac_external_credential` is supported
+              today.
 
           user_id: Owner of the connection. Used to authorize the lookup.
 
@@ -100,7 +100,7 @@ class SipRegistrationStatusResource(SyncAPIResource):
 
 
 class AsyncSipRegistrationStatusResource(AsyncAPIResource):
-    """Look up SIP registration status across credential types"""
+    """Look up the live SIP registration status of a UAC connection."""
 
     @cached_property
     def with_raw_response(self) -> AsyncSipRegistrationStatusResourceWithRawResponse:
@@ -125,7 +125,7 @@ class AsyncSipRegistrationStatusResource(AsyncAPIResource):
         self,
         *,
         connection_id: str,
-        credential_type: Literal["uac_external_credential", "telephony_credential", "sip_credential_connection"],
+        credential_type: Literal["uac_external_credential"],
         user_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -134,16 +134,16 @@ class AsyncSipRegistrationStatusResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SipRegistrationStatusRetrieveResponse:
-        """Returns the live SIP registration state of a connection or credential.
-
-        Supports
-        UAC third-party credentials, telephony credentials, and SIP credential
-        connections.
+        """
+        Returns the live SIP registration state of a UAC connection: whether it is
+        currently registered, when it last registered, and the last response Telnyx
+        received from the registrar. Only `uac_external_credential` is supported today.
 
         Args:
-          connection_id: Identifier of the connection or credential to look up.
+          connection_id: Identifier of the UAC connection to look up.
 
-          credential_type: The kind of credential to look up.
+          credential_type: The kind of credential to look up. Only `uac_external_credential` is supported
+              today.
 
           user_id: Owner of the connection. Used to authorize the lookup.
 

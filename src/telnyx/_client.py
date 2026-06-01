@@ -1689,7 +1689,7 @@ class Telnyx(SyncAPIClient):
 
     @cached_property
     def sip_registration_status(self) -> SipRegistrationStatusResource:
-        """Look up SIP registration status across credential types"""
+        """Look up the live SIP registration status of a UAC connection."""
         from .resources.sip_registration_status import SipRegistrationStatusResource
 
         return SipRegistrationStatusResource(self)
@@ -3069,7 +3069,7 @@ class AsyncTelnyx(AsyncAPIClient):
 
     @cached_property
     def sip_registration_status(self) -> AsyncSipRegistrationStatusResource:
-        """Look up SIP registration status across credential types"""
+        """Look up the live SIP registration status of a UAC connection."""
         from .resources.sip_registration_status import AsyncSipRegistrationStatusResource
 
         return AsyncSipRegistrationStatusResource(self)
@@ -4385,7 +4385,7 @@ class TelnyxWithRawResponse:
 
     @cached_property
     def sip_registration_status(self) -> sip_registration_status.SipRegistrationStatusResourceWithRawResponse:
-        """Look up SIP registration status across credential types"""
+        """Look up the live SIP registration status of a UAC connection."""
         from .resources.sip_registration_status import SipRegistrationStatusResourceWithRawResponse
 
         return SipRegistrationStatusResourceWithRawResponse(self._client.sip_registration_status)
@@ -5572,7 +5572,7 @@ class AsyncTelnyxWithRawResponse:
 
     @cached_property
     def sip_registration_status(self) -> sip_registration_status.AsyncSipRegistrationStatusResourceWithRawResponse:
-        """Look up SIP registration status across credential types"""
+        """Look up the live SIP registration status of a UAC connection."""
         from .resources.sip_registration_status import AsyncSipRegistrationStatusResourceWithRawResponse
 
         return AsyncSipRegistrationStatusResourceWithRawResponse(self._client.sip_registration_status)
@@ -6761,7 +6761,7 @@ class TelnyxWithStreamedResponse:
 
     @cached_property
     def sip_registration_status(self) -> sip_registration_status.SipRegistrationStatusResourceWithStreamingResponse:
-        """Look up SIP registration status across credential types"""
+        """Look up the live SIP registration status of a UAC connection."""
         from .resources.sip_registration_status import SipRegistrationStatusResourceWithStreamingResponse
 
         return SipRegistrationStatusResourceWithStreamingResponse(self._client.sip_registration_status)
@@ -7998,7 +7998,7 @@ class AsyncTelnyxWithStreamedResponse:
     def sip_registration_status(
         self,
     ) -> sip_registration_status.AsyncSipRegistrationStatusResourceWithStreamingResponse:
-        """Look up SIP registration status across credential types"""
+        """Look up the live SIP registration status of a UAC connection."""
         from .resources.sip_registration_status import AsyncSipRegistrationStatusResourceWithStreamingResponse
 
         return AsyncSipRegistrationStatusResourceWithStreamingResponse(self._client.sip_registration_status)
