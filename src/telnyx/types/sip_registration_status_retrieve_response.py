@@ -3,8 +3,6 @@
 from typing import Optional
 from typing_extensions import Literal
 
-from pydantic import Field as FieldInfo
-
 from .._models import BaseModel
 
 __all__ = ["SipRegistrationStatusRetrieveResponse", "SipRegistrationDetails"]
@@ -25,7 +23,7 @@ class SipRegistrationDetails(BaseModel):
     next_action_at: Optional[int] = None
     """Unix timestamp of the next scheduled registration action."""
 
-    sip_uri_user_host: Optional[str] = FieldInfo(alias="sipUriUserHost", default=None)
+    sip_uri_user_host: Optional[str] = None
     """SIP URI user@host of the registered contact."""
 
     uptime: Optional[int] = None
