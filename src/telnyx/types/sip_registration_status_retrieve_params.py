@@ -16,6 +16,3 @@ class SipRegistrationStatusRetrieveParams(TypedDict, total=False):
 
     Only `uac_external_credential` is supported today.
     """
-
-    user_id: Required[str]
-    """Owner of the connection. Used to authorize the lookup."""
