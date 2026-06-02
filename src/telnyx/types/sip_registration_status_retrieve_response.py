@@ -1,47 +1,38 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, Optional
+from typing import Optional
 from typing_extensions import Literal
+
+from pydantic import Field as FieldInfo
 
 from .._models import BaseModel
 
-__all__ = ["SipRegistrationStatusRetrieveResponse", "ExternalUacSettings", "InternalUacSettings"]
+__all__ = ["SipRegistrationStatusRetrieveResponse", "SipRegistrationDetails"]
 
 
-class ExternalUacSettings(BaseModel):
-    """Outward-facing SIP settings used for registration. Password is redacted."""
+class SipRegistrationDetails(BaseModel):
+    """Detailed registration information reported by the registrar."""
 
-    auth_username: Optional[str] = None
+    auth_retries: Optional[int] = None
+    """Number of authentication retries on the last attempt."""
 
-    expiration_sec: Optional[int] = None
+    expires: Optional[int] = None
+    """Unix timestamp when the current registration expires."""
 
-    from_user: Optional[str] = None
+    failures: Optional[int] = None
+    """Count of consecutive registration failures."""
 
-    outbound_proxy: Optional[str] = None
+    next_action_at: Optional[int] = None
+    """Unix timestamp of the next scheduled registration action."""
 
-    password: Optional[str] = None
-    """Always redacted."""
+    sip_uri_user_host: Optional[str] = FieldInfo(alias="sipUriUserHost", default=None)
+    """SIP URI user@host of the registered contact."""
 
-    proxy: Optional[str] = None
-
-    transport: Optional[Literal["TCP", "UDP", "TLS"]] = None
-
-    username: Optional[str] = None
-
-
-class InternalUacSettings(BaseModel):
-    """Internal routing target the connection delivers calls to."""
-
-    destination_uri: Optional[str] = None
+    uptime: Optional[int] = None
+    """Registration uptime reported by the registrar."""
 
 
 class SipRegistrationStatusRetrieveResponse(BaseModel):
-    b2bua_external: Optional[Dict[str, object]] = None
-    """Raw external-side registration block reported by the registrar."""
-
-    b2bua_internal: Optional[Dict[str, object]] = None
-    """Raw internal-side block reported by the registrar."""
-
     connection_id: Optional[str] = None
     """Identifier of the UAC connection."""
 
@@ -51,26 +42,19 @@ class SipRegistrationStatusRetrieveResponse(BaseModel):
     credential_type: Optional[Literal["uac_external_credential"]] = None
     """The credential type that was looked up."""
 
-    external_state: Optional[str] = None
-    """Registration state on the external (UAC / PBX) side, e.g. REGED."""
-
-    external_uac_settings: Optional[ExternalUacSettings] = None
-    """Outward-facing SIP settings used for registration. Password is redacted."""
-
-    internal_uac_settings: Optional[InternalUacSettings] = None
-    """Internal routing target the connection delivers calls to."""
+    credential_username: Optional[str] = None
+    """SIP username used for the registration."""
 
     last_registration_response: Optional[str] = None
     """SIP response from the last registration attempt."""
 
-    pair_state: Optional[str] = None
-    """Internal pairing state, e.g. ACTIVE or INACTIVE."""
-
     registered: Optional[bool] = None
     """True if the endpoint is currently registered."""
 
-    user_id: Optional[str] = None
-    """Owner of the connection."""
+    sip_registration_details: Optional[SipRegistrationDetails] = None
+    """Detailed registration information reported by the registrar."""
 
-    username: Optional[str] = None
-    """SIP username used for the registration."""
+    sip_registration_status: Optional[
+        Literal["unregistering", "connection_disabled", "standby", "failed", "trying", "registered", "unknown"]
+    ] = None
+    """Human-readable registration status derived from the registrar state."""
