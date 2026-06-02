@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.146.2 (2026-06-02)
+
+Full Changelog: [v4.146.1...v4.146.2](https://github.com/team-telnyx/telnyx-python/compare/v4.146.1...v4.146.2)
+
+### Bug Fixes
+
+* **sip-registration-status:** drop user_id query param ([8d01d62](https://github.com/team-telnyx/telnyx-python/commit/8d01d62e7f94df2a184dca5a597075b44885543d))
+
 ## 4.146.1 (2026-06-01)
 
 Full Changelog: [v4.146.0...v4.146.1](https://github.com/team-telnyx/telnyx-python/compare/v4.146.0...v4.146.1)
