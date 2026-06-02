@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.147.0 (2026-06-02)
+
+Full Changelog: [v4.146.2...v4.147.0](https://github.com/team-telnyx/telnyx-python/compare/v4.146.2...v4.147.0)
+
+### Features
+
+* **sip-registration-status:** finalize phase 1 response shape with status mapping ([6aefc9c](https://github.com/team-telnyx/telnyx-python/commit/6aefc9c27d3668688e7e908dabffe4b8d86d9f1f))
+
 ## 4.146.2 (2026-06-02)
 
 Full Changelog: [v4.146.1...v4.146.2](https://github.com/team-telnyx/telnyx-python/compare/v4.146.1...v4.146.2)
