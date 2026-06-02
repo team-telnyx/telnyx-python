@@ -50,7 +50,6 @@ class SipRegistrationStatusResource(SyncAPIResource):
         *,
         connection_id: str,
         credential_type: Literal["uac_external_credential"],
-        user_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -68,8 +67,6 @@ class SipRegistrationStatusResource(SyncAPIResource):
 
           credential_type: The kind of credential to look up. Only `uac_external_credential` is supported
               today.
-
-          user_id: Owner of the connection. Used to authorize the lookup.
 
           extra_headers: Send extra headers
 
@@ -90,7 +87,6 @@ class SipRegistrationStatusResource(SyncAPIResource):
                     {
                         "connection_id": connection_id,
                         "credential_type": credential_type,
-                        "user_id": user_id,
                     },
                     sip_registration_status_retrieve_params.SipRegistrationStatusRetrieveParams,
                 ),
@@ -126,7 +122,6 @@ class AsyncSipRegistrationStatusResource(AsyncAPIResource):
         *,
         connection_id: str,
         credential_type: Literal["uac_external_credential"],
-        user_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -144,8 +139,6 @@ class AsyncSipRegistrationStatusResource(AsyncAPIResource):
 
           credential_type: The kind of credential to look up. Only `uac_external_credential` is supported
               today.
-
-          user_id: Owner of the connection. Used to authorize the lookup.
 
           extra_headers: Send extra headers
 
@@ -166,7 +159,6 @@ class AsyncSipRegistrationStatusResource(AsyncAPIResource):
                     {
                         "connection_id": connection_id,
                         "credential_type": credential_type,
-                        "user_id": user_id,
                     },
                     sip_registration_status_retrieve_params.SipRegistrationStatusRetrieveParams,
                 ),

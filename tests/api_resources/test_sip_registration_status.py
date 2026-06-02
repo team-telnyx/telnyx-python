@@ -23,7 +23,6 @@ class TestSipRegistrationStatus:
         sip_registration_status = client.sip_registration_status.retrieve(
             connection_id="connection_id",
             credential_type="uac_external_credential",
-            user_id="user_id",
         )
         assert_matches_type(SipRegistrationStatusRetrieveResponse, sip_registration_status, path=["response"])
 
@@ -33,7 +32,6 @@ class TestSipRegistrationStatus:
         response = client.sip_registration_status.with_raw_response.retrieve(
             connection_id="connection_id",
             credential_type="uac_external_credential",
-            user_id="user_id",
         )
 
         assert response.is_closed is True
@@ -47,7 +45,6 @@ class TestSipRegistrationStatus:
         with client.sip_registration_status.with_streaming_response.retrieve(
             connection_id="connection_id",
             credential_type="uac_external_credential",
-            user_id="user_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -69,7 +66,6 @@ class TestAsyncSipRegistrationStatus:
         sip_registration_status = await async_client.sip_registration_status.retrieve(
             connection_id="connection_id",
             credential_type="uac_external_credential",
-            user_id="user_id",
         )
         assert_matches_type(SipRegistrationStatusRetrieveResponse, sip_registration_status, path=["response"])
 
@@ -79,7 +75,6 @@ class TestAsyncSipRegistrationStatus:
         response = await async_client.sip_registration_status.with_raw_response.retrieve(
             connection_id="connection_id",
             credential_type="uac_external_credential",
-            user_id="user_id",
         )
 
         assert response.is_closed is True
@@ -93,7 +88,6 @@ class TestAsyncSipRegistrationStatus:
         async with async_client.sip_registration_status.with_streaming_response.retrieve(
             connection_id="connection_id",
             credential_type="uac_external_credential",
-            user_id="user_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
