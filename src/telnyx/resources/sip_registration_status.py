@@ -24,7 +24,7 @@ __all__ = ["SipRegistrationStatusResource", "AsyncSipRegistrationStatusResource"
 
 
 class SipRegistrationStatusResource(SyncAPIResource):
-    """Look up the live SIP registration status of a UAC connection."""
+    """UAC connection operations"""
 
     @cached_property
     def with_raw_response(self) -> SipRegistrationStatusResourceWithRawResponse:
@@ -96,7 +96,7 @@ class SipRegistrationStatusResource(SyncAPIResource):
 
 
 class AsyncSipRegistrationStatusResource(AsyncAPIResource):
-    """Look up the live SIP registration status of a UAC connection."""
+    """UAC connection operations"""
 
     @cached_property
     def with_raw_response(self) -> AsyncSipRegistrationStatusResourceWithRawResponse:
