@@ -242,10 +242,6 @@ class CallsResource(SyncAPIResource):
         URL configured for the connection in the Mission Control Portal.
 
         Args:
-          params: Initiate a TeXML call. Provide either `Url` (fetches TeXML from URL) or `Texml`
-              (inline TeXML), or neither (uses the application default). `Url` and `Texml` are
-              mutually exclusive.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -696,10 +692,6 @@ class AsyncCallsResource(AsyncAPIResource):
         URL configured for the connection in the Mission Control Portal.
 
         Args:
-          params: Initiate a TeXML call. Provide either `Url` (fetches TeXML from URL) or `Texml`
-              (inline TeXML), or neither (uses the application default). `Url` and `Texml` are
-              mutually exclusive.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

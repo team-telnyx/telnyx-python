@@ -11,12 +11,11 @@ from ..shared_params.xai_voice_settings import XaiVoiceSettings
 from ..calls.telnyx_voice_settings_param import TelnyxVoiceSettingsParam
 from ..shared_params.rime_voice_settings import RimeVoiceSettings
 from ..shared_params.azure_voice_settings import AzureVoiceSettings
-from ..shared_params.inworld_voice_settings import InworldVoiceSettings
 from ..shared_params.minimax_voice_settings import MinimaxVoiceSettings
 from ..shared_params.resemble_voice_settings import ResembleVoiceSettings
 from ..calls.eleven_labs_voice_settings_param import ElevenLabsVoiceSettingsParam
 
-__all__ = ["ActionSpeakParams", "VoiceSettings"]
+__all__ = ["ActionSpeakParams", "VoiceSettings", "VoiceSettingsInworldVoiceSettings"]
 
 
 class ActionSpeakParams(TypedDict, total=False):
@@ -136,6 +135,11 @@ class ActionSpeakParams(TypedDict, total=False):
     """The settings associated with the voice selected"""
 
 
+class VoiceSettingsInworldVoiceSettings(TypedDict, total=False):
+    type: Required[Literal["inworld"]]
+    """Voice settings provider type"""
+
+
 VoiceSettings: TypeAlias = Union[
     ElevenLabsVoiceSettingsParam,
     TelnyxVoiceSettingsParam,
@@ -144,6 +148,6 @@ VoiceSettings: TypeAlias = Union[
     AzureVoiceSettings,
     RimeVoiceSettings,
     ResembleVoiceSettings,
-    InworldVoiceSettings,
+    VoiceSettingsInworldVoiceSettings,
     XaiVoiceSettings,
 ]
