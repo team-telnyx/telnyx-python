@@ -52,7 +52,7 @@ class SpeechToTextResource(SyncAPIResource):
             "deepgram", "speechmatics", "assemblyai", "xai", "soniox", "azure", "openai", "google", "telnyx"
         ]
         | Omit = omit,
-        service_type: Literal["streaming", "file_transcription", "in_call_transcription"] | Omit = omit,
+        service_type: Literal["streaming", "file_based", "in_call", "ai_assistant"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -68,10 +68,11 @@ class SpeechToTextResource(SyncAPIResource):
 
         - `streaming` — standalone WebSocket transcription via
           `/speech-to-text/transcription`.
-        - `file_transcription` — file-based transcription via
-          `/ai/audio/transcriptions`.
-        - `in_call_transcription` — live call transcription via Call Control
-          `transcription_start`.
+        - `file_based` — file-based transcription via `/ai/audio/transcriptions`.
+        - `in_call` — live call transcription via Call Control `transcription_start`.
+        - `ai_assistant` — STT configured on a Call Control AI Assistant via
+          voice-assistant `TranscriptionConfig` (covers both live-streaming and
+          non-streaming/batch models).
 
         Use this endpoint to discover which (provider, model) combinations are available
         for the surface you need, and which language codes each accepts. `auto` in a
@@ -84,7 +85,12 @@ class SpeechToTextResource(SyncAPIResource):
               models currently registered for any service type will return an empty `data`
               array rather than an error.
 
-          service_type: Filter to entries that support the given service type.
+          service_type: Filter to entries that support the given service type. For backward
+              compatibility with the values that briefly shipped before the product-aligned
+              rename, the legacy aliases `file_transcription`, `in_call_transcription`, and
+              `ai_assistant_transcription` are silently accepted and normalized to
+              `file_based`, `in_call`, and `ai_assistant` respectively. The response always
+              emits the canonical (post-rename) values.
 
           extra_headers: Send extra headers
 
@@ -144,7 +150,7 @@ class AsyncSpeechToTextResource(AsyncAPIResource):
             "deepgram", "speechmatics", "assemblyai", "xai", "soniox", "azure", "openai", "google", "telnyx"
         ]
         | Omit = omit,
-        service_type: Literal["streaming", "file_transcription", "in_call_transcription"] | Omit = omit,
+        service_type: Literal["streaming", "file_based", "in_call", "ai_assistant"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -160,10 +166,11 @@ class AsyncSpeechToTextResource(AsyncAPIResource):
 
         - `streaming` — standalone WebSocket transcription via
           `/speech-to-text/transcription`.
-        - `file_transcription` — file-based transcription via
-          `/ai/audio/transcriptions`.
-        - `in_call_transcription` — live call transcription via Call Control
-          `transcription_start`.
+        - `file_based` — file-based transcription via `/ai/audio/transcriptions`.
+        - `in_call` — live call transcription via Call Control `transcription_start`.
+        - `ai_assistant` — STT configured on a Call Control AI Assistant via
+          voice-assistant `TranscriptionConfig` (covers both live-streaming and
+          non-streaming/batch models).
 
         Use this endpoint to discover which (provider, model) combinations are available
         for the surface you need, and which language codes each accepts. `auto` in a
@@ -176,7 +183,12 @@ class AsyncSpeechToTextResource(AsyncAPIResource):
               models currently registered for any service type will return an empty `data`
               array rather than an error.
 
-          service_type: Filter to entries that support the given service type.
+          service_type: Filter to entries that support the given service type. For backward
+              compatibility with the values that briefly shipped before the product-aligned
+              rename, the legacy aliases `file_transcription`, `in_call_transcription`, and
+              `ai_assistant_transcription` are silently accepted and normalized to
+              `file_based`, `in_call`, and `ai_assistant` respectively. The response always
+              emits the canonical (post-rename) values.
 
           extra_headers: Send extra headers
 
