@@ -17,5 +17,12 @@ class SpeechToTextListProvidersParams(TypedDict, total=False):
     type will return an empty `data` array rather than an error.
     """
 
-    service_type: Literal["streaming", "file_transcription", "in_call_transcription"]
-    """Filter to entries that support the given service type."""
+    service_type: Literal["streaming", "file_based", "in_call", "ai_assistant"]
+    """Filter to entries that support the given service type.
+
+    For backward compatibility with the values that briefly shipped before the
+    product-aligned rename, the legacy aliases `file_transcription`,
+    `in_call_transcription`, and `ai_assistant_transcription` are silently accepted
+    and normalized to `file_based`, `in_call`, and `ai_assistant` respectively. The
+    response always emits the canonical (post-rename) values.
+    """
