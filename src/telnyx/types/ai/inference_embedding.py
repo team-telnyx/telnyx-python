@@ -69,7 +69,6 @@ __all__ = [
     "ConversationFlowEdgeConditionExpressionConditionExpressionStringLiteralExpression",
     "ConversationFlowEdgeConditionExpressionConditionExpressionNumberLiteralExpression",
     "ConversationFlowEdgeConditionExpressionConditionExpressionBooleanLiteralExpression",
-    "ConversationFlowEdgeConditionToolResultCondition",
     "ConversationFlowEdgeTarget",
     "ConversationFlowEdgeTargetNodeTarget",
     "ConversationFlowEdgeTargetAssistantTarget",
@@ -656,29 +655,8 @@ class ConversationFlowEdgeConditionExpressionCondition(BaseModel):
     type: Literal["expression"]
 
 
-class ConversationFlowEdgeConditionToolResultCondition(BaseModel):
-    """Edge condition that fires on the outcome of a tool node's execution.
-
-    Only valid on edges leaving a tool node (``type == "tool"``). A tool
-    node runs exactly one tool as a deliberate flow step; this condition
-    routes on whether that tool reported ``success`` or ``failure``. Use
-    it to split the happy path from the error path after a tool runs
-    (e.g. payment succeeded vs. declined). There is no ``tool_id`` field —
-    the tool node has a single tool, so the outcome is unambiguous.
-    """
-
-    outcome: Literal["success", "failure"]
-    """Match either the tool node's success or failure outcome."""
-
-    type: Literal["tool_result"]
-
-
 ConversationFlowEdgeCondition: TypeAlias = Annotated[
-    Union[
-        ConversationFlowEdgeConditionLlmCondition,
-        ConversationFlowEdgeConditionExpressionCondition,
-        ConversationFlowEdgeConditionToolResultCondition,
-    ],
+    Union[ConversationFlowEdgeConditionLlmCondition, ConversationFlowEdgeConditionExpressionCondition],
     PropertyInfo(discriminator="type"),
 ]
 
@@ -763,8 +741,7 @@ class ConversationFlowEdge(BaseModel):
     condition: ConversationFlowEdgeCondition
     """Condition that gates the transition.
 
-    Discriminated by `type`: `llm`, `expression`, or `tool_result`. A `tool_result`
-    condition is only valid on an edge leaving a tool node.
+    Discriminated by `type`: `llm`, `expression`.
     """
 
     start_node_id: str
