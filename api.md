@@ -20,7 +20,6 @@ from telnyx.types import (
     Feature,
     HostedNumber,
     InboundMessagePayload,
-    InworldVoiceSettings,
     MessagingFeatureSet,
     MessagingHostedNumberOrder,
     MessagingPaginationMeta,
@@ -575,7 +574,7 @@ Types:
 ```python
 from telnyx.types import (
     ModelMetadata,
-    AICreateResponseResponse,
+    AICreateResponseDeprecatedResponse,
     AIRetrieveModelsResponse,
     AISummarizeResponse,
 )
@@ -583,7 +582,7 @@ from telnyx.types import (
 
 Methods:
 
-- <code title="post /ai/responses">client.ai.<a href="./src/telnyx/resources/ai/ai.py">create_response</a>(\*\*<a href="src/telnyx/types/ai_create_response_params.py">params</a>) -> <a href="./src/telnyx/types/ai_create_response_response.py">AICreateResponseResponse</a></code>
+- <code title="post /ai/responses">client.ai.<a href="./src/telnyx/resources/ai/ai.py">create_response_deprecated</a>(\*\*<a href="src/telnyx/types/ai_create_response_deprecated_params.py">params</a>) -> <a href="./src/telnyx/types/ai_create_response_deprecated_response.py">AICreateResponseDeprecatedResponse</a></code>
 - <code title="get /ai/models">client.ai.<a href="./src/telnyx/resources/ai/ai.py">retrieve_models</a>() -> <a href="./src/telnyx/types/ai_retrieve_models_response.py">AIRetrieveModelsResponse</a></code>
 - <code title="post /ai/summarize">client.ai.<a href="./src/telnyx/resources/ai/ai.py">summarize</a>(\*\*<a href="src/telnyx/types/ai_summarize_params.py">params</a>) -> <a href="./src/telnyx/types/ai_summarize_response.py">AISummarizeResponse</a></code>
 
@@ -1415,8 +1414,6 @@ Types:
 ```python
 from telnyx.types import (
     CallAssistantRequest,
-    ConversationRelayInterruptionSettings,
-    ConversationRelayLanguage,
     CustomSipHeader,
     DialogflowConfig,
     SipHeader,
@@ -1461,8 +1458,6 @@ from telnyx.types.calls import (
     TranscriptionEngineBConfig,
     TranscriptionEngineDeepgramConfig,
     TranscriptionEngineGoogleConfig,
-    TranscriptionEngineSonioxConfig,
-    TranscriptionEngineSpeechmaticsConfig,
     TranscriptionEngineTelnyxConfig,
     TranscriptionEngineXaiConfig,
     TranscriptionStartRequest,
@@ -3884,22 +3879,6 @@ Methods:
 - <code title="delete /reports/mdr_usage_reports/{id}">client.reports.mdr_usage_reports.<a href="./src/telnyx/resources/reports/mdr_usage_reports.py">delete</a>(id) -> <a href="./src/telnyx/types/reports/mdr_usage_report_delete_response.py">MdrUsageReportDeleteResponse</a></code>
 - <code title="get /reports/mdr_usage_reports/sync">client.reports.mdr_usage_reports.<a href="./src/telnyx/resources/reports/mdr_usage_reports.py">fetch_sync</a>(\*\*<a href="src/telnyx/types/reports/mdr_usage_report_fetch_sync_params.py">params</a>) -> <a href="./src/telnyx/types/reports/mdr_usage_report_fetch_sync_response.py">MdrUsageReportFetchSyncResponse</a></code>
 
-# SpeechToText
-
-Types:
-
-```python
-from telnyx.types import (
-    SpeechToTextListProvidersResponse,
-    TranscribeClientEvent,
-    TranscribeServerEvent,
-)
-```
-
-Methods:
-
-- <code title="get /speech-to-text/providers">client.speech_to_text.<a href="./src/telnyx/resources/speech_to_text.py">list_providers</a>(\*\*<a href="src/telnyx/types/speech_to_text_list_providers_params.py">params</a>) -> <a href="./src/telnyx/types/speech_to_text_list_providers_response.py">SpeechToTextListProvidersResponse</a></code>
-
 # RequirementGroups
 
 Types:
@@ -4678,7 +4657,7 @@ Types:
 
 ```python
 from telnyx.types import (
-    TextToSpeechCreateSpeechResponse,
+    TextToSpeechGenerateResponse,
     TextToSpeechListVoicesResponse,
     StreamClientEvent,
     StreamServerEvent,
@@ -4687,8 +4666,7 @@ from telnyx.types import (
 
 Methods:
 
-- <code title="post /text-to-speech/speech">client.text_to_speech.<a href="./src/telnyx/resources/text_to_speech.py">create_speech</a>(\*\*<a href="src/telnyx/types/text_to_speech_create_speech_params.py">params</a>) -> <a href="./src/telnyx/types/text_to_speech_create_speech_response.py">TextToSpeechCreateSpeechResponse</a></code>
-- <code title="get /text-to-speech/speech">client.text_to_speech.<a href="./src/telnyx/resources/text_to_speech.py">generate_speech</a>(\*\*<a href="src/telnyx/types/text_to_speech_generate_speech_params.py">params</a>) -> None</code>
+- <code title="post /text-to-speech/speech">client.text_to_speech.<a href="./src/telnyx/resources/text_to_speech.py">generate</a>(\*\*<a href="src/telnyx/types/text_to_speech_generate_params.py">params</a>) -> <a href="./src/telnyx/types/text_to_speech_generate_response.py">TextToSpeechGenerateResponse</a></code>
 - <code title="get /text-to-speech/voices">client.text_to_speech.<a href="./src/telnyx/resources/text_to_speech.py">list_voices</a>(\*\*<a href="src/telnyx/types/text_to_speech_list_voices_params.py">params</a>) -> <a href="./src/telnyx/types/text_to_speech_list_voices_response.py">TextToSpeechListVoicesResponse</a></code>
 
 # UsageReports
@@ -5488,7 +5466,7 @@ Methods:
 Types:
 
 ```python
-from telnyx.types.whatsapp import WhatsappUserData, UserDataRetrieveResponse, UserDataUpdateResponse
+from telnyx.types.whatsapp import UserDataRetrieveResponse, UserDataUpdateResponse
 ```
 
 Methods:
@@ -5743,23 +5721,6 @@ Methods:
 
 - <code title="post /uac_connections/{id}/actions/check_registration_status">client.uac_connections.actions.<a href="./src/telnyx/resources/uac_connections/actions.py">check_registration_status</a>(id) -> <a href="./src/telnyx/types/uac_connections/action_check_registration_status_response.py">ActionCheckRegistrationStatusResponse</a></code>
 
-# VoiceSDKCallReports
-
-Types:
-
-```python
-from telnyx.types import (
-    VoiceSDKCallReportLogEntry,
-    VoiceSDKCallReportRetrieveResponse,
-    VoiceSDKCallReportListResponse,
-)
-```
-
-Methods:
-
-- <code title="get /voice_sdk_call_reports/{call_id}">client.voice_sdk_call_reports.<a href="./src/telnyx/resources/voice_sdk_call_reports.py">retrieve</a>(call_id) -> <a href="./src/telnyx/types/voice_sdk_call_report_retrieve_response.py">VoiceSDKCallReportRetrieveResponse</a></code>
-- <code title="get /voice_sdk_call_reports">client.voice_sdk_call_reports.<a href="./src/telnyx/resources/voice_sdk_call_reports.py">list</a>(\*\*<a href="src/telnyx/types/voice_sdk_call_report_list_params.py">params</a>) -> <a href="./src/telnyx/types/voice_sdk_call_report_list_response.py">SyncDefaultFlatPagination[VoiceSDKCallReportListResponse]</a></code>
-
 # SipRegistrationStatus
 
 Types:
@@ -5771,3 +5732,28 @@ from telnyx.types import SipRegistrationStatusRetrieveResponse
 Methods:
 
 - <code title="get /sip_registration_status">client.sip_registration_status.<a href="./src/telnyx/resources/sip_registration_status.py">retrieve</a>(\*\*<a href="src/telnyx/types/sip_registration_status_retrieve_params.py">params</a>) -> <a href="./src/telnyx/types/sip_registration_status_retrieve_response.py">SipRegistrationStatusRetrieveResponse</a></code>
+
+# SpeechToText
+
+Types:
+
+```python
+from telnyx.types import SpeechToTextListProvidersResponse
+```
+
+Methods:
+
+- <code title="get /speech-to-text/providers">client.speech_to_text.<a href="./src/telnyx/resources/speech_to_text.py">list_providers</a>(\*\*<a href="src/telnyx/types/speech_to_text_list_providers_params.py">params</a>) -> <a href="./src/telnyx/types/speech_to_text_list_providers_response.py">SpeechToTextListProvidersResponse</a></code>
+
+# VoiceSDKCallReports
+
+Types:
+
+```python
+from telnyx.types import VoiceSDKCallReportRetrieveResponse, VoiceSDKCallReportListResponse
+```
+
+Methods:
+
+- <code title="get /voice_sdk_call_reports/{call_id}">client.voice_sdk_call_reports.<a href="./src/telnyx/resources/voice_sdk_call_reports.py">retrieve</a>(call_id) -> <a href="./src/telnyx/types/voice_sdk_call_report_retrieve_response.py">VoiceSDKCallReportRetrieveResponse</a></code>
+- <code title="get /voice_sdk_call_reports">client.voice_sdk_call_reports.<a href="./src/telnyx/resources/voice_sdk_call_reports.py">list</a>(\*\*<a href="src/telnyx/types/voice_sdk_call_report_list_params.py">params</a>) -> <a href="./src/telnyx/types/voice_sdk_call_report_list_response.py">SyncDefaultFlatPagination[VoiceSDKCallReportListResponse]</a></code>

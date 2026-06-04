@@ -112,6 +112,7 @@ class VersionsResource(SyncAPIResource):
         version_id: str,
         *,
         assistant_id: str,
+        conversation_flow: version_update_params.ConversationFlow | Omit = omit,
         description: str | Omit = omit,
         dynamic_variables: Dict[str, object] | Omit = omit,
         dynamic_variables_webhook_timeout_ms: int | Omit = omit,
@@ -153,6 +154,12 @@ class VersionsResource(SyncAPIResource):
         version
 
         Args:
+          conversation_flow: Conversation flow as supplied by API clients (create / update).
+
+              A directed graph of `FlowNodeReq` connected by `FlowEdge`s. Validation enforces
+              unique node/edge IDs, that `start_node_id` references a real node, and that
+              every edge's endpoints reference real nodes.
+
           dynamic_variables: Map of dynamic variables and their default values
 
           dynamic_variables_webhook_timeout_ms: Timeout in milliseconds for the dynamic variables webhook. Must be between 1 and
@@ -246,6 +253,7 @@ class VersionsResource(SyncAPIResource):
             ),
             body=maybe_transform(
                 {
+                    "conversation_flow": conversation_flow,
                     "description": description,
                     "dynamic_variables": dynamic_variables,
                     "dynamic_variables_webhook_timeout_ms": dynamic_variables_webhook_timeout_ms,
@@ -473,6 +481,7 @@ class AsyncVersionsResource(AsyncAPIResource):
         version_id: str,
         *,
         assistant_id: str,
+        conversation_flow: version_update_params.ConversationFlow | Omit = omit,
         description: str | Omit = omit,
         dynamic_variables: Dict[str, object] | Omit = omit,
         dynamic_variables_webhook_timeout_ms: int | Omit = omit,
@@ -514,6 +523,12 @@ class AsyncVersionsResource(AsyncAPIResource):
         version
 
         Args:
+          conversation_flow: Conversation flow as supplied by API clients (create / update).
+
+              A directed graph of `FlowNodeReq` connected by `FlowEdge`s. Validation enforces
+              unique node/edge IDs, that `start_node_id` references a real node, and that
+              every edge's endpoints reference real nodes.
+
           dynamic_variables: Map of dynamic variables and their default values
 
           dynamic_variables_webhook_timeout_ms: Timeout in milliseconds for the dynamic variables webhook. Must be between 1 and
@@ -607,6 +622,7 @@ class AsyncVersionsResource(AsyncAPIResource):
             ),
             body=await async_maybe_transform(
                 {
+                    "conversation_flow": conversation_flow,
                     "description": description,
                     "dynamic_variables": dynamic_variables,
                     "dynamic_variables_webhook_timeout_ms": dynamic_variables_webhook_timeout_ms,

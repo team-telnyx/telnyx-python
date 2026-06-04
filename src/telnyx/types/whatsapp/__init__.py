@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-from .whatsapp_user_data import WhatsappUserData as WhatsappUserData
 from .template_list_params import TemplateListParams as TemplateListParams
 from .template_create_params import TemplateCreateParams as TemplateCreateParams
 from .user_data_update_params import UserDataUpdateParams as UserDataUpdateParams
