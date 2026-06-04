@@ -36,34 +36,6 @@ __all__ = [
     "ConversationFlowEdgeConditionLlmCondition",
     "ConversationFlowEdgeConditionExpressionCondition",
     "ConversationFlowEdgeConditionExpressionConditionExpression",
-    "ConversationFlowEdgeConditionExpressionConditionExpressionComparisonExpression",
-    "ConversationFlowEdgeConditionExpressionConditionExpressionComparisonExpressionLeft",
-    "ConversationFlowEdgeConditionExpressionConditionExpressionComparisonExpressionLeftDynamicVariableExpression",
-    "ConversationFlowEdgeConditionExpressionConditionExpressionComparisonExpressionLeftStringLiteralExpression",
-    "ConversationFlowEdgeConditionExpressionConditionExpressionComparisonExpressionLeftNumberLiteralExpression",
-    "ConversationFlowEdgeConditionExpressionConditionExpressionComparisonExpressionLeftBooleanLiteralExpression",
-    "ConversationFlowEdgeConditionExpressionConditionExpressionComparisonExpressionRight",
-    "ConversationFlowEdgeConditionExpressionConditionExpressionComparisonExpressionRightDynamicVariableExpression",
-    "ConversationFlowEdgeConditionExpressionConditionExpressionComparisonExpressionRightStringLiteralExpression",
-    "ConversationFlowEdgeConditionExpressionConditionExpressionComparisonExpressionRightNumberLiteralExpression",
-    "ConversationFlowEdgeConditionExpressionConditionExpressionComparisonExpressionRightBooleanLiteralExpression",
-    "ConversationFlowEdgeConditionExpressionConditionExpressionBooleanOpExpression",
-    "ConversationFlowEdgeConditionExpressionConditionExpressionBooleanOpExpressionOperand",
-    "ConversationFlowEdgeConditionExpressionConditionExpressionBooleanOpExpressionOperandDynamicVariableExpression",
-    "ConversationFlowEdgeConditionExpressionConditionExpressionBooleanOpExpressionOperandStringLiteralExpression",
-    "ConversationFlowEdgeConditionExpressionConditionExpressionBooleanOpExpressionOperandNumberLiteralExpression",
-    "ConversationFlowEdgeConditionExpressionConditionExpressionBooleanOpExpressionOperandBooleanLiteralExpression",
-    "ConversationFlowEdgeConditionExpressionConditionExpressionArithmeticExpression",
-    "ConversationFlowEdgeConditionExpressionConditionExpressionArithmeticExpressionLeft",
-    "ConversationFlowEdgeConditionExpressionConditionExpressionArithmeticExpressionLeftDynamicVariableExpression",
-    "ConversationFlowEdgeConditionExpressionConditionExpressionArithmeticExpressionLeftStringLiteralExpression",
-    "ConversationFlowEdgeConditionExpressionConditionExpressionArithmeticExpressionLeftNumberLiteralExpression",
-    "ConversationFlowEdgeConditionExpressionConditionExpressionArithmeticExpressionLeftBooleanLiteralExpression",
-    "ConversationFlowEdgeConditionExpressionConditionExpressionArithmeticExpressionRight",
-    "ConversationFlowEdgeConditionExpressionConditionExpressionArithmeticExpressionRightDynamicVariableExpression",
-    "ConversationFlowEdgeConditionExpressionConditionExpressionArithmeticExpressionRightStringLiteralExpression",
-    "ConversationFlowEdgeConditionExpressionConditionExpressionArithmeticExpressionRightNumberLiteralExpression",
-    "ConversationFlowEdgeConditionExpressionConditionExpressionArithmeticExpressionRightBooleanLiteralExpression",
     "ConversationFlowEdgeConditionExpressionConditionExpressionDynamicVariableExpression",
     "ConversationFlowEdgeConditionExpressionConditionExpressionStringLiteralExpression",
     "ConversationFlowEdgeConditionExpressionConditionExpressionNumberLiteralExpression",
@@ -399,351 +371,6 @@ class ConversationFlowEdgeConditionLlmCondition(TypedDict, total=False):
     type: Required[Literal["llm"]]
 
 
-class ConversationFlowEdgeConditionExpressionConditionExpressionComparisonExpressionLeftDynamicVariableExpression(
-    TypedDict, total=False
-):
-    """Reference a dynamic variable by name.
-
-    Resolved at runtime from the assistant's dynamic-variables context (see
-    `Assistant.dynamic_variables` and the dynamic-variables webhook).
-    """
-
-    name: Required[str]
-    """Variable name to look up in the runtime context."""
-
-    type: Required[Literal["variable"]]
-
-
-class ConversationFlowEdgeConditionExpressionConditionExpressionComparisonExpressionLeftStringLiteralExpression(
-    TypedDict, total=False
-):
-    """Constant string value."""
-
-    type: Required[Literal["string_literal"]]
-
-    value: Required[str]
-    """Literal string value."""
-
-
-class ConversationFlowEdgeConditionExpressionConditionExpressionComparisonExpressionLeftNumberLiteralExpression(
-    TypedDict, total=False
-):
-    """Constant numeric value (float; integers are accepted and stored as float)."""
-
-    type: Required[Literal["number_literal"]]
-
-    value: Required[float]
-    """Literal numeric value."""
-
-
-class ConversationFlowEdgeConditionExpressionConditionExpressionComparisonExpressionLeftBooleanLiteralExpression(
-    TypedDict, total=False
-):
-    """Constant boolean value. Useful for unconditional ('always') edges."""
-
-    type: Required[Literal["bool_literal"]]
-
-    value: Required[bool]
-    """Literal boolean value."""
-
-
-ConversationFlowEdgeConditionExpressionConditionExpressionComparisonExpressionLeft: TypeAlias = Union[
-    ConversationFlowEdgeConditionExpressionConditionExpressionComparisonExpressionLeftDynamicVariableExpression,
-    ConversationFlowEdgeConditionExpressionConditionExpressionComparisonExpressionLeftStringLiteralExpression,
-    ConversationFlowEdgeConditionExpressionConditionExpressionComparisonExpressionLeftNumberLiteralExpression,
-    ConversationFlowEdgeConditionExpressionConditionExpressionComparisonExpressionLeftBooleanLiteralExpression,
-    object,
-]
-
-
-class ConversationFlowEdgeConditionExpressionConditionExpressionComparisonExpressionRightDynamicVariableExpression(
-    TypedDict, total=False
-):
-    """Reference a dynamic variable by name.
-
-    Resolved at runtime from the assistant's dynamic-variables context (see
-    `Assistant.dynamic_variables` and the dynamic-variables webhook).
-    """
-
-    name: Required[str]
-    """Variable name to look up in the runtime context."""
-
-    type: Required[Literal["variable"]]
-
-
-class ConversationFlowEdgeConditionExpressionConditionExpressionComparisonExpressionRightStringLiteralExpression(
-    TypedDict, total=False
-):
-    """Constant string value."""
-
-    type: Required[Literal["string_literal"]]
-
-    value: Required[str]
-    """Literal string value."""
-
-
-class ConversationFlowEdgeConditionExpressionConditionExpressionComparisonExpressionRightNumberLiteralExpression(
-    TypedDict, total=False
-):
-    """Constant numeric value (float; integers are accepted and stored as float)."""
-
-    type: Required[Literal["number_literal"]]
-
-    value: Required[float]
-    """Literal numeric value."""
-
-
-class ConversationFlowEdgeConditionExpressionConditionExpressionComparisonExpressionRightBooleanLiteralExpression(
-    TypedDict, total=False
-):
-    """Constant boolean value. Useful for unconditional ('always') edges."""
-
-    type: Required[Literal["bool_literal"]]
-
-    value: Required[bool]
-    """Literal boolean value."""
-
-
-ConversationFlowEdgeConditionExpressionConditionExpressionComparisonExpressionRight: TypeAlias = Union[
-    ConversationFlowEdgeConditionExpressionConditionExpressionComparisonExpressionRightDynamicVariableExpression,
-    ConversationFlowEdgeConditionExpressionConditionExpressionComparisonExpressionRightStringLiteralExpression,
-    ConversationFlowEdgeConditionExpressionConditionExpressionComparisonExpressionRightNumberLiteralExpression,
-    ConversationFlowEdgeConditionExpressionConditionExpressionComparisonExpressionRightBooleanLiteralExpression,
-    object,
-]
-
-
-class ConversationFlowEdgeConditionExpressionConditionExpressionComparisonExpression(TypedDict, total=False):
-    """Compare two sub-expressions with a relational or membership operator.
-
-    Evaluates to a boolean. Used in edge conditions to gate transitions on
-    runtime values, e.g. `user_age >= 18` or `tier == "gold"`.
-    """
-
-    left: Required[ConversationFlowEdgeConditionExpressionConditionExpressionComparisonExpressionLeft]
-    """Left-hand operand sub-expression."""
-
-    op: Required[Literal["==", "!=", "<", "<=", ">", ">=", "contains", "not_contains"]]
-    """Relational/membership operator.
-
-    `contains` / `not_contains` apply to strings (substring) and arrays
-    (membership).
-    """
-
-    right: Required[ConversationFlowEdgeConditionExpressionConditionExpressionComparisonExpressionRight]
-    """Right-hand operand sub-expression."""
-
-    type: Required[Literal["comparison"]]
-
-
-class ConversationFlowEdgeConditionExpressionConditionExpressionBooleanOpExpressionOperandDynamicVariableExpression(
-    TypedDict, total=False
-):
-    """Reference a dynamic variable by name.
-
-    Resolved at runtime from the assistant's dynamic-variables context (see
-    `Assistant.dynamic_variables` and the dynamic-variables webhook).
-    """
-
-    name: Required[str]
-    """Variable name to look up in the runtime context."""
-
-    type: Required[Literal["variable"]]
-
-
-class ConversationFlowEdgeConditionExpressionConditionExpressionBooleanOpExpressionOperandStringLiteralExpression(
-    TypedDict, total=False
-):
-    """Constant string value."""
-
-    type: Required[Literal["string_literal"]]
-
-    value: Required[str]
-    """Literal string value."""
-
-
-class ConversationFlowEdgeConditionExpressionConditionExpressionBooleanOpExpressionOperandNumberLiteralExpression(
-    TypedDict, total=False
-):
-    """Constant numeric value (float; integers are accepted and stored as float)."""
-
-    type: Required[Literal["number_literal"]]
-
-    value: Required[float]
-    """Literal numeric value."""
-
-
-class ConversationFlowEdgeConditionExpressionConditionExpressionBooleanOpExpressionOperandBooleanLiteralExpression(
-    TypedDict, total=False
-):
-    """Constant boolean value. Useful for unconditional ('always') edges."""
-
-    type: Required[Literal["bool_literal"]]
-
-    value: Required[bool]
-    """Literal boolean value."""
-
-
-ConversationFlowEdgeConditionExpressionConditionExpressionBooleanOpExpressionOperand: TypeAlias = Union[
-    ConversationFlowEdgeConditionExpressionConditionExpressionBooleanOpExpressionOperandDynamicVariableExpression,
-    ConversationFlowEdgeConditionExpressionConditionExpressionBooleanOpExpressionOperandStringLiteralExpression,
-    ConversationFlowEdgeConditionExpressionConditionExpressionBooleanOpExpressionOperandNumberLiteralExpression,
-    ConversationFlowEdgeConditionExpressionConditionExpressionBooleanOpExpressionOperandBooleanLiteralExpression,
-    object,
-]
-
-
-class ConversationFlowEdgeConditionExpressionConditionExpressionBooleanOpExpression(TypedDict, total=False):
-    """Combine sub-expressions with a logical operator (`and` / `or` / `not`).
-
-    `and` and `or` accept two or more operands; `not` accepts exactly one.
-    """
-
-    op: Required[Literal["and", "or", "not"]]
-    """Logical operator. `not` is unary; `and`/`or` are n-ary (>=2)."""
-
-    operands: Required[Iterable[ConversationFlowEdgeConditionExpressionConditionExpressionBooleanOpExpressionOperand]]
-    """Operand sub-expressions.
-
-    Length must be exactly 1 for `not` and >= 2 for `and`/`or`.
-    """
-
-    type: Required[Literal["bool_op"]]
-
-
-class ConversationFlowEdgeConditionExpressionConditionExpressionArithmeticExpressionLeftDynamicVariableExpression(
-    TypedDict, total=False
-):
-    """Reference a dynamic variable by name.
-
-    Resolved at runtime from the assistant's dynamic-variables context (see
-    `Assistant.dynamic_variables` and the dynamic-variables webhook).
-    """
-
-    name: Required[str]
-    """Variable name to look up in the runtime context."""
-
-    type: Required[Literal["variable"]]
-
-
-class ConversationFlowEdgeConditionExpressionConditionExpressionArithmeticExpressionLeftStringLiteralExpression(
-    TypedDict, total=False
-):
-    """Constant string value."""
-
-    type: Required[Literal["string_literal"]]
-
-    value: Required[str]
-    """Literal string value."""
-
-
-class ConversationFlowEdgeConditionExpressionConditionExpressionArithmeticExpressionLeftNumberLiteralExpression(
-    TypedDict, total=False
-):
-    """Constant numeric value (float; integers are accepted and stored as float)."""
-
-    type: Required[Literal["number_literal"]]
-
-    value: Required[float]
-    """Literal numeric value."""
-
-
-class ConversationFlowEdgeConditionExpressionConditionExpressionArithmeticExpressionLeftBooleanLiteralExpression(
-    TypedDict, total=False
-):
-    """Constant boolean value. Useful for unconditional ('always') edges."""
-
-    type: Required[Literal["bool_literal"]]
-
-    value: Required[bool]
-    """Literal boolean value."""
-
-
-ConversationFlowEdgeConditionExpressionConditionExpressionArithmeticExpressionLeft: TypeAlias = Union[
-    ConversationFlowEdgeConditionExpressionConditionExpressionArithmeticExpressionLeftDynamicVariableExpression,
-    ConversationFlowEdgeConditionExpressionConditionExpressionArithmeticExpressionLeftStringLiteralExpression,
-    ConversationFlowEdgeConditionExpressionConditionExpressionArithmeticExpressionLeftNumberLiteralExpression,
-    ConversationFlowEdgeConditionExpressionConditionExpressionArithmeticExpressionLeftBooleanLiteralExpression,
-    object,
-]
-
-
-class ConversationFlowEdgeConditionExpressionConditionExpressionArithmeticExpressionRightDynamicVariableExpression(
-    TypedDict, total=False
-):
-    """Reference a dynamic variable by name.
-
-    Resolved at runtime from the assistant's dynamic-variables context (see
-    `Assistant.dynamic_variables` and the dynamic-variables webhook).
-    """
-
-    name: Required[str]
-    """Variable name to look up in the runtime context."""
-
-    type: Required[Literal["variable"]]
-
-
-class ConversationFlowEdgeConditionExpressionConditionExpressionArithmeticExpressionRightStringLiteralExpression(
-    TypedDict, total=False
-):
-    """Constant string value."""
-
-    type: Required[Literal["string_literal"]]
-
-    value: Required[str]
-    """Literal string value."""
-
-
-class ConversationFlowEdgeConditionExpressionConditionExpressionArithmeticExpressionRightNumberLiteralExpression(
-    TypedDict, total=False
-):
-    """Constant numeric value (float; integers are accepted and stored as float)."""
-
-    type: Required[Literal["number_literal"]]
-
-    value: Required[float]
-    """Literal numeric value."""
-
-
-class ConversationFlowEdgeConditionExpressionConditionExpressionArithmeticExpressionRightBooleanLiteralExpression(
-    TypedDict, total=False
-):
-    """Constant boolean value. Useful for unconditional ('always') edges."""
-
-    type: Required[Literal["bool_literal"]]
-
-    value: Required[bool]
-    """Literal boolean value."""
-
-
-ConversationFlowEdgeConditionExpressionConditionExpressionArithmeticExpressionRight: TypeAlias = Union[
-    ConversationFlowEdgeConditionExpressionConditionExpressionArithmeticExpressionRightDynamicVariableExpression,
-    ConversationFlowEdgeConditionExpressionConditionExpressionArithmeticExpressionRightStringLiteralExpression,
-    ConversationFlowEdgeConditionExpressionConditionExpressionArithmeticExpressionRightNumberLiteralExpression,
-    ConversationFlowEdgeConditionExpressionConditionExpressionArithmeticExpressionRightBooleanLiteralExpression,
-    object,
-]
-
-
-class ConversationFlowEdgeConditionExpressionConditionExpressionArithmeticExpression(TypedDict, total=False):
-    """Numeric expression: applies an arithmetic operator to two sub-expressions.
-
-    Useful for derived numeric checks, e.g. `cart_total + shipping > 50`.
-    Both operands should resolve to numbers at runtime.
-    """
-
-    left: Required[ConversationFlowEdgeConditionExpressionConditionExpressionArithmeticExpressionLeft]
-    """Left-hand operand sub-expression."""
-
-    op: Required[Literal["+", "-", "*", "/", "%"]]
-    """Arithmetic operator applied to `left` and `right`."""
-
-    right: Required[ConversationFlowEdgeConditionExpressionConditionExpressionArithmeticExpressionRight]
-    """Right-hand operand sub-expression."""
-
-    type: Required[Literal["arithmetic"]]
-
-
 class ConversationFlowEdgeConditionExpressionConditionExpressionDynamicVariableExpression(TypedDict, total=False):
     """Reference a dynamic variable by name.
 
@@ -785,13 +412,11 @@ class ConversationFlowEdgeConditionExpressionConditionExpressionBooleanLiteralEx
 
 
 ConversationFlowEdgeConditionExpressionConditionExpression: TypeAlias = Union[
-    ConversationFlowEdgeConditionExpressionConditionExpressionComparisonExpression,
-    ConversationFlowEdgeConditionExpressionConditionExpressionBooleanOpExpression,
-    ConversationFlowEdgeConditionExpressionConditionExpressionArithmeticExpression,
     ConversationFlowEdgeConditionExpressionConditionExpressionDynamicVariableExpression,
     ConversationFlowEdgeConditionExpressionConditionExpressionStringLiteralExpression,
     ConversationFlowEdgeConditionExpressionConditionExpressionNumberLiteralExpression,
     ConversationFlowEdgeConditionExpressionConditionExpressionBooleanLiteralExpression,
+    object,
 ]
 
 
@@ -804,7 +429,16 @@ class ConversationFlowEdgeConditionExpressionCondition(TypedDict, total=False):
     """
 
     expression: Required[ConversationFlowEdgeConditionExpressionConditionExpression]
-    """Root of the expression AST. Must evaluate to a boolean."""
+    """A node in a deterministic expression AST.
+
+    Exactly one variant is selected by the `type` discriminator. Terminal variants
+    (`number_literal`, `string_literal`, `bool_literal`, `variable`) bottom out the
+    recursion; `arithmetic`, `bool_op`, and `comparison` nest further
+    sub-expressions.
+
+    Extracted into a single named schema so the recursive union is defined once (was
+    previously inlined at every operand site).
+    """
 
     type: Required[Literal["expression"]]
 
