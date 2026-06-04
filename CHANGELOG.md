@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.150.0 (2026-06-04)
+
+Full Changelog: [v4.149.1...v4.150.0](https://github.com/team-telnyx/telnyx-python/compare/v4.149.1...v4.150.0)
+
+### Features
+
+* **inference:** expose description on transfer tool params ([c5e5b44](https://github.com/team-telnyx/telnyx-python/commit/c5e5b444b113f4656d5d810f071489cb85332745))
+
 ## 4.149.1 (2026-06-04)
 
 Full Changelog: [v4.149.0...v4.149.1](https://github.com/team-telnyx/telnyx-python/compare/v4.149.0...v4.149.1)
