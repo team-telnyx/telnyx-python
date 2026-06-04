@@ -1,5 +1,21 @@
 # Changelog
 
+## 4.148.0 (2026-06-04)
+
+Full Changelog: [v4.147.0...v4.148.0](https://github.com/team-telnyx/telnyx-python/compare/v4.147.0...v4.148.0)
+
+### Features
+
+* AI-assistants conversation flow ([f197fd5](https://github.com/team-telnyx/telnyx-python/commit/f197fd5b2a62ddab16ce53317d71884ac6992afe))
+* TELAPPS-406: nest service_types with per-service languages in STT spec ([1d6ae82](https://github.com/team-telnyx/telnyx-python/commit/1d6ae828dd5ae74f36c03d2bb9769754a2738e47))
+* Update conversation flow ([f9d06d9](https://github.com/team-telnyx/telnyx-python/commit/f9d06d91bf648327b2d8c4b595e215c89014d904))
+
+
+### Bug Fixes
+
+* **sip-registration-status:** move operation under UAC Connections tag ([8afb784](https://github.com/team-telnyx/telnyx-python/commit/8afb784b51274044e2fde8f8909fb49b9f892e66))
+* **sip-registration-status:** rename detail field to sip_uri_user_host ([85b385c](https://github.com/team-telnyx/telnyx-python/commit/85b385c08ba75ff058ce4d2f105a85a6aa52d844))
+
 ## 4.147.0 (2026-06-02)
 
 Full Changelog: [v4.146.2...v4.147.0](https://github.com/team-telnyx/telnyx-python/compare/v4.146.2...v4.147.0)

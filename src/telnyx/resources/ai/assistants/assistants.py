@@ -156,6 +156,7 @@ class AssistantsResource(SyncAPIResource):
         *,
         instructions: str,
         name: str,
+        conversation_flow: assistant_create_params.ConversationFlow | Omit = omit,
         description: str | Omit = omit,
         dynamic_variables: Dict[str, object] | Omit = omit,
         dynamic_variables_webhook_timeout_ms: int | Omit = omit,
@@ -194,6 +195,12 @@ class AssistantsResource(SyncAPIResource):
         Args:
           instructions: System instructions for the assistant. These may be templated with
               [dynamic variables](https://developers.telnyx.com/docs/inference/ai-assistants/dynamic-variables)
+
+          conversation_flow: Conversation flow as supplied by API clients (create / update).
+
+              A directed graph of `FlowNodeReq` connected by `FlowEdge`s. Validation enforces
+              unique node/edge IDs, that `start_node_id` references a real node, and that
+              every edge's endpoints reference real nodes.
 
           dynamic_variables: Map of dynamic variables and their default values
 
@@ -279,6 +286,7 @@ class AssistantsResource(SyncAPIResource):
                 {
                     "instructions": instructions,
                     "name": name,
+                    "conversation_flow": conversation_flow,
                     "description": description,
                     "dynamic_variables": dynamic_variables,
                     "dynamic_variables_webhook_timeout_ms": dynamic_variables_webhook_timeout_ms,
@@ -366,6 +374,7 @@ class AssistantsResource(SyncAPIResource):
         self,
         assistant_id: str,
         *,
+        conversation_flow: assistant_update_params.ConversationFlow | Omit = omit,
         description: str | Omit = omit,
         dynamic_variables: Dict[str, object] | Omit = omit,
         dynamic_variables_webhook_timeout_ms: int | Omit = omit,
@@ -406,6 +415,12 @@ class AssistantsResource(SyncAPIResource):
         Update an AI Assistant's attributes.
 
         Args:
+          conversation_flow: Conversation flow as supplied by API clients (create / update).
+
+              A directed graph of `FlowNodeReq` connected by `FlowEdge`s. Validation enforces
+              unique node/edge IDs, that `start_node_id` references a real node, and that
+              every edge's endpoints reference real nodes.
+
           dynamic_variables: Map of dynamic variables and their default values
 
           dynamic_variables_webhook_timeout_ms: Timeout in milliseconds for the dynamic variables webhook. Must be between 1 and
@@ -498,6 +513,7 @@ class AssistantsResource(SyncAPIResource):
             path_template("/ai/assistants/{assistant_id}", assistant_id=assistant_id),
             body=maybe_transform(
                 {
+                    "conversation_flow": conversation_flow,
                     "description": description,
                     "dynamic_variables": dynamic_variables,
                     "dynamic_variables_webhook_timeout_ms": dynamic_variables_webhook_timeout_ms,
@@ -881,6 +897,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
         *,
         instructions: str,
         name: str,
+        conversation_flow: assistant_create_params.ConversationFlow | Omit = omit,
         description: str | Omit = omit,
         dynamic_variables: Dict[str, object] | Omit = omit,
         dynamic_variables_webhook_timeout_ms: int | Omit = omit,
@@ -919,6 +936,12 @@ class AsyncAssistantsResource(AsyncAPIResource):
         Args:
           instructions: System instructions for the assistant. These may be templated with
               [dynamic variables](https://developers.telnyx.com/docs/inference/ai-assistants/dynamic-variables)
+
+          conversation_flow: Conversation flow as supplied by API clients (create / update).
+
+              A directed graph of `FlowNodeReq` connected by `FlowEdge`s. Validation enforces
+              unique node/edge IDs, that `start_node_id` references a real node, and that
+              every edge's endpoints reference real nodes.
 
           dynamic_variables: Map of dynamic variables and their default values
 
@@ -1004,6 +1027,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
                 {
                     "instructions": instructions,
                     "name": name,
+                    "conversation_flow": conversation_flow,
                     "description": description,
                     "dynamic_variables": dynamic_variables,
                     "dynamic_variables_webhook_timeout_ms": dynamic_variables_webhook_timeout_ms,
@@ -1091,6 +1115,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
         self,
         assistant_id: str,
         *,
+        conversation_flow: assistant_update_params.ConversationFlow | Omit = omit,
         description: str | Omit = omit,
         dynamic_variables: Dict[str, object] | Omit = omit,
         dynamic_variables_webhook_timeout_ms: int | Omit = omit,
@@ -1131,6 +1156,12 @@ class AsyncAssistantsResource(AsyncAPIResource):
         Update an AI Assistant's attributes.
 
         Args:
+          conversation_flow: Conversation flow as supplied by API clients (create / update).
+
+              A directed graph of `FlowNodeReq` connected by `FlowEdge`s. Validation enforces
+              unique node/edge IDs, that `start_node_id` references a real node, and that
+              every edge's endpoints reference real nodes.
+
           dynamic_variables: Map of dynamic variables and their default values
 
           dynamic_variables_webhook_timeout_ms: Timeout in milliseconds for the dynamic variables webhook. Must be between 1 and
@@ -1223,6 +1254,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
             path_template("/ai/assistants/{assistant_id}", assistant_id=assistant_id),
             body=await async_maybe_transform(
                 {
+                    "conversation_flow": conversation_flow,
                     "description": description,
                     "dynamic_variables": dynamic_variables,
                     "dynamic_variables_webhook_timeout_ms": dynamic_variables_webhook_timeout_ms,

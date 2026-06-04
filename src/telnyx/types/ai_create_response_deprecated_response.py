@@ -3,6 +3,6 @@
 from typing import Dict
 from typing_extensions import TypeAlias
 
-__all__ = ["AICreateResponseResponse"]
+__all__ = ["AICreateResponseDeprecatedResponse"]
 
-AICreateResponseResponse: TypeAlias = Dict[str, object]
+AICreateResponseDeprecatedResponse: TypeAlias = Dict[str, object]
