@@ -216,6 +216,15 @@ class TransferTransfer(_TransferTransferReservedKeywords, total=False):
     custom_headers: Iterable[TransferTransferCustomHeader]
     """Custom headers to be added to the SIP INVITE for the transfer command."""
 
+    description: str
+    """A description of the transfer tool.
+
+    By default, Telnyx generates this automatically based on the configured targets.
+    Typically only set when importing an assistant from another provider that
+    allowed a custom description; in that case the provided value is preserved. Most
+    users should leave this empty and let Telnyx manage it.
+    """
+
     voicemail_detection: TransferTransferVoicemailDetection
     """
     Configuration for voicemail detection (AMD - Answering Machine Detection) on the
