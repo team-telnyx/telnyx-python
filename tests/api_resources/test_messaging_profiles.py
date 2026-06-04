@@ -155,6 +155,7 @@ class TestMessagingProfiles:
     def test_method_update_with_all_params(self, client: Telnyx) -> None:
         messaging_profile = client.messaging_profiles.update(
             messaging_profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            ai_assistant_id="ai_assistant-a80a9d4a-728c-4593-852c-2e93ad890000",
             alpha_sender="sqF",
             daily_spend_limit="269125115713",
             daily_spend_limit_enabled=True,
@@ -650,6 +651,7 @@ class TestAsyncMessagingProfiles:
     async def test_method_update_with_all_params(self, async_client: AsyncTelnyx) -> None:
         messaging_profile = await async_client.messaging_profiles.update(
             messaging_profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            ai_assistant_id="ai_assistant-a80a9d4a-728c-4593-852c-2e93ad890000",
             alpha_sender="sqF",
             daily_spend_limit="269125115713",
             daily_spend_limit_enabled=True,
