@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.149.1 (2026-06-04)
+
+Full Changelog: [v4.149.0...v4.149.1](https://github.com/team-telnyx/telnyx-python/compare/v4.149.0...v4.149.1)
+
+### Bug Fixes
+
+* **inference:** extract recursive expression AST into named Expression schema ([0f55337](https://github.com/team-telnyx/telnyx-python/commit/0f55337205bb55c0aafcf580cdf12774f0241356))
+
 ## 4.149.0 (2026-06-04)
 
 Full Changelog: [v4.148.0...v4.149.0](https://github.com/team-telnyx/telnyx-python/compare/v4.148.0...v4.149.0)
