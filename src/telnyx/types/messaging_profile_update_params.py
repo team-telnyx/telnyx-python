@@ -13,6 +13,9 @@ __all__ = ["MessagingProfileUpdateParams"]
 
 
 class MessagingProfileUpdateParams(TypedDict, total=False):
+    ai_assistant_id: Optional[str]
+    """The ID of the AI assistant associated with this messaging profile."""
+
     alpha_sender: Optional[str]
     """
     The alphanumeric sender ID to use when sending to destinations that require an

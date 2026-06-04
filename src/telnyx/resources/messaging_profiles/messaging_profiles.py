@@ -252,6 +252,7 @@ class MessagingProfilesResource(SyncAPIResource):
         self,
         messaging_profile_id: str,
         *,
+        ai_assistant_id: Optional[str] | Omit = omit,
         alpha_sender: Optional[str] | Omit = omit,
         daily_spend_limit: str | Omit = omit,
         daily_spend_limit_enabled: bool | Omit = omit,
@@ -279,6 +280,8 @@ class MessagingProfilesResource(SyncAPIResource):
         Update a messaging profile
 
         Args:
+          ai_assistant_id: The ID of the AI assistant associated with this messaging profile.
+
           alpha_sender: The alphanumeric sender ID to use when sending to destinations that require an
               alphanumeric sender ID.
 
@@ -347,6 +350,7 @@ class MessagingProfilesResource(SyncAPIResource):
             path_template("/messaging_profiles/{messaging_profile_id}", messaging_profile_id=messaging_profile_id),
             body=maybe_transform(
                 {
+                    "ai_assistant_id": ai_assistant_id,
                     "alpha_sender": alpha_sender,
                     "daily_spend_limit": daily_spend_limit,
                     "daily_spend_limit_enabled": daily_spend_limit_enabled,
@@ -846,6 +850,7 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
         self,
         messaging_profile_id: str,
         *,
+        ai_assistant_id: Optional[str] | Omit = omit,
         alpha_sender: Optional[str] | Omit = omit,
         daily_spend_limit: str | Omit = omit,
         daily_spend_limit_enabled: bool | Omit = omit,
@@ -873,6 +878,8 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
         Update a messaging profile
 
         Args:
+          ai_assistant_id: The ID of the AI assistant associated with this messaging profile.
+
           alpha_sender: The alphanumeric sender ID to use when sending to destinations that require an
               alphanumeric sender ID.
 
@@ -941,6 +948,7 @@ class AsyncMessagingProfilesResource(AsyncAPIResource):
             path_template("/messaging_profiles/{messaging_profile_id}", messaging_profile_id=messaging_profile_id),
             body=await async_maybe_transform(
                 {
+                    "ai_assistant_id": ai_assistant_id,
                     "alpha_sender": alpha_sender,
                     "daily_spend_limit": daily_spend_limit,
                     "daily_spend_limit_enabled": daily_spend_limit_enabled,
