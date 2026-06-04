@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.149.0 (2026-06-04)
+
+Full Changelog: [v4.148.0...v4.149.0](https://github.com/team-telnyx/telnyx-python/compare/v4.148.0...v4.149.0)
+
+### Features
+
+* add assistant_id to MessagingProfile and request schemas ([b0b5e4c](https://github.com/team-telnyx/telnyx-python/commit/b0b5e4ce6d49411bb282086ed49eba40eac9ee12))
+
 ## 4.148.0 (2026-06-04)
 
 Full Changelog: [v4.147.0...v4.148.0](https://github.com/team-telnyx/telnyx-python/compare/v4.147.0...v4.148.0)
