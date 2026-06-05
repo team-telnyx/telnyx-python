@@ -17,16 +17,14 @@ from ..._response import (
 from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.reputation import number_list_params, number_retrieve_params
+from ...types.reputation.number_list_response import NumberListResponse
 from ...types.reputation.number_retrieve_response import NumberRetrieveResponse
-from ...types.shared.reputation_phone_number_with_reputation_data import ReputationPhoneNumberWithReputationData
 
 __all__ = ["NumbersResource", "AsyncNumbersResource"]
 
 
 class NumbersResource(SyncAPIResource):
-    """
-    Associate phone numbers with an enterprise for reputation monitoring and retrieve reputation scores
-    """
+    """Phone-number reputation monitoring (spam-score lookup and tracking)."""
 
     @cached_property
     def with_raw_response(self) -> NumbersResourceWithRawResponse:
@@ -60,14 +58,12 @@ class NumbersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NumberRetrieveResponse:
         """
-        Get reputation data for a specific phone number without requiring an
-        `enterprise_id`.
-
-        Same response as the enterprise-scoped endpoint. Uses cached data by default.
+        Convenience alias for
+        `GET /v2/enterprises/{enterprise_id}/reputation/numbers/{phone_number}`.
 
         Args:
-          fresh: When true, fetches fresh reputation data (incurs API cost). When false, returns
-              cached data.
+          fresh: When true, fetches fresh reputation data (incurs API cost). When false
+              (default), returns cached data.
 
           extra_headers: Send extra headers
 
@@ -103,21 +99,18 @@ class NumbersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[ReputationPhoneNumberWithReputationData]:
-        """List all phone numbers enrolled in Number Reputation monitoring for your
-        account.
-
-        This is a simplified endpoint that does not require an `enterprise_id`
-        — it returns numbers across all your enterprises.
-
-        Supports pagination and filtering by phone number.
+    ) -> SyncDefaultFlatPagination[NumberListResponse]:
+        """
+        Convenience alias for `GET /v2/enterprises/{enterprise_id}/reputation/numbers`
+        that returns numbers across every enterprise you own. Useful when you don't want
+        to look up the enterprise id first.
 
         Args:
-          page_number: Page number (1-indexed)
+          page_number: 1-based page number. Out-of-range values return an empty page with correct meta.
 
-          page_size: Number of items per page
+          page_size: Items per page. Maximum 250; values above are clamped to 250.
 
-          phone_number: Filter by specific phone number (E.164 format)
+          phone_number: Filter by specific phone number (E.164 format).
 
           extra_headers: Send extra headers
 
@@ -129,7 +122,7 @@ class NumbersResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/reputation/numbers",
-            page=SyncDefaultFlatPagination[ReputationPhoneNumberWithReputationData],
+            page=SyncDefaultFlatPagination[NumberListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -144,7 +137,7 @@ class NumbersResource(SyncAPIResource):
                     number_list_params.NumberListParams,
                 ),
             ),
-            model=ReputationPhoneNumberWithReputationData,
+            model=NumberListResponse,
         )
 
     def delete(
@@ -159,8 +152,8 @@ class NumbersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Remove a phone number from Number Reputation monitoring without requiring an
-        `enterprise_id`.
+        Convenience alias for
+        `DELETE /v2/enterprises/{enterprise_id}/reputation/numbers/{phone_number}`.
 
         Args:
           extra_headers: Send extra headers
@@ -184,9 +177,7 @@ class NumbersResource(SyncAPIResource):
 
 
 class AsyncNumbersResource(AsyncAPIResource):
-    """
-    Associate phone numbers with an enterprise for reputation monitoring and retrieve reputation scores
-    """
+    """Phone-number reputation monitoring (spam-score lookup and tracking)."""
 
     @cached_property
     def with_raw_response(self) -> AsyncNumbersResourceWithRawResponse:
@@ -220,14 +211,12 @@ class AsyncNumbersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NumberRetrieveResponse:
         """
-        Get reputation data for a specific phone number without requiring an
-        `enterprise_id`.
-
-        Same response as the enterprise-scoped endpoint. Uses cached data by default.
+        Convenience alias for
+        `GET /v2/enterprises/{enterprise_id}/reputation/numbers/{phone_number}`.
 
         Args:
-          fresh: When true, fetches fresh reputation data (incurs API cost). When false, returns
-              cached data.
+          fresh: When true, fetches fresh reputation data (incurs API cost). When false
+              (default), returns cached data.
 
           extra_headers: Send extra headers
 
@@ -263,23 +252,18 @@ class AsyncNumbersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[
-        ReputationPhoneNumberWithReputationData, AsyncDefaultFlatPagination[ReputationPhoneNumberWithReputationData]
-    ]:
-        """List all phone numbers enrolled in Number Reputation monitoring for your
-        account.
-
-        This is a simplified endpoint that does not require an `enterprise_id`
-        — it returns numbers across all your enterprises.
-
-        Supports pagination and filtering by phone number.
+    ) -> AsyncPaginator[NumberListResponse, AsyncDefaultFlatPagination[NumberListResponse]]:
+        """
+        Convenience alias for `GET /v2/enterprises/{enterprise_id}/reputation/numbers`
+        that returns numbers across every enterprise you own. Useful when you don't want
+        to look up the enterprise id first.
 
         Args:
-          page_number: Page number (1-indexed)
+          page_number: 1-based page number. Out-of-range values return an empty page with correct meta.
 
-          page_size: Number of items per page
+          page_size: Items per page. Maximum 250; values above are clamped to 250.
 
-          phone_number: Filter by specific phone number (E.164 format)
+          phone_number: Filter by specific phone number (E.164 format).
 
           extra_headers: Send extra headers
 
@@ -291,7 +275,7 @@ class AsyncNumbersResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/reputation/numbers",
-            page=AsyncDefaultFlatPagination[ReputationPhoneNumberWithReputationData],
+            page=AsyncDefaultFlatPagination[NumberListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -306,7 +290,7 @@ class AsyncNumbersResource(AsyncAPIResource):
                     number_list_params.NumberListParams,
                 ),
             ),
-            model=ReputationPhoneNumberWithReputationData,
+            model=NumberListResponse,
         )
 
     async def delete(
@@ -321,8 +305,8 @@ class AsyncNumbersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Remove a phone number from Number Reputation monitoring without requiring an
-        `enterprise_id`.
+        Convenience alias for
+        `DELETE /v2/enterprises/{enterprise_id}/reputation/numbers/{phone_number}`.
 
         Args:
           extra_headers: Send extra headers

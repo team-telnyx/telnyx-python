@@ -38,6 +38,7 @@ from ._base_client import (
 if TYPE_CHECKING:
     from .resources import (
         ai,
+        dir,
         ips,
         list,
         seti,
@@ -81,6 +82,7 @@ if TYPE_CHECKING:
         ota_updates,
         short_codes,
         audit_events,
+        call_reasons,
         oauth_grants,
         requirements,
         voice_clones,
@@ -141,6 +143,7 @@ if TYPE_CHECKING:
         texml_applications,
         webhook_deliveries,
         global_ip_protocols,
+        infringement_claims,
         integration_secrets,
         notification_events,
         number_block_orders,
@@ -211,6 +214,7 @@ if TYPE_CHECKING:
     from .resources.media import MediaResource, AsyncMediaResource
     from .resources.oauth import OAuthResource, AsyncOAuthResource
     from .resources.balance import BalanceResource, AsyncBalanceResource
+    from .resources.dir.dir import DirResource, AsyncDirResource
     from .resources.regions import RegionsResource, AsyncRegionsResource
     from .resources.comments import CommentsResource, AsyncCommentsResource
     from .resources.invoices import InvoicesResource, AsyncInvoicesResource
@@ -229,6 +233,7 @@ if TYPE_CHECKING:
     from .resources.short_codes import ShortCodesResource, AsyncShortCodesResource
     from .resources.texml.texml import TexmlResource, AsyncTexmlResource
     from .resources.audit_events import AuditEventsResource, AsyncAuditEventsResource
+    from .resources.call_reasons import CallReasonsResource, AsyncCallReasonsResource
     from .resources.oauth_grants import OAuthGrantsResource, AsyncOAuthGrantsResource
     from .resources.requirements import RequirementsResource, AsyncRequirementsResource
     from .resources.voice_clones import VoiceClonesResource, AsyncVoiceClonesResource
@@ -287,6 +292,7 @@ if TYPE_CHECKING:
     from .resources.webhook_deliveries import WebhookDeliveriesResource, AsyncWebhookDeliveriesResource
     from .resources.addresses.addresses import AddressesResource, AsyncAddressesResource
     from .resources.global_ip_protocols import GlobalIPProtocolsResource, AsyncGlobalIPProtocolsResource
+    from .resources.infringement_claims import InfringementClaimsResource, AsyncInfringementClaimsResource
     from .resources.integration_secrets import IntegrationSecretsResource, AsyncIntegrationSecretsResource
     from .resources.messaging.messaging import MessagingResource, AsyncMessagingResource
     from .resources.notification_events import NotificationEventsResource, AsyncNotificationEventsResource
@@ -1637,7 +1643,7 @@ class Telnyx(SyncAPIClient):
 
     @cached_property
     def enterprises(self) -> EnterprisesResource:
-        """Enterprise management for Branded Calling and Number Reputation services"""
+        """Manage the legal-entity record that owns your DIRs and phone numbers."""
         from .resources.enterprises import EnterprisesResource
 
         return EnterprisesResource(self)
@@ -1650,6 +1656,9 @@ class Telnyx(SyncAPIClient):
 
     @cached_property
     def terms_of_service(self) -> TermsOfServiceResource:
+        """
+        Accept and review the Branded Calling and Phone Number Reputation terms of service.
+        """
         from .resources.terms_of_service import TermsOfServiceResource
 
         return TermsOfServiceResource(self)
@@ -1663,6 +1672,31 @@ class Telnyx(SyncAPIClient):
         from .resources.pronunciation_dicts import PronunciationDictsResource
 
         return PronunciationDictsResource(self)
+
+    @cached_property
+    def call_reasons(self) -> CallReasonsResource:
+        """
+        Static reference values the API accepts: call reasons, document types, rejection types.
+        """
+        from .resources.call_reasons import CallReasonsResource
+
+        return CallReasonsResource(self)
+
+    @cached_property
+    def dir(self) -> DirResource:
+        from .resources.dir import DirResource
+
+        return DirResource(self)
+
+    @cached_property
+    def infringement_claims(self) -> InfringementClaimsResource:
+        """Trademark or impersonation claims filed against your DIR.
+
+        Customers may contest a claim with supporting evidence.
+        """
+        from .resources.infringement_claims import InfringementClaimsResource
+
+        return InfringementClaimsResource(self)
 
     @cached_property
     def uac_connections(self) -> UacConnectionsResource:
@@ -3017,7 +3051,7 @@ class AsyncTelnyx(AsyncAPIClient):
 
     @cached_property
     def enterprises(self) -> AsyncEnterprisesResource:
-        """Enterprise management for Branded Calling and Number Reputation services"""
+        """Manage the legal-entity record that owns your DIRs and phone numbers."""
         from .resources.enterprises import AsyncEnterprisesResource
 
         return AsyncEnterprisesResource(self)
@@ -3030,6 +3064,9 @@ class AsyncTelnyx(AsyncAPIClient):
 
     @cached_property
     def terms_of_service(self) -> AsyncTermsOfServiceResource:
+        """
+        Accept and review the Branded Calling and Phone Number Reputation terms of service.
+        """
         from .resources.terms_of_service import AsyncTermsOfServiceResource
 
         return AsyncTermsOfServiceResource(self)
@@ -3043,6 +3080,31 @@ class AsyncTelnyx(AsyncAPIClient):
         from .resources.pronunciation_dicts import AsyncPronunciationDictsResource
 
         return AsyncPronunciationDictsResource(self)
+
+    @cached_property
+    def call_reasons(self) -> AsyncCallReasonsResource:
+        """
+        Static reference values the API accepts: call reasons, document types, rejection types.
+        """
+        from .resources.call_reasons import AsyncCallReasonsResource
+
+        return AsyncCallReasonsResource(self)
+
+    @cached_property
+    def dir(self) -> AsyncDirResource:
+        from .resources.dir import AsyncDirResource
+
+        return AsyncDirResource(self)
+
+    @cached_property
+    def infringement_claims(self) -> AsyncInfringementClaimsResource:
+        """Trademark or impersonation claims filed against your DIR.
+
+        Customers may contest a claim with supporting evidence.
+        """
+        from .resources.infringement_claims import AsyncInfringementClaimsResource
+
+        return AsyncInfringementClaimsResource(self)
 
     @cached_property
     def uac_connections(self) -> AsyncUacConnectionsResource:
@@ -4333,7 +4395,7 @@ class TelnyxWithRawResponse:
 
     @cached_property
     def enterprises(self) -> enterprises.EnterprisesResourceWithRawResponse:
-        """Enterprise management for Branded Calling and Number Reputation services"""
+        """Manage the legal-entity record that owns your DIRs and phone numbers."""
         from .resources.enterprises import EnterprisesResourceWithRawResponse
 
         return EnterprisesResourceWithRawResponse(self._client.enterprises)
@@ -4346,6 +4408,9 @@ class TelnyxWithRawResponse:
 
     @cached_property
     def terms_of_service(self) -> terms_of_service.TermsOfServiceResourceWithRawResponse:
+        """
+        Accept and review the Branded Calling and Phone Number Reputation terms of service.
+        """
         from .resources.terms_of_service import TermsOfServiceResourceWithRawResponse
 
         return TermsOfServiceResourceWithRawResponse(self._client.terms_of_service)
@@ -4359,6 +4424,31 @@ class TelnyxWithRawResponse:
         from .resources.pronunciation_dicts import PronunciationDictsResourceWithRawResponse
 
         return PronunciationDictsResourceWithRawResponse(self._client.pronunciation_dicts)
+
+    @cached_property
+    def call_reasons(self) -> call_reasons.CallReasonsResourceWithRawResponse:
+        """
+        Static reference values the API accepts: call reasons, document types, rejection types.
+        """
+        from .resources.call_reasons import CallReasonsResourceWithRawResponse
+
+        return CallReasonsResourceWithRawResponse(self._client.call_reasons)
+
+    @cached_property
+    def dir(self) -> dir.DirResourceWithRawResponse:
+        from .resources.dir import DirResourceWithRawResponse
+
+        return DirResourceWithRawResponse(self._client.dir)
+
+    @cached_property
+    def infringement_claims(self) -> infringement_claims.InfringementClaimsResourceWithRawResponse:
+        """Trademark or impersonation claims filed against your DIR.
+
+        Customers may contest a claim with supporting evidence.
+        """
+        from .resources.infringement_claims import InfringementClaimsResourceWithRawResponse
+
+        return InfringementClaimsResourceWithRawResponse(self._client.infringement_claims)
 
     @cached_property
     def uac_connections(self) -> uac_connections.UacConnectionsResourceWithRawResponse:
@@ -5520,7 +5610,7 @@ class AsyncTelnyxWithRawResponse:
 
     @cached_property
     def enterprises(self) -> enterprises.AsyncEnterprisesResourceWithRawResponse:
-        """Enterprise management for Branded Calling and Number Reputation services"""
+        """Manage the legal-entity record that owns your DIRs and phone numbers."""
         from .resources.enterprises import AsyncEnterprisesResourceWithRawResponse
 
         return AsyncEnterprisesResourceWithRawResponse(self._client.enterprises)
@@ -5533,6 +5623,9 @@ class AsyncTelnyxWithRawResponse:
 
     @cached_property
     def terms_of_service(self) -> terms_of_service.AsyncTermsOfServiceResourceWithRawResponse:
+        """
+        Accept and review the Branded Calling and Phone Number Reputation terms of service.
+        """
         from .resources.terms_of_service import AsyncTermsOfServiceResourceWithRawResponse
 
         return AsyncTermsOfServiceResourceWithRawResponse(self._client.terms_of_service)
@@ -5546,6 +5639,31 @@ class AsyncTelnyxWithRawResponse:
         from .resources.pronunciation_dicts import AsyncPronunciationDictsResourceWithRawResponse
 
         return AsyncPronunciationDictsResourceWithRawResponse(self._client.pronunciation_dicts)
+
+    @cached_property
+    def call_reasons(self) -> call_reasons.AsyncCallReasonsResourceWithRawResponse:
+        """
+        Static reference values the API accepts: call reasons, document types, rejection types.
+        """
+        from .resources.call_reasons import AsyncCallReasonsResourceWithRawResponse
+
+        return AsyncCallReasonsResourceWithRawResponse(self._client.call_reasons)
+
+    @cached_property
+    def dir(self) -> dir.AsyncDirResourceWithRawResponse:
+        from .resources.dir import AsyncDirResourceWithRawResponse
+
+        return AsyncDirResourceWithRawResponse(self._client.dir)
+
+    @cached_property
+    def infringement_claims(self) -> infringement_claims.AsyncInfringementClaimsResourceWithRawResponse:
+        """Trademark or impersonation claims filed against your DIR.
+
+        Customers may contest a claim with supporting evidence.
+        """
+        from .resources.infringement_claims import AsyncInfringementClaimsResourceWithRawResponse
+
+        return AsyncInfringementClaimsResourceWithRawResponse(self._client.infringement_claims)
 
     @cached_property
     def uac_connections(self) -> uac_connections.AsyncUacConnectionsResourceWithRawResponse:
@@ -6709,7 +6827,7 @@ class TelnyxWithStreamedResponse:
 
     @cached_property
     def enterprises(self) -> enterprises.EnterprisesResourceWithStreamingResponse:
-        """Enterprise management for Branded Calling and Number Reputation services"""
+        """Manage the legal-entity record that owns your DIRs and phone numbers."""
         from .resources.enterprises import EnterprisesResourceWithStreamingResponse
 
         return EnterprisesResourceWithStreamingResponse(self._client.enterprises)
@@ -6722,6 +6840,9 @@ class TelnyxWithStreamedResponse:
 
     @cached_property
     def terms_of_service(self) -> terms_of_service.TermsOfServiceResourceWithStreamingResponse:
+        """
+        Accept and review the Branded Calling and Phone Number Reputation terms of service.
+        """
         from .resources.terms_of_service import TermsOfServiceResourceWithStreamingResponse
 
         return TermsOfServiceResourceWithStreamingResponse(self._client.terms_of_service)
@@ -6735,6 +6856,31 @@ class TelnyxWithStreamedResponse:
         from .resources.pronunciation_dicts import PronunciationDictsResourceWithStreamingResponse
 
         return PronunciationDictsResourceWithStreamingResponse(self._client.pronunciation_dicts)
+
+    @cached_property
+    def call_reasons(self) -> call_reasons.CallReasonsResourceWithStreamingResponse:
+        """
+        Static reference values the API accepts: call reasons, document types, rejection types.
+        """
+        from .resources.call_reasons import CallReasonsResourceWithStreamingResponse
+
+        return CallReasonsResourceWithStreamingResponse(self._client.call_reasons)
+
+    @cached_property
+    def dir(self) -> dir.DirResourceWithStreamingResponse:
+        from .resources.dir import DirResourceWithStreamingResponse
+
+        return DirResourceWithStreamingResponse(self._client.dir)
+
+    @cached_property
+    def infringement_claims(self) -> infringement_claims.InfringementClaimsResourceWithStreamingResponse:
+        """Trademark or impersonation claims filed against your DIR.
+
+        Customers may contest a claim with supporting evidence.
+        """
+        from .resources.infringement_claims import InfringementClaimsResourceWithStreamingResponse
+
+        return InfringementClaimsResourceWithStreamingResponse(self._client.infringement_claims)
 
     @cached_property
     def uac_connections(self) -> uac_connections.UacConnectionsResourceWithStreamingResponse:
@@ -7944,7 +8090,7 @@ class AsyncTelnyxWithStreamedResponse:
 
     @cached_property
     def enterprises(self) -> enterprises.AsyncEnterprisesResourceWithStreamingResponse:
-        """Enterprise management for Branded Calling and Number Reputation services"""
+        """Manage the legal-entity record that owns your DIRs and phone numbers."""
         from .resources.enterprises import AsyncEnterprisesResourceWithStreamingResponse
 
         return AsyncEnterprisesResourceWithStreamingResponse(self._client.enterprises)
@@ -7957,6 +8103,9 @@ class AsyncTelnyxWithStreamedResponse:
 
     @cached_property
     def terms_of_service(self) -> terms_of_service.AsyncTermsOfServiceResourceWithStreamingResponse:
+        """
+        Accept and review the Branded Calling and Phone Number Reputation terms of service.
+        """
         from .resources.terms_of_service import AsyncTermsOfServiceResourceWithStreamingResponse
 
         return AsyncTermsOfServiceResourceWithStreamingResponse(self._client.terms_of_service)
@@ -7970,6 +8119,31 @@ class AsyncTelnyxWithStreamedResponse:
         from .resources.pronunciation_dicts import AsyncPronunciationDictsResourceWithStreamingResponse
 
         return AsyncPronunciationDictsResourceWithStreamingResponse(self._client.pronunciation_dicts)
+
+    @cached_property
+    def call_reasons(self) -> call_reasons.AsyncCallReasonsResourceWithStreamingResponse:
+        """
+        Static reference values the API accepts: call reasons, document types, rejection types.
+        """
+        from .resources.call_reasons import AsyncCallReasonsResourceWithStreamingResponse
+
+        return AsyncCallReasonsResourceWithStreamingResponse(self._client.call_reasons)
+
+    @cached_property
+    def dir(self) -> dir.AsyncDirResourceWithStreamingResponse:
+        from .resources.dir import AsyncDirResourceWithStreamingResponse
+
+        return AsyncDirResourceWithStreamingResponse(self._client.dir)
+
+    @cached_property
+    def infringement_claims(self) -> infringement_claims.AsyncInfringementClaimsResourceWithStreamingResponse:
+        """Trademark or impersonation claims filed against your DIR.
+
+        Customers may contest a claim with supporting evidence.
+        """
+        from .resources.infringement_claims import AsyncInfringementClaimsResourceWithStreamingResponse
+
+        return AsyncInfringementClaimsResourceWithStreamingResponse(self._client.infringement_claims)
 
     @cached_property
     def uac_connections(self) -> uac_connections.AsyncUacConnectionsResourceWithStreamingResponse:

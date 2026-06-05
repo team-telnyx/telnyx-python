@@ -2,10 +2,19 @@
 
 from __future__ import annotations
 
+from typing import Optional
 from typing_extensions import Literal
 
 import httpx
 
+from .dir import (
+    DirResource,
+    AsyncDirResource,
+    DirResourceWithRawResponse,
+    AsyncDirResourceWithRawResponse,
+    DirResourceWithStreamingResponse,
+    AsyncDirResourceWithStreamingResponse,
+)
 from ...types import (
     enterprise_list_params,
     enterprise_create_params,
@@ -39,19 +48,25 @@ from ...types.enterprise_create_response import EnterpriseCreateResponse
 from ...types.enterprise_update_response import EnterpriseUpdateResponse
 from ...types.organization_contact_param import OrganizationContactParam
 from ...types.enterprise_retrieve_response import EnterpriseRetrieveResponse
+from ...types.enterprise_activate_branded_calling_response import EnterpriseActivateBrandedCallingResponse
 
 __all__ = ["EnterprisesResource", "AsyncEnterprisesResource"]
 
 
 class EnterprisesResource(SyncAPIResource):
-    """Enterprise management for Branded Calling and Number Reputation services"""
+    """Manage the legal-entity record that owns your DIRs and phone numbers."""
 
     @cached_property
     def reputation(self) -> ReputationResource:
-        """
-        Manage Number Reputation enrollment and check frequency settings for an enterprise
-        """
+        """Phone-number reputation monitoring (spam-score lookup and tracking)."""
         return ReputationResource(self._client)
+
+    @cached_property
+    def dir(self) -> DirResource:
+        """
+        A Display Identity Record (DIR) is the verified calling identity (display name, logo, call reasons) shown to recipients on outbound calls.
+        """
+        return DirResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> EnterprisesResourceWithRawResponse:
@@ -80,7 +95,52 @@ class EnterprisesResource(SyncAPIResource):
         country_code: str,
         doing_business_as: str,
         fein: str,
-        industry: str,
+        industry: Literal[
+            "accounting",
+            "finance",
+            "billing",
+            "collections",
+            "business",
+            "charity",
+            "nonprofit",
+            "communications",
+            "telecom",
+            "customer service",
+            "support",
+            "delivery",
+            "shipping",
+            "logistics",
+            "education",
+            "financial",
+            "banking",
+            "government",
+            "public",
+            "healthcare",
+            "health",
+            "pharmacy",
+            "medical",
+            "insurance",
+            "legal",
+            "law",
+            "notifications",
+            "scheduling",
+            "real estate",
+            "property",
+            "retail",
+            "ecommerce",
+            "sales",
+            "marketing",
+            "software",
+            "technology",
+            "tech",
+            "media",
+            "surveys",
+            "market research",
+            "travel",
+            "hospitality",
+            "hotel",
+        ],
+        jurisdiction_of_incorporation: str,
         legal_name: str,
         number_of_employees: Literal["1-10", "11-50", "51-200", "201-500", "501-2000", "2001-10000", "10001+"],
         organization_contact: OrganizationContactParam,
@@ -88,11 +148,11 @@ class EnterprisesResource(SyncAPIResource):
         organization_physical_address: PhysicalAddressParam,
         organization_type: Literal["commercial", "government", "non_profit"],
         website: str,
-        corporate_registration_number: str | Omit = omit,
+        corporate_registration_number: Optional[str] | Omit = omit,
         customer_reference: str | Omit = omit,
-        dun_bradstreet_number: str | Omit = omit,
-        primary_business_domain_sic_code: str | Omit = omit,
-        professional_license_number: str | Omit = omit,
+        dun_bradstreet_number: Optional[str] | Omit = omit,
+        primary_business_domain_sic_code: Optional[str] | Omit = omit,
+        professional_license_number: Optional[str] | Omit = omit,
         role_type: Literal["enterprise", "bpo"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -102,57 +162,61 @@ class EnterprisesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EnterpriseCreateResponse:
         """
-        Create a new enterprise for Branded Calling / Number Reputation services.
+        Create the legal entity that owns your Number Reputation registrations.
 
-        Registers the enterprise in the Branded Calling / Number Reputation services,
-        enabling it to create Display Identity Records (DIRs) or enroll in Number
-        Reputation monitoring.
+        The response carries a server-assigned `id` you will use for every subsequent
+        call. After creating an enterprise and agreeing to the Number Reputation Terms
+        of Service (`POST /terms_of_service/number_reputation/agree`), enable reputation
+        monitoring via `POST /enterprises/{enterprise_id}/reputation`.
 
-        **Required Fields:** `legal_name`, `doing_business_as`, `organization_type`,
-        `country_code`, `website`, `fein`, `industry`, `number_of_employees`,
-        `organization_legal_type`, `organization_contact`, `billing_contact`,
-        `organization_physical_address`, `billing_address`
+        An enterprise is shared across Telnyx products; if you also use Branded Calling,
+        the same enterprise is reused.
 
         Args:
-          country_code: Country code. Currently only 'US' is accepted.
+          country_code: ISO 3166-1 alpha-2 country code. Currently `US` and `CA` are supported.
 
-          doing_business_as: Primary business name / DBA name
+          fein: US Federal Employer Identification Number (`NN-NNNNNNN`) or Canadian equivalent.
 
-          fein: Federal Employer Identification Number. Format: XX-XXXXXXX or 9-digit number
-              (minimum 9 digits).
+          industry: Industry classification.
 
-          industry: Industry classification. Case-insensitive. Accepted values: accounting, finance,
-              billing, collections, business, charity, nonprofit, communications, telecom,
-              customer service, support, delivery, shipping, logistics, education, financial,
-              banking, government, public, healthcare, health, pharmacy, medical, insurance,
-              legal, law, notifications, scheduling, real estate, property, retail, ecommerce,
-              sales, marketing, software, technology, tech, media, surveys, market research,
-              travel, hospitality, hotel
+          legal_name: Legal name of the enterprise.
 
-          legal_name: Legal name of the enterprise
+          number_of_employees: Approximate headcount range. Used for vetting heuristics; pick the bucket that
+              contains your current employee count.
 
-          number_of_employees: Employee count range
+          organization_legal_type:
+              Legal-entity form. Pick the form that matches your incorporation documents:
 
-          organization_contact: Organization contact information. Note: the response returns this object with
-              the phone field as 'phone' (not 'phone_number').
+              - `corporation` — C-corp or S-corp.
+              - `llc` — limited liability company.
+              - `partnership` — general/limited partnership.
+              - `nonprofit` — non-profit corporation, charitable trust, or
+                501(c)(3)/equivalent.
+              - `other` — anything else (sole proprietorships, government bodies, DBAs, etc.).
+                You may be asked for additional documents during vetting.
 
-          organization_legal_type: Legal structure type
+          organization_type:
+              Organization category for vetting purposes:
 
-          organization_type: Type of organization
+              - `commercial` — for-profit business entities (LLC, corp, partnership, sole
+                proprietorship). Most callers fall here.
+              - `government` — federal/state/local government bodies.
+              - `non_profit` — registered 501(c)(3)/equivalent (incl. educational
+                institutions, charities, religious organisations).
 
-          website: Enterprise website URL. Accepts any string — no URL format validation enforced.
+          corporate_registration_number: Optional corporate-registration / company-number identifier.
 
-          corporate_registration_number: Corporate registration number (optional)
+          customer_reference: Optional free-form string the caller can attach for their own bookkeeping.
+              Telnyx does not interpret it.
 
-          customer_reference: Optional customer reference identifier for your own tracking
+          dun_bradstreet_number: Optional D-U-N-S Number.
 
-          dun_bradstreet_number: D-U-N-S Number (optional)
+          primary_business_domain_sic_code: Optional SIC code for the primary line of business.
 
-          primary_business_domain_sic_code: SIC Code (optional)
+          professional_license_number: Optional professional-license number for regulated industries.
 
-          professional_license_number: Professional license number (optional)
-
-          role_type: Role type in Branded Calling / Number Reputation services
+          role_type: `enterprise` for an organization registering its own DIRs; `bpo` for a Business
+              Process Outsourcer placing calls on behalf of one or more enterprises.
 
           extra_headers: Send extra headers
 
@@ -172,6 +236,7 @@ class EnterprisesResource(SyncAPIResource):
                     "doing_business_as": doing_business_as,
                     "fein": fein,
                     "industry": industry,
+                    "jurisdiction_of_incorporation": jurisdiction_of_incorporation,
                     "legal_name": legal_name,
                     "number_of_employees": number_of_employees,
                     "organization_contact": organization_contact,
@@ -205,8 +270,10 @@ class EnterprisesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EnterpriseRetrieveResponse:
-        """
-        Retrieve details of a specific enterprise by ID.
+        """Retrieve a single enterprise by id.
+
+        Returns `404` if the id does not exist or
+        does not belong to your account.
 
         Args:
           extra_headers: Send extra headers
@@ -233,20 +300,65 @@ class EnterprisesResource(SyncAPIResource):
         *,
         billing_address: BillingAddressParam | Omit = omit,
         billing_contact: BillingContactParam | Omit = omit,
-        corporate_registration_number: str | Omit = omit,
+        corporate_registration_number: Optional[str] | Omit = omit,
         customer_reference: str | Omit = omit,
         doing_business_as: str | Omit = omit,
-        dun_bradstreet_number: str | Omit = omit,
+        dun_bradstreet_number: Optional[str] | Omit = omit,
         fein: str | Omit = omit,
-        industry: str | Omit = omit,
-        legal_name: str | Omit = omit,
-        number_of_employees: Literal["1-10", "11-50", "51-200", "201-500", "501-2000", "2001-10000", "10001+"]
+        industry: Literal[
+            "accounting",
+            "finance",
+            "billing",
+            "collections",
+            "business",
+            "charity",
+            "nonprofit",
+            "communications",
+            "telecom",
+            "customer service",
+            "support",
+            "delivery",
+            "shipping",
+            "logistics",
+            "education",
+            "financial",
+            "banking",
+            "government",
+            "public",
+            "healthcare",
+            "health",
+            "pharmacy",
+            "medical",
+            "insurance",
+            "legal",
+            "law",
+            "notifications",
+            "scheduling",
+            "real estate",
+            "property",
+            "retail",
+            "ecommerce",
+            "sales",
+            "marketing",
+            "software",
+            "technology",
+            "tech",
+            "media",
+            "surveys",
+            "market research",
+            "travel",
+            "hospitality",
+            "hotel",
+        ]
         | Omit = omit,
+        jurisdiction_of_incorporation: str | Omit = omit,
+        legal_name: str | Omit = omit,
+        number_of_employees: str | Omit = omit,
         organization_contact: OrganizationContactParam | Omit = omit,
-        organization_legal_type: Literal["corporation", "llc", "partnership", "nonprofit", "other"] | Omit = omit,
+        organization_legal_type: str | Omit = omit,
         organization_physical_address: PhysicalAddressParam | Omit = omit,
-        primary_business_domain_sic_code: str | Omit = omit,
-        professional_license_number: str | Omit = omit,
+        primary_business_domain_sic_code: Optional[str] | Omit = omit,
+        professional_license_number: Optional[str] | Omit = omit,
         website: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -255,38 +367,18 @@ class EnterprisesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EnterpriseUpdateResponse:
-        """Update enterprise information.
+        """Replace the enterprise's mutable fields.
 
-        All fields are optional — only the provided
-        fields will be updated.
+        Only mutable fields may be sent.
+        Server-assigned and immutable fields (`id`, `record_type`, `created_at`,
+        `updated_at`, status fields, `organization_type`, `country_code`, `role_type`)
+        cannot be changed: including any of them in the body is rejected with
+        `400 Bad Request` (`Field 'X' is not allowed in this request`).
 
         Args:
-          corporate_registration_number: Corporate registration number
+          jurisdiction_of_incorporation: Updated state/province/country of incorporation. Optional on update.
 
-          customer_reference: Customer reference identifier
-
-          doing_business_as: DBA name
-
-          dun_bradstreet_number: D-U-N-S Number
-
-          fein: Federal Employer Identification Number. Format: XX-XXXXXXX or XXXXXXXXX
-
-          industry: Industry classification
-
-          legal_name: Legal name of the enterprise
-
-          number_of_employees: Employee count range
-
-          organization_contact: Organization contact information. Note: the response returns this object with
-              the phone field as 'phone' (not 'phone_number').
-
-          organization_legal_type: Legal structure type
-
-          primary_business_domain_sic_code: SIC Code
-
-          professional_license_number: Professional license number
-
-          website: Company website URL
+          legal_name: Legal name of the enterprise.
 
           extra_headers: Send extra headers
 
@@ -310,6 +402,7 @@ class EnterprisesResource(SyncAPIResource):
                     "dun_bradstreet_number": dun_bradstreet_number,
                     "fein": fein,
                     "industry": industry,
+                    "jurisdiction_of_incorporation": jurisdiction_of_incorporation,
                     "legal_name": legal_name,
                     "number_of_employees": number_of_employees,
                     "organization_contact": organization_contact,
@@ -340,15 +433,17 @@ class EnterprisesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[EnterprisePublic]:
-        """
-        Retrieve a paginated list of enterprises associated with your account.
+        """Return the enterprises you own, paginated.
+
+        The default page size is 20; the
+        maximum is 250.
 
         Args:
-          legal_name: Filter by legal name (partial match)
+          legal_name: Filter by legal name (partial match).
 
-          page_number: Page number (1-indexed)
+          page_number: 1-based page number. Out-of-range values return an empty page with correct meta.
 
-          page_size: Number of items per page
+          page_size: Items per page. Default 10. Maximum 250; values above are clamped to 250.
 
           extra_headers: Send extra headers
 
@@ -389,9 +484,12 @@ class EnterprisesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
-        """Delete an enterprise and all associated resources.
+        """Delete an enterprise.
 
-        This action is irreversible.
+        Fails with `400` if the enterprise still has dependent
+        resources (e.g. active reputation settings or registered numbers); remove those
+        first. Returns `404` if the enterprise does not exist or does not belong to your
+        account.
 
         Args:
           extra_headers: Send extra headers
@@ -413,16 +511,73 @@ class EnterprisesResource(SyncAPIResource):
             cast_to=NoneType,
         )
 
+    def activate_branded_calling(
+        self,
+        enterprise_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> EnterpriseActivateBrandedCallingResponse:
+        """
+        Branded Calling is a paid product that must be activated on each enterprise.
+        Activation is idempotent:
+
+        - First call: marks the enterprise as activated and begins onboarding it with
+          the Branded Calling platform asynchronously. Returns `200` with
+          `branded_calling_enabled: true`.
+        - Re-call after success: no-op, returns the same enterprise body.
+        - Re-call after a prior failure: re-queues onboarding, returns `200`.
+
+        Prerequisite: the calling user must have agreed to the Branded Calling Terms of
+        Service (`POST /terms_of_service/branded_calling/agree`). Without that, this
+        endpoint returns `403 terms_of_service_not_accepted`.
+
+        Failure modes:
+
+        - `403` — Branded Calling Terms of Service not accepted.
+        - `404` — enterprise does not exist or does not belong to your account.
+
+        **Pricing:** This is a billable action. See https://telnyx.com/pricing/numbers
+        for current pricing.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not enterprise_id:
+            raise ValueError(f"Expected a non-empty value for `enterprise_id` but received {enterprise_id!r}")
+        return self._post(
+            path_template("/enterprises/{enterprise_id}/branded_calling", enterprise_id=enterprise_id),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=EnterpriseActivateBrandedCallingResponse,
+        )
+
 
 class AsyncEnterprisesResource(AsyncAPIResource):
-    """Enterprise management for Branded Calling and Number Reputation services"""
+    """Manage the legal-entity record that owns your DIRs and phone numbers."""
 
     @cached_property
     def reputation(self) -> AsyncReputationResource:
-        """
-        Manage Number Reputation enrollment and check frequency settings for an enterprise
-        """
+        """Phone-number reputation monitoring (spam-score lookup and tracking)."""
         return AsyncReputationResource(self._client)
+
+    @cached_property
+    def dir(self) -> AsyncDirResource:
+        """
+        A Display Identity Record (DIR) is the verified calling identity (display name, logo, call reasons) shown to recipients on outbound calls.
+        """
+        return AsyncDirResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncEnterprisesResourceWithRawResponse:
@@ -451,7 +606,52 @@ class AsyncEnterprisesResource(AsyncAPIResource):
         country_code: str,
         doing_business_as: str,
         fein: str,
-        industry: str,
+        industry: Literal[
+            "accounting",
+            "finance",
+            "billing",
+            "collections",
+            "business",
+            "charity",
+            "nonprofit",
+            "communications",
+            "telecom",
+            "customer service",
+            "support",
+            "delivery",
+            "shipping",
+            "logistics",
+            "education",
+            "financial",
+            "banking",
+            "government",
+            "public",
+            "healthcare",
+            "health",
+            "pharmacy",
+            "medical",
+            "insurance",
+            "legal",
+            "law",
+            "notifications",
+            "scheduling",
+            "real estate",
+            "property",
+            "retail",
+            "ecommerce",
+            "sales",
+            "marketing",
+            "software",
+            "technology",
+            "tech",
+            "media",
+            "surveys",
+            "market research",
+            "travel",
+            "hospitality",
+            "hotel",
+        ],
+        jurisdiction_of_incorporation: str,
         legal_name: str,
         number_of_employees: Literal["1-10", "11-50", "51-200", "201-500", "501-2000", "2001-10000", "10001+"],
         organization_contact: OrganizationContactParam,
@@ -459,11 +659,11 @@ class AsyncEnterprisesResource(AsyncAPIResource):
         organization_physical_address: PhysicalAddressParam,
         organization_type: Literal["commercial", "government", "non_profit"],
         website: str,
-        corporate_registration_number: str | Omit = omit,
+        corporate_registration_number: Optional[str] | Omit = omit,
         customer_reference: str | Omit = omit,
-        dun_bradstreet_number: str | Omit = omit,
-        primary_business_domain_sic_code: str | Omit = omit,
-        professional_license_number: str | Omit = omit,
+        dun_bradstreet_number: Optional[str] | Omit = omit,
+        primary_business_domain_sic_code: Optional[str] | Omit = omit,
+        professional_license_number: Optional[str] | Omit = omit,
         role_type: Literal["enterprise", "bpo"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -473,57 +673,61 @@ class AsyncEnterprisesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EnterpriseCreateResponse:
         """
-        Create a new enterprise for Branded Calling / Number Reputation services.
+        Create the legal entity that owns your Number Reputation registrations.
 
-        Registers the enterprise in the Branded Calling / Number Reputation services,
-        enabling it to create Display Identity Records (DIRs) or enroll in Number
-        Reputation monitoring.
+        The response carries a server-assigned `id` you will use for every subsequent
+        call. After creating an enterprise and agreeing to the Number Reputation Terms
+        of Service (`POST /terms_of_service/number_reputation/agree`), enable reputation
+        monitoring via `POST /enterprises/{enterprise_id}/reputation`.
 
-        **Required Fields:** `legal_name`, `doing_business_as`, `organization_type`,
-        `country_code`, `website`, `fein`, `industry`, `number_of_employees`,
-        `organization_legal_type`, `organization_contact`, `billing_contact`,
-        `organization_physical_address`, `billing_address`
+        An enterprise is shared across Telnyx products; if you also use Branded Calling,
+        the same enterprise is reused.
 
         Args:
-          country_code: Country code. Currently only 'US' is accepted.
+          country_code: ISO 3166-1 alpha-2 country code. Currently `US` and `CA` are supported.
 
-          doing_business_as: Primary business name / DBA name
+          fein: US Federal Employer Identification Number (`NN-NNNNNNN`) or Canadian equivalent.
 
-          fein: Federal Employer Identification Number. Format: XX-XXXXXXX or 9-digit number
-              (minimum 9 digits).
+          industry: Industry classification.
 
-          industry: Industry classification. Case-insensitive. Accepted values: accounting, finance,
-              billing, collections, business, charity, nonprofit, communications, telecom,
-              customer service, support, delivery, shipping, logistics, education, financial,
-              banking, government, public, healthcare, health, pharmacy, medical, insurance,
-              legal, law, notifications, scheduling, real estate, property, retail, ecommerce,
-              sales, marketing, software, technology, tech, media, surveys, market research,
-              travel, hospitality, hotel
+          legal_name: Legal name of the enterprise.
 
-          legal_name: Legal name of the enterprise
+          number_of_employees: Approximate headcount range. Used for vetting heuristics; pick the bucket that
+              contains your current employee count.
 
-          number_of_employees: Employee count range
+          organization_legal_type:
+              Legal-entity form. Pick the form that matches your incorporation documents:
 
-          organization_contact: Organization contact information. Note: the response returns this object with
-              the phone field as 'phone' (not 'phone_number').
+              - `corporation` — C-corp or S-corp.
+              - `llc` — limited liability company.
+              - `partnership` — general/limited partnership.
+              - `nonprofit` — non-profit corporation, charitable trust, or
+                501(c)(3)/equivalent.
+              - `other` — anything else (sole proprietorships, government bodies, DBAs, etc.).
+                You may be asked for additional documents during vetting.
 
-          organization_legal_type: Legal structure type
+          organization_type:
+              Organization category for vetting purposes:
 
-          organization_type: Type of organization
+              - `commercial` — for-profit business entities (LLC, corp, partnership, sole
+                proprietorship). Most callers fall here.
+              - `government` — federal/state/local government bodies.
+              - `non_profit` — registered 501(c)(3)/equivalent (incl. educational
+                institutions, charities, religious organisations).
 
-          website: Enterprise website URL. Accepts any string — no URL format validation enforced.
+          corporate_registration_number: Optional corporate-registration / company-number identifier.
 
-          corporate_registration_number: Corporate registration number (optional)
+          customer_reference: Optional free-form string the caller can attach for their own bookkeeping.
+              Telnyx does not interpret it.
 
-          customer_reference: Optional customer reference identifier for your own tracking
+          dun_bradstreet_number: Optional D-U-N-S Number.
 
-          dun_bradstreet_number: D-U-N-S Number (optional)
+          primary_business_domain_sic_code: Optional SIC code for the primary line of business.
 
-          primary_business_domain_sic_code: SIC Code (optional)
+          professional_license_number: Optional professional-license number for regulated industries.
 
-          professional_license_number: Professional license number (optional)
-
-          role_type: Role type in Branded Calling / Number Reputation services
+          role_type: `enterprise` for an organization registering its own DIRs; `bpo` for a Business
+              Process Outsourcer placing calls on behalf of one or more enterprises.
 
           extra_headers: Send extra headers
 
@@ -543,6 +747,7 @@ class AsyncEnterprisesResource(AsyncAPIResource):
                     "doing_business_as": doing_business_as,
                     "fein": fein,
                     "industry": industry,
+                    "jurisdiction_of_incorporation": jurisdiction_of_incorporation,
                     "legal_name": legal_name,
                     "number_of_employees": number_of_employees,
                     "organization_contact": organization_contact,
@@ -576,8 +781,10 @@ class AsyncEnterprisesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EnterpriseRetrieveResponse:
-        """
-        Retrieve details of a specific enterprise by ID.
+        """Retrieve a single enterprise by id.
+
+        Returns `404` if the id does not exist or
+        does not belong to your account.
 
         Args:
           extra_headers: Send extra headers
@@ -604,20 +811,65 @@ class AsyncEnterprisesResource(AsyncAPIResource):
         *,
         billing_address: BillingAddressParam | Omit = omit,
         billing_contact: BillingContactParam | Omit = omit,
-        corporate_registration_number: str | Omit = omit,
+        corporate_registration_number: Optional[str] | Omit = omit,
         customer_reference: str | Omit = omit,
         doing_business_as: str | Omit = omit,
-        dun_bradstreet_number: str | Omit = omit,
+        dun_bradstreet_number: Optional[str] | Omit = omit,
         fein: str | Omit = omit,
-        industry: str | Omit = omit,
-        legal_name: str | Omit = omit,
-        number_of_employees: Literal["1-10", "11-50", "51-200", "201-500", "501-2000", "2001-10000", "10001+"]
+        industry: Literal[
+            "accounting",
+            "finance",
+            "billing",
+            "collections",
+            "business",
+            "charity",
+            "nonprofit",
+            "communications",
+            "telecom",
+            "customer service",
+            "support",
+            "delivery",
+            "shipping",
+            "logistics",
+            "education",
+            "financial",
+            "banking",
+            "government",
+            "public",
+            "healthcare",
+            "health",
+            "pharmacy",
+            "medical",
+            "insurance",
+            "legal",
+            "law",
+            "notifications",
+            "scheduling",
+            "real estate",
+            "property",
+            "retail",
+            "ecommerce",
+            "sales",
+            "marketing",
+            "software",
+            "technology",
+            "tech",
+            "media",
+            "surveys",
+            "market research",
+            "travel",
+            "hospitality",
+            "hotel",
+        ]
         | Omit = omit,
+        jurisdiction_of_incorporation: str | Omit = omit,
+        legal_name: str | Omit = omit,
+        number_of_employees: str | Omit = omit,
         organization_contact: OrganizationContactParam | Omit = omit,
-        organization_legal_type: Literal["corporation", "llc", "partnership", "nonprofit", "other"] | Omit = omit,
+        organization_legal_type: str | Omit = omit,
         organization_physical_address: PhysicalAddressParam | Omit = omit,
-        primary_business_domain_sic_code: str | Omit = omit,
-        professional_license_number: str | Omit = omit,
+        primary_business_domain_sic_code: Optional[str] | Omit = omit,
+        professional_license_number: Optional[str] | Omit = omit,
         website: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -626,38 +878,18 @@ class AsyncEnterprisesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EnterpriseUpdateResponse:
-        """Update enterprise information.
+        """Replace the enterprise's mutable fields.
 
-        All fields are optional — only the provided
-        fields will be updated.
+        Only mutable fields may be sent.
+        Server-assigned and immutable fields (`id`, `record_type`, `created_at`,
+        `updated_at`, status fields, `organization_type`, `country_code`, `role_type`)
+        cannot be changed: including any of them in the body is rejected with
+        `400 Bad Request` (`Field 'X' is not allowed in this request`).
 
         Args:
-          corporate_registration_number: Corporate registration number
+          jurisdiction_of_incorporation: Updated state/province/country of incorporation. Optional on update.
 
-          customer_reference: Customer reference identifier
-
-          doing_business_as: DBA name
-
-          dun_bradstreet_number: D-U-N-S Number
-
-          fein: Federal Employer Identification Number. Format: XX-XXXXXXX or XXXXXXXXX
-
-          industry: Industry classification
-
-          legal_name: Legal name of the enterprise
-
-          number_of_employees: Employee count range
-
-          organization_contact: Organization contact information. Note: the response returns this object with
-              the phone field as 'phone' (not 'phone_number').
-
-          organization_legal_type: Legal structure type
-
-          primary_business_domain_sic_code: SIC Code
-
-          professional_license_number: Professional license number
-
-          website: Company website URL
+          legal_name: Legal name of the enterprise.
 
           extra_headers: Send extra headers
 
@@ -681,6 +913,7 @@ class AsyncEnterprisesResource(AsyncAPIResource):
                     "dun_bradstreet_number": dun_bradstreet_number,
                     "fein": fein,
                     "industry": industry,
+                    "jurisdiction_of_incorporation": jurisdiction_of_incorporation,
                     "legal_name": legal_name,
                     "number_of_employees": number_of_employees,
                     "organization_contact": organization_contact,
@@ -711,15 +944,17 @@ class AsyncEnterprisesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[EnterprisePublic, AsyncDefaultFlatPagination[EnterprisePublic]]:
-        """
-        Retrieve a paginated list of enterprises associated with your account.
+        """Return the enterprises you own, paginated.
+
+        The default page size is 20; the
+        maximum is 250.
 
         Args:
-          legal_name: Filter by legal name (partial match)
+          legal_name: Filter by legal name (partial match).
 
-          page_number: Page number (1-indexed)
+          page_number: 1-based page number. Out-of-range values return an empty page with correct meta.
 
-          page_size: Number of items per page
+          page_size: Items per page. Default 10. Maximum 250; values above are clamped to 250.
 
           extra_headers: Send extra headers
 
@@ -760,9 +995,12 @@ class AsyncEnterprisesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
-        """Delete an enterprise and all associated resources.
+        """Delete an enterprise.
 
-        This action is irreversible.
+        Fails with `400` if the enterprise still has dependent
+        resources (e.g. active reputation settings or registered numbers); remove those
+        first. Returns `404` if the enterprise does not exist or does not belong to your
+        account.
 
         Args:
           extra_headers: Send extra headers
@@ -782,6 +1020,58 @@ class AsyncEnterprisesResource(AsyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=NoneType,
+        )
+
+    async def activate_branded_calling(
+        self,
+        enterprise_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> EnterpriseActivateBrandedCallingResponse:
+        """
+        Branded Calling is a paid product that must be activated on each enterprise.
+        Activation is idempotent:
+
+        - First call: marks the enterprise as activated and begins onboarding it with
+          the Branded Calling platform asynchronously. Returns `200` with
+          `branded_calling_enabled: true`.
+        - Re-call after success: no-op, returns the same enterprise body.
+        - Re-call after a prior failure: re-queues onboarding, returns `200`.
+
+        Prerequisite: the calling user must have agreed to the Branded Calling Terms of
+        Service (`POST /terms_of_service/branded_calling/agree`). Without that, this
+        endpoint returns `403 terms_of_service_not_accepted`.
+
+        Failure modes:
+
+        - `403` — Branded Calling Terms of Service not accepted.
+        - `404` — enterprise does not exist or does not belong to your account.
+
+        **Pricing:** This is a billable action. See https://telnyx.com/pricing/numbers
+        for current pricing.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not enterprise_id:
+            raise ValueError(f"Expected a non-empty value for `enterprise_id` but received {enterprise_id!r}")
+        return await self._post(
+            path_template("/enterprises/{enterprise_id}/branded_calling", enterprise_id=enterprise_id),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=EnterpriseActivateBrandedCallingResponse,
         )
 
 
@@ -804,13 +1094,21 @@ class EnterprisesResourceWithRawResponse:
         self.delete = to_raw_response_wrapper(
             enterprises.delete,
         )
+        self.activate_branded_calling = to_raw_response_wrapper(
+            enterprises.activate_branded_calling,
+        )
 
     @cached_property
     def reputation(self) -> ReputationResourceWithRawResponse:
-        """
-        Manage Number Reputation enrollment and check frequency settings for an enterprise
-        """
+        """Phone-number reputation monitoring (spam-score lookup and tracking)."""
         return ReputationResourceWithRawResponse(self._enterprises.reputation)
+
+    @cached_property
+    def dir(self) -> DirResourceWithRawResponse:
+        """
+        A Display Identity Record (DIR) is the verified calling identity (display name, logo, call reasons) shown to recipients on outbound calls.
+        """
+        return DirResourceWithRawResponse(self._enterprises.dir)
 
 
 class AsyncEnterprisesResourceWithRawResponse:
@@ -832,13 +1130,21 @@ class AsyncEnterprisesResourceWithRawResponse:
         self.delete = async_to_raw_response_wrapper(
             enterprises.delete,
         )
+        self.activate_branded_calling = async_to_raw_response_wrapper(
+            enterprises.activate_branded_calling,
+        )
 
     @cached_property
     def reputation(self) -> AsyncReputationResourceWithRawResponse:
-        """
-        Manage Number Reputation enrollment and check frequency settings for an enterprise
-        """
+        """Phone-number reputation monitoring (spam-score lookup and tracking)."""
         return AsyncReputationResourceWithRawResponse(self._enterprises.reputation)
+
+    @cached_property
+    def dir(self) -> AsyncDirResourceWithRawResponse:
+        """
+        A Display Identity Record (DIR) is the verified calling identity (display name, logo, call reasons) shown to recipients on outbound calls.
+        """
+        return AsyncDirResourceWithRawResponse(self._enterprises.dir)
 
 
 class EnterprisesResourceWithStreamingResponse:
@@ -860,13 +1166,21 @@ class EnterprisesResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             enterprises.delete,
         )
+        self.activate_branded_calling = to_streamed_response_wrapper(
+            enterprises.activate_branded_calling,
+        )
 
     @cached_property
     def reputation(self) -> ReputationResourceWithStreamingResponse:
-        """
-        Manage Number Reputation enrollment and check frequency settings for an enterprise
-        """
+        """Phone-number reputation monitoring (spam-score lookup and tracking)."""
         return ReputationResourceWithStreamingResponse(self._enterprises.reputation)
+
+    @cached_property
+    def dir(self) -> DirResourceWithStreamingResponse:
+        """
+        A Display Identity Record (DIR) is the verified calling identity (display name, logo, call reasons) shown to recipients on outbound calls.
+        """
+        return DirResourceWithStreamingResponse(self._enterprises.dir)
 
 
 class AsyncEnterprisesResourceWithStreamingResponse:
@@ -888,10 +1202,18 @@ class AsyncEnterprisesResourceWithStreamingResponse:
         self.delete = async_to_streamed_response_wrapper(
             enterprises.delete,
         )
+        self.activate_branded_calling = async_to_streamed_response_wrapper(
+            enterprises.activate_branded_calling,
+        )
 
     @cached_property
     def reputation(self) -> AsyncReputationResourceWithStreamingResponse:
-        """
-        Manage Number Reputation enrollment and check frequency settings for an enterprise
-        """
+        """Phone-number reputation monitoring (spam-score lookup and tracking)."""
         return AsyncReputationResourceWithStreamingResponse(self._enterprises.reputation)
+
+    @cached_property
+    def dir(self) -> AsyncDirResourceWithStreamingResponse:
+        """
+        A Display Identity Record (DIR) is the verified calling identity (display name, logo, call reasons) shown to recipients on outbound calls.
+        """
+        return AsyncDirResourceWithStreamingResponse(self._enterprises.dir)

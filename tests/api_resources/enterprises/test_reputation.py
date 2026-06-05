@@ -25,7 +25,7 @@ class TestReputation:
     @parametrize
     def test_method_retrieve(self, client: Telnyx) -> None:
         reputation = client.enterprises.reputation.retrieve(
-            "6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+            "4a6192a4-573d-446d-b3ce-aff9117272a6",
         )
         assert_matches_type(ReputationRetrieveResponse, reputation, path=["response"])
 
@@ -33,7 +33,7 @@ class TestReputation:
     @parametrize
     def test_raw_response_retrieve(self, client: Telnyx) -> None:
         response = client.enterprises.reputation.with_raw_response.retrieve(
-            "6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+            "4a6192a4-573d-446d-b3ce-aff9117272a6",
         )
 
         assert response.is_closed is True
@@ -45,7 +45,7 @@ class TestReputation:
     @parametrize
     def test_streaming_response_retrieve(self, client: Telnyx) -> None:
         with client.enterprises.reputation.with_streaming_response.retrieve(
-            "6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+            "4a6192a4-573d-446d-b3ce-aff9117272a6",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -67,7 +67,7 @@ class TestReputation:
     @parametrize
     def test_method_disable(self, client: Telnyx) -> None:
         reputation = client.enterprises.reputation.disable(
-            "6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+            "4a6192a4-573d-446d-b3ce-aff9117272a6",
         )
         assert reputation is None
 
@@ -75,7 +75,7 @@ class TestReputation:
     @parametrize
     def test_raw_response_disable(self, client: Telnyx) -> None:
         response = client.enterprises.reputation.with_raw_response.disable(
-            "6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+            "4a6192a4-573d-446d-b3ce-aff9117272a6",
         )
 
         assert response.is_closed is True
@@ -87,7 +87,7 @@ class TestReputation:
     @parametrize
     def test_streaming_response_disable(self, client: Telnyx) -> None:
         with client.enterprises.reputation.with_streaming_response.disable(
-            "6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+            "4a6192a4-573d-446d-b3ce-aff9117272a6",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -109,8 +109,8 @@ class TestReputation:
     @parametrize
     def test_method_enable(self, client: Telnyx) -> None:
         reputation = client.enterprises.reputation.enable(
-            enterprise_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
-            loa_document_id="doc_01HXYZ1234ABCDEF",
+            enterprise_id="4a6192a4-573d-446d-b3ce-aff9117272a6",
+            loa_document_id="2a7e8337-e803-4057-a4ae-26c40eb0bc6c",
         )
         assert_matches_type(ReputationEnableResponse, reputation, path=["response"])
 
@@ -118,8 +118,8 @@ class TestReputation:
     @parametrize
     def test_method_enable_with_all_params(self, client: Telnyx) -> None:
         reputation = client.enterprises.reputation.enable(
-            enterprise_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
-            loa_document_id="doc_01HXYZ1234ABCDEF",
+            enterprise_id="4a6192a4-573d-446d-b3ce-aff9117272a6",
+            loa_document_id="2a7e8337-e803-4057-a4ae-26c40eb0bc6c",
             check_frequency="business_daily",
         )
         assert_matches_type(ReputationEnableResponse, reputation, path=["response"])
@@ -128,8 +128,8 @@ class TestReputation:
     @parametrize
     def test_raw_response_enable(self, client: Telnyx) -> None:
         response = client.enterprises.reputation.with_raw_response.enable(
-            enterprise_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
-            loa_document_id="doc_01HXYZ1234ABCDEF",
+            enterprise_id="4a6192a4-573d-446d-b3ce-aff9117272a6",
+            loa_document_id="2a7e8337-e803-4057-a4ae-26c40eb0bc6c",
         )
 
         assert response.is_closed is True
@@ -141,8 +141,8 @@ class TestReputation:
     @parametrize
     def test_streaming_response_enable(self, client: Telnyx) -> None:
         with client.enterprises.reputation.with_streaming_response.enable(
-            enterprise_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
-            loa_document_id="doc_01HXYZ1234ABCDEF",
+            enterprise_id="4a6192a4-573d-446d-b3ce-aff9117272a6",
+            loa_document_id="2a7e8337-e803-4057-a4ae-26c40eb0bc6c",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -158,15 +158,15 @@ class TestReputation:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `enterprise_id` but received ''"):
             client.enterprises.reputation.with_raw_response.enable(
                 enterprise_id="",
-                loa_document_id="doc_01HXYZ1234ABCDEF",
+                loa_document_id="2a7e8337-e803-4057-a4ae-26c40eb0bc6c",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_update_frequency(self, client: Telnyx) -> None:
         reputation = client.enterprises.reputation.update_frequency(
-            enterprise_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
-            check_frequency="business_daily",
+            enterprise_id="4a6192a4-573d-446d-b3ce-aff9117272a6",
+            check_frequency="weekly",
         )
         assert_matches_type(ReputationUpdateFrequencyResponse, reputation, path=["response"])
 
@@ -174,8 +174,8 @@ class TestReputation:
     @parametrize
     def test_raw_response_update_frequency(self, client: Telnyx) -> None:
         response = client.enterprises.reputation.with_raw_response.update_frequency(
-            enterprise_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
-            check_frequency="business_daily",
+            enterprise_id="4a6192a4-573d-446d-b3ce-aff9117272a6",
+            check_frequency="weekly",
         )
 
         assert response.is_closed is True
@@ -187,8 +187,8 @@ class TestReputation:
     @parametrize
     def test_streaming_response_update_frequency(self, client: Telnyx) -> None:
         with client.enterprises.reputation.with_streaming_response.update_frequency(
-            enterprise_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
-            check_frequency="business_daily",
+            enterprise_id="4a6192a4-573d-446d-b3ce-aff9117272a6",
+            check_frequency="weekly",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -204,7 +204,7 @@ class TestReputation:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `enterprise_id` but received ''"):
             client.enterprises.reputation.with_raw_response.update_frequency(
                 enterprise_id="",
-                check_frequency="business_daily",
+                check_frequency="weekly",
             )
 
 
@@ -217,7 +217,7 @@ class TestAsyncReputation:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncTelnyx) -> None:
         reputation = await async_client.enterprises.reputation.retrieve(
-            "6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+            "4a6192a4-573d-446d-b3ce-aff9117272a6",
         )
         assert_matches_type(ReputationRetrieveResponse, reputation, path=["response"])
 
@@ -225,7 +225,7 @@ class TestAsyncReputation:
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.enterprises.reputation.with_raw_response.retrieve(
-            "6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+            "4a6192a4-573d-446d-b3ce-aff9117272a6",
         )
 
         assert response.is_closed is True
@@ -237,7 +237,7 @@ class TestAsyncReputation:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncTelnyx) -> None:
         async with async_client.enterprises.reputation.with_streaming_response.retrieve(
-            "6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+            "4a6192a4-573d-446d-b3ce-aff9117272a6",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -259,7 +259,7 @@ class TestAsyncReputation:
     @parametrize
     async def test_method_disable(self, async_client: AsyncTelnyx) -> None:
         reputation = await async_client.enterprises.reputation.disable(
-            "6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+            "4a6192a4-573d-446d-b3ce-aff9117272a6",
         )
         assert reputation is None
 
@@ -267,7 +267,7 @@ class TestAsyncReputation:
     @parametrize
     async def test_raw_response_disable(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.enterprises.reputation.with_raw_response.disable(
-            "6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+            "4a6192a4-573d-446d-b3ce-aff9117272a6",
         )
 
         assert response.is_closed is True
@@ -279,7 +279,7 @@ class TestAsyncReputation:
     @parametrize
     async def test_streaming_response_disable(self, async_client: AsyncTelnyx) -> None:
         async with async_client.enterprises.reputation.with_streaming_response.disable(
-            "6a09cdc3-8948-47f0-aa62-74ac943d6c58",
+            "4a6192a4-573d-446d-b3ce-aff9117272a6",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -301,8 +301,8 @@ class TestAsyncReputation:
     @parametrize
     async def test_method_enable(self, async_client: AsyncTelnyx) -> None:
         reputation = await async_client.enterprises.reputation.enable(
-            enterprise_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
-            loa_document_id="doc_01HXYZ1234ABCDEF",
+            enterprise_id="4a6192a4-573d-446d-b3ce-aff9117272a6",
+            loa_document_id="2a7e8337-e803-4057-a4ae-26c40eb0bc6c",
         )
         assert_matches_type(ReputationEnableResponse, reputation, path=["response"])
 
@@ -310,8 +310,8 @@ class TestAsyncReputation:
     @parametrize
     async def test_method_enable_with_all_params(self, async_client: AsyncTelnyx) -> None:
         reputation = await async_client.enterprises.reputation.enable(
-            enterprise_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
-            loa_document_id="doc_01HXYZ1234ABCDEF",
+            enterprise_id="4a6192a4-573d-446d-b3ce-aff9117272a6",
+            loa_document_id="2a7e8337-e803-4057-a4ae-26c40eb0bc6c",
             check_frequency="business_daily",
         )
         assert_matches_type(ReputationEnableResponse, reputation, path=["response"])
@@ -320,8 +320,8 @@ class TestAsyncReputation:
     @parametrize
     async def test_raw_response_enable(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.enterprises.reputation.with_raw_response.enable(
-            enterprise_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
-            loa_document_id="doc_01HXYZ1234ABCDEF",
+            enterprise_id="4a6192a4-573d-446d-b3ce-aff9117272a6",
+            loa_document_id="2a7e8337-e803-4057-a4ae-26c40eb0bc6c",
         )
 
         assert response.is_closed is True
@@ -333,8 +333,8 @@ class TestAsyncReputation:
     @parametrize
     async def test_streaming_response_enable(self, async_client: AsyncTelnyx) -> None:
         async with async_client.enterprises.reputation.with_streaming_response.enable(
-            enterprise_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
-            loa_document_id="doc_01HXYZ1234ABCDEF",
+            enterprise_id="4a6192a4-573d-446d-b3ce-aff9117272a6",
+            loa_document_id="2a7e8337-e803-4057-a4ae-26c40eb0bc6c",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -350,15 +350,15 @@ class TestAsyncReputation:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `enterprise_id` but received ''"):
             await async_client.enterprises.reputation.with_raw_response.enable(
                 enterprise_id="",
-                loa_document_id="doc_01HXYZ1234ABCDEF",
+                loa_document_id="2a7e8337-e803-4057-a4ae-26c40eb0bc6c",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_update_frequency(self, async_client: AsyncTelnyx) -> None:
         reputation = await async_client.enterprises.reputation.update_frequency(
-            enterprise_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
-            check_frequency="business_daily",
+            enterprise_id="4a6192a4-573d-446d-b3ce-aff9117272a6",
+            check_frequency="weekly",
         )
         assert_matches_type(ReputationUpdateFrequencyResponse, reputation, path=["response"])
 
@@ -366,8 +366,8 @@ class TestAsyncReputation:
     @parametrize
     async def test_raw_response_update_frequency(self, async_client: AsyncTelnyx) -> None:
         response = await async_client.enterprises.reputation.with_raw_response.update_frequency(
-            enterprise_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
-            check_frequency="business_daily",
+            enterprise_id="4a6192a4-573d-446d-b3ce-aff9117272a6",
+            check_frequency="weekly",
         )
 
         assert response.is_closed is True
@@ -379,8 +379,8 @@ class TestAsyncReputation:
     @parametrize
     async def test_streaming_response_update_frequency(self, async_client: AsyncTelnyx) -> None:
         async with async_client.enterprises.reputation.with_streaming_response.update_frequency(
-            enterprise_id="6a09cdc3-8948-47f0-aa62-74ac943d6c58",
-            check_frequency="business_daily",
+            enterprise_id="4a6192a4-573d-446d-b3ce-aff9117272a6",
+            check_frequency="weekly",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -396,5 +396,5 @@ class TestAsyncReputation:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `enterprise_id` but received ''"):
             await async_client.enterprises.reputation.with_raw_response.update_frequency(
                 enterprise_id="",
-                check_frequency="business_daily",
+                check_frequency="weekly",
             )

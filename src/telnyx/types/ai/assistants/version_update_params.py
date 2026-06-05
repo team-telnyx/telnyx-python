@@ -10,24 +10,19 @@ from ..enabled_features import EnabledFeatures
 from ..assistant_tool_param import AssistantToolParam
 from ..voice_settings_param import VoiceSettingsParam
 from ..widget_settings_param import WidgetSettingsParam
-from ..external_llm_req_param import ExternalLlmReqParam
 from ..insight_settings_param import InsightSettingsParam
 from ..privacy_settings_param import PrivacySettingsParam
 from ..observability_req_param import ObservabilityReqParam
 from ..messaging_settings_param import MessagingSettingsParam
 from ..telephony_settings_param import TelephonySettingsParam
-from ..fallback_config_req_param import FallbackConfigReqParam
-from ..assistant_mcp_server_param import AssistantMcpServerParam
-from ..assistant_integration_param import AssistantIntegrationParam
 from ..transcription_settings_param import TranscriptionSettingsParam
-from ..post_conversation_settings_req_param import PostConversationSettingsReqParam
-from ..inference_embedding_interruption_settings_param import InferenceEmbeddingInterruptionSettingsParam
 
 __all__ = [
     "VersionUpdateParams",
     "ConversationFlow",
     "ConversationFlowNode",
     "ConversationFlowNodeFlowNodeReq",
+    "ConversationFlowNodeFlowNodeReqExternalLlm",
     "ConversationFlowNodeFlowNodeReqPosition",
     "ConversationFlowNodeToolNodeReq",
     "ConversationFlowNodeToolNodeReqPosition",
@@ -47,6 +42,15 @@ __all__ = [
     "ConversationFlowEdgeTargetNodeTarget",
     "ConversationFlowEdgeTargetAssistantTarget",
     "ConversationFlowEdgeTargetAssistantTargetPosition",
+    "ExternalLlm",
+    "FallbackConfig",
+    "FallbackConfigExternalLlm",
+    "Integration",
+    "InterruptionSettings",
+    "InterruptionSettingsStartSpeakingPlan",
+    "InterruptionSettingsStartSpeakingPlanTranscriptionEndpointingPlan",
+    "McpServer",
+    "PostConversationSettings",
 ]
 
 
@@ -88,9 +92,9 @@ class VersionUpdateParams(TypedDict, total=False):
 
     enabled_features: List[EnabledFeatures]
 
-    external_llm: ExternalLlmReqParam
+    external_llm: ExternalLlm
 
-    fallback_config: FallbackConfigReqParam
+    fallback_config: FallbackConfig
 
     greeting: str
     """Text that the assistant will use to start the conversation.
@@ -111,7 +115,7 @@ class VersionUpdateParams(TypedDict, total=False):
     [dynamic variables](https://developers.telnyx.com/docs/inference/ai-assistants/dynamic-variables)
     """
 
-    integrations: Iterable[AssistantIntegrationParam]
+    integrations: Iterable[Integration]
     """Connected integrations attached to the assistant.
 
     The catalog of available integrations is at `/ai/integrations`; the user's
@@ -119,7 +123,7 @@ class VersionUpdateParams(TypedDict, total=False):
     references a catalog integration by `integration_id`.
     """
 
-    interruption_settings: InferenceEmbeddingInterruptionSettingsParam
+    interruption_settings: InterruptionSettings
     """
     Settings for interruptions and how the assistant decides the user has finished
     speaking. These timings are most relevant when using non turn-taking
@@ -139,7 +143,7 @@ class VersionUpdateParams(TypedDict, total=False):
     are unlikely to work with this integration.
     """
 
-    mcp_servers: Iterable[AssistantMcpServerParam]
+    mcp_servers: Iterable[McpServer]
     """MCP servers attached to the assistant.
 
     Create MCP servers with `/ai/mcp_servers`, then reference them by `id` here.
@@ -161,7 +165,7 @@ class VersionUpdateParams(TypedDict, total=False):
 
     observability_settings: ObservabilityReqParam
 
-    post_conversation_settings: PostConversationSettingsReqParam
+    post_conversation_settings: PostConversationSettings
     """Configuration for post-conversation processing.
 
     When enabled, the assistant receives one additional LLM turn after the
@@ -205,6 +209,47 @@ class VersionUpdateParams(TypedDict, total=False):
     """Configuration settings for the assistant's web widget."""
 
 
+class ConversationFlowNodeFlowNodeReqExternalLlm(TypedDict, total=False):
+    """Override for `Assistant.external_llm` while this node is active.
+
+    Use this to route a node's turns to a different external LLM (different `model`, `base_url`, credentials). Part of the LLM bundle — see `model` for cascade semantics. Mutually exclusive with `model` on the node (a single LLM identity per node).
+    """
+
+    base_url: Required[str]
+    """Base URL for the external LLM endpoint."""
+
+    model: Required[str]
+    """Model identifier to use with the external LLM endpoint."""
+
+    authentication_method: Literal["token", "certificate"]
+    """Authentication method used when connecting to the external LLM endpoint."""
+
+    certificate_ref: str
+    """
+    Integration secret identifier for the client certificate used with certificate
+    authentication.
+    """
+
+    forward_metadata: bool
+    """
+    When `true`, Telnyx forwards the assistant's dynamic variables to the external
+    LLM endpoint as a top-level `extra_metadata` object on the chat completion
+    request body. Defaults to `false`. Example payload sent to the external
+    endpoint:
+    `{"extra_metadata": {"customer_name": "Jane", "account_id": "acct_789", "telnyx_agent_target": "+13125550100", "telnyx_end_user_target": "+13125550123"}}`.
+    Distinct from OpenAI's native `metadata` field, which has its own size and type
+    limits.
+    """
+
+    llm_api_key_ref: str
+    """Integration secret identifier for the external LLM API key."""
+
+    token_retrieval_url: str
+    """
+    URL used to retrieve an access token when certificate authentication is enabled.
+    """
+
+
 class ConversationFlowNodeFlowNodeReqPosition(TypedDict, total=False):
     """Optional canvas coordinates used by authoring UIs to lay out the graph.
 
@@ -231,7 +276,7 @@ class ConversationFlowNodeFlowNodeReq(TypedDict, total=False):
     instructions: Required[str]
     """Prompt that drives the LLM while this node is active. Required."""
 
-    external_llm: ExternalLlmReqParam
+    external_llm: ConversationFlowNodeFlowNodeReqExternalLlm
     """Override for `Assistant.external_llm` while this node is active.
 
     Use this to route a node's turns to a different external LLM (different `model`,
@@ -632,3 +677,199 @@ class ConversationFlow(TypedDict, total=False):
 
     edges: Iterable[ConversationFlowEdge]
     """Directed transitions between nodes. May be empty for a single-node flow."""
+
+
+class ExternalLlm(TypedDict, total=False):
+    base_url: Required[str]
+    """Base URL for the external LLM endpoint."""
+
+    model: Required[str]
+    """Model identifier to use with the external LLM endpoint."""
+
+    authentication_method: Literal["token", "certificate"]
+    """Authentication method used when connecting to the external LLM endpoint."""
+
+    certificate_ref: str
+    """
+    Integration secret identifier for the client certificate used with certificate
+    authentication.
+    """
+
+    forward_metadata: bool
+    """
+    When `true`, Telnyx forwards the assistant's dynamic variables to the external
+    LLM endpoint as a top-level `extra_metadata` object on the chat completion
+    request body. Defaults to `false`. Example payload sent to the external
+    endpoint:
+    `{"extra_metadata": {"customer_name": "Jane", "account_id": "acct_789", "telnyx_agent_target": "+13125550100", "telnyx_end_user_target": "+13125550123"}}`.
+    Distinct from OpenAI's native `metadata` field, which has its own size and type
+    limits.
+    """
+
+    llm_api_key_ref: str
+    """Integration secret identifier for the external LLM API key."""
+
+    token_retrieval_url: str
+    """
+    URL used to retrieve an access token when certificate authentication is enabled.
+    """
+
+
+class FallbackConfigExternalLlm(TypedDict, total=False):
+    base_url: Required[str]
+    """Base URL for the external LLM endpoint."""
+
+    model: Required[str]
+    """Model identifier to use with the external LLM endpoint."""
+
+    authentication_method: Literal["token", "certificate"]
+    """Authentication method used when connecting to the external LLM endpoint."""
+
+    certificate_ref: str
+    """
+    Integration secret identifier for the client certificate used with certificate
+    authentication.
+    """
+
+    forward_metadata: bool
+    """
+    When `true`, Telnyx forwards the assistant's dynamic variables to the external
+    LLM endpoint as a top-level `extra_metadata` object on the chat completion
+    request body. Defaults to `false`. Example payload sent to the external
+    endpoint:
+    `{"extra_metadata": {"customer_name": "Jane", "account_id": "acct_789", "telnyx_agent_target": "+13125550100", "telnyx_end_user_target": "+13125550123"}}`.
+    Distinct from OpenAI's native `metadata` field, which has its own size and type
+    limits.
+    """
+
+    llm_api_key_ref: str
+    """Integration secret identifier for the external LLM API key."""
+
+    token_retrieval_url: str
+    """
+    URL used to retrieve an access token when certificate authentication is enabled.
+    """
+
+
+class FallbackConfig(TypedDict, total=False):
+    external_llm: FallbackConfigExternalLlm
+
+    llm_api_key_ref: str
+    """Integration secret identifier for the fallback model API key."""
+
+    model: str
+    """
+    Fallback Telnyx-hosted model to use when the primary LLM provider is
+    unavailable.
+    """
+
+
+class Integration(TypedDict, total=False):
+    """Reference to a connected integration attached to an assistant.
+
+    Discover available integrations with `/ai/integrations` and connected integrations with `/ai/integrations/connections`.
+    """
+
+    integration_id: Required[str]
+    """Catalog integration ID to attach.
+
+    This is the `id` from the integrations catalog at `/ai/integrations` (the same
+    value also appears as `integration_id` on entries returned by
+    `/ai/integrations/connections`). It is **not** the connection-level `id` from
+    `/ai/integrations/connections`.
+    """
+
+    allowed_list: SequenceNotStr[str]
+    """Optional per-assistant allowlist of integration tool names.
+
+    When omitted or empty, all tools allowed by the connected integration are
+    available to the assistant.
+    """
+
+
+class InterruptionSettingsStartSpeakingPlanTranscriptionEndpointingPlan(TypedDict, total=False):
+    """Endpointing thresholds used to decide when the user has finished speaking.
+
+    Applies to non turn-taking transcription models. For `deepgram/flux`, use `transcription.settings.eot_threshold` / `eot_timeout_ms` / `eager_eot_threshold`.
+    """
+
+    on_no_punctuation_seconds: float
+    """Seconds to wait after the transcript ends without punctuation."""
+
+    on_number_seconds: float
+    """Seconds to wait after the transcript ends with a number."""
+
+    on_punctuation_seconds: float
+    """Seconds to wait after the transcript ends with punctuation."""
+
+
+class InterruptionSettingsStartSpeakingPlan(TypedDict, total=False):
+    """Controls when the assistant starts speaking after the user stops.
+
+    These thresholds primarily apply to non turn-taking transcription models. For turn-taking models like `deepgram/flux`, end-of-turn detection is driven by the transcription end-of-turn settings under `transcription.settings` instead.
+    """
+
+    transcription_endpointing_plan: InterruptionSettingsStartSpeakingPlanTranscriptionEndpointingPlan
+    """Endpointing thresholds used to decide when the user has finished speaking.
+
+    Applies to non turn-taking transcription models. For `deepgram/flux`, use
+    `transcription.settings.eot_threshold` / `eot_timeout_ms` /
+    `eager_eot_threshold`.
+    """
+
+    wait_seconds: float
+    """Minimum seconds to wait before the assistant starts speaking."""
+
+
+class InterruptionSettings(TypedDict, total=False):
+    """
+    Settings for interruptions and how the assistant decides the user has finished speaking. These timings are most relevant when using non turn-taking transcription models. For turn-taking models like `deepgram/flux`, end-of-turn behavior is controlled by the transcription end-of-turn settings under `transcription.settings` (`eot_threshold`, `eot_timeout_ms`, `eager_eot_threshold`).
+    """
+
+    disable_greeting_interruption: bool
+    """When true, disables user interruptions while the assistant greeting is playing."""
+
+    enable: bool
+    """Whether users can interrupt the assistant while it is speaking."""
+
+    start_speaking_plan: InterruptionSettingsStartSpeakingPlan
+    """Controls when the assistant starts speaking after the user stops.
+
+    These thresholds primarily apply to non turn-taking transcription models. For
+    turn-taking models like `deepgram/flux`, end-of-turn detection is driven by the
+    transcription end-of-turn settings under `transcription.settings` instead.
+    """
+
+
+class McpServer(TypedDict, total=False):
+    """Reference to an MCP server attached to an assistant.
+
+    Create and manage MCP servers with the `/ai/mcp_servers` endpoints, then attach them to assistants by ID.
+    """
+
+    id: Required[str]
+    """ID of the MCP server to attach.
+
+    This must be the `id` of an MCP server returned by the `/ai/mcp_servers`
+    endpoints.
+    """
+
+    allowed_tools: SequenceNotStr[str]
+    """Optional per-assistant allowlist of MCP tool names.
+
+    When omitted, the assistant uses the MCP server's configured `allowed_tools`.
+    """
+
+
+class PostConversationSettings(TypedDict, total=False):
+    """Configuration for post-conversation processing.
+
+    When enabled, the assistant receives one additional LLM turn after the conversation ends, allowing it to execute tool calls such as logging to a CRM or sending a summary. The assistant can execute multiple parallel or sequential tools during this phase. Telephony-control tools (e.g. hangup, transfer) are unavailable post-conversation. Beta feature.
+    """
+
+    enabled: bool
+    """Whether post-conversation processing is enabled.
+
+    When true, the assistant will be invoked after the conversation ends to perform
+    any final tool calls. Defaults to false.
+    """

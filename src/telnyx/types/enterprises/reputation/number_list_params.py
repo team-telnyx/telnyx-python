@@ -11,10 +11,13 @@ __all__ = ["NumberListParams"]
 
 class NumberListParams(TypedDict, total=False):
     page_number: Annotated[int, PropertyInfo(alias="page[number]")]
-    """Page number (1-indexed)"""
+    """1-based page number.
+
+    Out-of-range values return an empty page with correct meta.
+    """
 
     page_size: Annotated[int, PropertyInfo(alias="page[size]")]
-    """Number of items per page"""
+    """Items per page. Default 10. Maximum 250; values above are clamped to 250."""
 
     phone_number: str
-    """Filter by specific phone number (E.164 format)"""
+    """Filter by specific phone number (E.164 format)."""

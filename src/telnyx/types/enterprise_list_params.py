@@ -11,10 +11,13 @@ __all__ = ["EnterpriseListParams"]
 
 class EnterpriseListParams(TypedDict, total=False):
     legal_name: str
-    """Filter by legal name (partial match)"""
+    """Filter by legal name (partial match)."""
 
     page_number: Annotated[int, PropertyInfo(alias="page[number]")]
-    """Page number (1-indexed)"""
+    """1-based page number.
+
+    Out-of-range values return an empty page with correct meta.
+    """
 
     page_size: Annotated[int, PropertyInfo(alias="page[size]")]
-    """Number of items per page"""
+    """Items per page. Default 10. Maximum 250; values above are clamped to 250."""

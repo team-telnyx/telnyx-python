@@ -19,9 +19,7 @@ __all__ = ["ReputationResource", "AsyncReputationResource"]
 class ReputationResource(SyncAPIResource):
     @cached_property
     def numbers(self) -> NumbersResource:
-        """
-        Associate phone numbers with an enterprise for reputation monitoring and retrieve reputation scores
-        """
+        """Phone-number reputation monitoring (spam-score lookup and tracking)."""
         return NumbersResource(self._client)
 
     @cached_property
@@ -47,9 +45,7 @@ class ReputationResource(SyncAPIResource):
 class AsyncReputationResource(AsyncAPIResource):
     @cached_property
     def numbers(self) -> AsyncNumbersResource:
-        """
-        Associate phone numbers with an enterprise for reputation monitoring and retrieve reputation scores
-        """
+        """Phone-number reputation monitoring (spam-score lookup and tracking)."""
         return AsyncNumbersResource(self._client)
 
     @cached_property
@@ -78,9 +74,7 @@ class ReputationResourceWithRawResponse:
 
     @cached_property
     def numbers(self) -> NumbersResourceWithRawResponse:
-        """
-        Associate phone numbers with an enterprise for reputation monitoring and retrieve reputation scores
-        """
+        """Phone-number reputation monitoring (spam-score lookup and tracking)."""
         return NumbersResourceWithRawResponse(self._reputation.numbers)
 
 
@@ -90,9 +84,7 @@ class AsyncReputationResourceWithRawResponse:
 
     @cached_property
     def numbers(self) -> AsyncNumbersResourceWithRawResponse:
-        """
-        Associate phone numbers with an enterprise for reputation monitoring and retrieve reputation scores
-        """
+        """Phone-number reputation monitoring (spam-score lookup and tracking)."""
         return AsyncNumbersResourceWithRawResponse(self._reputation.numbers)
 
 
@@ -102,9 +94,7 @@ class ReputationResourceWithStreamingResponse:
 
     @cached_property
     def numbers(self) -> NumbersResourceWithStreamingResponse:
-        """
-        Associate phone numbers with an enterprise for reputation monitoring and retrieve reputation scores
-        """
+        """Phone-number reputation monitoring (spam-score lookup and tracking)."""
         return NumbersResourceWithStreamingResponse(self._reputation.numbers)
 
 
@@ -114,7 +104,5 @@ class AsyncReputationResourceWithStreamingResponse:
 
     @cached_property
     def numbers(self) -> AsyncNumbersResourceWithStreamingResponse:
-        """
-        Associate phone numbers with an enterprise for reputation monitoring and retrieve reputation scores
-        """
+        """Phone-number reputation monitoring (spam-score lookup and tracking)."""
         return AsyncNumbersResourceWithStreamingResponse(self._reputation.numbers)

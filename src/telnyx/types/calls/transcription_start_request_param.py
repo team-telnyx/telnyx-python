@@ -9,18 +9,75 @@ from .deepgram_nova2_config_param import DeepgramNova2ConfigParam
 from .deepgram_nova3_config_param import DeepgramNova3ConfigParam
 from .transcription_engine_a_config_param import TranscriptionEngineAConfigParam
 from .transcription_engine_b_config_param import TranscriptionEngineBConfigParam
-from .transcription_engine_xai_config_param import TranscriptionEngineXaiConfigParam
 from .transcription_engine_azure_config_param import TranscriptionEngineAzureConfigParam
 from .transcription_engine_google_config_param import TranscriptionEngineGoogleConfigParam
 from .transcription_engine_telnyx_config_param import TranscriptionEngineTelnyxConfigParam
-from .transcription_engine_assemblyai_config_param import TranscriptionEngineAssemblyaiConfigParam
 
 __all__ = [
     "TranscriptionStartRequestParam",
     "TranscriptionEngineConfig",
+    "TranscriptionEngineConfigTranscriptionEngineXaiConfig",
+    "TranscriptionEngineConfigTranscriptionEngineAssemblyaiConfig",
     "TranscriptionEngineConfigTranscriptionEngineSpeechmaticsConfig",
     "TranscriptionEngineConfigTranscriptionEngineSonioxConfig",
 ]
+
+
+class TranscriptionEngineConfigTranscriptionEngineXaiConfig(TypedDict, total=False):
+    interim_results: bool
+    """Whether to send also interim results.
+
+    If set to false, only final results will be sent.
+    """
+
+    language: Literal[
+        "ar",
+        "cs",
+        "da",
+        "de",
+        "en",
+        "es",
+        "fa",
+        "fil",
+        "fr",
+        "hi",
+        "id",
+        "it",
+        "ja",
+        "ko",
+        "mk",
+        "ms",
+        "nl",
+        "pl",
+        "pt",
+        "ro",
+        "ru",
+        "sv",
+        "th",
+        "tr",
+        "vi",
+    ]
+    """Language to use for speech recognition"""
+
+    transcription_engine: Literal["xAI"]
+    """Engine identifier for xAI transcription service"""
+
+    transcription_model: Literal["xai/grok-stt"]
+    """The model to use for transcription."""
+
+
+class TranscriptionEngineConfigTranscriptionEngineAssemblyaiConfig(TypedDict, total=False):
+    interim_results: bool
+    """Whether to send also interim results.
+
+    If set to false, only final results will be sent.
+    """
+
+    transcription_engine: Literal["AssemblyAI"]
+    """Engine identifier for AssemblyAI transcription service"""
+
+    transcription_model: Literal["assemblyai/universal-streaming"]
+    """The model to use for transcription."""
 
 
 class TranscriptionEngineConfigTranscriptionEngineSpeechmaticsConfig(TypedDict, total=False):
@@ -95,8 +152,8 @@ TranscriptionEngineConfig: TypeAlias = Union[
     TranscriptionEngineGoogleConfigParam,
     TranscriptionEngineTelnyxConfigParam,
     TranscriptionEngineAzureConfigParam,
-    TranscriptionEngineXaiConfigParam,
-    TranscriptionEngineAssemblyaiConfigParam,
+    TranscriptionEngineConfigTranscriptionEngineXaiConfig,
+    TranscriptionEngineConfigTranscriptionEngineAssemblyaiConfig,
     TranscriptionEngineConfigTranscriptionEngineSpeechmaticsConfig,
     TranscriptionEngineConfigTranscriptionEngineSonioxConfig,
     TranscriptionEngineAConfigParam,

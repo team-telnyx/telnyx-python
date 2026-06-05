@@ -11,5 +11,5 @@ class NumberRetrieveParams(TypedDict, total=False):
     fresh: bool
     """When true, fetches fresh reputation data (incurs API cost).
 
-    When false, returns cached data.
+    When false (default), returns cached data.
     """
