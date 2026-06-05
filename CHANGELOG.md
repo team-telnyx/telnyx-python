@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.152.0 (2026-06-05)
+
+Full Changelog: [v4.151.0...v4.152.0](https://github.com/team-telnyx/telnyx-python/compare/v4.151.0...v4.152.0)
+
+### Features
+
+* NUM-6470: Add branded-calling-v2 OpenAPI specs (external + internal) ([a2c999f](https://github.com/team-telnyx/telnyx-python/commit/a2c999f01668f86406e50c6a32fbefc099ae938b))
+
 ## 4.151.0 (2026-06-05)
 
 Full Changelog: [v4.150.0...v4.151.0](https://github.com/team-telnyx/telnyx-python/compare/v4.150.0...v4.151.0)
