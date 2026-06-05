@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.151.0 (2026-06-05)
+
+Full Changelog: [v4.150.0...v4.151.0](https://github.com/team-telnyx/telnyx-python/compare/v4.150.0...v4.151.0)
+
+### Features
+
+* Conversation flow update ([222a515](https://github.com/team-telnyx/telnyx-python/commit/222a515891253a53bbfe47ca6750ebb5daf5855f))
+
 ## 4.150.0 (2026-06-04)
 
 Full Changelog: [v4.149.1...v4.150.0](https://github.com/team-telnyx/telnyx-python/compare/v4.149.1...v4.150.0)
