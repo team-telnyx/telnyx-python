@@ -31,6 +31,8 @@ __all__ = [
     "ConversationFlowNodeFlowNodeReqPosition",
     "ConversationFlowNodeToolNodeReq",
     "ConversationFlowNodeToolNodeReqPosition",
+    "ConversationFlowNodeSpeakNodeReq",
+    "ConversationFlowNodeSpeakNodeReqPosition",
     "ConversationFlowEdge",
     "ConversationFlowEdgeCondition",
     "ConversationFlowEdgeConditionLlmCondition",
@@ -40,6 +42,7 @@ __all__ = [
     "ConversationFlowEdgeConditionExpressionConditionExpressionStringLiteralExpression",
     "ConversationFlowEdgeConditionExpressionConditionExpressionNumberLiteralExpression",
     "ConversationFlowEdgeConditionExpressionConditionExpressionBooleanLiteralExpression",
+    "ConversationFlowEdgeConditionDefaultCondition",
     "ConversationFlowEdgeTarget",
     "ConversationFlowEdgeTargetNodeTarget",
     "ConversationFlowEdgeTargetAssistantTarget",
@@ -358,7 +361,58 @@ class ConversationFlowNodeToolNodeReq(TypedDict, total=False):
     """Node kind discriminator. Always `tool` for a tool node."""
 
 
-ConversationFlowNode: TypeAlias = Union[ConversationFlowNodeFlowNodeReq, ConversationFlowNodeToolNodeReq]
+class ConversationFlowNodeSpeakNodeReqPosition(TypedDict, total=False):
+    """Optional canvas coordinates used by authoring UIs to lay out the graph.
+
+    Ignored by the runtime; round-trips so frontends can persist graph layout across reloads.
+    """
+
+    x: Required[float]
+    """Horizontal coordinate in the authoring canvas."""
+
+    y: Required[float]
+    """Vertical coordinate in the authoring canvas."""
+
+
+class ConversationFlowNodeSpeakNodeReq(TypedDict, total=False):
+    """A standalone scripted-message step in a flow, as supplied by clients.
+
+    Unlike a prompt node, a speak node has no instructions or model — it isn't
+    an LLM turn. Reaching it delivers `message` to the user verbatim (with
+    `{{variable}}` interpolation), then routes via outgoing `llm` /
+    `expression` edges.
+    """
+
+    id: Required[str]
+    """Caller-supplied unique identifier for this node within the flow."""
+
+    message: Required[str]
+    """Message delivered to the user verbatim when the flow reaches this node.
+
+    No LLM turn — the text is spoken/sent exactly as written. `{{variable}}`
+    placeholders are interpolated from the conversation's dynamic variables; an
+    unresolved placeholder renders as an empty string. After delivering, the flow
+    routes via the node's outgoing `llm` / `expression` edges (commonly a single
+    unconditional edge).
+    """
+
+    name: str
+    """Optional human-readable label, displayed in authoring UIs."""
+
+    position: ConversationFlowNodeSpeakNodeReqPosition
+    """Optional canvas coordinates used by authoring UIs to lay out the graph.
+
+    Ignored by the runtime; round-trips so frontends can persist graph layout across
+    reloads.
+    """
+
+    type: Literal["speak"]
+    """Node kind discriminator. Always `speak` for a speak node."""
+
+
+ConversationFlowNode: TypeAlias = Union[
+    ConversationFlowNodeFlowNodeReq, ConversationFlowNodeToolNodeReq, ConversationFlowNodeSpeakNodeReq
+]
 
 
 class ConversationFlowEdgeConditionLlmCondition(TypedDict, total=False):
@@ -447,8 +501,25 @@ class ConversationFlowEdgeConditionExpressionCondition(TypedDict, total=False):
     type: Required[Literal["expression"]]
 
 
+class ConversationFlowEdgeConditionDefaultCondition(TypedDict, total=False):
+    """Fallback edge condition: fires only when no other edge's condition is true.
+
+    Evaluated after every conditioned (`llm` / `expression`) edge regardless
+    of declaration order, so it routes the flow whenever none of the node's
+    other outgoing edges match. Valid **only** on edges leaving a `tool` or
+    `speak` node, where the deterministic step auto-advances and must always
+    have somewhere to go. A tool/speak node with any outgoing edge is required
+    to carry exactly one `default` edge so it never dead-ends; a tool/speak
+    node with no outgoing edges is a valid terminal step. Carries no parameters.
+    """
+
+    type: Required[Literal["default"]]
+
+
 ConversationFlowEdgeCondition: TypeAlias = Union[
-    ConversationFlowEdgeConditionLlmCondition, ConversationFlowEdgeConditionExpressionCondition
+    ConversationFlowEdgeConditionLlmCondition,
+    ConversationFlowEdgeConditionExpressionCondition,
+    ConversationFlowEdgeConditionDefaultCondition,
 ]
 
 
