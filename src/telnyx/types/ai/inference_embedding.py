@@ -32,6 +32,8 @@ __all__ = [
     "ConversationFlowNodeFlowNodePosition",
     "ConversationFlowNodeToolNode",
     "ConversationFlowNodeToolNodePosition",
+    "ConversationFlowNodeSpeakNode",
+    "ConversationFlowNodeSpeakNodePosition",
     "ConversationFlowEdge",
     "ConversationFlowEdgeCondition",
     "ConversationFlowEdgeConditionLlmCondition",
@@ -41,6 +43,7 @@ __all__ = [
     "ConversationFlowEdgeConditionExpressionConditionExpressionStringLiteralExpression",
     "ConversationFlowEdgeConditionExpressionConditionExpressionNumberLiteralExpression",
     "ConversationFlowEdgeConditionExpressionConditionExpressionBooleanLiteralExpression",
+    "ConversationFlowEdgeConditionDefaultCondition",
     "ConversationFlowEdgeTarget",
     "ConversationFlowEdgeTargetNodeTarget",
     "ConversationFlowEdgeTargetAssistantTarget",
@@ -195,8 +198,52 @@ class ConversationFlowNodeToolNode(BaseModel):
     """Node kind discriminator. Always `tool` for a tool node."""
 
 
+class ConversationFlowNodeSpeakNodePosition(BaseModel):
+    """Optional canvas coordinates used by authoring UIs to lay out the graph.
+
+    Ignored by the runtime; round-trips so frontends can persist graph layout across reloads.
+    """
+
+    x: float
+    """Horizontal coordinate in the authoring canvas."""
+
+    y: float
+    """Vertical coordinate in the authoring canvas."""
+
+
+class ConversationFlowNodeSpeakNode(BaseModel):
+    """A standalone scripted-message step in a flow, as returned by the API."""
+
+    id: str
+    """Caller-supplied unique identifier for this node within the flow."""
+
+    message: str
+    """Message delivered to the user verbatim when the flow reaches this node.
+
+    No LLM turn — the text is spoken/sent exactly as written. `{{variable}}`
+    placeholders are interpolated from the conversation's dynamic variables; an
+    unresolved placeholder renders as an empty string. After delivering, the flow
+    routes via the node's outgoing `llm` / `expression` edges (commonly a single
+    unconditional edge).
+    """
+
+    name: Optional[str] = None
+    """Optional human-readable label, displayed in authoring UIs."""
+
+    position: Optional[ConversationFlowNodeSpeakNodePosition] = None
+    """Optional canvas coordinates used by authoring UIs to lay out the graph.
+
+    Ignored by the runtime; round-trips so frontends can persist graph layout across
+    reloads.
+    """
+
+    type: Optional[Literal["speak"]] = None
+    """Node kind discriminator. Always `speak` for a speak node."""
+
+
 ConversationFlowNode: TypeAlias = Annotated[
-    Union[ConversationFlowNodeFlowNode, ConversationFlowNodeToolNode], PropertyInfo(discriminator="type")
+    Union[ConversationFlowNodeFlowNode, ConversationFlowNodeToolNode, ConversationFlowNodeSpeakNode],
+    PropertyInfo(discriminator="type"),
 ]
 
 
@@ -286,8 +333,27 @@ class ConversationFlowEdgeConditionExpressionCondition(BaseModel):
     type: Literal["expression"]
 
 
+class ConversationFlowEdgeConditionDefaultCondition(BaseModel):
+    """Fallback edge condition: fires only when no other edge's condition is true.
+
+    Evaluated after every conditioned (`llm` / `expression`) edge regardless
+    of declaration order, so it routes the flow whenever none of the node's
+    other outgoing edges match. Valid **only** on edges leaving a `tool` or
+    `speak` node, where the deterministic step auto-advances and must always
+    have somewhere to go. A tool/speak node with any outgoing edge is required
+    to carry exactly one `default` edge so it never dead-ends; a tool/speak
+    node with no outgoing edges is a valid terminal step. Carries no parameters.
+    """
+
+    type: Literal["default"]
+
+
 ConversationFlowEdgeCondition: TypeAlias = Annotated[
-    Union[ConversationFlowEdgeConditionLlmCondition, ConversationFlowEdgeConditionExpressionCondition],
+    Union[
+        ConversationFlowEdgeConditionLlmCondition,
+        ConversationFlowEdgeConditionExpressionCondition,
+        ConversationFlowEdgeConditionDefaultCondition,
+    ],
     PropertyInfo(discriminator="type"),
 ]
 
