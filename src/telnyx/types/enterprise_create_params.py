@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import Optional
 from typing_extensions import Literal, Required, TypedDict
 
 from .billing_address_param import BillingAddressParam
@@ -18,67 +19,124 @@ class EnterpriseCreateParams(TypedDict, total=False):
     billing_contact: Required[BillingContactParam]
 
     country_code: Required[str]
-    """Country code. Currently only 'US' is accepted."""
+    """ISO 3166-1 alpha-2 country code. Currently `US` and `CA` are supported."""
 
     doing_business_as: Required[str]
-    """Primary business name / DBA name"""
 
     fein: Required[str]
-    """Federal Employer Identification Number.
-
-    Format: XX-XXXXXXX or 9-digit number (minimum 9 digits).
+    """
+    US Federal Employer Identification Number (`NN-NNNNNNN`) or Canadian equivalent.
     """
 
-    industry: Required[str]
-    """Industry classification.
+    industry: Required[
+        Literal[
+            "accounting",
+            "finance",
+            "billing",
+            "collections",
+            "business",
+            "charity",
+            "nonprofit",
+            "communications",
+            "telecom",
+            "customer service",
+            "support",
+            "delivery",
+            "shipping",
+            "logistics",
+            "education",
+            "financial",
+            "banking",
+            "government",
+            "public",
+            "healthcare",
+            "health",
+            "pharmacy",
+            "medical",
+            "insurance",
+            "legal",
+            "law",
+            "notifications",
+            "scheduling",
+            "real estate",
+            "property",
+            "retail",
+            "ecommerce",
+            "sales",
+            "marketing",
+            "software",
+            "technology",
+            "tech",
+            "media",
+            "surveys",
+            "market research",
+            "travel",
+            "hospitality",
+            "hotel",
+        ]
+    ]
+    """Industry classification."""
 
-    Case-insensitive. Accepted values: accounting, finance, billing, collections,
-    business, charity, nonprofit, communications, telecom, customer service,
-    support, delivery, shipping, logistics, education, financial, banking,
-    government, public, healthcare, health, pharmacy, medical, insurance, legal,
-    law, notifications, scheduling, real estate, property, retail, ecommerce, sales,
-    marketing, software, technology, tech, media, surveys, market research, travel,
-    hospitality, hotel
-    """
+    jurisdiction_of_incorporation: Required[str]
 
     legal_name: Required[str]
-    """Legal name of the enterprise"""
+    """Legal name of the enterprise."""
 
     number_of_employees: Required[Literal["1-10", "11-50", "51-200", "201-500", "501-2000", "2001-10000", "10001+"]]
-    """Employee count range"""
+    """Approximate headcount range.
 
-    organization_contact: Required[OrganizationContactParam]
-    """Organization contact information.
-
-    Note: the response returns this object with the phone field as 'phone' (not
-    'phone_number').
+    Used for vetting heuristics; pick the bucket that contains your current employee
+    count.
     """
 
+    organization_contact: Required[OrganizationContactParam]
+
     organization_legal_type: Required[Literal["corporation", "llc", "partnership", "nonprofit", "other"]]
-    """Legal structure type"""
+    """Legal-entity form. Pick the form that matches your incorporation documents:
+
+    - `corporation` — C-corp or S-corp.
+    - `llc` — limited liability company.
+    - `partnership` — general/limited partnership.
+    - `nonprofit` — non-profit corporation, charitable trust, or
+      501(c)(3)/equivalent.
+    - `other` — anything else (sole proprietorships, government bodies, DBAs, etc.).
+      You may be asked for additional documents during vetting.
+    """
 
     organization_physical_address: Required[PhysicalAddressParam]
 
     organization_type: Required[Literal["commercial", "government", "non_profit"]]
-    """Type of organization"""
+    """Organization category for vetting purposes:
+
+    - `commercial` — for-profit business entities (LLC, corp, partnership, sole
+      proprietorship). Most callers fall here.
+    - `government` — federal/state/local government bodies.
+    - `non_profit` — registered 501(c)(3)/equivalent (incl. educational
+      institutions, charities, religious organisations).
+    """
 
     website: Required[str]
-    """Enterprise website URL. Accepts any string — no URL format validation enforced."""
 
-    corporate_registration_number: str
-    """Corporate registration number (optional)"""
+    corporate_registration_number: Optional[str]
+    """Optional corporate-registration / company-number identifier."""
 
     customer_reference: str
-    """Optional customer reference identifier for your own tracking"""
+    """Optional free-form string the caller can attach for their own bookkeeping.
 
-    dun_bradstreet_number: str
-    """D-U-N-S Number (optional)"""
+    Telnyx does not interpret it.
+    """
 
-    primary_business_domain_sic_code: str
-    """SIC Code (optional)"""
+    dun_bradstreet_number: Optional[str]
+    """Optional D-U-N-S Number."""
 
-    professional_license_number: str
-    """Professional license number (optional)"""
+    primary_business_domain_sic_code: Optional[str]
+    """Optional SIC code for the primary line of business."""
+
+    professional_license_number: Optional[str]
+    """Optional professional-license number for regulated industries."""
 
     role_type: Literal["enterprise", "bpo"]
-    """Role type in Branded Calling / Number Reputation services"""
+    """
+    `enterprise` for an organization registering its own DIRs; `bpo` for a Business
+    Process Outsourcer placing calls on behalf of one or more enterprises.
+    """

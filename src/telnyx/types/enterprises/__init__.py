@@ -2,6 +2,10 @@
 
 from __future__ import annotations
 
+from .dir_list_params import DirListParams as DirListParams
+from .dir_create_params import DirCreateParams as DirCreateParams
+from .dir_list_response import DirListResponse as DirListResponse
+from .dir_create_response import DirCreateResponse as DirCreateResponse
 from .reputation_enable_params import ReputationEnableParams as ReputationEnableParams
 from .reputation_enable_response import ReputationEnableResponse as ReputationEnableResponse
 from .enterprise_reputation_public import EnterpriseReputationPublic as EnterpriseReputationPublic

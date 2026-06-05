@@ -1,0 +1,1227 @@
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+from __future__ import annotations
+
+from typing import Union, Iterable, Optional
+from datetime import datetime
+from typing_extensions import Literal
+
+import httpx
+
+from ...types import (
+    dir_list_params,
+    dir_update_params,
+    dir_update_infringement_params,
+    dir_list_infringement_claims_params,
+)
+from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
+from ..._utils import path_template, maybe_transform, async_maybe_transform
+from .comments import (
+    CommentsResource,
+    AsyncCommentsResource,
+    CommentsResourceWithRawResponse,
+    AsyncCommentsResourceWithRawResponse,
+    CommentsResourceWithStreamingResponse,
+    AsyncCommentsResourceWithStreamingResponse,
+)
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ...pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
+from .phone_numbers import (
+    PhoneNumbersResource,
+    AsyncPhoneNumbersResource,
+    PhoneNumbersResourceWithRawResponse,
+    AsyncPhoneNumbersResourceWithRawResponse,
+    PhoneNumbersResourceWithStreamingResponse,
+    AsyncPhoneNumbersResourceWithStreamingResponse,
+)
+from ..._base_client import AsyncPaginator, make_request_options
+from .phone_number_batches import (
+    PhoneNumberBatchesResource,
+    AsyncPhoneNumberBatchesResource,
+    PhoneNumberBatchesResourceWithRawResponse,
+    AsyncPhoneNumberBatchesResourceWithRawResponse,
+    PhoneNumberBatchesResourceWithStreamingResponse,
+    AsyncPhoneNumberBatchesResourceWithStreamingResponse,
+)
+from ...types.dir_list_response import DirListResponse
+from ...types.dir_submit_response import DirSubmitResponse
+from ...types.dir_update_response import DirUpdateResponse
+from ...types.dir_retrieve_response import DirRetrieveResponse
+from ...types.dir_list_document_types_response import DirListDocumentTypesResponse
+from ...types.dir_update_infringement_response import DirUpdateInfringementResponse
+from ...types.dir_list_infringement_claims_response import DirListInfringementClaimsResponse
+
+__all__ = ["DirResource", "AsyncDirResource"]
+
+
+class DirResource(SyncAPIResource):
+    @cached_property
+    def comments(self) -> CommentsResource:
+        """
+        Read messages from the Telnyx vetting team and reply with clarifying information.
+        """
+        return CommentsResource(self._client)
+
+    @cached_property
+    def phone_number_batches(self) -> PhoneNumberBatchesResource:
+        """Phone numbers are submitted to Telnyx for vetting in batches.
+
+        Batches group all numbers added in a single request under the same Letter of Authorization.
+        """
+        return PhoneNumberBatchesResource(self._client)
+
+    @cached_property
+    def phone_numbers(self) -> PhoneNumbersResource:
+        """
+        Associate phone numbers with a verified DIR so calls from those numbers carry the DIR's display identity.
+        """
+        return PhoneNumbersResource(self._client)
+
+    @cached_property
+    def with_raw_response(self) -> DirResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#accessing-raw-response-data-eg-headers
+        """
+        return DirResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> DirResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
+        """
+        return DirResourceWithStreamingResponse(self)
+
+    def retrieve(
+        self,
+        dir_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> DirRetrieveResponse:
+        """Returns a single DIR by id.
+
+        The enterprise is resolved server-side from the DIR
+        id. Returns `404` if the DIR does not exist or is not yours.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not dir_id:
+            raise ValueError(f"Expected a non-empty value for `dir_id` but received {dir_id!r}")
+        return self._get(
+            path_template("/dir/{dir_id}", dir_id=dir_id),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=DirRetrieveResponse,
+        )
+
+    def update(
+        self,
+        dir_id: str,
+        *,
+        authorizer_email: str | Omit = omit,
+        authorizer_name: str | Omit = omit,
+        call_reasons: SequenceNotStr[str] | Omit = omit,
+        display_name: str | Omit = omit,
+        logo_url: str | Omit = omit,
+        reselling: bool | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> DirUpdateResponse:
+        """Edit a DIR.
+
+        Only DIRs in `draft`, `rejected`, `unsuccessful`, or `suspended` are
+        editable. PATCH is a pure edit — `status` is never changed by this endpoint. To
+        re-vet after editing, call `POST /v2/dir/{dir_id}/submit` explicitly.
+
+        Args:
+          authorizer_email: Contact email of the authorizer. Telnyx may send verification or infringement
+              notices here.
+
+          authorizer_name: Name of the person at your enterprise authorizing this DIR. Must be a real
+              individual.
+
+          call_reasons: 1–10 reasons your business calls customers. Validate phrasing against
+              `POST /call_reasons/validate`.
+
+          display_name: Name shown to call recipients. 1–35 characters, no emoji, not whitespace-only.
+
+          logo_url: Publicly accessible HTTPS URL (max 128 chars) to a 256x256 BMP logo (max 1 MB).
+
+          reselling: Set to true if your organization places calls on behalf of other enterprises
+              (BPO/reseller). Updating this triggers re-vetting on next submit.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not dir_id:
+            raise ValueError(f"Expected a non-empty value for `dir_id` but received {dir_id!r}")
+        return self._patch(
+            path_template("/dir/{dir_id}", dir_id=dir_id),
+            body=maybe_transform(
+                {
+                    "authorizer_email": authorizer_email,
+                    "authorizer_name": authorizer_name,
+                    "call_reasons": call_reasons,
+                    "display_name": display_name,
+                    "logo_url": logo_url,
+                    "reselling": reselling,
+                },
+                dir_update_params.DirUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=DirUpdateResponse,
+        )
+
+    def list(
+        self,
+        *,
+        enterprise_id: str | Omit = omit,
+        filter_expiring_at_gte: Union[str, datetime] | Omit = omit,
+        filter_expiring_at_lte: Union[str, datetime] | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
+        search: str | Omit = omit,
+        sort: Literal[
+            "created_at",
+            "-created_at",
+            "updated_at",
+            "-updated_at",
+            "display_name",
+            "-display_name",
+            "status",
+            "-status",
+        ]
+        | Omit = omit,
+        status: Literal[
+            "draft",
+            "submitted",
+            "in_review",
+            "verified",
+            "rejected",
+            "unsuccessful",
+            "suspended",
+            "expired",
+            "infringement_claimed",
+            "permanently_rejected",
+        ]
+        | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> SyncDefaultFlatPagination[DirListResponse]:
+        """
+        Convenience endpoint that returns every DIR you own without scoping to a
+        specific enterprise. Equivalent to calling
+        `GET /v2/enterprises/{enterprise_id}/dir` for each enterprise and concatenating
+        the results, but server-side and paginated as a single list.
+
+        Args:
+          enterprise_id: Restrict results to a single enterprise.
+
+          filter_expiring_at_gte: Return only DIRs whose `expiring_at` is at or after this ISO-8601 timestamp.
+              Pairs with the `[lte]` variant to build renewal-window dashboards.
+
+          filter_expiring_at_lte: Return only DIRs whose `expiring_at` is at or before this ISO-8601 timestamp.
+
+          page_number: 1-based page number. Out-of-range values return an empty page with correct meta.
+
+          page_size: Items per page. Maximum 250; values above are clamped to 250.
+
+          search: Case-insensitive partial match on `display_name` or call reason.
+
+          sort: Sort field. Allowed values: `created_at`, `updated_at`, `display_name`,
+              `status`. Prefix with `-` for descending. Default `-created_at`.
+
+          status: Filter by DIR status.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get_api_list(
+            "/dir",
+            page=SyncDefaultFlatPagination[DirListResponse],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "enterprise_id": enterprise_id,
+                        "filter_expiring_at_gte": filter_expiring_at_gte,
+                        "filter_expiring_at_lte": filter_expiring_at_lte,
+                        "page_number": page_number,
+                        "page_size": page_size,
+                        "search": search,
+                        "sort": sort,
+                        "status": status,
+                    },
+                    dir_list_params.DirListParams,
+                ),
+            ),
+            model=DirListResponse,
+        )
+
+    def delete(
+        self,
+        dir_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> None:
+        """Delete a DIR.
+
+        Failure modes: `400` if a child phone number is in a non-deletable
+        status, `409` if the DIR has an unresolved infringement claim, `404` if the DIR
+        is not yours.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not dir_id:
+            raise ValueError(f"Expected a non-empty value for `dir_id` but received {dir_id!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        return self._delete(
+            path_template("/dir/{dir_id}", dir_id=dir_id),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=NoneType,
+        )
+
+    def list_document_types(
+        self,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> DirListDocumentTypesResponse:
+        """
+        Reference list of `document_type` values accepted by
+        `DirCreateRequest.documents[].document_type` and the infringement-contest
+        endpoint. Each entry has a stable `short_name` (used in API calls) and a
+        customer-facing description.
+        """
+        return self._get(
+            "/dir/document_types",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=DirListDocumentTypesResponse,
+        )
+
+    def list_infringement_claims(
+        self,
+        dir_id: str,
+        *,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> SyncDefaultFlatPagination[DirListInfringementClaimsResponse]:
+        """Return the trademark or copyright claims filed against this DIR.
+
+        Each claim's
+        `status` is `pending` (newly filed; DIR auto-suspended), `contested` (you have
+        submitted contest evidence; awaiting resolution), or `resolved` (final).
+        Resolution outcomes: `upheld` (claim accepted; DIR stays
+        suspended/permanently_rejected), `rejected` (claim dismissed; DIR restored to
+        `verified`), `modified` (partial outcome).
+
+        Args:
+          page_number: 1-based page number. Out-of-range values return an empty page with correct meta.
+
+          page_size: Items per page. Maximum 250; values above are clamped to 250.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not dir_id:
+            raise ValueError(f"Expected a non-empty value for `dir_id` but received {dir_id!r}")
+        return self._get_api_list(
+            path_template("/dir/{dir_id}/infringement_claims", dir_id=dir_id),
+            page=SyncDefaultFlatPagination[DirListInfringementClaimsResponse],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "page_number": page_number,
+                        "page_size": page_size,
+                    },
+                    dir_list_infringement_claims_params.DirListInfringementClaimsParams,
+                ),
+            ),
+            model=DirListInfringementClaimsResponse,
+        )
+
+    def submit(
+        self,
+        dir_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> DirSubmitResponse:
+        """Submit a DIR for vetting.
+
+        Sends the DIR back through the vetting cycle from any
+        non-terminal status. When re-submitting from `suspended` or `expired`, the DIR's
+        previous Branded Calling registration is torn down transactionally and its phone
+        numbers flip back to `submitted`. When re-submitting from `verified`, the
+        existing registration stays live throughout the new vetting cycle.
+
+        Returns `400` from `submitted`/`in_review`/`permanently_rejected`. Returns `409`
+        if the DIR has an unresolved infringement claim.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not dir_id:
+            raise ValueError(f"Expected a non-empty value for `dir_id` but received {dir_id!r}")
+        return self._post(
+            path_template("/dir/{dir_id}/submit", dir_id=dir_id),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=DirSubmitResponse,
+        )
+
+    def update_infringement(
+        self,
+        dir_id: str,
+        *,
+        certify_brand_is_accurate: Literal[True],
+        certify_ip_ownership: Literal[True],
+        certify_no_infringement: Literal[True],
+        certify_no_shaft_content: Literal[True],
+        infringement_resolution_notes: str,
+        call_reasons: Optional[SequenceNotStr[str]] | Omit = omit,
+        display_name: Optional[str] | Omit = omit,
+        documents: Optional[Iterable[dir_update_infringement_params.Document]] | Omit = omit,
+        logo_url: Optional[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> DirUpdateInfringementResponse:
+        """
+        Push a fix for a DIR that is `suspended` with an open infringement claim back
+        into vetting. `POST /dir/{dir_id}/submit` is blocked while a claim is open, so
+        this is the customer-callable path to update the DIR's content and re-certify
+        before Telnyx adjudicates the claim. All four certification booleans must be
+        `true`. Optional content fields (`display_name`, `logo_url`, `call_reasons`,
+        `documents`) update the DIR; documents are append-only.
+
+        Args:
+          certify_brand_is_accurate: Must be `true`.
+
+          certify_ip_ownership: Must be `true`.
+
+          certify_no_infringement: Must be `true`.
+
+          certify_no_shaft_content: Must be `true`.
+
+          infringement_resolution_notes: Explanation of how the infringement concern was addressed.
+
+          documents: Append-only supporting documents.
+
+          logo_url: Publicly accessible HTTPS URL (max 128 chars) to a 256x256 BMP logo (max 1 MB).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not dir_id:
+            raise ValueError(f"Expected a non-empty value for `dir_id` but received {dir_id!r}")
+        return self._put(
+            path_template("/dir/{dir_id}/infringement_update", dir_id=dir_id),
+            body=maybe_transform(
+                {
+                    "certify_brand_is_accurate": certify_brand_is_accurate,
+                    "certify_ip_ownership": certify_ip_ownership,
+                    "certify_no_infringement": certify_no_infringement,
+                    "certify_no_shaft_content": certify_no_shaft_content,
+                    "infringement_resolution_notes": infringement_resolution_notes,
+                    "call_reasons": call_reasons,
+                    "display_name": display_name,
+                    "documents": documents,
+                    "logo_url": logo_url,
+                },
+                dir_update_infringement_params.DirUpdateInfringementParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=DirUpdateInfringementResponse,
+        )
+
+
+class AsyncDirResource(AsyncAPIResource):
+    @cached_property
+    def comments(self) -> AsyncCommentsResource:
+        """
+        Read messages from the Telnyx vetting team and reply with clarifying information.
+        """
+        return AsyncCommentsResource(self._client)
+
+    @cached_property
+    def phone_number_batches(self) -> AsyncPhoneNumberBatchesResource:
+        """Phone numbers are submitted to Telnyx for vetting in batches.
+
+        Batches group all numbers added in a single request under the same Letter of Authorization.
+        """
+        return AsyncPhoneNumberBatchesResource(self._client)
+
+    @cached_property
+    def phone_numbers(self) -> AsyncPhoneNumbersResource:
+        """
+        Associate phone numbers with a verified DIR so calls from those numbers carry the DIR's display identity.
+        """
+        return AsyncPhoneNumbersResource(self._client)
+
+    @cached_property
+    def with_raw_response(self) -> AsyncDirResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#accessing-raw-response-data-eg-headers
+        """
+        return AsyncDirResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncDirResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/team-telnyx/telnyx-python#with_streaming_response
+        """
+        return AsyncDirResourceWithStreamingResponse(self)
+
+    async def retrieve(
+        self,
+        dir_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> DirRetrieveResponse:
+        """Returns a single DIR by id.
+
+        The enterprise is resolved server-side from the DIR
+        id. Returns `404` if the DIR does not exist or is not yours.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not dir_id:
+            raise ValueError(f"Expected a non-empty value for `dir_id` but received {dir_id!r}")
+        return await self._get(
+            path_template("/dir/{dir_id}", dir_id=dir_id),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=DirRetrieveResponse,
+        )
+
+    async def update(
+        self,
+        dir_id: str,
+        *,
+        authorizer_email: str | Omit = omit,
+        authorizer_name: str | Omit = omit,
+        call_reasons: SequenceNotStr[str] | Omit = omit,
+        display_name: str | Omit = omit,
+        logo_url: str | Omit = omit,
+        reselling: bool | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> DirUpdateResponse:
+        """Edit a DIR.
+
+        Only DIRs in `draft`, `rejected`, `unsuccessful`, or `suspended` are
+        editable. PATCH is a pure edit — `status` is never changed by this endpoint. To
+        re-vet after editing, call `POST /v2/dir/{dir_id}/submit` explicitly.
+
+        Args:
+          authorizer_email: Contact email of the authorizer. Telnyx may send verification or infringement
+              notices here.
+
+          authorizer_name: Name of the person at your enterprise authorizing this DIR. Must be a real
+              individual.
+
+          call_reasons: 1–10 reasons your business calls customers. Validate phrasing against
+              `POST /call_reasons/validate`.
+
+          display_name: Name shown to call recipients. 1–35 characters, no emoji, not whitespace-only.
+
+          logo_url: Publicly accessible HTTPS URL (max 128 chars) to a 256x256 BMP logo (max 1 MB).
+
+          reselling: Set to true if your organization places calls on behalf of other enterprises
+              (BPO/reseller). Updating this triggers re-vetting on next submit.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not dir_id:
+            raise ValueError(f"Expected a non-empty value for `dir_id` but received {dir_id!r}")
+        return await self._patch(
+            path_template("/dir/{dir_id}", dir_id=dir_id),
+            body=await async_maybe_transform(
+                {
+                    "authorizer_email": authorizer_email,
+                    "authorizer_name": authorizer_name,
+                    "call_reasons": call_reasons,
+                    "display_name": display_name,
+                    "logo_url": logo_url,
+                    "reselling": reselling,
+                },
+                dir_update_params.DirUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=DirUpdateResponse,
+        )
+
+    def list(
+        self,
+        *,
+        enterprise_id: str | Omit = omit,
+        filter_expiring_at_gte: Union[str, datetime] | Omit = omit,
+        filter_expiring_at_lte: Union[str, datetime] | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
+        search: str | Omit = omit,
+        sort: Literal[
+            "created_at",
+            "-created_at",
+            "updated_at",
+            "-updated_at",
+            "display_name",
+            "-display_name",
+            "status",
+            "-status",
+        ]
+        | Omit = omit,
+        status: Literal[
+            "draft",
+            "submitted",
+            "in_review",
+            "verified",
+            "rejected",
+            "unsuccessful",
+            "suspended",
+            "expired",
+            "infringement_claimed",
+            "permanently_rejected",
+        ]
+        | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncPaginator[DirListResponse, AsyncDefaultFlatPagination[DirListResponse]]:
+        """
+        Convenience endpoint that returns every DIR you own without scoping to a
+        specific enterprise. Equivalent to calling
+        `GET /v2/enterprises/{enterprise_id}/dir` for each enterprise and concatenating
+        the results, but server-side and paginated as a single list.
+
+        Args:
+          enterprise_id: Restrict results to a single enterprise.
+
+          filter_expiring_at_gte: Return only DIRs whose `expiring_at` is at or after this ISO-8601 timestamp.
+              Pairs with the `[lte]` variant to build renewal-window dashboards.
+
+          filter_expiring_at_lte: Return only DIRs whose `expiring_at` is at or before this ISO-8601 timestamp.
+
+          page_number: 1-based page number. Out-of-range values return an empty page with correct meta.
+
+          page_size: Items per page. Maximum 250; values above are clamped to 250.
+
+          search: Case-insensitive partial match on `display_name` or call reason.
+
+          sort: Sort field. Allowed values: `created_at`, `updated_at`, `display_name`,
+              `status`. Prefix with `-` for descending. Default `-created_at`.
+
+          status: Filter by DIR status.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get_api_list(
+            "/dir",
+            page=AsyncDefaultFlatPagination[DirListResponse],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "enterprise_id": enterprise_id,
+                        "filter_expiring_at_gte": filter_expiring_at_gte,
+                        "filter_expiring_at_lte": filter_expiring_at_lte,
+                        "page_number": page_number,
+                        "page_size": page_size,
+                        "search": search,
+                        "sort": sort,
+                        "status": status,
+                    },
+                    dir_list_params.DirListParams,
+                ),
+            ),
+            model=DirListResponse,
+        )
+
+    async def delete(
+        self,
+        dir_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> None:
+        """Delete a DIR.
+
+        Failure modes: `400` if a child phone number is in a non-deletable
+        status, `409` if the DIR has an unresolved infringement claim, `404` if the DIR
+        is not yours.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not dir_id:
+            raise ValueError(f"Expected a non-empty value for `dir_id` but received {dir_id!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        return await self._delete(
+            path_template("/dir/{dir_id}", dir_id=dir_id),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=NoneType,
+        )
+
+    async def list_document_types(
+        self,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> DirListDocumentTypesResponse:
+        """
+        Reference list of `document_type` values accepted by
+        `DirCreateRequest.documents[].document_type` and the infringement-contest
+        endpoint. Each entry has a stable `short_name` (used in API calls) and a
+        customer-facing description.
+        """
+        return await self._get(
+            "/dir/document_types",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=DirListDocumentTypesResponse,
+        )
+
+    def list_infringement_claims(
+        self,
+        dir_id: str,
+        *,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncPaginator[
+        DirListInfringementClaimsResponse, AsyncDefaultFlatPagination[DirListInfringementClaimsResponse]
+    ]:
+        """Return the trademark or copyright claims filed against this DIR.
+
+        Each claim's
+        `status` is `pending` (newly filed; DIR auto-suspended), `contested` (you have
+        submitted contest evidence; awaiting resolution), or `resolved` (final).
+        Resolution outcomes: `upheld` (claim accepted; DIR stays
+        suspended/permanently_rejected), `rejected` (claim dismissed; DIR restored to
+        `verified`), `modified` (partial outcome).
+
+        Args:
+          page_number: 1-based page number. Out-of-range values return an empty page with correct meta.
+
+          page_size: Items per page. Maximum 250; values above are clamped to 250.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not dir_id:
+            raise ValueError(f"Expected a non-empty value for `dir_id` but received {dir_id!r}")
+        return self._get_api_list(
+            path_template("/dir/{dir_id}/infringement_claims", dir_id=dir_id),
+            page=AsyncDefaultFlatPagination[DirListInfringementClaimsResponse],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "page_number": page_number,
+                        "page_size": page_size,
+                    },
+                    dir_list_infringement_claims_params.DirListInfringementClaimsParams,
+                ),
+            ),
+            model=DirListInfringementClaimsResponse,
+        )
+
+    async def submit(
+        self,
+        dir_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> DirSubmitResponse:
+        """Submit a DIR for vetting.
+
+        Sends the DIR back through the vetting cycle from any
+        non-terminal status. When re-submitting from `suspended` or `expired`, the DIR's
+        previous Branded Calling registration is torn down transactionally and its phone
+        numbers flip back to `submitted`. When re-submitting from `verified`, the
+        existing registration stays live throughout the new vetting cycle.
+
+        Returns `400` from `submitted`/`in_review`/`permanently_rejected`. Returns `409`
+        if the DIR has an unresolved infringement claim.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not dir_id:
+            raise ValueError(f"Expected a non-empty value for `dir_id` but received {dir_id!r}")
+        return await self._post(
+            path_template("/dir/{dir_id}/submit", dir_id=dir_id),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=DirSubmitResponse,
+        )
+
+    async def update_infringement(
+        self,
+        dir_id: str,
+        *,
+        certify_brand_is_accurate: Literal[True],
+        certify_ip_ownership: Literal[True],
+        certify_no_infringement: Literal[True],
+        certify_no_shaft_content: Literal[True],
+        infringement_resolution_notes: str,
+        call_reasons: Optional[SequenceNotStr[str]] | Omit = omit,
+        display_name: Optional[str] | Omit = omit,
+        documents: Optional[Iterable[dir_update_infringement_params.Document]] | Omit = omit,
+        logo_url: Optional[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> DirUpdateInfringementResponse:
+        """
+        Push a fix for a DIR that is `suspended` with an open infringement claim back
+        into vetting. `POST /dir/{dir_id}/submit` is blocked while a claim is open, so
+        this is the customer-callable path to update the DIR's content and re-certify
+        before Telnyx adjudicates the claim. All four certification booleans must be
+        `true`. Optional content fields (`display_name`, `logo_url`, `call_reasons`,
+        `documents`) update the DIR; documents are append-only.
+
+        Args:
+          certify_brand_is_accurate: Must be `true`.
+
+          certify_ip_ownership: Must be `true`.
+
+          certify_no_infringement: Must be `true`.
+
+          certify_no_shaft_content: Must be `true`.
+
+          infringement_resolution_notes: Explanation of how the infringement concern was addressed.
+
+          documents: Append-only supporting documents.
+
+          logo_url: Publicly accessible HTTPS URL (max 128 chars) to a 256x256 BMP logo (max 1 MB).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not dir_id:
+            raise ValueError(f"Expected a non-empty value for `dir_id` but received {dir_id!r}")
+        return await self._put(
+            path_template("/dir/{dir_id}/infringement_update", dir_id=dir_id),
+            body=await async_maybe_transform(
+                {
+                    "certify_brand_is_accurate": certify_brand_is_accurate,
+                    "certify_ip_ownership": certify_ip_ownership,
+                    "certify_no_infringement": certify_no_infringement,
+                    "certify_no_shaft_content": certify_no_shaft_content,
+                    "infringement_resolution_notes": infringement_resolution_notes,
+                    "call_reasons": call_reasons,
+                    "display_name": display_name,
+                    "documents": documents,
+                    "logo_url": logo_url,
+                },
+                dir_update_infringement_params.DirUpdateInfringementParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=DirUpdateInfringementResponse,
+        )
+
+
+class DirResourceWithRawResponse:
+    def __init__(self, dir: DirResource) -> None:
+        self._dir = dir
+
+        self.retrieve = to_raw_response_wrapper(
+            dir.retrieve,
+        )
+        self.update = to_raw_response_wrapper(
+            dir.update,
+        )
+        self.list = to_raw_response_wrapper(
+            dir.list,
+        )
+        self.delete = to_raw_response_wrapper(
+            dir.delete,
+        )
+        self.list_document_types = to_raw_response_wrapper(
+            dir.list_document_types,
+        )
+        self.list_infringement_claims = to_raw_response_wrapper(
+            dir.list_infringement_claims,
+        )
+        self.submit = to_raw_response_wrapper(
+            dir.submit,
+        )
+        self.update_infringement = to_raw_response_wrapper(
+            dir.update_infringement,
+        )
+
+    @cached_property
+    def comments(self) -> CommentsResourceWithRawResponse:
+        """
+        Read messages from the Telnyx vetting team and reply with clarifying information.
+        """
+        return CommentsResourceWithRawResponse(self._dir.comments)
+
+    @cached_property
+    def phone_number_batches(self) -> PhoneNumberBatchesResourceWithRawResponse:
+        """Phone numbers are submitted to Telnyx for vetting in batches.
+
+        Batches group all numbers added in a single request under the same Letter of Authorization.
+        """
+        return PhoneNumberBatchesResourceWithRawResponse(self._dir.phone_number_batches)
+
+    @cached_property
+    def phone_numbers(self) -> PhoneNumbersResourceWithRawResponse:
+        """
+        Associate phone numbers with a verified DIR so calls from those numbers carry the DIR's display identity.
+        """
+        return PhoneNumbersResourceWithRawResponse(self._dir.phone_numbers)
+
+
+class AsyncDirResourceWithRawResponse:
+    def __init__(self, dir: AsyncDirResource) -> None:
+        self._dir = dir
+
+        self.retrieve = async_to_raw_response_wrapper(
+            dir.retrieve,
+        )
+        self.update = async_to_raw_response_wrapper(
+            dir.update,
+        )
+        self.list = async_to_raw_response_wrapper(
+            dir.list,
+        )
+        self.delete = async_to_raw_response_wrapper(
+            dir.delete,
+        )
+        self.list_document_types = async_to_raw_response_wrapper(
+            dir.list_document_types,
+        )
+        self.list_infringement_claims = async_to_raw_response_wrapper(
+            dir.list_infringement_claims,
+        )
+        self.submit = async_to_raw_response_wrapper(
+            dir.submit,
+        )
+        self.update_infringement = async_to_raw_response_wrapper(
+            dir.update_infringement,
+        )
+
+    @cached_property
+    def comments(self) -> AsyncCommentsResourceWithRawResponse:
+        """
+        Read messages from the Telnyx vetting team and reply with clarifying information.
+        """
+        return AsyncCommentsResourceWithRawResponse(self._dir.comments)
+
+    @cached_property
+    def phone_number_batches(self) -> AsyncPhoneNumberBatchesResourceWithRawResponse:
+        """Phone numbers are submitted to Telnyx for vetting in batches.
+
+        Batches group all numbers added in a single request under the same Letter of Authorization.
+        """
+        return AsyncPhoneNumberBatchesResourceWithRawResponse(self._dir.phone_number_batches)
+
+    @cached_property
+    def phone_numbers(self) -> AsyncPhoneNumbersResourceWithRawResponse:
+        """
+        Associate phone numbers with a verified DIR so calls from those numbers carry the DIR's display identity.
+        """
+        return AsyncPhoneNumbersResourceWithRawResponse(self._dir.phone_numbers)
+
+
+class DirResourceWithStreamingResponse:
+    def __init__(self, dir: DirResource) -> None:
+        self._dir = dir
+
+        self.retrieve = to_streamed_response_wrapper(
+            dir.retrieve,
+        )
+        self.update = to_streamed_response_wrapper(
+            dir.update,
+        )
+        self.list = to_streamed_response_wrapper(
+            dir.list,
+        )
+        self.delete = to_streamed_response_wrapper(
+            dir.delete,
+        )
+        self.list_document_types = to_streamed_response_wrapper(
+            dir.list_document_types,
+        )
+        self.list_infringement_claims = to_streamed_response_wrapper(
+            dir.list_infringement_claims,
+        )
+        self.submit = to_streamed_response_wrapper(
+            dir.submit,
+        )
+        self.update_infringement = to_streamed_response_wrapper(
+            dir.update_infringement,
+        )
+
+    @cached_property
+    def comments(self) -> CommentsResourceWithStreamingResponse:
+        """
+        Read messages from the Telnyx vetting team and reply with clarifying information.
+        """
+        return CommentsResourceWithStreamingResponse(self._dir.comments)
+
+    @cached_property
+    def phone_number_batches(self) -> PhoneNumberBatchesResourceWithStreamingResponse:
+        """Phone numbers are submitted to Telnyx for vetting in batches.
+
+        Batches group all numbers added in a single request under the same Letter of Authorization.
+        """
+        return PhoneNumberBatchesResourceWithStreamingResponse(self._dir.phone_number_batches)
+
+    @cached_property
+    def phone_numbers(self) -> PhoneNumbersResourceWithStreamingResponse:
+        """
+        Associate phone numbers with a verified DIR so calls from those numbers carry the DIR's display identity.
+        """
+        return PhoneNumbersResourceWithStreamingResponse(self._dir.phone_numbers)
+
+
+class AsyncDirResourceWithStreamingResponse:
+    def __init__(self, dir: AsyncDirResource) -> None:
+        self._dir = dir
+
+        self.retrieve = async_to_streamed_response_wrapper(
+            dir.retrieve,
+        )
+        self.update = async_to_streamed_response_wrapper(
+            dir.update,
+        )
+        self.list = async_to_streamed_response_wrapper(
+            dir.list,
+        )
+        self.delete = async_to_streamed_response_wrapper(
+            dir.delete,
+        )
+        self.list_document_types = async_to_streamed_response_wrapper(
+            dir.list_document_types,
+        )
+        self.list_infringement_claims = async_to_streamed_response_wrapper(
+            dir.list_infringement_claims,
+        )
+        self.submit = async_to_streamed_response_wrapper(
+            dir.submit,
+        )
+        self.update_infringement = async_to_streamed_response_wrapper(
+            dir.update_infringement,
+        )
+
+    @cached_property
+    def comments(self) -> AsyncCommentsResourceWithStreamingResponse:
+        """
+        Read messages from the Telnyx vetting team and reply with clarifying information.
+        """
+        return AsyncCommentsResourceWithStreamingResponse(self._dir.comments)
+
+    @cached_property
+    def phone_number_batches(self) -> AsyncPhoneNumberBatchesResourceWithStreamingResponse:
+        """Phone numbers are submitted to Telnyx for vetting in batches.
+
+        Batches group all numbers added in a single request under the same Letter of Authorization.
+        """
+        return AsyncPhoneNumberBatchesResourceWithStreamingResponse(self._dir.phone_number_batches)
+
+    @cached_property
+    def phone_numbers(self) -> AsyncPhoneNumbersResourceWithStreamingResponse:
+        """
+        Associate phone numbers with a verified DIR so calls from those numbers carry the DIR's display identity.
+        """
+        return AsyncPhoneNumbersResourceWithStreamingResponse(self._dir.phone_numbers)

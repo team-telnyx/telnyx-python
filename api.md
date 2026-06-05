@@ -23,7 +23,6 @@ from telnyx.types import (
     MessagingFeatureSet,
     MessagingHostedNumberOrder,
     MessagingPaginationMeta,
-    MetaInfo,
     Metadata,
     MinimaxVoiceSettings,
     NetappsLocation,
@@ -34,7 +33,6 @@ from telnyx.types import (
     PortingOrdersExceptionType,
     RegionInformation,
     ReputationData,
-    ReputationPhoneNumberWithReputationData,
     ResembleVoiceSettings,
     RimeVoiceSettings,
     RoomParticipant,
@@ -43,7 +41,6 @@ from telnyx.types import (
     SimpleSimCard,
     SubNumberOrderRegulatoryRequirementWithValue,
     WhatsappTemplateData,
-    XaiVoiceSettings,
 )
 ```
 
@@ -573,7 +570,6 @@ Types:
 
 ```python
 from telnyx.types import (
-    ModelMetadata,
     AICreateResponseDeprecatedResponse,
     AIRetrieveModelsResponse,
     AISummarizeResponse,
@@ -593,33 +589,22 @@ Types:
 ```python
 from telnyx.types.ai import (
     Assistant,
-    AssistantIntegration,
-    AssistantMcpServer,
     AssistantTool,
     AssistantsList,
     AudioVisualizerConfig,
     EnabledFeatures,
-    ExternalLlm,
-    ExternalLlmReq,
-    FallbackConfig,
-    FallbackConfigReq,
     HangupTool,
     HangupToolParams,
     ImportMetadata,
     InferenceEmbedding,
-    InferenceEmbeddingInterruptionSettings,
     InferenceEmbeddingWebhookToolParams,
     InsightSettings,
     MessagingSettings,
     Observability,
     ObservabilityReq,
-    PostConversationSettings,
-    PostConversationSettingsReq,
     PrivacySettings,
     RetrievalTool,
-    StartSpeakingPlan,
     TelephonySettings,
-    TranscriptionEndpointingPlan,
     TranscriptionSettings,
     TranscriptionSettingsConfig,
     TransferTool,
@@ -710,15 +695,7 @@ Methods:
 Types:
 
 ```python
-from telnyx.types.ai.assistants import (
-    CanaryDeploy,
-    CanaryDeployResponse,
-    Clause,
-    RolloutSlot,
-    RuleInput,
-    RuleOutput,
-    Serve,
-)
+from telnyx.types.ai.assistants import CanaryDeploy, CanaryDeployResponse
 ```
 
 Methods:
@@ -1453,13 +1430,11 @@ from telnyx.types.calls import (
     TelnyxVoiceSettings,
     TranscriptionConfig,
     TranscriptionEngineAConfig,
-    TranscriptionEngineAssemblyaiConfig,
     TranscriptionEngineAzureConfig,
     TranscriptionEngineBConfig,
     TranscriptionEngineDeepgramConfig,
     TranscriptionEngineGoogleConfig,
     TranscriptionEngineTelnyxConfig,
-    TranscriptionEngineXaiConfig,
     TranscriptionStartRequest,
     ActionAddAIAssistantMessagesResponse,
     ActionAnswerResponse,
@@ -3710,9 +3685,9 @@ Types:
 from telnyx.types import (
     NetworkInterface,
     NetworkInterfaceRegion,
-    PublicInternetGatewayRead,
     PublicInternetGatewayCreateResponse,
     PublicInternetGatewayRetrieveResponse,
+    PublicInternetGatewayListResponse,
     PublicInternetGatewayDeleteResponse,
 )
 ```
@@ -3721,7 +3696,7 @@ Methods:
 
 - <code title="post /public_internet_gateways">client.public_internet_gateways.<a href="./src/telnyx/resources/public_internet_gateways.py">create</a>(\*\*<a href="src/telnyx/types/public_internet_gateway_create_params.py">params</a>) -> <a href="./src/telnyx/types/public_internet_gateway_create_response.py">PublicInternetGatewayCreateResponse</a></code>
 - <code title="get /public_internet_gateways/{id}">client.public_internet_gateways.<a href="./src/telnyx/resources/public_internet_gateways.py">retrieve</a>(id) -> <a href="./src/telnyx/types/public_internet_gateway_retrieve_response.py">PublicInternetGatewayRetrieveResponse</a></code>
-- <code title="get /public_internet_gateways">client.public_internet_gateways.<a href="./src/telnyx/resources/public_internet_gateways.py">list</a>(\*\*<a href="src/telnyx/types/public_internet_gateway_list_params.py">params</a>) -> <a href="./src/telnyx/types/public_internet_gateway_read.py">SyncDefaultFlatPagination[PublicInternetGatewayRead]</a></code>
+- <code title="get /public_internet_gateways">client.public_internet_gateways.<a href="./src/telnyx/resources/public_internet_gateways.py">list</a>(\*\*<a href="src/telnyx/types/public_internet_gateway_list_params.py">params</a>) -> <a href="./src/telnyx/types/public_internet_gateway_list_response.py">SyncDefaultFlatPagination[PublicInternetGatewayListResponse]</a></code>
 - <code title="delete /public_internet_gateways/{id}">client.public_internet_gateways.<a href="./src/telnyx/resources/public_internet_gateways.py">delete</a>(id) -> <a href="./src/telnyx/types/public_internet_gateway_delete_response.py">PublicInternetGatewayDeleteResponse</a></code>
 
 # Queues
@@ -4806,10 +4781,10 @@ Types:
 
 ```python
 from telnyx.types import (
-    VirtualCrossConnectCombined,
     VirtualCrossConnectCreateResponse,
     VirtualCrossConnectRetrieveResponse,
     VirtualCrossConnectUpdateResponse,
+    VirtualCrossConnectListResponse,
     VirtualCrossConnectDeleteResponse,
 )
 ```
@@ -4819,7 +4794,7 @@ Methods:
 - <code title="post /virtual_cross_connects">client.virtual_cross_connects.<a href="./src/telnyx/resources/virtual_cross_connects.py">create</a>(\*\*<a href="src/telnyx/types/virtual_cross_connect_create_params.py">params</a>) -> <a href="./src/telnyx/types/virtual_cross_connect_create_response.py">VirtualCrossConnectCreateResponse</a></code>
 - <code title="get /virtual_cross_connects/{id}">client.virtual_cross_connects.<a href="./src/telnyx/resources/virtual_cross_connects.py">retrieve</a>(id) -> <a href="./src/telnyx/types/virtual_cross_connect_retrieve_response.py">VirtualCrossConnectRetrieveResponse</a></code>
 - <code title="patch /virtual_cross_connects/{id}">client.virtual_cross_connects.<a href="./src/telnyx/resources/virtual_cross_connects.py">update</a>(id, \*\*<a href="src/telnyx/types/virtual_cross_connect_update_params.py">params</a>) -> <a href="./src/telnyx/types/virtual_cross_connect_update_response.py">VirtualCrossConnectUpdateResponse</a></code>
-- <code title="get /virtual_cross_connects">client.virtual_cross_connects.<a href="./src/telnyx/resources/virtual_cross_connects.py">list</a>(\*\*<a href="src/telnyx/types/virtual_cross_connect_list_params.py">params</a>) -> <a href="./src/telnyx/types/virtual_cross_connect_combined.py">SyncDefaultFlatPagination[VirtualCrossConnectCombined]</a></code>
+- <code title="get /virtual_cross_connects">client.virtual_cross_connects.<a href="./src/telnyx/resources/virtual_cross_connects.py">list</a>(\*\*<a href="src/telnyx/types/virtual_cross_connect_list_params.py">params</a>) -> <a href="./src/telnyx/types/virtual_cross_connect_list_response.py">SyncDefaultFlatPagination[VirtualCrossConnectListResponse]</a></code>
 - <code title="delete /virtual_cross_connects/{id}">client.virtual_cross_connects.<a href="./src/telnyx/resources/virtual_cross_connects.py">delete</a>(id) -> <a href="./src/telnyx/types/virtual_cross_connect_delete_response.py">VirtualCrossConnectDeleteResponse</a></code>
 
 # VirtualCrossConnectsCoverage
@@ -4853,9 +4828,9 @@ Types:
 
 ```python
 from telnyx.types import (
-    WireguardInterfaceRead,
     WireguardInterfaceCreateResponse,
     WireguardInterfaceRetrieveResponse,
+    WireguardInterfaceListResponse,
     WireguardInterfaceDeleteResponse,
 )
 ```
@@ -4864,7 +4839,7 @@ Methods:
 
 - <code title="post /wireguard_interfaces">client.wireguard_interfaces.<a href="./src/telnyx/resources/wireguard_interfaces.py">create</a>(\*\*<a href="src/telnyx/types/wireguard_interface_create_params.py">params</a>) -> <a href="./src/telnyx/types/wireguard_interface_create_response.py">WireguardInterfaceCreateResponse</a></code>
 - <code title="get /wireguard_interfaces/{id}">client.wireguard_interfaces.<a href="./src/telnyx/resources/wireguard_interfaces.py">retrieve</a>(id) -> <a href="./src/telnyx/types/wireguard_interface_retrieve_response.py">WireguardInterfaceRetrieveResponse</a></code>
-- <code title="get /wireguard_interfaces">client.wireguard_interfaces.<a href="./src/telnyx/resources/wireguard_interfaces.py">list</a>(\*\*<a href="src/telnyx/types/wireguard_interface_list_params.py">params</a>) -> <a href="./src/telnyx/types/wireguard_interface_read.py">SyncDefaultFlatPagination[WireguardInterfaceRead]</a></code>
+- <code title="get /wireguard_interfaces">client.wireguard_interfaces.<a href="./src/telnyx/resources/wireguard_interfaces.py">list</a>(\*\*<a href="src/telnyx/types/wireguard_interface_list_params.py">params</a>) -> <a href="./src/telnyx/types/wireguard_interface_list_response.py">SyncDefaultFlatPagination[WireguardInterfaceListResponse]</a></code>
 - <code title="delete /wireguard_interfaces/{id}">client.wireguard_interfaces.<a href="./src/telnyx/resources/wireguard_interfaces.py">delete</a>(id) -> <a href="./src/telnyx/types/wireguard_interface_delete_response.py">WireguardInterfaceDeleteResponse</a></code>
 
 # WireguardPeers
@@ -5590,6 +5565,7 @@ from telnyx.types import (
     EnterpriseCreateResponse,
     EnterpriseRetrieveResponse,
     EnterpriseUpdateResponse,
+    EnterpriseActivateBrandedCallingResponse,
 )
 ```
 
@@ -5600,6 +5576,7 @@ Methods:
 - <code title="put /enterprises/{enterprise_id}">client.enterprises.<a href="./src/telnyx/resources/enterprises/enterprises.py">update</a>(enterprise_id, \*\*<a href="src/telnyx/types/enterprise_update_params.py">params</a>) -> <a href="./src/telnyx/types/enterprise_update_response.py">EnterpriseUpdateResponse</a></code>
 - <code title="get /enterprises">client.enterprises.<a href="./src/telnyx/resources/enterprises/enterprises.py">list</a>(\*\*<a href="src/telnyx/types/enterprise_list_params.py">params</a>) -> <a href="./src/telnyx/types/enterprise_public.py">SyncDefaultFlatPagination[EnterprisePublic]</a></code>
 - <code title="delete /enterprises/{enterprise_id}">client.enterprises.<a href="./src/telnyx/resources/enterprises/enterprises.py">delete</a>(enterprise_id) -> None</code>
+- <code title="post /enterprises/{enterprise_id}/branded_calling">client.enterprises.<a href="./src/telnyx/resources/enterprises/enterprises.py">activate_branded_calling</a>(enterprise_id) -> <a href="./src/telnyx/types/enterprise_activate_branded_calling_response.py">EnterpriseActivateBrandedCallingResponse</a></code>
 
 ## Reputation
 
@@ -5626,15 +5603,47 @@ Methods:
 Types:
 
 ```python
-from telnyx.types.enterprises.reputation import NumberRetrieveResponse, NumberAssociateResponse
+from telnyx.types.enterprises.reputation import (
+    NumberRetrieveResponse,
+    NumberListResponse,
+    NumberAssociateResponse,
+    NumberRefreshResponse,
+)
 ```
 
 Methods:
 
 - <code title="get /enterprises/{enterprise_id}/reputation/numbers/{phone_number}">client.enterprises.reputation.numbers.<a href="./src/telnyx/resources/enterprises/reputation/numbers.py">retrieve</a>(phone_number, \*, enterprise_id, \*\*<a href="src/telnyx/types/enterprises/reputation/number_retrieve_params.py">params</a>) -> <a href="./src/telnyx/types/enterprises/reputation/number_retrieve_response.py">NumberRetrieveResponse</a></code>
-- <code title="get /enterprises/{enterprise_id}/reputation/numbers">client.enterprises.reputation.numbers.<a href="./src/telnyx/resources/enterprises/reputation/numbers.py">list</a>(enterprise_id, \*\*<a href="src/telnyx/types/enterprises/reputation/number_list_params.py">params</a>) -> <a href="./src/telnyx/types/shared/reputation_phone_number_with_reputation_data.py">SyncDefaultFlatPagination[ReputationPhoneNumberWithReputationData]</a></code>
+- <code title="get /enterprises/{enterprise_id}/reputation/numbers">client.enterprises.reputation.numbers.<a href="./src/telnyx/resources/enterprises/reputation/numbers.py">list</a>(enterprise_id, \*\*<a href="src/telnyx/types/enterprises/reputation/number_list_params.py">params</a>) -> <a href="./src/telnyx/types/enterprises/reputation/number_list_response.py">SyncDefaultFlatPagination[NumberListResponse]</a></code>
 - <code title="post /enterprises/{enterprise_id}/reputation/numbers">client.enterprises.reputation.numbers.<a href="./src/telnyx/resources/enterprises/reputation/numbers.py">associate</a>(enterprise_id, \*\*<a href="src/telnyx/types/enterprises/reputation/number_associate_params.py">params</a>) -> <a href="./src/telnyx/types/enterprises/reputation/number_associate_response.py">NumberAssociateResponse</a></code>
 - <code title="delete /enterprises/{enterprise_id}/reputation/numbers/{phone_number}">client.enterprises.reputation.numbers.<a href="./src/telnyx/resources/enterprises/reputation/numbers.py">disassociate</a>(phone_number, \*, enterprise_id) -> None</code>
+- <code title="post /enterprises/{enterprise_id}/reputation/numbers/refresh">client.enterprises.reputation.numbers.<a href="./src/telnyx/resources/enterprises/reputation/numbers.py">refresh</a>(enterprise_id, \*\*<a href="src/telnyx/types/enterprises/reputation/number_refresh_params.py">params</a>) -> <a href="./src/telnyx/types/enterprises/reputation/number_refresh_response.py">NumberRefreshResponse</a></code>
+
+### Loa
+
+Types:
+
+```python
+from telnyx.types.enterprises.reputation import LoaUpdateResponse
+```
+
+Methods:
+
+- <code title="patch /enterprises/{enterprise_id}/reputation/loa">client.enterprises.reputation.loa.<a href="./src/telnyx/resources/enterprises/reputation/loa.py">update</a>(enterprise_id, \*\*<a href="src/telnyx/types/enterprises/reputation/loa_update_params.py">params</a>) -> <a href="./src/telnyx/types/enterprises/reputation/loa_update_response.py">LoaUpdateResponse</a></code>
+- <code title="post /enterprises/{enterprise_id}/reputation/loa">client.enterprises.reputation.loa.<a href="./src/telnyx/resources/enterprises/reputation/loa.py">render</a>(enterprise_id, \*\*<a href="src/telnyx/types/enterprises/reputation/loa_render_params.py">params</a>) -> BinaryAPIResponse</code>
+
+## Dir
+
+Types:
+
+```python
+from telnyx.types.enterprises import DirCreateResponse, DirListResponse
+```
+
+Methods:
+
+- <code title="post /enterprises/{enterprise_id}/dir">client.enterprises.dir.<a href="./src/telnyx/resources/enterprises/dir.py">create</a>(enterprise_id, \*\*<a href="src/telnyx/types/enterprises/dir_create_params.py">params</a>) -> <a href="./src/telnyx/types/enterprises/dir_create_response.py">DirCreateResponse</a></code>
+- <code title="get /enterprises/{enterprise_id}/dir">client.enterprises.dir.<a href="./src/telnyx/resources/enterprises/dir.py">list</a>(enterprise_id, \*\*<a href="src/telnyx/types/enterprises/dir_list_params.py">params</a>) -> <a href="./src/telnyx/types/enterprises/dir_list_response.py">SyncDefaultFlatPagination[DirListResponse]</a></code>
 
 # Reputation
 
@@ -5643,22 +5652,63 @@ Methods:
 Types:
 
 ```python
-from telnyx.types.reputation import NumberRetrieveResponse
+from telnyx.types.reputation import NumberRetrieveResponse, NumberListResponse
 ```
 
 Methods:
 
 - <code title="get /reputation/numbers/{phone_number}">client.reputation.numbers.<a href="./src/telnyx/resources/reputation/numbers.py">retrieve</a>(phone_number, \*\*<a href="src/telnyx/types/reputation/number_retrieve_params.py">params</a>) -> <a href="./src/telnyx/types/reputation/number_retrieve_response.py">NumberRetrieveResponse</a></code>
-- <code title="get /reputation/numbers">client.reputation.numbers.<a href="./src/telnyx/resources/reputation/numbers.py">list</a>(\*\*<a href="src/telnyx/types/reputation/number_list_params.py">params</a>) -> <a href="./src/telnyx/types/shared/reputation_phone_number_with_reputation_data.py">SyncDefaultFlatPagination[ReputationPhoneNumberWithReputationData]</a></code>
+- <code title="get /reputation/numbers">client.reputation.numbers.<a href="./src/telnyx/resources/reputation/numbers.py">list</a>(\*\*<a href="src/telnyx/types/reputation/number_list_params.py">params</a>) -> <a href="./src/telnyx/types/reputation/number_list_response.py">SyncDefaultFlatPagination[NumberListResponse]</a></code>
 - <code title="delete /reputation/numbers/{phone_number}">client.reputation.numbers.<a href="./src/telnyx/resources/reputation/numbers.py">delete</a>(phone_number) -> None</code>
 
 # TermsOfService
 
-## NumberReputation
+Types:
+
+```python
+from telnyx.types import TermsOfServiceStatusResponse
+```
 
 Methods:
 
-- <code title="post /terms_of_service/number_reputation/agree">client.terms_of_service.number_reputation.<a href="./src/telnyx/resources/terms_of_service/number_reputation.py">agree</a>() -> None</code>
+- <code title="get /terms_of_service/status">client.terms_of_service.<a href="./src/telnyx/resources/terms_of_service/terms_of_service.py">status</a>(\*\*<a href="src/telnyx/types/terms_of_service_status_params.py">params</a>) -> <a href="./src/telnyx/types/terms_of_service_status_response.py">TermsOfServiceStatusResponse</a></code>
+
+## NumberReputation
+
+Types:
+
+```python
+from telnyx.types.terms_of_service import NumberReputationAgreeResponse
+```
+
+Methods:
+
+- <code title="post /terms_of_service/number_reputation/agree">client.terms_of_service.number_reputation.<a href="./src/telnyx/resources/terms_of_service/number_reputation.py">agree</a>() -> <a href="./src/telnyx/types/terms_of_service/number_reputation_agree_response.py">NumberReputationAgreeResponse</a></code>
+
+## Agreements
+
+Types:
+
+```python
+from telnyx.types.terms_of_service import AgreementRetrieveResponse, AgreementListResponse
+```
+
+Methods:
+
+- <code title="get /terms_of_service/agreements/{agreement_id}">client.terms_of_service.agreements.<a href="./src/telnyx/resources/terms_of_service/agreements.py">retrieve</a>(agreement_id) -> <a href="./src/telnyx/types/terms_of_service/agreement_retrieve_response.py">AgreementRetrieveResponse</a></code>
+- <code title="get /terms_of_service/agreements">client.terms_of_service.agreements.<a href="./src/telnyx/resources/terms_of_service/agreements.py">list</a>(\*\*<a href="src/telnyx/types/terms_of_service/agreement_list_params.py">params</a>) -> <a href="./src/telnyx/types/terms_of_service/agreement_list_response.py">SyncDefaultFlatPagination[AgreementListResponse]</a></code>
+
+## BrandedCalling
+
+Types:
+
+```python
+from telnyx.types.terms_of_service import BrandedCallingAgreeResponse
+```
+
+Methods:
+
+- <code title="post /terms_of_service/branded_calling/agree">client.terms_of_service.branded_calling.<a href="./src/telnyx/resources/terms_of_service/branded_calling.py">agree</a>() -> <a href="./src/telnyx/types/terms_of_service/branded_calling_agree_response.py">BrandedCallingAgreeResponse</a></code>
 
 # PronunciationDicts
 
@@ -5683,20 +5733,113 @@ Methods:
 - <code title="get /pronunciation_dicts">client.pronunciation_dicts.<a href="./src/telnyx/resources/pronunciation_dicts.py">list</a>(\*\*<a href="src/telnyx/types/pronunciation_dict_list_params.py">params</a>) -> <a href="./src/telnyx/types/pronunciation_dict_data.py">SyncDefaultFlatPagination[PronunciationDictData]</a></code>
 - <code title="delete /pronunciation_dicts/{id}">client.pronunciation_dicts.<a href="./src/telnyx/resources/pronunciation_dicts.py">delete</a>(id) -> None</code>
 
+# CallReasons
+
+Types:
+
+```python
+from telnyx.types import CallReasonListResponse, CallReasonValidateResponse
+```
+
+Methods:
+
+- <code title="get /call_reasons">client.call_reasons.<a href="./src/telnyx/resources/call_reasons.py">list</a>(\*\*<a href="src/telnyx/types/call_reason_list_params.py">params</a>) -> <a href="./src/telnyx/types/call_reason_list_response.py">SyncDefaultFlatPagination[CallReasonListResponse]</a></code>
+- <code title="post /call_reasons/validate">client.call_reasons.<a href="./src/telnyx/resources/call_reasons.py">validate</a>(\*\*<a href="src/telnyx/types/call_reason_validate_params.py">params</a>) -> <a href="./src/telnyx/types/call_reason_validate_response.py">CallReasonValidateResponse</a></code>
+
+# Dir
+
+Types:
+
+```python
+from telnyx.types import (
+    DirRetrieveResponse,
+    DirUpdateResponse,
+    DirListResponse,
+    DirListDocumentTypesResponse,
+    DirListInfringementClaimsResponse,
+    DirSubmitResponse,
+    DirUpdateInfringementResponse,
+)
+```
+
+Methods:
+
+- <code title="get /dir/{dir_id}">client.dir.<a href="./src/telnyx/resources/dir/dir.py">retrieve</a>(dir_id) -> <a href="./src/telnyx/types/dir_retrieve_response.py">DirRetrieveResponse</a></code>
+- <code title="patch /dir/{dir_id}">client.dir.<a href="./src/telnyx/resources/dir/dir.py">update</a>(dir_id, \*\*<a href="src/telnyx/types/dir_update_params.py">params</a>) -> <a href="./src/telnyx/types/dir_update_response.py">DirUpdateResponse</a></code>
+- <code title="get /dir">client.dir.<a href="./src/telnyx/resources/dir/dir.py">list</a>(\*\*<a href="src/telnyx/types/dir_list_params.py">params</a>) -> <a href="./src/telnyx/types/dir_list_response.py">SyncDefaultFlatPagination[DirListResponse]</a></code>
+- <code title="delete /dir/{dir_id}">client.dir.<a href="./src/telnyx/resources/dir/dir.py">delete</a>(dir_id) -> None</code>
+- <code title="get /dir/document_types">client.dir.<a href="./src/telnyx/resources/dir/dir.py">list_document_types</a>() -> <a href="./src/telnyx/types/dir_list_document_types_response.py">DirListDocumentTypesResponse</a></code>
+- <code title="get /dir/{dir_id}/infringement_claims">client.dir.<a href="./src/telnyx/resources/dir/dir.py">list_infringement_claims</a>(dir_id, \*\*<a href="src/telnyx/types/dir_list_infringement_claims_params.py">params</a>) -> <a href="./src/telnyx/types/dir_list_infringement_claims_response.py">SyncDefaultFlatPagination[DirListInfringementClaimsResponse]</a></code>
+- <code title="post /dir/{dir_id}/submit">client.dir.<a href="./src/telnyx/resources/dir/dir.py">submit</a>(dir_id) -> <a href="./src/telnyx/types/dir_submit_response.py">DirSubmitResponse</a></code>
+- <code title="put /dir/{dir_id}/infringement_update">client.dir.<a href="./src/telnyx/resources/dir/dir.py">update_infringement</a>(dir_id, \*\*<a href="src/telnyx/types/dir_update_infringement_params.py">params</a>) -> <a href="./src/telnyx/types/dir_update_infringement_response.py">DirUpdateInfringementResponse</a></code>
+
+## Comments
+
+Types:
+
+```python
+from telnyx.types.dir import CommentCreateResponse, CommentListResponse
+```
+
+Methods:
+
+- <code title="post /dir/{dir_id}/comments">client.dir.comments.<a href="./src/telnyx/resources/dir/comments.py">create</a>(dir_id, \*\*<a href="src/telnyx/types/dir/comment_create_params.py">params</a>) -> <a href="./src/telnyx/types/dir/comment_create_response.py">CommentCreateResponse</a></code>
+- <code title="get /dir/{dir_id}/comments">client.dir.comments.<a href="./src/telnyx/resources/dir/comments.py">list</a>(dir_id, \*\*<a href="src/telnyx/types/dir/comment_list_params.py">params</a>) -> <a href="./src/telnyx/types/dir/comment_list_response.py">SyncDefaultFlatPagination[CommentListResponse]</a></code>
+
+## PhoneNumberBatches
+
+Types:
+
+```python
+from telnyx.types.dir import PhoneNumberBatchRetrieveResponse, PhoneNumberBatchListResponse
+```
+
+Methods:
+
+- <code title="get /dir/{dir_id}/phone_number_batches/{batch_id}">client.dir.phone_number_batches.<a href="./src/telnyx/resources/dir/phone_number_batches.py">retrieve</a>(batch_id, \*, dir_id) -> <a href="./src/telnyx/types/dir/phone_number_batch_retrieve_response.py">PhoneNumberBatchRetrieveResponse</a></code>
+- <code title="get /dir/{dir_id}/phone_number_batches">client.dir.phone_number_batches.<a href="./src/telnyx/resources/dir/phone_number_batches.py">list</a>(dir_id, \*\*<a href="src/telnyx/types/dir/phone_number_batch_list_params.py">params</a>) -> <a href="./src/telnyx/types/dir/phone_number_batch_list_response.py">SyncDefaultFlatPagination[PhoneNumberBatchListResponse]</a></code>
+
+## PhoneNumbers
+
+Types:
+
+```python
+from telnyx.types.dir import (
+    PhoneNumberListResponse,
+    PhoneNumberAddResponse,
+    PhoneNumberRemoveResponse,
+)
+```
+
+Methods:
+
+- <code title="get /dir/{dir_id}/phone_numbers">client.dir.phone_numbers.<a href="./src/telnyx/resources/dir/phone_numbers.py">list</a>(dir_id, \*\*<a href="src/telnyx/types/dir/phone_number_list_params.py">params</a>) -> <a href="./src/telnyx/types/dir/phone_number_list_response.py">SyncDefaultFlatPagination[PhoneNumberListResponse]</a></code>
+- <code title="post /dir/{dir_id}/phone_numbers">client.dir.phone_numbers.<a href="./src/telnyx/resources/dir/phone_numbers.py">add</a>(dir_id, \*\*<a href="src/telnyx/types/dir/phone_number_add_params.py">params</a>) -> <a href="./src/telnyx/types/dir/phone_number_add_response.py">PhoneNumberAddResponse</a></code>
+- <code title="delete /dir/{dir_id}/phone_numbers">client.dir.phone_numbers.<a href="./src/telnyx/resources/dir/phone_numbers.py">remove</a>(dir_id, \*\*<a href="src/telnyx/types/dir/phone_number_remove_params.py">params</a>) -> <a href="./src/telnyx/types/dir/phone_number_remove_response.py">PhoneNumberRemoveResponse</a></code>
+
+# InfringementClaims
+
+Types:
+
+```python
+from telnyx.types import InfringementClaimRetrieveResponse, InfringementClaimContestResponse
+```
+
+Methods:
+
+- <code title="get /infringement_claims/{claim_id}">client.infringement_claims.<a href="./src/telnyx/resources/infringement_claims.py">retrieve</a>(claim_id) -> <a href="./src/telnyx/types/infringement_claim_retrieve_response.py">InfringementClaimRetrieveResponse</a></code>
+- <code title="post /infringement_claims/{claim_id}/contest">client.infringement_claims.<a href="./src/telnyx/resources/infringement_claims.py">contest</a>(claim_id, \*\*<a href="src/telnyx/types/infringement_claim_contest_params.py">params</a>) -> <a href="./src/telnyx/types/infringement_claim_contest_response.py">InfringementClaimContestResponse</a></code>
+
 # UacConnections
 
 Types:
 
 ```python
 from telnyx.types import (
-    UacConnection,
-    UacExternalSettings,
-    UacInbound,
-    UacInternalSettings,
-    UacOutbound,
     UacConnectionCreateResponse,
     UacConnectionRetrieveResponse,
     UacConnectionUpdateResponse,
+    UacConnectionListResponse,
     UacConnectionDeleteResponse,
 )
 ```
@@ -5706,7 +5849,7 @@ Methods:
 - <code title="post /uac_connections">client.uac_connections.<a href="./src/telnyx/resources/uac_connections/uac_connections.py">create</a>(\*\*<a href="src/telnyx/types/uac_connection_create_params.py">params</a>) -> <a href="./src/telnyx/types/uac_connection_create_response.py">UacConnectionCreateResponse</a></code>
 - <code title="get /uac_connections/{id}">client.uac_connections.<a href="./src/telnyx/resources/uac_connections/uac_connections.py">retrieve</a>(id) -> <a href="./src/telnyx/types/uac_connection_retrieve_response.py">UacConnectionRetrieveResponse</a></code>
 - <code title="patch /uac_connections/{id}">client.uac_connections.<a href="./src/telnyx/resources/uac_connections/uac_connections.py">update</a>(id, \*\*<a href="src/telnyx/types/uac_connection_update_params.py">params</a>) -> <a href="./src/telnyx/types/uac_connection_update_response.py">UacConnectionUpdateResponse</a></code>
-- <code title="get /uac_connections">client.uac_connections.<a href="./src/telnyx/resources/uac_connections/uac_connections.py">list</a>(\*\*<a href="src/telnyx/types/uac_connection_list_params.py">params</a>) -> <a href="./src/telnyx/types/uac_connection.py">SyncDefaultFlatPagination[UacConnection]</a></code>
+- <code title="get /uac_connections">client.uac_connections.<a href="./src/telnyx/resources/uac_connections/uac_connections.py">list</a>(\*\*<a href="src/telnyx/types/uac_connection_list_params.py">params</a>) -> <a href="./src/telnyx/types/uac_connection_list_response.py">SyncDefaultFlatPagination[UacConnectionListResponse]</a></code>
 - <code title="delete /uac_connections/{id}">client.uac_connections.<a href="./src/telnyx/resources/uac_connections/uac_connections.py">delete</a>(id) -> <a href="./src/telnyx/types/uac_connection_delete_response.py">UacConnectionDeleteResponse</a></code>
 
 ## Actions

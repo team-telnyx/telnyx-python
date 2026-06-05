@@ -8,6 +8,14 @@ from .ai import (
     AIResourceWithStreamingResponse,
     AsyncAIResourceWithStreamingResponse,
 )
+from .dir import (
+    DirResource,
+    AsyncDirResource,
+    DirResourceWithRawResponse,
+    AsyncDirResourceWithRawResponse,
+    DirResourceWithStreamingResponse,
+    AsyncDirResourceWithStreamingResponse,
+)
 from .ips import (
     IPsResource,
     AsyncIPsResource,
@@ -352,6 +360,14 @@ from .audit_events import (
     AsyncAuditEventsResourceWithRawResponse,
     AuditEventsResourceWithStreamingResponse,
     AsyncAuditEventsResourceWithStreamingResponse,
+)
+from .call_reasons import (
+    CallReasonsResource,
+    AsyncCallReasonsResource,
+    CallReasonsResourceWithRawResponse,
+    AsyncCallReasonsResourceWithRawResponse,
+    CallReasonsResourceWithStreamingResponse,
+    AsyncCallReasonsResourceWithStreamingResponse,
 )
 from .oauth_grants import (
     OAuthGrantsResource,
@@ -832,6 +848,14 @@ from .global_ip_protocols import (
     AsyncGlobalIPProtocolsResourceWithRawResponse,
     GlobalIPProtocolsResourceWithStreamingResponse,
     AsyncGlobalIPProtocolsResourceWithStreamingResponse,
+)
+from .infringement_claims import (
+    InfringementClaimsResource,
+    AsyncInfringementClaimsResource,
+    InfringementClaimsResourceWithRawResponse,
+    AsyncInfringementClaimsResourceWithRawResponse,
+    InfringementClaimsResourceWithStreamingResponse,
+    AsyncInfringementClaimsResourceWithStreamingResponse,
 )
 from .integration_secrets import (
     IntegrationSecretsResource,
@@ -2291,6 +2315,24 @@ __all__ = [
     "AsyncPronunciationDictsResourceWithRawResponse",
     "PronunciationDictsResourceWithStreamingResponse",
     "AsyncPronunciationDictsResourceWithStreamingResponse",
+    "CallReasonsResource",
+    "AsyncCallReasonsResource",
+    "CallReasonsResourceWithRawResponse",
+    "AsyncCallReasonsResourceWithRawResponse",
+    "CallReasonsResourceWithStreamingResponse",
+    "AsyncCallReasonsResourceWithStreamingResponse",
+    "DirResource",
+    "AsyncDirResource",
+    "DirResourceWithRawResponse",
+    "AsyncDirResourceWithRawResponse",
+    "DirResourceWithStreamingResponse",
+    "AsyncDirResourceWithStreamingResponse",
+    "InfringementClaimsResource",
+    "AsyncInfringementClaimsResource",
+    "InfringementClaimsResourceWithRawResponse",
+    "AsyncInfringementClaimsResourceWithRawResponse",
+    "InfringementClaimsResourceWithStreamingResponse",
+    "AsyncInfringementClaimsResourceWithStreamingResponse",
     "UacConnectionsResource",
     "AsyncUacConnectionsResource",
     "UacConnectionsResourceWithRawResponse",

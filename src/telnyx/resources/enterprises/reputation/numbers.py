@@ -16,18 +16,22 @@ from ...._response import (
 )
 from ....pagination import SyncDefaultFlatPagination, AsyncDefaultFlatPagination
 from ...._base_client import AsyncPaginator, make_request_options
-from ....types.enterprises.reputation import number_list_params, number_retrieve_params, number_associate_params
+from ....types.enterprises.reputation import (
+    number_list_params,
+    number_refresh_params,
+    number_retrieve_params,
+    number_associate_params,
+)
+from ....types.enterprises.reputation.number_list_response import NumberListResponse
+from ....types.enterprises.reputation.number_refresh_response import NumberRefreshResponse
 from ....types.enterprises.reputation.number_retrieve_response import NumberRetrieveResponse
 from ....types.enterprises.reputation.number_associate_response import NumberAssociateResponse
-from ....types.shared.reputation_phone_number_with_reputation_data import ReputationPhoneNumberWithReputationData
 
 __all__ = ["NumbersResource", "AsyncNumbersResource"]
 
 
 class NumbersResource(SyncAPIResource):
-    """
-    Associate phone numbers with an enterprise for reputation monitoring and retrieve reputation scores
-    """
+    """Phone-number reputation monitoring (spam-score lookup and tracking)."""
 
     @cached_property
     def with_raw_response(self) -> NumbersResourceWithRawResponse:
@@ -61,29 +65,15 @@ class NumbersResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NumberRetrieveResponse:
-        """
-        Get detailed reputation data for a specific phone number associated with an
-        enterprise.
+        """Retrieve one registered number with its latest reputation snapshot.
 
-        **Query Parameters:**
-
-        - `fresh` (default: `false`): When `true`, fetches fresh reputation data (incurs
-          API cost). When `false`, returns cached data. If no cached data exists, fresh
-          data is automatically fetched.
-
-        **Returns:**
-
-        - `spam_risk`: Overall spam risk level (`low`, `medium`, `high`)
-        - `spam_category`: Spam category classification
-        - `maturity_score`: Maturity metric (0–100)
-        - `connection_score`: Connection quality metric (0–100)
-        - `engagement_score`: Engagement metric (0–100)
-        - `sentiment_score`: Sentiment metric (0–100)
-        - `last_refreshed_at`: Timestamp of last data refresh
+        The
+        `phone_number` path parameter is in E.164 format and must be URL-encoded (e.g.
+        `%2B19493253498`).
 
         Args:
-          fresh: When true, fetches fresh reputation data (incurs API cost). When false, returns
-              cached data.
+          fresh: When true, fetches fresh reputation data (incurs API cost). When false
+              (default), returns cached data.
 
           extra_headers: Send extra headers
 
@@ -126,20 +116,18 @@ class NumbersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncDefaultFlatPagination[ReputationPhoneNumberWithReputationData]:
+    ) -> SyncDefaultFlatPagination[NumberListResponse]:
         """
-        List all phone numbers associated with an enterprise for Number Reputation
-        monitoring.
-
-        Returns phone numbers with their cached reputation data (if available). Supports
-        pagination and filtering by phone number.
+        Paginated list of phone numbers registered for reputation monitoring under this
+        enterprise. The response includes the latest reputation snapshot per number
+        where one has been collected.
 
         Args:
-          page_number: Page number (1-indexed)
+          page_number: 1-based page number. Out-of-range values return an empty page with correct meta.
 
-          page_size: Number of items per page
+          page_size: Items per page. Default 10. Maximum 250; values above are clamped to 250.
 
-          phone_number: Filter by specific phone number (E.164 format)
+          phone_number: Filter by specific phone number (E.164 format).
 
           extra_headers: Send extra headers
 
@@ -153,7 +141,7 @@ class NumbersResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `enterprise_id` but received {enterprise_id!r}")
         return self._get_api_list(
             path_template("/enterprises/{enterprise_id}/reputation/numbers", enterprise_id=enterprise_id),
-            page=SyncDefaultFlatPagination[ReputationPhoneNumberWithReputationData],
+            page=SyncDefaultFlatPagination[NumberListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -168,7 +156,7 @@ class NumbersResource(SyncAPIResource):
                     number_list_params.NumberListParams,
                 ),
             ),
-            model=ReputationPhoneNumberWithReputationData,
+            model=NumberListResponse,
         )
 
     def associate(
@@ -183,25 +171,20 @@ class NumbersResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NumberAssociateResponse:
-        """
-        Associate one or more phone numbers with an enterprise for Number Reputation
-        monitoring.
+        """Add up to 100 phone numbers to reputation monitoring on this enterprise.
 
-        **Validations:**
+        Each
+        must be in E.164 format (`+1NPANXXXXXX` for US/CA) and belong to your Telnyx
+        phone-number inventory.
 
-        - Phone numbers must be in E.164 format (e.g., `+16035551234`)
-        - Phone numbers must be in-service and belong to your account (verified via
-          Warehouse)
-        - Phone numbers must be US local numbers
-        - Phone numbers cannot already be associated with any enterprise
+        **Prerequisite**: reputation must already be enabled on this enterprise (see
+        `POST .../reputation`).
 
-        **Note:** This operation is atomic — if any number fails validation, the entire
-        request fails.
-
-        **Maximum:** 100 phone numbers per request.
+        **Pricing:** This is a billable action. See https://telnyx.com/pricing/numbers
+        for current pricing.
 
         Args:
-          phone_numbers: List of phone numbers to associate for reputation monitoring (max 100)
+          phone_numbers: 1–100 phone numbers in E.164 format with a leading `+`.
 
           extra_headers: Send extra headers
 
@@ -234,11 +217,10 @@ class NumbersResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
-        """
-        Remove a phone number from Number Reputation monitoring for an enterprise.
+        """Stop tracking the reputation of this phone number.
 
-        The number will no longer be tracked and reputation data will no longer be
-        refreshed.
+        The number itself remains in
+        your inventory; only the reputation registration is removed.
 
         Args:
           extra_headers: Send extra headers
@@ -266,11 +248,54 @@ class NumbersResource(SyncAPIResource):
             cast_to=NoneType,
         )
 
+    def refresh(
+        self,
+        enterprise_id: str,
+        *,
+        phone_numbers: SequenceNotStr[str],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> NumberRefreshResponse:
+        """Immediately refresh the stored reputation data for the listed numbers.
+
+        This is
+        in addition to the periodic refresh determined by `check_frequency`. Up to 100
+        numbers per call. The response carries the kicked-off jobs; the actual refresh
+        runs asynchronously.
+
+        **Pricing:** Forcing a refresh performs live reputation lookups, which are
+        billable. See https://telnyx.com/pricing/numbers for current pricing.
+
+        Args:
+          phone_numbers: Phone numbers to refresh reputation data for. 1–100 numbers per request, each in
+              E.164 format. Reputation refreshes are subject to per-enterprise rate limits.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not enterprise_id:
+            raise ValueError(f"Expected a non-empty value for `enterprise_id` but received {enterprise_id!r}")
+        return self._post(
+            path_template("/enterprises/{enterprise_id}/reputation/numbers/refresh", enterprise_id=enterprise_id),
+            body=maybe_transform({"phone_numbers": phone_numbers}, number_refresh_params.NumberRefreshParams),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=NumberRefreshResponse,
+        )
+
 
 class AsyncNumbersResource(AsyncAPIResource):
-    """
-    Associate phone numbers with an enterprise for reputation monitoring and retrieve reputation scores
-    """
+    """Phone-number reputation monitoring (spam-score lookup and tracking)."""
 
     @cached_property
     def with_raw_response(self) -> AsyncNumbersResourceWithRawResponse:
@@ -304,29 +329,15 @@ class AsyncNumbersResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NumberRetrieveResponse:
-        """
-        Get detailed reputation data for a specific phone number associated with an
-        enterprise.
+        """Retrieve one registered number with its latest reputation snapshot.
 
-        **Query Parameters:**
-
-        - `fresh` (default: `false`): When `true`, fetches fresh reputation data (incurs
-          API cost). When `false`, returns cached data. If no cached data exists, fresh
-          data is automatically fetched.
-
-        **Returns:**
-
-        - `spam_risk`: Overall spam risk level (`low`, `medium`, `high`)
-        - `spam_category`: Spam category classification
-        - `maturity_score`: Maturity metric (0–100)
-        - `connection_score`: Connection quality metric (0–100)
-        - `engagement_score`: Engagement metric (0–100)
-        - `sentiment_score`: Sentiment metric (0–100)
-        - `last_refreshed_at`: Timestamp of last data refresh
+        The
+        `phone_number` path parameter is in E.164 format and must be URL-encoded (e.g.
+        `%2B19493253498`).
 
         Args:
-          fresh: When true, fetches fresh reputation data (incurs API cost). When false, returns
-              cached data.
+          fresh: When true, fetches fresh reputation data (incurs API cost). When false
+              (default), returns cached data.
 
           extra_headers: Send extra headers
 
@@ -369,22 +380,18 @@ class AsyncNumbersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[
-        ReputationPhoneNumberWithReputationData, AsyncDefaultFlatPagination[ReputationPhoneNumberWithReputationData]
-    ]:
+    ) -> AsyncPaginator[NumberListResponse, AsyncDefaultFlatPagination[NumberListResponse]]:
         """
-        List all phone numbers associated with an enterprise for Number Reputation
-        monitoring.
-
-        Returns phone numbers with their cached reputation data (if available). Supports
-        pagination and filtering by phone number.
+        Paginated list of phone numbers registered for reputation monitoring under this
+        enterprise. The response includes the latest reputation snapshot per number
+        where one has been collected.
 
         Args:
-          page_number: Page number (1-indexed)
+          page_number: 1-based page number. Out-of-range values return an empty page with correct meta.
 
-          page_size: Number of items per page
+          page_size: Items per page. Default 10. Maximum 250; values above are clamped to 250.
 
-          phone_number: Filter by specific phone number (E.164 format)
+          phone_number: Filter by specific phone number (E.164 format).
 
           extra_headers: Send extra headers
 
@@ -398,7 +405,7 @@ class AsyncNumbersResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `enterprise_id` but received {enterprise_id!r}")
         return self._get_api_list(
             path_template("/enterprises/{enterprise_id}/reputation/numbers", enterprise_id=enterprise_id),
-            page=AsyncDefaultFlatPagination[ReputationPhoneNumberWithReputationData],
+            page=AsyncDefaultFlatPagination[NumberListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -413,7 +420,7 @@ class AsyncNumbersResource(AsyncAPIResource):
                     number_list_params.NumberListParams,
                 ),
             ),
-            model=ReputationPhoneNumberWithReputationData,
+            model=NumberListResponse,
         )
 
     async def associate(
@@ -428,25 +435,20 @@ class AsyncNumbersResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NumberAssociateResponse:
-        """
-        Associate one or more phone numbers with an enterprise for Number Reputation
-        monitoring.
+        """Add up to 100 phone numbers to reputation monitoring on this enterprise.
 
-        **Validations:**
+        Each
+        must be in E.164 format (`+1NPANXXXXXX` for US/CA) and belong to your Telnyx
+        phone-number inventory.
 
-        - Phone numbers must be in E.164 format (e.g., `+16035551234`)
-        - Phone numbers must be in-service and belong to your account (verified via
-          Warehouse)
-        - Phone numbers must be US local numbers
-        - Phone numbers cannot already be associated with any enterprise
+        **Prerequisite**: reputation must already be enabled on this enterprise (see
+        `POST .../reputation`).
 
-        **Note:** This operation is atomic — if any number fails validation, the entire
-        request fails.
-
-        **Maximum:** 100 phone numbers per request.
+        **Pricing:** This is a billable action. See https://telnyx.com/pricing/numbers
+        for current pricing.
 
         Args:
-          phone_numbers: List of phone numbers to associate for reputation monitoring (max 100)
+          phone_numbers: 1–100 phone numbers in E.164 format with a leading `+`.
 
           extra_headers: Send extra headers
 
@@ -481,11 +483,10 @@ class AsyncNumbersResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
-        """
-        Remove a phone number from Number Reputation monitoring for an enterprise.
+        """Stop tracking the reputation of this phone number.
 
-        The number will no longer be tracked and reputation data will no longer be
-        refreshed.
+        The number itself remains in
+        your inventory; only the reputation registration is removed.
 
         Args:
           extra_headers: Send extra headers
@@ -513,6 +514,53 @@ class AsyncNumbersResource(AsyncAPIResource):
             cast_to=NoneType,
         )
 
+    async def refresh(
+        self,
+        enterprise_id: str,
+        *,
+        phone_numbers: SequenceNotStr[str],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> NumberRefreshResponse:
+        """Immediately refresh the stored reputation data for the listed numbers.
+
+        This is
+        in addition to the periodic refresh determined by `check_frequency`. Up to 100
+        numbers per call. The response carries the kicked-off jobs; the actual refresh
+        runs asynchronously.
+
+        **Pricing:** Forcing a refresh performs live reputation lookups, which are
+        billable. See https://telnyx.com/pricing/numbers for current pricing.
+
+        Args:
+          phone_numbers: Phone numbers to refresh reputation data for. 1–100 numbers per request, each in
+              E.164 format. Reputation refreshes are subject to per-enterprise rate limits.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not enterprise_id:
+            raise ValueError(f"Expected a non-empty value for `enterprise_id` but received {enterprise_id!r}")
+        return await self._post(
+            path_template("/enterprises/{enterprise_id}/reputation/numbers/refresh", enterprise_id=enterprise_id),
+            body=await async_maybe_transform(
+                {"phone_numbers": phone_numbers}, number_refresh_params.NumberRefreshParams
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=NumberRefreshResponse,
+        )
+
 
 class NumbersResourceWithRawResponse:
     def __init__(self, numbers: NumbersResource) -> None:
@@ -529,6 +577,9 @@ class NumbersResourceWithRawResponse:
         )
         self.disassociate = to_raw_response_wrapper(
             numbers.disassociate,
+        )
+        self.refresh = to_raw_response_wrapper(
+            numbers.refresh,
         )
 
 
@@ -548,6 +599,9 @@ class AsyncNumbersResourceWithRawResponse:
         self.disassociate = async_to_raw_response_wrapper(
             numbers.disassociate,
         )
+        self.refresh = async_to_raw_response_wrapper(
+            numbers.refresh,
+        )
 
 
 class NumbersResourceWithStreamingResponse:
@@ -566,6 +620,9 @@ class NumbersResourceWithStreamingResponse:
         self.disassociate = to_streamed_response_wrapper(
             numbers.disassociate,
         )
+        self.refresh = to_streamed_response_wrapper(
+            numbers.refresh,
+        )
 
 
 class AsyncNumbersResourceWithStreamingResponse:
@@ -583,4 +640,7 @@ class AsyncNumbersResourceWithStreamingResponse:
         )
         self.disassociate = async_to_streamed_response_wrapper(
             numbers.disassociate,
+        )
+        self.refresh = async_to_streamed_response_wrapper(
+            numbers.refresh,
         )

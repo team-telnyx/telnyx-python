@@ -4,7 +4,6 @@ from .cursor import Cursor as Cursor
 from .feature import Feature as Feature
 from .metadata import Metadata as Metadata
 from .api_error import APIError as APIError
-from .meta_info import MetaInfo as MetaInfo
 from .short_code import ShortCode as ShortCode
 from .hosted_number import HostedNumber as HostedNumber
 from .reputation_data import ReputationData as ReputationData
@@ -14,7 +13,6 @@ from .cost_information import CostInformation as CostInformation
 from .netapps_location import NetappsLocation as NetappsLocation
 from .room_participant import RoomParticipant as RoomParticipant
 from .region_information import RegionInformation as RegionInformation
-from .xai_voice_settings import XaiVoiceSettings as XaiVoiceSettings
 from .rime_voice_settings import RimeVoiceSettings as RimeVoiceSettings
 from .azure_voice_settings import AzureVoiceSettings as AzureVoiceSettings
 from .porting_order_status import PortingOrderStatus as PortingOrderStatus
@@ -40,9 +38,6 @@ from .phone_numbers_job_phone_number import PhoneNumbersJobPhoneNumber as PhoneN
 from .available_phone_numbers_metadata import AvailablePhoneNumbersMetadata as AvailablePhoneNumbersMetadata
 from .connection_noise_suppression_details import ConnectionNoiseSuppressionDetails as ConnectionNoiseSuppressionDetails
 from .phone_number_with_messaging_settings import PhoneNumberWithMessagingSettings as PhoneNumberWithMessagingSettings
-from .reputation_phone_number_with_reputation_data import (
-    ReputationPhoneNumberWithReputationData as ReputationPhoneNumberWithReputationData,
-)
 from .sub_number_order_regulatory_requirement_with_value import (
     SubNumberOrderRegulatoryRequirementWithValue as SubNumberOrderRegulatoryRequirementWithValue,
 )

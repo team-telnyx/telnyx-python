@@ -10,19 +10,15 @@ __all__ = ["PhysicalAddressParam"]
 
 class PhysicalAddressParam(TypedDict, total=False):
     administrative_area: Required[str]
-    """State or province"""
+    """State or province code (e.g. `IL`, `ON`)."""
 
     city: Required[str]
-    """City name"""
 
     country: Required[str]
-    """Country name (e.g., United States)"""
+    """ISO 3166-1 alpha-2 code (currently `US` or `CA`)."""
 
     postal_code: Required[str]
-    """ZIP or postal code"""
 
     street_address: Required[str]
-    """Street address"""
 
     extended_address: Optional[str]
-    """Additional address line (suite, apt, etc.)"""

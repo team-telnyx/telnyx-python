@@ -10,7 +10,7 @@ import pytest
 from telnyx import Telnyx, AsyncTelnyx
 from tests.utils import assert_matches_type
 from telnyx.types import (
-    VirtualCrossConnectCombined,
+    VirtualCrossConnectListResponse,
     VirtualCrossConnectCreateResponse,
     VirtualCrossConnectDeleteResponse,
     VirtualCrossConnectUpdateResponse,
@@ -183,7 +183,7 @@ class TestVirtualCrossConnects:
     def test_method_list(self, client: Telnyx) -> None:
         virtual_cross_connect = client.virtual_cross_connects.list()
         assert_matches_type(
-            SyncDefaultFlatPagination[VirtualCrossConnectCombined], virtual_cross_connect, path=["response"]
+            SyncDefaultFlatPagination[VirtualCrossConnectListResponse], virtual_cross_connect, path=["response"]
         )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -195,7 +195,7 @@ class TestVirtualCrossConnects:
             page_size=0,
         )
         assert_matches_type(
-            SyncDefaultFlatPagination[VirtualCrossConnectCombined], virtual_cross_connect, path=["response"]
+            SyncDefaultFlatPagination[VirtualCrossConnectListResponse], virtual_cross_connect, path=["response"]
         )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -207,7 +207,7 @@ class TestVirtualCrossConnects:
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         virtual_cross_connect = response.parse()
         assert_matches_type(
-            SyncDefaultFlatPagination[VirtualCrossConnectCombined], virtual_cross_connect, path=["response"]
+            SyncDefaultFlatPagination[VirtualCrossConnectListResponse], virtual_cross_connect, path=["response"]
         )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -219,7 +219,7 @@ class TestVirtualCrossConnects:
 
             virtual_cross_connect = response.parse()
             assert_matches_type(
-                SyncDefaultFlatPagination[VirtualCrossConnectCombined], virtual_cross_connect, path=["response"]
+                SyncDefaultFlatPagination[VirtualCrossConnectListResponse], virtual_cross_connect, path=["response"]
             )
 
         assert cast(Any, response.is_closed) is True
@@ -431,7 +431,7 @@ class TestAsyncVirtualCrossConnects:
     async def test_method_list(self, async_client: AsyncTelnyx) -> None:
         virtual_cross_connect = await async_client.virtual_cross_connects.list()
         assert_matches_type(
-            AsyncDefaultFlatPagination[VirtualCrossConnectCombined], virtual_cross_connect, path=["response"]
+            AsyncDefaultFlatPagination[VirtualCrossConnectListResponse], virtual_cross_connect, path=["response"]
         )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -443,7 +443,7 @@ class TestAsyncVirtualCrossConnects:
             page_size=0,
         )
         assert_matches_type(
-            AsyncDefaultFlatPagination[VirtualCrossConnectCombined], virtual_cross_connect, path=["response"]
+            AsyncDefaultFlatPagination[VirtualCrossConnectListResponse], virtual_cross_connect, path=["response"]
         )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -455,7 +455,7 @@ class TestAsyncVirtualCrossConnects:
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         virtual_cross_connect = await response.parse()
         assert_matches_type(
-            AsyncDefaultFlatPagination[VirtualCrossConnectCombined], virtual_cross_connect, path=["response"]
+            AsyncDefaultFlatPagination[VirtualCrossConnectListResponse], virtual_cross_connect, path=["response"]
         )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -467,7 +467,7 @@ class TestAsyncVirtualCrossConnects:
 
             virtual_cross_connect = await response.parse()
             assert_matches_type(
-                AsyncDefaultFlatPagination[VirtualCrossConnectCombined], virtual_cross_connect, path=["response"]
+                AsyncDefaultFlatPagination[VirtualCrossConnectListResponse], virtual_cross_connect, path=["response"]
             )
 
         assert cast(Any, response.is_closed) is True
