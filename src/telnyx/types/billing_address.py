@@ -9,19 +9,15 @@ __all__ = ["BillingAddress"]
 
 class BillingAddress(BaseModel):
     administrative_area: str
-    """State or province"""
+    """State or province code (e.g. `IL`, `ON`)."""
 
     city: str
-    """City name"""
 
     country: str
-    """Country name (e.g., United States)"""
+    """ISO 3166-1 alpha-2 code (currently `US` or `CA`)."""
 
     postal_code: str
-    """ZIP or postal code"""
 
     street_address: str
-    """Street address"""
 
     extended_address: Optional[str] = None
-    """Additional address line (suite, apt, etc.)"""

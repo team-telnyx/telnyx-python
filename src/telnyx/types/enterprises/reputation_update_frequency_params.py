@@ -9,4 +9,7 @@ __all__ = ["ReputationUpdateFrequencyParams"]
 
 class ReputationUpdateFrequencyParams(TypedDict, total=False):
     check_frequency: Required[Literal["business_daily", "daily", "weekly", "biweekly", "monthly", "never"]]
-    """New frequency for refreshing reputation data"""
+    """
+    How often Telnyx refreshes the stored reputation data for this enterprise's
+    registered numbers.
+    """

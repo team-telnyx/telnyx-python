@@ -2,11 +2,20 @@
 
 from typing import Optional
 
+from .record import Record
 from .._models import BaseModel
-from .public_internet_gateway_read import PublicInternetGatewayRead
+from .network_interface import NetworkInterface
 
-__all__ = ["PublicInternetGatewayCreateResponse"]
+__all__ = ["PublicInternetGatewayCreateResponse", "Data"]
+
+
+class Data(Record, NetworkInterface):
+    public_ip: Optional[str] = None
+    """The publically accessible ip for this interface."""
+
+    region_code: Optional[str] = None
+    """The region interface is deployed to."""
 
 
 class PublicInternetGatewayCreateResponse(BaseModel):
-    data: Optional[PublicInternetGatewayRead] = None
+    data: Optional[Data] = None

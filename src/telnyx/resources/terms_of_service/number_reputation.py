@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import httpx
 
-from ..._types import Body, Query, Headers, NoneType, NotGiven, not_given
+from ..._types import Body, Query, Headers, NotGiven, not_given
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -14,12 +14,15 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._base_client import make_request_options
+from ...types.terms_of_service.number_reputation_agree_response import NumberReputationAgreeResponse
 
 __all__ = ["NumberReputationResource", "AsyncNumberReputationResource"]
 
 
 class NumberReputationResource(SyncAPIResource):
-    """Terms of Service agreement endpoints"""
+    """
+    Accept and review the Branded Calling and Phone Number Reputation terms of service.
+    """
 
     @cached_property
     def with_raw_response(self) -> NumberReputationResourceWithRawResponse:
@@ -49,27 +52,26 @@ class NumberReputationResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
-        """Accept the Terms of Service for the Number Reputation product.
-
-        Must be called
-        before using Number Reputation endpoints.
-
-        Returns `400` with error code `10015` if the user has already agreed to the
-        current ToS version.
+    ) -> NumberReputationAgreeResponse:
         """
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        Records the authenticated user's agreement to the current Phone Number
+        Reputation ToS. No body required. Idempotent.
+
+        Prerequisite for using any of the `/v2/.../reputation/*` endpoints.
+        """
         return self._post(
             "/terms_of_service/number_reputation/agree",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NoneType,
+            cast_to=NumberReputationAgreeResponse,
         )
 
 
 class AsyncNumberReputationResource(AsyncAPIResource):
-    """Terms of Service agreement endpoints"""
+    """
+    Accept and review the Branded Calling and Phone Number Reputation terms of service.
+    """
 
     @cached_property
     def with_raw_response(self) -> AsyncNumberReputationResourceWithRawResponse:
@@ -99,22 +101,19 @@ class AsyncNumberReputationResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
-        """Accept the Terms of Service for the Number Reputation product.
-
-        Must be called
-        before using Number Reputation endpoints.
-
-        Returns `400` with error code `10015` if the user has already agreed to the
-        current ToS version.
+    ) -> NumberReputationAgreeResponse:
         """
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        Records the authenticated user's agreement to the current Phone Number
+        Reputation ToS. No body required. Idempotent.
+
+        Prerequisite for using any of the `/v2/.../reputation/*` endpoints.
+        """
         return await self._post(
             "/terms_of_service/number_reputation/agree",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NoneType,
+            cast_to=NumberReputationAgreeResponse,
         )
 
 

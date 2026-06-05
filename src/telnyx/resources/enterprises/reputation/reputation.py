@@ -6,6 +6,14 @@ from typing_extensions import Literal
 
 import httpx
 
+from .loa import (
+    LoaResource,
+    AsyncLoaResource,
+    LoaResourceWithRawResponse,
+    AsyncLoaResourceWithRawResponse,
+    LoaResourceWithStreamingResponse,
+    AsyncLoaResourceWithStreamingResponse,
+)
 from .numbers import (
     NumbersResource,
     AsyncNumbersResource,
@@ -34,16 +42,17 @@ __all__ = ["ReputationResource", "AsyncReputationResource"]
 
 
 class ReputationResource(SyncAPIResource):
-    """
-    Manage Number Reputation enrollment and check frequency settings for an enterprise
-    """
+    """Phone-number reputation monitoring (spam-score lookup and tracking)."""
 
     @cached_property
     def numbers(self) -> NumbersResource:
-        """
-        Associate phone numbers with an enterprise for reputation monitoring and retrieve reputation scores
-        """
+        """Phone-number reputation monitoring (spam-score lookup and tracking)."""
         return NumbersResource(self._client)
+
+    @cached_property
+    def loa(self) -> LoaResource:
+        """Phone-number reputation monitoring (spam-score lookup and tracking)."""
+        return LoaResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> ReputationResourceWithRawResponse:
@@ -76,12 +85,12 @@ class ReputationResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ReputationRetrieveResponse:
         """
-        Retrieve the current Number Reputation settings for an enterprise.
+        Phone Number Reputation tracks how your outbound caller-IDs are perceived (spam
+        risk, engagement, etc.) across the call-screening ecosystem. This endpoint reads
+        the enterprise-level settings: whether the product is enabled, the refresh
+        cadence, and the stored Letter of Authorization document id.
 
-        Returns the enrollment status (`pending`, `approved`, `rejected`, `deleted`),
-        check frequency, and any rejection reasons.
-
-        Returns `404` if reputation has not been enabled for this enterprise.
+        Returns `404` if reputation has never been enabled for this enterprise.
 
         Args:
           extra_headers: Send extra headers
@@ -113,16 +122,11 @@ class ReputationResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
-        """
-        Disable Number Reputation for an enterprise.
+        """Disable Phone Number Reputation.
 
-        This will:
-
-        - Delete the reputation settings record
-        - Log the deletion for audit purposes
-        - Stop all future automated reputation checks
-
-        **Note:** Can only be performed on `approved` reputation settings.
+        All registered numbers are de-registered as a
+        cascade. The enterprise itself is unaffected. Returns `204` on success, `404` if
+        reputation is not enabled for this enterprise.
 
         Args:
           extra_headers: Send extra headers
@@ -157,38 +161,33 @@ class ReputationResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ReputationEnableResponse:
-        """
-        Enable Number Reputation service for an enterprise.
+        """Activate Phone Number Reputation for the given enterprise.
 
-        **Requirements:**
+        Requires an uploaded
+        Letter of Authorization document (the `loa_document_id` references the Telnyx
+        Documents API) and a refresh-frequency selection. After activation, individual
+        phone numbers can be registered via `POST .../reputation/numbers`.
 
-        - Signed LOA (Letter of Authorization) document ID
-        - Reputation check frequency (defaults to `business_daily`)
-        - Number Reputation Terms of Service must be accepted
+        **Prerequisite**: the calling user must have agreed to the Phone Number
+        Reputation Terms of Service (`POST /terms_of_service/number_reputation/agree`).
 
-        **Flow:**
+        Failure modes:
 
-        1. Registers the enterprise for reputation monitoring
-        2. Creates reputation settings with `pending` status
-        3. Awaits admin approval before monitoring begins
+        - `403` — Phone Number Reputation Terms of Service not accepted.
+        - `404` — enterprise does not exist or does not belong to your account.
+        - `400` — reputation already enabled for this enterprise.
+        - `422` — `loa_document_id` missing or `check_frequency` invalid.
 
-        **Resubmission After Rejection:** If a previously rejected record exists, this
-        endpoint will delete it and create a new `pending` record.
-
-        **Available Frequencies:**
-
-        - `business_daily` — Monday–Friday
-        - `daily` — Every day
-        - `weekly` — Once per week
-        - `biweekly` — Once every two weeks
-        - `monthly` — Once per month
-        - `never` — Manual refresh only
+        **Pricing:** This is a billable action. See https://telnyx.com/pricing/numbers
+        for current pricing.
 
         Args:
-          loa_document_id: ID of the signed Letter of Authorization (LOA) document uploaded to the document
-              service
+          loa_document_id: Id of the signed Letter of Authorization document, returned by the Telnyx
+              Documents API after upload (upload via `POST /v2/documents`; see
+              https://developers.telnyx.com/api/documents).
 
-          check_frequency: Frequency for automatically refreshing reputation data
+          check_frequency: How often Telnyx refreshes the stored reputation data for this enterprise's
+              registered numbers.
 
           extra_headers: Send extra headers
 
@@ -228,22 +227,16 @@ class ReputationResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ReputationUpdateFrequencyResponse:
         """
-        Update how often reputation data is automatically refreshed.
+        Update how often Telnyx refreshes the reputation data for this enterprise's
+        registered numbers. The new frequency takes effect on the next scheduled
+        refresh.
 
-        **Note:** The enterprise must have `approved` reputation settings. Updating
-        frequency on `pending` or `rejected` settings will return an error.
-
-        **Available Frequencies:**
-
-        - `business_daily` — Monday–Friday
-        - `daily` — Every day including weekends
-        - `weekly` — Once per week
-        - `biweekly` — Once every two weeks
-        - `monthly` — Once per month
-        - `never` — Manual refresh only (no automatic checks)
+        The enterprise's reputation must be in `approved` status. A request made while
+        the status is `pending` is rejected with `400 Bad Request`.
 
         Args:
-          check_frequency: New frequency for refreshing reputation data
+          check_frequency: How often Telnyx refreshes the stored reputation data for this enterprise's
+              registered numbers.
 
           extra_headers: Send extra headers
 
@@ -268,16 +261,17 @@ class ReputationResource(SyncAPIResource):
 
 
 class AsyncReputationResource(AsyncAPIResource):
-    """
-    Manage Number Reputation enrollment and check frequency settings for an enterprise
-    """
+    """Phone-number reputation monitoring (spam-score lookup and tracking)."""
 
     @cached_property
     def numbers(self) -> AsyncNumbersResource:
-        """
-        Associate phone numbers with an enterprise for reputation monitoring and retrieve reputation scores
-        """
+        """Phone-number reputation monitoring (spam-score lookup and tracking)."""
         return AsyncNumbersResource(self._client)
+
+    @cached_property
+    def loa(self) -> AsyncLoaResource:
+        """Phone-number reputation monitoring (spam-score lookup and tracking)."""
+        return AsyncLoaResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncReputationResourceWithRawResponse:
@@ -310,12 +304,12 @@ class AsyncReputationResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ReputationRetrieveResponse:
         """
-        Retrieve the current Number Reputation settings for an enterprise.
+        Phone Number Reputation tracks how your outbound caller-IDs are perceived (spam
+        risk, engagement, etc.) across the call-screening ecosystem. This endpoint reads
+        the enterprise-level settings: whether the product is enabled, the refresh
+        cadence, and the stored Letter of Authorization document id.
 
-        Returns the enrollment status (`pending`, `approved`, `rejected`, `deleted`),
-        check frequency, and any rejection reasons.
-
-        Returns `404` if reputation has not been enabled for this enterprise.
+        Returns `404` if reputation has never been enabled for this enterprise.
 
         Args:
           extra_headers: Send extra headers
@@ -347,16 +341,11 @@ class AsyncReputationResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
-        """
-        Disable Number Reputation for an enterprise.
+        """Disable Phone Number Reputation.
 
-        This will:
-
-        - Delete the reputation settings record
-        - Log the deletion for audit purposes
-        - Stop all future automated reputation checks
-
-        **Note:** Can only be performed on `approved` reputation settings.
+        All registered numbers are de-registered as a
+        cascade. The enterprise itself is unaffected. Returns `204` on success, `404` if
+        reputation is not enabled for this enterprise.
 
         Args:
           extra_headers: Send extra headers
@@ -391,38 +380,33 @@ class AsyncReputationResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ReputationEnableResponse:
-        """
-        Enable Number Reputation service for an enterprise.
+        """Activate Phone Number Reputation for the given enterprise.
 
-        **Requirements:**
+        Requires an uploaded
+        Letter of Authorization document (the `loa_document_id` references the Telnyx
+        Documents API) and a refresh-frequency selection. After activation, individual
+        phone numbers can be registered via `POST .../reputation/numbers`.
 
-        - Signed LOA (Letter of Authorization) document ID
-        - Reputation check frequency (defaults to `business_daily`)
-        - Number Reputation Terms of Service must be accepted
+        **Prerequisite**: the calling user must have agreed to the Phone Number
+        Reputation Terms of Service (`POST /terms_of_service/number_reputation/agree`).
 
-        **Flow:**
+        Failure modes:
 
-        1. Registers the enterprise for reputation monitoring
-        2. Creates reputation settings with `pending` status
-        3. Awaits admin approval before monitoring begins
+        - `403` — Phone Number Reputation Terms of Service not accepted.
+        - `404` — enterprise does not exist or does not belong to your account.
+        - `400` — reputation already enabled for this enterprise.
+        - `422` — `loa_document_id` missing or `check_frequency` invalid.
 
-        **Resubmission After Rejection:** If a previously rejected record exists, this
-        endpoint will delete it and create a new `pending` record.
-
-        **Available Frequencies:**
-
-        - `business_daily` — Monday–Friday
-        - `daily` — Every day
-        - `weekly` — Once per week
-        - `biweekly` — Once every two weeks
-        - `monthly` — Once per month
-        - `never` — Manual refresh only
+        **Pricing:** This is a billable action. See https://telnyx.com/pricing/numbers
+        for current pricing.
 
         Args:
-          loa_document_id: ID of the signed Letter of Authorization (LOA) document uploaded to the document
-              service
+          loa_document_id: Id of the signed Letter of Authorization document, returned by the Telnyx
+              Documents API after upload (upload via `POST /v2/documents`; see
+              https://developers.telnyx.com/api/documents).
 
-          check_frequency: Frequency for automatically refreshing reputation data
+          check_frequency: How often Telnyx refreshes the stored reputation data for this enterprise's
+              registered numbers.
 
           extra_headers: Send extra headers
 
@@ -462,22 +446,16 @@ class AsyncReputationResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ReputationUpdateFrequencyResponse:
         """
-        Update how often reputation data is automatically refreshed.
+        Update how often Telnyx refreshes the reputation data for this enterprise's
+        registered numbers. The new frequency takes effect on the next scheduled
+        refresh.
 
-        **Note:** The enterprise must have `approved` reputation settings. Updating
-        frequency on `pending` or `rejected` settings will return an error.
-
-        **Available Frequencies:**
-
-        - `business_daily` — Monday–Friday
-        - `daily` — Every day including weekends
-        - `weekly` — Once per week
-        - `biweekly` — Once every two weeks
-        - `monthly` — Once per month
-        - `never` — Manual refresh only (no automatic checks)
+        The enterprise's reputation must be in `approved` status. A request made while
+        the status is `pending` is rejected with `400 Bad Request`.
 
         Args:
-          check_frequency: New frequency for refreshing reputation data
+          check_frequency: How often Telnyx refreshes the stored reputation data for this enterprise's
+              registered numbers.
 
           extra_headers: Send extra headers
 
@@ -520,10 +498,13 @@ class ReputationResourceWithRawResponse:
 
     @cached_property
     def numbers(self) -> NumbersResourceWithRawResponse:
-        """
-        Associate phone numbers with an enterprise for reputation monitoring and retrieve reputation scores
-        """
+        """Phone-number reputation monitoring (spam-score lookup and tracking)."""
         return NumbersResourceWithRawResponse(self._reputation.numbers)
+
+    @cached_property
+    def loa(self) -> LoaResourceWithRawResponse:
+        """Phone-number reputation monitoring (spam-score lookup and tracking)."""
+        return LoaResourceWithRawResponse(self._reputation.loa)
 
 
 class AsyncReputationResourceWithRawResponse:
@@ -545,10 +526,13 @@ class AsyncReputationResourceWithRawResponse:
 
     @cached_property
     def numbers(self) -> AsyncNumbersResourceWithRawResponse:
-        """
-        Associate phone numbers with an enterprise for reputation monitoring and retrieve reputation scores
-        """
+        """Phone-number reputation monitoring (spam-score lookup and tracking)."""
         return AsyncNumbersResourceWithRawResponse(self._reputation.numbers)
+
+    @cached_property
+    def loa(self) -> AsyncLoaResourceWithRawResponse:
+        """Phone-number reputation monitoring (spam-score lookup and tracking)."""
+        return AsyncLoaResourceWithRawResponse(self._reputation.loa)
 
 
 class ReputationResourceWithStreamingResponse:
@@ -570,10 +554,13 @@ class ReputationResourceWithStreamingResponse:
 
     @cached_property
     def numbers(self) -> NumbersResourceWithStreamingResponse:
-        """
-        Associate phone numbers with an enterprise for reputation monitoring and retrieve reputation scores
-        """
+        """Phone-number reputation monitoring (spam-score lookup and tracking)."""
         return NumbersResourceWithStreamingResponse(self._reputation.numbers)
+
+    @cached_property
+    def loa(self) -> LoaResourceWithStreamingResponse:
+        """Phone-number reputation monitoring (spam-score lookup and tracking)."""
+        return LoaResourceWithStreamingResponse(self._reputation.loa)
 
 
 class AsyncReputationResourceWithStreamingResponse:
@@ -595,7 +582,10 @@ class AsyncReputationResourceWithStreamingResponse:
 
     @cached_property
     def numbers(self) -> AsyncNumbersResourceWithStreamingResponse:
-        """
-        Associate phone numbers with an enterprise for reputation monitoring and retrieve reputation scores
-        """
+        """Phone-number reputation monitoring (spam-score lookup and tracking)."""
         return AsyncNumbersResourceWithStreamingResponse(self._reputation.numbers)
+
+    @cached_property
+    def loa(self) -> AsyncLoaResourceWithStreamingResponse:
+        """Phone-number reputation monitoring (spam-score lookup and tracking)."""
+        return AsyncLoaResourceWithStreamingResponse(self._reputation.loa)

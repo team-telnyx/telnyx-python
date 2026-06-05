@@ -8,7 +8,6 @@ from typing_extensions import Literal, Required, TypeAlias, TypedDict
 from .aws_voice_settings_param import AwsVoiceSettingsParam
 from .telnyx_voice_settings_param import TelnyxVoiceSettingsParam
 from .eleven_labs_voice_settings_param import ElevenLabsVoiceSettingsParam
-from ..shared_params.xai_voice_settings import XaiVoiceSettings
 from ..shared_params.rime_voice_settings import RimeVoiceSettings
 from ..shared_params.azure_voice_settings import AzureVoiceSettings
 from ..shared_params.minimax_voice_settings import MinimaxVoiceSettings
@@ -21,12 +20,15 @@ __all__ = [
     "ConversationRelaySettingsLanguage",
     "ConversationRelaySettingsLanguageVoiceSettings",
     "ConversationRelaySettingsLanguageVoiceSettingsInworldVoiceSettings",
+    "ConversationRelaySettingsLanguageVoiceSettingsXaiVoiceSettings",
     "InterruptionSettings",
     "Language",
     "LanguageVoiceSettings",
     "LanguageVoiceSettingsInworldVoiceSettings",
+    "LanguageVoiceSettingsXaiVoiceSettings",
     "VoiceSettings",
     "VoiceSettingsInworldVoiceSettings",
+    "VoiceSettingsXaiVoiceSettings",
 ]
 
 
@@ -208,6 +210,14 @@ class ConversationRelaySettingsLanguageVoiceSettingsInworldVoiceSettings(TypedDi
     """Voice settings provider type"""
 
 
+class ConversationRelaySettingsLanguageVoiceSettingsXaiVoiceSettings(TypedDict, total=False):
+    type: Required[Literal["xai"]]
+    """Voice settings provider type"""
+
+    language: str
+    """Language code, or `auto` to detect automatically."""
+
+
 ConversationRelaySettingsLanguageVoiceSettings: TypeAlias = Union[
     ElevenLabsVoiceSettingsParam,
     TelnyxVoiceSettingsParam,
@@ -217,7 +227,7 @@ ConversationRelaySettingsLanguageVoiceSettings: TypeAlias = Union[
     RimeVoiceSettings,
     ResembleVoiceSettings,
     ConversationRelaySettingsLanguageVoiceSettingsInworldVoiceSettings,
-    XaiVoiceSettings,
+    ConversationRelaySettingsLanguageVoiceSettingsXaiVoiceSettings,
 ]
 
 
@@ -342,6 +352,14 @@ class LanguageVoiceSettingsInworldVoiceSettings(TypedDict, total=False):
     """Voice settings provider type"""
 
 
+class LanguageVoiceSettingsXaiVoiceSettings(TypedDict, total=False):
+    type: Required[Literal["xai"]]
+    """Voice settings provider type"""
+
+    language: str
+    """Language code, or `auto` to detect automatically."""
+
+
 LanguageVoiceSettings: TypeAlias = Union[
     ElevenLabsVoiceSettingsParam,
     TelnyxVoiceSettingsParam,
@@ -351,7 +369,7 @@ LanguageVoiceSettings: TypeAlias = Union[
     RimeVoiceSettings,
     ResembleVoiceSettings,
     LanguageVoiceSettingsInworldVoiceSettings,
-    XaiVoiceSettings,
+    LanguageVoiceSettingsXaiVoiceSettings,
 ]
 
 
@@ -411,6 +429,14 @@ class VoiceSettingsInworldVoiceSettings(TypedDict, total=False):
     """Voice settings provider type"""
 
 
+class VoiceSettingsXaiVoiceSettings(TypedDict, total=False):
+    type: Required[Literal["xai"]]
+    """Voice settings provider type"""
+
+    language: str
+    """Language code, or `auto` to detect automatically."""
+
+
 VoiceSettings: TypeAlias = Union[
     ElevenLabsVoiceSettingsParam,
     TelnyxVoiceSettingsParam,
@@ -420,5 +446,5 @@ VoiceSettings: TypeAlias = Union[
     RimeVoiceSettings,
     ResembleVoiceSettings,
     VoiceSettingsInworldVoiceSettings,
-    XaiVoiceSettings,
+    VoiceSettingsXaiVoiceSettings,
 ]

@@ -10,9 +10,13 @@ __all__ = ["ReputationEnableParams"]
 class ReputationEnableParams(TypedDict, total=False):
     loa_document_id: Required[str]
     """
-    ID of the signed Letter of Authorization (LOA) document uploaded to the document
-    service
+    Id of the signed Letter of Authorization document, returned by the Telnyx
+    Documents API after upload (upload via `POST /v2/documents`; see
+    https://developers.telnyx.com/api/documents).
     """
 
     check_frequency: Literal["business_daily", "daily", "weekly", "biweekly", "monthly", "never"]
-    """Frequency for automatically refreshing reputation data"""
+    """
+    How often Telnyx refreshes the stored reputation data for this enterprise's
+    registered numbers.
+    """

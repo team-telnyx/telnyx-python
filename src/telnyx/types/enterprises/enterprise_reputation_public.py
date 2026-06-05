@@ -11,22 +11,29 @@ __all__ = ["EnterpriseReputationPublic"]
 
 class EnterpriseReputationPublic(BaseModel):
     check_frequency: Optional[Literal["business_daily", "daily", "weekly", "biweekly", "monthly", "never"]] = None
-    """Frequency for refreshing reputation data"""
+    """
+    How often Telnyx refreshes the stored reputation data for this enterprise's
+    registered numbers.
+    """
 
     created_at: Optional[datetime] = None
-    """When the reputation settings were created"""
 
     enterprise_id: Optional[str] = None
-    """ID of the associated enterprise"""
 
     loa_document_id: Optional[str] = None
-    """ID of the signed LOA document"""
+    """Id of the signed LOA document."""
+
+    loa_status: Optional[Literal["pending", "approved", "rejected"]] = None
+    """Customer-facing Letter-of-Authorization verification state.
+
+    `approved` is required (alongside reputation status) before phone numbers can be
+    added.
+    """
 
     rejection_reasons: Optional[List[str]] = None
-    """Reasons for rejection (present when status is rejected)"""
+    """Populated when `status` is `rejected`."""
 
-    status: Optional[Literal["pending", "approved", "rejected", "deleted"]] = None
-    """Current enrollment status"""
+    status: Optional[Literal["pending", "approved", "deleted", "rejected"]] = None
+    """Lifecycle status of the enterprise's Phone Number Reputation activation."""
 
     updated_at: Optional[datetime] = None
-    """When the reputation settings were last updated"""

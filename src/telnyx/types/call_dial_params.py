@@ -16,7 +16,6 @@ from .stream_bidirectional_mode import StreamBidirectionalMode
 from .stream_bidirectional_codec import StreamBidirectionalCodec
 from .call_assistant_request_param import CallAssistantRequestParam
 from .calls.aws_voice_settings_param import AwsVoiceSettingsParam
-from .shared_params.xai_voice_settings import XaiVoiceSettings
 from .stream_bidirectional_target_legs import StreamBidirectionalTargetLegs
 from .calls.telnyx_voice_settings_param import TelnyxVoiceSettingsParam
 from .shared_params.rime_voice_settings import RimeVoiceSettings
@@ -36,8 +35,10 @@ __all__ = [
     "ConversationRelayConfigLanguage",
     "ConversationRelayConfigLanguageVoiceSettings",
     "ConversationRelayConfigLanguageVoiceSettingsInworldVoiceSettings",
+    "ConversationRelayConfigLanguageVoiceSettingsXaiVoiceSettings",
     "ConversationRelayConfigVoiceSettings",
     "ConversationRelayConfigVoiceSettingsInworldVoiceSettings",
+    "ConversationRelayConfigVoiceSettingsXaiVoiceSettings",
     "DeepfakeDetection",
     "WebhookRetriesPolicies",
 ]
@@ -604,6 +605,14 @@ class ConversationRelayConfigLanguageVoiceSettingsInworldVoiceSettings(TypedDict
     """Voice settings provider type"""
 
 
+class ConversationRelayConfigLanguageVoiceSettingsXaiVoiceSettings(TypedDict, total=False):
+    type: Required[Literal["xai"]]
+    """Voice settings provider type"""
+
+    language: str
+    """Language code, or `auto` to detect automatically."""
+
+
 ConversationRelayConfigLanguageVoiceSettings: TypeAlias = Union[
     ElevenLabsVoiceSettingsParam,
     TelnyxVoiceSettingsParam,
@@ -613,7 +622,7 @@ ConversationRelayConfigLanguageVoiceSettings: TypeAlias = Union[
     RimeVoiceSettings,
     ResembleVoiceSettings,
     ConversationRelayConfigLanguageVoiceSettingsInworldVoiceSettings,
-    XaiVoiceSettings,
+    ConversationRelayConfigLanguageVoiceSettingsXaiVoiceSettings,
 ]
 
 
@@ -673,6 +682,14 @@ class ConversationRelayConfigVoiceSettingsInworldVoiceSettings(TypedDict, total=
     """Voice settings provider type"""
 
 
+class ConversationRelayConfigVoiceSettingsXaiVoiceSettings(TypedDict, total=False):
+    type: Required[Literal["xai"]]
+    """Voice settings provider type"""
+
+    language: str
+    """Language code, or `auto` to detect automatically."""
+
+
 ConversationRelayConfigVoiceSettings: TypeAlias = Union[
     ElevenLabsVoiceSettingsParam,
     TelnyxVoiceSettingsParam,
@@ -682,7 +699,7 @@ ConversationRelayConfigVoiceSettings: TypeAlias = Union[
     RimeVoiceSettings,
     ResembleVoiceSettings,
     ConversationRelayConfigVoiceSettingsInworldVoiceSettings,
-    XaiVoiceSettings,
+    ConversationRelayConfigVoiceSettingsXaiVoiceSettings,
 ]
 
 

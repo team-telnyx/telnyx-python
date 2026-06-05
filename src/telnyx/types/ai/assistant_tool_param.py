@@ -16,7 +16,7 @@ __all__ = [
     "HandoffHandoffAIAssistant",
     "Transfer",
     "TransferTransfer",
-    "TransferTransferTargetsTargetsList",
+    "TransferTransferTargetsUnionMember0",
     "TransferTransferCustomHeader",
     "TransferTransferVoicemailDetection",
     "TransferTransferVoicemailDetectionDetectionConfig",
@@ -25,7 +25,7 @@ __all__ = [
     "Invite",
     "InviteInvite",
     "InviteInviteCustomHeader",
-    "InviteInviteTargetsTargetsList",
+    "InviteInviteTargetsUnionMember0",
     "InviteInviteVoicemailDetection",
     "InviteInviteVoicemailDetectionOnVoicemailDetected",
     "Refer",
@@ -72,7 +72,7 @@ class Handoff(TypedDict, total=False):
     type: Required[Literal["handoff"]]
 
 
-class TransferTransferTargetsTargetsList(TypedDict, total=False):
+class TransferTransferTargetsUnionMember0(TypedDict, total=False):
     to: Required[str]
     """The destination number or SIP URI of the call."""
 
@@ -204,7 +204,7 @@ _TransferTransferReservedKeywords = TypedDict(
 
 
 class TransferTransfer(_TransferTransferReservedKeywords, total=False):
-    targets: Required[Union[Iterable[TransferTransferTargetsTargetsList], str]]
+    targets: Required[Union[Iterable[TransferTransferTargetsUnionMember0], str]]
     """The different possible targets of the transfer.
 
     The assistant will be able to choose one of the targets to transfer the call to.
@@ -265,7 +265,7 @@ class InviteInviteCustomHeader(TypedDict, total=False):
     """
 
 
-class InviteInviteTargetsTargetsList(TypedDict, total=False):
+class InviteInviteTargetsUnionMember0(TypedDict, total=False):
     to: Required[str]
     """The destination number or SIP URI of the call."""
 
@@ -309,7 +309,7 @@ class InviteInvite(_InviteInviteReservedKeywords, total=False):
     custom_headers: Iterable[InviteInviteCustomHeader]
     """Custom headers to be added to the SIP INVITE for the invite command."""
 
-    targets: Union[Iterable[InviteInviteTargetsTargetsList], str, None]
+    targets: Union[Iterable[InviteInviteTargetsUnionMember0], str, None]
     """The different possible targets of the invite.
 
     The assistant will be able to choose one of the targets to invite to the call.

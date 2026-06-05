@@ -11,4 +11,4 @@ __all__ = ["NumberAssociateParams"]
 
 class NumberAssociateParams(TypedDict, total=False):
     phone_numbers: Required[SequenceNotStr[str]]
-    """List of phone numbers to associate for reputation monitoring (max 100)"""
+    """1–100 phone numbers in E.164 format with a leading `+`."""

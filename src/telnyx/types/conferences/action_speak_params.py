@@ -7,7 +7,6 @@ from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from ..._types import SequenceNotStr
 from ..calls.aws_voice_settings_param import AwsVoiceSettingsParam
-from ..shared_params.xai_voice_settings import XaiVoiceSettings
 from ..calls.telnyx_voice_settings_param import TelnyxVoiceSettingsParam
 from ..shared_params.rime_voice_settings import RimeVoiceSettings
 from ..shared_params.azure_voice_settings import AzureVoiceSettings
@@ -15,7 +14,7 @@ from ..shared_params.minimax_voice_settings import MinimaxVoiceSettings
 from ..shared_params.resemble_voice_settings import ResembleVoiceSettings
 from ..calls.eleven_labs_voice_settings_param import ElevenLabsVoiceSettingsParam
 
-__all__ = ["ActionSpeakParams", "VoiceSettings", "VoiceSettingsInworldVoiceSettings"]
+__all__ = ["ActionSpeakParams", "VoiceSettings", "VoiceSettingsInworldVoiceSettings", "VoiceSettingsXaiVoiceSettings"]
 
 
 class ActionSpeakParams(TypedDict, total=False):
@@ -140,6 +139,14 @@ class VoiceSettingsInworldVoiceSettings(TypedDict, total=False):
     """Voice settings provider type"""
 
 
+class VoiceSettingsXaiVoiceSettings(TypedDict, total=False):
+    type: Required[Literal["xai"]]
+    """Voice settings provider type"""
+
+    language: str
+    """Language code, or `auto` to detect automatically."""
+
+
 VoiceSettings: TypeAlias = Union[
     ElevenLabsVoiceSettingsParam,
     TelnyxVoiceSettingsParam,
@@ -149,5 +156,5 @@ VoiceSettings: TypeAlias = Union[
     RimeVoiceSettings,
     ResembleVoiceSettings,
     VoiceSettingsInworldVoiceSettings,
-    XaiVoiceSettings,
+    VoiceSettingsXaiVoiceSettings,
 ]
