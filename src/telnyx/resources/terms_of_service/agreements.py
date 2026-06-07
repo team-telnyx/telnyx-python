@@ -107,9 +107,8 @@ class AgreementsResource(SyncAPIResource):
         Results are paginated with the standard `page[number]` / `page[size]`
         parameters; the response uses the standard `{data, meta}` JSON:API envelope.
 
-        By default this returns agreements for **all** products the user has agreed to
-        (including Branded Calling). Pass the `product_type` query parameter to scope
-        the result to a single product.
+        By default this returns agreements for **all** products the user has agreed to.
+        Pass the `product_type` query parameter to scope the result to a single product.
 
         Args:
           page_number: 1-based page number. Out-of-range values return an empty page with correct meta.
@@ -231,9 +230,8 @@ class AsyncAgreementsResource(AsyncAPIResource):
         Results are paginated with the standard `page[number]` / `page[size]`
         parameters; the response uses the standard `{data, meta}` JSON:API envelope.
 
-        By default this returns agreements for **all** products the user has agreed to
-        (including Branded Calling). Pass the `product_type` query parameter to scope
-        the result to a single product.
+        By default this returns agreements for **all** products the user has agreed to.
+        Pass the `product_type` query parameter to scope the result to a single product.
 
         Args:
           page_number: 1-based page number. Out-of-range values return an empty page with correct meta.
