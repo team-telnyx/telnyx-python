@@ -5666,11 +5666,12 @@ Methods:
 Types:
 
 ```python
-from telnyx.types import TermsOfServiceStatusResponse
+from telnyx.types import TermsOfServiceRetrieveInfoResponse, TermsOfServiceStatusResponse
 ```
 
 Methods:
 
+- <code title="get /terms_of_service/info">client.terms_of_service.<a href="./src/telnyx/resources/terms_of_service/terms_of_service.py">retrieve_info</a>(\*\*<a href="src/telnyx/types/terms_of_service_retrieve_info_params.py">params</a>) -> <a href="./src/telnyx/types/terms_of_service_retrieve_info_response.py">TermsOfServiceRetrieveInfoResponse</a></code>
 - <code title="get /terms_of_service/status">client.terms_of_service.<a href="./src/telnyx/resources/terms_of_service/terms_of_service.py">status</a>(\*\*<a href="src/telnyx/types/terms_of_service_status_params.py">params</a>) -> <a href="./src/telnyx/types/terms_of_service_status_response.py">TermsOfServiceStatusResponse</a></code>
 
 ## NumberReputation
