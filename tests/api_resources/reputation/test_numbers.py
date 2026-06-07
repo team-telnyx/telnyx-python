@@ -82,6 +82,9 @@ class TestNumbers:
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         number = client.reputation.numbers.list(
+            filter_enterprise_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            filter_phone_number_contains="+16035551234",
+            filter_phone_number_eq="+16035551234",
             page_number=1,
             page_size=20,
             phone_number="+16035551234",
@@ -219,6 +222,9 @@ class TestAsyncNumbers:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         number = await async_client.reputation.numbers.list(
+            filter_enterprise_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            filter_phone_number_contains="+16035551234",
+            filter_phone_number_eq="+16035551234",
             page_number=1,
             page_size=20,
             phone_number="+16035551234",

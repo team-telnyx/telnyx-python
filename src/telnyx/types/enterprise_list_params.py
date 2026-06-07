@@ -10,6 +10,9 @@ __all__ = ["EnterpriseListParams"]
 
 
 class EnterpriseListParams(TypedDict, total=False):
+    filter_legal_name_contains: Annotated[str, PropertyInfo(alias="filter[legal_name][contains]")]
+    """Case-insensitive partial match on legal name."""
+
     legal_name: str
     """Filter by legal name (partial match)."""
 

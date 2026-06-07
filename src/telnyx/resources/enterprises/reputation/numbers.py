@@ -107,6 +107,8 @@ class NumbersResource(SyncAPIResource):
         self,
         enterprise_id: str,
         *,
+        filter_phone_number_contains: str | Omit = omit,
+        filter_phone_number_eq: str | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         phone_number: str | Omit = omit,
@@ -123,6 +125,10 @@ class NumbersResource(SyncAPIResource):
         where one has been collected.
 
         Args:
+          filter_phone_number_contains: Partial match on phone number. Must contain at least 5 digits.
+
+          filter_phone_number_eq: Exact phone-number match (E.164).
+
           page_number: 1-based page number. Out-of-range values return an empty page with correct meta.
 
           page_size: Items per page. Default 10. Maximum 250; values above are clamped to 250.
@@ -149,6 +155,8 @@ class NumbersResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "filter_phone_number_contains": filter_phone_number_contains,
+                        "filter_phone_number_eq": filter_phone_number_eq,
                         "page_number": page_number,
                         "page_size": page_size,
                         "phone_number": phone_number,
@@ -371,6 +379,8 @@ class AsyncNumbersResource(AsyncAPIResource):
         self,
         enterprise_id: str,
         *,
+        filter_phone_number_contains: str | Omit = omit,
+        filter_phone_number_eq: str | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         phone_number: str | Omit = omit,
@@ -387,6 +397,10 @@ class AsyncNumbersResource(AsyncAPIResource):
         where one has been collected.
 
         Args:
+          filter_phone_number_contains: Partial match on phone number. Must contain at least 5 digits.
+
+          filter_phone_number_eq: Exact phone-number match (E.164).
+
           page_number: 1-based page number. Out-of-range values return an empty page with correct meta.
 
           page_size: Items per page. Default 10. Maximum 250; values above are clamped to 250.
@@ -413,6 +427,8 @@ class AsyncNumbersResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "filter_phone_number_contains": filter_phone_number_contains,
+                        "filter_phone_number_eq": filter_phone_number_eq,
                         "page_number": page_number,
                         "page_size": page_size,
                         "phone_number": phone_number,

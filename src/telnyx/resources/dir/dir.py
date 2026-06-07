@@ -211,8 +211,24 @@ class DirResource(SyncAPIResource):
         self,
         *,
         enterprise_id: str | Omit = omit,
+        filter_call_reason_contains: str | Omit = omit,
+        filter_display_name_contains: str | Omit = omit,
+        filter_enterprise_id: str | Omit = omit,
         filter_expiring_at_gte: Union[str, datetime] | Omit = omit,
         filter_expiring_at_lte: Union[str, datetime] | Omit = omit,
+        filter_status: Literal[
+            "draft",
+            "submitted",
+            "in_review",
+            "verified",
+            "rejected",
+            "unsuccessful",
+            "suspended",
+            "expired",
+            "infringement_claimed",
+            "permanently_rejected",
+        ]
+        | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         search: str | Omit = omit,
@@ -248,18 +264,30 @@ class DirResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncDefaultFlatPagination[DirListResponse]:
         """
-        Convenience endpoint that returns every DIR you own without scoping to a
-        specific enterprise. Equivalent to calling
-        `GET /v2/enterprises/{enterprise_id}/dir` for each enterprise and concatenating
-        the results, but server-side and paginated as a single list.
+        Returns every DIR (Display Identity Record) you own, across all of your
+        enterprises, as a single list. Pagination is JSON:API style (`page[number]`,
+        `page[size]`, max 250). Supports `filter[]` query params:
+        `filter[enterprise_id]`, `filter[status]`, `filter[display_name][contains]`,
+        `filter[call_reason][contains]`, plus the renewal-window filters
+        `filter[expiring_at][gte]` / `filter[expiring_at][lte]`. Sortable by
+        `created_at`, `updated_at`, `display_name`, `status` (prefix `-` for descending;
+        default `-created_at`).
 
         Args:
           enterprise_id: Restrict results to a single enterprise.
+
+          filter_call_reason_contains: Case-insensitive partial match on call reason.
+
+          filter_display_name_contains: Case-insensitive partial match on display name.
+
+          filter_enterprise_id: Filter by enterprise ID.
 
           filter_expiring_at_gte: Return only DIRs whose `expiring_at` is at or after this ISO-8601 timestamp.
               Pairs with the `[lte]` variant to build renewal-window dashboards.
 
           filter_expiring_at_lte: Return only DIRs whose `expiring_at` is at or before this ISO-8601 timestamp.
+
+          filter_status: Filter by DIR status.
 
           page_number: 1-based page number. Out-of-range values return an empty page with correct meta.
 
@@ -291,8 +319,12 @@ class DirResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "enterprise_id": enterprise_id,
+                        "filter_call_reason_contains": filter_call_reason_contains,
+                        "filter_display_name_contains": filter_display_name_contains,
+                        "filter_enterprise_id": filter_enterprise_id,
                         "filter_expiring_at_gte": filter_expiring_at_gte,
                         "filter_expiring_at_lte": filter_expiring_at_lte,
+                        "filter_status": filter_status,
                         "page_number": page_number,
                         "page_size": page_size,
                         "search": search,
@@ -689,8 +721,24 @@ class AsyncDirResource(AsyncAPIResource):
         self,
         *,
         enterprise_id: str | Omit = omit,
+        filter_call_reason_contains: str | Omit = omit,
+        filter_display_name_contains: str | Omit = omit,
+        filter_enterprise_id: str | Omit = omit,
         filter_expiring_at_gte: Union[str, datetime] | Omit = omit,
         filter_expiring_at_lte: Union[str, datetime] | Omit = omit,
+        filter_status: Literal[
+            "draft",
+            "submitted",
+            "in_review",
+            "verified",
+            "rejected",
+            "unsuccessful",
+            "suspended",
+            "expired",
+            "infringement_claimed",
+            "permanently_rejected",
+        ]
+        | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         search: str | Omit = omit,
@@ -726,18 +774,30 @@ class AsyncDirResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[DirListResponse, AsyncDefaultFlatPagination[DirListResponse]]:
         """
-        Convenience endpoint that returns every DIR you own without scoping to a
-        specific enterprise. Equivalent to calling
-        `GET /v2/enterprises/{enterprise_id}/dir` for each enterprise and concatenating
-        the results, but server-side and paginated as a single list.
+        Returns every DIR (Display Identity Record) you own, across all of your
+        enterprises, as a single list. Pagination is JSON:API style (`page[number]`,
+        `page[size]`, max 250). Supports `filter[]` query params:
+        `filter[enterprise_id]`, `filter[status]`, `filter[display_name][contains]`,
+        `filter[call_reason][contains]`, plus the renewal-window filters
+        `filter[expiring_at][gte]` / `filter[expiring_at][lte]`. Sortable by
+        `created_at`, `updated_at`, `display_name`, `status` (prefix `-` for descending;
+        default `-created_at`).
 
         Args:
           enterprise_id: Restrict results to a single enterprise.
+
+          filter_call_reason_contains: Case-insensitive partial match on call reason.
+
+          filter_display_name_contains: Case-insensitive partial match on display name.
+
+          filter_enterprise_id: Filter by enterprise ID.
 
           filter_expiring_at_gte: Return only DIRs whose `expiring_at` is at or after this ISO-8601 timestamp.
               Pairs with the `[lte]` variant to build renewal-window dashboards.
 
           filter_expiring_at_lte: Return only DIRs whose `expiring_at` is at or before this ISO-8601 timestamp.
+
+          filter_status: Filter by DIR status.
 
           page_number: 1-based page number. Out-of-range values return an empty page with correct meta.
 
@@ -769,8 +829,12 @@ class AsyncDirResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "enterprise_id": enterprise_id,
+                        "filter_call_reason_contains": filter_call_reason_contains,
+                        "filter_display_name_contains": filter_display_name_contains,
+                        "filter_enterprise_id": filter_enterprise_id,
                         "filter_expiring_at_gte": filter_expiring_at_gte,
                         "filter_expiring_at_lte": filter_expiring_at_lte,
+                        "filter_status": filter_status,
                         "page_number": page_number,
                         "page_size": page_size,
                         "search": search,

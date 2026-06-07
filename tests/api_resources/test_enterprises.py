@@ -362,6 +362,7 @@ class TestEnterprises:
     @parametrize
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         enterprise = client.enterprises.list(
+            filter_legal_name_contains="Acme",
             legal_name="Acme",
             page_number=1,
             page_size=10,
@@ -818,6 +819,7 @@ class TestAsyncEnterprises:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         enterprise = await async_client.enterprises.list(
+            filter_legal_name_contains="Acme",
             legal_name="Acme",
             page_number=1,
             page_size=10,

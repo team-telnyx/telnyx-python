@@ -136,8 +136,12 @@ class TestDir:
     def test_method_list_with_all_params(self, client: Telnyx) -> None:
         dir = client.dir.list(
             enterprise_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            filter_call_reason_contains="filter[call_reason][contains]",
+            filter_display_name_contains="filter[display_name][contains]",
+            filter_enterprise_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             filter_expiring_at_gte=parse_datetime("2019-12-27T18:11:19.117Z"),
             filter_expiring_at_lte=parse_datetime("2019-12-27T18:11:19.117Z"),
+            filter_status="draft",
             page_number=1,
             page_size=20,
             search="search",
@@ -532,8 +536,12 @@ class TestAsyncDir:
     async def test_method_list_with_all_params(self, async_client: AsyncTelnyx) -> None:
         dir = await async_client.dir.list(
             enterprise_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            filter_call_reason_contains="filter[call_reason][contains]",
+            filter_display_name_contains="filter[display_name][contains]",
+            filter_enterprise_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             filter_expiring_at_gte=parse_datetime("2019-12-27T18:11:19.117Z"),
             filter_expiring_at_lte=parse_datetime("2019-12-27T18:11:19.117Z"),
+            filter_status="draft",
             page_number=1,
             page_size=20,
             search="search",
