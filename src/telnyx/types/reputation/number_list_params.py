@@ -10,6 +10,15 @@ __all__ = ["NumberListParams"]
 
 
 class NumberListParams(TypedDict, total=False):
+    filter_enterprise_id: Annotated[str, PropertyInfo(alias="filter[enterprise_id]")]
+    """Filter by enterprise ID."""
+
+    filter_phone_number_contains: Annotated[str, PropertyInfo(alias="filter[phone_number][contains]")]
+    """Partial match on phone number. Must contain at least 5 digits."""
+
+    filter_phone_number_eq: Annotated[str, PropertyInfo(alias="filter[phone_number][eq]")]
+    """Exact phone-number match (E.164)."""
+
     page_number: Annotated[int, PropertyInfo(alias="page[number]")]
     """1-based page number.
 

@@ -427,6 +427,7 @@ class EnterprisesResource(SyncAPIResource):
     def list(
         self,
         *,
+        filter_legal_name_contains: str | Omit = omit,
         legal_name: str | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
@@ -443,6 +444,8 @@ class EnterprisesResource(SyncAPIResource):
         maximum is 250.
 
         Args:
+          filter_legal_name_contains: Case-insensitive partial match on legal name.
+
           legal_name: Filter by legal name (partial match).
 
           page_number: 1-based page number. Out-of-range values return an empty page with correct meta.
@@ -467,6 +470,7 @@ class EnterprisesResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "filter_legal_name_contains": filter_legal_name_contains,
                         "legal_name": legal_name,
                         "page_number": page_number,
                         "page_size": page_size,
@@ -947,6 +951,7 @@ class AsyncEnterprisesResource(AsyncAPIResource):
     def list(
         self,
         *,
+        filter_legal_name_contains: str | Omit = omit,
         legal_name: str | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
@@ -963,6 +968,8 @@ class AsyncEnterprisesResource(AsyncAPIResource):
         maximum is 250.
 
         Args:
+          filter_legal_name_contains: Case-insensitive partial match on legal name.
+
           legal_name: Filter by legal name (partial match).
 
           page_number: 1-based page number. Out-of-range values return an empty page with correct meta.
@@ -987,6 +994,7 @@ class AsyncEnterprisesResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "filter_legal_name_contains": filter_legal_name_contains,
                         "legal_name": legal_name,
                         "page_number": page_number,
                         "page_size": page_size,
